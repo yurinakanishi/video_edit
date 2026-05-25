@@ -20,22 +20,47 @@
 *.aac
 *.AAC
 
-# Camera/audio source folders copied into the working directory
-1cam/
-2cam/
-3cam/
-sound/
-sond-low/
+# Source media copied into the working directory
+source/video/
+source/audio/
 
 # FFmpeg segment and diagnostic outputs
 segments_*/
 sync_diagnostics/
-video_original_audio/
+/video_original_audio/
 audio_sync_analysis/
+transcript_sync/
+transcript_sync_all/
+output/
 
 # Generated concat manifests and logs
 *.concat.txt
 *.log
+
+# Generated subtitle/overlay render outputs
+ai_engineer_now_title.ass
+ai_engineer_now_title.png
+punchline_subtitles.ass
+full_transcript_png_overlays/
+punchline_png_overlays/
+sound2_transcripts/
+subtitle_review/
+
+# Generated preview/check/debug images
+preview_*.png
+*_check_*.png
+subtitle_*_check_*.png
+color_candidate_*.png
+face_detect_*.png
+skin_debug_*.png
+speaker_style_check_*.png
+interviewer_question_summary_card.png
+
+# Generated analysis reports
+color_match_*.json
+skin_*_compare_*.json
+full_transcript_speaker_roles.json
+*.silence_shortening.json
 
 # Python/runtime caches
 __pycache__/
@@ -43,10 +68,15 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+# Electron app dependencies
+app/node_modules/
+app/dist/
+app/smoke_outputs/
+app/video_edit_app_config.runtime.json
+
 # OS/editor noise
 Thumbs.db
 Desktop.ini
 .DS_Store
 .vscode/
 .idea/
-

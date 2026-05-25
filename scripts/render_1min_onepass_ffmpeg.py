@@ -9,6 +9,7 @@ from pathlib import Path
 from project_paths import (
     CONFIG,
     OUTPUT_DIAGNOSTICS,
+    OUTPUT_AUDIO,
     OUTPUT_OVERLAYS,
     OUTPUT_REPORTS,
     OUTPUT_TRANSCRIPTS,
@@ -34,9 +35,11 @@ APP_CONFIG = load_app_config()
 FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 CAM1 = SOURCE_VIDEO / "1cam" / "ST7_7550_overlap_5min.mp4"
 CAM2_7192 = multicam_source_root() / "2cam" / "0H4A7192.MP4"
+CAM2_7193 = multicam_source_root() / "2cam" / "0H4A7193.MP4"
 LOGO = optional_path(APP_CONFIG, "assets", "logo", default=SOURCE_IMAGES / "type-logo-transparent-cropped.png")
 TITLE = OUTPUT_OVERLAYS / "ai_engineer_now_title.png"
 SUMMARY_CARD = OUTPUT_OVERLAYS / "interviewer_question_summary_card.png"
+OMIT_SUMMARY_MUSIC = OUTPUT_AUDIO / "omit_summary_card_music_5s.wav"
 FONT_PATH = Path(r"C:\Windows\Fonts\YuGothB.ttc")
 LOGO_HEIGHT = int_value(APP_CONFIG, "style", "logoHeight", default=120)
 LOGO_MARGIN_X = int_value(APP_CONFIG, "style", "logoMarginX", default=16)
@@ -78,6 +81,8 @@ MODES = {
 DEFAULT_OUTPUT_END = 85.0
 DURATION = DEFAULT_OUTPUT_END
 CAM2_SOURCE_OFFSET = 1102.710
+CAM2_7193_SOURCE_OFFSET = 59.640 - 85.000
+LATE_CAM2_SWITCH = 68.0
 CAM1_SOURCE_OFFSET = 20.0
 CAM2_RGB_GAIN = (0.96, 0.98, 1.02)  # R, G, B. Slightly cool the zoom camera.
 CAM2_SATURATION_SCALE = 0.94
@@ -95,6 +100,23 @@ SUMMARY_LINES = (
     "PDMフリー化をめぐる論争について",
     "どう感じますか？",
 )
+DYNAMIC_TIMELINE_SEGMENTS = [
+    {"camera": "2cam", "input_index": 0, "start": 0.0, "end": 3.2, "local_start": 0.0, "local_end": 3.2, "crop": 0.74, "x": 0.77, "y": 0.06},
+    {"camera": "2cam", "input_index": 0, "start": 3.2, "end": 6.8, "local_start": 3.2, "local_end": 6.8, "crop": 0.88, "x": 0.66, "y": 0.04},
+    {"camera": "2cam", "input_index": 0, "start": 6.8, "end": 10.6, "local_start": 6.8, "local_end": 10.6, "crop": 0.76, "x": 0.78, "y": 0.07},
+    {"camera": "2cam", "input_index": 0, "start": 10.6, "end": 14.4, "local_start": 10.6, "local_end": 14.4, "crop": 0.92, "x": 0.62, "y": 0.04},
+    {"camera": "2cam", "input_index": 0, "start": 14.4, "end": 20.0, "local_start": 14.4, "local_end": 20.0, "crop": 0.72, "x": 0.80, "y": 0.08},
+    {"camera": "1cam", "input_index": 1, "start": 20.0, "end": 24.5, "local_start": 0.0, "local_end": 4.5, "crop": 0.94, "x": 0.50, "y": 0.02},
+    {"camera": "1cam", "input_index": 1, "start": 24.5, "end": 31.0, "local_start": 4.5, "local_end": 11.0, "crop": 0.70, "x": 0.76, "y": 0.11},
+    {"camera": "1cam", "input_index": 1, "start": 31.0, "end": 37.0, "local_start": 11.0, "local_end": 17.0, "crop": 0.86, "x": 0.60, "y": 0.04},
+    {"camera": "1cam", "input_index": 1, "start": 37.0, "end": 44.0, "local_start": 17.0, "local_end": 24.0, "crop": 0.74, "x": 0.76, "y": 0.10},
+    {"camera": "1cam", "input_index": 1, "start": 44.0, "end": 51.0, "local_start": 24.0, "local_end": 31.0, "crop": 0.90, "x": 0.56, "y": 0.03},
+    {"camera": "1cam", "input_index": 1, "start": 51.0, "end": 57.0, "local_start": 31.0, "local_end": 37.0, "crop": 0.72, "x": 0.77, "y": 0.10},
+    {"camera": "1cam", "input_index": 1, "start": 57.0, "end": 63.0, "local_start": 37.0, "local_end": 43.0, "crop": 0.70, "x": 0.76, "y": 0.11},
+    {"camera": "1cam", "input_index": 1, "start": 63.0, "end": 70.0, "local_start": 43.0, "local_end": 50.0, "crop": 0.84, "x": 0.61, "y": 0.04},
+    {"camera": "1cam", "input_index": 1, "start": 70.0, "end": 78.0, "local_start": 50.0, "local_end": 58.0, "crop": 0.72, "x": 0.77, "y": 0.10},
+    {"camera": "1cam", "input_index": 1, "start": 78.0, "end": 85.0, "local_start": 58.0, "local_end": 65.0, "crop": 0.94, "x": 0.50, "y": 0.02},
+]
 
 
 def seconds(timestamp: str) -> float:
@@ -126,6 +148,24 @@ def parse_args() -> argparse.Namespace:
         "--omit-interviewer-question",
         action="store_true",
         help="Replace the offscreen interviewer question with a 5-second summary card and sound effect.",
+    )
+    parser.add_argument(
+        "--auto-context-cuts",
+        dest="auto_context_cuts",
+        action="store_true",
+        default=True,
+        help="Use subtitle speaker roles and answer context to choose camera changes.",
+    )
+    parser.add_argument(
+        "--no-auto-context-cuts",
+        dest="auto_context_cuts",
+        action="store_false",
+        help="Use the simple fixed camera plan without subtitle-context camera changes.",
+    )
+    parser.add_argument(
+        "--dynamic-cuts",
+        action="store_true",
+        help="Use a faster edit with rhythmic punch-ins and reframes while keeping source sync and audio intact.",
     )
     return parser.parse_args()
 
@@ -180,9 +220,25 @@ def generate_summary_card() -> None:
     canvas.save(SUMMARY_CARD)
 
 
+def camera_crop_filter(crop: float, x_bias: float = 0.5, y_bias: float = 0.5) -> str:
+    crop = max(0.55, min(1.0, crop))
+    x_bias = max(0.0, min(1.0, x_bias))
+    y_bias = max(0.0, min(1.0, y_bias))
+    return (
+        f"crop=w='iw*{crop:.6f}':h='ih*{crop:.6f}':"
+        f"x='(iw-ow)*{x_bias:.6f}':y='(ih-oh)*{y_bias:.6f}',scale=1920:1080"
+    )
+
+
 def render(args: argparse.Namespace) -> Path:
     if args.omit_interviewer_question and (args.preview_start != 0.0 or args.preview_duration < DURATION):
         raise RuntimeError("--omit-interviewer-question currently supports full-range renders only")
+    if args.dynamic_cuts and (
+        args.omit_interviewer_question
+        or args.preview_start != 0.0
+        or args.preview_duration < DURATION
+    ):
+        raise RuntimeError("--dynamic-cuts currently supports normal full-range renders only")
     config = MODES[args.mode]
     if not args.skip_subtitle_regeneration:
         run([sys.executable, str(SCRIPTS / "generate_title_png_overlay.py")])
@@ -192,10 +248,14 @@ def render(args: argparse.Namespace) -> Path:
             run([sys.executable, str(config["generator"])])
     if args.omit_interviewer_question:
         generate_summary_card()
+        if not OMIT_SUMMARY_MUSIC.exists():
+            run([sys.executable, str(SCRIPTS / "generate_omit_summary_music.py")])
 
     output = args.output or Path(config["output"])
     if args.omit_interviewer_question and args.output is None:
         output = output.with_name(f"{output.stem}_omit_interviewer{output.suffix}")
+    if args.dynamic_cuts and args.output is None:
+        output = output.with_name(f"{output.stem}_dynamic{output.suffix}")
     output.parent.mkdir(parents=True, exist_ok=True)
     render_output = output
     should_shorten = (
@@ -267,43 +327,74 @@ def render(args: argparse.Namespace) -> Path:
     first_caption_input = 4 + summary_input_count
     sound_index = first_caption_input + len(captions)
     command.extend(["-ss", f"{sound_start:.6f}", "-t", f"{input_duration:.6f}", "-i", str(sound)])
+    music_index = sound_index + 1
+    if args.omit_interviewer_question:
+        command.extend(["-i", str(OMIT_SUMMARY_MUSIC)])
+    late_cam2_index = sound_index + (2 if args.omit_interviewer_question else 1)
+    if args.auto_context_cuts and not args.dynamic_cuts and preview_end > LATE_CAM2_SWITCH:
+        late_input_master_start = max(args.preview_start, LATE_CAM2_SWITCH)
+        late_input_start = late_input_master_start + CAM2_7193_SOURCE_OFFSET
+        late_input_duration = max(0.1, preview_end - late_input_master_start)
+        command.extend(["-ss", f"{late_input_start:.6f}", "-t", f"{late_input_duration:.6f}", "-i", str(CAM2_7193)])
 
     r_gain, g_gain, b_gain = cam1_rgb_gain()
-    camera_crop_filter = (
-        f"crop=w='iw*{CAMERA_CENTER_CROP:.6f}':h='ih*{CAMERA_CENTER_CROP:.6f}':"
-        "x='(iw-ow)/2':y='(ih-oh)/2',scale=1920:1080"
-    )
     filters = []
     video_segments: list[str] = []
-    if args.omit_interviewer_question:
+    if args.omit_interviewer_question and args.auto_context_cuts:
         timeline_segments = [
-            ("2cam", 0, 0.0, 20.0, 0.0, 20.0),
-            ("summary", 1, 20.0, 25.0, 0.0, OMIT_SUMMARY_DURATION),
-            ("1cam", 1, 57.0, OMIT_ANSWER_END, 37.0, OMIT_ANSWER_END - CAM1_SOURCE_OFFSET),
+            {"camera": "2cam", "input_index": 0, "start": 0.0, "end": 20.0, "local_start": 0.0, "local_end": 20.0},
+            {"camera": "summary", "input_index": 1, "start": 20.0, "end": 25.0, "local_start": 0.0, "local_end": OMIT_SUMMARY_DURATION},
+            {"camera": "1cam", "input_index": 1, "start": 57.0, "end": LATE_CAM2_SWITCH, "local_start": 37.0, "local_end": LATE_CAM2_SWITCH - CAM1_SOURCE_OFFSET},
+            {"camera": "2cam", "input_index": late_cam2_index, "start": LATE_CAM2_SWITCH, "end": OMIT_ANSWER_END, "crop": 0.86, "x": 0.55, "y": 0.08},
+        ]
+    elif args.omit_interviewer_question:
+        timeline_segments = [
+            {"camera": "2cam", "input_index": 0, "start": 0.0, "end": 20.0, "local_start": 0.0, "local_end": 20.0},
+            {"camera": "summary", "input_index": 1, "start": 20.0, "end": 25.0, "local_start": 0.0, "local_end": OMIT_SUMMARY_DURATION},
+            {"camera": "1cam", "input_index": 1, "start": 57.0, "end": OMIT_ANSWER_END, "local_start": 37.0, "local_end": OMIT_ANSWER_END - CAM1_SOURCE_OFFSET},
+        ]
+    elif args.dynamic_cuts:
+        timeline_segments = DYNAMIC_TIMELINE_SEGMENTS
+    elif args.auto_context_cuts:
+        timeline_segments = [
+            {"camera": "2cam", "input_index": 0, "start": 0.0, "end": 20.0},
+            {"camera": "1cam", "input_index": 1, "start": 20.0, "end": LATE_CAM2_SWITCH},
+            {"camera": "2cam", "input_index": late_cam2_index, "start": LATE_CAM2_SWITCH, "end": DURATION, "crop": 0.86, "x": 0.55, "y": 0.08},
         ]
     else:
         timeline_segments = [
-            ("2cam", 0, 0.0, 20.0, 0.0, 20.0),
-            ("1cam", 1, 20.0, 60.0, 0.0, 40.0),
+            {"camera": "2cam", "input_index": 0, "start": 0.0, "end": 20.0},
+            {"camera": "1cam", "input_index": 1, "start": 20.0, "end": DURATION},
         ]
-    for segment_index, (camera, input_index, start_t, end_t, local_source_start, local_source_end) in enumerate(timeline_segments):
+    for segment_index, segment in enumerate(timeline_segments):
+        camera = str(segment["camera"])
+        input_index = int(segment["input_index"])
+        start_t = float(segment["start"])
+        end_t = float(segment["end"])
         start = max(args.preview_start, start_t)
         end = min(preview_end, end_t)
         if end <= start:
             continue
-        if args.omit_interviewer_question:
-            local_start = local_source_start
-            local_end = local_source_end
+        if "local_start" in segment:
+            local_start = float(segment["local_start"]) + (start - start_t)
+            local_end = float(segment["local_end"]) - (end_t - end)
+        elif args.omit_interviewer_question:
+            local_start = 0.0
+            local_end = end - start
         else:
             local_start = 0.0
             local_end = end - start
         label = f"vseg{segment_index}"
+        crop_filter = camera_crop_filter(
+            float(segment.get("crop", CAMERA_CENTER_CROP)),
+            float(segment.get("x", 0.5)),
+            float(segment.get("y", 0.5)),
+        )
         if camera in {"1cam", "summary"}:
             filters.append(
-                f"[{input_index}:v]setpts=PTS-STARTPTS,{camera_crop_filter},"
+                f"[{input_index}:v]trim=start={local_start:.6f}:end={local_end:.6f},setpts=PTS-STARTPTS,{crop_filter},"
                 f"colorchannelmixer=rr={r_gain:.6f}:gg={g_gain:.6f}:bb={b_gain:.6f},"
-                f"eq=saturation={CAM1_SATURATION_SCALE:.6f},"
-                f"trim=start={local_start:.6f}:end={local_end:.6f},setpts=PTS-STARTPTS[{label}]"
+                f"eq=saturation={CAM1_SATURATION_SCALE:.6f}[{label}]"
             )
             if camera == "summary":
                 card_input = 4
@@ -315,10 +406,9 @@ def render(args: argparse.Namespace) -> Path:
         else:
             r2_gain, g2_gain, b2_gain = CAM2_RGB_GAIN
             filters.append(
-                f"[{input_index}:v]setpts=PTS-STARTPTS,{camera_crop_filter},"
+                f"[{input_index}:v]trim=start={local_start:.6f}:end={local_end:.6f},setpts=PTS-STARTPTS,{crop_filter},"
                 f"colorchannelmixer=rr={r2_gain:.6f}:gg={g2_gain:.6f}:bb={b2_gain:.6f},"
-                f"eq=saturation={CAM2_SATURATION_SCALE:.6f},"
-                f"trim=start={local_start:.6f}:end={local_end:.6f},setpts=PTS-STARTPTS[{label}]"
+                f"eq=saturation={CAM2_SATURATION_SCALE:.6f}[{label}]"
             )
         video_segments.append(label)
     if not video_segments:
@@ -368,13 +458,7 @@ def render(args: argparse.Namespace) -> Path:
             [
                 f"[{sound_index}:a]atrim=start=0:end=20,asetpts=PTS-STARTPTS[a0]",
                 f"[{sound_index}:a]atrim=start=57:end={OMIT_ANSWER_END:.6f},asetpts=PTS-STARTPTS[a1]",
-                f"aevalsrc=0:d={OMIT_SUMMARY_DURATION:.3f}:s=48000[sil]",
-                f"sine=frequency=196:duration={OMIT_SUMMARY_DURATION:.3f}:sample_rate=48000,volume=0.030,afade=t=in:st=0:d=0.25,afade=t=out:st=4.35:d=0.65[music1]",
-                f"sine=frequency=294:duration={OMIT_SUMMARY_DURATION:.3f}:sample_rate=48000,volume=0.022,afade=t=in:st=0:d=0.25,afade=t=out:st=4.35:d=0.65[music2]",
-                f"sine=frequency=392:duration={OMIT_SUMMARY_DURATION:.3f}:sample_rate=48000,volume=0.018,afade=t=in:st=0:d=0.25,afade=t=out:st=4.35:d=0.65[music3]",
-                "sine=frequency=880:duration=0.14:sample_rate=48000,volume=0.18,adelay=80|80[sfx1]",
-                "sine=frequency=1320:duration=0.18:sample_rate=48000,volume=0.12,adelay=180|180[sfx2]",
-                "[sil][music1][music2][music3][sfx1][sfx2]amix=inputs=6:duration=first[aq]",
+                f"[{music_index}:a]atrim=start=0:end={OMIT_SUMMARY_DURATION:.3f},asetpts=PTS-STARTPTS,volume=0.52[aq]",
                 f"[a0][aq][a1]concat=n=3:v=0:a=1,{audio_filter}[a]",
             ]
         )

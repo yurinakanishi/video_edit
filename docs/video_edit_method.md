@@ -879,15 +879,55 @@ Set-Location 'C:\Users\yurin\Desktop\video_edit'
   --output .\onepass_audio_preview_15s_12s.mp4
 ```
 
-## Interviewer Question Omit Mode
+## Natural Answer Ending And Interviewer Question Omit Mode
 
-The 1-minute one-pass renderer can optionally remove the long offscreen interviewer question and replace it with a short summary card. This is controlled by `--omit-interviewer-question`.
+The one-pass renderer no longer hard-stops at exactly 60 seconds. Both normal mode and interviewer-question omit mode can extend the output until the onscreen speaker reaches a natural sentence/paragraph break, with a maximum extension target of about 30 seconds.
+
+For the current ST7_7550 edit, the natural break is original source time `01:25`, after the line `フレッシュな話題というか`. This makes the normal output `85.000s`.
+
+Implementation rule:
+
+```text
+DEFAULT_OUTPUT_END = 85.0
+DURATION = DEFAULT_OUTPUT_END
+OMIT_ANSWER_END = DEFAULT_OUTPUT_END
+```
+
+Normal-mode camera timeline:
+
+```text
+00:00-00:20  2cam zoom 0H4A7192
+00:20-01:08  1cam wide
+01:08-01:25  2cam zoom 0H4A7193
+```
+
+This is an automatic context-aware camera plan, not a purely time-based punch-in rule:
+
+1. Read the full-transcript overlay manifest and speaker roles.
+2. Keep the offscreen interviewer question on the wide/master view instead of cutting to the interviewee reaction.
+3. Wait through the short confirmation exchange at `01:06-01:08`.
+4. Switch to the camera-2 close shot when the interviewee answer enters the main point at `01:08` (`まあなんか`).
+5. Confirm the candidate camera source with OpenCV frame sampling before using it in the final plan.
+
+OpenCV check for the late interviewee answer:
+
+```text
+output\diagnostics\camera2_after_1min_opencv\analysis.json
+output\diagnostics\camera2_after_1min_opencv\cam1_vs_2cam7193_57_84s_contact_sheet.jpg
+```
+
+`0H4A7192` is unavailable after about the first 20 seconds of this master timeline. The usable late camera-2 source is `0H4A7193`, with `01:25` on the master timeline corresponding to `00:59.640` in `0H4A7193`. The late switch starts at `01:08`, after the short confirmation exchange, where the answer enters the main point.
+
+Important implementation note: do not leave the normal-mode `1cam` segment capped at `60.0`. The camera plan must still cover through `DURATION`, otherwise the audio/subtitle timeline can extend beyond the intended camera edit.
+
+The renderer can also remove the long offscreen interviewer question and replace it with a short summary card. This is controlled by `--omit-interviewer-question`.
 
 Normal mode:
 
 ```powershell
 & 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\render_1min_onepass_ffmpeg.py `
   --mode full `
+  --auto-context-cuts `
   --skip-subtitle-regeneration `
   --output .\ST7_7550_multicam_cut_1min_onepass_full_transcript.mp4
 ```
@@ -897,6 +937,7 @@ Interviewer question omit mode:
 ```powershell
 & 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\render_1min_onepass_ffmpeg.py `
   --mode full `
+  --auto-context-cuts `
   --skip-subtitle-regeneration `
   --omit-interviewer-question `
   --output .\ST7_7550_multicam_cut_1min_onepass_full_transcript_omit_interviewer.mp4
@@ -908,24 +949,42 @@ Current omit-mode edit rule:
 00:00-00:20  keep onscreen speaker answer
 00:20-00:57  remove offscreen interviewer question
 00:20-00:25  insert 5-second question summary card
-00:25-00:28  resume onscreen speaker answer from original 00:57-00:60
+00:25-00:36  resume onscreen speaker answer from original 00:57-01:08 on 1cam wide
+00:36-00:53  continue original 01:08-01:25 on 2cam zoom 0H4A7193
 ```
+
+In omit mode, the same source-context switch is remapped onto the shortened timeline. Original `01:08` becomes output `00:36`, so the close camera begins after the summary-card gap and after the brief confirmation line, exactly where the main answer begins.
+
+App behavior:
+
+```text
+app/src/renderer/index.html
+Auto cut by subtitle context and speaker: on by default
+```
+
+When enabled, the app passes `--auto-context-cuts` to `render_1min_onepass_ffmpeg.py`. When disabled, it passes `--no-auto-context-cuts` and the renderer falls back to the simple fixed camera plan.
 
 Summary card text:
 
 ```text
-質問
 PDMフリー化をめぐる論争について
 どう感じますか？
 ```
 
-Omit mode also adds a short synthetic notification-style sound effect during the summary card. The normal mode remains unchanged.
-
-Current omit-mode output:
+Omit mode also adds a dedicated 5-second music cue during the summary card:
 
 ```text
-ST7_7550_multicam_cut_1min_onepass_full_transcript_omit_interviewer.mp4
-duration: 28.000s
+output\audio\omit_summary_card_music_5s.wav
+```
+
+Current outputs:
+
+```text
+output\videos\ST7_7550_multicam_cut_1min_onepass_full_transcript.mp4
+duration: 85.000s
+
+output\videos\ST7_7550_multicam_cut_1min_onepass_full_transcript_omit_interviewer.mp4
+duration: 53.000s
 ```
 
 ## Step 12: Shorten Long Silent Sections

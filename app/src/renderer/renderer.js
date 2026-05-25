@@ -351,6 +351,9 @@ function buildRenderCommand() {
   if (script === "render_1min_onepass_ffmpeg.py" && formValue("skipSubtitleRegeneration")) {
     command.push("--skip-subtitle-regeneration");
   }
+  if (script === "render_1min_onepass_ffmpeg.py") {
+    command.push(formValue("autoContextCuts") ? "--auto-context-cuts" : "--no-auto-context-cuts");
+  }
 
   addAudioArgs(command);
   addSilenceArgs(command);
@@ -612,6 +615,7 @@ function buildPrompt() {
     `- Rebuild base: ${formValue("rebuildBase")}`,
     `- Reuse existing overlays: ${formValue("skipSubtitleRegeneration")}`,
     `- Reclassify speakers: ${formValue("reclassifySpeakers")}`,
+    `- Auto context/speaker camera cuts: ${formValue("autoContextCuts")}`,
     `- Output path: ${outputPath}`,
     `- Still extraction time: ${formValue("stillTime") || "00:00:25"}`,
     `- Source root override: ${formValue("sourceRoot") || "(not set)"}`,
@@ -837,8 +841,17 @@ function bindEvents() {
       "current-5min": "render_final_png_overlays.py",
       "new-interview": "render_app_interview.py",
     };
+    const durations = {
+      "current-1min-color": 60,
+      "current-onepass": 85,
+      "current-5min": 300,
+      "new-interview": 60,
+    };
     if (mapping[formValue("editPreset")]) {
       $("#renderScript").value = mapping[formValue("editPreset")];
+    }
+    if (durations[formValue("editPreset")]) {
+      $("#previewDuration").value = String(durations[formValue("editPreset")]);
     }
     refreshPrompt();
   });

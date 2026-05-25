@@ -25,6 +25,7 @@ Build artifacts are written to `C:\Users\yurin\Desktop\video_edit\output\app\dis
 - Lets you choose current preset scripts or a new interview multicam request.
 - Provides source-root and tool-path controls for the paths described in `docs\video_edit_method.md`.
 - Exposes subtitle mode selection: full transcript, catchy/punchline, or none.
+- Exposes automatic context/speaker camera cuts for the current one-pass preset, passing `--auto-context-cuts` so subtitle speaker roles and answer context can drive camera changes.
 - Captures title, subtitle, color, opacity, logo-size, punchline-list, output-duration, audio-noise-reduction, and silence-shortening settings.
 - Shows a preflight checklist for missing output paths, required camera files, audio fallbacks, silence-shortening state, and recommended auto-sync steps.
 - Shows the latest dropped-camera sync score from `output\reports\app_sync_offsets.json` and refreshes it after auto-sync runs.

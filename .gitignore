@@ -1,0 +1,52 @@
+# Large source and rendered media
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.m4v
+*.M4V
+*.avi
+*.AVI
+*.mkv
+*.MKV
+*.wav
+*.WAV
+*.aif
+*.AIF
+*.aiff
+*.AIFF
+*.mp3
+*.MP3
+*.aac
+*.AAC
+
+# Camera/audio source folders copied into the working directory
+1cam/
+2cam/
+3cam/
+sound/
+sond-low/
+
+# FFmpeg segment and diagnostic outputs
+segments_*/
+sync_diagnostics/
+video_original_audio/
+audio_sync_analysis/
+
+# Generated concat manifests and logs
+*.concat.txt
+*.log
+
+# Python/runtime caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# OS/editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+

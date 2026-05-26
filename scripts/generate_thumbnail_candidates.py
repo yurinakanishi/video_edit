@@ -19,7 +19,6 @@ ASSET_SOURCE_DEFAULT = Path(r"C:\Users\yurin\Downloads\etype260515 p-takei\etype
 ASSET_DIR = ROOT / "source" / "thumbnail" / "etype260515_p_takei"
 REFERENCE_DIR = ROOT / "source" / "thumbnail" / "references"
 OUTPUT_DIR = OUTPUT / "thumbnails"
-ANALYSIS_PATH = OUTPUT_DIR / "thumbnail_asset_analysis.json"
 REFERENCE_STYLE_PATH = OUTPUT_DIR / "thumbnail_reference_style.json"
 VIDEO_PATH = OUTPUT / "videos" / "ST7_7550_multicam_cut_1min_onepass_full_transcript.mp4"
 TRANSCRIPT_PATH = OUTPUT / "transcripts" / "sound2" / "140101-001.json"
@@ -95,6 +94,110 @@ def crop_to_canvas(image: Image.Image) -> tuple[Image.Image, tuple[int, int, int
         crop_h = int(src_w / target_ratio)
         left = 0
         top = max(0, (src_h - crop_h) // 2)
+    crop = (left, top, left + crop_w, top + crop_h)
+    return image.crop(crop).resize(CANVAS_SIZE, Image.Resampling.LANCZOS), crop
+
+
+def crop_face_closeup_to_canvas(image: Image.Image, source_faces: list[Rect], variant_index: int) -> tuple[Image.Image, tuple[int, int, int, int]]:
+    if not source_faces:
+        return crop_to_canvas(image)
+
+    src_w, src_h = image.size
+    target_ratio = CANVAS_SIZE[0] / CANVAS_SIZE[1]
+    face = sorted(source_faces, key=lambda item: item.area, reverse=True)[0]
+    face_cx = face.x + face.w / 2
+    face_cy = face.y + face.h / 2
+
+    crop_h = int(min(src_h, face.h * 1.55))
+    crop_w = int(crop_h * target_ratio)
+    if crop_w > src_w:
+        crop_w = src_w
+        crop_h = int(crop_w / target_ratio)
+    if crop_h > src_h:
+        crop_h = src_h
+        crop_w = int(crop_h * target_ratio)
+
+    # Keep the face centered horizontally and slightly above the vertical midpoint
+    # so the one-line bottom title sits over torso/background rather than the face.
+    horizontal_nudge = ((variant_index % 5) - 2) * face.w * 0.12
+    left = int(face_cx + horizontal_nudge - crop_w / 2)
+    top = int(face_cy - crop_h * 0.42)
+    left = max(0, min(src_w - crop_w, left))
+    top = max(0, min(src_h - crop_h, top))
+    crop = (left, top, left + crop_w, top + crop_h)
+    return image.crop(crop).resize(CANVAS_SIZE, Image.Resampling.LANCZOS), crop
+
+
+def crop_face_right_closeup_to_canvas(image: Image.Image, source_faces: list[Rect], variant_index: int) -> tuple[Image.Image, tuple[int, int, int, int]]:
+    if not source_faces:
+        return crop_to_canvas(image)
+
+    src_w, src_h = image.size
+    target_ratio = CANVAS_SIZE[0] / CANVAS_SIZE[1]
+    face = sorted(source_faces, key=lambda item: item.area, reverse=True)[0]
+    face_cx = face.x + face.w / 2
+    face_cy = face.y + face.h / 2
+
+    crop_h = int(min(src_h, face.h * 1.95))
+    crop_w = int(crop_h * target_ratio)
+    if crop_w > src_w:
+        crop_w = src_w
+        crop_h = int(crop_w / target_ratio)
+    if crop_h > src_h:
+        crop_h = src_h
+        crop_w = int(crop_h * target_ratio)
+
+    target_x = 0.8 + ((variant_index % 3) - 1) * 0.02
+    target_y = 0.43
+    if face_cx - crop_w * target_x < 0:
+        crop_w = int(face_cx / target_x)
+        crop_h = int(crop_w / target_ratio)
+    if face_cx + crop_w * (1 - target_x) > src_w:
+        crop_w = int((src_w - face_cx) / (1 - target_x))
+        crop_h = int(crop_w / target_ratio)
+    crop_w = max(1, min(src_w, crop_w))
+    crop_h = max(1, min(src_h, crop_h))
+    left = int(face_cx - crop_w * target_x)
+    top = int(face_cy - crop_h * target_y)
+    left = max(0, min(src_w - crop_w, left))
+    top = max(0, min(src_h - crop_h, top))
+    crop = (left, top, left + crop_w, top + crop_h)
+    return image.crop(crop).resize(CANVAS_SIZE, Image.Resampling.LANCZOS), crop
+
+
+def crop_face_left_closeup_to_canvas(image: Image.Image, source_faces: list[Rect], variant_index: int) -> tuple[Image.Image, tuple[int, int, int, int]]:
+    if not source_faces:
+        return crop_to_canvas(image)
+
+    src_w, src_h = image.size
+    target_ratio = CANVAS_SIZE[0] / CANVAS_SIZE[1]
+    face = sorted(source_faces, key=lambda item: item.area, reverse=True)[0]
+    face_cx = face.x + face.w / 2
+    face_cy = face.y + face.h / 2
+
+    crop_h = int(min(src_h, face.h * 1.95))
+    crop_w = int(crop_h * target_ratio)
+    if crop_w > src_w:
+        crop_w = src_w
+        crop_h = int(crop_w / target_ratio)
+    if crop_h > src_h:
+        crop_h = src_h
+        crop_w = int(crop_h * target_ratio)
+
+    target_x = 0.2 + ((variant_index % 3) - 1) * 0.02
+    target_y = 0.43
+    if face_cx - crop_w * target_x < 0:
+        crop_w = int(face_cx / target_x)
+        crop_h = int(crop_w / target_ratio)
+    if face_cx + crop_w * (1 - target_x) > src_w:
+        crop_w = int((src_w - face_cx) / (1 - target_x))
+        crop_h = int(crop_w / target_ratio)
+    crop_w = max(1, min(src_w, crop_w))
+    crop_h = max(1, min(src_h, crop_h))
+    left = int(face_cx - crop_w * target_x)
+    top = int(face_cy - crop_h * target_y)
+    left = max(0, min(src_w - crop_w, left))
+    top = max(0, min(src_h - crop_h, top))
     crop = (left, top, left + crop_w, top + crop_h)
     return image.crop(crop).resize(CANVAS_SIZE, Image.Resampling.LANCZOS), crop
 
@@ -209,20 +312,41 @@ def choose_logo_box(face_boxes: list[Rect], text_box: Rect, extra_avoid: list[Re
 
 
 def fit_lines(text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
-    if "\n" in text:
-        return [line for line in text.split("\n") if line]
     lines: list[str] = []
-    line = ""
-    for char in text:
-        trial = line + char
-        if font.getbbox(trial)[2] <= max_width or not line:
-            line = trial
-        else:
+    for paragraph in [part for part in text.split("\n") if part]:
+        line = ""
+        tokens: list[str] = []
+        token = ""
+        for char in paragraph:
+            if char.isascii() and char.isalnum():
+                token += char
+            else:
+                if token:
+                    tokens.append(token)
+                    token = ""
+                tokens.append(char)
+        if token:
+            tokens.append(token)
+        for token in tokens:
+            trial = line + token
+            if font.getbbox(trial)[2] <= max_width or not line:
+                line = trial
+            else:
+                lines.append(line)
+                line = token
+        if line:
             lines.append(line)
-            line = char
-    if line:
-        lines.append(line)
     return lines
+
+
+def fit_title_lines(text: str, font: ImageFont.FreeTypeFont, max_width: int, max_lines: int = 2) -> list[str]:
+    manual_lines = [line for line in text.split("\n") if line]
+    if 0 < len(manual_lines) <= max_lines:
+        return manual_lines
+    wrapped = fit_lines(text, font, max_width)
+    if len(wrapped) <= max_lines:
+        return wrapped
+    return wrapped[: max_lines - 1] + ["".join(wrapped[max_lines - 1 :])]
 
 
 def title_box_to_edge(box: Rect, region: str) -> Rect:
@@ -238,15 +362,45 @@ def title_box_to_edge(box: Rect, region: str) -> Rect:
     return box
 
 
+def draw_attached_hook(draw: ImageDraw.ImageDraw, text: str, palette: dict[str, tuple[int, int, int]], title_box: Rect, align: str = "left") -> Rect:
+    font = load_font(58, True)
+    stroke_width = 3
+    bbox = draw.textbbox((0, 0), text, font=font, stroke_width=stroke_width)
+    pad_x, pad_y = 16, 9
+    text_w = bbox[2] - bbox[0]
+    text_h = bbox[3] - bbox[1]
+    w = min(CANVAS_SIZE[0] - 36, text_w + pad_x * 2)
+    h = text_h + pad_y * 2
+    y = max(14, title_box.y - h - 8)
+    if align == "right":
+        x = min(CANVAS_SIZE[0] - w - 18, title_box.x + title_box.w - w)
+    elif align == "center":
+        x = title_box.x + (title_box.w - w) // 2
+    else:
+        x = title_box.x + 8
+    x = max(18, min(CANVAS_SIZE[0] - w - 18, x))
+    rect = Rect(x, y, w, h)
+    draw.rectangle((rect.x, rect.y, rect.x + rect.w, rect.y + rect.h), fill=palette["hook_bg"])
+    draw.text(
+        (rect.x + pad_x - bbox[0], rect.y + (rect.h - text_h) // 2 - bbox[1]),
+        text,
+        font=font,
+        fill=palette["hook_text"],
+        stroke_width=stroke_width,
+        stroke_fill=palette["hook_shadow"],
+    )
+    return rect
+
+
 def draw_text_block(draw: ImageDraw.ImageDraw, box: Rect, title: str, subtitle: str, palette: dict[str, tuple[int, int, int]]) -> None:
     stroke_margin = 10
     bottom_padding = 10
     max_width = box.w - stroke_margin * 2
-    title_size = 156
-    while title_size >= 78:
+    title_size = min(178, max(140, int(box.h * 0.68)))
+    while title_size >= 92:
         title_font = load_font(title_size, True)
         stroke_width = max(9, title_size // 10)
-        lines = fit_lines(title, title_font, max_width)
+        lines = fit_title_lines(title, title_font, max_width)
         bboxes = [draw.textbbox((0, 0), line, font=title_font, stroke_width=stroke_width) for line in lines]
         line_gap = max(8, int(title_size * 0.08))
         total_h = sum(bbox[3] - bbox[1] for bbox in bboxes) + line_gap * max(0, len(lines) - 1)
@@ -255,7 +409,7 @@ def draw_text_block(draw: ImageDraw.ImageDraw, box: Rect, title: str, subtitle: 
         title_size -= 4
     title_font = load_font(title_size, True)
     stroke_width = max(9, title_size // 10)
-    lines = fit_lines(title, title_font, max_width)
+    lines = fit_title_lines(title, title_font, max_width)
     bboxes = [draw.textbbox((0, 0), line, font=title_font, stroke_width=stroke_width) for line in lines]
     line_gap = max(8, int(title_size * 0.08))
     total_h = sum(bbox[3] - bbox[1] for bbox in bboxes) + line_gap * max(0, len(lines) - 1)
@@ -271,6 +425,112 @@ def draw_text_block(draw: ImageDraw.ImageDraw, box: Rect, title: str, subtitle: 
             stroke_fill=palette["shadow"],
         )
         y += line_h + line_gap
+
+
+def draw_bottom_single_line_title(draw: ImageDraw.ImageDraw, title: str, palette: dict[str, tuple[int, int, int]]) -> Rect:
+    box = Rect(8, 548, CANVAS_SIZE[0] - 16, 164)
+    title_size = 156
+    while title_size >= 96:
+        font = load_font(title_size, True)
+        stroke_width = max(9, title_size // 11)
+        bbox = draw.textbbox((0, 0), title, font=font, stroke_width=stroke_width)
+        if bbox[2] - bbox[0] <= box.w - 14 and bbox[3] - bbox[1] <= box.h - 12:
+            break
+        title_size -= 4
+
+    font = load_font(title_size, True)
+    stroke_width = max(9, title_size // 11)
+    bbox = draw.textbbox((0, 0), title, font=font, stroke_width=stroke_width)
+    text_w = bbox[2] - bbox[0]
+    text_h = bbox[3] - bbox[1]
+    x = box.x + (box.w - text_w) // 2 - bbox[0]
+    y = box.y + box.h - text_h - 8 - bbox[1]
+    draw.text(
+        (x, y),
+        title,
+        font=font,
+        fill=palette["text"],
+        stroke_width=stroke_width,
+        stroke_fill=palette["shadow"],
+    )
+    return box
+
+
+def draw_left_stacked_title(draw: ImageDraw.ImageDraw, title: str, hook: str, palette: dict[str, tuple[int, int, int]]) -> tuple[Rect, Rect]:
+    title_box = Rect(18, 374, 840, 330)
+    hook_rect = draw_attached_hook(draw, hook, palette, title_box, "left")
+    max_width = title_box.w - 28
+    title_size = 174
+    while title_size >= 104:
+        title_font = load_font(title_size, True)
+        stroke_width = max(9, title_size // 10)
+        lines = fit_title_lines(title, title_font, max_width)
+        bboxes = [draw.textbbox((0, 0), line, font=title_font, stroke_width=stroke_width) for line in lines]
+        line_gap = max(8, int(title_size * 0.08))
+        total_h = sum(bbox[3] - bbox[1] for bbox in bboxes) + line_gap * max(0, len(lines) - 1)
+        if total_h <= title_box.h and all(bbox[2] - bbox[0] <= max_width for bbox in bboxes):
+            break
+        title_size -= 4
+
+    title_font = load_font(title_size, True)
+    stroke_width = max(9, title_size // 10)
+    lines = fit_title_lines(title, title_font, max_width)
+    bboxes = [draw.textbbox((0, 0), line, font=title_font, stroke_width=stroke_width) for line in lines]
+    line_gap = max(8, int(title_size * 0.08))
+    total_h = sum(bbox[3] - bbox[1] for bbox in bboxes) + line_gap * max(0, len(lines) - 1)
+    y = title_box.y + title_box.h - total_h - 6
+    for line, bbox in zip(lines, bboxes):
+        line_h = bbox[3] - bbox[1]
+        draw.text(
+            (title_box.x + 10 - bbox[0], y - bbox[1]),
+            line,
+            font=title_font,
+            fill=palette["text"],
+            stroke_width=stroke_width,
+            stroke_fill=palette["shadow"],
+        )
+        y += line_h + line_gap
+
+    return hook_rect, title_box
+
+
+def draw_right_stacked_title(draw: ImageDraw.ImageDraw, title: str, hook: str, palette: dict[str, tuple[int, int, int]]) -> tuple[Rect, Rect]:
+    title_box = Rect(CANVAS_SIZE[0] - 850, 374, 840, 330)
+    hook_rect = draw_attached_hook(draw, hook, palette, title_box, "right")
+    max_width = title_box.w - 28
+    title_size = 174
+    while title_size >= 104:
+        title_font = load_font(title_size, True)
+        stroke_width = max(9, title_size // 10)
+        lines = fit_title_lines(title, title_font, max_width)
+        bboxes = [draw.textbbox((0, 0), line, font=title_font, stroke_width=stroke_width) for line in lines]
+        line_gap = max(8, int(title_size * 0.08))
+        total_h = sum(bbox[3] - bbox[1] for bbox in bboxes) + line_gap * max(0, len(lines) - 1)
+        if total_h <= title_box.h and all(bbox[2] - bbox[0] <= max_width for bbox in bboxes):
+            break
+        title_size -= 4
+
+    title_font = load_font(title_size, True)
+    stroke_width = max(9, title_size // 10)
+    lines = fit_title_lines(title, title_font, max_width)
+    bboxes = [draw.textbbox((0, 0), line, font=title_font, stroke_width=stroke_width) for line in lines]
+    line_gap = max(8, int(title_size * 0.08))
+    total_h = sum(bbox[3] - bbox[1] for bbox in bboxes) + line_gap * max(0, len(lines) - 1)
+    y = title_box.y + title_box.h - total_h - 6
+    for line, bbox in zip(lines, bboxes):
+        line_h = bbox[3] - bbox[1]
+        line_w = bbox[2] - bbox[0]
+        draw.text(
+            (title_box.x + title_box.w - 10 - line_w - bbox[0], y - bbox[1]),
+            line,
+            font=title_font,
+            fill=palette["text"],
+            stroke_width=stroke_width,
+            stroke_fill=palette["shadow"],
+        )
+        y += line_h + line_gap
+
+    return hook_rect, title_box
 
 
 def add_gradient_overlay(image: Image.Image, side: str, color: tuple[int, int, int]) -> Image.Image:
@@ -329,6 +589,10 @@ def draw_top_hook(draw: ImageDraw.ImageDraw, text: str, palette: dict[str, tuple
     text_y = rect.y + (rect.h - text_h) // 2 - bbox[1]
     draw.text((text_x, text_y), text, font=font, fill=palette["hook_text"], stroke_width=3, stroke_fill=palette["hook_shadow"])
     return rect
+
+
+def opposite_top_corner(position: str) -> str:
+    return "top_left" if "right" in position else "top_right"
 
 
 def draw_duration_chip(draw: ImageDraw.ImageDraw, text: str = "17:55") -> None:
@@ -415,7 +679,13 @@ def analyze_assets() -> dict[str, object]:
     }
 
 
-def render_candidate(index: int, candidate: dict[str, object], analysis: dict[str, object], debug: bool = False) -> dict[str, object]:
+def render_candidate(
+    index: int,
+    candidate: dict[str, object],
+    analysis: dict[str, object],
+    mode: str,
+    debug: bool = False,
+) -> dict[str, object]:
     source_name = str(candidate["source"])
     title = str(candidate["title"])
     subtitle = str(candidate["subtitle"])
@@ -423,12 +693,23 @@ def render_candidate(index: int, candidate: dict[str, object], analysis: dict[st
     palette = candidate["palette"]
     image_info = next(item for item in analysis["images"] if Path(item["file"]).name == source_name)
     image = Image.open(image_info["file"]).convert("RGB")
-    canvas, _ = crop_to_canvas(image)
+    source_faces = [Rect(*face["box"]) for face in image_info.get("faces_source", [])]
+    if candidate.get("left_face_closeup"):
+        canvas, crop = crop_face_left_closeup_to_canvas(image, source_faces, index)
+    elif candidate.get("right_face_closeup"):
+        canvas, crop = crop_face_right_closeup_to_canvas(image, source_faces, index)
+    elif candidate.get("closeup"):
+        canvas, crop = crop_face_closeup_to_canvas(image, source_faces, index)
+    else:
+        canvas, crop = crop_to_canvas(image)
     canvas = ImageEnhance.Color(canvas).enhance(1.18)
     canvas = ImageEnhance.Contrast(canvas).enhance(1.13)
     canvas = ImageEnhance.Sharpness(canvas).enhance(1.18)
     canvas = canvas.filter(ImageFilter.UnsharpMask(radius=1.7, percent=150, threshold=3)).convert("RGBA")
-    face_boxes = [Rect(*face["box"]) for face in image_info["faces_canvas"]]
+    if candidate.get("left_face_closeup") or candidate.get("right_face_closeup") or candidate.get("closeup"):
+        face_boxes = [mapped for face in source_faces if (mapped := map_rect_to_canvas(face, crop)) is not None]
+    else:
+        face_boxes = [Rect(*face["box"]) for face in image_info["faces_canvas"]]
     if candidate.get("text_box"):
         text_side = str(candidate.get("region") or "manual")
         text_box = rect_from_list(candidate["text_box"])
@@ -437,9 +718,22 @@ def render_candidate(index: int, candidate: dict[str, object], analysis: dict[st
     canvas = add_gradient_overlay(canvas, text_side, palette["overlay"])
     draw = ImageDraw.Draw(canvas)
 
-    hook_rect = draw_top_hook(draw, hook, palette, str(candidate.get("hook_position") or "top_left"))
-    text_box = title_box_to_edge(text_box, text_side)
-    draw_text_block(draw, text_box, title, subtitle, palette)
+    if candidate.get("right_stacked_title"):
+        hook_rect, text_box = draw_right_stacked_title(draw, title, hook, palette)
+    elif candidate.get("left_stacked_title"):
+        hook_rect, text_box = draw_left_stacked_title(draw, title, hook, palette)
+    elif candidate.get("single_line_bottom_title"):
+        text_box = Rect(8, 548, CANVAS_SIZE[0] - 16, 164)
+        hook_position = opposite_top_corner(str(candidate.get("logo_position") or "top_right"))
+        hook_rect = draw_top_hook(draw, hook, palette, hook_position)
+        text_box = draw_bottom_single_line_title(draw, title, palette)
+    elif not candidate.get("left_stacked_title") and not candidate.get("right_stacked_title"):
+        text_box = title_box_to_edge(text_box, text_side)
+        hook_align = "right" if text_side in {"right", "lower_right"} else "left"
+        if text_side in {"bottom", "top"}:
+            hook_align = "center"
+        hook_rect = draw_attached_hook(draw, hook, palette, text_box, hook_align)
+        draw_text_block(draw, text_box, title, subtitle, palette)
     draw_reference_frame(draw, palette)
     if candidate.get("logo_box"):
         logo_box = rect_from_list(candidate["logo_box"])
@@ -448,7 +742,7 @@ def render_candidate(index: int, candidate: dict[str, object], analysis: dict[st
     paste_logo(canvas, logo_box)
     if debug:
         draw_face_debug(canvas, face_boxes)
-    out = OUTPUT_DIR / f"thumbnail_candidate_{index:02d}.png"
+    out = OUTPUT_DIR / f"thumbnail_{mode}_candidate_{index:02d}.png"
     canvas.convert("RGB").save(out, quality=95)
     return {
         "output": str(out),
@@ -463,6 +757,27 @@ def render_candidate(index: int, candidate: dict[str, object], analysis: dict[st
         "logo_region_canvas": logo_box.as_list(),
         "protected_faces_canvas": [box.as_list() for box in face_boxes],
     }
+
+
+def write_contact_sheet(paths: list[str], mode: str) -> Path:
+    thumb_w, thumb_h = 320, 180
+    cols = 4
+    rows = math.ceil(len(paths) / cols)
+    label_h = 28
+    sheet = Image.new("RGB", (cols * thumb_w, rows * (thumb_h + label_h)), (245, 245, 245))
+    draw = ImageDraw.Draw(sheet)
+    font = load_font(18, True)
+    for idx, raw_path in enumerate(paths):
+        path = Path(raw_path)
+        thumb = Image.open(path).convert("RGB").resize((thumb_w, thumb_h), Image.Resampling.LANCZOS)
+        x = (idx % cols) * thumb_w
+        y = (idx // cols) * (thumb_h + label_h)
+        sheet.paste(thumb, (x, y))
+        draw.rectangle((x, y + thumb_h, x + thumb_w, y + thumb_h + label_h), fill=(25, 25, 25))
+        draw.text((x + 8, y + thumb_h + 4), f"{idx + 1:02d}  {path.name}", fill=(255, 255, 255), font=font)
+    out = OUTPUT_DIR / f"thumbnail_{mode}_candidates_contact_sheet.jpg"
+    sheet.save(out, quality=92)
+    return out
 
 
 def write_reference_style_notes() -> dict[str, object]:
@@ -532,7 +847,33 @@ def main() -> None:
     parser.add_argument("--import-assets", action="store_true", help="Copy ST-*.jpg assets into source/thumbnail/etype260515_p_takei first.")
     parser.add_argument("--asset-source", type=Path, default=ASSET_SOURCE_DEFAULT)
     parser.add_argument("--debug-faces", action="store_true", help="Draw protected face areas on output thumbnails.")
+    parser.add_argument(
+        "--closeup-bottom-title",
+        action="store_true",
+        help="Use face-centered close-up crops and a one-line title along the bottom edge.",
+    )
+    parser.add_argument(
+        "--right-face-title-stack",
+        action="store_true",
+        help="Use a tight right-side face crop with the hook stacked above the wrapped title on the left.",
+    )
+    parser.add_argument(
+        "--left-face-title-stack",
+        action="store_true",
+        help="Use a tight left-side face crop with the hook stacked above the wrapped title on the right.",
+    )
     args = parser.parse_args()
+    selected_modes = [args.closeup_bottom_title, args.right_face_title_stack, args.left_face_title_stack]
+    if sum(1 for selected in selected_modes if selected) > 1:
+        raise SystemExit("Choose only one thumbnail layout mode.")
+    if args.left_face_title_stack:
+        thumbnail_mode = "left_face_title_stack"
+    elif args.right_face_title_stack:
+        thumbnail_mode = "right_face_title_stack"
+    elif args.closeup_bottom_title:
+        thumbnail_mode = "closeup_bottom_title"
+    else:
+        thumbnail_mode = "standard"
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     if args.import_assets:
@@ -577,22 +918,109 @@ def main() -> None:
         {"source": "ST-536.jpg", "hook": "PdMは燃やす方が安い？", "title": "フリーPdMは\n安売りか？", "subtitle": "", "region": "lower_right", "text_box": [500, 386, 730, 284], "hook_position": "top_left", "logo_position": "top_right", "layout_reason": "顔は左寄り、右下背景に大きいキーワードを置く。", "duration": "17:55", "palette": palettes["red_yellow"]},
         {"source": "ST-538.jpg", "hook": "PdMキャリア", "title": "選ばれるPdMの\n立ち位置", "subtitle": "", "region": "lower_left", "text_box": [40, 390, 760, 282], "hook_position": "top_right", "logo_position": "top_left", "layout_reason": "人物は右寄りなので、左下にタイトルを置く。", "duration": "37:01", "palette": palettes["yellow_teal"]},
     ]
-    for candidate in candidates:
-        candidate["title"] = "フリーPdMは\n通用する？"
-        candidate["hook"] = "AI時代のキャリア論"
-        candidate["subtitle"] = ""
+    closeup_sources = [
+        "ST-500.jpg",
+        "ST-503.jpg",
+        "ST-504.jpg",
+        "ST-505.jpg",
+        "ST-506.jpg",
+        "ST-507.jpg",
+        "ST-509.jpg",
+        "ST-510.jpg",
+        "ST-511.jpg",
+        "ST-512.jpg",
+        "ST-513.jpg",
+        "ST-515.jpg",
+        "ST-516.jpg",
+        "ST-517.jpg",
+        "ST-518.jpg",
+        "ST-520.jpg",
+        "ST-521.jpg",
+        "ST-522.jpg",
+        "ST-523.jpg",
+        "ST-524.jpg",
+    ]
+    if args.closeup_bottom_title:
+        for index, (candidate, source) in enumerate(zip(candidates, closeup_sources), start=1):
+            candidate["source"] = source
+            candidate["title"] = "フリーPdMは通用する？"
+            candidate["hook"] = "AI時代のキャリア論"
+            candidate["subtitle"] = ""
+            candidate["region"] = "bottom"
+            candidate["text_box"] = [8, 548, 1264, 164]
+            candidate["logo_position"] = "top_right" if index % 2 else "top_left"
+            candidate["closeup"] = True
+            candidate["single_line_bottom_title"] = True
+            candidate["layout_reason"] = "顔検出位置を中央に寄せて強めにアップで切り出し、一行タイトルを最下部、サブタイトルをロゴの反対側上角に置く。"
+    elif args.right_face_title_stack:
+        for candidate, source in zip(candidates, closeup_sources):
+            candidate["source"] = source
+            candidate["title"] = "フリーPdMは\n通用する？"
+            candidate["hook"] = "AI時代のキャリア論"
+            candidate["subtitle"] = ""
+            candidate["region"] = "left"
+            candidate["text_box"] = [20, 360, 600, 330]
+            candidate["logo_position"] = "top_left"
+            candidate["right_face_closeup"] = True
+            candidate["left_stacked_title"] = True
+            candidate["closeup"] = False
+            candidate["single_line_bottom_title"] = False
+            candidate["layout_reason"] = "顔を右側に大きく寄せ、左側の余白にサブタイトルと折り返しタイトルを積む。"
+    elif args.left_face_title_stack:
+        for candidate, source in zip(candidates, closeup_sources):
+            candidate["source"] = source
+            candidate["title"] = "フリーPdMは\n通用する？"
+            candidate["hook"] = "AI時代のキャリア論"
+            candidate["subtitle"] = ""
+            candidate["region"] = "right"
+            candidate["text_box"] = [690, 360, 570, 330]
+            candidate["logo_position"] = "top_right"
+            candidate["left_face_closeup"] = True
+            candidate["right_stacked_title"] = True
+            candidate["right_face_closeup"] = False
+            candidate["left_stacked_title"] = False
+            candidate["closeup"] = False
+            candidate["single_line_bottom_title"] = False
+            candidate["layout_reason"] = "顔を左側に大きく寄せ、右側の余白にサブタイトルと折り返しタイトルを積む。"
+    else:
+        for candidate in candidates:
+            candidate["title"] = "フリーPdMは\n通用する？"
+            candidate["hook"] = "AI時代のキャリア論"
+            candidate["subtitle"] = ""
+            candidate["closeup"] = False
+            candidate["single_line_bottom_title"] = False
+            candidate["right_face_closeup"] = False
+            candidate["left_face_closeup"] = False
+            candidate["left_stacked_title"] = False
+            candidate["right_stacked_title"] = False
 
     validate_candidate_copy(candidates)
     layouts = []
     for i, candidate in enumerate(candidates, start=1):
-        layouts.append(render_candidate(i, candidate, analysis, args.debug_faces))
+        layouts.append(render_candidate(i, candidate, analysis, thumbnail_mode, args.debug_faces))
+    contact_sheet_path = write_contact_sheet([item["output"] for item in layouts], thumbnail_mode)
 
     title_path = SOURCE_TEXT / "thumbnail_title_pdm_freelance.txt"
-    title_path.write_text("PdMはフリーで通用する？\n", encoding="utf-8")
+    title_path.write_text("フリーPdMは通用する？\n", encoding="utf-8")
     analysis["candidate_layouts"] = layouts
+    analysis["thumbnail_mode"] = thumbnail_mode
+    analysis["contact_sheet"] = str(contact_sheet_path)
     analysis["title_path"] = str(title_path)
-    ANALYSIS_PATH.write_text(json.dumps(analysis, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"analysis": str(ANALYSIS_PATH), "title": str(title_path), "outputs": [item["output"] for item in layouts]}, ensure_ascii=False, indent=2))
+    analysis_path = OUTPUT_DIR / f"thumbnail_{thumbnail_mode}_asset_analysis.json"
+    analysis_path.write_text(json.dumps(analysis, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(
+        json.dumps(
+            {
+                "analysis": str(analysis_path),
+                "title": str(title_path),
+                "contact_sheet": str(contact_sheet_path),
+                "mode": analysis["thumbnail_mode"],
+                "outputs": [item["output"] for item in layouts],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

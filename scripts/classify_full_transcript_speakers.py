@@ -120,7 +120,10 @@ def classify(captions: list[Caption]) -> dict[str, str]:
         text = caption.text
         if caption.start < 60 and ("質問" in text or "どう感じますか" in text or "伺" in text):
             role = "interviewer"
-        if (caption.start < 60 or 66.0 <= caption.start < 69.0) and text == "ありがとうございます":
+        if (caption.start < 60 or 66.0 <= caption.start < 69.0) and text in {
+            "ありがとうございます",
+            "そうです、ありがとうございます",
+        }:
             role = "interviewer"
         if 57.0 <= caption.start < 66.0:
             role = "onscreen"

@@ -308,7 +308,7 @@ ipcMain.handle("environment:get", async () => {
 		scriptsRoot: SCRIPTS_ROOT,
 		outputRoot: OUTPUT_ROOT,
 		outputThumbnailsRoot: OUTPUT_THUMBNAILS_ROOT,
-		thumbnailContactSheet: path.join(OUTPUT_THUMBNAILS_ROOT, "thumbnail_candidates_contact_sheet.jpg"),
+		thumbnailContactSheet: path.join(OUTPUT_THUMBNAILS_ROOT, "thumbnail_standard_candidates_contact_sheet.jpg"),
 		outputAppRoot: OUTPUT_APP_ROOT,
 		pythonExe: PYTHON_EXE,
 		knownOutputs: [

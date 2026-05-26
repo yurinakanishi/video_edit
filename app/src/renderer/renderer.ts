@@ -63,6 +63,28 @@ const fileFilters = {
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 const STORAGE_KEY = "video-edit-app-state-v1";
+const thumbnailModes = {
+	standard: {
+		flag: "",
+		contactSheet: "thumbnail_standard_candidates_contact_sheet.jpg",
+		label: "Standard",
+	},
+	closeup_bottom_title: {
+		flag: "--closeup-bottom-title",
+		contactSheet: "thumbnail_closeup_bottom_title_candidates_contact_sheet.jpg",
+		label: "Center face / bottom title",
+	},
+	right_face_title_stack: {
+		flag: "--right-face-title-stack",
+		contactSheet: "thumbnail_right_face_title_stack_candidates_contact_sheet.jpg",
+		label: "Face right / title left",
+	},
+	left_face_title_stack: {
+		flag: "--left-face-title-stack",
+		contactSheet: "thumbnail_left_face_title_stack_candidates_contact_sheet.jpg",
+		label: "Face left / title right",
+	},
+};
 
 function shortPath(value) {
 	if (!value) {
@@ -204,6 +226,15 @@ function selectedLabel(id) {
 	return element?.selectedOptions?.[0]?.textContent?.trim() || formValue(id);
 }
 
+function thumbnailMode() {
+	const mode = formValue("thumbnailMode") || "standard";
+	return mode in thumbnailModes ? mode : "standard";
+}
+
+function thumbnailModeConfig() {
+	return thumbnailModes[thumbnailMode()];
+}
+
 function scoreKind(score) {
 	if (typeof score !== "number" || Number.isNaN(score)) {
 		return "bad";
@@ -287,10 +318,11 @@ function stillOutputPath(inputVideo, outputPath) {
 }
 
 function thumbnailContactSheetPath() {
-	return (
-		state.env?.thumbnailContactSheet ||
-		`${state.env?.outputRoot || "output"}\\thumbnails\\thumbnail_candidates_contact_sheet.jpg`
-	);
+	const config = thumbnailModeConfig();
+	if (state.env?.outputThumbnailsRoot) {
+		return `${state.env.outputThumbnailsRoot}\\${config.contactSheet}`;
+	}
+	return `${state.env?.outputRoot || "output"}\\thumbnails\\${config.contactSheet}`;
 }
 
 function psQuote(value) {
@@ -422,6 +454,9 @@ function buildPresetCommand() {
 		const command = [pythonExe(), scriptPath(simplePythonScripts[action])];
 		if (action === "generate-thumbnails") {
 			command.push("--import-assets");
+			if (thumbnailModeConfig().flag) {
+				command.push(thumbnailModeConfig().flag);
+			}
 		}
 		if (action === "subtitle-review") {
 			if (formValue("noAudioClips")) {
@@ -594,7 +629,8 @@ function validateSelections() {
 	}
 
 	if (action === "generate-thumbnails") {
-		ok.push("サムネ候補20枚と contact sheet を output\\thumbnails に生成します。");
+		ok.push(`サムネ候補20枚と ${thumbnailModeConfig().label} の contact sheet を output\\thumbnails に生成します。`);
+		ok.push(`確認用: ${shortPath(thumbnailContactSheetPath())}`);
 		ok.push("素材は Downloads の etype260515 p-takei から import します。");
 	}
 
@@ -668,12 +704,13 @@ function buildPrompt() {
 		"- Read docs\\video_edit_method.md for the current ST7_7550 workflow.",
 		"- Prefer scripts\\render_1min_onepass_ffmpeg.py for the current 1-minute preset.",
 		"- Prefer scripts\\render_final_png_overlays.py for current 5-minute PNG-overlay renders.",
-		"- Use scripts\\generate_thumbnail_candidates.py --import-assets for thumbnail candidate generation.",
+		"- Use scripts\\generate_thumbnail_candidates.py --import-assets plus the selected thumbnail layout flag for thumbnail candidate generation.",
 		"- Keep existing user changes in the repo; do not revert unrelated files.",
 		"",
 		"Operator selections:",
 		`- Edit preset: ${formValue("editPreset")}`,
 		`- Direct workflow action: ${formValue("workflowAction")}`,
+		`- Thumbnail layout: ${thumbnailMode()} (${thumbnailModeConfig().flag || "no extra flag"})`,
 		`- Render script: ${formValue("renderScript")}`,
 		`- Multicam mode: ${formValue("multicamMode")}`,
 		`- Subtitle mode: ${state.subtitleMode}`,
@@ -721,7 +758,7 @@ function buildPrompt() {
 		"- If punchline text/timing/style changed, update the relevant generator script or data in the smallest maintainable way before regenerating overlays.",
 		"- If style/logo/title settings are not exposed by CLI flags, update the Python style/title scripts carefully and regenerate PNG overlays.",
 		"- Use source root override for 2cam/3cam inputs if it is set.",
-		"- For thumbnail generation, produce 20 candidates, update output\\thumbnails\\thumbnail_candidates_contact_sheet.jpg, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.",
+		`- For thumbnail generation, produce 20 candidates with the selected mode (${thumbnailMode()}), write the mode-specific contact sheet at ${thumbnailContactSheetPath()}, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces unless the mode intentionally allows slight title overlap, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.`,
 		"- Make minimal script changes needed for this request, then render or provide the exact command if rendering is blocked.",
 		"- Report the output file path and any limitations.",
 	];
@@ -741,6 +778,7 @@ function buildAppConfig() {
 		render: {
 			editPreset: formValue("editPreset"),
 			workflowAction: formValue("workflowAction"),
+			thumbnailMode: thumbnailMode(),
 			renderScript: formValue("renderScript"),
 			outputPath: $("#outputPath").value,
 			syncOffsetsPath: state.env ? `${state.env.outputRoot}\\reports\\app_sync_offsets.json` : "",
@@ -772,6 +810,8 @@ function buildAppConfig() {
 			ffprobe: formValue("ffprobePath"),
 		},
 		thumbnails: {
+			mode: thumbnailMode(),
+			modeFlag: thumbnailModeConfig().flag,
 			contactSheet: thumbnailContactSheetPath(),
 			outputRoot: state.env?.outputThumbnailsRoot || "",
 			importAssets: formValue("workflowAction") === "generate-thumbnails",

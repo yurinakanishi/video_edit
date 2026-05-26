@@ -1062,6 +1062,24 @@ Generate thumbnail candidates with:
 python .\scripts\generate_thumbnail_candidates.py --import-assets
 ```
 
+Use this mode for face-centered close-ups with a one-line bottom title:
+
+```powershell
+python .\scripts\generate_thumbnail_candidates.py --import-assets --closeup-bottom-title
+```
+
+Use this mode for a tight right-side interviewee close-up with the hook stacked above the wrapped title on the left:
+
+```powershell
+python .\scripts\generate_thumbnail_candidates.py --import-assets --right-face-title-stack
+```
+
+Use this mode for a tight left-side interviewee close-up with the hook stacked above the wrapped title on the right:
+
+```powershell
+python .\scripts\generate_thumbnail_candidates.py --import-assets --left-face-title-stack
+```
+
 Default imported still assets:
 
 ```text
@@ -1090,6 +1108,13 @@ Corner hook: AI時代のキャリア論
 
 Vary the selected still, palette, title placement, hook corner, logo corner, and crop feel. Do not vary the main title or hook unless the video topic changes.
 
+Mode switch:
+
+- Default mode keeps the previous thumbnail composition: two-line title placement varies by image while avoiding faces.
+- `--closeup-bottom-title` centers the detected interviewee face, uses a strong close-up crop, renders `フリーPdMは通用する？` as a single line at the bottom, and places the hook in the opposite top corner from the logo.
+- `--right-face-title-stack` places the detected interviewee face as a very tight crop on the right, then places the hook directly above the wrapped title in the left-side negative space.
+- `--left-face-title-stack` places the detected interviewee face as a very tight crop on the left, then places the hook directly above the wrapped title in the right-side negative space. It changes crop position only; it does not horizontally flip the image.
+
 Current visual rules:
 
 - Use `source\images\type-logo-transparent-cropped.png` for the Engineer Type logo.
@@ -1098,6 +1123,10 @@ Current visual rules:
 - Place the logo in the least-overlapping corner after avoiding faces, title text, and the corner hook.
 - Do not draw a video-duration chip in the bottom-right corner.
 - Keep the main title large, stroked, and close to the chosen edge.
+- Keep the main title to two lines where possible; for tight face-layout modes, a small overlap with hair/shoulder is acceptable if it keeps the title readable and large.
+- Fit the main title dynamically to the available title box so it grows when there is more safe whitespace, while still wrapping before it clips or covers the face.
+- Keep ASCII word groups such as `PdM` intact when wrapping mixed Japanese/English title text.
+- Place the corner hook/subtitle directly above the main title, not isolated elsewhere on the canvas.
 - Leave only a small bottom margin under the title.
 - Use measured text bounds for wrapped title lines so line spacing does not overlap.
 - Center the corner hook text inside its colored box using measured text bounds, with even horizontal and vertical padding.
@@ -1106,11 +1135,14 @@ Current visual rules:
 Generated outputs:
 
 ```text
-output\thumbnails\thumbnail_candidate_01.png
+output\thumbnails\thumbnail_standard_candidate_01.png
 ...
-output\thumbnails\thumbnail_candidate_20.png
-output\thumbnails\thumbnail_candidates_contact_sheet.jpg
-output\thumbnails\thumbnail_asset_analysis.json
+output\thumbnails\thumbnail_standard_candidate_20.png
+output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg
+output\thumbnails\thumbnail_standard_asset_analysis.json
+output\thumbnails\thumbnail_closeup_bottom_title_candidate_01.png
+output\thumbnails\thumbnail_right_face_title_stack_candidate_01.png
+output\thumbnails\thumbnail_left_face_title_stack_candidate_01.png
 output\thumbnails\thumbnail_reference_style.json
 source\text\thumbnail_title_pdm_freelance.txt
 ```
@@ -1122,7 +1154,7 @@ python -m py_compile .\scripts\generate_thumbnail_candidates.py
 python .\scripts\generate_thumbnail_candidates.py --import-assets
 ```
 
-After generating, inspect `output\thumbnails\thumbnail_candidates_contact_sheet.jpg` and confirm the title, hook, and logo do not cover faces or look padded unevenly.
+After generating, inspect the mode-specific contact sheet, for example `output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg`, and confirm the title, hook, and logo do not cover faces or look padded unevenly. Mode names are included in generated PNG, contact sheet, and analysis JSON filenames so different layout options do not overwrite each other.
 
 ## Verification Commands
 

@@ -29,9 +29,11 @@ from typing import Iterable
 import cv2
 import numpy as np
 
+from video_edit_app_config import load_app_config, optional_path
 
 JST = timezone(timedelta(hours=9))
-FFPROBE = r"C:\ProgramData\chocolatey\bin\ffprobe.exe"
+APP_CONFIG = load_app_config()
+FFPROBE = optional_path(APP_CONFIG, "tools", "ffprobe", default=Path(r"C:\ProgramData\chocolatey\bin\ffprobe.exe"))
 WORK = WORKSPACE_ROOT
 ROOT = multicam_source_root()
 OUT = OUTPUT_DIAGNOSTICS / "opencv_blocking_analysis"

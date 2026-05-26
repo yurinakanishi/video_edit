@@ -2,13 +2,16 @@ type Unsubscribe = () => void;
 
 type EditAppApi = {
 	getEnvironment: () => Promise<any>;
+	createProject: (payload: any) => Promise<ProjectInfo>;
+	copyProjectAssets: (payload: any) => Promise<{ project: ProjectInfo; files: Record<string, string> }>;
 	pickFile: (options: any) => Promise<string | null>;
 	pickDirectory: (options: any) => Promise<string | null>;
-	pickOutput: (suggestedName: string) => Promise<string | null>;
+	pickOutput: (options: any) => Promise<string | null>;
 	startCodexTurn: (payload: any) => Promise<any>;
 	execCodexCommand: (payload: any) => Promise<any>;
 	interruptCodex: () => Promise<any>;
-	getSyncReport: () => Promise<any>;
+	getSyncReport: (appConfig?: any) => Promise<any>;
+	loadGlossaryCandidates: (appConfig: any) => Promise<any>;
 	showPath: (targetPath: string) => Promise<void>;
 	filePath: (file: File) => string;
 	onServerReady: (callback: (payload: any) => void) => Unsubscribe;
@@ -20,8 +23,17 @@ type EditAppApi = {
 
 const editApp = (window as unknown as { editApp: EditAppApi }).editApp;
 
+type ProjectInfo = {
+	id: string;
+	name: string;
+	root: string;
+	sourceRoot: string;
+	outputRoot: string;
+};
+
 const state = {
 	env: null,
+	project: null as ProjectInfo | null,
 	files: {
 		masterVideo: "",
 		rightCloseVideo: "",
@@ -31,6 +43,14 @@ const state = {
 	},
 	subtitleMode: "full",
 	syncReport: null,
+	glossaryTerms: [],
+};
+
+type GlossaryTerm = {
+	label: string;
+	description: string;
+	patterns: string;
+	enabled: boolean;
 };
 
 const defaultPunchlines = `00:00-00:04  定義で言うと強いプロダクトというか / プロダクトが中心にあって
@@ -93,12 +113,249 @@ const thumbnailMainColors = {
 	white: "White",
 };
 
+const defaultGlossaryTerms: GlossaryTerm[] = [
+	{
+		label: "セミオーダー",
+		patterns: "セミオゴー,セミオーダー",
+		description: "標準品をベースに、一部だけ要望に合わせて調整する提供方法。",
+		enabled: true,
+	},
+	{
+		label: "セミカスタマイズ",
+		patterns: "セミカスタマイズ",
+		description: "完全な個別開発ではなく、共通部分を残して必要箇所だけ変えること。",
+		enabled: true,
+	},
+	{
+		label: "スケールメリット",
+		patterns: "スケールメリット",
+		description: "数や量が増えるほど、1件あたりのコストや手間が下がる効果。",
+		enabled: true,
+	},
+	{
+		label: "PDM",
+		patterns: "PDM",
+		description: "この動画で議論対象になっている制度・枠組みの略称。",
+		enabled: true,
+	},
+	{
+		label: "FD",
+		patterns: "FD",
+		description: "PDMの代替として話題に出ている新しい制度・枠組みの略称。",
+		enabled: true,
+	},
+];
+
 function shortPath(value) {
 	if (!value) {
 		return "not selected";
 	}
 	const parts = value.split(/[\\/]/);
 	return parts.length > 2 ? `${parts.at(-2)}\\${parts.at(-1)}` : value;
+}
+
+function joinPath(root: string, ...parts: string[]) {
+	return [root.replace(/[\\/]+$/, ""), ...parts.map((part) => part.replace(/^[\\/]+|[\\/]+$/g, ""))].join("\\");
+}
+
+function projectIdFromName(name: string) {
+	const id = name
+		.trim()
+		.toLowerCase()
+		.replace(/[^a-z0-9._-]+/g, "-")
+		.replace(/^-+|-+$/g, "");
+	return id || `project-${new Date().toISOString().slice(0, 10)}`;
+}
+
+function activeOutputRoot() {
+	return state.project?.outputRoot || state.env?.outputRoot || "";
+}
+
+function activeSourceRoot() {
+	if (state.project?.sourceRoot) {
+		return state.project.sourceRoot;
+	}
+	return state.env?.videoEditRoot ? joinPath(state.env.videoEditRoot, "source") : "";
+}
+
+function activeProjectVideoSourceRoot() {
+	return state.project ? joinPath(state.project.sourceRoot, "video") : "";
+}
+
+function setProject(project: ProjectInfo | null) {
+	state.project = project;
+	const nameInput = $("#projectName");
+	const idInput = $("#projectId");
+	const rootInput = $("#projectRoot");
+	const sourceInput = $("#projectSourceRoot");
+	const outputInput = $("#projectOutputRoot");
+	if (nameInput) {
+		nameInput.value = project?.name || "";
+	}
+	if (idInput) {
+		idInput.value = project?.id || "";
+	}
+	if (rootInput) {
+		rootInput.value = project?.root || "";
+	}
+	if (sourceInput) {
+		sourceInput.value = project?.sourceRoot || "";
+	}
+	if (outputInput) {
+		outputInput.value = project?.outputRoot || "";
+	}
+	const label = $("#projectLabel");
+	if (label) {
+		label.textContent = project ? `${project.name} / ${shortPath(project.outputRoot)}` : "No project selected";
+	}
+	const videoSourceRoot = activeProjectVideoSourceRoot();
+	if (videoSourceRoot) {
+		$("#sourceRoot").value = videoSourceRoot;
+	}
+	setDefaultProjectOutput(false);
+	refreshPrompt();
+}
+
+function setDefaultProjectOutput(preserveExisting = true) {
+	if (!state.project) {
+		return;
+	}
+	const outputPath = $("#outputPath");
+	if (!outputPath) {
+		return;
+	}
+	const current = outputPath.value || "";
+	if (preserveExisting && current && !state.env?.knownOutputs?.includes(current)) {
+		return;
+	}
+	const mode = state.subtitleMode === "punchline" ? "punchline" : "full_transcript";
+	outputPath.value = joinPath(state.project.outputRoot, "videos", `codex_edit_${mode}.mp4`);
+}
+
+function syncReportPath() {
+	return joinPath(activeOutputRoot(), "reports", "app_sync_offsets.json");
+}
+
+function glossaryTerms(): GlossaryTerm[] {
+	return state.glossaryTerms as GlossaryTerm[];
+}
+
+function normalizeGlossaryTerm(term: Partial<GlossaryTerm>): GlossaryTerm | null {
+	const label = String(term.label || "").trim();
+	const description = String(term.description || "").trim();
+	const patterns = String(term.patterns || label).trim();
+	if (!label || !description || !patterns) {
+		return null;
+	}
+	return {
+		label,
+		description,
+		patterns,
+		enabled: term.enabled !== false,
+	};
+}
+
+function setGlossaryTerms(terms: Partial<GlossaryTerm>[]) {
+	const seen = new Set<string>();
+	const normalized: GlossaryTerm[] = [];
+	for (const term of terms) {
+		const item = normalizeGlossaryTerm(term);
+		if (!item) {
+			continue;
+		}
+		const key = item.label.toLowerCase();
+		if (seen.has(key)) {
+			continue;
+		}
+		seen.add(key);
+		normalized.push(item);
+	}
+	state.glossaryTerms = normalized;
+	renderGlossaryList();
+	refreshPrompt();
+}
+
+function renderGlossaryList() {
+	const list = $("#glossaryList");
+	if (!list) {
+		return;
+	}
+	const terms = glossaryTerms();
+	if (!terms.length) {
+		list.textContent = "候補未読み込み";
+		return;
+	}
+	list.innerHTML = "";
+	terms.forEach((term, index) => {
+		const row = document.createElement("div");
+		row.className = "glossary-row";
+		row.innerHTML = `
+			<input type="checkbox" data-glossary-enabled="${index}" ${term.enabled ? "checked" : ""} />
+			<input data-glossary-label="${index}" value="${escapeHtml(term.label)}" aria-label="term label" />
+			<input data-glossary-patterns="${index}" value="${escapeHtml(term.patterns)}" aria-label="term patterns" />
+			<input data-glossary-description="${index}" value="${escapeHtml(term.description)}" aria-label="term description" />
+			<button type="button" data-glossary-remove="${index}" title="remove">×</button>
+		`;
+		list.appendChild(row);
+	});
+	$$("[data-glossary-enabled]").forEach((input) => {
+		input.addEventListener("change", () => {
+			const index = Number(input.dataset.glossaryEnabled);
+			glossaryTerms()[index].enabled = input.checked;
+			refreshPrompt();
+		});
+	});
+	$$("[data-glossary-label]").forEach((input) => {
+		input.addEventListener("input", () => {
+			const index = Number(input.dataset.glossaryLabel);
+			glossaryTerms()[index].label = input.value;
+			if (!glossaryTerms()[index].patterns) {
+				glossaryTerms()[index].patterns = input.value;
+			}
+			refreshPrompt();
+		});
+	});
+	$$("[data-glossary-patterns]").forEach((input) => {
+		input.addEventListener("input", () => {
+			const index = Number(input.dataset.glossaryPatterns);
+			glossaryTerms()[index].patterns = input.value;
+			refreshPrompt();
+		});
+	});
+	$$("[data-glossary-description]").forEach((input) => {
+		input.addEventListener("input", () => {
+			const index = Number(input.dataset.glossaryDescription);
+			glossaryTerms()[index].description = input.value;
+			refreshPrompt();
+		});
+	});
+	$$("[data-glossary-remove]").forEach((button) => {
+		button.addEventListener("click", () => {
+			const index = Number(button.dataset.glossaryRemove);
+			state.glossaryTerms = glossaryTerms().filter((_, itemIndex) => itemIndex !== index);
+			renderGlossaryList();
+			refreshPrompt();
+		});
+	});
+}
+
+function escapeHtml(value: string) {
+	return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function termsFromGlossaryManifest(manifest: any[]): GlossaryTerm[] {
+	const terms: GlossaryTerm[] = [];
+	for (const item of manifest || []) {
+		for (const term of item.terms || []) {
+			terms.push({
+				label: String(term.label || ""),
+				description: String(term.description || ""),
+				patterns: String(term.label || ""),
+				enabled: true,
+			});
+		}
+	}
+	return terms;
 }
 
 function log(message: string, data?: any) {
@@ -137,8 +394,10 @@ function saveState() {
 	localStorage.setItem(
 		STORAGE_KEY,
 		JSON.stringify({
+			project: state.project,
 			files: state.files,
 			subtitleMode: state.subtitleMode,
+			glossaryTerms: state.glossaryTerms,
 			fields,
 		}),
 	);
@@ -151,6 +410,9 @@ function loadState() {
 	}
 	try {
 		const saved = JSON.parse(raw);
+		if (saved.project) {
+			setProject(saved.project);
+		}
 		if (saved.files) {
 			Object.entries(saved.files).forEach(([slot, filePath]) => {
 				if (slot in state.files) {
@@ -176,6 +438,10 @@ function loadState() {
 			$$("[data-subtitle-mode]").forEach((button) => {
 				button.classList.toggle("selected", button.dataset.subtitleMode === state.subtitleMode);
 			});
+		}
+		if (Array.isArray(saved.glossaryTerms)) {
+			state.glossaryTerms = saved.glossaryTerms;
+			renderGlossaryList();
 		}
 	} catch (error) {
 		log("saved state ignored", { message: error.message });
@@ -213,11 +479,65 @@ async function pickDirectory(id) {
 
 async function pickOutput() {
 	const mode = state.subtitleMode === "punchline" ? "punchline" : "full_transcript";
-	const selected = await editApp.pickOutput(`codex_edit_${mode}.mp4`);
+	const selected = await editApp.pickOutput({
+		suggestedName: `codex_edit_${mode}.mp4`,
+		outputRoot: activeOutputRoot(),
+	});
 	if (selected) {
 		$("#outputPath").value = selected;
 		refreshPrompt();
 	}
+}
+
+async function createProjectFromForm() {
+	const name = formValue("projectName") || `project-${new Date().toISOString().slice(0, 10)}`;
+	const id = formValue("projectId") || projectIdFromName(name);
+	try {
+		const project = await editApp.createProject({ name, id });
+		setProject(project);
+		log("project ready", { id: project.id, root: project.root });
+	} catch (error) {
+		log("project create failed", { message: error.message });
+	}
+}
+
+async function copyAssetsToProject() {
+	if (!state.project) {
+		await createProjectFromForm();
+	}
+	if (!state.project) {
+		return false;
+	}
+	try {
+		const result = await editApp.copyProjectAssets({
+			project: state.project,
+			files: state.files,
+		});
+		setProject(result.project);
+		Object.entries(result.files || {}).forEach(([slot, filePath]) => {
+			if (slot in state.files) {
+				setFile(slot, filePath);
+			}
+		});
+		log("project sources copied", { count: Object.keys(result.files || {}).length, root: result.project.sourceRoot });
+		return true;
+	} catch (error) {
+		log("project copy failed", { message: error.message });
+		return false;
+	}
+}
+
+async function prepareProjectForRun() {
+	if (!state.project && !formValue("projectName") && !formValue("projectId")) {
+		return true;
+	}
+	if (!state.project) {
+		await createProjectFromForm();
+	}
+	if (state.project) {
+		return copyAssetsToProject();
+	}
+	return false;
 }
 
 function formValue(id) {
@@ -306,13 +626,41 @@ function renderSyncReport() {
 
 async function refreshSyncReport() {
 	try {
-		state.syncReport = await editApp.getSyncReport();
+		state.syncReport = await editApp.getSyncReport(buildAppConfig());
 	} catch (error) {
 		state.syncReport = null;
 		log("sync report error", { message: error.message });
 	}
 	renderSyncReport();
 	updateRunSummary();
+}
+
+async function loadGlossaryCandidates() {
+	try {
+		const manifest = await editApp.loadGlossaryCandidates(buildAppConfig());
+		const candidates = termsFromGlossaryManifest(manifest);
+		setGlossaryTerms([...glossaryTerms(), ...candidates]);
+		log("glossary candidates loaded", { count: candidates.length });
+	} catch (error) {
+		log("glossary load failed", { message: error.message });
+	}
+}
+
+function addGlossaryTerm() {
+	const term = normalizeGlossaryTerm({
+		label: formValue("glossaryLabel"),
+		patterns: formValue("glossaryPatterns"),
+		description: formValue("glossaryDescription"),
+		enabled: true,
+	});
+	if (!term) {
+		log("glossary add skipped", { reason: "用語・検出語・解説を入力してください" });
+		return;
+	}
+	setGlossaryTerms([...glossaryTerms(), term]);
+	$("#glossaryLabel").value = "";
+	$("#glossaryPatterns").value = "";
+	$("#glossaryDescription").value = "";
 }
 
 function pythonExe() {
@@ -336,31 +684,19 @@ function stillOutputPath(inputVideo, outputPath) {
 }
 
 function thumbnailContactSheetPath() {
-	if (state.env?.outputThumbnailsRoot) {
-		return `${state.env.outputThumbnailsRoot}\\${thumbnailOutputStem()}_candidates_contact_sheet.jpg`;
-	}
-	return `${state.env?.outputRoot || "output"}\\thumbnails\\${thumbnailOutputStem()}_candidates_contact_sheet.jpg`;
+	return joinPath(
+		activeOutputRoot() || "output",
+		"thumbnails",
+		`${thumbnailOutputStem()}_candidates_contact_sheet.jpg`,
+	);
 }
 
-function psQuote(value) {
-	return `'${String(value).replace(/'/g, "''")}'`;
+function thumbnailSourceRoot() {
+	return state.env?.thumbnailSourceRoot || joinPath(activeSourceRoot() || "source", "thumbnail", "etype260515_p_takei");
 }
 
-function withSourceRoot(command) {
-	const sourceRoot = formValue("sourceRoot");
-	const appConfigPath = state.env?.appConfigPath;
-	if (!sourceRoot && !appConfigPath) {
-		return command;
-	}
-	const setup = ["$env:PYTHONUTF8 = '1'"];
-	if (sourceRoot) {
-		setup.push(`$env:VIDEO_EDIT_SOURCE_ROOT = ${psQuote(sourceRoot)}`);
-	}
-	if (appConfigPath) {
-		setup.push(`$env:VIDEO_EDIT_APP_CONFIG = ${psQuote(appConfigPath)}`);
-	}
-	const script = [...setup, `& ${command.map(psQuote).join(" ")}`].join("; ");
-	return ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", script];
+function withRuntimeConfig(command) {
+	return command;
 }
 
 function scriptPath(scriptName) {
@@ -398,7 +734,7 @@ function buildRenderCommand() {
 	}
 
 	if (script === "render_app_interview.py") {
-		return { command: withSourceRoot([pythonExe(), scriptPath(script)]), reason: "" };
+		return { command: withRuntimeConfig([pythonExe(), scriptPath(script)]), reason: "" };
 	}
 
 	const mode = subtitleMode === "none" ? "none" : subtitleMode === "punchline" ? "punchline" : "full";
@@ -434,11 +770,14 @@ function buildRenderCommand() {
 		if (formValue("naturalDialogueCuts")) {
 			command.push("--natural-dialogue-cuts");
 		}
+		if (!formValue("termExplanations")) {
+			command.push("--no-term-explanations");
+		}
 	}
 
 	addAudioArgs(command);
 	addSilenceArgs(command);
-	return { command: withSourceRoot(command), reason: "" };
+	return { command: withRuntimeConfig(command), reason: "" };
 }
 
 function buildPresetCommand() {
@@ -455,6 +794,7 @@ function buildPresetCommand() {
 		"subtitle-review": "subtitle_review_cycle.py",
 		"generate-punchlines": "generate_punchline_png_overlays.py",
 		"generate-full-overlays": "generate_full_transcript_png_overlays.py",
+		"generate-glossary-overlays": "generate_glossary_term_overlays.py",
 		"generate-thumbnails": "generate_thumbnail_candidates.py",
 		"analyze-blocking": "analyze_multicam_blocking.py",
 		"auto-sync-dropped": "auto_sync_app_sources.py",
@@ -484,7 +824,7 @@ function buildPresetCommand() {
 				command.push("--transcribe-review", "--review-model", formValue("reviewModel") || "medium");
 			}
 		}
-		return { command: withSourceRoot(command), reason: "" };
+		return { command: withRuntimeConfig(command), reason: "" };
 	}
 
 	if (action === "replace-sound2") {
@@ -500,7 +840,7 @@ function buildPresetCommand() {
 			outputPath,
 		];
 		addSilenceArgs(command);
-		return { command: withSourceRoot(command), reason: "" };
+		return { command: withRuntimeConfig(command), reason: "" };
 	}
 
 	if (action === "shorten-input") {
@@ -508,7 +848,7 @@ function buildPresetCommand() {
 			return { command: null, reason: "Choose an input video and output path for silence shortening." };
 		}
 		return {
-			command: withSourceRoot([
+			command: withRuntimeConfig([
 				pythonExe(),
 				scriptPath("shorten_silences.py"),
 				"--input",
@@ -531,7 +871,7 @@ function buildPresetCommand() {
 			return { command: null, reason: "Choose an input video before extracting a still." };
 		}
 		return {
-			command: withSourceRoot([
+			command: withRuntimeConfig([
 				ffmpegExe(),
 				"-y",
 				"-ss",
@@ -553,7 +893,7 @@ function buildPresetCommand() {
 			return { command: null, reason: "Choose a verification input video." };
 		}
 		return {
-			command: withSourceRoot([
+			command: withRuntimeConfig([
 				ffprobeExe(),
 				"-v",
 				"error",
@@ -572,7 +912,7 @@ function buildPresetCommand() {
 			return { command: null, reason: "Choose a verification input video." };
 		}
 		return {
-			command: withSourceRoot([
+			command: withRuntimeConfig([
 				ffprobeExe(),
 				"-v",
 				"error",
@@ -640,15 +980,15 @@ function validateSelections() {
 		if (!state.files.masterVideo) {
 			errors.push("自動同期にはマスター動画が必要です。");
 		}
-		if (!state.files.rightCloseVideo && !state.files.leftCloseVideo) {
-			errors.push("自動同期には右アップか左アップのどちらかが必要です。");
+		if (!state.files.rightCloseVideo && !state.files.leftCloseVideo && !state.files.externalAudio) {
+			errors.push("自動同期には右アップ・左アップ・別録り音声のいずれかが必要です。");
 		}
-		ok.push("同期結果は output\\reports\\app_sync_offsets.json に保存されます。");
+		ok.push("カメラ/別録り音声の同期結果は output\\reports\\app_sync_offsets.json に保存されます。");
 	}
 
 	if (action === "generate-thumbnails") {
 		ok.push(
-			`サムネ候補20枚と ${thumbnailModeConfig().label} / ${thumbnailMainColors[thumbnailMainColor()]} の contact sheet を output\\thumbnails に生成します。`,
+			`サムネ候補をソース画像の枚数ぶん、${thumbnailModeConfig().label} / ${thumbnailMainColors[thumbnailMainColor()]} で output\\thumbnails に生成します。`,
 		);
 		ok.push(`確認用: ${shortPath(thumbnailContactSheetPath())}`);
 		ok.push("素材は Downloads の etype260515 p-takei から import します。");
@@ -681,6 +1021,11 @@ function validateSelections() {
 
 	ok.push(`工程: ${selectedLabel("workflowAction")}`);
 	ok.push(`字幕: ${state.subtitleMode}`);
+	ok.push(
+		formValue("termExplanations")
+			? `用語解説: ON (${glossaryTerms().filter((term) => term.enabled).length}語)`
+			: "用語解説: OFF",
+	);
 	ok.push(formValue("audioDenoise") ? `ノイズ低減: ON (${formValue("audioDenoiseStrength")})` : "ノイズ低減: OFF");
 	ok.push(formValue("shortenSilence") ? "無音詰め: ON" : "無音詰め: OFF");
 	const syncRows = describeSyncReport();
@@ -746,8 +1091,18 @@ function buildPrompt() {
 		`- Reclassify speakers: ${formValue("reclassifySpeakers")}`,
 		`- Auto context/speaker camera cuts: ${formValue("autoContextCuts")}`,
 		`- Place cuts in short dialogue gaps: ${formValue("naturalDialogueCuts")}`,
+		`- Term explanations: ${formValue("termExplanations")} (${
+			glossaryTerms()
+				.filter((term) => term.enabled)
+				.map((term) => term.label)
+				.join(", ") || "none"
+		})`,
 		`- Output path: ${outputPath}`,
+		`- Active project: ${state.project ? `${state.project.name} (${state.project.root})` : "(none; using workspace defaults)"}`,
+		`- Project source root: ${activeSourceRoot() || "(not set)"}`,
+		`- Project output root: ${activeOutputRoot() || "(not set)"}`,
 		`- Still extraction time: ${formValue("stillTime") || "00:00:25"}`,
+		`- Thumbnail source images: ${joinPath(thumbnailSourceRoot(), "ST-*.jpg")}`,
 		`- Thumbnail contact sheet: ${thumbnailContactSheetPath()}`,
 		`- Source root override: ${formValue("sourceRoot") || "(not set)"}`,
 		`- Python: ${pythonExe()}`,
@@ -779,7 +1134,7 @@ function buildPrompt() {
 		"- If punchline text/timing/style changed, update the relevant generator script or data in the smallest maintainable way before regenerating overlays.",
 		"- If style/logo/title settings are not exposed by CLI flags, update the Python style/title scripts carefully and regenerate PNG overlays.",
 		"- Use source root override for 2cam/3cam inputs if it is set.",
-		`- For thumbnail generation, produce 20 candidates with the selected mode (${thumbnailMode()}) and main color (${thumbnailMainColor()}), write the mode/color-specific contact sheet at ${thumbnailContactSheetPath()}, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces unless the mode intentionally allows slight title overlap, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.`,
+		`- For thumbnail generation, produce one candidate per source thumbnail image with the selected mode (${thumbnailMode()}) and main color (${thumbnailMainColor()}), write the mode/color-specific contact sheet at ${thumbnailContactSheetPath()}, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces unless the mode intentionally allows slight title overlap, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.`,
 		"- Make minimal script changes needed for this request, then render or provide the exact command if rendering is blocked.",
 		"- Report the output file path and any limitations.",
 	];
@@ -788,6 +1143,13 @@ function buildPrompt() {
 
 function buildAppConfig() {
 	return {
+		project: {
+			id: state.project?.id || "",
+			name: state.project?.name || "",
+			root: state.project?.root || "",
+			sourceRoot: activeSourceRoot(),
+			outputRoot: activeOutputRoot(),
+		},
 		assets: {
 			masterVideo: state.files.masterVideo,
 			rightCloseVideo: state.files.rightCloseVideo,
@@ -803,7 +1165,7 @@ function buildAppConfig() {
 			thumbnailMainColor: thumbnailMainColor(),
 			renderScript: formValue("renderScript"),
 			outputPath: $("#outputPath").value,
-			syncOffsetsPath: state.env ? `${state.env.outputRoot}\\reports\\app_sync_offsets.json` : "",
+			syncOffsetsPath: syncReportPath(),
 			subtitleMode: state.subtitleMode,
 			multicamMode: formValue("multicamMode"),
 			audioSource: formValue("audioSource"),
@@ -826,6 +1188,10 @@ function buildAppConfig() {
 			logoHeight: Number(formValue("logoHeight") || 48),
 			punchlineText: formValue("punchlineText"),
 		},
+		glossary: {
+			enabled: formValue("termExplanations"),
+			terms: glossaryTerms(),
+		},
 		tools: {
 			python: formValue("pythonPath"),
 			ffmpeg: formValue("ffmpegPath"),
@@ -835,8 +1201,10 @@ function buildAppConfig() {
 			mode: thumbnailMode(),
 			modeFlag: thumbnailModeConfig().flag,
 			mainColor: thumbnailMainColor(),
+			sourceRoot: thumbnailSourceRoot(),
+			sourceGlob: joinPath(thumbnailSourceRoot(), "ST-*.jpg"),
 			contactSheet: thumbnailContactSheetPath(),
-			outputRoot: state.env?.outputThumbnailsRoot || "",
+			outputRoot: joinPath(activeOutputRoot(), "thumbnails"),
 			importAssets: formValue("workflowAction") === "generate-thumbnails",
 		},
 	};
@@ -850,6 +1218,10 @@ function refreshPrompt() {
 }
 
 async function runPreset() {
+	if (!(await prepareProjectForRun())) {
+		setStatus("Project error", "idle");
+		return;
+	}
 	refreshCommand();
 	const validation = validateSelections();
 	if (validation.errors.length) {
@@ -892,6 +1264,10 @@ async function runPreset() {
 }
 
 async function sendRequest() {
+	if (!(await prepareProjectForRun())) {
+		setStatus("Project error", "idle");
+		return;
+	}
 	refreshPrompt();
 	setStatus("Codex running", "busy");
 	log("turn/start");
@@ -960,9 +1336,19 @@ function bindEvents() {
 		button.addEventListener("click", () => pickDirectory(button.dataset.pickDir));
 	});
 	$("#pickOutput").addEventListener("click", pickOutput);
+	$("#createProject").addEventListener("click", createProjectFromForm);
+	$("#copyProjectAssets").addEventListener("click", copyAssetsToProject);
+	$("#projectName").addEventListener("input", () => {
+		if (!formValue("projectId")) {
+			$("#projectId").value = projectIdFromName(formValue("projectName"));
+		}
+		refreshPrompt();
+	});
 	$("#refreshCommand").addEventListener("click", refreshCommand);
 	$("#refreshPrompt").addEventListener("click", refreshPrompt);
 	$("#refreshSyncReport").addEventListener("click", refreshSyncReport);
+	$("#loadGlossaryCandidates").addEventListener("click", loadGlossaryCandidates);
+	$("#addGlossaryTerm").addEventListener("click", addGlossaryTerm);
 	$("#runPreset").addEventListener("click", runPreset);
 	$("#sendRequest").addEventListener("click", sendRequest);
 	$("#interrupt").addEventListener("click", async () => {
@@ -1034,7 +1420,9 @@ async function init() {
 	$("#pythonPath").value = state.env.pythonExe;
 	$("#sourceRoot").value = "C:\\Users\\yurin\\Downloads\\cdc260515 mov\\cdc260515 mov";
 	$("#punchlineText").value = defaultPunchlines;
+	state.glossaryTerms = defaultGlossaryTerms;
 	loadState();
+	renderGlossaryList();
 	initDropZones();
 	bindEvents();
 	refreshPrompt();

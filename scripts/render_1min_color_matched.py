@@ -33,7 +33,7 @@ from video_edit_app_config import int_value, load_app_config, optional_path
 WORK = WORKSPACE_ROOT
 APP_CONFIG = load_app_config()
 FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
-FFPROBE = Path(r"C:\ProgramData\chocolatey\bin\ffprobe.exe")
+FFPROBE = optional_path(APP_CONFIG, "tools", "ffprobe", default=Path(r"C:\ProgramData\chocolatey\bin\ffprobe.exe"))
 BASE_5MIN = OUTPUT_VIDEOS / "ST7_7550_multicam_cut_5min_strong_transcript_wave_refined.mp4"
 BASE_1MIN = OUTPUT_VIDEOS / "ST7_7550_multicam_cut_1min_color_matched_base.mp4"
 CAM1 = SOURCE_VIDEO / "1cam" / "ST7_7550_overlap_5min.mp4"

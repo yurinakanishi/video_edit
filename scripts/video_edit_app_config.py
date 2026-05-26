@@ -25,10 +25,11 @@ from typing import Any
 
 
 WORK = WORKSPACE_ROOT
+DEFAULT_APP_CONFIG = WORK / "output" / "app" / "video_edit_app_config.runtime.json"
 
 
 def load_app_config() -> dict[str, Any]:
-    path = os.environ.get("VIDEO_EDIT_APP_CONFIG")
+    path = os.environ.get("VIDEO_EDIT_APP_CONFIG") or DEFAULT_APP_CONFIG
     if not path:
         return {}
     config_path = Path(path)

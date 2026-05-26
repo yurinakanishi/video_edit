@@ -1016,28 +1016,16 @@ def main() -> None:
         {"source": "ST-536.jpg", "hook": "PdMは燃やす方が安い？", "title": "フリーPdMは\n安売りか？", "subtitle": "", "region": "lower_right", "text_box": [500, 386, 730, 284], "hook_position": "top_left", "logo_position": "top_right", "layout_reason": "顔は左寄り、右下背景に大きいキーワードを置く。", "duration": "17:55", "palette": palettes["red_yellow"]},
         {"source": "ST-538.jpg", "hook": "PdMキャリア", "title": "選ばれるPdMの\n立ち位置", "subtitle": "", "region": "lower_left", "text_box": [40, 390, 760, 282], "hook_position": "top_right", "logo_position": "top_left", "layout_reason": "人物は右寄りなので、左下にタイトルを置く。", "duration": "37:01", "palette": palettes["yellow_teal"]},
     ]
-    closeup_sources = [
-        "ST-500.jpg",
-        "ST-503.jpg",
-        "ST-504.jpg",
-        "ST-505.jpg",
-        "ST-506.jpg",
-        "ST-507.jpg",
-        "ST-509.jpg",
-        "ST-510.jpg",
-        "ST-511.jpg",
-        "ST-512.jpg",
-        "ST-513.jpg",
-        "ST-515.jpg",
-        "ST-516.jpg",
-        "ST-517.jpg",
-        "ST-518.jpg",
-        "ST-520.jpg",
-        "ST-521.jpg",
-        "ST-522.jpg",
-        "ST-523.jpg",
-        "ST-524.jpg",
-    ]
+    source_names = [Path(item["file"]).name for item in analysis["images"]]
+    candidate_templates = candidates
+    candidates = []
+    for index, source_name in enumerate(source_names):
+        template = candidate_templates[index % len(candidate_templates)]
+        candidate = dict(template)
+        candidate["source"] = source_name
+        candidate["layout_reason"] = f"{template['layout_reason']} ソース画像全件出力のため配置テンプレートを循環適用。"
+        candidates.append(candidate)
+    closeup_sources = source_names
     if args.closeup_bottom_title:
         for index, (candidate, source) in enumerate(zip(candidates, closeup_sources), start=1):
             candidate["source"] = source
@@ -1104,6 +1092,7 @@ def main() -> None:
     title_path = SOURCE_TEXT / "thumbnail_title_pdm_freelance.txt"
     title_path.write_text("フリーPdMは通用する？\n", encoding="utf-8")
     analysis["candidate_layouts"] = layouts
+    analysis["candidate_count"] = len(layouts)
     analysis["thumbnail_mode"] = thumbnail_mode
     analysis["thumbnail_main_color"] = args.main_color
     analysis["contact_sheet"] = str(contact_sheet_path)

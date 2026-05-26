@@ -359,6 +359,23 @@ input[type="checkbox"] {
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.project-grid {
+	display: grid;
+	grid-template-columns: minmax(180px, 0.7fr) minmax(150px, 0.5fr) minmax(240px, 1fr) auto;
+	gap: 12px;
+	align-items: end;
+}
+
+.project-actions {
+	display: flex;
+	gap: 8px;
+	align-items: end;
+}
+
+.project-actions button {
+	white-space: nowrap;
+}
+
 .toggle-row {
 	display: flex;
 	grid-template-columns: none;
@@ -469,6 +486,77 @@ input[type="checkbox"] {
 	line-height: 1.45;
 }
 
+.glossary-editor {
+	display: grid;
+	gap: 12px;
+	padding-top: 14px;
+	border-top: 1px solid var(--line);
+}
+
+.glossary-heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.glossary-heading div {
+	display: grid;
+	gap: 3px;
+}
+
+.glossary-heading span {
+	color: var(--muted);
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.glossary-list {
+	display: grid;
+	gap: 8px;
+	color: var(--muted);
+	font-size: 12px;
+}
+
+.glossary-row {
+	display: grid;
+	grid-template-columns: 18px minmax(82px, 0.45fr) minmax(100px, 0.55fr) minmax(170px, 1fr) 34px;
+	gap: 8px;
+	align-items: center;
+	padding: 8px;
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	background: #fbfaf7;
+}
+
+.glossary-row input[type="checkbox"] {
+	justify-self: center;
+}
+
+.glossary-row input {
+	min-height: 32px;
+	font-size: 12px;
+}
+
+.glossary-row button {
+	min-height: 32px;
+	padding: 0;
+}
+
+.glossary-add-grid {
+	display: grid;
+	grid-template-columns: minmax(90px, 0.5fr) minmax(130px, 0.7fr) minmax(180px, 1fr) auto;
+	gap: 8px;
+	align-items: stretch;
+}
+
+.glossary-add-grid textarea {
+	min-height: 38px;
+	height: 38px;
+	resize: vertical;
+	font-size: 12px;
+}
+
 #commandPreview {
 	height: 96px;
 	resize: vertical;
@@ -508,6 +596,7 @@ input[type="checkbox"] {
 
 	.content-grid,
 	.drop-grid,
+	.project-grid,
 	.settings-grid,
 	.workflow-grid,
 	.three-col {

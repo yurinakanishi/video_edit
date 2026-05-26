@@ -65,13 +65,13 @@ def run(command: list[str]) -> None:
     subprocess.run(command, check=True, cwd=WORK)
 
 
-def load_sync_offsets(cameras: list[tuple[str, Path]]) -> dict[str, float]:
+def load_sync_offsets(sources: list[tuple[str, Path]]) -> dict[str, float]:
     sync_path = Path(nested(APP_CONFIG, "render", "syncOffsetsPath", default=str(DEFAULT_SYNC)))
-    offsets = {"master": 0.0, "right": 0.0, "left": 0.0}
+    offsets = {"master": 0.0, "right": 0.0, "left": 0.0, "external": 0.0}
     if not sync_path.exists():
         return offsets
     data = json.loads(sync_path.read_text(encoding="utf-8")).get("offsets", {})
-    for role, path in cameras:
+    for role, path in sources:
         item = data.get(role)
         if item and Path(item.get("path", "")) == path:
             offsets[role] = float(item.get("offsetSeconds", 0.0))
@@ -167,7 +167,8 @@ def main() -> None:
         cameras.append(("left", left))
     if not cameras:
         raise RuntimeError("Drop or select at least a master video before running render_app_interview.py.")
-    sync_offsets = load_sync_offsets(cameras)
+    sync_sources = cameras + ([("external", external_audio)] if external_audio else [])
+    sync_offsets = load_sync_offsets(sync_sources)
     run([sys.executable, str(SCRIPTS / "generate_title_png_overlay.py")])
 
     mode = subtitle_mode()
@@ -178,7 +179,7 @@ def main() -> None:
         captions = [
             item
             for item in json.loads(manifest.read_text(encoding="utf-8"))
-            if seconds(item["start"]) < duration and seconds(item["end"]) > 0
+            if seconds(item["start"]) < start + duration and seconds(item["end"]) > start
         ]
 
     audio_source = nested(APP_CONFIG, "render", "audioSource", default="external-if-selected")
@@ -222,7 +223,8 @@ def main() -> None:
     for item in captions:
         command.extend(["-loop", "1", "-framerate", "60", "-t", f"{duration:.3f}", "-i", str(WORK / item["file"])])
     if audio_source == "external-if-selected" and external_audio:
-        command.extend(["-ss", f"{start:.6f}", "-t", f"{duration:.6f}", "-i", str(external_audio)])
+        external_audio_start = max(0.0, sync_offsets.get("external", 0.0) + start)
+        command.extend(["-ss", f"{external_audio_start:.6f}", "-t", f"{duration:.6f}", "-i", str(external_audio)])
 
     filters: list[str] = []
     segment_labels: list[str] = []
@@ -255,8 +257,8 @@ def main() -> None:
     first_caption_index = len(cameras) + 2
     for index, item in enumerate(captions, start=1):
         stream_index = first_caption_index + index - 1
-        start_t = max(0.0, seconds(item["start"]))
-        end_t = min(duration, seconds(item["end"]))
+        start_t = max(0.0, seconds(item["start"]) - start)
+        end_t = min(duration, seconds(item["end"]) - start)
         fade_out = max(start_t, end_t - 0.18)
         base_scale = "if(gt(iw,1760),1760/iw,1)"
         if caption_config.get("pop"):

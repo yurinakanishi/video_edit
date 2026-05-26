@@ -23,9 +23,11 @@ from project_paths import (
 
 import numpy as np
 
+from video_edit_app_config import load_app_config, optional_path
 
 WORK = WORKSPACE_ROOT
-FFMPEG = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
+APP_CONFIG = load_app_config()
+FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 VIDEO = OUTPUT_VIDEOS / "ST7_7550_multicam_cut_5min_png_titles_punchlines.mp4"
 SOUND = SOURCE_AUDIO / "sound-2" / "140101-003.WAV"
 MATCHES = OUTPUT_TRANSCRIPTS / "sound2" / "sound2_master_matches.json"

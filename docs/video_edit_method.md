@@ -1120,7 +1120,7 @@ Main title: フリーPdMは
 Corner hook: AI時代のキャリア論
 ```
 
-Vary the selected still, palette, title placement, hook corner, logo corner, and crop feel. Do not vary the main title or hook unless the video topic changes.
+Generate one output candidate for every `ST-*.jpg` source image. Vary the selected still, palette, title placement, hook corner, logo corner, and crop feel by cycling layout templates across the full source-image set. Do not vary the main title or hook unless the video topic changes.
 
 Mode switch:
 
@@ -1152,7 +1152,7 @@ Generated outputs:
 ```text
 output\thumbnails\thumbnail_standard_candidate_01.png
 ...
-output\thumbnails\thumbnail_standard_candidate_20.png
+output\thumbnails\thumbnail_standard_candidate_NN.png
 output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg
 output\thumbnails\thumbnail_standard_asset_analysis.json
 output\thumbnails\thumbnail_standard_red_candidate_01.png
@@ -1173,7 +1173,7 @@ python -m py_compile .\scripts\generate_thumbnail_candidates.py
 python .\scripts\generate_thumbnail_candidates.py --import-assets
 ```
 
-After generating, inspect the mode/color-specific contact sheet, for example `output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg` or `output\thumbnails\thumbnail_standard_red_candidates_contact_sheet.jpg`, and confirm the title, hook, and logo do not cover faces or look padded unevenly. Mode names are included in generated PNG, contact sheet, and analysis JSON filenames; non-yellow color names are also included so different layout/color options do not overwrite each other.
+After generating, inspect the mode/color-specific contact sheet, for example `output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg` or `output\thumbnails\thumbnail_standard_red_candidates_contact_sheet.jpg`, and confirm the title, hook, and logo do not cover faces or look padded unevenly. The candidate count should match the number of `source\thumbnail\etype260515_p_takei\ST-*.jpg` files. Mode names are included in generated PNG, contact sheet, and analysis JSON filenames; non-yellow color names are also included so different layout/color options do not overwrite each other.
 
 ## Verification Commands
 

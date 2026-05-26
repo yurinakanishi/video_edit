@@ -22,13 +22,61 @@
 		"directories": {
 			"output": "../output/app/dist"
 		},
-		"asar": false,
+		"asar": true,
 		"files": [
 			"dist/**/*",
 			"build/icon.ico",
 			"package.json",
 			"!smoke_outputs/**/*",
 			"!*.runtime.json"
+		],
+		"extraResources": [
+			{
+				"from": "build/icon.ico",
+				"to": "build/icon.ico"
+			},
+			{
+				"from": "../scripts",
+				"to": "scripts",
+				"filter": [
+					"**/*.py"
+				]
+			},
+			{
+				"from": "../docs",
+				"to": "docs",
+				"filter": [
+					"**/*"
+				]
+			},
+			{
+				"from": "../config",
+				"to": "config",
+				"filter": [
+					"**/*"
+				]
+			},
+			{
+				"from": "../source/images",
+				"to": "source/images",
+				"filter": [
+					"**/*"
+				]
+			},
+			{
+				"from": "../source/subtitles",
+				"to": "source/subtitles",
+				"filter": [
+					"**/*"
+				]
+			},
+			{
+				"from": "../source/text",
+				"to": "source/text",
+				"filter": [
+					"**/*"
+				]
+			}
 		],
 		"win": {
 			"icon": "build/icon.ico",

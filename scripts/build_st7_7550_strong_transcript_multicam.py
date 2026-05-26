@@ -21,10 +21,12 @@ from project_paths import (
     multicam_source_root,
     resolve_project_path,
 )
+from video_edit_app_config import load_app_config, optional_path
 
 
-FFMPEG = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
 WORK = WORKSPACE_ROOT
+APP_CONFIG = load_app_config()
+FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 ROOT = multicam_source_root()
 
 

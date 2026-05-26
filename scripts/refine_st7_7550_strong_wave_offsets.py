@@ -25,8 +25,10 @@ from project_paths import (
 
 import numpy as np
 
+from video_edit_app_config import load_app_config, optional_path
 
-FFMPEG = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
+APP_CONFIG = load_app_config()
+FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 WORK = WORKSPACE_ROOT
 ROOT = multicam_source_root()
 OUT = OUTPUT_TRANSCRIPTS / "transcript_sync_all" / "strong_local_wave_refine.json"

@@ -23,10 +23,12 @@ from project_paths import (
 )
 
 from shorten_silences import DEFAULT_KEEP_SILENCE, DEFAULT_MIN_SILENCE, DEFAULT_NOISE, SilenceShortenConfig, shorten_silences
+from video_edit_app_config import load_app_config, optional_path
 
 
 WORK = WORKSPACE_ROOT
-FFMPEG = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
+APP_CONFIG = load_app_config()
+FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 OFFSET_JSON = OUTPUT_TRANSCRIPTS / "sound2" / "sound2_audio_offset_refined.json"
 DEFAULT_VIDEO = OUTPUT_VIDEOS / "ST7_7550_multicam_cut_5min_png_titles_punchlines.mp4"
 DEFAULT_OUTPUT = OUTPUT_VIDEOS / "ST7_7550_multicam_cut_5min_png_titles_punchlines_sound2_audio.mp4"

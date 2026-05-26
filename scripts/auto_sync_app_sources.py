@@ -135,7 +135,7 @@ def main() -> None:
         }
     }
 
-    for role, key in (("right", "rightCloseVideo"), ("left", "leftCloseVideo")):
+    for role, key in (("right", "rightCloseVideo"), ("left", "leftCloseVideo"), ("external", "externalAudio")):
         path = source_path(key)
         if not path:
             continue

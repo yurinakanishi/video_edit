@@ -41,6 +41,7 @@ CAM2_7193 = multicam_source_root() / "2cam" / "0H4A7193.MP4"
 LOGO = optional_path(APP_CONFIG, "assets", "logo", default=SOURCE_IMAGES / "type-logo-transparent-cropped.png")
 TITLE = OUTPUT_OVERLAYS / "ai_engineer_now_title.png"
 SUMMARY_CARD = OUTPUT_OVERLAYS / "interviewer_question_summary_card.png"
+GLOSSARY_MANIFEST = OUTPUT_OVERLAYS / "glossary_term_overlays" / "manifest.json"
 OMIT_SUMMARY_MUSIC = OUTPUT_AUDIO / "omit_summary_card_music_5s.wav"
 FONT_PATH = Path(r"C:\Windows\Fonts\YuGothB.ttc")
 LOGO_HEIGHT = int_value(APP_CONFIG, "style", "logoHeight", default=120)
@@ -156,6 +157,8 @@ def default_render_output(args: argparse.Namespace) -> Path:
         tokens.append("no-denoise")
     elif args.audio_denoise_strength != DEFAULT_DENOISE_STRENGTH:
         tokens.append(f"denoise-{args.audio_denoise_strength}")
+    if not args.term_explanations:
+        tokens.append("no-terms")
     if args.crf != "18":
         tokens.append(f"crf-{args.crf}")
     if args.preset != "veryfast":
@@ -218,6 +221,19 @@ def parse_args() -> argparse.Namespace:
         "--dynamic-cuts",
         action="store_true",
         help="Use a faster edit with rhythmic punch-ins and reframes while keeping source sync and audio intact.",
+    )
+    parser.add_argument(
+        "--term-explanations",
+        dest="term_explanations",
+        action="store_true",
+        default=True,
+        help="Show glossary popups for uncommon/specialized terms detected from the subtitles.",
+    )
+    parser.add_argument(
+        "--no-term-explanations",
+        dest="term_explanations",
+        action="store_false",
+        help="Disable glossary popups.",
     )
     return parser.parse_args()
 
@@ -373,6 +389,10 @@ def render(args: argparse.Namespace) -> Path:
             run([sys.executable, str(SCRIPTS / "apply_st7_7550_subtitle_corrections.py")])
         if args.mode != "none":
             run([sys.executable, str(config["generator"])])
+        if args.term_explanations:
+            run([sys.executable, str(SCRIPTS / "generate_glossary_term_overlays.py")])
+    if args.term_explanations and not GLOSSARY_MANIFEST.exists():
+        run([sys.executable, str(SCRIPTS / "generate_glossary_term_overlays.py")])
     if args.omit_interviewer_question:
         generate_summary_card()
         if not OMIT_SUMMARY_MUSIC.exists():
@@ -425,6 +445,28 @@ def render(args: argparse.Namespace) -> Path:
                 shifted.append(copy)
             captions = shifted
 
+    glossary_items = []
+    if args.term_explanations:
+        glossary_items = [
+            item
+            for item in json.loads(GLOSSARY_MANIFEST.read_text(encoding="utf-8"))
+            if seconds(item["start"]) < preview_end and seconds(item["end"]) > args.preview_start
+        ]
+        if args.omit_interviewer_question:
+            shifted_glossary = []
+            for item in glossary_items:
+                start = seconds(item["start"])
+                end = seconds(item["end"])
+                if OMIT_INTERVIEWER_START <= start < OMIT_INTERVIEWER_END:
+                    continue
+                copy = dict(item)
+                if start >= OMIT_INTERVIEWER_END:
+                    shift = OMIT_INTERVIEWER_END - (OMIT_INTERVIEWER_START + OMIT_SUMMARY_DURATION)
+                    copy["start"] = f"0:00:{start - shift:06.3f}"
+                    copy["end"] = f"0:00:{min(OMIT_OUTPUT_DURATION, end - shift):06.3f}"
+                shifted_glossary.append(copy)
+            glossary_items = shifted_glossary
+
     cam2_input_start = CAM2_SOURCE_OFFSET + min(args.preview_start, 20.0)
     cam1_input_start = CAM1_SOURCE_OFFSET + max(args.preview_start - 20.0, 0.0)
     command = [
@@ -456,7 +498,10 @@ def render(args: argparse.Namespace) -> Path:
         command.extend(["-loop", "1", "-framerate", "60", "-t", f"{args.preview_duration:.3f}", "-i", str(WORK / item["file"])])
     summary_input_count = 1 if args.omit_interviewer_question else 0
     first_caption_input = 4 + summary_input_count
-    sound_index = first_caption_input + len(captions)
+    first_glossary_input = first_caption_input + len(captions)
+    for item in glossary_items:
+        command.extend(["-loop", "1", "-framerate", "60", "-t", f"{args.preview_duration:.3f}", "-i", str(WORK / item["file"])])
+    sound_index = first_glossary_input + len(glossary_items)
     command.extend(["-ss", f"{sound_start:.6f}", "-t", f"{input_duration:.6f}", "-i", str(sound)])
     music_index = sound_index + 1
     if args.omit_interviewer_question:
@@ -581,6 +626,27 @@ def render(args: argparse.Namespace) -> Path:
             filters.append(f"[{stream_index}:v]format=rgba,scale=w='iw*{base_scale}':h='ih*{base_scale}':eval=init[p{index}]")
         next_stream = f"vsub{index}"
         filters.append(f"[{current}][p{index}]overlay=x='(W-w)/2':y='{y_expr}':enable='between(t,{start:.3f},{end:.3f})'[{next_stream}]")
+        current = next_stream
+
+    for index, item in enumerate(glossary_items, start=1):
+        stream_index = first_glossary_input + index - 1
+        start = max(0.0, seconds(item["start"]) - args.preview_start)
+        end = min(args.preview_duration, seconds(item["end"]) - args.preview_start)
+        fade_out = max(start, end - 0.18)
+        y_expr = (
+            f"150+if(between(t,{start:.3f},{start + 0.24:.3f}),"
+            f"24*(1-(t-{start:.3f})/0.24),0)"
+        )
+        filters.append(
+            f"[{stream_index}:v]format=rgba,"
+            f"fade=t=in:st={start:.3f}:d=0.15:alpha=1,"
+            f"fade=t=out:st={fade_out:.3f}:d=0.18:alpha=1[g{index}]"
+        )
+        next_stream = f"vglossary{index}"
+        filters.append(
+            f"[{current}][g{index}]overlay=x='W-w-36':y='{y_expr}':"
+            f"enable='between(t,{start:.3f},{end:.3f})'[{next_stream}]"
+        )
         current = next_stream
 
     audio_filter = youtube_audio_filter(args)

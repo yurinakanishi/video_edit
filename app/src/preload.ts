@@ -8,13 +8,16 @@ const on = (channel, callback) => {
 
 contextBridge.exposeInMainWorld("editApp", {
 	getEnvironment: () => ipcRenderer.invoke("environment:get"),
+	createProject: (payload) => ipcRenderer.invoke("project:create", payload),
+	copyProjectAssets: (payload) => ipcRenderer.invoke("project:copy-assets", payload),
 	pickFile: (options) => ipcRenderer.invoke("dialog:pick-file", options),
 	pickDirectory: (options) => ipcRenderer.invoke("dialog:pick-directory", options),
-	pickOutput: (suggestedName) => ipcRenderer.invoke("dialog:pick-output", suggestedName),
+	pickOutput: (options) => ipcRenderer.invoke("dialog:pick-output", options),
 	startCodexTurn: (payload) => ipcRenderer.invoke("codex:start-turn", payload),
 	execCodexCommand: (payload) => ipcRenderer.invoke("codex:exec-command", payload),
 	interruptCodex: () => ipcRenderer.invoke("codex:interrupt"),
-	getSyncReport: () => ipcRenderer.invoke("report:sync"),
+	getSyncReport: (appConfig) => ipcRenderer.invoke("report:sync", appConfig),
+	loadGlossaryCandidates: (appConfig) => ipcRenderer.invoke("glossary:load-candidates", appConfig),
 	showPath: (targetPath) => ipcRenderer.invoke("shell:show-path", targetPath),
 	filePath: (file) => webUtils.getPathForFile(file),
 	onServerReady: (callback) => on("server:ready", callback),

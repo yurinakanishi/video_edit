@@ -25,11 +25,13 @@ from project_paths import (
     multicam_source_root,
     resolve_project_path,
 )
+from video_edit_app_config import load_app_config, optional_path
 
 
 WORK = WORKSPACE_ROOT
-FFMPEG = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
-FFPROBE = Path(r"C:\ProgramData\chocolatey\bin\ffprobe.exe")
+APP_CONFIG = load_app_config()
+FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
+FFPROBE = optional_path(APP_CONFIG, "tools", "ffprobe", default=Path(r"C:\ProgramData\chocolatey\bin\ffprobe.exe"))
 DEFAULT_MIN_SILENCE = 3.0
 DEFAULT_KEEP_SILENCE = 2.0
 DEFAULT_NOISE = "-30dB"

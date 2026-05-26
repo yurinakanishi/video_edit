@@ -25,9 +25,11 @@ from project_paths import (
 )
 from typing import Any
 
+from video_edit_app_config import load_app_config, optional_path
 
 WORK = WORKSPACE_ROOT
-FFMPEG = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
+APP_CONFIG = load_app_config()
+FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 RAW_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio.srt"
 CORRECTIONS_JSON = CONFIG / "subtitle_corrections.json"
 CORRECTED_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio_corrected.srt"

@@ -66,24 +66,31 @@ const STORAGE_KEY = "video-edit-app-state-v1";
 const thumbnailModes = {
 	standard: {
 		flag: "",
-		contactSheet: "thumbnail_standard_candidates_contact_sheet.jpg",
 		label: "Standard",
 	},
 	closeup_bottom_title: {
 		flag: "--closeup-bottom-title",
-		contactSheet: "thumbnail_closeup_bottom_title_candidates_contact_sheet.jpg",
 		label: "Center face / bottom title",
 	},
 	right_face_title_stack: {
 		flag: "--right-face-title-stack",
-		contactSheet: "thumbnail_right_face_title_stack_candidates_contact_sheet.jpg",
 		label: "Face right / title left",
 	},
 	left_face_title_stack: {
 		flag: "--left-face-title-stack",
-		contactSheet: "thumbnail_left_face_title_stack_candidates_contact_sheet.jpg",
 		label: "Face left / title right",
 	},
+};
+const thumbnailMainColors = {
+	yellow: "Yellow",
+	red: "Red",
+	orange: "Orange",
+	green: "Green",
+	blue: "Blue",
+	cyan: "Cyan",
+	purple: "Purple",
+	pink: "Pink",
+	white: "White",
 };
 
 function shortPath(value) {
@@ -235,6 +242,17 @@ function thumbnailModeConfig() {
 	return thumbnailModes[thumbnailMode()];
 }
 
+function thumbnailMainColor() {
+	const color = formValue("thumbnailMainColor") || "yellow";
+	return color in thumbnailMainColors ? color : "yellow";
+}
+
+function thumbnailOutputStem() {
+	const color = thumbnailMainColor();
+	const colorSuffix = color === "yellow" ? "" : `_${color}`;
+	return `thumbnail_${thumbnailMode()}${colorSuffix}`;
+}
+
 function scoreKind(score) {
 	if (typeof score !== "number" || Number.isNaN(score)) {
 		return "bad";
@@ -318,11 +336,10 @@ function stillOutputPath(inputVideo, outputPath) {
 }
 
 function thumbnailContactSheetPath() {
-	const config = thumbnailModeConfig();
 	if (state.env?.outputThumbnailsRoot) {
-		return `${state.env.outputThumbnailsRoot}\\${config.contactSheet}`;
+		return `${state.env.outputThumbnailsRoot}\\${thumbnailOutputStem()}_candidates_contact_sheet.jpg`;
 	}
-	return `${state.env?.outputRoot || "output"}\\thumbnails\\${config.contactSheet}`;
+	return `${state.env?.outputRoot || "output"}\\thumbnails\\${thumbnailOutputStem()}_candidates_contact_sheet.jpg`;
 }
 
 function psQuote(value) {
@@ -454,6 +471,7 @@ function buildPresetCommand() {
 		const command = [pythonExe(), scriptPath(simplePythonScripts[action])];
 		if (action === "generate-thumbnails") {
 			command.push("--import-assets");
+			command.push("--main-color", thumbnailMainColor());
 			if (thumbnailModeConfig().flag) {
 				command.push(thumbnailModeConfig().flag);
 			}
@@ -629,7 +647,9 @@ function validateSelections() {
 	}
 
 	if (action === "generate-thumbnails") {
-		ok.push(`サムネ候補20枚と ${thumbnailModeConfig().label} の contact sheet を output\\thumbnails に生成します。`);
+		ok.push(
+			`サムネ候補20枚と ${thumbnailModeConfig().label} / ${thumbnailMainColors[thumbnailMainColor()]} の contact sheet を output\\thumbnails に生成します。`,
+		);
 		ok.push(`確認用: ${shortPath(thumbnailContactSheetPath())}`);
 		ok.push("素材は Downloads の etype260515 p-takei から import します。");
 	}
@@ -704,13 +724,14 @@ function buildPrompt() {
 		"- Read docs\\video_edit_method.md for the current ST7_7550 workflow.",
 		"- Prefer scripts\\render_1min_onepass_ffmpeg.py for the current 1-minute preset.",
 		"- Prefer scripts\\render_final_png_overlays.py for current 5-minute PNG-overlay renders.",
-		"- Use scripts\\generate_thumbnail_candidates.py --import-assets plus the selected thumbnail layout flag for thumbnail candidate generation.",
+		"- Use scripts\\generate_thumbnail_candidates.py --import-assets --main-color <color> plus the selected thumbnail layout flag for thumbnail candidate generation.",
 		"- Keep existing user changes in the repo; do not revert unrelated files.",
 		"",
 		"Operator selections:",
 		`- Edit preset: ${formValue("editPreset")}`,
 		`- Direct workflow action: ${formValue("workflowAction")}`,
 		`- Thumbnail layout: ${thumbnailMode()} (${thumbnailModeConfig().flag || "no extra flag"})`,
+		`- Thumbnail main color: ${thumbnailMainColor()}`,
 		`- Render script: ${formValue("renderScript")}`,
 		`- Multicam mode: ${formValue("multicamMode")}`,
 		`- Subtitle mode: ${state.subtitleMode}`,
@@ -758,7 +779,7 @@ function buildPrompt() {
 		"- If punchline text/timing/style changed, update the relevant generator script or data in the smallest maintainable way before regenerating overlays.",
 		"- If style/logo/title settings are not exposed by CLI flags, update the Python style/title scripts carefully and regenerate PNG overlays.",
 		"- Use source root override for 2cam/3cam inputs if it is set.",
-		`- For thumbnail generation, produce 20 candidates with the selected mode (${thumbnailMode()}), write the mode-specific contact sheet at ${thumbnailContactSheetPath()}, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces unless the mode intentionally allows slight title overlap, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.`,
+		`- For thumbnail generation, produce 20 candidates with the selected mode (${thumbnailMode()}) and main color (${thumbnailMainColor()}), write the mode/color-specific contact sheet at ${thumbnailContactSheetPath()}, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces unless the mode intentionally allows slight title overlap, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.`,
 		"- Make minimal script changes needed for this request, then render or provide the exact command if rendering is blocked.",
 		"- Report the output file path and any limitations.",
 	];
@@ -779,6 +800,7 @@ function buildAppConfig() {
 			editPreset: formValue("editPreset"),
 			workflowAction: formValue("workflowAction"),
 			thumbnailMode: thumbnailMode(),
+			thumbnailMainColor: thumbnailMainColor(),
 			renderScript: formValue("renderScript"),
 			outputPath: $("#outputPath").value,
 			syncOffsetsPath: state.env ? `${state.env.outputRoot}\\reports\\app_sync_offsets.json` : "",
@@ -812,6 +834,7 @@ function buildAppConfig() {
 		thumbnails: {
 			mode: thumbnailMode(),
 			modeFlag: thumbnailModeConfig().flag,
+			mainColor: thumbnailMainColor(),
 			contactSheet: thumbnailContactSheetPath(),
 			outputRoot: state.env?.outputThumbnailsRoot || "",
 			importAssets: formValue("workflowAction") === "generate-thumbnails",

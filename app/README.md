@@ -41,7 +41,7 @@ pnpm run check
 - Shows a preflight checklist for missing output paths, required camera files, audio fallbacks, silence-shortening state, and recommended auto-sync steps.
 - Shows the latest dropped-camera sync score from `output\reports\app_sync_offsets.json` and refreshes it after auto-sync runs.
 - Provides direct method workflow actions for subtitle review, overlay regeneration, thumbnail candidate generation, camera analysis, transcript sync, waveform refinement, multicam base build, sound-2 audio replacement, silence shortening, and ffprobe verification.
-- Runs `scripts\generate_thumbnail_candidates.py --import-assets` from the workflow action menu, supports the standard, center-face bottom-title, right-face stacked-title, and left-face stacked-title thumbnail modes, and opens the selected mode's contact sheet from the top bar.
+- Runs `scripts\generate_thumbnail_candidates.py --import-assets` from the workflow action menu, supports the standard, center-face bottom-title, right-face stacked-title, and left-face stacked-title thumbnail modes, supports broad main-color selection, and opens the selected mode/color contact sheet from the top bar.
 - Starts `codex app-server` from the Electron main process and sends a structured edit request with `C:\Users\yurin\Desktop\video_edit` as the working directory.
 - Can run the current known render scripts directly through `command/exec` when the selected preset maps cleanly to an existing script.
 - Includes `render_app_interview.py`, a generic dropped-file interview renderer for master/right/left camera files and optional external audio.

@@ -1062,6 +1062,20 @@ Generate thumbnail candidates with:
 python .\scripts\generate_thumbnail_candidates.py --import-assets
 ```
 
+Choose the main color for title text, hook background, frame accent, and overlay tint:
+
+```powershell
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color yellow
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color red
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color orange
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color green
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color blue
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color cyan
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color purple
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color pink
+python .\scripts\generate_thumbnail_candidates.py --import-assets --main-color white
+```
+
 Use this mode for face-centered close-ups with a one-line bottom title:
 
 ```powershell
@@ -1122,6 +1136,7 @@ Current visual rules:
 - Add only a small, even white padding around the logo; do not use a large white logo box.
 - Place the logo in the least-overlapping corner after avoiding faces, title text, and the corner hook.
 - Do not draw a video-duration chip in the bottom-right corner.
+- Default main color is yellow. `--main-color` supports `yellow`, `red`, `orange`, `green`, `blue`, `cyan`, `purple`, `pink`, and `white`, recoloring the main title text, hook background, frame accent, and overlay tint.
 - Keep the main title large, stroked, and close to the chosen edge.
 - Keep the main title to two lines where possible; for tight face-layout modes, a small overlap with hair/shoulder is acceptable if it keeps the title readable and large.
 - Fit the main title dynamically to the available title box so it grows when there is more safe whitespace, while still wrapping before it clips or covers the face.
@@ -1140,6 +1155,10 @@ output\thumbnails\thumbnail_standard_candidate_01.png
 output\thumbnails\thumbnail_standard_candidate_20.png
 output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg
 output\thumbnails\thumbnail_standard_asset_analysis.json
+output\thumbnails\thumbnail_standard_red_candidate_01.png
+output\thumbnails\thumbnail_standard_orange_candidate_01.png
+output\thumbnails\thumbnail_standard_green_candidate_01.png
+output\thumbnails\thumbnail_standard_blue_candidate_01.png
 output\thumbnails\thumbnail_closeup_bottom_title_candidate_01.png
 output\thumbnails\thumbnail_right_face_title_stack_candidate_01.png
 output\thumbnails\thumbnail_left_face_title_stack_candidate_01.png
@@ -1154,7 +1173,7 @@ python -m py_compile .\scripts\generate_thumbnail_candidates.py
 python .\scripts\generate_thumbnail_candidates.py --import-assets
 ```
 
-After generating, inspect the mode-specific contact sheet, for example `output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg`, and confirm the title, hook, and logo do not cover faces or look padded unevenly. Mode names are included in generated PNG, contact sheet, and analysis JSON filenames so different layout options do not overwrite each other.
+After generating, inspect the mode/color-specific contact sheet, for example `output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg` or `output\thumbnails\thumbnail_standard_red_candidates_contact_sheet.jpg`, and confirm the title, hook, and logo do not cover faces or look padded unevenly. Mode names are included in generated PNG, contact sheet, and analysis JSON filenames; non-yellow color names are also included so different layout/color options do not overwrite each other.
 
 ## Verification Commands
 

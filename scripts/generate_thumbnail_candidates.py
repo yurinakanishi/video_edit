@@ -683,7 +683,7 @@ def render_candidate(
     index: int,
     candidate: dict[str, object],
     analysis: dict[str, object],
-    mode: str,
+    output_stem: str,
     debug: bool = False,
 ) -> dict[str, object]:
     source_name = str(candidate["source"])
@@ -742,7 +742,7 @@ def render_candidate(
     paste_logo(canvas, logo_box)
     if debug:
         draw_face_debug(canvas, face_boxes)
-    out = OUTPUT_DIR / f"thumbnail_{mode}_candidate_{index:02d}.png"
+    out = OUTPUT_DIR / f"{output_stem}_candidate_{index:02d}.png"
     canvas.convert("RGB").save(out, quality=95)
     return {
         "output": str(out),
@@ -759,7 +759,7 @@ def render_candidate(
     }
 
 
-def write_contact_sheet(paths: list[str], mode: str) -> Path:
+def write_contact_sheet(paths: list[str], output_stem: str) -> Path:
     thumb_w, thumb_h = 320, 180
     cols = 4
     rows = math.ceil(len(paths) / cols)
@@ -775,9 +775,100 @@ def write_contact_sheet(paths: list[str], mode: str) -> Path:
         sheet.paste(thumb, (x, y))
         draw.rectangle((x, y + thumb_h, x + thumb_w, y + thumb_h + label_h), fill=(25, 25, 25))
         draw.text((x + 8, y + thumb_h + 4), f"{idx + 1:02d}  {path.name}", fill=(255, 255, 255), font=font)
-    out = OUTPUT_DIR / f"thumbnail_{mode}_candidates_contact_sheet.jpg"
+    out = OUTPUT_DIR / f"{output_stem}_candidates_contact_sheet.jpg"
     sheet.save(out, quality=92)
     return out
+
+
+MAIN_COLOR_STYLES = {
+    "yellow": {
+        "text": (255, 218, 36),
+        "accent": (255, 230, 54),
+        "hook_text": (0, 0, 0),
+        "hook_shadow": (255, 255, 255),
+        "overlay": (18, 16, 5),
+    },
+    "red": {
+        "text": (238, 35, 30),
+        "accent": (237, 28, 36),
+        "hook_text": (255, 255, 255),
+        "hook_shadow": (0, 0, 0),
+        "overlay": (26, 8, 8),
+    },
+    "orange": {
+        "text": (255, 128, 0),
+        "accent": (255, 132, 0),
+        "hook_text": (0, 0, 0),
+        "hook_shadow": (255, 255, 255),
+        "overlay": (26, 14, 4),
+    },
+    "green": {
+        "text": (0, 205, 95),
+        "accent": (0, 178, 90),
+        "hook_text": (255, 255, 255),
+        "hook_shadow": (0, 0, 0),
+        "overlay": (3, 22, 13),
+    },
+    "blue": {
+        "text": (0, 174, 239),
+        "accent": (0, 142, 214),
+        "hook_text": (255, 255, 255),
+        "hook_shadow": (0, 0, 0),
+        "overlay": (4, 14, 28),
+    },
+    "cyan": {
+        "text": (0, 225, 230),
+        "accent": (0, 185, 200),
+        "hook_text": (0, 0, 0),
+        "hook_shadow": (255, 255, 255),
+        "overlay": (3, 22, 24),
+    },
+    "purple": {
+        "text": (175, 92, 255),
+        "accent": (145, 68, 226),
+        "hook_text": (255, 255, 255),
+        "hook_shadow": (0, 0, 0),
+        "overlay": (18, 10, 28),
+    },
+    "pink": {
+        "text": (255, 76, 180),
+        "accent": (238, 73, 185),
+        "hook_text": (0, 0, 0),
+        "hook_shadow": (255, 255, 255),
+        "overlay": (26, 8, 21),
+    },
+    "white": {
+        "text": (255, 255, 255),
+        "accent": (255, 255, 255),
+        "hook_text": (0, 0, 0),
+        "hook_shadow": (255, 255, 255),
+        "overlay": (10, 10, 10),
+    },
+}
+
+
+def apply_main_color(palette: dict[str, tuple[int, int, int]], main_color: str) -> dict[str, tuple[int, int, int]]:
+    style = MAIN_COLOR_STYLES[main_color]
+    updated = dict(palette)
+    updated.update(
+        {
+            "overlay": style["overlay"],
+            "hook_bg": style["accent"],
+            "hook_text": style["hook_text"],
+            "hook_shadow": style["hook_shadow"],
+            "text": style["text"],
+            "frame": style["accent"],
+            "banner": style["accent"],
+            "banner_text": style["hook_text"],
+            "banner_shadow": style["hook_shadow"],
+        }
+    )
+    return updated
+
+
+def thumbnail_output_stem(mode: str, main_color: str) -> str:
+    color_suffix = "" if main_color == "yellow" else f"_{main_color}"
+    return f"thumbnail_{mode}{color_suffix}"
 
 
 def write_reference_style_notes() -> dict[str, object]:
@@ -848,6 +939,12 @@ def main() -> None:
     parser.add_argument("--asset-source", type=Path, default=ASSET_SOURCE_DEFAULT)
     parser.add_argument("--debug-faces", action="store_true", help="Draw protected face areas on output thumbnails.")
     parser.add_argument(
+        "--main-color",
+        choices=sorted(MAIN_COLOR_STYLES),
+        default="yellow",
+        help="Main thumbnail color for title text, hook background, accent frame, and overlay tint.",
+    )
+    parser.add_argument(
         "--closeup-bottom-title",
         action="store_true",
         help="Use face-centered close-up crops and a one-line title along the bottom edge.",
@@ -874,6 +971,7 @@ def main() -> None:
         thumbnail_mode = "closeup_bottom_title"
     else:
         thumbnail_mode = "standard"
+    output_stem = thumbnail_output_stem(thumbnail_mode, args.main_color)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     if args.import_assets:
@@ -994,19 +1092,23 @@ def main() -> None:
             candidate["left_stacked_title"] = False
             candidate["right_stacked_title"] = False
 
+    for candidate in candidates:
+        candidate["palette"] = apply_main_color(candidate["palette"], args.main_color)
+
     validate_candidate_copy(candidates)
     layouts = []
     for i, candidate in enumerate(candidates, start=1):
-        layouts.append(render_candidate(i, candidate, analysis, thumbnail_mode, args.debug_faces))
-    contact_sheet_path = write_contact_sheet([item["output"] for item in layouts], thumbnail_mode)
+        layouts.append(render_candidate(i, candidate, analysis, output_stem, args.debug_faces))
+    contact_sheet_path = write_contact_sheet([item["output"] for item in layouts], output_stem)
 
     title_path = SOURCE_TEXT / "thumbnail_title_pdm_freelance.txt"
     title_path.write_text("フリーPdMは通用する？\n", encoding="utf-8")
     analysis["candidate_layouts"] = layouts
     analysis["thumbnail_mode"] = thumbnail_mode
+    analysis["thumbnail_main_color"] = args.main_color
     analysis["contact_sheet"] = str(contact_sheet_path)
     analysis["title_path"] = str(title_path)
-    analysis_path = OUTPUT_DIR / f"thumbnail_{thumbnail_mode}_asset_analysis.json"
+    analysis_path = OUTPUT_DIR / f"{output_stem}_asset_analysis.json"
     analysis_path.write_text(json.dumps(analysis, ensure_ascii=False, indent=2), encoding="utf-8")
     print(
         json.dumps(
@@ -1015,6 +1117,7 @@ def main() -> None:
                 "title": str(title_path),
                 "contact_sheet": str(contact_sheet_path),
                 "mode": analysis["thumbnail_mode"],
+                "main_color": analysis["thumbnail_main_color"],
                 "outputs": [item["output"] for item in layouts],
             },
             ensure_ascii=False,

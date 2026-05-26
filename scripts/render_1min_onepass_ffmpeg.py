@@ -5,6 +5,7 @@ import json
 import math
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
 from project_paths import (
@@ -129,6 +130,43 @@ def run(command: list[str]) -> None:
     subprocess.run(command, check=True, cwd=WORK)
 
 
+def slug_number(value: float) -> str:
+    return f"{value:g}".replace(".", "p")
+
+
+def default_render_output(args: argparse.Namespace) -> Path:
+    tokens: list[str] = []
+    if args.mode != "full":
+        tokens.append(args.mode)
+    if args.omit_interviewer_question:
+        tokens.append("omit-interviewer")
+    if args.dynamic_cuts:
+        tokens.append("dynamic-cuts")
+    if not args.auto_context_cuts:
+        tokens.append("fixed-cuts")
+    if args.natural_dialogue_cuts:
+        tokens.append("natural-dialogue-cuts")
+    if args.preview_start != 0.0 or args.preview_duration != DURATION:
+        tokens.append(f"preview-{slug_number(args.preview_start)}-{slug_number(args.preview_duration)}s")
+    if args.no_shorten_silence:
+        tokens.append("no-shorten")
+    if args.keep_uncut:
+        tokens.append("keep-uncut")
+    if args.no_audio_denoise:
+        tokens.append("no-denoise")
+    elif args.audio_denoise_strength != DEFAULT_DENOISE_STRENGTH:
+        tokens.append(f"denoise-{args.audio_denoise_strength}")
+    if args.crf != "18":
+        tokens.append(f"crf-{args.crf}")
+    if args.preset != "veryfast":
+        tokens.append(f"preset-{args.preset}")
+
+    stem = datetime.now().strftime("%Y%m%d_%H%M%S")
+    if tokens:
+        stem = f"{stem}_{'_'.join(tokens)}"
+    return OUTPUT_VIDEOS / f"{stem}.mp4"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render the 1-minute edit in one ffmpeg filter graph.")
     parser.add_argument("--mode", choices=sorted(MODES), default="full")
@@ -218,6 +256,11 @@ def draw_centered_text(
     return y + (bbox[3] - bbox[1])
 
 
+def text_visual_height(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont) -> int:
+    bbox = draw.textbbox((0, 0), text, font=font)
+    return bbox[3] - bbox[1]
+
+
 def generate_summary_card() -> None:
     canvas = Image.new("RGBA", (1920, 1080), (0, 0, 0, 0))
     draw = ImageDraw.Draw(canvas)
@@ -228,8 +271,14 @@ def generate_summary_card() -> None:
 
     main_font = ImageFont.truetype(str(FONT_PATH), 92, index=1)
     sub_font = ImageFont.truetype(str(FONT_PATH), 86, index=1)
-    y = 380
-    y = draw_centered_text(draw, y, SUMMARY_LINES[0], main_font, (255, 255, 255, 255)) + 34
+    line_gap = 34
+    block_height = (
+        text_visual_height(draw, SUMMARY_LINES[0], main_font)
+        + line_gap
+        + text_visual_height(draw, SUMMARY_LINES[1], sub_font)
+    )
+    y = panel[1] + round(((panel[3] - panel[1]) - block_height) / 2)
+    y = draw_centered_text(draw, y, SUMMARY_LINES[0], main_font, (255, 255, 255, 255)) + line_gap
     draw_centered_text(draw, y, SUMMARY_LINES[1], sub_font, (255, 255, 255, 255))
     canvas.save(SUMMARY_CARD)
 
@@ -329,11 +378,7 @@ def render(args: argparse.Namespace) -> Path:
         if not OMIT_SUMMARY_MUSIC.exists():
             run([sys.executable, str(SCRIPTS / "generate_omit_summary_music.py")])
 
-    output = args.output or Path(config["output"])
-    if args.omit_interviewer_question and args.output is None:
-        output = output.with_name(f"{output.stem}_omit_interviewer{output.suffix}")
-    if args.dynamic_cuts and args.output is None:
-        output = output.with_name(f"{output.stem}_dynamic{output.suffix}")
+    output = args.output or default_render_output(args)
     output.parent.mkdir(parents=True, exist_ok=True)
     render_output = output
     should_shorten = (

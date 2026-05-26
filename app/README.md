@@ -36,10 +36,12 @@ pnpm run check
 - Provides source-root and tool-path controls for the paths described in `docs\video_edit_method.md`.
 - Exposes subtitle mode selection: full transcript, catchy/punchline, or none.
 - Exposes automatic context/speaker camera cuts for the current one-pass preset, passing `--auto-context-cuts` so subtitle speaker roles and answer context can drive camera changes.
+- Exposes natural short-dialogue-gap cut placement, passing `--natural-dialogue-cuts` so camera changes can move a few hundred milliseconds into nearby low-energy pauses without shortening the audio.
 - Captures title, subtitle, color, opacity, logo-size, punchline-list, output-duration, audio-noise-reduction, and silence-shortening settings.
 - Shows a preflight checklist for missing output paths, required camera files, audio fallbacks, silence-shortening state, and recommended auto-sync steps.
 - Shows the latest dropped-camera sync score from `output\reports\app_sync_offsets.json` and refreshes it after auto-sync runs.
-- Provides direct method workflow actions for subtitle review, overlay regeneration, camera analysis, transcript sync, waveform refinement, multicam base build, sound-2 audio replacement, silence shortening, and ffprobe verification.
+- Provides direct method workflow actions for subtitle review, overlay regeneration, thumbnail candidate generation, camera analysis, transcript sync, waveform refinement, multicam base build, sound-2 audio replacement, silence shortening, and ffprobe verification.
+- Runs `scripts\generate_thumbnail_candidates.py --import-assets` from the workflow action menu and opens `output\thumbnails\thumbnail_candidates_contact_sheet.jpg` from the top bar.
 - Starts `codex app-server` from the Electron main process and sends a structured edit request with `C:\Users\yurin\Desktop\video_edit` as the working directory.
 - Can run the current known render scripts directly through `command/exec` when the selected preset maps cleanly to an existing script.
 - Includes `render_app_interview.py`, a generic dropped-file interview renderer for master/right/left camera files and optional external audio.

@@ -286,6 +286,13 @@ function stillOutputPath(inputVideo, outputPath) {
 	return `${source.replace(/\.[^.\\/]+$/, "")}_still.png`;
 }
 
+function thumbnailContactSheetPath() {
+	return (
+		state.env?.thumbnailContactSheet ||
+		`${state.env?.outputRoot || "output"}\\thumbnails\\thumbnail_candidates_contact_sheet.jpg`
+	);
+}
+
 function psQuote(value) {
 	return `'${String(value).replace(/'/g, "''")}'`;
 }
@@ -375,6 +382,9 @@ function buildRenderCommand() {
 	}
 	if (script === "render_1min_onepass_ffmpeg.py") {
 		command.push(formValue("autoContextCuts") ? "--auto-context-cuts" : "--no-auto-context-cuts");
+		if (formValue("naturalDialogueCuts")) {
+			command.push("--natural-dialogue-cuts");
+		}
 	}
 
 	addAudioArgs(command);
@@ -396,6 +406,7 @@ function buildPresetCommand() {
 		"subtitle-review": "subtitle_review_cycle.py",
 		"generate-punchlines": "generate_punchline_png_overlays.py",
 		"generate-full-overlays": "generate_full_transcript_png_overlays.py",
+		"generate-thumbnails": "generate_thumbnail_candidates.py",
 		"analyze-blocking": "analyze_multicam_blocking.py",
 		"auto-sync-dropped": "auto_sync_app_sources.py",
 		"transcribe-align": "transcribe_align_st7_7550_multicam.py",
@@ -409,6 +420,9 @@ function buildPresetCommand() {
 
 	if (action in simplePythonScripts) {
 		const command = [pythonExe(), scriptPath(simplePythonScripts[action])];
+		if (action === "generate-thumbnails") {
+			command.push("--import-assets");
+		}
 		if (action === "subtitle-review") {
 			if (formValue("noAudioClips")) {
 				command.push("--no-audio-clips");
@@ -579,6 +593,11 @@ function validateSelections() {
 		ok.push("同期結果は output\\reports\\app_sync_offsets.json に保存されます。");
 	}
 
+	if (action === "generate-thumbnails") {
+		ok.push("サムネ候補20枚と contact sheet を output\\thumbnails に生成します。");
+		ok.push("素材は Downloads の etype260515 p-takei から import します。");
+	}
+
 	if (action === "replace-sound2" && !outputPath) {
 		errors.push("音声差し替えには出力先が必要です。");
 	}
@@ -649,6 +668,7 @@ function buildPrompt() {
 		"- Read docs\\video_edit_method.md for the current ST7_7550 workflow.",
 		"- Prefer scripts\\render_1min_onepass_ffmpeg.py for the current 1-minute preset.",
 		"- Prefer scripts\\render_final_png_overlays.py for current 5-minute PNG-overlay renders.",
+		"- Use scripts\\generate_thumbnail_candidates.py --import-assets for thumbnail candidate generation.",
 		"- Keep existing user changes in the repo; do not revert unrelated files.",
 		"",
 		"Operator selections:",
@@ -667,8 +687,10 @@ function buildPrompt() {
 		`- Reuse existing overlays: ${formValue("skipSubtitleRegeneration")}`,
 		`- Reclassify speakers: ${formValue("reclassifySpeakers")}`,
 		`- Auto context/speaker camera cuts: ${formValue("autoContextCuts")}`,
+		`- Place cuts in short dialogue gaps: ${formValue("naturalDialogueCuts")}`,
 		`- Output path: ${outputPath}`,
 		`- Still extraction time: ${formValue("stillTime") || "00:00:25"}`,
+		`- Thumbnail contact sheet: ${thumbnailContactSheetPath()}`,
 		`- Source root override: ${formValue("sourceRoot") || "(not set)"}`,
 		`- Python: ${pythonExe()}`,
 		`- FFmpeg: ${formValue("ffmpegPath") || "(script default)"}`,
@@ -699,6 +721,7 @@ function buildPrompt() {
 		"- If punchline text/timing/style changed, update the relevant generator script or data in the smallest maintainable way before regenerating overlays.",
 		"- If style/logo/title settings are not exposed by CLI flags, update the Python style/title scripts carefully and regenerate PNG overlays.",
 		"- Use source root override for 2cam/3cam inputs if it is set.",
+		"- For thumbnail generation, produce 20 candidates, update output\\thumbnails\\thumbnail_candidates_contact_sheet.jpg, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.",
 		"- Make minimal script changes needed for this request, then render or provide the exact command if rendering is blocked.",
 		"- Report the output file path and any limitations.",
 	];
@@ -748,6 +771,11 @@ function buildAppConfig() {
 			ffmpeg: formValue("ffmpegPath"),
 			ffprobe: formValue("ffprobePath"),
 		},
+		thumbnails: {
+			contactSheet: thumbnailContactSheetPath(),
+			outputRoot: state.env?.outputThumbnailsRoot || "",
+			importAssets: formValue("workflowAction") === "generate-thumbnails",
+		},
 	};
 }
 
@@ -789,6 +817,9 @@ async function runPreset() {
 		log("command completed", { exitCode: result?.exitCode });
 		if (formValue("workflowAction") === "auto-sync-dropped" && result?.exitCode === 0) {
 			await refreshSyncReport();
+		}
+		if (formValue("workflowAction") === "generate-thumbnails" && result?.exitCode === 0) {
+			log("thumbnail contact sheet", { path: thumbnailContactSheetPath() });
 		}
 		setStatus(result?.exitCode === 0 ? "Codex ready" : "Command failed", result?.exitCode === 0 ? "ready" : "idle");
 	} catch (error) {
@@ -880,6 +911,9 @@ function bindEvents() {
 		if (output) {
 			editApp.showPath(output);
 		}
+	});
+	$("#openThumbnails").addEventListener("click", () => {
+		editApp.showPath(thumbnailContactSheetPath());
 	});
 	$$("input, select, textarea").forEach((element) => {
 		element.addEventListener("input", refreshPrompt);

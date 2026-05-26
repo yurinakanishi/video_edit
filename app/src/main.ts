@@ -33,6 +33,7 @@ const VIDEO_EDIT_ROOT = findVideoEditRoot();
 const APP_ROOT = path.resolve(__dirname, "..");
 const METHOD_DOC = path.join(VIDEO_EDIT_ROOT, "docs", "video_edit_method.md");
 const OUTPUT_ROOT = path.join(VIDEO_EDIT_ROOT, "output");
+const OUTPUT_THUMBNAILS_ROOT = path.join(OUTPUT_ROOT, "thumbnails");
 const SCRIPTS_ROOT = path.join(VIDEO_EDIT_ROOT, "scripts");
 const OUTPUT_APP_ROOT = path.join(OUTPUT_ROOT, "app");
 const APP_CONFIG_PATH = path.join(OUTPUT_APP_ROOT, "video_edit_app_config.runtime.json");
@@ -306,6 +307,8 @@ ipcMain.handle("environment:get", async () => {
 		codexAppServerDoc: path.join(VIDEO_EDIT_ROOT, "docs", "codex-app-server.md"),
 		scriptsRoot: SCRIPTS_ROOT,
 		outputRoot: OUTPUT_ROOT,
+		outputThumbnailsRoot: OUTPUT_THUMBNAILS_ROOT,
+		thumbnailContactSheet: path.join(OUTPUT_THUMBNAILS_ROOT, "thumbnail_candidates_contact_sheet.jpg"),
 		outputAppRoot: OUTPUT_APP_ROOT,
 		pythonExe: PYTHON_EXE,
 		knownOutputs: [

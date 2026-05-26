@@ -23,6 +23,7 @@
 # Source media copied into the working directory
 source/video/
 source/audio/
+source/thumbnail/
 
 # FFmpeg segment and diagnostic outputs
 segments_*/

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import subprocess
 import sys
 from pathlib import Path
@@ -163,6 +164,19 @@ def parse_args() -> argparse.Namespace:
         help="Use the simple fixed camera plan without subtitle-context camera changes.",
     )
     parser.add_argument(
+        "--natural-dialogue-cuts",
+        dest="natural_dialogue_cuts",
+        action="store_true",
+        default=False,
+        help="Move short camera-change points into nearby low-energy dialogue gaps without shortening the audio.",
+    )
+    parser.add_argument(
+        "--no-natural-dialogue-cuts",
+        dest="natural_dialogue_cuts",
+        action="store_false",
+        help="Keep context camera-change points at exact subtitle/context boundaries.",
+    )
+    parser.add_argument(
         "--dynamic-cuts",
         action="store_true",
         help="Use a faster edit with rhythmic punch-ins and reframes while keeping source sync and audio intact.",
@@ -230,6 +244,70 @@ def camera_crop_filter(crop: float, x_bias: float = 0.5, y_bias: float = 0.5) ->
     )
 
 
+def natural_dialogue_cut_time(
+    sound: Path,
+    sound_offset: float,
+    planned_time: float,
+    *,
+    search_before: float = 0.25,
+    search_after: float = 0.05,
+    sample_rate: int = 8000,
+    window_seconds: float = 0.08,
+    hop_seconds: float = 0.02,
+) -> tuple[float, dict[str, object]]:
+    search_start = max(0.0, planned_time - search_before)
+    duration = search_before + search_after
+    command = [
+        str(FFMPEG),
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-ss",
+        f"{sound_offset + search_start:.6f}",
+        "-t",
+        f"{duration:.6f}",
+        "-i",
+        str(sound),
+        "-vn",
+        "-ac",
+        "1",
+        "-ar",
+        str(sample_rate),
+        "-f",
+        "s16le",
+        "pipe:1",
+    ]
+    completed = subprocess.run(command, cwd=WORK, check=True, capture_output=True)
+    raw = completed.stdout
+    samples = [
+        int.from_bytes(raw[index : index + 2], "little", signed=True) / 32768.0
+        for index in range(0, len(raw) - 1, 2)
+    ]
+    window = max(1, round(window_seconds * sample_rate))
+    hop = max(1, round(hop_seconds * sample_rate))
+    windows: list[dict[str, float]] = []
+    for index in range(0, max(0, len(samples) - window + 1), hop):
+        chunk = samples[index : index + window]
+        rms = math.sqrt(sum(value * value for value in chunk) / len(chunk))
+        center = search_start + (index + (window / 2.0)) / sample_rate
+        windows.append({"center": center, "rms": rms})
+
+    if not windows:
+        return planned_time, {"planned": planned_time, "chosen": planned_time, "reason": "no_audio_windows"}
+
+    best = min(windows, key=lambda item: (item["rms"], abs(item["center"] - planned_time)))
+    chosen = round(float(best["center"]), 3)
+    return chosen, {
+        "planned": planned_time,
+        "chosen": chosen,
+        "shift": round(chosen - planned_time, 3),
+        "search_start": search_start,
+        "search_end": search_start + duration,
+        "window_seconds": window_seconds,
+        "best_rms": best["rms"],
+    }
+
+
 def render(args: argparse.Namespace) -> Path:
     if args.omit_interviewer_question and (args.preview_start != 0.0 or args.preview_duration < DURATION):
         raise RuntimeError("--omit-interviewer-question currently supports full-range renders only")
@@ -268,10 +346,18 @@ def render(args: argparse.Namespace) -> Path:
         render_output = output.with_name(f"{output.stem}_uncut{output.suffix}")
     offset_data = json.loads(SOUND_OFFSET.read_text(encoding="utf-8"))
     sound = resolve_project_path(offset_data["sound_file"])
-    sound_start = float(offset_data["refined_offset"]) + args.preview_start
+    sound_offset = float(offset_data["refined_offset"])
+    sound_start = sound_offset + args.preview_start
     source_end = OMIT_ANSWER_END if args.omit_interviewer_question else args.preview_start + args.preview_duration
     input_duration = source_end - args.preview_start
     preview_end = source_end
+    late_cam2_switch = LATE_CAM2_SWITCH
+    natural_cut_report: dict[str, object] = {"enabled": False}
+    if args.auto_context_cuts and args.natural_dialogue_cuts and not args.dynamic_cuts and preview_end > LATE_CAM2_SWITCH:
+        late_cam2_switch, natural_cut_report = natural_dialogue_cut_time(sound, sound_offset, LATE_CAM2_SWITCH)
+        natural_cut_report["enabled"] = True
+        natural_cut_report["cut"] = "late_interviewee_answer_camera2"
+        natural_cut_report["note"] = "Camera switch only; audio timing is not shortened."
     captions = []
     if args.mode != "none":
         captions = [
@@ -331,8 +417,8 @@ def render(args: argparse.Namespace) -> Path:
     if args.omit_interviewer_question:
         command.extend(["-i", str(OMIT_SUMMARY_MUSIC)])
     late_cam2_index = sound_index + (2 if args.omit_interviewer_question else 1)
-    if args.auto_context_cuts and not args.dynamic_cuts and preview_end > LATE_CAM2_SWITCH:
-        late_input_master_start = max(args.preview_start, LATE_CAM2_SWITCH)
+    if args.auto_context_cuts and not args.dynamic_cuts and preview_end > late_cam2_switch:
+        late_input_master_start = max(args.preview_start, late_cam2_switch)
         late_input_start = late_input_master_start + CAM2_7193_SOURCE_OFFSET
         late_input_duration = max(0.1, preview_end - late_input_master_start)
         command.extend(["-ss", f"{late_input_start:.6f}", "-t", f"{late_input_duration:.6f}", "-i", str(CAM2_7193)])
@@ -344,8 +430,8 @@ def render(args: argparse.Namespace) -> Path:
         timeline_segments = [
             {"camera": "2cam", "input_index": 0, "start": 0.0, "end": 20.0, "local_start": 0.0, "local_end": 20.0},
             {"camera": "summary", "input_index": 1, "start": 20.0, "end": 25.0, "local_start": 0.0, "local_end": OMIT_SUMMARY_DURATION},
-            {"camera": "1cam", "input_index": 1, "start": 57.0, "end": LATE_CAM2_SWITCH, "local_start": 37.0, "local_end": LATE_CAM2_SWITCH - CAM1_SOURCE_OFFSET},
-            {"camera": "2cam", "input_index": late_cam2_index, "start": LATE_CAM2_SWITCH, "end": OMIT_ANSWER_END, "crop": 0.86, "x": 0.55, "y": 0.08},
+            {"camera": "1cam", "input_index": 1, "start": 57.0, "end": late_cam2_switch, "local_start": 37.0, "local_end": late_cam2_switch - CAM1_SOURCE_OFFSET},
+            {"camera": "2cam", "input_index": late_cam2_index, "start": late_cam2_switch, "end": OMIT_ANSWER_END, "crop": 0.86, "x": 0.55, "y": 0.08},
         ]
     elif args.omit_interviewer_question:
         timeline_segments = [
@@ -358,8 +444,8 @@ def render(args: argparse.Namespace) -> Path:
     elif args.auto_context_cuts:
         timeline_segments = [
             {"camera": "2cam", "input_index": 0, "start": 0.0, "end": 20.0},
-            {"camera": "1cam", "input_index": 1, "start": 20.0, "end": LATE_CAM2_SWITCH},
-            {"camera": "2cam", "input_index": late_cam2_index, "start": LATE_CAM2_SWITCH, "end": DURATION, "crop": 0.86, "x": 0.55, "y": 0.08},
+            {"camera": "1cam", "input_index": 1, "start": 20.0, "end": late_cam2_switch},
+            {"camera": "2cam", "input_index": late_cam2_index, "start": late_cam2_switch, "end": DURATION, "crop": 0.86, "x": 0.55, "y": 0.08},
         ]
     else:
         timeline_segments = [
@@ -496,6 +582,9 @@ def render(args: argparse.Namespace) -> Path:
         ]
     )
     run(command)
+    if natural_cut_report.get("enabled"):
+        report_path = output.with_suffix(".natural_dialogue_cuts.json")
+        report_path.write_text(json.dumps(natural_cut_report, ensure_ascii=False, indent=2), encoding="utf-8")
     if should_shorten:
         shorten_silences(
             render_output,

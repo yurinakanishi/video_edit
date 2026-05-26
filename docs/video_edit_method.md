@@ -26,9 +26,11 @@ source\video\             Local source camera/video files
 source\audio\             Local source recorder/audio files
 source\images\            Logo and source image assets
 source\subtitles\         Source and hand-corrected subtitle files
+source\thumbnail\         Thumbnail frame assets and visual references
 source\text\              Source text assets
 output\videos\            Rendered MP4 outputs and previews
 output\overlays\          Generated PNG/ASS overlay assets
+output\thumbnails\        Generated thumbnail candidates and analysis JSON
 output\transcripts\       Generated transcript and sync artifacts
 output\audio\             Extracted audio outputs
 output\diagnostics\       Review clips and diagnostic artifacts
@@ -64,9 +66,12 @@ source\video\1cam\ST7_7550_overlap_5min.mp4
 ..\2cam\0H4A7193.MP4
 ..\3cam\IMG_2316.MP4
 source\images\type-logo-transparent-cropped.png
+source\thumbnail\etype260515_p_takei\ST-*.jpg
+source\thumbnail\references\*.png
 output\overlays\ai_engineer_now_title.ass
 output\overlays\ai_engineer_now_title.png
 scripts\generate_title_png_overlay.py
+scripts\generate_thumbnail_candidates.py
 output\overlays\punchline_subtitles.ass
 scripts\generate_punchline_subtitles.py
 output\overlays\punchline_png_overlays\*.png
@@ -906,8 +911,15 @@ This is an automatic context-aware camera plan, not a purely time-based punch-in
 1. Read the full-transcript overlay manifest and speaker roles.
 2. Keep the offscreen interviewer question on the wide/master view instead of cutting to the interviewee reaction.
 3. Wait through the short confirmation exchange at `01:06-01:08`.
-4. Switch to the camera-2 close shot when the interviewee answer enters the main point at `01:08` (`まあなんか`).
+4. Target the camera-2 close shot when the interviewee answer enters the main point at `01:08` (`まあなんか`).
 5. Confirm the candidate camera source with OpenCV frame sampling before using it in the final plan.
+6. With `--natural-dialogue-cuts`, move that target by only a few hundred milliseconds into the nearest short low-energy dialogue gap. This changes only the camera switch timing; it does not shorten the audio or replace `shorten_silences.py`.
+
+For the current audio, the natural low-energy point near the `01:08` target is around `01:08.000`; the search is intentionally narrow so the cut does not jump back into the previous caption. The renderer writes a sidecar report next to the output:
+
+```text
+<output>.natural_dialogue_cuts.json
+```
 
 OpenCV check for the late interviewee answer:
 
@@ -928,6 +940,7 @@ Normal mode:
 & 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\render_1min_onepass_ffmpeg.py `
   --mode full `
   --auto-context-cuts `
+  --natural-dialogue-cuts `
   --skip-subtitle-regeneration `
   --output .\ST7_7550_multicam_cut_1min_onepass_full_transcript.mp4
 ```
@@ -938,6 +951,7 @@ Interviewer question omit mode:
 & 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\render_1min_onepass_ffmpeg.py `
   --mode full `
   --auto-context-cuts `
+  --natural-dialogue-cuts `
   --skip-subtitle-regeneration `
   --omit-interviewer-question `
   --output .\ST7_7550_multicam_cut_1min_onepass_full_transcript_omit_interviewer.mp4
@@ -949,20 +963,22 @@ Current omit-mode edit rule:
 00:00-00:20  keep onscreen speaker answer
 00:20-00:57  remove offscreen interviewer question
 00:20-00:25  insert 5-second question summary card
-00:25-00:36  resume onscreen speaker answer from original 00:57-01:08 on 1cam wide
-00:36-00:53  continue original 01:08-01:25 on 2cam zoom 0H4A7193
+00:25-~00:36.0  resume onscreen speaker answer from original 00:57-~01:08.0 on 1cam wide
+~00:36.0-00:53  continue original ~01:08.0-01:25 on 2cam zoom 0H4A7193
 ```
 
-In omit mode, the same source-context switch is remapped onto the shortened timeline. Original `01:08` becomes output `00:36`, so the close camera begins after the summary-card gap and after the brief confirmation line, exactly where the main answer begins.
+In omit mode, the same source-context switch is remapped onto the shortened timeline. Original target `01:08` becomes output `00:36`, then `--natural-dialogue-cuts` nudges it only within a narrow nearby short pause. The close camera still begins after the summary-card gap and after the brief confirmation line, at the natural lead-in to the main answer.
 
 App behavior:
 
 ```text
 app/src/renderer/index.html
 Auto cut by subtitle context and speaker: on by default
+Place cuts in short dialogue gaps: off by default; enable it when you want `--natural-dialogue-cuts`
 ```
 
 When enabled, the app passes `--auto-context-cuts` to `render_1min_onepass_ffmpeg.py`. When disabled, it passes `--no-auto-context-cuts` and the renderer falls back to the simple fixed camera plan.
+When short-gap placement is enabled, the app also passes `--natural-dialogue-cuts`. When it is off, the renderer keeps camera switches at the exact context target.
 
 Summary card text:
 
@@ -1037,6 +1053,76 @@ The script writes a JSON report next to the output:
 ```
 
 Report fields include detected silent ranges, removed ranges, kept ranges, source duration, and expected output duration.
+
+## Thumbnail Candidate Workflow
+
+Generate thumbnail candidates with:
+
+```powershell
+python .\scripts\generate_thumbnail_candidates.py --import-assets
+```
+
+Default imported still assets:
+
+```text
+C:\Users\yurin\Downloads\etype260515 p-takei\etype260515 p-takei\ST-*.jpg
+```
+
+The script copies those files into:
+
+```text
+source\thumbnail\etype260515_p_takei\
+```
+
+Reference thumbnails are kept in:
+
+```text
+source\thumbnail\references\
+```
+
+The current thumbnail copy is intentionally fixed across all candidates:
+
+```text
+Main title: フリーPdMは
+            通用する？
+Corner hook: AI時代のキャリア論
+```
+
+Vary the selected still, palette, title placement, hook corner, logo corner, and crop feel. Do not vary the main title or hook unless the video topic changes.
+
+Current visual rules:
+
+- Use `source\images\type-logo-transparent-cropped.png` for the Engineer Type logo.
+- Crop transparent logo margins before placing it.
+- Add only a small, even white padding around the logo; do not use a large white logo box.
+- Place the logo in the least-overlapping corner after avoiding faces, title text, and the corner hook.
+- Do not draw a video-duration chip in the bottom-right corner.
+- Keep the main title large, stroked, and close to the chosen edge.
+- Leave only a small bottom margin under the title.
+- Use measured text bounds for wrapped title lines so line spacing does not overlap.
+- Center the corner hook text inside its colored box using measured text bounds, with even horizontal and vertical padding.
+- Keep title and hook text clear of detected faces. The generated analysis JSON records face boxes and chosen layout boxes.
+
+Generated outputs:
+
+```text
+output\thumbnails\thumbnail_candidate_01.png
+...
+output\thumbnails\thumbnail_candidate_20.png
+output\thumbnails\thumbnail_candidates_contact_sheet.jpg
+output\thumbnails\thumbnail_asset_analysis.json
+output\thumbnails\thumbnail_reference_style.json
+source\text\thumbnail_title_pdm_freelance.txt
+```
+
+Validation:
+
+```powershell
+python -m py_compile .\scripts\generate_thumbnail_candidates.py
+python .\scripts\generate_thumbnail_candidates.py --import-assets
+```
+
+After generating, inspect `output\thumbnails\thumbnail_candidates_contact_sheet.jpg` and confirm the title, hook, and logo do not cover faces or look padded unevenly.
 
 ## Verification Commands
 

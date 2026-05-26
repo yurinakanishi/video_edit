@@ -17,11 +17,11 @@
           </div>
         </div>
         <nav class="steps" aria-label="Workflow">
-          <button class="step-button active" data-section="assets">素材</button>
-          <button class="step-button" data-section="edit">編集</button>
-          <button class="step-button" data-section="style">字幕・ロゴ</button>
-          <button class="step-button" data-section="workflow">工程</button>
-          <button class="step-button" data-section="run">Codex</button>
+          <button type="button" class="step-button active" data-section="assets">素材</button>
+          <button type="button" class="step-button" data-section="edit">編集</button>
+          <button type="button" class="step-button" data-section="style">字幕・ロゴ</button>
+          <button type="button" class="step-button" data-section="workflow">工程</button>
+          <button type="button" class="step-button" data-section="run">Codex</button>
         </nav>
         <div class="server-status" id="serverStatus">
           <span class="status-dot idle"></span>
@@ -40,9 +40,9 @@
             <p>Drop sources, choose edit rules, then send the job to Codex app-server.</p>
           </div>
           <div class="topbar-actions">
-            <button class="icon-button" id="openOutput" title="Open selected output">↗</button>
-            <button id="runPreset">Run preset script</button>
-            <button class="primary-button" id="sendRequest">Run with Codex</button>
+            <button type="button" class="icon-button" id="openOutput" title="Open selected output">↗</button>
+            <button type="button" id="runPreset">Run preset script</button>
+            <button type="button" class="primary-button" id="sendRequest">Run with Codex</button>
           </div>
         </section>
 
@@ -57,37 +57,37 @@
                 <strong>日の動画・マスター</strong>
                 <span>1cam / base timeline</span>
                 <code id="masterVideoLabel">not selected</code>
-                <button data-pick="masterVideo">Select</button>
+                <button type="button" data-pick="masterVideo">Select</button>
               </div>
               <div class="drop-zone" data-slot="rightCloseVideo">
                 <strong>右からのアップ</strong>
                 <span>person 1 close-up</span>
                 <code id="rightCloseVideoLabel">not selected</code>
-                <button data-pick="rightCloseVideo">Select</button>
+                <button type="button" data-pick="rightCloseVideo">Select</button>
               </div>
               <div class="drop-zone" data-slot="leftCloseVideo">
                 <strong>左からのアップ</strong>
                 <span>person 2 / alternate</span>
                 <code id="leftCloseVideoLabel">not selected</code>
-                <button data-pick="leftCloseVideo">Select</button>
+                <button type="button" data-pick="leftCloseVideo">Select</button>
               </div>
               <div class="drop-zone" data-slot="externalAudio">
                 <strong>別録り音声</strong>
                 <span>wav / mp3 / mp4</span>
                 <code id="externalAudioLabel">not selected</code>
-                <button data-pick="externalAudio">Select</button>
+                <button type="button" data-pick="externalAudio">Select</button>
               </div>
               <div class="drop-zone" data-slot="logo">
                 <strong>右上ロゴ</strong>
                 <span>png / jpg</span>
                 <code id="logoLabel">current repo logo</code>
-                <button data-pick="logo">Select</button>
+                <button type="button" data-pick="logo">Select</button>
               </div>
               <div class="field-block output-block">
                 <label for="outputPath">Output</label>
                 <div class="inline-field">
                   <input id="outputPath" readonly />
-                  <button id="pickOutput">Choose</button>
+                  <button type="button" id="pickOutput">Choose</button>
                 </div>
               </div>
             </div>
@@ -103,28 +103,28 @@
                 2cam / 3cam source root
                 <div class="inline-field">
                   <input id="sourceRoot" />
-                  <button data-pick-dir="sourceRoot">Folder</button>
+                  <button type="button" data-pick-dir="sourceRoot">Folder</button>
                 </div>
               </label>
               <label>
                 Python
                 <div class="inline-field">
                   <input id="pythonPath" />
-                  <button data-pick-tool="pythonPath">File</button>
+                  <button type="button" data-pick-tool="pythonPath">File</button>
                 </div>
               </label>
               <label>
                 FFmpeg
                 <div class="inline-field">
                   <input id="ffmpegPath" value="C:\ProgramData\chocolatey\bin\ffmpeg.exe" />
-                  <button data-pick-tool="ffmpegPath">File</button>
+                  <button type="button" data-pick-tool="ffmpegPath">File</button>
                 </div>
               </label>
               <label>
                 FFprobe
                 <div class="inline-field">
                   <input id="ffprobePath" value="C:\ProgramData\chocolatey\bin\ffprobe.exe" />
-                  <button data-pick-tool="ffprobePath">File</button>
+                  <button type="button" data-pick-tool="ffprobePath">File</button>
                 </div>
               </label>
             </div>
@@ -211,9 +211,9 @@
               <span>text overlays</span>
             </div>
             <div class="segmented" role="group" aria-label="Subtitle mode">
-              <button class="selected" data-subtitle-mode="full">Full</button>
-              <button data-subtitle-mode="punchline">Catchy</button>
-              <button data-subtitle-mode="none">None</button>
+              <button type="button" class="selected" data-subtitle-mode="full">Full</button>
+              <button type="button" data-subtitle-mode="punchline">Catchy</button>
+              <button type="button" data-subtitle-mode="none">None</button>
             </div>
             <div class="field-stack">
               <label>
@@ -291,14 +291,14 @@
                 Verification / input video
                 <div class="inline-field">
                   <input id="inputVideoPath" />
-                  <button data-pick-tool="inputVideoPath">File</button>
+                  <button type="button" data-pick-tool="inputVideoPath">File</button>
                 </div>
               </label>
               <label>
                 Audio replace source video
                 <div class="inline-field">
                   <input id="replaceAudioInput" />
-                  <button data-pick-tool="replaceAudioInput">File</button>
+                  <button type="button" data-pick-tool="replaceAudioInput">File</button>
                 </div>
               </label>
               <label>
@@ -358,9 +358,9 @@
             </label>
             <textarea id="promptPreview" spellcheck="false"></textarea>
             <div class="run-actions">
-              <button id="refreshCommand">Refresh command</button>
-              <button id="refreshPrompt">Refresh prompt</button>
-              <button id="interrupt">Interrupt</button>
+              <button type="button" id="refreshCommand">Refresh command</button>
+              <button type="button" id="refreshPrompt">Refresh prompt</button>
+              <button type="button" id="interrupt">Interrupt</button>
             </div>
           </div>
 

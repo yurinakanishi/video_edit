@@ -1,0 +1,35 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+	"files": {
+		"includes": [
+			"package.json",
+			"tsconfig.json",
+			"src/**/*.ts",
+			"src/**/*.html",
+			"src/**/*.css",
+			"scripts/**/*.mjs",
+			"!dist",
+			"!node_modules",
+			"!build"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"lineWidth": 120
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"trailingCommas": "all"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "off"
+			}
+		}
+	}
+}

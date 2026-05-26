@@ -6,18 +6,28 @@ Electron UI for operating the `C:\Users\yurin\Desktop\video_edit` editing pipeli
 
 ```powershell
 Set-Location 'C:\Users\yurin\Desktop\video_edit\app'
-npm install
-npm start
+pnpm install
+pnpm start
 ```
 
 Build a portable Windows app and installer:
 
 ```powershell
 Set-Location 'C:\Users\yurin\Desktop\video_edit\app'
-npm run dist
+pnpm run dist
 ```
 
 Build artifacts are written to `C:\Users\yurin\Desktop\video_edit\output\app\dist`.
+
+TypeScript sources live under `src` and compile to `dist` before Electron starts. Static renderer files are copied by `scripts\copy-static.mjs`.
+
+Use Biome for formatting and linting:
+
+```powershell
+pnpm run lint
+pnpm run format
+pnpm run check
+```
 
 ## What It Does
 

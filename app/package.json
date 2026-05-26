@@ -1,46 +1,60 @@
 {
-  "name": "video-edit-codex-app",
-  "version": "0.1.0",
-  "description": "Electron operator UI for the video_edit Codex editing pipeline.",
-  "author": "local",
-  "main": "src/main.js",
-  "scripts": {
-    "start": "electron .",
-    "check": "node --check src/main.js && node --check src/preload.js && node --check src/renderer/renderer.js",
-    "dist": "electron-builder --win portable nsis",
-    "dist:portable": "electron-builder --win portable",
-    "dist:installer": "electron-builder --win nsis"
-  },
-  "build": {
-    "appId": "local.video-edit.codex",
-    "productName": "Video Edit",
-    "directories": {
-      "output": "../output/app/dist"
-    },
-    "asar": false,
-    "files": [
-      "src/**/*",
-      "build/icon.ico",
-      "package.json",
-      "!smoke_outputs/**/*",
-      "!*.runtime.json"
-    ],
-    "win": {
-      "icon": "build/icon.ico",
-      "signAndEditExecutable": false,
-      "target": [
-        "portable",
-        "nsis"
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "perMachine": false,
-      "allowToChangeInstallationDirectory": true
-    }
-  },
-  "devDependencies": {
-    "electron": "^36.3.2",
-    "electron-builder": "^26.8.1"
-  }
+	"name": "video-edit-codex-app",
+	"version": "0.1.0",
+	"description": "Electron operator UI for the video_edit Codex editing pipeline.",
+	"author": "local",
+	"main": "dist/main.js",
+	"scripts": {
+		"clean": "node scripts/clean-dist.mjs",
+		"build": "pnpm run clean && tsc && node scripts/copy-static.mjs",
+		"start": "pnpm run build && electron .",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"check": "pnpm run lint && pnpm run typecheck && pnpm run build",
+		"dist": "pnpm run build && electron-builder --win portable nsis",
+		"dist:portable": "pnpm run build && electron-builder --win portable",
+		"dist:installer": "pnpm run build && electron-builder --win nsis"
+	},
+	"build": {
+		"appId": "local.video-edit.codex",
+		"productName": "Video Edit",
+		"directories": {
+			"output": "../output/app/dist"
+		},
+		"asar": false,
+		"files": [
+			"dist/**/*",
+			"build/icon.ico",
+			"package.json",
+			"!smoke_outputs/**/*",
+			"!*.runtime.json"
+		],
+		"win": {
+			"icon": "build/icon.ico",
+			"signAndEditExecutable": false,
+			"target": [
+				"portable",
+				"nsis"
+			]
+		},
+		"nsis": {
+			"oneClick": false,
+			"perMachine": false,
+			"allowToChangeInstallationDirectory": true
+		}
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"electron",
+			"electron-winstaller"
+		]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.15",
+		"@types/node": "^22.15.29",
+		"electron": "^36.3.2",
+		"electron-builder": "^26.8.1",
+		"typescript": "^5.8.3"
+	}
 }

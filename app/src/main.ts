@@ -184,8 +184,12 @@ function outputRootFromConfig(appConfig: any) {
 	return configured ? path.resolve(String(configured)) : OUTPUT_ROOT;
 }
 const ALLOWED_PYTHON_SCRIPTS = new Set([
+	"analyze_person_bboxes.py",
+	"analyze_person_edit_metadata.py",
 	"analyze_multicam_blocking.py",
+	"build_reference_edit_profile.py",
 	"auto_sync_app_sources.py",
+	"build_person_edit_plan.py",
 	"build_st7_7550_strong_transcript_multicam.py",
 	"compare_sound2_transcripts.py",
 	"generate_full_transcript_png_overlays.py",
@@ -204,6 +208,7 @@ const ALLOWED_PYTHON_SCRIPTS = new Set([
 	"transcribe_align_st7_7550_multicam.py",
 	"transcribe_compare_all_st7_7550_multicam.py",
 	"transcribe_sound2.py",
+	"video_edit_run.py",
 ]);
 
 function executableName(value: string) {

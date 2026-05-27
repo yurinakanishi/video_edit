@@ -11,18 +11,27 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
-from project_paths import OUTPUT, OUTPUT_REPORTS, SOURCE_IMAGES, SOURCE_TEXT, SOURCE_VIDEO, ROOT
+from project_paths import OUTPUT, OUTPUT_REPORTS, SOURCE, SOURCE_IMAGES, SOURCE_TEXT, SOURCE_VIDEO
+from video_edit_app_config import load_app_config, nested, optional_path
+from composition_rules import (
+    GOLDEN_LEFT,
+    OUTER_GOLDEN_LEFT,
+    OUTER_GOLDEN_RIGHT,
+    nearest_anchor,
+    rect_center_distance_score,
+)
 
 
 CANVAS_SIZE = (1280, 720)
+APP_CONFIG = load_app_config()
 ASSET_SOURCE_DEFAULT = Path(r"C:\Users\yurin\Downloads\etype260515 p-takei\etype260515 p-takei")
-ASSET_DIR = ROOT / "source" / "thumbnail" / "etype260515_p_takei"
-REFERENCE_DIR = ROOT / "source" / "thumbnail" / "references"
-OUTPUT_DIR = OUTPUT / "thumbnails"
+ASSET_DIR = optional_path(APP_CONFIG, "thumbnails", "sourceRoot", default=SOURCE / "thumbnail" / "etype260515_p_takei")
+REFERENCE_DIR = optional_path(APP_CONFIG, "thumbnails", "referenceRoot", default=SOURCE / "thumbnail" / "references")
+OUTPUT_DIR = optional_path(APP_CONFIG, "thumbnails", "outputRoot", default=OUTPUT / "thumbnails")
 REFERENCE_STYLE_PATH = OUTPUT_DIR / "thumbnail_reference_style.json"
 VIDEO_PATH = OUTPUT / "videos" / "ST7_7550_multicam_cut_1min_onepass_full_transcript.mp4"
 TRANSCRIPT_PATH = OUTPUT / "transcripts" / "sound2" / "140101-001.json"
-LOGO_PATH = SOURCE_IMAGES / "type-logo-transparent-cropped.png"
+LOGO_PATH = optional_path(APP_CONFIG, "assets", "logo", default=SOURCE_IMAGES / "type-logo-transparent-cropped.png")
 
 FONT_BOLD = Path(r"C:\Windows\Fonts\meiryob.ttc")
 FONT_REGULAR = Path(r"C:\Windows\Fonts\meiryo.ttc")
@@ -117,11 +126,11 @@ def crop_face_closeup_to_canvas(image: Image.Image, source_faces: list[Rect], va
         crop_h = src_h
         crop_w = int(crop_h * target_ratio)
 
-    # Keep the face centered horizontally and slightly above the vertical midpoint
-    # so the one-line bottom title sits over torso/background rather than the face.
+    # Keep the face near the upper golden line so the bottom title sits over
+    # torso/background rather than the face.
     horizontal_nudge = ((variant_index % 5) - 2) * face.w * 0.12
     left = int(face_cx + horizontal_nudge - crop_w / 2)
-    top = int(face_cy - crop_h * 0.42)
+    top = int(face_cy - crop_h * GOLDEN_LEFT)
     left = max(0, min(src_w - crop_w, left))
     top = max(0, min(src_h - crop_h, top))
     crop = (left, top, left + crop_w, top + crop_h)
@@ -147,8 +156,8 @@ def crop_face_right_closeup_to_canvas(image: Image.Image, source_faces: list[Rec
         crop_h = src_h
         crop_w = int(crop_h * target_ratio)
 
-    target_x = 0.8 + ((variant_index % 3) - 1) * 0.02
-    target_y = 0.43
+    target_x = OUTER_GOLDEN_RIGHT + ((variant_index % 3) - 1) * 0.018
+    target_y = GOLDEN_LEFT
     if face_cx - crop_w * target_x < 0:
         crop_w = int(face_cx / target_x)
         crop_h = int(crop_w / target_ratio)
@@ -184,8 +193,8 @@ def crop_face_left_closeup_to_canvas(image: Image.Image, source_faces: list[Rect
         crop_h = src_h
         crop_w = int(crop_h * target_ratio)
 
-    target_x = 0.2 + ((variant_index % 3) - 1) * 0.02
-    target_y = 0.43
+    target_x = OUTER_GOLDEN_LEFT + ((variant_index % 3) - 1) * 0.018
+    target_y = GOLDEN_LEFT
     if face_cx - crop_w * target_x < 0:
         crop_w = int(face_cx / target_x)
         crop_h = int(crop_w / target_ratio)
@@ -278,11 +287,19 @@ def choose_text_box(face_boxes: list[Rect], variant_index: int, preferred: str |
         face_overlap = sum(rect.intersection_area(box) for box in face_boxes)
         protected_overlap = sum(rect.intersection_area(box) for box in protected)
         side_bias = 25_000 if (variant_index % 2 == 0 and name == "right") or (variant_index % 2 == 1 and name == "left") else 0
+        if name in {"left", "lower_left"}:
+            anchor_x = GOLDEN_LEFT
+        elif name in {"right", "lower_right"}:
+            anchor_x = 1 - GOLDEN_LEFT
+        else:
+            anchor_x = 0.5
+        anchor_distance = rect_center_distance_score(rect.as_list(), CANVAS_SIZE[0], CANVAS_SIZE[1], anchor_x)
+        composition_bias = (1 - min(1.0, anchor_distance)) * 28_000
         if preferred == name:
             side_bias += 380_000
             if face_overlap == 0:
                 side_bias += 260_000
-        scored.append((rect.area - face_overlap * 1_200 - protected_overlap * 3 + side_bias, name, rect))
+        scored.append((rect.area - face_overlap * 1_200 - protected_overlap * 3 + side_bias + composition_bias, name, rect))
     _, name, rect = max(scored, key=lambda item: item[0])
     return name, rect
 
@@ -754,7 +771,9 @@ def render_candidate(
         "layout_reason": str(candidate.get("layout_reason") or ""),
         "text_region_name": text_side,
         "text_region_canvas": text_box.as_list(),
+        "text_region_anchor": nearest_anchor((text_box.x + text_box.w / 2) / CANVAS_SIZE[0])[0],
         "logo_region_canvas": logo_box.as_list(),
+        "logo_region_anchor": nearest_anchor((logo_box.x + logo_box.w / 2) / CANVAS_SIZE[0])[0],
         "protected_faces_canvas": [box.as_list() for box in face_boxes],
     }
 
@@ -871,6 +890,16 @@ def thumbnail_output_stem(mode: str, main_color: str) -> str:
     return f"thumbnail_{mode}{color_suffix}"
 
 
+def default_thumbnail_mode() -> str:
+    mode = nested(APP_CONFIG, "thumbnails", "mode", default=nested(APP_CONFIG, "render", "thumbnailMode", default="standard"))
+    return mode if mode in {"standard", "closeup_bottom_title", "right_face_title_stack", "left_face_title_stack"} else "standard"
+
+
+def default_main_color() -> str:
+    color = nested(APP_CONFIG, "thumbnails", "mainColor", default=nested(APP_CONFIG, "render", "thumbnailMainColor", default="yellow"))
+    return color if color in MAIN_COLOR_STYLES else "yellow"
+
+
 def write_reference_style_notes() -> dict[str, object]:
     REFERENCE_DIR.mkdir(parents=True, exist_ok=True)
     local_files = [path for path in sorted(REFERENCE_DIR.glob("*")) if path.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}]
@@ -941,8 +970,14 @@ def main() -> None:
     parser.add_argument(
         "--main-color",
         choices=sorted(MAIN_COLOR_STYLES),
-        default="yellow",
+        default=default_main_color(),
         help="Main thumbnail color for title text, hook background, accent frame, and overlay tint.",
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["standard", "closeup_bottom_title", "right_face_title_stack", "left_face_title_stack"],
+        default=default_thumbnail_mode(),
+        help="Thumbnail layout mode. Legacy layout flags override this value.",
     )
     parser.add_argument(
         "--closeup-bottom-title",
@@ -970,7 +1005,7 @@ def main() -> None:
     elif args.closeup_bottom_title:
         thumbnail_mode = "closeup_bottom_title"
     else:
-        thumbnail_mode = "standard"
+        thumbnail_mode = args.mode
     output_stem = thumbnail_output_stem(thumbnail_mode, args.main_color)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -1026,7 +1061,7 @@ def main() -> None:
         candidate["layout_reason"] = f"{template['layout_reason']} ソース画像全件出力のため配置テンプレートを循環適用。"
         candidates.append(candidate)
     closeup_sources = source_names
-    if args.closeup_bottom_title:
+    if thumbnail_mode == "closeup_bottom_title":
         for index, (candidate, source) in enumerate(zip(candidates, closeup_sources), start=1):
             candidate["source"] = source
             candidate["title"] = "フリーPdMは通用する？"
@@ -1038,7 +1073,7 @@ def main() -> None:
             candidate["closeup"] = True
             candidate["single_line_bottom_title"] = True
             candidate["layout_reason"] = "顔検出位置を中央に寄せて強めにアップで切り出し、一行タイトルを最下部、サブタイトルをロゴの反対側上角に置く。"
-    elif args.right_face_title_stack:
+    elif thumbnail_mode == "right_face_title_stack":
         for candidate, source in zip(candidates, closeup_sources):
             candidate["source"] = source
             candidate["title"] = "フリーPdMは\n通用する？"
@@ -1052,7 +1087,7 @@ def main() -> None:
             candidate["closeup"] = False
             candidate["single_line_bottom_title"] = False
             candidate["layout_reason"] = "顔を右側に大きく寄せ、左側の余白にサブタイトルと折り返しタイトルを積む。"
-    elif args.left_face_title_stack:
+    elif thumbnail_mode == "left_face_title_stack":
         for candidate, source in zip(candidates, closeup_sources):
             candidate["source"] = source
             candidate["title"] = "フリーPdMは\n通用する？"

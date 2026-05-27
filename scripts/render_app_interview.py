@@ -24,6 +24,7 @@ from project_paths import (
 
 from shorten_silences import DEFAULT_KEEP_SILENCE, DEFAULT_MIN_SILENCE, DEFAULT_NOISE, SilenceShortenConfig, shorten_silences
 from video_edit_app_config import int_value, load_app_config, nested, optional_path
+from composition_rules import crop_window_center_for_subject, subject_target_for_face, visible_ratio_for_area
 
 
 WORK = WORKSPACE_ROOT
@@ -33,6 +34,7 @@ TITLE = OUTPUT_OVERLAYS / "ai_engineer_now_title.png"
 DEFAULT_LOGO = SOURCE_IMAGES / "type-logo-transparent-cropped.png"
 DEFAULT_SYNC = OUTPUT_REPORTS / "app_sync_offsets.json"
 DEFAULT_DENOISE_STRENGTH = 10
+DEFAULT_REFERENCE_PROFILE = OUTPUT_REPORTS / "reference_edit_profile.json"
 
 
 def seconds(timestamp: str) -> float:
@@ -59,6 +61,62 @@ def audio_cleanup_filter(strength: int) -> str:
     if nr <= 0:
         return "highpass=f=80"
     return f"highpass=f=80,afftdn=nr={nr}:nf=-35"
+
+
+def clamp(value: float, low: float, high: float) -> float:
+    return max(low, min(high, value))
+
+
+def load_reference_profile() -> dict[str, object]:
+    if not path_value("assets", "referenceVideo"):
+        return {}
+    path = Path(nested(APP_CONFIG, "analysis", "referenceEditProfilePath", default=str(DEFAULT_REFERENCE_PROFILE)))
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def reference_video_filter(profile: dict[str, object]) -> str:
+    target = profile.get("target") if isinstance(profile.get("target"), dict) else {}
+    center = target.get("person_center_ratio") if isinstance(target.get("person_center_ratio"), list) else None
+    area = target.get("person_area_ratio")
+    face_direction = str(target.get("dominant_face_direction") or "unknown")
+    desired_subject_x = target.get("desired_subject_x_ratio")
+    desired_subject_y = target.get("desired_subject_y_ratio")
+    visual = target.get("visual_style") if isinstance(target.get("visual_style"), dict) else {}
+
+    center_x = clamp(float(center[0]), 0.2, 0.8) if center and center[0] is not None else 0.5
+    center_y = clamp(float(center[1]), 0.25, 0.75) if center and center[1] is not None else 0.5
+    area_ratio = float(area) if area is not None else 0.0
+    visible_ratio = visible_ratio_for_area(area_ratio)
+
+    if desired_subject_x is None:
+        desired_subject_x = subject_target_for_face(face_direction).x
+    if desired_subject_y is None:
+        desired_subject_y = subject_target_for_face(face_direction).y
+    desired_subject_x = clamp(float(desired_subject_x), 0.35, 0.65)
+    desired_subject_y = clamp(float(desired_subject_y), 0.30, 0.52)
+    center_x = crop_window_center_for_subject(center_x, desired_subject_x, visible_ratio)
+    center_y = crop_window_center_for_subject(center_y, desired_subject_y, visible_ratio)
+
+    brightness = visual.get("brightness")
+    contrast = visual.get("contrast")
+    saturation = visual.get("saturation")
+    brightness_adj = clamp((float(brightness) - 0.48) * 0.22, -0.08, 0.08) if brightness is not None else 0.0
+    contrast_adj = clamp(0.88 + float(contrast) * 1.15, 0.88, 1.24) if contrast is not None else 1.0
+    saturation_adj = clamp(0.78 + float(saturation) * 1.15, 0.78, 1.34) if saturation is not None else 1.0
+
+    scale_w = round(1920 / visible_ratio / 2) * 2
+    scale_h = round(1080 / visible_ratio / 2) * 2
+    crop_x = f"min(max(iw*{center_x:.4f}-960\\,0)\\,iw-1920)"
+    crop_y = f"min(max(ih*{center_y:.4f}-540\\,0)\\,ih-1080)"
+    return (
+        f"scale={scale_w}:{scale_h},crop=1920:1080:x='{crop_x}':y='{crop_y}',"
+        f"eq=brightness={brightness_adj:.4f}:contrast={contrast_adj:.4f}:saturation={saturation_adj:.4f}"
+    )
 
 
 def run(command: list[str]) -> None:
@@ -157,6 +215,8 @@ def main() -> None:
     audio_denoise = bool_value("render", "audioDenoise", default=True)
     audio_denoise_strength = int_value(APP_CONFIG, "render", "audioDenoiseStrength", default=DEFAULT_DENOISE_STRENGTH)
     output.parent.mkdir(parents=True, exist_ok=True)
+    reference_profile = load_reference_profile()
+    reference_filter = reference_video_filter(reference_profile) if reference_profile else "scale=1920:1080"
 
     cameras: list[tuple[str, Path]] = []
     if master:
@@ -235,8 +295,8 @@ def main() -> None:
         local_start = max(0.0, source_start - input_seek.get(input_index, 0.0))
         local_end = max(local_start, source_end - input_seek.get(input_index, 0.0))
         filters.append(
-            f"[{input_index}:v]setpts=PTS-STARTPTS,scale=1920:1080,"
-            f"trim=start={local_start:.6f}:end={local_end:.6f},setpts=PTS-STARTPTS[{label}]"
+            f"[{input_index}:v]setpts=PTS-STARTPTS,trim=start={local_start:.6f}:end={local_end:.6f},"
+            f"setpts=PTS-STARTPTS,{reference_filter}[{label}]"
         )
         segment_labels.append(label)
 

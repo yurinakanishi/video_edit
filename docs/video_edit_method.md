@@ -236,6 +236,110 @@ Camera roles:
 - `2cam`: tighter same-axis shot
 - `3cam`: later-section alternate angle
 
+## Step 3A: Analyze Source Videos For Person Bboxes
+
+Before camera planning or crop decisions, generate frame-level person metadata for all source videos. This gives the editing pipeline a compact JSON representation of where people are, how large they are, and whether a frame is solo, multi-person, or empty.
+
+Scripts:
+
+```text
+.\scripts\analyze_person_edit_metadata.py
+.\scripts\analyze_person_bboxes.py
+.\scripts\build_person_edit_plan.py
+```
+
+Run:
+
+```powershell
+Set-Location 'C:\Users\yurin\Desktop\video_edit'
+$env:PYTHONUTF8='1'
+& 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\scripts\analyze_person_bboxes.py --fps-sample 1
+& 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\scripts\build_person_edit_plan.py
+```
+
+Or run both steps together:
+
+```powershell
+& 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\scripts\analyze_person_edit_metadata.py --fps-sample 1
+```
+
+Install the detector dependency in that Python environment if needed:
+
+```powershell
+& 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' -m pip install ultralytics
+```
+
+Outputs:
+
+```text
+output\reports\person_bboxes\*_person_bboxes.json
+output\reports\person_edit_plans\*_person_edit_plan.json
+```
+
+The bbox JSON includes `track_id`, `bbox`, `center`, `center_ratio`, `area_ratio`, `confidence`, `position`, and `shot_size`. The edit-plan JSON groups adjacent samples into segments with `crop_strategy`, `crop_target`, and Japanese editing recommendations.
+
+Composition anchors are centralized in `scripts\composition_rules.py`. Current anchors include:
+
+- golden ratio: `0.382` / `0.618`
+- thirds: `0.333` / `0.667`
+- silver ratio: `0.414` / `0.586`
+- outer golden ratio: `0.236` / `0.764` for stronger side-weighted thumbnail close-ups
+
+Person analysis writes `composition_anchor`, `desired_subject_x_ratio`, and `desired_subject_y_ratio` into `look_composition`. The edit-plan JSON carries those values into `crop_target`. For face direction, looking left places the subject on the right golden anchor, looking right places the subject on the left golden anchor, and front/unknown keeps the subject centered with the eye/face line near the upper golden line.
+
+Start with `--fps-sample 1` for rough planning. Use `--fps-sample 2` for 0.5-second crop planning, and higher rates only when the edit really needs tighter motion or face-following decisions.
+
+## Step 3B: Analyze A Short Reference Video
+
+The Electron app can accept one style reference video. Keep it under 60 seconds. The reference is not used as source footage; it is analyzed into metadata that guides the later edit.
+
+Reference analysis extracts:
+
+- person bbox, center, size, and track id
+- face bbox and rough screen-direction (`front`, `left`, `right`, or `unknown`)
+- frame brightness, contrast, saturation, and warmth
+- segment-level crop/zoom guidance
+
+Run:
+
+```powershell
+Set-Location 'C:\Users\yurin\Desktop\video_edit'
+$env:PYTHONUTF8='1'
+& 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\scripts\analyze_person_edit_metadata.py `
+  --input '.\source\video\reference.mp4' `
+  --fps-sample 1 `
+  --max-duration 60 `
+  --output-dir '.\output\reports\reference_person_bboxes' `
+  --plan-output-dir '.\output\reports\reference_edit_plans' `
+  --reference-profile-output '.\output\reports\reference_edit_profile.json'
+```
+
+Outputs:
+
+```text
+output\reports\reference_person_bboxes\*_person_bboxes.json
+output\reports\reference_edit_plans\*_person_edit_plan.json
+output\reports\reference_edit_profile.json
+```
+
+The reference profile stores target person size, center position, face direction distribution, and visual tone. `render_app_interview.py` reads this profile from the Electron runtime config and applies it as a practical target for crop center, zoom amount, and simple brightness/contrast/saturation matching.
+
+Face direction is screen-based:
+
+```text
+left  = the person is looking toward the left side of the frame
+right = the person is looking toward the right side of the frame
+front = the person is mostly facing camera
+```
+
+Composition rule:
+
+```text
+looking left  -> keep more empty space on the left, place the person slightly right
+looking right -> keep more empty space on the right, place the person slightly left
+front/unknown -> keep the person centered
+```
+
 ## Step 4: Strict Strong-Match Cut Plan
 
 Only strong transcript matches are used for sub-camera cuts. Everything else stays on the `1cam` master.
@@ -1128,6 +1232,7 @@ Mode switch:
 - `--closeup-bottom-title` centers the detected interviewee face, uses a strong close-up crop, renders `フリーPdMは通用する？` as a single line at the bottom, and places the hook in the opposite top corner from the logo.
 - `--right-face-title-stack` places the detected interviewee face as a very tight crop on the right, then places the hook directly above the wrapped title in the left-side negative space.
 - `--left-face-title-stack` places the detected interviewee face as a very tight crop on the left, then places the hook directly above the wrapped title in the right-side negative space. It changes crop position only; it does not horizontally flip the image.
+- Tight side-face thumbnail modes place the face near the outer-golden anchors (`0.236` / `0.764`) instead of the extreme `0.2` / `0.8` edge. The face line uses the upper golden y anchor (`0.382`) so the bottom title sits over torso/background rather than covering the face.
 
 Current visual rules:
 

@@ -105,6 +105,12 @@
                 <code id="leftCloseVideoLabel">not selected</code>
                 <button type="button" data-pick="leftCloseVideo">Select</button>
               </div>
+              <div class="drop-zone" data-slot="referenceVideo">
+                <strong>参考動画</strong>
+                <span>style reference / under 60s</span>
+                <code id="referenceVideoLabel">not selected</code>
+                <button type="button" data-pick="referenceVideo">Select</button>
+              </div>
               <div class="drop-zone" data-slot="externalAudio">
                 <strong>別録り音声</strong>
                 <span>wav / mp3 / mp4</span>
@@ -319,6 +325,8 @@
                   <option value="generate-glossary-overlays">Regenerate glossary term overlays</option>
                   <option value="generate-thumbnails">Generate thumbnail candidates</option>
                   <option value="analyze-blocking">Analyze camera blocking</option>
+                  <option value="analyze-person-edit-metadata">Analyze persons and build edit plans</option>
+                  <option value="analyze-reference-video">Analyze reference video</option>
                   <option value="auto-sync-dropped">Auto-sync dropped cameras</option>
                   <option value="transcribe-align">Transcript-guided sync</option>
                   <option value="compare-all-cameras">Compare all camera transcripts</option>
@@ -384,6 +392,26 @@
                 Still time
                 <input id="stillTime" value="00:00:25" />
               </label>
+              <label>
+                Person sample fps
+                <input id="personFpsSample" type="number" min="0.1" max="15" step="0.1" value="1" />
+              </label>
+              <label>
+                YOLO model
+                <input id="personModel" value="yolov8n.pt" />
+              </label>
+              <label>
+                Person confidence
+                <input id="personConfidence" type="number" min="0.05" max="0.95" step="0.05" value="0.35" />
+              </label>
+              <label>
+                Analysis max seconds
+                <input id="personMaxSeconds" type="number" min="1" step="1" placeholder="all" />
+              </label>
+              <label>
+                Video limit
+                <input id="personLimit" type="number" min="1" step="1" placeholder="all" />
+              </label>
               <div class="toggle-column">
                 <label class="toggle-row">
                   <input id="rebuildBase" type="checkbox" />
@@ -418,6 +446,10 @@
                 <label>
                   Review model
                   <input id="reviewModel" value="medium" />
+                </label>
+                <label class="toggle-row">
+                  <input id="personNoMulticamRoot" type="checkbox" />
+                  <span>Analyze only project source/video</span>
                 </label>
               </div>
             </div>

@@ -44,11 +44,11 @@ pnpm run check
 - Provides direct method workflow actions for subtitle review, overlay regeneration, thumbnail candidate generation, camera analysis, transcript sync, waveform refinement, multicam base build, sound-2 audio replacement, silence shortening, and ffprobe verification.
 - Runs `scripts\generate_thumbnail_candidates.py --import-assets` from the workflow action menu, supports the standard, center-face bottom-title, right-face stacked-title, and left-face stacked-title thumbnail modes, supports broad main-color selection, generates one candidate per `source\thumbnail\etype260515_p_takei\ST-*.jpg` source image, and opens the selected mode/color contact sheet from the top bar.
 - Starts `codex app-server` from the Electron main process and sends a structured edit request with `C:\Users\yurin\Desktop\video_edit` as the working directory.
-- Can run the current known render scripts directly through `command/exec` when the selected preset maps cleanly to an existing script.
+- Runs direct workflow actions through `scripts\video_edit_run.py`, which reads the runtime app config and delegates to the existing Python render, analysis, thumbnail, FFmpeg, and ffprobe commands.
 - Includes `render_app_interview.py`, a generic dropped-file interview renderer for master/right/left camera files and optional external audio.
 - Includes `auto_sync_app_sources.py`, which creates `app_sync_offsets.json` from dropped camera audio before the generic renderer runs.
 
-The app intentionally keeps the Python render scripts as the source of truth. Direct command actions run existing script CLI flags and write a runtime app config under `output\app` consumed by the Python scripts. The config currently drives the active project roots, title text/size, logo path/height, subtitle size/color/opacity, punchline text/timing, source root, FFmpeg path, and generic-render audio denoise settings.
+The app intentionally keeps the Python render scripts as the source of truth. Direct command actions write a runtime app config under `output\app`, then call `scripts\video_edit_run.py`. The shared runner converts that config into the existing script CLI flags. The config currently drives the active project roots, title text/size, logo path/height, subtitle size/color/opacity, punchline text/timing, source root, FFmpeg path, thumbnail mode/color, analysis settings, and generic-render audio denoise settings.
 
 ## Direct Project Runs
 

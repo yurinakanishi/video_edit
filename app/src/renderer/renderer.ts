@@ -38,6 +38,7 @@ const state = {
 		masterVideo: "",
 		rightCloseVideo: "",
 		leftCloseVideo: "",
+		referenceVideo: "",
 		externalAudio: "",
 		logo: "",
 	},
@@ -76,6 +77,7 @@ const fileFilters = {
 	masterVideo: [{ name: "Video", extensions: ["mp4", "mov", "m4v"] }],
 	rightCloseVideo: [{ name: "Video", extensions: ["mp4", "mov", "m4v"] }],
 	leftCloseVideo: [{ name: "Video", extensions: ["mp4", "mov", "m4v"] }],
+	referenceVideo: [{ name: "Video", extensions: ["mp4", "mov", "m4v"] }],
 	externalAudio: [{ name: "Audio or video", extensions: ["wav", "mp3", "aac", "m4a", "mp4", "mov"] }],
 	logo: [{ name: "Image", extensions: ["png", "jpg", "jpeg", "webp"] }],
 };
@@ -671,10 +673,6 @@ function ffprobeExe() {
 	return formValue("ffprobePath") || "ffprobe";
 }
 
-function ffmpegExe() {
-	return formValue("ffmpegPath") || "ffmpeg";
-}
-
 function stillOutputPath(inputVideo, outputPath) {
 	if (outputPath && /\.(png|jpg|jpeg)$/i.test(outputPath)) {
 		return outputPath;
@@ -695,6 +693,30 @@ function thumbnailSourceRoot() {
 	return state.env?.thumbnailSourceRoot || joinPath(activeSourceRoot() || "source", "thumbnail", "etype260515_p_takei");
 }
 
+function personBboxesDir() {
+	return joinPath(activeOutputRoot() || "output", "reports", "person_bboxes");
+}
+
+function personEditPlansDir() {
+	return joinPath(activeOutputRoot() || "output", "reports", "person_edit_plans");
+}
+
+function referencePersonBboxesDir() {
+	return joinPath(activeOutputRoot() || "output", "reports", "reference_person_bboxes");
+}
+
+function referenceEditPlansDir() {
+	return joinPath(activeOutputRoot() || "output", "reports", "reference_edit_plans");
+}
+
+function referenceEditProfilePath() {
+	return joinPath(activeOutputRoot() || "output", "reports", "reference_edit_profile.json");
+}
+
+function selectedAnalysisVideos() {
+	return [state.files.masterVideo, state.files.rightCloseVideo, state.files.leftCloseVideo].filter(Boolean);
+}
+
 function withRuntimeConfig(command) {
 	return command;
 }
@@ -703,232 +725,12 @@ function scriptPath(scriptName) {
 	return state.env?.scriptsRoot ? `${state.env.scriptsRoot}\\${scriptName}` : scriptName;
 }
 
-function addSilenceArgs(command) {
-	if (!formValue("shortenSilence")) {
-		command.push("--no-shorten-silence");
-	}
-	command.push("--min-silence", String(Number(formValue("minSilence") || 3)));
-	command.push("--keep-silence", String(Number(formValue("keepSilence") || 2)));
-	command.push("--silence-noise", formValue("silenceNoise") || "-30dB");
-	if (formValue("keepUncut")) {
-		command.push("--keep-uncut");
-	}
-}
-
-function addAudioArgs(command) {
-	if (!formValue("audioDenoise")) {
-		command.push("--no-audio-denoise");
-	}
-	command.push("--audio-denoise-strength", String(Number(formValue("audioDenoiseStrength") || 10)));
-}
-
-function buildRenderCommand() {
-	const script = formValue("renderScript");
-	const subtitleMode = state.subtitleMode;
-	const outputPath = $("#outputPath").value;
-	if (!outputPath) {
-		return {
-			command: null,
-			reason: "Choose an output path before running a preset script.",
-		};
-	}
-
-	if (script === "render_app_interview.py") {
-		return { command: withRuntimeConfig([pythonExe(), scriptPath(script)]), reason: "" };
-	}
-
-	const mode = subtitleMode === "none" ? "none" : subtitleMode === "punchline" ? "punchline" : "full";
-	const command = [pythonExe(), scriptPath(script), "--mode", mode, "--output", outputPath];
-
-	if (script === "render_1min_onepass_ffmpeg.py") {
-		command.push(
-			"--preview-start",
-			String(Number(formValue("previewStart") || 0)),
-			"--preview-duration",
-			String(Number(formValue("previewDuration") || 60)),
-		);
-	}
-	if (script === "render_final_png_overlays.py" || script === "render_1min_color_matched.py") {
-		command.push("--duration", String(Number(formValue("previewDuration") || 60)));
-	}
-	if (script === "render_1min_color_matched.py") {
-		if (formValue("rebuildBase")) {
-			command.push("--rebuild-base");
-		}
-		if (formValue("skipSubtitleRegeneration")) {
-			command.push("--skip-subtitle-regeneration");
-		}
-		if (formValue("reclassifySpeakers")) {
-			command.push("--reclassify-speakers");
-		}
-	}
-	if (script === "render_1min_onepass_ffmpeg.py" && formValue("skipSubtitleRegeneration")) {
-		command.push("--skip-subtitle-regeneration");
-	}
-	if (script === "render_1min_onepass_ffmpeg.py") {
-		command.push(formValue("autoContextCuts") ? "--auto-context-cuts" : "--no-auto-context-cuts");
-		if (formValue("naturalDialogueCuts")) {
-			command.push("--natural-dialogue-cuts");
-		}
-		if (!formValue("termExplanations")) {
-			command.push("--no-term-explanations");
-		}
-	}
-
-	addAudioArgs(command);
-	addSilenceArgs(command);
-	return { command: withRuntimeConfig(command), reason: "" };
-}
-
 function buildPresetCommand() {
 	const action = formValue("workflowAction");
-	const inputVideo = formValue("inputVideoPath") || $("#outputPath").value;
-	const replaceInput = formValue("replaceAudioInput") || inputVideo;
-	const outputPath = $("#outputPath").value;
-
-	if (action === "render-selected") {
-		return buildRenderCommand();
-	}
-
-	const simplePythonScripts = {
-		"subtitle-review": "subtitle_review_cycle.py",
-		"generate-punchlines": "generate_punchline_png_overlays.py",
-		"generate-full-overlays": "generate_full_transcript_png_overlays.py",
-		"generate-glossary-overlays": "generate_glossary_term_overlays.py",
-		"generate-thumbnails": "generate_thumbnail_candidates.py",
-		"analyze-blocking": "analyze_multicam_blocking.py",
-		"auto-sync-dropped": "auto_sync_app_sources.py",
-		"transcribe-align": "transcribe_align_st7_7550_multicam.py",
-		"compare-all-cameras": "transcribe_compare_all_st7_7550_multicam.py",
-		"refine-strong-wave": "refine_st7_7550_strong_wave_offsets.py",
-		"build-base": "build_st7_7550_strong_transcript_multicam.py",
-		"transcribe-sound2": "transcribe_sound2.py",
-		"compare-sound2": "compare_sound2_transcripts.py",
-		"refine-sound2": "refine_sound2_audio_offset.py",
+	return {
+		command: withRuntimeConfig([pythonExe(), scriptPath("video_edit_run.py"), "--action", action]),
+		reason: "",
 	};
-
-	if (action in simplePythonScripts) {
-		const command = [pythonExe(), scriptPath(simplePythonScripts[action])];
-		if (action === "generate-thumbnails") {
-			command.push("--import-assets");
-			command.push("--main-color", thumbnailMainColor());
-			if (thumbnailModeConfig().flag) {
-				command.push(thumbnailModeConfig().flag);
-			}
-		}
-		if (action === "subtitle-review") {
-			if (formValue("noAudioClips")) {
-				command.push("--no-audio-clips");
-			}
-			if (formValue("transcribeReview")) {
-				command.push("--transcribe-review", "--review-model", formValue("reviewModel") || "medium");
-			}
-		}
-		return { command: withRuntimeConfig(command), reason: "" };
-	}
-
-	if (action === "replace-sound2") {
-		if (!outputPath) {
-			return { command: null, reason: "Choose an output path before replacing audio." };
-		}
-		const command = [
-			pythonExe(),
-			scriptPath("replace_audio_with_sound2.py"),
-			"--video",
-			replaceInput,
-			"--output",
-			outputPath,
-		];
-		addSilenceArgs(command);
-		return { command: withRuntimeConfig(command), reason: "" };
-	}
-
-	if (action === "shorten-input") {
-		if (!inputVideo || !outputPath) {
-			return { command: null, reason: "Choose an input video and output path for silence shortening." };
-		}
-		return {
-			command: withRuntimeConfig([
-				pythonExe(),
-				scriptPath("shorten_silences.py"),
-				"--input",
-				inputVideo,
-				"--output",
-				outputPath,
-				"--min-silence",
-				String(Number(formValue("minSilence") || 3)),
-				"--keep-silence",
-				String(Number(formValue("keepSilence") || 2)),
-				"--noise",
-				formValue("silenceNoise") || "-30dB",
-			]),
-			reason: "",
-		};
-	}
-
-	if (action === "extract-still") {
-		if (!inputVideo) {
-			return { command: null, reason: "Choose an input video before extracting a still." };
-		}
-		return {
-			command: withRuntimeConfig([
-				ffmpegExe(),
-				"-y",
-				"-ss",
-				formValue("stillTime") || "00:00:25",
-				"-i",
-				inputVideo,
-				"-frames:v",
-				"1",
-				"-update",
-				"1",
-				stillOutputPath(inputVideo, outputPath),
-			]),
-			reason: "",
-		};
-	}
-
-	if (action === "verify-duration") {
-		if (!inputVideo) {
-			return { command: null, reason: "Choose a verification input video." };
-		}
-		return {
-			command: withRuntimeConfig([
-				ffprobeExe(),
-				"-v",
-				"error",
-				"-show_entries",
-				"format=duration",
-				"-of",
-				"default=noprint_wrappers=1:nokey=1",
-				inputVideo,
-			]),
-			reason: "",
-		};
-	}
-
-	if (action === "verify-audio") {
-		if (!inputVideo) {
-			return { command: null, reason: "Choose a verification input video." };
-		}
-		return {
-			command: withRuntimeConfig([
-				ffprobeExe(),
-				"-v",
-				"error",
-				"-select_streams",
-				"a:0",
-				"-show_entries",
-				"stream=codec_name,sample_rate,channels",
-				"-of",
-				"json",
-				inputVideo,
-			]),
-			reason: "",
-		};
-	}
-
-	return { command: null, reason: `Unknown workflow action: ${action}` };
 }
 
 function quoteArg(arg) {
@@ -992,6 +794,31 @@ function validateSelections() {
 		);
 		ok.push(`確認用: ${shortPath(thumbnailContactSheetPath())}`);
 		ok.push("素材は Downloads の etype260515 p-takei から import します。");
+	}
+
+	if (action === "analyze-person-edit-metadata") {
+		const videos = selectedAnalysisVideos();
+		ok.push(`人物bbox: ${shortPath(personBboxesDir())}`);
+		ok.push(`編集プラン: ${shortPath(personEditPlansDir())}`);
+		ok.push(`解析間隔: ${formValue("personFpsSample")} fps`);
+		if (videos.length) {
+			ok.push(`解析対象: 選択済み動画 ${videos.length}本`);
+		} else {
+			ok.push("解析対象: source/video と 2cam/3cam root");
+		}
+		if (formValue("personMaxSeconds")) {
+			warnings.push("Analysis max seconds が入っているため、全尺ではなくテスト解析になります。");
+		}
+	}
+
+	if (action === "analyze-reference-video") {
+		if (!state.files.referenceVideo) {
+			errors.push("参考動画を1本ドラッグ&ドロップしてください。");
+		}
+		ok.push("参考動画は60秒以内として解析します。超えている場合は実行時に止めます。");
+		ok.push(`参考プロファイル: ${shortPath(referenceEditProfilePath())}`);
+		ok.push(`参考人物bbox: ${shortPath(referencePersonBboxesDir())}`);
+		ok.push(`参考編集プラン: ${shortPath(referenceEditPlansDir())}`);
 	}
 
 	if (action === "replace-sound2" && !outputPath) {
@@ -1069,6 +896,8 @@ function buildPrompt() {
 		"- Read docs\\video_edit_method.md for the current ST7_7550 workflow.",
 		"- Prefer scripts\\render_1min_onepass_ffmpeg.py for the current 1-minute preset.",
 		"- Prefer scripts\\render_final_png_overlays.py for current 5-minute PNG-overlay renders.",
+		"- Use scripts\\analyze_person_edit_metadata.py before edit planning when person position/crop decisions matter.",
+		"- If a reference video is selected, analyze it first and use output\\reports\\reference_edit_profile.json as the style/layout target.",
 		"- Use scripts\\generate_thumbnail_candidates.py --import-assets --main-color <color> plus the selected thumbnail layout flag for thumbnail candidate generation.",
 		"- Keep existing user changes in the repo; do not revert unrelated files.",
 		"",
@@ -1077,6 +906,9 @@ function buildPrompt() {
 		`- Direct workflow action: ${formValue("workflowAction")}`,
 		`- Thumbnail layout: ${thumbnailMode()} (${thumbnailModeConfig().flag || "no extra flag"})`,
 		`- Thumbnail main color: ${thumbnailMainColor()}`,
+		`- Person analysis: ${formValue("personFpsSample")} fps, model ${formValue("personModel")}, confidence ${formValue("personConfidence")}, max seconds ${formValue("personMaxSeconds") || "all"}, limit ${formValue("personLimit") || "all"}`,
+		`- Reference video: ${state.files.referenceVideo || "(not selected)"}`,
+		`- Reference profile: ${referenceEditProfilePath()}`,
 		`- Render script: ${formValue("renderScript")}`,
 		`- Multicam mode: ${formValue("multicamMode")}`,
 		`- Subtitle mode: ${state.subtitleMode}`,
@@ -1104,6 +936,9 @@ function buildPrompt() {
 		`- Still extraction time: ${formValue("stillTime") || "00:00:25"}`,
 		`- Thumbnail source images: ${joinPath(thumbnailSourceRoot(), "ST-*.jpg")}`,
 		`- Thumbnail contact sheet: ${thumbnailContactSheetPath()}`,
+		`- Person bbox output: ${personBboxesDir()}`,
+		`- Person edit plan output: ${personEditPlansDir()}`,
+		`- Reference person edit plan output: ${referenceEditPlansDir()}`,
 		`- Source root override: ${formValue("sourceRoot") || "(not set)"}`,
 		`- Python: ${pythonExe()}`,
 		`- FFmpeg: ${formValue("ffmpegPath") || "(script default)"}`,
@@ -1113,6 +948,7 @@ function buildPrompt() {
 		`- Master/day video: ${state.files.masterVideo || "(use current repo default if preset supports it)"}`,
 		`- Right close-up/person 1: ${state.files.rightCloseVideo || "(use current repo default if preset supports it)"}`,
 		`- Left close-up/person 2: ${state.files.leftCloseVideo || "(use current repo default if preset supports it)"}`,
+		`- Reference style video: ${state.files.referenceVideo || "(not selected)"}`,
 		`- External audio: ${state.files.externalAudio || "(not selected)"}`,
 		`- Logo: ${state.files.logo || "(use current repo logo)"}`,
 		"",
@@ -1129,6 +965,8 @@ function buildPrompt() {
 		"- If external audio is selected, sync it or clearly report if existing offset data cannot be reused.",
 		"- If no external audio is selected, use the selected camera audio source.",
 		"- Support interview/multicam source roles: master, person 1 close-up, person 2 close-up.",
+		"- For person-aware crop/cut planning, analyze source videos first, then use output\\reports\\person_edit_plans as metadata for camera/crop decisions.",
+		"- Reflect the reference profile in the edit: match person size, layout, face direction when possible, and visual tone (brightness, contrast, saturation, warmth).",
 		"- For full subtitles, use corrected SRT when available.",
 		"- For catchy subtitles, use the punchline overlay mode.",
 		"- If punchline text/timing/style changed, update the relevant generator script or data in the smallest maintainable way before regenerating overlays.",
@@ -1154,6 +992,7 @@ function buildAppConfig() {
 			masterVideo: state.files.masterVideo,
 			rightCloseVideo: state.files.rightCloseVideo,
 			leftCloseVideo: state.files.leftCloseVideo,
+			referenceVideo: state.files.referenceVideo,
 			externalAudio: state.files.externalAudio,
 			logo: state.files.logo,
 			sourceRoot: formValue("sourceRoot"),
@@ -1173,11 +1012,39 @@ function buildAppConfig() {
 			audioDenoiseStrength: Number(formValue("audioDenoiseStrength") || 10),
 			previewStart: Number(formValue("previewStart") || 0),
 			previewDuration: Number(formValue("previewDuration") || 60),
+			rebuildBase: formValue("rebuildBase"),
+			skipSubtitleRegeneration: formValue("skipSubtitleRegeneration"),
+			reclassifySpeakers: formValue("reclassifySpeakers"),
+			autoContextCuts: formValue("autoContextCuts"),
+			naturalDialogueCuts: formValue("naturalDialogueCuts"),
+			termExplanations: formValue("termExplanations"),
 			shortenSilence: formValue("shortenSilence"),
 			minSilence: Number(formValue("minSilence") || 3),
 			keepSilence: Number(formValue("keepSilence") || 2),
 			silenceNoise: formValue("silenceNoise") || "-30dB",
 			keepUncut: formValue("keepUncut"),
+		},
+		workflow: {
+			inputVideoPath: formValue("inputVideoPath"),
+			replaceAudioInput: formValue("replaceAudioInput"),
+			stillTime: formValue("stillTime") || "00:00:25",
+			stillOutputPath: stillOutputPath(formValue("inputVideoPath") || $("#outputPath").value, $("#outputPath").value),
+			noAudioClips: formValue("noAudioClips"),
+			transcribeReview: formValue("transcribeReview"),
+			reviewModel: formValue("reviewModel") || "medium",
+		},
+		analysis: {
+			personFpsSample: Number(formValue("personFpsSample") || 1),
+			personModel: formValue("personModel") || "yolov8n.pt",
+			personConfidence: Number(formValue("personConfidence") || 0.35),
+			personMaxSeconds: formValue("personMaxSeconds") ? Number(formValue("personMaxSeconds")) : null,
+			personLimit: formValue("personLimit") ? Number(formValue("personLimit")) : null,
+			personNoMulticamRoot: formValue("personNoMulticamRoot"),
+			personBboxesDir: personBboxesDir(),
+			personEditPlansDir: personEditPlansDir(),
+			referencePersonBboxesDir: referencePersonBboxesDir(),
+			referenceEditPlansDir: referenceEditPlansDir(),
+			referenceEditProfilePath: referenceEditProfilePath(),
 		},
 		style: {
 			subtitleSize: Number(formValue("subtitleSize") || 80),
@@ -1255,6 +1122,12 @@ async function runPreset() {
 		}
 		if (formValue("workflowAction") === "generate-thumbnails" && result?.exitCode === 0) {
 			log("thumbnail contact sheet", { path: thumbnailContactSheetPath() });
+		}
+		if (formValue("workflowAction") === "analyze-person-edit-metadata" && result?.exitCode === 0) {
+			log("person analysis outputs", { bboxes: personBboxesDir(), plans: personEditPlansDir() });
+		}
+		if (formValue("workflowAction") === "analyze-reference-video" && result?.exitCode === 0) {
+			log("reference analysis output", { profile: referenceEditProfilePath() });
 		}
 		setStatus(result?.exitCode === 0 ? "Codex ready" : "Command failed", result?.exitCode === 0 ? "ready" : "idle");
 	} catch (error) {

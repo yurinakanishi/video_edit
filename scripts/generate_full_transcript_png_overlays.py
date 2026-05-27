@@ -25,13 +25,10 @@ from project_paths import (
 from PIL import Image, ImageDraw, ImageFont
 
 from subtitle_png_style import BLACK, FONT_PATH, LIGHT_PURPLE, TRACKING, render_simple_caption, tracked_text_width
-from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha
+from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha, selected_subtitle_path
 
 
 WORK = WORKSPACE_ROOT
-RAW_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio.srt"
-CORRECTED_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio_corrected.srt"
-SRT = CORRECTED_SRT if CORRECTED_SRT.exists() else RAW_SRT
 OUT_DIR = OUTPUT_OVERLAYS / "full_transcript_png_overlays"
 SPEAKER_ROLES = OUTPUT_REPORTS / "full_transcript_speaker_roles.json"
 MAX_IMAGE_WIDTH = 1760
@@ -41,6 +38,7 @@ FONT_SIZE = 80
 MAX_CAPTION_LINES = 3
 MIN_LINE_CHARS = 6
 APP_CONFIG = load_app_config()
+SRT = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
 MANUAL_LINE_BREAKS = {
     "定義で言うと強いプロダクトというかプロダクトが中心にあって": (
         "定義で言うと強いプロダクトというか",
@@ -206,8 +204,18 @@ def layout_caption_text(text: str) -> tuple[list[str], int]:
     return lines[:MAX_CAPTION_LINES], font_size
 
 
-def main() -> None:
+def reset_output_dir() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for pattern in ("full_*.png", "manifest.json"):
+        for path in OUT_DIR.glob(pattern):
+            if path.is_file():
+                path.unlink()
+
+
+def main() -> None:
+    reset_output_dir()
+    if SRT is None:
+        raise SystemExit("No subtitle file found. Run transcription or select a subtitle file before generating full overlays.")
     captions = parse_srt(SRT)
     roles = {}
     if SPEAKER_ROLES.exists():

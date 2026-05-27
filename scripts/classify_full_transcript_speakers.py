@@ -25,11 +25,11 @@ from project_paths import (
 import cv2
 import numpy as np
 
+from video_edit_app_config import load_app_config, selected_subtitle_path
 
 WORK = WORKSPACE_ROOT
-RAW_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio.srt"
-CORRECTED_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio_corrected.srt"
-SRT = CORRECTED_SRT if CORRECTED_SRT.exists() else RAW_SRT
+APP_CONFIG = load_app_config()
+SRT = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
 VIDEO = OUTPUT_VIDEOS / "ST7_7550_multicam_cut_1min_color_matched_base.mp4"
 OUT = OUTPUT_REPORTS / "full_transcript_speaker_roles.json"
 
@@ -133,6 +133,8 @@ def classify(captions: list[Caption]) -> dict[str, str]:
 
 
 def main() -> None:
+    if SRT is None:
+        raise SystemExit("No subtitle file found. Run transcription or select a subtitle file before classifying speakers.")
     captions = parse_srt(SRT)
     roles = classify(captions)
     motion_scores = mouth_motion_scores(captions)

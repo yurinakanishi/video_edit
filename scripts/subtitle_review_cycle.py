@@ -25,6 +25,7 @@ from project_paths import (
 )
 from typing import Any
 
+from transcription_quality import filter_low_confidence_segments, preprocess_audio, transcribe_options
 from video_edit_app_config import load_app_config, optional_path
 
 WORK = WORKSPACE_ROOT
@@ -211,18 +212,22 @@ def transcribe_clips(extracted: list[dict[str, Any]], model_name: str) -> list[d
     import whisper
 
     model = whisper.load_model(model_name)
+    options = transcribe_options(
+        APP_CONFIG,
+        prompt_extra="これは字幕レビュー用の短い音声クリップです。音声にない内容を追加しないでください。",
+    )
     reviewed: list[dict[str, Any]] = []
     for item in extracted:
-        result = model.transcribe(
-            str(WORK / item["clip"]),
-            language="ja",
-            task="transcribe",
-            fp16=False,
-            verbose=False,
-            condition_on_previous_text=False,
-            beam_size=5,
-            initial_prompt="これは日本語のインタビュー音声です。自然な日本語の発話として正確に文字起こししてください。",
+        clip_path = WORK / item["clip"]
+        audio_path = preprocess_audio(
+            clip_path,
+            REVIEW_DIR / "audio_preprocessed",
+            f"caption_{int(item['index']):03d}",
+            FFMPEG,
+            APP_CONFIG,
         )
+        result = model.transcribe(str(audio_path), **options)
+        result = filter_low_confidence_segments(result, APP_CONFIG)
         reviewed.append({**item, "review_transcript": str(result.get("text", "")).strip()})
     return reviewed
 
@@ -282,7 +287,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--corrections", type=Path, default=CORRECTIONS_JSON)
     parser.add_argument("--no-audio-clips", action="store_true")
     parser.add_argument("--transcribe-review", action="store_true")
-    parser.add_argument("--review-model", default="medium")
+    parser.add_argument("--review-model", default="large-v3")
     return parser.parse_args()
 
 

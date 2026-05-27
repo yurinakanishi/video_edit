@@ -25,6 +25,9 @@ source/video/
 source/audio/
 source/thumbnail/
 
+# Local project workspaces
+/projects/
+
 # FFmpeg segment and diagnostic outputs
 segments_*/
 sync_diagnostics/

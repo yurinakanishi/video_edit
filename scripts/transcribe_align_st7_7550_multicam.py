@@ -29,8 +29,16 @@ from typing import Any
 
 import numpy as np
 import whisper
-from whisper.utils import get_writer
 
+from transcription_quality import (
+    filter_low_confidence_segments,
+    preprocess_audio,
+    settings_match,
+    settings_payload,
+    transcribe_model_name,
+    transcribe_options,
+    write_srt,
+)
 from video_edit_app_config import load_app_config, optional_path
 
 APP_CONFIG = load_app_config()
@@ -58,25 +66,21 @@ def run(cmd: list[str]) -> None:
     subprocess.run(cmd, check=True)
 
 
-def transcribe(model: Any, media_path: Path, label: str) -> dict[str, Any]:
+def transcribe(model: Any, media_path: Path, label: str, model_name: str, options: dict[str, Any]) -> dict[str, Any]:
     OUT.mkdir(parents=True, exist_ok=True)
+    audio_path = preprocess_audio(media_path, OUT / "audio_preprocessed", label, FFMPEG, APP_CONFIG)
     json_path = OUT / f"{label}.json"
-    if json_path.exists():
+    srt_path = OUT / f"{label}.srt"
+    settings_path = OUT / f"{label}.settings.json"
+    settings = settings_payload(media_path, model_name, audio_path, options, APP_CONFIG)
+    if json_path.exists() and srt_path.exists() and settings_match(settings_path, settings):
         return json.loads(json_path.read_text(encoding="utf-8"))
 
-    result = model.transcribe(
-        str(media_path),
-        language="ja",
-        task="transcribe",
-        verbose=False,
-        fp16=False,
-    )
+    result = model.transcribe(str(audio_path), **options)
+    result = filter_low_confidence_segments(result, APP_CONFIG)
     json_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    srt_writer = get_writer("srt", str(OUT))
-    srt_writer(result, str(media_path), {"max_line_width": None, "max_line_count": None, "highlight_words": False})
-    generated_srt = OUT / f"{media_path.stem}.srt"
-    if generated_srt.exists():
-        generated_srt.replace(OUT / f"{label}.srt")
+    write_srt(srt_path, result.get("segments", []))
+    settings_path.write_text(json.dumps(settings, ensure_ascii=False, indent=2), encoding="utf-8")
     return result
 
 
@@ -244,11 +248,13 @@ def choose_offset(matches: list[WindowMatch], master_audio: np.ndarray, alt_audi
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    model = whisper.load_model("small")
+    model_name = transcribe_model_name(APP_CONFIG)
+    options = transcribe_options(APP_CONFIG)
+    model = whisper.load_model(model_name)
 
-    master = transcribe(model, MASTER, "1cam_master_ST7_7550_overlap_5min")
-    alt2 = transcribe(model, ALT_2CAM, "2cam_0H4A7189")
-    alt3 = transcribe(model, ALT_3CAM, "3cam_IMG_2316")
+    master = transcribe(model, MASTER, "1cam_master_ST7_7550_overlap_5min", model_name, options)
+    alt2 = transcribe(model, ALT_2CAM, "2cam_0H4A7189", model_name, options)
+    alt3 = transcribe(model, ALT_3CAM, "3cam_IMG_2316", model_name, options)
 
     master_wav = OUT / "wav" / "1cam_master.wav"
     alt2_wav = OUT / "wav" / "2cam_0H4A7189.wav"

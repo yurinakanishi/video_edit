@@ -36,6 +36,61 @@ WINDOW_SECONDS = 10.0
 HOP_SECONDS = 5.0
 
 
+def media_manifest() -> dict[str, object]:
+    manifest = nested(APP_CONFIG, "assets", "mediaManifest", default={})
+    if isinstance(manifest, dict) and manifest.get("files"):
+        return manifest
+    path = nested(APP_CONFIG, "assets", "mediaManifestPath", default="")
+    if path and Path(path).exists():
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    return {}
+
+
+def manifest_items(kind: str | None = None) -> list[dict[str, object]]:
+    manifest = media_manifest()
+    files = manifest.get("files", []) if isinstance(manifest, dict) else []
+    if not isinstance(files, list):
+        return []
+    items = [item for item in files if isinstance(item, dict)]
+    if kind is not None:
+        items = [item for item in items if item.get("kind") == kind]
+    return items
+
+
+def source_entries() -> tuple[tuple[str, Path] | None, list[tuple[str, Path]]]:
+    camera_roles = {"master", "camera2", "camera3", "camera4", "camera5", "camera6"}
+    cameras = [
+        (str(item.get("role") or ""), Path(str(item.get("path") or "")))
+        for item in manifest_items("video")
+        if item.get("role") in camera_roles and item.get("path")
+    ]
+    cameras = [(role, path) for role, path in cameras if path.exists()]
+    master = next(((role, path) for role, path in cameras if role == "master"), None)
+    if master:
+        alternates = [(role, path) for role, path in cameras if role != "master"]
+    else:
+        legacy_master = source_path("masterVideo")
+        master = ("master", legacy_master) if legacy_master else (cameras[0] if cameras else None)
+        alternates = cameras[1:] if cameras and master == cameras[0] else cameras
+
+    audio_sources = [
+        (str(item.get("role") or "external"), Path(str(item.get("path") or "")))
+        for item in manifest_items("audio")
+        if str(item.get("role") or "").startswith("external") and item.get("path")
+    ]
+    audio_sources = [(role, path) for role, path in audio_sources if path.exists()]
+    if not audio_sources:
+        external = source_path("externalAudio")
+        if external:
+            audio_sources = [("external", external)]
+    if not alternates and not media_manifest():
+        for role, key in (("camera2", "rightCloseVideo"), ("camera3", "leftCloseVideo")):
+            path = source_path(key)
+            if path:
+                alternates.append((role, path))
+    return master, alternates + audio_sources
+
+
 def source_path(name: str) -> Path | None:
     value = nested(APP_CONFIG, "assets", name, default="")
     return Path(value) if value else None
@@ -121,13 +176,14 @@ def best_window_offset(alt_env: np.ndarray, master_env: np.ndarray) -> tuple[flo
 
 
 def main() -> None:
-    master = source_path("masterVideo")
-    if not master:
-        raise RuntimeError("Set a master video before running auto sync.")
+    master_entry, alternate_entries = source_entries()
+    if not master_entry:
+        raise RuntimeError("Set a Camera 1 / master video before running auto sync.")
+    master_role, master = master_entry
 
     master_env = envelope(decode_audio(master))
     offsets: dict[str, dict[str, object]] = {
-        "master": {
+        master_role: {
             "path": str(master),
             "offsetSeconds": 0.0,
             "score": 1.0,
@@ -135,23 +191,34 @@ def main() -> None:
         }
     }
 
-    for role, key in (("right", "rightCloseVideo"), ("left", "leftCloseVideo"), ("external", "externalAudio")):
-        path = source_path(key)
-        if not path:
-            continue
-        alt_env = envelope(decode_audio(path))
-        offset_seconds, master_start, score = best_window_offset(alt_env, master_env)
-        offsets[role] = {
-            "path": str(path),
-            "offsetSeconds": offset_seconds,
-            "score": score,
-            "matchedMasterStartSeconds": master_start,
-            "note": "alt source time corresponding to master timeline 0",
-        }
+    for role, path in alternate_entries:
+        try:
+            alt_env = envelope(decode_audio(path))
+            offset_seconds, master_start, score = best_window_offset(alt_env, master_env)
+            offsets[role] = {
+                "path": str(path),
+                "offsetSeconds": offset_seconds,
+                "score": score,
+                "matchedMasterStartSeconds": master_start,
+                "note": "alt source time corresponding to master timeline 0",
+            }
+        except Exception as error:
+            offsets[role] = {
+                "path": str(path),
+                "offsetSeconds": 0.0,
+                "score": 0.0,
+                "matchedMasterStartSeconds": 0.0,
+                "note": f"sync failed: {error}",
+            }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({"offsets": offsets}, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"output": str(OUT), "offsets": offsets}, ensure_ascii=False, indent=2))
+    payload = {
+        "timelineRole": master_role,
+        "manifestPath": nested(APP_CONFIG, "assets", "mediaManifestPath", default=""),
+        "offsets": offsets,
+    }
+    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps({"output": str(OUT), **payload}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

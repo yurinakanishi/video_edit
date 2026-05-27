@@ -29,7 +29,7 @@ from typing import Iterable
 import cv2
 import numpy as np
 
-from video_edit_app_config import load_app_config, optional_path
+from video_edit_app_config import load_app_config, nested, optional_path
 
 JST = timezone(timedelta(hours=9))
 APP_CONFIG = load_app_config()
@@ -292,7 +292,77 @@ def by_label(clips: list[Clip], label: str) -> Clip | None:
     return next((clip for clip in clips if clip.label == label), None)
 
 
+def safe_name(value: str) -> str:
+    return "".join(char if char.isalnum() or char in {"-", "_"} else "_" for char in value).strip("_") or "clip"
+
+
+def media_manifest() -> dict:
+    manifest = nested(APP_CONFIG, "assets", "mediaManifest", default={})
+    if isinstance(manifest, dict) and manifest.get("files"):
+        return manifest
+    path = str(nested(APP_CONFIG, "assets", "mediaManifestPath", default="") or "")
+    if path and Path(path).exists():
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    return {}
+
+
+def manifest_camera_specs() -> list[tuple[str, str]]:
+    manifest = media_manifest()
+    files = manifest.get("files", []) if isinstance(manifest, dict) else []
+    if not isinstance(files, list):
+        return []
+    camera_roles = {"master", "camera2", "camera3", "camera4", "camera5", "camera6"}
+
+    def order(item: dict) -> int:
+        role = str(item.get("role") or "")
+        if role == "master":
+            return 1
+        if role.startswith("camera"):
+            try:
+                return int(role.replace("camera", ""))
+            except ValueError:
+                return 50
+        return 100
+
+    cameras = [
+        item
+        for item in files
+        if isinstance(item, dict) and item.get("kind") == "video" and item.get("role") in camera_roles and item.get("path")
+    ]
+    cameras = sorted(cameras, key=order)
+    return [(str(item.get("role") or ""), str(item.get("path") or "")) for item in cameras]
+
+
+def run_manifest_analysis() -> bool:
+    specs = manifest_camera_specs()
+    if not specs:
+        return False
+    clips: list[Clip] = []
+    for role, path in specs:
+        clip_path = Path(path)
+        if clip_path.exists():
+            clips.append(load_clip(f"{role} {clip_path.stem}", str(clip_path)))
+    if not clips:
+        return False
+    summary = write_summary(clips)
+    master = next((clip for clip in clips if clip.label.startswith("master ")), clips[0])
+    others = [clip for clip in clips if clip is not master]
+    outputs: list[str] = [str(summary)]
+    if others:
+        outputs.extend(str(path) for path in make_group_sheet("manifest_multicam", master, others, [0.10, 0.45, 0.80]))
+        for other in others:
+            sheet = make_pair_sheet(f"pair_{safe_name(master.label)}_{safe_name(other.label)}", master, other)
+            if sheet:
+                outputs.append(str(sheet))
+    payload = {"mode": "manifest", "clips": len(clips), "outputs": outputs}
+    (OUT / "manifest_blocking_analysis.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(payload, ensure_ascii=False, indent=2))
+    return True
+
+
 def main() -> None:
+    if run_manifest_analysis():
+        return
     clips = load_existing_clips(
         [
             ("1cam ST7_7549", ("1cam", "ST7_7549.MP4")),

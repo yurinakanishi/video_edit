@@ -88,8 +88,6 @@ def run_generators(mode: str) -> None:
     subprocess.run([sys.executable, str(SCRIPTS / "generate_title_png_overlay.py")], check=True, cwd=WORK)
     if mode == "none":
         return
-    if mode == "full":
-        subprocess.run([sys.executable, str(SCRIPTS / "apply_st7_7550_subtitle_corrections.py")], check=True, cwd=WORK)
     subprocess.run([sys.executable, str(MODES[mode]["generator"])], check=True, cwd=WORK)
 
 

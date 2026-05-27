@@ -47,6 +47,97 @@ def nested(config: dict[str, Any], *keys: str, default: Any = None) -> Any:
     return value
 
 
+SUBTITLE_EXTENSIONS = {".srt", ".ass", ".vtt"}
+
+
+def _normalize_extensions(extensions: tuple[str, ...] | list[str] | set[str] | None) -> set[str]:
+    if not extensions:
+        return SUBTITLE_EXTENSIONS
+    return {item.lower() if item.startswith(".") else f".{item.lower()}" for item in extensions}
+
+
+def _existing_subtitle_path(value: Any, extensions: set[str]) -> Path | None:
+    if not value:
+        return None
+    path = Path(str(value))
+    if path.suffix.lower() not in extensions:
+        return None
+    try:
+        if path.exists() and path.is_file():
+            return path
+    except OSError:
+        return None
+    return None
+
+
+def _append_unique(paths: list[Path], seen: set[str], path: Path | None) -> None:
+    if path is None:
+        return
+    key = str(path.resolve()).lower()
+    if key in seen:
+        return
+    seen.add(key)
+    paths.append(path)
+
+
+def subtitle_candidates(
+    config: dict[str, Any] | None = None,
+    *,
+    extensions: tuple[str, ...] | list[str] | set[str] | None = None,
+    include_legacy: bool = False,
+) -> list[Path]:
+    app_config = config if isinstance(config, dict) else load_app_config()
+    allowed_extensions = _normalize_extensions(extensions)
+    paths: list[Path] = []
+    seen: set[str] = set()
+
+    manifest = nested(app_config, "assets", "mediaManifest", default={})
+    manifest_items = []
+    if isinstance(manifest, dict):
+        for key in ("subtitles", "files"):
+            items = manifest.get(key)
+            if isinstance(items, list):
+                manifest_items.extend(items)
+    for item in manifest_items:
+        if not isinstance(item, dict):
+            continue
+        if item.get("kind") != "subtitle" or item.get("role") == "ignore":
+            continue
+        _append_unique(paths, seen, _existing_subtitle_path(item.get("path"), allowed_extensions))
+
+    transcript_root = OUTPUT_TRANSCRIPTS / "manifest_sources"
+    for candidate in (transcript_root / "primary.srt", transcript_root / "master.srt"):
+        _append_unique(paths, seen, _existing_subtitle_path(candidate, allowed_extensions))
+
+    for root in (transcript_root, OUTPUT_TRANSCRIPTS):
+        try:
+            if root.exists():
+                for candidate in sorted(root.rglob("*")):
+                    _append_unique(paths, seen, _existing_subtitle_path(candidate, allowed_extensions))
+        except OSError:
+            continue
+
+    if include_legacy:
+        legacy_root = SOURCE_SUBTITLES / "video_original_audio"
+        for candidate in (
+            legacy_root / "ST7_7550_overlap_5min_original_audio_corrected.srt",
+            legacy_root / "ST7_7550_overlap_5min_original_audio.srt",
+        ):
+            _append_unique(paths, seen, _existing_subtitle_path(candidate, allowed_extensions))
+
+    return paths
+
+
+def selected_subtitle_path(
+    config: dict[str, Any] | None = None,
+    *,
+    extensions: tuple[str, ...] | list[str] | set[str] | None = None,
+    include_legacy: bool = False,
+) -> Path | None:
+    candidates = subtitle_candidates(config, extensions=extensions, include_legacy=include_legacy)
+    return candidates[0] if candidates else None
+
+
 def optional_path(config: dict[str, Any], *keys: str, default: Path) -> Path:
     value = nested(config, *keys)
     if not value:

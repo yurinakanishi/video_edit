@@ -77,4 +77,6 @@ python .\scripts\analyze_person_edit_metadata.py `
 
 The reference profile is used by the Electron dropped-file interview renderer as a target for person size, crop placement, and simple visual tone.
 
+Electron dropped-file interview renders can also accept multiple still-image inserts. Text/diagram images are shown static near matching transcript text when possible; photo-like images are analyzed for faces or visual focus and get subtle person-, landscape-, or object-appropriate pan/zoom with fade in/out.
+
 For the detailed workflow, see `docs/video_edit_method.md`.

@@ -137,7 +137,7 @@ $env:PYTHONUTF8='1'
 & 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' `
   -m whisper `
   '.\video_original_audio\ST7_7550_overlap_5min_original_audio.wav' `
-  --model small `
+  --model large-v3 `
   --language ja `
   --task transcribe `
   --output_dir '.\subs_video_original_audio' `
@@ -192,7 +192,7 @@ Optional high-resolution retranscription of the review clips:
 ```powershell
 & 'C:\Users\yurin\AppData\Local\Python\pythoncore-3.14-64\python.exe' .\subtitle_review_cycle.py `
   --transcribe-review `
-  --review-model medium
+  --review-model large-v3
 ```
 
 Current manual corrections include:
@@ -1279,6 +1279,18 @@ python .\scripts\generate_thumbnail_candidates.py --import-assets
 ```
 
 After generating, inspect the mode/color-specific contact sheet, for example `output\thumbnails\thumbnail_standard_candidates_contact_sheet.jpg` or `output\thumbnails\thumbnail_standard_red_candidates_contact_sheet.jpg`, and confirm the title, hook, and logo do not cover faces or look padded unevenly. The candidate count should match the number of `source\thumbnail\etype260515_p_takei\ST-*.jpg` files. Mode names are included in generated PNG, contact sheet, and analysis JSON filenames; non-yellow color names are also included so different layout/color options do not overwrite each other.
+
+## Still Image Inserts
+
+Electron can pass multiple still images through the runtime app config as `assets.stillImages`. `render_app_interview.py` treats them as video-only inserts: the selected audio continues underneath, while the image replaces the camera video for a short segment.
+
+Current rules:
+
+- Text or diagram-like stills are shown without zoom/pan, with fade in/out.
+- Photo-like stills are analyzed before insertion. If a face is detected, the image is treated as a person photo and the pan/zoom keeps the face near the focus point. If no face is detected, the renderer estimates a focus point from edges and brightness, then chooses a landscape drift or object-focused push based on the image aspect ratio.
+- If a still has useful text, the renderer tries to match that text against the transcript captions and inserts the still near the matching discussion point.
+- Text can come from a same-name `.txt` sidecar file, optional `pytesseract` OCR if installed, or explicit app config metadata. The filename is used only as fallback matching text, not as the reason to classify a photo as text.
+- If no good transcript match is found, stills are spaced evenly through the selected output duration.
 
 ## Verification Commands
 

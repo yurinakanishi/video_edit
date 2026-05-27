@@ -339,7 +339,6 @@ def render_overlays_and_sound(
     if mode == "none":
         regenerate_subtitles = False
     if regenerate_subtitles and mode == "full":
-        run([sys.executable, str(SCRIPTS / "apply_st7_7550_subtitle_corrections.py")])
         if reclassify_speakers or not SPEAKER_ROLES.exists():
             run([sys.executable, str(SCRIPTS / "classify_full_transcript_speakers.py")])
     if regenerate_subtitles:

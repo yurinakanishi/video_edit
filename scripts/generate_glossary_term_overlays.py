@@ -7,14 +7,13 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-from project_paths import OUTPUT_OVERLAYS, ROOT as WORKSPACE_ROOT, SOURCE_SUBTITLES
-from video_edit_app_config import load_app_config, nested
+from project_paths import OUTPUT_OVERLAYS, ROOT as WORKSPACE_ROOT
+from video_edit_app_config import load_app_config, nested, selected_subtitle_path
 
 
 WORK = WORKSPACE_ROOT
-RAW_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio.srt"
-CORRECTED_SRT = SOURCE_SUBTITLES / "video_original_audio" / "ST7_7550_overlap_5min_original_audio_corrected.srt"
-SRT = CORRECTED_SRT if CORRECTED_SRT.exists() else RAW_SRT
+APP_CONFIG = load_app_config()
+SRT = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
 OUT_DIR = OUTPUT_OVERLAYS / "glossary_term_overlays"
 FONT_PATH = Path(r"C:\Windows\Fonts\YuGothB.ttc")
 
@@ -62,8 +61,7 @@ DEFAULT_GLOSSARY_TERMS = [
 
 
 def configured_terms() -> list[dict[str, object]]:
-    config = load_app_config()
-    terms = nested(config, "glossary", "terms", default=None)
+    terms = nested(APP_CONFIG, "glossary", "terms", default=None)
     if not isinstance(terms, list):
         return DEFAULT_GLOSSARY_TERMS
     normalized = []
@@ -218,9 +216,20 @@ def render_card(terms: list[dict[str, str]]) -> Image.Image:
     return canvas
 
 
-def main() -> None:
+def reset_output_dir() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for pattern in ("glossary_*.png", "manifest.json"):
+        for path in OUT_DIR.glob(pattern):
+            if path.is_file():
+                path.unlink()
+
+
+def main() -> None:
+    reset_output_dir()
     manifest = []
+    if SRT is None:
+        (OUT_DIR / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        return
     for caption in parse_srt(SRT):
         terms = detect_terms(caption.text)
         if not terms:

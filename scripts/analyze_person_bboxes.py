@@ -96,14 +96,11 @@ def load_face_detectors() -> dict[str, cv2.CascadeClassifier]:
     }
 
 
-def load_yolo(model_name: str) -> Any:
+def try_load_yolo(model_name: str) -> Any | None:
     try:
         from ultralytics import YOLO
-    except ImportError as exc:
-        raise RuntimeError(
-            "ultralytics is required for person detection. Install it with "
-            "`python -m pip install ultralytics` in the Python environment used for this project."
-        ) from exc
+    except ImportError:
+        return None
     return YOLO(model_name)
 
 
@@ -367,6 +364,48 @@ def extract_persons(result: Any, width: int, height: int) -> list[dict[str, Any]
     return sorted(persons, key=lambda item: item["area_ratio"], reverse=True)
 
 
+def persons_from_faces(faces: list[dict[str, Any]], width: int, height: int) -> list[dict[str, Any]]:
+    persons: list[dict[str, Any]] = []
+    for face in faces:
+        fx1, fy1, fx2, fy2 = [float(value) for value in face["bbox"].values()]
+        face_width = max(1.0, fx2 - fx1)
+        face_height = max(1.0, fy2 - fy1)
+        face_center_x = fx1 + face_width / 2
+        x1 = max(0.0, face_center_x - face_width * 1.35)
+        x2 = min(float(width), face_center_x + face_width * 1.35)
+        y1 = max(0.0, fy1 - face_height * 0.85)
+        y2 = min(float(height), fy2 + face_height * 3.4)
+        box_width = max(0.0, x2 - x1)
+        box_height = max(0.0, y2 - y1)
+        center_x = x1 + box_width / 2
+        center_y = y1 + box_height / 2
+        area_ratio = (box_width * box_height) / (width * height) if width and height else 0.0
+        center_x_ratio = center_x / width if width else 0.0
+        center_y_ratio = center_y / height if height else 0.0
+        persons.append(
+            {
+                "bbox": {
+                    "x1": round(x1, 2),
+                    "y1": round(y1, 2),
+                    "x2": round(x2, 2),
+                    "y2": round(y2, 2),
+                },
+                "bbox_xyxy": [round(x1, 2), round(y1, 2), round(x2, 2), round(y2, 2)],
+                "center": {"x": round(center_x, 2), "y": round(center_y, 2)},
+                "center_xy": [round(center_x, 2), round(center_y, 2)],
+                "center_ratio": [round(center_x_ratio, 4), round(center_y_ratio, 4)],
+                "area_ratio": round(area_ratio, 5),
+                "confidence": round(min(0.95, float(face.get("area_ratio", 0.0)) * 8 + 0.35), 4),
+                "position": position_label(center_x_ratio),
+                "shot_size": size_label(area_ratio),
+                "detector": "opencv_face_fallback",
+                "_center_tuple": (center_x, center_y),
+                "_bbox_tuple": (x1, y1, x2, y2),
+            }
+        )
+    return sorted(persons, key=lambda item: item["area_ratio"], reverse=True)
+
+
 def summarize_frames(frames: list[dict[str, Any]]) -> dict[str, Any]:
     sampled = len(frames)
     present = [frame for frame in frames if frame["persons"]]
@@ -410,7 +449,7 @@ def output_path_for(video: Path, output_dir: Path) -> Path:
     return output_dir / f"{safe_stem}_person_bboxes.json"
 
 
-def analyze_video(video: Path, model: Any, args: argparse.Namespace) -> Path:
+def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> Path:
     metadata = video_metadata(video)
     width = int(metadata["width"])
     height = int(metadata["height"])
@@ -438,12 +477,15 @@ def analyze_video(video: Path, model: Any, args: argparse.Namespace) -> Path:
         ok, frame = frame_at(cap, time_seconds)
         if not ok or frame is None:
             break
-        yolo_kwargs: dict[str, Any] = {"classes": [PERSON_CLASS_ID], "conf": args.confidence, "verbose": False}
-        if args.device:
-            yolo_kwargs["device"] = args.device
-        results = model(frame, **yolo_kwargs)
         faces = detect_faces(frame, face_detectors)
-        persons = extract_persons(results[0], width, height) if results else []
+        if model is not None:
+            yolo_kwargs: dict[str, Any] = {"classes": [PERSON_CLASS_ID], "conf": args.confidence, "verbose": False}
+            if args.device:
+                yolo_kwargs["device"] = args.device
+            results = model(frame, **yolo_kwargs)
+            persons = extract_persons(results[0], width, height) if results else []
+        else:
+            persons = persons_from_faces(faces, width, height)
         for person in persons:
             face = face_for_person(person, faces)
             face_direction = semantic_face_direction(person, face)
@@ -472,7 +514,8 @@ def analyze_video(video: Path, model: Any, args: argparse.Namespace) -> Path:
         "schema_version": "person-bboxes/v1",
         "video": video.name,
         "video_path": str(video),
-        "model": str(args.model),
+        "model": str(args.model) if model is not None else "opencv-face-fallback",
+        "detector_backend": "ultralytics-yolo" if model is not None else "opencv-face-fallback",
         "confidence_threshold": args.confidence,
         "fps_sample": args.fps_sample,
         "sample_interval": round(interval, 4),
@@ -498,7 +541,12 @@ def main() -> None:
     if not videos:
         raise SystemExit("No source videos found.")
 
-    model = load_yolo(args.model)
+    model = try_load_yolo(args.model)
+    if model is None:
+        print(
+            "ultralytics is not installed; using OpenCV face fallback for person edit metadata.",
+            file=sys.stderr,
+        )
     outputs = []
     for index, video in enumerate(videos, start=1):
         print(f"[{index}/{len(videos)}] analyzing {video}", file=sys.stderr)

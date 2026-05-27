@@ -28,7 +28,7 @@ WORK = WORKSPACE_ROOT
 OUTPUT = OUTPUT_OVERLAYS / "ai_engineer_now_title.png"
 FONT_PATH = Path(r"C:\Windows\Fonts\YuGothB.ttc")
 
-TEXT = "AIエンジニアの今"
+DEFAULT_TEXT = "AIエンジニアの今"
 PURPLE = (170, 28, 214, 255)
 WHITE = (255, 255, 255, 250)
 LIGHT_PURPLE = (245, 224, 255, 250)
@@ -72,10 +72,20 @@ def draw_tracked_text(
             x += TRACKING
 
 
+def configured_title_text() -> str:
+    value = nested(APP_CONFIG, "style", "titleText", default=None)
+    if value is None:
+        return DEFAULT_TEXT
+    return " ".join(str(value).split())
+
+
 def main() -> None:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     font_size = round(int_value(APP_CONFIG, "style", "titleSize", default=64) * TITLE_SCALE)
-    text = TEXT
+    text = configured_title_text()
+    if not text:
+        Image.new("RGBA", (1, 1), (0, 0, 0, 0)).save(OUTPUT)
+        return
     accent = hex_rgba(nested(APP_CONFIG, "style", "highlightColor"), default=PURPLE)
     alpha = opacity_alpha(nested(APP_CONFIG, "style", "boxOpacity"), 250)
     white = (255, 255, 255, max(alpha, 180))

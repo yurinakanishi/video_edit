@@ -385,8 +385,6 @@ def render(args: argparse.Namespace) -> Path:
     config = MODES[args.mode]
     if not args.skip_subtitle_regeneration:
         run([sys.executable, str(SCRIPTS / "generate_title_png_overlay.py")])
-        if args.mode == "full":
-            run([sys.executable, str(SCRIPTS / "apply_st7_7550_subtitle_corrections.py")])
         if args.mode != "none":
             run([sys.executable, str(config["generator"])])
         if args.term_explanations:

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar">
+      <header class="app-header">
         <div class="brand-block">
           <div class="app-mark">VE</div>
           <div>
@@ -16,35 +16,55 @@
             <p id="workspacePath"></p>
           </div>
         </div>
-        <nav class="steps" aria-label="Workflow">
-          <button type="button" class="step-button active" data-section="assets">素材</button>
-          <button type="button" class="step-button" data-section="edit">編集</button>
-          <button type="button" class="step-button" data-section="style">字幕・ロゴ</button>
-          <button type="button" class="step-button" data-section="workflow">工程</button>
-          <button type="button" class="step-button" data-section="run">Codex</button>
+        <nav class="steps" aria-label="Workflow" role="tablist">
+          <button type="button" class="step-button active" data-section="assets" role="tab" aria-selected="true">素材</button>
+          <button type="button" class="step-button" data-section="edit" role="tab" aria-selected="false">編集</button>
+          <button type="button" class="step-button" data-section="style" role="tab" aria-selected="false">字幕・ロゴ</button>
+          <button type="button" class="step-button" data-section="workflow" role="tab" aria-selected="false">工程</button>
+          <button type="button" class="step-button" data-section="run" role="tab" aria-selected="false">AI request</button>
         </nav>
-        <div class="server-status" id="serverStatus">
-          <span class="status-dot idle"></span>
-          <span>Codex idle</span>
+        <div class="header-tools">
+          <div class="server-status" id="serverStatus">
+            <span class="status-dot idle"></span>
+            <span>AI idle</span>
+          </div>
+          <div class="language-switcher" aria-label="Display language">
+            <button type="button" id="languageMenuButton" class="language-menu-button" aria-label="Display language" aria-haspopup="true" aria-expanded="false" title="Display language">i18n</button>
+            <div class="language-popover" id="languagePopover" hidden role="menu">
+              <button type="button" class="selected" data-language="ja" role="menuitem">日本語</button>
+              <button type="button" data-language="en" role="menuitem">EN</button>
+            </div>
+          </div>
         </div>
-        <div class="run-summary">
-          <strong>実行前チェック</strong>
-          <ul id="runChecklist"></ul>
-        </div>
-      </aside>
+      </header>
 
       <main class="workspace">
         <section class="topbar">
           <div>
-            <h2>Interview Multicam Builder</h2>
-            <p>Drop sources, choose edit rules, then send the job to Codex app-server.</p>
+            <h2>Video editing workspace</h2>
+            <p>Add media, choose edit settings, and run the job.</p>
           </div>
           <div class="topbar-actions">
-            <button type="button" class="icon-button" id="openOutput" title="Open selected output">↗</button>
-            <button type="button" id="openThumbnails">Open thumbnails</button>
-            <button type="button" id="runPreset">Run preset script</button>
-            <button type="button" class="primary-button" id="sendRequest">Run with Codex</button>
+            <button type="button" id="openOutput">Review generated video</button>
+            <button type="button" id="openThumbnails">Review thumbnail candidates</button>
+            <button type="button" id="runPreset">Run selected workflow step</button>
+            <button type="button" class="primary-button" id="sendRequest">Ask AI to edit</button>
           </div>
+        </section>
+
+        <section class="output-preview" id="outputPreview" hidden>
+          <div class="output-preview-heading">
+            <div>
+              <h3 id="outputPreviewTitle">Generated file preview</h3>
+              <p id="outputPreviewSummary">Choose which generated files to review.</p>
+            </div>
+            <div class="output-preview-actions">
+              <button type="button" id="refreshOutputPreview">Refresh</button>
+              <button type="button" id="openPreviewFolder">Open in Explorer</button>
+            </div>
+          </div>
+          <p id="outputPreviewPath" class="output-preview-location"></p>
+          <div class="output-preview-list" id="outputPreviewList"></div>
         </section>
 
         <section class="content-grid">
@@ -53,143 +73,129 @@
               <h3>Project</h3>
               <span id="projectLabel">No project selected</span>
             </div>
-            <div class="project-grid">
+            <div class="project-card">
+              <div class="project-current">
+                <span>Current project</span>
+                <strong id="projectNamePreview">No project selected</strong>
+              </div>
               <label>
                 Project name
                 <input id="projectName" placeholder="例: interview-client-a" />
               </label>
-              <label>
-                Project ID
-                <input id="projectId" placeholder="auto from name" />
-              </label>
-              <label>
-                Project folder
-                <input id="projectRoot" readonly />
-              </label>
+              <input id="projectId" type="hidden" />
               <div class="project-actions">
-                <button type="button" id="createProject">Create / select project</button>
-                <button type="button" id="copyProjectAssets">Copy selected sources</button>
+                <button type="button" class="primary-button" id="createProject">Start this project</button>
+                <button type="button" id="changeProject">Switch project</button>
+                <button type="button" id="copyProjectAssets">Save selected material</button>
+                <button type="button" class="danger-button" id="deleteProject">Delete project</button>
               </div>
-              <label>
-                Project source
-                <input id="projectSourceRoot" readonly />
-              </label>
-              <label>
-                Project output
-                <input id="projectOutputRoot" readonly />
-              </label>
             </div>
           </div>
 
           <div class="panel wide" data-panel="assets">
             <div class="panel-heading">
               <h3>素材</h3>
-              <span>camera / audio / logo</span>
+              <span id="mediaManifestSummary">素材フォルダ未解析</span>
             </div>
+            <div class="material-ingest-grid">
+              <div class="drop-zone folder-drop-zone" data-slot="mediaDirectory">
+                <strong>素材</strong>
+                <span>フォルダ・単体ファイル・複数ファイルをまとめて自動分類します</span>
+                <code id="mediaDirectoryLabel">not selected</code>
+                <div class="folder-actions">
+                  <button type="button" id="pickMaterialDirectory">Folder</button>
+                  <button type="button" id="pickMaterialFiles">Files</button>
+                  <button type="button" class="primary-button" id="analyzeMaterialDirectory">解析</button>
+                  <button type="button" id="cancelMaterialAnalysis" disabled>Cancel</button>
+                </div>
+                <div class="ingest-progress" id="ingestProgress">
+                  <div class="ingest-progress-bar">
+                    <span id="ingestProgressFill"></span>
+                  </div>
+                  <div class="ingest-progress-meta">
+                    <strong id="ingestProgressPercent">0%</strong>
+                    <span id="ingestProgressText">解析待ち</span>
+                  </div>
+                  <code id="ingestProgressPath">-</code>
+                </div>
+              </div>
+              <div id="mediaManifestList" class="manifest-list">No material manifest.</div>
+            </div>
+            <div id="analysisResultList" class="analysis-result-list">解析結果はまだありません。</div>
+            <h4 class="asset-section-heading">Manual material overrides</h4>
             <div class="drop-grid">
               <div class="drop-zone" data-slot="masterVideo">
                 <strong>日の動画・マスター</strong>
                 <span>1cam / base timeline</span>
-                <code id="masterVideoLabel">not selected</code>
+                <div id="masterVideoLabel" class="asset-preview empty">not selected</div>
                 <button type="button" data-pick="masterVideo">Select</button>
               </div>
               <div class="drop-zone" data-slot="rightCloseVideo">
                 <strong>右からのアップ</strong>
                 <span>person 1 close-up</span>
-                <code id="rightCloseVideoLabel">not selected</code>
+                <div id="rightCloseVideoLabel" class="asset-preview empty">not selected</div>
                 <button type="button" data-pick="rightCloseVideo">Select</button>
               </div>
               <div class="drop-zone" data-slot="leftCloseVideo">
                 <strong>左からのアップ</strong>
                 <span>person 2 / alternate</span>
-                <code id="leftCloseVideoLabel">not selected</code>
+                <div id="leftCloseVideoLabel" class="asset-preview empty">not selected</div>
                 <button type="button" data-pick="leftCloseVideo">Select</button>
               </div>
               <div class="drop-zone" data-slot="referenceVideo">
                 <strong>参考動画</strong>
-                <span>style reference / under 60s</span>
-                <code id="referenceVideoLabel">not selected</code>
+                <span>手動選択 / style reference under 60s</span>
+                <div id="referenceVideoLabel" class="asset-preview empty">not selected</div>
                 <button type="button" data-pick="referenceVideo">Select</button>
               </div>
               <div class="drop-zone" data-slot="externalAudio">
                 <strong>別録り音声</strong>
                 <span>wav / mp3 / mp4</span>
-                <code id="externalAudioLabel">not selected</code>
+                <div id="externalAudioLabel" class="asset-preview empty">not selected</div>
                 <button type="button" data-pick="externalAudio">Select</button>
               </div>
               <div class="drop-zone" data-slot="logo">
                 <strong>右上ロゴ</strong>
                 <span>png / jpg</span>
-                <code id="logoLabel">current repo logo</code>
+                <div id="logoLabel" class="asset-preview empty">not selected</div>
                 <button type="button" data-pick="logo">Select</button>
               </div>
-              <div class="field-block output-block">
-                <label for="outputPath">Output</label>
-                <div class="inline-field">
-                  <input id="outputPath" readonly />
-                  <button type="button" id="pickOutput">Choose</button>
-                </div>
+              <div class="drop-zone" data-slot="stillImages">
+                <strong>静止画インサート</strong>
+                <span>drop multiple png / jpg / webp</span>
+                <code id="stillImagesLabel">none</code>
+                <button type="button" data-pick="stillImages">Add</button>
               </div>
-            </div>
-          </div>
-
-          <div class="panel wide" data-panel="assets">
-            <div class="panel-heading">
-              <h3>Project Paths</h3>
-              <span>tools / source root</span>
-            </div>
-            <div class="settings-grid">
-              <label>
-                2cam / 3cam source root
-                <div class="inline-field">
-                  <input id="sourceRoot" />
-                  <button type="button" data-pick-dir="sourceRoot">Folder</button>
+              <div id="stillImagesList" class="asset-list">No still inserts.</div>
+              <div class="field-block output-block">
+                <div class="output-target-heading">
+                  <strong>Video to create</strong>
+                  <span>This is where the edited video will be saved.</span>
                 </div>
-              </label>
-              <label>
-                Python
-                <div class="inline-field">
-                  <input id="pythonPath" />
-                  <button type="button" data-pick-tool="pythonPath">File</button>
-                </div>
-              </label>
-              <label>
-                FFmpeg
-                <div class="inline-field">
-                  <input id="ffmpegPath" value="C:\ProgramData\chocolatey\bin\ffmpeg.exe" />
-                  <button type="button" data-pick-tool="ffmpegPath">File</button>
-                </div>
-              </label>
-              <label>
-                FFprobe
-                <div class="inline-field">
-                  <input id="ffprobePath" value="C:\ProgramData\chocolatey\bin\ffprobe.exe" />
-                  <button type="button" data-pick-tool="ffprobePath">File</button>
-                </div>
-              </label>
+                <input id="outputPath" type="hidden" />
+                <div id="outputPathPreview" class="asset-preview output-target-preview empty">not selected</div>
+                <button type="button" id="pickOutput">Choose save location</button>
+              </div>
             </div>
           </div>
 
           <div class="panel" data-panel="edit">
             <div class="panel-heading">
               <h3>編集</h3>
-              <span>timeline rules</span>
+              <span>edit settings</span>
             </div>
             <div class="field-stack">
               <label>
                 Edit preset
                 <select id="editPreset">
-                  <option value="current-1min-color">Current 1-minute color-matched script</option>
-                  <option value="current-onepass">Current 1-minute one-pass script</option>
-                  <option value="current-5min">Current 5-minute PNG overlay script</option>
-                  <option value="new-interview">New interview multicam from dropped files</option>
+                  <option value="new-interview">New interview edit from selected media</option>
                 </select>
               </label>
               <label>
                 Multicam switching
                 <select id="multicamMode">
                   <option value="speaker-aware">Speaker-aware interview cuts</option>
-                  <option value="manual-plan">Manual plan from existing scripts</option>
+                  <option value="manual-plan">Use saved manual plan</option>
                   <option value="master-first">Master first, close-ups for emphasis</option>
                 </select>
               </label>
@@ -226,19 +232,19 @@
               </label>
               <label class="toggle-row">
                 <input id="keepUncut" type="checkbox" />
-                <span>Keep temporary uncut render</span>
+                <span>Keep uncut draft video</span>
               </label>
               <div class="three-col">
                 <label>
-                  Min silence
+                  Silence to shorten
                   <input id="minSilence" type="number" min="0.5" step="0.1" value="3.0" />
                 </label>
                 <label>
-                  Keep silence
+                  Silence to keep
                   <input id="keepSilence" type="number" min="0" step="0.1" value="2.0" />
                 </label>
                 <label>
-                  Noise
+                  Silence threshold
                   <input id="silenceNoise" value="-30dB" />
                 </label>
               </div>
@@ -248,7 +254,7 @@
           <div class="panel" data-panel="style">
             <div class="panel-heading">
               <h3>字幕</h3>
-              <span>text overlays</span>
+              <span>subtitle and logo settings</span>
             </div>
             <div class="segmented" role="group" aria-label="Subtitle mode">
               <button type="button" class="selected" data-subtitle-mode="full">Full</button>
@@ -265,12 +271,12 @@
                 <input id="highlightColor" type="color" value="#ae48e0" />
               </label>
               <label>
-                Box opacity
+                Subtitle background
                 <input id="boxOpacity" type="range" min="0" max="100" value="72" />
               </label>
               <label>
-                Top-left text
-                <input id="titleText" value="AIエンジニアの今" />
+                Corner title
+                <input id="titleText" value="" />
               </label>
               <div class="two-col">
                 <label>
@@ -283,7 +289,7 @@
                 </label>
               </div>
               <label>
-                Punchline lines
+                Catchy subtitle lines
                 <textarea id="punchlineText" spellcheck="false"></textarea>
               </label>
               <div class="glossary-editor">
@@ -312,34 +318,26 @@
           <div class="panel wide" data-panel="workflow">
             <div class="panel-heading">
               <h3>工程</h3>
-              <span>method-file actions</span>
+              <span>Choose what to run</span>
             </div>
             <div class="workflow-grid">
               <label>
-                Direct action
+                Step to run
                 <select id="workflowAction">
-                  <option value="render-selected">Render selected preset</option>
-                  <option value="subtitle-review">Review and correct subtitles</option>
-                  <option value="generate-punchlines">Regenerate punchline overlays</option>
-                  <option value="generate-full-overlays">Regenerate full transcript overlays</option>
-                  <option value="generate-glossary-overlays">Regenerate glossary term overlays</option>
-                  <option value="generate-thumbnails">Generate thumbnail candidates</option>
-                  <option value="analyze-blocking">Analyze camera blocking</option>
-                  <option value="analyze-person-edit-metadata">Analyze persons and build edit plans</option>
+                  <option value="render-selected">Create video from selected settings</option>
+                  <option value="generate-punchlines">Create catchy subtitle images</option>
+                  <option value="generate-full-overlays">Create full subtitle images</option>
+                  <option value="generate-glossary-overlays">Create glossary explanation images</option>
+                  <option value="generate-thumbnails">Create thumbnail candidates</option>
+                  <option value="analyze-blocking">Analyze camera framing</option>
+                  <option value="analyze-person-edit-metadata">Analyze people for camera cuts</option>
                   <option value="analyze-reference-video">Analyze reference video</option>
-                  <option value="auto-sync-dropped">Auto-sync dropped cameras</option>
-                  <option value="transcribe-align">Transcript-guided sync</option>
-                  <option value="compare-all-cameras">Compare all camera transcripts</option>
-                  <option value="refine-strong-wave">Refine strong waveform offsets</option>
-                  <option value="build-base">Build strict multicam base</option>
-                  <option value="transcribe-sound2">Transcribe sound-2</option>
-                  <option value="compare-sound2">Compare sound-2 transcript</option>
-                  <option value="refine-sound2">Refine sound-2 offset</option>
-                  <option value="replace-sound2">Replace audio with sound-2</option>
-                  <option value="shorten-input">Shorten selected input video</option>
-                  <option value="extract-still">Extract preview still</option>
-                  <option value="verify-duration">Verify output duration</option>
-                  <option value="verify-audio">Verify output audio stream</option>
+                  <option value="auto-sync-dropped">Sync selected camera files</option>
+                  <option value="transcribe-dropped">Transcribe selected media</option>
+                  <option value="shorten-input">Shorten silence in selected video</option>
+                  <option value="extract-still">Save a still image</option>
+                  <option value="verify-duration">Check output duration</option>
+                  <option value="verify-audio">Check output audio</option>
                 </select>
               </label>
               <label>
@@ -365,93 +363,134 @@
                   <option value="white">White</option>
                 </select>
               </label>
-              <label>
-                Render script
-                <select id="renderScript">
-                  <option value="render_1min_color_matched.py">1-minute color matched</option>
-                  <option value="render_1min_onepass_ffmpeg.py">1-minute one-pass</option>
-                  <option value="render_final_png_overlays.py">5-minute final overlays</option>
-                  <option value="render_app_interview.py">Dropped-file interview render</option>
-                </select>
-              </label>
-              <label>
-                Verification / input video
-                <div class="inline-field">
-                  <input id="inputVideoPath" />
-                  <button type="button" data-pick-tool="inputVideoPath">File</button>
+              <details class="advanced-settings">
+                <summary>Advanced settings</summary>
+                <div class="advanced-settings-grid">
+                  <label>
+                    Render method
+                    <select id="renderScript">
+                      <option value="render_app_interview.py">Interview edit from selected media</option>
+                    </select>
+                  </label>
+                  <label>
+                    Transcription quality
+                    <input id="transcribeModel" value="large-v3" />
+                  </label>
+                  <div class="three-col">
+                    <label>
+                      Language
+                      <input id="transcribeLanguage" value="ja" />
+                    </label>
+                    <label>
+                      Accuracy
+                      <input id="transcribeBeamSize" type="number" min="1" max="10" step="1" value="5" />
+                    </label>
+                    <label>
+                      Wording variation
+                      <input id="transcribeTemperature" type="number" min="0" max="1" step="0.1" value="0" />
+                    </label>
+                  </div>
+                  <label>
+                    Terms to prioritize in transcription
+                    <textarea id="transcribePromptTerms" spellcheck="false" placeholder="Amaneka、Kiitos、調布FM、認定NPO、Cloud Run"></textarea>
+                  </label>
+                  <div class="toggle-column">
+                    <label class="toggle-row">
+                      <input id="transcribeNormalizeAudio" type="checkbox" checked />
+                      <span>Normalize volume before transcription</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="transcribeFilterLowConfidence" type="checkbox" checked />
+                      <span>Remove obvious empty transcription segments</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="conditionOnPreviousText" type="checkbox" />
+                      <span>Use previous subtitle text as context</span>
+                    </label>
+                  </div>
                 </div>
+              </details>
+              <label class="workflow-media-field">
+                Input video to process
+                <input id="inputVideoPath" type="hidden" />
+                <div id="inputVideoPathPreview" class="asset-preview empty">not selected</div>
+                <button type="button" data-pick-tool="inputVideoPath">Select input video</button>
               </label>
-              <label>
-                Audio replace source video
-                <div class="inline-field">
-                  <input id="replaceAudioInput" />
-                  <button type="button" data-pick-tool="replaceAudioInput">File</button>
+              <label class="workflow-media-field">
+                Video containing replacement audio
+                <input id="replaceAudioInput" type="hidden" />
+                <div id="replaceAudioInputPreview" class="asset-preview empty">not selected</div>
+                <button type="button" data-pick-tool="replaceAudioInput">Select audio source video</button>
+              </label>
+              <details class="advanced-settings">
+                <summary>Analysis settings</summary>
+                <div class="advanced-settings-grid">
+                  <label>
+                    Still image time
+                    <input id="stillTime" value="00:00:25" />
+                  </label>
+                  <label>
+                    Person analysis detail
+                    <input id="personFpsSample" type="number" min="0.1" max="15" step="0.1" value="1" />
+                  </label>
+                  <label>
+                    Person detection model
+                    <input id="personModel" value="yolov8n.pt" />
+                  </label>
+                  <label>
+                    Person detection threshold
+                    <input id="personConfidence" type="number" min="0.05" max="0.95" step="0.05" value="0.35" />
+                  </label>
+                  <label>
+                    Test analysis length
+                    <input id="personMaxSeconds" type="number" min="1" step="1" placeholder="all" />
+                  </label>
+                  <label>
+                    Videos to analyze
+                    <input id="personLimit" type="number" min="1" step="1" placeholder="all" />
+                  </label>
+                  <div class="toggle-column">
+                    <label class="toggle-row">
+                      <input id="rebuildBase" type="checkbox" />
+                      <span>Recreate the 1-minute base video</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="skipSubtitleRegeneration" type="checkbox" />
+                      <span>Use existing subtitle images</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="reclassifySpeakers" type="checkbox" />
+                      <span>Re-detect speakers in the transcript</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="autoContextCuts" type="checkbox" checked />
+                      <span>Cut automatically by subtitle context and speaker</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="naturalDialogueCuts" type="checkbox" />
+                      <span>Prefer natural dialogue gaps for cuts</span>
+                    </label>
+                  </div>
+                  <div class="toggle-column">
+                    <label class="toggle-row">
+                      <input id="transcribeReview" type="checkbox" />
+                      <span>Re-transcribe subtitle review clips</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="noAudioClips" type="checkbox" />
+                      <span>Skip audio clips during subtitle review</span>
+                    </label>
+                    <label>
+                      Subtitle review quality
+                      <input id="reviewModel" value="large-v3" />
+                    </label>
+                    <label class="toggle-row">
+                      <input id="personNoMulticamRoot" type="checkbox" />
+                      <span>Analyze only selected project videos</span>
+                    </label>
+                  </div>
                 </div>
-              </label>
-              <label>
-                Still time
-                <input id="stillTime" value="00:00:25" />
-              </label>
-              <label>
-                Person sample fps
-                <input id="personFpsSample" type="number" min="0.1" max="15" step="0.1" value="1" />
-              </label>
-              <label>
-                YOLO model
-                <input id="personModel" value="yolov8n.pt" />
-              </label>
-              <label>
-                Person confidence
-                <input id="personConfidence" type="number" min="0.05" max="0.95" step="0.05" value="0.35" />
-              </label>
-              <label>
-                Analysis max seconds
-                <input id="personMaxSeconds" type="number" min="1" step="1" placeholder="all" />
-              </label>
-              <label>
-                Video limit
-                <input id="personLimit" type="number" min="1" step="1" placeholder="all" />
-              </label>
-              <div class="toggle-column">
-                <label class="toggle-row">
-                  <input id="rebuildBase" type="checkbox" />
-                  <span>Rebuild 1-minute base</span>
-                </label>
-                <label class="toggle-row">
-                  <input id="skipSubtitleRegeneration" type="checkbox" />
-                  <span>Reuse existing subtitle overlays</span>
-                </label>
-                <label class="toggle-row">
-                  <input id="reclassifySpeakers" type="checkbox" />
-                  <span>Reclassify full-transcript speakers</span>
-                </label>
-                <label class="toggle-row">
-                  <input id="autoContextCuts" type="checkbox" checked />
-                  <span>Auto cut by subtitle context and speaker</span>
-                </label>
-                <label class="toggle-row">
-                  <input id="naturalDialogueCuts" type="checkbox" />
-                  <span>Place cuts in short dialogue gaps</span>
-                </label>
-              </div>
-              <div class="toggle-column">
-                <label class="toggle-row">
-                  <input id="transcribeReview" type="checkbox" />
-                  <span>Retranscribe subtitle review clips</span>
-                </label>
-                <label class="toggle-row">
-                  <input id="noAudioClips" type="checkbox" />
-                  <span>Skip subtitle review audio clips</span>
-                </label>
-                <label>
-                  Review model
-                  <input id="reviewModel" value="medium" />
-                </label>
-                <label class="toggle-row">
-                  <input id="personNoMulticamRoot" type="checkbox" />
-                  <span>Analyze only project source/video</span>
-                </label>
-              </div>
+              </details>
             </div>
             <div class="sync-report">
               <div class="sync-report-heading">
@@ -464,31 +503,53 @@
 
           <div class="panel wide" data-panel="run">
             <div class="panel-heading">
-              <h3>Codex Request</h3>
-              <span>app-server prompt</span>
+              <h3>AI editing request</h3>
+              <span>Review before running</span>
             </div>
-            <label class="command-preview-label">
-              Direct command
-              <textarea id="commandPreview" spellcheck="false" readonly></textarea>
-            </label>
-            <textarea id="promptPreview" spellcheck="false"></textarea>
-            <div class="run-actions">
-              <button type="button" id="refreshCommand">Refresh command</button>
-              <button type="button" id="refreshPrompt">Refresh prompt</button>
-              <button type="button" id="interrupt">Interrupt</button>
+            <div class="run-summary">
+              <strong>実行前チェック</strong>
+              <ul id="runChecklist"></ul>
             </div>
+            <details class="advanced-settings codex-details">
+              <summary>Review request details</summary>
+              <label class="command-preview-label">
+                Execution details
+                <textarea id="commandPreview" spellcheck="false" readonly></textarea>
+              </label>
+              <label>
+                Request text sent to AI
+                <textarea id="promptPreview" spellcheck="false"></textarea>
+              </label>
+              <div class="run-actions">
+                <button type="button" id="refreshCommand">Refresh execution details</button>
+                <button type="button" id="refreshPrompt">Refresh request text</button>
+                <button type="button" id="interrupt">Stop running job</button>
+              </div>
+            </details>
           </div>
 
-          <div class="panel wide log-panel">
+          <div class="panel wide log-panel" data-panel="run">
             <div class="panel-heading">
               <h3>Progress</h3>
-              <span>streamed events</span>
+              <span>Run log</span>
             </div>
             <pre id="eventLog"></pre>
           </div>
         </section>
       </main>
     </div>
-    <script src="./renderer.js"></script>
+    <div class="app-busy-overlay" id="appBusyOverlay" hidden>
+      <div>
+        <strong id="appBusyTitle">処理中</strong>
+        <span id="appBusyMessage">しばらくお待ちください</span>
+        <div class="busy-progress">
+          <div class="busy-progress-bar">
+            <span id="appBusyProgressFill"></span>
+          </div>
+          <small id="appBusyProgressPercent">0%</small>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./renderer.js"></script>
   </body>
 </html>

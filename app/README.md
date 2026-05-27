@@ -33,6 +33,7 @@ pnpm run check
 
 - Creates/selects per-video projects under `C:\Users\yurin\Desktop\video_edit\projects\<project-id>`, copies selected source files into that project's `source` folder, and sends project-specific `source` / `output` roots to the Python scripts.
 - Accepts drag-and-drop or picker-based inputs for master video, right close-up, left close-up, external audio, logo, and output path.
+- Accepts multiple drag-and-drop still images for interview renders. Text/diagram stills are inserted without motion near matching transcript text when possible; photo-like stills are analyzed for faces or visual focus, then get person-, landscape-, or object-appropriate pan/zoom with fade in/out.
 - Lets you choose current preset scripts or a new interview multicam request.
 - Provides source-root and tool-path controls for the paths described in `docs\video_edit_method.md`.
 - Exposes subtitle mode selection: full transcript, catchy/punchline, or none.

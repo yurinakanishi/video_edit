@@ -26,13 +26,24 @@ from project_paths import (
 from typing import Any
 
 import whisper
-from whisper.utils import get_writer
+from transcription_quality import (
+    filter_low_confidence_segments,
+    preprocess_audio,
+    settings_match,
+    settings_payload,
+    transcribe_model_name,
+    transcribe_options,
+    write_srt,
+)
+from video_edit_app_config import load_app_config, optional_path
 
 
 WORK = WORKSPACE_ROOT
 ROOT = multicam_source_root()
 OUT = OUTPUT_TRANSCRIPTS / "transcript_sync_all"
 MASTER = SOURCE_VIDEO / "1cam" / "ST7_7550_overlap_5min.mp4"
+APP_CONFIG = load_app_config()
+FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 
 
 @dataclass
@@ -53,25 +64,21 @@ def normalize(text: str) -> str:
     return text.lower()
 
 
-def transcribe(model: Any, media_path: Path, label: str) -> dict[str, Any]:
+def transcribe(model: Any, media_path: Path, label: str, model_name: str, options: dict[str, Any]) -> dict[str, Any]:
     OUT.mkdir(parents=True, exist_ok=True)
+    audio_path = preprocess_audio(media_path, OUT / "audio_preprocessed", label, FFMPEG, APP_CONFIG)
     json_path = OUT / f"{label}.json"
-    if json_path.exists():
+    srt_path = OUT / f"{label}.srt"
+    settings_path = OUT / f"{label}.settings.json"
+    settings = settings_payload(media_path, model_name, audio_path, options, APP_CONFIG)
+    if json_path.exists() and srt_path.exists() and settings_match(settings_path, settings):
         return json.loads(json_path.read_text(encoding="utf-8"))
 
-    result = model.transcribe(
-        str(media_path),
-        language="ja",
-        task="transcribe",
-        verbose=False,
-        fp16=False,
-    )
+    result = model.transcribe(str(audio_path), **options)
+    result = filter_low_confidence_segments(result, APP_CONFIG)
     json_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    srt_writer = get_writer("srt", str(OUT))
-    srt_writer(result, str(media_path), {"max_line_width": None, "max_line_count": None, "highlight_words": False})
-    generated_srt = OUT / f"{media_path.stem}.srt"
-    if generated_srt.exists():
-        generated_srt.replace(OUT / f"{label}.srt")
+    write_srt(srt_path, result.get("segments", []))
+    settings_path.write_text(json.dumps(settings, ensure_ascii=False, indent=2), encoding="utf-8")
     return result
 
 
@@ -205,8 +212,10 @@ def write_markdown(report: list[dict[str, Any]]) -> None:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    model = whisper.load_model("small")
-    master = transcribe(model, MASTER, "1cam_master_ST7_7550_overlap_5min")
+    model_name = transcribe_model_name(APP_CONFIG)
+    options = transcribe_options(APP_CONFIG)
+    model = whisper.load_model(model_name)
+    master = transcribe(model, MASTER, "1cam_master_ST7_7550_overlap_5min", model_name, options)
 
     report: list[dict[str, Any]] = []
     targets: list[tuple[str, Path]] = []
@@ -215,7 +224,7 @@ def main() -> None:
 
     for camera, path in targets:
         label = f"{camera}_{path.stem}"
-        result = transcribe(model, path, label)
+        result = transcribe(model, path, label, model_name, options)
         matches = [match_to_dict(match) for match in top_matches(master, result)]
         report.append(
             {

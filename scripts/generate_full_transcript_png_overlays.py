@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -35,8 +36,11 @@ MAX_IMAGE_WIDTH = 1760
 CAPTION_PAD_X = 18
 CAPTION_STROKE = 0
 FONT_SIZE = 80
-MAX_CAPTION_LINES = 3
+MAX_CAPTION_LINES = 2
+MAX_CAPTION_CHUNKS = 8
 MIN_LINE_CHARS = 6
+LINE_END_PREFERRED_CHARS = "、。，．・／/）)]」』"
+LINE_START_PROHIBITED_CHARS = "、。，．,.！？!?：；;・）)]｝}」』】》〉"
 APP_CONFIG = load_app_config()
 SRT = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
 MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {}
@@ -44,15 +48,30 @@ MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {}
 
 @dataclass(frozen=True)
 class Caption:
+    source_index: int
+    chunk_index: int
+    chunk_count: int
     start: str
     end: str
     lines: tuple[str, ...]
     font_size: int
 
 
-def parse_srt_timestamp(timestamp: str) -> str:
+def parse_srt_seconds(timestamp: str) -> float:
     hours, minutes, seconds = timestamp.replace(",", ".").split(":")
-    return f"{int(hours)}:{minutes}:{seconds}"
+    return int(hours) * 3600 + int(minutes) * 60 + float(seconds)
+
+
+def format_manifest_timestamp(seconds: float) -> str:
+    millis = round(max(0.0, seconds) * 1000)
+    hours, remainder = divmod(millis, 3_600_000)
+    minutes, remainder = divmod(remainder, 60_000)
+    whole_seconds, millis = divmod(remainder, 1000)
+    return f"{hours}:{minutes:02d}:{whole_seconds:02d}.{millis:03d}"
+
+
+def parse_srt_timestamp(timestamp: str) -> str:
+    return format_manifest_timestamp(parse_srt_seconds(timestamp))
 
 
 def normalize_caption_text(text: str) -> str:
@@ -67,10 +86,13 @@ def parse_srt(path: Path) -> list[Caption]:
         rows = [row.strip() for row in block.splitlines() if row.strip()]
         if len(rows) < 3 or "-->" not in rows[1]:
             continue
+        try:
+            source_index = int(rows[0])
+        except ValueError:
+            source_index = len(captions) + 1
         start_raw, end_raw = [part.strip() for part in rows[1].split("-->")]
         body = normalize_caption_text(" ".join(rows[2:]))
-        lines, font_size = layout_caption_text(body)
-        captions.append(Caption(parse_srt_timestamp(start_raw), parse_srt_timestamp(end_raw), tuple(lines), font_size))
+        captions.extend(layout_timed_caption_chunks(source_index, start_raw, end_raw, body))
     return captions
 
 
@@ -79,20 +101,66 @@ def text_width(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFon
     return tracked_text_width(draw, text, font, CAPTION_STROKE) if len(text) > 1 else bbox[2] - bbox[0]
 
 
-def split_caption_text(text: str, font_size: int, max_text_width: int) -> list[str]:
+def split_caption_text(
+    text: str,
+    font_size: int,
+    max_text_width: int,
+    max_lines: int = MAX_CAPTION_LINES,
+) -> list[str]:
     font = ImageFont.truetype(str(FONT_PATH), font_size, index=1)
     probe = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
     draw = ImageDraw.Draw(probe)
     if text_width(draw, text, font) <= max_text_width:
         return [text]
     manual_lines = MANUAL_LINE_BREAKS.get(text)
-    if manual_lines and all(text_width(draw, line, font) <= max_text_width for line in manual_lines):
+    if (
+        manual_lines
+        and len(manual_lines) <= max_lines
+        and all(text_width(draw, line, font) <= max_text_width for line in manual_lines)
+    ):
         return list(manual_lines)
-    return wrap_japanese_text(text, draw, font, max_text_width, MAX_CAPTION_LINES)
+    return wrap_japanese_text(text, draw, font, max_text_width, max_lines)
+
+
+def adjust_split_index_for_kinsoku(text: str, index: int, *, min_index: int = 1, max_index: int | None = None) -> int:
+    if len(text) < 2:
+        return 0
+    if max_index is None:
+        max_index = len(text) - 1
+    index = max(min_index, min(index, max_index))
+    adjusted = index
+    while adjusted <= max_index and text[adjusted] in LINE_START_PROHIBITED_CHARS:
+        adjusted += 1
+    if adjusted <= max_index:
+        return adjusted
+    fallback = index - 1
+    while fallback >= min_index and text[fallback] in LINE_START_PROHIBITED_CHARS:
+        fallback -= 1
+    if fallback >= min_index:
+        return fallback
+    return index
+
+
+def normalize_split_points_for_kinsoku(text: str, split_points: list[int]) -> list[int]:
+    normalized: list[int] = []
+    total_points = len(split_points)
+    for point_index, raw_index in enumerate(split_points):
+        min_index = normalized[-1] + 1 if normalized else 1
+        max_index = len(text) - (total_points - point_index)
+        if min_index > max_index:
+            return []
+        normalized.append(
+            adjust_split_index_for_kinsoku(
+                text,
+                raw_index,
+                min_index=min_index,
+                max_index=max_index,
+            )
+        )
+    return normalized
 
 
 def split_japanese_line_naturally(line: str, draw: ImageDraw.ImageDraw, font: ImageFont.FreeTypeFont) -> tuple[str, str]:
-    break_chars = "、。，．・／/）)]」』"
     particles = ("は", "が", "を", "に", "で", "と", "も", "へ", "から", "まで", "より", "って", "という", "ので", "けど")
     best_index = max(1, min(len(line) - 1, len(line) // 2))
     best_score = 10**9
@@ -104,15 +172,16 @@ def split_japanese_line_naturally(line: str, draw: ImageDraw.ImageDraw, font: Im
         left_width = text_width(draw, left, font)
         right_width = text_width(draw, right, font)
         score = abs(left_width - right_width)
-        if line[index - 1] in break_chars:
+        if line[index - 1] in LINE_END_PREFERRED_CHARS:
             score -= 800
         if any(left.endswith(particle) for particle in particles):
             score -= 500
-        if line[index:index + 1] in "、。，．・":
-            score -= 500
+        if line[index:index + 1] in LINE_START_PROHIBITED_CHARS:
+            score += 1200
+        adjusted_index = adjust_split_index_for_kinsoku(line, index)
         if score < best_score:
             best_score = score
-            best_index = index
+            best_index = adjusted_index
     return line[:best_index].rstrip(), line[best_index:].lstrip()
 
 
@@ -123,7 +192,6 @@ def wrap_japanese_text(
     max_text_width: int,
     max_lines: int,
 ) -> list[str]:
-    break_chars = "、。，．・／/）)]」』"
     particles = ("は", "が", "を", "に", "で", "と", "も", "へ", "から", "まで", "より", "って", "という", "ので", "けど")
     for split_count in range(2, max_lines + 1):
         candidates: list[list[str]] = []
@@ -139,18 +207,21 @@ def wrap_japanese_text(
                 if len(left_fragment) < MIN_LINE_CHARS or len(right_fragment) < MIN_LINE_CHARS:
                     continue
                 score = abs(index - center) * 120
-                if text[index - 1] in break_chars:
+                if text[index - 1] in LINE_END_PREFERRED_CHARS:
                     score -= 900
                 if any(text[:index].endswith(particle) for particle in particles):
                     score -= 550
-                if text[index:index + 1] in "、。，．・":
-                    score -= 550
+                if text[index:index + 1] in LINE_START_PROHIBITED_CHARS:
+                    score += 1400
                 if score < best_score:
                     best_score = score
                     best_index = index
             if best_index is None:
                 best_index = center
             split_points.append(best_index)
+        split_points = normalize_split_points_for_kinsoku(text, split_points)
+        if len(split_points) != split_count - 1:
+            continue
         points = [0, *split_points, len(text)]
         lines = [text[points[i]:points[i + 1]].strip() for i in range(len(points) - 1)]
         if all(len(line) >= MIN_LINE_CHARS for line in lines) and all(text_width(draw, line, font) <= max_text_width for line in lines):
@@ -165,14 +236,100 @@ def wrap_japanese_text(
     return [left, right]
 
 
-def layout_caption_text(text: str) -> tuple[list[str], int]:
+def wrapped_caption_lines(
+    text: str,
+    draw: ImageDraw.ImageDraw,
+    font: ImageFont.FreeTypeFont,
+    max_text_width: int,
+) -> list[str]:
+    manual_lines = MANUAL_LINE_BREAKS.get(text)
+    if manual_lines and all(text_width(draw, line, font) <= max_text_width for line in manual_lines):
+        return list(manual_lines)
+    if text_width(draw, text, font) <= max_text_width:
+        return [text]
+
+    estimated_lines = max(MAX_CAPTION_LINES, math.ceil(text_width(draw, text, font) / max_text_width * 1.35) + 1)
+    max_total_lines = max(MAX_CAPTION_LINES, min(MAX_CAPTION_LINES * MAX_CAPTION_CHUNKS, estimated_lines))
+    lines = wrap_japanese_text(text, draw, font, max_text_width, max_total_lines)
+
+    while len(lines) < MAX_CAPTION_LINES * MAX_CAPTION_CHUNKS:
+        wide_indexes = [
+            index
+            for index, line in enumerate(lines)
+            if text_width(draw, line, font) > max_text_width and len(line) > 1
+        ]
+        if not wide_indexes:
+            break
+        widest_index = max(wide_indexes, key=lambda index: text_width(draw, lines[index], font))
+        left, right = split_japanese_line_naturally(lines[widest_index], draw, font)
+        if not left or not right or (left, right) == (lines[widest_index], ""):
+            break
+        lines[widest_index:widest_index + 1] = [left, right]
+    return lines
+
+
+def group_caption_lines(lines: list[str]) -> list[tuple[str, ...]]:
+    return [tuple(lines[index:index + MAX_CAPTION_LINES]) for index in range(0, len(lines), MAX_CAPTION_LINES)]
+
+
+def layout_caption_chunks(text: str) -> tuple[list[tuple[str, ...]], int]:
     max_text_width = MAX_IMAGE_WIDTH - CAPTION_PAD_X * 2
     font_size = int_value(APP_CONFIG, "style", "subtitleSize", default=FONT_SIZE)
     font = ImageFont.truetype(str(FONT_PATH), font_size, index=1)
     probe = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
     draw = ImageDraw.Draw(probe)
-    lines = split_caption_text(text, font_size, max_text_width)
-    return lines[:MAX_CAPTION_LINES], font_size
+    lines = wrapped_caption_lines(text, draw, font, max_text_width)
+    return group_caption_lines(lines), font_size
+
+
+def layout_caption_text(text: str) -> tuple[list[str], int]:
+    chunks, font_size = layout_caption_chunks(text)
+    return list(chunks[0]) if chunks else [], font_size
+
+
+def layout_timed_caption_chunks(source_index: int, start_raw: str, end_raw: str, text: str) -> list[Caption]:
+    chunks, font_size = layout_caption_chunks(text)
+    start_seconds = parse_srt_seconds(start_raw)
+    end_seconds = parse_srt_seconds(end_raw)
+    if len(chunks) <= 1 or end_seconds <= start_seconds:
+        return [
+            Caption(
+                source_index=source_index,
+                chunk_index=1,
+                chunk_count=1,
+                start=parse_srt_timestamp(start_raw),
+                end=parse_srt_timestamp(end_raw),
+                lines=chunks[0] if chunks else (text,),
+                font_size=font_size,
+            )
+        ]
+
+    weights = [max(1, sum(len(line) for line in lines)) for lines in chunks]
+    total_weight = sum(weights)
+    duration = end_seconds - start_seconds
+    captions: list[Caption] = []
+    cursor = start_seconds
+    consumed_weight = 0
+    for chunk_index, lines in enumerate(chunks, start=1):
+        consumed_weight += weights[chunk_index - 1]
+        if chunk_index == len(chunks):
+            chunk_end = end_seconds
+        else:
+            chunk_end = start_seconds + duration * consumed_weight / total_weight
+        captions.append(
+            Caption(
+                source_index=source_index,
+                chunk_index=chunk_index,
+                chunk_count=len(chunks),
+                start=format_manifest_timestamp(cursor),
+                end=format_manifest_timestamp(chunk_end),
+                lines=lines,
+                font_size=font_size,
+            )
+        )
+        cursor = chunk_end
+    return captions
+
 
 
 def reset_output_dir() -> None:
@@ -196,7 +353,7 @@ def main() -> None:
     interviewer_fill = (*BLACK[:3], alpha)
     manifest = []
     for index, caption in enumerate(captions, start=1):
-        role = roles.get(str(index), "onscreen")
+        role = roles.get(str(caption.source_index), "onscreen")
         box_fill = interviewer_fill if role == "interviewer" else onscreen_fill
         image = render_simple_caption(
             caption.lines,

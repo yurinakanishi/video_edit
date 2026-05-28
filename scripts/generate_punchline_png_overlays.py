@@ -33,6 +33,8 @@ FONT_SIZE = 100
 MAX_IMAGE_WIDTH = 1760
 PAD_X = 18
 STROKE = 2
+LINE_END_PREFERRED_CHARS = "、。，．・／/）)]」』"
+LINE_START_PROHIBITED_CHARS = "、。，．,.！？!?：；;・）)]｝}」』】》〉"
 APP_CONFIG = load_app_config()
 
 @dataclass(frozen=True)
@@ -60,8 +62,22 @@ def line_width(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFon
     return tracked_text_width(draw, text, font, STROKE) if len(text) > 1 else bbox[2] - bbox[0]
 
 
+def adjust_split_index_for_kinsoku(text: str, index: int) -> int:
+    if len(text) < 2:
+        return 0
+    index = max(1, min(index, len(text) - 1))
+    adjusted = index
+    while adjusted < len(text) and text[adjusted] in LINE_START_PROHIBITED_CHARS:
+        adjusted += 1
+    if adjusted < len(text):
+        return adjusted
+    fallback = index - 1
+    while fallback > 1 and text[fallback] in LINE_START_PROHIBITED_CHARS:
+        fallback -= 1
+    return max(1, fallback)
+
+
 def split_line_naturally(line: str, draw: ImageDraw.ImageDraw, font: ImageFont.FreeTypeFont) -> tuple[str, str]:
-    break_chars = "、。，．・／/）)]」』"
     particles = ("は", "が", "を", "に", "で", "と", "も", "へ", "から", "まで", "より", "って", "という", "ので", "けど")
     best_index = max(1, min(len(line) - 1, len(line) // 2))
     best_score = 10**9
@@ -71,15 +87,15 @@ def split_line_naturally(line: str, draw: ImageDraw.ImageDraw, font: ImageFont.F
         if not left or not right:
             continue
         score = abs(line_width(draw, left, font) - line_width(draw, right, font))
-        if line[index - 1] in break_chars:
+        if line[index - 1] in LINE_END_PREFERRED_CHARS:
             score -= 900
         if any(left.endswith(particle) for particle in particles):
             score -= 550
-        if line[index:index + 1] in "、。，．・":
-            score -= 550
+        if line[index:index + 1] in LINE_START_PROHIBITED_CHARS:
+            score += 1400
         if score < best_score:
             best_score = score
-            best_index = index
+            best_index = adjust_split_index_for_kinsoku(line, index)
     return line[:best_index].rstrip(), line[best_index:].lstrip()
 
 

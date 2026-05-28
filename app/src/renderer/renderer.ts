@@ -123,6 +123,7 @@ const state = {
 	lastWorkflowStage: "",
 	appLocked: false,
 	analysisResults: [] as AnalysisResult[],
+	analysisTitleText: "",
 	files: {
 		masterVideo: "",
 		rightCloseVideo: "",
@@ -1978,7 +1979,7 @@ function setMaterialSources(paths: string[]) {
 	state.mediaDirectory = selected[0] || "";
 	state.mediaManifest = null;
 	setAnalysisResults([]);
-	applySuggestedTitle(titleFromSources(selected), { force: true });
+	setAnalysisTitleText("");
 	setIngestProgress({
 		progress: 0,
 		message: selected.length ? t("progress.pressAnalyze") : t("progress.waitingAnalysis"),
@@ -2003,44 +2004,17 @@ function materialSourceLabel() {
 	return state.materialPaths.length === 1 ? state.materialPaths[0] : `${state.materialPaths.length} selected item(s)`;
 }
 
-function titleFromSources(paths: string[]) {
-	if (!paths.length) {
-		return "";
-	}
-	const source = paths[0];
-	const parts = String(source).split(/[\\/]/).filter(Boolean);
-	const name = parts.at(-1) || "";
-	return name
-		.replace(/\.[^.\\/]+$/, "")
-		.replace(/[_-]+/g, " ")
-		.trim();
-}
-
-function shouldReplaceTitleWithSuggestion() {
-	const current = String(formValue("titleText") || "").trim();
-	return !current;
-}
-
-function applySuggestedTitle(title: string, options: { force?: boolean } = {}) {
+function setAnalysisTitleText(title: string) {
+	state.analysisTitleText = String(title || "").trim();
 	const input = $("#titleText");
-	const nextTitle = String(title || "").trim();
-	if (!input) {
-		return;
+	if (input) {
+		input.value = state.analysisTitleText;
 	}
-	if (!nextTitle) {
-		if (options.force) {
-			input.value = "";
-		}
-		return;
-	}
-	if (!options.force && !shouldReplaceTitleWithSuggestion()) {
-		return;
-	}
-	input.value = nextTitle;
 }
 
 function setProject(project: ProjectInfo | null) {
 	state.project = project;
+	setAnalysisTitleText("");
 	const nameInput = $("#projectName");
 	const idInput = $("#projectId");
 	const rootInput = $("#projectRoot");
@@ -2068,9 +2042,6 @@ function setProject(project: ProjectInfo | null) {
 	const preview = $("#projectNamePreview");
 	if (preview) {
 		preview.textContent = project ? project.name : t("project.noProjectSelected");
-	}
-	if (project?.name) {
-		applySuggestedTitle(project.name);
 	}
 	setDefaultProjectOutput(false);
 	refreshPrompt();
@@ -2685,6 +2656,9 @@ function saveState() {
 		if (!element.id) {
 			return;
 		}
+		if (element.id === "titleText") {
+			return;
+		}
 		fields[element.id] = element.type === "checkbox" ? element.checked : element.value;
 	});
 	localStorage.setItem(
@@ -2748,6 +2722,9 @@ function loadState() {
 		}
 		if (saved.fields) {
 			Object.entries(saved.fields).forEach(([id, value]) => {
+				if (id === "titleText") {
+					return;
+				}
 				const element = $(`#${id}`);
 				if (!element) {
 					return;
@@ -2764,7 +2741,6 @@ function loadState() {
 			});
 			loadWorkflowMediaPreviews();
 			loadOutputTargetPreview();
-			applySuggestedTitle(titleFromSources(state.materialPaths) || state.project?.name || "");
 		}
 		if (saved.subtitleMode) {
 			state.subtitleMode = saved.subtitleMode;
@@ -3447,6 +3423,7 @@ async function refreshTextOverlayFromAnalysis(manifest: MediaManifest | null) {
 			manifest,
 			appConfig: buildAppConfig(),
 		});
+		setAnalysisTitleText(result?.titleText || "");
 		const punchlineInput = $("#punchlineText");
 		if (punchlineInput) {
 			punchlineInput.value = result?.punchlineText || "";
@@ -3455,6 +3432,7 @@ async function refreshTextOverlayFromAnalysis(manifest: MediaManifest | null) {
 		log("text overlays refreshed", {
 			subtitle: result?.subtitlePath || null,
 			captions: result?.captionCount || 0,
+			title: result?.titleText || "",
 			glossary: result?.glossaryTerms?.length || 0,
 		});
 		refreshPrompt();
@@ -3462,6 +3440,25 @@ async function refreshTextOverlayFromAnalysis(manifest: MediaManifest | null) {
 	} catch (error) {
 		log("text overlay refresh failed", { message: error.message });
 		return null;
+	}
+}
+
+async function refreshAnalysisTitleFromAnalysis(manifest: MediaManifest | null) {
+	try {
+		const result = await editApp.loadTextOverlayCandidates({
+			manifest,
+			appConfig: buildAppConfig(),
+		});
+		setAnalysisTitleText(result?.titleText || "");
+		log("analysis title refreshed", {
+			subtitle: result?.subtitlePath || null,
+			captions: result?.captionCount || 0,
+			title: result?.titleText || "",
+		});
+		refreshPrompt();
+	} catch (error) {
+		setAnalysisTitleText("");
+		log("analysis title refresh failed", { message: error.message });
 	}
 }
 
@@ -4226,7 +4223,7 @@ function buildPrompt() {
 		`- Omission card replacement: enabled ${formValue("omissionCardEnabled")}, duration ${formValue("omissionCardDuration") || "5"}s, label ${formValue("omissionCardLabel") || "SUMMARY"}`,
 		`- Omission card text: ${formValue("omissionCardText") || "(default)"}`,
 		`- Omission card replacement ranges: ${formValue("omissionCardRangesText") || formValue("musicRangesText") || "(none)"}`,
-		`- Thumbnail: input ${thumbnailInputPath() || "(auto from current project)"}, time ${formValue("thumbnailTime") || formValue("stillTime") || "00:00:25"}, title ${formValue("thumbnailTitle") || formValue("titleText") || state.project?.name || "(auto)"}, subtitle ${formValue("thumbnailSubtitle") || "(none)"}`,
+		`- Thumbnail: input ${thumbnailInputPath() || "(auto from current project)"}, time ${formValue("thumbnailTime") || formValue("stillTime") || "00:00:25"}, title ${formValue("thumbnailTitle") || state.analysisTitleText || "(analysis empty)"}, subtitle ${formValue("thumbnailSubtitle") || "(none)"}`,
 		`- Thumbnail candidates: count ${formValue("thumbnailCandidateCount") || "6"}, mode ${formValue("thumbnailMode") || "standard"}, color ${formValue("thumbnailMainColor") || "yellow"}, debug faces ${formValue("thumbnailDebugFaces")}, times ${formValue("thumbnailCandidateTimes") || "(auto from project images/video)"}`,
 		`- Subtitle QA thresholds: max segment ${formValue("subtitleReviewMaxDuration") || "8"}s, max reading speed ${formValue("subtitleReviewMaxCharsPerSecond") || "18"} chars/s`,
 		`- Subtitle suspicious patterns: ${formValue("subtitleSuspiciousPatterns") || "(none)"}`,
@@ -4285,7 +4282,7 @@ function buildPrompt() {
 		`- Subtitle font size target: ${formValue("subtitleSize")}`,
 		`- Subtitle highlight color: ${formValue("highlightColor")}`,
 		`- Subtitle box opacity: ${formValue("boxOpacity")} percent`,
-		`- Top-left text: ${formValue("titleText")}`,
+		`- Top-left text: ${state.analysisTitleText}`,
 		`- Top-left text size: ${formValue("titleSize")}`,
 		`- Right-top logo height: ${formValue("logoHeight")} px`,
 		`- Punchline list:\n${formValue("punchlineText") || "(empty)"}`,
@@ -4313,6 +4310,7 @@ function buildPrompt() {
 }
 
 function buildAppConfig() {
+	const analysisTitleText = state.analysisTitleText;
 	return {
 		project: {
 			id: state.project?.id || "",
@@ -4385,7 +4383,7 @@ function buildAppConfig() {
 		thumbnail: {
 			inputVideoPath: thumbnailInputPath(),
 			time: formValue("thumbnailTime") || formValue("stillTime") || "00:00:25",
-			title: formValue("thumbnailTitle") || formValue("titleText") || state.project?.name || "",
+			title: formValue("thumbnailTitle") || analysisTitleText,
 			subtitle: formValue("thumbnailSubtitle"),
 			outputPath: thumbnailOutputPath(),
 			candidatesOutputDir: thumbnailCandidatesOutputPath(),
@@ -4456,7 +4454,7 @@ function buildAppConfig() {
 			subtitleSize: Number(formValue("subtitleSize") || 80),
 			highlightColor: formValue("highlightColor"),
 			boxOpacity: Number(formValue("boxOpacity") || 72),
-			titleText: formValue("titleText"),
+			titleText: analysisTitleText,
 			titleSize: Number(formValue("titleSize") || 64),
 			logoHeight: Number(formValue("logoHeight") || 48),
 			punchlineText: formValue("punchlineText"),
@@ -4854,8 +4852,12 @@ async function init() {
 	if (state.activeSection === "run") {
 		void loadCodexModels();
 	}
-	if (!(await loadAnalysisStateFile())) {
+	const loadedAnalysisState = await loadAnalysisStateFile();
+	if (!loadedAnalysisState) {
 		await restoreAnalysisResultsFromOutputs(state.mediaManifest);
+	}
+	if (state.mediaManifest) {
+		await refreshAnalysisTitleFromAnalysis(state.mediaManifest);
 	}
 }
 

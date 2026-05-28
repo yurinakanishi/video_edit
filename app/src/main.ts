@@ -70,6 +70,7 @@ const ANALYSIS_STATE_NAME = "analysis_state.json";
 const DEFAULT_FFMPEG_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe";
 const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
 const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
+const CODEX_EXE_NAME = process.platform === "win32" ? "codex.exe" : "codex";
 
 type Locale = "ja" | "en";
 
@@ -106,6 +107,79 @@ function mt(locale: Locale, key: string, values: Record<string, string | number>
 		(result, [name, value]) => result.replaceAll(`{${name}}`, String(value)),
 		template,
 	);
+}
+
+function pathEnvValue(env = process.env) {
+	const key = Object.keys(env).find((name) => name.toLowerCase() === "path") || "PATH";
+	return env[key] || "";
+}
+
+function isWindowsAppsCandidate(candidate: string) {
+	return process.platform === "win32" && candidate.toLowerCase().includes(`${path.sep}windowsapps${path.sep}`);
+}
+
+function normalizeCodexCandidate(candidate: string) {
+	const trimmed = candidate.trim().replace(/^"|"$/g, "");
+	if (!trimmed) {
+		return null;
+	}
+	try {
+		if (fs.existsSync(trimmed) && fs.statSync(trimmed).isDirectory()) {
+			return path.join(trimmed, CODEX_EXE_NAME);
+		}
+	} catch {
+		return null;
+	}
+	return trimmed;
+}
+
+function codexStandaloneReleaseCandidates() {
+	const home = process.env.USERPROFILE || process.env.HOME;
+	if (!home) {
+		return [];
+	}
+	const releasesRoot = path.join(home, ".codex", "packages", "standalone", "releases");
+	try {
+		return fs
+			.readdirSync(releasesRoot, { withFileTypes: true })
+			.filter((entry) => entry.isDirectory())
+			.map((entry) => {
+				const codexPath = path.join(releasesRoot, entry.name, "bin", CODEX_EXE_NAME);
+				const stat = fs.existsSync(codexPath) ? fs.statSync(codexPath) : null;
+				return { codexPath, mtimeMs: stat?.mtimeMs || 0 };
+			})
+			.filter((entry) => entry.mtimeMs > 0)
+			.sort((left, right) => right.mtimeMs - left.mtimeMs)
+			.map((entry) => entry.codexPath);
+	} catch {
+		return [];
+	}
+}
+
+function resolveCodexExecutable() {
+	const candidates = [
+		process.env.VIDEO_EDIT_CODEX_CLI || "",
+		process.env.CODEX_CLI || "",
+		...pathEnvValue()
+			.split(path.delimiter)
+			.filter(Boolean)
+			.map((entry) => path.join(entry, CODEX_EXE_NAME)),
+		...codexStandaloneReleaseCandidates(),
+	];
+	for (const rawCandidate of candidates) {
+		const candidate = normalizeCodexCandidate(rawCandidate);
+		if (!candidate || isWindowsAppsCandidate(candidate)) {
+			continue;
+		}
+		try {
+			if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+				return candidate;
+			}
+		} catch {
+			continue;
+		}
+	}
+	return CODEX_EXE_NAME;
 }
 
 type ProjectInfo = {
@@ -508,6 +582,26 @@ function punchlineTextFromCaptions(captions: SubtitleCaption[]) {
 		.slice(0, 40)
 		.map((caption) => `${formatSubtitleTime(caption.start)}-${formatSubtitleTime(caption.end)}  ${caption.text}`)
 		.join("\n");
+}
+
+function titleTextFromCaptions(captions: SubtitleCaption[]) {
+	const text = captions
+		.map((caption) => caption.text)
+		.join(" ")
+		.replace(/\s+/g, " ")
+		.trim();
+	if (!text) {
+		return "";
+	}
+	const fragments = text
+		.split(/[。．！？!?、，,\n]/)
+		.map((item) => item.trim())
+		.filter((item) => item.length >= 6);
+	const candidates = (fragments.length ? fragments : [text]).map((item) => item.replace(/\s+/g, ""));
+	const best = candidates
+		.filter((item) => item.length >= 6)
+		.sort((left, right) => Math.abs(left.length - 16) - Math.abs(right.length - 16))[0];
+	return (best || candidates[0] || "").slice(0, 24);
 }
 
 function glossaryTermsFromCaptions(captions: SubtitleCaption[]) {
@@ -1513,8 +1607,8 @@ class CodexAppServer {
 			return;
 		}
 
-		const command = process.platform === "win32" ? "cmd.exe" : "codex";
-		const args = process.platform === "win32" ? ["/d", "/s", "/c", "codex app-server"] : ["app-server"];
+		const command = resolveCodexExecutable();
+		const args = ["app-server"];
 		this.proc = spawn(command, args, {
 			cwd: VIDEO_EDIT_ROOT,
 			env: { ...process.env, PYTHONUTF8: "1" },
@@ -2020,6 +2114,7 @@ ipcMain.handle("text-overlay:load-candidates", async (_event, { manifest, appCon
 	return {
 		subtitlePath,
 		captionCount: captions.length,
+		titleText: titleTextFromCaptions(captions),
 		punchlineText: punchlineTextFromCaptions(captions),
 		glossaryTerms: glossaryTermsFromCaptions(captions),
 	};

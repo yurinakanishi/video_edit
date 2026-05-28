@@ -3,6 +3,7 @@ import type {
 	CodexModel,
 	GlossaryTerm,
 	Locale,
+	MaterialAnalysisProgress,
 	MediaManifest,
 	ProjectInfo,
 	ProjectListEntry,
@@ -62,6 +63,7 @@ export const state: any = {
 	appBusyTitle: "",
 	appBusyMessage: "",
 	analysisResults: [] as AnalysisResult[],
+	materialAnalysisProgress: {} as Record<string, MaterialAnalysisProgress>,
 	analysisTitleText: "",
 	files: {
 		masterVideo: "",

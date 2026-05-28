@@ -79,8 +79,19 @@ const analysisStateController = createAnalysisStateController({
 	saveState: () => saveCurrentState(),
 });
 
-const { notifyAnalysisComplete, renderAnalysisResults, setAnalysisResult, setAnalysisResults, setAnalysisTitleText } =
-	analysisStateController;
+const {
+	notifyAnalysisComplete,
+	removeMaterialAnalysisProgress,
+	renderAnalysisResults,
+	renderMaterialAnalysisProgress,
+	retainMaterialAnalysisProgress,
+	setAnalysisResult,
+	setAnalysisResults,
+	setAnalysisTitleText,
+	setMaterialAnalysisProgress,
+	setMaterialAnalysisProgressForPaths,
+	setMaterialAnalysisProgressMap,
+} = analysisStateController;
 
 const glossaryStateController = createGlossaryStateController({
 	refreshPrompt: () => currentRefreshPrompt(),
@@ -145,6 +156,7 @@ const materialManifestController = createMaterialManifestController({
 	loadFilePreviews,
 	materialSourceLabel: () => materialSourceLabel(),
 	refreshPrompt: () => currentRefreshPrompt(),
+	removeMaterialAnalysisProgress,
 	resetAnalysisForMaterialChange: (path) => resetAnalysisForMaterialChange(path),
 	saveState: () => saveCurrentState(),
 	setFile,
@@ -241,6 +253,7 @@ const {
 	loadWorkflowMediaPreviews,
 	loadOutputTargetPreview,
 	setAnalysisResults,
+	setMaterialAnalysisProgressMap,
 	renderGlossaryList,
 	buildAppConfig: () => workflowController.buildAppConfig(),
 	setAnalysisTitleText,
@@ -274,6 +287,7 @@ workflowController = createWorkflowController({
 	progressPercent,
 	renderAnalysisResults,
 	setAnalysisResults,
+	setMaterialAnalysisProgressForPaths,
 	setIngestProgress,
 	setAppLocked,
 	setDirectRunRunning,
@@ -349,6 +363,8 @@ const materialAnalysisController = createMaterialAnalysisController({
 	setDefaultProjectOutput,
 	setIngestProgress,
 	setIngestRunning,
+	setMaterialAnalysisProgress,
+	setMaterialAnalysisProgressForPaths,
 	setMaterialSources,
 	setMediaManifest,
 	setProject,
@@ -358,10 +374,11 @@ const materialAnalysisController = createMaterialAnalysisController({
 	transcriptManifestOutputPath,
 });
 
-const { cancelMaterialAnalysis, ingestMaterialDirectory } = materialAnalysisController;
+const { cancelMaterialAnalysis, ingestMaterialDirectory, reanalyzeMaterialItem } = materialAnalysisController;
 
 function resetAnalysisForMaterialChange(path = materialSourceLabel()) {
 	setAnalysisResults([]);
+	setMaterialAnalysisProgressMap({});
 	setAnalysisTitleText("");
 	state.syncReport = null;
 	renderSyncReport();
@@ -385,6 +402,7 @@ function bindEvents() {
 		handleMaterialItemRemove,
 		handleMaterialRoleChange,
 		handleMaterialSourceRemove,
+		reanalyzeMaterialItem,
 		handleNotification,
 		handleStillImageRemove,
 		ingestMaterialDirectory,
@@ -465,6 +483,7 @@ async function init() {
 		refreshSyncReport,
 		setCodexTurnRunning,
 		setIngestProgress,
+		setMaterialAnalysisProgress,
 		setIngestRunning,
 		setStatus,
 	});

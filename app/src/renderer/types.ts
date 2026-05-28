@@ -96,6 +96,14 @@ export type MediaManifest = {
 
 export type Locale = "ja" | "en";
 export type AnalysisResult = { key: string; label: string; status: string; detail: string; path?: string };
+export type MaterialAnalysisProgress = {
+	key: string;
+	path: string;
+	progress: number;
+	status: "waiting" | "running" | "done" | "error";
+	message: string;
+	updatedAt: string;
+};
 export type CodexModel = {
 	id: string;
 	model: string;

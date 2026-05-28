@@ -2341,7 +2341,7 @@ function createWindow() {
 		backgroundColor: "#f6f4ef",
 		title: "Video Edit",
 		icon: ICON_PATH,
-		show: process.env.VIDEO_EDIT_SMOKE === "1" ? false : undefined,
+		show: process.env.VIDEO_EDIT_SMOKE !== "1",
 		webPreferences: {
 			preload: path.join(__dirname, "preload.js"),
 			contextIsolation: true,

@@ -30,6 +30,7 @@ export function syncAppStoreFromLegacyState() {
 		appBusyTitle: state.appBusyTitle,
 		appBusyMessage: state.appBusyMessage,
 		analysisResults: state.analysisResults.map((item) => ({ ...item })),
+		materialAnalysisProgress: { ...state.materialAnalysisProgress },
 		analysisTitleText: state.analysisTitleText,
 		files: filesSnapshot(),
 		subtitleMode: normalizeSubtitleMode(state.subtitleMode),

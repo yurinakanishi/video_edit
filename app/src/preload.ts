@@ -26,6 +26,7 @@ contextBridge.exposeInMainWorld("editApp", {
 	interruptCodex: () => ipcRenderer.invoke("codex:interrupt"),
 	loadAnalysisState: (payload) => ipcRenderer.invoke("analysis-state:load", payload),
 	saveAnalysisState: (payload) => ipcRenderer.invoke("analysis-state:save", payload),
+	getMaterialAnalysisStatus: (payload) => ipcRenderer.invoke("analysis:material-status", payload),
 	saveMediaManifest: (payload) => ipcRenderer.invoke("media-manifest:save", payload),
 	loadProjectState: (payload) => ipcRenderer.invoke("project-state:load", payload),
 	saveProjectState: (payload) => ipcRenderer.invoke("project-state:save", payload),

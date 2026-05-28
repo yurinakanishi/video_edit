@@ -15,6 +15,7 @@ import {
 	MATERIAL_ANALYZE_EVENT,
 	MATERIAL_CANCEL_ANALYSIS_EVENT,
 	MATERIAL_DROP_EVENT,
+	MATERIAL_ITEM_REANALYZE_EVENT,
 	MATERIAL_ITEM_REMOVE_EVENT,
 	MATERIAL_PICK_DIRECTORY_EVENT,
 	MATERIAL_PICK_FILES_EVENT,
@@ -62,6 +63,7 @@ type RendererEventBindings = {
 	readonly handleMaterialItemRemove: (event: Event) => void;
 	readonly handleMaterialRoleChange: (event: Event) => void;
 	readonly handleMaterialSourceRemove: (event: Event) => void;
+	readonly reanalyzeMaterialItem: (event: Event) => Promise<boolean>;
 	readonly handleNotification: (payload: any) => void;
 	readonly handleStillImageRemove: (event: Event) => void;
 	readonly ingestMaterialDirectory: (directoryPath?: string) => Promise<boolean>;
@@ -219,6 +221,7 @@ export function bindRendererEvents(bindings: RendererEventBindings) {
 	document.addEventListener(MATERIAL_ROLE_CHANGE_EVENT, bindings.handleMaterialRoleChange);
 	document.addEventListener(MATERIAL_SOURCE_REMOVE_EVENT, bindings.handleMaterialSourceRemove);
 	document.addEventListener(MATERIAL_ITEM_REMOVE_EVENT, bindings.handleMaterialItemRemove);
+	document.addEventListener(MATERIAL_ITEM_REANALYZE_EVENT, (event) => void bindings.reanalyzeMaterialItem(event));
 	document.addEventListener(MATERIAL_DROP_EVENT, handleMaterialDrop);
 	document.addEventListener(MATERIAL_PICK_DIRECTORY_EVENT, () => void bindings.pickMaterialDirectory());
 	document.addEventListener(MATERIAL_PICK_FILES_EVENT, () => void bindings.pickMaterialFiles());

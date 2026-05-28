@@ -17,6 +17,7 @@ type MaterialAnalysisControllerOptions = {
 	readonly notifyAnalysisComplete: (message: string) => Promise<void>;
 	readonly personEditPlansDir: () => string;
 	readonly referenceEditProfilePath: () => string;
+	readonly refreshMaterialAnalysisStatus: () => Promise<void>;
 	readonly refreshPrompt: () => void;
 	readonly refreshSyncReport: () => Promise<void>;
 	readonly refreshTextOverlayFromAnalysis: (manifest?: MediaManifest | null) => Promise<any>;
@@ -26,6 +27,8 @@ type MaterialAnalysisControllerOptions = {
 	readonly setDefaultProjectOutput: (preserveExisting?: boolean) => void;
 	readonly setIngestProgress: (payload: any, options?: { persist?: boolean }) => void;
 	readonly setIngestRunning: (running: boolean) => void;
+	readonly setMaterialAnalysisRunning: (path: string, message?: string) => void;
+	readonly setMaterialAnalysisStatusMap: (status: any) => void;
 	readonly setMaterialSources: (paths: string[]) => void;
 	readonly setMediaManifest: (manifest: MediaManifest | null) => void;
 	readonly setProject: (project: ProjectInfo | null) => void;
@@ -57,6 +60,7 @@ export function createMaterialAnalysisController({
 	notifyAnalysisComplete,
 	personEditPlansDir,
 	referenceEditProfilePath,
+	refreshMaterialAnalysisStatus,
 	refreshPrompt,
 	refreshSyncReport,
 	refreshTextOverlayFromAnalysis,
@@ -66,6 +70,8 @@ export function createMaterialAnalysisController({
 	setDefaultProjectOutput,
 	setIngestProgress,
 	setIngestRunning,
+	setMaterialAnalysisRunning,
+	setMaterialAnalysisStatusMap,
 	setMaterialSources,
 	setMediaManifest,
 	setProject,
@@ -298,6 +304,7 @@ export function createMaterialAnalysisController({
 			throwIfMaterialAnalysisCanceled();
 			await refreshTextOverlayFromAnalysis(result.manifest);
 			await refreshSyncReport();
+			await refreshMaterialAnalysisStatus();
 			getAppState().setWorkflowSettings({
 				editPreset: "new-interview",
 				renderScript: "render_app_interview.py",
@@ -340,6 +347,146 @@ export function createMaterialAnalysisController({
 		}
 	}
 
+	function manifestItemById(itemId: string) {
+		return (state.mediaManifest?.files || []).find((item) => item.id === itemId) || null;
+	}
+
+	function singleItemManifest(item: any): MediaManifest | null {
+		if (!state.mediaManifest) {
+			return null;
+		}
+		const manifest = {
+			...state.mediaManifest,
+			files: [item],
+			cameras: item.kind === "video" ? [item] : [],
+			audio: item.kind === "audio" ? [item] : [],
+			images: item.kind === "image" ? [item] : [],
+			subtitles: item.kind === "subtitle" ? [item] : [],
+			other: [],
+			selected: {
+				masterVideo: item.kind === "video" ? item.path : "",
+				rightCloseVideo: "",
+				leftCloseVideo: "",
+				externalAudio: item.kind === "audio" ? item.path : "",
+				logo: item.kind === "image" && item.role === "logo" ? item.path : "",
+				stillImages: item.kind === "image" && item.role === "still" ? [item.path] : [],
+			},
+		};
+		return manifest;
+	}
+
+	function configForSingleItem(item: any) {
+		const config = buildAppConfig();
+		const manifest = singleItemManifest(item);
+		return {
+			...config,
+			assets: {
+				...config.assets,
+				mediaManifest: manifest || config.assets?.mediaManifest,
+				masterVideo: item.kind === "video" ? item.path : "",
+				rightCloseVideo: "",
+				leftCloseVideo: "",
+				externalAudio: item.kind === "audio" ? item.path : "",
+			},
+		};
+	}
+
+	async function runWorkflowForMaterial(action: string, label: string, appConfig: any) {
+		setStatus(label, "busy");
+		setAppLocked(true, label, t("analysis.statusRunning"));
+		const result = await editApp.runWorkflowAction({
+			action,
+			timeoutMs: 6 * 60 * 60 * 1000,
+			appConfig,
+		});
+		if (result?.stdout) {
+			log("stdout", { action, text: compactOutput(result.stdout) });
+		}
+		if (result?.stderr) {
+			log("stderr", { action, text: compactOutput(result.stderr) });
+		}
+		if (result?.canceled) {
+			throw new Error(t("progress.analysisCanceled"));
+		}
+		if (result?.exitCode !== 0) {
+			throw new Error(t("format.errorMessage", { label }));
+		}
+		return result;
+	}
+
+	async function reanalyzeMaterialItem(event: Event) {
+		const itemId = String((event as CustomEvent).detail?.id || "");
+		const item = manifestItemById(itemId);
+		if (!item || !state.mediaManifest) {
+			return false;
+		}
+		const path = item.path || "";
+		const actions: Array<{ action: string; label: string; appConfig: any }> = [];
+		const cameraRoles = new Set(["master", "camera2", "camera3", "camera4", "camera5", "camera6"]);
+		const isCameraVideo = item.kind === "video" && cameraRoles.has(item.role);
+		const isTranscriptSource =
+			(item.kind === "audio" && String(item.role || "").startsWith("external")) ||
+			(item.kind === "video" && cameraRoles.has(item.role) && item.metadata?.hasAudio !== false);
+		if (isCameraVideo) {
+			actions.push({
+				action: "analyze-person-edit-metadata",
+				label: t("analysis.personOpenCv"),
+				appConfig: configForSingleItem(item),
+			});
+		}
+		if (isTranscriptSource) {
+			actions.push({
+				action: "transcribe-dropped",
+				label: t("analysis.transcription"),
+				appConfig: buildAppConfig(),
+			});
+			actions.push({
+				action: "compare-transcripts",
+				label: t("analysis.transcriptComparison"),
+				appConfig: buildAppConfig(),
+			});
+		}
+		if (!actions.length) {
+			setMaterialAnalysisStatusMap({
+				...(state.materialAnalysisStatus || {}),
+				[String(path).toLowerCase()]: {
+					key: String(path).toLowerCase(),
+					path,
+					state: "none",
+					completed: 0,
+					total: 0,
+					message: t("analysis.noPerFileOutputs"),
+					outputs: [],
+					updatedAt: new Date().toISOString(),
+				},
+			});
+			return false;
+		}
+		try {
+			setMaterialAnalysisRunning(path, t("analysis.statusRunning"));
+			setIngestProgress({
+				progress: state.ingestProgress.progress || 0,
+				message: t("format.runningMessage", { label: t("action.reanalyze") }),
+				path,
+			});
+			for (const action of actions) {
+				await runWorkflowForMaterial(action.action, action.label, action.appConfig);
+			}
+			await refreshTextOverlayFromAnalysis(state.mediaManifest);
+			await refreshMaterialAnalysisStatus();
+			setStatus(t("status.analysisComplete"), "ready");
+			log("material reanalysis complete", { id: item.id, path });
+			return true;
+		} catch (error) {
+			setStatus(t("status.ingestFailed"), "idle");
+			log("material reanalysis failed", { id: item.id, path, message: error.message });
+			await refreshMaterialAnalysisStatus();
+			return false;
+		} finally {
+			setAppLocked(false);
+		}
+	}
+
 	async function cancelMaterialAnalysis() {
 		if (!state.ingestRunning) {
 			setMaterialSources([]);
@@ -366,5 +513,6 @@ export function createMaterialAnalysisController({
 	return {
 		cancelMaterialAnalysis,
 		ingestMaterialDirectory,
+		reanalyzeMaterialItem,
 	};
 }

@@ -1002,6 +1002,82 @@ body.file-drag-active .global-drop-overlay {
 	white-space: nowrap;
 }
 
+.material-analysis-status {
+	display: grid;
+	gap: 5px;
+	margin-top: 6px;
+}
+
+.material-analysis-status-meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	color: var(--muted);
+	font-size: 11px;
+}
+
+.material-analysis-status-meta strong {
+	color: #625b51;
+}
+
+.material-analysis-status.done .material-analysis-status-meta strong {
+	color: var(--accent-dark);
+}
+
+.material-analysis-status.partial .material-analysis-status-meta strong {
+	color: #9a6a00;
+}
+
+.material-analysis-status.running .material-analysis-status-meta strong {
+	color: #345f97;
+}
+
+.material-analysis-completion {
+	height: 6px;
+	overflow: hidden;
+	border-radius: 999px;
+	background: #e7e1d7;
+}
+
+.material-analysis-completion span {
+	display: block;
+	height: 100%;
+	border-radius: inherit;
+	background: var(--accent);
+}
+
+.material-analysis-status.partial .material-analysis-completion span {
+	background: #c78a00;
+}
+
+.material-analysis-files {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.material-analysis-files span {
+	max-width: 100%;
+	overflow: hidden;
+	padding: 2px 6px;
+	border-radius: 999px;
+	font-size: 10px;
+	font-weight: 800;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.material-analysis-files .exists {
+	background: #e0f2ef;
+	color: var(--accent-dark);
+}
+
+.material-analysis-files .missing {
+	background: #efe8dc;
+	color: #817568;
+}
+
 .analysis-result-list {
 	display: grid;
 	gap: 8px;

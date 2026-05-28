@@ -449,6 +449,261 @@ function writeProjectAnalysisState(project: ProjectInfo, payload: any) {
 	return { ...normalized, path: statePath };
 }
 
+function normalizedFileKey(value: unknown) {
+	const text = String(value || "").trim();
+	if (!text) {
+		return "";
+	}
+	try {
+		return path.resolve(text).toLowerCase();
+	} catch {
+		return text.toLowerCase();
+	}
+}
+
+function fileExists(filePath: string) {
+	return Boolean(filePath && fs.existsSync(filePath) && fs.statSync(filePath).isFile());
+}
+
+function safeAnalysisLabel(value: string) {
+	return value.replace(/[^A-Za-z0-9._-]+/g, "_").replace(/^_+|_+$/g, "") || "source";
+}
+
+function withoutExtensionParts(filePath: string) {
+	const parsed = path.parse(filePath);
+	return path.join(parsed.dir, parsed.name);
+}
+
+function safePersonStem(value: string) {
+	return safeAnalysisLabel(
+		value
+			.split(/[\\/]+/)
+			.filter(Boolean)
+			.join("_"),
+	);
+}
+
+function relativePathIfInside(root: string, filePath: string) {
+	if (!root || !filePath) {
+		return "";
+	}
+	const relative = path.relative(path.resolve(root), path.resolve(filePath));
+	if (!relative || relative.startsWith("..") || path.isAbsolute(relative)) {
+		return "";
+	}
+	return relative;
+}
+
+function outputStatus(key: string, labelKey: string, candidates: string[], existsOverride?: boolean) {
+	const existing = candidates.find(fileExists) || candidates.find(Boolean) || "";
+	return {
+		key,
+		label: labelKey,
+		labelKey,
+		path: existing,
+		exists: existsOverride === undefined ? fileExists(existing) : Boolean(existsOverride),
+	};
+}
+
+function mediaManifestFromAppConfig(appConfig: any): MediaManifest | null {
+	const manifest = appConfig?.assets?.mediaManifest;
+	if (manifest && typeof manifest === "object" && Array.isArray(manifest.files)) {
+		return manifest as MediaManifest;
+	}
+	const manifestPath = String(appConfig?.assets?.mediaManifestPath || "");
+	const loaded = manifestPath ? readJsonFile(manifestPath) : null;
+	return loaded && Array.isArray(loaded.files) ? (loaded as MediaManifest) : null;
+}
+
+function jsonFilesByVideoPath(directory: string, suffix: string) {
+	const byPath = new Map<string, string>();
+	if (!directory || !fs.existsSync(directory)) {
+		return byPath;
+	}
+	for (const name of fs.readdirSync(directory)) {
+		if (!name.endsWith(suffix)) {
+			continue;
+		}
+		const filePath = path.join(directory, name);
+		const payload = readJsonFile(filePath);
+		const videoPath = normalizedFileKey(payload?.video_path);
+		if (videoPath) {
+			byPath.set(videoPath, filePath);
+		}
+	}
+	return byPath;
+}
+
+function transcriptEntriesByPath(outputRoot: string) {
+	const manifestPath = path.join(outputRoot, "transcripts", "manifest_sources", "manifest_transcripts.json");
+	const manifest = readJsonFile(manifestPath);
+	const byPath = new Map<string, any>();
+	const transcripts = Array.isArray(manifest?.transcripts) ? manifest.transcripts : [];
+	for (const item of transcripts) {
+		const key = normalizedFileKey(item?.path);
+		if (key) {
+			byPath.set(key, item);
+		}
+	}
+	return byPath;
+}
+
+function pathsInJsonList(filePath: string) {
+	const payload = readJsonFile(filePath);
+	const items = Array.isArray(payload) ? payload : Array.isArray(payload?.items) ? payload.items : [];
+	return new Set(items.map((item: any) => normalizedFileKey(item?.path)).filter(Boolean));
+}
+
+function transcriptComparisonPaths(filePath: string) {
+	const payload = readJsonFile(filePath);
+	const paths = new Set<string>();
+	for (const item of [payload?.primary, ...(Array.isArray(payload?.items) ? payload.items : [])]) {
+		const key = normalizedFileKey(item?.path);
+		if (key) {
+			paths.add(key);
+		}
+	}
+	return paths;
+}
+
+function syncReportPaths(filePath: string) {
+	const payload = readJsonFile(filePath);
+	const offsets = payload?.offsets && typeof payload.offsets === "object" ? payload.offsets : {};
+	const paths = new Set<string>();
+	for (const item of Object.values(offsets) as any[]) {
+		const key = normalizedFileKey(item?.path);
+		if (key) {
+			paths.add(key);
+		}
+	}
+	return paths;
+}
+
+function personOutputCandidates(item: MediaItem, appConfig: any, outputRoot: string, kind: "bboxes" | "plan") {
+	const directory =
+		kind === "bboxes"
+			? String(appConfig?.analysis?.personBboxesDir || path.join(outputRoot, "reports", "person_bboxes"))
+			: String(appConfig?.analysis?.personEditPlansDir || path.join(outputRoot, "reports", "person_edit_plans"));
+	const suffix = kind === "bboxes" ? "_person_bboxes.json" : "_person_edit_plan.json";
+	const stems = new Set<string>();
+	const itemPath = String(item.path || "");
+	if (itemPath) {
+		stems.add(safePersonStem(path.parse(itemPath).name));
+	}
+	if (item.relativePath) {
+		stems.add(safePersonStem(withoutExtensionParts(item.relativePath)));
+	}
+	const sourceRoot = String(appConfig?.project?.sourceRoot || "");
+	for (const root of [sourceRoot ? path.join(sourceRoot, "video") : "", String(appConfig?.assets?.sourceRoot || "")]) {
+		const relative = relativePathIfInside(root, itemPath);
+		if (relative) {
+			stems.add(safePersonStem(withoutExtensionParts(relative)));
+		}
+	}
+	return [...stems].map((stem) => path.join(directory, `${stem}${suffix}`));
+}
+
+function transcriptOutputCandidates(item: MediaItem, outputRoot: string, entry: any | null) {
+	if (entry) {
+		return [String(entry.json || ""), String(entry.srt || ""), String(entry.settings || "")].filter(Boolean);
+	}
+	const label = safeAnalysisLabel(`${item.role || "source"}_${path.parse(String(item.path || item.name || "")).name}`);
+	const directory = path.join(outputRoot, "transcripts", "manifest_sources");
+	return [path.join(directory, `${label}.json`), path.join(directory, `${label}.srt`)];
+}
+
+function materialAnalysisStatuses(appConfig: any) {
+	const manifest = mediaManifestFromAppConfig(appConfig);
+	const outputRoot = outputRootFromConfig(appConfig);
+	const files = Array.isArray(manifest?.files) ? manifest.files : [];
+	const cameraRoles = new Set(["master", "camera2", "camera3", "camera4", "camera5", "camera6"]);
+	const transcriptRoles = new Set(["master", "camera2", "camera3", "camera4", "camera5", "camera6"]);
+	const personBboxes = jsonFilesByVideoPath(
+		String(appConfig?.analysis?.personBboxesDir || path.join(outputRoot, "reports", "person_bboxes")),
+		"_person_bboxes.json",
+	);
+	const personPlans = jsonFilesByVideoPath(
+		String(appConfig?.analysis?.personEditPlansDir || path.join(outputRoot, "reports", "person_edit_plans")),
+		"_person_edit_plan.json",
+	);
+	const transcripts = transcriptEntriesByPath(outputRoot);
+	const syncPath = path.join(outputRoot, "reports", "app_sync_offsets.json");
+	const syncedPaths = syncReportPaths(syncPath);
+	const blockingPath = path.join(outputRoot, "diagnostics", "opencv_blocking_analysis", "clip_metrics.json");
+	const blockedPaths = pathsInJsonList(blockingPath);
+	const comparisonPath = String(
+		appConfig?.transcriptComparison?.outputPath || path.join(outputRoot, "reports", "transcript_comparison.json"),
+	);
+	const comparedPaths = transcriptComparisonPaths(comparisonPath);
+	const statuses: Record<string, any> = {};
+	for (const item of files) {
+		const itemPath = String(item.path || "");
+		const key = normalizedFileKey(itemPath);
+		if (!key) {
+			continue;
+		}
+		const outputs: any[] = [];
+		const isCameraVideo = item.kind === "video" && cameraRoles.has(item.role);
+		const isTranscriptSource =
+			(item.kind === "audio" && String(item.role || "").startsWith("external")) ||
+			(item.kind === "video" && transcriptRoles.has(item.role) && item.metadata?.hasAudio !== false);
+		if (isCameraVideo) {
+			outputs.push(
+				outputStatus("person-bboxes", "analysis.output.personBboxes", [
+					personBboxes.get(key) || "",
+					...personOutputCandidates(item, appConfig, outputRoot, "bboxes"),
+				]),
+				outputStatus("person-edit-plan", "analysis.output.personEditPlan", [
+					personPlans.get(key) || "",
+					...personOutputCandidates(item, appConfig, outputRoot, "plan"),
+				]),
+				outputStatus("blocking-metrics", "analysis.output.blockingMetrics", [blockingPath], blockedPaths.has(key)),
+			);
+		}
+		if (isTranscriptSource) {
+			const entry = transcripts.get(key) || null;
+			outputs.push(
+				outputStatus(
+					"transcript-json",
+					"analysis.output.transcriptJson",
+					transcriptOutputCandidates(item, outputRoot, entry).filter((candidate) => candidate.endsWith(".json")),
+				),
+				outputStatus(
+					"transcript-srt",
+					"analysis.output.transcriptSrt",
+					transcriptOutputCandidates(item, outputRoot, entry).filter((candidate) => candidate.endsWith(".srt")),
+				),
+				outputStatus(
+					"transcript-comparison",
+					"analysis.output.transcriptComparison",
+					[comparisonPath],
+					comparedPaths.has(key),
+				),
+			);
+		}
+		if (
+			(item.kind === "video" && cameraRoles.has(item.role)) ||
+			(item.kind === "audio" && String(item.role || "").startsWith("external"))
+		) {
+			outputs.push(outputStatus("sync-offset", "analysis.output.syncOffset", [syncPath], syncedPaths.has(key)));
+		}
+		const completed = outputs.filter((output) => output.exists).length;
+		const total = outputs.length;
+		const state = total === 0 ? "none" : completed === total ? "done" : completed > 0 ? "partial" : "none";
+		statuses[key] = {
+			key,
+			path: itemPath,
+			state,
+			completed,
+			total,
+			outputs,
+			message: total ? `${completed}/${total}` : "",
+			updatedAt: new Date().toISOString(),
+		};
+	}
+	return { statuses, updatedAt: new Date().toISOString() };
+}
+
 function projectStatePathForProject(project: ProjectInfo) {
 	return path.join(project.root, PROJECT_STATE_NAME);
 }
@@ -2511,6 +2766,10 @@ ipcMain.handle("analysis-state:save", async (_event, { project, state } = {}) =>
 	const info = projectInfoFromPayload(project);
 	ensureProjectDirs(info);
 	return writeProjectAnalysisState(info, state || {});
+});
+
+ipcMain.handle("analysis:material-status", async (_event, { appConfig } = {}) => {
+	return materialAnalysisStatuses(appConfig || {});
 });
 
 ipcMain.handle("media-manifest:save", async (_event, { project, manifest } = {}) => {

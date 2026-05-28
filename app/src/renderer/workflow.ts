@@ -42,6 +42,7 @@ type WorkflowControllerDeps = {
 	setDirectRunRunning: (...args: any[]) => any;
 	setMediaManifest: (...args: any[]) => any;
 	notifyAnalysisComplete: (...args: any[]) => any;
+	refreshMaterialAnalysisStatus: (...args: any[]) => any;
 	setCodexTurnRunning: (...args: any[]) => any;
 	updateCodexRunControls: (...args: any[]) => any;
 	codexErrorMessage: (...args: any[]) => any;
@@ -70,6 +71,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		setDirectRunRunning,
 		setMediaManifest,
 		notifyAnalysisComplete,
+		refreshMaterialAnalysisStatus,
 		setCodexTurnRunning,
 		updateCodexRunControls,
 		codexErrorMessage,
@@ -1367,6 +1369,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 				].includes(action)
 			) {
 				await restoreAnalysisResultsFromOutputs(state.mediaManifest);
+				await refreshMaterialAnalysisStatus();
 			}
 			setIngestProgress({
 				progress: ok ? 1 : state.lastWorkflowProgressLog || 0,

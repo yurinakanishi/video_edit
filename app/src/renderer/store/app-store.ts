@@ -5,7 +5,7 @@ import type {
 	CodexModel,
 	GlossaryTerm,
 	Locale,
-	MaterialAnalysisProgress,
+	MaterialAnalysisStatus,
 	MediaManifest,
 	ProjectInfo,
 	ProjectListEntry,
@@ -222,7 +222,7 @@ export type AppState = AppRunFlags &
 		promptPreviewText: string;
 		punchlineText: string;
 		analysisResults: AnalysisResult[];
-		materialAnalysisProgress: Record<string, MaterialAnalysisProgress>;
+		materialAnalysisStatus: Record<string, MaterialAnalysisStatus>;
 		analysisTitleText: string;
 		files: AppFiles;
 		subtitleMode: SubtitleMode;
@@ -267,7 +267,7 @@ export type AppActions = {
 	setToolPaths: (paths: Partial<ToolPaths>) => void;
 	setFiles: (files: Partial<AppFiles>) => void;
 	setAnalysisResults: (results: AnalysisResult[]) => void;
-	setMaterialAnalysisProgress: (progress: Record<string, MaterialAnalysisProgress>) => void;
+	setMaterialAnalysisStatus: (status: Record<string, MaterialAnalysisStatus>) => void;
 	setLanguageMenuOpen: (open: boolean) => void;
 	setProjectDialogOpen: (open: boolean) => void;
 	setProjectDialogName: (name: string) => void;
@@ -483,7 +483,7 @@ export const useAppStore = create<AppStore>((set) => ({
 	punchlineText: "",
 	appLocked: false,
 	analysisResults: [],
-	materialAnalysisProgress: {},
+	materialAnalysisStatus: {},
 	analysisTitleText: "",
 	files: defaultFiles(),
 	subtitleMode: "full",
@@ -537,7 +537,7 @@ export const useAppStore = create<AppStore>((set) => ({
 	setToolPaths: (paths) => set((current) => ({ toolPaths: { ...current.toolPaths, ...paths } })),
 	setFiles: (files) => set((current) => ({ files: { ...current.files, ...files } })),
 	setAnalysisResults: (analysisResults) => set({ analysisResults }),
-	setMaterialAnalysisProgress: (materialAnalysisProgress) => set({ materialAnalysisProgress }),
+	setMaterialAnalysisStatus: (materialAnalysisStatus) => set({ materialAnalysisStatus }),
 	setLanguageMenuOpen: (languageMenuOpen) => set({ languageMenuOpen }),
 	setProjectDialogOpen: (projectDialogOpen) => set({ projectDialogOpen }),
 	setProjectDialogName: (projectDialogName) => set({ projectDialogName }),

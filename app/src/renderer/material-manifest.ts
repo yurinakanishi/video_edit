@@ -26,9 +26,9 @@ type ConfirmActionOptions = {
 type MaterialManifestControllerOptions = {
 	readonly confirmAction: (options: ConfirmActionOptions) => Promise<boolean>;
 	readonly loadFilePreviews: (paths: string[]) => void;
-	readonly materialSourceLabel: () => string;
 	readonly refreshPrompt: () => void;
-	readonly resetAnalysisForMaterialChange: (path?: string) => void;
+	readonly refreshMaterialAnalysisStatus: () => Promise<void>;
+	readonly removeMaterialAnalysisStatus: (paths: string[]) => void;
 	readonly saveState: () => void;
 	readonly setFile: (slot: string, filePath: string) => void;
 	readonly setMaterialSources: (paths: string[]) => void;
@@ -48,9 +48,9 @@ function roleSortValue(role: string) {
 export function createMaterialManifestController({
 	confirmAction,
 	loadFilePreviews,
-	materialSourceLabel,
 	refreshPrompt,
-	resetAnalysisForMaterialChange,
+	refreshMaterialAnalysisStatus,
+	removeMaterialAnalysisStatus,
 	saveState,
 	setFile,
 	setMaterialSources,
@@ -181,9 +181,10 @@ export function createMaterialManifestController({
 		}
 		rebuildMediaManifestGroups();
 		applyManifestSelections();
-		resetAnalysisForMaterialChange(state.mediaManifest.manifestPath || materialSourceLabel());
+		removeMaterialAnalysisStatus([item.path, item.originalPath || ""]);
 		renderMediaManifest();
 		refreshPrompt();
+		void refreshMaterialAnalysisStatus();
 		saveState();
 		await persistCurrentMediaManifest();
 		log("manifest material removed", { path: filePath, id: item.id });
@@ -205,6 +206,7 @@ export function createMaterialManifestController({
 		item.confidence = 1.0;
 		applyManifestSelections();
 		renderMediaManifest();
+		void refreshMaterialAnalysisStatus();
 		refreshPrompt();
 	}
 

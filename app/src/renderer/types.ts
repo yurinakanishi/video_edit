@@ -24,6 +24,7 @@ export type EditAppApi = {
 	interruptCodex: () => Promise<any>;
 	loadAnalysisState: (payload: any) => Promise<any>;
 	saveAnalysisState: (payload: any) => Promise<any>;
+	getMaterialAnalysisStatus: (payload: any) => Promise<any>;
 	saveMediaManifest: (payload: any) => Promise<MediaManifest>;
 	loadProjectState: (payload: any) => Promise<any>;
 	saveProjectState: (payload: any) => Promise<any>;
@@ -96,12 +97,21 @@ export type MediaManifest = {
 
 export type Locale = "ja" | "en";
 export type AnalysisResult = { key: string; label: string; status: string; detail: string; path?: string };
-export type MaterialAnalysisProgress = {
+export type MaterialAnalysisOutputStatus = {
+	key: string;
+	label: string;
+	labelKey?: string;
+	path: string;
+	exists: boolean;
+};
+export type MaterialAnalysisStatus = {
 	key: string;
 	path: string;
-	progress: number;
-	status: "waiting" | "running" | "done" | "error";
+	state: "none" | "partial" | "done" | "running" | "error";
+	completed: number;
+	total: number;
 	message: string;
+	outputs: MaterialAnalysisOutputStatus[];
 	updatedAt: string;
 };
 export type CodexModel = {

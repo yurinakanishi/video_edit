@@ -1,4 +1,9 @@
-import { MATERIAL_ITEM_REMOVE_EVENT, MATERIAL_ROLE_CHANGE_EVENT, MATERIAL_SOURCE_REMOVE_EVENT } from "../events.js";
+import {
+	MATERIAL_ITEM_REANALYZE_EVENT,
+	MATERIAL_ITEM_REMOVE_EVENT,
+	MATERIAL_ROLE_CHANGE_EVENT,
+	MATERIAL_SOURCE_REMOVE_EVENT,
+} from "../events.js";
 import { localizePlainText, t } from "../i18n.js";
 import {
 	fallbackPreviewForPath,
@@ -15,6 +20,12 @@ import { MediaThumbnail } from "./MediaThumbnail.js";
 
 function dispatchMaterialEvent(name: string, detail: Record<string, string>) {
 	document.dispatchEvent(new CustomEvent(name, { detail }));
+}
+
+function materialStatusKey(filePath: string) {
+	return String(filePath || "")
+		.trim()
+		.toLowerCase();
 }
 
 function roleOptionsFor(item: MediaItem) {
@@ -51,6 +62,14 @@ function roleOptionsFor(item: MediaItem) {
 	return [["ignore", t("role.ignore")]];
 }
 
+function canReanalyzeItem(item: MediaItem) {
+	const cameraRoles = new Set(["master", "camera2", "camera3", "camera4", "camera5", "camera6"]);
+	return (
+		(item.kind === "video" && cameraRoles.has(item.role)) ||
+		(item.kind === "audio" && String(item.role || "").startsWith("external"))
+	);
+}
+
 function loadedPreviewForPath(filePreviews: Record<string, any>, sourcePath: string) {
 	const normalized = String(sourcePath || "").toLowerCase();
 	return (
@@ -80,6 +99,72 @@ function RemoveButton({ eventName, detail }: { readonly eventName: string; reado
 		>
 			×
 		</button>
+	);
+}
+
+function ReanalyzeButton({ itemId, disabled }: { readonly itemId: string; readonly disabled: boolean }) {
+	return (
+		<button
+			type="button"
+			className="material-reanalyze-button"
+			title={t("action.reanalyze")}
+			aria-label={t("action.reanalyze")}
+			disabled={disabled}
+			onClick={(event) => {
+				event.stopPropagation();
+				dispatchMaterialEvent(MATERIAL_ITEM_REANALYZE_EVENT, { id: itemId });
+			}}
+		>
+			{t("action.reanalyze")}
+		</button>
+	);
+}
+
+function analysisStateLabel(state: string) {
+	if (state === "done") {
+		return t("analysis.fileStatusDone");
+	}
+	if (state === "partial") {
+		return t("analysis.fileStatusPartial");
+	}
+	if (state === "running") {
+		return t("analysis.fileStatusRunning");
+	}
+	if (state === "error") {
+		return t("analysis.fileStatusError");
+	}
+	return t("analysis.fileStatusNone");
+}
+
+function MaterialAnalysisStatusView({ status }: { readonly status: any }) {
+	if (!status) {
+		return null;
+	}
+	const total = Number(status.total || 0);
+	const completed = Number(status.completed || 0);
+	const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+	const outputs = Array.isArray(status.outputs) ? status.outputs : [];
+	return (
+		<div className={`material-analysis-status ${status.state || "none"}`.trim()}>
+			<div className="material-analysis-status-meta">
+				<strong>{analysisStateLabel(status.state)}</strong>
+				<span>{total > 0 ? `${completed}/${total}` : t("analysis.noPerFileOutputs")}</span>
+			</div>
+			{total > 0 ? (
+				<div className="material-analysis-completion" aria-hidden="true">
+					<span style={{ width: `${percent}%` }}></span>
+				</div>
+			) : null}
+			{outputs.length ? (
+				<div className="material-analysis-files">
+					{outputs.map((output: any) => (
+						<span key={output.key} className={output.exists ? "exists" : "missing"} title={output.path || output.label}>
+							{output.labelKey ? t(output.labelKey) : localizePlainText(output.label || output.key)}
+						</span>
+					))}
+				</div>
+			) : null}
+		</div>
 	);
 }
 
@@ -148,6 +233,9 @@ function ManifestFileList() {
 	const language = useAppStore((store) => store.language);
 	const mediaManifest = useAppStore((store) => store.mediaManifest);
 	const filePreviews = useAppStore((store) => store.filePreviews);
+	const materialAnalysisStatus = useAppStore((store) => store.materialAnalysisStatus);
+	const appLocked = useAppStore((store) => store.appLocked);
+	const ingestRunning = useAppStore((store) => store.ingestRunning);
 
 	if (!mediaManifest?.files?.length) {
 		return (
@@ -163,6 +251,7 @@ function ManifestFileList() {
 				const roleOptions = roleOptionsFor(item);
 				const preview = filePreviews[item.path] || filePreviews[item.originalPath || ""] || item;
 				const missing = isMissingPreview(preview);
+				const analysisStatus = materialAnalysisStatus[materialStatusKey(item.path)];
 				const badges = [
 					previewKindLabel(item.kind),
 					...mediaMetaBadges(item),
@@ -191,8 +280,10 @@ function ManifestFileList() {
 								))}
 							</div>
 							<small>{item.reason ? localizePlainText(item.reason) : ""}</small>
+							<MaterialAnalysisStatusView status={analysisStatus} />
 						</div>
 						<div className="material-actions">
+							<ReanalyzeButton itemId={item.id} disabled={appLocked || ingestRunning || !canReanalyzeItem(item)} />
 							<select
 								data-media-role={item.id}
 								value={item.role}

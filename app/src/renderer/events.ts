@@ -1,6 +1,7 @@
 export const MATERIAL_ROLE_CHANGE_EVENT = "video-edit:material-role-change";
 export const MATERIAL_SOURCE_REMOVE_EVENT = "video-edit:material-source-remove";
 export const MATERIAL_ITEM_REMOVE_EVENT = "video-edit:material-item-remove";
+export const MATERIAL_ITEM_REANALYZE_EVENT = "video-edit:material-item-reanalyze";
 export const MATERIAL_PICK_DIRECTORY_EVENT = "video-edit:material-pick-directory";
 export const MATERIAL_PICK_FILES_EVENT = "video-edit:material-pick-files";
 export const MATERIAL_ANALYZE_EVENT = "video-edit:material-analyze";

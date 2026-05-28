@@ -15,6 +15,7 @@ type ProjectControllerOptions = {
 	readonly loadWorkflowMediaPreviews: () => void;
 	readonly persistProjectStateFileNow: () => Promise<void>;
 	readonly refreshPrompt: () => void;
+	readonly refreshMaterialAnalysisStatus: () => Promise<void>;
 	readonly refreshSyncReport: () => Promise<void>;
 	readonly refreshTextOverlayFromAnalysis: (manifest?: MediaManifest | null) => Promise<any>;
 	readonly restoreAnalysisResultsFromOutputs: (manifest?: MediaManifest | null) => Promise<any>;
@@ -35,6 +36,7 @@ export function createProjectController({
 	loadWorkflowMediaPreviews,
 	persistProjectStateFileNow,
 	refreshPrompt,
+	refreshMaterialAnalysisStatus,
 	refreshSyncReport,
 	refreshTextOverlayFromAnalysis,
 	restoreAnalysisResultsFromOutputs,
@@ -140,6 +142,7 @@ export function createProjectController({
 			});
 		}
 		await refreshSyncReport();
+		await refreshMaterialAnalysisStatus();
 		refreshPrompt();
 	}
 

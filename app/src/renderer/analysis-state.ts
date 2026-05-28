@@ -1,7 +1,7 @@
 import { log } from "./log.js";
 import { state } from "./state.js";
 import { getAppState, patchAppState } from "./store/app-store.js";
-import type { AnalysisResult, MaterialAnalysisProgress } from "./types.js";
+import type { AnalysisResult, MaterialAnalysisOutputStatus, MaterialAnalysisStatus } from "./types.js";
 
 type AnalysisStateControllerOptions = {
 	readonly persistAnalysisStateFile: () => void;
@@ -23,50 +23,63 @@ function normalizeAnalysisResult(item: any): AnalysisResult | null {
 	};
 }
 
-function materialProgressKey(filePath: string) {
-	return String(filePath || "").trim().toLowerCase();
+function materialStatusKey(filePath: string) {
+	return String(filePath || "")
+		.trim()
+		.toLowerCase();
 }
 
-function normalizeProgressStatus(value: any): MaterialAnalysisProgress["status"] {
-	return ["waiting", "running", "done", "error"].includes(String(value))
-		? (String(value) as MaterialAnalysisProgress["status"])
-		: "waiting";
+function normalizeMaterialAnalysisState(value: any): MaterialAnalysisStatus["state"] {
+	return ["none", "partial", "done", "running", "error"].includes(String(value))
+		? (String(value) as MaterialAnalysisStatus["state"])
+		: "none";
 }
 
-function normalizeProgressValue(value: any) {
-	const number = Number(value);
-	if (!Number.isFinite(number)) {
-		return 0;
-	}
-	return Math.max(0, Math.min(1, number));
-}
-
-function normalizeMaterialAnalysisProgress(item: any): MaterialAnalysisProgress | null {
-	const path = String(item?.path || "").trim();
-	const key = materialProgressKey(item?.key || path);
-	if (!path || !key) {
+function normalizeOutputStatus(item: any): MaterialAnalysisOutputStatus | null {
+	const key = String(item?.key || "").trim();
+	if (!key) {
 		return null;
 	}
 	return {
 		key,
+		label: String(item?.label || key),
+		labelKey: String(item?.labelKey || ""),
+		path: String(item?.path || ""),
+		exists: Boolean(item?.exists),
+	};
+}
+
+function normalizeMaterialAnalysisStatus(item: any): MaterialAnalysisStatus | null {
+	const path = String(item?.path || "").trim();
+	const key = materialStatusKey(item?.key || path);
+	if (!path || !key) {
+		return null;
+	}
+	const outputs = (Array.isArray(item?.outputs) ? item.outputs : [])
+		.map(normalizeOutputStatus)
+		.filter((output): output is MaterialAnalysisOutputStatus => Boolean(output));
+	const completed = Number.isFinite(Number(item?.completed))
+		? Number(item.completed)
+		: outputs.filter((output) => output.exists).length;
+	const total = Number.isFinite(Number(item?.total)) ? Number(item.total) : outputs.length;
+	return {
+		key,
 		path,
-		progress: normalizeProgressValue(item?.progress),
-		status: normalizeProgressStatus(item?.status),
+		state: normalizeMaterialAnalysisState(item?.state),
+		completed,
+		total,
 		message: String(item?.message || ""),
+		outputs,
 		updatedAt: String(item?.updatedAt || new Date().toISOString()),
 	};
 }
 
-function normalizeMaterialAnalysisProgressMap(value: any): Record<string, MaterialAnalysisProgress> {
-	const entries = Array.isArray(value)
-		? value
-		: value && typeof value === "object"
-			? Object.values(value)
-			: [];
+function normalizeMaterialAnalysisStatusMap(value: any): Record<string, MaterialAnalysisStatus> {
+	const entries = Array.isArray(value) ? value : value && typeof value === "object" ? Object.values(value) : [];
 	return Object.fromEntries(
 		entries
-			.map(normalizeMaterialAnalysisProgress)
-			.filter((item): item is MaterialAnalysisProgress => Boolean(item))
+			.map(normalizeMaterialAnalysisStatus)
+			.filter((item): item is MaterialAnalysisStatus => Boolean(item))
 			.map((item) => [item.key, item]),
 	);
 }
@@ -76,18 +89,8 @@ export function createAnalysisStateController({ persistAnalysisStateFile, saveSt
 		patchAppState({ analysisResults: state.analysisResults.map((item) => ({ ...item })) });
 	}
 
-	function renderMaterialAnalysisProgress() {
-		patchAppState({ materialAnalysisProgress: { ...state.materialAnalysisProgress } });
-	}
-
-	function commitMaterialAnalysisProgress(options: { persistFile?: boolean; saveState?: boolean } = {}) {
-		renderMaterialAnalysisProgress();
-		if (options.saveState !== false) {
-			saveState();
-		}
-		if (options.persistFile !== false) {
-			persistAnalysisStateFile();
-		}
+	function renderMaterialAnalysisStatus() {
+		patchAppState({ materialAnalysisStatus: { ...state.materialAnalysisStatus } });
 	}
 
 	function setAnalysisResult(key: string, label: string, status: string, detail: string, path = "") {
@@ -115,99 +118,48 @@ export function createAnalysisStateController({ persistAnalysisStateFile, saveSt
 		}
 	}
 
-	function setMaterialAnalysisProgress(
-		filePath: string,
-		progress: Partial<MaterialAnalysisProgress>,
-		options: { persistFile?: boolean; saveState?: boolean } = {},
-	) {
-		const path = String(progress.path || filePath || "").trim();
-		const key = materialProgressKey(progress.key || path);
-		if (!path || !key) {
-			return;
-		}
-		const current = state.materialAnalysisProgress[key] || {
-			key,
-			path,
-			progress: 0,
-			status: "waiting",
-			message: "",
-			updatedAt: "",
-		};
-		state.materialAnalysisProgress[key] = {
-			...current,
-			...progress,
-			key,
-			path,
-			progress: normalizeProgressValue(progress.progress ?? current.progress),
-			status: normalizeProgressStatus(progress.status ?? current.status),
-			message: String(progress.message ?? current.message ?? ""),
-			updatedAt: new Date().toISOString(),
-		};
-		commitMaterialAnalysisProgress(options);
+	function setMaterialAnalysisStatusMap(status: any) {
+		state.materialAnalysisStatus = normalizeMaterialAnalysisStatusMap(status);
+		getAppState().setMaterialAnalysisStatus(state.materialAnalysisStatus);
+		renderMaterialAnalysisStatus();
 	}
 
-	function setMaterialAnalysisProgressForPaths(
-		paths: string[],
-		progress: Partial<MaterialAnalysisProgress>,
-		options: { persistFile?: boolean; saveState?: boolean } = {},
-	) {
-		const uniquePaths = [...new Set(paths.map(String).map((item) => item.trim()).filter(Boolean))];
-		for (const filePath of uniquePaths) {
-			const key = materialProgressKey(filePath);
-			const current = state.materialAnalysisProgress[key] || {
-				key,
-				path: filePath,
-				progress: 0,
-				status: "waiting",
-				message: "",
-				updatedAt: "",
-			};
-			state.materialAnalysisProgress[key] = {
-				...current,
-				...progress,
-				key,
-				path: filePath,
-				progress: normalizeProgressValue(progress.progress ?? current.progress),
-				status: normalizeProgressStatus(progress.status ?? current.status),
-				message: String(progress.message ?? current.message ?? ""),
-				updatedAt: new Date().toISOString(),
-			};
-		}
-		commitMaterialAnalysisProgress(options);
-	}
-
-	function setMaterialAnalysisProgressMap(
-		progress: any,
-		options: { persistFile?: boolean; saveState?: boolean } = {},
-	) {
-		state.materialAnalysisProgress = normalizeMaterialAnalysisProgressMap(progress);
-		getAppState().setMaterialAnalysisProgress(state.materialAnalysisProgress);
-		commitMaterialAnalysisProgress(options);
-	}
-
-	function removeMaterialAnalysisProgress(
-		paths: string[],
-		options: { persistFile?: boolean; saveState?: boolean } = {},
-	) {
-		const keys = new Set(paths.map(materialProgressKey).filter(Boolean));
+	function removeMaterialAnalysisStatus(paths: string[]) {
+		const keys = new Set(paths.map(materialStatusKey).filter(Boolean));
 		if (!keys.size) {
 			return;
 		}
-		state.materialAnalysisProgress = Object.fromEntries(
-			Object.entries(state.materialAnalysisProgress).filter(([key]) => !keys.has(key)),
+		state.materialAnalysisStatus = Object.fromEntries(
+			Object.entries(state.materialAnalysisStatus).filter(([key]) => !keys.has(key)),
 		);
-		commitMaterialAnalysisProgress(options);
+		renderMaterialAnalysisStatus();
 	}
 
-	function retainMaterialAnalysisProgress(
-		paths: string[],
-		options: { persistFile?: boolean; saveState?: boolean } = {},
-	) {
-		const keys = new Set(paths.map(materialProgressKey).filter(Boolean));
-		state.materialAnalysisProgress = Object.fromEntries(
-			Object.entries(state.materialAnalysisProgress).filter(([key]) => keys.has(key)),
-		);
-		commitMaterialAnalysisProgress(options);
+	function setMaterialAnalysisRunning(filePath: string, message = "") {
+		const path = String(filePath || "").trim();
+		const key = materialStatusKey(path);
+		if (!path || !key) {
+			return;
+		}
+		const current = state.materialAnalysisStatus[key] || {
+			key,
+			path,
+			state: "none",
+			completed: 0,
+			total: 0,
+			message: "",
+			outputs: [],
+			updatedAt: "",
+		};
+		state.materialAnalysisStatus[key] = {
+			...current,
+			key,
+			path,
+			state: "running",
+			message: message || current.message,
+			updatedAt: new Date().toISOString(),
+		};
+		renderMaterialAnalysisStatus();
 	}
 
 	function setAnalysisTitleText(title: string) {
@@ -234,14 +186,12 @@ export function createAnalysisStateController({ persistAnalysisStateFile, saveSt
 	return {
 		notifyAnalysisComplete,
 		renderAnalysisResults,
-		renderMaterialAnalysisProgress,
+		renderMaterialAnalysisStatus,
 		setAnalysisResult,
 		setAnalysisResults,
-		setMaterialAnalysisProgress,
-		setMaterialAnalysisProgressForPaths,
-		setMaterialAnalysisProgressMap,
-		removeMaterialAnalysisProgress,
-		retainMaterialAnalysisProgress,
+		setMaterialAnalysisRunning,
+		setMaterialAnalysisStatusMap,
+		removeMaterialAnalysisStatus,
 		setAnalysisTitleText,
 	};
 }

@@ -81,16 +81,13 @@ const analysisStateController = createAnalysisStateController({
 
 const {
 	notifyAnalysisComplete,
-	removeMaterialAnalysisProgress,
 	renderAnalysisResults,
-	renderMaterialAnalysisProgress,
-	retainMaterialAnalysisProgress,
+	removeMaterialAnalysisStatus,
 	setAnalysisResult,
 	setAnalysisResults,
 	setAnalysisTitleText,
-	setMaterialAnalysisProgress,
-	setMaterialAnalysisProgressForPaths,
-	setMaterialAnalysisProgressMap,
+	setMaterialAnalysisRunning,
+	setMaterialAnalysisStatusMap,
 } = analysisStateController;
 
 const glossaryStateController = createGlossaryStateController({
@@ -154,10 +151,9 @@ const { closeConfirmDialog, confirmAction } = createConfirmDialogController();
 const materialManifestController = createMaterialManifestController({
 	confirmAction,
 	loadFilePreviews,
-	materialSourceLabel: () => materialSourceLabel(),
 	refreshPrompt: () => currentRefreshPrompt(),
-	removeMaterialAnalysisProgress,
-	resetAnalysisForMaterialChange: (path) => resetAnalysisForMaterialChange(path),
+	refreshMaterialAnalysisStatus,
+	removeMaterialAnalysisStatus,
 	saveState: () => saveCurrentState(),
 	setFile,
 	setMaterialSources: (paths) => setMaterialSources(paths),
@@ -205,6 +201,7 @@ const projectController = createProjectController({
 	loadWorkflowMediaPreviews,
 	persistProjectStateFileNow: () => currentPersistProjectStateFileNow(),
 	refreshPrompt: () => currentRefreshPrompt(),
+	refreshMaterialAnalysisStatus,
 	refreshSyncReport: () => currentRefreshSyncReport(),
 	refreshTextOverlayFromAnalysis: (manifest) => currentRefreshTextOverlayFromAnalysis(manifest),
 	restoreAnalysisResultsFromOutputs: (manifest) => currentRestoreAnalysisResultsFromOutputs(manifest),
@@ -253,7 +250,6 @@ const {
 	loadWorkflowMediaPreviews,
 	loadOutputTargetPreview,
 	setAnalysisResults,
-	setMaterialAnalysisProgressMap,
 	renderGlossaryList,
 	buildAppConfig: () => workflowController.buildAppConfig(),
 	setAnalysisTitleText,
@@ -287,12 +283,12 @@ workflowController = createWorkflowController({
 	progressPercent,
 	renderAnalysisResults,
 	setAnalysisResults,
-	setMaterialAnalysisProgressForPaths,
 	setIngestProgress,
 	setAppLocked,
 	setDirectRunRunning,
 	setMediaManifest,
 	notifyAnalysisComplete,
+	refreshMaterialAnalysisStatus,
 	setCodexTurnRunning,
 	updateCodexRunControls,
 	codexErrorMessage,
@@ -357,14 +353,15 @@ const materialAnalysisController = createMaterialAnalysisController({
 	refreshPrompt,
 	refreshSyncReport,
 	refreshTextOverlayFromAnalysis,
+	refreshMaterialAnalysisStatus,
 	renderAnalysisResults,
 	setAnalysisResult,
 	setAppLocked,
 	setDefaultProjectOutput,
 	setIngestProgress,
 	setIngestRunning,
-	setMaterialAnalysisProgress,
-	setMaterialAnalysisProgressForPaths,
+	setMaterialAnalysisRunning,
+	setMaterialAnalysisStatusMap,
 	setMaterialSources,
 	setMediaManifest,
 	setProject,
@@ -378,11 +375,20 @@ const { cancelMaterialAnalysis, ingestMaterialDirectory, reanalyzeMaterialItem }
 
 function resetAnalysisForMaterialChange(path = materialSourceLabel()) {
 	setAnalysisResults([]);
-	setMaterialAnalysisProgressMap({});
+	setMaterialAnalysisStatusMap({});
 	setAnalysisTitleText("");
 	state.syncReport = null;
 	renderSyncReport();
 	setWaitingAnalysisProgress(setIngestProgress, path);
+}
+
+async function refreshMaterialAnalysisStatus() {
+	try {
+		const result = await editApp.getMaterialAnalysisStatus({ appConfig: buildAppConfig() });
+		setMaterialAnalysisStatusMap(result?.statuses || {});
+	} catch (error) {
+		log("material analysis status refresh failed", { message: (error as Error).message });
+	}
 }
 
 function bindEvents() {
@@ -483,7 +489,6 @@ async function init() {
 		refreshSyncReport,
 		setCodexTurnRunning,
 		setIngestProgress,
-		setMaterialAnalysisProgress,
 		setIngestRunning,
 		setStatus,
 	});
@@ -497,5 +502,6 @@ async function init() {
 	await restoreProgressFromOutputs({ preserveExisting: true });
 	if (state.mediaManifest) {
 		await refreshAnalysisTitleFromAnalysis(state.mediaManifest);
+		await refreshMaterialAnalysisStatus();
 	}
 }

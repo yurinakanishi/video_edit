@@ -137,6 +137,7 @@ const state = {
 	mediaDirectory: "",
 	materialPaths: [] as string[],
 	ingestRunning: false,
+	materialAnalysisCancelable: false,
 	fullAnalysisRunning: false,
 	directRunRunning: false,
 	codexTurnRunning: false,
@@ -319,6 +320,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"action.files": "ファイル",
 		"action.analyze": "解析",
 		"action.cancel": "キャンセル",
+		"action.clear": "クリア",
 		"progress.waitingAnalysis": "解析待ち",
 		"progress.pressAnalyze": "解析ボタンを押してください",
 		"progress.analyzingMaterial": "素材を解析しています",
@@ -335,7 +337,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"progress.timeout": "実行がタイムアウトしました",
 		"progress.processComplete": "処理が完了しました",
 		"progress.processError": "処理でエラーが発生しました",
-		"asset.master": "日の動画・マスター",
+		"asset.master": "メイン動画・マスター",
 		"asset.masterDescription": "1cam / ベースタイムライン",
 		"asset.rightClose": "右からのアップ",
 		"asset.rightCloseDescription": "人物 1 のアップ",
@@ -821,6 +823,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"action.files": "Files",
 		"action.analyze": "Analyze",
 		"action.cancel": "Cancel",
+		"action.clear": "Clear",
 		"progress.waitingAnalysis": "Waiting for analysis",
 		"progress.pressAnalyze": "Click Analyze to start",
 		"progress.analyzingMaterial": "Analyzing assets",
@@ -1633,10 +1636,29 @@ function mediaMetaBadges(preview: any) {
 	const metadata = metadataForPreview(preview);
 	const resolution = metadata.width && metadata.height ? `${metadata.width}x${metadata.height}` : "";
 	const duration = metadata.duration || preview?.duration;
+	const motionType = metadata.cameraMotionType || metadata.personAnalysis?.cameraMotionType || "";
+	const fixedCamera =
+		typeof metadata.isFixedCamera === "boolean"
+			? metadata.isFixedCamera
+			: typeof metadata.personAnalysis?.isFixedCamera === "boolean"
+				? metadata.personAnalysis.isFixedCamera
+				: null;
+	const faceDirection = metadata.fixedCameraFaceDirection || metadata.personAnalysis?.fixedCameraFaceDirection || "";
+	const motionBadge =
+		fixedCamera === true
+			? "Fixed camera"
+			: fixedCamera === false
+				? "Moving camera"
+				: motionType
+					? `Camera ${motionType}`
+					: "";
+	const directionBadge = faceDirection ? `Look ${faceDirection}` : "";
 	return [
 		duration ? formatDuration(duration) : "",
 		extensionLabel(preview?.extension || preview?.name || ""),
 		resolution,
+		motionBadge,
+		directionBadge,
 		metadata.videoCodec || preview?.videoCodec || metadata.audioCodec || preview?.audioCodec || "",
 		formatBytes(preview?.sizeBytes),
 	].filter(Boolean);
@@ -1946,7 +1968,7 @@ function setDirectRunRunning(running: boolean, label = "") {
 	state.directRunRunning = running;
 	const runButton = $("#runPreset");
 	if (runButton) {
-		runButton.disabled = running;
+		runButton.disabled = running || state.appLocked;
 		runButton.textContent = running
 			? t("format.runningButton", { label: label || t("runLabel.run") })
 			: t("action.runPresetScript");
@@ -1959,12 +1981,12 @@ function updateCodexRunControls() {
 	const stopButtons = [$("#stopCodexTurn"), $("#interrupt")].filter(Boolean);
 	if (sendButton) {
 		sendButton.hidden = state.codexTurnRunning;
-		sendButton.disabled = state.directRunRunning;
+		sendButton.disabled = state.directRunRunning || state.appLocked;
 		sendButton.textContent = t("action.runWithCodex");
 	}
 	for (const button of stopButtons) {
 		button.hidden = !state.codexTurnRunning;
-		button.disabled = !state.codexTurnRunning || state.codexInterruptRequested;
+		button.disabled = state.appLocked || !state.codexTurnRunning || state.codexInterruptRequested;
 		button.textContent = state.codexInterruptRequested ? t("action.stoppingCodex") : t("action.stopCodex");
 	}
 }
@@ -1982,19 +2004,22 @@ function setIngestRunning(running: boolean) {
 	const folderButton = $("#pickMaterialDirectory");
 	const filesButton = $("#pickMaterialFiles");
 	const hasMaterialSources = Boolean(state.materialPaths.length || state.mediaManifest?.files?.length);
+	const canCancelAnalysis = running && state.materialAnalysisCancelable;
+	const canClearSources = !running && hasMaterialSources && !state.appLocked;
 	if (analyzeButton) {
 		analyzeButton.hidden = !hasMaterialSources;
-		analyzeButton.disabled = running || !hasMaterialSources;
+		analyzeButton.disabled = running || state.appLocked || !hasMaterialSources;
 	}
 	if (cancelButton) {
-		cancelButton.hidden = !hasMaterialSources;
-		cancelButton.disabled = !hasMaterialSources;
+		cancelButton.hidden = !canCancelAnalysis && !canClearSources;
+		cancelButton.disabled = !canCancelAnalysis && !canClearSources;
+		cancelButton.textContent = canCancelAnalysis ? t("action.cancel") : t("action.clear");
 	}
 	if (folderButton) {
-		folderButton.disabled = running;
+		folderButton.disabled = running || state.appLocked;
 	}
 	if (filesButton) {
-		filesButton.disabled = running;
+		filesButton.disabled = running || state.appLocked;
 	}
 }
 
@@ -2015,9 +2040,9 @@ function setAppLocked(locked: boolean, message = "", title = t("busy.processing"
 	$$("button, input, select, textarea").forEach((element) => {
 		element.disabled = locked;
 	});
-	if (!locked) {
-		setIngestRunning(state.ingestRunning);
-	}
+	setIngestRunning(state.ingestRunning);
+	setDirectRunRunning(state.directRunRunning, state.runningAction ? directRunLabel(state.runningAction) : "");
+	updateCodexRunControls();
 }
 
 function setAnalysisResult(key: string, label: string, status: string, detail: string, path = "") {
@@ -2116,6 +2141,7 @@ function setMaterialSources(paths: string[]) {
 	state.materialPaths = selected;
 	state.mediaDirectory = selected[0] || "";
 	state.mediaManifest = null;
+	state.materialAnalysisCancelable = false;
 	setAnalysisResults([]);
 	setAnalysisTitleText("");
 	setIngestProgress({
@@ -2123,6 +2149,7 @@ function setMaterialSources(paths: string[]) {
 		message: selected.length ? t("progress.pressAnalyze") : t("progress.waitingAnalysis"),
 		path: materialSourceLabel(),
 	});
+	setIngestRunning(state.ingestRunning);
 	renderMediaManifest();
 	void loadFilePreviews(state.materialPaths);
 	refreshPrompt();
@@ -2541,7 +2568,15 @@ function setStatus(text, kind = "idle") {
 	state.statusText = text;
 	state.statusKind = kind;
 	const status = $("#serverStatus");
-	status.innerHTML = `<span class="status-dot ${kind}"></span><span>${localizePlainText(text)}</span>`;
+	if (!status) {
+		return;
+	}
+	status.innerHTML = "";
+	const dot = document.createElement("span");
+	dot.className = `status-dot ${kind}`;
+	const label = document.createElement("span");
+	label.textContent = localizePlainText(text);
+	status.append(dot, label);
 }
 
 function codexErrorMessage(error: any): string {
@@ -3062,6 +3097,7 @@ function saveState() {
 			ingestProgress: state.ingestProgress,
 			glossaryTerms: state.glossaryTerms,
 			language: state.language,
+			activeSection: state.activeSection,
 			fields,
 		}),
 	);
@@ -3078,6 +3114,9 @@ function loadState() {
 		if (saved.language) {
 			state.language = normalizeLanguage(saved.language);
 			localStorage.setItem(LANGUAGE_STORAGE_KEY, state.language);
+		}
+		if (saved.activeSection) {
+			state.activeSection = String(saved.activeSection);
 		}
 		if (saved.project) {
 			setProject(saved.project);
@@ -3302,11 +3341,19 @@ async function persistProjectStateFileNow() {
 		state.projectStatePersistTimer = 0;
 	}
 	const project = { ...state.project };
-	const snapshot = buildProjectStateSnapshot();
 	projectStateWriteQueue = projectStateWriteQueue
 		.catch(() => undefined)
 		.then(async () => {
-			const saved = await editApp.saveProjectState({ project, state: snapshot });
+			if (!state.project || state.project.id !== project.id || state.projectStateApplying || !state.env) {
+				return null;
+			}
+			const baseRevision = Number(state.projectStateRevision || 0);
+			const snapshot = buildProjectStateSnapshot();
+			const saved = await editApp.saveProjectState({
+				project,
+				state: snapshot,
+				baseRevision,
+			});
 			if (state.project?.id === project.id) {
 				state.projectStateRevision = Number(saved?.revision || state.projectStateRevision || 0);
 				state.projectStatePath = saved?.path || state.projectStatePath;
@@ -3315,6 +3362,9 @@ async function persistProjectStateFileNow() {
 		})
 		.catch((error) => {
 			log("project state save failed", { message: error.message });
+			if (String(error?.message || "").includes("revision mismatch") && state.project?.id === project.id) {
+				void loadProjectStateFile(project);
+			}
 			return null;
 		});
 	return projectStateWriteQueue;
@@ -3723,6 +3773,9 @@ async function runAnalysisAction(
 			log("stderr", { action, text: compactOutput(result.stderr) });
 		}
 		const ok = result?.exitCode === 0;
+		if (ok && action === "analyze-person-edit-metadata" && result?.manifest) {
+			setMediaManifest(result.manifest);
+		}
 		setAnalysisResult(
 			action,
 			label,
@@ -3778,6 +3831,7 @@ async function ingestMaterialDirectory(directoryPath = "") {
 		return false;
 	}
 	state.fullAnalysisRunning = true;
+	state.materialAnalysisCancelable = true;
 	state.analysisResults = [];
 	renderAnalysisResults();
 	setStatus(t("status.analyzingMaterial"), "busy");
@@ -3798,6 +3852,8 @@ async function ingestMaterialDirectory(directoryPath = "") {
 				ffprobe: ffprobeExe(),
 			},
 		});
+		state.materialAnalysisCancelable = false;
+		setIngestRunning(state.ingestRunning);
 		setProject(result.project);
 		setMediaManifest(result.manifest);
 		$("#editPreset").value = "new-interview";
@@ -3898,6 +3954,7 @@ async function ingestMaterialDirectory(directoryPath = "") {
 		await notifyAnalysisComplete(allOk ? t("notification.analysisComplete") : t("notification.analysisCompleteCheck"));
 		return allOk;
 	} catch (error) {
+		state.materialAnalysisCancelable = false;
 		setStatus(t("status.ingestFailed"), "idle");
 		setIngestProgress({
 			progress: 0,
@@ -3910,6 +3967,7 @@ async function ingestMaterialDirectory(directoryPath = "") {
 		return false;
 	} finally {
 		state.fullAnalysisRunning = false;
+		state.materialAnalysisCancelable = false;
 		setIngestRunning(false);
 		setAppLocked(false);
 	}
@@ -3920,6 +3978,12 @@ async function cancelMaterialAnalysis() {
 		setMaterialSources([]);
 		return;
 	}
+	if (!state.materialAnalysisCancelable) {
+		log("ingest cancel skipped", { reason: t("analysis.statusRunning") });
+		return;
+	}
+	state.materialAnalysisCancelable = false;
+	setIngestRunning(state.ingestRunning);
 	try {
 		await editApp.cancelIngest();
 	} catch (error) {
@@ -5226,6 +5290,9 @@ async function runPreset() {
 		}
 		if (action === "analyze-person-edit-metadata" && result?.exitCode === 0) {
 			log("person analysis outputs", { bboxes: personBboxesDir(), plans: personEditPlansDir() });
+			if (result?.manifest) {
+				setMediaManifest(result.manifest);
+			}
 		}
 		if (action === "analyze-reference-video" && result?.exitCode === 0) {
 			log("reference analysis output", { profile: referenceEditProfilePath() });
@@ -5535,6 +5602,7 @@ function bindEvents() {
 	$$(".step-button").forEach((button) => {
 		button.addEventListener("click", () => {
 			setActiveSection(button.dataset.section);
+			saveState();
 			if (button.dataset.section === "run" && !state.codexModels.length) {
 				void loadCodexModels();
 			}
@@ -5620,6 +5688,7 @@ async function init() {
 			}
 		}
 		if (payload?.stage === "canceled") {
+			state.materialAnalysisCancelable = false;
 			setIngestRunning(false);
 		}
 		const shouldLog = payload?.stage && !["probe", "copy"].includes(payload.stage);

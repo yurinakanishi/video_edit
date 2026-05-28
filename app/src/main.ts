@@ -1387,6 +1387,131 @@ function writeRuntimeAppConfig(appConfig: any) {
 	return configPath;
 }
 
+function stripAnalysisSuffix(value: string) {
+	return value
+		.replace(/_person_edit_plan$/i, "")
+		.replace(/_person_bboxes$/i, "")
+		.toLowerCase();
+}
+
+function planMatchKeys(plan: Record<string, any>, planPath: string) {
+	const keys = new Set<string>();
+	const addValue = (value: unknown) => {
+		if (!value) {
+			return;
+		}
+		const text = String(value);
+		keys.add(text.toLowerCase());
+		const parsed = path.parse(text);
+		if (parsed.base) {
+			keys.add(parsed.base.toLowerCase());
+		}
+		if (parsed.name) {
+			keys.add(parsed.name.toLowerCase());
+			keys.add(stripAnalysisSuffix(parsed.name));
+		}
+		if (path.isAbsolute(text)) {
+			keys.add(path.resolve(text).toLowerCase());
+		}
+	};
+	addValue(planPath);
+	addValue(plan.video_path);
+	addValue(plan.video);
+	return keys;
+}
+
+function mediaItemMatchKeys(item: MediaItem) {
+	const keys = new Set<string>();
+	for (const value of [item.path, item.originalPath, item.relativePath, item.name]) {
+		if (!value) {
+			continue;
+		}
+		const text = String(value);
+		keys.add(text.toLowerCase());
+		const parsed = path.parse(text);
+		if (parsed.base) {
+			keys.add(parsed.base.toLowerCase());
+		}
+		if (parsed.name) {
+			keys.add(parsed.name.toLowerCase());
+			keys.add(stripAnalysisSuffix(parsed.name));
+		}
+		if (path.isAbsolute(text)) {
+			keys.add(path.resolve(text).toLowerCase());
+		}
+	}
+	return keys;
+}
+
+function enrichMediaManifestWithPersonAnalysis(appConfig: any) {
+	const manifest = appConfig?.assets?.mediaManifest as MediaManifest | undefined;
+	if (!manifest?.files?.length) {
+		return null;
+	}
+	const planDir = path.resolve(
+		String(appConfig?.analysis?.personEditPlansDir || path.join(outputRootFromConfig(appConfig), "reports", "person_edit_plans")),
+	);
+	if (!fs.existsSync(planDir)) {
+		return null;
+	}
+	const planPaths = fs
+		.readdirSync(planDir)
+		.filter((name) => name.endsWith("_person_edit_plan.json"))
+		.map((name) => path.join(planDir, name));
+	let matched = 0;
+	for (const planPath of planPaths) {
+		const plan = readJsonFile(planPath);
+		if (!plan || typeof plan !== "object") {
+			continue;
+		}
+		const planKeys = planMatchKeys(plan, planPath);
+		const item = manifest.files.find((candidate) => {
+			if (candidate.kind !== "video") {
+				return false;
+			}
+			const itemKeys = mediaItemMatchKeys(candidate);
+			return [...itemKeys].some((key) => planKeys.has(key));
+		});
+		if (!item) {
+			continue;
+		}
+		const metadata = item.metadata || {};
+		const cameraMotion = plan.camera_motion || plan.summary?.camera_motion || null;
+		item.metadata = {
+			...metadata,
+			cameraMotionType: plan.camera_motion_type || cameraMotion?.camera_motion_type || "",
+			isFixedCamera:
+				typeof plan.is_fixed_camera === "boolean"
+					? plan.is_fixed_camera
+					: typeof cameraMotion?.is_fixed_camera === "boolean"
+						? cameraMotion.is_fixed_camera
+						: null,
+			fixedCameraFaceDirection: plan.fixed_camera_face_direction || "",
+			personAnalysisPlanPath: planPath,
+			personAnalysis: {
+				cameraMotion,
+				cameraMotionType: plan.camera_motion_type || cameraMotion?.camera_motion_type || "",
+				isFixedCamera:
+					typeof plan.is_fixed_camera === "boolean"
+						? plan.is_fixed_camera
+						: typeof cameraMotion?.is_fixed_camera === "boolean"
+							? cameraMotion.is_fixed_camera
+							: null,
+				fixedCameraFaceDirection: plan.fixed_camera_face_direction || "",
+				faceDirectionCounts: plan.summary?.face_direction_counts || {},
+				updatedAt: new Date().toISOString(),
+			},
+		};
+		matched += 1;
+	}
+	if (!matched) {
+		return null;
+	}
+	rebuildManifestGroups(manifest);
+	writeRuntimeMediaManifest(appConfig);
+	return manifest;
+}
+
 function numericConfig(value: unknown, fallback: number) {
 	const number = Number(value);
 	return Number.isFinite(number) && number > 0 ? number : fallback;
@@ -2360,7 +2485,7 @@ ipcMain.handle("workflow:run-action", async (event, { action, appConfig, timeout
 	if (!ALLOWED_WORKFLOW_ACTIONS.has(resolvedAction)) {
 		throw new Error(`workflow action is not allowlisted: ${resolvedAction}`);
 	}
-	return runAllowedPythonScript(
+	const result = await runAllowedPythonScript(
 		"video_edit_run.py",
 		["--action", resolvedAction],
 		appConfig || null,
@@ -2374,6 +2499,11 @@ ipcMain.handle("workflow:run-action", async (event, { action, appConfig, timeout
 			},
 		},
 	);
+	const updatedManifest =
+		resolvedAction === "analyze-person-edit-metadata" && result.exitCode === 0
+			? enrichMediaManifestWithPersonAnalysis(appConfig || null)
+			: null;
+	return updatedManifest ? { ...result, manifest: updatedManifest } : result;
 });
 
 ipcMain.handle("codex:interrupt", async () => {

@@ -846,6 +846,38 @@ def clamp(value: float, low: float, high: float) -> float:
     return max(low, min(high, value))
 
 
+def ratio_list(value: object, length: int) -> list[float] | None:
+    if not isinstance(value, (list, tuple)) or len(value) < length:
+        return None
+    values: list[float] = []
+    for item in value[:length]:
+        try:
+            values.append(float(item))
+        except (TypeError, ValueError):
+            return None
+    return values
+
+
+def constrain_window_center_for_box(
+    window_center: float,
+    visible_ratio: float,
+    box_start: float,
+    box_end: float,
+    start_margin: float,
+    end_margin: float,
+    low: float,
+    high: float,
+) -> float:
+    raw_start = clamp(min(box_start, box_end), 0.0, 1.0)
+    raw_end = clamp(max(box_start, box_end), 0.0, 1.0)
+    min_center = raw_end - (0.5 - end_margin) * visible_ratio
+    max_center = raw_start + (0.5 - start_margin) * visible_ratio
+    if min_center <= max_center:
+        return clamp(window_center, max(low, min_center), min(high, max_center))
+    box_center = (raw_start + raw_end) / 2
+    return clamp(box_center, low, high)
+
+
 def load_reference_profile() -> dict[str, object]:
     if not path_value("assets", "referenceVideo"):
         return {}
@@ -874,10 +906,33 @@ def crop_filter_from_subject_target(
     area_ratio: float,
     desired_subject_x: float,
     desired_subject_y: float,
+    protect_bbox_ratio: list[float] | None = None,
 ) -> str:
     visible_ratio = visible_ratio_for_area(area_ratio)
     window_center_x = crop_window_center_for_subject(clamp(center_x, 0.2, 0.8), clamp(desired_subject_x, 0.35, 0.65), visible_ratio)
     window_center_y = crop_window_center_for_subject(clamp(center_y, 0.25, 0.75), clamp(desired_subject_y, 0.30, 0.52), visible_ratio)
+    if protect_bbox_ratio and len(protect_bbox_ratio) >= 4:
+        left, top, right, bottom = [clamp(float(value), 0.0, 1.0) for value in protect_bbox_ratio[:4]]
+        window_center_x = constrain_window_center_for_box(
+            window_center_x,
+            visible_ratio,
+            left,
+            right,
+            start_margin=0.07,
+            end_margin=0.07,
+            low=0.2,
+            high=0.8,
+        )
+        window_center_y = constrain_window_center_for_box(
+            window_center_y,
+            visible_ratio,
+            top,
+            bottom,
+            start_margin=0.075,
+            end_margin=0.14,
+            low=0.25,
+            high=0.75,
+        )
     scale_w = round(1920 / visible_ratio / 2) * 2
     scale_h = round(1080 / visible_ratio / 2) * 2
     crop_x = f"min(max(iw*{window_center_x:.4f}-960\\,0)\\,iw-1920)"
@@ -893,11 +948,18 @@ def reference_visual_filter(profile: dict[str, object]) -> str:
 
 def reference_video_filter(profile: dict[str, object]) -> str:
     target = profile.get("target") if isinstance(profile.get("target"), dict) else {}
-    center = target.get("person_center_ratio") if isinstance(target.get("person_center_ratio"), list) else None
+    center = (
+        target.get("face_focus_ratio")
+        if isinstance(target.get("face_focus_ratio"), list)
+        else target.get("person_center_ratio")
+        if isinstance(target.get("person_center_ratio"), list)
+        else None
+    )
     area = target.get("person_area_ratio")
     face_direction = str(target.get("dominant_face_direction") or "unknown")
     desired_subject_x = target.get("desired_subject_x_ratio")
     desired_subject_y = target.get("desired_subject_y_ratio")
+    protect_bbox = ratio_list(target.get("face_protect_bbox_ratio") or target.get("face_bbox_ratio"), 4)
 
     center_x = clamp(float(center[0]), 0.2, 0.8) if center and center[0] is not None else 0.5
     center_y = clamp(float(center[1]), 0.25, 0.75) if center and center[1] is not None else 0.5
@@ -908,7 +970,7 @@ def reference_video_filter(profile: dict[str, object]) -> str:
     if desired_subject_y is None:
         desired_subject_y = subject_target_for_face(face_direction).y
     return (
-        f"{crop_filter_from_subject_target(center_x, center_y, area_ratio, float(desired_subject_x), float(desired_subject_y))},"
+        f"{crop_filter_from_subject_target(center_x, center_y, area_ratio, float(desired_subject_x), float(desired_subject_y), protect_bbox)},"
         f"{reference_visual_filter(profile)}"
     )
 
@@ -1031,14 +1093,21 @@ def person_plan_crop_filter(segment: dict[str, object]) -> str | None:
     if not isinstance(crop_target, dict):
         return None
     try:
-        center_x = float(crop_target["x"])
-        center_y = float(crop_target["y"])
+        center_x = float(crop_target.get("focus_x", crop_target["x"]))
+        center_y = float(crop_target.get("focus_y", crop_target["y"]))
         desired_x = float(crop_target.get("desired_subject_x_ratio", segment.get("desired_subject_x_ratio", 0.5)))
         desired_y = float(crop_target.get("desired_subject_y_ratio", segment.get("desired_subject_y_ratio", 0.382)))
         area_ratio = float(segment.get("avg_area_ratio") or 0.0)
     except (KeyError, TypeError, ValueError):
         return None
-    return crop_filter_from_subject_target(center_x, center_y, area_ratio, desired_x, desired_y)
+    protect_bbox = ratio_list(
+        crop_target.get("protect_bbox_ratio")
+        or segment.get("avg_face_protect_bbox_ratio")
+        or crop_target.get("face_bbox_ratio")
+        or segment.get("avg_face_bbox_ratio"),
+        4,
+    )
+    return crop_filter_from_subject_target(center_x, center_y, area_ratio, desired_x, desired_y, protect_bbox)
 
 
 def camera_segment_visual_filter(
@@ -1072,6 +1141,11 @@ def camera_segment_visual_filter(
         "faceDirection": segment.get("face_direction"),
         "rawFaceDirection": segment.get("raw_face_direction"),
         "directionSource": segment.get("direction_source"),
+        "focusSource": segment.get("avg_focus_source"),
+        "focusRatio": segment.get("avg_focus_ratio"),
+        "faceCenterRatio": segment.get("avg_face_center_ratio"),
+        "faceProtectBboxRatio": segment.get("avg_face_protect_bbox_ratio"),
+        "cropTarget": segment.get("crop_target"),
         "isFixedCamera": plan.get("is_fixed_camera"),
         "cameraMotionType": plan.get("camera_motion_type"),
     }

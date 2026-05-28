@@ -21,6 +21,89 @@ def average(values: list[float]) -> float | None:
     return round(sum(values) / len(values), 5) if values else None
 
 
+def float_value(value: Any) -> float | None:
+    try:
+        if value is None:
+            return None
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def average_vector(values: list[list[float] | None], digits: int = 4) -> list[float] | None:
+    usable = [value for value in values if value]
+    if not usable:
+        return None
+    length = min(len(value) for value in usable)
+    return [round(sum(float(value[index]) for value in usable) / len(usable), digits) for index in range(length)]
+
+
+def bbox_ratio(box: Any, width: float, height: float) -> list[float] | None:
+    if not isinstance(box, dict) or width <= 0 or height <= 0:
+        return None
+    x1 = float_value(box.get("x1"))
+    y1 = float_value(box.get("y1"))
+    x2 = float_value(box.get("x2"))
+    y2 = float_value(box.get("y2"))
+    if None in {x1, y1, x2, y2}:
+        return None
+    left = max(0.0, min(1.0, min(float(x1), float(x2)) / width))
+    top = max(0.0, min(1.0, min(float(y1), float(y2)) / height))
+    right = max(0.0, min(1.0, max(float(x1), float(x2)) / width))
+    bottom = max(0.0, min(1.0, max(float(y1), float(y2)) / height))
+    return [round(left, 4), round(top, 4), round(right, 4), round(bottom, 4)]
+
+
+def expanded_face_protect_bbox(face_bbox: list[float] | None) -> list[float] | None:
+    if not face_bbox or len(face_bbox) < 4:
+        return None
+    left, top, right, bottom = [float(value) for value in face_bbox[:4]]
+    width = max(0.0, right - left)
+    height = max(0.0, bottom - top)
+    if width <= 0 or height <= 0:
+        return None
+    return [
+        round(max(0.0, left - width * 0.08), 4),
+        round(max(0.0, top - height * 0.16), 4),
+        round(min(1.0, right + width * 0.08), 4),
+        round(min(1.0, bottom + height * 0.08), 4),
+    ]
+
+
+def face_focus_ratio(frame: dict[str, Any]) -> list[float] | None:
+    persons = frame.get("persons") or []
+    person = persons[0] if persons and isinstance(persons[0], dict) else None
+    if person is None:
+        return None
+    face = person.get("face") if isinstance(person.get("face"), dict) else None
+    if not face:
+        return None
+    width = float_value(frame.get("width")) or 0.0
+    height = float_value(frame.get("height")) or 0.0
+    eye_center = face.get("eye_center") if isinstance(face.get("eye_center"), dict) else None
+    if eye_center and width > 0 and height > 0:
+        eye_x = float_value(eye_center.get("x"))
+        eye_y = float_value(eye_center.get("y"))
+        if eye_x is not None and eye_y is not None:
+            return [round(max(0.0, min(1.0, eye_x / width)), 4), round(max(0.0, min(1.0, eye_y / height)), 4)]
+    center = face.get("center_ratio")
+    if isinstance(center, list) and len(center) >= 2:
+        x = float_value(center[0])
+        y = float_value(center[1])
+        if x is not None and y is not None:
+            return [round(max(0.0, min(1.0, x)), 4), round(max(0.0, min(1.0, y)), 4)]
+    return None
+
+
+def face_bbox_ratio(frame: dict[str, Any]) -> list[float] | None:
+    persons = frame.get("persons") or []
+    person = persons[0] if persons and isinstance(persons[0], dict) else None
+    face = person.get("face") if person and isinstance(person.get("face"), dict) else None
+    if not face:
+        return None
+    return bbox_ratio(face.get("bbox"), float_value(frame.get("width")) or 0.0, float_value(frame.get("height")) or 0.0)
+
+
 def dominant(counter: Counter[str]) -> str | None:
     if not counter:
         return None
@@ -60,6 +143,9 @@ def build_profile(analyses: list[dict[str, Any]], plans: list[dict[str, Any]]) -
 
     center_x = [float(person["center_ratio"][0]) for person in main_persons if person.get("center_ratio")]
     center_y = [float(person["center_ratio"][1]) for person in main_persons if person.get("center_ratio")]
+    face_focus_values = [face_focus_ratio(frame) for frame in frames]
+    face_bbox_values = [face_bbox_ratio(frame) for frame in frames]
+    face_protect_bbox_values = [expanded_face_protect_bbox(value) for value in face_bbox_values]
     area = [float(person["area_ratio"]) for person in main_persons if person.get("area_ratio") is not None]
     brightness = [float(item["brightness"]) for item in visuals if item.get("brightness") is not None]
     contrast = [float(item["contrast"]) for item in visuals if item.get("contrast") is not None]
@@ -75,6 +161,9 @@ def build_profile(analyses: list[dict[str, Any]], plans: list[dict[str, Any]]) -
     }
     target = {
         "person_center_ratio": target_center,
+        "face_focus_ratio": average_vector(face_focus_values),
+        "face_bbox_ratio": average_vector(face_bbox_values),
+        "face_protect_bbox_ratio": average_vector(face_protect_bbox_values),
         "person_area_ratio": average(area),
         "dominant_position": dominant(positions),
         "dominant_shot_size": dominant(shot_sizes),

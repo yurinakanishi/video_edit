@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -32,6 +33,135 @@ def load_inputs(args: argparse.Namespace) -> list[Path]:
 def main_person(frame: dict[str, Any]) -> dict[str, Any] | None:
     persons = frame.get("persons") or []
     return persons[0] if persons else None
+
+
+def float_value(value: Any) -> float | None:
+    try:
+        if value is None:
+            return None
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def ratio_pair(value: Any) -> list[float] | None:
+    if not isinstance(value, (list, tuple)) or len(value) < 2:
+        return None
+    x = float_value(value[0])
+    y = float_value(value[1])
+    if x is None or y is None:
+        return None
+    return [round(max(0.0, min(1.0, x)), 4), round(max(0.0, min(1.0, y)), 4)]
+
+
+def bbox_ratio(box: Any, width: float, height: float) -> list[float] | None:
+    if not isinstance(box, dict) or width <= 0 or height <= 0:
+        return None
+    x1 = float_value(box.get("x1"))
+    y1 = float_value(box.get("y1"))
+    x2 = float_value(box.get("x2"))
+    y2 = float_value(box.get("y2"))
+    if None in {x1, y1, x2, y2}:
+        return None
+    left = max(0.0, min(1.0, min(float(x1), float(x2)) / width))
+    top = max(0.0, min(1.0, min(float(y1), float(y2)) / height))
+    right = max(0.0, min(1.0, max(float(x1), float(x2)) / width))
+    bottom = max(0.0, min(1.0, max(float(y1), float(y2)) / height))
+    return [round(left, 4), round(top, 4), round(right, 4), round(bottom, 4)]
+
+
+def average_vector(values: list[list[float] | None], digits: int = 4) -> list[float] | None:
+    usable = [value for value in values if value]
+    if not usable:
+        return None
+    length = min(len(value) for value in usable)
+    return [round(sum(float(value[index]) for value in usable) / len(usable), digits) for index in range(length)]
+
+
+def expanded_face_protect_bbox(face_bbox: list[float] | None) -> list[float] | None:
+    if not face_bbox or len(face_bbox) < 4:
+        return None
+    left, top, right, bottom = [float(value) for value in face_bbox[:4]]
+    width = max(0.0, right - left)
+    height = max(0.0, bottom - top)
+    if width <= 0 or height <= 0:
+        return None
+    return [
+        round(max(0.0, left - width * 0.08), 4),
+        round(max(0.0, top - height * 0.16), 4),
+        round(min(1.0, right + width * 0.08), 4),
+        round(min(1.0, bottom + height * 0.08), 4),
+    ]
+
+
+def significant_persons(frame: dict[str, Any]) -> list[dict[str, Any]]:
+    persons = [person for person in frame.get("persons") or [] if isinstance(person, dict)]
+    if len(persons) <= 1:
+        return persons
+    main_area = max((float_value(person.get("area_ratio")) or 0.0 for person in persons), default=0.0)
+    if main_area <= 0:
+        return persons
+    min_absolute_area = 0.18
+    min_relative_area = main_area * 0.42
+    return [
+        person
+        for person in persons
+        if (float_value(person.get("area_ratio")) or 0.0) >= min_absolute_area
+        or (float_value(person.get("area_ratio")) or 0.0) >= min_relative_area
+    ]
+
+
+def subject_metrics(frame: dict[str, Any], person: dict[str, Any] | None) -> dict[str, Any]:
+    if person is None:
+        return {
+            "subject_center_ratio": None,
+            "focus_ratio": None,
+            "focus_source": "none",
+            "face_center_ratio": None,
+            "face_bbox_ratio": None,
+            "face_protect_bbox_ratio": None,
+            "person_bbox_ratio": None,
+        }
+
+    width = float_value(frame.get("width")) or 0.0
+    height = float_value(frame.get("height")) or 0.0
+    subject_center = ratio_pair(person.get("center_ratio"))
+    person_box = bbox_ratio(person.get("bbox"), width, height)
+
+    face = person.get("face") if isinstance(person.get("face"), dict) else {}
+    face_center = ratio_pair(face.get("center_ratio")) if face else None
+    face_box = bbox_ratio(face.get("bbox"), width, height) if face else None
+    face_protect_box = expanded_face_protect_bbox(face_box)
+
+    focus = None
+    focus_source = "none"
+    eye_center = face.get("eye_center") if isinstance(face.get("eye_center"), dict) else None
+    if eye_center and width > 0 and height > 0:
+        eye_x = float_value(eye_center.get("x"))
+        eye_y = float_value(eye_center.get("y"))
+        if eye_x is not None and eye_y is not None:
+            focus = [round(max(0.0, min(1.0, eye_x / width)), 4), round(max(0.0, min(1.0, eye_y / height)), 4)]
+            focus_source = "eye_center"
+    if focus is None and face_center:
+        focus = face_center
+        focus_source = "face_center"
+    if focus is None and person_box:
+        left, top, right, bottom = [float(value) for value in person_box[:4]]
+        focus = [round((left + right) / 2, 4), round(top + (bottom - top) * 0.24, 4)]
+        focus_source = "estimated_face_from_person_bbox"
+    if focus is None and subject_center:
+        focus = subject_center
+        focus_source = "person_center"
+
+    return {
+        "subject_center_ratio": subject_center,
+        "focus_ratio": focus,
+        "focus_source": focus_source,
+        "face_center_ratio": face_center,
+        "face_bbox_ratio": face_box,
+        "face_protect_bbox_ratio": face_protect_box,
+        "person_bbox_ratio": person_box,
+    }
 
 
 def dominant_fixed_camera_face_direction(payload: dict[str, Any]) -> str | None:
@@ -80,11 +210,14 @@ def composition_values(face_direction: str, fallback: dict[str, Any]) -> dict[st
 
 def frame_label(frame: dict[str, Any], fixed_camera_face_direction: str | None = None) -> dict[str, Any]:
     person = main_person(frame)
-    person_count = int(frame.get("person_count") or len(frame.get("persons") or []))
-    if person_count == 0 or person is None:
+    raw_person_count = int(frame.get("person_count") or len(frame.get("persons") or []))
+    significant_count = len(significant_persons(frame))
+    if raw_person_count == 0 or person is None:
         return {
             "presence": "none",
             "person_count": 0,
+            "raw_person_count": 0,
+            "significant_person_count": 0,
             "position": "none",
             "shot_size": "none",
             "face_direction": "unknown",
@@ -93,10 +226,12 @@ def frame_label(frame: dict[str, Any], fixed_camera_face_direction: str | None =
             "crop_strategy": "cut_candidate",
             "direction_source": "none",
         }
-    if person_count >= 2:
+    if significant_count >= 2:
         return {
             "presence": "multi",
-            "person_count": person_count,
+            "person_count": significant_count,
+            "raw_person_count": raw_person_count,
+            "significant_person_count": significant_count,
             "position": "multi",
             "shot_size": "wide",
             "face_direction": "unknown",
@@ -130,7 +265,9 @@ def frame_label(frame: dict[str, Any], fixed_camera_face_direction: str | None =
             crop_strategy = f"punch_in_{position}" if position != "center" else "punch_in_center"
     return {
         "presence": "solo",
-        "person_count": person_count,
+        "person_count": 1,
+        "raw_person_count": raw_person_count,
+        "significant_person_count": significant_count,
         "position": position,
         "shot_size": shot_size,
         "face_direction": face_direction,
@@ -165,17 +302,40 @@ def segment_recommendation(label: dict[str, Any]) -> str:
     return "人物が中央。通常のソロトーク区間として使いやすい。"
 
 
-def crop_target(label: dict[str, Any], center_ratio: list[float] | None) -> dict[str, float] | None:
-    if label["presence"] == "none" or label["presence"] == "multi" or center_ratio is None:
+def crop_target(
+    label: dict[str, Any],
+    focus_ratio: list[float] | None,
+    subject_center_ratio: list[float] | None,
+    face_center_ratio: list[float] | None,
+    face_bbox_ratio: list[float] | None,
+    face_protect_bbox_ratio: list[float] | None,
+    person_bbox_ratio: list[float] | None,
+    focus_source: str | None,
+) -> dict[str, Any] | None:
+    if label["presence"] == "none" or label["presence"] == "multi" or focus_ratio is None:
         return None
-    x, y = center_ratio
-    return {
+    x, y = focus_ratio
+    target: dict[str, Any] = {
         "x": round(float(x), 4),
         "y": round(float(y), 4),
+        "focus_x": round(float(x), 4),
+        "focus_y": round(float(y), 4),
+        "focus_source": focus_source or "unknown",
         "desired_subject_x_ratio": round(float(label.get("desired_subject_x_ratio") or 0.5), 4),
         "desired_subject_y_ratio": round(float(label.get("desired_subject_y_ratio") or 0.382), 4),
         "composition_anchor": str(label.get("composition_anchor") or "center"),
     }
+    if subject_center_ratio:
+        target["subject_center_ratio"] = subject_center_ratio
+    if face_center_ratio:
+        target["face_center_ratio"] = face_center_ratio
+    if face_bbox_ratio:
+        target["face_bbox_ratio"] = face_bbox_ratio
+    if face_protect_bbox_ratio:
+        target["protect_bbox_ratio"] = face_protect_bbox_ratio
+    if person_bbox_ratio:
+        target["person_bbox_ratio"] = person_bbox_ratio
+    return target
 
 
 def build_segments(payload: dict[str, Any], merge_gap: float, min_segment: float) -> list[dict[str, Any]]:
@@ -190,15 +350,23 @@ def build_segments(payload: dict[str, Any], merge_gap: float, min_segment: float
     for frame in frames:
         label = frame_label(frame, fixed_camera_face_direction)
         person = main_person(frame)
-        center = person.get("center_ratio") if person else None
+        metrics = subject_metrics(frame, person)
+        center = metrics["subject_center_ratio"]
         area_ratio = person.get("area_ratio") if person else None
         point = {
             "time": float(frame["time"]),
             "label": label,
             "center_ratio": center,
+            "focus_ratio": metrics["focus_ratio"],
+            "focus_source": metrics["focus_source"],
+            "face_center_ratio": metrics["face_center_ratio"],
+            "face_bbox_ratio": metrics["face_bbox_ratio"],
+            "face_protect_bbox_ratio": metrics["face_protect_bbox_ratio"],
+            "person_bbox_ratio": metrics["person_bbox_ratio"],
             "area_ratio": area_ratio,
             "visual": frame.get("visual") or {},
             "person_count": int(frame.get("person_count") or 0),
+            "significant_person_count": label.get("significant_person_count", 0),
         }
         if current is None:
             current = {"start": point["time"], "end": point["time"], "label": label, "points": [point]}
@@ -227,6 +395,12 @@ def build_segments(payload: dict[str, Any], merge_gap: float, min_segment: float
             continue
         points = segment["points"]
         centers = [point["center_ratio"] for point in points if point["center_ratio"]]
+        focuses = [point["focus_ratio"] for point in points if point["focus_ratio"]]
+        face_centers = [point["face_center_ratio"] for point in points if point["face_center_ratio"]]
+        face_boxes = [point["face_bbox_ratio"] for point in points if point["face_bbox_ratio"]]
+        face_protect_boxes = [point["face_protect_bbox_ratio"] for point in points if point["face_protect_bbox_ratio"]]
+        person_boxes = [point["person_bbox_ratio"] for point in points if point["person_bbox_ratio"]]
+        focus_sources = [str(point["focus_source"]) for point in points if point.get("focus_source")]
         areas = [float(point["area_ratio"]) for point in points if point["area_ratio"] is not None]
         visuals = [point["visual"] for point in points if point["visual"]]
         avg_center = (
@@ -234,6 +408,12 @@ def build_segments(payload: dict[str, Any], merge_gap: float, min_segment: float
             if centers
             else None
         )
+        avg_focus = average_vector(focuses)
+        avg_face_center = average_vector(face_centers)
+        avg_face_bbox = average_vector(face_boxes)
+        avg_face_protect_bbox = average_vector(face_protect_boxes)
+        avg_person_bbox = average_vector(person_boxes)
+        dominant_focus_source = Counter(focus_sources).most_common(1)[0][0] if focus_sources else None
         avg_area = round(sum(areas) / len(areas), 5) if areas else None
         avg_visual = (
             {
@@ -253,9 +433,24 @@ def build_segments(payload: dict[str, Any], merge_gap: float, min_segment: float
                 "duration": round(duration, 3),
                 "label": label,
                 "avg_center_ratio": avg_center,
+                "avg_focus_ratio": avg_focus,
+                "avg_focus_source": dominant_focus_source,
+                "avg_face_center_ratio": avg_face_center,
+                "avg_face_bbox_ratio": avg_face_bbox,
+                "avg_face_protect_bbox_ratio": avg_face_protect_bbox,
+                "avg_person_bbox_ratio": avg_person_bbox,
                 "avg_area_ratio": avg_area,
                 "avg_visual": avg_visual,
-                "crop_target": crop_target(label, avg_center),
+                "crop_target": crop_target(
+                    label,
+                    avg_focus,
+                    avg_center,
+                    avg_face_center,
+                    avg_face_bbox,
+                    avg_face_protect_bbox,
+                    avg_person_bbox,
+                    dominant_focus_source,
+                ),
                 "recommendation": segment_recommendation(label),
                 "points": points,
             }
@@ -273,6 +468,8 @@ def compact_segments(segments: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "duration": segment["duration"],
                 "presence": segment["label"]["presence"],
                 "person_count": segment["label"]["person_count"],
+                "raw_person_count": segment["label"].get("raw_person_count", segment["label"]["person_count"]),
+                "significant_person_count": segment["label"].get("significant_person_count", segment["label"]["person_count"]),
                 "position": segment["label"]["position"],
                 "shot_size": segment["label"]["shot_size"],
                 "face_direction": segment["label"].get("face_direction", "unknown"),
@@ -284,6 +481,12 @@ def compact_segments(segments: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "crop_strategy": segment["label"]["crop_strategy"],
                 "direction_source": segment["label"].get("direction_source", "frame"),
                 "avg_center_ratio": segment["avg_center_ratio"],
+                "avg_focus_ratio": segment["avg_focus_ratio"],
+                "avg_focus_source": segment["avg_focus_source"],
+                "avg_face_center_ratio": segment["avg_face_center_ratio"],
+                "avg_face_bbox_ratio": segment["avg_face_bbox_ratio"],
+                "avg_face_protect_bbox_ratio": segment["avg_face_protect_bbox_ratio"],
+                "avg_person_bbox_ratio": segment["avg_person_bbox_ratio"],
                 "avg_area_ratio": segment["avg_area_ratio"],
                 "avg_visual": segment["avg_visual"],
                 "crop_target": segment["crop_target"],

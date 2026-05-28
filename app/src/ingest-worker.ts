@@ -345,7 +345,7 @@ async function main() {
 		current: imported.files.length,
 		total: imported.files.length,
 		progress: 0.96,
-		message: "分類結果を UI に反映しています",
+		message: "解析しています",
 		path: imported.manifestPath,
 	});
 	parentPort?.postMessage({ type: "result", payload: imported });

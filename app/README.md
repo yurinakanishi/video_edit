@@ -19,7 +19,7 @@ pnpm run dist
 
 Build artifacts are written to `C:\Users\yurin\Desktop\video_edit\release`.
 
-TypeScript sources live under `src` and compile to `dist` before Electron starts. Static renderer files are copied by `scripts\copy-static.mjs`.
+TypeScript sources live under `src`. Electron main/preload compile with `tsc`; the renderer is a React + Vite app built into `dist\renderer` before Electron starts.
 
 Use Biome for formatting and linting:
 

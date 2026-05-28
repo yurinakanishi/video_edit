@@ -57,6 +57,8 @@ const VIDEO_EDIT_ROOT = findVideoEditRoot();
 const APP_ROOT = path.resolve(__dirname, "..");
 const METHOD_DOC = path.join(VIDEO_EDIT_ROOT, "docs", "video_edit_method.md");
 const APP_STATE_ROOT = path.join(VIDEO_EDIT_ROOT, ".video-edit");
+const ELECTRON_PROFILE_ROOT = path.join(APP_STATE_ROOT, "electron-profile");
+const ELECTRON_CACHE_ROOT = path.join(APP_STATE_ROOT, "electron-cache");
 const OUTPUT_ROOT = APP_STATE_ROOT;
 const PROJECTS_ROOT = path.join(VIDEO_EDIT_ROOT, "projects");
 const SCRIPTS_ROOT = path.join(VIDEO_EDIT_ROOT, "scripts");
@@ -72,6 +74,20 @@ const DEFAULT_FFMPEG_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe";
 const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
 const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
 const CODEX_EXE_NAME = process.platform === "win32" ? "codex.exe" : "codex";
+const SMOKE_QUIT_MS = Math.max(0, Number(process.env.VIDEO_EDIT_SMOKE_QUIT_MS || 0));
+
+function configureElectronStorage() {
+	try {
+		fs.mkdirSync(ELECTRON_PROFILE_ROOT, { recursive: true });
+		fs.mkdirSync(ELECTRON_CACHE_ROOT, { recursive: true });
+		app.setPath("userData", ELECTRON_PROFILE_ROOT);
+		app.commandLine.appendSwitch("disk-cache-dir", ELECTRON_CACHE_ROOT);
+	} catch (error) {
+		console.warn("Unable to configure Electron storage paths", error);
+	}
+}
+
+configureElectronStorage();
 
 type Locale = "ja" | "en";
 
@@ -222,6 +238,11 @@ type WorkflowProgress = {
 	text?: string;
 };
 type WorkflowProgressEmitter = (payload: WorkflowProgress) => void;
+type ActiveWorkflowProcess = {
+	proc: ChildProcessWithoutNullStreams;
+	action: string;
+	cancelRequested: boolean;
+};
 
 type SubtitleCaption = {
 	start: number;
@@ -941,8 +962,12 @@ function probeImage(filePath: string) {
 type DirectoryPreviewEntry = {
 	name: string;
 	path: string;
+	sourcePath?: string;
+	relativePath?: string;
 	kind: MediaKind | "folder";
 	extension: string;
+	exists?: boolean;
+	missing?: boolean;
 	sizeBytes: number;
 	modifiedAt: string;
 	fileCount?: number;
@@ -1079,10 +1104,26 @@ async function describeDirectoryEntry(
 	};
 }
 
-async function describePathPreview(filePath: string, index = 0): Promise<DirectoryPreviewEntry | null> {
+async function describePathPreview(
+	filePath: string,
+	index = 0,
+	thumbnailLimit = 48,
+	ffprobePath = DEFAULT_FFPROBE_EXE,
+): Promise<DirectoryPreviewEntry | null> {
 	const resolvedPath = path.resolve(filePath);
 	if (!fs.existsSync(resolvedPath)) {
-		return null;
+		const extension = path.extname(resolvedPath);
+		const kind = extension ? mediaKindForPath(resolvedPath) : "folder";
+		return {
+			name: path.basename(resolvedPath) || resolvedPath,
+			path: resolvedPath,
+			kind,
+			extension: extension.replace(/^\./, "").toUpperCase(),
+			exists: false,
+			missing: true,
+			sizeBytes: 0,
+			modifiedAt: "",
+		};
 	}
 	const stat = fs.statSync(resolvedPath);
 	const name = path.basename(resolvedPath);
@@ -1096,6 +1137,7 @@ async function describePathPreview(filePath: string, index = 0): Promise<Directo
 			path: resolvedPath,
 			kind: "folder",
 			extension: "",
+			exists: true,
 			sizeBytes: 0,
 			modifiedAt: stat.mtime.toISOString(),
 			fileCount: summary.fileCount,
@@ -1111,7 +1153,7 @@ async function describePathPreview(filePath: string, index = 0): Promise<Directo
 	const kind = mediaKindForPath(resolvedPath);
 	const metadata: Record<string, any> =
 		kind === "video" || kind === "audio"
-			? await probeMedia(resolvedPath, DEFAULT_FFPROBE_EXE)
+			? await probeMedia(resolvedPath, ffprobePath)
 			: kind === "image"
 				? probeImage(resolvedPath)
 				: {};
@@ -1120,6 +1162,7 @@ async function describePathPreview(filePath: string, index = 0): Promise<Directo
 		path: resolvedPath,
 		kind,
 		extension: ext.replace(/^\./, "").toUpperCase(),
+		exists: true,
 		sizeBytes: stat.size,
 		modifiedAt: stat.mtime.toISOString(),
 		duration: Number(metadata.duration || 0),
@@ -1127,8 +1170,44 @@ async function describePathPreview(filePath: string, index = 0): Promise<Directo
 		height: Number(metadata.height || 0),
 		videoCodec: metadata.videoCodec || "",
 		audioCodec: metadata.audioCodec || "",
-		thumbnailDataUrl: index < 48 ? await previewThumbnail(resolvedPath) : "",
+		thumbnailDataUrl: index < thumbnailLimit ? await previewThumbnail(resolvedPath) : "",
 	};
+}
+
+async function describeExpandedPathPreviews(
+	inputPath: string,
+	startIndex = 0,
+	thumbnailLimit = 48,
+	ffprobePath = DEFAULT_FFPROBE_EXE,
+) {
+	const resolvedPath = path.resolve(inputPath);
+	if (!fs.existsSync(resolvedPath)) {
+		const entry = await describePathPreview(resolvedPath, startIndex, thumbnailLimit, ffprobePath);
+		return entry ? [entry] : [];
+	}
+	const inputStat = fs.statSync(resolvedPath);
+	if (!inputStat.isDirectory()) {
+		const entry = await describePathPreview(resolvedPath, startIndex, thumbnailLimit, ffprobePath);
+		return entry ? [entry] : [];
+	}
+	const files = walkFiles(resolvedPath)
+		.filter((filePath) => mediaKindForPath(filePath) !== "other")
+		.sort((left, right) => left.localeCompare(right));
+	const entries: DirectoryPreviewEntry[] = [];
+	for (const [index, filePath] of files.entries()) {
+		const entry = await describePathPreview(filePath, startIndex + index, thumbnailLimit, ffprobePath);
+		if (!entry) {
+			continue;
+		}
+		entry.sourcePath = resolvedPath;
+		entry.relativePath = path.relative(resolvedPath, filePath);
+		entries.push(entry);
+	}
+	if (entries.length) {
+		return entries;
+	}
+	const folderEntry = await describePathPreview(resolvedPath, startIndex, thumbnailLimit, ffprobePath);
+	return folderEntry ? [folderEntry] : [];
 }
 
 async function listDirectoryPreview(targetPath: string, maxEntries = 80) {
@@ -1247,6 +1326,26 @@ async function _buildMediaManifest(sourceDirectory: string, ffprobePath: string,
 		path: root,
 	});
 	return classifyManifest(root, items);
+}
+
+async function enrichMediaManifestPreviews(manifest: MediaManifest) {
+	for (const item of manifest.files || []) {
+		if (item.thumbnailDataUrl || !item.path || !fs.existsSync(item.path)) {
+			continue;
+		}
+		if (item.kind === "video" || item.kind === "image") {
+			item.thumbnailDataUrl = await previewThumbnail(item.path);
+		}
+	}
+	return manifest;
+}
+
+function persistMediaManifest(manifest: MediaManifest) {
+	if (!manifest.manifestPath) {
+		return;
+	}
+	fs.mkdirSync(path.dirname(manifest.manifestPath), { recursive: true });
+	fs.writeFileSync(manifest.manifestPath, JSON.stringify(manifest, null, 2), "utf8");
 }
 
 function projectRelative(project: ProjectInfo, filePath: string) {
@@ -1449,7 +1548,10 @@ function enrichMediaManifestWithPersonAnalysis(appConfig: any) {
 		return null;
 	}
 	const planDir = path.resolve(
-		String(appConfig?.analysis?.personEditPlansDir || path.join(outputRootFromConfig(appConfig), "reports", "person_edit_plans")),
+		String(
+			appConfig?.analysis?.personEditPlansDir ||
+				path.join(outputRootFromConfig(appConfig), "reports", "person_edit_plans"),
+		),
 	);
 	if (!fs.existsSync(planDir)) {
 		return null;
@@ -1814,12 +1916,15 @@ function runAllowedPythonScript(
 	appConfig: unknown = null,
 	timeoutMs = 6 * 60 * 60 * 1000,
 	options: { action?: string; onProgress?: WorkflowProgressEmitter } = {},
-): Promise<{ stdout: string; stderr: string; exitCode: number | null }> {
+): Promise<{ stdout: string; stderr: string; exitCode: number | null; canceled?: boolean }> {
 	if (!ALLOWED_PYTHON_SCRIPTS.has(scriptName)) {
 		return Promise.reject(new Error(`script is not allowlisted: ${scriptName}`));
 	}
 	if (!args.every((arg) => typeof arg === "string")) {
 		return Promise.reject(new Error("script arguments must be strings"));
+	}
+	if (options.action && activeWorkflowProcess) {
+		return Promise.reject(new Error("別の解析がすでに実行中です。"));
 	}
 	const appConfigPath = appConfig ? writeRuntimeAppConfig(appConfig) : "";
 	const pythonExe = pythonExecutableFor(appConfig);
@@ -1843,6 +1948,14 @@ function runAllowedPythonScript(
 			env: { ...process.env, PYTHONUTF8: "1", ...(appConfigPath ? { VIDEO_EDIT_APP_CONFIG: appConfigPath } : {}) },
 			windowsHide: true,
 		});
+		if (action) {
+			activeWorkflowProcess = { proc, action, cancelRequested: false };
+		}
+		const clearActiveWorkflowProcess = () => {
+			if (activeWorkflowProcess?.proc === proc) {
+				activeWorkflowProcess = null;
+			}
+		};
 		let stdout = "";
 		let stderr = "";
 		let settled = false;
@@ -1874,7 +1987,8 @@ function runAllowedPythonScript(
 				return;
 			}
 			settled = true;
-			proc.kill();
+			void terminateProcessTree(proc);
+			clearActiveWorkflowProcess();
 			if (action) {
 				emitProgress({
 					action,
@@ -1897,6 +2011,7 @@ function runAllowedPythonScript(
 			}
 			settled = true;
 			clearTimeout(timer);
+			clearActiveWorkflowProcess();
 			reject(error);
 		});
 		proc.on("exit", (code) => {
@@ -1905,15 +2020,21 @@ function runAllowedPythonScript(
 			}
 			settled = true;
 			clearTimeout(timer);
+			const canceled = activeWorkflowProcess?.proc === proc && activeWorkflowProcess.cancelRequested;
+			clearActiveWorkflowProcess();
 			if (action) {
 				emitProgress({
 					action,
-					stage: code === 0 ? "complete" : "error",
-					progress: code === 0 ? 1 : bestProgress,
-					message: code === 0 ? "処理が完了しました" : "処理でエラーが発生しました",
+					stage: canceled ? "canceled" : code === 0 ? "complete" : "error",
+					progress: canceled ? bestProgress : code === 0 ? 1 : bestProgress,
+					message: canceled
+						? "解析をキャンセルしました"
+						: code === 0
+							? "処理が完了しました"
+							: "処理でエラーが発生しました",
 				});
 			}
-			resolve({ stdout, stderr, exitCode: code });
+			resolve({ stdout, stderr, exitCode: canceled ? 130 : code, canceled });
 		});
 	});
 }
@@ -2150,9 +2271,29 @@ class CodexAppServer {
 let mainWindow = null;
 let codex = null;
 let activeIngestWorker: Worker | null = null;
+let activeWorkflowProcess: ActiveWorkflowProcess | null = null;
 let watchedProjectStatePath = "";
 let projectStateWatcher: fs.FSWatcher | null = null;
 let projectStateWatchTimer: NodeJS.Timeout | null = null;
+
+function terminateProcessTree(proc: ChildProcessWithoutNullStreams) {
+	if (!proc.pid) {
+		proc.kill();
+		return Promise.resolve();
+	}
+	if (process.platform !== "win32") {
+		proc.kill();
+		return Promise.resolve();
+	}
+	return new Promise<void>((resolve) => {
+		const killer = spawn("taskkill", ["/pid", String(proc.pid), "/t", "/f"], { windowsHide: true });
+		killer.on("error", () => {
+			proc.kill();
+			resolve();
+		});
+		killer.on("exit", () => resolve());
+	});
+}
 
 function watchProjectState(project: ProjectInfo) {
 	const statePath = projectStatePathForProject(project);
@@ -2200,6 +2341,7 @@ function createWindow() {
 		backgroundColor: "#f6f4ef",
 		title: "Video Edit",
 		icon: ICON_PATH,
+		show: process.env.VIDEO_EDIT_SMOKE === "1" ? false : undefined,
 		webPreferences: {
 			preload: path.join(__dirname, "preload.js"),
 			contextIsolation: true,
@@ -2214,9 +2356,31 @@ function createWindow() {
 	});
 
 	mainWindow.loadFile(path.join(__dirname, "renderer", "index.html"));
+	if (SMOKE_QUIT_MS > 0) {
+		mainWindow.webContents.once("did-finish-load", () => {
+			setTimeout(() => app.quit(), SMOKE_QUIT_MS);
+		});
+	}
 }
 
-app.whenReady().then(createWindow);
+const singleInstanceLock = app.requestSingleInstanceLock();
+
+if (!singleInstanceLock) {
+	app.quit();
+} else {
+	app.on("second-instance", () => {
+		if (!mainWindow || mainWindow.isDestroyed()) {
+			return;
+		}
+		if (mainWindow.isMinimized()) {
+			mainWindow.restore();
+		}
+		mainWindow.show();
+		mainWindow.focus();
+	});
+
+	app.whenReady().then(createWindow);
+}
 
 app.on("window-all-closed", () => {
 	if (codex) {
@@ -2349,6 +2513,33 @@ ipcMain.handle("analysis-state:save", async (_event, { project, state } = {}) =>
 	return writeProjectAnalysisState(info, state || {});
 });
 
+ipcMain.handle("media-manifest:save", async (_event, { project, manifest } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	if (!manifest || !Array.isArray(manifest.files)) {
+		throw new Error("media manifest is required");
+	}
+	const manifestPath = String(manifest.manifestPath || path.join(info.outputRoot, "reports", MEDIA_MANIFEST_NAME));
+	const normalized: MediaManifest = {
+		...manifest,
+		sourceDirectory: String(manifest.sourceDirectory || info.sourceRoot),
+		sourcePaths: Array.isArray(manifest.sourcePaths) ? manifest.sourcePaths.map(String) : [],
+		generatedAt: String(manifest.generatedAt || new Date().toISOString()),
+		manifestPath,
+		files: manifest.files,
+		cameras: Array.isArray(manifest.cameras) ? manifest.cameras : [],
+		audio: Array.isArray(manifest.audio) ? manifest.audio : [],
+		images: Array.isArray(manifest.images) ? manifest.images : [],
+		subtitles: Array.isArray(manifest.subtitles) ? manifest.subtitles : [],
+		other: Array.isArray(manifest.other) ? manifest.other : [],
+		selected: manifest.selected || {},
+	};
+	rebuildManifestGroups(normalized);
+	fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
+	fs.writeFileSync(manifestPath, JSON.stringify(normalized, null, 2), "utf8");
+	return normalized;
+});
+
 ipcMain.handle("project-state:load", async (_event, { project } = {}) => {
 	const info = projectInfoFromPayload(project);
 	ensureProjectDirs(info);
@@ -2398,6 +2589,8 @@ ipcMain.handle("project:ingest-directory", async (_event, { project, directory, 
 		},
 		emit,
 	);
+	await enrichMediaManifestPreviews(importedManifest);
+	persistMediaManifest(importedManifest);
 	return {
 		project: info,
 		manifest: importedManifest,
@@ -2406,12 +2599,19 @@ ipcMain.handle("project:ingest-directory", async (_event, { project, directory, 
 });
 
 ipcMain.handle("project:ingest-cancel", async () => {
-	if (!activeIngestWorker) {
-		return { canceled: false };
+	let canceled = false;
+	if (activeIngestWorker) {
+		const worker = activeIngestWorker;
+		activeIngestWorker = null;
+		await worker.terminate();
+		canceled = true;
 	}
-	const worker = activeIngestWorker;
-	activeIngestWorker = null;
-	await worker.terminate();
+	if (activeWorkflowProcess) {
+		const workflow = activeWorkflowProcess;
+		workflow.cancelRequested = true;
+		await terminateProcessTree(workflow.proc);
+		canceled = true;
+	}
 	if (mainWindow && !mainWindow.isDestroyed()) {
 		mainWindow.webContents.send("project:ingest-progress", {
 			stage: "canceled",
@@ -2421,7 +2621,7 @@ ipcMain.handle("project:ingest-cancel", async () => {
 			message: "解析をキャンセルしました",
 		});
 	}
-	return { canceled: true };
+	return { canceled };
 });
 
 ipcMain.handle("dialog:pick-file", async (_event, options = {}) => {
@@ -2550,11 +2750,26 @@ ipcMain.handle("directory:list", async (_event, { targetPath, maxEntries } = {})
 	return listDirectoryPreview(targetPath || OUTPUT_ROOT, maxEntries);
 });
 
-ipcMain.handle("media:describe-paths", async (_event, { paths } = {}) => {
-	const selectedPaths = Array.isArray(paths) ? paths.map(String).filter(Boolean) : [];
-	const entries = await Promise.all(selectedPaths.map((filePath, index) => describePathPreview(filePath, index)));
-	return entries.filter(Boolean);
-});
+ipcMain.handle(
+	"media:describe-paths",
+	async (_event, { paths, expandDirectories, thumbnailLimit, tools, ffprobe } = {}) => {
+		const selectedPaths = Array.isArray(paths) ? paths.map(String).filter(Boolean) : [];
+		const ffprobePath = String(ffprobe || tools?.ffprobe || DEFAULT_FFPROBE_EXE);
+		if (expandDirectories) {
+			const entries: DirectoryPreviewEntry[] = [];
+			const limit = Math.max(0, Math.min(1000, Number(thumbnailLimit) || 48));
+			for (const filePath of selectedPaths) {
+				entries.push(...(await describeExpandedPathPreviews(filePath, entries.length, limit, ffprobePath)));
+			}
+			return entries;
+		}
+		const limit = Math.max(0, Math.min(1000, Number(thumbnailLimit) || 48));
+		const entries = await Promise.all(
+			selectedPaths.map((filePath, index) => describePathPreview(filePath, index, limit, ffprobePath)),
+		);
+		return entries.filter(Boolean);
+	},
+);
 
 ipcMain.handle("shell:show-path", async (_event, targetPath) => {
 	if (typeof targetPath !== "string" || !targetPath.trim()) {

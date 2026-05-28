@@ -6,9 +6,9 @@
 	"main": "dist/main.js",
 	"scripts": {
 		"clean": "node scripts/clean-dist.mjs",
-		"build": "pnpm run clean && tsc && node scripts/copy-static.mjs",
+		"build": "pnpm run clean && tsc && vite build --config vite.renderer.config.mjs",
 		"start": "pnpm run build && electron .",
-		"typecheck": "tsc --noEmit",
+		"typecheck": "tsc --noEmit && tsc -p tsconfig.renderer.json --noEmit",
 		"lint": "biome check .",
 		"format": "biome check --write .",
 		"check": "pnpm run lint && pnpm run typecheck && pnpm run build",
@@ -80,8 +80,17 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.15",
 		"@types/node": "^22.15.29",
+		"@types/react": "^19.2.15",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^6.0.2",
 		"electron": "^36.3.2",
 		"electron-builder": "^26.8.1",
-		"typescript": "^5.8.3"
+		"typescript": "^5.8.3",
+		"vite": "^8.0.14"
+	},
+	"dependencies": {
+		"react": "^19.2.6",
+		"react-dom": "^19.2.6",
+		"zustand": "^5.0.14"
 	}
 }

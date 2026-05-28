@@ -1,17 +1,17 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
-		"module": "CommonJS",
-		"moduleResolution": "Node",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
 		"lib": ["ES2022", "DOM"],
-		"rootDir": "src",
-		"outDir": "dist",
+		"jsx": "react-jsx",
+		"rootDir": "src/renderer",
+		"outDir": "dist/renderer",
 		"strict": false,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
 		"noEmitOnError": true
 	},
-	"include": ["src/**/*.ts"],
-	"exclude": ["src/renderer/**/*.ts"]
+	"include": ["src/renderer/**/*.ts", "src/renderer/**/*.tsx"]
 }

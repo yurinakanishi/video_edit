@@ -400,7 +400,7 @@ Start a fresh thread when you need a new Codex conversation.
   "model": "gpt-5.4",
   "cwd": "/Users/me/project",
   "approvalPolicy": "never",
-  "sandbox": "workspaceWrite",
+  "sandbox": "workspace-write",
   "personality": "friendly",
   "serviceName": "my_app_server_client"
 } }
@@ -418,6 +418,11 @@ Start a fresh thread when you need a new Codex conversation.
 ```
 
 `serviceName` is optional. Set it when you want app-server to tag thread-level metrics with your integration's service name.
+
+`thread/start.sandbox` uses CLI sandbox-mode strings such as `read-only`,
+`workspace-write`, and `danger-full-access`. This is separate from
+`sandboxPolicy.type` used by `turn/start` and `command/exec`, which uses the
+camelCase policy variants shown below.
 
 `thread.sessionId` identifies the current live session tree root. Root threads
 use their own thread id as the session id; forked threads keep the session id

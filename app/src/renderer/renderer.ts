@@ -16,9 +16,12 @@ type EditAppApi = {
 	pickDirectory: (options: any) => Promise<string | null>;
 	pickOutput: (options: any) => Promise<string | null>;
 	startCodexTurn: (payload: any) => Promise<any>;
+	listCodexModels: (options?: any) => Promise<any>;
 	execCodexCommand: (payload: any) => Promise<any>;
 	runWorkflowAction: (payload: any) => Promise<any>;
 	interruptCodex: () => Promise<any>;
+	loadAnalysisState: (payload: any) => Promise<any>;
+	saveAnalysisState: (payload: any) => Promise<any>;
 	getSyncReport: (appConfig?: any) => Promise<any>;
 	loadGlossaryCandidates: (appConfig: any) => Promise<any>;
 	loadTextOverlayCandidates: (payload: any) => Promise<any>;
@@ -78,6 +81,15 @@ type MediaManifest = {
 };
 
 type Locale = "ja" | "en";
+type AnalysisResult = { key: string; label: string; status: string; detail: string; path?: string };
+type CodexModel = {
+	id: string;
+	model: string;
+	displayName: string;
+	defaultReasoningEffort?: string;
+	isDefault?: boolean;
+	hidden?: boolean;
+};
 
 const LANGUAGE_STORAGE_KEY = "video-edit-app-language-v1";
 
@@ -110,7 +122,7 @@ const state = {
 	lastWorkflowProgressLog: 0,
 	lastWorkflowStage: "",
 	appLocked: false,
-	analysisResults: [] as Array<{ key: string; label: string; status: string; detail: string; path?: string }>,
+	analysisResults: [] as AnalysisResult[],
 	files: {
 		masterVideo: "",
 		rightCloseVideo: "",
@@ -127,6 +139,10 @@ const state = {
 	outputPreviewKind: "",
 	outputPreviewLoading: false,
 	filePreviews: {} as Record<string, any>,
+	codexModels: [] as CodexModel[],
+	codexModel: "",
+	codexModelStatusKey: "codex.modelNotLoaded",
+	codexModelStatusValues: {} as Record<string, string | number>,
 	activeSection: "assets",
 	language: initialLanguage(),
 	statusText: "AI idle",
@@ -465,6 +481,15 @@ const messages: Record<Locale, Record<string, string>> = {
 		"codex.details": "依頼内容と実行内容を確認",
 		"codex.reviewBeforeRunning": "実行前に確認",
 		"codex.directCommand": "実行内容",
+		"codex.model": "AIモデル",
+		"codex.modelDefault": "Codex標準",
+		"codex.refreshModels": "モデルを更新",
+		"codex.modelNotLoaded": "モデル一覧は未取得",
+		"codex.modelLoading": "モデル一覧を取得中",
+		"codex.modelLoaded": "{count}件のモデルを取得",
+		"codex.modelLoadFailed": "モデル一覧の取得に失敗",
+		"codex.modelDefaultSuffix": "標準",
+		"codex.modelCustomSuffix": "保存済み",
 		"action.refreshCommand": "実行内容を更新",
 		"action.refreshPrompt": "依頼内容を更新",
 		"action.interrupt": "実行を停止",
@@ -939,6 +964,15 @@ const messages: Record<Locale, Record<string, string>> = {
 		"codex.details": "Review request details",
 		"codex.reviewBeforeRunning": "Review before running",
 		"codex.directCommand": "Execution details",
+		"codex.model": "AI model",
+		"codex.modelDefault": "Codex default",
+		"codex.refreshModels": "Refresh models",
+		"codex.modelNotLoaded": "Model list not loaded",
+		"codex.modelLoading": "Loading models",
+		"codex.modelLoaded": "Loaded {count} model(s)",
+		"codex.modelLoadFailed": "Could not load models",
+		"codex.modelDefaultSuffix": "default",
+		"codex.modelCustomSuffix": "saved",
 		"action.refreshCommand": "Refresh execution details",
 		"action.refreshPrompt": "Refresh request text",
 		"action.interrupt": "Stop running job",
@@ -1231,8 +1265,134 @@ function setLanguage(language: Locale) {
 	renderAnalysisResults();
 	renderSyncReport();
 	renderOutputPreview();
+	renderCodexModelOptions();
+	renderCodexModelStatus();
 	updateRunSummary();
 	refreshCommand();
+}
+
+function codexModelValue(model: CodexModel) {
+	return String(model.model || model.id || "").trim();
+}
+
+function normalizeCodexModel(item: any): CodexModel | null {
+	const id = String(item?.id || item?.model || "").trim();
+	const model = String(item?.model || item?.id || "").trim();
+	if (!id || !model) {
+		return null;
+	}
+	return {
+		id,
+		model,
+		displayName: String(item?.displayName || item?.name || model),
+		defaultReasoningEffort: item?.defaultReasoningEffort ? String(item.defaultReasoningEffort) : "",
+		isDefault: Boolean(item?.isDefault),
+		hidden: Boolean(item?.hidden),
+	};
+}
+
+function renderCodexModelStatus() {
+	const status = $("#codexModelStatus");
+	if (status) {
+		status.textContent = t(state.codexModelStatusKey, state.codexModelStatusValues);
+	}
+}
+
+function setCodexModelStatus(key: string, values: Record<string, string | number> = {}) {
+	state.codexModelStatusKey = key;
+	state.codexModelStatusValues = values;
+	renderCodexModelStatus();
+}
+
+function renderCodexModelOptions() {
+	const select = $("#modelName") as HTMLSelectElement | null;
+	if (!select) {
+		return;
+	}
+	let selected = state.codexModel || select.value || "";
+	select.innerHTML = "";
+	const defaultOption = document.createElement("option");
+	defaultOption.value = "";
+	defaultOption.textContent = t("codex.modelDefault");
+	select.appendChild(defaultOption);
+
+	const seen = new Set([""]);
+	for (const model of state.codexModels) {
+		const value = codexModelValue(model);
+		if (!value || seen.has(value)) {
+			continue;
+		}
+		seen.add(value);
+		const option = document.createElement("option");
+		option.value = value;
+		option.textContent = model.isDefault
+			? `${model.displayName || value} (${t("codex.modelDefaultSuffix")})`
+			: model.displayName || value;
+		option.title = value;
+		select.appendChild(option);
+	}
+
+	if (selected && !seen.has(selected)) {
+		if (state.codexModels.length) {
+			log("saved model unavailable; using Codex default", { model: selected });
+			selected = "";
+			state.codexModel = "";
+		} else {
+			const option = document.createElement("option");
+			option.value = selected;
+			option.textContent = `${selected} (${t("codex.modelCustomSuffix")})`;
+			option.title = selected;
+			select.appendChild(option);
+		}
+	}
+	select.value = selected;
+	state.codexModel = select.value;
+}
+
+async function loadCodexModels() {
+	const button = $("#refreshCodexModels") as HTMLButtonElement | null;
+	if (button) {
+		button.disabled = true;
+	}
+	setCodexModelStatus("codex.modelLoading");
+	try {
+		const result = await editApp.listCodexModels({ limit: 100, includeHidden: false });
+		state.codexModels = (Array.isArray(result?.data) ? result.data : [])
+			.map(normalizeCodexModel)
+			.filter((item): item is CodexModel => Boolean(item));
+		renderCodexModelOptions();
+		setCodexModelStatus("codex.modelLoaded", { count: state.codexModels.length });
+	} catch (error) {
+		state.codexModels = [];
+		renderCodexModelOptions();
+		setCodexModelStatus("codex.modelLoadFailed");
+		log("model/list error", { message: error.message });
+	} finally {
+		if (button) {
+			button.disabled = false;
+		}
+	}
+}
+
+function selectedCodexReasoningEffort() {
+	const selected = state.codexModel || (($("#modelName") as HTMLSelectElement | null)?.value ?? "");
+	const model = state.codexModels.find((item) => codexModelValue(item) === selected);
+	return model?.defaultReasoningEffort || "medium";
+}
+
+function selectedCodexModelForRun() {
+	const select = $("#modelName") as HTMLSelectElement | null;
+	const selected = String(state.codexModel || select?.value || "").trim();
+	if (selected && state.codexModels.length && !state.codexModels.some((item) => codexModelValue(item) === selected)) {
+		log("selected model unavailable; using Codex default", { model: selected });
+		state.codexModel = "";
+		if (select) {
+			select.value = "";
+		}
+		saveState();
+		return "";
+	}
+	return selected;
 }
 
 const fileSlotLabelKeys = {
@@ -1730,6 +1890,32 @@ function setAnalysisResult(key: string, label: string, status: string, detail: s
 		state.analysisResults.push(next);
 	}
 	renderAnalysisResults();
+	saveState();
+	persistAnalysisStateFile();
+}
+
+function normalizeAnalysisResult(item: any): AnalysisResult | null {
+	const key = String(item?.key || "").trim();
+	if (!key) {
+		return null;
+	}
+	const status = ["done", "error", "running"].includes(String(item?.status)) ? String(item.status) : "done";
+	return {
+		key,
+		label: String(item?.label || ""),
+		status,
+		detail: String(item?.detail || ""),
+		path: String(item?.path || ""),
+	};
+}
+
+function setAnalysisResults(results: any[], options: { persistFile?: boolean } = {}) {
+	state.analysisResults = results.map(normalizeAnalysisResult).filter((item): item is AnalysisResult => Boolean(item));
+	renderAnalysisResults();
+	saveState();
+	if (options.persistFile !== false) {
+		persistAnalysisStateFile();
+	}
 }
 
 function renderAnalysisResults() {
@@ -1791,6 +1977,7 @@ function setMaterialSources(paths: string[]) {
 	state.materialPaths = selected;
 	state.mediaDirectory = selected[0] || "";
 	state.mediaManifest = null;
+	setAnalysisResults([]);
 	applySuggestedTitle(titleFromSources(selected), { force: true });
 	setIngestProgress({
 		progress: 0,
@@ -2044,6 +2231,22 @@ function setStatus(text, kind = "idle") {
 	state.statusKind = kind;
 	const status = $("#serverStatus");
 	status.innerHTML = `<span class="status-dot ${kind}"></span><span>${localizePlainText(text)}</span>`;
+}
+
+function codexErrorMessage(error: any): string {
+	if (!error) {
+		return "";
+	}
+	const raw = typeof error === "string" ? error : error.message || error.error?.message || error.codexErrorInfo || "";
+	if (!raw) {
+		return "";
+	}
+	try {
+		const parsed = JSON.parse(raw);
+		return codexErrorMessage(parsed.error || parsed) || raw;
+	} catch {
+		return String(raw);
+	}
 }
 
 function renderFileSlot(slot: string) {
@@ -2493,6 +2696,7 @@ function saveState() {
 			materialPaths: state.materialPaths,
 			files: state.files,
 			subtitleMode: state.subtitleMode,
+			analysisResults: state.analysisResults,
 			glossaryTerms: state.glossaryTerms,
 			language: state.language,
 			fields,
@@ -2553,6 +2757,10 @@ function loadState() {
 				} else {
 					element.value = String(value ?? "");
 				}
+				if (id === "modelName") {
+					state.codexModel = String(value ?? "");
+					renderCodexModelOptions();
+				}
 			});
 			loadWorkflowMediaPreviews();
 			loadOutputTargetPreview();
@@ -2564,12 +2772,65 @@ function loadState() {
 				button.classList.toggle("selected", button.dataset.subtitleMode === state.subtitleMode);
 			});
 		}
+		if (Array.isArray(saved.analysisResults)) {
+			setAnalysisResults(saved.analysisResults, { persistFile: false });
+		}
 		if (Array.isArray(saved.glossaryTerms)) {
 			state.glossaryTerms = saved.glossaryTerms;
 			renderGlossaryList();
 		}
 	} catch (error) {
 		log("saved state ignored", { message: error.message });
+	}
+}
+
+let analysisStateWriteQueue: Promise<void> = Promise.resolve();
+
+function analysisStateSnapshot() {
+	return {
+		version: 1,
+		updatedAt: new Date().toISOString(),
+		mediaManifestPath: mediaManifestPath(),
+		mediaManifestGeneratedAt: state.mediaManifest?.generatedAt || "",
+		mediaManifestFileCount: state.mediaManifest?.files?.length || 0,
+		results: state.analysisResults.map((item) => ({ ...item })),
+	};
+}
+
+function persistAnalysisStateFile() {
+	if (!state.project) {
+		return;
+	}
+	const project = { ...state.project };
+	const snapshot = analysisStateSnapshot();
+	analysisStateWriteQueue = analysisStateWriteQueue
+		.catch(() => undefined)
+		.then(async () => {
+			await editApp.saveAnalysisState({ project, state: snapshot });
+		})
+		.catch((error) => {
+			log("analysis state save failed", { message: error.message });
+		});
+}
+
+async function loadAnalysisStateFile(project: ProjectInfo | null = state.project) {
+	if (!project) {
+		return false;
+	}
+	try {
+		const payload = await editApp.loadAnalysisState({ project });
+		if (!Array.isArray(payload?.results)) {
+			return false;
+		}
+		setAnalysisResults(payload.results, { persistFile: false });
+		log("analysis state loaded", {
+			path: payload.path || "",
+			results: state.analysisResults.length,
+		});
+		return state.analysisResults.length > 0;
+	} catch (error) {
+		log("analysis state load failed", { message: error.message });
+		return false;
 	}
 }
 
@@ -2703,8 +2964,12 @@ async function changeProject() {
 		}
 		setProject(result.project);
 		clearSelectedAssets();
+		setAnalysisResults([], { persistFile: false });
 		setMediaManifest(result.manifest || null);
 		await refreshTextOverlayFromAnalysis(result.manifest || null);
+		if (!(await loadAnalysisStateFile(result.project))) {
+			await restoreAnalysisResultsFromOutputs(result.manifest || null);
+		}
 		if (!result.manifest) {
 			setIngestProgress({
 				progress: 0,
@@ -2745,6 +3010,7 @@ async function deleteCurrentProject() {
 		setProject(null);
 		clearSelectedAssets();
 		setMediaManifest(null);
+		setAnalysisResults([]);
 		setIngestProgress({
 			progress: 0,
 			message: t("progress.waitingAnalysis"),
@@ -2944,12 +3210,7 @@ async function ingestMaterialDirectory(directoryPath = "") {
 			);
 		}
 		checks.push(
-			await runAnalysisAction(
-				"transcribe-dropped",
-				t("analysis.transcription"),
-				0.58,
-				joinPath(activeOutputRoot(), "transcripts", "manifest_sources", "manifest_transcripts.json"),
-			),
+			await runAnalysisAction("transcribe-dropped", t("analysis.transcription"), 0.58, transcriptManifestOutputPath()),
 		);
 		const textOverlayResult = await refreshTextOverlayFromAnalysis(result.manifest);
 		setAnalysisResult(
@@ -2973,12 +3234,7 @@ async function ingestMaterialDirectory(directoryPath = "") {
 			await runAnalysisAction("analyze-person-edit-metadata", t("analysis.personOpenCv"), 0.8, personEditPlansDir()),
 		);
 		checks.push(
-			await runAnalysisAction(
-				"analyze-blocking",
-				t("analysis.blockingOpenCv"),
-				0.9,
-				joinPath(activeOutputRoot(), "diagnostics", "opencv_blocking_analysis", "clip_metrics.json"),
-			),
+			await runAnalysisAction("analyze-blocking", t("analysis.blockingOpenCv"), 0.9, blockingMetricsOutputPath()),
 		);
 		if (state.files.referenceVideo) {
 			checks.push(
@@ -3300,6 +3556,142 @@ function subtitleSpeakerRolesOutputPath() {
 
 function transcriptComparisonOutputPath() {
 	return activeOutputRoot() ? joinPath(activeOutputRoot(), "reports", "transcript_comparison.json") : "";
+}
+
+function transcriptManifestOutputPath() {
+	return activeOutputRoot()
+		? joinPath(activeOutputRoot(), "transcripts", "manifest_sources", "manifest_transcripts.json")
+		: "";
+}
+
+function blockingMetricsOutputPath() {
+	return activeOutputRoot()
+		? joinPath(activeOutputRoot(), "diagnostics", "opencv_blocking_analysis", "clip_metrics.json")
+		: "";
+}
+
+function analysisOutputCandidates(manifest: MediaManifest | null = state.mediaManifest) {
+	const candidates: Array<AnalysisResult & { requirePath?: boolean }> = [];
+	if (!activeOutputRoot()) {
+		return candidates;
+	}
+	const manifestPath = mediaManifestPath();
+	if (manifestPath) {
+		candidates.push({
+			key: "ingest",
+			label: t("analysis.materialClassification"),
+			status: "done",
+			detail: manifest?.files
+				? `${manifest.files.length || 0} files / ${manifest.cameras?.length || 0} camera(s)`
+				: t("analysis.updatedOutput"),
+			path: manifestPath,
+			requirePath: true,
+		});
+	}
+	if (manifest && !hasSyncTargets(manifest)) {
+		candidates.push({
+			key: "auto-sync-dropped",
+			label: t("analysis.syncCamerasAudio"),
+			status: "done",
+			detail: t("analysis.singleCameraSkipped"),
+			path: syncReportPath(),
+			requirePath: false,
+		});
+	} else if (syncReportPath()) {
+		candidates.push({
+			key: "auto-sync-dropped",
+			label: t("analysis.syncCamerasAudio"),
+			status: "done",
+			detail: t("analysis.updatedOutput"),
+			path: syncReportPath(),
+			requirePath: true,
+		});
+	}
+	const transcriptPath = transcriptManifestOutputPath();
+	if (transcriptPath) {
+		candidates.push(
+			{
+				key: "transcribe-dropped",
+				label: t("analysis.transcription"),
+				status: "done",
+				detail: t("analysis.updatedOutput"),
+				path: transcriptPath,
+				requirePath: true,
+			},
+			{
+				key: "text-overlays",
+				label: t("analysis.subtitleUi"),
+				status: "done",
+				detail: t("analysis.updatedOutput"),
+				path: transcriptPath,
+				requirePath: true,
+			},
+		);
+	}
+	for (const item of [
+		["compare-transcripts", t("analysis.transcriptComparison"), transcriptComparisonOutputPath()],
+		["analyze-person-edit-metadata", t("analysis.personOpenCv"), personEditPlansDir()],
+		["analyze-blocking", t("analysis.blockingOpenCv"), blockingMetricsOutputPath()],
+	] as const) {
+		if (item[2]) {
+			candidates.push({
+				key: item[0],
+				label: item[1],
+				status: "done",
+				detail: t("analysis.updatedOutput"),
+				path: item[2],
+				requirePath: true,
+			});
+		}
+	}
+	if (state.files.referenceVideo && referenceEditProfilePath()) {
+		candidates.push({
+			key: "analyze-reference-video",
+			label: t("analysis.referenceVideo"),
+			status: "done",
+			detail: t("analysis.updatedOutput"),
+			path: referenceEditProfilePath(),
+			requirePath: true,
+		});
+	}
+	return candidates;
+}
+
+async function restoreAnalysisResultsFromOutputs(
+	manifest: MediaManifest | null = state.mediaManifest,
+	options: { preserveExisting?: boolean } = {},
+) {
+	if (options.preserveExisting && state.analysisResults.length) {
+		renderAnalysisResults();
+		return;
+	}
+	const candidates = analysisOutputCandidates(manifest);
+	if (!candidates.length) {
+		setAnalysisResults([]);
+		return;
+	}
+	const paths = [
+		...new Set(
+			candidates
+				.filter((item) => item.requirePath !== false)
+				.map((item) => item.path)
+				.filter(Boolean),
+		),
+	];
+	let existing = new Set<string>();
+	if (paths.length) {
+		try {
+			const entries = await editApp.describeMediaPaths({ paths });
+			existing = new Set((entries || []).map((entry) => String(entry.path || "").toLowerCase()));
+		} catch (error) {
+			log("analysis restore failed", { message: error.message });
+		}
+	}
+	setAnalysisResults(
+		candidates.filter(
+			(item) => item.requirePath === false || (item.path && existing.has(String(item.path).toLowerCase())),
+		),
+	);
 }
 
 function hasMusicRanges() {
@@ -4147,6 +4539,19 @@ async function runPreset() {
 			log("reference analysis output", { profile: referenceEditProfilePath() });
 		}
 		const ok = result?.exitCode === 0;
+		if (
+			ok &&
+			[
+				"auto-sync-dropped",
+				"transcribe-dropped",
+				"compare-transcripts",
+				"analyze-person-edit-metadata",
+				"analyze-blocking",
+				"analyze-reference-video",
+			].includes(action)
+		) {
+			await restoreAnalysisResultsFromOutputs(state.mediaManifest);
+		}
 		setIngestProgress({
 			progress: ok ? 1 : state.lastWorkflowProgressLog || 0,
 			message: ok ? t("format.completeMessage", { label }) : t("format.errorMessage", { label }),
@@ -4182,10 +4587,11 @@ async function sendRequest() {
 	setStatus(t("status.codexRunning"), "busy");
 	log("turn/start");
 	try {
+		state.codexModel = selectedCodexModelForRun();
 		await editApp.startCodexTurn({
 			settings: {
-				model: $("#modelName")?.value || "",
-				effort: "medium",
+				model: state.codexModel,
+				effort: selectedCodexReasoningEffort(),
 			},
 			prompt: $("#promptPreview").value,
 		});
@@ -4210,8 +4616,21 @@ function handleNotification(message) {
 		log("command", { text: params.delta || params.text || params });
 		return;
 	}
+	if (method === "thread/status/changed" && params.status?.type === "systemError") {
+		setStatus(t("status.codexError"), "idle");
+		log(method, params);
+		return;
+	}
 	if (method === "turn/completed") {
+		const turn = params.turn || {};
+		if (turn.status === "failed") {
+			setStatus(t("status.codexError"), "idle");
+			log("turn failed", { message: codexErrorMessage(turn.error) || "Codex turn failed" });
+			return;
+		}
 		setStatus(t("status.codexIdle"), "ready");
+		log(method, params);
+		return;
 	}
 	log(method, params);
 }
@@ -4273,6 +4692,10 @@ function bindEvents() {
 	});
 	$("#refreshCommand").addEventListener("click", refreshCommand);
 	$("#refreshPrompt").addEventListener("click", refreshPrompt);
+	$("#refreshCodexModels").addEventListener("click", loadCodexModels);
+	$("#modelName").addEventListener("change", () => {
+		state.codexModel = ($("#modelName") as HTMLSelectElement | null)?.value || "";
+	});
 	$("#refreshSyncReport").addEventListener("click", refreshSyncReport);
 	$("#loadGlossaryCandidates").addEventListener("click", loadGlossaryCandidates);
 	$("#addGlossaryTerm").addEventListener("click", addGlossaryTerm);
@@ -4342,6 +4765,9 @@ function bindEvents() {
 	$$(".step-button").forEach((button) => {
 		button.addEventListener("click", () => {
 			setActiveSection(button.dataset.section);
+			if (button.dataset.section === "run" && !state.codexModels.length) {
+				void loadCodexModels();
+			}
 			window.scrollTo({ top: 0, behavior: "smooth" });
 		});
 	});
@@ -4374,6 +4800,8 @@ async function init() {
 	initDropZones();
 	bindEvents();
 	applyTranslations();
+	renderCodexModelOptions();
+	renderCodexModelStatus();
 	setActiveSection(state.activeSection);
 	setStatus(state.statusText, state.statusKind);
 	refreshPrompt();
@@ -4423,6 +4851,12 @@ async function init() {
 		}
 	});
 	refreshSyncReport();
+	if (state.activeSection === "run") {
+		void loadCodexModels();
+	}
+	if (!(await loadAnalysisStateFile())) {
+		await restoreAnalysisResultsFromOutputs(state.mediaManifest);
+	}
 }
 
 init().catch((error) => {

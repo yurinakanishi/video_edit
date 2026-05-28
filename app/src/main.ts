@@ -66,6 +66,7 @@ const RESOURCE_ICON_PATH = path.join(process.resourcesPath || "", "build", "icon
 const ICON_PATH = fs.existsSync(RESOURCE_ICON_PATH) ? RESOURCE_ICON_PATH : path.join(APP_ROOT, "build", "icon.ico");
 const SYNC_REPORT_PATH = path.join(OUTPUT_ROOT, "reports", "app_sync_offsets.json");
 const MEDIA_MANIFEST_NAME = "media_manifest.json";
+const ANALYSIS_STATE_NAME = "analysis_state.json";
 const DEFAULT_FFMPEG_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe";
 const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
 const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
@@ -264,6 +265,62 @@ function readProjectMediaManifest(project: ProjectInfo) {
 		return manifest;
 	}
 	return null;
+}
+
+function analysisStatePathForProject(project: ProjectInfo) {
+	return path.join(project.outputRoot, "app", ANALYSIS_STATE_NAME);
+}
+
+function normalizeAnalysisStateResult(item: any) {
+	const key = String(item?.key || "").trim();
+	if (!key) {
+		return null;
+	}
+	const status = ["done", "error", "running"].includes(String(item?.status)) ? String(item.status) : "done";
+	return {
+		key,
+		label: String(item?.label || ""),
+		status,
+		detail: String(item?.detail || ""),
+		path: String(item?.path || ""),
+	};
+}
+
+function readProjectAnalysisState(project: ProjectInfo) {
+	const statePath = analysisStatePathForProject(project);
+	const payload = readJsonFile(statePath);
+	if (!payload || typeof payload !== "object") {
+		return null;
+	}
+	return {
+		...payload,
+		path: statePath,
+		results: Array.isArray(payload.results) ? payload.results.map(normalizeAnalysisStateResult).filter(Boolean) : [],
+	};
+}
+
+function writeProjectAnalysisState(project: ProjectInfo, payload: any) {
+	const statePath = analysisStatePathForProject(project);
+	const results = Array.isArray(payload?.results)
+		? payload.results.map(normalizeAnalysisStateResult).filter(Boolean)
+		: [];
+	const normalized = {
+		version: 1,
+		updatedAt: new Date().toISOString(),
+		project: {
+			id: project.id,
+			name: project.name,
+			root: project.root,
+			outputRoot: project.outputRoot,
+		},
+		mediaManifestPath: String(payload?.mediaManifestPath || ""),
+		mediaManifestGeneratedAt: String(payload?.mediaManifestGeneratedAt || ""),
+		mediaManifestFileCount: Number(payload?.mediaManifestFileCount || 0),
+		results,
+	};
+	fs.mkdirSync(path.dirname(statePath), { recursive: true });
+	fs.writeFileSync(statePath, JSON.stringify(normalized, null, 2), "utf8");
+	return { ...normalized, path: statePath };
 }
 
 function cleanSubtitleText(value: string) {
@@ -1508,7 +1565,7 @@ class CodexAppServer {
 			const threadParams: Record<string, any> = {
 				cwd: VIDEO_EDIT_ROOT,
 				approvalPolicy: "never",
-				sandbox: "workspaceWrite",
+				sandbox: "workspace-write",
 				serviceName: "video_edit_electron",
 			};
 			if (settings.model) {
@@ -1539,6 +1596,30 @@ class CodexAppServer {
 			turnParams.effort = settings.effort;
 		}
 		return this.request("turn/start", turnParams);
+	}
+
+	async listModels(options: Record<string, any> = {}) {
+		await this.ensureStarted();
+		const data: any[] = [];
+		let nextCursor: string | null = null;
+		for (let page = 0; page < 10; page += 1) {
+			const params: Record<string, any> = {
+				limit: Number(options.limit) || 100,
+				includeHidden: Boolean(options.includeHidden),
+			};
+			if (nextCursor) {
+				params.cursor = nextCursor;
+			}
+			const response = await this.request("model/list", params);
+			if (Array.isArray(response?.data)) {
+				data.push(...response.data);
+			}
+			nextCursor = response?.nextCursor || null;
+			if (!nextCursor) {
+				break;
+			}
+		}
+		return { data, nextCursor };
 	}
 
 	async execCommand(command: unknown[], timeoutMs = 60 * 60 * 1000, appConfig: unknown = null) {
@@ -1763,6 +1844,18 @@ ipcMain.handle("project:copy-assets", async (_event, { project, files }) => {
 	};
 });
 
+ipcMain.handle("analysis-state:load", async (_event, { project } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	return readProjectAnalysisState(info);
+});
+
+ipcMain.handle("analysis-state:save", async (_event, { project, state } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	return writeProjectAnalysisState(info, state || {});
+});
+
 ipcMain.handle("project:ingest-directory", async (_event, { project, directory, paths, tools } = {}) => {
 	const sourcePaths = existingInputPaths(directory, paths);
 	if (!sourcePaths.length) {
@@ -1862,6 +1955,10 @@ ipcMain.handle("dialog:pick-output", async (_event, options) => {
 
 ipcMain.handle("codex:start-turn", async (_event, { settings, prompt }) => {
 	return codex.startTurn(settings || {}, prompt);
+});
+
+ipcMain.handle("codex:list-models", async (_event, options = {}) => {
+	return codex.listModels(options || {});
 });
 
 ipcMain.handle("codex:exec-command", async (_event, { command, timeoutMs, appConfig }) => {

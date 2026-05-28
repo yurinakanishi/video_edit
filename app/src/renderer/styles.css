@@ -1039,6 +1039,24 @@ input[type="checkbox"] {
 	margin-top: 12px;
 }
 
+.codex-options {
+	display: grid;
+	grid-template-columns: minmax(260px, 1fr) auto minmax(160px, 0.45fr);
+	gap: 10px;
+	align-items: end;
+	margin-bottom: 12px;
+}
+
+.field-status {
+	align-self: center;
+	overflow: hidden;
+	color: var(--muted);
+	font-size: 12px;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .workflow-media-field {
 	align-content: start;
 }

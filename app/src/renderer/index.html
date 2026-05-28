@@ -657,6 +657,16 @@
               <h3>AI editing request</h3>
               <span>Review before running</span>
             </div>
+            <div class="codex-options">
+              <label>
+                AI model
+                <select id="modelName">
+                  <option value="">Codex default</option>
+                </select>
+              </label>
+              <button type="button" id="refreshCodexModels">Refresh models</button>
+              <span id="codexModelStatus" class="field-status">Model list not loaded</span>
+            </div>
             <div class="run-summary">
               <strong>実行前チェック</strong>
               <ul id="runChecklist"></ul>

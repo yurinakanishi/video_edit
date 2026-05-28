@@ -943,6 +943,19 @@ h4 {
 	gap: 14px;
 }
 
+.music-settings {
+	display: grid;
+	gap: 12px;
+	padding: 12px;
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	background: #fbfaf7;
+}
+
+.music-settings textarea {
+	min-height: 74px;
+}
+
 label {
 	display: grid;
 	gap: 6px;

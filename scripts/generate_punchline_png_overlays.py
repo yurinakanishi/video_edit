@@ -42,22 +42,6 @@ class Punchline:
     lines: tuple[str, ...]
 
 
-PUNCHLINES = [
-    Punchline("0:00:00.00", "0:00:09.00", ("定義で言うと強いプロダクトというか", "プロダクトが中心にあって", "セミオゴーだとかセミカスタマイズの形で")),
-    Punchline("0:00:15.00", "0:00:20.00", ("そこで一定なスケールメリットが", "出るということが大事だと思いますね")),
-    Punchline("0:01:27.00", "0:01:37.00", ("さすがに薄々AIによって", "何かが変わるなっていうのは", "みんな覚悟してるというか")),
-    Punchline("0:01:41.00", "0:01:53.00", ("ちょっとした会社の発表だったりとか", "ちょっとしたノートの発言だったり", "っていうのに過剰反応しやすいような", "土壌自体は多分ある")),
-    Punchline("0:01:56.00", "0:02:02.00", ("あなたの仕事例えばライターの仕事", "明日から亡くなりますよって言われたら")),
-    Punchline("0:02:17.00", "0:02:29.00", ("会社がわざわざPDM配信して", "フリーEにしましたみたいなのは", "採用におけるマーケティングの一環なのかなと思いますね")),
-    Punchline("0:02:29.00", "0:02:41.00", ("同じような職種名だと埋もれるんで", "興味持ってもらうっていうのは", "そのための一つの工夫なんだろうなと思います")),
-    Punchline("0:03:01.00", "0:03:13.00", ("採用救人状の話だったけで", "家事ある面談とか面接を通して", "こういう役割を求めてるのをすり合うパターンもある")),
-    Punchline("0:03:41.00", "0:03:49.00", ("会社によってビジネスのモデルとか", "通用見とかっていうのは", "かなり多種多様なんですよね")),
-    Punchline("0:04:06.00", "0:04:22.00", ("なんでユーザーさんに必要されているか", "みたいなところって多様性もあるし", "工夫してなかったら生き残っていけない")),
-    Punchline("0:04:25.00", "0:04:37.00", ("大まかな専門職的なこの仕事が必要", "というのはもちろんありますと", "その会社の中で何を求められるか", "というのは多様性がありますよ")),
-    Punchline("0:04:40.00", "0:04:59.00", ("専門職という言葉が", "結構ミスリートというか", "エンジニアとか分かりやすすぎるだけで", "総合職って全く分からないですよね")),
-]
-
-
 def configured_font_size() -> int:
     return int_value(APP_CONFIG, "style", "subtitleSize", default=FONT_SIZE)
 
@@ -68,7 +52,7 @@ def configured_punchlines() -> list[Punchline]:
         parsed = parse_punchline_text(text)
         if parsed:
             return [Punchline(item["start"], item["end"], tuple(item["lines"])) for item in parsed]
-    return PUNCHLINES
+    return []
 
 
 def line_width(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont) -> int:
@@ -135,6 +119,10 @@ def render_punchline(lines: tuple[str, ...]) -> Image.Image:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for pattern in ("punchline_*.png", "manifest.json"):
+        for path in OUT_DIR.glob(pattern):
+            if path.is_file():
+                path.unlink()
     manifest = []
     for index, punchline in enumerate(configured_punchlines(), start=1):
         image = render_punchline(punchline.lines)

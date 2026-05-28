@@ -46,7 +46,6 @@
           </div>
           <div class="topbar-actions">
             <button type="button" id="openOutput">Review generated video</button>
-            <button type="button" id="openThumbnails">Review thumbnail candidates</button>
             <button type="button" id="runPreset">Run selected workflow step</button>
             <button type="button" class="primary-button" id="sendRequest">Ask AI to edit</button>
           </div>
@@ -195,6 +194,7 @@
                 Multicam switching
                 <select id="multicamMode">
                   <option value="speaker-aware">Speaker-aware interview cuts</option>
+                  <option value="dynamic-cuts">Rhythmic punch-in cuts</option>
                   <option value="manual-plan">Use saved manual plan</option>
                   <option value="master-first">Master first, close-ups for emphasis</option>
                 </select>
@@ -212,10 +212,106 @@
                 <input id="audioDenoise" type="checkbox" checked />
                 <span>Reduce background noise</span>
               </label>
+              <label class="toggle-row">
+                <input id="colorMatchCameras" type="checkbox" checked />
+                <span>Match camera color</span>
+              </label>
+              <label class="toggle-row">
+                <input id="usePersonEditPlans" type="checkbox" checked />
+                <span>Use person analysis for crops</span>
+              </label>
+              <label class="toggle-row">
+                <input id="useTranscriptComparisonSync" type="checkbox" checked />
+                <span>Use transcript comparison for sync fallback</span>
+              </label>
+              <label class="toggle-row">
+                <input id="naturalDialogueCuts" type="checkbox" />
+                <span>Place camera cuts in dialogue gaps</span>
+              </label>
+              <label class="toggle-row">
+                <input id="audioMastering" type="checkbox" checked />
+                <span>Master audio for online video</span>
+              </label>
+              <div class="two-col">
+                <label>
+                  Encoder preset
+                  <select id="encoderPreset">
+                    <option value="ultrafast">Fastest preview (ultrafast)</option>
+                    <option value="superfast">Very fast preview (superfast)</option>
+                    <option value="veryfast" selected>Fast draft (veryfast)</option>
+                    <option value="faster">Faster encode (faster)</option>
+                    <option value="fast">Fast encode (fast)</option>
+                    <option value="medium">Balanced quality (medium)</option>
+                    <option value="slow">High quality (slow)</option>
+                    <option value="slower">Higher quality (slower)</option>
+                    <option value="veryslow">Maximum quality (veryslow)</option>
+                  </select>
+                </label>
+                <label>
+                  Video quality (CRF, lower is better)
+                  <input id="renderCrf" type="number" min="0" max="51" step="1" value="18" />
+                </label>
+              </div>
               <label>
                 Noise reduction strength
                 <input id="audioDenoiseStrength" type="number" min="0" max="30" step="1" value="10" />
               </label>
+              <div class="music-settings">
+                <label class="toggle-row">
+                  <input id="musicEnabled" type="checkbox" />
+                  <span>Generate and mix background music</span>
+                </label>
+                <div class="two-col">
+                  <label>
+                    Music placement
+                    <select id="musicScope">
+                      <option value="full">Whole video</option>
+                      <option value="omission">Omission title ranges only</option>
+                    </select>
+                  </label>
+                  <label>
+                    Omission range source
+                    <select id="musicRangeSource">
+                      <option value="auto">Auto + manual ranges</option>
+                      <option value="manual">Manual ranges only</option>
+                    </select>
+                  </label>
+                  <label>
+                    Music level
+                    <input id="musicVolume" type="range" min="0" max="40" step="1" value="14" />
+                  </label>
+                </div>
+                <label>
+                  Music direction
+                  <textarea id="musicPrompt" spellcheck="false" placeholder="quiet, clean, documentary-like bed for a reflective interview"></textarea>
+                </label>
+                <label>
+                  Omission title ranges
+                  <textarea id="musicRangesText" spellcheck="false" placeholder="00:12-00:18 省略テロップ"></textarea>
+                </label>
+                <label class="toggle-row">
+                  <input id="omissionCardEnabled" type="checkbox" />
+                  <span>Replace omission ranges with a summary card</span>
+                </label>
+                <div class="two-col">
+                  <label>
+                    Card duration
+                    <input id="omissionCardDuration" type="number" min="0.5" max="30" step="0.5" value="5" />
+                  </label>
+                  <label>
+                    Card label
+                    <input id="omissionCardLabel" value="SUMMARY" />
+                  </label>
+                </div>
+                <label>
+                  Summary card text
+                  <textarea id="omissionCardText" spellcheck="false" placeholder="質問を要約&#10;聞き手の長い質問を短く整理"></textarea>
+                </label>
+                <label>
+                  Replacement ranges
+                  <textarea id="omissionCardRangesText" spellcheck="false" placeholder="00:12-00:30 | 質問を要約 | 聞き手の質問を短く整理"></textarea>
+                </label>
+              </div>
               <div class="two-col">
                 <label>
                   Start
@@ -328,7 +424,14 @@
                   <option value="generate-punchlines">Create catchy subtitle images</option>
                   <option value="generate-full-overlays">Create full subtitle images</option>
                   <option value="generate-glossary-overlays">Create glossary explanation images</option>
-                  <option value="generate-thumbnails">Create thumbnail candidates</option>
+                  <option value="generate-music-bed">Generate background music</option>
+                  <option value="replace-audio">Replace video audio</option>
+                  <option value="generate-thumbnail">Generate thumbnail image</option>
+                  <option value="generate-thumbnail-candidates">Generate thumbnail candidates</option>
+                  <option value="review-subtitles">Review subtitle quality</option>
+                  <option value="apply-subtitle-corrections">Apply subtitle corrections</option>
+                  <option value="classify-subtitle-speakers">Classify subtitle speakers</option>
+                  <option value="compare-transcripts">Compare source transcripts</option>
                   <option value="analyze-blocking">Analyze camera framing</option>
                   <option value="analyze-person-edit-metadata">Analyze people for camera cuts</option>
                   <option value="analyze-reference-video">Analyze reference video</option>
@@ -338,29 +441,6 @@
                   <option value="extract-still">Save a still image</option>
                   <option value="verify-duration">Check output duration</option>
                   <option value="verify-audio">Check output audio</option>
-                </select>
-              </label>
-              <label>
-                Thumbnail layout
-                <select id="thumbnailMode">
-                  <option value="standard">Standard: image-by-image text placement</option>
-                  <option value="closeup_bottom_title">Center face: one-line bottom title</option>
-                  <option value="right_face_title_stack">Face right: stacked title left</option>
-                  <option value="left_face_title_stack">Face left: stacked title right</option>
-                </select>
-              </label>
-              <label>
-                Thumbnail main color
-                <select id="thumbnailMainColor">
-                  <option value="yellow">Yellow</option>
-                  <option value="red">Red</option>
-                  <option value="orange">Orange</option>
-                  <option value="green">Green</option>
-                  <option value="blue">Blue</option>
-                  <option value="cyan">Cyan</option>
-                  <option value="purple">Purple</option>
-                  <option value="pink">Pink</option>
-                  <option value="white">White</option>
                 </select>
               </label>
               <details class="advanced-settings">
@@ -410,18 +490,123 @@
                   </div>
                 </div>
               </details>
+              <details class="advanced-settings">
+                <summary>Runtime paths</summary>
+                <div class="advanced-settings-grid">
+                  <label>
+                    Python executable
+                    <input id="pythonPath" />
+                  </label>
+                  <label>
+                    FFmpeg executable
+                    <input id="ffmpegPath" />
+                  </label>
+                  <label>
+                    FFprobe executable
+                    <input id="ffprobePath" />
+                  </label>
+                </div>
+              </details>
               <label class="workflow-media-field">
                 Input video to process
                 <input id="inputVideoPath" type="hidden" />
                 <div id="inputVideoPathPreview" class="asset-preview empty">not selected</div>
                 <button type="button" data-pick-tool="inputVideoPath">Select input video</button>
               </label>
-              <label class="workflow-media-field">
-                Video containing replacement audio
-                <input id="replaceAudioInput" type="hidden" />
-                <div id="replaceAudioInputPreview" class="asset-preview empty">not selected</div>
-                <button type="button" data-pick-tool="replaceAudioInput">Select audio source video</button>
-              </label>
+              <details class="advanced-settings">
+                <summary>Thumbnail / subtitle QA</summary>
+                <div class="advanced-settings-grid">
+                  <label>
+                    Thumbnail time
+                    <input id="thumbnailTime" value="00:00:25" />
+                  </label>
+                  <label>
+                    Thumbnail title
+                    <input id="thumbnailTitle" placeholder="Project title" />
+                  </label>
+                  <label>
+                    Thumbnail subtitle
+                    <input id="thumbnailSubtitle" placeholder="Short supporting line" />
+                  </label>
+                  <label>
+                    Thumbnail candidates
+                    <input id="thumbnailCandidateCount" type="number" min="1" max="24" step="1" value="6" />
+                  </label>
+                  <label>
+                    Thumbnail layout
+                    <select id="thumbnailMode">
+                      <option value="standard">Standard</option>
+                      <option value="closeup_bottom_title">Close-up bottom title</option>
+                      <option value="right_face_title_stack">Face right / title left</option>
+                      <option value="left_face_title_stack">Face left / title right</option>
+                    </select>
+                  </label>
+                  <label>
+                    Thumbnail main color
+                    <select id="thumbnailMainColor">
+                      <option value="yellow">Yellow</option>
+                      <option value="white">White</option>
+                      <option value="cyan">Cyan</option>
+                      <option value="green">Green</option>
+                      <option value="red">Red</option>
+                      <option value="orange">Orange</option>
+                      <option value="pink">Pink</option>
+                      <option value="purple">Purple</option>
+                      <option value="blue">Blue</option>
+                    </select>
+                  </label>
+                  <label>
+                    Candidate times
+                    <textarea id="thumbnailCandidateTimes" spellcheck="false" placeholder="00:00:03 | Hook | Title | Subtitle"></textarea>
+                  </label>
+                  <label class="toggle-row">
+                    <input id="thumbnailDebugFaces" type="checkbox" />
+                    <span>Draw detected face boxes on candidates</span>
+                  </label>
+                  <label>
+                    Max subtitle duration
+                    <input id="subtitleReviewMaxDuration" type="number" min="1" step="0.5" value="8" />
+                  </label>
+                  <label>
+                    Max reading speed
+                    <input id="subtitleReviewMaxCharsPerSecond" type="number" min="4" step="0.5" value="18" />
+                  </label>
+                  <label>
+                    Suspicious subtitle patterns
+                    <textarea id="subtitleSuspiciousPatterns" spellcheck="false" placeholder="misheard phrase or regex"></textarea>
+                  </label>
+                  <div class="toggle-column">
+                    <label class="toggle-row">
+                      <input id="subtitleReviewExtractClips" type="checkbox" />
+                      <span>Extract flagged subtitle audio clips</span>
+                    </label>
+                    <label class="toggle-row">
+                      <input id="subtitleReviewTranscribeClips" type="checkbox" />
+                      <span>Re-transcribe flagged subtitle clips</span>
+                    </label>
+                  </div>
+                  <label>
+                    Subtitle corrections
+                    <textarea id="subtitleCorrectionsText" spellcheck="false" placeholder="12 | corrected subtitle text | reason"></textarea>
+                  </label>
+                  <label>
+                    Interviewer ranges
+                    <textarea id="subtitleInterviewerRanges" spellcheck="false" placeholder="00:12-00:18 | interviewer question"></textarea>
+                  </label>
+                  <label>
+                    Interviewer patterns
+                    <textarea id="subtitleInterviewerPatterns" spellcheck="false" placeholder="interviewer|聞き手|質問"></textarea>
+                  </label>
+                  <label>
+                    Manual speaker roles
+                    <textarea id="subtitleManualRoles" spellcheck="false" placeholder="12 | interviewer | offscreen question"></textarea>
+                  </label>
+                  <label class="toggle-row">
+                    <input id="subtitleMouthMotionDiagnostics" type="checkbox" />
+                    <span>Add mouth-motion diagnostic</span>
+                  </label>
+                </div>
+              </details>
               <details class="advanced-settings">
                 <summary>Analysis settings</summary>
                 <div class="advanced-settings-grid">
@@ -450,40 +635,6 @@
                     <input id="personLimit" type="number" min="1" step="1" placeholder="all" />
                   </label>
                   <div class="toggle-column">
-                    <label class="toggle-row">
-                      <input id="rebuildBase" type="checkbox" />
-                      <span>Recreate the 1-minute base video</span>
-                    </label>
-                    <label class="toggle-row">
-                      <input id="skipSubtitleRegeneration" type="checkbox" />
-                      <span>Use existing subtitle images</span>
-                    </label>
-                    <label class="toggle-row">
-                      <input id="reclassifySpeakers" type="checkbox" />
-                      <span>Re-detect speakers in the transcript</span>
-                    </label>
-                    <label class="toggle-row">
-                      <input id="autoContextCuts" type="checkbox" checked />
-                      <span>Cut automatically by subtitle context and speaker</span>
-                    </label>
-                    <label class="toggle-row">
-                      <input id="naturalDialogueCuts" type="checkbox" />
-                      <span>Prefer natural dialogue gaps for cuts</span>
-                    </label>
-                  </div>
-                  <div class="toggle-column">
-                    <label class="toggle-row">
-                      <input id="transcribeReview" type="checkbox" />
-                      <span>Re-transcribe subtitle review clips</span>
-                    </label>
-                    <label class="toggle-row">
-                      <input id="noAudioClips" type="checkbox" />
-                      <span>Skip audio clips during subtitle review</span>
-                    </label>
-                    <label>
-                      Subtitle review quality
-                      <input id="reviewModel" value="large-v3" />
-                    </label>
                     <label class="toggle-row">
                       <input id="personNoMulticamRoot" type="checkbox" />
                       <span>Analyze only selected project videos</span>

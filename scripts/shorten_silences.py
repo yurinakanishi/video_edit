@@ -25,7 +25,7 @@ from project_paths import (
     multicam_source_root,
     resolve_project_path,
 )
-from video_edit_app_config import load_app_config, optional_path
+from video_edit_app_config import load_app_config, optional_path, video_encoder_crf, video_encoder_preset
 
 
 WORK = WORKSPACE_ROOT
@@ -171,9 +171,12 @@ def shorten_silences(
     silences = detect_silences(input_path, config, duration)
     removals = removal_ranges(silences, duration, config.keep_silence)
     ranges = keep_ranges(duration, removals)
+    encoder_preset = video_encoder_preset(APP_CONFIG, "render", "encoderPreset", default="medium")
+    encoder_crf = video_encoder_crf(APP_CONFIG, "render", "crf")
     report = {
         "input": str(input_path),
         "output": str(output_path),
+        "encoder": {"preset": encoder_preset, "crf": encoder_crf},
         "noise": config.noise,
         "min_silence": config.min_silence,
         "keep_silence": config.keep_silence,
@@ -217,9 +220,9 @@ def shorten_silences(
             "-c:v",
             "libx264",
             "-preset",
-            "medium",
+            encoder_preset,
             "-crf",
-            "18",
+            str(encoder_crf),
             "-pix_fmt",
             "yuv420p",
             "-c:a",

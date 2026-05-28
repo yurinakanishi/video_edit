@@ -7,16 +7,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
-DEFAULT_SOURCE = ROOT / "source"
-DEFAULT_OUTPUT = ROOT / "output"
 PROJECTS = ROOT / "projects"
 CONFIG = ROOT / "config"
 DOCS = ROOT / "docs"
-DEFAULT_APP_CONFIG = DEFAULT_OUTPUT / "app" / "video_edit_app_config.runtime.json"
 
 
 def app_config() -> dict:
-    path = Path(os.environ.get("VIDEO_EDIT_APP_CONFIG") or DEFAULT_APP_CONFIG)
+    configured = os.environ.get("VIDEO_EDIT_APP_CONFIG")
+    if not configured:
+        return {}
+    path = Path(configured)
     if not path.exists():
         return {}
     try:
@@ -44,7 +44,7 @@ def configured_project_root() -> Path | None:
 ENV_PROJECT_ROOT = configured_project_root()
 
 
-def configured_project_path(kind: str, default: Path) -> Path:
+def configured_project_path(kind: str) -> Path:
     env_name = {
         "sourceRoot": "VIDEO_EDIT_PROJECT_SOURCE",
         "outputRoot": "VIDEO_EDIT_PROJECT_OUTPUT",
@@ -56,11 +56,14 @@ def configured_project_path(kind: str, default: Path) -> Path:
         return Path(value)
     if ENV_PROJECT_ROOT:
         return ENV_PROJECT_ROOT / ("source" if kind == "sourceRoot" else "output")
-    return default
+    raise RuntimeError(
+        "Project context is required. Set VIDEO_EDIT_APP_CONFIG, VIDEO_EDIT_PROJECT, "
+        "VIDEO_EDIT_PROJECT_ROOT, or VIDEO_EDIT_PROJECT_SOURCE/VIDEO_EDIT_PROJECT_OUTPUT."
+    )
 
 
-SOURCE = configured_project_path("sourceRoot", DEFAULT_SOURCE)
-OUTPUT = configured_project_path("outputRoot", DEFAULT_OUTPUT)
+SOURCE = configured_project_path("sourceRoot")
+OUTPUT = configured_project_path("outputRoot")
 
 SOURCE_VIDEO = SOURCE / "video"
 SOURCE_AUDIO = SOURCE / "audio"
@@ -73,10 +76,8 @@ OUTPUT_OVERLAYS = OUTPUT / "overlays"
 OUTPUT_REPORTS = OUTPUT / "reports"
 OUTPUT_TRANSCRIPTS = OUTPUT / "transcripts"
 OUTPUT_AUDIO = OUTPUT / "audio"
+OUTPUT_IMAGES = OUTPUT / "images"
 OUTPUT_DIAGNOSTICS = OUTPUT / "diagnostics"
-
-LEGACY_MULTICAM_SOURCE_ROOT = Path(r"C:\Users\yurin\Downloads\cdc260515 mov\cdc260515 mov")
-
 
 def configured_source_root() -> Path | None:
     value = APP_CONFIG.get("assets", {}).get("sourceRoot")
@@ -90,9 +91,7 @@ def multicam_source_root() -> Path:
     configured_from_app = configured_source_root()
     if configured_from_app:
         return configured_from_app
-    if (SOURCE_VIDEO / "2cam").exists() or (SOURCE_VIDEO / "3cam").exists():
-        return SOURCE_VIDEO
-    return LEGACY_MULTICAM_SOURCE_ROOT
+    return SOURCE_VIDEO
 
 
 def ensure_parent(path: Path) -> Path:
@@ -105,14 +104,12 @@ def resolve_project_path(value: str | Path) -> Path:
     if path.is_absolute():
         return path
     parts = path.parts
-    if parts and parts[0] in {"sound", "sound-2", "sond-low"}:
+    if parts and parts[0] == "audio":
         return SOURCE_AUDIO / path
-    if parts and parts[0] in {"1cam", "2cam", "3cam"}:
+    if parts and parts[0] == "video":
         return SOURCE_VIDEO / path
-    if parts and parts[0] in {"subs", "subs_corrected"}:
+    if parts and parts[0] == "subtitles":
         return SOURCE_SUBTITLES / path
-    if parts and parts[0] == "subs_video_original_audio":
-        return SOURCE_SUBTITLES / "video_original_audio" / Path(*parts[1:])
     if path.suffix.lower() in {".mp4", ".mov", ".m4v", ".avi", ".mkv"} and len(parts) == 1:
         return OUTPUT_VIDEOS / path
     return ROOT / path

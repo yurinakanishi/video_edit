@@ -140,24 +140,7 @@ type GlossaryTerm = {
 	enabled: boolean;
 };
 
-const defaultPunchlines = `00:00-00:04  定義で言うと強いプロダクトというか / プロダクトが中心にあって
-00:09-00:13  届けるというところだと思っているので
-00:15-00:20  そこで一定なスケルメリットが / 出るということが大事だと思いますね
-01:11-01:13  過剰反応されてるだけな気がしますけどね
-01:27-01:33  さすがに薄々AIによって / 何かが変わるなっていうのは
-01:37-01:41  どうなるんだろうっていう / 漠然とした不安がある中で
-01:56-02:02  あなたの仕事例えばライターの仕事 / 明日から亡くなりますよって言われたら
-02:17-02:24  会社がわざわざ / PDM配信してフリーEにしましたみたいなのは
-02:24-02:29  基本的な採用候補というか / 採用におけるマーケティングの一環なのかなと思いますね
-02:29-02:37  同じような職種名だと埋もれるんで / 興味持ってもらうっていうのは
-03:01-03:07  採用救人状の話だったけで / 家事ある面談とか面接を通して
-03:07-03:13  なるほどこういう役割を求めてるの / すり合うパターンもあるかもしれないし
-03:41-03:49  会社によってビジネスのモデルとか / 通用見とかっていうのは / かなり多種多様なんですよね
-03:57-04:04  各会社さんとかの / 勝ち方というか
-04:06-04:13  なんでユーザーさんに必要されているか / みたいなところって / 多様性もあるし
-04:25-04:35  大まかな専門職的な / この仕事が必要というのは / もちろんありますと
-04:40-04:46  専門職という言葉が / 結構ミスリートというか / エンジニアとか
-04:46-04:51  分かりやすすぎるだけなんですよね / 話として`;
+const defaultPunchlines = "";
 
 const fileFilterSpecs = {
 	masterVideo: [{ nameKey: "filter.video", extensions: ["mp4", "mov", "m4v"] }],
@@ -174,69 +157,7 @@ const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 const STORAGE_KEY = "video-edit-app-state-v1";
 const DEFAULT_FFMPEG_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe";
 const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
-const LEGACY_DEFAULT_TITLE = "AIエンジニアの今";
-const thumbnailModes = {
-	standard: {
-		flag: "",
-		labelKey: "option.thumbnailStandard",
-	},
-	closeup_bottom_title: {
-		flag: "--closeup-bottom-title",
-		labelKey: "option.thumbnailCloseup",
-	},
-	right_face_title_stack: {
-		flag: "--right-face-title-stack",
-		labelKey: "option.thumbnailRightFace",
-	},
-	left_face_title_stack: {
-		flag: "--left-face-title-stack",
-		labelKey: "option.thumbnailLeftFace",
-	},
-};
-const thumbnailMainColors = {
-	yellow: "color.yellow",
-	red: "color.red",
-	orange: "color.orange",
-	green: "color.green",
-	blue: "color.blue",
-	cyan: "color.cyan",
-	purple: "color.purple",
-	pink: "color.pink",
-	white: "color.white",
-};
-
-const defaultGlossaryTerms: GlossaryTerm[] = [
-	{
-		label: "セミオーダー",
-		patterns: "セミオゴー,セミオーダー",
-		description: "標準品をベースに、一部だけ要望に合わせて調整する提供方法。",
-		enabled: true,
-	},
-	{
-		label: "セミカスタマイズ",
-		patterns: "セミカスタマイズ",
-		description: "完全な個別開発ではなく、共通部分を残して必要箇所だけ変えること。",
-		enabled: true,
-	},
-	{
-		label: "スケールメリット",
-		patterns: "スケールメリット",
-		description: "数や量が増えるほど、1件あたりのコストや手間が下がる効果。",
-		enabled: true,
-	},
-	{
-		label: "PDM",
-		patterns: "PDM",
-		description: "この動画で議論対象になっている制度・枠組みの略称。",
-		enabled: true,
-	},
-	{
-		label: "FD",
-		patterns: "FD",
-		description: "PDMの代替として話題に出ている新しい制度・枠組みの略称。",
-		enabled: true,
-	},
-];
+const defaultGlossaryTerms: GlossaryTerm[] = [];
 
 const messages: Record<Locale, Record<string, string>> = {
 	ja: {
@@ -256,6 +177,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"status.codexExited": "AI 終了",
 		"status.codexRunning": "AI 実行中",
 		"status.projectError": "プロジェクトエラー",
+		"status.projectRequired": "先にプロジェクトを作成してください",
 		"status.checkRequiredFields": "必須項目を確認してください",
 		"status.rendering": "レンダー中",
 		"status.presetRunning": "プリセット実行中",
@@ -271,14 +193,12 @@ const messages: Record<Locale, Record<string, string>> = {
 		"topbar.title": "動画編集ワークスペース",
 		"topbar.description": "素材を追加し、編集内容を選んで実行します。",
 		"action.openSelectedOutput": "生成動画を確認",
-		"action.openThumbnails": "サムネ候補を確認",
 		"action.openInExplorer": "Explorerで開く",
 		"action.refreshPreview": "更新",
 		"action.runPresetScript": "選択中の工程を実行",
 		"action.runWithCodex": "AIに編集を依頼",
 		"preview.heading": "生成物プレビュー",
 		"preview.outputTitle": "出力フォルダ",
-		"preview.thumbnailsTitle": "サムネフォルダ",
 		"preview.waiting": "確認したい生成物を選んでください。",
 		"preview.loading": "フォルダを読み込んでいます...",
 		"preview.empty": "このフォルダには表示できるファイルがありません。",
@@ -364,7 +284,6 @@ const messages: Record<Locale, Record<string, string>> = {
 		"asset.logoDescription": "png / jpg",
 		"asset.stillImages": "静止画インサート",
 		"asset.stillDescription": "png / jpg / webp を複数追加",
-		"asset.currentRepoLogo": "現在のリポジトリロゴ",
 		"asset.noStillInserts": "静止画インサートなし",
 		"action.select": "選択",
 		"action.add": "追加",
@@ -381,7 +300,29 @@ const messages: Record<Locale, Record<string, string>> = {
 		"edit.multicamSwitching": "マルチカム切り替え",
 		"edit.audioSource": "音声ソース",
 		"edit.reduceNoise": "背景ノイズを低減",
+		"edit.matchCameraColor": "カメラ間の色味を合わせる",
+		"edit.encoderPreset": "エンコード速度",
+		"edit.videoQuality": "画質 (CRF、低いほど高画質)",
 		"edit.noiseStrength": "ノイズ低減の強さ",
+		"edit.musicEnabled": "BGMを生成してミックス",
+		"edit.musicPlacement": "BGMを入れる場所",
+		"edit.musicWhole": "動画全体",
+		"edit.musicOmission": "省略テロップの範囲だけ",
+		"edit.musicRangeSource": "省略範囲の検出",
+		"edit.musicRangeAuto": "自動検出 + 手入力",
+		"edit.musicRangeManual": "手入力のみ",
+		"edit.musicLevel": "BGM音量",
+		"edit.musicDirection": "BGMの方向性",
+		"edit.musicRanges": "省略テロップ範囲",
+		"edit.omissionCardEnabled": "省略区間を要約カードに置換",
+		"edit.omissionCardDuration": "カードの長さ",
+		"edit.omissionCardLabel": "カードラベル",
+		"edit.omissionCardText": "要約カードの文言",
+		"edit.omissionCardRanges": "置換する省略区間",
+		"placeholder.musicPrompt": "静かで清潔感のある、インタビュー向けのドキュメンタリー調BGM",
+		"placeholder.musicRanges": "00:12-00:18 省略テロップ",
+		"placeholder.omissionCardText": "質問を要約\n聞き手の長い質問を短く整理",
+		"placeholder.omissionCardRanges": "00:12-00:30 | 質問を要約 | 聞き手の質問を短く整理",
 		"edit.start": "開始位置",
 		"edit.outputDuration": "出力尺",
 		"edit.shortenSilence": "長い無音を詰める",
@@ -389,17 +330,24 @@ const messages: Record<Locale, Record<string, string>> = {
 		"edit.minSilence": "詰める無音の長さ",
 		"edit.keepSilence": "残す無音",
 		"edit.noise": "無音判定の音量",
-		"option.current1MinColor": "現行 1分カラー調整編集",
-		"option.currentOnepass": "現行 1分クイック編集",
-		"option.current5Min": "現行 5分仕上げ編集",
 		"option.newInterview": "選択素材から新規インタビュー編集",
 		"option.speakerAware": "話者に合わせたインタビューカット",
+		"option.dynamicCuts": "短めのリズムカット",
 		"option.manualPlan": "保存済みの手動プランを使用",
 		"option.masterFirst": "マスター優先、強調時にアップ",
 		"option.externalIfSelected": "別録り音声があれば使用",
 		"option.masterAudio": "マスター動画の音声を使用",
 		"option.rightAudio": "右アップの音声を使用",
 		"option.leftAudio": "左アップの音声を使用",
+		"option.encoderUltrafast": "最速プレビュー (ultrafast)",
+		"option.encoderSuperfast": "高速プレビュー (superfast)",
+		"option.encoderVeryfast": "高速下書き (veryfast)",
+		"option.encoderFaster": "やや高速 (faster)",
+		"option.encoderFast": "高速エンコード (fast)",
+		"option.encoderMedium": "品質バランス (medium)",
+		"option.encoderSlow": "高画質 (slow)",
+		"option.encoderSlower": "さらに高画質 (slower)",
+		"option.encoderVeryslow": "最高画質 (veryslow)",
 		"style.heading": "字幕",
 		"style.overlays": "字幕とロゴ設定",
 		"style.subtitleMode": "字幕モード",
@@ -427,8 +375,6 @@ const messages: Record<Locale, Record<string, string>> = {
 		"workflow.heading": "工程",
 		"workflow.actions": "実行する作業",
 		"workflow.directAction": "実行する工程",
-		"workflow.thumbnailLayout": "サムネレイアウト",
-		"workflow.thumbnailMainColor": "サムネメイン色",
 		"workflow.advancedSettings": "詳細設定",
 		"workflow.analysisSettings": "解析の詳細設定",
 		"workflow.renderScript": "レンダー方式",
@@ -440,68 +386,79 @@ const messages: Record<Locale, Record<string, string>> = {
 		"workflow.loudnessNormalize": "文字起こし前に音量を整える",
 		"workflow.filterLowConfidence": "空白に見える文字起こしを除外",
 		"workflow.previousText": "前後の字幕文脈を使う",
+		"workflow.runtimePaths": "実行環境のパス",
+		"workflow.pythonPath": "Python 実行ファイル",
+		"workflow.ffmpegPath": "FFmpeg 実行ファイル",
+		"workflow.ffprobePath": "FFprobe 実行ファイル",
 		"workflow.verificationInput": "処理対象の動画",
-		"workflow.audioReplaceSource": "差し替えに使う音声入り動画",
 		"workflow.selectInputVideo": "入力動画を選択",
-		"workflow.selectAudioReplaceSource": "差し替え元動画を選択",
+		"workflow.thumbnailQaSettings": "サムネイル / 字幕QA",
+		"workflow.thumbnailTime": "サムネイル時刻",
+		"workflow.thumbnailTitle": "サムネイルタイトル",
+		"workflow.thumbnailSubtitle": "サムネイル補足",
+		"workflow.thumbnailCandidates": "候補数",
+		"workflow.thumbnailLayout": "サムネイル構図",
+		"workflow.thumbnailMainColor": "メイン色",
+		"workflow.thumbnailCandidateTimes": "候補に使う時刻",
+		"workflow.thumbnailDebugFaces": "候補に顔検出枠を描画",
+		"workflow.naturalDialogueCuts": "会話の谷間へカメラ切替を寄せる",
+		"workflow.audioMastering": "オンライン動画向けに音声を整える",
+		"workflow.subtitleReviewMaxDuration": "字幕1区間の最大秒数",
+		"workflow.subtitleReviewMaxCharsPerSecond": "字幕の最大読上げ速度",
+		"workflow.subtitleSuspiciousPatterns": "疑わしい字幕パターン",
+		"workflow.subtitleReviewExtractClips": "怪しい字幕の音声クリップを書き出す",
+		"workflow.subtitleReviewTranscribeClips": "怪しい字幕クリップを再文字起こし",
+		"workflow.subtitleCorrections": "字幕修正",
+		"workflow.subtitleInterviewerRanges": "聞き手/省略扱いの範囲",
+		"workflow.subtitleInterviewerPatterns": "聞き手/省略扱いの語句",
+		"workflow.subtitleManualRoles": "字幕ごとの話者ロール",
+		"workflow.subtitleMouthMotionDiagnostics": "口元動き診断を追加",
 		"workflow.stillTime": "静止画にする時刻",
 		"workflow.personSampleFps": "人物解析の細かさ",
 		"workflow.yoloModel": "人物検出モデル",
 		"workflow.personConfidence": "人物検出のしきい値",
 		"workflow.analysisMaxSeconds": "テスト解析の秒数",
 		"workflow.videoLimit": "解析する動画数",
-		"workflow.rebuildBase": "1分の下書き動画を作り直す",
-		"workflow.reuseOverlays": "既存の字幕画像を使う",
-		"workflow.reclassifySpeakers": "話者を検出し直す",
-		"workflow.autoContextCuts": "字幕文脈と話者で自動カット",
-		"workflow.naturalDialogueCuts": "自然な会話の間でカットする",
-		"workflow.retranscribeReview": "字幕レビュークリップを再文字起こし",
-		"workflow.skipReviewAudioClips": "字幕レビュー音声クリップをスキップ",
-		"workflow.reviewModel": "字幕レビュー品質",
 		"workflow.personNoMulticamRoot": "選択したプロジェクト動画だけ解析",
 		"workflow.syncScore": "同期スコア",
 		"action.refresh": "更新",
 		"option.renderSelected": "選択した設定で動画を作成",
-		"option.subtitleReview": "字幕を確認・修正",
 		"option.generatePunchlines": "見せ場字幕画像を作成",
 		"option.generateFullOverlays": "全文字幕画像を作成",
 		"option.generateGlossaryOverlays": "専門用語解説画像を作成",
-		"option.generateThumbnails": "サムネ候補を作成",
+		"option.generateMusicBed": "BGMを生成",
+		"option.replaceAudio": "動画の音声を差し替え",
+		"option.generateThumbnail": "サムネイル画像を作成",
+		"option.generateThumbnailCandidates": "サムネイル候補を作成",
+		"option.reviewSubtitles": "字幕品質をレビュー",
+		"option.applySubtitleCorrections": "字幕修正を適用",
+		"option.classifySubtitleSpeakers": "字幕の話者ロールを分類",
+		"option.compareTranscripts": "素材ごとの文字起こしを比較",
 		"option.analyzeBlocking": "カメラ構図を解析",
 		"option.analyzePersonEdit": "人物とカット候補を解析",
 		"option.analyzeReference": "参考動画を解析",
 		"option.autoSyncDropped": "選択したカメラ素材を同期",
 		"option.transcribeDropped": "選択素材を文字起こし",
-		"option.transcribeAlign": "文字起こしを使って同期",
-		"option.compareAllCameras": "全カメラの文字起こしを比較",
-		"option.refineStrongWave": "音声同期をさらに調整",
-		"option.buildBase": "マルチカムの下書き動画を作成",
-		"option.transcribeSound2": "差し替え音声を文字起こし",
-		"option.compareSound2": "差し替え音声の文字起こしを比較",
-		"option.refineSound2": "差し替え音声の同期を微調整",
-		"option.replaceSound2": "動画の音声を差し替え",
 		"option.shortenInput": "選択入力動画の無音を詰める",
 		"option.extractStill": "静止画を書き出す",
 		"option.verifyDuration": "動画の長さを確認",
 		"option.verifyAudio": "動画の音声を確認",
-		"option.thumbnailStandard": "標準: 画像ごとに文字配置",
-		"option.thumbnailCloseup": "顔中央: 下部1行タイトル",
-		"option.thumbnailRightFace": "顔右: 左に積みタイトル",
-		"option.thumbnailLeftFace": "顔左: 右に積みタイトル",
-		"color.yellow": "黄",
-		"color.red": "赤",
-		"color.orange": "オレンジ",
-		"color.green": "緑",
-		"color.blue": "青",
-		"color.cyan": "シアン",
-		"color.purple": "紫",
-		"color.pink": "ピンク",
-		"color.white": "白",
-		"option.render1MinColor": "1分カラー調整編集",
-		"option.render1MinOnepass": "1分クイック編集",
-		"option.render5MinOverlays": "5分仕上げ編集",
 		"option.renderAppInterview": "選択素材からインタビュー編集",
+		"Place camera cuts in dialogue gaps": "会話の谷間へカメラ切替を寄せる",
+		"Use person analysis for crops": "人物解析をクロップへ反映",
+		"Use transcript comparison for sync fallback": "文字起こし比較を同期補正に使う",
+		"Master audio for online video": "オンライン動画向けに音声を整える",
+		"Extract flagged subtitle audio clips": "怪しい字幕の音声クリップを書き出す",
+		"Re-transcribe flagged subtitle clips": "怪しい字幕クリップを再文字起こし",
 		"action.file": "ファイル",
+		"placeholder.projectTitle": "プロジェクトタイトル",
+		"placeholder.thumbnailSubtitle": "短い補足テキスト",
+		"placeholder.thumbnailCandidateTimes": "00:00:03 | フック | タイトル | 補足",
+		"placeholder.subtitleSuspiciousPatterns": "誤認識語句または正規表現",
+		"placeholder.subtitleCorrections": "12 | 修正後の字幕テキスト | 理由",
+		"placeholder.subtitleInterviewerRanges": "00:12-00:18 | 聞き手の質問",
+		"placeholder.subtitleInterviewerPatterns": "インタビュアー|聞き手|質問",
+		"placeholder.subtitleManualRoles": "12 | interviewer | 画面外の質問",
 		"placeholder.all": "すべて",
 		"codex.heading": "AIへの依頼",
 		"codex.prompt": "AIに送る内容",
@@ -554,7 +511,6 @@ const messages: Record<Locale, Record<string, string>> = {
 		"filter.allFiles": "すべてのファイル",
 		"filter.mp4Video": "MP4 動画",
 		"runLabel.render": "レンダー",
-		"runLabel.thumbnail": "サムネ生成",
 		"runLabel.sync": "同期",
 		"runLabel.transcribe": "文字起こし",
 		"runLabel.analyze": "解析",
@@ -567,6 +523,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"analysis.materialClassification": "素材分類",
 		"analysis.syncCamerasAudio": "カメラ・音声同期",
 		"analysis.transcription": "文字起こし",
+		"analysis.transcriptComparison": "素材字幕比較",
 		"analysis.subtitleUi": "字幕UI反映",
 		"analysis.personOpenCv": "OpenCV人物解析",
 		"analysis.blockingOpenCv": "OpenCV構図解析",
@@ -580,6 +537,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"analysis.statusRunning": "実行中",
 		"sync.noReport": "カメラ同期レポートはまだありません。",
 		"validation.outputRequired": "出力先を指定してください。",
+		"validation.projectRequired": "先にプロジェクトを作成または選択してください。",
 		"validation.output": "出力: {path}",
 		"validation.masterRequiredForInterview":
 			"Interview render には Camera 1 / master が必要です。素材フォルダを取り込むか、手動で指定してください。",
@@ -593,23 +551,45 @@ const messages: Record<Locale, Record<string, string>> = {
 		"validation.syncSaved": "カメラ/別録り音声の同期結果を保存します。",
 		"validation.stillCount": "静止画インサート: {count}枚",
 		"validation.stillMotion": "文字/図解系はズームなし、写真系は薄いズーム/パンで挿入します。",
-		"validation.thumbnailGenerate": "サムネ候補を {mode} / {color} で生成します。",
 		"validation.preview": "確認用: {path}",
-		"validation.thumbnailImport": "選択した素材からサムネ候補を読み込みます。",
 		"validation.personBbox": "人物bbox: {path}",
 		"validation.editPlan": "編集プラン: {path}",
 		"validation.analysisFps": "解析間隔: {fps} fps",
 		"validation.selectedVideos": "解析対象: 選択済み動画 {count}本",
-		"validation.sourceRoots": "解析対象: source/video と 2cam/3cam root",
+		"validation.sourceRoots": "解析対象: 選択プロジェクトの動画",
 		"validation.testAnalysis": "テスト解析の秒数が入っているため、全尺ではなく一部だけ解析します。",
 		"validation.referenceRequired": "参考動画を1本ドラッグ&ドロップしてください。",
 		"validation.referenceShort": "参考動画は60秒以内として解析します。超えている場合は実行時に止めます。",
 		"validation.referenceProfile": "参考プロファイル: {path}",
 		"validation.referenceBbox": "参考人物bbox: {path}",
 		"validation.referenceEditPlan": "参考編集プラン: {path}",
-		"validation.replaceNeedsOutput": "音声差し替えには出力先が必要です。",
 		"validation.shortenNeedsInputOutput": "無音詰めには入力動画と出力先が必要です。",
 		"validation.verificationNeedsInput": "この工程には処理対象の動画が必要です。",
+		"validation.thumbnailNeedsInput":
+			"サムネイル作成には、入力動画・Camera 1 / master・解析済みカメラのいずれかが必要です。",
+		"validation.thumbnailOutput": "サムネイル: {path}",
+		"validation.thumbnailCandidatesNeedsInput":
+			"サムネイル候補作成には、入力動画・解析済みカメラ・プロジェクト画像のいずれかが必要です。",
+		"validation.thumbnailCandidatesOutput": "サムネイル候補: {path}",
+		"validation.thumbnailCandidateSettings": "サムネイル候補: {count}枚 / {mode} / {color}",
+		"validation.thumbnailDebugFaces": "サムネイル候補: 顔検出デバッグON",
+		"validation.subtitleReviewNeedsProject":
+			"字幕レビューにはプロジェクト出力と文字起こし結果が必要です。先に文字起こしを実行してください。",
+		"validation.subtitleReviewOutput": "字幕QA: {path}",
+		"validation.subtitleReviewClips": "字幕QA音声クリップ: {path}",
+		"validation.subtitleReviewRetranscribe": "字幕QA: フラグ箇所を再文字起こし",
+		"validation.subtitleCorrectionsMissing": "字幕修正を適用するには、修正行を入力してください。",
+		"validation.subtitleCorrectionsOutput": "字幕修正レポート: {path}",
+		"validation.subtitleSpeakerRolesOutput": "字幕話者ロール: {path}",
+		"validation.subtitleSpeakerManualRoles": "字幕話者ロール: 手動指定あり",
+		"validation.subtitleSpeakerMouthMotion": "字幕話者ロール: 口元動き診断ON",
+		"validation.transcriptComparisonOutput": "素材字幕比較: {path}",
+		"validation.replaceAudioNeedsInputOutput": "音声差し替えには、処理対象の動画と保存先が必要です。",
+		"validation.replaceAudioNeedsExternal": "音声差し替えには、別録り音声を選択してください。",
+		"validation.replaceAudioSamePath": "音声差し替えでは、入力動画と別の保存先を選んでください。",
+		"validation.replaceAudioOutput": "音声差し替え: {path}",
+		"validation.replaceAudioSource": "差し替え音声: {path}",
+		"validation.subtitleSpeakerRulesMissing": "話者ロール分類には、聞き手/省略扱いの範囲または語句を入力してください。",
 		"validation.audioExternal": "音声: 別録り {path}",
 		"validation.audioFallbackMaster": "別録り音声が未指定なので、レンダーはマスター動画音声にフォールバックします。",
 		"validation.rightAudioFallback": "右アップ音声が未指定なので、レンダーはマスター動画音声にフォールバックします。",
@@ -621,6 +601,27 @@ const messages: Record<Locale, Record<string, string>> = {
 		"validation.termsOff": "用語解説: OFF",
 		"validation.denoiseOn": "ノイズ低減: ON ({strength})",
 		"validation.denoiseOff": "ノイズ低減: OFF",
+		"validation.colorMatchOn": "カメラ色合わせ: ON",
+		"validation.colorMatchOff": "カメラ色合わせ: OFF",
+		"validation.personCropOn": "人物クロップ: 解析結果を使用",
+		"validation.personCropOff": "人物クロップ: OFF",
+		"validation.transcriptSyncOn": "同期補正: 文字起こし比較を低スコア時に使用",
+		"validation.transcriptSyncOff": "同期補正: 文字起こし比較は未使用",
+		"validation.naturalCutsOn": "カメラ切替: 会話の谷間へ調整",
+		"validation.naturalCutsOff": "カメラ切替: 自動境界のまま",
+		"validation.audioMasteringOn": "音声整音: ON",
+		"validation.audioMasteringOff": "音声整音: OFF",
+		"validation.encoder": "エンコード: {preset} / CRF {crf}",
+		"validation.musicFull": "BGM: ON / 動画全体 / 音量 {volume}%",
+		"validation.musicOmission": "BGM: ON / 省略テロップ範囲のみ / 音量 {volume}%",
+		"validation.musicAutoRanges": "省略範囲: オーバーレイから自動検出し、手入力範囲も追加します。",
+		"validation.musicManualRanges": "省略範囲: 手入力のみ",
+		"validation.musicRangesMissing": "手入力のみの場合は、省略範囲を入力してください。",
+		"validation.musicOff": "BGM: OFF",
+		"validation.omissionCardOn": "省略カード: ON / {duration}秒",
+		"validation.omissionCardMissingRanges":
+			"省略カードを使うには、置換する範囲または省略テロップ範囲を入力してください。",
+		"validation.omissionCardOff": "省略カード: OFF",
 		"validation.silenceOn": "無音詰め: ON",
 		"validation.silenceOff": "無音詰め: OFF",
 		"validation.previousSync": "前回同期: {role} score {score}",
@@ -650,6 +651,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"status.codexExited": "AI stopped",
 		"status.codexRunning": "AI running",
 		"status.projectError": "Project error",
+		"status.projectRequired": "Create a project first",
 		"status.checkRequiredFields": "Check required fields",
 		"status.rendering": "Rendering",
 		"status.presetRunning": "Preset running",
@@ -665,14 +667,12 @@ const messages: Record<Locale, Record<string, string>> = {
 		"topbar.title": "Video editing workspace",
 		"topbar.description": "Add media, choose edit settings, and run the job.",
 		"action.openSelectedOutput": "Review generated video",
-		"action.openThumbnails": "Review thumbnail candidates",
 		"action.openInExplorer": "Open in Explorer",
 		"action.refreshPreview": "Refresh",
 		"action.runPresetScript": "Run selected workflow step",
 		"action.runWithCodex": "Ask AI to edit",
 		"preview.heading": "Generated file preview",
 		"preview.outputTitle": "Output folder",
-		"preview.thumbnailsTitle": "Thumbnail folder",
 		"preview.waiting": "Choose which generated files to review.",
 		"preview.loading": "Loading folder...",
 		"preview.empty": "This folder has no displayable files.",
@@ -758,7 +758,6 @@ const messages: Record<Locale, Record<string, string>> = {
 		"asset.logoDescription": "png / jpg",
 		"asset.stillImages": "Still inserts",
 		"asset.stillDescription": "drop multiple png / jpg / webp",
-		"asset.currentRepoLogo": "current repo logo",
 		"asset.noStillInserts": "No still inserts.",
 		"action.select": "Select",
 		"action.add": "Add",
@@ -775,7 +774,29 @@ const messages: Record<Locale, Record<string, string>> = {
 		"edit.multicamSwitching": "Multicam switching",
 		"edit.audioSource": "Audio source",
 		"edit.reduceNoise": "Reduce background noise",
+		"edit.matchCameraColor": "Match camera color",
+		"edit.encoderPreset": "Encoder preset",
+		"edit.videoQuality": "Video quality (CRF, lower is better)",
 		"edit.noiseStrength": "Noise reduction strength",
+		"edit.musicEnabled": "Generate and mix background music",
+		"edit.musicPlacement": "Music placement",
+		"edit.musicWhole": "Whole video",
+		"edit.musicOmission": "Omission title ranges only",
+		"edit.musicRangeSource": "Omission range source",
+		"edit.musicRangeAuto": "Auto + manual ranges",
+		"edit.musicRangeManual": "Manual ranges only",
+		"edit.musicLevel": "Music level",
+		"edit.musicDirection": "Music direction",
+		"edit.musicRanges": "Omission title ranges",
+		"edit.omissionCardEnabled": "Replace omission ranges with a summary card",
+		"edit.omissionCardDuration": "Card duration",
+		"edit.omissionCardLabel": "Card label",
+		"edit.omissionCardText": "Summary card text",
+		"edit.omissionCardRanges": "Replacement ranges",
+		"placeholder.musicPrompt": "quiet, clean, documentary-like bed for a reflective interview",
+		"placeholder.musicRanges": "00:12-00:18 omission title",
+		"placeholder.omissionCardText": "Question summary\nCondense the interviewer question here",
+		"placeholder.omissionCardRanges": "00:12-00:30 | Question summary | Condensed interviewer question",
 		"edit.start": "Start",
 		"edit.outputDuration": "Output duration",
 		"edit.shortenSilence": "Shorten long silence",
@@ -783,17 +804,24 @@ const messages: Record<Locale, Record<string, string>> = {
 		"edit.minSilence": "Silence to shorten",
 		"edit.keepSilence": "Silence to keep",
 		"edit.noise": "Silence threshold",
-		"option.current1MinColor": "Current 1-minute color-matched edit",
-		"option.currentOnepass": "Current 1-minute quick edit",
-		"option.current5Min": "Current 5-minute final edit",
 		"option.newInterview": "New interview edit from selected media",
 		"option.speakerAware": "Speaker-aware interview cuts",
+		"option.dynamicCuts": "Rhythmic punch-in cuts",
 		"option.manualPlan": "Use saved manual plan",
 		"option.masterFirst": "Master first, close-ups for emphasis",
 		"option.externalIfSelected": "Use external audio if selected",
 		"option.masterAudio": "Use master video audio",
 		"option.rightAudio": "Use right close-up audio",
 		"option.leftAudio": "Use left close-up audio",
+		"option.encoderUltrafast": "Fastest preview (ultrafast)",
+		"option.encoderSuperfast": "Very fast preview (superfast)",
+		"option.encoderVeryfast": "Fast draft (veryfast)",
+		"option.encoderFaster": "Faster encode (faster)",
+		"option.encoderFast": "Fast encode (fast)",
+		"option.encoderMedium": "Balanced quality (medium)",
+		"option.encoderSlow": "High quality (slow)",
+		"option.encoderSlower": "Higher quality (slower)",
+		"option.encoderVeryslow": "Maximum quality (veryslow)",
 		"style.heading": "Subtitles",
 		"style.overlays": "subtitle and logo settings",
 		"style.subtitleMode": "Subtitle mode",
@@ -821,8 +849,6 @@ const messages: Record<Locale, Record<string, string>> = {
 		"workflow.heading": "Workflow",
 		"workflow.actions": "Choose what to run",
 		"workflow.directAction": "Step to run",
-		"workflow.thumbnailLayout": "Thumbnail layout",
-		"workflow.thumbnailMainColor": "Thumbnail main color",
 		"workflow.advancedSettings": "Advanced settings",
 		"workflow.analysisSettings": "Analysis settings",
 		"workflow.renderScript": "Render method",
@@ -834,68 +860,79 @@ const messages: Record<Locale, Record<string, string>> = {
 		"workflow.loudnessNormalize": "Normalize volume before transcription",
 		"workflow.filterLowConfidence": "Remove obvious empty transcription segments",
 		"workflow.previousText": "Use previous subtitle text as context",
+		"workflow.runtimePaths": "Runtime paths",
+		"workflow.pythonPath": "Python executable",
+		"workflow.ffmpegPath": "FFmpeg executable",
+		"workflow.ffprobePath": "FFprobe executable",
 		"workflow.verificationInput": "Input video to process",
-		"workflow.audioReplaceSource": "Video containing replacement audio",
 		"workflow.selectInputVideo": "Select input video",
-		"workflow.selectAudioReplaceSource": "Select audio source video",
+		"workflow.thumbnailQaSettings": "Thumbnail / subtitle QA",
+		"workflow.thumbnailTime": "Thumbnail time",
+		"workflow.thumbnailTitle": "Thumbnail title",
+		"workflow.thumbnailSubtitle": "Thumbnail subtitle",
+		"workflow.thumbnailCandidates": "Thumbnail candidates",
+		"workflow.thumbnailLayout": "Thumbnail layout",
+		"workflow.thumbnailMainColor": "Main color",
+		"workflow.thumbnailCandidateTimes": "Candidate times",
+		"workflow.thumbnailDebugFaces": "Draw detected face boxes on candidates",
+		"workflow.naturalDialogueCuts": "Place camera cuts in dialogue gaps",
+		"workflow.audioMastering": "Master audio for online video",
+		"workflow.subtitleReviewMaxDuration": "Max subtitle duration",
+		"workflow.subtitleReviewMaxCharsPerSecond": "Max reading speed",
+		"workflow.subtitleSuspiciousPatterns": "Suspicious subtitle patterns",
+		"workflow.subtitleReviewExtractClips": "Extract flagged subtitle audio clips",
+		"workflow.subtitleReviewTranscribeClips": "Re-transcribe flagged subtitle clips",
+		"workflow.subtitleCorrections": "Subtitle corrections",
+		"workflow.subtitleInterviewerRanges": "Interviewer ranges",
+		"workflow.subtitleInterviewerPatterns": "Interviewer patterns",
+		"workflow.subtitleManualRoles": "Manual speaker roles",
+		"workflow.subtitleMouthMotionDiagnostics": "Add mouth-motion diagnostic",
 		"workflow.stillTime": "Still image time",
 		"workflow.personSampleFps": "Person analysis detail",
 		"workflow.yoloModel": "Person detection model",
 		"workflow.personConfidence": "Person detection threshold",
 		"workflow.analysisMaxSeconds": "Test analysis length",
 		"workflow.videoLimit": "Videos to analyze",
-		"workflow.rebuildBase": "Recreate the 1-minute base video",
-		"workflow.reuseOverlays": "Use existing subtitle images",
-		"workflow.reclassifySpeakers": "Re-detect speakers in the transcript",
-		"workflow.autoContextCuts": "Cut automatically by subtitle context and speaker",
-		"workflow.naturalDialogueCuts": "Prefer natural dialogue gaps for cuts",
-		"workflow.retranscribeReview": "Re-transcribe subtitle review clips",
-		"workflow.skipReviewAudioClips": "Skip audio clips during subtitle review",
-		"workflow.reviewModel": "Subtitle review quality",
 		"workflow.personNoMulticamRoot": "Analyze only selected project videos",
 		"workflow.syncScore": "Sync score",
 		"action.refresh": "Refresh",
 		"option.renderSelected": "Create video from selected settings",
-		"option.subtitleReview": "Review and fix subtitles",
 		"option.generatePunchlines": "Create catchy subtitle images",
 		"option.generateFullOverlays": "Create full subtitle images",
 		"option.generateGlossaryOverlays": "Create glossary explanation images",
-		"option.generateThumbnails": "Create thumbnail candidates",
+		"option.generateMusicBed": "Generate background music",
+		"option.replaceAudio": "Replace video audio",
+		"option.generateThumbnail": "Generate thumbnail image",
+		"option.generateThumbnailCandidates": "Generate thumbnail candidates",
+		"option.reviewSubtitles": "Review subtitle quality",
+		"option.applySubtitleCorrections": "Apply subtitle corrections",
+		"option.classifySubtitleSpeakers": "Classify subtitle speakers",
+		"option.compareTranscripts": "Compare source transcripts",
 		"option.analyzeBlocking": "Analyze camera framing",
 		"option.analyzePersonEdit": "Analyze people for camera cuts",
 		"option.analyzeReference": "Analyze reference video",
 		"option.autoSyncDropped": "Sync selected camera files",
 		"option.transcribeDropped": "Transcribe selected media",
-		"option.transcribeAlign": "Sync using transcript",
-		"option.compareAllCameras": "Compare camera transcripts",
-		"option.refineStrongWave": "Improve audio sync",
-		"option.buildBase": "Create multicam base video",
-		"option.transcribeSound2": "Transcribe replacement audio",
-		"option.compareSound2": "Compare replacement audio transcript",
-		"option.refineSound2": "Fine-tune replacement audio sync",
-		"option.replaceSound2": "Replace video audio",
 		"option.shortenInput": "Shorten silence in selected video",
 		"option.extractStill": "Save a still image",
 		"option.verifyDuration": "Check output duration",
 		"option.verifyAudio": "Check output audio",
-		"option.thumbnailStandard": "Standard: image-by-image text placement",
-		"option.thumbnailCloseup": "Center face: one-line bottom title",
-		"option.thumbnailRightFace": "Face right: stacked title left",
-		"option.thumbnailLeftFace": "Face left: stacked title right",
-		"color.yellow": "Yellow",
-		"color.red": "Red",
-		"color.orange": "Orange",
-		"color.green": "Green",
-		"color.blue": "Blue",
-		"color.cyan": "Cyan",
-		"color.purple": "Purple",
-		"color.pink": "Pink",
-		"color.white": "White",
-		"option.render1MinColor": "1-minute color matched edit",
-		"option.render1MinOnepass": "1-minute quick edit",
-		"option.render5MinOverlays": "5-minute final edit",
 		"option.renderAppInterview": "Interview edit from selected media",
+		"Place camera cuts in dialogue gaps": "Place camera cuts in dialogue gaps",
+		"Use person analysis for crops": "Use person analysis for crops",
+		"Use transcript comparison for sync fallback": "Use transcript comparison for sync fallback",
+		"Master audio for online video": "Master audio for online video",
+		"Extract flagged subtitle audio clips": "Extract flagged subtitle audio clips",
+		"Re-transcribe flagged subtitle clips": "Re-transcribe flagged subtitle clips",
 		"action.file": "File",
+		"placeholder.projectTitle": "Project title",
+		"placeholder.thumbnailSubtitle": "Short supporting line",
+		"placeholder.thumbnailCandidateTimes": "00:00:03 | Hook | Title | Subtitle",
+		"placeholder.subtitleSuspiciousPatterns": "misheard phrase or regex",
+		"placeholder.subtitleCorrections": "12 | corrected subtitle text | reason",
+		"placeholder.subtitleInterviewerRanges": "00:12-00:18 | interviewer question",
+		"placeholder.subtitleInterviewerPatterns": "interviewer|host|question",
+		"placeholder.subtitleManualRoles": "12 | interviewer | offscreen question",
 		"placeholder.all": "all",
 		"codex.heading": "AI editing request",
 		"codex.prompt": "Request text sent to AI",
@@ -949,7 +986,6 @@ const messages: Record<Locale, Record<string, string>> = {
 		"filter.allFiles": "All files",
 		"filter.mp4Video": "MP4 video",
 		"runLabel.render": "Render",
-		"runLabel.thumbnail": "Thumbnail generation",
 		"runLabel.sync": "Sync",
 		"runLabel.transcribe": "Transcription",
 		"runLabel.analyze": "Analysis",
@@ -962,6 +998,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"analysis.materialClassification": "Asset classification",
 		"analysis.syncCamerasAudio": "Camera / audio sync",
 		"analysis.transcription": "Transcription",
+		"analysis.transcriptComparison": "Transcript comparison",
 		"analysis.subtitleUi": "Subtitle UI refresh",
 		"analysis.personOpenCv": "OpenCV person analysis",
 		"analysis.blockingOpenCv": "OpenCV composition analysis",
@@ -975,6 +1012,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"analysis.statusRunning": "Running",
 		"sync.noReport": "No camera sync report yet.",
 		"validation.outputRequired": "Choose an output path.",
+		"validation.projectRequired": "Create or select a project first.",
 		"validation.output": "Output: {path}",
 		"validation.masterRequiredForInterview":
 			"Interview render requires Camera 1 / master. Ingest a material folder or set it manually.",
@@ -988,23 +1026,46 @@ const messages: Record<Locale, Record<string, string>> = {
 		"validation.syncSaved": "Camera/external-audio sync results will be saved.",
 		"validation.stillCount": "Still inserts: {count}",
 		"validation.stillMotion": "Text/diagram stills are inserted without zoom; photos use subtle zoom/pan.",
-		"validation.thumbnailGenerate": "Generate thumbnail candidates using {mode} / {color}.",
 		"validation.preview": "Preview: {path}",
-		"validation.thumbnailImport": "Thumbnail candidates will be imported from the selected assets.",
 		"validation.personBbox": "Person bbox: {path}",
 		"validation.editPlan": "Edit plan: {path}",
 		"validation.analysisFps": "Analysis interval: {fps} fps",
 		"validation.selectedVideos": "Analysis target: {count} selected video(s)",
-		"validation.sourceRoots": "Analysis target: source/video and 2cam/3cam root",
+		"validation.sourceRoots": "Analysis target: selected project videos",
 		"validation.testAnalysis": "A test analysis length is set, so only part of the video will be analyzed.",
 		"validation.referenceRequired": "Drag and drop one reference video.",
 		"validation.referenceShort": "Reference video is analyzed as under 60 seconds. Longer videos stop at run time.",
 		"validation.referenceProfile": "Reference profile: {path}",
 		"validation.referenceBbox": "Reference person bbox: {path}",
 		"validation.referenceEditPlan": "Reference edit plan: {path}",
-		"validation.replaceNeedsOutput": "Audio replacement requires an output path.",
 		"validation.shortenNeedsInputOutput": "Silence shortening requires an input video and output path.",
 		"validation.verificationNeedsInput": "Choose the video to process for this workflow.",
+		"validation.thumbnailNeedsInput":
+			"Thumbnail generation needs an input video, Camera 1 / master, or an analyzed camera source.",
+		"validation.thumbnailOutput": "Thumbnail: {path}",
+		"validation.thumbnailCandidatesNeedsInput":
+			"Thumbnail candidate generation needs an input video, analyzed camera, or project image.",
+		"validation.thumbnailCandidatesOutput": "Thumbnail candidates: {path}",
+		"validation.thumbnailCandidateSettings": "Thumbnail candidates: {count} image(s) / {mode} / {color}",
+		"validation.thumbnailDebugFaces": "Thumbnail candidates: face debug boxes ON",
+		"validation.subtitleReviewNeedsProject":
+			"Subtitle review needs a project output and current transcription result. Run transcription first.",
+		"validation.subtitleReviewOutput": "Subtitle QA: {path}",
+		"validation.subtitleReviewClips": "Subtitle QA clips: {path}",
+		"validation.subtitleReviewRetranscribe": "Subtitle QA: re-transcribe flagged clips",
+		"validation.subtitleCorrectionsMissing": "Enter correction rows before applying subtitle corrections.",
+		"validation.subtitleCorrectionsOutput": "Subtitle correction report: {path}",
+		"validation.subtitleSpeakerRolesOutput": "Subtitle speaker roles: {path}",
+		"validation.subtitleSpeakerManualRoles": "Subtitle speaker roles: manual overrides set",
+		"validation.subtitleSpeakerMouthMotion": "Subtitle speaker roles: mouth-motion diagnostic ON",
+		"validation.transcriptComparisonOutput": "Transcript comparison: {path}",
+		"validation.replaceAudioNeedsInputOutput": "Audio replacement needs an input video and output path.",
+		"validation.replaceAudioNeedsExternal": "Select an external audio file before replacing video audio.",
+		"validation.replaceAudioSamePath": "Choose an output path different from the input video before replacing audio.",
+		"validation.replaceAudioOutput": "Audio replacement: {path}",
+		"validation.replaceAudioSource": "Replacement audio: {path}",
+		"validation.subtitleSpeakerRulesMissing":
+			"Enter interviewer/omission ranges or patterns before classifying subtitle speaker roles.",
 		"validation.audioExternal": "Audio: external {path}",
 		"validation.audioFallbackMaster": "External audio is not set, so rendering will fall back to master video audio.",
 		"validation.rightAudioFallback":
@@ -1018,6 +1079,27 @@ const messages: Record<Locale, Record<string, string>> = {
 		"validation.termsOff": "Glossary explanations: OFF",
 		"validation.denoiseOn": "Noise reduction: ON ({strength})",
 		"validation.denoiseOff": "Noise reduction: OFF",
+		"validation.colorMatchOn": "Camera color match: ON",
+		"validation.colorMatchOff": "Camera color match: OFF",
+		"validation.personCropOn": "Person crops: using analysis",
+		"validation.personCropOff": "Person crops: OFF",
+		"validation.transcriptSyncOn": "Sync fallback: transcript comparison for low scores",
+		"validation.transcriptSyncOff": "Sync fallback: transcript comparison OFF",
+		"validation.naturalCutsOn": "Camera cuts: adjusted to dialogue gaps",
+		"validation.naturalCutsOff": "Camera cuts: generated boundaries",
+		"validation.audioMasteringOn": "Audio mastering: ON",
+		"validation.audioMasteringOff": "Audio mastering: OFF",
+		"validation.encoder": "Encode: {preset} / CRF {crf}",
+		"validation.musicFull": "Music: ON / whole video / level {volume}%",
+		"validation.musicOmission": "Music: ON / omission ranges only / level {volume}%",
+		"validation.musicAutoRanges": "Omission ranges: auto-detect from overlays and also include manual ranges.",
+		"validation.musicManualRanges": "Omission ranges: manual only",
+		"validation.musicRangesMissing": "Enter ranges when manual-only omission ranges are selected.",
+		"validation.musicOff": "Music: OFF",
+		"validation.omissionCardOn": "Omission card: ON / {duration}s",
+		"validation.omissionCardMissingRanges":
+			"Enter replacement ranges or omission title ranges before using omission cards.",
+		"validation.omissionCardOff": "Omission card: OFF",
 		"validation.silenceOn": "Silence shortening: ON",
 		"validation.silenceOff": "Silence shortening: OFF",
 		"validation.previousSync": "Previous sync: {role} score {score}",
@@ -1217,17 +1299,11 @@ function formatDuration(value: any) {
 	return `${minutes}:${String(rest).padStart(2, "0")}`;
 }
 
-function outputPreviewTarget(kind = state.outputPreviewKind) {
-	if (kind === "thumbnails") {
-		return thumbnailContactSheetPath();
-	}
+function outputPreviewTarget(_kind = state.outputPreviewKind) {
 	return $("#outputPath")?.value?.trim() || activeOutputRoot();
 }
 
 function outputPreviewTitle(kind = state.outputPreviewKind) {
-	if (kind === "thumbnails") {
-		return t("preview.thumbnailsTitle");
-	}
 	if (kind === "output") {
 		return t("preview.outputTitle");
 	}
@@ -1512,7 +1588,7 @@ function activeSourceRoot() {
 	if (state.project?.sourceRoot) {
 		return state.project.sourceRoot;
 	}
-	return state.env?.videoEditRoot ? joinPath(state.env.videoEditRoot, "source") : "";
+	return "";
 }
 
 function activeProjectVideoSourceRoot() {
@@ -1715,7 +1791,7 @@ function setMaterialSources(paths: string[]) {
 	state.materialPaths = selected;
 	state.mediaDirectory = selected[0] || "";
 	state.mediaManifest = null;
-	applySuggestedTitle(titleFromSources(selected));
+	applySuggestedTitle(titleFromSources(selected), { force: true });
 	setIngestProgress({
 		progress: 0,
 		message: selected.length ? t("progress.pressAnalyze") : t("progress.waitingAnalysis"),
@@ -1755,13 +1831,22 @@ function titleFromSources(paths: string[]) {
 
 function shouldReplaceTitleWithSuggestion() {
 	const current = String(formValue("titleText") || "").trim();
-	return !current || current === LEGACY_DEFAULT_TITLE;
+	return !current;
 }
 
-function applySuggestedTitle(title: string) {
+function applySuggestedTitle(title: string, options: { force?: boolean } = {}) {
 	const input = $("#titleText");
 	const nextTitle = String(title || "").trim();
-	if (!input || !nextTitle || !shouldReplaceTitleWithSuggestion()) {
+	if (!input) {
+		return;
+	}
+	if (!nextTitle) {
+		if (options.force) {
+			input.value = "";
+		}
+		return;
+	}
+	if (!options.force && !shouldReplaceTitleWithSuggestion()) {
 		return;
 	}
 	input.value = nextTitle;
@@ -1797,11 +1882,6 @@ function setProject(project: ProjectInfo | null) {
 	if (preview) {
 		preview.textContent = project ? project.name : t("project.noProjectSelected");
 	}
-	const videoSourceRoot = activeProjectVideoSourceRoot();
-	const sourceRootInput = $("#sourceRoot");
-	if (sourceRootInput && videoSourceRoot) {
-		sourceRootInput.value = videoSourceRoot;
-	}
 	if (project?.name) {
 		applySuggestedTitle(project.name);
 	}
@@ -1818,7 +1898,7 @@ function setDefaultProjectOutput(preserveExisting = true) {
 		return;
 	}
 	const current = outputPath.value || "";
-	if (preserveExisting && current && !state.env?.knownOutputs?.includes(current)) {
+	if (preserveExisting && current) {
 		return;
 	}
 	const mode = state.subtitleMode === "punchline" ? "punchline" : "full_transcript";
@@ -2037,11 +2117,11 @@ function renderWorkflowMediaPreview(id: string) {
 }
 
 function renderWorkflowMediaPreviews() {
-	["inputVideoPath", "replaceAudioInput"].forEach(renderWorkflowMediaPreview);
+	["inputVideoPath"].forEach(renderWorkflowMediaPreview);
 }
 
 function loadWorkflowMediaPreviews() {
-	const paths = ["inputVideoPath", "replaceAudioInput"].map((id) => String($(`#${id}`)?.value || "")).filter(Boolean);
+	const paths = ["inputVideoPath"].map((id) => String($(`#${id}`)?.value || "")).filter(Boolean);
 	loadFilePreviews(paths);
 	renderWorkflowMediaPreviews();
 }
@@ -2523,7 +2603,7 @@ async function pickTool(id) {
 	});
 	if (selected) {
 		$(`#${id}`).value = selected;
-		if (id === "inputVideoPath" || id === "replaceAudioInput") {
+		if (id === "inputVideoPath") {
 			loadWorkflowMediaPreviews();
 		}
 		refreshPrompt();
@@ -2670,14 +2750,10 @@ async function deleteCurrentProject() {
 			message: t("progress.waitingAnalysis"),
 			path: "",
 		});
-		if (state.env?.knownOutputs?.[0]) {
-			$("#outputPath").value = state.env.knownOutputs[0];
-			loadOutputTargetPreview();
-		}
-		const sourceRootInput = $("#sourceRoot");
-		if (sourceRootInput && state.env?.videoEditRoot) {
-			sourceRootInput.value = joinPath(state.env.videoEditRoot, "source");
-		}
+		$("#outputPath").value = "";
+		$("#inputVideoPath").value = "";
+		loadWorkflowMediaPreviews();
+		loadOutputTargetPreview();
 		log("project deleted", { id: deletedProject.id, root: deletedProject.root });
 		await refreshSyncReport();
 		refreshPrompt();
@@ -2886,7 +2962,15 @@ async function ingestMaterialDirectory(directoryPath = "") {
 			textOverlayResult?.subtitlePath || "",
 		);
 		checks.push(
-			await runAnalysisAction("analyze-person-edit-metadata", t("analysis.personOpenCv"), 0.78, personEditPlansDir()),
+			await runAnalysisAction(
+				"compare-transcripts",
+				t("analysis.transcriptComparison"),
+				0.68,
+				transcriptComparisonOutputPath(),
+			),
+		);
+		checks.push(
+			await runAnalysisAction("analyze-person-edit-metadata", t("analysis.personOpenCv"), 0.8, personEditPlansDir()),
 		);
 		checks.push(
 			await runAnalysisAction(
@@ -2953,7 +3037,9 @@ async function cancelMaterialAnalysis() {
 
 async function prepareProjectForRun() {
 	if (!state.project && !formValue("projectName") && !formValue("projectId")) {
-		return true;
+		log("project required before run");
+		setStatus(t("status.projectRequired"), "idle");
+		return false;
 	}
 	if (!state.project) {
 		await createProjectFromForm();
@@ -2983,28 +3069,6 @@ function selectedLabel(id) {
 	return element?.selectedOptions?.[0]?.textContent?.trim() || formValue(id);
 }
 
-function thumbnailMode() {
-	const mode = formValue("thumbnailMode") || "standard";
-	return mode in thumbnailModes ? mode : "standard";
-}
-
-function thumbnailModeConfig() {
-	return thumbnailModes[thumbnailMode()];
-}
-
-function thumbnailModeLabel() {
-	return t(thumbnailModeConfig().labelKey);
-}
-
-function thumbnailMainColor() {
-	const color = formValue("thumbnailMainColor") || "yellow";
-	return color in thumbnailMainColors ? color : "yellow";
-}
-
-function thumbnailMainColorLabel() {
-	return t(thumbnailMainColors[thumbnailMainColor()]);
-}
-
 function subtitleModeLabel() {
 	if (state.subtitleMode === "punchline") {
 		return t("style.catchy");
@@ -3020,18 +3084,13 @@ function analysisLabel(key: string, fallback = "") {
 		ingest: "analysis.materialClassification",
 		"auto-sync-dropped": "analysis.syncCamerasAudio",
 		"transcribe-dropped": "analysis.transcription",
+		"compare-transcripts": "analysis.transcriptComparison",
 		"text-overlays": "analysis.subtitleUi",
 		"analyze-person-edit-metadata": "analysis.personOpenCv",
 		"analyze-blocking": "analysis.blockingOpenCv",
 		"analyze-reference-video": "analysis.referenceVideo",
 	};
 	return labels[key] ? t(labels[key]) : localizePlainText(fallback || key);
-}
-
-function thumbnailOutputStem() {
-	const color = thumbnailMainColor();
-	const colorSuffix = color === "yellow" ? "" : `_${color}`;
-	return `thumbnail_${thumbnailMode()}${colorSuffix}`;
 }
 
 function scoreKind(score) {
@@ -3179,28 +3238,12 @@ function ffprobeExe() {
 	return formValue("ffprobePath") || state.env?.ffprobeExe || DEFAULT_FFPROBE_EXE;
 }
 
-function sourceRootOverride() {
-	return formValue("sourceRoot");
-}
-
 function stillOutputPath(inputVideo, outputPath) {
 	if (outputPath && /\.(png|jpg|jpeg)$/i.test(outputPath)) {
 		return outputPath;
 	}
 	const source = inputVideo || outputPath || "preview";
 	return `${source.replace(/\.[^.\\/]+$/, "")}_still.png`;
-}
-
-function thumbnailContactSheetPath() {
-	return joinPath(
-		activeOutputRoot() || "output",
-		"thumbnails",
-		`${thumbnailOutputStem()}_candidates_contact_sheet.jpg`,
-	);
-}
-
-function thumbnailSourceRoot() {
-	return state.env?.thumbnailSourceRoot || joinPath(activeSourceRoot() || "source", "thumbnail", "etype260515_p_takei");
 }
 
 function personBboxesDir() {
@@ -3221,6 +3264,91 @@ function referenceEditPlansDir() {
 
 function referenceEditProfilePath() {
 	return joinPath(activeOutputRoot() || "output", "reports", "reference_edit_profile.json");
+}
+
+function musicBedPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "audio", "music_bed.wav") : "";
+}
+
+function omissionCardOutputPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "overlays", "omission_card.png") : "";
+}
+
+function thumbnailOutputPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "images", "thumbnail.png") : "";
+}
+
+function thumbnailCandidatesOutputPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "images", "thumbnail_candidates") : "";
+}
+
+function subtitleReviewOutputPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "reports", "subtitle_review.json") : "";
+}
+
+function subtitleReviewClipsPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "diagnostics", "subtitle_review", "clips") : "";
+}
+
+function subtitleCorrectionsOutputPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "reports", "subtitle_corrections_applied.json") : "";
+}
+
+function subtitleSpeakerRolesOutputPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "reports", "full_transcript_speaker_roles.json") : "";
+}
+
+function transcriptComparisonOutputPath() {
+	return activeOutputRoot() ? joinPath(activeOutputRoot(), "reports", "transcript_comparison.json") : "";
+}
+
+function hasMusicRanges() {
+	return Boolean(String(formValue("musicRangesText") || "").trim());
+}
+
+function hasOmissionCardRanges() {
+	return Boolean(
+		String(formValue("omissionCardRangesText") || "").trim() || String(formValue("musicRangesText") || "").trim(),
+	);
+}
+
+function hasSubtitleCorrections() {
+	return Boolean(String(formValue("subtitleCorrectionsText") || "").trim());
+}
+
+function hasSubtitleSpeakerRules() {
+	return Boolean(
+		String(formValue("subtitleInterviewerRanges") || "").trim() ||
+			String(formValue("subtitleInterviewerPatterns") || "").trim() ||
+			String(formValue("subtitleManualRoles") || "").trim(),
+	);
+}
+
+function thumbnailInputPath() {
+	return (
+		formValue("inputVideoPath") ||
+		selectedMasterVideoPath() ||
+		manifestCameras()[0]?.path ||
+		$("#outputPath")?.value?.trim() ||
+		""
+	);
+}
+
+function thumbnailCandidateImageCount() {
+	const paths = new Set<string>();
+	(state.mediaManifest?.images || []).forEach((item) => {
+		if (item.role !== "logo") {
+			paths.add(item.path);
+		}
+	});
+	state.files.stillImages.forEach((path) => {
+		paths.add(path);
+	});
+	return paths.size;
+}
+
+function hasThumbnailCandidateSource() {
+	return Boolean(thumbnailInputPath() || thumbnailCandidateImageCount());
 }
 
 function selectedAnalysisVideos() {
@@ -3270,14 +3398,35 @@ function directRunLabel(action: string) {
 	if (action === "render-selected") {
 		return t("runLabel.render");
 	}
-	if (action === "generate-thumbnails") {
-		return t("runLabel.thumbnail");
-	}
 	if (action === "auto-sync-dropped") {
 		return t("runLabel.sync");
 	}
 	if (action.startsWith("transcribe")) {
 		return t("runLabel.transcribe");
+	}
+	if (action === "generate-music-bed") {
+		return t("option.generateMusicBed");
+	}
+	if (action === "replace-audio") {
+		return t("option.replaceAudio");
+	}
+	if (action === "generate-thumbnail") {
+		return t("option.generateThumbnail");
+	}
+	if (action === "generate-thumbnail-candidates") {
+		return t("option.generateThumbnailCandidates");
+	}
+	if (action === "review-subtitles") {
+		return t("option.reviewSubtitles");
+	}
+	if (action === "apply-subtitle-corrections") {
+		return t("option.applySubtitleCorrections");
+	}
+	if (action === "classify-subtitle-speakers") {
+		return t("option.classifySubtitleSpeakers");
+	}
+	if (action === "compare-transcripts") {
+		return t("option.compareTranscripts");
 	}
 	if (action.startsWith("analyze-")) {
 		return t("runLabel.analyze");
@@ -3286,9 +3435,6 @@ function directRunLabel(action: string) {
 }
 
 function directRunOutputPath(action: string) {
-	if (action === "generate-thumbnails") {
-		return thumbnailContactSheetPath();
-	}
 	if (action === "analyze-person-edit-metadata") {
 		return personEditPlansDir();
 	}
@@ -3301,8 +3447,29 @@ function directRunOutputPath(action: string) {
 	if (action === "transcribe-dropped") {
 		return joinPath(activeOutputRoot() || "output", "transcripts", "manifest_sources");
 	}
-	if (action === "transcribe-sound2") {
-		return joinPath(activeOutputRoot() || "output", "transcripts", "sound2");
+	if (action === "generate-music-bed") {
+		return musicBedPath();
+	}
+	if (action === "replace-audio") {
+		return $("#outputPath")?.value?.trim() || activeOutputRoot();
+	}
+	if (action === "generate-thumbnail") {
+		return thumbnailOutputPath();
+	}
+	if (action === "generate-thumbnail-candidates") {
+		return thumbnailCandidatesOutputPath();
+	}
+	if (action === "review-subtitles") {
+		return subtitleReviewOutputPath();
+	}
+	if (action === "apply-subtitle-corrections") {
+		return subtitleCorrectionsOutputPath();
+	}
+	if (action === "classify-subtitle-speakers") {
+		return subtitleSpeakerRolesOutputPath();
+	}
+	if (action === "compare-transcripts") {
+		return transcriptComparisonOutputPath();
 	}
 	return $("#outputPath")?.value?.trim() || activeOutputRoot();
 }
@@ -3354,6 +3521,10 @@ function validateSelections() {
 	const audioSources = manifestAudioSources();
 	const masterVideo = selectedMasterVideoPath();
 
+	if (!state.project && !formValue("projectName") && !formValue("projectId")) {
+		errors.push(t("validation.projectRequired"));
+	}
+
 	if (action === "render-selected") {
 		if (!outputPath) {
 			errors.push(t("validation.outputRequired"));
@@ -3397,12 +3568,6 @@ function validateSelections() {
 		ok.push(t("validation.stillMotion"));
 	}
 
-	if (action === "generate-thumbnails") {
-		ok.push(t("validation.thumbnailGenerate", { mode: thumbnailModeLabel(), color: thumbnailMainColorLabel() }));
-		ok.push(t("validation.preview", { path: shortPath(thumbnailContactSheetPath()) }));
-		ok.push(t("validation.thumbnailImport"));
-	}
-
 	if (action === "analyze-person-edit-metadata") {
 		const videos = selectedAnalysisVideos();
 		ok.push(t("validation.personBbox", { path: shortPath(personBboxesDir()) }));
@@ -3428,14 +3593,102 @@ function validateSelections() {
 		ok.push(t("validation.referenceEditPlan", { path: shortPath(referenceEditPlansDir()) }));
 	}
 
-	if (action === "replace-sound2" && !outputPath) {
-		errors.push(t("validation.replaceNeedsOutput"));
-	}
 	if (action === "shorten-input" && (!inputVideo || !outputPath)) {
 		errors.push(t("validation.shortenNeedsInputOutput"));
 	}
 	if (["extract-still", "verify-duration", "verify-audio"].includes(action) && !inputVideo) {
 		errors.push(t("validation.verificationNeedsInput"));
+	}
+	if (action === "generate-thumbnail") {
+		if (!thumbnailInputPath()) {
+			errors.push(t("validation.thumbnailNeedsInput"));
+		}
+		if (thumbnailOutputPath()) {
+			ok.push(t("validation.thumbnailOutput", { path: shortPath(thumbnailOutputPath()) }));
+		}
+	}
+	if (action === "generate-thumbnail-candidates") {
+		if (!hasThumbnailCandidateSource()) {
+			errors.push(t("validation.thumbnailCandidatesNeedsInput"));
+		}
+		if (thumbnailCandidatesOutputPath()) {
+			ok.push(t("validation.thumbnailCandidatesOutput", { path: shortPath(thumbnailCandidatesOutputPath()) }));
+			ok.push(
+				t("validation.thumbnailCandidateSettings", {
+					count: formValue("thumbnailCandidateCount") || 6,
+					mode: selectedLabel("thumbnailMode") || formValue("thumbnailMode"),
+					color: selectedLabel("thumbnailMainColor") || formValue("thumbnailMainColor"),
+				}),
+			);
+			if (formValue("thumbnailDebugFaces")) {
+				ok.push(t("validation.thumbnailDebugFaces"));
+			}
+		}
+	}
+	if (action === "review-subtitles") {
+		if (!activeOutputRoot()) {
+			errors.push(t("validation.subtitleReviewNeedsProject"));
+		} else {
+			ok.push(t("validation.subtitleReviewOutput", { path: shortPath(subtitleReviewOutputPath()) }));
+			if (formValue("subtitleReviewExtractClips") || formValue("subtitleReviewTranscribeClips")) {
+				ok.push(t("validation.subtitleReviewClips", { path: shortPath(subtitleReviewClipsPath()) }));
+			}
+			if (formValue("subtitleReviewTranscribeClips")) {
+				ok.push(t("validation.subtitleReviewRetranscribe"));
+			}
+		}
+	}
+	if (action === "apply-subtitle-corrections") {
+		if (!activeOutputRoot()) {
+			errors.push(t("validation.subtitleReviewNeedsProject"));
+		}
+		if (!hasSubtitleCorrections()) {
+			errors.push(t("validation.subtitleCorrectionsMissing"));
+		}
+		if (subtitleCorrectionsOutputPath()) {
+			ok.push(t("validation.subtitleCorrectionsOutput", { path: shortPath(subtitleCorrectionsOutputPath()) }));
+		}
+	}
+	if (action === "classify-subtitle-speakers") {
+		if (!activeOutputRoot()) {
+			errors.push(t("validation.subtitleReviewNeedsProject"));
+		}
+		if (!hasSubtitleSpeakerRules()) {
+			warnings.push(t("validation.subtitleSpeakerRulesMissing"));
+		}
+		if (subtitleSpeakerRolesOutputPath()) {
+			ok.push(t("validation.subtitleSpeakerRolesOutput", { path: shortPath(subtitleSpeakerRolesOutputPath()) }));
+		}
+		if (String(formValue("subtitleManualRoles") || "").trim()) {
+			ok.push(t("validation.subtitleSpeakerManualRoles"));
+		}
+		if (formValue("subtitleMouthMotionDiagnostics")) {
+			ok.push(t("validation.subtitleSpeakerMouthMotion"));
+		}
+	}
+	if (action === "compare-transcripts") {
+		if (!activeOutputRoot()) {
+			errors.push(t("validation.subtitleReviewNeedsProject"));
+		}
+		if (transcriptComparisonOutputPath()) {
+			ok.push(t("validation.transcriptComparisonOutput", { path: shortPath(transcriptComparisonOutputPath()) }));
+		}
+	}
+	if (action === "replace-audio") {
+		const replacementAudio = audioSources[0]?.path || state.files.externalAudio;
+		if (!inputVideo || !outputPath) {
+			errors.push(t("validation.replaceAudioNeedsInputOutput"));
+		} else {
+			ok.push(t("validation.replaceAudioOutput", { path: shortPath(outputPath) }));
+			if (inputVideo === outputPath) {
+				errors.push(t("validation.replaceAudioSamePath"));
+			}
+		}
+		if (!replacementAudio) {
+			errors.push(t("validation.replaceAudioNeedsExternal"));
+		} else {
+			ok.push(t("validation.replaceAudioSource", { path: shortPath(replacementAudio) }));
+		}
 	}
 
 	const audioSource = formValue("audioSource");
@@ -3472,6 +3725,45 @@ function validateSelections() {
 			? t("validation.denoiseOn", { strength: formValue("audioDenoiseStrength") })
 			: t("validation.denoiseOff"),
 	);
+	ok.push(formValue("colorMatchCameras") ? t("validation.colorMatchOn") : t("validation.colorMatchOff"));
+	ok.push(formValue("usePersonEditPlans") ? t("validation.personCropOn") : t("validation.personCropOff"));
+	ok.push(
+		formValue("useTranscriptComparisonSync") ? t("validation.transcriptSyncOn") : t("validation.transcriptSyncOff"),
+	);
+	ok.push(formValue("naturalDialogueCuts") ? t("validation.naturalCutsOn") : t("validation.naturalCutsOff"));
+	ok.push(formValue("audioMastering") ? t("validation.audioMasteringOn") : t("validation.audioMasteringOff"));
+	ok.push(
+		t("validation.encoder", {
+			preset: selectedLabel("encoderPreset") || formValue("encoderPreset") || "veryfast",
+			crf: formValue("renderCrf") || 18,
+		}),
+	);
+	if (formValue("musicEnabled")) {
+		const volume = Number(formValue("musicVolume") || 14);
+		if (formValue("musicScope") === "omission") {
+			ok.push(t("validation.musicOmission", { volume }));
+			if (formValue("musicRangeSource") === "manual") {
+				ok.push(t("validation.musicManualRanges"));
+			} else {
+				ok.push(t("validation.musicAutoRanges"));
+			}
+			if (formValue("musicRangeSource") === "manual" && !hasMusicRanges()) {
+				warnings.push(t("validation.musicRangesMissing"));
+			}
+		} else {
+			ok.push(t("validation.musicFull", { volume }));
+		}
+	} else {
+		ok.push(t("validation.musicOff"));
+	}
+	if (formValue("omissionCardEnabled")) {
+		ok.push(t("validation.omissionCardOn", { duration: formValue("omissionCardDuration") || 5 }));
+		if (!hasOmissionCardRanges()) {
+			warnings.push(t("validation.omissionCardMissingRanges"));
+		}
+	} else {
+		ok.push(t("validation.omissionCardOff"));
+	}
 	ok.push(formValue("shortenSilence") ? t("validation.silenceOn") : t("validation.silenceOff"));
 	const syncRows = describeSyncReport();
 	if (syncRows.length) {
@@ -3511,13 +3803,11 @@ function buildPrompt() {
 		"Create or run the video edit requested by the Electron operator UI.",
 		"",
 		"Use the existing pipeline and docs first:",
-		"- Read docs\\video_edit_method.md for the current ST7_7550 workflow.",
-		"- Prefer scripts\\render_1min_onepass_ffmpeg.py for the current 1-minute preset.",
-		"- Prefer scripts\\render_final_png_overlays.py for current 5-minute PNG-overlay renders.",
+		"- Use the selected media manifest as the source of truth for cameras, audio, images, and subtitles.",
+		"- Use scripts\\render_app_interview.py for renders from selected media.",
 		"- Use scripts\\analyze_person_edit_metadata.py before edit planning when person position/crop decisions matter.",
 		"- If a reference video is selected, analyze it first and use output\\reports\\reference_edit_profile.json as the style/layout target.",
 		"- Treat the material directory as cameras/audio/images/logo/subtitles only; reference video is selected separately.",
-		"- Use scripts\\generate_thumbnail_candidates.py --import-assets --main-color <color> plus the selected thumbnail layout flag for thumbnail candidate generation.",
 		"- Keep existing user changes in the repo; do not revert unrelated files.",
 		"",
 		"Operator selections:",
@@ -3525,8 +3815,6 @@ function buildPrompt() {
 		`- Direct workflow action: ${formValue("workflowAction")}`,
 		`- Transcribe settings: model ${formValue("transcribeModel") || "large-v3"}, language ${formValue("transcribeLanguage") || "ja"}, beam ${formValue("transcribeBeamSize") || "5"}, temperature ${formValue("transcribeTemperature") || "0"}, loudnorm ${formValue("transcribeNormalizeAudio")}, low-confidence filter ${formValue("transcribeFilterLowConfidence")}, previous-text context ${formValue("conditionOnPreviousText")}`,
 		`- Transcribe prompt terms: ${formValue("transcribePromptTerms") || "(use glossary terms only)"}`,
-		`- Thumbnail layout: ${thumbnailMode()} (${thumbnailModeConfig().flag || "no extra flag"})`,
-		`- Thumbnail main color: ${thumbnailMainColor()}`,
 		`- Person analysis: ${formValue("personFpsSample")} fps, model ${formValue("personModel")}, confidence ${formValue("personConfidence")}, max seconds ${formValue("personMaxSeconds") || "all"}, limit ${formValue("personLimit") || "all"}`,
 		`- Reference video: ${state.files.referenceVideo || "(not selected)"}`,
 		`- Reference profile: ${referenceEditProfilePath()}`,
@@ -3535,15 +3823,33 @@ function buildPrompt() {
 		`- Subtitle mode: ${state.subtitleMode}`,
 		`- Audio source: ${formValue("audioSource")}`,
 		`- Audio denoise: ${formValue("audioDenoise")} strength ${formValue("audioDenoiseStrength")}`,
+		`- Audio mastering: ${formValue("audioMastering")}`,
+		`- Encoder: preset ${formValue("encoderPreset") || "veryfast"}, CRF ${formValue("renderCrf") || "18"}`,
+		`- Camera color match: ${formValue("colorMatchCameras")}`,
+		`- Person-aware crop from analysis: ${formValue("usePersonEditPlans")}`,
+		`- Transcript comparison sync fallback: ${formValue("useTranscriptComparisonSync")}`,
+		`- Natural dialogue camera cuts: ${formValue("naturalDialogueCuts")}`,
+		`- Music: enabled ${formValue("musicEnabled")}, placement ${formValue("musicScope")}, range source ${formValue("musicRangeSource") || "auto"}, level ${formValue("musicVolume")}%, direction ${formValue("musicPrompt") || "(auto from title/transcript)"}`,
+		`- Music omission ranges: ${formValue("musicRangesText") || "(none)"}`,
+		`- Omission card replacement: enabled ${formValue("omissionCardEnabled")}, duration ${formValue("omissionCardDuration") || "5"}s, label ${formValue("omissionCardLabel") || "SUMMARY"}`,
+		`- Omission card text: ${formValue("omissionCardText") || "(default)"}`,
+		`- Omission card replacement ranges: ${formValue("omissionCardRangesText") || formValue("musicRangesText") || "(none)"}`,
+		`- Thumbnail: input ${thumbnailInputPath() || "(auto from current project)"}, time ${formValue("thumbnailTime") || formValue("stillTime") || "00:00:25"}, title ${formValue("thumbnailTitle") || formValue("titleText") || state.project?.name || "(auto)"}, subtitle ${formValue("thumbnailSubtitle") || "(none)"}`,
+		`- Thumbnail candidates: count ${formValue("thumbnailCandidateCount") || "6"}, mode ${formValue("thumbnailMode") || "standard"}, color ${formValue("thumbnailMainColor") || "yellow"}, debug faces ${formValue("thumbnailDebugFaces")}, times ${formValue("thumbnailCandidateTimes") || "(auto from project images/video)"}`,
+		`- Subtitle QA thresholds: max segment ${formValue("subtitleReviewMaxDuration") || "8"}s, max reading speed ${formValue("subtitleReviewMaxCharsPerSecond") || "18"} chars/s`,
+		`- Subtitle suspicious patterns: ${formValue("subtitleSuspiciousPatterns") || "(none)"}`,
+		`- Subtitle QA audio clips: extract ${formValue("subtitleReviewExtractClips")}, re-transcribe ${formValue("subtitleReviewTranscribeClips")}`,
+		`- Subtitle corrections: ${formValue("subtitleCorrectionsText") || "(none)"}`,
+		`- Subtitle interviewer ranges: ${formValue("subtitleInterviewerRanges") || "(none)"}`,
+		`- Subtitle interviewer patterns: ${formValue("subtitleInterviewerPatterns") || "(none)"}`,
+		`- Subtitle manual speaker roles: ${formValue("subtitleManualRoles") || "(none)"}`,
+		`- Subtitle mouth-motion diagnostic: ${formValue("subtitleMouthMotionDiagnostics")}`,
+		`- Transcript comparison report: ${transcriptComparisonOutputPath() || "(project output not set)"}`,
 		`- Preview start: ${formValue("previewStart")} seconds`,
 		`- Output duration: ${formValue("previewDuration")} seconds`,
 		`- Shorten long silence: ${formValue("shortenSilence")}`,
 		`- Silence options: min ${formValue("minSilence")}s, keep ${formValue("keepSilence")}s, noise ${formValue("silenceNoise")}, keep uncut ${formValue("keepUncut")}`,
-		`- Rebuild base: ${formValue("rebuildBase")}`,
 		"- Regenerate text overlays from current analysis: true",
-		`- Reclassify speakers: ${formValue("reclassifySpeakers")}`,
-		`- Auto context/speaker camera cuts: ${formValue("autoContextCuts")}`,
-		`- Place cuts in short dialogue gaps: ${formValue("naturalDialogueCuts")}`,
 		`- Term explanations: ${formValue("termExplanations")} (${
 			glossaryTerms()
 				.filter((term) => term.enabled)
@@ -3567,8 +3873,6 @@ function buildPrompt() {
 				.join("; ") || "(none)"
 		}`,
 		`- Still extraction time: ${formValue("stillTime") || "00:00:25"}`,
-		`- Thumbnail source images: ${joinPath(thumbnailSourceRoot(), "ST-*.jpg")}`,
-		`- Thumbnail contact sheet: ${thumbnailContactSheetPath()}`,
 		`- Person bbox output: ${personBboxesDir()}`,
 		`- Person edit plan output: ${personEditPlansDir()}`,
 		`- Reference person edit plan output: ${referenceEditPlansDir()}`,
@@ -3577,12 +3881,12 @@ function buildPrompt() {
 		`- FFprobe: ${ffprobeExe()}`,
 		"",
 		"Dropped assets:",
-		`- Master/day video: ${state.files.masterVideo || "(use current repo default if preset supports it)"}`,
-		`- Right close-up/person 1: ${state.files.rightCloseVideo || "(use current repo default if preset supports it)"}`,
-		`- Left close-up/person 2: ${state.files.leftCloseVideo || "(use current repo default if preset supports it)"}`,
+		`- Master/day video: ${state.files.masterVideo || "(none)"}`,
+		`- Right close-up/person 1: ${state.files.rightCloseVideo || "(none)"}`,
+		`- Left close-up/person 2: ${state.files.leftCloseVideo || "(none)"}`,
 		`- Reference style video: ${state.files.referenceVideo || "(not selected)"}`,
 		`- External audio: ${state.files.externalAudio || "(not selected)"}`,
-		`- Logo: ${state.files.logo || "(use current repo logo)"}`,
+		`- Logo: ${state.files.logo || "(none)"}`,
 		`- Still image inserts: ${state.files.stillImages.length ? state.files.stillImages.join(", ") : "(none)"}`,
 		"",
 		"Style selections:",
@@ -3592,20 +3896,24 @@ function buildPrompt() {
 		`- Top-left text: ${formValue("titleText")}`,
 		`- Top-left text size: ${formValue("titleSize")}`,
 		`- Right-top logo height: ${formValue("logoHeight")} px`,
-		`- Punchline list:\n${formValue("punchlineText") || "(use existing script list)"}`,
+		`- Punchline list:\n${formValue("punchlineText") || "(empty)"}`,
 		"",
 		"Expected behavior:",
 		"- If external audio is selected, sync it or clearly report if existing offset data cannot be reused.",
 		"- If no external audio is selected, use the selected camera audio source.",
 		"- Prefer the media manifest for source roles. Support variable interview/multicam camera roles: master, camera2, camera3, camera4+.",
-		"- The old master/right/left dropped slots are compatibility fields only when a media manifest is not present.",
 		"- For person-aware crop/cut planning, analyze source videos first, then use output\\reports\\person_edit_plans as metadata for camera/crop decisions.",
+		"- When multicam mode is dynamic-cuts, build short current-project camera segments and punch-in reframes; do not use historical fixed camera timings.",
+		"- Respect each camera source's synced coverage; do not use alternate-camera clips outside their valid timeline range.",
+		"- For weak or missing waveform sync, use only the current transcript comparison report when its media-manifest fingerprint matches the active project.",
+		"- When natural dialogue cuts are enabled, move camera boundaries only to nearby low-energy dialogue gaps; do not change audio timing.",
+		"- When audio mastering is enabled, apply the common high-pass, noise reduction, dynamics, and loudness chain to the selected project audio.",
+		"- When replacing video audio, copy the selected input video's video stream and use only the current project external audio plus current sync report.",
 		"- Reflect the reference profile in the edit: match person size, layout, face direction when possible, and visual tone (brightness, contrast, saturation, warmth).",
-		"- For full subtitles, use corrected SRT when available.",
+		"- For full subtitles, use only the current transcription result for the selected media manifest.",
+		"- For source transcript comparison, compare only the current project transcript manifest and write the report under output\\reports.",
+		"- For subtitle QA audio clips, use only the current project primary transcript/audio and write clips under output\\diagnostics.",
 		"- For catchy subtitles, use the punchline overlay mode.",
-		"- If punchline text/timing/style changed, update the relevant generator script or data in the smallest maintainable way before regenerating overlays.",
-		"- If style/logo/title settings are not exposed by CLI flags, update the Python style/title scripts carefully and regenerate PNG overlays.",
-		`- For thumbnail generation, produce one candidate per source thumbnail image with the selected mode (${thumbnailMode()}) and main color (${thumbnailMainColor()}), write the mode/color-specific contact sheet at ${thumbnailContactSheetPath()}, keep the fixed title/hook from docs\\video_edit_method.md, avoid faces unless the mode intentionally allows slight title overlap, do not draw a duration chip, and use the cropped Engineer Type logo with small even padding.`,
 		"- Make minimal script changes needed for this request, then render or provide the exact command if rendering is blocked.",
 		"- Report the output file path and any limitations.",
 	];
@@ -3633,13 +3941,11 @@ function buildAppConfig() {
 			externalAudio: state.files.externalAudio,
 			logo: state.files.logo,
 			stillImages: state.files.stillImages,
-			sourceRoot: sourceRootOverride(),
+			sourceRoot: activeProjectVideoSourceRoot(),
 		},
 		render: {
 			editPreset: formValue("editPreset"),
 			workflowAction: formValue("workflowAction"),
-			thumbnailMode: thumbnailMode(),
-			thumbnailMainColor: thumbnailMainColor(),
 			renderScript: formValue("renderScript"),
 			outputPath: $("#outputPath").value,
 			syncOffsetsPath: syncReportPath(),
@@ -3648,13 +3954,15 @@ function buildAppConfig() {
 			audioSource: formValue("audioSource"),
 			audioDenoise: formValue("audioDenoise"),
 			audioDenoiseStrength: Number(formValue("audioDenoiseStrength") || 10),
+			audioMastering: formValue("audioMastering"),
+			encoderPreset: formValue("encoderPreset") || "veryfast",
+			crf: Number(formValue("renderCrf") || 18),
+			colorMatchCameras: formValue("colorMatchCameras"),
+			usePersonEditPlans: formValue("usePersonEditPlans"),
+			useTranscriptComparisonSync: formValue("useTranscriptComparisonSync"),
+			naturalDialogueCuts: formValue("naturalDialogueCuts"),
 			previewStart: Number(formValue("previewStart") || 0),
 			previewDuration: Number(formValue("previewDuration") || 60),
-			rebuildBase: formValue("rebuildBase"),
-			skipSubtitleRegeneration: false,
-			reclassifySpeakers: formValue("reclassifySpeakers"),
-			autoContextCuts: formValue("autoContextCuts"),
-			naturalDialogueCuts: formValue("naturalDialogueCuts"),
 			termExplanations: formValue("termExplanations"),
 			shortenSilence: formValue("shortenSilence"),
 			minSilence: Number(formValue("minSilence") || 3),
@@ -3662,14 +3970,74 @@ function buildAppConfig() {
 			silenceNoise: formValue("silenceNoise") || "-30dB",
 			keepUncut: formValue("keepUncut"),
 		},
+		music: {
+			enabled: formValue("musicEnabled"),
+			scope: formValue("musicScope") || "full",
+			rangeSource: formValue("musicRangeSource") || "auto",
+			prompt: formValue("musicPrompt"),
+			mood: "auto",
+			volume: Number(formValue("musicVolume") || 14),
+			rangesText: formValue("musicRangesText"),
+			regenerate: true,
+			outputPath: musicBedPath(),
+		},
+		omissionCard: {
+			enabled: formValue("omissionCardEnabled"),
+			duration: Number(formValue("omissionCardDuration") || 5),
+			label: formValue("omissionCardLabel") || "SUMMARY",
+			text: formValue("omissionCardText"),
+			rangesText: formValue("omissionCardRangesText") || formValue("musicRangesText"),
+			useMusicRanges: true,
+			outputPath: omissionCardOutputPath(),
+		},
+		thumbnail: {
+			inputVideoPath: thumbnailInputPath(),
+			time: formValue("thumbnailTime") || formValue("stillTime") || "00:00:25",
+			title: formValue("thumbnailTitle") || formValue("titleText") || state.project?.name || "",
+			subtitle: formValue("thumbnailSubtitle"),
+			outputPath: thumbnailOutputPath(),
+			candidatesOutputDir: thumbnailCandidatesOutputPath(),
+			candidateCount: Number(formValue("thumbnailCandidateCount") || 6),
+			mode: formValue("thumbnailMode") || "standard",
+			mainColor: formValue("thumbnailMainColor") || "yellow",
+			candidateTimesText: formValue("thumbnailCandidateTimes"),
+			debugFaces: formValue("thumbnailDebugFaces"),
+		},
+		subtitleReview: {
+			outputPath: subtitleReviewOutputPath(),
+			maxDuration: Number(formValue("subtitleReviewMaxDuration") || 8),
+			maxCharsPerSecond: Number(formValue("subtitleReviewMaxCharsPerSecond") || 18),
+			suspiciousPatternsText: formValue("subtitleSuspiciousPatterns"),
+			extractAudioClips: formValue("subtitleReviewExtractClips") || formValue("subtitleReviewTranscribeClips"),
+			transcribeReview: formValue("subtitleReviewTranscribeClips"),
+			reviewModel: formValue("transcribeModel") || "large-v3",
+			correctionsText: formValue("subtitleCorrectionsText"),
+			correctionsOutputPath: subtitleCorrectionsOutputPath(),
+		},
+		subtitleSpeakers: {
+			outputPath: subtitleSpeakerRolesOutputPath(),
+			interviewerRangesText: formValue("subtitleInterviewerRanges"),
+			interviewerPatternsText: formValue("subtitleInterviewerPatterns"),
+			manualRolesText: formValue("subtitleManualRoles"),
+			mouthMotionDiagnostics: formValue("subtitleMouthMotionDiagnostics"),
+			motionVideoPath: formValue("inputVideoPath") || $("#outputPath").value || selectedMasterVideoPath(),
+		},
+		transcriptComparison: {
+			outputPath: transcriptComparisonOutputPath(),
+			strongThreshold: 0.82,
+			usableThreshold: 0.7,
+			matchLimit: 12,
+		},
 		workflow: {
 			inputVideoPath: formValue("inputVideoPath"),
-			replaceAudioInput: formValue("replaceAudioInput"),
 			stillTime: formValue("stillTime") || "00:00:25",
 			stillOutputPath: stillOutputPath(formValue("inputVideoPath") || $("#outputPath").value, $("#outputPath").value),
-			noAudioClips: formValue("noAudioClips"),
-			transcribeReview: formValue("transcribeReview"),
-			reviewModel: formValue("reviewModel") || "large-v3",
+		},
+		replaceAudio: {
+			inputVideoPath: formValue("inputVideoPath"),
+			audioPath: state.files.externalAudio || manifestAudioSources()[0]?.path || "",
+			outputPath: $("#outputPath").value,
+			syncOffsetsPath: syncReportPath(),
 		},
 		analysis: {
 			transcribeModel: formValue("transcribeModel") || "large-v3",
@@ -3709,16 +4077,6 @@ function buildAppConfig() {
 			python: pythonExe(),
 			ffmpeg: ffmpegExe(),
 			ffprobe: ffprobeExe(),
-		},
-		thumbnails: {
-			mode: thumbnailMode(),
-			modeFlag: thumbnailModeConfig().flag,
-			mainColor: thumbnailMainColor(),
-			sourceRoot: thumbnailSourceRoot(),
-			sourceGlob: joinPath(thumbnailSourceRoot(), "ST-*.jpg"),
-			contactSheet: thumbnailContactSheetPath(),
-			outputRoot: joinPath(activeOutputRoot(), "thumbnails"),
-			importAssets: formValue("workflowAction") === "generate-thumbnails",
 		},
 	};
 }
@@ -3781,9 +4139,6 @@ async function runPreset() {
 		log("command completed", { exitCode: result?.exitCode });
 		if (action === "auto-sync-dropped" && result?.exitCode === 0) {
 			await refreshSyncReport();
-		}
-		if (action === "generate-thumbnails" && result?.exitCode === 0) {
-			log("thumbnail contact sheet", { path: thumbnailContactSheetPath() });
 		}
 		if (action === "analyze-person-edit-metadata" && result?.exitCode === 0) {
 			log("person analysis outputs", { bboxes: personBboxesDir(), plans: personEditPlansDir() });
@@ -3928,7 +4283,6 @@ function bindEvents() {
 		log("turn/interrupt requested");
 	});
 	$("#openOutput").addEventListener("click", () => loadOutputPreview("output"));
-	$("#openThumbnails").addEventListener("click", () => loadOutputPreview("thumbnails"));
 	$("#refreshOutputPreview").addEventListener("click", () => {
 		if (state.outputPreviewKind) {
 			loadOutputPreview(state.outputPreviewKind);
@@ -3962,15 +4316,9 @@ function bindEvents() {
 	});
 	$("#editPreset").addEventListener("change", () => {
 		const mapping = {
-			"current-1min-color": "render_1min_color_matched.py",
-			"current-onepass": "render_1min_onepass_ffmpeg.py",
-			"current-5min": "render_final_png_overlays.py",
 			"new-interview": "render_app_interview.py",
 		};
 		const durations = {
-			"current-1min-color": 60,
-			"current-onepass": 85,
-			"current-5min": 300,
 			"new-interview": 60,
 		};
 		if (mapping[formValue("editPreset")]) {
@@ -4002,18 +4350,21 @@ function bindEvents() {
 async function init() {
 	state.env = await editApp.getEnvironment();
 	renderWorkspaceLabel();
-	$("#outputPath").value = state.env.knownOutputs[0];
-	$("#inputVideoPath").value = state.env.knownOutputs[0];
-	$("#replaceAudioInput").value = state.env.knownOutputs[2];
+	$("#outputPath").value = state.env.knownOutputs?.[0] || "";
+	$("#inputVideoPath").value = state.env.knownOutputs?.[0] || "";
 	loadWorkflowMediaPreviews();
 	loadOutputTargetPreview();
 	const pythonPathInput = $("#pythonPath");
 	if (pythonPathInput) {
 		pythonPathInput.value = state.env.pythonExe;
 	}
-	const sourceRootInput = $("#sourceRoot");
-	if (sourceRootInput) {
-		sourceRootInput.value = joinPath(state.env.videoEditRoot, "source");
+	const ffmpegPathInput = $("#ffmpegPath");
+	if (ffmpegPathInput) {
+		ffmpegPathInput.value = state.env.ffmpegExe;
+	}
+	const ffprobePathInput = $("#ffprobePath");
+	if (ffprobePathInput) {
+		ffprobePathInput.value = state.env.ffprobeExe;
 	}
 	$("#punchlineText").value = defaultPunchlines;
 	state.glossaryTerms = defaultGlossaryTerms;

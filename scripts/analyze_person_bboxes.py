@@ -112,7 +112,7 @@ def parse_args() -> argparse.Namespace:
         "--input",
         nargs="*",
         default=[],
-        help="Video files or directories. Relative project paths such as 1cam/ST7_7550_overlap_5min.mp4 are supported.",
+        help="Video files or directories. Relative paths are resolved from the active project.",
     )
     parser.add_argument("--output-dir", type=Path, default=OUTPUT_REPORTS / "person_bboxes")
     parser.add_argument("--model", default="yolov8n.pt", help="Ultralytics YOLO model name or local model path.")
@@ -124,7 +124,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default=None, help="Optional YOLO device, for example cpu, 0, or cuda:0.")
     parser.add_argument("--limit", type=int, default=None, help="Optional maximum number of videos to analyze.")
     parser.add_argument("--max-duration", type=float, default=None, help="Fail if any input video is longer than this many seconds.")
-    parser.add_argument("--no-multicam-root", action="store_true", help="Only scan source/video when --input is omitted.")
+    parser.add_argument("--no-multicam-root", action="store_true", help="Only scan the active project video source when --input is omitted.")
     return parser.parse_args()
 
 

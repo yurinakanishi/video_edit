@@ -17,7 +17,7 @@ Set-Location 'C:\Users\yurin\Desktop\video_edit\app'
 pnpm run dist
 ```
 
-Build artifacts are written to `C:\Users\yurin\Desktop\video_edit\output\app\dist`.
+Build artifacts are written to `C:\Users\yurin\Desktop\video_edit\release`.
 
 TypeScript sources live under `src` and compile to `dist` before Electron starts. Static renderer files are copied by `scripts\copy-static.mjs`.
 
@@ -31,25 +31,32 @@ pnpm run check
 
 ## What It Does
 
-- Creates/selects per-video projects under `C:\Users\yurin\Desktop\video_edit\projects\<project-id>`, copies selected source files into that project's `source` folder, and sends project-specific `source` / `output` roots to the Python scripts.
+- Creates/selects per-video projects under `C:\Users\yurin\Desktop\video_edit\projects\<project-id>`, stores media manifests and lightweight imported assets inside the project, and sends project-specific `source` / `output` roots to the Python scripts.
 - Accepts drag-and-drop or picker-based inputs for master video, right close-up, left close-up, external audio, logo, and output path.
 - Accepts multiple drag-and-drop still images for interview renders. Text/diagram stills are inserted without motion near matching transcript text when possible; photo-like stills are analyzed for faces or visual focus, then get person-, landscape-, or object-appropriate pan/zoom with fade in/out.
-- Lets you choose current preset scripts or a new interview multicam request.
-- Provides source-root and tool-path controls for the paths described in `docs\video_edit_method.md`.
+- Uses the selected media manifest as the source of truth for cameras, audio, still images, subtitles, and output roots.
+- Provides tool-path controls for Python, FFmpeg, and FFprobe. Project source/output roots are created by the project manager.
 - Exposes subtitle mode selection: full transcript, catchy/punchline, or none.
-- Exposes automatic context/speaker camera cuts for the current one-pass preset, passing `--auto-context-cuts` so subtitle speaker roles and answer context can drive camera changes.
-- Exposes natural short-dialogue-gap cut placement, passing `--natural-dialogue-cuts` so camera changes can move a few hundred milliseconds into nearby low-energy pauses without shortening the audio.
+- Exposes automatic interview camera cuts based on selected media, sync metadata, subtitle speaker roles, rhythmic punch-in cuts, source coverage, and saved manual camera plans.
 - Captures title, subtitle, color, opacity, logo-size, punchline-list, output-duration, audio-noise-reduction, and silence-shortening settings.
+- Captures audio mastering and natural-dialogue camera-cut settings so the old one-off render's loudness/dynamics chain and low-energy cut adjustment are available per project.
+- Captures camera color-match settings so multicam close-ups can be normalized to the master camera before render, including generic white-balance channel gains.
+- Captures person-aware crop settings so `reports\person_edit_plans` generated during analysis are applied during render, with usage written to `reports\person_crop_usage.json`.
+- Captures transcript-comparison sync fallback settings so current-project transcript matches can correct missing or low-score waveform offsets, with usage written to `reports\sync_offset_usage.json`.
+- Captures background-music settings: generate on/off, placement across the whole video or only omission/title-card ranges, automatic/manual range source, direction prompt, and mix level.
+- Provides a project-level audio replacement workflow for selected input videos, using the selected external audio and current sync report instead of old fixed `sound2` files.
+- Captures omission-card settings: replace configured interviewer/omission ranges with a generated summary card, set card duration/text/label, and reuse BGM omission ranges when desired.
+- Captures render encoding settings so the app runtime config, not old CLI flags, controls x264 preset and CRF for both render and silence-shortening output.
+- Captures project-thumbnail and subtitle-QA settings, including thumbnail time/title/subtitle, multi-candidate thumbnail layout/color/timing, optional thumbnail face-box debug output, subtitle readability thresholds, suspicious subtitle patterns, flagged-caption audio clips/re-transcription, manual subtitle correction rows, interviewer ranges/patterns/manual overrides for subtitle speaker roles, and optional OpenCV mouth-motion diagnostics.
 - Shows a preflight checklist for missing output paths, required camera files, audio fallbacks, silence-shortening state, and recommended auto-sync steps.
 - Shows the latest dropped-camera sync score from `output\reports\app_sync_offsets.json` and refreshes it after auto-sync runs.
-- Provides direct method workflow actions for subtitle review, overlay regeneration, thumbnail candidate generation, camera analysis, transcript sync, waveform refinement, multicam base build, sound-2 audio replacement, silence shortening, and ffprobe verification.
-- Runs `scripts\generate_thumbnail_candidates.py --import-assets` from the workflow action menu, supports the standard, center-face bottom-title, right-face stacked-title, and left-face stacked-title thumbnail modes, supports broad main-color selection, generates one candidate per `source\thumbnail\etype260515_p_takei\ST-*.jpg` source image, and opens the selected mode/color contact sheet from the top bar.
+- Provides direct workflow actions for overlay regeneration, background music generation, audio replacement, project thumbnail generation, thumbnail candidate contact sheets, subtitle QA review, subtitle correction application, subtitle speaker-role classification, source transcript comparison, camera analysis, transcription, camera/audio sync, silence shortening, and ffprobe verification.
 - Starts `codex app-server` from the Electron main process and sends a structured edit request with `C:\Users\yurin\Desktop\video_edit` as the working directory.
-- Runs direct workflow actions through `scripts\video_edit_run.py`, which reads the runtime app config and delegates to the existing Python render, analysis, thumbnail, FFmpeg, and ffprobe commands.
+- Runs direct workflow actions through `scripts\video_edit_run.py`, which reads the runtime app config and delegates to common Python render, analysis, FFmpeg, and ffprobe commands.
 - Includes `render_app_interview.py`, a generic dropped-file interview renderer for master/right/left camera files and optional external audio.
-- Includes `auto_sync_app_sources.py`, which creates `app_sync_offsets.json` from dropped camera audio before the generic renderer runs.
+- Includes `auto_sync_app_sources.py`, which creates `app_sync_offsets.json` from dropped camera audio before the generic renderer runs, with a local fine waveform pass after the coarse match. Full material analysis also runs source transcript comparison so the renderer has a current-project fallback when waveform sync is weak or missing.
 
-The app intentionally keeps the Python render scripts as the source of truth. Direct command actions write a runtime app config under `output\app`, then call `scripts\video_edit_run.py`. The shared runner converts that config into the existing script CLI flags. The config currently drives the active project roots, title text/size, logo path/height, subtitle size/color/opacity, punchline text/timing, source root, FFmpeg path, thumbnail mode/color, analysis settings, and generic-render audio denoise settings.
+The app intentionally keeps the Python render scripts as the source of truth. Direct command actions require an active project, write a runtime app config under the active project output, then call `scripts\video_edit_run.py` with `VIDEO_EDIT_APP_CONFIG`. The shared runner converts that config into script inputs. The config drives the active project roots, title text/size, logo path/height, subtitle size/color/opacity, punchline text/timing, music generation/mix settings, omission-card replacement settings, person-aware crop usage, transcript sync fallback, camera color-match and natural-cut settings, thumbnail and thumbnail-candidate settings, subtitle-QA/correction/comparison/speaker-diagnostic settings, Python/FFmpeg/FFprobe paths, analysis settings, and generic-render audio denoise/mastering/encoding settings.
 
 ## Direct Project Runs
 
@@ -58,7 +65,7 @@ Project separation also works without Electron. From `C:\Users\yurin\Desktop\vid
 ```powershell
 Set-Location 'C:\Users\yurin\Desktop\video_edit'
 $env:VIDEO_EDIT_PROJECT = 'client-a-interview'
-python scripts\render_1min_onepass_ffmpeg.py --mode full --output projects\client-a-interview\output\videos\codex_edit_full.mp4
+python scripts\video_edit_run.py --action render-selected
 ```
 
 With that variable set, shared script paths resolve to:
@@ -68,7 +75,7 @@ With that variable set, shared script paths resolve to:
 
 For custom absolute roots, use `VIDEO_EDIT_PROJECT_ROOT`, or override only one side with `VIDEO_EDIT_PROJECT_SOURCE` / `VIDEO_EDIT_PROJECT_OUTPUT`.
 
-Audio noise reduction is user-selectable. When enabled, direct render scripts apply a high-pass filter and FFmpeg `afftdn`; the one-pass YouTube preset keeps its existing normalization chain and makes the denoise stage configurable.
+Audio noise reduction is user-selectable. When enabled, the common interview renderer applies a high-pass filter and FFmpeg `afftdn`.
 
 Direct preset runs use app-server `command/exec` with `dangerFullAccess` because the configured Python and FFmpeg executables live outside the workspace. Project and source-root choices are passed through the runtime app config before running the script.
 

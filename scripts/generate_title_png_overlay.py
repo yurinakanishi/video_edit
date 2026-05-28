@@ -25,10 +25,10 @@ from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, 
 
 
 WORK = WORKSPACE_ROOT
-OUTPUT = OUTPUT_OVERLAYS / "ai_engineer_now_title.png"
+OUTPUT = OUTPUT_OVERLAYS / "title_overlay.png"
 FONT_PATH = Path(r"C:\Windows\Fonts\YuGothB.ttc")
 
-DEFAULT_TEXT = "AIエンジニアの今"
+DEFAULT_TEXT = ""
 PURPLE = (170, 28, 214, 255)
 WHITE = (255, 255, 255, 250)
 LIGHT_PURPLE = (245, 224, 255, 250)

@@ -18,7 +18,7 @@ from transcription_quality import (
     transcribe_options,
     write_srt,
 )
-from video_edit_app_config import load_app_config, nested, optional_path
+from video_edit_app_config import load_app_config, nested, optional_path, transcript_manifest_fingerprint
 
 
 APP_CONFIG = load_app_config()
@@ -92,6 +92,14 @@ def choose_primary(sources: list[dict[str, Any]]) -> dict[str, Any] | None:
     ) or (sources[0] if sources else None)
 
 
+def reset_current_primary_outputs() -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
+    for filename in ("primary.srt", "primary.json", "manifest_transcripts.json"):
+        path = OUT / filename
+        if path.exists() and path.is_file():
+            path.unlink()
+
+
 def transcribe_source(model: Any, source: dict[str, Any], model_name: str, options: dict[str, Any]) -> dict[str, Any]:
     OUT.mkdir(parents=True, exist_ok=True)
     media_path = Path(source["path"])
@@ -124,6 +132,7 @@ def transcribe_source(model: Any, source: dict[str, Any], model_name: str, optio
 
 
 def main() -> None:
+    reset_current_primary_outputs()
     sources = manifest_sources()
     if not sources:
         raise SystemExit("No audio-bearing manifest video/audio sources were found.")
@@ -151,6 +160,7 @@ def main() -> None:
         "conditionOnPreviousText": options.get("condition_on_previous_text"),
         "normalizeAudio": nested(APP_CONFIG, "analysis", "transcribeNormalizeAudio", default=True),
         "filterLowConfidence": nested(APP_CONFIG, "analysis", "transcribeFilterLowConfidence", default=True),
+        "manifestFingerprint": transcript_manifest_fingerprint(APP_CONFIG),
         "outputDir": str(OUT),
         "primarySrt": str(OUT / "primary.srt") if (OUT / "primary.srt").exists() else "",
         "transcripts": transcripts,

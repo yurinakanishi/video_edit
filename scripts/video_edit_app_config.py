@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 import re
 from pathlib import Path
@@ -25,11 +26,10 @@ from typing import Any
 
 
 WORK = WORKSPACE_ROOT
-DEFAULT_APP_CONFIG = WORK / "output" / "app" / "video_edit_app_config.runtime.json"
 
 
 def load_app_config() -> dict[str, Any]:
-    path = os.environ.get("VIDEO_EDIT_APP_CONFIG") or DEFAULT_APP_CONFIG
+    path = os.environ.get("VIDEO_EDIT_APP_CONFIG")
     if not path:
         return {}
     config_path = Path(path)
@@ -48,6 +48,7 @@ def nested(config: dict[str, Any], *keys: str, default: Any = None) -> Any:
 
 
 SUBTITLE_EXTENSIONS = {".srt", ".ass", ".vtt"}
+TRANSCRIBE_CAMERA_ROLES = {"master", "camera2", "camera3", "camera4", "camera5", "camera6"}
 
 
 def _normalize_extensions(extensions: tuple[str, ...] | list[str] | set[str] | None) -> set[str]:
@@ -80,50 +81,99 @@ def _append_unique(paths: list[Path], seen: set[str], path: Path | None) -> None
     paths.append(path)
 
 
+def media_manifest(config: dict[str, Any] | None = None) -> dict[str, Any]:
+    app_config = config if isinstance(config, dict) else load_app_config()
+    manifest = nested(app_config, "assets", "mediaManifest", default={})
+    if isinstance(manifest, dict) and manifest.get("files"):
+        return manifest
+    manifest_path = nested(app_config, "assets", "mediaManifestPath", default="")
+    if manifest_path:
+        path = Path(str(manifest_path))
+        if path.exists():
+            try:
+                return json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                return {}
+    return {}
+
+
+def transcript_manifest_fingerprint(config: dict[str, Any] | None = None) -> str:
+    manifest = media_manifest(config)
+    files = manifest.get("files", []) if isinstance(manifest, dict) else []
+    if not isinstance(files, list):
+        return ""
+    entries: list[dict[str, Any]] = []
+    for item in files:
+        if not isinstance(item, dict):
+            continue
+        kind = str(item.get("kind") or "")
+        role = str(item.get("role") or "")
+        if kind == "audio" and role.startswith("external"):
+            pass
+        elif kind == "video" and role in TRANSCRIBE_CAMERA_ROLES and item.get("metadata", {}).get("hasAudio", True) is not False:
+            pass
+        else:
+            continue
+        path = Path(str(item.get("path") or ""))
+        if not path.exists():
+            continue
+        try:
+            stat = path.stat()
+        except OSError:
+            continue
+        entries.append(
+            {
+                "kind": kind,
+                "role": role,
+                "path": str(path.resolve()).lower(),
+                "size": stat.st_size,
+                "mtimeMs": round(stat.st_mtime * 1000),
+            }
+        )
+    if not entries:
+        return ""
+    payload = json.dumps(
+        sorted(entries, key=lambda item: (item["kind"], item["role"], item["path"])),
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def transcript_report(config: dict[str, Any] | None = None) -> dict[str, Any]:
+    app_config = config if isinstance(config, dict) else load_app_config()
+    report_path = OUTPUT_TRANSCRIPTS / "manifest_sources" / "manifest_transcripts.json"
+    if not report_path.exists():
+        return {}
+    try:
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(report, dict):
+        return {}
+    expected = transcript_manifest_fingerprint(app_config)
+    if not expected or report.get("manifestFingerprint") != expected:
+        return {}
+    return report if isinstance(report, dict) else {}
+
+
 def subtitle_candidates(
     config: dict[str, Any] | None = None,
     *,
     extensions: tuple[str, ...] | list[str] | set[str] | None = None,
-    include_legacy: bool = False,
 ) -> list[Path]:
     app_config = config if isinstance(config, dict) else load_app_config()
     allowed_extensions = _normalize_extensions(extensions)
     paths: list[Path] = []
     seen: set[str] = set()
 
-    manifest = nested(app_config, "assets", "mediaManifest", default={})
-    manifest_items = []
-    if isinstance(manifest, dict):
-        for key in ("subtitles", "files"):
-            items = manifest.get(key)
-            if isinstance(items, list):
-                manifest_items.extend(items)
-    for item in manifest_items:
-        if not isinstance(item, dict):
-            continue
-        if item.get("kind") != "subtitle" or item.get("role") == "ignore":
-            continue
-        _append_unique(paths, seen, _existing_subtitle_path(item.get("path"), allowed_extensions))
-
-    transcript_root = OUTPUT_TRANSCRIPTS / "manifest_sources"
-    for candidate in (transcript_root / "primary.srt", transcript_root / "master.srt"):
-        _append_unique(paths, seen, _existing_subtitle_path(candidate, allowed_extensions))
-
-    for root in (transcript_root, OUTPUT_TRANSCRIPTS):
-        try:
-            if root.exists():
-                for candidate in sorted(root.rglob("*")):
-                    _append_unique(paths, seen, _existing_subtitle_path(candidate, allowed_extensions))
-        except OSError:
-            continue
-
-    if include_legacy:
-        legacy_root = SOURCE_SUBTITLES / "video_original_audio"
-        for candidate in (
-            legacy_root / "ST7_7550_overlap_5min_original_audio_corrected.srt",
-            legacy_root / "ST7_7550_overlap_5min_original_audio.srt",
-        ):
-            _append_unique(paths, seen, _existing_subtitle_path(candidate, allowed_extensions))
+    report = transcript_report(app_config)
+    _append_unique(paths, seen, _existing_subtitle_path(report.get("primarySrt"), allowed_extensions))
+    transcripts = report.get("transcripts", [])
+    if isinstance(transcripts, list):
+        for item in transcripts:
+            if isinstance(item, dict):
+                _append_unique(paths, seen, _existing_subtitle_path(item.get("srt"), allowed_extensions))
 
     return paths
 
@@ -132,9 +182,8 @@ def selected_subtitle_path(
     config: dict[str, Any] | None = None,
     *,
     extensions: tuple[str, ...] | list[str] | set[str] | None = None,
-    include_legacy: bool = False,
 ) -> Path | None:
-    candidates = subtitle_candidates(config, extensions=extensions, include_legacy=include_legacy)
+    candidates = subtitle_candidates(config, extensions=extensions)
     return candidates[0] if candidates else None
 
 
@@ -159,6 +208,37 @@ def float_value(config: dict[str, Any], *keys: str, default: float) -> float:
         return float(value)
     except (TypeError, ValueError):
         return default
+
+
+VIDEO_ENCODER_PRESETS = {
+    "ultrafast",
+    "superfast",
+    "veryfast",
+    "faster",
+    "fast",
+    "medium",
+    "slow",
+    "slower",
+    "veryslow",
+}
+
+
+def video_encoder_preset(config: dict[str, Any], *keys: str, default: str = "veryfast") -> str:
+    fallback = str(default or "veryfast").strip().lower()
+    if fallback not in VIDEO_ENCODER_PRESETS:
+        fallback = "veryfast"
+    value = str(nested(config, *keys, default=fallback) or fallback).strip().lower()
+    return value if value in VIDEO_ENCODER_PRESETS else fallback
+
+
+def video_encoder_crf(
+    config: dict[str, Any],
+    *keys: str,
+    default: int = 18,
+    minimum: int = 0,
+    maximum: int = 51,
+) -> int:
+    return max(minimum, min(maximum, int_value(config, *keys, default=default)))
 
 
 def hex_rgba(value: Any, alpha: int = 255, default: tuple[int, int, int, int] = (255, 255, 255, 255)) -> tuple[int, int, int, int]:

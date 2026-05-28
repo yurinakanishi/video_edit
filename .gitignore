@@ -20,10 +20,12 @@
 *.aac
 *.AAC
 
-# Source media copied into the working directory
-source/video/
-source/audio/
-source/thumbnail/
+# App-local runtime state and generated builds
+/.video-edit/
+/release/
+
+# Root-level source/output were used by the old single-video workflow.
+/source/
 
 # Local project workspaces
 /projects/
@@ -31,24 +33,18 @@ source/thumbnail/
 # FFmpeg segment and diagnostic outputs
 segments_*/
 sync_diagnostics/
-/video_original_audio/
 audio_sync_analysis/
 transcript_sync/
 transcript_sync_all/
-output/
+/output/
 
 # Generated concat manifests and logs
 *.concat.txt
 *.log
 
 # Generated subtitle/overlay render outputs
-ai_engineer_now_title.ass
-ai_engineer_now_title.png
-punchline_subtitles.ass
 full_transcript_png_overlays/
 punchline_png_overlays/
-sound2_transcripts/
-subtitle_review/
 
 # Generated preview/check/debug images
 preview_*.png

@@ -26,44 +26,13 @@ class Caption:
     text: str
 
 
-DEFAULT_GLOSSARY_TERMS = [
-    {
-        "label": "セミオーダー",
-        "patterns": ("セミオゴー", "セミオーダー"),
-        "description": "標準品をベースに、一部だけ要望に合わせて調整する提供方法。",
-    },
-    {
-        "label": "セミカスタマイズ",
-        "patterns": ("セミカスタマイズ",),
-        "description": "完全な個別開発ではなく、共通部分を残して必要箇所だけ変えること。",
-    },
-    {
-        "label": "スケールメリット",
-        "patterns": ("スケールメリット",),
-        "description": "数や量が増えるほど、1件あたりのコストや手間が下がる効果。",
-    },
-    {
-        "label": "PDM",
-        "patterns": ("PDM",),
-        "description": "この動画で議論対象になっている制度・枠組みの略称。",
-    },
-    {
-        "label": "FD",
-        "patterns": ("FD",),
-        "description": "PDMの代替として話題に出ている新しい制度・枠組みの略称。",
-    },
-    {
-        "label": "EDM",
-        "patterns": ("EDM",),
-        "description": "文脈によって意味が変わる略語。動画内では専門用語として補足対象にする。",
-    },
-]
+DEFAULT_GLOSSARY_TERMS: list[dict[str, object]] = []
 
 
 def configured_terms() -> list[dict[str, object]]:
     terms = nested(APP_CONFIG, "glossary", "terms", default=None)
     if not isinstance(terms, list):
-        return DEFAULT_GLOSSARY_TERMS
+        return []
     normalized = []
     for term in terms:
         if not isinstance(term, dict) or term.get("enabled") is False:
@@ -79,7 +48,7 @@ def configured_terms() -> list[dict[str, object]]:
             patterns = [label] if label else []
         if label and description and patterns:
             normalized.append({"label": label, "description": description, "patterns": tuple(patterns)})
-    return normalized or DEFAULT_GLOSSARY_TERMS
+    return normalized
 
 
 def parse_srt_timestamp(timestamp: str) -> str:

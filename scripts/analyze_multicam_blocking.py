@@ -363,56 +363,7 @@ def run_manifest_analysis() -> bool:
 def main() -> None:
     if run_manifest_analysis():
         return
-    clips = load_existing_clips(
-        [
-            ("1cam ST7_7549", ("1cam", "ST7_7549.MP4")),
-            ("3cam IMG_2140", ("3cam", "IMG_2140.MP4")),
-            ("3cam IMG_2195", ("3cam", "IMG_2195.MP4")),
-            ("3cam IMG_2196", ("3cam", "IMG_2196.MP4")),
-            ("3cam IMG_2197", ("3cam", "IMG_2197.MP4")),
-            ("1cam ST7_7550", ("1cam", "ST7_7550.MP4")),
-            ("1cam ST7_7550 overlap", ("1cam", "ST7_7550_overlap_5min.mp4")),
-            ("2cam 0H4A7189", ("2cam", "0H4A7189.MP4")),
-            ("2cam 0H4A7190", ("2cam", "0H4A7190.MP4")),
-            ("2cam 0H4A7192", ("2cam", "0H4A7192.MP4")),
-            ("3cam IMG_2252", ("3cam", "IMG_2252.MP4")),
-            ("3cam IMG_2316", ("3cam", "IMG_2316.MP4")),
-        ]
-    )
-    if not clips:
-        raise RuntimeError("No camera files were found under source/video or VIDEO_EDIT_SOURCE_ROOT.")
-    write_summary(clips)
-    group_7549_base = by_label(clips, "1cam ST7_7549")
-    group_7549_others = [clip for clip in clips if clip.label in {"3cam IMG_2140", "3cam IMG_2195", "3cam IMG_2196", "3cam IMG_2197"}]
-    if group_7549_base and group_7549_others:
-        make_group_sheet("group_7549", group_7549_base, group_7549_others, [0.10, 0.45, 0.80])
-
-    group_7550_base = by_label(clips, "1cam ST7_7550") or by_label(clips, "1cam ST7_7550 overlap")
-    group_7550_others = [
-        clip
-        for clip in clips
-        if clip.label in {"2cam 0H4A7189", "2cam 0H4A7190", "2cam 0H4A7192", "3cam IMG_2252", "3cam IMG_2316"}
-    ]
-    if group_7550_base and group_7550_others:
-        make_group_sheet("group_7550", group_7550_base, group_7550_others, [0.20, 0.50, 0.82])
-
-    label_map = {clip.label: clip for clip in clips}
-    pairing_specs = [
-        ("pair_7549_2140", "1cam ST7_7549", "3cam IMG_2140"),
-        ("pair_7549_2195", "1cam ST7_7549", "3cam IMG_2195"),
-        ("pair_7549_2196", "1cam ST7_7549", "3cam IMG_2196"),
-        ("pair_7549_2197", "1cam ST7_7549", "3cam IMG_2197"),
-        ("pair_7550_7189", "1cam ST7_7550", "2cam 0H4A7189"),
-        ("pair_7550_7190", "1cam ST7_7550", "2cam 0H4A7190"),
-        ("pair_7550_7192", "1cam ST7_7550", "2cam 0H4A7192"),
-        ("pair_7550_2252", "1cam ST7_7550", "3cam IMG_2252"),
-        ("pair_7550_2316", "1cam ST7_7550", "3cam IMG_2316"),
-    ]
-    if "1cam ST7_7550" not in label_map and "1cam ST7_7550 overlap" in label_map:
-        label_map["1cam ST7_7550"] = label_map["1cam ST7_7550 overlap"]
-    for name, a_label, b_label in pairing_specs:
-        if a_label in label_map and b_label in label_map:
-            make_pair_sheet(name, label_map[a_label], label_map[b_label])
+    raise RuntimeError("No media manifest cameras were found. Analyze selected media before running blocking analysis.")
 
 
 if __name__ == "__main__":

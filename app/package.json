@@ -20,7 +20,7 @@
 		"appId": "local.video-edit.codex",
 		"productName": "Video Edit",
 		"directories": {
-			"output": "../output/app/dist"
+			"output": "../release"
 		},
 		"asar": true,
 		"files": [
@@ -52,27 +52,6 @@
 			{
 				"from": "../config",
 				"to": "config",
-				"filter": [
-					"**/*"
-				]
-			},
-			{
-				"from": "../source/images",
-				"to": "source/images",
-				"filter": [
-					"**/*"
-				]
-			},
-			{
-				"from": "../source/subtitles",
-				"to": "source/subtitles",
-				"filter": [
-					"**/*"
-				]
-			},
-			{
-				"from": "../source/text",
-				"to": "source/text",
 				"filter": [
 					"**/*"
 				]

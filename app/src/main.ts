@@ -1,9 +1,22 @@
 import { type ChildProcessWithoutNullStreams, spawn } from "node:child_process";
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
 import { Worker } from "node:worker_threads";
 import { app, BrowserWindow, dialog, ipcMain, nativeImage, shell } from "electron";
+import {
+	classifyManifest,
+	IMAGE_EXTENSIONS,
+	type MediaItem,
+	type MediaKind,
+	type MediaManifest,
+	mediaKindForPath,
+	rebuildManifestGroups,
+	SUBTITLE_EXTENSIONS,
+	sourceBucketForSlot,
+	VIDEO_EXTENSIONS,
+} from "./media-manifest";
 
 function hasProjectMarkers(candidate) {
 	return (
@@ -43,24 +56,19 @@ function findVideoEditRoot() {
 const VIDEO_EDIT_ROOT = findVideoEditRoot();
 const APP_ROOT = path.resolve(__dirname, "..");
 const METHOD_DOC = path.join(VIDEO_EDIT_ROOT, "docs", "video_edit_method.md");
-const OUTPUT_ROOT = path.join(VIDEO_EDIT_ROOT, "output");
+const APP_STATE_ROOT = path.join(VIDEO_EDIT_ROOT, ".video-edit");
+const OUTPUT_ROOT = APP_STATE_ROOT;
 const PROJECTS_ROOT = path.join(VIDEO_EDIT_ROOT, "projects");
-const OUTPUT_THUMBNAILS_ROOT = path.join(OUTPUT_ROOT, "thumbnails");
 const SCRIPTS_ROOT = path.join(VIDEO_EDIT_ROOT, "scripts");
 const OUTPUT_APP_ROOT = path.join(OUTPUT_ROOT, "app");
-const APP_CONFIG_PATH = path.join(OUTPUT_APP_ROOT, "video_edit_app_config.runtime.json");
+const DEFAULT_APP_CONFIG_PATH = path.join(OUTPUT_APP_ROOT, "video_edit_app_config.runtime.json");
 const RESOURCE_ICON_PATH = path.join(process.resourcesPath || "", "build", "icon.ico");
 const ICON_PATH = fs.existsSync(RESOURCE_ICON_PATH) ? RESOURCE_ICON_PATH : path.join(APP_ROOT, "build", "icon.ico");
 const SYNC_REPORT_PATH = path.join(OUTPUT_ROOT, "reports", "app_sync_offsets.json");
 const MEDIA_MANIFEST_NAME = "media_manifest.json";
 const DEFAULT_FFMPEG_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe";
 const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
-const PYTHON_EXE = path.join(
-	process.env.LOCALAPPDATA || "C:\\Users\\yurin\\AppData\\Local",
-	"Python",
-	"pythoncore-3.14-64",
-	"python.exe",
-);
+const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
 
 type Locale = "ja" | "en";
 
@@ -112,57 +120,15 @@ const PROJECT_SUBDIRS = [
 	"source/audio",
 	"source/images",
 	"source/subtitles",
-	"source/text",
-	"source/thumbnail",
 	"output/videos",
 	"output/overlays",
 	"output/reports",
 	"output/transcripts",
 	"output/audio",
+	"output/images",
 	"output/diagnostics",
-	"output/thumbnails",
 	"output/app",
 ];
-
-const SHARED_SOURCE_SUBDIRS = ["images"];
-const VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".m4v", ".mkv", ".avi", ".mts", ".m2ts"]);
-const AUDIO_EXTENSIONS = new Set([".wav", ".mp3", ".aac", ".m4a", ".flac", ".aiff", ".aif"]);
-const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
-const SUBTITLE_EXTENSIONS = new Set([".srt", ".ass", ".vtt"]);
-
-type MediaKind = "video" | "audio" | "image" | "subtitle" | "other";
-
-type MediaItem = {
-	id: string;
-	kind: MediaKind;
-	role: string;
-	label: string;
-	path: string;
-	originalPath?: string;
-	relativePath: string;
-	name: string;
-	extension: string;
-	sizeBytes: number;
-	confidence: number;
-	reason: string;
-	metadata: Record<string, any>;
-	thumbnailDataUrl?: string;
-};
-
-type MediaManifest = {
-	version: number;
-	sourceDirectory: string;
-	sourcePaths?: string[];
-	generatedAt: string;
-	manifestPath?: string;
-	files: MediaItem[];
-	cameras: MediaItem[];
-	audio: MediaItem[];
-	images: MediaItem[];
-	subtitles: MediaItem[];
-	other: MediaItem[];
-	selected: Record<string, any>;
-};
 
 type IngestProgress = {
 	stage: string;
@@ -221,14 +187,6 @@ function projectInfo(id: string, name?: string): ProjectInfo {
 function ensureProjectDirs(project: ProjectInfo) {
 	for (const subdir of PROJECT_SUBDIRS) {
 		fs.mkdirSync(path.join(project.root, subdir), { recursive: true });
-	}
-	for (const subdir of SHARED_SOURCE_SUBDIRS) {
-		const source = path.join(VIDEO_EDIT_ROOT, "source", subdir);
-		const target = path.join(project.sourceRoot, subdir);
-		const targetIsEmpty = !fs.existsSync(target) || fs.readdirSync(target).length === 0;
-		if (fs.existsSync(source) && targetIsEmpty) {
-			fs.cpSync(source, target, { recursive: true });
-		}
 	}
 	fs.writeFileSync(
 		path.join(project.root, "project.json"),
@@ -299,16 +257,11 @@ function projectInfoFromPayload(project: any): ProjectInfo {
 }
 
 function readProjectMediaManifest(project: ProjectInfo) {
-	const candidates = [
-		path.join(project.outputRoot, "reports", MEDIA_MANIFEST_NAME),
-		path.join(project.sourceRoot, MEDIA_MANIFEST_NAME),
-	];
-	for (const candidate of candidates) {
-		const manifest = readJsonFile(candidate);
-		if (manifest?.files && Array.isArray(manifest.files)) {
-			manifest.manifestPath = manifest.manifestPath || candidate;
-			return manifest;
-		}
+	const candidate = path.join(project.outputRoot, "reports", MEDIA_MANIFEST_NAME);
+	const manifest = readJsonFile(candidate);
+	if (manifest?.files && Array.isArray(manifest.files)) {
+		manifest.manifestPath = manifest.manifestPath || candidate;
+		return manifest;
 	}
 	return null;
 }
@@ -405,38 +358,78 @@ function parseSubtitleFile(filePath: string) {
 	return parseBlockSubtitle(raw);
 }
 
-function subtitlePathsFromManifest(manifest: any) {
-	const paths: string[] = [];
-	for (const item of manifest?.files || []) {
-		if (item?.kind === "subtitle" && item?.role !== "ignore" && item?.path) {
-			paths.push(String(item.path));
-		}
-	}
-	return paths;
-}
-
 function subtitlePathsFromConfig(appConfig: any) {
 	const outputRoot = outputRootFromConfig(appConfig);
-	const preferred = [
-		path.join(outputRoot, "transcripts", "manifest_sources", "primary.srt"),
-		path.join(outputRoot, "transcripts", "manifest_sources", "master.srt"),
-	];
-	const roots = [path.join(outputRoot, "transcripts")];
-	const paths: string[] = preferred.filter((filePath) => fs.existsSync(filePath));
-	for (const root of roots) {
-		if (fs.existsSync(root)) {
-			paths.push(
-				...walkFiles(root)
-					.filter((filePath) => SUBTITLE_EXTENSIONS.has(path.extname(filePath).toLowerCase()))
-					.sort((a, b) => a.localeCompare(b)),
-			);
+	const reportPath = path.join(outputRoot, "transcripts", "manifest_sources", "manifest_transcripts.json");
+	if (!fs.existsSync(reportPath)) {
+		return [];
+	}
+	const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+	if (report?.manifestFingerprint !== transcriptManifestFingerprint(appConfig)) {
+		return [];
+	}
+	const paths: string[] = [];
+	if (report.primarySrt) {
+		paths.push(String(report.primarySrt));
+	}
+	if (Array.isArray(report.transcripts)) {
+		for (const item of report.transcripts) {
+			if (item?.srt) {
+				paths.push(String(item.srt));
+			}
 		}
 	}
-	return paths;
+	return paths.filter((filePath) => SUBTITLE_EXTENSIONS.has(path.extname(filePath).toLowerCase()));
 }
 
-function loadSubtitleCaptions(manifest: any, appConfig: any) {
-	const candidates = [...subtitlePathsFromManifest(manifest), ...subtitlePathsFromConfig(appConfig)];
+function manifestForConfig(appConfig: any) {
+	const manifest = appConfig?.assets?.mediaManifest;
+	if (manifest?.files) {
+		return manifest;
+	}
+	const manifestPath = appConfig?.assets?.mediaManifestPath;
+	if (manifestPath && fs.existsSync(String(manifestPath))) {
+		return JSON.parse(fs.readFileSync(String(manifestPath), "utf8"));
+	}
+	return {};
+}
+
+function transcriptManifestFingerprint(appConfig: any) {
+	const manifest = manifestForConfig(appConfig);
+	const cameraRoles = new Set(["master", "camera2", "camera3", "camera4", "camera5", "camera6"]);
+	const entries = (Array.isArray(manifest?.files) ? manifest.files : [])
+		.filter((item: any) => {
+			const kind = String(item?.kind || "");
+			const role = String(item?.role || "");
+			if (kind === "audio" && role.startsWith("external")) {
+				return true;
+			}
+			return kind === "video" && cameraRoles.has(role) && item?.metadata?.hasAudio !== false;
+		})
+		.map((item: any) => {
+			const filePath = path.resolve(String(item.path || ""));
+			if (!fs.existsSync(filePath)) {
+				return null;
+			}
+			const stat = fs.statSync(filePath);
+			return {
+				kind: String(item.kind || ""),
+				role: String(item.role || ""),
+				path: filePath.toLowerCase(),
+				size: stat.size,
+				mtimeMs: Math.round(stat.mtimeMs),
+			};
+		})
+		.filter(Boolean)
+		.sort((a: any, b: any) => `${a.kind}\0${a.role}\0${a.path}`.localeCompare(`${b.kind}\0${b.role}\0${b.path}`));
+	if (!entries.length) {
+		return "";
+	}
+	return createHash("sha256").update(JSON.stringify(entries)).digest("hex");
+}
+
+function loadSubtitleCaptions(_manifest: any, appConfig: any) {
+	const candidates = subtitlePathsFromConfig(appConfig);
 	const seen = new Set<string>();
 	for (const candidate of candidates) {
 		const filePath = path.resolve(candidate);
@@ -490,37 +483,6 @@ function glossaryTermsFromCaptions(captions: SubtitleCaption[]) {
 			description: "解析された字幕から検出された候補語。説明を確認してください。",
 			enabled: true,
 		}));
-}
-
-function sourceBucketForSlot(slot: string, filePath: string) {
-	const ext = path.extname(filePath).toLowerCase();
-	if (slot === "externalAudio" || [".wav", ".mp3", ".aac", ".m4a"].includes(ext)) {
-		return "audio";
-	}
-	if (slot === "logo" || slot === "stillImages" || [".png", ".jpg", ".jpeg", ".webp"].includes(ext)) {
-		return "images";
-	}
-	if ([".srt", ".ass", ".vtt"].includes(ext)) {
-		return "subtitles";
-	}
-	return "video";
-}
-
-function mediaKindForPath(filePath: string): MediaKind {
-	const ext = path.extname(filePath).toLowerCase();
-	if (VIDEO_EXTENSIONS.has(ext)) {
-		return "video";
-	}
-	if (AUDIO_EXTENSIONS.has(ext)) {
-		return "audio";
-	}
-	if (IMAGE_EXTENSIONS.has(ext)) {
-		return "image";
-	}
-	if (SUBTITLE_EXTENSIONS.has(ext)) {
-		return "subtitle";
-	}
-	return "other";
 }
 
 function parseFraction(value: unknown) {
@@ -858,178 +820,6 @@ function walkFiles(root: string) {
 	return files;
 }
 
-function textForScoring(item: MediaItem) {
-	return `${item.relativePath} ${item.name}`.toLowerCase();
-}
-
-function roleScore(item: MediaItem, patterns: RegExp[]) {
-	const text = textForScoring(item);
-	return patterns.reduce((score, pattern) => score + (pattern.test(text) ? 1 : 0), 0);
-}
-
-function cameraOrderScore(item: MediaItem) {
-	const text = textForScoring(item);
-	if (/(^|[\\/_\-\s])(1cam|cam1|camera1|カメラ1|メイン|main|master|wide|引き|全体)/i.test(text)) {
-		return 1;
-	}
-	if (/(^|[\\/_\-\s])(2cam|cam2|camera2|カメラ2|right|右)/i.test(text)) {
-		return 2;
-	}
-	if (/(^|[\\/_\-\s])(3cam|cam3|camera3|カメラ3|left|左)/i.test(text)) {
-		return 3;
-	}
-	const match = text.match(/(?:cam|camera|カメラ)[\s_-]*(\d+)/i);
-	return match ? Number(match[1]) : 50;
-}
-
-function chooseMasterCamera(cameras: MediaItem[]) {
-	return [...cameras].sort((a, b) => {
-		const masterPatterns = [
-			/(^|[\\/_\-\s])(1cam|cam1|camera1|カメラ1)([\\/_\-\s.]|$)/i,
-			/(master|main|メイン|wide|引き|全体)/i,
-		];
-		const scoreA = roleScore(a, masterPatterns) * 100000 + Number(a.metadata.duration || 0);
-		const scoreB = roleScore(b, masterPatterns) * 100000 + Number(b.metadata.duration || 0);
-		return scoreB - scoreA;
-	})[0];
-}
-
-function rebuildManifestGroups(manifest: MediaManifest) {
-	const files = manifest.files || [];
-	const cameraRoles = new Set(["master", "camera2", "camera3", "camera4", "camera5", "camera6"]);
-	manifest.cameras = files
-		.filter((item) => item.kind === "video" && cameraRoles.has(item.role))
-		.sort((a, b) => {
-			if (a.role === "master") {
-				return -1;
-			}
-			if (b.role === "master") {
-				return 1;
-			}
-			return Number(a.role.replace("camera", "")) - Number(b.role.replace("camera", ""));
-		});
-	manifest.audio = files.filter((item) => item.kind === "audio" && item.role.startsWith("external"));
-	manifest.images = files.filter((item) => item.kind === "image" && ["logo", "still"].includes(item.role));
-	manifest.subtitles = files.filter((item) => item.kind === "subtitle" && item.role === "subtitle");
-	manifest.other = files.filter(
-		(item) =>
-			!manifest.cameras.includes(item) &&
-			!manifest.audio.includes(item) &&
-			!manifest.images.includes(item) &&
-			!manifest.subtitles.includes(item),
-	);
-	manifest.selected = legacyFilesFromManifest(manifest);
-}
-
-function legacyFilesFromManifest(manifest: MediaManifest) {
-	const byRole = (role: string) => manifest.files.find((item) => item.role === role)?.path || "";
-	return {
-		masterVideo: byRole("master"),
-		rightCloseVideo: byRole("camera2"),
-		leftCloseVideo: byRole("camera3"),
-		externalAudio: manifest.audio[0]?.path || "",
-		logo: byRole("logo"),
-		stillImages: manifest.images.filter((item) => item.role === "still").map((item) => item.path),
-	};
-}
-
-function classifyManifest(sourceDirectory: string, items: MediaItem[]): MediaManifest {
-	const manifest: MediaManifest = {
-		version: 1,
-		sourceDirectory,
-		generatedAt: new Date().toISOString(),
-		files: items,
-		cameras: [],
-		audio: [],
-		images: [],
-		subtitles: [],
-		other: [],
-		selected: {},
-	};
-	const cameras = items.filter((item) => item.kind === "video" && item.metadata.hasVideo);
-	const master = chooseMasterCamera(cameras);
-	const orderedCameras = [...cameras]
-		.filter((item) => item !== master)
-		.sort((a, b) => {
-			const order = cameraOrderScore(a) - cameraOrderScore(b);
-			if (order !== 0) {
-				return order;
-			}
-			const time = String(a.metadata.creationTime || "").localeCompare(String(b.metadata.creationTime || ""));
-			return time || a.name.localeCompare(b.name);
-		});
-	if (master) {
-		master.role = "master";
-		master.label = "Camera 1 / master";
-		master.confidence = roleScore(master, [/1cam|cam1|camera1|master|main|メイン|wide|引き|全体/i]) ? 0.92 : 0.72;
-		master.reason =
-			master.confidence >= 0.9
-				? "filename indicates the main/wide camera"
-				: "chosen as the most likely timeline master";
-	}
-	orderedCameras.forEach((item, index) => {
-		item.role = `camera${index + 2}`;
-		item.label = `Camera ${index + 2}`;
-		item.confidence = cameraOrderScore(item) < 50 ? 0.84 : 0.68;
-		item.reason =
-			item.confidence >= 0.8 ? "filename indicates camera order" : "additional video source ordered by metadata/name";
-	});
-
-	const audioFiles = items.filter((item) => item.kind === "audio");
-	audioFiles
-		.sort((a, b) => {
-			const scoreA =
-				roleScore(a, [/sound|audio|wav|rec|録音|音声|external|外部|別録/i]) * 100000 + Number(a.metadata.duration || 0);
-			const scoreB =
-				roleScore(b, [/sound|audio|wav|rec|録音|音声|external|外部|別録/i]) * 100000 + Number(b.metadata.duration || 0);
-			return scoreB - scoreA;
-		})
-		.forEach((item, index) => {
-			item.role = index === 0 ? "external" : `external${index + 1}`;
-			item.label = index === 0 ? "External audio" : `External audio ${index + 1}`;
-			item.confidence = roleScore(item, [/sound|audio|wav|rec|録音|音声|external|外部|別録/i]) ? 0.9 : 0.74;
-			item.reason = "standalone audio source";
-		});
-
-	const imageFiles = items.filter((item) => item.kind === "image");
-	const logo = [...imageFiles].sort((a, b) => {
-		const logoPatterns = [/logo|ロゴ|mark|symbol|type-logo|brand/i];
-		return roleScore(b, logoPatterns) - roleScore(a, logoPatterns);
-	})[0];
-	for (const item of imageFiles) {
-		if (item === logo && roleScore(item, [/logo|ロゴ|mark|symbol|type-logo|brand/i]) > 0) {
-			item.role = "logo";
-			item.label = "Logo";
-			item.confidence = 0.88;
-			item.reason = "filename indicates a logo/brand mark";
-		} else {
-			item.role = "still";
-			item.label = "Still insert";
-			item.confidence = 0.76;
-			item.reason = "image asset for inserts or visual material";
-		}
-	}
-
-	items
-		.filter((item) => item.kind === "subtitle")
-		.forEach((item) => {
-			item.role = "subtitle";
-			item.label = "Subtitle";
-			item.confidence = 0.82;
-			item.reason = "subtitle file";
-		});
-	items
-		.filter((item) => item.kind === "other")
-		.forEach((item) => {
-			item.role = "ignore";
-			item.label = "Other";
-			item.confidence = 0.2;
-			item.reason = "unsupported file type";
-		});
-	rebuildManifestGroups(manifest);
-	return manifest;
-}
-
 async function _buildMediaManifest(sourceDirectory: string, ffprobePath: string, emit?: IngestProgressEmitter) {
 	const root = path.resolve(sourceDirectory);
 	emit?.({
@@ -1151,13 +941,10 @@ function _importMediaManifest(project: ProjectInfo, manifest: MediaManifest, emi
 	}
 	rebuildManifestGroups(manifest);
 	const outputManifestPath = path.join(project.outputRoot, "reports", MEDIA_MANIFEST_NAME);
-	const sourceManifestPath = path.join(project.sourceRoot, MEDIA_MANIFEST_NAME);
 	manifest.manifestPath = outputManifestPath;
 	fs.mkdirSync(path.dirname(outputManifestPath), { recursive: true });
-	fs.mkdirSync(path.dirname(sourceManifestPath), { recursive: true });
 	const serialized = JSON.stringify(manifest, null, 2);
 	fs.writeFileSync(outputManifestPath, serialized, "utf8");
-	fs.writeFileSync(sourceManifestPath, serialized, "utf8");
 	emit?.({
 		stage: "manifest",
 		current: files.length,
@@ -1206,6 +993,15 @@ function outputRootFromConfig(appConfig: any) {
 	return configured ? path.resolve(String(configured)) : OUTPUT_ROOT;
 }
 
+function pythonExecutableFor(appConfig: any) {
+	const configured = appConfig?.tools?.python;
+	return typeof configured === "string" && configured.trim() ? configured.trim() : PYTHON_EXE;
+}
+
+function runtimeConfigPathFor(appConfig: any) {
+	return path.join(outputRootFromConfig(appConfig), "app", "video_edit_app_config.runtime.json");
+}
+
 function writeRuntimeMediaManifest(appConfig: any) {
 	const manifest = appConfig?.assets?.mediaManifest;
 	const manifestPath = appConfig?.assets?.mediaManifestPath || manifest?.manifestPath;
@@ -1215,6 +1011,14 @@ function writeRuntimeMediaManifest(appConfig: any) {
 	const resolved = path.resolve(String(manifestPath));
 	fs.mkdirSync(path.dirname(resolved), { recursive: true });
 	fs.writeFileSync(resolved, JSON.stringify({ ...manifest, manifestPath: resolved }, null, 2), "utf8");
+}
+
+function writeRuntimeAppConfig(appConfig: any) {
+	const configPath = runtimeConfigPathFor(appConfig);
+	fs.mkdirSync(path.dirname(configPath), { recursive: true });
+	writeRuntimeMediaManifest(appConfig);
+	fs.writeFileSync(configPath, JSON.stringify(appConfig, null, 2), "utf8");
+	return configPath;
 }
 
 function numericConfig(value: unknown, fallback: number) {
@@ -1377,13 +1181,21 @@ const ALLOWED_PYTHON_SCRIPTS = new Set([
 	"analyze_person_edit_metadata.py",
 	"analyze_multicam_blocking.py",
 	"build_reference_edit_profile.py",
+	"apply_subtitle_corrections.py",
 	"auto_sync_app_sources.py",
 	"build_person_edit_plan.py",
+	"classify_subtitle_speakers.py",
+	"compare_manifest_transcripts.py",
 	"generate_full_transcript_png_overlays.py",
 	"generate_glossary_term_overlays.py",
-	"generate_punchline_png_overlays.py",
+	"generate_music_bed.py",
+	"generate_omission_card.py",
+	"generate_project_thumbnail.py",
 	"generate_thumbnail_candidates.py",
+	"generate_punchline_png_overlays.py",
+	"replace_video_audio.py",
 	"render_app_interview.py",
+	"review_subtitles.py",
 	"shorten_silences.py",
 	"transcribe_manifest_sources.py",
 	"video_edit_run.py",
@@ -1393,11 +1205,18 @@ const ALLOWED_WORKFLOW_ACTIONS = new Set([
 	"generate-punchlines",
 	"generate-full-overlays",
 	"generate-glossary-overlays",
+	"generate-music-bed",
+	"generate-thumbnail",
+	"generate-thumbnail-candidates",
+	"replace-audio",
+	"review-subtitles",
+	"apply-subtitle-corrections",
+	"classify-subtitle-speakers",
+	"compare-transcripts",
 	"analyze-blocking",
 	"auto-sync-dropped",
 	"transcribe-dropped",
 	"render-selected",
-	"generate-thumbnails",
 	"analyze-person-edit-metadata",
 	"analyze-reference-video",
 	"shorten-input",
@@ -1471,15 +1290,12 @@ function runLocalPythonScript(
 	if (!ALLOWED_PYTHON_SCRIPTS.has(scriptName)) {
 		return Promise.reject(new Error(`script is not allowlisted: ${scriptName}`));
 	}
-	if (appConfig) {
-		fs.mkdirSync(path.dirname(APP_CONFIG_PATH), { recursive: true });
-		writeRuntimeMediaManifest(appConfig);
-		fs.writeFileSync(APP_CONFIG_PATH, JSON.stringify(appConfig, null, 2), "utf8");
-	}
+	const appConfigPath = appConfig ? writeRuntimeAppConfig(appConfig) : "";
+	const pythonExe = pythonExecutableFor(appConfig);
 	return new Promise((resolve, reject) => {
-		const proc = spawn(PYTHON_EXE, [path.join(SCRIPTS_ROOT, scriptName)], {
+		const proc = spawn(pythonExe, [path.join(SCRIPTS_ROOT, scriptName)], {
 			cwd: VIDEO_EDIT_ROOT,
-			env: { ...process.env, PYTHONUTF8: "1", VIDEO_EDIT_APP_CONFIG: APP_CONFIG_PATH },
+			env: { ...process.env, PYTHONUTF8: "1", ...(appConfigPath ? { VIDEO_EDIT_APP_CONFIG: appConfigPath } : {}) },
 			windowsHide: true,
 		});
 		let stdout = "";
@@ -1514,11 +1330,8 @@ function runAllowedPythonScript(
 	if (!args.every((arg) => typeof arg === "string")) {
 		return Promise.reject(new Error("script arguments must be strings"));
 	}
-	if (appConfig) {
-		fs.mkdirSync(path.dirname(APP_CONFIG_PATH), { recursive: true });
-		writeRuntimeMediaManifest(appConfig);
-		fs.writeFileSync(APP_CONFIG_PATH, JSON.stringify(appConfig, null, 2), "utf8");
-	}
+	const appConfigPath = appConfig ? writeRuntimeAppConfig(appConfig) : "";
+	const pythonExe = pythonExecutableFor(appConfig);
 	return new Promise((resolve, reject) => {
 		const action = options.action || "";
 		let bestProgress = 0;
@@ -1534,9 +1347,9 @@ function runAllowedPythonScript(
 				message: action === "render-selected" ? "レンダーを開始しています" : "処理を開始しています",
 			});
 		}
-		const proc = spawn(PYTHON_EXE, [path.join(SCRIPTS_ROOT, scriptName), ...args], {
+		const proc = spawn(pythonExe, [path.join(SCRIPTS_ROOT, scriptName), ...args], {
 			cwd: VIDEO_EDIT_ROOT,
-			env: { ...process.env, PYTHONUTF8: "1", VIDEO_EDIT_APP_CONFIG: APP_CONFIG_PATH },
+			env: { ...process.env, PYTHONUTF8: "1", ...(appConfigPath ? { VIDEO_EDIT_APP_CONFIG: appConfigPath } : {}) },
 			windowsHide: true,
 		});
 		let stdout = "";
@@ -1737,9 +1550,7 @@ class CodexAppServer {
 			throw new Error("command is not allowed by the Video Edit preset allowlist");
 		}
 		if (appConfig) {
-			fs.mkdirSync(path.dirname(APP_CONFIG_PATH), { recursive: true });
-			writeRuntimeMediaManifest(appConfig);
-			fs.writeFileSync(APP_CONFIG_PATH, JSON.stringify(appConfig, null, 2), "utf8");
+			writeRuntimeAppConfig(appConfig);
 		}
 		return this.request("command/exec", {
 			command,
@@ -1875,25 +1686,18 @@ ipcMain.handle("environment:get", async () => {
 		videoEditRoot: VIDEO_EDIT_ROOT,
 		projectsRoot: PROJECTS_ROOT,
 		methodDoc: METHOD_DOC,
-		appConfigPath: APP_CONFIG_PATH,
+		appConfigPath: DEFAULT_APP_CONFIG_PATH,
 		syncReportPath: SYNC_REPORT_PATH,
 		methodDocExists: fs.existsSync(METHOD_DOC),
 		codexAppServerDoc: path.join(VIDEO_EDIT_ROOT, "docs", "codex-app-server.md"),
 		scriptsRoot: SCRIPTS_ROOT,
-		outputRoot: OUTPUT_ROOT,
-		outputThumbnailsRoot: OUTPUT_THUMBNAILS_ROOT,
-		thumbnailSourceRoot: path.join(VIDEO_EDIT_ROOT, "source", "thumbnail", "etype260515_p_takei"),
-		thumbnailContactSheet: path.join(OUTPUT_THUMBNAILS_ROOT, "thumbnail_standard_candidates_contact_sheet.jpg"),
+		appStateRoot: APP_STATE_ROOT,
+		outputRoot: "",
 		outputAppRoot: OUTPUT_APP_ROOT,
 		pythonExe: PYTHON_EXE,
 		ffmpegExe: DEFAULT_FFMPEG_EXE,
 		ffprobeExe: DEFAULT_FFPROBE_EXE,
-		knownOutputs: [
-			"ST7_7550_multicam_cut_1min_onepass_full_transcript.mp4",
-			"ST7_7550_multicam_cut_1min_onepass_punchline.mp4",
-			"ST7_7550_multicam_cut_5min_png_titles_punchlines.mp4",
-			"ST7_7550_multicam_cut_5min_png_titles_full_transcript.mp4",
-		].map((name) => path.join(OUTPUT_ROOT, "videos", name)),
+		knownOutputs: [],
 	};
 });
 

@@ -54,15 +54,7 @@ def float_config(config: dict[str, Any], *keys: str, default: float) -> float:
 
 
 def transcribe_model_name(config: dict[str, Any], *, fallback: str = DEFAULT_TRANSCRIBE_MODEL) -> str:
-    return str(
-        nested(
-            config,
-            "analysis",
-            "transcribeModel",
-            default=nested(config, "workflow", "reviewModel", default=fallback),
-        )
-        or fallback
-    )
+    return str(nested(config, "analysis", "transcribeModel", default=fallback) or fallback)
 
 
 def transcribe_language(config: dict[str, Any]) -> str:
@@ -174,7 +166,8 @@ def ffmpeg_audio_filter(config: dict[str, Any]) -> str:
 
 def preprocessed_audio_path(source: Path, out_dir: Path, label: str, config: dict[str, Any]) -> Path:
     suffix = "norm" if should_normalize_audio(config) else "raw"
-    return out_dir / f"{safe_stem(label)}_16k_mono_{suffix}.wav"
+    filter_key = hashlib.sha256(ffmpeg_audio_filter(config).encode("utf-8")).hexdigest()[:10]
+    return out_dir / f"{safe_stem(label)}_16k_mono_{suffix}_{filter_key}.wav"
 
 
 def preprocess_audio(source: Path, out_dir: Path, label: str, ffmpeg: Path, config: dict[str, Any]) -> Path:

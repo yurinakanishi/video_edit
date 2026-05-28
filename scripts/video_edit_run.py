@@ -19,6 +19,14 @@ SIMPLE_PYTHON_ACTIONS = {
     "generate-punchlines": "generate_punchline_png_overlays.py",
     "generate-full-overlays": "generate_full_transcript_png_overlays.py",
     "generate-glossary-overlays": "generate_glossary_term_overlays.py",
+    "generate-music-bed": "generate_music_bed.py",
+    "generate-thumbnail": "generate_project_thumbnail.py",
+    "generate-thumbnail-candidates": "generate_thumbnail_candidates.py",
+    "replace-audio": "replace_video_audio.py",
+    "review-subtitles": "review_subtitles.py",
+    "apply-subtitle-corrections": "apply_subtitle_corrections.py",
+    "classify-subtitle-speakers": "classify_subtitle_speakers.py",
+    "compare-transcripts": "compare_manifest_transcripts.py",
     "analyze-blocking": "analyze_multicam_blocking.py",
     "auto-sync-dropped": "auto_sync_app_sources.py",
     "transcribe-dropped": "transcribe_manifest_sources.py",
@@ -27,14 +35,6 @@ SIMPLE_PYTHON_ACTIONS = {
 RENDER_SCRIPTS = {
     "render_app_interview.py",
 }
-
-THUMBNAIL_MODE_FLAGS = {
-    "standard": "",
-    "closeup_bottom_title": "--closeup-bottom-title",
-    "right_face_title_stack": "--right-face-title-stack",
-    "left_face_title_stack": "--left-face-title-stack",
-}
-
 
 def bool_value(*keys: str, default: bool = False) -> bool:
     value = nested(APP_CONFIG, *keys, default=default)
@@ -140,25 +140,6 @@ def render_command() -> list[str]:
     return command
 
 
-def thumbnail_command() -> list[str]:
-    mode = str_value("thumbnails", "mode", default=str_value("render", "thumbnailMode", default="standard"))
-    main_color = str_value("thumbnails", "mainColor", default=str_value("render", "thumbnailMainColor", default="yellow"))
-    command = [
-        sys.executable,
-        str(SCRIPTS / "generate_thumbnail_candidates.py"),
-        "--main-color",
-        main_color,
-        "--mode",
-        mode,
-    ]
-    if bool_value("thumbnails", "importAssets", default=True):
-        command.append("--import-assets")
-    asset_source = path_value("thumbnails", "assetSource")
-    if asset_source:
-        command.extend(["--asset-source", asset_source])
-    return command
-
-
 def person_analysis_command(reference: bool = False) -> list[str]:
     command = [
         sys.executable,
@@ -258,8 +239,6 @@ def ffprobe_command(kind: str) -> list[str]:
 def command_for_action(action: str) -> list[str]:
     if action == "render-selected":
         return render_command()
-    if action == "generate-thumbnails":
-        return thumbnail_command()
     if action == "analyze-person-edit-metadata":
         return person_analysis_command()
     if action == "analyze-reference-video":

@@ -48,6 +48,7 @@
             <button type="button" id="openOutput">Review generated video</button>
             <button type="button" id="runPreset">Run selected workflow step</button>
             <button type="button" class="primary-button" id="sendRequest">Ask AI to edit</button>
+            <button type="button" class="danger-button" id="stopCodexTurn" disabled>Stop AI edit</button>
           </div>
         </section>
 
@@ -83,8 +84,8 @@
               </label>
               <input id="projectId" type="hidden" />
               <div class="project-actions">
-                <button type="button" class="primary-button" id="createProject">Start this project</button>
-                <button type="button" id="changeProject">Switch project</button>
+                <button type="button" class="primary-button" id="createProject">Create new project</button>
+                <button type="button" id="changeProject">Select project</button>
                 <button type="button" id="copyProjectAssets">Save selected material</button>
                 <button type="button" class="danger-button" id="deleteProject">Delete project</button>
               </div>
@@ -684,7 +685,7 @@
               <div class="run-actions">
                 <button type="button" id="refreshCommand">Refresh execution details</button>
                 <button type="button" id="refreshPrompt">Refresh request text</button>
-                <button type="button" id="interrupt">Stop running job</button>
+                <button type="button" class="danger-button" id="interrupt" disabled>Stop AI edit</button>
               </div>
             </details>
           </div>
@@ -710,6 +711,29 @@
           <small id="appBusyProgressPercent">0%</small>
         </div>
       </div>
+    </div>
+    <div class="modal-backdrop" id="projectDialog" hidden>
+      <section class="project-dialog" role="dialog" aria-modal="true" aria-labelledby="projectDialogTitle">
+        <header class="project-dialog-header">
+          <div>
+            <h3 id="projectDialogTitle">Select project</h3>
+            <p>Open an existing project or create a new one.</p>
+          </div>
+          <button type="button" class="icon-button" id="closeProjectDialog" aria-label="Close" title="Close">×</button>
+        </header>
+        <div class="project-dialog-create">
+          <label>
+            New project name
+            <input id="projectDialogName" placeholder="e.g. interview-client-a" />
+          </label>
+          <button type="button" class="primary-button" id="createProjectFromDialog">Create</button>
+        </div>
+        <div class="project-dialog-list-heading">Project list</div>
+        <div class="project-dialog-list" id="projectDialogList"></div>
+        <footer class="project-dialog-footer">
+          <button type="button" id="cancelProjectDialog">Cancel</button>
+        </footer>
+      </section>
     </div>
     <script type="module" src="./renderer.js"></script>
   </body>

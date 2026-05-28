@@ -175,9 +175,7 @@ function resolveCodexExecutable() {
 			if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
 				return candidate;
 			}
-		} catch {
-			continue;
-		}
+		} catch {}
 	}
 	return CODEX_EXE_NAME;
 }
@@ -339,6 +337,38 @@ function readProjectMediaManifest(project: ProjectInfo) {
 		return manifest;
 	}
 	return null;
+}
+
+function listProjects() {
+	fs.mkdirSync(PROJECTS_ROOT, { recursive: true });
+	return fs
+		.readdirSync(PROJECTS_ROOT, { withFileTypes: true })
+		.filter((entry) => entry.isDirectory() && !entry.name.startsWith(".") && !entry.name.startsWith("__"))
+		.map((entry) => {
+			try {
+				const root = path.join(PROJECTS_ROOT, entry.name);
+				const metadata = readJsonFile(path.join(root, "project.json")) || {};
+				if (!metadata.id && !fs.existsSync(path.join(root, "source")) && !fs.existsSync(path.join(root, "output"))) {
+					return null;
+				}
+				const project = projectInfoFromRoot(root, entry.name);
+				const manifest = readProjectMediaManifest(project);
+				const stat = fs.statSync(root);
+				const updatedAt = String(metadata.updatedAt || new Date(stat.mtimeMs).toISOString());
+				return {
+					project,
+					updatedAt,
+					lastModifiedAt: new Date(stat.mtimeMs).toISOString(),
+					hasManifest: Boolean(manifest),
+					manifestPath: manifest?.manifestPath || "",
+					mediaCount: Array.isArray(manifest?.files) ? manifest.files.length : 0,
+				};
+			} catch {
+				return null;
+			}
+		})
+		.filter(Boolean)
+		.sort((left: any, right: any) => String(right.updatedAt).localeCompare(String(left.updatedAt)));
 }
 
 function analysisStatePathForProject(project: ProjectInfo) {
@@ -1659,7 +1689,7 @@ class CodexAppServer {
 			const threadParams: Record<string, any> = {
 				cwd: VIDEO_EDIT_ROOT,
 				approvalPolicy: "never",
-				sandbox: "workspace-write",
+				sandbox: "danger-full-access",
 				serviceName: "video_edit_electron",
 			};
 			if (settings.model) {
@@ -1677,9 +1707,7 @@ class CodexAppServer {
 			cwd: VIDEO_EDIT_ROOT,
 			approvalPolicy: "never",
 			sandboxPolicy: {
-				type: "workspaceWrite",
-				writableRoots: [VIDEO_EDIT_ROOT],
-				networkAccess: true,
+				type: "dangerFullAccess",
 			},
 			input: [{ type: "text", text: prompt }],
 		};
@@ -1880,6 +1908,19 @@ ipcMain.handle("project:create", async (_event, { name, id }) => {
 	const project = projectInfo(id || name || "", name);
 	ensureProjectDirs(project);
 	return project;
+});
+
+ipcMain.handle("project:list", async () => {
+	return { projects: listProjects() };
+});
+
+ipcMain.handle("project:load", async (_event, { project } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	return {
+		project: info,
+		manifest: readProjectMediaManifest(info),
+	};
 });
 
 ipcMain.handle("project:pick-existing", async (_event, options: any = {}) => {

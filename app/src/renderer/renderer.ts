@@ -3,6 +3,8 @@ type Unsubscribe = () => void;
 type EditAppApi = {
 	getEnvironment: () => Promise<any>;
 	createProject: (payload: any) => Promise<ProjectInfo>;
+	listProjects: () => Promise<{ projects: ProjectListEntry[] }>;
+	loadProject: (payload: any) => Promise<{ project: ProjectInfo; manifest?: MediaManifest | null }>;
 	pickProject: (payload?: any) => Promise<{ project: ProjectInfo; manifest?: MediaManifest | null } | null>;
 	deleteProject: (
 		payload: any,
@@ -46,6 +48,15 @@ type ProjectInfo = {
 	root: string;
 	sourceRoot: string;
 	outputRoot: string;
+};
+
+type ProjectListEntry = {
+	project: ProjectInfo;
+	updatedAt: string;
+	lastModifiedAt: string;
+	hasManifest: boolean;
+	manifestPath: string;
+	mediaCount: number;
 };
 
 type MediaItem = {
@@ -112,12 +123,16 @@ function initialLanguage(): Locale {
 const state = {
 	env: null,
 	project: null as ProjectInfo | null,
+	projectList: [] as ProjectListEntry[],
+	projectListLoading: false,
 	mediaManifest: null as MediaManifest | null,
 	mediaDirectory: "",
 	materialPaths: [] as string[],
 	ingestRunning: false,
 	fullAnalysisRunning: false,
 	directRunRunning: false,
+	codexTurnRunning: false,
+	codexInterruptRequested: false,
 	runningAction: "",
 	lastWorkflowProgressLog: 0,
 	lastWorkflowStage: "",
@@ -193,6 +208,8 @@ const messages: Record<Locale, Record<string, string>> = {
 		"status.codexError": "AI エラー",
 		"status.codexExited": "AI 終了",
 		"status.codexRunning": "AI 実行中",
+		"status.codexStopping": "AI 停止中",
+		"status.codexStopped": "AI 停止済み",
 		"status.projectError": "プロジェクトエラー",
 		"status.projectRequired": "先にプロジェクトを作成してください",
 		"status.checkRequiredFields": "必須項目を確認してください",
@@ -214,6 +231,9 @@ const messages: Record<Locale, Record<string, string>> = {
 		"action.refreshPreview": "更新",
 		"action.runPresetScript": "選択中の工程を実行",
 		"action.runWithCodex": "AIに編集を依頼",
+		"action.codexRunning": "AI編集中...",
+		"action.stopCodex": "AI編集を停止",
+		"action.stoppingCodex": "停止中...",
 		"preview.heading": "生成物プレビュー",
 		"preview.outputTitle": "出力フォルダ",
 		"preview.waiting": "確認したい生成物を選んでください。",
@@ -239,10 +259,23 @@ const messages: Record<Locale, Record<string, string>> = {
 		"project.folder": "プロジェクトフォルダ",
 		"project.source": "プロジェクト素材",
 		"project.output": "プロジェクト出力",
-		"project.createSelect": "この名前で開始",
-		"project.change": "プロジェクトを切り替え",
+		"project.createSelect": "新しいプロジェクトを作成",
+		"project.change": "プロジェクトを選択",
 		"project.copySelectedSources": "選択素材を保存",
 		"project.delete": "プロジェクト削除",
+		"project.dialogTitle": "プロジェクトを選択",
+		"project.dialogDescription": "既存プロジェクトを開くか、新しいプロジェクトを作成します。",
+		"project.dialogCreateName": "新しいプロジェクト名",
+		"project.dialogCreate": "作成",
+		"project.dialogExisting": "プロジェクト一覧",
+		"project.dialogClose": "閉じる",
+		"project.dialogCancel": "キャンセル",
+		"project.dialogLoading": "プロジェクトを読み込んでいます...",
+		"project.dialogEmpty": "プロジェクトはまだありません。",
+		"project.dialogActive": "選択中",
+		"project.dialogUpdated": "更新: {date}",
+		"project.dialogMediaCount": "素材 {count} 件",
+		"project.dialogNoManifest": "素材解析なし",
 		"placeholder.projectName": "例: interview-client-a",
 		"placeholder.autoFromName": "名前から自動生成",
 		"materials.heading": "素材",
@@ -493,7 +526,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"codex.modelCustomSuffix": "保存済み",
 		"action.refreshCommand": "実行内容を更新",
 		"action.refreshPrompt": "依頼内容を更新",
-		"action.interrupt": "実行を停止",
+		"action.interrupt": "AI編集を停止",
 		"progress.heading": "進捗",
 		"progress.streamedEvents": "実行ログ",
 		"busy.processing": "処理中",
@@ -657,6 +690,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"notification.analysisCompleteCheck": "解析は完了しました。一部の結果を確認してください。",
 		"log.projectNotSelected": "プロジェクトが選択されていません",
 		"log.cannotDeleteDuringIngest": "素材解析中は削除できません",
+		"log.cannotSwitchDuringIngest": "素材解析中はプロジェクトを切り替えられません",
 		"log.selectMaterialFirst": "素材フォルダまたはファイルを選択してください",
 		"log.glossaryRequired": "用語・検出語・解説を入力してください",
 	},
@@ -676,6 +710,8 @@ const messages: Record<Locale, Record<string, string>> = {
 		"status.codexError": "AI error",
 		"status.codexExited": "AI stopped",
 		"status.codexRunning": "AI running",
+		"status.codexStopping": "Stopping AI",
+		"status.codexStopped": "AI stopped",
 		"status.projectError": "Project error",
 		"status.projectRequired": "Create a project first",
 		"status.checkRequiredFields": "Check required fields",
@@ -697,6 +733,9 @@ const messages: Record<Locale, Record<string, string>> = {
 		"action.refreshPreview": "Refresh",
 		"action.runPresetScript": "Run selected workflow step",
 		"action.runWithCodex": "Ask AI to edit",
+		"action.codexRunning": "AI editing...",
+		"action.stopCodex": "Stop AI edit",
+		"action.stoppingCodex": "Stopping...",
 		"preview.heading": "Generated file preview",
 		"preview.outputTitle": "Output folder",
 		"preview.waiting": "Choose which generated files to review.",
@@ -722,10 +761,23 @@ const messages: Record<Locale, Record<string, string>> = {
 		"project.folder": "Project folder",
 		"project.source": "Project source",
 		"project.output": "Project output",
-		"project.createSelect": "Start this project",
-		"project.change": "Switch project",
+		"project.createSelect": "Create new project",
+		"project.change": "Select project",
 		"project.copySelectedSources": "Save selected material",
 		"project.delete": "Delete project",
+		"project.dialogTitle": "Select project",
+		"project.dialogDescription": "Open an existing project or create a new one.",
+		"project.dialogCreateName": "New project name",
+		"project.dialogCreate": "Create",
+		"project.dialogExisting": "Project list",
+		"project.dialogClose": "Close",
+		"project.dialogCancel": "Cancel",
+		"project.dialogLoading": "Loading projects...",
+		"project.dialogEmpty": "No projects yet.",
+		"project.dialogActive": "Active",
+		"project.dialogUpdated": "Updated: {date}",
+		"project.dialogMediaCount": "{count} material files",
+		"project.dialogNoManifest": "No material analysis",
 		"placeholder.projectName": "e.g. interview-client-a",
 		"placeholder.autoFromName": "auto from name",
 		"materials.heading": "Assets",
@@ -976,7 +1028,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"codex.modelCustomSuffix": "saved",
 		"action.refreshCommand": "Refresh execution details",
 		"action.refreshPrompt": "Refresh request text",
-		"action.interrupt": "Stop running job",
+		"action.interrupt": "Stop AI edit",
 		"progress.heading": "Progress",
 		"progress.streamedEvents": "Run log",
 		"busy.processing": "Processing",
@@ -1144,6 +1196,7 @@ const messages: Record<Locale, Record<string, string>> = {
 		"notification.analysisCompleteCheck": "Analysis is complete. Check the partial results.",
 		"log.projectNotSelected": "No project is selected",
 		"log.cannotDeleteDuringIngest": "Cannot delete while asset analysis is running",
+		"log.cannotSwitchDuringIngest": "Cannot switch projects while asset analysis is running",
 		"log.selectMaterialFirst": "Select a material folder or files first",
 		"log.glossaryRequired": "Enter a term, detection pattern, and explanation",
 	},
@@ -1264,6 +1317,7 @@ function setLanguage(language: Locale) {
 	renderMediaManifest();
 	renderStillImageList();
 	renderAnalysisResults();
+	renderProjectDialogList();
 	renderSyncReport();
 	renderOutputPreview();
 	renderCodexModelOptions();
@@ -1828,16 +1882,32 @@ function setIngestProgress(payload: any) {
 function setDirectRunRunning(running: boolean, label = "") {
 	state.directRunRunning = running;
 	const runButton = $("#runPreset");
-	const sendButton = $("#sendRequest");
 	if (runButton) {
 		runButton.disabled = running;
 		runButton.textContent = running
 			? t("format.runningButton", { label: label || t("runLabel.run") })
 			: t("action.runPresetScript");
 	}
+	updateCodexRunControls();
+}
+
+function updateCodexRunControls() {
+	const sendButton = $("#sendRequest");
+	const stopButtons = [$("#stopCodexTurn"), $("#interrupt")].filter(Boolean);
 	if (sendButton) {
-		sendButton.disabled = running;
+		sendButton.disabled = state.directRunRunning || state.codexTurnRunning;
+		sendButton.textContent = state.codexTurnRunning ? t("action.codexRunning") : t("action.runWithCodex");
 	}
+	for (const button of stopButtons) {
+		button.disabled = !state.codexTurnRunning || state.codexInterruptRequested;
+		button.textContent = state.codexInterruptRequested ? t("action.stoppingCodex") : t("action.stopCodex");
+	}
+}
+
+function setCodexTurnRunning(running: boolean, interruptRequested = false) {
+	state.codexTurnRunning = running;
+	state.codexInterruptRequested = running && interruptRequested;
+	updateCodexRunControls();
 }
 
 function setIngestRunning(running: boolean) {
@@ -2004,6 +2074,20 @@ function materialSourceLabel() {
 	return state.materialPaths.length === 1 ? state.materialPaths[0] : `${state.materialPaths.length} selected item(s)`;
 }
 
+function formatProjectDate(value: string) {
+	const date = new Date(value);
+	if (!Number.isFinite(date.getTime())) {
+		return "";
+	}
+	return new Intl.DateTimeFormat(state.language === "ja" ? "ja-JP" : "en-US", {
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit",
+	}).format(date);
+}
+
 function setAnalysisTitleText(title: string) {
 	state.analysisTitleText = String(title || "").trim();
 	const input = $("#titleText");
@@ -2044,7 +2128,144 @@ function setProject(project: ProjectInfo | null) {
 		preview.textContent = project ? project.name : t("project.noProjectSelected");
 	}
 	setDefaultProjectOutput(false);
+	renderProjectDialogList();
 	refreshPrompt();
+}
+
+function setProjectDialogOpen(open: boolean) {
+	const dialog = $("#projectDialog");
+	if (!dialog) {
+		return;
+	}
+	dialog.hidden = !open;
+	if (open) {
+		const input = $("#projectDialogName");
+		if (input) {
+			input.value = formValue("projectName") && !state.project ? formValue("projectName") : "";
+		}
+		void loadProjectList();
+		window.setTimeout(() => {
+			($("#projectDialogName") || $("#closeProjectDialog"))?.focus();
+		}, 0);
+	}
+}
+
+function renderProjectDialogList() {
+	const list = $("#projectDialogList");
+	if (!list) {
+		return;
+	}
+	list.innerHTML = "";
+	if (state.projectListLoading) {
+		const empty = document.createElement("div");
+		empty.className = "project-dialog-empty";
+		empty.textContent = t("project.dialogLoading");
+		list.appendChild(empty);
+		return;
+	}
+	if (!state.projectList.length) {
+		const empty = document.createElement("div");
+		empty.className = "project-dialog-empty";
+		empty.textContent = t("project.dialogEmpty");
+		list.appendChild(empty);
+		return;
+	}
+	for (const entry of state.projectList) {
+		const project = entry.project;
+		const button = document.createElement("button");
+		button.type = "button";
+		button.className = `project-list-item ${state.project?.id === project.id ? "active" : ""}`;
+		button.addEventListener("click", () => openProject(entry));
+
+		const main = document.createElement("div");
+		main.className = "project-list-main";
+		const title = document.createElement("strong");
+		title.textContent = project.name || project.id;
+		title.title = project.root;
+		const pathLabel = document.createElement("small");
+		pathLabel.textContent = shortPath(project.root);
+		pathLabel.title = project.root;
+		const meta = document.createElement("div");
+		meta.className = "project-list-meta";
+		const updated = formatProjectDate(entry.updatedAt || entry.lastModifiedAt);
+		for (const text of [
+			updated ? t("project.dialogUpdated", { date: updated }) : "",
+			entry.hasManifest
+				? t("project.dialogMediaCount", { count: entry.mediaCount || 0 })
+				: t("project.dialogNoManifest"),
+		].filter(Boolean)) {
+			const badge = document.createElement("span");
+			badge.textContent = text;
+			meta.appendChild(badge);
+		}
+		main.append(title, pathLabel, meta);
+		button.appendChild(main);
+		if (state.project?.id === project.id) {
+			const active = document.createElement("span");
+			active.className = "project-active-badge";
+			active.textContent = t("project.dialogActive");
+			button.appendChild(active);
+		}
+		list.appendChild(button);
+	}
+}
+
+async function loadProjectList() {
+	state.projectListLoading = true;
+	renderProjectDialogList();
+	try {
+		const result = await editApp.listProjects();
+		state.projectList = Array.isArray(result?.projects) ? result.projects : [];
+	} catch (error) {
+		state.projectList = [];
+		log("project list failed", { message: error.message });
+	} finally {
+		state.projectListLoading = false;
+		renderProjectDialogList();
+	}
+}
+
+async function activateProject(project: ProjectInfo, manifest: MediaManifest | null = null) {
+	setProject(project);
+	clearSelectedAssets();
+	setAnalysisResults([], { persistFile: false });
+	setMediaManifest(manifest || null);
+	await refreshTextOverlayFromAnalysis(manifest || null);
+	if (!(await loadAnalysisStateFile(project))) {
+		await restoreAnalysisResultsFromOutputs(manifest || null);
+	}
+	if (!manifest) {
+		setIngestProgress({
+			progress: 0,
+			message: t("materials.folderNotAnalyzed"),
+			path: "",
+		});
+	}
+	await refreshSyncReport();
+	refreshPrompt();
+}
+
+async function openProject(entry: ProjectListEntry) {
+	if (state.ingestRunning) {
+		log("project switch skipped", { reason: t("log.cannotSwitchDuringIngest") });
+		return;
+	}
+	try {
+		const result = await editApp.loadProject({ project: entry.project });
+		if (!result?.project) {
+			return;
+		}
+		setProjectDialogOpen(false);
+		await activateProject(result.project, result.manifest || null);
+		log("project switched", {
+			id: result.project.id,
+			root: result.project.root,
+			manifest: result.manifest?.manifestPath || null,
+		});
+		void loadProjectList();
+	} catch (error) {
+		log("project switch failed", { message: error.message });
+	}
 }
 
 function setDefaultProjectOutput(preserveExisting = true) {
@@ -2925,6 +3146,7 @@ async function createProjectFromForm() {
 	try {
 		const project = await editApp.createProject({ name, id });
 		setProject(project);
+		void loadProjectList();
 		log("project ready", { id: project.id, root: project.root });
 	} catch (error) {
 		log("project create failed", { message: error.message });
@@ -2932,35 +3154,26 @@ async function createProjectFromForm() {
 }
 
 async function changeProject() {
+	setProjectDialogOpen(true);
+}
+
+async function createProjectFromDialog() {
+	if (state.ingestRunning) {
+		log("project create skipped", { reason: t("log.cannotSwitchDuringIngest") });
+		return;
+	}
+	const input = $("#projectDialogName");
+	const formName = String(input?.value || "").trim();
+	const name = formName || formValue("projectName") || `project-${new Date().toISOString().slice(0, 10)}`;
+	const id = projectIdFromName(name);
 	try {
-		const result = await editApp.pickProject({ language: state.language });
-		if (!result?.project) {
-			log("project switch canceled");
-			return;
-		}
-		setProject(result.project);
-		clearSelectedAssets();
-		setAnalysisResults([], { persistFile: false });
-		setMediaManifest(result.manifest || null);
-		await refreshTextOverlayFromAnalysis(result.manifest || null);
-		if (!(await loadAnalysisStateFile(result.project))) {
-			await restoreAnalysisResultsFromOutputs(result.manifest || null);
-		}
-		if (!result.manifest) {
-			setIngestProgress({
-				progress: 0,
-				message: t("materials.folderNotAnalyzed"),
-				path: "",
-			});
-		}
-		log("project switched", {
-			id: result.project.id,
-			root: result.project.root,
-			manifest: result.manifest?.manifestPath || null,
-		});
-		await refreshSyncReport();
+		const project = await editApp.createProject({ name, id });
+		setProjectDialogOpen(false);
+		await activateProject(project, null);
+		log("project ready", { id: project.id, root: project.root });
+		void loadProjectList();
 	} catch (error) {
-		log("project switch failed", { message: error.message });
+		log("project create failed", { message: error.message });
 	}
 }
 
@@ -4583,6 +4796,7 @@ async function sendRequest() {
 	}
 	refreshPrompt();
 	setStatus(t("status.codexRunning"), "busy");
+	setCodexTurnRunning(true);
 	log("turn/start");
 	try {
 		state.codexModel = selectedCodexModelForRun();
@@ -4594,8 +4808,27 @@ async function sendRequest() {
 			prompt: $("#promptPreview").value,
 		});
 	} catch (error) {
+		setCodexTurnRunning(false);
 		setStatus(t("status.codexError"), "idle");
 		log("error", { message: error.message });
+	}
+}
+
+async function stopCodexTurn() {
+	if (!state.codexTurnRunning || state.codexInterruptRequested) {
+		return;
+	}
+	state.codexInterruptRequested = true;
+	updateCodexRunControls();
+	setStatus(t("status.codexStopping"), "busy");
+	try {
+		await editApp.interruptCodex();
+		log("turn/interrupt requested");
+	} catch (error) {
+		state.codexInterruptRequested = false;
+		updateCodexRunControls();
+		setStatus(t("status.codexError"), "idle");
+		log("turn/interrupt failed", { message: error.message });
 	}
 }
 
@@ -4615,15 +4848,22 @@ function handleNotification(message) {
 		return;
 	}
 	if (method === "thread/status/changed" && params.status?.type === "systemError") {
+		setCodexTurnRunning(false);
 		setStatus(t("status.codexError"), "idle");
 		log(method, params);
 		return;
 	}
 	if (method === "turn/completed") {
 		const turn = params.turn || {};
+		setCodexTurnRunning(false);
 		if (turn.status === "failed") {
 			setStatus(t("status.codexError"), "idle");
 			log("turn failed", { message: codexErrorMessage(turn.error) || "Codex turn failed" });
+			return;
+		}
+		if (turn.status === "interrupted") {
+			setStatus(t("status.codexStopped"), "ready");
+			log(method, params);
 			return;
 		}
 		setStatus(t("status.codexIdle"), "ready");
@@ -4676,6 +4916,20 @@ function bindEvents() {
 	$("#pickOutput").addEventListener("click", pickOutput);
 	$("#createProject").addEventListener("click", createProjectFromForm);
 	$("#changeProject").addEventListener("click", changeProject);
+	$("#closeProjectDialog").addEventListener("click", () => setProjectDialogOpen(false));
+	$("#cancelProjectDialog").addEventListener("click", () => setProjectDialogOpen(false));
+	$("#createProjectFromDialog").addEventListener("click", createProjectFromDialog);
+	$("#projectDialog").addEventListener("click", (event) => {
+		if (event.target === $("#projectDialog")) {
+			setProjectDialogOpen(false);
+		}
+	});
+	$("#projectDialogName").addEventListener("keydown", (event) => {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			void createProjectFromDialog();
+		}
+	});
 	$("#copyProjectAssets").addEventListener("click", copyAssetsToProject);
 	$("#deleteProject").addEventListener("click", deleteCurrentProject);
 	$("#pickMaterialDirectory").addEventListener("click", pickMaterialDirectory);
@@ -4699,10 +4953,8 @@ function bindEvents() {
 	$("#addGlossaryTerm").addEventListener("click", addGlossaryTerm);
 	$("#runPreset").addEventListener("click", runPreset);
 	$("#sendRequest").addEventListener("click", sendRequest);
-	$("#interrupt").addEventListener("click", async () => {
-		await editApp.interruptCodex();
-		log("turn/interrupt requested");
-	});
+	$("#stopCodexTurn").addEventListener("click", stopCodexTurn);
+	$("#interrupt").addEventListener("click", stopCodexTurn);
 	$("#openOutput").addEventListener("click", () => loadOutputPreview("output"));
 	$("#refreshOutputPreview").addEventListener("click", () => {
 		if (state.outputPreviewKind) {
@@ -4723,6 +4975,11 @@ function bindEvents() {
 		const switcher = $(".language-switcher");
 		if (switcher && !switcher.contains(event.target as Node)) {
 			setLanguageMenuOpen(false);
+		}
+	});
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && !$("#projectDialog")?.hidden) {
+			setProjectDialogOpen(false);
 		}
 	});
 	$$("[data-language]").forEach((button) => {
@@ -4800,6 +5057,7 @@ async function init() {
 	applyTranslations();
 	renderCodexModelOptions();
 	renderCodexModelStatus();
+	updateCodexRunControls();
 	setActiveSection(state.activeSection);
 	setStatus(state.statusText, state.statusKind);
 	refreshPrompt();
@@ -4809,10 +5067,12 @@ async function init() {
 		log("server ready");
 	});
 	editApp.onServerError((payload) => {
+		setCodexTurnRunning(false);
 		setStatus(t("status.codexError"), "idle");
 		log("server error", payload);
 	});
 	editApp.onServerExit((payload) => {
+		setCodexTurnRunning(false);
 		setStatus(t("status.codexExited"), "idle");
 		log("server exit", payload);
 	});

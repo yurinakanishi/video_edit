@@ -9,7 +9,9 @@ const on = (channel, callback) => {
 contextBridge.exposeInMainWorld("editApp", {
 	getEnvironment: () => ipcRenderer.invoke("environment:get"),
 	createProject: (payload) => ipcRenderer.invoke("project:create", payload),
-	pickProject: () => ipcRenderer.invoke("project:pick-existing"),
+	listProjects: () => ipcRenderer.invoke("project:list"),
+	loadProject: (payload) => ipcRenderer.invoke("project:load", payload),
+	pickProject: (payload) => ipcRenderer.invoke("project:pick-existing", payload),
 	deleteProject: (payload) => ipcRenderer.invoke("project:delete", payload),
 	copyProjectAssets: (payload) => ipcRenderer.invoke("project:copy-assets", payload),
 	ingestDirectory: (payload) => ipcRenderer.invoke("project:ingest-directory", payload),

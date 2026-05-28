@@ -110,6 +110,39 @@ export function createMaterialSourceController({
 		refreshPrompt();
 	}
 
+	function setMaterialSourcesFromPreviews(paths: string[], previews: any[]) {
+		const selected = [
+			...new Set(
+				paths
+					.map(String)
+					.map((item) => item.trim())
+					.filter(Boolean),
+			),
+		];
+		state.materialPaths = selected;
+		state.mediaDirectory = selected[0] || "";
+		state.mediaManifest = null;
+		state.materialSourcePreviewRequestId += 1;
+		state.materialSourcePreviewLoading = false;
+		state.materialSourcePreviews = previews.filter((preview) => selected.includes(String(preview?.path || "")));
+		state.materialAnalysisCancelable = false;
+		state.materialAnalysisCancelRequested = false;
+		for (const preview of state.materialSourcePreviews) {
+			if (preview?.path) {
+				state.filePreviews[preview.path] = preview;
+			}
+		}
+		getAppState().setMediaManifest(null, {
+			mediaDirectory: state.mediaDirectory,
+			materialPaths: state.materialPaths,
+			materialSourcePreviews: state.materialSourcePreviews,
+		});
+		resetAnalysisForMaterialChange(materialSourceLabel());
+		setIngestRunning(state.ingestRunning);
+		renderMediaManifest();
+		refreshPrompt();
+	}
+
 	function setMaterialDirectory(directoryPath: string) {
 		setMaterialSources(directoryPath ? [directoryPath] : []);
 	}
@@ -174,5 +207,6 @@ export function createMaterialSourceController({
 		pickMaterialFiles,
 		setMaterialDirectory,
 		setMaterialSources,
+		setMaterialSourcesFromPreviews,
 	};
 }

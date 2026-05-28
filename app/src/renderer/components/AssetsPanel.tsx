@@ -14,6 +14,7 @@ import { MaterialIngestActions, MaterialIngestProgress } from "./MaterialIngestC
 import { MaterialManifestList } from "./MaterialManifestList.js";
 import { MaterialManifestSummary, MaterialSourceLabel } from "./MaterialSourceSummary.js";
 import { OutputTargetPreview } from "./PathPreviews.js";
+import { SyncReportList } from "./SyncReportList.js";
 
 type ManualAssetSlotConfig = {
 	readonly slot:
@@ -226,6 +227,7 @@ function ManualAssetSlot({ slot }: { readonly slot: ManualAssetSlotConfig }) {
 
 export function AssetsPanel({ hidden = false }: PanelProps) {
 	const outputPath = useAppStore((store) => store.outputPath);
+	const syncReport = useAppStore((store) => store.syncReport);
 	const materialGridDrop = useFileDropTarget(dispatchMaterialDrop);
 	const materialFolderDrop = useFileDropTarget(dispatchMaterialDrop, { stopPropagation: true });
 
@@ -254,6 +256,14 @@ export function AssetsPanel({ hidden = false }: PanelProps) {
 				<MaterialManifestList />
 			</div>
 			<AnalysisResultsList />
+			{syncReport ? (
+				<div className="sync-report material-sync-report">
+					<div className="sync-report-heading">
+						<strong>同期結果</strong>
+					</div>
+					<SyncReportList />
+				</div>
+			) : null}
 			<h4 className="asset-section-heading">Manual material overrides</h4>
 			<div className="drop-grid">
 				{MANUAL_ASSET_SLOTS.map((slot) => (

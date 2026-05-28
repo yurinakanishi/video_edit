@@ -487,6 +487,24 @@ export function createMaterialAnalysisController({
 		}
 	}
 
+	async function syncMaterialSources() {
+		try {
+			const ok = await runAnalysisAction(
+				"auto-sync-dropped",
+				t("action.syncMaterial"),
+				Math.max(state.ingestProgress.progress || 0, 0.34),
+				syncReportPath(),
+				2 * 60 * 60 * 1000,
+			);
+			await refreshSyncReport();
+			await refreshMaterialAnalysisStatus();
+			setStatus(ok ? t("status.analysisComplete") : t("status.commandFailed"), ok ? "ready" : "idle");
+			return ok;
+		} finally {
+			setAppLocked(false);
+		}
+	}
+
 	async function cancelMaterialAnalysis() {
 		if (!state.ingestRunning) {
 			setMaterialSources([]);
@@ -514,5 +532,6 @@ export function createMaterialAnalysisController({
 		cancelMaterialAnalysis,
 		ingestMaterialDirectory,
 		reanalyzeMaterialItem,
+		syncMaterialSources,
 	};
 }

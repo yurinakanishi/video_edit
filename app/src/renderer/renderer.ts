@@ -144,6 +144,7 @@ const {
 	pickMaterialDirectory,
 	pickMaterialFiles,
 	setMaterialSources,
+	setMaterialSourcesFromPreviews,
 } = materialSourceController;
 
 const { closeConfirmDialog, confirmAction } = createConfirmDialogController();
@@ -157,6 +158,7 @@ const materialManifestController = createMaterialManifestController({
 	saveState: () => saveCurrentState(),
 	setFile,
 	setMaterialSources: (paths) => setMaterialSources(paths),
+	setMaterialSourcesFromPreviews,
 	setStillImages,
 });
 
@@ -371,7 +373,8 @@ const materialAnalysisController = createMaterialAnalysisController({
 	transcriptManifestOutputPath,
 });
 
-const { cancelMaterialAnalysis, ingestMaterialDirectory, reanalyzeMaterialItem } = materialAnalysisController;
+const { cancelMaterialAnalysis, ingestMaterialDirectory, reanalyzeMaterialItem, syncMaterialSources } =
+	materialAnalysisController;
 
 function resetAnalysisForMaterialChange(path = materialSourceLabel()) {
 	setAnalysisResults([]);
@@ -409,6 +412,7 @@ function bindEvents() {
 		handleMaterialRoleChange,
 		handleMaterialSourceRemove,
 		reanalyzeMaterialItem,
+		syncMaterialSources,
 		handleNotification,
 		handleStillImageRemove,
 		ingestMaterialDirectory,

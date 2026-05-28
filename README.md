@@ -48,7 +48,7 @@ Render encoding is also runtime-config driven. `render.encoderPreset` and `rende
 
 Camera/audio sync is generic app behavior. `auto-sync-dropped` writes `output/reports/app_sync_offsets.json` from selected project media and now includes local fine waveform refinement after the coarse match, replacing the old fixed-source `refine_*` sync scripts. The renderer can also use the current `compare-transcripts` report as a fallback for missing or low-score waveform sync, but only when the report's manifest fingerprint matches the active project.
 
-Thumbnail generation and subtitle QA are also app-level actions now. `generate-thumbnail` writes `output/images/thumbnail.png` from the current project video and style fields; `generate-thumbnail-candidates` writes multiple project-driven candidates plus `output/images/thumbnail_candidates/thumbnail_candidates_contact_sheet.jpg`, with optional detected-face debug boxes for layout QA; `review-subtitles` reads the current project transcription manifest and writes `output/reports/subtitle_review.json` plus Markdown, with optional flagged-caption WAV clips and clip re-transcription under `output/diagnostics/subtitle_review`; `apply-subtitle-corrections` applies operator-entered subtitle fixes to a project-local corrected transcript so later overlay generation uses the corrected subtitle only; `classify-subtitle-speakers` writes `output/reports/full_transcript_speaker_roles.json` from operator-entered interviewer ranges/patterns/manual roles and can include current-project OpenCV mouth-motion diagnostics; `compare-transcripts` compares current project source transcripts against the primary transcript and writes `output/reports/transcript_comparison.json` plus Markdown with match classes and suggested offsets. These actions fail when current project inputs are missing instead of using historical single-video files.
+Thumbnail generation and subtitle QA are also app-level actions now. `generate-thumbnail` writes `output/images/thumbnail.png` from the current project video and style fields; `generate-thumbnail-candidates` writes multiple project-driven candidates plus `output/images/thumbnail_candidates/thumbnail_candidates_contact_sheet.jpg`, with optional detected-face debug boxes for layout QA; `review-subtitles` reads the current project transcription manifest and writes `output/reports/subtitle_review.json` plus Markdown, with optional flagged-caption WAV clips and clip re-transcription under `output/diagnostics/subtitle_review`; `apply-subtitle-corrections` applies operator-entered subtitle fixes to a project-local corrected transcript so later overlay generation uses the corrected subtitle only; `classify-subtitle-speakers` writes `output/reports/full_transcript_speaker_roles.json` from operator-entered interviewer ranges/patterns/manual roles and can include current-project mouth-motion, mouth-opening, audio RMS, and mouth/audio correlation diagnostics; `compare-transcripts` compares current project source transcripts against the primary transcript and writes `output/reports/transcript_comparison.json` plus Markdown with match classes and suggested offsets. These actions fail when current project inputs are missing instead of using historical single-video files.
 
 ## Source Video Person Analysis
 
@@ -65,7 +65,7 @@ python .\scripts\analyze_person_bboxes.py --fps-sample 1
 python .\scripts\build_person_edit_plan.py
 ```
 
-`analyze_person_bboxes.py` writes frame-level YOLO person detections to the active project output under `reports/person_bboxes`, including eye-vs-face direction evidence and a fixed/moving camera-motion flag.
+`analyze_person_bboxes.py` writes frame-level YOLO person detections to the active project output under `reports/person_bboxes`, including eye-vs-face direction evidence, optional MediaPipe iris-based gaze evidence, optional mouth-opening landmarks, and a fixed/moving camera-motion flag.
 `build_person_edit_plan.py` converts those detections into segment-level guidance for crop, zoom, cut, and wide-shot decisions under the active project output `reports/person_edit_plans`; fixed-camera shots use the dominant face direction for stable look-space placement.
 The Electron interview renderer uses those plans by default for per-camera segment crops, and writes `reports/person_crop_usage.json` with the matched plans and rendered segments. Composition guidance uses shared mathematical anchors from `scripts/composition_rules.py`: golden-ratio lines, thirds, silver-ratio lines, and outer-golden anchors for stronger side placement. The generated analysis includes target subject x/y ratios and anchor names so renderers can use the same placement rules.
 
@@ -73,6 +73,12 @@ The detector uses Ultralytics YOLO. Install it in the project Python environment
 
 ```powershell
 python -m pip install ultralytics
+```
+
+For more precise gaze and mouth-opening metrics, install MediaPipe in the same Python environment:
+
+```powershell
+python -m pip install mediapipe
 ```
 
 For a short style reference video, keep the video under 60 seconds and generate a reference profile:

@@ -32,6 +32,7 @@ type MaterialManifestControllerOptions = {
 	readonly saveState: () => void;
 	readonly setFile: (slot: string, filePath: string) => void;
 	readonly setMaterialSources: (paths: string[]) => void;
+	readonly setMaterialSourcesFromPreviews: (paths: string[], previews: any[]) => void;
 	readonly setStillImages: (paths: string[]) => void;
 };
 
@@ -54,6 +55,7 @@ export function createMaterialManifestController({
 	saveState,
 	setFile,
 	setMaterialSources,
+	setMaterialSourcesFromPreviews,
 	setStillImages,
 }: MaterialManifestControllerOptions) {
 	function rebuildMediaManifestGroups() {
@@ -147,6 +149,11 @@ export function createMaterialManifestController({
 		return state.materialPaths.filter((filePath) => filePath.toLowerCase() !== normalized);
 	}
 
+	function sourcePreviewsAfterRemoving(sourcePath: string) {
+		const normalized = sourcePath.toLowerCase();
+		return state.materialSourcePreviews.filter((preview) => String(preview?.path || "").toLowerCase() !== normalized);
+	}
+
 	async function removeMaterialSource(sourcePath: string, preview: any) {
 		if (
 			!(await confirmRemoveMaterial(materialDisplayName(preview, sourcePath), sourcePath, isMissingPreview(preview)))
@@ -156,7 +163,12 @@ export function createMaterialManifestController({
 		state.filePreviews = Object.fromEntries(
 			Object.entries(state.filePreviews).filter(([filePath]) => filePath !== sourcePath),
 		);
-		setMaterialSources(sourcePathsAfterRemoving(sourcePath));
+		const nextPaths = sourcePathsAfterRemoving(sourcePath);
+		if (state.materialSourcePreviews.length) {
+			setMaterialSourcesFromPreviews(nextPaths, sourcePreviewsAfterRemoving(sourcePath));
+		} else {
+			setMaterialSources(nextPaths);
+		}
 		log("material removed", { path: sourcePath });
 	}
 

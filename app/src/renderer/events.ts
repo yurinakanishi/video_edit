@@ -5,6 +5,7 @@ export const MATERIAL_ITEM_REANALYZE_EVENT = "video-edit:material-item-reanalyze
 export const MATERIAL_PICK_DIRECTORY_EVENT = "video-edit:material-pick-directory";
 export const MATERIAL_PICK_FILES_EVENT = "video-edit:material-pick-files";
 export const MATERIAL_ANALYZE_EVENT = "video-edit:material-analyze";
+export const MATERIAL_SYNC_EVENT = "video-edit:material-sync";
 export const MATERIAL_CANCEL_ANALYSIS_EVENT = "video-edit:material-cancel-analysis";
 export const STILL_IMAGE_REMOVE_EVENT = "video-edit:still-image-remove";
 export const GLOSSARY_TERM_CHANGE_EVENT = "video-edit:glossary-term-change";

@@ -14,6 +14,7 @@ import numpy as np
 
 from project_paths import OUTPUT_REPORTS, SOURCE_VIDEO, multicam_source_root, resolve_project_path
 from composition_rules import subject_target_for_face
+from face_mesh_metrics import create_face_mesh, extract_face_mesh_faces
 
 
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".m4v", ".avi", ".mkv"}
@@ -339,6 +340,7 @@ def detect_eyes_in_face(
             "eyes": [],
             "eye_direction": "unknown",
             "eye_offset_from_face_center": {"x": None, "x_ratio": None},
+            "gaze": {"available": False, "reason": "eye detector unavailable"},
         }
 
     roi = gray[iy1:iy2, ix1:ix2]
@@ -393,6 +395,7 @@ def detect_eyes_in_face(
             "eyes": [],
             "eye_direction": "unknown",
             "eye_offset_from_face_center": {"x": None, "x_ratio": None},
+            "gaze": {"available": False, "reason": "no eye detections"},
         }
 
     eye_center_x = sum(float(eye["center"]["x"]) for eye in unique) / len(unique)
@@ -416,10 +419,59 @@ def detect_eyes_in_face(
         ],
         "eye_direction": eye_direction,
         "eye_offset_from_face_center": {"x": round(offset_x, 2), "x_ratio": round(offset_ratio, 4)},
+        "gaze": {
+            "available": True,
+            "method": "opencv_eye_center_proxy",
+            "direction": eye_direction,
+            "horizontal_direction": eye_direction,
+            "vertical_direction": "level",
+            "x_offset_ratio": round(offset_ratio, 4),
+            "confidence": 0.5 if len(unique) >= 2 else 0.42,
+            "eye_count": len(unique),
+        },
     }
 
 
-def detect_faces(frame: np.ndarray, detectors: dict[str, cv2.CascadeClassifier]) -> list[dict[str, Any]]:
+def bbox_overlap_ratio(a: dict[str, Any], b: dict[str, Any]) -> float:
+    ax1, ay1, ax2, ay2 = [float(a["bbox"][key]) for key in ("x1", "y1", "x2", "y2")]
+    bx1, by1, bx2, by2 = [float(b["bbox"][key]) for key in ("x1", "y1", "x2", "y2")]
+    inter_w = max(0.0, min(ax2, bx2) - max(ax1, bx1))
+    inter_h = max(0.0, min(ay2, by2) - max(ay1, by1))
+    inter = inter_w * inter_h
+    area = max(min((ax2 - ax1) * (ay2 - ay1), (bx2 - bx1) * (by2 - by1)), 1.0)
+    return inter / area
+
+
+def merge_face_mesh_faces(unique: list[dict[str, Any]], mesh_faces: list[dict[str, Any]]) -> None:
+    for mesh_face in mesh_faces:
+        best_index: int | None = None
+        best_score = 0.0
+        for index, face in enumerate(unique):
+            score = bbox_overlap_ratio(face, mesh_face)
+            if score > best_score:
+                best_score = score
+                best_index = index
+        if best_index is None or best_score < 0.18:
+            unique.append(mesh_face)
+            continue
+        target = unique[best_index]
+        target["face_mesh"] = mesh_face.get("face_mesh")
+        mesh_gaze = mesh_face.get("gaze") if isinstance(mesh_face.get("gaze"), dict) else None
+        if mesh_gaze and mesh_gaze.get("available"):
+            target["gaze"] = mesh_gaze
+        elif "gaze" not in target:
+            target["gaze"] = mesh_gaze
+        target["mouth"] = mesh_face.get("mouth")
+        target["head_pose"] = mesh_face.get("head_pose")
+        target["mesh_bbox"] = mesh_face.get("bbox")
+        target["mesh_center_ratio"] = mesh_face.get("center_ratio")
+
+
+def detect_faces(
+    frame: np.ndarray,
+    detectors: dict[str, cv2.CascadeClassifier],
+    face_mesh: Any | None = None,
+) -> list[dict[str, Any]]:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
     height, width = gray.shape[:2]
@@ -472,6 +524,7 @@ def detect_faces(frame: np.ndarray, detectors: dict[str, cv2.CascadeClassifier])
             unique.append(face)
     for face in unique:
         face.update(detect_eyes_in_face(gray, face, detectors["eye"]))
+    merge_face_mesh_faces(unique, extract_face_mesh_faces(frame, face_mesh))
     return unique
 
 
@@ -512,19 +565,36 @@ def semantic_face_direction(person: dict[str, Any], face: dict[str, Any] | None)
     except (TypeError, ValueError):
         eye_offset_ratio_float = 0.0
 
-    if eye_direction in {"left", "right"}:
+    gaze = face.get("gaze") if isinstance(face.get("gaze"), dict) else {}
+    gaze_direction = str(gaze.get("horizontal_direction") or gaze.get("direction") or "unknown")
+    try:
+        gaze_confidence = float(gaze.get("confidence") or 0.0)
+    except (TypeError, ValueError):
+        gaze_confidence = 0.0
+    if gaze.get("available") and gaze_direction in {"left", "right", "front"} and gaze_confidence >= 0.45:
+        direction = gaze_direction
+        method = "mediapipe_iris_gaze"
+    elif eye_direction in {"left", "right"}:
         if face_position_direction in {eye_direction, "front"} or eye_offset_ratio_float >= 0.12:
             direction = eye_direction
         else:
             direction = "unknown"
+        method = "eye_center_vs_face_center_and_face_center_vs_person_center"
     elif eye_direction == "front":
         direction = "front" if face_position_direction == "front" or face.get("detector_direction") == "front" else face_position_direction
+        method = "eye_center_vs_face_center_and_face_center_vs_person_center"
     elif face.get("detector_direction") == "front":
         direction = "front" if face_position_direction == "front" else face_position_direction
+        method = "opencv_face_detector_direction"
     else:
         direction = face_position_direction if face_position_direction != "front" else "unknown"
+        method = "face_center_vs_person_center"
 
     face["direction_evidence"] = {
+        "gaze_direction": gaze_direction,
+        "gaze_confidence": round(gaze_confidence, 4),
+        "gaze_offset_ratio": gaze.get("x_offset_ratio"),
+        "head_pose_direction": (face.get("head_pose") or {}).get("direction") if isinstance(face.get("head_pose"), dict) else None,
         "eye_direction": eye_direction,
         "eye_offset_from_face_center_ratio": round(float(eye_offset_ratio), 4)
         if isinstance(eye_offset_ratio, (int, float))
@@ -535,7 +605,7 @@ def semantic_face_direction(person: dict[str, Any], face: dict[str, Any] | None)
             "x_ratio": round(face_position_offset_ratio, 4),
         },
         "resolved_direction": direction,
-        "method": "eye_center_vs_face_center_and_face_center_vs_person_center",
+        "method": method,
     }
     return direction
 
@@ -724,6 +794,7 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
 
     tracker = SimpleCentroidTracker()
     face_detectors = load_face_detectors()
+    face_mesh = create_face_mesh(max_num_faces=4)
     frames: list[dict[str, Any]] = []
     motion_samples: list[dict[str, Any]] = []
     prev_motion_gray: np.ndarray | None = None
@@ -738,7 +809,7 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
         prev_motion_gray = motion_gray
         if camera_motion_from_previous is not None:
             motion_samples.append(camera_motion_from_previous)
-        faces = detect_faces(frame, face_detectors)
+        faces = detect_faces(frame, face_detectors, face_mesh)
         if model is not None:
             yolo_kwargs: dict[str, Any] = {"classes": [PERSON_CLASS_ID], "conf": args.confidence, "verbose": False}
             if args.device:
@@ -772,6 +843,8 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
         time_seconds = args.start + sample_index * interval
 
     cap.release()
+    if face_mesh is not None:
+        face_mesh.close()
     camera_motion = summarize_camera_motion(motion_samples)
     payload = {
         "schema_version": "person-bboxes/v1",
@@ -779,6 +852,7 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
         "video_path": str(video),
         "model": str(args.model) if model is not None else "opencv-face-fallback",
         "detector_backend": "ultralytics-yolo" if model is not None else "opencv-face-fallback",
+        "face_mesh_backend": "mediapipe-face-mesh" if face_mesh is not None else "unavailable",
         "confidence_threshold": args.confidence,
         "fps_sample": args.fps_sample,
         "sample_interval": round(interval, 4),

@@ -3,6 +3,7 @@ import {
 	MATERIAL_CANCEL_ANALYSIS_EVENT,
 	MATERIAL_PICK_DIRECTORY_EVENT,
 	MATERIAL_PICK_FILES_EVENT,
+	MATERIAL_SYNC_EVENT,
 } from "../events.js";
 import { localizePlainText, t } from "../i18n.js";
 import { shortPath } from "../preview.js";
@@ -16,6 +17,16 @@ function dispatchMaterialAction(eventName: string) {
 	document.dispatchEvent(new CustomEvent(eventName));
 }
 
+function analyzedTimeSourceCount(mediaManifest: any | null) {
+	const files = Array.isArray(mediaManifest?.files) ? mediaManifest.files : [];
+	return files.filter((item: any) => {
+		const kind = String(item?.kind || "");
+		const role = String(item?.role || "");
+		const duration = Number(item?.metadata?.duration || 0);
+		return (kind === "video" || kind === "audio") && role !== "ignore" && duration > 0;
+	}).length;
+}
+
 export function MaterialIngestActions() {
 	const appLocked = useAppStore((store) => store.appLocked);
 	const ingestRunning = useAppStore((store) => store.ingestRunning);
@@ -24,6 +35,7 @@ export function MaterialIngestActions() {
 	const materialAnalysisCancelable = useAppStore((store) => store.materialAnalysisCancelable);
 	const materialAnalysisCancelRequested = useAppStore((store) => store.materialAnalysisCancelRequested);
 	const hasMaterialSources = Boolean(materialPaths.length || mediaManifest?.files?.length);
+	const canSyncMaterial = analyzedTimeSourceCount(mediaManifest) >= 2;
 	const cancelRequested = ingestRunning && materialAnalysisCancelRequested;
 	const canCancelAnalysis = ingestRunning && materialAnalysisCancelable && !cancelRequested;
 	const canClearSources = !ingestRunning && hasMaterialSources && !appLocked;
@@ -60,6 +72,15 @@ export function MaterialIngestActions() {
 				onClick={() => dispatchMaterialAction(MATERIAL_ANALYZE_EVENT)}
 			>
 				解析
+			</button>
+			<button
+				type="button"
+				id="syncMaterial"
+				hidden={!canSyncMaterial}
+				disabled={ingestRunning || appLocked || !canSyncMaterial}
+				onClick={() => dispatchMaterialAction(MATERIAL_SYNC_EVENT)}
+			>
+				{t("action.syncMaterial")}
 			</button>
 			<button
 				type="button"

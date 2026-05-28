@@ -2,16 +2,20 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
+import wave
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from project_paths import OUTPUT_REPORTS
+from face_mesh_metrics import create_face_mesh, extract_face_mesh_faces
+from project_paths import OUTPUT_REPORTS, OUTPUT_TRANSCRIPTS
 from video_edit_app_config import load_app_config, nested, selected_subtitle_path
 
 
 APP_CONFIG = load_app_config()
+TRANSCRIPT_MANIFEST = OUTPUT_TRANSCRIPTS / "manifest_sources" / "manifest_transcripts.json"
 
 
 @dataclass
@@ -199,11 +203,69 @@ def configured_motion_video_path() -> Path | None:
     return None
 
 
+def configured_primary_audio_path() -> Path | None:
+    if not TRANSCRIPT_MANIFEST.exists():
+        return None
+    try:
+        manifest = json.loads(TRANSCRIPT_MANIFEST.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    transcripts = manifest.get("transcripts", [])
+    if not isinstance(transcripts, list):
+        return None
+    primary = next((item for item in transcripts if isinstance(item, dict) and item.get("primary")), None)
+    if primary is None:
+        primary = next((item for item in transcripts if isinstance(item, dict)), None)
+    if not isinstance(primary, dict):
+        return None
+    for key in ("audio", "path"):
+        value = str(primary.get(key) or "")
+        if value:
+            path = Path(value)
+            if path.exists() and path.is_file():
+                return path
+    return None
+
+
+def summarize_values(values: list[float | None], digits: int = 5) -> dict[str, Any]:
+    usable = [float(value) for value in values if value is not None and math.isfinite(float(value))]
+    if not usable:
+        return {"sampleCount": 0, "mean": None, "peak": None, "min": None}
+    return {
+        "sampleCount": len(usable),
+        "mean": round(sum(usable) / len(usable), digits),
+        "peak": round(max(usable), digits),
+        "min": round(min(usable), digits),
+    }
+
+
+def pearson_correlation(a_values: list[float | None], b_values: list[float | None]) -> float | None:
+    pairs = [
+        (float(a), float(b))
+        for a, b in zip(a_values, b_values)
+        if a is not None and b is not None and math.isfinite(float(a)) and math.isfinite(float(b))
+    ]
+    if len(pairs) < 2:
+        return None
+    a_mean = sum(a for a, _ in pairs) / len(pairs)
+    b_mean = sum(b for _, b in pairs) / len(pairs)
+    numerator = sum((a - a_mean) * (b - b_mean) for a, b in pairs)
+    a_den = math.sqrt(sum((a - a_mean) ** 2 for a, _ in pairs))
+    b_den = math.sqrt(sum((b - b_mean) ** 2 for _, b in pairs))
+    if a_den <= 1e-9 or b_den <= 1e-9:
+        return None
+    return round(numerator / (a_den * b_den), 5)
+
+
 def mouth_motion_diagnostics(captions: list[Caption], video_path: Path | None, enabled: bool) -> dict[str, Any]:
     report: dict[str, Any] = {
         "enabled": enabled,
         "video": str(video_path) if video_path else "",
         "scores": {},
+        "openingScores": {},
+        "audioRmsScores": {},
+        "alignmentScores": {},
+        "details": {},
         "sampledCount": 0,
     }
     if not enabled:
@@ -229,8 +291,50 @@ def mouth_motion_diagnostics(captions: list[Caption], video_path: Path | None, e
         report["reason"] = "OpenCV face cascade unavailable"
         return report
 
+    face_mesh = create_face_mesh(max_num_faces=1, static_image_mode=True)
     max_seconds = float_value("subtitleSpeakers", "motionMaxSeconds", default=120.0)
     max_samples = max(2, int(float_value("subtitleSpeakers", "motionSamplesPerCaption", default=4.0)))
+    audio_sample_window = max(0.04, float_value("subtitleSpeakers", "audioSampleWindow", default=0.16))
+    audio_path = configured_primary_audio_path()
+    audio_samples: Any | None = None
+    audio_sample_rate = 0
+    audio_meta: dict[str, Any] = {
+        "available": False,
+        "path": str(audio_path) if audio_path else "",
+        "reason": "primary transcript audio not found",
+    }
+    if audio_path is not None:
+        try:
+            with wave.open(str(audio_path), "rb") as handle:
+                channels = max(1, handle.getnchannels())
+                audio_sample_rate = int(handle.getframerate())
+                sample_width = int(handle.getsampwidth())
+                raw = handle.readframes(handle.getnframes())
+            samples = None
+            if sample_width == 2:
+                samples = np.frombuffer(raw, dtype="<i2").astype(np.float32) / 32768.0
+            elif sample_width == 4:
+                samples = np.frombuffer(raw, dtype="<i4").astype(np.float32) / 2147483648.0
+            elif sample_width == 1:
+                samples = (np.frombuffer(raw, dtype=np.uint8).astype(np.float32) - 128.0) / 128.0
+            else:
+                audio_meta["reason"] = f"unsupported WAV sample width: {sample_width}"
+            if samples is not None:
+                if channels > 1 and len(samples) >= channels:
+                    samples = samples[: len(samples) - (len(samples) % channels)].reshape(-1, channels).mean(axis=1)
+                audio_samples = samples.astype(np.float32)
+                audio_meta = {
+                    "available": True,
+                    "path": str(audio_path),
+                    "sampleRate": audio_sample_rate,
+                    "channels": channels,
+                    "duration": round(len(audio_samples) / audio_sample_rate, 3) if audio_sample_rate else 0,
+                    "sampleWindowSeconds": round(audio_sample_window, 3),
+                }
+        except Exception as error:
+            audio_meta["reason"] = str(error)
+    report["audio"] = audio_meta
+    report["mouthOpeningBackend"] = "mediapipe-face-mesh" if face_mesh is not None else "opencv-lower-face-proxy"
 
     def frame_at(timestamp: float) -> Any | None:
         cap.set(cv2.CAP_PROP_POS_MSEC, max(0.0, timestamp) * 1000.0)
@@ -265,23 +369,140 @@ def mouth_motion_diagnostics(captions: list[Caption], video_path: Path | None, e
         crop_b = cv2.resize(crop_b, (crop_a.shape[1], crop_a.shape[0]))
         return float(np.mean(cv2.absdiff(crop_a, crop_b)))
 
+    def opencv_mouth_opening_proxy(frame: Any, face: tuple[int, int, int, int]) -> dict[str, Any] | None:
+        x, y, w, h = face
+        x1, x2 = x + int(w * 0.23), x + int(w * 0.77)
+        y1, y2 = y + int(h * 0.58), y + int(h * 0.88)
+        if x2 <= x1 or y2 <= y1:
+            return None
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        crop = gray[y1:y2, x1:x2]
+        if crop.size == 0:
+            return None
+        crop = cv2.GaussianBlur(crop, (5, 5), 0)
+        threshold = float(np.percentile(crop, 32))
+        dark = crop <= threshold
+        if dark.size == 0:
+            return None
+        row_density = dark.mean(axis=1)
+        active_rows = np.where(row_density >= max(0.16, float(dark.mean()) * 1.2))[0]
+        dark_span = int(active_rows[-1] - active_rows[0] + 1) if len(active_rows) else 0
+        mouth_width = max(1.0, float(x2 - x1))
+        open_ratio = min(0.35, max(0.0, dark_span / mouth_width))
+        label = "wide_open" if open_ratio >= 0.18 else "open" if open_ratio >= 0.1 else "slight" if open_ratio >= 0.045 else "closed"
+        return {
+            "available": True,
+            "method": "opencv_lower_face_dark_gap_proxy",
+            "open_ratio": round(open_ratio, 5),
+            "inner_open_px": round(float(dark_span), 3),
+            "mouth_width_px": round(mouth_width, 3),
+            "label": label,
+        }
+
+    def mouth_opening_at(timestamp: float) -> dict[str, Any] | None:
+        frame = frame_at(timestamp)
+        if frame is None:
+            return None
+        if face_mesh is not None:
+            faces = extract_face_mesh_faces(frame, face_mesh)
+            if faces:
+                mesh_face = max(faces, key=lambda item: float(item.get("area_ratio") or 0.0))
+                mouth = mesh_face.get("mouth") if isinstance(mesh_face.get("mouth"), dict) else None
+                if mouth and mouth.get("available"):
+                    return mouth
+        face = main_face(frame)
+        if face is None:
+            return None
+        return opencv_mouth_opening_proxy(frame, face)
+
+    def audio_stats(start: float, end: float) -> dict[str, Any] | None:
+        if audio_samples is None or audio_sample_rate <= 0:
+            return None
+        start_index = max(0, int(start * audio_sample_rate))
+        end_index = min(len(audio_samples), max(start_index + 1, int(end * audio_sample_rate)))
+        if end_index <= start_index:
+            return None
+        window = audio_samples[start_index:end_index]
+        if len(window) == 0:
+            return None
+        rms = float(np.sqrt(np.mean(np.square(window))))
+        peak = float(np.max(np.abs(window)))
+        return {
+            "rms": round(rms, 6),
+            "peak": round(peak, 6),
+            "dbfs": round(20.0 * math.log10(max(rms, 1e-9)), 3),
+            "sampleCount": int(len(window)),
+        }
+
     scores: dict[str, float | None] = {}
+    opening_scores: dict[str, float | None] = {}
+    audio_rms_scores: dict[str, float | None] = {}
+    alignment_scores: dict[str, float | None] = {}
+    details: dict[str, Any] = {}
     for caption in captions:
+        key = str(caption.index)
         if caption.start >= max_seconds:
-            scores[str(caption.index)] = None
+            scores[key] = None
+            opening_scores[key] = None
+            audio_rms_scores[key] = None
+            alignment_scores[key] = None
+            details[key] = {"reason": "outside mouth diagnostic max seconds"}
             continue
         sample_count = max(2, min(max_samples, int(max(2.0, (caption.end - caption.start) * 2.0))))
         start_t = caption.start + 0.15
         end_t = max(start_t + 0.01, caption.end - 0.2)
-        values = [
-            score
-            for index in range(sample_count)
-            if (score := pair_score(start_t + (end_t - start_t) * index / max(1, sample_count - 1))) is not None
-        ]
-        scores[str(caption.index)] = round(float(sum(values) / len(values)), 3) if values else None
+        sample_rows: list[dict[str, Any]] = []
+        motion_values: list[float | None] = []
+        open_values: list[float | None] = []
+        audio_values: list[float | None] = []
+        for index in range(sample_count):
+            timestamp = start_t + (end_t - start_t) * index / max(1, sample_count - 1)
+            motion_score = pair_score(timestamp)
+            mouth = mouth_opening_at(timestamp)
+            audio = audio_stats(timestamp - audio_sample_window / 2, timestamp + audio_sample_window / 2)
+            open_ratio = float(mouth["open_ratio"]) if mouth and mouth.get("open_ratio") is not None else None
+            audio_rms = float(audio["rms"]) if audio and audio.get("rms") is not None else None
+            motion_values.append(motion_score)
+            open_values.append(open_ratio)
+            audio_values.append(audio_rms)
+            sample_rows.append(
+                {
+                    "time": round(timestamp, 3),
+                    "mouthMotion": round(float(motion_score), 3) if motion_score is not None else None,
+                    "mouthOpenRatio": round(float(open_ratio), 5) if open_ratio is not None else None,
+                    "mouthOpenLabel": mouth.get("label") if mouth else None,
+                    "audioRms": round(float(audio_rms), 6) if audio_rms is not None else None,
+                    "audioDbfs": audio.get("dbfs") if audio else None,
+                }
+            )
+        motion_summary = summarize_values(motion_values, digits=3)
+        opening_summary = summarize_values(open_values, digits=5)
+        caption_audio = audio_stats(caption.start, caption.end)
+        correlation = pearson_correlation(open_values, audio_values)
+        scores[key] = motion_summary["mean"]
+        opening_scores[key] = opening_summary["mean"]
+        audio_rms_scores[key] = caption_audio["rms"] if caption_audio else None
+        alignment_scores[key] = correlation
+        details[key] = {
+            "mouthMotion": motion_summary,
+            "mouthOpening": opening_summary,
+            "audio": caption_audio,
+            "mouthAudioCorrelation": correlation,
+            "samples": sample_rows,
+        }
     cap.release()
-    sampled = sum(1 for value in scores.values() if value is not None)
+    if face_mesh is not None:
+        face_mesh.close()
+    sampled = sum(
+        1
+        for key in set(scores) | set(opening_scores)
+        if scores.get(key) is not None or opening_scores.get(key) is not None
+    )
     report["scores"] = scores
+    report["openingScores"] = opening_scores
+    report["audioRmsScores"] = audio_rms_scores
+    report["alignmentScores"] = alignment_scores
+    report["details"] = details
     report["sampledCount"] = sampled
     if sampled == 0:
         report["reason"] = "no face motion samples found"
@@ -330,7 +551,7 @@ def main() -> None:
         "--mouth-motion-diagnostics",
         action="store_true",
         default=bool_value("subtitleSpeakers", "mouthMotionDiagnostics", default=False),
-        help="Add OpenCV mouth-motion diagnostic scores for the current project video.",
+        help="Add mouth-motion, mouth-opening, and audio-timeline diagnostic scores for the current project video.",
     )
     parser.add_argument("--motion-video", type=Path, default=configured_motion_video_path())
     args = parser.parse_args()
@@ -349,6 +570,13 @@ def main() -> None:
         classification = classify_caption(caption, ranges, patterns, manual_roles)
         role = classification["role"]
         motion_scores = motion.get("scores", {})
+        opening_scores = motion.get("openingScores", {})
+        audio_scores = motion.get("audioRmsScores", {})
+        alignment_scores = motion.get("alignmentScores", {})
+        details = motion.get("details", {})
+        detail = details.get(str(caption.index), {}) if isinstance(details, dict) else {}
+        mouth_opening = detail.get("mouthOpening") if isinstance(detail, dict) else None
+        audio = detail.get("audio") if isinstance(detail, dict) else None
         roles[str(caption.index)] = role
         items.append(
             {
@@ -360,6 +588,14 @@ def main() -> None:
                 "reason": classification["reason"],
                 "matchedPatterns": classification["matchedPatterns"],
                 "mouthMotionScore": motion_scores.get(str(caption.index)) if isinstance(motion_scores, dict) else None,
+                "mouthOpeningMean": opening_scores.get(str(caption.index)) if isinstance(opening_scores, dict) else None,
+                "mouthOpeningPeak": mouth_opening.get("peak") if isinstance(mouth_opening, dict) else None,
+                "audioRmsMean": audio_scores.get(str(caption.index)) if isinstance(audio_scores, dict) else None,
+                "audioDbfsMean": audio.get("dbfs") if isinstance(audio, dict) else None,
+                "mouthAudioCorrelation": alignment_scores.get(str(caption.index))
+                if isinstance(alignment_scores, dict)
+                else None,
+                "mouthTimeline": detail.get("samples", []) if isinstance(detail, dict) else [],
             }
         )
     payload = {
@@ -368,6 +604,9 @@ def main() -> None:
         "captions": items,
         "mouthMotion": motion,
         "mouthMotionScores": motion.get("scores", {}),
+        "mouthOpeningScores": motion.get("openingScores", {}),
+        "audioRmsScores": motion.get("audioRmsScores", {}),
+        "mouthAudioAlignmentScores": motion.get("alignmentScores", {}),
         "mouth_motion_scores": motion.get("scores", {}),
         "interviewerCount": sum(1 for role in roles.values() if role == "interviewer"),
         "onscreenCount": sum(1 for role in roles.values() if role == "onscreen"),

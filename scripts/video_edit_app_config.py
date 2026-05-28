@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 
 from project_paths import (
+    APP_CONFIG as PROJECT_PATHS_APP_CONFIG,
     CONFIG,
     OUTPUT_DIAGNOSTICS,
     OUTPUT_OVERLAYS,
@@ -31,7 +32,7 @@ WORK = WORKSPACE_ROOT
 def load_app_config() -> dict[str, Any]:
     path = os.environ.get("VIDEO_EDIT_APP_CONFIG")
     if not path:
-        return {}
+        return PROJECT_PATHS_APP_CONFIG if isinstance(PROJECT_PATHS_APP_CONFIG, dict) else {}
     config_path = Path(path)
     if not config_path.exists():
         return {}

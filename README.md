@@ -34,6 +34,8 @@ python .\scripts\video_edit_run.py --action render-selected
 
 The Electron app writes a project-local runtime config under `projects\<project-id>\output\app\video_edit_app_config.runtime.json` and passes it through `VIDEO_EDIT_APP_CONFIG`. The runner delegates to common render, analysis, FFmpeg, and ffprobe commands. It requires project context and does not fall back to old root `source/` or `output/` files, nor to stale `.video-edit` runtime config.
 
+The operator and AI-editable project settings live in `projects\<project-id>\project_state.json`. The Electron UI keeps this file synchronized with current selections and reloads it while the project is active, so an AI agent can change options such as subtitle color, render mode, music, thumbnail, review, and analysis settings without using the human UI. Runtime config remains an execution snapshot generated from that project state. Command-line runs also read `project_state.json` when `VIDEO_EDIT_PROJECT` or `VIDEO_EDIT_PROJECT_ROOT` is set and `VIDEO_EDIT_APP_CONFIG` is not.
+
 Background music is controlled by the runtime `music` config. The app can generate a reusable project music bed at `output/audio/music_bed.wav` and mix it either across the whole render or only inside omission/title-card ranges. Those ranges are auto-detected from current overlay manifests when possible, and operator-entered ranges such as `00:12-00:18` can be added as overrides.
 
 Audio replacement is app-level shared behavior. `replace-audio` copies the selected input video's video stream, replaces its audio with the selected current-project external audio, applies the current `app_sync_offsets.json` offset when available, and can run the same silence-shortening pass as renders.

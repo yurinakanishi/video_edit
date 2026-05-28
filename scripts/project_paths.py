@@ -15,7 +15,23 @@ DOCS = ROOT / "docs"
 def app_config() -> dict:
     configured = os.environ.get("VIDEO_EDIT_APP_CONFIG")
     if not configured:
-        return {}
+        project_root = os.environ.get("VIDEO_EDIT_PROJECT_ROOT")
+        if not project_root:
+            project_id = os.environ.get("VIDEO_EDIT_PROJECT")
+            if project_id:
+                project_path = Path(project_id.strip())
+                if project_path.is_absolute() or any(part in {"", ".", ".."} for part in project_path.parts):
+                    return {}
+                project_root = str(PROJECTS / project_path)
+        if not project_root:
+            return {}
+        path = Path(project_root) / "project_state.json"
+        if not path.exists():
+            return {}
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return {}
     path = Path(configured)
     if not path.exists():
         return {}

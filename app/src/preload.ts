@@ -26,6 +26,9 @@ contextBridge.exposeInMainWorld("editApp", {
 	interruptCodex: () => ipcRenderer.invoke("codex:interrupt"),
 	loadAnalysisState: (payload) => ipcRenderer.invoke("analysis-state:load", payload),
 	saveAnalysisState: (payload) => ipcRenderer.invoke("analysis-state:save", payload),
+	loadProjectState: (payload) => ipcRenderer.invoke("project-state:load", payload),
+	saveProjectState: (payload) => ipcRenderer.invoke("project-state:save", payload),
+	patchProjectState: (payload) => ipcRenderer.invoke("project-state:patch", payload),
 	getSyncReport: (appConfig) => ipcRenderer.invoke("report:sync", appConfig),
 	loadGlossaryCandidates: (appConfig) => ipcRenderer.invoke("glossary:load-candidates", appConfig),
 	loadTextOverlayCandidates: (payload) => ipcRenderer.invoke("text-overlay:load-candidates", payload),
@@ -40,4 +43,5 @@ contextBridge.exposeInMainWorld("editApp", {
 	onServerNotification: (callback) => on("server:notification", callback),
 	onIngestProgress: (callback) => on("project:ingest-progress", callback),
 	onWorkflowProgress: (callback) => on("workflow:progress", callback),
+	onProjectStateChanged: (callback) => on("project-state:changed", callback),
 });

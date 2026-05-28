@@ -67,6 +67,7 @@ const ICON_PATH = fs.existsSync(RESOURCE_ICON_PATH) ? RESOURCE_ICON_PATH : path.
 const SYNC_REPORT_PATH = path.join(OUTPUT_ROOT, "reports", "app_sync_offsets.json");
 const MEDIA_MANIFEST_NAME = "media_manifest.json";
 const ANALYSIS_STATE_NAME = "analysis_state.json";
+const PROJECT_STATE_NAME = "project_state.json";
 const DEFAULT_FFMPEG_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe";
 const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
 const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
@@ -425,6 +426,190 @@ function writeProjectAnalysisState(project: ProjectInfo, payload: any) {
 	fs.mkdirSync(path.dirname(statePath), { recursive: true });
 	fs.writeFileSync(statePath, JSON.stringify(normalized, null, 2), "utf8");
 	return { ...normalized, path: statePath };
+}
+
+function projectStatePathForProject(project: ProjectInfo) {
+	return path.join(project.root, PROJECT_STATE_NAME);
+}
+
+const PROJECT_STATE_SECTIONS = new Set([
+	"assets",
+	"render",
+	"music",
+	"omissionCard",
+	"thumbnail",
+	"subtitleReview",
+	"subtitleSpeakers",
+	"transcriptComparison",
+	"workflow",
+	"replaceAudio",
+	"analysis",
+	"style",
+	"glossary",
+	"tools",
+	"ui",
+]);
+
+function normalizeProjectState(project: ProjectInfo, payload: any, revision: number) {
+	const source = payload && typeof payload === "object" ? payload : {};
+	const normalized: Record<string, any> = {
+		version: 1,
+		revision,
+		updatedAt: new Date().toISOString(),
+		project: {
+			id: project.id,
+			name: project.name,
+			root: project.root,
+			sourceRoot: project.sourceRoot,
+			outputRoot: project.outputRoot,
+		},
+	};
+	for (const key of PROJECT_STATE_SECTIONS) {
+		const value = source[key];
+		if (value === undefined) {
+			continue;
+		}
+		normalized[key] = value;
+	}
+	return normalized;
+}
+
+function readProjectState(project: ProjectInfo) {
+	const statePath = projectStatePathForProject(project);
+	const payload = readJsonFile(statePath);
+	if (!payload || typeof payload !== "object") {
+		return null;
+	}
+	const revision = Math.max(1, Number(payload.revision || 1));
+	return {
+		...normalizeProjectState(project, payload, revision),
+		path: statePath,
+	};
+}
+
+function writeProjectState(project: ProjectInfo, payload: any, options: { baseRevision?: number | null } = {}) {
+	const statePath = projectStatePathForProject(project);
+	const current = readJsonFile(statePath);
+	const currentRevision = Math.max(0, Number(current?.revision || 0));
+	const baseRevision = options.baseRevision;
+	if (baseRevision !== undefined && baseRevision !== null && Number(baseRevision) !== currentRevision) {
+		throw new Error(`project state revision mismatch: expected ${baseRevision}, found ${currentRevision}`);
+	}
+	const nextRevision = currentRevision + 1;
+	const normalized = normalizeProjectState(project, payload, nextRevision);
+	fs.mkdirSync(path.dirname(statePath), { recursive: true });
+	fs.writeFileSync(statePath, JSON.stringify(normalized, null, 2), "utf8");
+	return { ...normalized, path: statePath };
+}
+
+function decodeJsonPointerPart(value: string) {
+	return value.replace(/~1/g, "/").replace(/~0/g, "~");
+}
+
+function pointerParts(pointer: string) {
+	if (pointer === "") {
+		return [];
+	}
+	if (!pointer.startsWith("/")) {
+		throw new Error(`invalid JSON pointer: ${pointer}`);
+	}
+	return pointer.slice(1).split("/").map(decodeJsonPointerPart);
+}
+
+function containerForPatch(root: any, pathParts: string[]) {
+	let container = root;
+	for (const part of pathParts.slice(0, -1)) {
+		if (Array.isArray(container)) {
+			const index = Number(part);
+			if (!Number.isInteger(index) || index < 0 || index >= container.length) {
+				throw new Error(`invalid array path segment: ${part}`);
+			}
+			container = container[index];
+			continue;
+		}
+		if (!container || typeof container !== "object" || !(part in container)) {
+			throw new Error(`missing object path segment: ${part}`);
+		}
+		container = container[part];
+	}
+	return { container, key: pathParts[pathParts.length - 1] };
+}
+
+function applyProjectStatePatchDocument(document: any, operations: any[]) {
+	if (!Array.isArray(operations)) {
+		throw new Error("patch operations must be an array");
+	}
+	const root = structuredClone(document || {});
+	for (const operation of operations) {
+		const op = String(operation?.op || "");
+		const pathValue = String(operation?.path || "");
+		const parts = pointerParts(pathValue);
+		if (!parts.length) {
+			if (op === "replace" || op === "add") {
+				if (!operation.value || typeof operation.value !== "object" || Array.isArray(operation.value)) {
+					throw new Error("root replacement must be an object");
+				}
+				for (const key of Object.keys(root)) {
+					delete root[key];
+				}
+				Object.assign(root, operation.value);
+				continue;
+			}
+			throw new Error(`unsupported root patch operation: ${op}`);
+		}
+		const { container, key } = containerForPatch(root, parts);
+		if (Array.isArray(container)) {
+			if (op === "add" && key === "-") {
+				container.push(operation.value);
+				continue;
+			}
+			const index = Number(key);
+			if (!Number.isInteger(index) || index < 0 || index > container.length) {
+				throw new Error(`invalid array index: ${key}`);
+			}
+			if (op === "remove") {
+				if (index >= container.length) {
+					throw new Error(`array index out of range: ${key}`);
+				}
+				container.splice(index, 1);
+			} else if (op === "replace") {
+				if (index >= container.length) {
+					throw new Error(`array index out of range: ${key}`);
+				}
+				container[index] = operation.value;
+			} else if (op === "add") {
+				container.splice(index, 0, operation.value);
+			} else {
+				throw new Error(`unsupported patch operation: ${op}`);
+			}
+			continue;
+		}
+		if (!container || typeof container !== "object") {
+			throw new Error(`patch target is not an object: ${pathValue}`);
+		}
+		if (op === "remove") {
+			delete container[key];
+		} else if (op === "replace") {
+			if (!(key in container)) {
+				throw new Error(`replace target does not exist: ${pathValue}`);
+			}
+			container[key] = operation.value;
+		} else if (op === "add") {
+			container[key] = operation.value;
+		} else {
+			throw new Error(`unsupported patch operation: ${op}`);
+		}
+	}
+	return root;
+}
+
+function patchProjectState(project: ProjectInfo, operations: any[], baseRevision?: number | null) {
+	const current: any = readProjectState(project) || normalizeProjectState(project, {}, 0);
+	if (baseRevision !== undefined && baseRevision !== null && Number(baseRevision) !== Number(current.revision || 0)) {
+		throw new Error(`project state revision mismatch: expected ${baseRevision}, found ${current.revision || 0}`);
+	}
+	const patched = applyProjectStatePatchDocument(current, operations);
+	return writeProjectState(project, patched, { baseRevision: Number(current.revision || 0) });
 }
 
 function cleanSubtitleText(value: string) {
@@ -1840,6 +2025,46 @@ class CodexAppServer {
 let mainWindow = null;
 let codex = null;
 let activeIngestWorker: Worker | null = null;
+let watchedProjectStatePath = "";
+let projectStateWatcher: fs.FSWatcher | null = null;
+let projectStateWatchTimer: NodeJS.Timeout | null = null;
+
+function watchProjectState(project: ProjectInfo) {
+	const statePath = projectStatePathForProject(project);
+	if (watchedProjectStatePath === statePath && projectStateWatcher) {
+		return;
+	}
+	if (projectStateWatcher) {
+		projectStateWatcher.close();
+		projectStateWatcher = null;
+	}
+	watchedProjectStatePath = statePath;
+	try {
+		fs.mkdirSync(project.root, { recursive: true });
+		projectStateWatcher = fs.watch(project.root, { persistent: false }, (_eventType, filename) => {
+			if (String(filename || "") !== PROJECT_STATE_NAME) {
+				return;
+			}
+			if (projectStateWatchTimer) {
+				clearTimeout(projectStateWatchTimer);
+			}
+			projectStateWatchTimer = setTimeout(() => {
+				if (!mainWindow || mainWindow.isDestroyed()) {
+					return;
+				}
+				const payload: any = readProjectState(project);
+				mainWindow.webContents.send("project-state:changed", {
+					project,
+					path: statePath,
+					revision: payload?.revision || 0,
+					updatedAt: payload?.updatedAt || "",
+				});
+			}, 80);
+		});
+	} catch {
+		projectStateWatcher = null;
+	}
+}
 
 function createWindow() {
 	mainWindow = new BrowserWindow({
@@ -1872,6 +2097,10 @@ app.on("window-all-closed", () => {
 	if (codex) {
 		codex.stop();
 	}
+	if (projectStateWatcher) {
+		projectStateWatcher.close();
+		projectStateWatcher = null;
+	}
 	if (process.platform !== "darwin") {
 		app.quit();
 	}
@@ -1890,6 +2119,7 @@ ipcMain.handle("environment:get", async () => {
 		projectsRoot: PROJECTS_ROOT,
 		methodDoc: METHOD_DOC,
 		appConfigPath: DEFAULT_APP_CONFIG_PATH,
+		projectStateName: PROJECT_STATE_NAME,
 		syncReportPath: SYNC_REPORT_PATH,
 		methodDocExists: fs.existsSync(METHOD_DOC),
 		codexAppServerDoc: path.join(VIDEO_EDIT_ROOT, "docs", "codex-app-server.md"),
@@ -1907,6 +2137,7 @@ ipcMain.handle("environment:get", async () => {
 ipcMain.handle("project:create", async (_event, { name, id }) => {
 	const project = projectInfo(id || name || "", name);
 	ensureProjectDirs(project);
+	watchProjectState(project);
 	return project;
 });
 
@@ -1917,6 +2148,7 @@ ipcMain.handle("project:list", async () => {
 ipcMain.handle("project:load", async (_event, { project } = {}) => {
 	const info = projectInfoFromPayload(project);
 	ensureProjectDirs(info);
+	watchProjectState(info);
 	return {
 		project: info,
 		manifest: readProjectMediaManifest(info),
@@ -1936,6 +2168,7 @@ ipcMain.handle("project:pick-existing", async (_event, options: any = {}) => {
 	}
 	const project = projectInfoFromRoot(result.filePaths[0]);
 	ensureProjectDirs(project);
+	watchProjectState(project);
 	return {
 		project,
 		manifest: readProjectMediaManifest(project),
@@ -1991,6 +2224,27 @@ ipcMain.handle("analysis-state:save", async (_event, { project, state } = {}) =>
 	return writeProjectAnalysisState(info, state || {});
 });
 
+ipcMain.handle("project-state:load", async (_event, { project } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	watchProjectState(info);
+	return readProjectState(info);
+});
+
+ipcMain.handle("project-state:save", async (_event, { project, state, baseRevision } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	watchProjectState(info);
+	return writeProjectState(info, state || {}, { baseRevision });
+});
+
+ipcMain.handle("project-state:patch", async (_event, { project, operations, baseRevision } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	watchProjectState(info);
+	return patchProjectState(info, operations || [], baseRevision);
+});
+
 ipcMain.handle("project:ingest-directory", async (_event, { project, directory, paths, tools } = {}) => {
 	const sourcePaths = existingInputPaths(directory, paths);
 	if (!sourcePaths.length) {
@@ -2004,6 +2258,7 @@ ipcMain.handle("project:ingest-directory", async (_event, { project, directory, 
 				path.basename(sourceDirectory),
 			);
 	ensureProjectDirs(info);
+	watchProjectState(info);
 	const ffprobePath = String(tools?.ffprobe || DEFAULT_FFPROBE_EXE);
 	const emit = (payload: IngestProgress) => {
 		_event.sender.send("project:ingest-progress", payload);

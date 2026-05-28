@@ -1,10 +1,11 @@
 # Video Edit Common Workflow
 
-This project should operate from the selected media and the runtime app config, not from fixed historical source files.
+This project should operate from the selected media, project state, and runtime app config snapshot, not from fixed historical source files.
 
 ## Source Of Truth
 
-- Runtime config: `projects/<project-id>/output/app/video_edit_app_config.runtime.json` through `VIDEO_EDIT_APP_CONFIG`
+- Editable project state: `projects/<project-id>/project_state.json`
+- Runtime config snapshot: `projects/<project-id>/output/app/video_edit_app_config.runtime.json` through `VIDEO_EDIT_APP_CONFIG`; if that env var is unset, scripts read the active project's `project_state.json`
 - Media manifest: `assets.mediaManifest` or `assets.mediaManifestPath`
 - Project roots: `project.sourceRoot` and `project.outputRoot`
 - Transcript overlays: generated from the current project transcript under `projects/<project-id>/output/transcripts/manifest_sources`
@@ -62,6 +63,7 @@ Punchline overlays use only `style.punchlineText` from the runtime config. If it
 
 - Script names should describe reusable behavior, not a specific clip, person, source camera, or date.
 - Defaults must be generic. Project-specific values belong in the runtime config, media manifest, or project files.
+- AI/operator option changes should go through `project_state.json`; runtime config is generated for a specific run.
 - Root-level `source/` and `output/` are not valid app data sources; they are ignored legacy workspace names.
 - Project context is required. Use the Electron app, `VIDEO_EDIT_APP_CONFIG`, or `VIDEO_EDIT_PROJECT`; do not rely on `.video-edit` fallback state.
 - When a script cannot run without current project data, fail with a clear message rather than silently using older project files.

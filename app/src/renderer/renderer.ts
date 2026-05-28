@@ -24,6 +24,9 @@ type EditAppApi = {
 	interruptCodex: () => Promise<any>;
 	loadAnalysisState: (payload: any) => Promise<any>;
 	saveAnalysisState: (payload: any) => Promise<any>;
+	loadProjectState: (payload: any) => Promise<any>;
+	saveProjectState: (payload: any) => Promise<any>;
+	patchProjectState: (payload: any) => Promise<any>;
 	getSyncReport: (appConfig?: any) => Promise<any>;
 	loadGlossaryCandidates: (appConfig: any) => Promise<any>;
 	loadTextOverlayCandidates: (payload: any) => Promise<any>;
@@ -38,6 +41,7 @@ type EditAppApi = {
 	onServerNotification: (callback: (payload: any) => void) => Unsubscribe;
 	onIngestProgress: (callback: (payload: any) => void) => Unsubscribe;
 	onWorkflowProgress: (callback: (payload: any) => void) => Unsubscribe;
+	onProjectStateChanged: (callback: (payload: any) => void) => Unsubscribe;
 };
 
 const editApp = (window as unknown as { editApp: EditAppApi }).editApp;
@@ -123,6 +127,10 @@ function initialLanguage(): Locale {
 const state = {
 	env: null,
 	project: null as ProjectInfo | null,
+	projectStatePath: "",
+	projectStateRevision: 0,
+	projectStateApplying: false,
+	projectStatePersistTimer: 0,
 	projectList: [] as ProjectListEntry[],
 	projectListLoading: false,
 	mediaManifest: null as MediaManifest | null,
@@ -2097,7 +2105,12 @@ function setAnalysisTitleText(title: string) {
 }
 
 function setProject(project: ProjectInfo | null) {
+	const previousProjectId = state.project?.id || "";
 	state.project = project;
+	state.projectStatePath = project ? joinPath(project.root, "project_state.json") : "";
+	if (!project || project.id !== previousProjectId) {
+		state.projectStateRevision = 0;
+	}
 	setAnalysisTitleText("");
 	const nameInput = $("#projectName");
 	const idInput = $("#projectId");
@@ -2225,16 +2238,52 @@ async function loadProjectList() {
 	}
 }
 
+async function restoreLatestProjectFromDisk() {
+	if (state.project) {
+		return false;
+	}
+	try {
+		const result = await editApp.listProjects();
+		const entries = Array.isArray(result?.projects) ? result.projects : [];
+		state.projectList = entries;
+		renderProjectDialogList();
+		const entry =
+			entries.find((candidate) => candidate?.project?.id && candidate.hasManifest) ||
+			entries.find((candidate) => candidate?.project?.id);
+		if (!entry?.project) {
+			return false;
+		}
+		const loaded = await editApp.loadProject({ project: entry.project });
+		if (!loaded?.project) {
+			return false;
+		}
+		await activateProject(loaded.project, loaded.manifest || null);
+		log("project restored from disk", {
+			id: loaded.project.id,
+			root: loaded.project.root,
+			manifest: loaded.manifest?.manifestPath || null,
+		});
+		return true;
+	} catch (error) {
+		log("project restore failed", { message: error.message });
+		return false;
+	}
+}
+
 async function activateProject(project: ProjectInfo, manifest: MediaManifest | null = null) {
 	setProject(project);
 	clearSelectedAssets();
 	setAnalysisResults([], { persistFile: false });
 	setMediaManifest(manifest || null);
-	await refreshTextOverlayFromAnalysis(manifest || null);
-	if (!(await loadAnalysisStateFile(project))) {
-		await restoreAnalysisResultsFromOutputs(manifest || null);
+	const loadedProjectState = await loadProjectStateFile(project);
+	if (!loadedProjectState) {
+		await persistProjectStateFileNow();
 	}
-	if (!manifest) {
+	await refreshTextOverlayFromAnalysis(state.mediaManifest || manifest || null);
+	if (!(await loadAnalysisStateFile(project))) {
+		await restoreAnalysisResultsFromOutputs(state.mediaManifest || manifest || null);
+	}
+	if (!state.mediaManifest) {
 		setIngestProgress({
 			progress: 0,
 			message: t("materials.folderNotAnalyzed"),
@@ -2897,6 +2946,7 @@ function saveState() {
 			fields,
 		}),
 	);
+	schedulePersistProjectStateFile();
 }
 
 function loadState() {
@@ -2978,6 +3028,273 @@ function loadState() {
 		}
 	} catch (error) {
 		log("saved state ignored", { message: error.message });
+	}
+}
+
+const projectStateFieldMap = [
+	["render", "editPreset", "editPreset"],
+	["render", "workflowAction", "workflowAction"],
+	["render", "renderScript", "renderScript"],
+	["render", "outputPath", "outputPath"],
+	["render", "multicamMode", "multicamMode"],
+	["render", "audioSource", "audioSource"],
+	["render", "audioDenoise", "audioDenoise"],
+	["render", "audioDenoiseStrength", "audioDenoiseStrength"],
+	["render", "audioMastering", "audioMastering"],
+	["render", "encoderPreset", "encoderPreset"],
+	["render", "crf", "renderCrf"],
+	["render", "colorMatchCameras", "colorMatchCameras"],
+	["render", "usePersonEditPlans", "usePersonEditPlans"],
+	["render", "useTranscriptComparisonSync", "useTranscriptComparisonSync"],
+	["render", "naturalDialogueCuts", "naturalDialogueCuts"],
+	["render", "previewStart", "previewStart"],
+	["render", "previewDuration", "previewDuration"],
+	["render", "termExplanations", "termExplanations"],
+	["render", "shortenSilence", "shortenSilence"],
+	["render", "minSilence", "minSilence"],
+	["render", "keepSilence", "keepSilence"],
+	["render", "silenceNoise", "silenceNoise"],
+	["render", "keepUncut", "keepUncut"],
+	["music", "enabled", "musicEnabled"],
+	["music", "scope", "musicScope"],
+	["music", "rangeSource", "musicRangeSource"],
+	["music", "prompt", "musicPrompt"],
+	["music", "volume", "musicVolume"],
+	["music", "rangesText", "musicRangesText"],
+	["omissionCard", "enabled", "omissionCardEnabled"],
+	["omissionCard", "duration", "omissionCardDuration"],
+	["omissionCard", "label", "omissionCardLabel"],
+	["omissionCard", "text", "omissionCardText"],
+	["omissionCard", "rangesText", "omissionCardRangesText"],
+	["thumbnail", "inputVideoPath", "inputVideoPath"],
+	["thumbnail", "time", "thumbnailTime"],
+	["thumbnail", "title", "thumbnailTitle"],
+	["thumbnail", "subtitle", "thumbnailSubtitle"],
+	["thumbnail", "candidateCount", "thumbnailCandidateCount"],
+	["thumbnail", "mode", "thumbnailMode"],
+	["thumbnail", "mainColor", "thumbnailMainColor"],
+	["thumbnail", "candidateTimesText", "thumbnailCandidateTimes"],
+	["thumbnail", "debugFaces", "thumbnailDebugFaces"],
+	["subtitleReview", "maxDuration", "subtitleReviewMaxDuration"],
+	["subtitleReview", "maxCharsPerSecond", "subtitleReviewMaxCharsPerSecond"],
+	["subtitleReview", "suspiciousPatternsText", "subtitleSuspiciousPatterns"],
+	["subtitleReview", "extractAudioClips", "subtitleReviewExtractClips"],
+	["subtitleReview", "transcribeReview", "subtitleReviewTranscribeClips"],
+	["subtitleReview", "correctionsText", "subtitleCorrectionsText"],
+	["subtitleSpeakers", "interviewerRangesText", "subtitleInterviewerRanges"],
+	["subtitleSpeakers", "interviewerPatternsText", "subtitleInterviewerPatterns"],
+	["subtitleSpeakers", "manualRolesText", "subtitleManualRoles"],
+	["subtitleSpeakers", "mouthMotionDiagnostics", "subtitleMouthMotionDiagnostics"],
+	["workflow", "inputVideoPath", "inputVideoPath"],
+	["workflow", "stillTime", "stillTime"],
+	["analysis", "transcribeModel", "transcribeModel"],
+	["analysis", "transcribeLanguage", "transcribeLanguage"],
+	["analysis", "transcribeBeamSize", "transcribeBeamSize"],
+	["analysis", "transcribeTemperature", "transcribeTemperature"],
+	["analysis", "transcribePromptTerms", "transcribePromptTerms"],
+	["analysis", "transcribeNormalizeAudio", "transcribeNormalizeAudio"],
+	["analysis", "transcribeFilterLowConfidence", "transcribeFilterLowConfidence"],
+	["analysis", "conditionOnPreviousText", "conditionOnPreviousText"],
+	["analysis", "personFpsSample", "personFpsSample"],
+	["analysis", "personModel", "personModel"],
+	["analysis", "personConfidence", "personConfidence"],
+	["analysis", "personMaxSeconds", "personMaxSeconds"],
+	["analysis", "personLimit", "personLimit"],
+	["analysis", "personNoMulticamRoot", "personNoMulticamRoot"],
+	["style", "subtitleSize", "subtitleSize"],
+	["style", "highlightColor", "highlightColor"],
+	["style", "boxOpacity", "boxOpacity"],
+	["style", "titleSize", "titleSize"],
+	["style", "logoHeight", "logoHeight"],
+	["style", "punchlineText", "punchlineText"],
+	["glossary", "enabled", "termExplanations"],
+	["tools", "python", "pythonPath"],
+	["tools", "ffmpeg", "ffmpegPath"],
+	["tools", "ffprobe", "ffprobePath"],
+];
+
+function nestedValue(source: any, section: string, key: string) {
+	const parent = source?.[section];
+	if (!parent || typeof parent !== "object" || !(key in parent)) {
+		return undefined;
+	}
+	return parent[key];
+}
+
+function setFormControlValue(id: string, value: any) {
+	const element = $(`#${id}`);
+	if (!element || value === undefined) {
+		return;
+	}
+	if (element.type === "checkbox") {
+		element.checked = Boolean(value);
+	} else {
+		element.value = value === null ? "" : String(value);
+	}
+}
+
+function renderSubtitleModeSelection() {
+	$$("[data-subtitle-mode]").forEach((button) => {
+		button.classList.toggle("selected", button.dataset.subtitleMode === state.subtitleMode);
+	});
+}
+
+function buildProjectStateSnapshot() {
+	return {
+		version: 1,
+		revision: state.projectStateRevision || 0,
+		updatedAt: new Date().toISOString(),
+		...buildAppConfig(),
+		ui: {
+			activeSection: state.activeSection,
+			codexModel: state.codexModel,
+			language: state.language,
+		},
+	};
+}
+
+let projectStateWriteQueue: Promise<any> = Promise.resolve(null);
+
+function schedulePersistProjectStateFile() {
+	if (!state.project || state.projectStateApplying || !state.env) {
+		return;
+	}
+	if (state.projectStatePersistTimer) {
+		window.clearTimeout(state.projectStatePersistTimer);
+	}
+	state.projectStatePersistTimer = window.setTimeout(() => {
+		state.projectStatePersistTimer = 0;
+		void persistProjectStateFileNow();
+	}, 250);
+}
+
+async function persistProjectStateFileNow() {
+	if (!state.project || state.projectStateApplying || !state.env) {
+		return null;
+	}
+	if (state.projectStatePersistTimer) {
+		window.clearTimeout(state.projectStatePersistTimer);
+		state.projectStatePersistTimer = 0;
+	}
+	const project = { ...state.project };
+	const snapshot = buildProjectStateSnapshot();
+	projectStateWriteQueue = projectStateWriteQueue
+		.catch(() => undefined)
+		.then(async () => {
+			const saved = await editApp.saveProjectState({ project, state: snapshot });
+			if (state.project?.id === project.id) {
+				state.projectStateRevision = Number(saved?.revision || state.projectStateRevision || 0);
+				state.projectStatePath = saved?.path || state.projectStatePath;
+			}
+			return saved;
+		})
+		.catch((error) => {
+			log("project state save failed", { message: error.message });
+			return null;
+		});
+	return projectStateWriteQueue;
+}
+
+function applyProjectStatePayload(payload: any) {
+	if (!payload || typeof payload !== "object") {
+		return false;
+	}
+	state.projectStateApplying = true;
+	try {
+		state.projectStatePath = String(payload.path || state.projectStatePath || "");
+		state.projectStateRevision = Number(payload.revision || state.projectStateRevision || 0);
+		const assets = payload.assets || {};
+		if (Array.isArray(assets.materialPaths)) {
+			state.materialPaths = assets.materialPaths.map(String).filter(Boolean);
+		}
+		state.mediaDirectory = String(assets.mediaDirectory || state.materialPaths[0] || "");
+		if (assets.mediaManifest && typeof assets.mediaManifest === "object") {
+			state.mediaManifest = assets.mediaManifest;
+			if (state.mediaManifest) {
+				rebuildMediaManifestGroups();
+			}
+		}
+		const selected = state.mediaManifest?.selected || {};
+		state.files.masterVideo = String(assets.masterVideo || selected.masterVideo || "");
+		state.files.rightCloseVideo = String(assets.rightCloseVideo || selected.rightCloseVideo || "");
+		state.files.leftCloseVideo = String(assets.leftCloseVideo || selected.leftCloseVideo || "");
+		state.files.referenceVideo = String(assets.referenceVideo || "");
+		state.files.externalAudio = String(assets.externalAudio || selected.externalAudio || "");
+		state.files.logo = String(assets.logo || selected.logo || "");
+		state.files.stillImages = Array.isArray(assets.stillImages)
+			? [...new Set<string>(assets.stillImages.map(String).filter((item) => Boolean(item)))]
+			: Array.isArray(selected.stillImages)
+				? selected.stillImages.map(String).filter(Boolean)
+				: [];
+
+		for (const [section, key, id] of projectStateFieldMap) {
+			setFormControlValue(id, nestedValue(payload, section, key));
+		}
+		if (payload.render?.subtitleMode) {
+			state.subtitleMode = String(payload.render.subtitleMode);
+			renderSubtitleModeSelection();
+		}
+		if (payload.style && "titleText" in payload.style) {
+			setAnalysisTitleText(String(payload.style.titleText || ""));
+		}
+		if (Array.isArray(payload.glossary?.terms)) {
+			state.glossaryTerms = payload.glossary.terms;
+		}
+		if (payload.ui?.activeSection) {
+			setActiveSection(String(payload.ui.activeSection));
+		}
+		if (payload.ui?.codexModel !== undefined) {
+			state.codexModel = String(payload.ui.codexModel || "");
+			renderCodexModelOptions();
+		}
+		if (payload.ui?.language) {
+			setLanguage(normalizeLanguage(payload.ui.language));
+		}
+
+		renderFileSlots();
+		renderStillImageList();
+		renderMediaManifest();
+		renderGlossaryList();
+		loadFilePreviews([
+			state.files.masterVideo,
+			state.files.rightCloseVideo,
+			state.files.leftCloseVideo,
+			state.files.referenceVideo,
+			state.files.externalAudio,
+			state.files.logo,
+			...state.files.stillImages,
+		]);
+		loadWorkflowMediaPreviews();
+		loadOutputTargetPreview();
+		updateRunSummary();
+		refreshCommand();
+		refreshPrompt();
+		return true;
+	} finally {
+		state.projectStateApplying = false;
+	}
+}
+
+async function loadProjectStateFile(project: ProjectInfo | null = state.project) {
+	if (!project) {
+		return false;
+	}
+	try {
+		const payload = await editApp.loadProjectState({ project });
+		if (!payload) {
+			return false;
+		}
+		const applied = applyProjectStatePayload(payload);
+		if (applied) {
+			log("project state loaded", {
+				path: payload.path || "",
+				revision: payload.revision || 0,
+			});
+		}
+		return applied;
+	} catch (error) {
+		log("project state load failed", { message: error.message });
+		return false;
 	}
 }
 
@@ -3146,6 +3463,7 @@ async function createProjectFromForm() {
 	try {
 		const project = await editApp.createProject({ name, id });
 		setProject(project);
+		await persistProjectStateFileNow();
 		void loadProjectList();
 		log("project ready", { id: project.id, root: project.root });
 	} catch (error) {
@@ -4460,6 +4778,7 @@ function buildPrompt() {
 		})`,
 		`- Output path: ${outputPath}`,
 		`- Active project: ${state.project ? `${state.project.name} (${state.project.root})` : "(none; using workspace defaults)"}`,
+		`- AI-editable project state: ${state.projectStatePath || "(project not saved yet)"}`,
 		`- Project source root: ${activeSourceRoot() || "(not set)"}`,
 		`- Project output root: ${activeOutputRoot() || "(not set)"}`,
 		`- Material sources: ${state.materialPaths.length ? state.materialPaths.join("; ") : state.mediaDirectory || "(not ingested)"}`,
@@ -4501,6 +4820,8 @@ function buildPrompt() {
 		`- Punchline list:\n${formValue("punchlineText") || "(empty)"}`,
 		"",
 		"Expected behavior:",
+		"- To change operator options, update the AI-editable project_state.json file. The app treats it as the project-level source of truth and reloads it while this project is active.",
+		"- Keep generated reports, transcripts, and media files in their existing output folders; keep project_state.json focused on options and selected project state.",
 		"- If external audio is selected, sync it or clearly report if existing offset data cannot be reused.",
 		"- If no external audio is selected, use the selected camera audio source.",
 		"- Prefer the media manifest for source roles. Support variable interview/multicam camera roles: master, camera2, camera3, camera4+.",
@@ -4709,6 +5030,7 @@ async function runPreset() {
 		log("direct run unavailable", { reason });
 		return false;
 	}
+	await persistProjectStateFileNow();
 	const action = formValue("workflowAction");
 	const label = directRunLabel(action);
 	state.runningAction = action;
@@ -4795,6 +5117,7 @@ async function sendRequest() {
 		return;
 	}
 	refreshPrompt();
+	await persistProjectStateFileNow();
 	setStatus(t("status.codexRunning"), "busy");
 	setCodexTurnRunning(true);
 	log("turn/start");
@@ -5050,6 +5373,10 @@ async function init() {
 	$("#punchlineText").value = defaultPunchlines;
 	state.glossaryTerms = defaultGlossaryTerms;
 	loadState();
+	const restoredProject = await restoreLatestProjectFromDisk();
+	if (!restoredProject) {
+		await loadProjectStateFile();
+	}
 	renderGlossaryList();
 	renderMediaManifest();
 	initDropZones();
@@ -5079,6 +5406,12 @@ async function init() {
 	editApp.onServerStderr((payload) => log("stderr", payload));
 	editApp.onServerNotification(handleNotification);
 	editApp.onWorkflowProgress(handleWorkflowProgress);
+	editApp.onProjectStateChanged(async (payload) => {
+		if (!state.project || payload?.project?.id !== state.project.id) {
+			return;
+		}
+		await loadProjectStateFile(state.project);
+	});
 	editApp.onIngestProgress((payload) => {
 		const progressPayload =
 			state.fullAnalysisRunning && payload?.stage !== "canceled"

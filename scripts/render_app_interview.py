@@ -1069,6 +1069,11 @@ def camera_segment_visual_filter(
         "cropStrategy": segment.get("crop_strategy"),
         "position": segment.get("position"),
         "shotSize": segment.get("shot_size"),
+        "faceDirection": segment.get("face_direction"),
+        "rawFaceDirection": segment.get("raw_face_direction"),
+        "directionSource": segment.get("direction_source"),
+        "isFixedCamera": plan.get("is_fixed_camera"),
+        "cameraMotionType": plan.get("camera_motion_type"),
     }
     return visual_filter, detail
 

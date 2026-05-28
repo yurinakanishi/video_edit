@@ -93,6 +93,7 @@ def load_face_detectors() -> dict[str, cv2.CascadeClassifier]:
     return {
         "front": cv2.CascadeClassifier(str(base / "haarcascade_frontalface_default.xml")),
         "profile": cv2.CascadeClassifier(str(base / "haarcascade_profileface.xml")),
+        "eye": cv2.CascadeClassifier(str(base / "haarcascade_eye.xml")),
     }
 
 
@@ -208,6 +209,216 @@ def visual_metrics(frame: np.ndarray) -> dict[str, Any]:
     }
 
 
+def camera_motion_gray(frame: np.ndarray, target_width: int = 320) -> np.ndarray:
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    if gray.shape[1] <= target_width:
+        return gray
+    target_height = max(1, int(gray.shape[0] * target_width / gray.shape[1]))
+    return cv2.resize(gray, (target_width, target_height))
+
+
+def fallback_motion(prev_gray: np.ndarray, gray: np.ndarray, method: str) -> dict[str, Any]:
+    diff = float(cv2.absdiff(prev_gray, gray).mean()) / 255.0
+    return {
+        "method": method,
+        "feature_count": 0,
+        "inlier_ratio": 0.0,
+        "translation_px": 0.0,
+        "translation_ratio": 0.0,
+        "scale_delta": 0.0,
+        "rotation_degrees": 0.0,
+        "frame_diff": round(diff, 5),
+        "global_motion_score": round(diff * 0.25, 6),
+    }
+
+
+def estimate_camera_motion(prev_gray: np.ndarray | None, gray: np.ndarray) -> dict[str, Any] | None:
+    if prev_gray is None:
+        return None
+    if prev_gray.shape != gray.shape:
+        gray = cv2.resize(gray, (prev_gray.shape[1], prev_gray.shape[0]))
+    prev_points = cv2.goodFeaturesToTrack(prev_gray, maxCorners=400, qualityLevel=0.01, minDistance=7, blockSize=7)
+    if prev_points is None or len(prev_points) < 12:
+        return fallback_motion(prev_gray, gray, "frame_diff_fallback")
+
+    next_points, status, _ = cv2.calcOpticalFlowPyrLK(prev_gray, gray, prev_points, None)
+    if next_points is None or status is None:
+        return fallback_motion(prev_gray, gray, "frame_diff_fallback")
+    good_prev = prev_points[status.reshape(-1) == 1].reshape(-1, 2)
+    good_next = next_points[status.reshape(-1) == 1].reshape(-1, 2)
+    if len(good_prev) < 8:
+        return fallback_motion(prev_gray, gray, "sparse_flow_fallback")
+
+    matrix, inliers = cv2.estimateAffinePartial2D(
+        good_prev,
+        good_next,
+        method=cv2.RANSAC,
+        ransacReprojThreshold=3.0,
+        maxIters=2000,
+        confidence=0.98,
+    )
+    if matrix is None:
+        return fallback_motion(prev_gray, gray, "affine_fallback")
+
+    a, b, dx = [float(value) for value in matrix[0]]
+    c, d, dy = [float(value) for value in matrix[1]]
+    frame_diag = max(1.0, math.hypot(prev_gray.shape[1], prev_gray.shape[0]))
+    translation_px = math.hypot(dx, dy)
+    translation_ratio = translation_px / frame_diag
+    scale_x = math.hypot(a, c)
+    scale_y = math.hypot(b, d)
+    scale_delta = abs(((scale_x + scale_y) / 2) - 1.0)
+    rotation_degrees = abs(math.degrees(math.atan2(c, a)))
+    frame_diff = float(cv2.absdiff(prev_gray, gray).mean()) / 255.0
+    inlier_ratio = float(inliers.sum()) / len(inliers) if inliers is not None and len(inliers) else 0.0
+    global_motion_score = translation_ratio + scale_delta * 0.5 + min(rotation_degrees / 180.0, 0.05)
+    return {
+        "method": "sparse_optical_flow_affine",
+        "feature_count": int(len(good_prev)),
+        "inlier_ratio": round(inlier_ratio, 4),
+        "translation_px": round(translation_px, 4),
+        "translation_ratio": round(translation_ratio, 6),
+        "scale_delta": round(scale_delta, 6),
+        "rotation_degrees": round(rotation_degrees, 4),
+        "frame_diff": round(frame_diff, 5),
+        "global_motion_score": round(global_motion_score, 6),
+    }
+
+
+def percentile(values: list[float], ratio: float) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    index = min(len(ordered) - 1, max(0, int(round((len(ordered) - 1) * ratio))))
+    return ordered[index]
+
+
+def summarize_camera_motion(samples: list[dict[str, Any]]) -> dict[str, Any]:
+    if not samples:
+        return {
+            "camera_motion_type": "unknown",
+            "is_fixed_camera": None,
+            "sample_count": 0,
+            "reason": "not enough sampled frames",
+        }
+    scores = [float(item.get("global_motion_score") or 0.0) for item in samples]
+    translations = [float(item.get("translation_ratio") or 0.0) for item in samples]
+    frame_diffs = [float(item.get("frame_diff") or 0.0) for item in samples]
+    median_score = percentile(scores, 0.5)
+    p90_score = percentile(scores, 0.9)
+    median_translation = percentile(translations, 0.5)
+    p90_translation = percentile(translations, 0.9)
+    is_fixed = median_score <= 0.0045 and p90_score <= 0.014 and median_translation <= 0.0035
+    return {
+        "camera_motion_type": "fixed" if is_fixed else "moving",
+        "is_fixed_camera": is_fixed,
+        "sample_count": len(samples),
+        "median_global_motion_score": round(median_score, 6),
+        "p90_global_motion_score": round(p90_score, 6),
+        "median_translation_ratio": round(median_translation, 6),
+        "p90_translation_ratio": round(p90_translation, 6),
+        "avg_frame_diff": round(sum(frame_diffs) / len(frame_diffs), 5) if frame_diffs else 0.0,
+    }
+
+
+def detect_eyes_in_face(
+    gray: np.ndarray,
+    face: dict[str, Any],
+    eye_detector: cv2.CascadeClassifier,
+) -> dict[str, Any]:
+    height, width = gray.shape[:2]
+    fx1, fy1, fx2, fy2 = [float(value) for value in face["bbox"].values()]
+    face_width = max(1.0, fx2 - fx1)
+    face_height = max(1.0, fy2 - fy1)
+    ix1 = max(0, int(round(fx1)))
+    iy1 = max(0, int(round(fy1)))
+    ix2 = min(width, int(round(fx2)))
+    iy2 = min(height, int(round(fy1 + face_height * 0.68)))
+    if ix2 <= ix1 or iy2 <= iy1 or eye_detector.empty():
+        return {
+            "eyes": [],
+            "eye_direction": "unknown",
+            "eye_offset_from_face_center": {"x": None, "x_ratio": None},
+        }
+
+    roi = gray[iy1:iy2, ix1:ix2]
+    min_eye_size = (max(10, int(face_width * 0.08)), max(8, int(face_height * 0.06)))
+    raw_eyes = eye_detector.detectMultiScale(roi, scaleFactor=1.08, minNeighbors=5, minSize=min_eye_size)
+    eyes: list[dict[str, Any]] = []
+    for ex, ey, ew, eh in raw_eyes:
+        ax1 = float(ix1 + ex)
+        ay1 = float(iy1 + ey)
+        ax2 = float(ix1 + ex + ew)
+        ay2 = float(iy1 + ey + eh)
+        center_x = ax1 + ew / 2
+        center_y = ay1 + eh / 2
+        rel_x = (center_x - fx1) / face_width
+        rel_y = (center_y - fy1) / face_height
+        if not (0.08 <= rel_x <= 0.92 and 0.12 <= rel_y <= 0.68):
+            continue
+        eyes.append(
+            {
+                "bbox": {
+                    "x1": round(ax1, 2),
+                    "y1": round(ay1, 2),
+                    "x2": round(ax2, 2),
+                    "y2": round(ay2, 2),
+                },
+                "center": {"x": round(center_x, 2), "y": round(center_y, 2)},
+                "center_ratio_in_face": [round(rel_x, 4), round(rel_y, 4)],
+                "area_ratio_in_face": round((ew * eh) / (face_width * face_height), 5),
+            }
+        )
+
+    unique: list[dict[str, Any]] = []
+    for eye in sorted(eyes, key=lambda item: item["area_ratio_in_face"], reverse=True):
+        ex1, ey1, ex2, ey2 = eye["bbox"].values()
+        duplicate = False
+        for existing in unique:
+            ox1, oy1, ox2, oy2 = existing["bbox"].values()
+            inter_w = max(0.0, min(ex2, ox2) - max(ex1, ox1))
+            inter_h = max(0.0, min(ey2, oy2) - max(ey1, oy1))
+            inter = inter_w * inter_h
+            area = max((ex2 - ex1) * (ey2 - ey1), 1.0)
+            if inter / area > 0.45:
+                duplicate = True
+                break
+        if not duplicate:
+            unique.append(eye)
+        if len(unique) >= 2:
+            break
+
+    if not unique:
+        return {
+            "eyes": [],
+            "eye_direction": "unknown",
+            "eye_offset_from_face_center": {"x": None, "x_ratio": None},
+        }
+
+    eye_center_x = sum(float(eye["center"]["x"]) for eye in unique) / len(unique)
+    eye_center_y = sum(float(eye["center"]["y"]) for eye in unique) / len(unique)
+    face_center_x = float(face["center"]["x"])
+    offset_x = eye_center_x - face_center_x
+    offset_ratio = offset_x / face_width
+    if offset_ratio <= -0.075:
+        eye_direction = "left"
+    elif offset_ratio >= 0.075:
+        eye_direction = "right"
+    else:
+        eye_direction = "front"
+
+    return {
+        "eyes": unique,
+        "eye_center": {"x": round(eye_center_x, 2), "y": round(eye_center_y, 2)},
+        "eye_center_ratio_in_face": [
+            round((eye_center_x - fx1) / face_width, 4),
+            round((eye_center_y - fy1) / face_height, 4),
+        ],
+        "eye_direction": eye_direction,
+        "eye_offset_from_face_center": {"x": round(offset_x, 2), "x_ratio": round(offset_ratio, 4)},
+    }
+
+
 def detect_faces(frame: np.ndarray, detectors: dict[str, cv2.CascadeClassifier]) -> list[dict[str, Any]]:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
@@ -259,6 +470,8 @@ def detect_faces(frame: np.ndarray, detectors: dict[str, cv2.CascadeClassifier])
                 break
         if not duplicate:
             unique.append(face)
+    for face in unique:
+        face.update(detect_eyes_in_face(gray, face, detectors["eye"]))
     return unique
 
 
@@ -277,17 +490,54 @@ def face_for_person(person: dict[str, Any], faces: list[dict[str, Any]]) -> dict
 def semantic_face_direction(person: dict[str, Any], face: dict[str, Any] | None) -> str:
     if face is None:
         return "unknown"
-    if face.get("detector_direction") == "front":
-        return "front"
     x1, _, x2, _ = person["_bbox_tuple"]
+    person_width = max(1.0, x2 - x1)
     person_center_x = x1 + (x2 - x1) / 2
     face_center_x = float(face["center"]["x"])
-    dead_zone = max((x2 - x1) * 0.06, 18.0)
+    face_position_offset = face_center_x - person_center_x
+    face_position_offset_ratio = face_position_offset / person_width
+    dead_zone = max(person_width * 0.06, 18.0)
     if face_center_x < person_center_x - dead_zone:
-        return "left"
-    if face_center_x > person_center_x + dead_zone:
-        return "right"
-    return "unknown"
+        face_position_direction = "left"
+    elif face_center_x > person_center_x + dead_zone:
+        face_position_direction = "right"
+    else:
+        face_position_direction = "front"
+
+    eye_direction = str(face.get("eye_direction") or "unknown")
+    eye_offset = face.get("eye_offset_from_face_center") if isinstance(face.get("eye_offset_from_face_center"), dict) else {}
+    eye_offset_ratio = eye_offset.get("x_ratio")
+    try:
+        eye_offset_ratio_float = abs(float(eye_offset_ratio))
+    except (TypeError, ValueError):
+        eye_offset_ratio_float = 0.0
+
+    if eye_direction in {"left", "right"}:
+        if face_position_direction in {eye_direction, "front"} or eye_offset_ratio_float >= 0.12:
+            direction = eye_direction
+        else:
+            direction = "unknown"
+    elif eye_direction == "front":
+        direction = "front" if face_position_direction == "front" or face.get("detector_direction") == "front" else face_position_direction
+    elif face.get("detector_direction") == "front":
+        direction = "front" if face_position_direction == "front" else face_position_direction
+    else:
+        direction = face_position_direction if face_position_direction != "front" else "unknown"
+
+    face["direction_evidence"] = {
+        "eye_direction": eye_direction,
+        "eye_offset_from_face_center_ratio": round(float(eye_offset_ratio), 4)
+        if isinstance(eye_offset_ratio, (int, float))
+        else eye_offset_ratio,
+        "face_position_direction": face_position_direction,
+        "face_offset_from_person_center": {
+            "x": round(face_position_offset, 2),
+            "x_ratio": round(face_position_offset_ratio, 4),
+        },
+        "resolved_direction": direction,
+        "method": "eye_center_vs_face_center_and_face_center_vs_person_center",
+    }
+    return direction
 
 
 def look_composition(face_direction: str) -> dict[str, Any]:
@@ -406,7 +656,7 @@ def persons_from_faces(faces: list[dict[str, Any]], width: int, height: int) -> 
     return sorted(persons, key=lambda item: item["area_ratio"], reverse=True)
 
 
-def summarize_frames(frames: list[dict[str, Any]]) -> dict[str, Any]:
+def summarize_frames(frames: list[dict[str, Any]], camera_motion: dict[str, Any]) -> dict[str, Any]:
     sampled = len(frames)
     present = [frame for frame in frames if frame["persons"]]
     counts = [len(frame["persons"]) for frame in frames]
@@ -418,7 +668,7 @@ def summarize_frames(frames: list[dict[str, Any]]) -> dict[str, Any]:
         for person in frame.get("persons", [])
         if person.get("face_direction")
     ]
-    return {
+    summary = {
         "sampled_frames": sampled,
         "person_present_frames": len(present),
         "person_present_ratio": round(len(present) / sampled, 4) if sampled else 0.0,
@@ -433,6 +683,10 @@ def summarize_frames(frames: list[dict[str, Any]]) -> dict[str, Any]:
         "avg_warmth": round(sum(item.get("warmth", 0.0) for item in visuals) / sampled, 4) if sampled else 0.0,
         "face_direction_counts": {direction: face_directions.count(direction) for direction in sorted(set(face_directions))},
     }
+    summary["camera_motion"] = camera_motion
+    summary["camera_motion_type"] = camera_motion.get("camera_motion_type")
+    summary["is_fixed_camera"] = camera_motion.get("is_fixed_camera")
+    return summary
 
 
 def output_path_for(video: Path, output_dir: Path) -> Path:
@@ -471,12 +725,19 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
     tracker = SimpleCentroidTracker()
     face_detectors = load_face_detectors()
     frames: list[dict[str, Any]] = []
+    motion_samples: list[dict[str, Any]] = []
+    prev_motion_gray: np.ndarray | None = None
     sample_index = 0
     time_seconds = max(0.0, float(args.start))
     while time_seconds <= end + 1e-6:
         ok, frame = frame_at(cap, time_seconds)
         if not ok or frame is None:
             break
+        motion_gray = camera_motion_gray(frame)
+        camera_motion_from_previous = estimate_camera_motion(prev_motion_gray, motion_gray)
+        prev_motion_gray = motion_gray
+        if camera_motion_from_previous is not None:
+            motion_samples.append(camera_motion_from_previous)
         faces = detect_faces(frame, face_detectors)
         if model is not None:
             yolo_kwargs: dict[str, Any] = {"classes": [PERSON_CLASS_ID], "conf": args.confidence, "verbose": False}
@@ -501,6 +762,7 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
                 "width": width,
                 "height": height,
                 "visual": visual_metrics(frame),
+                "camera_motion_from_previous": camera_motion_from_previous,
                 "faces": faces,
                 "person_count": len(persons),
                 "persons": persons,
@@ -510,6 +772,7 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
         time_seconds = args.start + sample_index * interval
 
     cap.release()
+    camera_motion = summarize_camera_motion(motion_samples)
     payload = {
         "schema_version": "person-bboxes/v1",
         "video": video.name,
@@ -525,7 +788,8 @@ def analyze_video(video: Path, model: Any | None, args: argparse.Namespace) -> P
         "source_frame_count": int(metadata["frame_count"]),
         "duration": round(duration, 3),
         "analysis_range": {"start": round(float(args.start), 3), "end": round(end, 3)},
-        "summary": summarize_frames(frames),
+        "camera_motion": camera_motion,
+        "summary": summarize_frames(frames, camera_motion),
         "frames": frames,
     }
 

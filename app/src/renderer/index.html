@@ -48,7 +48,7 @@
             <button type="button" id="openOutput">Review generated video</button>
             <button type="button" id="runPreset">Run selected workflow step</button>
             <button type="button" class="primary-button" id="sendRequest">Ask AI to edit</button>
-            <button type="button" class="danger-button" id="stopCodexTurn" disabled>Stop AI edit</button>
+            <button type="button" class="danger-button" id="stopCodexTurn" disabled hidden>Stop AI edit</button>
           </div>
         </section>
 
@@ -105,8 +105,8 @@
                 <div class="folder-actions">
                   <button type="button" id="pickMaterialDirectory">Folder</button>
                   <button type="button" id="pickMaterialFiles">Files</button>
-                  <button type="button" class="primary-button" id="analyzeMaterialDirectory">解析</button>
-                  <button type="button" id="cancelMaterialAnalysis" disabled>Cancel</button>
+                  <button type="button" class="primary-button" id="analyzeMaterialDirectory" hidden>解析</button>
+                  <button type="button" id="cancelMaterialAnalysis" disabled hidden>Cancel</button>
                 </div>
                 <div class="ingest-progress" id="ingestProgress">
                   <div class="ingest-progress-bar">
@@ -685,7 +685,7 @@
               <div class="run-actions">
                 <button type="button" id="refreshCommand">Refresh execution details</button>
                 <button type="button" id="refreshPrompt">Refresh request text</button>
-                <button type="button" class="danger-button" id="interrupt" disabled>Stop AI edit</button>
+                <button type="button" class="danger-button" id="interrupt" disabled hidden>Stop AI edit</button>
               </div>
             </details>
           </div>

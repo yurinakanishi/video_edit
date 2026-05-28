@@ -65,8 +65,8 @@ python .\scripts\analyze_person_bboxes.py --fps-sample 1
 python .\scripts\build_person_edit_plan.py
 ```
 
-`analyze_person_bboxes.py` writes frame-level YOLO person detections to the active project output under `reports/person_bboxes`.
-`build_person_edit_plan.py` converts those detections into segment-level guidance for crop, zoom, cut, and wide-shot decisions under the active project output `reports/person_edit_plans`.
+`analyze_person_bboxes.py` writes frame-level YOLO person detections to the active project output under `reports/person_bboxes`, including eye-vs-face direction evidence and a fixed/moving camera-motion flag.
+`build_person_edit_plan.py` converts those detections into segment-level guidance for crop, zoom, cut, and wide-shot decisions under the active project output `reports/person_edit_plans`; fixed-camera shots use the dominant face direction for stable look-space placement.
 The Electron interview renderer uses those plans by default for per-camera segment crops, and writes `reports/person_crop_usage.json` with the matched plans and rendered segments. Composition guidance uses shared mathematical anchors from `scripts/composition_rules.py`: golden-ratio lines, thirds, silver-ratio lines, and outer-golden anchors for stronger side placement. The generated analysis includes target subject x/y ratios and anchor names so renderers can use the same placement rules.
 
 The detector uses Ultralytics YOLO. Install it in the project Python environment if needed:

@@ -141,6 +141,13 @@ const state = {
 	directRunRunning: false,
 	codexTurnRunning: false,
 	codexInterruptRequested: false,
+	ingestProgress: {
+		progress: 0,
+		message: "",
+		path: "",
+		current: 0,
+		total: 0,
+	},
 	runningAction: "",
 	lastWorkflowProgressLog: 0,
 	lastWorkflowStage: "",
@@ -1638,6 +1645,18 @@ function mediaMetaBadges(preview: any) {
 function mediaThumbnailElement(preview: any) {
 	const thumb = document.createElement("div");
 	thumb.className = `media-thumb ${preview?.kind || "empty"}`;
+	if (preview?.kind === "folder" && preview.previewThumbnails?.length) {
+		const stack = document.createElement("div");
+		stack.className = "folder-preview-stack";
+		preview.previewThumbnails.slice(0, 3).forEach((thumbnail) => {
+			const image = document.createElement("img");
+			image.src = thumbnail;
+			image.alt = "";
+			stack.appendChild(image);
+		});
+		thumb.appendChild(stack);
+		return thumb;
+	}
 	const dataUrl = preview?.thumbnailDataUrl;
 	if (dataUrl) {
 		const image = document.createElement("img");
@@ -1650,6 +1669,26 @@ function mediaThumbnailElement(preview: any) {
 	placeholder.textContent = preview?.kind ? extensionLabel(preview.extension) || previewKindLabel(preview.kind) : "-";
 	thumb.appendChild(placeholder);
 	return thumb;
+}
+
+function fallbackPreviewForPath(filePath: string) {
+	const extension = extensionFromPath(filePath);
+	const kind = extension ? previewKindFromPath(filePath) : "folder";
+	return {
+		path: filePath,
+		name: fileNameFromPath(filePath) || shortPath(filePath),
+		kind,
+		extension,
+	};
+}
+
+function loadedMaterialPreviewForPath(filePath: string) {
+	const normalized = String(filePath || "").toLowerCase();
+	return (
+		state.filePreviews[filePath] ||
+		Object.values(state.filePreviews).find((preview) => String(preview?.path || "").toLowerCase() === normalized) ||
+		null
+	);
 }
 
 function manifestPreviewForPath(filePath: string) {
@@ -1853,8 +1892,21 @@ function progressPercent(value: any) {
 	return Math.max(0, Math.min(100, Math.round(number * 100)));
 }
 
-function setIngestProgress(payload: any) {
-	const percent = progressPercent(payload?.progress);
+function normalizedProgress(payload: any) {
+	const rawProgress = Number(payload?.progress);
+	return {
+		progress: Number.isFinite(rawProgress) ? Math.max(0, Math.min(1, rawProgress)) : 0,
+		message: String(payload?.message || ""),
+		path: String(payload?.path || ""),
+		current: Number(payload?.current || 0),
+		total: Number(payload?.total || 0),
+	};
+}
+
+function setIngestProgress(payload: any, options: { persist?: boolean } = {}) {
+	const normalized = normalizedProgress(payload);
+	state.ingestProgress = normalized;
+	const percent = progressPercent(normalized.progress);
 	const fill = $("#ingestProgressFill");
 	const percentLabel = $("#ingestProgressPercent");
 	const text = $("#ingestProgressText");
@@ -1875,15 +1927,18 @@ function setIngestProgress(payload: any) {
 		busyPercent.textContent = `${percent}%`;
 	}
 	if (text) {
-		const count = payload?.total && payload.total > 0 ? ` (${payload.current || 0}/${payload.total})` : "";
-		text.textContent = `${localizePlainText(payload?.message || t("progress.waitingAnalysis"))}${count}`;
+		const count = normalized.total > 0 ? ` (${normalized.current || 0}/${normalized.total})` : "";
+		text.textContent = `${localizePlainText(normalized.message || t("progress.waitingAnalysis"))}${count}`;
 	}
-	if (busyMessage && payload?.message) {
-		busyMessage.textContent = localizePlainText(payload.message);
+	if (busyMessage && normalized.message) {
+		busyMessage.textContent = localizePlainText(normalized.message);
 	}
 	if (pathLabel) {
-		pathLabel.textContent = payload?.path ? shortPath(String(payload.path)) : "-";
-		pathLabel.title = payload?.path || "";
+		pathLabel.textContent = normalized.path ? shortPath(normalized.path) : "-";
+		pathLabel.title = normalized.path;
+	}
+	if (options.persist !== false) {
+		schedulePersistProjectStateFile();
 	}
 }
 
@@ -1903,10 +1958,12 @@ function updateCodexRunControls() {
 	const sendButton = $("#sendRequest");
 	const stopButtons = [$("#stopCodexTurn"), $("#interrupt")].filter(Boolean);
 	if (sendButton) {
-		sendButton.disabled = state.directRunRunning || state.codexTurnRunning;
-		sendButton.textContent = state.codexTurnRunning ? t("action.codexRunning") : t("action.runWithCodex");
+		sendButton.hidden = state.codexTurnRunning;
+		sendButton.disabled = state.directRunRunning;
+		sendButton.textContent = t("action.runWithCodex");
 	}
 	for (const button of stopButtons) {
+		button.hidden = !state.codexTurnRunning;
 		button.disabled = !state.codexTurnRunning || state.codexInterruptRequested;
 		button.textContent = state.codexInterruptRequested ? t("action.stoppingCodex") : t("action.stopCodex");
 	}
@@ -1924,11 +1981,14 @@ function setIngestRunning(running: boolean) {
 	const cancelButton = $("#cancelMaterialAnalysis");
 	const folderButton = $("#pickMaterialDirectory");
 	const filesButton = $("#pickMaterialFiles");
+	const hasMaterialSources = Boolean(state.materialPaths.length || state.mediaManifest?.files?.length);
 	if (analyzeButton) {
-		analyzeButton.disabled = running;
+		analyzeButton.hidden = !hasMaterialSources;
+		analyzeButton.disabled = running || !hasMaterialSources;
 	}
 	if (cancelButton) {
-		cancelButton.disabled = !running;
+		cancelButton.hidden = !hasMaterialSources;
+		cancelButton.disabled = !hasMaterialSources;
 	}
 	if (folderButton) {
 		folderButton.disabled = running;
@@ -2064,6 +2124,7 @@ function setMaterialSources(paths: string[]) {
 		path: materialSourceLabel(),
 	});
 	renderMediaManifest();
+	void loadFilePreviews(state.materialPaths);
 	refreshPrompt();
 }
 
@@ -2238,32 +2299,40 @@ async function loadProjectList() {
 	}
 }
 
-async function restoreLatestProjectFromDisk() {
-	if (state.project) {
-		return false;
-	}
+async function restoreStartupProjectFromDisk() {
 	try {
 		const result = await editApp.listProjects();
 		const entries = Array.isArray(result?.projects) ? result.projects : [];
 		state.projectList = entries;
 		renderProjectDialogList();
-		const entry =
-			entries.find((candidate) => candidate?.project?.id && candidate.hasManifest) ||
-			entries.find((candidate) => candidate?.project?.id);
-		if (!entry?.project) {
+		const currentProject = state.project
+			? entries.find((candidate) => candidate?.project?.id === state.project?.id)?.project || state.project
+			: null;
+		const latestProject =
+			entries.find((candidate) => candidate?.project?.id && candidate.hasManifest)?.project ||
+			entries.find((candidate) => candidate?.project?.id)?.project ||
+			null;
+		const candidates = [currentProject, latestProject].filter(
+			(project, index, projects): project is ProjectInfo =>
+				Boolean(project?.id) && projects.findIndex((item) => item?.id === project?.id) === index,
+		);
+		if (!candidates.length) {
 			return false;
 		}
-		const loaded = await editApp.loadProject({ project: entry.project });
-		if (!loaded?.project) {
-			return false;
+		for (const project of candidates) {
+			const loaded = await editApp.loadProject({ project });
+			if (!loaded?.project) {
+				continue;
+			}
+			await activateProject(loaded.project, loaded.manifest || null);
+			log("project restored from disk", {
+				id: loaded.project.id,
+				root: loaded.project.root,
+				manifest: loaded.manifest?.manifestPath || null,
+			});
+			return true;
 		}
-		await activateProject(loaded.project, loaded.manifest || null);
-		log("project restored from disk", {
-			id: loaded.project.id,
-			root: loaded.project.root,
-			manifest: loaded.manifest?.manifestPath || null,
-		});
-		return true;
+		return false;
 	} catch (error) {
 		log("project restore failed", { message: error.message });
 		return false;
@@ -2283,7 +2352,8 @@ async function activateProject(project: ProjectInfo, manifest: MediaManifest | n
 	if (!(await loadAnalysisStateFile(project))) {
 		await restoreAnalysisResultsFromOutputs(state.mediaManifest || manifest || null);
 	}
-	if (!state.mediaManifest) {
+	const restoredProgress = await restoreProgressFromOutputs({ preserveExisting: true });
+	if (!state.mediaManifest && !restoredProgress) {
 		setIngestProgress({
 			progress: 0,
 			message: t("materials.folderNotAnalyzed"),
@@ -2631,6 +2701,7 @@ async function loadFilePreviews(paths: string[]) {
 				state.filePreviews[preview.path] = preview;
 			}
 		}
+		renderMediaManifest();
 		renderFileSlots();
 		renderStillImageList();
 		renderWorkflowMediaPreviews();
@@ -2771,6 +2842,48 @@ function roleOptionsFor(item: MediaItem) {
 	return [["ignore", t("role.ignore")]];
 }
 
+function renderMaterialSourceList(list: HTMLElement) {
+	if (!state.materialPaths.length) {
+		const empty = document.createElement("div");
+		empty.className = "empty-material-state";
+		empty.textContent = t("materials.noAnalyzedAssets");
+		list.appendChild(empty);
+		return;
+	}
+	state.materialPaths.forEach((sourcePath) => {
+		const loadedPreview = loadedMaterialPreviewForPath(sourcePath);
+		const preview = loadedPreview || fallbackPreviewForPath(sourcePath);
+		const row = document.createElement("div");
+		row.className = `material-card material-source-card ${preview.kind || "other"}`;
+		row.title = sourcePath;
+		const thumb = mediaThumbnailElement(preview);
+		const detail = document.createElement("div");
+		detail.className = "material-detail";
+		const title = document.createElement("span");
+		title.textContent = preview.name || shortPath(sourcePath);
+		title.title = sourcePath;
+		const roleText = document.createElement("strong");
+		roleText.textContent = t("progress.pressAnalyze");
+		const meta = document.createElement("div");
+		meta.className = "material-meta";
+		const badges = [
+			previewKindLabel(preview.kind || "other"),
+			...previewEntryMeta(preview),
+			loadedPreview ? "" : t("preview.loading"),
+		].filter(Boolean);
+		for (const badgeText of badges) {
+			const badge = document.createElement("span");
+			badge.textContent = badgeText;
+			meta.appendChild(badge);
+		}
+		const pathLabel = document.createElement("small");
+		pathLabel.textContent = sourcePath;
+		detail.append(title, roleText, meta, pathLabel);
+		row.append(thumb, detail);
+		list.appendChild(row);
+	});
+}
+
 function renderMediaManifest() {
 	const directoryLabel = $("#mediaDirectoryLabel");
 	if (directoryLabel) {
@@ -2781,6 +2894,7 @@ function renderMediaManifest() {
 			: t("label.notSelected");
 		directoryLabel.title = state.materialPaths.join("\n");
 	}
+	setIngestRunning(state.ingestRunning);
 	const summary = $("#mediaManifestSummary");
 	const list = $("#mediaManifestList");
 	if (!summary || !list) {
@@ -2789,10 +2903,14 @@ function renderMediaManifest() {
 	if (!state.mediaManifest) {
 		summary.textContent = state.materialPaths.length ? t("materials.selectedWaiting") : t("materials.notAnalyzed");
 		list.innerHTML = "";
-		const empty = document.createElement("div");
-		empty.className = "empty-material-state";
-		empty.textContent = state.materialPaths.length ? t("materials.manifestHint") : t("materials.noAnalyzedAssets");
-		list.appendChild(empty);
+		if (state.materialPaths.length) {
+			renderMaterialSourceList(list);
+		} else {
+			const empty = document.createElement("div");
+			empty.className = "empty-material-state";
+			empty.textContent = t("materials.noAnalyzedAssets");
+			list.appendChild(empty);
+		}
 		return;
 	}
 	const cameras = manifestCameras().length;
@@ -2941,6 +3059,7 @@ function saveState() {
 			files: state.files,
 			subtitleMode: state.subtitleMode,
 			analysisResults: state.analysisResults,
+			ingestProgress: state.ingestProgress,
 			glossaryTerms: state.glossaryTerms,
 			language: state.language,
 			fields,
@@ -2970,6 +3089,7 @@ function loadState() {
 				saved.materialPaths || saved.mediaManifest.sourcePaths || (state.mediaDirectory ? [state.mediaDirectory] : []);
 			applyManifestSelections();
 			renderMediaManifest();
+			void loadFilePreviews(state.materialPaths);
 		} else if (saved.materialPaths?.length || saved.mediaDirectory) {
 			state.mediaDirectory = saved.mediaDirectory;
 			state.materialPaths = saved.materialPaths || (saved.mediaDirectory ? [saved.mediaDirectory] : []);
@@ -2979,6 +3099,7 @@ function loadState() {
 				path: materialSourceLabel(),
 			});
 			renderMediaManifest();
+			void loadFilePreviews(state.materialPaths);
 		}
 		if (saved.files) {
 			Object.entries(saved.files).forEach(([slot, filePath]) => {
@@ -3021,6 +3142,9 @@ function loadState() {
 		}
 		if (Array.isArray(saved.analysisResults)) {
 			setAnalysisResults(saved.analysisResults, { persistFile: false });
+		}
+		if (saved.ingestProgress) {
+			setIngestProgress(saved.ingestProgress, { persist: false });
 		}
 		if (Array.isArray(saved.glossaryTerms)) {
 			state.glossaryTerms = saved.glossaryTerms;
@@ -3149,6 +3273,7 @@ function buildProjectStateSnapshot() {
 			activeSection: state.activeSection,
 			codexModel: state.codexModel,
 			language: state.language,
+			progress: state.ingestProgress,
 		},
 	};
 }
@@ -3250,6 +3375,9 @@ function applyProjectStatePayload(payload: any) {
 		if (payload.ui?.language) {
 			setLanguage(normalizeLanguage(payload.ui.language));
 		}
+		if (payload.ui?.progress) {
+			setIngestProgress(payload.ui.progress, { persist: false });
+		}
 
 		renderFileSlots();
 		renderStillImageList();
@@ -3333,7 +3461,7 @@ async function loadAnalysisStateFile(project: ProjectInfo | null = state.project
 	}
 	try {
 		const payload = await editApp.loadAnalysisState({ project });
-		if (!Array.isArray(payload?.results)) {
+		if (!Array.isArray(payload?.results) || !payload.results.length) {
 			return false;
 		}
 		setAnalysisResults(payload.results, { persistFile: false });
@@ -3789,6 +3917,7 @@ async function ingestMaterialDirectory(directoryPath = "") {
 
 async function cancelMaterialAnalysis() {
 	if (!state.ingestRunning) {
+		setMaterialSources([]);
 		return;
 	}
 	try {
@@ -4220,6 +4349,36 @@ async function restoreAnalysisResultsFromOutputs(
 			(item) => item.requirePath === false || (item.path && existing.has(String(item.path).toLowerCase())),
 		),
 	);
+}
+
+async function restoreProgressFromOutputs(options: { preserveExisting?: boolean } = {}) {
+	if (!state.project) {
+		return false;
+	}
+	if (options.preserveExisting && Number(state.ingestProgress.progress || 0) > 0) {
+		return false;
+	}
+	const action = formValue("workflowAction") || "render-selected";
+	const path = directRunOutputPath(action);
+	if (!path || path === activeOutputRoot()) {
+		return false;
+	}
+	try {
+		const entries = await editApp.describeMediaPaths({ paths: [path] });
+		if (!entries?.length) {
+			return false;
+		}
+		const label = directRunLabel(action);
+		setIngestProgress({
+			progress: 1,
+			message: t("format.completeMessage", { label }),
+			path,
+		});
+		return true;
+	} catch (error) {
+		log("progress restore failed", { message: error.message });
+		return false;
+	}
 }
 
 function hasMusicRanges() {
@@ -5196,20 +5355,52 @@ function handleNotification(message) {
 	log(method, params);
 }
 
+function droppedPathsFromEvent(event: DragEvent) {
+	return Array.from(event.dataTransfer?.files || [])
+		.map((file) => editApp.filePath(file as File))
+		.filter(Boolean);
+}
+
+function initMaterialDropTarget(target: Element | null) {
+	if (!target) {
+		return;
+	}
+	target.addEventListener("dragover", (event) => {
+		event.preventDefault();
+		target.classList.add("dragging");
+	});
+	target.addEventListener("dragleave", (event) => {
+		const nextTarget = (event as DragEvent).relatedTarget as Node | null;
+		if (!nextTarget || !target.contains(nextTarget)) {
+			target.classList.remove("dragging");
+		}
+	});
+	target.addEventListener("drop", (event) => {
+		event.preventDefault();
+		target.classList.remove("dragging");
+		const droppedPaths = droppedPathsFromEvent(event as DragEvent);
+		if (droppedPaths.length) {
+			addMaterialSources(droppedPaths);
+		}
+	});
+}
+
 function initDropZones() {
 	$$(".drop-zone").forEach((zone) => {
 		const slot = zone.dataset.slot;
 		zone.addEventListener("dragover", (event) => {
 			event.preventDefault();
+			event.stopPropagation();
 			zone.classList.add("dragging");
 		});
 		zone.addEventListener("dragleave", () => zone.classList.remove("dragging"));
 		zone.addEventListener("drop", (event) => {
 			event.preventDefault();
+			event.stopPropagation();
 			zone.classList.remove("dragging");
 			const files = Array.from((event as DragEvent).dataTransfer?.files || []) as File[];
 			if (slot === "mediaDirectory") {
-				const droppedPaths = files.map((file) => editApp.filePath(file)).filter(Boolean);
+				const droppedPaths = droppedPathsFromEvent(event as DragEvent);
 				if (droppedPaths.length) {
 					addMaterialSources(droppedPaths);
 				}
@@ -5224,6 +5415,7 @@ function initDropZones() {
 			}
 		});
 	});
+	initMaterialDropTarget($(".material-ingest-grid"));
 }
 
 function bindEvents() {
@@ -5373,7 +5565,7 @@ async function init() {
 	$("#punchlineText").value = defaultPunchlines;
 	state.glossaryTerms = defaultGlossaryTerms;
 	loadState();
-	const restoredProject = await restoreLatestProjectFromDisk();
+	const restoredProject = await restoreStartupProjectFromDisk();
 	if (!restoredProject) {
 		await loadProjectStateFile();
 	}
@@ -5449,6 +5641,7 @@ async function init() {
 	if (!loadedAnalysisState) {
 		await restoreAnalysisResultsFromOutputs(state.mediaManifest);
 	}
+	await restoreProgressFromOutputs({ preserveExisting: true });
 	if (state.mediaManifest) {
 		await refreshAnalysisTitleFromAnalysis(state.mediaManifest);
 	}

@@ -25,7 +25,7 @@ from project_paths import (
     multicam_source_root,
     resolve_project_path,
 )
-from video_edit_app_config import load_app_config, optional_path, video_encoder_crf, video_encoder_preset
+from video_edit_app_config import int_value, load_app_config, nested, optional_path, video_encoder_crf, video_encoder_preset
 
 
 WORK = WORKSPACE_ROOT
@@ -158,6 +158,26 @@ def write_filter_script(path: Path, ranges: list[dict[str, float]]) -> None:
     path.write_text(";\n".join(filters), encoding="utf-8")
 
 
+def silence_shorten_encoder_config() -> tuple[dict[str, object], list[str]]:
+    encoder = str(nested(APP_CONFIG, "render", "videoEncoder", default="libx264") or "libx264").strip().lower()
+    if encoder == "h264_nvenc":
+        preset = str(nested(APP_CONFIG, "render", "nvencPreset", default="p4") or "p4").strip().lower()
+        if not re.fullmatch(r"p[1-7]|default|slow|medium|fast|hp|hq|bd|ll|llhq|llhp|lossless|losslesshp", preset):
+            preset = "p4"
+        cq = max(0, min(51, int_value(APP_CONFIG, "render", "cq", default=19)))
+        return (
+            {"name": "h264_nvenc", "preset": preset, "cq": cq},
+            ["-c:v", "h264_nvenc", "-preset", preset, "-rc", "vbr", "-cq", str(cq), "-b:v", "0", "-pix_fmt", "yuv420p"],
+        )
+
+    encoder_preset = video_encoder_preset(APP_CONFIG, "render", "encoderPreset", default="medium")
+    encoder_crf = video_encoder_crf(APP_CONFIG, "render", "crf")
+    return (
+        {"name": "libx264", "preset": encoder_preset, "crf": encoder_crf},
+        ["-c:v", "libx264", "-preset", encoder_preset, "-crf", str(encoder_crf), "-pix_fmt", "yuv420p"],
+    )
+
+
 def shorten_silences(
     input_path: Path,
     output_path: Path,
@@ -171,12 +191,11 @@ def shorten_silences(
     silences = detect_silences(input_path, config, duration)
     removals = removal_ranges(silences, duration, config.keep_silence)
     ranges = keep_ranges(duration, removals)
-    encoder_preset = video_encoder_preset(APP_CONFIG, "render", "encoderPreset", default="medium")
-    encoder_crf = video_encoder_crf(APP_CONFIG, "render", "crf")
+    encoder_report, encoder_args = silence_shorten_encoder_config()
     report = {
         "input": str(input_path),
         "output": str(output_path),
-        "encoder": {"preset": encoder_preset, "crf": encoder_crf},
+        "encoder": encoder_report,
         "noise": config.noise,
         "min_silence": config.min_silence,
         "keep_silence": config.keep_silence,
@@ -217,14 +236,7 @@ def shorten_silences(
             "[v]",
             "-map",
             "[a]",
-            "-c:v",
-            "libx264",
-            "-preset",
-            encoder_preset,
-            "-crf",
-            str(encoder_crf),
-            "-pix_fmt",
-            "yuv420p",
+            *encoder_args,
             "-c:a",
             "aac",
             "-b:a",

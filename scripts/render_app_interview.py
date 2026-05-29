@@ -9,6 +9,7 @@ from array import array
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 from PIL import Image, ImageFilter, ImageStat
 
 from project_paths import (
@@ -64,6 +65,8 @@ FACE_CENTER_CROP_REPORT = OUTPUT_REPORTS / "face_center_crop_usage.json"
 SYNC_OFFSET_USAGE_REPORT = OUTPUT_REPORTS / "sync_offset_usage.json"
 SOURCE_COVERAGE_REPORT = OUTPUT_REPORTS / "source_coverage_usage.json"
 ONSCREEN_CLOSEUP_REPORT = OUTPUT_REPORTS / "onscreen_closeup_camera_mask.json"
+SUBTITLE_TIMEBASE_REPORT = OUTPUT_REPORTS / "subtitle_timebase_usage.json"
+EXTERNAL_AUDIO_CUT_SYNC_REPORT = OUTPUT_REPORTS / "external_audio_cut_sync_report.json"
 
 
 def seconds(timestamp: str) -> float:
@@ -633,6 +636,60 @@ def transform_overlay_items(
         next_item["end"] = format_overlay_time(start + output_end)
         transformed.append(next_item)
     return transformed
+
+
+def same_resolved_path(left: Path | None, right: Path | None) -> bool:
+    if left is None or right is None:
+        return False
+    try:
+        return str(left.resolve()).casefold() == str(right.resolve()).casefold()
+    except OSError:
+        return str(left).casefold() == str(right).casefold()
+
+
+def selected_subtitle_source_role() -> str | None:
+    srt = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
+    if srt is None:
+        return None
+    manifest = OUTPUT_TRANSCRIPTS / "manifest_sources" / "manifest_transcripts.json"
+    if not manifest.exists():
+        return None
+    try:
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if same_resolved_path(srt, Path(str(payload.get("primarySrt") or ""))):
+        for item in payload.get("transcripts", []):
+            if isinstance(item, dict) and item.get("primary"):
+                return str(item.get("role") or "")
+    for item in payload.get("transcripts", []):
+        if not isinstance(item, dict):
+            continue
+        if same_resolved_path(srt, Path(str(item.get("srt") or ""))):
+            return str(item.get("role") or "")
+    return None
+
+
+def subtitle_source_offset_seconds(audio_role: str, sync_offsets: dict[str, float]) -> float:
+    override = nested(APP_CONFIG, "render", "subtitleTimelineOffsetSeconds", default=None)
+    if override is not None:
+        try:
+            return float(override)
+        except (TypeError, ValueError):
+            return 0.0
+
+    timebase = text_config("render", "subtitleTimebase", default="auto").strip().lower()
+    if timebase in {"timeline", "master", "master-video"}:
+        return 0.0
+    if timebase in {"external", "external-audio", "audio-source", "source-audio"}:
+        return float(sync_offsets.get(audio_role, 0.0))
+    if timebase != "auto":
+        return 0.0
+
+    subtitle_role = selected_subtitle_source_role()
+    if subtitle_role and subtitle_role == audio_role:
+        return float(sync_offsets.get(audio_role, 0.0))
+    return 0.0
 
 
 def normalize_text(text: str) -> str:
@@ -1494,15 +1551,49 @@ def weighted_bgr_profile(stats: dict[str, Any]) -> list[float] | None:
     return [value / total for value in result]
 
 
-def color_channel_gains(master: dict[str, Any], item: dict[str, Any]) -> dict[str, float]:
+def color_temperature_adjustment(master: dict[str, Any], item: dict[str, Any], strength: float) -> dict[str, float]:
     master_bgr = weighted_bgr_profile(master) or bgr_triplet(master, "neutralBgr") or bgr_triplet(master, "meanBgr")
     item_bgr = weighted_bgr_profile(item) or bgr_triplet(item, "neutralBgr") or bgr_triplet(item, "meanBgr")
     if master_bgr is None or item_bgr is None:
-        return {"red": 1.0, "green": 1.0, "blue": 1.0}
+        return {"red": 1.0, "blue": 1.0, "targetRb": None, "itemRb": None, "ratio": None}
+    target_rb = master_bgr[2] / max(master_bgr[0], 0.025)
+    item_rb = item_bgr[2] / max(item_bgr[0], 0.025)
+    ratio = clamp(target_rb / max(item_rb, 0.025), 0.72, 1.28)
+    # Color temperature should not change exposure; push red/blue in opposite directions.
+    factor = ratio ** (clamp(strength, 0.0, 1.0) * 0.5)
+    return {
+        "red": clamp(factor, 0.90, 1.10),
+        "blue": clamp(1.0 / max(factor, 0.001), 0.90, 1.10),
+        "targetRb": target_rb,
+        "itemRb": item_rb,
+        "ratio": ratio,
+    }
+
+
+def color_channel_gains(
+    master: dict[str, Any],
+    item: dict[str, Any],
+    *,
+    temperature_enabled: bool,
+    temperature_strength: float,
+) -> dict[str, float]:
+    master_bgr = weighted_bgr_profile(master) or bgr_triplet(master, "neutralBgr") or bgr_triplet(master, "meanBgr")
+    item_bgr = weighted_bgr_profile(item) or bgr_triplet(item, "neutralBgr") or bgr_triplet(item, "meanBgr")
+    if master_bgr is None or item_bgr is None:
+        return {"red": 1.0, "green": 1.0, "blue": 1.0, "temperature": {"enabled": False}}
     blue = clamp(master_bgr[0] / max(item_bgr[0], 0.025), 0.88, 1.14)
     green = clamp(master_bgr[1] / max(item_bgr[1], 0.025), 0.88, 1.14)
     red = clamp(master_bgr[2] / max(item_bgr[2], 0.025), 0.88, 1.14)
-    return {"red": red, "green": green, "blue": blue}
+    temperature = color_temperature_adjustment(master, item, temperature_strength) if temperature_enabled else {
+        "red": 1.0,
+        "blue": 1.0,
+        "targetRb": None,
+        "itemRb": None,
+        "ratio": None,
+    }
+    red = clamp(red * float(temperature["red"]), 0.86, 1.16)
+    blue = clamp(blue * float(temperature["blue"]), 0.86, 1.16)
+    return {"red": red, "green": green, "blue": blue, "temperature": {"enabled": temperature_enabled, **temperature}}
 
 
 def weighted_saturation_profile(stats: dict[str, Any], skin_priority: bool) -> float:
@@ -1580,7 +1671,14 @@ def camera_color_match_filters(
     if not report["enabled"] or len(cameras) < 2:
         return {}, report
     white_balance = bool_value("render", "colorMatchWhiteBalance", default=True)
+    temperature_enabled = bool_value("render", "colorMatchTemperature", default=True)
+    temperature_strength = float_config("render", "colorMatchTemperatureStrength", default=0.65)
     report["whiteBalance"] = white_balance
+    report["temperatureMatch"] = {
+        "enabled": temperature_enabled,
+        "strength": round(clamp(temperature_strength, 0.0, 1.0), 4),
+        "basis": "background/neutral red-blue ratio",
+    }
     sample_count = max(2, min(int_value(APP_CONFIG, "render", "colorMatchSamples", default=5), 12))
     offsets = sync_offsets or {}
     master_role, master_path = cameras[0]
@@ -1666,7 +1764,16 @@ def camera_color_match_filters(
             if master_saturation < 0.08 and item_saturation < 0.08
             else clamp(master_saturation / max(item_saturation, 0.025), 0.84, 1.16)
         )
-        gains = color_channel_gains(master, item_stats) if white_balance else {"red": 1.0, "green": 1.0, "blue": 1.0}
+        gains = (
+            color_channel_gains(
+                master,
+                item_stats,
+                temperature_enabled=temperature_enabled,
+                temperature_strength=temperature_strength,
+            )
+            if white_balance
+            else {"red": 1.0, "green": 1.0, "blue": 1.0, "temperature": {"enabled": False}}
+        )
         filter_parts: list[str] = []
         if max(abs(gains["red"] - 1.0), abs(gains["green"] - 1.0), abs(gains["blue"] - 1.0)) >= 0.018:
             filter_parts.append(
@@ -1692,6 +1799,20 @@ def camera_color_match_filters(
                 "redGain": round(gains["red"], 5),
                 "greenGain": round(gains["green"], 5),
                 "blueGain": round(gains["blue"], 5),
+                "temperatureMatch": {
+                    "enabled": bool(gains.get("temperature", {}).get("enabled")),
+                    "targetRb": round(float(gains["temperature"]["targetRb"]), 5)
+                    if gains.get("temperature", {}).get("targetRb") is not None
+                    else None,
+                    "itemRb": round(float(gains["temperature"]["itemRb"]), 5)
+                    if gains.get("temperature", {}).get("itemRb") is not None
+                    else None,
+                    "ratio": round(float(gains["temperature"]["ratio"]), 5)
+                    if gains.get("temperature", {}).get("ratio") is not None
+                    else None,
+                    "redMultiplier": round(float(gains["temperature"].get("red", 1.0)), 5),
+                    "blueMultiplier": round(float(gains["temperature"].get("blue", 1.0)), 5),
+                },
                 "brightness": round(brightness_adj, 5),
                 "brightnessComponents": {
                     "skinDelta": round(skin_delta, 5),
@@ -2230,6 +2351,244 @@ def constrain_segments_to_source_coverage(
     report["changed"] = normalized != segments
     SOURCE_COVERAGE_REPORT.parent.mkdir(parents=True, exist_ok=True)
     SOURCE_COVERAGE_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    return normalized, report
+
+
+def rms_envelope(samples: list[float], sample_rate: int, frame_seconds: float) -> np.ndarray:
+    frame = max(1, int(round(sample_rate * frame_seconds)))
+    if len(samples) < frame * 4:
+        return np.array([], dtype=np.float32)
+    values = np.asarray(samples, dtype=np.float32)
+    usable = (values.size // frame) * frame
+    if usable < frame * 4:
+        return np.array([], dtype=np.float32)
+    framed = values[:usable].reshape(-1, frame)
+    return np.sqrt(np.mean(framed * framed, axis=1)).astype(np.float32)
+
+
+def normalized_dot(left: np.ndarray, right: np.ndarray) -> float:
+    if left.size == 0 or right.size == 0 or left.size != right.size:
+        return -1.0
+    left_centered = left - float(np.mean(left))
+    right_centered = right - float(np.mean(right))
+    denom = float(np.linalg.norm(left_centered) * np.linalg.norm(right_centered))
+    if denom <= 1e-8:
+        return -1.0
+    return float(np.dot(left_centered, right_centered) / denom)
+
+
+def external_audio_local_shift(
+    camera_path: Path,
+    external_audio_path: Path,
+    *,
+    camera_center: float,
+    external_center: float,
+    probe_duration: float,
+    search_radius: float,
+    sample_rate: int,
+    frame_seconds: float,
+    decode_cache: dict[tuple[str, float, float, int], list[float]],
+) -> dict[str, Any]:
+    camera_start = max(0.0, camera_center - probe_duration / 2.0)
+    external_start = max(0.0, external_center - probe_duration / 2.0 - search_radius)
+    external_duration = probe_duration + search_radius * 2.0
+
+    def cached_decode(path: Path, start_t: float, duration_t: float) -> list[float]:
+        key = (str(path.resolve()).casefold(), round(start_t, 3), round(duration_t, 3), sample_rate)
+        if key not in decode_cache:
+            decode_cache[key] = decode_audio_window(path, start_t, duration_t, sample_rate)
+        return decode_cache[key]
+
+    try:
+        camera_samples = cached_decode(camera_path, camera_start, probe_duration)
+        external_samples = cached_decode(external_audio_path, external_start, external_duration)
+    except Exception as error:
+        return {
+            "passed": False,
+            "reason": f"decode_failed: {error}",
+            "cameraStart": round(camera_start, 3),
+            "externalStart": round(external_start, 3),
+        }
+
+    camera_env = rms_envelope(camera_samples, sample_rate, frame_seconds)
+    external_env = rms_envelope(external_samples, sample_rate, frame_seconds)
+    if camera_env.size < 4 or external_env.size < camera_env.size:
+        return {
+            "passed": False,
+            "reason": "insufficient_audio_energy_or_duration",
+            "cameraStart": round(camera_start, 3),
+            "externalStart": round(external_start, 3),
+        }
+
+    best_score = -1.0
+    best_index = 0
+    max_index = int(external_env.size - camera_env.size)
+    for index in range(max_index + 1):
+        score = normalized_dot(camera_env, external_env[index : index + camera_env.size])
+        if score > best_score:
+            best_score = score
+            best_index = index
+
+    actual_external_start = external_start + best_index * frame_seconds
+    planned_external_start = max(0.0, external_center - probe_duration / 2.0)
+    shift = actual_external_start - planned_external_start
+    return {
+        "passed": True,
+        "score": round(best_score, 4),
+        "shiftSeconds": round(shift, 4),
+        "cameraStart": round(camera_start, 3),
+        "externalStart": round(planned_external_start, 3),
+        "matchedExternalStart": round(actual_external_start, 3),
+    }
+
+
+def sync_probe_points(start_t: float, end_t: float, max_probes: int) -> list[float]:
+    segment_duration = max(0.0, end_t - start_t)
+    if max_probes <= 1 or segment_duration < 12.0:
+        return [(start_t + end_t) / 2.0]
+    if max_probes == 2:
+        return [start_t + segment_duration * 0.33, start_t + segment_duration * 0.67]
+    return [start_t + segment_duration * 0.25, start_t + segment_duration * 0.5, start_t + segment_duration * 0.75]
+
+
+def guard_segments_by_external_audio_sync(
+    segments: list[tuple[str, int, float, float]],
+    cameras: list[tuple[str, int, Path]],
+    *,
+    duration: float,
+    timeline_start: float,
+    sync_offsets: dict[str, float],
+    external_audio_path: Path | None,
+    audio_role: str,
+    replacements: list[dict[str, Any]] | None = None,
+) -> tuple[list[tuple[str, int, float, float]], dict[str, Any]]:
+    enabled = bool_value("render", "externalAudioCutSyncGuard", default=True)
+    min_score = float_config("render", "externalAudioCutSyncMinScore", default=0.45)
+    max_shift = float_config("render", "externalAudioCutSyncMaxShift", default=0.22)
+    min_segment = float_config("render", "externalAudioCutSyncMinSegment", default=1.5)
+    probe_duration = float_config("render", "externalAudioCutSyncProbeDuration", default=4.0)
+    search_radius = float_config("render", "externalAudioCutSyncSearchRadius", default=0.75)
+    max_probes = max(1, min(3, int_value(APP_CONFIG, "render", "externalAudioCutSyncMaxProbes", default=2)))
+    sample_rate = max(4000, int_value(APP_CONFIG, "render", "externalAudioCutSyncSampleRate", default=8000))
+    frame_seconds = float_config("render", "externalAudioCutSyncFrameSeconds", default=0.025)
+    camera_by_role = {role: (input_index, path) for role, input_index, path in cameras}
+    fallback = camera_by_role.get("master") or next(iter(camera_by_role.values()), None)
+    fallback_role = "master" if "master" in camera_by_role else (cameras[0][0] if cameras else "")
+    report: dict[str, Any] = {
+        "enabled": enabled,
+        "externalAudio": str(external_audio_path) if external_audio_path else "",
+        "audioRole": audio_role,
+        "thresholds": {
+            "minScore": min_score,
+            "maxShiftSeconds": max_shift,
+            "minSegmentSeconds": min_segment,
+            "probeDurationSeconds": probe_duration,
+            "searchRadiusSeconds": search_radius,
+            "maxProbes": max_probes,
+        },
+        "items": [],
+        "adjustments": [],
+    }
+    if not enabled:
+        report["reason"] = "disabled"
+        return segments, report
+    if not external_audio_path or not external_audio_path.exists() or fallback is None:
+        report["reason"] = "missing_external_audio_or_fallback"
+        EXTERNAL_AUDIO_CUT_SYNC_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        EXTERNAL_AUDIO_CUT_SYNC_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        return segments, report
+
+    decode_cache: dict[tuple[str, float, float, int], list[float]] = {}
+    guarded: list[tuple[str, int, float, float]] = []
+    for role, input_index, start_t, end_t in segments:
+        segment_duration = end_t - start_t
+        item: dict[str, Any] = {
+            "role": role,
+            "start": round(start_t, 3),
+            "end": round(end_t, 3),
+            "duration": round(segment_duration, 3),
+            "action": "keep",
+        }
+        if role == fallback_role:
+            item["reason"] = "fallback camera"
+            guarded.append((role, input_index, start_t, end_t))
+            report["items"].append(item)
+            continue
+        camera_info = camera_by_role.get(role)
+        if camera_info is None:
+            item["action"] = "fallback"
+            item["reason"] = "camera path missing"
+            guarded.append((fallback_role, fallback[0], start_t, end_t))
+            report["items"].append(item)
+            continue
+        if segment_duration < min_segment:
+            item["action"] = "fallback"
+            item["reason"] = "segment too short for reliable waveform sync"
+            guarded.append((fallback_role, fallback[0], start_t, end_t))
+            report["items"].append(item)
+            report["adjustments"].append({**item, "toRole": fallback_role})
+            continue
+
+        _, camera_path = camera_info
+        probes: list[dict[str, Any]] = []
+        for output_time in sync_probe_points(start_t, end_t, max_probes):
+            source_local = output_local_to_source_local(output_time, replacements) if replacements else output_time
+            if source_local is None:
+                probes.append({"outputTime": round(output_time, 3), "passed": False, "reason": "inside_omission_card"})
+                continue
+            camera_center = max(0.0, sync_offsets.get(role, 0.0) + timeline_start + source_local)
+            external_center = max(0.0, sync_offsets.get(audio_role, 0.0) + timeline_start + source_local)
+            probe = external_audio_local_shift(
+                camera_path,
+                external_audio_path,
+                camera_center=camera_center,
+                external_center=external_center,
+                probe_duration=min(probe_duration, max(0.75, segment_duration - 0.1)),
+                search_radius=search_radius,
+                sample_rate=sample_rate,
+                frame_seconds=frame_seconds,
+                decode_cache=decode_cache,
+            )
+            probe["outputTime"] = round(output_time, 3)
+            probe["cameraCenter"] = round(camera_center, 3)
+            probe["externalCenter"] = round(external_center, 3)
+            probes.append(probe)
+
+        valid_scores = [float(probe["score"]) for probe in probes if probe.get("passed") and probe.get("score") is not None]
+        valid_shifts = [abs(float(probe["shiftSeconds"])) for probe in probes if probe.get("passed") and probe.get("shiftSeconds") is not None]
+        item["probes"] = probes
+        if not valid_scores or not valid_shifts:
+            item["action"] = "fallback"
+            item["reason"] = "no valid waveform probe"
+        elif min(valid_scores) < min_score:
+            item["action"] = "fallback"
+            item["reason"] = "waveform score below threshold"
+            item["minScore"] = round(min(valid_scores), 4)
+        elif max(valid_shifts) > max_shift:
+            item["action"] = "fallback"
+            item["reason"] = "local waveform shift exceeds threshold"
+            item["maxAbsShiftSeconds"] = round(max(valid_shifts), 4)
+        else:
+            item["minScore"] = round(min(valid_scores), 4)
+            item["maxAbsShiftSeconds"] = round(max(valid_shifts), 4)
+
+        if item["action"] == "fallback":
+            guarded.append((fallback_role, fallback[0], start_t, end_t))
+            report["adjustments"].append({**{key: value for key, value in item.items() if key != "probes"}, "toRole": fallback_role})
+        else:
+            guarded.append((role, input_index, start_t, end_t))
+        report["items"].append(item)
+
+    normalized = normalize_camera_segments(duration, guarded, (fallback_role, fallback[0]))
+    report["changed"] = normalized != segments
+    EXTERNAL_AUDIO_CUT_SYNC_REPORT.parent.mkdir(parents=True, exist_ok=True)
+    EXTERNAL_AUDIO_CUT_SYNC_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    if report["changed"]:
+        write_camera_plan_report(
+            f"{text_config('render', 'multicamMode', default='master-first')}+external-audio-sync-guard",
+            normalized,
+            str(EXTERNAL_AUDIO_CUT_SYNC_REPORT),
+        )
     return normalized, report
 
 
@@ -2970,14 +3329,19 @@ def chapter_title_manifest() -> tuple[Path, dict[str, object]] | None:
     }
 
 
-def read_overlay_items(manifest: Path, start: float, duration: float) -> list[dict[str, Any]]:
+def read_overlay_items(manifest: Path, start: float, duration: float, source_offset: float = 0.0) -> list[dict[str, Any]]:
     if not manifest.exists():
         return []
-    return [
-        item
-        for item in json.loads(manifest.read_text(encoding="utf-8"))
-        if seconds(item["start"]) < start + duration and seconds(item["end"]) > start
-    ]
+    shifted: list[dict[str, Any]] = []
+    for item in json.loads(manifest.read_text(encoding="utf-8")):
+        item_start = seconds(str(item["start"])) - source_offset
+        item_end = seconds(str(item["end"])) - source_offset
+        if item_start < start + duration and item_end > start:
+            next_item = dict(item)
+            next_item["start"] = format_overlay_time(item_start)
+            next_item["end"] = format_overlay_time(item_end)
+            shifted.append(next_item)
+    return shifted
 
 
 def should_precompose_overlay_items(mode: str, items: list[dict[str, Any]], config: dict[str, object], duration: float) -> bool:
@@ -3104,6 +3468,36 @@ def main() -> None:
     face_center_report["axis"] = face_crop_axis
     ensure_omission_cards(replacements)
 
+    audio_source = nested(APP_CONFIG, "render", "audioSource", default="external-if-selected")
+    use_external_audio = audio_source == "external-if-selected" and external_audio
+    audio_input_index = 0
+    if audio_source == "rightCloseVideo":
+        audio_input_index = next((i for i, (name, _) in enumerate(cameras) if name == "camera2"), 0)
+    elif audio_source == "leftCloseVideo":
+        audio_input_index = next((i for i, (name, _) in enumerate(cameras) if name == "camera3"), 0)
+    elif use_external_audio:
+        audio_input_index = -1
+
+    audio_role = cameras[audio_input_index][0] if 0 <= audio_input_index < len(cameras) else external_audio_role
+    natural_cut_audio_path = external_audio if use_external_audio else cameras[audio_input_index][1]
+    camera_indexes = [(name, index) for index, (name, _) in enumerate(cameras)]
+    subtitle_source_offset = subtitle_source_offset_seconds(audio_role, sync_offsets)
+    SUBTITLE_TIMEBASE_REPORT.parent.mkdir(parents=True, exist_ok=True)
+    SUBTITLE_TIMEBASE_REPORT.write_text(
+        json.dumps(
+            {
+                "subtitlePath": str(selected_subtitle_path(APP_CONFIG, extensions=(".srt",)) or ""),
+                "subtitleSourceRole": selected_subtitle_source_role(),
+                "audioRole": audio_role,
+                "sourceOffsetSeconds": round(subtitle_source_offset, 6),
+                "interpretation": "overlay timeline seconds = subtitle source seconds - sourceOffsetSeconds",
+            },
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
     mode = subtitle_mode()
     subtitle_items: list[dict[str, Any]] = []
     overlay_inputs: list[tuple[dict[str, Any], dict[str, object]]] = []
@@ -3113,7 +3507,7 @@ def main() -> None:
     if chapter_config:
         manifest, title_config = chapter_config
         chapter_title_items = transform_overlay_items(
-            read_overlay_items(manifest, start, source_duration),
+            read_overlay_items(manifest, start, source_duration, subtitle_source_offset),
             replacements,
             start,
             source_duration,
@@ -3125,7 +3519,7 @@ def main() -> None:
     if mode != "none":
         manifest, caption_config = subtitle_manifest(mode)
         subtitle_items = transform_overlay_items(
-            read_overlay_items(manifest, start, source_duration),
+            read_overlay_items(manifest, start, source_duration, subtitle_source_offset),
             replacements,
             start,
             source_duration,
@@ -3142,7 +3536,7 @@ def main() -> None:
         overlay_inputs.extend(
             (item, glossary_config)
             for item in transform_overlay_items(
-                read_overlay_items(manifest, start, source_duration),
+                read_overlay_items(manifest, start, source_duration, subtitle_source_offset),
                 replacements,
                 start,
                 source_duration,
@@ -3150,21 +3544,7 @@ def main() -> None:
             )
         )
     planning_subtitle_items = subtitle_items or subtitle_planning_items()
-
     still_inserts = plan_still_inserts(parse_still_images(), subtitle_items, start, duration)
-    audio_source = nested(APP_CONFIG, "render", "audioSource", default="external-if-selected")
-    use_external_audio = audio_source == "external-if-selected" and external_audio
-    audio_input_index = 0
-    if audio_source == "rightCloseVideo":
-        audio_input_index = next((i for i, (name, _) in enumerate(cameras) if name == "camera2"), 0)
-    elif audio_source == "leftCloseVideo":
-        audio_input_index = next((i for i, (name, _) in enumerate(cameras) if name == "camera3"), 0)
-    elif use_external_audio:
-        audio_input_index = -1
-
-    audio_role = cameras[audio_input_index][0] if 0 <= audio_input_index < len(cameras) else external_audio_role
-    natural_cut_audio_path = external_audio if use_external_audio else cameras[audio_input_index][1]
-    camera_indexes = [(name, index) for index, (name, _) in enumerate(cameras)]
     timeline_segments = build_segments(duration, camera_indexes, planning_subtitle_items, start)
     timeline_segments, natural_cut_report = adjust_segments_to_dialogue_gaps(
         timeline_segments,
@@ -3201,6 +3581,17 @@ def main() -> None:
             f"{multicam_mode}+source-coverage",
             timeline_segments,
             str(SOURCE_COVERAGE_REPORT),
+        )
+    if use_external_audio:
+        timeline_segments, external_sync_report = guard_segments_by_external_audio_sync(
+            timeline_segments,
+            [(role, index, path) for index, (role, path) in enumerate(cameras)],
+            duration=duration,
+            timeline_start=start,
+            sync_offsets=sync_offsets,
+            external_audio_path=external_audio,
+            audio_role=audio_role,
+            replacements=replacements,
         )
     color_filters, color_report = camera_color_match_filters(
         cameras,
@@ -3381,7 +3772,7 @@ def main() -> None:
                 visual_filter = f"{visual_filter},{segment_global_zoom_filter}"
             filters.append(
                 f"[{input_index}:v]setpts=PTS-STARTPTS,trim=start={local_start:.6f}:end={local_end:.6f},"
-                f"setpts=PTS-STARTPTS,fps={render_fps},{visual_filter}[{label}]"
+                f"setpts=PTS-STARTPTS,{visual_filter}[{label}]"
             )
         segment_labels.append(label)
 
@@ -3391,9 +3782,10 @@ def main() -> None:
     FACE_CENTER_CROP_REPORT.write_text(json.dumps(face_center_report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     if len(segment_labels) == 1:
-        filters.append(f"[{segment_labels[0]}]copy[vbase]")
+        filters.append(f"[{segment_labels[0]}]copy[vbase_raw]")
     else:
-        filters.append("".join(f"[{label}]" for label in segment_labels) + f"concat=n={len(segment_labels)}:v=1:a=0[vbase]")
+        filters.append("".join(f"[{label}]" for label in segment_labels) + f"concat=n={len(segment_labels)}:v=1:a=0[vbase_raw]")
+    filters.append(f"[vbase_raw]fps={render_fps}[vbase]")
 
     title_base = "vbase"
     if logo_index is not None:

@@ -39,6 +39,10 @@ python .\scripts\video_edit_run.py --action render-selected
 
 Camera/audio sync is controlled by `scripts/auto_sync_app_sources.py`. It reads the current media manifest, finds coarse offsets against the master camera, then performs local fine waveform refinement and writes both coarse and refined values to `output/reports/app_sync_offsets.json`. `scripts/compare_manifest_transcripts.py` also writes transcript-derived offsets; the renderer uses those only as a current-project fallback for missing or low-score waveform sync and records the selected source in `output/reports/sync_offset_usage.json`.
 
+When the final audio is an external WAV, do not trust one global source offset for every multicam cut. `scripts/render_app_interview.py` must run the external-audio cut sync guard after camera planning, natural dialogue cuts, onscreen-speaker masking, and source-coverage clipping. The guard compares each non-master camera segment's embedded audio against the selected external WAV at the exact rendered timeline position, using short local RMS-envelope waveform probes. It writes `output/reports/external_audio_cut_sync_report.json`.
+
+Default guard behavior is conservative: keep the sub camera only when the local waveform score is high enough and the best local shift stays inside the configured tolerance. Otherwise replace that segment with the long master camera. Current config keys are `render.externalAudioCutSyncGuard`, `render.externalAudioCutSyncMinScore`, `render.externalAudioCutSyncMaxShift`, `render.externalAudioCutSyncProbeDuration`, `render.externalAudioCutSyncSearchRadius`, and `render.externalAudioCutSyncMaxProbes`. For this project, the first audit showed `camera2` and `camera3` are not reliable enough for the full render; `camera4` and `camera5` are the safer close-up sources.
+
 Long-form sync QA must include user-reported bad-cut regions before a full rerender is accepted. For the current project, render and inspect a five-minute test centered around 31:52, and reuse existing transcript outputs if the user says not to re-transcribe.
 
 Multicam planning is controlled by `render.multicamMode`. `master-first` keeps a simple master/close-up rotation. `speaker-aware` reads current subtitle overlay speaker roles, keeps interviewer ranges on the master camera, and rotates onscreen answer ranges through close-up cameras. `dynamic-cuts` replaces the old fixed `--dynamic-cuts` path with current-project short rhythmic camera segments and generic punch-in reframes. After planning, `scripts/render_app_interview.py` constrains segments to each selected camera's synced source coverage and writes `output/reports/source_coverage_usage.json`, so short or partial alternate-camera clips are not used outside their valid timeline range. `manual-plan` reads `render.cameraPlan` or `output/reports/manual_camera_plan.json`; segment rows use reusable fields such as `role`, `start`, and `end`, not fixed source filenames.
@@ -59,6 +63,8 @@ For background brightness matching, do not treat black clothing or dark foregrou
 
 For white balance, prioritize low-saturation wall/background and neutral pixels. Skin is useful for exposure and subtitle-facing QA, but it should not drive channel gains; using skin for channel gains made the pale interview background drift green/cyan. Current channel-gain weighting is background-first (`backgroundBgr` 80%, `neutralBgr` 20%). For saturation, use more global/background weight and less skin weight, because the visible mismatch across camera cuts is usually the wall/background density rather than only skin.
 
+Color temperature matching is separate from exposure and saturation, but do not judge it from `R/B` alone. For pale wall/background shots, also compare the wall `R/G` ratio; if `R/G` is below the master, the shot will read cyan/green/blue even when `R/B` looks plausible. Enable `render.colorMatchTemperature = true` for the automatic baseline, then verify rendered wall/background pixels with a bright low-saturation mask. For the current `camera5` audit, the rendered problematic close-ups were `R/G ~= 0.99, R/B ~= 1.17`, while the good close-up/master background target was about `R/G ~= 1.05, R/B ~= 1.23`; the fix is to raise red relative to green and reduce the blunt saturation-only override, not to add more blue.
+
 If the whole edit should be slightly whiter/cooler, apply it as a shared final camera look with `render.outputLookFilter`, not as `cameraExtraFilters.master`. The current preferred adjustment is subtle and applies to every camera after per-camera matching: `colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600`. This keeps the master from moving away from the sub cameras after matching.
 
 Global camera push-in is controlled by `render.globalVideoZoom`. The current preferred full-analysis style is a 20% push-in on all camera video segments, applied in the FFmpeg visual filter graph before subtitles, title, and logo overlays.
@@ -67,7 +73,7 @@ Face-centered framing is required for multicam tests and final renders when push
 
 For the long wide master camera, do not force the person to exact center. The current preferred framing leaves the person slightly to the right, while close-up sub cameras remain centered. Configure this with `render.faceCenterSubjectXByRole.master = 0.54`; the renderer shifts the crop window left so the detected master subject lands around 54% of the screen width. Keep sub-camera roles at the default `0.50` unless a specific shot needs a separate composition.
 
-Close-up sub cameras can remain visually too dense, too dark, or too saturated/desaturated even after automatic master matching. Check `brightnessComponents` and `saturationComponents` in `camera_color_match.json`; if global/background deltas are positive, the sub camera should be lifted toward the master even when skin brightness is already close. Do not solve this with a one-off saturation override. The renderer should compare face/skin, neutral background, and global frame statistics, trim outlier pixels before averaging, and then emit one FFmpeg color match filter. Prefer this over frame-by-frame Python processing or manual `cameraExtraFilters`. For the 2026-05-29 Semiogo 90s sample, the corrected approach removed the manual `camera5` saturation override and generated `saturation=0.8478` from the weighted face/background/global comparison; measured close-up output saturation moved from the over-saturated `0.26045` back to `0.20203`, close to the master range `0.20295`.
+Close-up sub cameras can remain visually too dense, too dark, or too saturated/desaturated even after automatic master matching. Check `brightnessComponents` and `saturationComponents` in `camera_color_match.json`; if global/background deltas are positive, the sub camera should be lifted toward the master even when skin brightness is already close. Do not solve this with a one-off saturation-only override. The renderer should compare face/skin, neutral background, and global frame statistics, trim outlier pixels before averaging, and then emit one FFmpeg color match filter. Prefer this over frame-by-frame Python processing. If a manual `cameraExtraFilters` override is still needed, make it ratio-aware and verify the wall mask before full render. Current `camera5` correction is `colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200`, selected because it moves the problematic wall background from `R/G ~= 0.99, R/B ~= 1.17` to about `R/G ~= 1.07, R/B ~= 1.23`, close to the good close-up target.
 
 Audio mastering is controlled by `render.audioMastering`. It applies the shared online-video chain from the old one-off render: high-pass, optional denoise, dynamic normalization, compression, and loudness normalization on the currently selected project audio.
 
@@ -76,6 +82,8 @@ Render encoding is controlled by `render.encoderPreset` and `render.crf`. These 
 GPU encoding is controlled by `render.videoEncoder`. Use `h264_nvenc` when an NVIDIA GPU is available and quick iteration matters; use `render.nvencPreset` and `render.cq` for NVENC quality/speed tuning. Keep `libx264` with `render.encoderPreset` and `render.crf` when CPU encoding quality/size tradeoffs are preferred. Benchmark short samples before full renders because low CQ NVENC values can create much larger files.
 
 For interview deliverables, prefer `render.outputFps = "30000/1001"` unless the user explicitly needs 60fps. The renderer applies this immediately after each camera segment trim, before color matching, global zoom, and overlays, so downstream filters process about half as many frames. Do not only add a final output `-r`; that drops frames after the expensive filters and gives little speed benefit.
+
+Important sync correction: do not apply `fps=30000/1001` independently inside every camera segment before `concat`. Segment-local FPS conversion accumulates frame rounding errors over many cuts; the audio remains continuous, so the rendered video gradually lags behind the external WAV and the audio appears early. The renderer should trim and style camera segments at source timing, `concat` the segments first, then apply one shared `fps=<render.outputFps>` to the concatenated base video before overlays. If drift is suspected, verify with visual frame matching against source frames at several timeline points, not only audio waveform correlation.
 
 Background music is app-level shared behavior. `scripts/generate_music_bed.py` reads `music.prompt`, `music.mood`, `music.outputPath`, and the active project output root, then writes a project-local WAV plus a JSON sidecar. The common renderer reads `music.enabled`, `music.scope`, `music.rangeSource`, `music.volume`, and `music.rangesText`; `scope=full` mixes the bed through the whole render, while `scope=omission` raises the music only inside auto-detected omission/interviewer overlay ranges plus explicit ranges such as `00:12-00:18`.
 
@@ -88,6 +96,10 @@ Thumbnail and subtitle review behavior is app-level shared behavior. `scripts/ge
 Full subtitle overlays use only the selected/parsed project transcript. If no current transcript exists, generation should fail instead of using older subtitles.
 
 The preferred full-subtitle visual baseline is the pre-app PNG overlay style from `scripts/generate_full_transcript_png_overlays.py` / `scripts/subtitle_png_style.py`. Plain ASS is only an implementation fallback for very long renders and must visually approximate that baseline. For five-minute or longer QA clips, do not pass every PNG subtitle as an individual FFmpeg input on Windows; precompose the PNG subtitle manifest into one transparent overlay video, then overlay that video onto the rendered base clip. For long multicam plans, also write the FFmpeg filter graph to `output/reports/filtergraphs/<output>.ffgraph` and use `-filter_complex_script`, because the filter graph itself can exceed the Windows command-line length even after subtitle precomposition.
+
+Full subtitle line breaking must preserve readable phrase boundaries. `scripts/generate_full_transcript_png_overlays.py` should measure text at the actual rendered font size and choose line breaks by layout width plus Japanese phrase penalties, not by raw character count. Do not break inside protected terms or phrase-like units such as Latin/number tokens, katakana technical terms, `FDE`, `PDM`, `SaaS`, `SIer`, `Claude Code`, `プロダクトマネージャー`, `ジョブディスクリプション`, `リバースエンジニアリング`, or common Japanese chunks such as `難しい`, `働き方`, `考え方`, `ということ`, `みたいな`, and `している`. Also avoid splitting Japanese okurigana words between kanji and following hiragana, such as `務|まらない`, `受|け入れ`, or `限|られている`. Avoid second lines that start with particles, suffix fragments, or weak continuations such as `いう`, `って`, `こと`, `ところ`, `もの`, `ので`, `けど`, `とか`, `たり`, `です`, `ます`, `は`, `が`, `を`, `に`, `で`, `と`, `も`, and `の`. If a natural two-line break would split a word or phrase, allow the caption to become a later timed chunk instead of forcing an ugly two-line split.
+
+After changing subtitle text or wrap rules, regenerate full PNG overlays and inspect the layout diagnostics. For the current project, the latest audit wrote `projects/new-folder-2/output/reports/subtitle_line_break_layout_review_20260529.json` and confirmed `highPenaltyBreaks = 0` before regenerating `output/overlays/full_transcript_png_overlays/manifest.json`.
 
 ### Chapter Title Overlay
 
@@ -201,7 +213,457 @@ Punchline overlays use only `style.punchlineText` from the runtime config. If it
 
 ## High Quality Full Analysis Render
 
-For the reusable Codex-side full-analysis workflow, see `docs/codex_full_analysis_render_method.md`. That document records the current preferred setup: `large-v3` transcription through `faster-whisper` / CTranslate2 CUDA in `.video-edit\venvs\whisper-cu128`, all-source transcription/comparison, speaker-role subtitles, strict subtitle review/correction, skin-tone-based multicam color matching, 20% global camera push-in, online-video audio denoise/mastering, the specified right-logo asset, and optional `h264_nvenc` acceleration.
+This is the canonical Codex-side procedure for a full analysis, edit, subtitle review, and render when Codex should operate the scripts directly from project files. It uses the current app project model, not old root-level `source/` or `output/` folders.
+
+### Goal
+
+Produce a full edited render from the active project with:
+
+- highest-accuracy transcription using `large-v3`;
+- all selected video/audio sources transcribed and compared;
+- speaker classification for onscreen speaker vs interviewer;
+- role-aware full subtitles;
+- manual subtitle review and correction after subtitle generation;
+- noise reduction and online-video audio mastering;
+- multicam color matching, including skin-tone/background matching when possible;
+- a consistent 20% push-in zoom on all camera video segments;
+- the specified right-top logo;
+- fast sample/full renders using `h264_nvenc` when available.
+
+### Required Project Context
+
+Always run from the repo root:
+
+```powershell
+cd C:\Users\yurin\Desktop\video_edit
+```
+
+Set one of these before running project actions:
+
+```powershell
+$env:VIDEO_EDIT_PROJECT = "new-folder-2"
+```
+
+or, for an explicit project root:
+
+```powershell
+$env:VIDEO_EDIT_PROJECT_ROOT = "C:\Users\yurin\Desktop\video_edit\projects\new-folder-2"
+```
+
+The source of truth remains `projects\<project-id>\project_state.json`, the project media manifest, and `projects\<project-id>\output\...`.
+
+### Fixed Style Inputs
+
+Use this image for the right-top logo:
+
+```text
+C:\Users\yurin\Documents\Codex\2026-05-25\files-mentioned-by-the-user-chatgpt\chatgpt-image-2026-05-25-203219-transparent-cropped.png
+```
+
+Copy it into the active project, for example:
+
+```text
+projects\<project-id>\source\images\right_logo_pre_fb05.png
+```
+
+Set both `assets.logo` and `assets.logoPath` to the copied project-local path. Use the pre-`fb05cf02153a6511da1204d9ff43890c1bad473b` logo size as the default reference; in the current project that means `style.logoHeight = 48`.
+
+### Highest Accuracy Transcription
+
+Preferred backend is `faster-whisper` on CUDA/CTranslate2 because the system Python can have CPU-only PyTorch even when the machine has an NVIDIA GPU. Do not use CPU `openai-whisper large-v3` for full-project transcription unless explicitly approved.
+
+If a CPU transcription job is already running, stop it before starting the CUDA job. It competes for disk/CPU and can overwrite the same transcript outputs.
+
+Use this project-local environment:
+
+```powershell
+$venv = "C:\Users\yurin\Desktop\video_edit\.video-edit\venvs\whisper-cu128"
+if (!(Test-Path $venv)) { python -m venv $venv }
+& "$venv\Scripts\python.exe" -m pip install -U pip setuptools wheel
+& "$venv\Scripts\python.exe" -m pip install --index-url https://download.pytorch.org/whl/cu128 torch torchvision torchaudio
+& "$venv\Scripts\python.exe" -m pip install -U openai-whisper faster-whisper
+```
+
+Known-good setup:
+
+```text
+Python venv: .video-edit\venvs\whisper-cu128
+Backend: faster-whisper / CTranslate2 CUDA
+Model: large-v3
+Device: cuda
+Compute type: float16
+Beam size: 5
+```
+
+Verify CUDA before a full run:
+
+```powershell
+.\.video-edit\venvs\whisper-cu128\Scripts\python.exe -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
+.\.video-edit\venvs\whisper-cu128\Scripts\python.exe -c "import ctranslate2; print(ctranslate2.get_cuda_device_count())"
+```
+
+Expected result is `True`, the NVIDIA GPU name, and at least one CTranslate2 CUDA device.
+
+Project settings should include:
+
+```json
+{
+  "analysis": {
+    "transcribeModel": "large-v3",
+    "transcribeDevice": "cuda",
+    "fasterWhisperComputeType": "float16",
+    "transcribeBeamSize": 5,
+    "transcribeTemperature": 0.0,
+    "conditionOnPreviousText": false
+  }
+}
+```
+
+Run transcription for all manifest audio-bearing sources:
+
+```powershell
+.\.video-edit\venvs\whisper-cu128\Scripts\python.exe .\scripts\video_edit_run.py --action transcribe-dropped-faster
+```
+
+Expected outputs:
+
+```text
+projects\<project-id>\output\transcripts\manifest_sources\primary.srt
+projects\<project-id>\output\transcripts\manifest_sources\primary.json
+projects\<project-id>\output\transcripts\manifest_sources\manifest_transcripts.json
+```
+
+If CUDA is unavailable, do not silently accept slow CPU `large-v3` for a full run. Fix the CUDA environment first or run a short benchmark only.
+
+### Sync And Comparison
+
+After transcription, run waveform sync and transcript comparison:
+
+```powershell
+python .\scripts\video_edit_run.py --action auto-sync-dropped
+python .\scripts\video_edit_run.py --action compare-transcripts
+```
+
+Expected reports:
+
+```text
+projects\<project-id>\output\reports\app_sync_offsets.json
+projects\<project-id>\output\reports\transcript_comparison.json
+```
+
+Waveform sync is the primary source for audio/video alignment. Transcript comparison is a fallback and sanity check, not the final fine sync mechanism.
+
+For external-audio renders, the final sync reference is the selected external WAV, not the camera video's AAC audio. Before accepting a multicam render, run or rely on the renderer's external-audio cut sync guard, which writes:
+
+```text
+projects\<project-id>\output\reports\external_audio_cut_sync_report.json
+```
+
+Sub-camera segments should be used only when the local score passes threshold and the detected local shift is within tolerance. Low-score, short, or shifted segments must fall back to the long master camera. In the current project, `camera2` and `camera3` failed this stricter audit, while `camera4` and `camera5` are the safer close-up candidates.
+
+For long-form multicam renders, QA must include explicit checks around any user-reported bad cut. For the current long render, inspect the 31:52 area first with a surrounding five-minute render before accepting any full rerender.
+
+When existing transcript data is available and the user says not to re-transcribe, do not run `transcribe-dropped`, `transcribe-dropped-faster`, or clip re-transcription. Reuse `primary.srt`, `primary.json`, `manifest_transcripts.json`, and existing speaker-role reports.
+
+If audio and video content diverge at a sub-camera cut, do not hide it with subtitle timing changes. Check the camera segment role, source coverage, selected sync offset, source timestamp mapping, and whether the segment should fall back to the long master camera.
+
+### Subtitle Review And Correction
+
+After generating transcription, Codex must review subtitles before final render:
+
+```powershell
+python .\scripts\video_edit_run.py --action review-subtitles
+```
+
+Read the SRT/JSON and correct unnatural Whisper errors before rendering. Do not paraphrase full subtitles; full subtitles must stay faithful to the actual utterance except for explicit user-approved terminology fixes.
+
+Apply corrections through the project correction workflow:
+
+```powershell
+python .\scripts\video_edit_run.py --action apply-subtitle-corrections
+```
+
+Use the corrected project-local SRT for later subtitle generation. Avoid editing generated final ASS as the only correction source because it is easy to lose those edits on regeneration.
+
+### Speaker Classification And Subtitles
+
+Classify captions into at least:
+
+- `onscreen`: person visible in the frame is speaking;
+- `interviewer`: offscreen interviewer or questioner is speaking.
+
+Run:
+
+```powershell
+python .\scripts\video_edit_run.py --action classify-subtitle-speakers
+python .\scripts\video_edit_run.py --action classify-subtitle-speakers-audio
+```
+
+Expected role outputs live under:
+
+```text
+projects\<project-id>\output\reports\full_transcript_speaker_roles*.json
+```
+
+For stereo external recordings, prefer `scripts/classify_speakers_audio_features.py`: it measures active-speech LR channel balance (`lrDb`) plus lightweight acoustic features and writes a role JSON compatible with the PNG overlay generator. In the current project, positive `lrDb` / left-channel dominant speech maps to the offscreen interviewer, while negative `lrDb` / right-channel dominant speech maps to the visible interviewee.
+
+Before rendering, point `subtitleSpeakers.outputPath` at the audio LR classifier output:
+
+```json
+{
+  "subtitleSpeakers": {
+    "outputPath": "projects/new-folder-2/output/reports/full_transcript_speaker_roles_audio_lr.json"
+  }
+}
+```
+
+Practical current-project thresholds:
+
+- `lrDb >= +1.5`: interviewer candidate.
+- `lrDb <= -1.5`: onscreen interviewee candidate.
+- between `-1.5` and `+1.5`: ambiguous; inspect context and neighboring strong-LR captions.
+
+Do not classify a caption as interviewer only because it is short or ends in a question mark. If the visible speaker is quoting a question or using a rhetorical question inside their own answer, keep it `onscreen`; if the offscreen interviewer is reacting, summarizing, or confirming from outside the frame, mark it `interviewer`.
+
+Current five-minute QA regression checks:
+
+- `source_index=464` / `確かに`: interviewer, black subtitle.
+- `source_index=465` / `そのあたりはしっかりと考えてきてあるなという感じがします`: interviewer, black subtitle.
+- `source_index=496` / `コアの仕事って何なの?`: onscreen, purple subtitle, despite the question mark.
+- `source_index=525-529`: interviewer, black subtitle.
+- `source_index=538` / `そうですね`: onscreen by audio LR in the tested clip, not interviewer.
+
+For full-timeline stereo classification against the external WAV:
+
+```powershell
+$env:VIDEO_EDIT_PROJECT = "new-folder-2"
+python .\scripts\classify_speakers_audio_features.py `
+  --srt "projects/new-folder-2/output/transcripts/manifest_sources/primary.srt" `
+  --audio "C:\Users\yurin\Downloads\New folder (2)\140101-003.WAV" `
+  --output "projects/new-folder-2/output/reports/full_transcript_speaker_roles_audio_lr.json" `
+  --report "projects/new-folder-2/output/reports/full_transcript_speaker_roles_audio_lr_report.json"
+```
+
+Generate role-aware ASS only when needed:
+
+```powershell
+python .\scripts\video_edit_run.py --action generate-role-aware-ass
+```
+
+The preferred visual baseline is the rich PNG subtitle style from `scripts/generate_full_transcript_png_overlays.py` and `scripts/subtitle_png_style.py`: large Yu Gothic Bold text, tracked lettering, dynamic-width rounded boxes, semi-transparent purple for onscreen speaker, and semi-transparent black for interviewer. If ASS is required, it must visually approximate that PNG baseline, not the simplified fallback.
+
+Line breaks in full PNG subtitles are part of subtitle quality. Use rendered-width measurement plus Japanese phrase-boundary penalties. Protect domain terms and common chunks such as `FDE`, `PDM`, `SaaS`, `SIer`, `Claude Code`, `プロダクトマネージャー`, `ジョブディスクリプション`, `リバースエンジニアリング`, `難しい`, `働き方`, `考え方`, `ということ`, `みたいな`, and `している`. Avoid splitting okurigana words such as `務|まらない`, `受|け入れ`, or `限|られている`, and avoid second lines that start with weak continuations or particles such as `いう`, `って`, `こと`, `ので`, `です`, `ます`, `は`, `が`, `を`, `に`, `で`, `と`, `も`, or `の`.
+
+After subtitle correction or wrap-rule changes, regenerate the PNG subtitle manifest and run a whole-SRT layout audit. For the current project, the reference audit is `projects/new-folder-2/output/reports/subtitle_line_break_layout_review_20260529.json`; it should report `highPenaltyBreaks = 0` before using `output/overlays/full_transcript_png_overlays/manifest.json` in a production render.
+
+### Chapter Titles And Subtitle Timing
+
+For interview renders, the left-top title is a chapter title derived from the transcript, not a fixed generic label. Read the full corrected SRT, identify topic changes, and create:
+
+```text
+projects\<project-id>\output\reports\chapter_titles_from_full_transcript.json
+```
+
+Each item should include `start`, `end`, and `title`. Titles should be short, topic-specific, and faithful to the discussion. In the current Semiogo project, an example chapter title is `日本企業でワークするか`.
+
+Enable chapter titles:
+
+```json
+{
+  "style": {
+    "chapterTitlesEnabled": true,
+    "chapterTitlesPath": "projects/new-folder-2/output/reports/chapter_titles_from_full_transcript.json",
+    "titleX": 18,
+    "titleY": 18
+  }
+}
+```
+
+Generate the timed title PNG overlays:
+
+```powershell
+python .\scripts\generate_chapter_title_png_overlays.py `
+  --project-root "projects\<project-id>" `
+  --chapters "projects\<project-id>\output\reports\chapter_titles_from_full_transcript.json"
+```
+
+If visible subtitle text has had filler words removed, the SRT start time must not remain strongly early at `あー`, `えー`, `えっと`, `まあ`, `なんか`, or similar filler audio. Use the readability-first hybrid pass in `scripts/retime_subtitles_readable.py`: match displayed SRT text against word timestamps, shift only captions that are clearly early, keep a small lead-in before matched content words, merge close same-speaker captions when natural, enforce minimum display duration and tail hold, and never shift captions earlier.
+
+### Audio, Color, And Camera Defaults
+
+Enable denoise and mastering for normal full-analysis renders:
+
+```json
+{
+  "render": {
+    "audioDenoise": true,
+    "audioDenoiseStrength": 16,
+    "audioMastering": true
+  }
+}
+```
+
+Enable multicam color matching:
+
+```json
+{
+  "render": {
+    "colorMatchCameras": true,
+    "colorMatchWhiteBalance": true,
+    "colorMatchTemperature": true,
+    "colorMatchTemperatureStrength": 0.65
+  }
+}
+```
+
+The color target is the long main camera `ST7_7550.MP4`. Sub-camera samples must be taken at `timeline timestamp + sync offset`, from ranges where the camera is actually used, after manual/dynamic planning, speaker masking, natural cuts, and source coverage constraints. Check `projects\<project-id>\output\reports\camera_color_match.json`; it should show `sampleBasis: actual camera plan`.
+
+Brightness matching must blend skin, global frame brightness, and conservative neutral non-skin/background pixels. White balance should be background-first (`backgroundBgr` 80%, `neutralBgr` 20%) with skin excluded from channel gains. Temperature matching should verify both wall `R/G` and `R/B` ratios. If the whole edit should feel slightly whiter/cooler, apply a shared `render.outputLookFilter`, not a master-only extra filter:
+
+```json
+{
+  "render": {
+    "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
+  }
+}
+```
+
+For current `camera5` close-up audits, avoid a blunt saturation-only override. If manual correction is still needed after automatic matching, use the ratio-aware override and verify with a contact sheet:
+
+```text
+colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200
+```
+
+Close-up cameras should be used only while the visible interviewee is speaking, even when a manual camera plan exists:
+
+```json
+{
+  "render": {
+    "closeupsOnlyWhenOnscreenSpeaker": true,
+    "closeupSpeechPadding": 0.18,
+    "closeupSpeechGapMerge": 0.8
+  }
+}
+```
+
+For normal interview deliverables, keep silence shortening enabled unless the render is specifically a sync/debug sample:
+
+```json
+{
+  "render": {
+    "shortenSilence": true,
+    "minSilence": 3.0,
+    "keepSilence": 2.0,
+    "silenceNoise": "-30dB"
+  }
+}
+```
+
+Always inspect the generated `<output>.silence_shortening.json` report. Do not use silence-shortened outputs when validating exact raw source sync.
+
+Apply the 20% push-in to camera video only, before subtitles, title graphics, right-top logo, glossary overlays, or omission cards:
+
+```json
+{
+  "render": {
+    "globalVideoZoom": 1.2,
+    "faceCenterCrop": true,
+    "faceCenterCropAxis": "x",
+    "faceCenterSubjectXByRole": {
+      "master": 0.54
+    }
+  }
+}
+```
+
+Treat the 20% zoom as the minimum push-in. Do not double-zoom tight face crops so far that the speaker's head, hands, or important context are cut unnaturally. Check `output/reports/person_crop_usage.json` or `output/reports/face_center_crop_usage.json` and sample frames after render.
+
+### Encoder Choice
+
+For speed on NVIDIA systems:
+
+```json
+{
+  "render": {
+    "videoEncoder": "h264_nvenc",
+    "nvencPreset": "p4",
+    "cq": 19
+  }
+}
+```
+
+Benchmark with a short sample before a full render. `cq=19` is high quality but can create large files; if file size is too large, test `cq=23` or `cq=25`.
+
+For interview videos, default long renders to 30fps unless 60fps is specifically required:
+
+```json
+{
+  "render": {
+    "outputFps": "30000/1001",
+    "precomposeOverlayFps": "30000/1001"
+  }
+}
+```
+
+Do not apply `fps=30000/1001` independently inside every camera segment before `concat`. Segment-local FPS conversion caused cumulative visual drift in the 2026-05-29 sync investigation. The correct graph is: trim and style camera segments at source timing, concatenate the segments, then apply one global `fps=<render.outputFps>` to the concatenated base before title/logo/subtitle overlays.
+
+Use CPU x264 only when size/quality consistency matters more than render time:
+
+```json
+{
+  "render": {
+    "videoEncoder": "libx264",
+    "encoderPreset": "veryfast",
+    "crf": 18
+  }
+}
+```
+
+### Full Render Order
+
+Recommended full pipeline:
+
+```powershell
+$env:VIDEO_EDIT_PROJECT = "new-folder-2"
+
+.\.video-edit\venvs\whisper-cu128\Scripts\python.exe .\scripts\video_edit_run.py --action transcribe-dropped-faster
+python .\scripts\video_edit_run.py --action auto-sync-dropped
+python .\scripts\video_edit_run.py --action compare-transcripts
+python .\scripts\video_edit_run.py --action review-subtitles
+python .\scripts\video_edit_run.py --action apply-subtitle-corrections
+python .\scripts\video_edit_run.py --action classify-subtitle-speakers
+python .\scripts\video_edit_run.py --action classify-subtitle-speakers-audio
+python .\scripts\video_edit_run.py --action generate-role-aware-ass
+python .\scripts\video_edit_run.py --action render-selected
+```
+
+After render, verify:
+
+```powershell
+ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "<final-video>"
+ffprobe -v error -select_streams a:0 -show_entries stream=codec_name,sample_rate,channels -of json "<final-video>"
+```
+
+Also inspect sample frames from early, interviewer, onscreen, multicam switch, bad-cut, and late sections. Confirm:
+
+- logo is the specified image and size;
+- speaker subtitles use purple/black correctly;
+- subtitle style matches the PNG-style baseline, not simplified ASS;
+- subtitle line breaks do not split words, technical terms, or weak Japanese continuations;
+- corrected subtitle terms are present;
+- audio remains synced after cuts or silence shortening;
+- the 31:52 area and its surrounding five-minute QA render do not contain audio/video content mismatch;
+- camera color is consistent, especially skin tone and pale wall/background temperature;
+- every camera video segment has the intended 20% push-in without over-cropping faces or hands;
+- denoise/mastering did not create pumping or clipped speech.
+
+Important full-analysis rules:
+
+- Full subtitles are literal utterance subtitles, not summaries.
+- Interviewer omission mode may summarize questions, but normal full-subtitle mode must not.
+- After subtitle generation, Codex must review and correct obvious unnatural transcription errors before final render.
+- Do not use weak transcript matches for multicam sync decisions.
+- Do not process full renders frame-by-frame in Python/OpenCV unless no FFmpeg equivalent exists.
 
 ## Script Guidelines
 

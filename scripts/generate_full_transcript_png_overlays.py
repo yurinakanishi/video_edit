@@ -40,12 +40,215 @@ MAX_CAPTION_CHUNKS = 8
 MIN_LINE_CHARS = 6
 LINE_END_PREFERRED_CHARS = "、。，．・／/）)]」』"
 LINE_START_PROHIBITED_CHARS = "、。，．,.！？!?：；;・）)]｝}」』】》〉"
+LINE_START_AVOIDED_PREFIXES = (
+    "いう",
+    "って",
+    "という",
+    "まらない",
+    "け入れ",
+    "られて",
+    "よる",
+    "させて",
+    "いただ",
+    "ただこう",
+    "こと",
+    "ところ",
+    "もの",
+    "ので",
+    "けど",
+    "とか",
+    "たり",
+    "だけ",
+    "から",
+    "まで",
+    "より",
+    "です",
+    "ます",
+    "ました",
+    "して",
+    "した",
+    "する",
+    "いる",
+    "ある",
+    "れる",
+    "られる",
+    "は",
+    "が",
+    "を",
+    "に",
+    "で",
+    "と",
+    "も",
+    "へ",
+    "の",
+    "か",
+)
+LINE_END_AVOIDED_SUFFIXES = ("と", "っ", "ま", "も", "で", "や", "し", "す")
+LINE_END_PREFERRED_PHRASES = (
+    "、",
+    "。",
+    "けど",
+    "ので",
+    "から",
+    "として",
+    "について",
+    "に関して",
+    "という",
+    "っていう",
+    "みたいな",
+    "ですよね",
+    "ですよ",
+    "ですね",
+    "ますね",
+    "思います",
+)
+LINE_START_PREFERRED_PREFIXES = (
+    "ただ",
+    "でも",
+    "なので",
+    "例えば",
+    "つまり",
+    "そうですね",
+    "確かに",
+    "じゃあ",
+)
+UNBREAKABLE_PHRASES = (
+    "FDE",
+    "PDM",
+    "SaaS",
+    "SMB",
+    "SIer",
+    "ClaudeCode",
+    "ビジネスモデル",
+    "プロダクト",
+    "プロダクトマネージャー",
+    "エンジニアリング",
+    "エンジニア",
+    "エコシステム",
+    "デリバリー",
+    "エンタープライズ",
+    "セミオーダー",
+    "セミカスタマイズ",
+    "カスタマイズ",
+    "パッケージソフト",
+    "ソリューション営業",
+    "セールスフォース",
+    "マーケティング",
+    "ジョブディスクリプション",
+    "ステークホルダー",
+    "ポジショントーク",
+    "マルチプレイヤー",
+    "ファーストキャリア",
+    "プロフィール",
+    "リバースエンジニアリング",
+    "コンパイルエラー",
+    "スキルセット",
+    "務まらない",
+    "受け入れられる",
+    "限られている",
+    "必要とされている",
+    "参照させて",
+    "参照させていただこう",
+    "させていただこう",
+    "いただこう",
+    "レバレッジ",
+    "ユーザー",
+    "デザイナー",
+    "ヒアリング",
+    "ビルダー",
+    "フロント",
+    "コミュニケーション",
+    "できる",
+    "できない",
+    "できた",
+    "できて",
+    "難しい",
+    "働き方",
+    "考え方",
+    "作り方",
+    "あり方",
+    "変わらない",
+    "近い",
+    "思う",
+    "考えて",
+    "言うても",
+    "いろいろ",
+    "できました",
+    "きました",
+    "きます",
+    "使って",
+    "作って",
+    "持って",
+    "変わって",
+    "揃って",
+    "たまって",
+    "している",
+    "していく",
+    "してきた",
+    "してもらう",
+    "してもらえる",
+    "したり",
+    "だったり",
+    "あったり",
+    "なったり",
+    "されて",
+    "される",
+    "られる",
+    "考える",
+    "思います",
+    "思って",
+    "あります",
+    "います",
+    "という",
+    "っていう",
+    "というの",
+    "ということ",
+    "というところ",
+    "という形",
+    "という話",
+    "じゃない",
+    "じゃん",
+    "そういう",
+    "なっていく",
+    "しなきゃ",
+    "だろう",
+    "いいよね",
+    "みたいな",
+    "かなと",
+    "かもしれない",
+    "ところ",
+    "もの",
+    "こと",
+    "ため",
+    "また",
+    "まだ",
+    "もう",
+    "やっぱり",
+    "すごく",
+    "めちゃくちゃ",
+    "ちょっと",
+    "なんか",
+    "必要",
+    "条件",
+    "領域",
+    "設計",
+    "反応",
+    "人員",
+    "商習慣",
+    "御用聞き",
+)
+MAX_ACCEPTABLE_SPLIT_PENALTY = 80_000
 APP_CONFIG = load_app_config()
 SPEAKER_ROLES = Path(
     str(nested(APP_CONFIG, "subtitleSpeakers", "outputPath", default=str(OUTPUT_REPORTS / "full_transcript_speaker_roles.json")))
 )
 SRT = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
-MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {}
+MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {
+    "逆に言うとFDEはエンジニアじゃないと務まらないような仕事でもありますよね": (
+        "逆に言うとFDEはエンジニアじゃないと",
+        "務まらないような仕事でもありますよね",
+    ),
+}
 
 
 @dataclass(frozen=True)
@@ -101,6 +304,174 @@ def parse_srt(path: Path) -> list[Caption]:
 def text_width(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont) -> int:
     bbox = draw.textbbox((0, 0), text, font=font, stroke_width=CAPTION_STROKE)
     return tracked_text_width(draw, text, font, CAPTION_STROKE) if len(text) > 1 else bbox[2] - bbox[0]
+
+
+def script_class(char: str) -> str:
+    code = ord(char)
+    if ("A" <= char <= "Z") or ("a" <= char <= "z") or ("0" <= char <= "9"):
+        return "latin"
+    if 0x30A0 <= code <= 0x30FF:
+        return "katakana"
+    if 0x3040 <= code <= 0x309F:
+        return "hiragana"
+    if 0x4E00 <= code <= 0x9FFF:
+        return "kanji"
+    return "other"
+
+
+def merged_unbreakable_spans(text: str) -> list[tuple[int, int]]:
+    spans: list[tuple[int, int]] = []
+    for pattern in (r"[A-Za-z0-9+#._-]+", r"[ァ-ヶー]+"):
+        for match in re.finditer(pattern, text):
+            if match.end() - match.start() > 1:
+                spans.append((match.start(), match.end()))
+    for phrase in UNBREAKABLE_PHRASES:
+        start = text.find(phrase)
+        while start >= 0:
+            spans.append((start, start + len(phrase)))
+            start = text.find(phrase, start + 1)
+    if not spans:
+        return []
+    spans.sort()
+    merged: list[tuple[int, int]] = []
+    for start, end in spans:
+        if not merged or start >= merged[-1][1]:
+            merged.append((start, end))
+        else:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+    return merged
+
+
+def inside_unbreakable_span(index: int, spans: list[tuple[int, int]]) -> bool:
+    return any(start < index < end for start, end in spans)
+
+
+def boundary_penalty(text: str, index: int, spans: list[tuple[int, int]]) -> int:
+    if index <= 0 or index >= len(text):
+        return 0
+    if text[index] in LINE_START_PROHIBITED_CHARS:
+        return 10**9
+    left = text[:index]
+    right = text[index:]
+    score = 0
+    if inside_unbreakable_span(index, spans):
+        score += 9_000_000
+    previous_class = script_class(text[index - 1])
+    next_class = script_class(text[index])
+    particle_boundary = any(left.endswith(particle) for particle in ("は", "が", "を", "に", "で", "と", "も", "へ", "から", "まで", "より"))
+    if previous_class == "kanji" and next_class == "hiragana":
+        # Avoid splitting inside Japanese okurigana words, e.g. 務|まらない or 受|け入れ.
+        # Particle starts are still awkward as line starts, but okurigana splits are worse.
+        score += 260_000 if text[index] not in "はがをにでともへのか" else 120_000
+    if previous_class == next_class and not particle_boundary:
+        if previous_class in {"latin", "katakana"}:
+            score += 7_000_000
+        elif previous_class == "kanji":
+            score += 120_000
+        elif previous_class == "hiragana":
+            score += 90_000
+    if any(right.startswith(prefix) for prefix in LINE_START_AVOIDED_PREFIXES):
+        score += 180_000
+    if any(left.endswith(suffix) for suffix in LINE_END_AVOIDED_SUFFIXES):
+        score += 70_000
+    if text[index - 1] in LINE_END_PREFERRED_CHARS:
+        score -= 8_000
+    if any(left.endswith(phrase) for phrase in LINE_END_PREFERRED_PHRASES):
+        score -= 5_000
+    if any(right.startswith(prefix) for prefix in LINE_START_PREFERRED_PREFIXES):
+        score -= 3_000
+    if particle_boundary:
+        score -= 1_500
+    return score
+
+
+def choose_natural_lines(
+    text: str,
+    draw: ImageDraw.ImageDraw,
+    font: ImageFont.FreeTypeFont,
+    max_text_width: int,
+    line_count: int,
+) -> list[str] | None:
+    if line_count <= 1:
+        return [text] if text_width(draw, text, font) <= max_text_width else None
+    n = len(text)
+    if n < line_count:
+        return None
+    spans = merged_unbreakable_spans(text)
+    points = list(range(n + 1))
+    char_widths: list[int] = []
+    for char in text:
+        bbox = draw.textbbox((0, 0), char, font=font, stroke_width=CAPTION_STROKE)
+        char_widths.append(bbox[2] - bbox[0])
+    prefix_widths = [0]
+    for width in char_widths:
+        prefix_widths.append(prefix_widths[-1] + width)
+
+    def segment_width(start: int, end: int) -> int:
+        while start < end and text[start].isspace():
+            start += 1
+        while end > start and text[end - 1].isspace():
+            end -= 1
+        if end <= start:
+            return 0
+        return prefix_widths[end] - prefix_widths[start] + TRACKING * max(0, end - start - 1)
+
+    total_width = text_width(draw, text, font)
+    target_width = min(max_text_width, max(1, total_width / line_count))
+    dp: list[dict[int, tuple[float, int | None]]] = [{0: (0.0, None)}]
+    for line_index in range(1, line_count + 1):
+        current: dict[int, tuple[float, int | None]] = {}
+        previous = dp[-1]
+        min_remaining_chars = line_count - line_index
+        for end in points[1:]:
+            if n - end < min_remaining_chars:
+                continue
+            best: tuple[float, int | None] | None = None
+            for start, (prev_cost, _) in previous.items():
+                if start >= end:
+                    continue
+                segment = text[start:end].strip()
+                if not segment:
+                    continue
+                width = segment_width(start, end)
+                if width > max_text_width:
+                    continue
+                length_penalty = 0
+                if n >= MIN_LINE_CHARS * line_count and len(segment) < MIN_LINE_CHARS:
+                    length_penalty = (MIN_LINE_CHARS - len(segment)) * 8_000
+                balance_penalty = ((width - target_width) / max_text_width) ** 2 * 4_000
+                end_penalty = 0 if end == n else boundary_penalty(text, end, spans)
+                start_penalty = 0 if start == 0 else boundary_penalty(text, start, spans) * 0.15
+                cost = prev_cost + balance_penalty + length_penalty + end_penalty + start_penalty
+                if best is None or cost < best[0]:
+                    best = (cost, start)
+            if best is not None:
+                current[end] = best
+        dp.append(current)
+    if n not in dp[-1]:
+        return None
+    lines: list[str] = []
+    end = n
+    for line_index in range(line_count, 0, -1):
+        _, start = dp[line_index][end]
+        if start is None:
+            return None
+        lines.append(text[start:end].strip())
+        end = start
+    lines.reverse()
+    return lines if all(lines) else None
+
+
+def max_split_penalty(text: str, lines: list[str]) -> int:
+    if len(lines) <= 1:
+        return 0
+    spans = merged_unbreakable_spans(text)
+    cursor = 0
+    max_penalty = 0
+    for line in lines[:-1]:
+        cursor += len(line)
+        max_penalty = max(max_penalty, boundary_penalty(text, cursor, spans))
+    return max_penalty
 
 
 def split_caption_text(
@@ -163,7 +534,10 @@ def normalize_split_points_for_kinsoku(text: str, split_points: list[int]) -> li
 
 
 def split_japanese_line_naturally(line: str, draw: ImageDraw.ImageDraw, font: ImageFont.FreeTypeFont) -> tuple[str, str]:
-    particles = ("は", "が", "を", "に", "で", "と", "も", "へ", "から", "まで", "より", "って", "という", "ので", "けど")
+    natural = choose_natural_lines(line, draw, font, text_width(draw, line, font), 2)
+    if natural and len(natural) == 2:
+        return natural[0], natural[1]
+    spans = merged_unbreakable_spans(line)
     best_index = max(1, min(len(line) - 1, len(line) // 2))
     best_score = 10**9
     for index in range(1, len(line)):
@@ -171,19 +545,10 @@ def split_japanese_line_naturally(line: str, draw: ImageDraw.ImageDraw, font: Im
         right = line[index:].lstrip()
         if not left or not right:
             continue
-        left_width = text_width(draw, left, font)
-        right_width = text_width(draw, right, font)
-        score = abs(left_width - right_width)
-        if line[index - 1] in LINE_END_PREFERRED_CHARS:
-            score -= 800
-        if any(left.endswith(particle) for particle in particles):
-            score -= 500
-        if line[index:index + 1] in LINE_START_PROHIBITED_CHARS:
-            score += 1200
-        adjusted_index = adjust_split_index_for_kinsoku(line, index)
+        score = abs(text_width(draw, left, font) - text_width(draw, right, font)) + boundary_penalty(line, index, spans)
         if score < best_score:
             best_score = score
-            best_index = adjusted_index
+            best_index = adjust_split_index_for_kinsoku(line, index)
     return line[:best_index].rstrip(), line[best_index:].lstrip()
 
 
@@ -194,46 +559,12 @@ def wrap_japanese_text(
     max_text_width: int,
     max_lines: int,
 ) -> list[str]:
-    particles = ("は", "が", "を", "に", "で", "と", "も", "へ", "から", "まで", "より", "って", "という", "ので", "けど")
     for split_count in range(2, max_lines + 1):
-        candidates: list[list[str]] = []
-        target = len(text) / split_count
-        split_points: list[int] = []
-        for segment_index in range(1, split_count):
-            center = round(target * segment_index)
-            best_index = None
-            best_score = 10**9
-            for index in range(max(1, center - 12), min(len(text), center + 13)):
-                left_fragment = text[:index].split("\n")[-1].strip()
-                right_fragment = text[index:].split("\n")[0].strip()
-                if len(left_fragment) < MIN_LINE_CHARS or len(right_fragment) < MIN_LINE_CHARS:
-                    continue
-                score = abs(index - center) * 120
-                if text[index - 1] in LINE_END_PREFERRED_CHARS:
-                    score -= 900
-                if any(text[:index].endswith(particle) for particle in particles):
-                    score -= 550
-                if text[index:index + 1] in LINE_START_PROHIBITED_CHARS:
-                    score += 1400
-                if score < best_score:
-                    best_score = score
-                    best_index = index
-            if best_index is None:
-                best_index = center
-            split_points.append(best_index)
-        split_points = normalize_split_points_for_kinsoku(text, split_points)
-        if len(split_points) != split_count - 1:
-            continue
-        points = [0, *split_points, len(text)]
-        lines = [text[points[i]:points[i + 1]].strip() for i in range(len(points) - 1)]
-        if all(len(line) >= MIN_LINE_CHARS for line in lines) and all(text_width(draw, line, font) <= max_text_width for line in lines):
-            candidates.append(lines)
-        if candidates:
-            return min(
-                candidates,
-                key=lambda lines: max(text_width(draw, line, font) for line in lines)
-                - min(text_width(draw, line, font) for line in lines),
-            )
+        lines = choose_natural_lines(text, draw, font, max_text_width, split_count)
+        if lines and all(text_width(draw, line, font) <= max_text_width for line in lines):
+            if split_count < max_lines and max_split_penalty(text, lines) > MAX_ACCEPTABLE_SPLIT_PENALTY:
+                continue
+            return lines
     left, right = split_japanese_line_naturally(text, draw, font)
     return [left, right]
 

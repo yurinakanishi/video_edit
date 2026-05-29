@@ -22,6 +22,7 @@ SIMPLE_PYTHON_ACTIONS = {
     "generate-music-bed": "generate_music_bed.py",
     "generate-thumbnail": "generate_project_thumbnail.py",
     "generate-thumbnail-candidates": "generate_thumbnail_candidates.py",
+    "generate-role-aware-ass": "generate_role_aware_ass.py",
     "replace-audio": "replace_video_audio.py",
     "review-subtitles": "review_subtitles.py",
     "apply-subtitle-corrections": "apply_subtitle_corrections.py",
@@ -30,6 +31,7 @@ SIMPLE_PYTHON_ACTIONS = {
     "analyze-blocking": "analyze_multicam_blocking.py",
     "auto-sync-dropped": "auto_sync_app_sources.py",
     "transcribe-dropped": "transcribe_manifest_sources.py",
+    "transcribe-dropped-faster": "transcribe_manifest_sources_faster.py",
 }
 
 RENDER_SCRIPTS = {

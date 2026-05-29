@@ -161,16 +161,63 @@ def audio_cleanup_filter(strength: int, mastering: bool = False, denoise: bool =
     nr = max(0, min(30, int(strength)))
     parts = ["highpass=f=80"]
     if denoise and nr > 0:
-        parts.append(f"afftdn=nr={nr}:nf=-35")
+        parts.extend([f"afftdn=nr={nr}:nf=-35", "lowpass=f=16000"])
     if mastering:
         parts.extend(
             [
                 "dynaudnorm=f=250:g=15:p=0.95:m=8",
                 "acompressor=threshold=-20dB:ratio=2.8:attack=5:release=120:makeup=4",
                 "loudnorm=I=-14:TP=-1.5:LRA=9",
+                "alimiter=limit=0.95",
             ]
         )
     return ",".join(parts)
+
+
+def video_encoder_config() -> dict[str, object]:
+    encoder = str(nested(APP_CONFIG, "render", "videoEncoder", default="libx264") or "libx264").strip().lower()
+    if encoder == "h264_nvenc":
+        preset = str(nested(APP_CONFIG, "render", "nvencPreset", default="p4") or "p4").strip().lower()
+        if not re.fullmatch(r"p[1-7]|default|slow|medium|fast|hp|hq|bd|ll|llhq|llhp|lossless|losslesshp", preset):
+            preset = "p4"
+        cq = max(0, min(51, int_value(APP_CONFIG, "render", "cq", default=19)))
+        return {
+            "name": "h264_nvenc",
+            "preset": preset,
+            "cq": cq,
+            "args": [
+                "-c:v",
+                "h264_nvenc",
+                "-preset",
+                preset,
+                "-rc",
+                "vbr",
+                "-cq",
+                str(cq),
+                "-b:v",
+                "0",
+                "-pix_fmt",
+                "yuv420p",
+            ],
+        }
+
+    preset = video_encoder_preset(APP_CONFIG, "render", "encoderPreset")
+    crf = video_encoder_crf(APP_CONFIG, "render", "crf")
+    return {
+        "name": "libx264",
+        "preset": preset,
+        "crf": crf,
+        "args": [
+            "-c:v",
+            "libx264",
+            "-preset",
+            preset,
+            "-crf",
+            str(crf),
+            "-pix_fmt",
+            "yuv420p",
+        ],
+    }
 
 
 def float_config(*keys: str, default: float) -> float:
@@ -900,6 +947,33 @@ def visual_adjustment_filter(visual: dict[str, object]) -> str:
     return f"eq=brightness={brightness_adj:.4f}:contrast={contrast_adj:.4f}:saturation={saturation_adj:.4f}"
 
 
+def global_video_zoom_value() -> float:
+    raw_zoom = nested(APP_CONFIG, "render", "globalVideoZoom", default=None)
+    if raw_zoom is not None and raw_zoom != "":
+        try:
+            return clamp(float(raw_zoom), 1.0, 2.0)
+        except (TypeError, ValueError):
+            return 1.0
+    crop_percent = float_config("render", "cropPercent", default=0.0)
+    if crop_percent <= 0:
+        return 1.0
+    visible_ratio = clamp((100.0 - crop_percent) / 100.0, 0.5, 1.0)
+    return clamp(1.0 / visible_ratio, 1.0, 2.0)
+
+
+def global_video_zoom_filter(zoom: float) -> str:
+    if zoom <= 1.0001:
+        return ""
+    scaled_width = max(1920, round((1920 * zoom) / 2) * 2)
+    scaled_height = max(1080, round((1080 * zoom) / 2) * 2)
+    return (
+        "scale="
+        f"w='if(gte(iw/ih\\,1.777778)\\,-2\\,{scaled_width})':"
+        f"h='if(gte(iw/ih\\,1.777778)\\,{scaled_height}\\,-2)',"
+        "crop=1920:1080:x='(iw-ow)/2':y='(ih-oh)/2',setsar=1"
+    )
+
+
 def crop_filter_from_subject_target(
     center_x: float,
     center_y: float,
@@ -1162,7 +1236,9 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
     cap = cv2.VideoCapture(str(path))
     if not cap.isOpened():
         return None
+    face_detector = cv2.CascadeClassifier(str(Path(cv2.data.haarcascades) / "haarcascade_frontalface_default.xml"))
     rows: list[dict[str, float]] = []
+    skin_rows: list[dict[str, float]] = []
     for timestamp in timestamps:
         cap.set(cv2.CAP_PROP_POS_MSEC, max(0.0, timestamp) * 1000.0)
         ok, frame = cap.read()
@@ -1176,10 +1252,54 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
             frame = cv2.resize(frame, (round(width * scale), round(height * scale)), interpolation=cv2.INTER_AREA)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        ycrcb = cv2.cvtColor(frame, cv2.COLOR_BGR2YCrCb)
         neutral_mask = (hsv[:, :, 1] < 90) & (hsv[:, :, 2] > 80) & (hsv[:, :, 2] < 245)
         neutral_samples = frame[neutral_mask]
         if len(neutral_samples) < 500:
             neutral_samples = frame.reshape(-1, 3)
+        skin_samples = None
+        skin_source = "none"
+        if not face_detector.empty():
+            faces = face_detector.detectMultiScale(gray, 1.08, 5, minSize=(40, 40))
+            if len(faces):
+                x, y, w, h = max(faces, key=lambda rect: rect[2] * rect[3])
+                x1 = max(0, int(x + w * 0.12))
+                x2 = min(frame.shape[1], int(x + w * 0.88))
+                y1 = max(0, int(y + h * 0.30))
+                y2 = min(frame.shape[0], int(y + h * 0.86))
+                roi = frame[y1:y2, x1:x2]
+                roi_hsv = hsv[y1:y2, x1:x2]
+                roi_ycrcb = ycrcb[y1:y2, x1:x2]
+                if roi.size:
+                    skin_mask = (
+                        (roi_ycrcb[:, :, 1] >= 133)
+                        & (roi_ycrcb[:, :, 1] <= 178)
+                        & (roi_ycrcb[:, :, 2] >= 72)
+                        & (roi_ycrcb[:, :, 2] <= 135)
+                        & (roi_hsv[:, :, 1] >= 22)
+                        & (roi_hsv[:, :, 1] <= 175)
+                        & (roi_hsv[:, :, 2] >= 55)
+                    )
+                    samples = roi[skin_mask]
+                    if len(samples) >= 90:
+                        skin_samples = samples
+                        skin_source = "face-skin-mask"
+        if skin_samples is None:
+            # Fall back to a conservative full-frame skin mask. This is weaker than face ROI,
+            # but keeps fixed-camera shots from losing color matching entirely.
+            skin_mask = (
+                (ycrcb[:, :, 1] >= 138)
+                & (ycrcb[:, :, 1] <= 174)
+                & (ycrcb[:, :, 2] >= 78)
+                & (ycrcb[:, :, 2] <= 130)
+                & (hsv[:, :, 1] >= 25)
+                & (hsv[:, :, 1] <= 165)
+                & (hsv[:, :, 2] >= 60)
+            )
+            samples = frame[skin_mask]
+            if 300 <= len(samples) <= frame.shape[0] * frame.shape[1] * 0.18:
+                skin_samples = samples
+                skin_source = "frame-skin-mask"
         mean_bgr = np.mean(frame.reshape(-1, 3), axis=0) / 255.0
         neutral_bgr = np.mean(neutral_samples, axis=0) / 255.0
         rows.append(
@@ -1195,10 +1315,24 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
                 "neutral_r": float(neutral_bgr[2]),
             }
         )
+        if skin_samples is not None:
+            skin_bgr = np.mean(skin_samples, axis=0) / 255.0
+            skin_hsv = cv2.cvtColor(skin_samples.reshape(-1, 1, 3), cv2.COLOR_BGR2HSV).reshape(-1, 3)
+            skin_rows.append(
+                {
+                    "skin_b": float(skin_bgr[0]),
+                    "skin_g": float(skin_bgr[1]),
+                    "skin_r": float(skin_bgr[2]),
+                    "skin_brightness": float(np.mean(skin_hsv[:, 2])) / 255.0,
+                    "skin_saturation": float(np.mean(skin_hsv[:, 1])) / 255.0,
+                    "skin_pixel_count": float(len(skin_samples)),
+                    "skin_source": 1.0 if skin_source == "face-skin-mask" else 0.0,
+                }
+            )
     cap.release()
     if not rows:
         return None
-    return {
+    stats = {
         "brightness": sum(row["brightness"] for row in rows) / len(rows),
         "contrast": sum(row["contrast"] for row in rows) / len(rows),
         "saturation": sum(row["saturation"] for row in rows) / len(rows),
@@ -1214,6 +1348,22 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
         ],
         "samples": float(len(rows)),
     }
+    if skin_rows:
+        stats.update(
+            {
+                "skinBgr": [
+                    sum(row["skin_b"] for row in skin_rows) / len(skin_rows),
+                    sum(row["skin_g"] for row in skin_rows) / len(skin_rows),
+                    sum(row["skin_r"] for row in skin_rows) / len(skin_rows),
+                ],
+                "skinBrightness": sum(row["skin_brightness"] for row in skin_rows) / len(skin_rows),
+                "skinSaturation": sum(row["skin_saturation"] for row in skin_rows) / len(skin_rows),
+                "skinSamples": float(len(skin_rows)),
+                "skinPixels": sum(row["skin_pixel_count"] for row in skin_rows),
+                "skinFaceRoiSamples": sum(row["skin_source"] for row in skin_rows),
+            }
+        )
+    return stats
 
 
 def bgr_triplet(stats: dict[str, Any], key: str) -> list[float] | None:
@@ -1227,8 +1377,8 @@ def bgr_triplet(stats: dict[str, Any], key: str) -> list[float] | None:
 
 
 def color_channel_gains(master: dict[str, Any], item: dict[str, Any]) -> dict[str, float]:
-    master_bgr = bgr_triplet(master, "neutralBgr") or bgr_triplet(master, "meanBgr")
-    item_bgr = bgr_triplet(item, "neutralBgr") or bgr_triplet(item, "meanBgr")
+    master_bgr = bgr_triplet(master, "skinBgr") or bgr_triplet(master, "neutralBgr") or bgr_triplet(master, "meanBgr")
+    item_bgr = bgr_triplet(item, "skinBgr") or bgr_triplet(item, "neutralBgr") or bgr_triplet(item, "meanBgr")
     if master_bgr is None or item_bgr is None:
         return {"red": 1.0, "green": 1.0, "blue": 1.0}
     blue = clamp(master_bgr[0] / max(item_bgr[0], 0.025), 0.86, 1.16)
@@ -1237,7 +1387,12 @@ def color_channel_gains(master: dict[str, Any], item: dict[str, Any]) -> dict[st
     return {"red": red, "green": green, "blue": blue}
 
 
-def camera_color_match_filters(cameras: list[tuple[str, Path]], start: float, duration: float) -> tuple[dict[int, str], dict[str, Any]]:
+def camera_color_match_filters(
+    cameras: list[tuple[str, Path]],
+    start: float,
+    duration: float,
+    sync_offsets: dict[str, float] | None = None,
+) -> tuple[dict[int, str], dict[str, Any]]:
     report: dict[str, Any] = {"enabled": bool_value("render", "colorMatchCameras", default=False), "items": []}
     if not report["enabled"] or len(cameras) < 2:
         return {}, report
@@ -1245,8 +1400,12 @@ def camera_color_match_filters(cameras: list[tuple[str, Path]], start: float, du
     report["whiteBalance"] = white_balance
     sample_count = max(2, min(int_value(APP_CONFIG, "render", "colorMatchSamples", default=5), 12))
     sample_span = max(1.0, duration)
-    timestamps = [start + sample_span * (index + 1) / (sample_count + 1) for index in range(sample_count)]
-    stats = [frame_visual_stats(path, timestamps) for _, path in cameras]
+    timeline_timestamps = [start + sample_span * (index + 1) / (sample_count + 1) for index in range(sample_count)]
+    offsets = sync_offsets or {}
+    stats = [
+        frame_visual_stats(path, [max(0.0, timestamp + offsets.get(role, 0.0)) for timestamp in timeline_timestamps])
+        for role, path in cameras
+    ]
     master = stats[0] if stats else None
     if not master:
         report["reason"] = "master stats unavailable"
@@ -1258,13 +1417,25 @@ def camera_color_match_filters(cameras: list[tuple[str, Path]], start: float, du
             report["items"].append({"role": role, "path": str(path), "skipped": "stats unavailable"})
             continue
         if index == 0:
-            report["items"].append({"role": role, "path": str(path), "reference": True, "stats": item_stats})
+            report["items"].append(
+                {
+                    "role": role,
+                    "path": str(path),
+                    "reference": True,
+                    "stats": item_stats,
+                    "sampleTimelineSeconds": [round(value, 3) for value in timeline_timestamps],
+                    "sampleSourceSeconds": [round(max(0.0, value + offsets.get(role, 0.0)), 3) for value in timeline_timestamps],
+                }
+            )
             continue
+        skin_priority = "skinBgr" in master and "skinBgr" in item_stats
         master_contrast = float(master["contrast"])
         item_contrast = float(item_stats["contrast"])
-        master_saturation = float(master["saturation"])
-        item_saturation = float(item_stats["saturation"])
-        brightness_adj = clamp((float(master["brightness"]) - float(item_stats["brightness"])) * 0.36, -0.12, 0.12)
+        master_brightness = float(master.get("skinBrightness", master["brightness"])) if skin_priority else float(master["brightness"])
+        item_brightness = float(item_stats.get("skinBrightness", item_stats["brightness"])) if skin_priority else float(item_stats["brightness"])
+        master_saturation = float(master.get("skinSaturation", master["saturation"])) if skin_priority else float(master["saturation"])
+        item_saturation = float(item_stats.get("skinSaturation", item_stats["saturation"])) if skin_priority else float(item_stats["saturation"])
+        brightness_adj = clamp((master_brightness - item_brightness) * 0.30, -0.10, 0.10)
         contrast_adj = 1.0 if master_contrast < 0.025 and item_contrast < 0.025 else clamp(master_contrast / max(item_contrast, 0.025), 0.84, 1.18)
         saturation_adj = (
             1.0
@@ -1288,12 +1459,15 @@ def camera_color_match_filters(cameras: list[tuple[str, Path]], start: float, du
                 "role": role,
                 "path": str(path),
                 "stats": item_stats,
+                "sampleTimelineSeconds": [round(value, 3) for value in timeline_timestamps],
+                "sampleSourceSeconds": [round(max(0.0, value + offsets.get(role, 0.0)), 3) for value in timeline_timestamps],
                 "redGain": round(gains["red"], 5),
                 "greenGain": round(gains["green"], 5),
                 "blueGain": round(gains["blue"], 5),
                 "brightness": round(brightness_adj, 5),
                 "contrast": round(contrast_adj, 5),
                 "saturation": round(saturation_adj, 5),
+                "colorMatchBasis": "skin" if skin_priority else "neutral/global",
                 "filter": filters[index],
             }
         )
@@ -2349,6 +2523,8 @@ def main() -> None:
     reference_profile = load_reference_profile()
     reference_filter = reference_video_filter(reference_profile) if reference_profile else "scale=1920:1080"
     reference_style_filter = reference_visual_filter(reference_profile) if reference_profile else ""
+    global_zoom = global_video_zoom_value()
+    global_zoom_filter = global_video_zoom_filter(global_zoom)
     multicam_mode = text_config("render", "multicamMode", default="master-first")
 
     cameras: list[tuple[str, Path]] = []
@@ -2363,12 +2539,12 @@ def main() -> None:
             cameras.append(("camera3", left))
     if not cameras:
         raise RuntimeError("Drop or select at least a Camera 1 / master video before running render_app_interview.py.")
-    person_plans, person_crop_report = load_person_edit_plans(cameras)
-    color_filters, color_report = camera_color_match_filters(cameras, start, source_duration)
     sync_sources = cameras + audio_sources
     if external_audio and not audio_sources:
         sync_sources.append(("external", external_audio))
     sync_offsets = load_sync_offsets(sync_sources)
+    person_plans, person_crop_report = load_person_edit_plans(cameras)
+    color_filters, color_report = camera_color_match_filters(cameras, start, source_duration, sync_offsets)
     run([sys.executable, str(SCRIPTS / "generate_title_png_overlay.py")])
     ensure_omission_cards(replacements)
 
@@ -2486,7 +2662,10 @@ def main() -> None:
     command.extend(["-i", str(TITLE)])
     next_input_index += 1
     for item, _ in overlay_inputs:
-        command.extend(["-loop", "1", "-framerate", "60", "-t", f"{duration:.3f}", "-i", str(WORK / item["file"])])
+        overlay_start = max(0.0, seconds(item["start"]) - start)
+        overlay_end = min(duration, seconds(item["end"]) - start)
+        overlay_duration = max(0.1, overlay_end - overlay_start + 0.4)
+        command.extend(["-loop", "1", "-framerate", "60", "-t", f"{overlay_duration:.3f}", "-i", str(WORK / item["file"])])
     next_input_index += len(overlay_inputs)
     external_audio_index = None
     if use_external_audio:
@@ -2550,6 +2729,8 @@ def main() -> None:
                     )
             if color_filters.get(input_index):
                 visual_filter = f"{visual_filter},{color_filters[input_index]}"
+            if global_zoom_filter:
+                visual_filter = f"{visual_filter},{global_zoom_filter}"
             filters.append(
                 f"[{input_index}:v]setpts=PTS-STARTPTS,trim=start={local_start:.6f}:end={local_end:.6f},"
                 f"setpts=PTS-STARTPTS,{visual_filter}[{label}]"
@@ -2595,13 +2776,17 @@ def main() -> None:
             )
             filters.append(
                 f"[{stream_index}:v]format=rgba,"
+                f"setpts=PTS+{start_t:.3f}/TB,"
                 f"fade=t=in:st={start_t:.3f}:d=0.16:alpha=1,"
                 f"fade=t=out:st={fade_out:.3f}:d=0.18:alpha=1,"
                 f"scale=w='iw*{base_scale}*{pop_scale}':h='ih*{base_scale}*{pop_scale}':eval=frame[p{index}]"
             )
         else:
             y_expr = str(caption_config.get("y_expr") or f"H-h-{caption_config['bottom_margin']}")
-            filters.append(f"[{stream_index}:v]format=rgba,scale=w='iw*{base_scale}':h='ih*{base_scale}':eval=init[p{index}]")
+            filters.append(
+                f"[{stream_index}:v]format=rgba,setpts=PTS+{start_t:.3f}/TB,"
+                f"scale=w='iw*{base_scale}':h='ih*{base_scale}':eval=init[p{index}]"
+            )
         x_expr = str(caption_config.get("x_expr") or "(W-w)/2")
         next_label = f"vsub{index}"
         filters.append(f"[{current}][p{index}]overlay=x='{x_expr}':y='{y_expr}':enable='between(t,{start_t:.3f},{end_t:.3f})'[{next_label}]")
@@ -2662,8 +2847,8 @@ def main() -> None:
     render_output = output
     if nested(APP_CONFIG, "render", "shortenSilence", default=True):
         render_output = output.with_name(f"{output.stem}_uncut{output.suffix}")
-    encoder_preset = video_encoder_preset(APP_CONFIG, "render", "encoderPreset")
-    encoder_crf = video_encoder_crf(APP_CONFIG, "render", "crf")
+    encoder_config = video_encoder_config()
+    encoder_args = [str(item) for item in encoder_config["args"]]
 
     command.extend(
         [
@@ -2673,14 +2858,7 @@ def main() -> None:
             f"[{current}]",
             "-map",
             f"[{audio_output}]",
-            "-c:v",
-            "libx264",
-            "-preset",
-            encoder_preset,
-            "-crf",
-            str(encoder_crf),
-            "-pix_fmt",
-            "yuv420p",
+            *encoder_args,
             "-c:a",
             "aac",
             "-b:a",
@@ -2709,7 +2887,8 @@ def main() -> None:
                     "output": str(output),
                     "audio_denoise": audio_denoise,
                     "audio_mastering": audio_mastering,
-                    "encoder": {"preset": encoder_preset, "crf": encoder_crf},
+                    "encoder": {key: value for key, value in encoder_config.items() if key != "args"},
+                    "global_video_zoom": global_zoom,
                     "camera_cut_plan": camera_plan_summary(),
                     "source_coverage": source_coverage_report,
                     "natural_dialogue_cuts": natural_cut_report,
@@ -2731,7 +2910,8 @@ def main() -> None:
                     "output": str(output),
                     "audio_denoise": audio_denoise,
                     "audio_mastering": audio_mastering,
-                    "encoder": {"preset": encoder_preset, "crf": encoder_crf},
+                    "encoder": {key: value for key, value in encoder_config.items() if key != "args"},
+                    "global_video_zoom": global_zoom,
                     "camera_cut_plan": camera_plan_summary(),
                     "source_coverage": source_coverage_report,
                     "natural_dialogue_cuts": natural_cut_report,

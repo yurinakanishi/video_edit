@@ -194,6 +194,7 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 		["render", "encoderPreset", "encoderPreset"],
 		["render", "crf", "renderCrf"],
 		["render", "colorMatchCameras", "colorMatchCameras"],
+		["render", "globalVideoZoom", "globalVideoZoom"],
 		["render", "usePersonEditPlans", "usePersonEditPlans"],
 		["render", "useTranscriptComparisonSync", "useTranscriptComparisonSync"],
 		["render", "naturalDialogueCuts", "naturalDialogueCuts"],

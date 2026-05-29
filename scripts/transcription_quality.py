@@ -124,7 +124,7 @@ def transcribe_options(config: dict[str, Any], *, prompt_extra: str = "") -> dic
     options: dict[str, Any] = {
         "language": transcribe_language(config),
         "task": "transcribe",
-        "fp16": False,
+        "fp16": bool_config(config, "analysis", "transcribeFp16", default=False),
         "verbose": False,
         "temperature": float_config(config, "analysis", "transcribeTemperature", default=0.0),
         "beam_size": max(1, int_config(config, "analysis", "transcribeBeamSize", default=DEFAULT_BEAM_SIZE)),

@@ -81,6 +81,7 @@ export type RenderSettings = {
 	encoderPreset: string;
 	renderCrf: string;
 	colorMatchCameras: boolean;
+	globalVideoZoom: string;
 	usePersonEditPlans: boolean;
 	useTranscriptComparisonSync: boolean;
 	naturalDialogueCuts: boolean;
@@ -321,6 +322,7 @@ const defaultRenderSettings = (): RenderSettings => ({
 	encoderPreset: "veryfast",
 	renderCrf: "18",
 	colorMatchCameras: true,
+	globalVideoZoom: "1.2",
 	usePersonEditPlans: true,
 	useTranscriptComparisonSync: true,
 	naturalDialogueCuts: false,
@@ -350,9 +352,9 @@ const defaultOmissionCardSettings = (): OmissionCardSettings => ({
 });
 
 const defaultStyleSettings = (): StyleSettings => ({
-	subtitleSize: "60",
+	subtitleSize: "80",
 	highlightColor: "#ae48e0",
-	boxOpacity: "72",
+	boxOpacity: "73",
 	titleSize: "48",
 	logoHeight: "48",
 	termExplanations: true,

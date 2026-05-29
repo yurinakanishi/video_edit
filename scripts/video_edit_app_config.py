@@ -168,6 +168,12 @@ def subtitle_candidates(
     paths: list[Path] = []
     seen: set[str] = set()
 
+    for key_path in (
+        ("render", "subtitlePath"),
+        ("subtitles", "path"),
+    ):
+        _append_unique(paths, seen, _existing_subtitle_path(nested(app_config, *key_path), allowed_extensions))
+
     report = transcript_report(app_config)
     _append_unique(paths, seen, _existing_subtitle_path(report.get("primarySrt"), allowed_extensions))
     transcripts = report.get("transcripts", [])

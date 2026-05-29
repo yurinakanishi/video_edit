@@ -30,6 +30,7 @@ const storeFieldGroups: StoreFieldGroup[] = [
 			"encoderPreset",
 			"renderCrf",
 			"colorMatchCameras",
+			"globalVideoZoom",
 			"usePersonEditPlans",
 			"useTranscriptComparisonSync",
 			"naturalDialogueCuts",

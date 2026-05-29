@@ -31,7 +31,6 @@ from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, 
 
 WORK = WORKSPACE_ROOT
 OUT_DIR = OUTPUT_OVERLAYS / "full_transcript_png_overlays"
-SPEAKER_ROLES = OUTPUT_REPORTS / "full_transcript_speaker_roles.json"
 MAX_IMAGE_WIDTH = 1760
 CAPTION_PAD_X = 18
 CAPTION_STROKE = 0
@@ -42,6 +41,9 @@ MIN_LINE_CHARS = 6
 LINE_END_PREFERRED_CHARS = "、。，．・／/）)]」』"
 LINE_START_PROHIBITED_CHARS = "、。，．,.！？!?：；;・）)]｝}」』】》〉"
 APP_CONFIG = load_app_config()
+SPEAKER_ROLES = Path(
+    str(nested(APP_CONFIG, "subtitleSpeakers", "outputPath", default=str(OUTPUT_REPORTS / "full_transcript_speaker_roles.json")))
+)
 SRT = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
 MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {}
 

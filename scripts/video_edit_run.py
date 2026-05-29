@@ -18,6 +18,7 @@ FFPROBE = optional_path(APP_CONFIG, "tools", "ffprobe", default=Path(r"C:\Progra
 SIMPLE_PYTHON_ACTIONS = {
     "generate-punchlines": "generate_punchline_png_overlays.py",
     "generate-full-overlays": "generate_full_transcript_png_overlays.py",
+    "precompose-png-overlay-video": "precompose_png_overlay_video.py",
     "generate-glossary-overlays": "generate_glossary_term_overlays.py",
     "generate-music-bed": "generate_music_bed.py",
     "generate-thumbnail": "generate_project_thumbnail.py",
@@ -27,6 +28,7 @@ SIMPLE_PYTHON_ACTIONS = {
     "review-subtitles": "review_subtitles.py",
     "apply-subtitle-corrections": "apply_subtitle_corrections.py",
     "classify-subtitle-speakers": "classify_subtitle_speakers.py",
+    "classify-subtitle-speakers-audio": "classify_speakers_audio_features.py",
     "compare-transcripts": "compare_manifest_transcripts.py",
     "analyze-blocking": "analyze_multicam_blocking.py",
     "auto-sync-dropped": "auto_sync_app_sources.py",

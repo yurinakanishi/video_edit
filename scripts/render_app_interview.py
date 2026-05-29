@@ -60,8 +60,10 @@ COLOR_MATCH_REPORT = OUTPUT_REPORTS / "camera_color_match.json"
 CAMERA_PLAN_REPORT = OUTPUT_REPORTS / "camera_cut_plan.json"
 NATURAL_CUT_REPORT = OUTPUT_REPORTS / "natural_dialogue_cuts.json"
 PERSON_CROP_REPORT = OUTPUT_REPORTS / "person_crop_usage.json"
+FACE_CENTER_CROP_REPORT = OUTPUT_REPORTS / "face_center_crop_usage.json"
 SYNC_OFFSET_USAGE_REPORT = OUTPUT_REPORTS / "sync_offset_usage.json"
 SOURCE_COVERAGE_REPORT = OUTPUT_REPORTS / "source_coverage_usage.json"
+ONSCREEN_CLOSEUP_REPORT = OUTPUT_REPORTS / "onscreen_closeup_camera_mask.json"
 
 
 def seconds(timestamp: str) -> float:
@@ -231,6 +233,13 @@ def float_config(*keys: str, default: float) -> float:
 def text_config(*keys: str, default: str = "") -> str:
     value = nested(APP_CONFIG, *keys, default=default)
     return str(value) if value is not None else default
+
+
+def output_fps() -> str:
+    value = text_config("render", "outputFps", default="60000/1001").strip()
+    if re.fullmatch(r"\d+(?:/\d+)?(?:\.\d+)?", value):
+        return value
+    return "60000/1001"
 
 
 def parse_time_value(value: str) -> float | None:
@@ -853,6 +862,46 @@ def transcript_captions(captions: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return rows
 
 
+def load_subtitle_speaker_roles() -> dict[str, str]:
+    path_text = str(nested(APP_CONFIG, "subtitleSpeakers", "outputPath", default="") or "").strip()
+    path = resolve_project_path(path_text) if path_text else OUTPUT_REPORTS / "full_transcript_speaker_roles.json"
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    roles = payload.get("roles") if isinstance(payload, dict) else {}
+    return {str(key): str(value).lower() for key, value in roles.items()} if isinstance(roles, dict) else {}
+
+
+def subtitle_planning_items() -> list[dict[str, Any]]:
+    srt = selected_subtitle_path(APP_CONFIG, extensions=(".srt",))
+    if srt is None or not srt.exists():
+        return []
+    roles = load_subtitle_speaker_roles()
+    items: list[dict[str, Any]] = []
+    for block in re.split(r"\n\s*\n", srt.read_text(encoding="utf-8", errors="ignore")):
+        lines = [line.strip() for line in block.splitlines() if line.strip()]
+        if len(lines) < 3 or "-->" not in lines[1]:
+            continue
+        try:
+            source_index = int(lines[0])
+        except ValueError:
+            source_index = len(items) + 1
+        start_raw, end_raw = [part.strip() for part in lines[1].split("-->", 1)]
+        items.append(
+            {
+                "source_index": source_index,
+                "start": timestamp_to_filter_time(start_raw),
+                "end": timestamp_to_filter_time(end_raw),
+                "speaker_role": roles.get(str(source_index), "onscreen"),
+                "lines": ["".join(lines[2:])],
+            }
+        )
+    return items
+
+
 def timestamp_to_filter_time(value: str) -> str:
     hours, minutes, rest = value.replace(",", ".").split(":")
     return f"{int(hours)}:{int(minutes):02d}:{float(rest):05.2f}"
@@ -961,16 +1010,19 @@ def global_video_zoom_value() -> float:
     return clamp(1.0 / visible_ratio, 1.0, 2.0)
 
 
-def global_video_zoom_filter(zoom: float) -> str:
+def global_video_zoom_filter(zoom: float, center_x: float = 0.5, center_y: float = 0.5) -> str:
     if zoom <= 1.0001:
         return ""
     scaled_width = max(1920, round((1920 * zoom) / 2) * 2)
     scaled_height = max(1080, round((1080 * zoom) / 2) * 2)
+    center_x = clamp(center_x, 0.0, 1.0)
+    center_y = clamp(center_y, 0.0, 1.0)
     return (
         "scale="
         f"w='if(gte(iw/ih\\,1.777778)\\,-2\\,{scaled_width})':"
         f"h='if(gte(iw/ih\\,1.777778)\\,{scaled_height}\\,-2)',"
-        "crop=1920:1080:x='(iw-ow)/2':y='(ih-oh)/2',setsar=1"
+        f"crop=1920:1080:x='min(max(iw*{center_x:.6f}-960\\,0)\\,iw-1920)':"
+        f"y='min(max(ih*{center_y:.6f}-540\\,0)\\,ih-1080)',setsar=1"
     )
 
 
@@ -1233,6 +1285,24 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
     except Exception:
         return None
 
+    def robust_scalar_mean(values: Any) -> float:
+        arr = np.asarray(values, dtype=np.float32).reshape(-1)
+        arr = arr[np.isfinite(arr)]
+        if arr.size == 0:
+            return 0.0
+        if arr.size >= 64:
+            low, high = np.percentile(arr, [8, 92])
+            trimmed = arr[(arr >= low) & (arr <= high)]
+            if trimmed.size:
+                arr = trimmed
+        return float(np.mean(arr))
+
+    def robust_bgr_mean(samples: Any) -> list[float]:
+        arr = np.asarray(samples, dtype=np.float32).reshape(-1, 3)
+        if arr.size == 0:
+            return [0.0, 0.0, 0.0]
+        return [robust_scalar_mean(arr[:, channel]) / 255.0 for channel in range(3)]
+
     cap = cv2.VideoCapture(str(path))
     if not cap.isOpened():
         return None
@@ -1253,16 +1323,28 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         ycrcb = cv2.cvtColor(frame, cv2.COLOR_BGR2YCrCb)
+        frame_skin_mask = (
+            (ycrcb[:, :, 1] >= 138)
+            & (ycrcb[:, :, 1] <= 174)
+            & (ycrcb[:, :, 2] >= 78)
+            & (ycrcb[:, :, 2] <= 130)
+            & (hsv[:, :, 1] >= 25)
+            & (hsv[:, :, 1] <= 165)
+            & (hsv[:, :, 2] >= 60)
+        )
         neutral_mask = (hsv[:, :, 1] < 90) & (hsv[:, :, 2] > 80) & (hsv[:, :, 2] < 245)
+        background_mask = neutral_mask & (~frame_skin_mask)
         neutral_samples = frame[neutral_mask]
         if len(neutral_samples) < 500:
             neutral_samples = frame.reshape(-1, 3)
         skin_samples = None
         skin_source = "none"
+        face_bbox: tuple[int, int, int, int] | None = None
         if not face_detector.empty():
             faces = face_detector.detectMultiScale(gray, 1.08, 5, minSize=(40, 40))
             if len(faces):
                 x, y, w, h = max(faces, key=lambda rect: rect[2] * rect[3])
+                face_bbox = (int(x), int(y), int(w), int(h))
                 x1 = max(0, int(x + w * 0.12))
                 x2 = min(frame.shape[1], int(x + w * 0.88))
                 y1 = max(0, int(y + h * 0.30))
@@ -1287,44 +1369,55 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
         if skin_samples is None:
             # Fall back to a conservative full-frame skin mask. This is weaker than face ROI,
             # but keeps fixed-camera shots from losing color matching entirely.
-            skin_mask = (
-                (ycrcb[:, :, 1] >= 138)
-                & (ycrcb[:, :, 1] <= 174)
-                & (ycrcb[:, :, 2] >= 78)
-                & (ycrcb[:, :, 2] <= 130)
-                & (hsv[:, :, 1] >= 25)
-                & (hsv[:, :, 1] <= 165)
-                & (hsv[:, :, 2] >= 60)
-            )
-            samples = frame[skin_mask]
+            samples = frame[frame_skin_mask]
             if 300 <= len(samples) <= frame.shape[0] * frame.shape[1] * 0.18:
                 skin_samples = samples
                 skin_source = "frame-skin-mask"
-        mean_bgr = np.mean(frame.reshape(-1, 3), axis=0) / 255.0
-        neutral_bgr = np.mean(neutral_samples, axis=0) / 255.0
+        if face_bbox is not None:
+            x, y, w, h = face_bbox
+            bx1 = max(0, int(x - w * 0.35))
+            bx2 = min(frame.shape[1], int(x + w * 1.35))
+            by1 = max(0, int(y - h * 0.35))
+            by2 = min(frame.shape[0], int(y + h * 1.90))
+            background_mask[by1:by2, bx1:bx2] = False
+        background_samples = frame[background_mask]
+        background_gray = gray[background_mask]
+        background_hsv = hsv[background_mask]
+        if len(background_samples) < 500:
+            background_samples = neutral_samples
+            background_gray = cv2.cvtColor(background_samples.reshape(-1, 1, 3), cv2.COLOR_BGR2GRAY).reshape(-1)
+            background_hsv = cv2.cvtColor(background_samples.reshape(-1, 1, 3), cv2.COLOR_BGR2HSV).reshape(-1, 3)
+        mean_bgr = robust_bgr_mean(frame.reshape(-1, 3))
+        neutral_bgr = robust_bgr_mean(neutral_samples)
+        background_bgr = robust_bgr_mean(background_samples)
         rows.append(
             {
-                "brightness": float(np.mean(gray)) / 255.0,
+                "brightness": robust_scalar_mean(gray) / 255.0,
                 "contrast": float(np.std(gray)) / 255.0,
-                "saturation": float(np.mean(hsv[:, :, 1])) / 255.0,
+                "saturation": robust_scalar_mean(hsv[:, :, 1]) / 255.0,
+                "background_brightness": robust_scalar_mean(background_gray) / 255.0,
+                "background_saturation": robust_scalar_mean(background_hsv[:, 1]) / 255.0,
                 "mean_b": float(mean_bgr[0]),
                 "mean_g": float(mean_bgr[1]),
                 "mean_r": float(mean_bgr[2]),
                 "neutral_b": float(neutral_bgr[0]),
                 "neutral_g": float(neutral_bgr[1]),
                 "neutral_r": float(neutral_bgr[2]),
+                "background_b": float(background_bgr[0]),
+                "background_g": float(background_bgr[1]),
+                "background_r": float(background_bgr[2]),
             }
         )
         if skin_samples is not None:
-            skin_bgr = np.mean(skin_samples, axis=0) / 255.0
+            skin_bgr = robust_bgr_mean(skin_samples)
             skin_hsv = cv2.cvtColor(skin_samples.reshape(-1, 1, 3), cv2.COLOR_BGR2HSV).reshape(-1, 3)
             skin_rows.append(
                 {
                     "skin_b": float(skin_bgr[0]),
                     "skin_g": float(skin_bgr[1]),
                     "skin_r": float(skin_bgr[2]),
-                    "skin_brightness": float(np.mean(skin_hsv[:, 2])) / 255.0,
-                    "skin_saturation": float(np.mean(skin_hsv[:, 1])) / 255.0,
+                    "skin_brightness": robust_scalar_mean(skin_hsv[:, 2]) / 255.0,
+                    "skin_saturation": robust_scalar_mean(skin_hsv[:, 1]) / 255.0,
                     "skin_pixel_count": float(len(skin_samples)),
                     "skin_source": 1.0 if skin_source == "face-skin-mask" else 0.0,
                 }
@@ -1336,6 +1429,8 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
         "brightness": sum(row["brightness"] for row in rows) / len(rows),
         "contrast": sum(row["contrast"] for row in rows) / len(rows),
         "saturation": sum(row["saturation"] for row in rows) / len(rows),
+        "backgroundBrightness": sum(row["background_brightness"] for row in rows) / len(rows),
+        "backgroundSaturation": sum(row["background_saturation"] for row in rows) / len(rows),
         "meanBgr": [
             sum(row["mean_b"] for row in rows) / len(rows),
             sum(row["mean_g"] for row in rows) / len(rows),
@@ -1345,6 +1440,11 @@ def frame_visual_stats(path: Path, timestamps: list[float]) -> dict[str, Any] | 
             sum(row["neutral_b"] for row in rows) / len(rows),
             sum(row["neutral_g"] for row in rows) / len(rows),
             sum(row["neutral_r"] for row in rows) / len(rows),
+        ],
+        "backgroundBgr": [
+            sum(row["background_b"] for row in rows) / len(rows),
+            sum(row["background_g"] for row in rows) / len(rows),
+            sum(row["background_r"] for row in rows) / len(rows),
         ],
         "samples": float(len(rows)),
     }
@@ -1376,15 +1476,92 @@ def bgr_triplet(stats: dict[str, Any], key: str) -> list[float] | None:
         return None
 
 
+def weighted_bgr_profile(stats: dict[str, Any]) -> list[float] | None:
+    # Use wall/neutral pixels for white balance. Skin is useful for exposure/saturation,
+    # but driving channel gains from skin makes the pale interview background turn green/cyan.
+    weights = {"backgroundBgr": 0.80, "neutralBgr": 0.20, "meanBgr": 0.0, "skinBgr": 0.0}
+    total = 0.0
+    result = [0.0, 0.0, 0.0]
+    for key, weight in weights.items():
+        triplet = bgr_triplet(stats, key)
+        if triplet is None:
+            continue
+        total += weight
+        for index in range(3):
+            result[index] += triplet[index] * weight
+    if total <= 0:
+        return None
+    return [value / total for value in result]
+
+
 def color_channel_gains(master: dict[str, Any], item: dict[str, Any]) -> dict[str, float]:
-    master_bgr = bgr_triplet(master, "skinBgr") or bgr_triplet(master, "neutralBgr") or bgr_triplet(master, "meanBgr")
-    item_bgr = bgr_triplet(item, "skinBgr") or bgr_triplet(item, "neutralBgr") or bgr_triplet(item, "meanBgr")
+    master_bgr = weighted_bgr_profile(master) or bgr_triplet(master, "neutralBgr") or bgr_triplet(master, "meanBgr")
+    item_bgr = weighted_bgr_profile(item) or bgr_triplet(item, "neutralBgr") or bgr_triplet(item, "meanBgr")
     if master_bgr is None or item_bgr is None:
         return {"red": 1.0, "green": 1.0, "blue": 1.0}
-    blue = clamp(master_bgr[0] / max(item_bgr[0], 0.025), 0.86, 1.16)
-    green = clamp(master_bgr[1] / max(item_bgr[1], 0.025), 0.86, 1.16)
-    red = clamp(master_bgr[2] / max(item_bgr[2], 0.025), 0.86, 1.16)
+    blue = clamp(master_bgr[0] / max(item_bgr[0], 0.025), 0.88, 1.14)
+    green = clamp(master_bgr[1] / max(item_bgr[1], 0.025), 0.88, 1.14)
+    red = clamp(master_bgr[2] / max(item_bgr[2], 0.025), 0.88, 1.14)
     return {"red": red, "green": green, "blue": blue}
+
+
+def weighted_saturation_profile(stats: dict[str, Any], skin_priority: bool) -> float:
+    components: list[tuple[float, float]] = []
+    if skin_priority and "skinSaturation" in stats:
+        components.append((float(stats["skinSaturation"]), 0.15))
+    if "backgroundSaturation" in stats:
+        components.append((float(stats["backgroundSaturation"]), 0.30 if skin_priority else 0.45))
+    components.append((float(stats["saturation"]), 0.55 if skin_priority else 0.55))
+    total = sum(weight for _, weight in components)
+    return sum(value * weight for value, weight in components) / max(total, 0.001)
+
+
+def evenly_limited_times(values: list[float], max_count: int) -> list[float]:
+    unique = sorted({round(value, 3) for value in values if value >= 0.0})
+    if len(unique) <= max_count:
+        return unique
+    if max_count <= 1:
+        return [unique[len(unique) // 2]]
+    selected: list[float] = []
+    for index in range(max_count):
+        selected_index = round(index * (len(unique) - 1) / (max_count - 1))
+        selected.append(unique[selected_index])
+    return selected
+
+
+def segment_source_local_sample_times(
+    role: str,
+    segments: list[tuple[str, int, float, float]],
+    duration: float,
+    replacements: list[dict[str, Any]] | None,
+    max_count: int,
+) -> list[float]:
+    candidates: list[float] = []
+    for segment_role, _, start_t, end_t in segments:
+        if segment_role != role:
+            continue
+        start_t = clamp(start_t, 0.0, duration)
+        end_t = clamp(end_t, 0.0, duration)
+        segment_duration = end_t - start_t
+        if segment_duration < 0.35:
+            continue
+        if segment_duration >= 12.0:
+            fractions = (0.20, 0.50, 0.80)
+        elif segment_duration >= 4.0:
+            fractions = (0.35, 0.65)
+        else:
+            fractions = (0.50,)
+        for fraction in fractions:
+            output_local = start_t + segment_duration * fraction
+            source_local = output_local_to_source_local(output_local, replacements) if replacements else output_local
+            if source_local is not None:
+                candidates.append(source_local)
+    return evenly_limited_times(candidates, max_count)
+
+
+def fallback_source_local_sample_times(duration: float, max_count: int) -> list[float]:
+    count = max(2, max_count)
+    return [duration * (index + 1) / (count + 1) for index in range(count)]
 
 
 def camera_color_match_filters(
@@ -1392,29 +1569,59 @@ def camera_color_match_filters(
     start: float,
     duration: float,
     sync_offsets: dict[str, float] | None = None,
+    segments: list[tuple[str, int, float, float]] | None = None,
+    replacements: list[dict[str, Any]] | None = None,
 ) -> tuple[dict[int, str], dict[str, Any]]:
-    report: dict[str, Any] = {"enabled": bool_value("render", "colorMatchCameras", default=False), "items": []}
+    report: dict[str, Any] = {
+        "enabled": bool_value("render", "colorMatchCameras", default=False),
+        "items": [],
+        "sampleBasis": "actual camera plan" if segments else "preview duration",
+    }
     if not report["enabled"] or len(cameras) < 2:
         return {}, report
     white_balance = bool_value("render", "colorMatchWhiteBalance", default=True)
     report["whiteBalance"] = white_balance
     sample_count = max(2, min(int_value(APP_CONFIG, "render", "colorMatchSamples", default=5), 12))
-    sample_span = max(1.0, duration)
-    timeline_timestamps = [start + sample_span * (index + 1) / (sample_count + 1) for index in range(sample_count)]
     offsets = sync_offsets or {}
-    stats = [
-        frame_visual_stats(path, [max(0.0, timestamp + offsets.get(role, 0.0)) for timestamp in timeline_timestamps])
-        for role, path in cameras
-    ]
-    master = stats[0] if stats else None
-    if not master:
+    master_role, master_path = cameras[0]
+    master_local_times = (
+        segment_source_local_sample_times(master_role, segments, duration, replacements, sample_count)
+        if segments
+        else fallback_source_local_sample_times(duration, sample_count)
+    )
+    if not master_local_times:
+        master_local_times = fallback_source_local_sample_times(duration, sample_count)
+    master_source_times = [max(0.0, start + value + offsets.get(master_role, 0.0)) for value in master_local_times]
+    default_master = frame_visual_stats(master_path, master_source_times)
+    if not default_master:
         report["reason"] = "master stats unavailable"
         return {}, report
 
     filters: dict[int, str] = {}
-    for index, ((role, path), item_stats) in enumerate(zip(cameras, stats)):
+    for index, (role, path) in enumerate(cameras):
+        role_local_times = (
+            segment_source_local_sample_times(role, segments, duration, replacements, sample_count)
+            if segments
+            else fallback_source_local_sample_times(duration, sample_count)
+        )
+        if index > 0 and segments and not role_local_times:
+            report["items"].append({"role": role, "path": str(path), "skipped": "not used in current camera plan"})
+            continue
+        if not role_local_times:
+            role_local_times = fallback_source_local_sample_times(duration, sample_count)
+        timeline_timestamps = [start + value for value in role_local_times]
+        source_timestamps = [max(0.0, start + value + offsets.get(role, 0.0)) for value in role_local_times]
+        item_stats = default_master if index == 0 else frame_visual_stats(path, source_timestamps)
         if not item_stats:
-            report["items"].append({"role": role, "path": str(path), "skipped": "stats unavailable"})
+            report["items"].append(
+                {
+                    "role": role,
+                    "path": str(path),
+                    "skipped": "stats unavailable",
+                    "sampleTimelineSeconds": [round(value, 3) for value in timeline_timestamps],
+                    "sampleSourceSeconds": [round(value, 3) for value in source_timestamps],
+                }
+            )
             continue
         if index == 0:
             report["items"].append(
@@ -1424,23 +1631,40 @@ def camera_color_match_filters(
                     "reference": True,
                     "stats": item_stats,
                     "sampleTimelineSeconds": [round(value, 3) for value in timeline_timestamps],
-                    "sampleSourceSeconds": [round(max(0.0, value + offsets.get(role, 0.0)), 3) for value in timeline_timestamps],
+                    "sampleSourceSeconds": [round(value, 3) for value in source_timestamps],
                 }
             )
             continue
+        master = frame_visual_stats(master_path, [max(0.0, start + value + offsets.get(master_role, 0.0)) for value in role_local_times])
+        if not master:
+            master = default_master
         skin_priority = "skinBgr" in master and "skinBgr" in item_stats
         master_contrast = float(master["contrast"])
         item_contrast = float(item_stats["contrast"])
-        master_brightness = float(master.get("skinBrightness", master["brightness"])) if skin_priority else float(master["brightness"])
-        item_brightness = float(item_stats.get("skinBrightness", item_stats["brightness"])) if skin_priority else float(item_stats["brightness"])
-        master_saturation = float(master.get("skinSaturation", master["saturation"])) if skin_priority else float(master["saturation"])
-        item_saturation = float(item_stats.get("skinSaturation", item_stats["saturation"])) if skin_priority else float(item_stats["saturation"])
-        brightness_adj = clamp((master_brightness - item_brightness) * 0.30, -0.10, 0.10)
+        master_global_brightness = float(master["brightness"])
+        item_global_brightness = float(item_stats["brightness"])
+        master_background_brightness = float(master.get("backgroundBrightness", master_global_brightness))
+        item_background_brightness = float(item_stats.get("backgroundBrightness", item_global_brightness))
+        master_skin_brightness = (
+            float(master.get("skinBrightness", master_global_brightness)) if skin_priority else master_global_brightness
+        )
+        item_skin_brightness = (
+            float(item_stats.get("skinBrightness", item_global_brightness)) if skin_priority else item_global_brightness
+        )
+        master_saturation = weighted_saturation_profile(master, skin_priority)
+        item_saturation = weighted_saturation_profile(item_stats, skin_priority)
+        skin_delta = master_skin_brightness - item_skin_brightness
+        global_delta = master_global_brightness - item_global_brightness
+        background_delta = master_background_brightness - item_background_brightness
+        # Close-up shots can match skin while still looking dark overall; blend scene/background
+        # brightness into the correction instead of letting skin samples fully override it.
+        brightness_delta = (skin_delta * 0.20 + global_delta * 0.45 + background_delta * 0.35) if skin_priority else global_delta
+        brightness_adj = clamp(brightness_delta * 0.42, -0.12, 0.12)
         contrast_adj = 1.0 if master_contrast < 0.025 and item_contrast < 0.025 else clamp(master_contrast / max(item_contrast, 0.025), 0.84, 1.18)
         saturation_adj = (
             1.0
             if master_saturation < 0.08 and item_saturation < 0.08
-            else clamp(master_saturation / max(item_saturation, 0.025), 0.74, 1.26)
+            else clamp(master_saturation / max(item_saturation, 0.025), 0.84, 1.16)
         )
         gains = color_channel_gains(master, item_stats) if white_balance else {"red": 1.0, "green": 1.0, "blue": 1.0}
         filter_parts: list[str] = []
@@ -1459,21 +1683,146 @@ def camera_color_match_filters(
                 "role": role,
                 "path": str(path),
                 "stats": item_stats,
+                "referenceStats": master,
                 "sampleTimelineSeconds": [round(value, 3) for value in timeline_timestamps],
-                "sampleSourceSeconds": [round(max(0.0, value + offsets.get(role, 0.0)), 3) for value in timeline_timestamps],
+                "sampleSourceSeconds": [round(value, 3) for value in source_timestamps],
+                "referenceSourceSeconds": [
+                    round(max(0.0, start + value + offsets.get(master_role, 0.0)), 3) for value in role_local_times
+                ],
                 "redGain": round(gains["red"], 5),
                 "greenGain": round(gains["green"], 5),
                 "blueGain": round(gains["blue"], 5),
                 "brightness": round(brightness_adj, 5),
+                "brightnessComponents": {
+                    "skinDelta": round(skin_delta, 5),
+                    "globalDelta": round(global_delta, 5),
+                    "backgroundDelta": round(background_delta, 5),
+                    "weightedDelta": round(brightness_delta, 5),
+                },
                 "contrast": round(contrast_adj, 5),
                 "saturation": round(saturation_adj, 5),
-                "colorMatchBasis": "skin" if skin_priority else "neutral/global",
+                "saturationComponents": {
+                    "masterWeighted": round(master_saturation, 5),
+                    "itemWeighted": round(item_saturation, 5),
+                    "masterSkin": round(float(master.get("skinSaturation", master["saturation"])), 5) if skin_priority else None,
+                    "itemSkin": round(float(item_stats.get("skinSaturation", item_stats["saturation"])), 5) if skin_priority else None,
+                    "masterBackground": round(float(master.get("backgroundSaturation", master["saturation"])), 5),
+                    "itemBackground": round(float(item_stats.get("backgroundSaturation", item_stats["saturation"])), 5),
+                    "masterGlobal": round(float(master["saturation"]), 5),
+                    "itemGlobal": round(float(item_stats["saturation"]), 5),
+                },
+                "colorMatchBasis": "skin+global+background" if skin_priority else "global",
                 "filter": filters[index],
             }
         )
     COLOR_MATCH_REPORT.parent.mkdir(parents=True, exist_ok=True)
     COLOR_MATCH_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return filters, report
+
+
+def configured_camera_extra_filters(cameras: list[tuple[str, Path]]) -> tuple[dict[int, str], list[dict[str, str]]]:
+    configured = nested(APP_CONFIG, "render", "cameraExtraFilters", default={})
+    if not isinstance(configured, dict):
+        return {}, []
+    filters: dict[int, str] = {}
+    report: list[dict[str, str]] = []
+    for index, (role, path) in enumerate(cameras):
+        value = configured.get(role) or configured.get(path.name) or configured.get(path.stem)
+        if not value:
+            continue
+        text = str(value).strip()
+        if not text:
+            continue
+        filters[index] = text
+        report.append({"role": role, "path": str(path), "filter": text})
+    return filters, report
+
+
+def load_face_center_crop_plan() -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    enabled = bool_value("render", "faceCenterCrop", default=False)
+    plan_path = path_value("render", "faceCenterCropPlanPath") or (OUTPUT_REPORTS / "face_center_crop_plan.json")
+    report: dict[str, Any] = {
+        "enabled": enabled,
+        "plan": str(plan_path),
+        "segments": [],
+        "fallbackSegments": [],
+    }
+    if not enabled:
+        report["reason"] = "disabled"
+        return [], report
+    if not plan_path.exists():
+        report["reason"] = "plan missing"
+        return [], report
+    try:
+        payload = json.loads(plan_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        report["reason"] = f"cannot read plan: {exc}"
+        return [], report
+    segments = payload.get("segments") if isinstance(payload, dict) else None
+    if not isinstance(segments, list):
+        report["reason"] = "plan has no segments"
+        return [], report
+    valid_segments = [segment for segment in segments if isinstance(segment, dict)]
+    report["loadedSegments"] = len(valid_segments)
+    return valid_segments, report
+
+
+def face_center_crop_segment(
+    plan_segments: list[dict[str, Any]],
+    role: str,
+    output_start: float,
+    output_end: float,
+) -> dict[str, Any] | None:
+    midpoint = (output_start + output_end) / 2
+    best: dict[str, Any] | None = None
+    best_overlap = 0.0
+    for segment in plan_segments:
+        if str(segment.get("role") or "") != role:
+            continue
+        try:
+            start_t = float(segment.get("start", 0.0))
+            end_t = float(segment.get("end", start_t))
+            center_x = float(segment.get("centerX", segment.get("center_x")))
+            center_y = float(segment.get("centerY", segment.get("center_y")))
+        except (TypeError, ValueError):
+            continue
+        if not (0.0 <= center_x <= 1.0 and 0.0 <= center_y <= 1.0):
+            continue
+        if start_t <= midpoint < end_t:
+            return segment
+        overlap = max(0.0, min(output_end, end_t) - max(output_start, start_t))
+        if overlap > best_overlap:
+            best = segment
+            best_overlap = overlap
+    return best if best_overlap > 0.0 else None
+
+
+def face_center_crop_axis() -> str:
+    value = text_config("render", "faceCenterCropAxis", default="x").strip().lower()
+    if value in {"x", "horizontal", "horizontal-only"}:
+        return "x"
+    if value in {"xy", "both", "all"}:
+        return "xy"
+    return "x"
+
+
+def face_center_subject_screen_x(role: str) -> float:
+    by_role = nested(APP_CONFIG, "render", "faceCenterSubjectXByRole", default={})
+    if isinstance(by_role, dict):
+        value = by_role.get(role)
+        if value is not None and value != "":
+            try:
+                return clamp(float(value), 0.35, 0.65)
+            except (TypeError, ValueError):
+                pass
+    return clamp(float_config("render", "faceCenterSubjectX", default=0.5), 0.35, 0.65)
+
+
+def adjusted_face_center_crop_x(center_x: float, zoom: float, subject_screen_x: float) -> float:
+    if zoom <= 1.0001:
+        return clamp(center_x, 0.0, 1.0)
+    # Moving the crop window left makes the detected subject land slightly right.
+    return clamp(center_x - ((subject_screen_x - 0.5) / zoom), 0.0, 1.0)
 
 
 def run(command: list[str]) -> None:
@@ -2001,6 +2350,103 @@ def speaker_aware_segments(
     return normalize_camera_segments(duration, segments, master) if segments else []
 
 
+def onscreen_speech_ranges(
+    captions: list[dict[str, Any]],
+    timeline_start: float,
+    duration: float,
+) -> list[tuple[float, float]]:
+    pad = float_config("render", "closeupSpeechPadding", default=0.18)
+    gap_merge = float_config("render", "closeupSpeechGapMerge", default=0.80)
+    ranges: list[tuple[float, float]] = []
+    for item in captions:
+        role = str(item.get("speaker_role") or item.get("role") or "onscreen").lower()
+        if role == "interviewer":
+            continue
+        local = caption_local_range(item, timeline_start, duration)
+        if local is None:
+            continue
+        start_t, end_t = local
+        ranges.append((max(0.0, start_t - pad), min(duration, end_t + pad)))
+    if not ranges:
+        return []
+    ranges.sort()
+    merged = [ranges[0]]
+    for start_t, end_t in ranges[1:]:
+        prev_start, prev_end = merged[-1]
+        if start_t <= prev_end + gap_merge:
+            merged[-1] = (prev_start, max(prev_end, end_t))
+        else:
+            merged.append((start_t, end_t))
+    return merged
+
+
+def restrict_closeups_to_onscreen_speech(
+    segments: list[tuple[str, int, float, float]],
+    duration: float,
+    cameras: list[tuple[str, int]],
+    captions: list[dict[str, Any]],
+    timeline_start: float,
+) -> tuple[list[tuple[str, int, float, float]], dict[str, Any]]:
+    enabled = bool_value("render", "closeupsOnlyWhenOnscreenSpeaker", default=False)
+    report: dict[str, Any] = {
+        "enabled": enabled,
+        "changed": False,
+        "inputSegments": len(segments),
+        "outputSegments": len(segments),
+        "onscreenSpeechRanges": [],
+        "replacedCloseupGaps": [],
+    }
+    if not enabled or len(cameras) <= 1 or not segments:
+        return segments, report
+    master = cameras[0]
+    ranges = onscreen_speech_ranges(captions, timeline_start, duration)
+    report["onscreenSpeechRanges"] = [{"start": round(a, 3), "end": round(b, 3)} for a, b in ranges]
+    if not ranges:
+        restricted = [(master[0], master[1], start_t, end_t) for _, _, start_t, end_t in segments]
+        report["changed"] = restricted != segments
+        report["outputSegments"] = len(restricted)
+        report["reason"] = "no onscreen speech ranges; close-ups replaced with master"
+        ONSCREEN_CLOSEUP_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        ONSCREEN_CLOSEUP_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        return normalize_camera_segments(duration, restricted, master), report
+
+    min_fragment = 0.08
+    restricted: list[tuple[str, int, float, float]] = []
+    replaced: list[dict[str, Any]] = []
+    for role, input_index, start_t, end_t in segments:
+        if role == master[0] or input_index == master[1]:
+            restricted.append((role, input_index, start_t, end_t))
+            continue
+        cursor = start_t
+        used_closeup = False
+        for range_start, range_end in ranges:
+            if range_end <= start_t + min_fragment or range_start >= end_t - min_fragment:
+                continue
+            close_start = max(start_t, range_start)
+            close_end = min(end_t, range_end)
+            if close_start > cursor + min_fragment:
+                restricted.append((master[0], master[1], cursor, close_start))
+                replaced.append({"role": role, "start": round(cursor, 3), "end": round(close_start, 3)})
+            if close_end > close_start + min_fragment:
+                restricted.append((role, input_index, close_start, close_end))
+                used_closeup = True
+            cursor = max(cursor, close_end)
+        if cursor < end_t - min_fragment:
+            restricted.append((master[0], master[1], cursor, end_t))
+            replaced.append({"role": role, "start": round(cursor, 3), "end": round(end_t, 3)})
+        elif not used_closeup and cursor <= start_t + min_fragment:
+            restricted.append((master[0], master[1], start_t, end_t))
+            replaced.append({"role": role, "start": round(start_t, 3), "end": round(end_t, 3)})
+
+    normalized = normalize_camera_segments(duration, restricted, master)
+    report["changed"] = normalized != segments
+    report["outputSegments"] = len(normalized)
+    report["replacedCloseupGaps"] = replaced
+    ONSCREEN_CLOSEUP_REPORT.parent.mkdir(parents=True, exist_ok=True)
+    ONSCREEN_CLOSEUP_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    return normalized, report
+
+
 def dynamic_cut_segments(
     duration: float,
     cameras: list[tuple[str, int]],
@@ -2334,8 +2780,9 @@ def video_segments_with_stills(
 
 def omission_card_filter(input_index: int, label: str, duration: float) -> str:
     fade_out = max(0.0, duration - 0.25)
+    fps = output_fps()
     return (
-        f"[{input_index}:v]fps=60,scale=1920:1080:force_original_aspect_ratio=decrease,"
+        f"[{input_index}:v]fps={fps},scale=1920:1080:force_original_aspect_ratio=decrease,"
         f"pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1,"
         f"trim=duration={duration:.6f},setpts=PTS-STARTPTS,"
         f"fade=t=in:st=0:d=0.18,fade=t=out:st={fade_out:.3f}:d=0.25[{label}]"
@@ -2345,9 +2792,10 @@ def omission_card_filter(input_index: int, label: str, duration: float) -> str:
 def still_filter(input_index: int, label: str, duration: float, still: dict[str, Any], phase: int) -> str:
     fade_out = max(0.0, duration - 0.25)
     kind = str(still["kind"])
+    fps = output_fps()
     if kind in {"text", "diagram"}:
         base = (
-            f"[{input_index}:v]fps=60,scale=1920:1080:force_original_aspect_ratio=decrease,"
+            f"[{input_index}:v]fps={fps},scale=1920:1080:force_original_aspect_ratio=decrease,"
             "pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=white,setsar=1"
         )
     else:
@@ -2365,7 +2813,7 @@ def still_filter(input_index: int, label: str, duration: float, still: dict[str,
         x_expr = f"min(max(iw*{focus_x:.5f}-960+{pan_x:.3f}*({progress}-0.5),0),iw-1920)"
         y_expr = f"min(max(ih*{focus_y:.5f}-540+{pan_y:.3f}*({progress}-0.5),0),ih-1080)"
         base = (
-            f"[{input_index}:v]fps=60,"
+            f"[{input_index}:v]fps={fps},"
             f"scale=w='if(gte(iw/ih,1.777778),-2,1920*{zoom})':h='if(gte(iw/ih,1.777778),1080*{zoom},-2)':eval=frame,"
             f"crop=1920:1080:x='{x_expr}':y='{y_expr}',setsar=1"
         )
@@ -2412,6 +2860,7 @@ def color_match_summary(report: dict[str, Any]) -> dict[str, Any]:
         "enabled": bool(report.get("enabled")),
         "report": str(COLOR_MATCH_REPORT) if report.get("enabled") else "",
         "items": report.get("items", []),
+        "manualExtraFilters": report.get("manualExtraFilters", []),
         "reason": report.get("reason", ""),
     }
 
@@ -2424,6 +2873,19 @@ def person_crop_summary(report: dict[str, Any]) -> dict[str, Any]:
         "report": str(PERSON_CROP_REPORT) if report.get("enabled") else "",
         "matchedPlans": len(matched) if isinstance(matched, list) else 0,
         "croppedSegments": len(segments) if isinstance(segments, list) else 0,
+        "reason": report.get("reason", ""),
+    }
+
+
+def face_center_crop_summary(report: dict[str, Any]) -> dict[str, Any]:
+    segments = report.get("segments", [])
+    fallback = report.get("fallbackSegments", [])
+    return {
+        "enabled": bool(report.get("enabled")),
+        "report": str(FACE_CENTER_CROP_REPORT) if report.get("enabled") else "",
+        "loadedSegments": report.get("loadedSegments", 0),
+        "croppedSegments": len(segments) if isinstance(segments, list) else 0,
+        "fallbackSegments": len(fallback) if isinstance(fallback, list) else 0,
         "reason": report.get("reason", ""),
     }
 
@@ -2459,6 +2921,7 @@ def subtitle_mode() -> str:
 def subtitle_manifest(mode: str) -> tuple[Path, dict[str, object]]:
     modes = {
         "full": {
+            "kind": "full-subtitle",
             "generator": SCRIPTS / "generate_full_transcript_png_overlays.py",
             "manifest": OUTPUT_OVERLAYS / "full_transcript_png_overlays" / "manifest.json",
             "bottom_margin": 16,
@@ -2467,6 +2930,7 @@ def subtitle_manifest(mode: str) -> tuple[Path, dict[str, object]]:
             "animate": False,
         },
         "punchline": {
+            "kind": "punchline",
             "generator": SCRIPTS / "generate_punchline_png_overlays.py",
             "manifest": OUTPUT_OVERLAYS / "punchline_png_overlays" / "manifest.json",
             "bottom_margin": 12,
@@ -2492,6 +2956,20 @@ def glossary_manifest() -> tuple[Path, dict[str, object]]:
     }
 
 
+def chapter_title_manifest() -> tuple[Path, dict[str, object]] | None:
+    if not bool_value("style", "chapterTitlesEnabled", default=False):
+        return None
+    run([sys.executable, str(SCRIPTS / "generate_chapter_title_png_overlays.py")])
+    return OUTPUT_OVERLAYS / "chapter_title_png_overlays" / "manifest.json", {
+        "bottom_margin": 0,
+        "slide_px": 0,
+        "pop": False,
+        "animate": False,
+        "x_expr": str(int_value(APP_CONFIG, "style", "titleX", default=18)),
+        "y_expr": str(int_value(APP_CONFIG, "style", "titleY", default=18)),
+    }
+
+
 def read_overlay_items(manifest: Path, start: float, duration: float) -> list[dict[str, Any]]:
     if not manifest.exists():
         return []
@@ -2500,6 +2978,81 @@ def read_overlay_items(manifest: Path, start: float, duration: float) -> list[di
         for item in json.loads(manifest.read_text(encoding="utf-8"))
         if seconds(item["start"]) < start + duration and seconds(item["end"]) > start
     ]
+
+
+def should_precompose_overlay_items(mode: str, items: list[dict[str, Any]], config: dict[str, object], duration: float) -> bool:
+    if not bool_value("render", "precomposeLongPngOverlays", default=True):
+        return False
+    if mode != "full" or config.get("kind") != "full-subtitle":
+        return False
+    return duration >= float_config("render", "precomposeOverlayMinDuration", default=300.0) or len(items) >= int_value(
+        APP_CONFIG,
+        "render",
+        "precomposeOverlayMinItems",
+        default=120,
+    )
+
+
+def precompose_overlay_video(
+    items: list[dict[str, Any]],
+    config: dict[str, object],
+    start: float,
+    duration: float,
+    output_stem: str,
+) -> Path:
+    precompose_dir = OUTPUT_OVERLAYS / "precomposed"
+    precompose_dir.mkdir(parents=True, exist_ok=True)
+    safe_stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", output_stem).strip("._") or "overlay"
+    manifest = precompose_dir / f"{safe_stem}_manifest.json"
+    output = precompose_dir / f"{safe_stem}.mov"
+    sequence_dir = precompose_dir / f"{safe_stem}_frames"
+    local_items: list[dict[str, Any]] = []
+    for item in items:
+        item_start = max(0.0, seconds(str(item["start"])) - start)
+        item_end = min(duration, seconds(str(item["end"])) - start)
+        if item_end <= item_start:
+            continue
+        local_item = dict(item)
+        local_item["start"] = format_overlay_time(item_start)
+        local_item["end"] = format_overlay_time(item_end)
+        local_items.append(local_item)
+    manifest_payload = json.dumps(local_items, ensure_ascii=False, indent=2)
+    if (
+        output.exists()
+        and output.stat().st_size > 0
+        and manifest.exists()
+        and manifest.read_text(encoding="utf-8") == manifest_payload
+    ):
+        return output
+    manifest.write_text(manifest_payload, encoding="utf-8")
+    run(
+        [
+            sys.executable,
+            str(SCRIPTS / "precompose_png_overlay_video.py"),
+            "--manifest",
+            str(manifest),
+            "--output",
+            str(output),
+            "--sequence-dir",
+            str(sequence_dir),
+            "--duration",
+            f"{duration:.6f}",
+            "--bottom-margin",
+            str(int(config.get("bottom_margin", 16))),
+            "--fps",
+            text_config("render", "precomposeOverlayFps", default="30000/1001"),
+        ]
+    )
+    return output
+
+
+def write_filter_complex_script(filters: list[str], output_stem: str) -> Path:
+    filter_dir = OUTPUT_REPORTS / "filtergraphs"
+    filter_dir.mkdir(parents=True, exist_ok=True)
+    safe_stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", output_stem).strip("._") or "render"
+    path = filter_dir / f"{safe_stem}.ffgraph"
+    path.write_text(";\n".join(filters) + "\n", encoding="utf-8")
+    return path
 
 
 def main() -> None:
@@ -2525,6 +3078,8 @@ def main() -> None:
     reference_style_filter = reference_visual_filter(reference_profile) if reference_profile else ""
     global_zoom = global_video_zoom_value()
     global_zoom_filter = global_video_zoom_filter(global_zoom)
+    output_look_filter = text_config("render", "outputLookFilter").strip()
+    render_fps = output_fps()
     multicam_mode = text_config("render", "multicamMode", default="master-first")
 
     cameras: list[tuple[str, Path]] = []
@@ -2544,13 +3099,29 @@ def main() -> None:
         sync_sources.append(("external", external_audio))
     sync_offsets = load_sync_offsets(sync_sources)
     person_plans, person_crop_report = load_person_edit_plans(cameras)
-    color_filters, color_report = camera_color_match_filters(cameras, start, source_duration, sync_offsets)
-    run([sys.executable, str(SCRIPTS / "generate_title_png_overlay.py")])
+    face_center_segments, face_center_report = load_face_center_crop_plan()
+    face_crop_axis = face_center_crop_axis()
+    face_center_report["axis"] = face_crop_axis
     ensure_omission_cards(replacements)
 
     mode = subtitle_mode()
     subtitle_items: list[dict[str, Any]] = []
     overlay_inputs: list[tuple[dict[str, Any], dict[str, object]]] = []
+    precomposed_overlay_videos: list[Path] = []
+    chapter_title_items: list[dict[str, Any]] = []
+    chapter_config = chapter_title_manifest()
+    if chapter_config:
+        manifest, title_config = chapter_config
+        chapter_title_items = transform_overlay_items(
+            read_overlay_items(manifest, start, source_duration),
+            replacements,
+            start,
+            source_duration,
+            duration,
+        )
+        overlay_inputs.extend((item, title_config) for item in chapter_title_items)
+    if not chapter_title_items:
+        run([sys.executable, str(SCRIPTS / "generate_title_png_overlay.py")])
     if mode != "none":
         manifest, caption_config = subtitle_manifest(mode)
         subtitle_items = transform_overlay_items(
@@ -2560,7 +3131,12 @@ def main() -> None:
             source_duration,
             duration,
         )
-        overlay_inputs.extend((item, caption_config) for item in subtitle_items)
+        if should_precompose_overlay_items(mode, subtitle_items, caption_config, duration):
+            precomposed_overlay_videos.append(
+                precompose_overlay_video(subtitle_items, caption_config, start, duration, f"{output.stem}_full_subtitles")
+            )
+        else:
+            overlay_inputs.extend((item, caption_config) for item in subtitle_items)
     if bool_value("glossary", "enabled", default=bool_value("render", "termExplanations", default=False)):
         manifest, glossary_config = glossary_manifest()
         overlay_inputs.extend(
@@ -2573,6 +3149,7 @@ def main() -> None:
                 duration,
             )
         )
+    planning_subtitle_items = subtitle_items or subtitle_planning_items()
 
     still_inserts = plan_still_inserts(parse_still_images(), subtitle_items, start, duration)
     audio_source = nested(APP_CONFIG, "render", "audioSource", default="external-if-selected")
@@ -2588,7 +3165,7 @@ def main() -> None:
     audio_role = cameras[audio_input_index][0] if 0 <= audio_input_index < len(cameras) else external_audio_role
     natural_cut_audio_path = external_audio if use_external_audio else cameras[audio_input_index][1]
     camera_indexes = [(name, index) for index, (name, _) in enumerate(cameras)]
-    timeline_segments = build_segments(duration, camera_indexes, subtitle_items, start)
+    timeline_segments = build_segments(duration, camera_indexes, planning_subtitle_items, start)
     timeline_segments, natural_cut_report = adjust_segments_to_dialogue_gaps(
         timeline_segments,
         duration=duration,
@@ -2598,6 +3175,19 @@ def main() -> None:
         sync_offsets=sync_offsets,
         replacements=replacements,
     )
+    timeline_segments, onscreen_closeup_report = restrict_closeups_to_onscreen_speech(
+        timeline_segments,
+        duration=duration,
+        cameras=camera_indexes,
+        captions=planning_subtitle_items,
+        timeline_start=start,
+    )
+    if onscreen_closeup_report.get("changed"):
+        write_camera_plan_report(
+            f"{multicam_mode}+onscreen-speaker-mask",
+            timeline_segments,
+            str(ONSCREEN_CLOSEUP_REPORT),
+        )
     timeline_segments, source_coverage_report = constrain_segments_to_source_coverage(
         timeline_segments,
         [(role, index, path) for index, (role, path) in enumerate(cameras)],
@@ -2612,6 +3202,22 @@ def main() -> None:
             timeline_segments,
             str(SOURCE_COVERAGE_REPORT),
         )
+    color_filters, color_report = camera_color_match_filters(
+        cameras,
+        start,
+        duration,
+        sync_offsets,
+        segments=timeline_segments,
+        replacements=replacements,
+    )
+    extra_camera_filters, extra_camera_filter_report = configured_camera_extra_filters(cameras)
+    if output_look_filter:
+        color_report["outputLookFilter"] = output_look_filter
+    if extra_camera_filter_report:
+        color_report["manualExtraFilters"] = extra_camera_filter_report
+    if output_look_filter or extra_camera_filter_report:
+        COLOR_MATCH_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        COLOR_MATCH_REPORT.write_text(json.dumps(color_report, ensure_ascii=False, indent=2), encoding="utf-8")
     video_segments = video_segments_with_stills(duration, timeline_segments, still_inserts, replacements)
     source_ranges: dict[int, list[float]] = {}
     for segment in video_segments:
@@ -2646,26 +3252,33 @@ def main() -> None:
 
     for still_index, still in enumerate(still_inserts):
         still["input_index"] = len(cameras) + still_index
-        command.extend(["-loop", "1", "-framerate", "60", "-t", f"{max(0.1, float(still['end']) - float(still['start'])):.6f}", "-i", str(still["path"])])
+        command.extend(["-loop", "1", "-framerate", render_fps, "-t", f"{max(0.1, float(still['end']) - float(still['start'])):.6f}", "-i", str(still["path"])])
 
     next_input_index = len(cameras) + len(still_inserts)
     for replacement in replacements:
         replacement["input_index"] = next_input_index
-        command.extend(["-loop", "1", "-framerate", "60", "-t", f"{float(replacement['duration']):.6f}", "-i", str(replacement["path"])])
+        command.extend(["-loop", "1", "-framerate", render_fps, "-t", f"{float(replacement['duration']):.6f}", "-i", str(replacement["path"])])
         next_input_index += 1
     logo_index = None
     if logo:
         logo_index = next_input_index
         command.extend(["-i", str(logo)])
         next_input_index += 1
-    title_index = next_input_index
-    command.extend(["-i", str(TITLE)])
-    next_input_index += 1
+    title_index = None
+    if not chapter_title_items:
+        title_index = next_input_index
+        command.extend(["-i", str(TITLE)])
+        next_input_index += 1
+    precomposed_overlay_input_start_index = next_input_index
+    for overlay_video in precomposed_overlay_videos:
+        command.extend(["-i", str(overlay_video)])
+        next_input_index += 1
+    overlay_input_start_index = next_input_index
     for item, _ in overlay_inputs:
         overlay_start = max(0.0, seconds(item["start"]) - start)
         overlay_end = min(duration, seconds(item["end"]) - start)
         overlay_duration = max(0.1, overlay_end - overlay_start + 0.4)
-        command.extend(["-loop", "1", "-framerate", "60", "-t", f"{overlay_duration:.3f}", "-i", str(WORK / item["file"])])
+        command.extend(["-loop", "1", "-framerate", render_fps, "-t", f"{overlay_duration:.3f}", "-i", str(WORK / item["file"])])
     next_input_index += len(overlay_inputs)
     external_audio_index = None
     if use_external_audio:
@@ -2729,16 +3342,53 @@ def main() -> None:
                     )
             if color_filters.get(input_index):
                 visual_filter = f"{visual_filter},{color_filters[input_index]}"
-            if global_zoom_filter:
-                visual_filter = f"{visual_filter},{global_zoom_filter}"
+            if extra_camera_filters.get(input_index):
+                visual_filter = f"{visual_filter},{extra_camera_filters[input_index]}"
+            if output_look_filter:
+                visual_filter = f"{visual_filter},{output_look_filter}"
+            face_center_segment = face_center_crop_segment(face_center_segments, role, seg_start, seg_end)
+            center_x = 0.5
+            center_y = 0.5
+            if face_center_segment:
+                detected_center_x = float(face_center_segment.get("centerX", face_center_segment.get("center_x", 0.5)))
+                subject_screen_x = face_center_subject_screen_x(role)
+                center_x = adjusted_face_center_crop_x(detected_center_x, global_zoom, subject_screen_x)
+                if face_crop_axis == "xy":
+                    center_y = float(face_center_segment.get("centerY", face_center_segment.get("center_y", 0.5)))
+                cast_face_segments = face_center_report.get("segments")
+                if isinstance(cast_face_segments, list):
+                    cast_face_segments.append(
+                        {
+                            "role": role,
+                            "outputStart": round(seg_start, 3),
+                            "outputEnd": round(seg_end, 3),
+                            "zoom": round(global_zoom, 4),
+                            "detectedCenterX": round(detected_center_x, 5),
+                            "centerX": round(center_x, 5),
+                            "centerY": round(center_y, 5),
+                            "subjectScreenX": round(subject_screen_x, 5),
+                            "detectedCenterY": face_center_segment.get("centerY", face_center_segment.get("center_y")),
+                            "source": face_center_segment.get("source"),
+                            "detections": face_center_segment.get("detections"),
+                        }
+                    )
+            else:
+                cast_fallback = face_center_report.get("fallbackSegments")
+                if isinstance(cast_fallback, list) and face_center_report.get("enabled"):
+                    cast_fallback.append({"role": role, "outputStart": round(seg_start, 3), "outputEnd": round(seg_end, 3)})
+            segment_global_zoom_filter = global_video_zoom_filter(global_zoom, center_x, center_y)
+            if segment_global_zoom_filter:
+                visual_filter = f"{visual_filter},{segment_global_zoom_filter}"
             filters.append(
                 f"[{input_index}:v]setpts=PTS-STARTPTS,trim=start={local_start:.6f}:end={local_end:.6f},"
-                f"setpts=PTS-STARTPTS,{visual_filter}[{label}]"
+                f"setpts=PTS-STARTPTS,fps={render_fps},{visual_filter}[{label}]"
             )
         segment_labels.append(label)
 
     PERSON_CROP_REPORT.parent.mkdir(parents=True, exist_ok=True)
     PERSON_CROP_REPORT.write_text(json.dumps(person_crop_report, ensure_ascii=False, indent=2), encoding="utf-8")
+    FACE_CENTER_CROP_REPORT.parent.mkdir(parents=True, exist_ok=True)
+    FACE_CENTER_CROP_REPORT.write_text(json.dumps(face_center_report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     if len(segment_labels) == 1:
         filters.append(f"[{segment_labels[0]}]copy[vbase]")
@@ -2754,10 +3404,22 @@ def main() -> None:
             ]
         )
         title_base = "vlogo"
-    filters.append(f"[{title_base}][{title_index}:v]overlay=42:42[vtitle]")
-
-    current = "vtitle"
-    first_overlay_index = title_index + 1
+    if title_index is not None:
+        title_x = int_value(APP_CONFIG, "style", "titleX", default=18)
+        title_y = int_value(APP_CONFIG, "style", "titleY", default=18)
+        filters.append(f"[{title_base}][{title_index}:v]overlay={title_x}:{title_y}[vtitle]")
+        current = "vtitle"
+    else:
+        current = title_base
+    for index, _ in enumerate(precomposed_overlay_videos, start=1):
+        stream_index = precomposed_overlay_input_start_index + index - 1
+        next_label = f"vprecomp{index}"
+        filters.append(
+            f"[{stream_index}:v]format=rgba[precomp{index}];"
+            f"[{current}][precomp{index}]overlay=0:0:enable='between(t,0.000,{duration:.3f})'[{next_label}]"
+        )
+        current = next_label
+    first_overlay_index = overlay_input_start_index
     for index, (item, caption_config) in enumerate(overlay_inputs, start=1):
         stream_index = first_overlay_index + index - 1
         start_t = max(0.0, seconds(item["start"]) - start)
@@ -2849,11 +3511,12 @@ def main() -> None:
         render_output = output.with_name(f"{output.stem}_uncut{output.suffix}")
     encoder_config = video_encoder_config()
     encoder_args = [str(item) for item in encoder_config["args"]]
+    filter_script = write_filter_complex_script(filters, output.stem)
 
     command.extend(
         [
-            "-filter_complex",
-            ";".join(filters),
+            "-filter_complex_script",
+            str(filter_script),
             "-map",
             f"[{current}]",
             "-map",
@@ -2894,6 +3557,7 @@ def main() -> None:
                     "natural_dialogue_cuts": natural_cut_report,
                     "camera_color_match": color_match_summary(color_report),
                     "person_crop": person_crop_summary(person_crop_report),
+                    "face_center_crop": face_center_crop_summary(face_center_report),
                     "still_inserts": still_report(still_inserts),
                     "omission_card": omission_card_report(replacements),
                     "music": music_report(start, duration, music, replacements),
@@ -2917,6 +3581,7 @@ def main() -> None:
                     "natural_dialogue_cuts": natural_cut_report,
                     "camera_color_match": color_match_summary(color_report),
                     "person_crop": person_crop_summary(person_crop_report),
+                    "face_center_crop": face_center_crop_summary(face_center_report),
                     "still_inserts": still_report(still_inserts),
                     "omission_card": omission_card_report(replacements),
                     "music": music_report(start, duration, music, replacements),

@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from project_paths import ROOT as WORK, SCRIPTS
+from project_paths import CONFIG, ROOT as WORK, SCRIPTS
 from video_edit_app_config import load_app_config, nested, optional_path
 
 
@@ -15,35 +15,23 @@ APP_CONFIG = load_app_config()
 FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
 FFPROBE = optional_path(APP_CONFIG, "tools", "ffprobe", default=Path(r"C:\ProgramData\chocolatey\bin\ffprobe.exe"))
 
-SIMPLE_PYTHON_ACTIONS = {
-    "generate-punchlines": "generate_punchline_png_overlays.py",
-    "build-timeline": "build_edit_timeline.py",
-    "validate-timeline": "timeline_validate.py",
-    "detect-changed-regions": "timeline_changed_regions.py",
-    "export-otio": "timeline_otio_adapter.py",
-    "export-ffmpeg-command": "ffmpeg_timeline_adapter.py",
-    "generate-proxies": "generate_proxies.py",
-    "generate-full-overlays": "generate_full_transcript_png_overlays.py",
-    "precompose-png-overlay-video": "precompose_png_overlay_video.py",
-    "generate-glossary-overlays": "generate_glossary_term_overlays.py",
-    "generate-music-bed": "generate_music_bed.py",
-    "generate-thumbnail": "generate_project_thumbnail.py",
-    "generate-thumbnail-candidates": "generate_thumbnail_candidates.py",
-    "generate-role-aware-ass": "generate_role_aware_ass.py",
-    "replace-audio": "replace_video_audio.py",
-    "review-subtitles": "review_subtitles.py",
-    "apply-subtitle-corrections": "apply_subtitle_corrections.py",
-    "classify-subtitle-speakers": "classify_subtitle_speakers.py",
-    "classify-subtitle-speakers-audio": "classify_speakers_audio_features.py",
-    "compare-transcripts": "compare_manifest_transcripts.py",
-    "analyze-blocking": "analyze_multicam_blocking.py",
-    "auto-sync-dropped": "auto_sync_app_sources.py",
-    "transcribe-dropped": "transcribe_manifest_sources.py",
-    "transcribe-dropped-faster": "transcribe_manifest_sources_faster.py",
-}
+def load_workflow_manifest() -> dict[str, Any]:
+    path = CONFIG / "workflow_actions.json"
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise RuntimeError(f"Unable to load workflow action manifest: {path}") from error
 
-RENDER_SCRIPTS = {
-    "render_app_interview.py",
+
+WORKFLOW_MANIFEST = load_workflow_manifest()
+SIMPLE_PYTHON_ACTIONS = {
+    str(action): str(script)
+    for action, script in dict(WORKFLOW_MANIFEST.get("simplePythonActions", {})).items()
+}
+RENDER_SCRIPTS = {str(script) for script in WORKFLOW_MANIFEST.get("renderScripts", [])}
+RENDER_SCRIPT_ALIASES = {
+    str(source): str(target)
+    for source, target in dict(WORKFLOW_MANIFEST.get("renderScriptAliases", {})).items()
 }
 
 def bool_value(*keys: str, default: bool = False) -> bool:
@@ -146,13 +134,11 @@ def selected_mode() -> str:
 
 
 def render_command() -> list[str]:
-    script = Path(str_value("render", "renderScript", default="render_app_interview.py")).name
+    script = Path(str_value("render", "renderScript", default="render_multicam.py")).name
     if script not in RENDER_SCRIPTS:
         raise SystemExit(f"Unsupported render script: {script}")
-    command = [sys.executable, str(SCRIPTS / script)]
-    if script == "render_app_interview.py":
-        return command
-    return command
+    script = RENDER_SCRIPT_ALIASES.get(script, script)
+    return [sys.executable, str(SCRIPTS / script)]
 
 
 def person_analysis_command(reference: bool = False) -> list[str]:

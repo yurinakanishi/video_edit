@@ -962,7 +962,7 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
     global_zoom = max(1.0, as_float(nested(config, "render", "globalVideoZoom", default=1.0), 1.0))
     face_center_segments, face_center_plan_path, face_center_status = load_face_center_segments(config)
     person_plans, person_plans_dir, person_plans_status = load_person_edit_plans(config, sources_by_id, by_role)
-    output_path = Path(text_value(config, "render", "outputPath", default=str(OUTPUT_VIDEOS / "app_interview_output.mp4")))
+    output_path = Path(text_value(config, "render", "outputPath", default=str(OUTPUT_VIDEOS / "app_multicam_output.mp4")))
     video_clips = build_video_clips(
         plan,
         config=config,

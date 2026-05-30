@@ -207,8 +207,8 @@ export function createMaterialAnalysisController({
 			setProject(result.project);
 			setMediaManifest(result.manifest);
 			getAppState().setWorkflowSettings({
-				editPreset: "new-interview",
-				renderScript: "render_app_interview.py",
+				editPreset: "multicam-edit",
+				renderScript: "render_multicam.py",
 				workflowAction: "auto-sync-dropped",
 			});
 			setDefaultProjectOutput(false);
@@ -306,8 +306,8 @@ export function createMaterialAnalysisController({
 			await refreshSyncReport();
 			await refreshMaterialAnalysisStatus();
 			getAppState().setWorkflowSettings({
-				editPreset: "new-interview",
-				renderScript: "render_app_interview.py",
+				editPreset: "multicam-edit",
+				renderScript: "render_multicam.py",
 				workflowAction: "render-selected",
 			});
 			refreshPrompt();

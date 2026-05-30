@@ -1639,7 +1639,7 @@ def bgr_triplet(stats: dict[str, Any], key: str) -> list[float] | None:
 
 def weighted_bgr_profile(stats: dict[str, Any]) -> list[float] | None:
     # Use wall/neutral pixels for white balance. Skin is useful for exposure/saturation,
-    # but driving channel gains from skin makes the pale interview background turn green/cyan.
+    # but driving channel gains from skin can make a pale background turn green/cyan.
     weights = {"backgroundBgr": 0.80, "neutralBgr": 0.20, "meanBgr": 0.0, "skinBgr": 0.0}
     total = 0.0
     result = [0.0, 0.0, 0.0]
@@ -3544,7 +3544,7 @@ def main() -> None:
     external_audio = audio_sources[0][1] if audio_sources else path_value("assets", "externalAudio")
     external_audio_role = audio_sources[0][0] if audio_sources else "external"
     logo = selected_logo_path()
-    output = Path(nested(APP_CONFIG, "render", "outputPath", default=OUTPUT_VIDEOS / "app_interview_output.mp4"))
+    output = Path(nested(APP_CONFIG, "render", "outputPath", default=OUTPUT_VIDEOS / "app_multicam_output.mp4"))
     render_profile_value = render_profile()
     range_mode_value = render_range_mode()
     start = float(nested(APP_CONFIG, "render", "previewStart", default=0.0) or 0.0)
@@ -3574,7 +3574,7 @@ def main() -> None:
         if left:
             cameras.append(("camera3", left))
     if not cameras:
-        raise RuntimeError("Drop or select at least a Camera 1 / master video before running render_app_interview.py.")
+        raise RuntimeError("Drop or select at least a Camera 1 / master video before running the multicam renderer.")
     if range_mode_value == "full":
         start = 0.0
         source_duration = full_range_duration(cameras, source_duration)

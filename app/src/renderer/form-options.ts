@@ -1,9 +1,12 @@
 export type SelectOption = readonly [value: string, label: string];
 
-export const EDIT_PRESETS = [["new-interview", "New interview edit from selected media"]] as const;
+export const EDIT_PRESETS = [
+	["multicam-edit", "Multicam edit from selected media"],
+	["new-interview", "Legacy saved preset"],
+] as const;
 
 export const MULTICAM_MODES = [
-	["speaker-aware", "Speaker-aware interview cuts"],
+	["speaker-aware", "Speaker-aware dialogue cuts"],
 	["dynamic-cuts", "Rhythmic punch-in cuts"],
 	["manual-plan", "Use saved manual plan"],
 	["master-first", "Master first, close-ups for emphasis"],
@@ -12,8 +15,8 @@ export const MULTICAM_MODES = [
 export const AUDIO_SOURCES = [
 	["external-if-selected", "Use external audio if selected"],
 	["masterVideo", "Use master video audio"],
-	["rightCloseVideo", "Use right close-up audio"],
-	["leftCloseVideo", "Use left close-up audio"],
+	["rightCloseVideo", "Use camera 2 audio"],
+	["leftCloseVideo", "Use camera 3 audio"],
 ] as const;
 
 export const ENCODER_PRESETS = [
@@ -87,6 +90,7 @@ export const WORKFLOW_ACTIONS = [
 	["generate-proxies", "Generate proxy videos"],
 	["generate-punchlines", "Create catchy subtitle images"],
 	["generate-full-overlays", "Create full subtitle images"],
+	["precompose-png-overlay-video", "Precompose PNG overlay video"],
 	["generate-glossary-overlays", "Create glossary explanation images"],
 	["generate-music-bed", "Generate background music"],
 	["replace-audio", "Replace video audio"],
@@ -95,12 +99,15 @@ export const WORKFLOW_ACTIONS = [
 	["review-subtitles", "Review subtitle quality"],
 	["apply-subtitle-corrections", "Apply subtitle corrections"],
 	["classify-subtitle-speakers", "Classify subtitle speakers"],
+	["classify-subtitle-speakers-audio", "Classify subtitle speakers from audio"],
 	["compare-transcripts", "Compare source transcripts"],
 	["analyze-blocking", "Analyze camera framing"],
 	["analyze-person-edit-metadata", "Analyze people for camera cuts"],
 	["analyze-reference-video", "Analyze reference video"],
 	["auto-sync-dropped", "Sync selected camera files"],
 	["transcribe-dropped", "Transcribe selected media"],
+	["transcribe-dropped-faster", "Transcribe selected media faster"],
+	["generate-role-aware-ass", "Generate role-aware ASS subtitles"],
 	["shorten-input", "Shorten silence in selected video"],
 	["extract-still", "Save a still image"],
 	["verify-duration", "Check output duration"],

@@ -62,6 +62,7 @@ const ELECTRON_CACHE_ROOT = path.join(APP_STATE_ROOT, "electron-cache");
 const OUTPUT_ROOT = APP_STATE_ROOT;
 const PROJECTS_ROOT = path.join(VIDEO_EDIT_ROOT, "projects");
 const SCRIPTS_ROOT = path.join(VIDEO_EDIT_ROOT, "scripts");
+const CONFIG_ROOT = path.join(VIDEO_EDIT_ROOT, "config");
 const OUTPUT_APP_ROOT = path.join(OUTPUT_ROOT, "app");
 const DEFAULT_APP_CONFIG_PATH = path.join(OUTPUT_APP_ROOT, "video_edit_app_config.runtime.json");
 const RESOURCE_ICON_PATH = path.join(process.resourcesPath || "", "build", "icon.ico");
@@ -75,6 +76,17 @@ const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
 const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
 const CODEX_EXE_NAME = process.platform === "win32" ? "codex.exe" : "codex";
 const SMOKE_QUIT_MS = Math.max(0, Number(process.env.VIDEO_EDIT_SMOKE_QUIT_MS || 0));
+
+function loadWorkflowActionManifest() {
+	const manifestPath = path.join(CONFIG_ROOT, "workflow_actions.json");
+	try {
+		return JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+	} catch {
+		throw new Error(`Unable to load workflow action manifest: ${manifestPath}`);
+	}
+}
+
+const WORKFLOW_ACTION_MANIFEST = loadWorkflowActionManifest();
 
 function configureElectronStorage() {
 	try {
@@ -2034,96 +2046,13 @@ function runIngestWorker(payload: Record<string, any>, emit: IngestProgressEmitt
 	});
 }
 
-const ALLOWED_PYTHON_SCRIPTS = new Set([
-	"analyze_person_bboxes.py",
-	"analyze_person_edit_metadata.py",
-	"analyze_multicam_blocking.py",
-	"build_reference_edit_profile.py",
-	"apply_subtitle_corrections.py",
-	"auto_sync_app_sources.py",
-	"build_edit_timeline.py",
-	"build_person_edit_plan.py",
-	"classify_subtitle_speakers.py",
-	"compare_manifest_transcripts.py",
-	"ffmpeg_timeline_adapter.py",
-	"generate_full_transcript_png_overlays.py",
-	"generate_glossary_term_overlays.py",
-	"generate_music_bed.py",
-	"generate_omission_card.py",
-	"generate_project_thumbnail.py",
-	"generate_proxies.py",
-	"generate_thumbnail_candidates.py",
-	"generate_punchline_png_overlays.py",
-	"replace_video_audio.py",
-	"render_app_interview.py",
-	"review_subtitles.py",
-	"shorten_silences.py",
-	"transcribe_manifest_sources.py",
-	"timeline_changed_regions.py",
-	"timeline_otio_adapter.py",
-	"timeline_validate.py",
-	"timeline_graphics_adapter.py",
-	"video_edit_run.py",
-]);
+const ALLOWED_PYTHON_SCRIPTS = new Set(
+	Array.isArray(WORKFLOW_ACTION_MANIFEST.pythonScripts) ? WORKFLOW_ACTION_MANIFEST.pythonScripts : [],
+);
 
-const ALLOWED_WORKFLOW_ACTIONS = new Set([
-	"generate-punchlines",
-	"build-timeline",
-	"validate-timeline",
-	"detect-changed-regions",
-	"export-otio",
-	"import-otio",
-	"export-ffmpeg-command",
-	"export-ffmpeg-preview-command",
-	"export-changed-region-commands",
-	"render-changed-regions",
-	"export-changed-region-remotion-commands",
-	"render-changed-regions-with-remotion-overlays",
-	"export-changed-region-blender-commands",
-	"render-changed-regions-with-blender-elements",
-	"export-changed-region-remotion-and-blender-commands",
-	"render-changed-regions-with-remotion-and-blender",
-	"render-timeline-ffmpeg",
-	"export-ffmpeg-preview-with-remotion-overlays",
-	"render-preview-with-remotion-overlays",
-	"export-ffmpeg-with-remotion-overlays",
-	"render-final-with-remotion-overlays",
-	"export-ffmpeg-preview-with-blender-elements",
-	"render-preview-with-blender-elements",
-	"export-ffmpeg-preview-with-remotion-and-blender",
-	"render-preview-with-remotion-and-blender",
-	"export-ffmpeg-with-blender-elements",
-	"render-final-with-blender-elements",
-	"export-ffmpeg-with-remotion-and-blender",
-	"render-final-with-remotion-and-blender",
-	"export-remotion-command",
-	"render-remotion-layers",
-	"export-hyperframes-command",
-	"render-hyperframes-layers",
-	"export-blender-command",
-	"render-blender-elements",
-	"generate-proxies",
-	"generate-full-overlays",
-	"generate-glossary-overlays",
-	"generate-music-bed",
-	"generate-thumbnail",
-	"generate-thumbnail-candidates",
-	"replace-audio",
-	"review-subtitles",
-	"apply-subtitle-corrections",
-	"classify-subtitle-speakers",
-	"compare-transcripts",
-	"analyze-blocking",
-	"auto-sync-dropped",
-	"transcribe-dropped",
-	"render-selected",
-	"analyze-person-edit-metadata",
-	"analyze-reference-video",
-	"shorten-input",
-	"extract-still",
-	"verify-duration",
-	"verify-audio",
-]);
+const ALLOWED_WORKFLOW_ACTIONS = new Set(
+	Array.isArray(WORKFLOW_ACTION_MANIFEST.workflowActions) ? WORKFLOW_ACTION_MANIFEST.workflowActions : [],
+);
 
 function executableName(value: string) {
 	return path.basename(value).toLowerCase();
@@ -3015,7 +2944,7 @@ ipcMain.handle("workflow:run-action", async (event, { action, appConfig, timeout
 			? enrichMediaManifestWithPersonAnalysis(appConfig || null)
 			: resolvedAction === "generate-proxies" && result.exitCode === 0
 				? mediaManifestFromConfigPath(appConfig || null)
-			: null;
+				: null;
 	return updatedManifest ? { ...result, manifest: updatedManifest } : result;
 });
 

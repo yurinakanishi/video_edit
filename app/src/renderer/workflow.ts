@@ -819,7 +819,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			} else {
 				ok.push(t("validation.output", { path: shortPath(outputPath) }));
 			}
-			if (script === "render_app_interview.py") {
+			if (script === "render_multicam.py" || script === "render_app_interview.py") {
 				if (!masterVideo) {
 					errors.push(t("validation.masterRequiredForInterview"));
 				}
@@ -1101,7 +1101,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"- Use scripts\\timeline_validate.py before rendering; invalid timelines must be fixed before adapters run.",
 			"- Use scripts\\ffmpeg_timeline_adapter.py to export audited FFmpeg commands, including preview/proxy commands, from a validated timeline.",
 			"- Use scripts\\timeline_graphics_adapter.py to export audited Remotion, HyperFrames, or Blender layer/job commands from a validated timeline.",
-			"- Use scripts\\render_app_interview.py only as a legacy FFmpeg-backed fallback when a timeline adapter path cannot cover the requested workflow.",
+			"- Use scripts\\render_multicam.py only as a legacy FFmpeg-backed fallback when a timeline adapter path cannot cover the requested workflow.",
+			"- Before project-specific editing, read the active project's VIDEO_EDITING_INSTRUCTIONS.md and inspect projects\\<project-id>\\scripts for project-local automation.",
+			"- Do not change shared app scripts to satisfy a one-off project requirement; put project-specific code under the active project's scripts directory.",
 			"- Use scripts\\analyze_person_edit_metadata.py before edit planning when person position/crop decisions matter.",
 			"- If a reference video is selected, analyze it first and use output\\reports\\reference_edit_profile.json as the style/layout target.",
 			"- Treat the material directory as cameras/audio/images/logo/subtitles only; reference video is selected separately.",
@@ -1140,8 +1142,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			`- Subtitle suspicious patterns: ${formValue("subtitleSuspiciousPatterns") || "(none)"}`,
 			`- Subtitle QA audio clips: extract ${formValue("subtitleReviewExtractClips")}, re-transcribe ${formValue("subtitleReviewTranscribeClips")}`,
 			`- Subtitle corrections: ${formValue("subtitleCorrectionsText") || "(none)"}`,
-			`- Subtitle interviewer ranges: ${formValue("subtitleInterviewerRanges") || "(none)"}`,
-			`- Subtitle interviewer patterns: ${formValue("subtitleInterviewerPatterns") || "(none)"}`,
+			`- Subtitle offscreen-speaker ranges: ${formValue("subtitleInterviewerRanges") || "(none)"}`,
+			`- Subtitle offscreen-speaker patterns: ${formValue("subtitleInterviewerPatterns") || "(none)"}`,
 			`- Subtitle manual speaker roles: ${formValue("subtitleManualRoles") || "(none)"}`,
 			`- Subtitle mouth-motion diagnostic: ${formValue("subtitleMouthMotionDiagnostics")}`,
 			`- Transcript comparison report: ${transcriptComparisonOutputPath() || "(project output not set)"}`,
@@ -1206,7 +1208,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"- Keep generated reports, transcripts, and media files in their existing output folders; keep project_state.json focused on options and selected project state.",
 			"- If external audio is selected, sync it or clearly report if existing offset data cannot be reused.",
 			"- If no external audio is selected, use the selected camera audio source.",
-			"- Prefer the media manifest for source roles. Support variable interview/multicam camera roles: master, camera2, camera3, camera4+.",
+			"- Prefer the media manifest for source roles. Support variable dialogue/multicam camera roles: master, camera2, camera3, camera4+.",
 			"- For person-aware crop/cut planning, analyze source videos first, then use output\\reports\\person_edit_plans as metadata for camera/crop decisions.",
 			"- When multicam mode is dynamic-cuts, build short current-project camera segments and punch-in reframes; do not use historical fixed camera timings.",
 			"- Respect each camera source's synced coverage; do not use alternate-camera clips outside their valid timeline range.",

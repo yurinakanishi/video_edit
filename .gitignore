@@ -32,6 +32,10 @@
 !/projects/*/
 /projects/*/*
 !/projects/*/*.md
+!/projects/*/scripts/
+!/projects/*/scripts/**
+!/projects/*/config/
+!/projects/*/config/**
 
 # FFmpeg segment and diagnostic outputs
 segments_*/

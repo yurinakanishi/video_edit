@@ -45,7 +45,7 @@ export function ProjectPanel({ hidden = false }: PanelProps) {
 					{t("project.name")}
 					<input
 						id="projectName"
-						placeholder="例: interview-client-a"
+						placeholder="例: client-a-edit"
 						value={projectDraft.name}
 						onChange={(event) => {
 							const name = event.currentTarget.value;

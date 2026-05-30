@@ -158,7 +158,7 @@ export function Dialogs() {
 							<input
 								id="projectDialogName"
 								ref={projectDialogNameRef}
-								placeholder="e.g. interview-client-a"
+								placeholder="e.g. client-a-edit"
 								value={projectDialogName}
 								onChange={(event) => setProjectDialogName(event.currentTarget.value)}
 								onKeyDown={(event) => {

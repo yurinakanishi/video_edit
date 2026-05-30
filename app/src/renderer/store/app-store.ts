@@ -309,9 +309,9 @@ const projectDraftFromProject = (project: ProjectInfo | null): ProjectDraft => (
 });
 
 const defaultWorkflowSettings = (): WorkflowSettings => ({
-	editPreset: "new-interview",
+	editPreset: "multicam-edit",
 	workflowAction: "render-selected",
-	renderScript: "render_app_interview.py",
+	renderScript: "render_multicam.py",
 	previewDuration: "60",
 });
 

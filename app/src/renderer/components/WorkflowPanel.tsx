@@ -91,7 +91,8 @@ export function WorkflowPanel({ hidden = false }: PanelProps) {
 									dispatchWorkflowSettingsChange();
 								}}
 							>
-								<option value="render_app_interview.py">Interview edit from selected media</option>
+								<option value="render_multicam.py">Multicam render from selected media</option>
+								<option value="render_app_interview.py">Legacy renderer alias</option>
 							</select>
 						</label>
 						<label>
@@ -382,11 +383,11 @@ export function WorkflowPanel({ hidden = false }: PanelProps) {
 							></textarea>
 						</label>
 						<label>
-							Interviewer ranges
+							Offscreen speaker ranges
 							<textarea
 								id="subtitleInterviewerRanges"
 								spellCheck="false"
-								placeholder="00:12-00:18 | interviewer question"
+								placeholder="00:12-00:18 | offscreen question"
 								value={subtitleSpeakerSettings.subtitleInterviewerRanges}
 								onChange={(event) =>
 									updateSubtitleSpeakerSettings({ subtitleInterviewerRanges: event.currentTarget.value })
@@ -394,11 +395,11 @@ export function WorkflowPanel({ hidden = false }: PanelProps) {
 							></textarea>
 						</label>
 						<label>
-							Interviewer patterns
+							Offscreen speaker patterns
 							<textarea
 								id="subtitleInterviewerPatterns"
 								spellCheck="false"
-								placeholder="interviewer|聞き手|質問"
+								placeholder="offscreen|host|question"
 								value={subtitleSpeakerSettings.subtitleInterviewerPatterns}
 								onChange={(event) =>
 									updateSubtitleSpeakerSettings({ subtitleInterviewerPatterns: event.currentTarget.value })

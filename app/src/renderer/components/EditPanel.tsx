@@ -84,11 +84,11 @@ export function EditPanel({ hidden = false }: PanelProps) {
 						value={workflowSettings.editPreset}
 						onChange={(event) => {
 							const editPreset = event.currentTarget.value;
+							const bundledMulticamPreset = editPreset === "multicam-edit" || editPreset === "new-interview";
 							setWorkflowSettings({
 								editPreset,
-								renderScript:
-									editPreset === "new-interview" ? "render_app_interview.py" : workflowSettings.renderScript,
-								previewDuration: editPreset === "new-interview" ? "60" : workflowSettings.previewDuration,
+								renderScript: bundledMulticamPreset ? "render_multicam.py" : workflowSettings.renderScript,
+								previewDuration: bundledMulticamPreset ? "60" : workflowSettings.previewDuration,
 							});
 							dispatchEditSettingsChange();
 						}}
@@ -255,7 +255,7 @@ export function EditPanel({ hidden = false }: PanelProps) {
 						<textarea
 							id="musicPrompt"
 							spellCheck="false"
-							placeholder="quiet, clean, documentary-like bed for a reflective interview"
+							placeholder="quiet, clean, documentary-like bed for an edited video"
 							value={musicSettings.musicPrompt}
 							onChange={(event) => updateMusicSettings({ musicPrompt: event.currentTarget.value })}
 						></textarea>

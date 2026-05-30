@@ -4,12 +4,13 @@
 	"private": true,
 	"description": "Root scripts for the video_edit Electron app.",
 	"scripts": {
+		"arch:check": "python ./scripts/check_architecture.py",
 		"build": "pnpm --dir app run build",
 		"start": "pnpm --dir app run start",
 		"typecheck": "pnpm --dir app run typecheck",
 		"lint": "pnpm --dir app run lint",
 		"format": "pnpm --dir app run format",
-		"check": "pnpm --dir app run check",
+		"check": "pnpm run arch:check && pnpm --dir app run check",
 		"dist": "pnpm --dir app run dist",
 		"dist:portable": "pnpm --dir app run dist:portable",
 		"dist:installer": "pnpm --dir app run dist:installer"

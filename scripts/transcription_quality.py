@@ -108,7 +108,7 @@ def initial_prompt(config: dict[str, Any], *, extra: str = "") -> str:
     user_prompt = str(nested(config, "analysis", "transcribeInitialPrompt", default="") or "").strip()
     terms = prompt_terms(config)
     parts = [
-        "これは日本語のインタビュー音声です。音声に忠実に文字起こししてください。",
+        "これは日本語の動画音声です。音声に忠実に文字起こししてください。",
         "聞き取れない部分は推測で補完しないでください。",
     ]
     if terms:

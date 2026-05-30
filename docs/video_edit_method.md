@@ -33,9 +33,29 @@ python .\scripts\video_edit_run.py --action classify-subtitle-speakers-audio
 python .\scripts\video_edit_run.py --action compare-transcripts
 python .\scripts\video_edit_run.py --action build-timeline
 python .\scripts\video_edit_run.py --action validate-timeline
+python .\scripts\video_edit_run.py --action detect-changed-regions
+python .\scripts\video_edit_run.py --action export-otio
+python .\scripts\video_edit_run.py --action import-otio
+python .\scripts\video_edit_run.py --action export-changed-region-commands
+python .\scripts\video_edit_run.py --action export-changed-region-remotion-and-blender-commands
+python .\scripts\video_edit_run.py --action render-changed-regions-with-remotion-and-blender
 python .\scripts\video_edit_run.py --action export-ffmpeg-command
 python .\scripts\video_edit_run.py --action export-ffmpeg-preview-command
 python .\scripts\video_edit_run.py --action render-timeline-ffmpeg
+python .\scripts\video_edit_run.py --action export-remotion-command
+python .\scripts\video_edit_run.py --action render-remotion-layers
+python .\scripts\video_edit_run.py --action export-ffmpeg-preview-with-remotion-overlays
+python .\scripts\video_edit_run.py --action render-preview-with-remotion-overlays
+python .\scripts\video_edit_run.py --action export-ffmpeg-with-remotion-overlays
+python .\scripts\video_edit_run.py --action render-final-with-remotion-overlays
+python .\scripts\video_edit_run.py --action export-hyperframes-command
+python .\scripts\video_edit_run.py --action render-hyperframes-layers
+python .\scripts\video_edit_run.py --action export-blender-command
+python .\scripts\video_edit_run.py --action render-blender-elements
+python .\scripts\video_edit_run.py --action export-ffmpeg-preview-with-remotion-and-blender
+python .\scripts\video_edit_run.py --action render-preview-with-remotion-and-blender
+python .\scripts\video_edit_run.py --action export-ffmpeg-with-remotion-and-blender
+python .\scripts\video_edit_run.py --action render-final-with-remotion-and-blender
 python .\scripts\video_edit_run.py --action render-selected
 ```
 
@@ -44,15 +64,22 @@ python .\scripts\video_edit_run.py --action render-selected
 The AI/operator editing contract is moving from renderer commands to a normalized JSON timeline:
 
 - AI-editable decisions should be expressed as timeline JSON or as project-state settings that deterministically build timeline JSON.
-- `scripts/build_edit_timeline.py` converts the current project config, media manifest, sync offsets, transcript selection, camera plan reports, color reports, and selected style inputs into `output/timelines/current.timeline.json`.
-- `scripts/timeline_validate.py` validates strict schema conformance, source existence, media in/out bounds, non-overlapping tracks, preview range bounds, timeline duration bounds, and numeric bounded sync offsets before any renderer adapter runs.
-- Renderer adapters consume the validated timeline and generate technical commands. `scripts/ffmpeg_timeline_adapter.py` currently exports FFmpeg argv/filter-graph audit artifacts for the core timeline tracks, supports optional execution with render logs, and has full-target plus preview/proxy export modes; `scripts/render_app_interview.py` remains the production FFmpeg-backed renderer until adapter parity is complete. Future Remotion/HyperFrames/Blender adapters should consume the same timeline rather than asking the AI to write renderer-specific commands.
+- `scripts/build_edit_timeline.py` converts the current project config, media manifest, sync offsets, transcript selection, camera plan reports, face-center crop reports, color reports, and selected style inputs into `output/timelines/current.timeline.json`.
+- `scripts/timeline_validate.py` validates strict schema conformance, source existence, media in/out bounds, non-overlapping tracks, transition references/ranges, preview range bounds, timeline duration bounds, and numeric bounded sync offsets before any renderer adapter runs.
+- `scripts/timeline_changed_regions.py` compares the validated timeline with a previous/baseline timeline, writes `output/reports/timeline_changed_regions.json`, and can generate or execute per-region FFmpeg commands, optionally with Remotion and Blender overlay rendering first.
+- `scripts/timeline_otio_adapter.py` exports the validated timeline as OpenTimelineIO-style JSON and imports embedded video-edit timelines for interoperability.
+- Renderer adapters consume the validated timeline and generate technical commands. `scripts/ffmpeg_timeline_adapter.py` exports FFmpeg argv/filter-graph audit artifacts for the core timeline tracks, supports optional execution with render logs, has full-target plus preview/proxy export modes, and can composite validated Remotion or Blender PNG-sequence overlay artifacts. `scripts/timeline_graphics_adapter.py` exports Remotion/HyperFrames layer manifests and Blender job manifests plus audited renderer argv reports; matching workflow actions execute those adapters when dependencies are present. The combined workflow actions run Remotion/Blender first, then FFmpeg, using range-specific overlay artifacts for preview renders. `remotion/index.tsx` is the current Remotion overlay composition scaffold. `scripts/render_app_interview.py` remains the production FFmpeg-backed renderer until adapter parity is complete.
 - Audit artifacts should remain traceable: analysis reports, timeline JSON, validation report, renderer commands/filter graphs, and render logs.
 
 Current FFmpeg adapter scope:
 
-- Implemented: `video.main` clip trimming/concat, `audio.main` trimming/concat plus denoise/mastering, image overlays on `overlay.graphics`, FFmpeg-filter subtitle rendering for ASS/SRT/VTT subtitle clips, clip-level color filter chains embedded by the timeline builder, music-bed mixing when the timeline references an existing audio source, partial timeline-range export, low-resolution proxy export, optional execution, and render-log capture.
-- Explicitly reported as unsupported: rich PNG subtitle overlay precomposition parity, Remotion/HyperFrames layers, Blender-generated elements, person-aware crop parity, and natural-cut parity currently embedded in `render_app_interview.py`.
+- Implemented: `video.main` clip trimming/concat, `audio.main` trimming/concat plus denoise/mastering, image overlays on `overlay.graphics`, rich PNG subtitle overlay via generated or reused precomposed transparent video when the timeline references a PNG manifest, FFmpeg-filter subtitle fallback for ASS/SRT/VTT subtitle clips, optional Remotion/Blender PNG-sequence overlay composition, clip-level scale/crop-center and color filter chains embedded by the timeline builder, music-bed mixing when the timeline references an existing audio source, partial timeline-range export, low-resolution proxy export, changed-region command generation/execution, optional execution, and render-log capture.
+- Explicitly reported as unsupported in the FFmpeg adapter: full person-edit-plan crop parity and natural-cut parity currently embedded in `render_app_interview.py`. HyperFrames/Blender export is handled separately by `scripts/timeline_graphics_adapter.py`.
+
+Current graphics adapter scope:
+
+- Implemented: Remotion and HyperFrames JSON layer manifests for video/audio references, subtitles, image overlays, generated overlay clips, partial timeline ranges, and audited external renderer argv reports. Remotion also has a bundled overlay composition scaffold in `remotion/index.tsx`; the adapter copies subtitle/logo PNGs into ignored `public/adapter-assets`, renders transparent PNG-sequence overlay artifacts, and writes overlay handoff metadata for FFmpeg composition. Blender job manifests are generated for clips explicitly marked with `metadata.renderer = "blender"`, `style.renderer = "blender"`, `style.engine = "blender"`, or Blender-specific effect types; the adapter also writes a Blender Python script for transparent PNG-sequence 3D text layers and handoff metadata for FFmpeg composition.
+- Explicitly reported as not ready: full source media playback inside Remotion, single-file alpha video overlay export, a bundled HyperFrames renderer project/executable, and automatic Blender selection for normal 2D overlays.
 
 Partial preview command example:
 
@@ -97,7 +124,7 @@ If the whole edit should be slightly whiter/cooler, apply it as a shared final c
 
 Global camera push-in is controlled by `render.globalVideoZoom`. The current preferred full-analysis style is a 20% push-in on all camera video segments, applied in the FFmpeg visual filter graph before subtitles, title, and logo overlays.
 
-Face-centered framing is required for multicam tests and final renders when push-in is enabled, but the default is horizontal-only centering. Before rendering, sample the actual timeline ranges for each selected camera, detect the visible face/person position with OpenCV or the app person-analysis metadata, and write a framing report under `output/reports`. The renderer should use the detected face center for the crop x-position, keep the original vertical center crop unless `render.faceCenterCropAxis` is explicitly `xy`, and keep the zoom amount at `render.globalVideoZoom` instead of increasing zoom to force exact centering.
+Face-centered framing is required for multicam tests and final renders when push-in is enabled, but the default is horizontal-only centering. Before rendering, sample the actual timeline ranges for each selected camera, detect the visible face/person position with OpenCV or the app person-analysis metadata, and write a framing report under `output/reports`. The timeline builder embeds the detected crop center into each `scaleCrop` effect when `render.faceCenterCrop` is enabled; the FFmpeg adapter consumes that renderer-agnostic crop intent as crop-center expressions. Keep the original vertical center crop unless `render.faceCenterCropAxis` is explicitly `xy`, and keep the zoom amount at `render.globalVideoZoom` instead of increasing zoom to force exact centering.
 
 For the long wide master camera, do not force the person to exact center. The current preferred framing leaves the person slightly to the right, while close-up sub cameras remain centered. Configure this with `render.faceCenterSubjectXByRole.master = 0.54`; the renderer shifts the crop window left so the detected master subject lands around 54% of the screen width. Keep sub-camera roles at the default `0.50` unless a specific shot needs a separate composition.
 

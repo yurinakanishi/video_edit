@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from project_paths import OUTPUT, OUTPUT_AUDIO, OUTPUT_REPORTS, OUTPUT_VIDEOS, ROOT as WORK, SOURCE
+from project_paths import OUTPUT, OUTPUT_AUDIO, OUTPUT_OVERLAYS, OUTPUT_REPORTS, OUTPUT_VIDEOS, ROOT as WORK, SOURCE
 from timeline_validate import DEFAULT_REPORT, DEFAULT_SCHEMA, SCHEMA_VERSION, validate_timeline, write_report
 from video_edit_app_config import load_app_config, media_manifest, nested, selected_subtitle_path
 
@@ -20,6 +20,7 @@ DEFAULT_MANUAL_CAMERA_PLAN = OUTPUT_REPORTS / "manual_camera_plan.json"
 DEFAULT_COLOR_MATCH = OUTPUT_REPORTS / "camera_color_match.json"
 DEFAULT_PERSON_CROP = OUTPUT_REPORTS / "person_crop_usage.json"
 DEFAULT_FACE_CROP = OUTPUT_REPORTS / "face_center_crop_usage.json"
+DEFAULT_FACE_CENTER_PLAN = OUTPUT_REPORTS / "face_center_crop_plan.json"
 DEFAULT_SOURCE_COVERAGE = OUTPUT_REPORTS / "source_coverage_usage.json"
 DEFAULT_EXTERNAL_SYNC = OUTPUT_REPORTS / "external_audio_cut_sync_report.json"
 DEFAULT_TRANSCRIPT_MANIFEST = OUTPUT / "transcripts" / "manifest_sources" / "manifest_transcripts.json"
@@ -56,6 +57,10 @@ def as_int(value: Any, default: int = 0) -> int:
         return int(float(value))
     except (TypeError, ValueError):
         return default
+
+
+def clamp(value: float, low: float, high: float) -> float:
+    return max(low, min(high, value))
 
 
 def bool_value(config: dict[str, Any], *keys: str, default: bool = False) -> bool:
@@ -186,6 +191,24 @@ def add_configured_source(
     return source_id
 
 
+def find_or_add_source(sources: list[dict[str, Any]], *, kind: str, role: str, path: Path) -> str | None:
+    if not path.exists():
+        return None
+    path_key = str(path.resolve()).casefold()
+    for source in sources:
+        source_path = Path(str(source.get("path") or ""))
+        try:
+            source_key = str(source_path.resolve()).casefold()
+        except OSError:
+            source_key = str(source_path).casefold()
+        if source_key == path_key:
+            return str(source.get("id") or "")
+    used = {str(source.get("id") or "") for source in sources}
+    source_id = safe_id("src", role or path.stem, used)
+    sources.append({"id": source_id, "kind": kind, "role": role, "path": str(path)})
+    return source_id
+
+
 def collect_sources(config: dict[str, Any], sync_offsets: dict[str, float]) -> tuple[list[dict[str, Any]], dict[str, str]]:
     sources: list[dict[str, Any]] = []
     by_role: dict[str, str] = {}
@@ -251,6 +274,18 @@ def render_start_duration(config: dict[str, Any], sources: list[dict[str, Any]],
     if master_duration > 0 and start < master_duration:
         requested = min(requested, max(0.1, master_duration - start))
     return start, requested
+
+
+def render_preview_range(config: dict[str, Any], timeline_duration: float) -> tuple[float, float]:
+    requested = max(0.1, as_float(nested(config, "render", "previewDuration", default=60.0), 60.0))
+    if timeline_duration <= requested + 0.001:
+        return 0.0, round(timeline_duration, 6)
+    if text_value(config, "render", "rangeMode", default="range") == "full":
+        start = max(0.0, as_float(nested(config, "render", "previewStart", default=0.0), 0.0))
+        start = min(start, max(0.0, timeline_duration - requested))
+    else:
+        start = 0.0
+    return round(start, 6), round(min(timeline_duration, start + requested), 6)
 
 
 def load_plan_rows(config: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
@@ -399,9 +434,64 @@ def load_color_filter_map(path: Path) -> tuple[dict[str, str], dict[str, str], s
     return role_filters, manual_filters, output_look
 
 
+def load_face_center_segments(config: dict[str, Any]) -> tuple[list[dict[str, Any]], Path, str]:
+    enabled = bool_value(config, "render", "faceCenterCrop", default=False)
+    configured_path = text_value(config, "render", "faceCenterCropPlanPath", default="")
+    plan_path = resolve_path(configured_path) if configured_path else DEFAULT_FACE_CENTER_PLAN
+    if not enabled:
+        return [], plan_path, "disabled"
+    payload = load_json(plan_path)
+    segments = payload.get("segments") if isinstance(payload.get("segments"), list) else []
+    return [segment for segment in segments if isinstance(segment, dict)], plan_path, "loaded" if segments else "missing-or-empty"
+
+
+def face_center_subject_screen_x(config: dict[str, Any], role: str) -> float:
+    by_role = nested(config, "render", "faceCenterSubjectXByRole", default={})
+    if isinstance(by_role, dict) and by_role.get(role) not in {None, ""}:
+        return clamp(as_float(by_role.get(role), 0.5), 0.35, 0.65)
+    return clamp(as_float(nested(config, "render", "faceCenterSubjectX", default=0.5), 0.5), 0.35, 0.65)
+
+
+def adjusted_face_center_crop_x(center_x: float, zoom: float, subject_screen_x: float) -> float:
+    if zoom <= 1.0001:
+        return clamp(center_x, 0.0, 1.0)
+    return clamp(center_x - ((subject_screen_x - 0.5) / zoom), 0.0, 1.0)
+
+
+def face_center_segment_for_clip(
+    segments: list[dict[str, Any]],
+    role: str,
+    start: float,
+    end: float,
+) -> dict[str, Any] | None:
+    midpoint = (start + end) / 2
+    best: dict[str, Any] | None = None
+    best_overlap = 0.0
+    for segment in segments:
+        if str(segment.get("role") or "") != role:
+            continue
+        try:
+            segment_start = float(segment.get("start", 0.0))
+            segment_end = float(segment.get("end", segment_start))
+            center_x = float(segment.get("centerX", segment.get("center_x")))
+            center_y = float(segment.get("centerY", segment.get("center_y")))
+        except (TypeError, ValueError):
+            continue
+        if not (0.0 <= center_x <= 1.0 and 0.0 <= center_y <= 1.0):
+            continue
+        if segment_start <= midpoint < segment_end:
+            return segment
+        overlap = max(0.0, min(end, segment_end) - max(start, segment_start))
+        if overlap > best_overlap:
+            best = segment
+            best_overlap = overlap
+    return best if best_overlap > 0.0 else None
+
+
 def build_video_clips(
     plan: list[dict[str, Any]],
     *,
+    config: dict[str, Any],
     by_role: dict[str, str],
     render_start: float,
     sync_offsets: dict[str, float],
@@ -410,6 +500,9 @@ def build_video_clips(
     color_filters: dict[str, str],
     manual_color_filters: dict[str, str],
     output_look_filter: str,
+    face_center_segments: list[dict[str, Any]],
+    face_center_plan_path: Path,
+    face_center_status: str,
 ) -> list[dict[str, Any]]:
     clips: list[dict[str, Any]] = []
     for index, row in enumerate(plan, start=1):
@@ -419,8 +512,35 @@ def build_video_clips(
         end = round(float(row["end"]), 6)
         source_in, source_out = source_in_out(role, start, end, render_start, sync_offsets)
         effects = []
+        crop_center_x = 0.5
+        crop_center_y = 0.5
+        face_segment = face_center_segment_for_clip(face_center_segments, role, start, end)
+        crop_metadata: dict[str, Any] = {}
+        if face_segment:
+            detected_center_x = as_float(face_segment.get("centerX", face_segment.get("center_x")), 0.5)
+            subject_screen_x = face_center_subject_screen_x(config, role)
+            crop_center_x = adjusted_face_center_crop_x(detected_center_x, global_zoom, subject_screen_x)
+            if text_value(config, "render", "faceCenterCropAxis", default="x").strip().lower() in {"xy", "both", "all"}:
+                crop_center_y = clamp(as_float(face_segment.get("centerY", face_segment.get("center_y")), 0.5), 0.0, 1.0)
+            crop_metadata = {
+                "type": "faceCenterCrop",
+                "planPath": str(face_center_plan_path),
+                "status": face_center_status,
+                "source": face_segment.get("source"),
+                "detections": face_segment.get("detections"),
+                "detectedCenterX": round(detected_center_x, 6),
+                "centerX": round(crop_center_x, 6),
+                "centerY": round(crop_center_y, 6),
+                "subjectScreenX": round(subject_screen_x, 6),
+            }
         if abs(global_zoom - 1.0) > 0.0001:
-            effects.append({"type": "scaleCrop", "params": {"scale": round(global_zoom, 6), "crop": {"centerX": 0.5, "centerY": 0.5}}})
+            params: dict[str, Any] = {
+                "scale": round(global_zoom, 6),
+                "crop": {"centerX": round(crop_center_x, 6), "centerY": round(crop_center_y, 6)},
+            }
+            if crop_metadata:
+                params["source"] = crop_metadata
+            effects.append({"type": "scaleCrop", "params": params})
         if color_report.exists():
             params: dict[str, Any] = {"reportPath": str(color_report), "role": role}
             if color_filters.get(role):
@@ -442,7 +562,11 @@ def build_video_clips(
                 "sourceOut": round(max(0.0, source_out), 6),
                 "fit": {"mode": "cover", "width": 1920, "height": 1080, "scale": round(global_zoom, 6)},
                 "effects": effects,
-                "metadata": {"role": role, "decisionSource": row.get("reason", "camera plan")},
+                "metadata": {
+                    "role": role,
+                    "decisionSource": row.get("reason", "camera plan"),
+                    "crop": crop_metadata,
+                },
             }
         )
     return clips
@@ -459,6 +583,14 @@ def selected_audio_role(config: dict[str, Any], by_role: dict[str, str]) -> str:
     return "master" if "master" in by_role else next(iter(by_role.keys()), "")
 
 
+def subtitle_overlay_manifest_path(mode: str) -> Path | None:
+    if mode == "full":
+        return OUTPUT_OVERLAYS / "full_transcript_png_overlays" / "manifest.json"
+    if mode == "punchline":
+        return OUTPUT_OVERLAYS / "punchline_png_overlays" / "manifest.json"
+    return None
+
+
 def build_extra_clips(
     config: dict[str, Any],
     sources: list[dict[str, Any]],
@@ -467,6 +599,7 @@ def build_extra_clips(
     render_start: float,
     duration: float,
     sync_offsets: dict[str, float],
+    output_path: Path,
 ) -> list[dict[str, Any]]:
     clips: list[dict[str, Any]] = []
     audio_role = selected_audio_role(config, by_role)
@@ -523,6 +656,38 @@ def build_extra_clips(
         )
 
     if "subtitle" in by_role:
+        subtitle_mode = text_value(config, "render", "subtitleMode", default="full")
+        overlay_manifest = subtitle_overlay_manifest_path(subtitle_mode)
+        overlay_manifest_source_id = None
+        precomposed_source_id = None
+        if overlay_manifest and overlay_manifest.exists():
+            overlay_manifest_source_id = find_or_add_source(
+                sources,
+                kind="data",
+                role=f"subtitle-{subtitle_mode}-manifest",
+                path=overlay_manifest,
+            )
+            precomposed = OUTPUT_OVERLAYS / "precomposed" / f"{output_path.stem}_full_subtitles.mov"
+            if subtitle_mode == "full" and precomposed.exists():
+                precomposed_source_id = find_or_add_source(
+                    sources,
+                    kind="video",
+                    role="subtitle-precomposed-overlay",
+                    path=precomposed,
+                )
+        precompose_target = OUTPUT_OVERLAYS / "precomposed" / f"{output_path.stem}_full_subtitles.mov"
+        render_method = "precompose-png-overlay" if overlay_manifest_source_id and subtitle_mode == "full" else "ffmpeg-subtitles-filter"
+        metadata: dict[str, Any] = {"timebase": text_value(config, "render", "subtitleTimebase", default="auto")}
+        if overlay_manifest:
+            metadata["overlayManifestPath"] = str(overlay_manifest)
+        if overlay_manifest_source_id:
+            metadata["overlayManifestSourceId"] = overlay_manifest_source_id
+            metadata["precomposedOverlayTargetPath"] = str(precompose_target)
+            metadata["precomposeBottomMargin"] = 16
+            metadata["precomposeFps"] = text_value(config, "render", "precomposeOverlayFps", default="30000/1001")
+        if precomposed_source_id:
+            metadata["precomposedOverlaySourceId"] = precomposed_source_id
+            metadata["precomposedOverlayPath"] = str(precompose_target)
         clips.append(
             {
                 "id": "clip_subtitles_main",
@@ -536,10 +701,10 @@ def build_extra_clips(
                     "fontSize": as_int(nested(config, "style", "subtitleSize", default=64), 64),
                     "highlightColor": text_value(config, "style", "highlightColor", default="#8b5cf6"),
                     "boxOpacity": as_float(nested(config, "style", "boxOpacity", default=65), 65.0),
-                    "renderMethod": "ffmpeg-subtitles-filter",
+                    "renderMethod": render_method,
                 },
                 "effects": [],
-                "metadata": {"timebase": text_value(config, "render", "subtitleTimebase", default="auto")},
+                "metadata": metadata,
             }
         )
 
@@ -600,8 +765,11 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
     color_report = DEFAULT_COLOR_MATCH
     color_filters, manual_color_filters, output_look_filter = load_color_filter_map(color_report)
     global_zoom = max(1.0, as_float(nested(config, "render", "globalVideoZoom", default=1.0), 1.0))
+    face_center_segments, face_center_plan_path, face_center_status = load_face_center_segments(config)
+    output_path = Path(text_value(config, "render", "outputPath", default=str(OUTPUT_VIDEOS / "app_interview_output.mp4")))
     video_clips = build_video_clips(
         plan,
+        config=config,
         by_role=by_role,
         render_start=render_start,
         sync_offsets=sync_offsets,
@@ -610,11 +778,22 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
         color_filters=color_filters,
         manual_color_filters=manual_color_filters,
         output_look_filter=output_look_filter,
+        face_center_segments=face_center_segments,
+        face_center_plan_path=face_center_plan_path,
+        face_center_status=face_center_status,
     )
-    clips = video_clips + build_extra_clips(config, sources, by_role, render_start=render_start, duration=duration, sync_offsets=sync_offsets)
-    output_path = Path(text_value(config, "render", "outputPath", default=str(OUTPUT_VIDEOS / "app_interview_output.mp4")))
+    clips = video_clips + build_extra_clips(
+        config,
+        sources,
+        by_role,
+        render_start=render_start,
+        duration=duration,
+        sync_offsets=sync_offsets,
+        output_path=output_path,
+    )
     timeline_path = Path(text_value(config, "render", "timelinePath", default=str(DEFAULT_TIMELINE)))
     render_fps = output_fps(config)
+    preview_start, preview_end = render_preview_range(config, duration)
     project = nested(config, "project", default={})
     project_id = str(project.get("id") or config.get("projectId") or os.environ.get("VIDEO_EDIT_PROJECT", ""))
     project_name = str(project.get("name") or project_id)
@@ -630,6 +809,7 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
         report_ref("camera-color-match", DEFAULT_COLOR_MATCH),
         report_ref("person-crop", DEFAULT_PERSON_CROP),
         report_ref("face-center-crop", DEFAULT_FACE_CROP),
+        report_ref("face-center-plan", face_center_plan_path),
     ]
     timeline = {
         "schemaVersion": SCHEMA_VERSION,
@@ -669,9 +849,9 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
                 }
             ],
             "preview": {
-                "enabled": text_value(config, "render", "renderProfile", default="final") == "preview",
-                "rangeStart": 0.0,
-                "rangeEnd": round(duration, 6),
+                "enabled": text_value(config, "render", "renderProfile", default="final") == "preview" or preview_end < round(duration, 6),
+                "rangeStart": preview_start,
+                "rangeEnd": preview_end,
                 "proxy": text_value(config, "render", "renderProfile", default="final") == "preview",
             },
         },

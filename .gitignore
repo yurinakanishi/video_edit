@@ -67,12 +67,17 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
+node_modules/
 
 # Electron app dependencies
 app/node_modules/
 app/dist/
 app/smoke_outputs/
 app/video_edit_app_config.runtime.json
+
+# Generated Remotion adapter assets
+/public/adapter-assets/
+/remotion/public/adapter-assets/
 
 # OS/editor noise
 Thumbs.db

@@ -680,10 +680,49 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		if (action === "build-timeline" || action === "validate-timeline") {
 			return timelineOutputPath() || activeOutputRoot();
 		}
-		if (action === "export-ffmpeg-command" || action === "export-ffmpeg-preview-command") {
+		if (action === "export-otio" || action === "import-otio") {
+			return joinPath(activeOutputRoot() || "output", "timelines");
+		}
+		if (
+			action === "detect-changed-regions" ||
+			action === "export-changed-region-commands" ||
+			action === "export-changed-region-remotion-commands" ||
+			action === "export-changed-region-blender-commands" ||
+			action === "export-changed-region-remotion-and-blender-commands"
+		) {
 			return rendererCommandOutputPath() || activeOutputRoot();
 		}
-		if (action === "render-timeline-ffmpeg") {
+		if (
+			action === "export-ffmpeg-command" ||
+			action === "export-ffmpeg-preview-command" ||
+			action === "export-ffmpeg-preview-with-remotion-overlays" ||
+			action === "export-ffmpeg-with-remotion-overlays" ||
+			action === "export-ffmpeg-preview-with-blender-elements" ||
+			action === "export-ffmpeg-preview-with-remotion-and-blender" ||
+			action === "export-ffmpeg-with-blender-elements" ||
+			action === "export-ffmpeg-with-remotion-and-blender" ||
+			action === "export-remotion-command" ||
+			action === "render-remotion-layers" ||
+			action === "export-hyperframes-command" ||
+			action === "render-hyperframes-layers" ||
+			action === "export-blender-command" ||
+			action === "render-blender-elements"
+		) {
+			return rendererCommandOutputPath() || activeOutputRoot();
+		}
+		if (
+			action === "render-timeline-ffmpeg" ||
+			action === "render-changed-regions" ||
+			action === "render-changed-regions-with-remotion-overlays" ||
+			action === "render-changed-regions-with-blender-elements" ||
+			action === "render-changed-regions-with-remotion-and-blender" ||
+			action === "render-preview-with-remotion-overlays" ||
+			action === "render-final-with-remotion-overlays" ||
+			action === "render-preview-with-blender-elements" ||
+			action === "render-preview-with-remotion-and-blender" ||
+			action === "render-final-with-blender-elements" ||
+			action === "render-final-with-remotion-and-blender"
+		) {
 			return outputPathValue() || activeOutputRoot();
 		}
 		if (action === "generate-proxies") {
@@ -1061,6 +1100,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"- Use scripts\\build_edit_timeline.py to express edit decisions as renderer-agnostic timeline JSON.",
 			"- Use scripts\\timeline_validate.py before rendering; invalid timelines must be fixed before adapters run.",
 			"- Use scripts\\ffmpeg_timeline_adapter.py to export audited FFmpeg commands, including preview/proxy commands, from a validated timeline.",
+			"- Use scripts\\timeline_graphics_adapter.py to export audited Remotion, HyperFrames, or Blender layer/job commands from a validated timeline.",
 			"- Use scripts\\render_app_interview.py only as the current FFmpeg-backed renderer while adapter migration is in progress.",
 			"- Use scripts\\analyze_person_edit_metadata.py before edit planning when person position/crop decisions matter.",
 			"- If a reference video is selected, analyze it first and use output\\reports\\reference_edit_profile.json as the style/layout target.",

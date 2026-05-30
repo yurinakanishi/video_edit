@@ -233,6 +233,13 @@ def validate_timeline(timeline: dict[str, Any], schema: dict[str, Any] | None = 
     clip_ids = [str(item.get("id") or "") for item in clips if isinstance(item, dict)]
     for duplicate in duplicate_values([value for value in clip_ids if value]):
         errors.append(f"clip id is duplicated: {duplicate}")
+    transitions = timeline.get("transitions")
+    if not isinstance(transitions, list):
+        errors.append("transitions must be an array.")
+        transitions = []
+    transition_ids = [str(item.get("id") or "") for item in transitions if isinstance(item, dict)]
+    for duplicate in duplicate_values([value for value in transition_ids if value]):
+        errors.append(f"transition id is duplicated: {duplicate}")
 
     source_by_id: dict[str, dict[str, Any]] = {}
     for index, source in enumerate(sources):
@@ -344,6 +351,31 @@ def validate_timeline(timeline: dict[str, Any], schema: dict[str, Any] | None = 
                     f"{track_id}: {previous.get('id')} and {clip.get('id')}"
                 )
             previous = clip
+
+    clip_by_id = {str(clip.get("id") or ""): clip for clip in clips if isinstance(clip, dict)}
+    for index, transition in enumerate(transitions):
+        if not isinstance(transition, dict):
+            errors.append(f"transitions[{index}] must be an object.")
+            continue
+        transition_id = str(transition.get("id") or f"transitions[{index}]")
+        at = transition.get("at")
+        if not is_finite_number(at):
+            errors.append(f"transition {transition_id} at must be numeric.")
+        else:
+            at_seconds = float(at)
+            if at_seconds < -EPSILON:
+                errors.append(f"transition {transition_id} occurs before timeline zero.")
+            if duration_seconds and at_seconds > duration_seconds + EPSILON:
+                errors.append(f"transition {transition_id} occurs after timeline duration.")
+        transition_duration = transition.get("duration")
+        if transition_duration is not None and not is_finite_number(transition_duration):
+            errors.append(f"transition {transition_id} duration must be numeric.")
+        elif is_finite_number(transition_duration) and float(transition_duration) < -EPSILON:
+            errors.append(f"transition {transition_id} duration must be non-negative.")
+        for key in ("fromClipId", "toClipId"):
+            clip_id = transition.get(key)
+            if clip_id is not None and str(clip_id) not in clip_by_id:
+                errors.append(f"transition {transition_id} references missing {key}: {clip_id}")
 
     target_paths: list[str] = []
     render = timeline.get("render")

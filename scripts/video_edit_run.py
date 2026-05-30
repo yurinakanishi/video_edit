@@ -19,6 +19,8 @@ SIMPLE_PYTHON_ACTIONS = {
     "generate-punchlines": "generate_punchline_png_overlays.py",
     "build-timeline": "build_edit_timeline.py",
     "validate-timeline": "timeline_validate.py",
+    "detect-changed-regions": "timeline_changed_regions.py",
+    "export-otio": "timeline_otio_adapter.py",
     "export-ffmpeg-command": "ffmpeg_timeline_adapter.py",
     "generate-proxies": "generate_proxies.py",
     "generate-full-overlays": "generate_full_transcript_png_overlays.py",
@@ -102,12 +104,17 @@ def manifest_camera_paths() -> list[str]:
     return [str(item["path"]) for item in sorted(cameras, key=role_order)]
 
 
-def run(command: list[str], *, dry_run: bool = False) -> int:
+def run_commands(commands: list[list[str]], *, dry_run: bool = False) -> int:
     if dry_run:
-        print(json.dumps({"command": command}, ensure_ascii=False, indent=2))
+        key = "command" if len(commands) == 1 else "commands"
+        print(json.dumps({key: commands[0] if len(commands) == 1 else commands}, ensure_ascii=False, indent=2))
         return 0
-    completed = subprocess.run(command, cwd=WORK)
-    return int(completed.returncode)
+    for index, command in enumerate(commands, start=1):
+        print(json.dumps({"stage": index, "stageCount": len(commands), "command": command}, ensure_ascii=False), flush=True)
+        completed = subprocess.run(command, cwd=WORK)
+        if completed.returncode:
+            return int(completed.returncode)
+    return 0
 
 
 def add_audio_args(command: list[str]) -> None:
@@ -259,11 +266,122 @@ def command_for_action(action: str) -> list[str]:
         return ffprobe_command(action)
     if action == "export-ffmpeg-preview-command":
         return [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy"]
+    if action == "export-changed-region-commands":
+        return [sys.executable, str(SCRIPTS / "timeline_changed_regions.py"), "--render"]
+    if action == "render-changed-regions":
+        return [sys.executable, str(SCRIPTS / "timeline_changed_regions.py"), "--render", "--execute"]
+    if action == "export-changed-region-remotion-commands":
+        return [sys.executable, str(SCRIPTS / "timeline_changed_regions.py"), "--render", "--with-remotion-overlays"]
+    if action == "render-changed-regions-with-remotion-overlays":
+        return [sys.executable, str(SCRIPTS / "timeline_changed_regions.py"), "--render", "--with-remotion-overlays", "--execute"]
+    if action == "export-changed-region-blender-commands":
+        return [sys.executable, str(SCRIPTS / "timeline_changed_regions.py"), "--render", "--with-blender-overlays"]
+    if action == "render-changed-regions-with-blender-elements":
+        return [sys.executable, str(SCRIPTS / "timeline_changed_regions.py"), "--render", "--with-blender-overlays", "--execute"]
+    if action == "export-changed-region-remotion-and-blender-commands":
+        return [
+            sys.executable,
+            str(SCRIPTS / "timeline_changed_regions.py"),
+            "--render",
+            "--with-remotion-overlays",
+            "--with-blender-overlays",
+        ]
+    if action == "render-changed-regions-with-remotion-and-blender":
+        return [
+            sys.executable,
+            str(SCRIPTS / "timeline_changed_regions.py"),
+            "--render",
+            "--with-remotion-overlays",
+            "--with-blender-overlays",
+            "--execute",
+        ]
     if action == "render-timeline-ffmpeg":
         return [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--execute"]
+    if action == "export-remotion-command":
+        return [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion"]
+    if action == "render-remotion-layers":
+        return [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion", "--execute"]
+    if action == "export-hyperframes-command":
+        return [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "hyperframes"]
+    if action == "render-hyperframes-layers":
+        return [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "hyperframes", "--execute"]
+    if action == "export-blender-command":
+        return [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender"]
+    if action == "render-blender-elements":
+        return [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender", "--execute"]
+    if action == "import-otio":
+        return [sys.executable, str(SCRIPTS / "timeline_otio_adapter.py"), "--mode", "import"]
     if action in SIMPLE_PYTHON_ACTIONS:
         return [sys.executable, str(SCRIPTS / SIMPLE_PYTHON_ACTIONS[action])]
     raise SystemExit(f"Unknown workflow action: {action}")
+
+
+def commands_for_action(action: str) -> list[list[str]]:
+    if action == "export-ffmpeg-preview-with-remotion-overlays":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion", "--preview"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy", "--with-remotion-overlays"],
+        ]
+    if action == "render-preview-with-remotion-overlays":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion", "--preview", "--execute"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy", "--with-remotion-overlays", "--execute"],
+        ]
+    if action == "export-ffmpeg-preview-with-blender-elements":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender", "--preview"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy", "--with-blender-overlays"],
+        ]
+    if action == "render-preview-with-blender-elements":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender", "--preview", "--execute"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy", "--with-blender-overlays", "--execute"],
+        ]
+    if action == "export-ffmpeg-preview-with-remotion-and-blender":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion", "--preview"],
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender", "--preview"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy", "--with-remotion-overlays", "--with-blender-overlays"],
+        ]
+    if action == "render-preview-with-remotion-and-blender":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion", "--preview", "--execute"],
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender", "--preview", "--execute"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy", "--with-remotion-overlays", "--with-blender-overlays", "--execute"],
+        ]
+    if action == "export-ffmpeg-with-remotion-overlays":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--with-remotion-overlays"],
+        ]
+    if action == "render-final-with-remotion-overlays":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion", "--execute"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--with-remotion-overlays", "--execute"],
+        ]
+    if action == "export-ffmpeg-with-blender-elements":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--with-blender-overlays"],
+        ]
+    if action == "render-final-with-blender-elements":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender", "--execute"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--with-blender-overlays", "--execute"],
+        ]
+    if action == "export-ffmpeg-with-remotion-and-blender":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion"],
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--with-remotion-overlays", "--with-blender-overlays"],
+        ]
+    if action == "render-final-with-remotion-and-blender":
+        return [
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "remotion", "--execute"],
+            [sys.executable, str(SCRIPTS / "timeline_graphics_adapter.py"), "--adapter", "blender", "--execute"],
+            [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--with-remotion-overlays", "--with-blender-overlays", "--execute"],
+        ]
+    return [command_for_action(action)]
 
 
 def parse_args() -> argparse.Namespace:
@@ -275,8 +393,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    command = command_for_action(args.action)
-    raise SystemExit(run(command, dry_run=args.dry_run))
+    commands = commands_for_action(args.action)
+    raise SystemExit(run_commands(commands, dry_run=args.dry_run))
 
 
 if __name__ == "__main__":

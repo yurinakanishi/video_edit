@@ -4,11 +4,12 @@ import argparse
 import json
 import re
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from project_paths import OUTPUT_REPORTS
+from project_paths import OUTPUT_REPORTS, SCRIPTS, resolve_project_path
 from timeline_validate import configured_timeline_path, load_timeline, validate_timeline
 from video_edit_app_config import load_app_config, nested, optional_path, video_encoder_crf, video_encoder_preset
 
@@ -18,6 +19,8 @@ FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramD
 FILTERGRAPH_DIR = OUTPUT_REPORTS / "filtergraphs"
 COMMAND_DIR = OUTPUT_REPORTS / "renderer_commands"
 RENDER_LOG_DIR = OUTPUT_REPORTS / "render_logs"
+PRECOMPOSE_REPORT_DIR = OUTPUT_REPORTS / "renderer_artifacts"
+BLENDER_EFFECT_TYPES = {"blenderscene", "3dtext", "threedtext", "extrudetext", "cameramove", "mesh"}
 
 
 def now_iso() -> str:
@@ -65,6 +68,11 @@ def ffmpeg_filter_path(path: Path) -> str:
     return str(path).replace("\\", "/").replace(":", r"\:").replace("'", r"\'")
 
 
+def resolve_existing_path(value: str | Path) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else resolve_project_path(path)
+
+
 def safe_filter_chain(value: Any) -> str:
     text = str(value or "").strip()
     if not text or any(char in text for char in "\r\n;[]"):
@@ -80,12 +88,36 @@ def source_by_id(timeline: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {str(source.get("id")): source for source in timeline.get("sources", []) if isinstance(source, dict)}
 
 
+def next_source_id(sources: dict[str, dict[str, Any]], prefix: str) -> str:
+    base = safe_stem(prefix).lower().replace(".", "_") or "generated_source"
+    candidate = base
+    index = 2
+    while candidate in sources:
+        candidate = f"{base}_{index}"
+        index += 1
+    return candidate
+
+
 def clips_for_track(timeline: dict[str, Any], track_id: str) -> list[dict[str, Any]]:
     return [
         clip
         for clip in timeline.get("clips", [])
         if isinstance(clip, dict) and str(clip.get("trackId") or "") == track_id
     ]
+
+
+def wants_blender(clip: dict[str, Any]) -> bool:
+    metadata = clip.get("metadata") if isinstance(clip.get("metadata"), dict) else {}
+    style = clip.get("style") if isinstance(clip.get("style"), dict) else {}
+    renderer = str(metadata.get("renderer") or style.get("renderer") or style.get("engine") or "").lower()
+    if renderer == "blender":
+        return True
+    for effect in clip.get("effects", []):
+        if not isinstance(effect, dict):
+            continue
+        if str(effect.get("type") or "").replace("-", "").lower() in BLENDER_EFFECT_TYPES:
+            return True
+    return False
 
 
 def first_target(timeline: dict[str, Any]) -> dict[str, Any]:
@@ -116,8 +148,15 @@ def encoder_args(config: dict[str, Any], target: dict[str, Any]) -> list[str]:
     return ["-c:v", "libx264", "-preset", preset, "-crf", str(crf), "-pix_fmt", "yuv420p"]
 
 
-def timeline_sources_needed(timeline: dict[str, Any]) -> tuple[list[str], list[dict[str, Any]]]:
-    supported_track_ids = {"video.main", "audio.main", "overlay.graphics", "music.bed"}
+def timeline_sources_needed(
+    timeline: dict[str, Any],
+    *,
+    include_visual_overlays: bool = True,
+    include_blender_overlays: bool = False,
+) -> tuple[list[str], list[dict[str, Any]]]:
+    supported_track_ids = {"video.main", "audio.main", "music.bed"}
+    if include_visual_overlays:
+        supported_track_ids.add("overlay.graphics")
     supported_source_ids: list[str] = []
     unsupported: list[dict[str, Any]] = []
     for clip in timeline.get("clips", []):
@@ -126,7 +165,17 @@ def timeline_sources_needed(timeline: dict[str, Any]) -> tuple[list[str], list[d
         track_id = str(clip.get("trackId") or "")
         clip_kind = str(clip.get("kind") or "")
         source_id = clip.get("sourceId")
+        if include_blender_overlays and wants_blender(clip):
+            continue
+        if not include_visual_overlays and track_id == "overlay.graphics":
+            continue
         if clip_kind == "subtitle":
+            if not include_visual_overlays:
+                continue
+            metadata = clip.get("metadata") if isinstance(clip.get("metadata"), dict) else {}
+            precomposed_id = metadata.get("precomposedOverlaySourceId")
+            if isinstance(precomposed_id, str) and precomposed_id not in supported_source_ids:
+                supported_source_ids.append(precomposed_id)
             continue
         if track_id not in supported_track_ids or clip_kind == "generated":
             unsupported.append({"id": clip.get("id"), "trackId": track_id, "kind": clip_kind, "reason": "not implemented in FFmpeg timeline adapter"})
@@ -168,6 +217,21 @@ def clip_scale(clip: dict[str, Any]) -> float:
     return max(1.0, scale)
 
 
+def clip_crop_center(clip: dict[str, Any]) -> tuple[float, float]:
+    fit = clip.get("fit") if isinstance(clip.get("fit"), dict) else {}
+    crop = fit.get("crop") if isinstance(fit.get("crop"), dict) else {}
+    center_x = as_float(crop.get("centerX"), 0.5)
+    center_y = as_float(crop.get("centerY"), 0.5)
+    for effect in clip.get("effects", []):
+        if not isinstance(effect, dict) or effect.get("type") != "scaleCrop":
+            continue
+        params = effect.get("params") if isinstance(effect.get("params"), dict) else {}
+        effect_crop = params.get("crop") if isinstance(params.get("crop"), dict) else {}
+        center_x = as_float(effect_crop.get("centerX"), center_x)
+        center_y = as_float(effect_crop.get("centerY"), center_y)
+    return max(0.0, min(1.0, center_x)), max(0.0, min(1.0, center_y))
+
+
 def color_effect_filters(clip: dict[str, Any]) -> list[str]:
     filters: list[str] = []
     for effect in clip.get("effects", []):
@@ -185,13 +249,16 @@ def video_filter_for_clip(clip: dict[str, Any], input_index: int, label: str, ta
     width = as_int(target.get("width"), 1920)
     height = as_int(target.get("height"), 1080)
     scale = clip_scale(clip)
+    center_x, center_y = clip_crop_center(clip)
     scaled_width = max(2, int(round(width * scale / 2) * 2))
     scaled_height = max(2, int(round(height * scale / 2) * 2))
+    crop_x = f"min(max(iw*{center_x:.6f}-{width / 2:.1f}\\,0)\\,iw-{width})"
+    crop_y = f"min(max(ih*{center_y:.6f}-{height / 2:.1f}\\,0)\\,ih-{height})"
     visual_filters = [
         f"trim=start={ffmpeg_time(clip.get('sourceIn'))}:end={ffmpeg_time(clip.get('sourceOut'))}",
         "setpts=PTS-STARTPTS",
         f"scale={scaled_width}:{scaled_height}:force_original_aspect_ratio=increase",
-        f"crop={width}:{height}",
+        f"crop={width}:{height}:x='{crop_x}':y='{crop_y}'",
         *color_effect_filters(clip),
         "setsar=1",
     ]
@@ -287,6 +354,7 @@ def subtitle_force_style(clip: dict[str, Any]) -> str:
 def build_subtitle_filters(
     subtitle_clips: list[dict[str, Any]],
     sources: dict[str, dict[str, Any]],
+    input_index_by_source: dict[str, int],
     current_label: str,
 ) -> tuple[list[str], str, list[dict[str, Any]]]:
     filters: list[str] = []
@@ -295,6 +363,18 @@ def build_subtitle_filters(
     for index, clip in enumerate(sorted(subtitle_clips, key=lambda item: as_float(item.get("timelineStart"))), start=1):
         style = clip.get("style") if isinstance(clip.get("style"), dict) else {}
         if str(style.get("mode") or "full") == "none":
+            continue
+        metadata = clip.get("metadata") if isinstance(clip.get("metadata"), dict) else {}
+        precomposed_id = metadata.get("precomposedOverlaySourceId")
+        if isinstance(precomposed_id, str) and precomposed_id in input_index_by_source:
+            input_index = input_index_by_source[precomposed_id]
+            overlay_label = f"subtitle_precomp{index}"
+            next_label = f"vsubtitle{index}"
+            start = as_float(clip.get("timelineStart"))
+            end = as_float(clip.get("timelineEnd"))
+            filters.append(f"[{input_index}:v]format=rgba,setpts=PTS-STARTPTS[{overlay_label}]")
+            filters.append(f"[{current}][{overlay_label}]overlay=0:0:enable='between(t,{start:.3f},{end:.3f})'[{next_label}]")
+            current = next_label
             continue
         source_id = str(clip.get("sourceId") or "")
         source = sources.get(source_id)
@@ -315,6 +395,94 @@ def build_subtitle_filters(
             continue
         current = next_label
     return filters, current, unsupported
+
+
+def timeline_report_ref(path: Path) -> dict[str, Any]:
+    return {"path": str(path), "exists": path.exists()}
+
+
+def prepare_subtitle_precompositions(
+    timeline: dict[str, Any],
+    sources: dict[str, dict[str, Any]],
+    fps: str,
+) -> list[dict[str, Any]]:
+    generated: list[dict[str, Any]] = []
+    duration = as_float(timeline.get("duration"), 0.0)
+    for clip in clips_for_track(timeline, "subtitle.main"):
+        style = clip.get("style") if isinstance(clip.get("style"), dict) else {}
+        metadata = clip.get("metadata") if isinstance(clip.get("metadata"), dict) else {}
+        if str(style.get("renderMethod") or "") not in {"precompose-png-overlay", "precomposed-png-overlay"}:
+            continue
+        manifest_source_id = metadata.get("overlayManifestSourceId")
+        manifest_path = Path(str(metadata.get("overlayManifestPath") or ""))
+        if isinstance(manifest_source_id, str) and manifest_source_id in sources:
+            manifest_path = Path(str(sources[manifest_source_id].get("path") or manifest_path))
+        target_path = Path(str(metadata.get("precomposedOverlayTargetPath") or ""))
+        existing_source_id = metadata.get("precomposedOverlaySourceId")
+        if isinstance(existing_source_id, str) and existing_source_id in sources:
+            target_path = Path(str(sources[existing_source_id].get("path") or target_path))
+        if not manifest_path.exists() or not target_path:
+            continue
+        report_path = PRECOMPOSE_REPORT_DIR / f"{safe_stem(target_path.stem)}.precompose.json"
+        source_id = existing_source_id if isinstance(existing_source_id, str) and existing_source_id in sources else next_source_id(sources, "src_subtitle_precomposed_overlay")
+        if not target_path.exists() or target_path.stat().st_size <= 0:
+            PRECOMPOSE_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+            sequence_dir = target_path.with_suffix("")
+            command = [
+                sys.executable,
+                str(SCRIPTS / "precompose_png_overlay_video.py"),
+                "--manifest",
+                str(manifest_path),
+                "--output",
+                str(target_path),
+                "--sequence-dir",
+                str(sequence_dir),
+                "--duration",
+                ffmpeg_time(clip.get("timelineEnd") or duration),
+                "--bottom-margin",
+                str(as_int(metadata.get("precomposeBottomMargin"), 16)),
+                "--fps",
+                str(metadata.get("precomposeFps") or fps),
+            ]
+            completed = subprocess.run(command, capture_output=True, text=True)
+            report = {
+                "createdAt": now_iso(),
+                "clipId": clip.get("id"),
+                "kind": "subtitle-precompose",
+                "status": "generated" if completed.returncode == 0 else "failed",
+                "command": command,
+                "manifest": timeline_report_ref(manifest_path),
+                "output": str(target_path),
+                "returnCode": completed.returncode,
+                "stdout": completed.stdout[-4000:],
+                "stderr": completed.stderr[-4000:],
+            }
+            report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+            if completed.returncode:
+                raise ValueError(f"subtitle precomposition failed for {clip.get('id')}: {report_path}")
+            generated.append({key: report[key] for key in ["clipId", "kind", "status", "output", "returnCode"]})
+            generated[-1]["report"] = str(report_path)
+        else:
+            generated.append(
+                {
+                    "clipId": clip.get("id"),
+                    "kind": "subtitle-precompose",
+                    "status": "reused-existing-target",
+                    "manifest": str(manifest_path),
+                    "output": str(target_path),
+                    "report": str(report_path) if report_path.exists() else "",
+                }
+            )
+        sources[source_id] = {
+            "id": source_id,
+            "kind": "video",
+            "role": "subtitle-precomposed-overlay",
+            "path": str(target_path),
+        }
+        metadata["precomposedOverlaySourceId"] = source_id
+        metadata["precomposedOverlayPath"] = str(target_path)
+        clip["metadata"] = metadata
+    return generated
 
 
 def audio_cleanup_filter(strength: int, mastering: bool = False, denoise: bool = True) -> str:
@@ -432,6 +600,257 @@ def preview_output_path(base_output: Path, render_range: tuple[float, float] | N
     return base_output.with_name(f"{base_output.stem}.{'.'.join(suffixes)}{base_output.suffix}")
 
 
+def default_remotion_overlay_report_path(base_output: Path, render_range: tuple[float, float] | None) -> Path:
+    suffix = ""
+    if render_range is not None:
+        suffix = f"_range_{int(render_range[0] * 1000):08d}_{int(render_range[1] * 1000):08d}"
+    return COMMAND_DIR / f"{safe_stem(f'{base_output.stem}{suffix}_remotion_layers')}.remotion.json"
+
+
+def default_blender_overlay_report_path(base_output: Path, render_range: tuple[float, float] | None) -> Path:
+    suffix = ""
+    if render_range is not None:
+        suffix = f"_range_{int(render_range[0] * 1000):08d}_{int(render_range[1] * 1000):08d}"
+    return COMMAND_DIR / f"{safe_stem(f'{base_output.stem}{suffix}_blender_frames')}.blender.json"
+
+
+def report_range_tuple(artifact: dict[str, Any]) -> tuple[float, float] | None:
+    item = artifact.get("range") if isinstance(artifact.get("range"), dict) else {}
+    if "start" not in item or "end" not in item:
+        return None
+    return as_float(item.get("start")), as_float(item.get("end"))
+
+
+def assert_overlay_compatible(
+    timeline: dict[str, Any],
+    target: dict[str, Any],
+    artifact: dict[str, Any],
+    report_path: Path,
+    render_range: tuple[float, float] | None,
+    renderer: str,
+) -> None:
+    if artifact.get("renderer") != renderer:
+        raise ValueError(f"overlay report is not a {renderer} artifact: {report_path}")
+    if artifact.get("format") != "png-sequence":
+        raise ValueError(f"FFmpeg overlay composition currently requires a {renderer} png-sequence artifact: {report_path}")
+    if artifact.get("alpha") is not True:
+        raise ValueError(f"{renderer} overlay artifact must preserve alpha: {report_path}")
+
+    duration = as_float(timeline.get("duration"), 0.0)
+    expected = render_range or (0.0, duration)
+    actual = report_range_tuple(artifact)
+    if actual is None:
+        raise ValueError(f"{renderer} overlay report is missing range metadata: {report_path}")
+    tolerance = max(0.05, 2.0 / max(as_float(artifact.get("fpsNumber"), 30.0), 1.0))
+    if abs(actual[0] - expected[0]) > tolerance or abs(actual[1] - expected[1]) > tolerance:
+        raise ValueError(
+            f"{renderer} overlay range does not match FFmpeg render range: "
+            f"overlay={actual[0]:.3f}-{actual[1]:.3f}, expected={expected[0]:.3f}-{expected[1]:.3f}, report={report_path}"
+        )
+
+    expected_width = as_int(target.get("width"), 1920)
+    expected_height = as_int(target.get("height"), 1080)
+    artifact_width = as_int(artifact.get("width"), expected_width)
+    artifact_height = as_int(artifact.get("height"), expected_height)
+    if artifact_width != expected_width or artifact_height != expected_height:
+        raise ValueError(
+            f"{renderer} overlay dimensions do not match FFmpeg target: "
+            f"overlay={artifact_width}x{artifact_height}, expected={expected_width}x{expected_height}, report={report_path}"
+        )
+
+
+def assert_remotion_overlay_compatible(
+    timeline: dict[str, Any],
+    target: dict[str, Any],
+    artifact: dict[str, Any],
+    report_path: Path,
+    render_range: tuple[float, float] | None,
+) -> None:
+    assert_overlay_compatible(timeline, target, artifact, report_path, render_range, "remotion")
+
+
+def assert_blender_overlay_compatible(
+    timeline: dict[str, Any],
+    target: dict[str, Any],
+    artifact: dict[str, Any],
+    report_path: Path,
+    render_range: tuple[float, float] | None,
+) -> None:
+    assert_overlay_compatible(timeline, target, artifact, report_path, render_range, "blender")
+
+
+def sequence_file_key(path: Path) -> tuple[str, int, str, str]:
+    match = re.match(r"^(.*?)(\d+)(\.[^.]+)$", path.name)
+    if not match:
+        return path.name, -1, "", path.name
+    prefix, number, suffix = match.groups()
+    return prefix, int(number), suffix, path.name
+
+
+def planned_remotion_sequence_pattern(artifact: dict[str, Any]) -> tuple[str, int]:
+    duration_frames = max(1, as_int(artifact.get("durationFrames"), 1))
+    width = len(str(max(0, duration_frames - 1)))
+    frame_pattern = f"%0{width}d" if width > 1 else "%d"
+    template = str(artifact.get("imageSequencePattern") or "frame-[frame].[ext]")
+    return template.replace("[frame]", frame_pattern).replace("[ext]", str(artifact.get("imageFormat") or "png")), 0
+
+
+def planned_blender_sequence_pattern(artifact: dict[str, Any]) -> tuple[str, int]:
+    template = str(artifact.get("imageSequencePattern") or "frame_[frame].[ext]")
+    return template.replace("[frame]", "%04d").replace("[ext]", str(artifact.get("imageFormat") or "png")), 0
+
+
+def sequence_input_args(
+    artifact: dict[str, Any],
+    report_path: Path,
+    *,
+    require_files: bool,
+    planned_pattern: tuple[str, int],
+) -> tuple[list[str], dict[str, Any]]:
+    sequence_dir = resolve_existing_path(str(artifact.get("path") or ""))
+    if not sequence_dir.is_dir() and require_files:
+        raise ValueError(f"{artifact.get('renderer')} overlay PNG sequence directory does not exist: {sequence_dir}")
+    files = sorted(sequence_dir.glob("*.png"), key=sequence_file_key) if sequence_dir.is_dir() else []
+    if not files and require_files:
+        raise ValueError(f"{artifact.get('renderer')} overlay PNG sequence has no PNG frames: {sequence_dir}")
+    if not files:
+        pattern_name, start_number = planned_pattern
+        fps = str(artifact.get("fps") or artifact.get("fpsNumber") or "30000/1001")
+        pattern = str(sequence_dir / pattern_name)
+        return (
+            ["-framerate", fps, "-start_number", str(start_number), "-i", pattern],
+            {
+                "path": str(sequence_dir),
+                "pattern": pattern,
+                "startNumber": start_number,
+                "frameCount": 0,
+                "expectedFrameCount": as_int(artifact.get("durationFrames"), 0),
+                "fps": fps,
+                "exists": False,
+                "fileCheck": "planned-from-report",
+            },
+        )
+
+    first_match = re.match(r"^(.*?)(\d+)(\.[^.]+)$", files[0].name)
+    if not first_match:
+        raise ValueError(f"{artifact.get('renderer')} overlay frame name is not numeric: {files[0].name}")
+    prefix, number, suffix = first_match.groups()
+    start_number = int(number)
+    width = len(number)
+    pattern_name = f"{prefix}%0{width}d{suffix}" if width > 1 else f"{prefix}%d{suffix}"
+    expected_frames = as_int(artifact.get("durationFrames"), 0)
+    if expected_frames > 0 and len(files) != expected_frames:
+        raise ValueError(
+            f"{artifact.get('renderer')} overlay frame count does not match the command report: "
+            f"frames={len(files)}, expected={expected_frames}, dir={sequence_dir}, report={report_path}"
+        )
+
+    fps = str(artifact.get("fps") or artifact.get("fpsNumber") or "30000/1001")
+    pattern = str(sequence_dir / pattern_name)
+    return (
+        ["-framerate", fps, "-start_number", str(start_number), "-i", pattern],
+        {
+            "path": str(sequence_dir),
+            "pattern": pattern,
+            "startNumber": start_number,
+            "frameCount": len(files),
+            "expectedFrameCount": expected_frames,
+            "fps": fps,
+            "exists": True,
+            "fileCheck": "derived-from-existing-frames",
+            "firstFrame": str(files[0]),
+            "lastFrame": str(files[-1]),
+        },
+    )
+
+
+def remotion_sequence_input_args(artifact: dict[str, Any], report_path: Path, *, require_files: bool) -> tuple[list[str], dict[str, Any]]:
+    return sequence_input_args(artifact, report_path, require_files=require_files, planned_pattern=planned_remotion_sequence_pattern(artifact))
+
+
+def blender_sequence_input_args(artifact: dict[str, Any], report_path: Path, *, require_files: bool) -> tuple[list[str], dict[str, Any]]:
+    return sequence_input_args(artifact, report_path, require_files=require_files, planned_pattern=planned_blender_sequence_pattern(artifact))
+
+
+def load_remotion_overlay(
+    timeline: dict[str, Any],
+    config: dict[str, Any],
+    target: dict[str, Any],
+    base_output_path: Path,
+    render_range: tuple[float, float] | None,
+    report_path_override: Path | None,
+    require_sequence_files: bool,
+) -> tuple[list[str], dict[str, Any]]:
+    configured = text_value(config, "render", "remotionOverlayReportPath", default="").strip()
+    report_path = report_path_override or (Path(configured) if configured else default_remotion_overlay_report_path(base_output_path, render_range))
+    report_path = resolve_existing_path(report_path)
+    if not report_path.exists():
+        raise ValueError(f"Remotion overlay report does not exist: {report_path}")
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    artifact = report.get("overlayArtifact") if isinstance(report.get("overlayArtifact"), dict) else {}
+    if report.get("timelineId") and report.get("timelineId") != timeline.get("id"):
+        raise ValueError(
+            f"Remotion overlay report was generated for {report.get('timelineId')}, "
+            f"but timeline is {timeline.get('id')}: {report_path}"
+        )
+    assert_remotion_overlay_compatible(timeline, target, artifact, report_path, render_range)
+    input_args, sequence = remotion_sequence_input_args(artifact, report_path, require_files=require_sequence_files)
+    return input_args, {
+        "commandReport": str(report_path),
+        "layerManifest": report.get("layerManifest"),
+        "artifact": artifact,
+        "sequence": sequence,
+    }
+
+
+def load_blender_overlay(
+    timeline: dict[str, Any],
+    config: dict[str, Any],
+    target: dict[str, Any],
+    base_output_path: Path,
+    render_range: tuple[float, float] | None,
+    report_path_override: Path | None,
+    require_sequence_files: bool,
+) -> tuple[list[str], dict[str, Any]]:
+    configured = text_value(config, "render", "blenderOverlayReportPath", default="").strip()
+    report_path = report_path_override or (Path(configured) if configured else default_blender_overlay_report_path(base_output_path, render_range))
+    report_path = resolve_existing_path(report_path)
+    if not report_path.exists():
+        raise ValueError(f"Blender overlay report does not exist: {report_path}")
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    artifact = report.get("overlayArtifact") if isinstance(report.get("overlayArtifact"), dict) else {}
+    if report.get("timelineId") and report.get("timelineId") != timeline.get("id"):
+        raise ValueError(
+            f"Blender overlay report was generated for {report.get('timelineId')}, "
+            f"but timeline is {timeline.get('id')}: {report_path}"
+        )
+    assert_blender_overlay_compatible(timeline, target, artifact, report_path, render_range)
+    if artifact.get("noOp") or as_int(artifact.get("jobCount"), 0) <= 0:
+        return [], {
+            "commandReport": str(report_path),
+            "jobsManifest": report.get("jobsManifest"),
+            "artifact": artifact,
+            "sequence": {"path": str(artifact.get("path") or ""), "frameCount": 0, "exists": False, "fileCheck": "no-blender-jobs"},
+            "noOp": True,
+        }
+    input_args, sequence = blender_sequence_input_args(artifact, report_path, require_files=require_sequence_files)
+    return input_args, {
+        "commandReport": str(report_path),
+        "jobsManifest": report.get("jobsManifest"),
+        "artifact": artifact,
+        "sequence": sequence,
+        "noOp": False,
+    }
+
+
+def add_overlay_filter(filters: list[str], video_label: str, input_index: int, prefix: str) -> str:
+    overlay_label = f"{prefix}_overlay"
+    next_label = f"v{prefix}"
+    filters.append(f"[{input_index}:v]format=rgba,setpts=PTS-STARTPTS[{overlay_label}]")
+    filters.append(f"[{video_label}][{overlay_label}]overlay=0:0:shortest=1:format=auto[{next_label}]")
+    return next_label
+
+
 def write_filtergraph(filters: list[str], output_stem: str) -> Path:
     FILTERGRAPH_DIR.mkdir(parents=True, exist_ok=True)
     path = FILTERGRAPH_DIR / f"{safe_stem(output_stem)}.timeline.ffgraph"
@@ -460,6 +879,12 @@ def build_ffmpeg_command(
     render_range: tuple[float, float] | None = None,
     proxy: bool = False,
     proxy_size: tuple[int, int] | None = None,
+    with_remotion_overlays: bool = False,
+    remotion_report_path: Path | None = None,
+    require_remotion_sequence_files: bool = False,
+    with_blender_overlays: bool = False,
+    blender_report_path: Path | None = None,
+    require_blender_sequence_files: bool = False,
 ) -> tuple[list[str], dict[str, Any]]:
     validation_errors, validation_warnings = validate_timeline(timeline)
     if validation_errors:
@@ -471,21 +896,62 @@ def build_ffmpeg_command(
             raise ValueError(f"render range must be inside timeline duration: start={range_start}, end={range_end}, duration={duration}")
 
     target = first_target(timeline)
-    base_output_path = output_override or Path(str(target.get("path") or "timeline_output.mp4"))
-    output_path = output_override or preview_output_path(base_output_path, render_range, proxy)
+    target_output_path = Path(str(target.get("path") or "timeline_output.mp4"))
+    output_path = output_override or preview_output_path(target_output_path, render_range, proxy)
     fps = timeline_fps(timeline, target)
     sources = source_by_id(timeline)
-    needed_ids, unsupported = timeline_sources_needed(timeline)
+    generated_artifacts = [] if with_remotion_overlays else prepare_subtitle_precompositions(timeline, sources, fps)
+    needed_ids, unsupported = timeline_sources_needed(
+        timeline,
+        include_visual_overlays=not with_remotion_overlays,
+        include_blender_overlays=with_blender_overlays,
+    )
     input_args, input_index_by_source = build_inputs(timeline, sources, needed_ids, fps)
+    remotion_overlay: dict[str, Any] | None = None
+    blender_overlay: dict[str, Any] | None = None
+    if with_remotion_overlays:
+        remotion_input_args, remotion_overlay = load_remotion_overlay(
+            timeline,
+            config,
+            target,
+            target_output_path,
+            render_range,
+            remotion_report_path,
+            require_remotion_sequence_files,
+        )
+        remotion_overlay["inputIndex"] = len(input_index_by_source)
+        input_args.extend(remotion_input_args)
+    if with_blender_overlays:
+        blender_input_args, blender_overlay = load_blender_overlay(
+            timeline,
+            config,
+            target,
+            target_output_path,
+            render_range,
+            blender_report_path,
+            require_blender_sequence_files,
+        )
+        if blender_input_args:
+            blender_overlay["inputIndex"] = len(input_index_by_source) + (1 if remotion_overlay is not None else 0)
+            input_args.extend(blender_input_args)
 
     video_filters, video_label = build_video_filters(clips_for_track(timeline, "video.main"), input_index_by_source, target, fps)
-    overlay_filters, output_video_label = build_overlay_filters(clips_for_track(timeline, "overlay.graphics"), input_index_by_source, video_label)
-    subtitle_filters, output_video_label, subtitle_unsupported = build_subtitle_filters(clips_for_track(timeline, "subtitle.main"), sources, output_video_label)
-    unsupported.extend(subtitle_unsupported)
+    if with_remotion_overlays:
+        overlay_filters: list[str] = []
+        subtitle_filters: list[str] = []
+        output_video_label = video_label
+    else:
+        overlay_filters, output_video_label = build_overlay_filters(clips_for_track(timeline, "overlay.graphics"), input_index_by_source, video_label)
+        subtitle_filters, output_video_label, subtitle_unsupported = build_subtitle_filters(clips_for_track(timeline, "subtitle.main"), sources, input_index_by_source, output_video_label)
+        unsupported.extend(subtitle_unsupported)
     audio_filters, output_audio_label = build_audio_filters(timeline, config, input_index_by_source)
     filters = video_filters + overlay_filters + subtitle_filters + audio_filters
     if render_range is not None:
         output_video_label, output_audio_label = add_range_filters(filters, output_video_label, output_audio_label, render_range[0], render_range[1])
+    if remotion_overlay is not None:
+        output_video_label = add_overlay_filter(filters, output_video_label, as_int(remotion_overlay.get("inputIndex"), 0), "remotion")
+    if blender_overlay is not None and not blender_overlay.get("noOp") and "inputIndex" in blender_overlay:
+        output_video_label = add_overlay_filter(filters, output_video_label, as_int(blender_overlay.get("inputIndex"), 0), "blender")
     if proxy:
         proxy_width, proxy_height = proxy_size or (960, 540)
         output_video_label = add_proxy_filter(filters, output_video_label, proxy_width, proxy_height)
@@ -509,6 +975,44 @@ def build_ffmpeg_command(
         "-shortest",
         str(output_path),
     ]
+    implemented_scope = [
+        "video.main clip concat",
+        "audio.main trim/concat",
+        "overlay.graphics image overlay",
+        "subtitle.main ASS/SRT/VTT rendering through FFmpeg subtitles filters",
+        "subtitle.main precomposed rich PNG transparent-video overlay when referenced by timeline",
+        "subtitle.main precomposition generation from timeline manifest when target artifact is absent or stale",
+        "colorCorrection filter chains embedded in timeline clip effects",
+        "scaleCrop zoom and crop-center expressions embedded in timeline clip effects",
+        "audioCleanup denoise/mastering filter chain",
+        "music.bed audio mix when a source file exists",
+        "timeline-range preview export",
+        "low-resolution proxy export",
+    ]
+    not_implemented_scope = [
+        "Remotion/HyperFrames overlays",
+        "Blender-generated elements",
+        "person-edit-plan crop parity",
+        "natural-cut parity",
+    ]
+    if with_remotion_overlays:
+        implemented_scope = [
+            item
+            for item in implemented_scope
+            if item
+            not in {
+                "overlay.graphics image overlay",
+                "subtitle.main ASS/SRT/VTT rendering through FFmpeg subtitles filters",
+                "subtitle.main precomposed rich PNG transparent-video overlay when referenced by timeline",
+                "subtitle.main precomposition generation from timeline manifest when target artifact is absent or stale",
+            }
+        ]
+        implemented_scope.append("Remotion PNG-sequence overlay artifact composition")
+        not_implemented_scope[0] = "HyperFrames overlays"
+    if with_blender_overlays:
+        implemented_scope.append("Blender PNG-sequence overlay artifact composition")
+        not_implemented_scope = [item for item in not_implemented_scope if item != "Blender-generated elements"]
+
     report = {
         "createdAt": now_iso(),
         "adapter": "ffmpeg",
@@ -518,6 +1022,9 @@ def build_ffmpeg_command(
         "filterScript": str(filter_script),
         "argv": command,
         "inputSourceIds": needed_ids,
+        "generatedArtifacts": generated_artifacts,
+        "remotionOverlay": remotion_overlay,
+        "blenderOverlay": blender_overlay,
         "unsupportedClips": unsupported,
         "validationWarnings": validation_warnings,
         "preview": {
@@ -526,23 +1033,8 @@ def build_ffmpeg_command(
             "proxySize": {"width": proxy_size[0], "height": proxy_size[1]} if proxy_size is not None else ({"width": 960, "height": 540} if proxy else None),
         },
         "scope": {
-            "implemented": [
-                "video.main clip concat",
-                "audio.main trim/concat",
-                "overlay.graphics image overlay",
-                "subtitle.main ASS/SRT/VTT rendering through FFmpeg subtitles filters",
-                "colorCorrection filter chains embedded in timeline clip effects",
-                "audioCleanup denoise/mastering filter chain",
-                "music.bed audio mix when a source file exists",
-                "timeline-range preview export",
-                "low-resolution proxy export",
-            ],
-            "notImplemented": [
-                "rich PNG subtitle overlay precomposition parity",
-                "Remotion/HyperFrames overlays",
-                "Blender-generated elements",
-                "person-aware crop and natural-cut parity",
-            ],
+            "implemented": implemented_scope,
+            "notImplemented": not_implemented_scope,
         },
     }
     command_report = write_command_report(report, output_path.stem)
@@ -561,6 +1053,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--proxy", action="store_true", help="Export a low-resolution proxy command.")
     parser.add_argument("--proxy-width", type=int, default=960, help="Proxy output width when --proxy or preview proxy is enabled.")
     parser.add_argument("--proxy-height", type=int, default=540, help="Proxy output height when --proxy or preview proxy is enabled.")
+    parser.add_argument("--with-remotion-overlays", action="store_true", help="Composite a validated Remotion PNG-sequence overlay artifact into the FFmpeg render.")
+    parser.add_argument("--remotion-report", type=Path, default=None, help="Remotion command report containing overlayArtifact metadata. Defaults to render.remotionOverlayReportPath or the target-derived report path.")
+    parser.add_argument("--with-blender-overlays", action="store_true", help="Composite a validated Blender PNG-sequence overlay artifact into the FFmpeg render.")
+    parser.add_argument("--blender-report", type=Path, default=None, help="Blender command report containing overlayArtifact metadata. Defaults to render.blenderOverlayReportPath or the target-derived report path.")
     parser.add_argument("--execute", action="store_true", help="Execute the generated FFmpeg command after writing audit artifacts.")
     return parser.parse_args()
 
@@ -599,6 +1095,12 @@ def main() -> None:
         render_range=render_range,
         proxy=proxy,
         proxy_size=(args.proxy_width, args.proxy_height) if proxy else None,
+        with_remotion_overlays=args.with_remotion_overlays,
+        remotion_report_path=args.remotion_report,
+        require_remotion_sequence_files=args.execute,
+        with_blender_overlays=args.with_blender_overlays,
+        blender_report_path=args.blender_report,
+        require_blender_sequence_files=args.execute,
     )
     if args.execute:
         output_path = Path(str(report["outputPath"]))

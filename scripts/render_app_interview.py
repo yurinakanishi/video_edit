@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import math
 import re
 import subprocess
@@ -67,6 +68,8 @@ SOURCE_COVERAGE_REPORT = OUTPUT_REPORTS / "source_coverage_usage.json"
 ONSCREEN_CLOSEUP_REPORT = OUTPUT_REPORTS / "onscreen_closeup_camera_mask.json"
 SUBTITLE_TIMEBASE_REPORT = OUTPUT_REPORTS / "subtitle_timebase_usage.json"
 EXTERNAL_AUDIO_CUT_SYNC_REPORT = OUTPUT_REPORTS / "external_audio_cut_sync_report.json"
+RENDER_USAGE_REPORT = OUTPUT_REPORTS / "render_usage.json"
+PROXY_PROFILE = "h264-960p-ultrafast-crf28"
 
 
 def seconds(timestamp: str) -> float:
@@ -128,6 +131,90 @@ def manifest_cameras() -> list[tuple[str, Path]]:
     return cameras
 
 
+def render_profile() -> str:
+    profile = str(nested(APP_CONFIG, "render", "renderProfile", default="final") or "final").strip().lower()
+    return profile if profile in {"preview", "final"} else "final"
+
+
+def render_range_mode() -> str:
+    mode = str(nested(APP_CONFIG, "render", "rangeMode", default="range") or "range").strip().lower()
+    return mode if mode in {"range", "full"} else "range"
+
+
+def source_signature(path: Path) -> str:
+    stat = path.stat()
+    payload = json.dumps(
+        {
+            "path": str(path.resolve()).lower(),
+            "size": stat.st_size,
+            "mtimeNs": stat.st_mtime_ns,
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def manifest_camera_item(role: str, path: Path) -> dict[str, Any] | None:
+    for item in manifest_files("video"):
+        if str(item.get("role") or "") == role and paths_match(item.get("path"), path):
+            return item
+    return None
+
+
+def camera_input_paths_for_render(cameras: list[tuple[str, Path]], profile: str) -> tuple[dict[int, Path], list[dict[str, Any]]]:
+    input_paths: dict[int, Path] = {}
+    usage: list[dict[str, Any]] = []
+    for index, (role, source_path) in enumerate(cameras):
+        input_path = source_path
+        entry: dict[str, Any] = {
+            "index": index,
+            "role": role,
+            "sourcePath": str(source_path),
+            "inputPath": str(source_path),
+            "proxyUsed": False,
+        }
+        if profile != "preview":
+            entry["reason"] = "final profile uses original source"
+            input_paths[index] = input_path
+            usage.append(entry)
+            continue
+
+        item = manifest_camera_item(role, source_path)
+        proxy = item.get("proxy") if isinstance(item, dict) and isinstance(item.get("proxy"), dict) else None
+        if not proxy:
+            entry["reason"] = "proxy metadata missing"
+            input_paths[index] = input_path
+            usage.append(entry)
+            continue
+        proxy_path = Path(str(proxy.get("path") or ""))
+        if proxy.get("profile") != PROXY_PROFILE:
+            entry["reason"] = "proxy profile mismatch"
+        elif not proxy_path.exists():
+            entry["reason"] = "proxy file missing"
+        else:
+            try:
+                expected_signature = str(proxy.get("sourceSignature") or "")
+                actual_signature = source_signature(source_path)
+            except OSError as error:
+                entry["reason"] = f"source signature failed: {error}"
+            else:
+                if expected_signature and expected_signature != actual_signature:
+                    entry["reason"] = "proxy source signature is stale"
+                    entry["expectedSourceSignature"] = expected_signature
+                    entry["actualSourceSignature"] = actual_signature
+                else:
+                    input_path = proxy_path
+                    entry["inputPath"] = str(proxy_path)
+                    entry["proxyUsed"] = True
+                    entry["reason"] = "proxy selected"
+                    entry["profile"] = proxy.get("profile")
+        input_paths[index] = input_path
+        usage.append(entry)
+    return input_paths, usage
+
+
 def manifest_audio_sources() -> list[tuple[str, Path]]:
     audio = [
         (str(item.get("role") or "external"), Path(str(item.get("path") or "")))
@@ -180,6 +267,23 @@ def audio_cleanup_filter(strength: int, mastering: bool = False, denoise: bool =
 
 
 def video_encoder_config() -> dict[str, object]:
+    if render_profile() == "preview":
+        return {
+            "name": "libx264",
+            "preset": "ultrafast",
+            "crf": 30,
+            "args": [
+                "-c:v",
+                "libx264",
+                "-preset",
+                "ultrafast",
+                "-crf",
+                "30",
+                "-pix_fmt",
+                "yuv420p",
+            ],
+        }
+
     encoder = str(nested(APP_CONFIG, "render", "videoEncoder", default="libx264") or "libx264").strip().lower()
     if encoder == "h264_nvenc":
         preset = str(nested(APP_CONFIG, "render", "nvencPreset", default="p4") or "p4").strip().lower()
@@ -2240,6 +2344,15 @@ def source_duration(role: str, path: Path) -> float | None:
     return manifest_duration(role, path) or probe_duration(path)
 
 
+def full_range_duration(cameras: list[tuple[str, Path]], fallback: float) -> float:
+    preferred = next(((role, path) for role, path in cameras if role == "master"), cameras[0] if cameras else None)
+    if preferred:
+        detected = source_duration(preferred[0], preferred[1])
+        if detected and detected > 0:
+            return detected
+    return fallback
+
+
 def source_local_at_output_time(output_time: float, replacements: list[dict[str, Any]] | None) -> float | None:
     return output_local_to_source_local(output_time, replacements) if replacements else output_time
 
@@ -3429,9 +3542,10 @@ def main() -> None:
     external_audio_role = audio_sources[0][0] if audio_sources else "external"
     logo = selected_logo_path()
     output = Path(nested(APP_CONFIG, "render", "outputPath", default=OUTPUT_VIDEOS / "app_interview_output.mp4"))
+    render_profile_value = render_profile()
+    range_mode_value = render_range_mode()
     start = float(nested(APP_CONFIG, "render", "previewStart", default=0.0) or 0.0)
     source_duration = float(nested(APP_CONFIG, "render", "previewDuration", default=60.0) or 60.0)
-    replacements, duration = build_omission_replacements(start, source_duration)
     logo_height = int_value(APP_CONFIG, "style", "logoHeight", default=48)
     audio_denoise = bool_value("render", "audioDenoise", default=True)
     audio_denoise_strength = int_value(APP_CONFIG, "render", "audioDenoiseStrength", default=DEFAULT_DENOISE_STRENGTH)
@@ -3458,6 +3572,10 @@ def main() -> None:
             cameras.append(("camera3", left))
     if not cameras:
         raise RuntimeError("Drop or select at least a Camera 1 / master video before running render_app_interview.py.")
+    if range_mode_value == "full":
+        start = 0.0
+        source_duration = full_range_duration(cameras, source_duration)
+    replacements, duration = build_omission_replacements(start, source_duration)
     sync_sources = cameras + audio_sources
     if external_audio and not audio_sources:
         sync_sources.append(("external", external_audio))
@@ -3635,11 +3753,21 @@ def main() -> None:
         current_range[1] = max(current_range[1], audio_end)
 
     input_seek: dict[int, float] = {}
+    camera_input_paths, proxy_usage = camera_input_paths_for_render(cameras, render_profile_value)
     command = [str(FFMPEG), "-hide_banner", "-y"]
     for index, (_, camera_path) in enumerate(cameras):
         range_start, range_end = source_ranges.get(index, [start, start + source_duration])
         input_seek[index] = range_start
-        command.extend(["-ss", f"{range_start:.6f}", "-t", f"{max(0.1, range_end - range_start):.6f}", "-i", str(camera_path)])
+        command.extend(
+            [
+                "-ss",
+                f"{range_start:.6f}",
+                "-t",
+                f"{max(0.1, range_end - range_start):.6f}",
+                "-i",
+                str(camera_input_paths.get(index, camera_path)),
+            ]
+        )
 
     for still_index, still in enumerate(still_inserts):
         still["input_index"] = len(cameras) + still_index
@@ -3898,11 +4026,13 @@ def main() -> None:
         filters.append("[voice][music]amix=inputs=2:duration=first:dropout_transition=0,alimiter=limit=0.95[a]")
         audio_output = "a"
 
+    shorten_silence_enabled = bool_value("render", "shortenSilence", default=True) and render_profile_value != "preview"
     render_output = output
-    if nested(APP_CONFIG, "render", "shortenSilence", default=True):
+    if shorten_silence_enabled:
         render_output = output.with_name(f"{output.stem}_uncut{output.suffix}")
     encoder_config = video_encoder_config()
     encoder_args = [str(item) for item in encoder_config["args"]]
+    audio_bitrate = "96k" if render_profile_value == "preview" else "192k"
     filter_script = write_filter_complex_script(filters, output.stem)
 
     command.extend(
@@ -3917,15 +4047,16 @@ def main() -> None:
             "-c:a",
             "aac",
             "-b:a",
-            "192k",
+            audio_bitrate,
             "-shortest",
             str(render_output),
         ]
     )
     run(command)
 
-    if nested(APP_CONFIG, "render", "shortenSilence", default=True):
-        report = shorten_silences(
+    silence_shortening_report = None
+    if shorten_silence_enabled:
+        silence_shortening_report = shorten_silences(
             render_output,
             output,
             SilenceShortenConfig(
@@ -3936,52 +4067,49 @@ def main() -> None:
         )
         if not nested(APP_CONFIG, "render", "keepUncut", default=False):
             render_output.unlink(missing_ok=True)
-        print(
-            json.dumps(
-                {
-                    "output": str(output),
-                    "audio_denoise": audio_denoise,
-                    "audio_mastering": audio_mastering,
-                    "encoder": {key: value for key, value in encoder_config.items() if key != "args"},
-                    "global_video_zoom": global_zoom,
-                    "camera_cut_plan": camera_plan_summary(),
-                    "source_coverage": source_coverage_report,
-                    "natural_dialogue_cuts": natural_cut_report,
-                    "camera_color_match": color_match_summary(color_report),
-                    "person_crop": person_crop_summary(person_crop_report),
-                    "face_center_crop": face_center_crop_summary(face_center_report),
-                    "still_inserts": still_report(still_inserts),
-                    "omission_card": omission_card_report(replacements),
-                    "music": music_report(start, duration, music, replacements),
-                    "silence_shortening": report,
-                },
-                ensure_ascii=False,
-                indent=2,
-            )
-        )
-    else:
-        print(
-            json.dumps(
-                {
-                    "output": str(output),
-                    "audio_denoise": audio_denoise,
-                    "audio_mastering": audio_mastering,
-                    "encoder": {key: value for key, value in encoder_config.items() if key != "args"},
-                    "global_video_zoom": global_zoom,
-                    "camera_cut_plan": camera_plan_summary(),
-                    "source_coverage": source_coverage_report,
-                    "natural_dialogue_cuts": natural_cut_report,
-                    "camera_color_match": color_match_summary(color_report),
-                    "person_crop": person_crop_summary(person_crop_report),
-                    "face_center_crop": face_center_crop_summary(face_center_report),
-                    "still_inserts": still_report(still_inserts),
-                    "omission_card": omission_card_report(replacements),
-                    "music": music_report(start, duration, music, replacements),
-                },
-                ensure_ascii=False,
-                indent=2,
-            )
-        )
+    usage_report = {
+        "renderProfile": render_profile_value,
+        "rangeMode": range_mode_value,
+        "start": start,
+        "sourceDuration": source_duration,
+        "outputDuration": duration,
+        "outputPath": str(output),
+        "renderOutputPath": str(render_output),
+        "filterScript": str(filter_script),
+        "encoder": {key: value for key, value in encoder_config.items() if key != "args"},
+        "audioBitrate": audio_bitrate,
+        "shortenSilenceRequested": bool_value("render", "shortenSilence", default=True),
+        "shortenSilenceApplied": shorten_silence_enabled,
+        "proxyUsage": proxy_usage,
+    }
+    try:
+        RENDER_USAGE_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        RENDER_USAGE_REPORT.write_text(json.dumps(usage_report, ensure_ascii=False, indent=2), encoding="utf-8")
+    except OSError:
+        pass
+    summary = {
+        "output": str(output),
+        "render_usage_report": str(RENDER_USAGE_REPORT),
+        "render_profile": render_profile_value,
+        "range_mode": range_mode_value,
+        "audio_denoise": audio_denoise,
+        "audio_mastering": audio_mastering,
+        "encoder": {key: value for key, value in encoder_config.items() if key != "args"},
+        "global_video_zoom": global_zoom,
+        "camera_cut_plan": camera_plan_summary(),
+        "source_coverage": source_coverage_report,
+        "natural_dialogue_cuts": natural_cut_report,
+        "camera_color_match": color_match_summary(color_report),
+        "person_crop": person_crop_summary(person_crop_report),
+        "face_center_crop": face_center_crop_summary(face_center_report),
+        "still_inserts": still_report(still_inserts),
+        "omission_card": omission_card_report(replacements),
+        "music": music_report(start, duration, music, replacements),
+        "proxy_usage": proxy_usage,
+    }
+    if silence_shortening_report:
+        summary["silence_shortening"] = silence_shortening_report
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

@@ -73,6 +73,8 @@ export type WorkflowSettings = {
 };
 
 export type RenderSettings = {
+	renderProfile: string;
+	rangeMode: string;
 	multicamMode: string;
 	audioSource: string;
 	audioDenoise: boolean;
@@ -314,6 +316,8 @@ const defaultWorkflowSettings = (): WorkflowSettings => ({
 });
 
 const defaultRenderSettings = (): RenderSettings => ({
+	renderProfile: "final",
+	rangeMode: "range",
 	multicamMode: "speaker-aware",
 	audioSource: "external-if-selected",
 	audioDenoise: true,

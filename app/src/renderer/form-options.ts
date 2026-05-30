@@ -28,6 +28,16 @@ export const ENCODER_PRESETS = [
 	["veryslow", "Maximum quality (veryslow)"],
 ] as const;
 
+export const RENDER_PROFILES = [
+	["preview", "Fast preview"],
+	["final", "Final output"],
+] as const;
+
+export const RANGE_MODES = [
+	["range", "Selected range"],
+	["full", "Full timeline"],
+] as const;
+
 export const MUSIC_SCOPES = [
 	["full", "Whole video"],
 	["omission", "Omission title ranges only"],
@@ -40,6 +50,7 @@ export const MUSIC_RANGE_SOURCES = [
 
 export const WORKFLOW_ACTIONS = [
 	["render-selected", "Create video from selected settings"],
+	["generate-proxies", "Generate proxy videos"],
 	["generate-punchlines", "Create catchy subtitle images"],
 	["generate-full-overlays", "Create full subtitle images"],
 	["generate-glossary-overlays", "Create glossary explanation images"],

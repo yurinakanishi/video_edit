@@ -22,6 +22,8 @@ const storeFieldGroups: StoreFieldGroup[] = [
 		stateKey: "renderSettings",
 		actionKey: "setRenderSettings",
 		fields: [
+			"renderProfile",
+			"rangeMode",
 			"multicamMode",
 			"audioSource",
 			"audioDenoise",

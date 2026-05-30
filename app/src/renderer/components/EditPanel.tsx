@@ -6,7 +6,10 @@ import {
 	MULTICAM_MODES,
 	MUSIC_RANGE_SOURCES,
 	MUSIC_SCOPES,
+	RANGE_MODES,
+	RENDER_PROFILES,
 } from "../form-options.js";
+import { joinPath } from "../preview.js";
 import { type MusicSettings, type OmissionCardSettings, type RenderSettings, useAppStore } from "../store/app-store.js";
 import { SelectOptions } from "./SelectOptions.js";
 
@@ -23,6 +26,8 @@ export function EditPanel({ hidden = false }: PanelProps) {
 	const setWorkflowSettings = useAppStore((store) => store.setWorkflowSettings);
 	const renderSettings = useAppStore((store) => store.renderSettings);
 	const setRenderSettings = useAppStore((store) => store.setRenderSettings);
+	const project = useAppStore((store) => store.project);
+	const setPathPreviews = useAppStore((store) => store.setPathPreviews);
 	const musicSettings = useAppStore((store) => store.musicSettings);
 	const setMusicSettings = useAppStore((store) => store.setMusicSettings);
 	const omissionCardSettings = useAppStore((store) => store.omissionCardSettings);
@@ -37,6 +42,31 @@ export function EditPanel({ hidden = false }: PanelProps) {
 	};
 	const updateOmissionCardSettings = (settings: Partial<OmissionCardSettings>) => {
 		setOmissionCardSettings(settings);
+		dispatchEditSettingsChange();
+	};
+	const previewOutputPath = (durationSeconds: number) => {
+		if (!project?.outputRoot) {
+			return "";
+		}
+		const start = String(renderSettings.previewStart || "0").replace(/[^A-Za-z0-9_.-]+/g, "_");
+		return joinPath(project.outputRoot, "videos", "previews", `preview_${start}s_${durationSeconds}s.mp4`);
+	};
+	const applyPreviewPreset = (durationSeconds: number) => {
+		setWorkflowSettings({ workflowAction: "render-selected", previewDuration: String(durationSeconds) });
+		setRenderSettings({ renderProfile: "preview", rangeMode: "range" });
+		const outputPath = previewOutputPath(durationSeconds);
+		if (outputPath) {
+			setPathPreviews({ outputPath });
+		}
+		dispatchEditSettingsChange();
+	};
+	const selectGenerateProxies = () => {
+		setWorkflowSettings({ workflowAction: "generate-proxies" });
+		dispatchEditSettingsChange();
+	};
+	const applyFinalFullRender = () => {
+		setWorkflowSettings({ workflowAction: "render-selected" });
+		setRenderSettings({ renderProfile: "final", rangeMode: "full" });
 		dispatchEditSettingsChange();
 	};
 
@@ -291,6 +321,47 @@ export function EditPanel({ hidden = false }: PanelProps) {
 							onChange={(event) => updateOmissionCardSettings({ omissionCardRangesText: event.currentTarget.value })}
 						></textarea>
 					</label>
+				</div>
+				<div className="two-col">
+					<label>
+						Render profile
+						<select
+							id="renderProfile"
+							value={renderSettings.renderProfile}
+							onChange={(event) => updateRenderSettings({ renderProfile: event.currentTarget.value })}
+						>
+							<SelectOptions options={RENDER_PROFILES} />
+						</select>
+					</label>
+					<label>
+						Range mode
+						<select
+							id="rangeMode"
+							value={renderSettings.rangeMode}
+							onChange={(event) => updateRenderSettings({ rangeMode: event.currentTarget.value })}
+						>
+							<SelectOptions options={RANGE_MODES} />
+						</select>
+					</label>
+				</div>
+				<div className="three-col">
+					<button type="button" onClick={() => applyPreviewPreset(30)}>
+						Preview 30s
+					</button>
+					<button type="button" onClick={() => applyPreviewPreset(120)}>
+						Preview 2min
+					</button>
+					<button type="button" onClick={() => applyPreviewPreset(300)}>
+						Preview 5min
+					</button>
+				</div>
+				<div className="two-col">
+					<button type="button" onClick={selectGenerateProxies}>
+						Generate proxies
+					</button>
+					<button type="button" onClick={applyFinalFullRender}>
+						Final full render
+					</button>
 				</div>
 				<div className="two-col">
 					<label>

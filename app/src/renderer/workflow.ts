@@ -323,6 +323,10 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		return activeOutputRoot() ? joinPath(activeOutputRoot(), "images", "thumbnail_candidates") : "";
 	}
 
+	function proxyOutputPath() {
+		return activeOutputRoot() ? joinPath(activeOutputRoot(), "proxy") : "";
+	}
+
 	function subtitleReviewOutputPath() {
 		return activeOutputRoot() ? joinPath(activeOutputRoot(), "reports", "subtitle_review.json") : "";
 	}
@@ -621,6 +625,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		if (action === "generate-thumbnail-candidates") {
 			return t("option.generateThumbnailCandidates");
 		}
+		if (action === "generate-proxies") {
+			return selectedLabel("workflowAction") || "Generate proxies";
+		}
 		if (action === "review-subtitles") {
 			return t("option.reviewSubtitles");
 		}
@@ -651,6 +658,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		}
 		if (action === "transcribe-dropped") {
 			return joinPath(activeOutputRoot() || "output", "transcripts", "manifest_sources");
+		}
+		if (action === "generate-proxies") {
+			return proxyOutputPath() || joinPath(activeOutputRoot() || "output", "proxy");
 		}
 		if (action === "generate-music-bed") {
 			return musicBedPath();
@@ -756,6 +766,21 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			}
 			if (formValue("shortenSilence")) {
 				warnings.push(t("validation.shortenSilenceWarning"));
+			}
+		}
+
+		if (action === "generate-proxies") {
+			if (!activeOutputRoot()) {
+				errors.push(t("validation.projectRequired"));
+			}
+			if (!cameras.length) {
+				errors.push("Generate proxies requires an ingested media manifest with camera videos.");
+			}
+			if (proxyOutputPath()) {
+				ok.push(`Proxy output: ${shortPath(proxyOutputPath())}`);
+			}
+			if (cameras.length) {
+				ok.push(`Proxy targets: ${cameras.length} camera video(s)`);
 			}
 		}
 
@@ -1021,6 +1046,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			`- Reference video: ${state.files.referenceVideo || "(not selected)"}`,
 			`- Reference profile: ${referenceEditProfilePath()}`,
 			`- Render script: ${formValue("renderScript")}`,
+			`- Render profile: ${formValue("renderProfile") || "final"}`,
+			`- Render range mode: ${formValue("rangeMode") || "range"}`,
 			`- Multicam mode: ${formValue("multicamMode")}`,
 			`- Subtitle mode: ${state.subtitleMode}`,
 			`- Audio source: ${formValue("audioSource")}`,
@@ -1157,6 +1184,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 				outputPath: outputPathValue(),
 				syncOffsetsPath: syncReportPath(),
 				subtitleMode: state.subtitleMode,
+				renderProfile: formValue("renderProfile") || "final",
+				rangeMode: formValue("rangeMode") || "range",
 				multicamMode: formValue("multicamMode"),
 				audioSource: formValue("audioSource"),
 				audioDenoise: formValue("audioDenoise"),
@@ -1353,6 +1382,13 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 				log("person analysis outputs", { bboxes: personBboxesDir(), plans: personEditPlansDir() });
 				if (result?.manifest) {
 					setMediaManifest(result.manifest);
+				}
+			}
+			if (action === "generate-proxies" && result?.exitCode === 0) {
+				log("proxy outputs", { output: proxyOutputPath() });
+				if (result?.manifest) {
+					setMediaManifest(result.manifest);
+					await refreshMaterialAnalysisStatus();
 				}
 			}
 			if (action === "analyze-reference-video" && result?.exitCode === 0) {

@@ -515,6 +515,16 @@ function mediaManifestFromAppConfig(appConfig: any): MediaManifest | null {
 	return loaded && Array.isArray(loaded.files) ? (loaded as MediaManifest) : null;
 }
 
+function mediaManifestFromConfigPath(appConfig: any): MediaManifest | null {
+	const manifestPath = String(appConfig?.assets?.mediaManifestPath || "");
+	const loaded = manifestPath ? readJsonFile(manifestPath) : null;
+	if (loaded && Array.isArray(loaded.files)) {
+		rebuildManifestGroups(loaded as MediaManifest);
+		return loaded as MediaManifest;
+	}
+	return mediaManifestFromAppConfig(appConfig);
+}
+
 function jsonFilesByVideoPath(directory: string, suffix: string) {
 	const byPath = new Map<string, string>();
 	if (!directory || !fs.existsSync(directory)) {
@@ -2039,6 +2049,7 @@ const ALLOWED_PYTHON_SCRIPTS = new Set([
 	"generate_music_bed.py",
 	"generate_omission_card.py",
 	"generate_project_thumbnail.py",
+	"generate_proxies.py",
 	"generate_thumbnail_candidates.py",
 	"generate_punchline_png_overlays.py",
 	"replace_video_audio.py",
@@ -2051,6 +2062,7 @@ const ALLOWED_PYTHON_SCRIPTS = new Set([
 
 const ALLOWED_WORKFLOW_ACTIONS = new Set([
 	"generate-punchlines",
+	"generate-proxies",
 	"generate-full-overlays",
 	"generate-glossary-overlays",
 	"generate-music-bed",
@@ -2961,6 +2973,8 @@ ipcMain.handle("workflow:run-action", async (event, { action, appConfig, timeout
 	const updatedManifest =
 		resolvedAction === "analyze-person-edit-metadata" && result.exitCode === 0
 			? enrichMediaManifestWithPersonAnalysis(appConfig || null)
+			: resolvedAction === "generate-proxies" && result.exitCode === 0
+				? mediaManifestFromConfigPath(appConfig || null)
 			: null;
 	return updatedManifest ? { ...result, manifest: updatedManifest } : result;
 });

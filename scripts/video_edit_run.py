@@ -17,6 +17,7 @@ FFPROBE = optional_path(APP_CONFIG, "tools", "ffprobe", default=Path(r"C:\Progra
 
 SIMPLE_PYTHON_ACTIONS = {
     "generate-punchlines": "generate_punchline_png_overlays.py",
+    "generate-proxies": "generate_proxies.py",
     "generate-full-overlays": "generate_full_transcript_png_overlays.py",
     "precompose-png-overlay-video": "precompose_png_overlay_video.py",
     "generate-glossary-overlays": "generate_glossary_term_overlays.py",

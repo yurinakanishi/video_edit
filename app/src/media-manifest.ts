@@ -21,6 +21,13 @@ export type MediaItem = {
 	confidence: number;
 	reason: string;
 	metadata: Record<string, any>;
+	proxy?: {
+		path: string;
+		profile: string;
+		sourceSignature: string;
+		generatedAt?: string;
+		metadata?: Record<string, any>;
+	};
 	thumbnailDataUrl?: string;
 };
 

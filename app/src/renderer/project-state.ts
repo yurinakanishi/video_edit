@@ -186,6 +186,8 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 		["render", "workflowAction", "workflowAction"],
 		["render", "renderScript", "renderScript"],
 		["render", "outputPath", "outputPath"],
+		["render", "renderProfile", "renderProfile"],
+		["render", "rangeMode", "rangeMode"],
 		["render", "multicamMode", "multicamMode"],
 		["render", "audioSource", "audioSource"],
 		["render", "audioDenoise", "audioDenoise"],

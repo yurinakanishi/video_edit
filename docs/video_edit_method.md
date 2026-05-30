@@ -74,7 +74,7 @@ Use `--dry-run` to inspect the resolved command without running it.
 - `scripts/ffmpeg_timeline_adapter.py` exports audited FFmpeg argv/filter-graph artifacts and can execute validated full, preview, proxy, and changed-region renders.
 - `scripts/timeline_graphics_adapter.py` exports Remotion, HyperFrames, and Blender layer/job manifests plus audited renderer argv reports.
 - `remotion/index.tsx` is the bundled transparent overlay renderer scaffold. Base camera/audio assembly remains FFmpeg's job.
-- `scripts/render_multicam.py` is the generic legacy FFmpeg-backed renderer entry point. `scripts/render_app_interview.py` remains as a compatibility alias target for existing project states.
+- `scripts/render_multicam.py` is the generic FFmpeg-backed renderer entry point. `scripts/render_app_interview.py` remains as a compatibility shim for existing project states.
 
 Audit artifacts should remain traceable: timeline JSON, validation reports, renderer commands/filter graphs, analysis reports, and render logs.
 

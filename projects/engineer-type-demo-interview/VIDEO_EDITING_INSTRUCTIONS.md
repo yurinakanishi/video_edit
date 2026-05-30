@@ -6,6 +6,7 @@
 - Do not change shared app code for this project's one-off decisions. Put project-specific automation under `projects/new-folder-2/scripts`.
 - Use shared app scripts only as reusable building blocks through `scripts/video_edit_run.py` or direct script calls.
 - Treat `project_state.json`, the media manifest, and project-local `output` reports as the current working state, but do not commit generated outputs.
+- For the current full-render handoff procedure, also read `projects/new-folder-2/ENGINEER_TYPE_RENDER_PROCEDURE.md`.
 
 ## Source Handling
 

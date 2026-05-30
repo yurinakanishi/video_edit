@@ -210,7 +210,6 @@ export const messages: Record<Locale, Record<string, string>> = {
 		"edit.minSilence": "詰める無音の長さ",
 		"edit.keepSilence": "残す無音",
 		"edit.noise": "無音判定の音量",
-		"option.newInterview": "選択素材からマルチカム編集",
 		"option.speakerAware": "話者に合わせた会話カット",
 		"option.dynamicCuts": "短めのリズムカット",
 		"option.manualPlan": "保存済みの手動プランを使用",
@@ -323,7 +322,6 @@ export const messages: Record<Locale, Record<string, string>> = {
 		"option.extractStill": "静止画を書き出す",
 		"option.verifyDuration": "動画の長さを確認",
 		"option.verifyAudio": "動画の音声を確認",
-		"option.renderAppInterview": "選択素材からマルチカム編集",
 		"Place camera cuts in dialogue gaps": "会話の谷間へカメラ切替を寄せる",
 		"Use person analysis for crops": "人物解析をクロップへ反映",
 		"Use transcript comparison for sync fallback": "文字起こし比較を同期補正に使う",
@@ -442,7 +440,7 @@ export const messages: Record<Locale, Record<string, string>> = {
 		"validation.outputRequired": "出力先を指定してください。",
 		"validation.projectRequired": "先にプロジェクトを作成または選択してください。",
 		"validation.output": "出力: {path}",
-		"validation.masterRequiredForInterview":
+		"validation.masterRequiredForMulticam":
 			"Multicam render には Camera 1 / master が必要です。素材フォルダを取り込むか、手動で指定してください。",
 		"validation.singleCameraWarning": "アップ素材が未指定なので、実質1カメラのレンダーになります。",
 		"validation.syncFirstWarning":
@@ -748,7 +746,6 @@ export const messages: Record<Locale, Record<string, string>> = {
 		"edit.minSilence": "Silence to shorten",
 		"edit.keepSilence": "Silence to keep",
 		"edit.noise": "Silence threshold",
-		"option.newInterview": "Multicam edit from selected media",
 		"option.speakerAware": "Speaker-aware dialogue cuts",
 		"option.dynamicCuts": "Rhythmic punch-in cuts",
 		"option.manualPlan": "Use saved manual plan",
@@ -861,7 +858,6 @@ export const messages: Record<Locale, Record<string, string>> = {
 		"option.extractStill": "Save a still image",
 		"option.verifyDuration": "Check output duration",
 		"option.verifyAudio": "Check output audio",
-		"option.renderAppInterview": "Multicam render from selected media",
 		"Place camera cuts in dialogue gaps": "Place camera cuts in dialogue gaps",
 		"Use person analysis for crops": "Use person analysis for crops",
 		"Use transcript comparison for sync fallback": "Use transcript comparison for sync fallback",
@@ -981,7 +977,7 @@ export const messages: Record<Locale, Record<string, string>> = {
 		"validation.outputRequired": "Choose an output path.",
 		"validation.projectRequired": "Create or select a project first.",
 		"validation.output": "Output: {path}",
-		"validation.masterRequiredForInterview":
+		"validation.masterRequiredForMulticam":
 			"Multicam render requires Camera 1 / master. Ingest a material folder or set it manually.",
 		"validation.singleCameraWarning": "No close-up material is set, so this will effectively render as one camera.",
 		"validation.syncFirstWarning":

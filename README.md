@@ -37,7 +37,7 @@ The app and shared scripts provide reusable editing parts:
 - person/camera analysis, music-bed generation, thumbnails, and audio replacement;
 - timeline building and validation;
 - FFmpeg, Remotion, HyperFrames, Blender, and OTIO adapters;
-- the generic legacy FFmpeg renderer entry point `scripts/render_multicam.py`.
+- the generic FFmpeg-backed renderer entry point `scripts/render_multicam.py`.
 
 Project-specific goals, source notes, editing policy, QA findings, custom commands, and one-off automation belong under the project directory. Do not modify shared app code to satisfy a single project's requirement; create `projects/<project-id>/scripts/<task>.py` and call shared tools from there.
 
@@ -66,7 +66,7 @@ The Electron app writes a project-local runtime config under `projects\<project-
 
 Renderer-agnostic edit decisions should be represented as project state or timeline JSON. `build-timeline` writes `projects\<project-id>\output\timelines\current.timeline.json` and `validate-timeline` validates it with `config\timeline.schema.json`.
 
-Renderer adapters consume validated timelines and write audited command artifacts under the active project's `output\reports` tree. `render-timeline-ffmpeg` executes the FFmpeg adapter. Graphics adapters can export or render Remotion, HyperFrames, and Blender overlay artifacts. `render-selected` uses `scripts/render_multicam.py` by default for the legacy FFmpeg-backed path; `scripts/render_app_interview.py` remains available for existing saved project states.
+Renderer adapters consume validated timelines and write audited command artifacts under the active project's `output\reports` tree. `render-timeline-ffmpeg` executes the FFmpeg adapter. Graphics adapters can export or render Remotion, HyperFrames, and Blender overlay artifacts. `render-selected` uses `scripts/render_multicam.py` by default for the shared FFmpeg-backed path; `scripts/render_app_interview.py` remains as a compatibility shim for existing saved project states.
 
 ## Project Instructions
 

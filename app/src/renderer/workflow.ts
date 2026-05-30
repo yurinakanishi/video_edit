@@ -821,7 +821,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			}
 			if (script === "render_multicam.py" || script === "render_app_interview.py") {
 				if (!masterVideo) {
-					errors.push(t("validation.masterRequiredForInterview"));
+					errors.push(t("validation.masterRequiredForMulticam"));
 				}
 				if (cameras.length <= 1 && !state.files.rightCloseVideo && !state.files.leftCloseVideo) {
 					warnings.push(t("validation.singleCameraWarning"));
@@ -1101,7 +1101,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"- Use scripts\\timeline_validate.py before rendering; invalid timelines must be fixed before adapters run.",
 			"- Use scripts\\ffmpeg_timeline_adapter.py to export audited FFmpeg commands, including preview/proxy commands, from a validated timeline.",
 			"- Use scripts\\timeline_graphics_adapter.py to export audited Remotion, HyperFrames, or Blender layer/job commands from a validated timeline.",
-			"- Use scripts\\render_multicam.py only as a legacy FFmpeg-backed fallback when a timeline adapter path cannot cover the requested workflow.",
+			"- Use scripts\\render_multicam.py as the shared FFmpeg-backed fallback when a timeline adapter path cannot cover the requested workflow.",
 			"- Before project-specific editing, read the active project's VIDEO_EDITING_INSTRUCTIONS.md and inspect projects\\<project-id>\\scripts for project-local automation.",
 			"- Do not change shared app scripts to satisfy a one-off project requirement; put project-specific code under the active project's scripts directory.",
 			"- Use scripts\\analyze_person_edit_metadata.py before edit planning when person position/crop decisions matter.",

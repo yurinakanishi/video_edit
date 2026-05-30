@@ -11,6 +11,13 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config"
 SCRIPTS = ROOT / "scripts"
 FORM_OPTIONS = ROOT / "app" / "src" / "renderer" / "form-options.ts"
+SHARED_SCAN_ROOTS = [
+    ROOT / "README.md",
+    ROOT / "app" / "src",
+    ROOT / "config",
+    ROOT / "docs",
+    ROOT / "scripts",
+]
 
 
 def fail(message: str) -> None:
@@ -74,6 +81,58 @@ def assert_project_boundary() -> None:
         fail(f".gitignore is missing project tracking rules: {', '.join(missing)}")
 
 
+def shared_text_files() -> list[Path]:
+    files: list[Path] = []
+    for root in SHARED_SCAN_ROOTS:
+        if root.is_file():
+            files.append(root)
+            continue
+        for path in root.rglob("*"):
+            if path.is_file() and path.suffix.lower() in {".json", ".md", ".py", ".ts", ".tsx"}:
+                files.append(path)
+    return files
+
+
+def assert_no_project_specific_shared_references() -> None:
+    banned_terms = [
+        "260526" + "-birthday",
+        "new" + "-folder-2",
+        "app_" + "interview_output",
+        "camera" + " audit",
+        "camera5" + " color",
+        "birthday" + "_preview",
+        "birthday" + "_highlight",
+    ]
+    violations: list[str] = []
+    for path in shared_text_files():
+        if path == Path(__file__).resolve():
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        lowered = text.lower()
+        hits = [term for term in banned_terms if term.lower() in lowered]
+        if hits:
+            relative = path.relative_to(ROOT).as_posix()
+            violations.append(f"{relative}: {', '.join(hits)}")
+    if violations:
+        fail("project-specific references found in shared files: " + "; ".join(violations))
+
+
+def assert_renderer_boundary() -> None:
+    shim = SCRIPTS / "render_app_interview.py"
+    implementation = SCRIPTS / "render_multicam.py"
+    if not shim.is_file() or not implementation.is_file():
+        fail("render_multicam.py and render_app_interview.py must both exist")
+    shim_text = shim.read_text(encoding="utf-8")
+    implementation_text = implementation.read_text(encoding="utf-8")
+    if "from render_multicam import main" not in shim_text or len(shim_text.splitlines()) > 12:
+        fail("render_app_interview.py must remain a small compatibility shim around render_multicam.py")
+    if "render_app_interview" in implementation_text:
+        fail("render_multicam.py must not import or depend on render_app_interview.py")
+
+
 def main() -> None:
     manifest = load_manifest()
     python_scripts = string_list(manifest, "pythonScripts")
@@ -122,6 +181,8 @@ def main() -> None:
         fail("workflow action order/list mismatch; " + "; ".join(details))
 
     assert_project_boundary()
+    assert_no_project_specific_shared_references()
+    assert_renderer_boundary()
     print("architecture check passed")
 
 

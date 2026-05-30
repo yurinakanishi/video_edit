@@ -92,7 +92,7 @@ export function WorkflowPanel({ hidden = false }: PanelProps) {
 								}}
 							>
 								<option value="render_multicam.py">Multicam render from selected media</option>
-								<option value="render_app_interview.py">Legacy renderer alias</option>
+								<option value="render_app_interview.py">Compatibility renderer alias</option>
 							</select>
 						</label>
 						<label>

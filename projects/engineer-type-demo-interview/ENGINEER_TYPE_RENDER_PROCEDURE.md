@@ -8,7 +8,7 @@ This file is the handoff procedure for another AI/engineer to reproduce the same
 - Active project id: `new-folder-2`
 - Project config: `projects/new-folder-2/project_state.json`
 - Main render action: `python .\scripts\video_edit_run.py --action render-selected`
-- Main render script: `scripts/render_app_interview.py`
+- Main render script: `scripts/render_multicam.py`
 
 Do not use the Electron UI for this workflow. Operate from scripts and project files.
 
@@ -47,7 +47,7 @@ Do not read active render media from `Downloads` or any folder outside `C:\Users
 
 ```powershell
 Get-CimInstance Win32_Process |
-  Where-Object { $_.CommandLine -match 'video_edit_run|render_app_interview|ffmpeg' } |
+  Where-Object { $_.CommandLine -match 'video_edit_run|render_multicam|render_app_interview|ffmpeg' } |
   Select-Object ProcessId,Name,CommandLine
 ```
 
@@ -119,7 +119,7 @@ $p.Id
 
 Expected internal steps:
 
-1. `render_app_interview.py` starts.
+1. `render_multicam.py` starts.
 2. `generate_full_transcript_png_overlays.py` regenerates full subtitle PNGs.
 3. `generate_chapter_title_png_overlays.py` regenerates top-left chapter titles.
 4. Long subtitle PNGs are precomposed into `output/overlays/precomposed/<timestamp>_full_subtitles.mov`.
@@ -133,7 +133,7 @@ Use process checks. On Windows, the `.mp4` size can show `0` until the mux close
 
 ```powershell
 Get-CimInstance Win32_Process |
-  Where-Object { $_.CommandLine -match 'video_edit_run|render_app_interview|ffmpeg' } |
+  Where-Object { $_.CommandLine -match 'video_edit_run|render_multicam|render_app_interview|ffmpeg' } |
   Select-Object ProcessId,Name,CommandLine
 ```
 
@@ -207,7 +207,7 @@ Do not use this old graph shape:
 segment trim -> fps=30000/1001 -> segment filters -> concat
 ```
 
-The fixed implementation lives in `scripts/render_app_interview.py`: camera segments must not get individual FPS conversion before `concat`; the shared FPS conversion belongs after `[vbase_raw]`.
+The fixed implementation lives in `scripts/render_multicam.py`: camera segments must not get individual FPS conversion before `concat`; the shared FPS conversion belongs after `[vbase_raw]`.
 
 `scripts/shorten_silences.py` also needs to keep using the configured encoder. When `render.videoEncoder = "h264_nvenc"`, silence shortening should re-encode with `h264_nvenc` rather than falling back to CPU x264.
 

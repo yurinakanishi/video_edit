@@ -1,0 +1,84 @@
+{
+  "replacements": [
+    {
+      "from": "花岡博之",
+      "to": "花岡洋行",
+      "reason": "Source file and project name identify the guest as 花岡洋行."
+    },
+    {
+      "from": "花岡ひろゆき",
+      "to": "花岡洋行",
+      "reason": "Unify the guest name spelling."
+    },
+    {
+      "from": "東京アシス",
+      "to": "東京オアシス",
+      "reason": "Program name."
+    },
+    {
+      "from": "長夫子在住",
+      "to": "調布市在住",
+      "reason": "Context is 調布市."
+    },
+    {
+      "from": "調子の中では",
+      "to": "調布市の中では",
+      "reason": "Context is 調布市."
+    },
+    {
+      "from": "YouSaveMyLife",
+      "to": "Your Song Saves My Life",
+      "reason": "Song title."
+    },
+    {
+      "from": "You Save My Life",
+      "to": "Your Song Saves My Life",
+      "reason": "Song title."
+    },
+    {
+      "from": "素晴らしい憂鬱ですね",
+      "to": "素晴らしい選曲ですね",
+      "reason": "Context is the requested song selection."
+    },
+    {
+      "from": "ケイトス",
+      "to": "キートス",
+      "reason": "Organization name."
+    },
+    {
+      "from": "長年教師されてきた",
+      "to": "長年教師をされてきた",
+      "reason": "Natural Japanese wording for the teacher background."
+    },
+    {
+      "from": "交通維持",
+      "to": "交通遺児",
+      "reason": "Context is あしなが育英会 and support for traffic-orphaned children."
+    },
+    {
+      "from": "維持支援",
+      "to": "遺児支援",
+      "reason": "Context is support for orphaned children."
+    },
+    {
+      "from": "交通遺児以外の維持",
+      "to": "交通遺児以外の遺児",
+      "reason": "Context contrasts traffic-orphan support with other orphan support."
+    },
+    {
+      "from": "それ以外の維持",
+      "to": "それ以外の遺児、",
+      "reason": "Context contrasts traffic-orphan support with other orphan support."
+    },
+    {
+      "from": "育営",
+      "to": "育英",
+      "reason": "Organization name uses 育英."
+    },
+    {
+      "from": "足長",
+      "to": "あしなが",
+      "reason": "Organization name is あしなが育英会."
+    }
+  ]
+}

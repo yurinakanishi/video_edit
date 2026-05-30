@@ -2,7 +2,7 @@ export type SelectOption = readonly [value: string, label: string];
 
 export const EDIT_PRESETS = [
 	["multicam-edit", "Multicam edit from selected media"],
-	["new-interview", "Legacy saved preset"],
+	["new-interview", "Compatibility saved preset"],
 ] as const;
 
 export const MULTICAM_MODES = [

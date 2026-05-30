@@ -81,9 +81,9 @@ Render encoding is controlled by `render.encoderPreset` and `render.crf`. These 
 
 GPU encoding is controlled by `render.videoEncoder`. Use `h264_nvenc` when an NVIDIA GPU is available and quick iteration matters; use `render.nvencPreset` and `render.cq` for NVENC quality/speed tuning. Keep `libx264` with `render.encoderPreset` and `render.crf` when CPU encoding quality/size tradeoffs are preferred. Benchmark short samples before full renders because low CQ NVENC values can create much larger files.
 
-For interview deliverables, prefer `render.outputFps = "30000/1001"` unless the user explicitly needs 60fps. The renderer applies this immediately after each camera segment trim, before color matching, global zoom, and overlays, so downstream filters process about half as many frames. Do not only add a final output `-r`; that drops frames after the expensive filters and gives little speed benefit.
+For interview deliverables, prefer `render.outputFps = "30000/1001"` unless the user explicitly needs 60fps. The renderer must apply this as one shared FPS conversion after all camera segments have been concatenated, before title/logo/subtitle overlays. Do not only add a final output `-r`; that drops frames after the expensive filters and does not define the timeline used by overlays.
 
-Important sync correction: do not apply `fps=30000/1001` independently inside every camera segment before `concat`. Segment-local FPS conversion accumulates frame rounding errors over many cuts; the audio remains continuous, so the rendered video gradually lags behind the external WAV and the audio appears early. The renderer should trim and style camera segments at source timing, `concat` the segments first, then apply one shared `fps=<render.outputFps>` to the concatenated base video before overlays. If drift is suspected, verify with visual frame matching against source frames at several timeline points, not only audio waveform correlation.
+Important sync correction: do not apply `fps=30000/1001` independently inside every camera segment before `concat`. Segment-local FPS conversion accumulates frame rounding errors over many cuts; the audio remains continuous, so the rendered video gradually lags behind the external WAV and the audio appears early. In the 2026-05-29 investigation, external WAV sync stayed stable within roughly `-0.025s`, while the video-only comparison against source frames showed about `0.4s` lag near 17 minutes and about `0.8s` lag later in the render. The renderer should trim and style camera segments at source timing, `concat` the segments first, then apply one shared `fps=<render.outputFps>` to the concatenated base video before overlays. If drift is suspected, verify with visual frame matching against source frames at several timeline points, not only audio waveform correlation.
 
 Background music is app-level shared behavior. `scripts/generate_music_bed.py` reads `music.prompt`, `music.mood`, `music.outputPath`, and the active project output root, then writes a project-local WAV plus a JSON sidecar. The common renderer reads `music.enabled`, `music.scope`, `music.rangeSource`, `music.volume`, and `music.rangesText`; `scope=full` mixes the bed through the whole render, while `scope=omission` raises the music only inside auto-detected omission/interviewer overlay ranges plus explicit ranges such as `00:12-00:18`.
 
@@ -516,9 +516,11 @@ Enable multicam color matching:
 }
 ```
 
-The color target is the long main camera `ST7_7550.MP4`. Sub-camera samples must be taken at `timeline timestamp + sync offset`, from ranges where the camera is actually used, after manual/dynamic planning, speaker masking, natural cuts, and source coverage constraints. Check `projects\<project-id>\output\reports\camera_color_match.json`; it should show `sampleBasis: actual camera plan`.
+The color target is the long main camera `ST7_7550.MP4`. Sub-camera samples must be taken at `timeline timestamp + sync offset`, from ranges where the camera is actually used, after manual/dynamic planning, speaker masking, natural cuts, and source coverage constraints. Do not sample every camera at the same generic preview timestamps; that pulls the match toward unused source ranges and creates visible jumps in later close-up cuts. Check `projects\<project-id>\output\reports\camera_color_match.json`; it should show `sampleBasis: actual camera plan`.
 
-Brightness matching must blend skin, global frame brightness, and conservative neutral non-skin/background pixels. White balance should be background-first (`backgroundBgr` 80%, `neutralBgr` 20%) with skin excluded from channel gains. Temperature matching should verify both wall `R/G` and `R/B` ratios. If the whole edit should feel slightly whiter/cooler, apply a shared `render.outputLookFilter`, not a master-only extra filter:
+Brightness matching must blend skin, global frame brightness, and conservative neutral non-skin/background pixels. White balance should be background-first (`backgroundBgr` 80%, `neutralBgr` 20%) with skin excluded from channel gains. Skin can help exposure and saturation QA, but it must not drive `colorchannelmixer` gains; in the 2026-05-29 audit, face/skin-driven gains raised green/blue on `camera2` and `camera4`, making the pale wall look green. Temperature matching should verify both wall `R/G` and `R/B` ratios.
+
+The shared white/clean look must be a final common pass, not a master-only pass. If the main camera is whitened after sub-camera matching but sub cameras were matched against the pre-whitened main, the reference itself is inconsistent. Put this look in `render.outputLookFilter`, apply it after per-camera matching to every camera, and do final QA against rendered post-look frames:
 
 ```json
 {
@@ -533,6 +535,8 @@ For current `camera5` close-up audits, avoid a blunt saturation-only override. I
 ```text
 colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200
 ```
+
+When changing the color matching implementation, render a short switching test before a production render. The current useful gate is a 95-second clip from the start because it includes the long master plus sub-camera cuts such as `camera2` and `camera4`. After the test, inspect `camera_color_match.json` for per-role `sampleTimelineSeconds`, `referenceSourceSeconds`, `backgroundBgr`, `neutralBgr`, `skinBgr`, channel gains, and emitted filters. If a close-up wall is still green/cyan, adjust the background/neutral white-balance basis; do not add a saturation-only fix.
 
 Close-up cameras should be used only while the visible interviewee is speaking, even when a manual camera plan exists:
 
@@ -605,7 +609,7 @@ For interview videos, default long renders to 30fps unless 60fps is specifically
 }
 ```
 
-Do not apply `fps=30000/1001` independently inside every camera segment before `concat`. Segment-local FPS conversion caused cumulative visual drift in the 2026-05-29 sync investigation. The correct graph is: trim and style camera segments at source timing, concatenate the segments, then apply one global `fps=<render.outputFps>` to the concatenated base before title/logo/subtitle overlays.
+Do not apply `fps=30000/1001` independently inside every camera segment before `concat`. Segment-local FPS conversion caused cumulative visual drift in the 2026-05-29 sync investigation: the external WAV stayed aligned, but the video gradually lagged behind source frames. The correct graph is: trim and style camera segments at source timing, concatenate the segments, then apply one global `fps=<render.outputFps>` to the concatenated base before title/logo/subtitle overlays. `scripts/shorten_silences.py` must preserve this fixed timeline and can re-encode the final silence-shortened output with `h264_nvenc` when `render.videoEncoder = "h264_nvenc"`.
 
 Use CPU x264 only when size/quality consistency matters more than render time:
 

@@ -24,6 +24,8 @@ Keep these settings unless the user explicitly asks to change them.
 - Use `render.outputFps = "30000/1001"`.
 - Use `render.videoEncoder = "h264_nvenc"`, `render.nvencPreset = "p4"`, and `render.cq = 19`.
 - Keep `render.shortenSilence = true`, `render.minSilence = 3.0`, and `render.keepSilence = 2.0`.
+- Keep `render.colorMatchCameras = true`.
+- Keep the shared post-match output look in `render.outputLookFilter`; do not replace it with a master-only extra filter.
 - Keep the current camera5 color correction unless the user requests another color pass:
   `colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200`
 
@@ -174,6 +176,39 @@ Check silence-shortening report:
 Get-Content -LiteralPath 'C:\Users\yurin\Desktop\video_edit\projects\new-folder-2\output\videos\YYYYMMDD_HHMMSS.silence_shortening.json' -Raw
 ```
 
+## Sync And FPS QA
+
+The important sync bug was on the video side, not the external WAV audio.
+
+Known investigation result:
+
+- External WAV audio vs rendered uncut audio was stable across the timeline, roughly within `-0.025s`.
+- Video frame comparison against source footage showed cumulative lag before the fix.
+- The old bad pattern produced about `0.4s` video lag around 17 minutes and about `0.8s` later in the render.
+- Cause: applying `fps=30000/1001` separately inside every camera segment before `concat`.
+- Why it fails: every cut rounds frames independently; audio remains one continuous WAV, so only video gradually drifts.
+
+Required graph rule:
+
+```text
+trim/style each camera segment at source timing
+concat all camera segments
+apply one shared fps=<render.outputFps> to the concatenated base video
+then apply title/logo/subtitle overlays
+```
+
+Do not use this old graph shape:
+
+```text
+segment trim -> fps=30000/1001 -> segment filters -> concat
+```
+
+The fixed implementation lives in `scripts/render_app_interview.py`: camera segments must not get individual FPS conversion before `concat`; the shared FPS conversion belongs after `[vbase_raw]`.
+
+`scripts/shorten_silences.py` also needs to keep using the configured encoder. When `render.videoEncoder = "h264_nvenc"`, silence shortening should re-encode with `h264_nvenc` rather than falling back to CPU x264.
+
+When checking sync after a render, do not rely only on waveform correlation. Also compare rendered video frames to the source video at multiple timeline points. If audio is aligned but the visible mouth/frame is late, suspect the FPS graph first.
+
 ## Visual QA
 
 Always inspect at least these points after a full render:
@@ -189,6 +224,74 @@ For the camera5 color issue, compare bright low-saturation wall/background pixel
 - fixed camera5 wall: approximately `R/G ~= 1.07`, `R/B ~= 1.22`
 
 If the wall reads cyan/green/blue, do not blindly increase saturation. Check wall `R/G` and `R/B`; raise red relative to green only if the measured background supports it.
+
+## Color Matching Procedure
+
+Use this section when the user asks to fix color differences or when changing color-related code/config.
+
+The successful approach is:
+
+- Match sub cameras against the long master camera `ST7_7550.MP4`.
+- Build samples only from the final camera plan ranges where that camera is actually used.
+- Take sub-camera samples at `timeline timestamp + sync offset`, not generic source timestamps.
+- Run matching after manual/dynamic planning, speaker masking, natural dialogue cuts, and source coverage clipping.
+- Verify `output/reports/camera_color_match.json` shows `sampleBasis: actual camera plan`.
+- Use background/neutral pixels for white-balance channel gains: `backgroundBgr` first, `neutralBgr` second.
+- Do not let skin/face samples drive `colorchannelmixer` gains. Skin can help brightness and saturation checks, but skin-driven channel gains previously pushed green/blue too high on close-up cameras.
+- Apply the white/clean look as the shared final `render.outputLookFilter` after per-camera matching to every camera. Do not add a master-only white filter after matching, because that changes the reference and reintroduces mismatch.
+
+Current shared post-look:
+
+```text
+colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600
+```
+
+Before a production render after color code/config changes, render a short switching test. The current useful test is the first 95 seconds because it includes master plus sub-camera cuts such as `camera2` and `camera4`.
+
+Temporary 95-second test pattern:
+
+```powershell
+$ErrorActionPreference='Stop'
+$root='C:\Users\yurin\Desktop\video_edit'
+$project=Join-Path $root 'projects\new-folder-2'
+$statePath=Join-Path $project 'project_state.json'
+$state=Get-Content -Raw -Path $statePath | ConvertFrom-Json -Depth 100
+$ts=Get-Date -Format 'yyyyMMdd_HHmmss'
+$out=Join-Path $project "output\videos\${ts}_test_95s_color_rework.mp4"
+$state.render.previewStart=0
+$state.render.previewDuration=95
+$state.render.outputPath=$out
+$state.render.baseOutputPath=$out
+$state.render.finalOutputPath=$out
+$state.render.subtitleMode='full'
+$state.render.shortenSilence=$false
+$state.render.omitInterviewerQuestion=$false
+$state.render.closeupsOnlyWhenOnscreenSpeaker=$true
+$tmp=Join-Path $project "output\app\${ts}_test_95s_color_rework_runtime.json"
+$log=Join-Path $project "output\logs\${ts}_test_95s_color_rework.log"
+New-Item -ItemType Directory -Force -Path (Split-Path $tmp),(Split-Path $log),(Split-Path $out) | Out-Null
+$state | ConvertTo-Json -Depth 100 | Set-Content -Path $tmp -Encoding UTF8
+$env:VIDEO_EDIT_PROJECT='new-folder-2'
+$env:VIDEO_EDIT_APP_CONFIG=$tmp
+Set-Location $root
+python .\scripts\video_edit_run.py --action render-selected *> $log
+Remove-Item Env:\VIDEO_EDIT_PROJECT
+Remove-Item Env:\VIDEO_EDIT_APP_CONFIG
+```
+
+After the test, inspect:
+
+```powershell
+Get-Content -Path 'C:\Users\yurin\Desktop\video_edit\projects\new-folder-2\output\reports\camera_color_match.json' -Raw
+```
+
+For each used sub camera, check:
+
+- `sampleTimelineSeconds` and `referenceSourceSeconds` are actual used cut ranges.
+- `backgroundBgr` and `neutralBgr` are the basis for channel gains.
+- `skinBgr` did not dominate channel gains.
+- `redGain`, `greenGain`, `blueGain`, and `filter` do not push green/blue enough to make pale walls look cyan.
+- The rendered test clip visually matches the master after the shared `outputLookFilter`.
 
 ## Subtitle QA
 

@@ -758,10 +758,24 @@ def selected_audio_role(config: dict[str, Any], by_role: dict[str, str]) -> str:
 
 def subtitle_overlay_manifest_path(mode: str) -> Path | None:
     if mode == "full":
+        html_layout = OUTPUT_OVERLAYS / "full_transcript_png_overlays" / "layout.json"
+        if html_layout.exists():
+            return html_layout
         return OUTPUT_OVERLAYS / "full_transcript_png_overlays" / "manifest.json"
     if mode == "punchline":
         return OUTPUT_OVERLAYS / "punchline_png_overlays" / "manifest.json"
     return None
+
+
+def subtitle_manifest_format(path: Path | None) -> str:
+    if path is None:
+        return ""
+    if path.name == "layout.json":
+        return "html-subtitle-layout"
+    payload = load_json(path)
+    if payload.get("schemaVersion") == "video-edit-subtitle-layout/v1":
+        return "html-subtitle-layout"
+    return "png-overlay-manifest"
 
 
 def build_extra_clips(
@@ -831,17 +845,18 @@ def build_extra_clips(
     if "subtitle" in by_role:
         subtitle_mode = text_value(config, "render", "subtitleMode", default="full")
         overlay_manifest = subtitle_overlay_manifest_path(subtitle_mode)
+        overlay_format = subtitle_manifest_format(overlay_manifest)
         overlay_manifest_source_id = None
         precomposed_source_id = None
         if overlay_manifest and overlay_manifest.exists():
             overlay_manifest_source_id = find_or_add_source(
                 sources,
                 kind="data",
-                role=f"subtitle-{subtitle_mode}-manifest",
+                role=f"subtitle-{subtitle_mode}-{'layout' if overlay_format == 'html-subtitle-layout' else 'manifest'}",
                 path=overlay_manifest,
             )
             precomposed = OUTPUT_OVERLAYS / "precomposed" / f"{output_path.stem}_full_subtitles.mov"
-            if subtitle_mode == "full" and precomposed.exists():
+            if subtitle_mode == "full" and overlay_format != "html-subtitle-layout" and precomposed.exists():
                 precomposed_source_id = find_or_add_source(
                     sources,
                     kind="video",
@@ -849,15 +864,22 @@ def build_extra_clips(
                     path=precomposed,
                 )
         precompose_target = OUTPUT_OVERLAYS / "precomposed" / f"{output_path.stem}_full_subtitles.mov"
-        render_method = "precompose-png-overlay" if overlay_manifest_source_id and subtitle_mode == "full" else "ffmpeg-subtitles-filter"
+        if overlay_manifest_source_id and overlay_format == "html-subtitle-layout":
+            render_method = "html-subtitle-overlay"
+        elif overlay_manifest_source_id and subtitle_mode == "full":
+            render_method = "precompose-png-overlay"
+        else:
+            render_method = "ffmpeg-subtitles-filter"
         metadata: dict[str, Any] = {"timebase": text_value(config, "render", "subtitleTimebase", default="auto")}
         if overlay_manifest:
             metadata["overlayManifestPath"] = str(overlay_manifest)
+            metadata["overlayManifestFormat"] = overlay_format
         if overlay_manifest_source_id:
             metadata["overlayManifestSourceId"] = overlay_manifest_source_id
-            metadata["precomposedOverlayTargetPath"] = str(precompose_target)
-            metadata["precomposeBottomMargin"] = 16
-            metadata["precomposeFps"] = text_value(config, "render", "precomposeOverlayFps", default="30000/1001")
+            if overlay_format != "html-subtitle-layout":
+                metadata["precomposedOverlayTargetPath"] = str(precompose_target)
+                metadata["precomposeBottomMargin"] = 16
+                metadata["precomposeFps"] = text_value(config, "render", "precomposeOverlayFps", default="30000/1001")
         if precomposed_source_id:
             metadata["precomposedOverlaySourceId"] = precomposed_source_id
             metadata["precomposedOverlayPath"] = str(precompose_target)

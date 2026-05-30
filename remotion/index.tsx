@@ -34,8 +34,24 @@ type OverlayItem = {
 	exists?: boolean;
 	width?: number;
 	height?: number;
+	fontSize?: number;
 	lines?: string[];
 	speakerRole?: string;
+};
+
+type SubtitleStyle = {
+	fontFamily?: string;
+	fontSize?: number;
+	fontWeight?: number;
+	tracking?: number;
+	padX?: number;
+	padY?: number;
+	lineGap?: number;
+	boxRadius?: number;
+	bottomMargin?: number;
+	textColor?: string;
+	onscreenBoxColor?: string;
+	interviewerBoxColor?: string;
 };
 
 type TimelineLayer = {
@@ -56,7 +72,7 @@ type TimelineLayer = {
 	style?: Record<string, unknown>;
 	effects?: Array<{ type?: string; params?: Record<string, unknown> }>;
 	metadata?: Record<string, unknown>;
-	overlayManifest?: { path?: string; items?: OverlayItem[] };
+	overlayManifest?: { path?: string; items?: OverlayItem[]; style?: SubtitleStyle; renderMode?: string };
 };
 
 type TimelineManifest = {
@@ -157,26 +173,84 @@ const overlayPosition = (layer: TimelineLayer): React.CSSProperties => {
 
 const SubtitleManifestLayer: React.FC<{ layer: TimelineLayer }> = ({ layer }) => {
 	const items = layer.overlayManifest?.items ?? [];
+	const manifestStyle = layer.overlayManifest?.style ?? {};
+	const renderHtmlSubtitle = (item: OverlayItem) => {
+		const lines = item.lines ?? [];
+		if (!lines.length) {
+			return null;
+		}
+		const fontSize = numberValue(item.fontSize, numberValue(manifestStyle.fontSize, 80));
+		const padX = numberValue(manifestStyle.padX, 18);
+		const padY = numberValue(manifestStyle.padY, 10);
+		const lineGap = numberValue(manifestStyle.lineGap, 6);
+		const radius = numberValue(manifestStyle.boxRadius, 10);
+		const isInterviewer = item.speakerRole === "interviewer";
+		const boxColor = isInterviewer
+			? String(manifestStyle.interviewerBoxColor ?? "rgba(0, 0, 0, 0.6863)")
+			: String(manifestStyle.onscreenBoxColor ?? "rgba(174, 72, 224, 0.7255)");
+		return (
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					gap: lineGap,
+					maxWidth: "92%",
+				}}
+			>
+				{lines.map((line, lineIndex) => (
+					<div
+						key={`${item.start}-${lineIndex}`}
+						style={{
+							backgroundColor: boxColor,
+							borderRadius: radius,
+							color: String(manifestStyle.textColor ?? "rgba(255, 255, 255, 1)"),
+							fontFamily: String(manifestStyle.fontFamily ?? "Yu Gothic UI"),
+							fontSize,
+							fontWeight: numberValue(manifestStyle.fontWeight, 700),
+							letterSpacing: numberValue(manifestStyle.tracking, 4),
+							lineHeight: 1.1,
+							padding: `${padY}px ${padX}px`,
+							whiteSpace: "nowrap",
+						}}
+					>
+						{line}
+					</div>
+				))}
+			</div>
+		);
+	};
 	return (
 		<>
 			{items.map((item, index) => {
 				const startFrame = Math.max(0, Math.round(item.relativeStart * fps));
 				const endFrame = Math.max(startFrame + 1, Math.round(item.relativeEnd * fps));
+				const shouldRenderImage = Boolean(item.publicPath || item.file);
 				return (
 					<Sequence
 						key={`${layer.id}-subtitle-${index}`}
 						from={startFrame}
 						durationInFrames={endFrame - startFrame}
 					>
-						<AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", paddingBottom: 16 }}>
-							<Img
-								src={item.publicPath ? staticFile(item.publicPath) : toFileUrl(item.file)}
-								style={{
-									maxWidth: "92%",
-									width: item.width ? Math.min(item.width, width * 0.92) : undefined,
-									height: "auto",
-								}}
-							/>
+						<AbsoluteFill
+							style={{
+								justifyContent: "flex-end",
+								alignItems: "center",
+								paddingBottom: numberValue(manifestStyle.bottomMargin, 16),
+							}}
+						>
+							{shouldRenderImage ? (
+								<Img
+									src={item.publicPath ? staticFile(item.publicPath) : toFileUrl(item.file)}
+									style={{
+										maxWidth: "92%",
+										width: item.width ? Math.min(item.width, width * 0.92) : undefined,
+										height: "auto",
+									}}
+								/>
+							) : (
+								renderHtmlSubtitle(item)
+							)}
 						</AbsoluteFill>
 					</Sequence>
 				);

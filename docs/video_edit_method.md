@@ -78,7 +78,7 @@ Current FFmpeg adapter scope:
 
 Current graphics adapter scope:
 
-- Implemented: Remotion and HyperFrames JSON layer manifests for video/audio references, subtitles, image overlays, generated overlay clips, partial timeline ranges, and audited external renderer argv reports. Remotion also has a bundled overlay composition scaffold in `remotion/index.tsx`; the adapter copies subtitle/logo PNGs into ignored `public/adapter-assets`, renders transparent PNG-sequence overlay artifacts, and writes overlay handoff metadata for FFmpeg composition. Blender job manifests are generated for clips explicitly marked with `metadata.renderer = "blender"`, `style.renderer = "blender"`, `style.engine = "blender"`, or Blender-specific effect types; the adapter also writes a Blender Python script for transparent PNG-sequence 3D text layers and handoff metadata for FFmpeg composition.
+- Implemented: Remotion and HyperFrames JSON layer manifests for video/audio references, subtitles, image overlays, generated overlay clips, partial timeline ranges, and audited external renderer argv reports. Remotion also has a bundled overlay composition scaffold in `remotion/index.tsx`; the adapter can render subtitles directly from structured HTML/CSS subtitle layout JSON, copies legacy subtitle/logo PNGs into ignored `public/adapter-assets` when needed, renders transparent PNG-sequence overlay artifacts, and writes overlay handoff metadata for FFmpeg composition. Blender job manifests are generated for clips explicitly marked with `metadata.renderer = "blender"`, `style.renderer = "blender"`, `style.engine = "blender"`, or Blender-specific effect types; the adapter also writes a Blender Python script for transparent PNG-sequence 3D text layers and handoff metadata for FFmpeg composition.
 - Explicitly reported as not ready: full source media playback inside Remotion, single-file alpha video overlay export, a bundled HyperFrames renderer project/executable, and automatic Blender selection for normal 2D overlays.
 
 Partial preview command example:
@@ -150,7 +150,7 @@ Thumbnail and subtitle review behavior is app-level shared behavior. `scripts/ge
 
 Full subtitle overlays use only the selected/parsed project transcript. If no current transcript exists, generation should fail instead of using older subtitles.
 
-The preferred full-subtitle visual baseline is the pre-app PNG overlay style from `scripts/generate_full_transcript_png_overlays.py` / `scripts/subtitle_png_style.py`. Plain ASS is only an implementation fallback for very long renders and must visually approximate that baseline. For five-minute or longer QA clips, do not pass every PNG subtitle as an individual FFmpeg input on Windows; precompose the PNG subtitle manifest into one transparent overlay video, then overlay that video onto the rendered base clip. For long multicam plans, also write the FFmpeg filter graph to `output/reports/filtergraphs/<output>.ffgraph` and use `-filter_complex_script`, because the filter graph itself can exceed the Windows command-line length even after subtitle precomposition.
+The preferred full-subtitle visual baseline is now structured layout data from `scripts/generate_full_transcript_png_overlays.py` / `scripts/subtitle_png_style.py`: write `output/overlays/full_transcript_png_overlays/layout.json` and let Remotion/HyperFrames render the subtitle boxes as HTML/CSS. PNG subtitles remain a compatibility path for the legacy FFmpeg renderer and QA snapshots; when PNG mode is used for five-minute or longer QA clips, precompose the PNG subtitle manifest into one transparent overlay video before overlaying it onto the rendered base clip. Plain ASS is only an implementation fallback and must visually approximate the same baseline. For long multicam plans, also write the FFmpeg filter graph to `output/reports/filtergraphs/<output>.ffgraph` and use `-filter_complex_script`, because the filter graph itself can exceed the Windows command-line length even after subtitle precomposition.
 
 Full subtitle line breaking must preserve readable phrase boundaries. `scripts/generate_full_transcript_png_overlays.py` should measure text at the actual rendered font size and choose line breaks by layout width plus Japanese phrase penalties, not by raw character count. Do not break inside protected terms or phrase-like units such as Latin/number tokens, katakana technical terms, `FDE`, `PDM`, `SaaS`, `SIer`, `Claude Code`, `プロダクトマネージャー`, `ジョブディスクリプション`, `リバースエンジニアリング`, or common Japanese chunks such as `難しい`, `働き方`, `考え方`, `ということ`, `みたいな`, and `している`. Also avoid splitting Japanese okurigana words between kanji and following hiragana, such as `務|まらない`, `受|け入れ`, or `限|られている`. Avoid second lines that start with particles, suffix fragments, or weak continuations such as `いう`, `って`, `こと`, `ところ`, `もの`, `ので`, `けど`, `とか`, `たり`, `です`, `ます`, `は`, `が`, `を`, `に`, `で`, `と`, `も`, and `の`. If a natural two-line break would split a word or phrase, allow the caption to become a later timed chunk instead of forcing an ugly two-line split.
 
@@ -309,19 +309,15 @@ The source of truth remains `projects\<project-id>\project_state.json`, the proj
 
 ### Fixed Style Inputs
 
-Use this image for the right-top logo:
-
-```text
-C:\Users\yurin\Documents\Codex\2026-05-25\files-mentioned-by-the-user-chatgpt\chatgpt-image-2026-05-25-203219-transparent-cropped.png
-```
-
-Copy it into the active project, for example:
+Use the project-local copy for the right-top logo:
 
 ```text
 projects\<project-id>\source\images\right_logo_pre_fb05.png
 ```
 
 Set both `assets.logo` and `assets.logoPath` to the copied project-local path. Use the pre-`fb05cf02153a6511da1204d9ff43890c1bad473b` logo size as the default reference; in the current project that means `style.logoHeight = 48`.
+
+Active render media must also be project-local. Videos belong under `projects\<project-id>\source\video\`, external WAV files under `projects\<project-id>\source\audio\`, and references in `project_state.json` plus `output\reports\media_manifest.json` must point there. Do not let a production render read active media from `Downloads` or another folder outside the repository.
 
 ### Highest Accuracy Transcription
 
@@ -494,7 +490,7 @@ For full-timeline stereo classification against the external WAV:
 $env:VIDEO_EDIT_PROJECT = "new-folder-2"
 python .\scripts\classify_speakers_audio_features.py `
   --srt "projects/new-folder-2/output/transcripts/manifest_sources/primary.srt" `
-  --audio "C:\Users\yurin\Downloads\New folder (2)\140101-003.WAV" `
+  --audio "projects/new-folder-2/source/audio/140101-003.WAV" `
   --output "projects/new-folder-2/output/reports/full_transcript_speaker_roles_audio_lr.json" `
   --report "projects/new-folder-2/output/reports/full_transcript_speaker_roles_audio_lr_report.json"
 ```

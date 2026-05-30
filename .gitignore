@@ -28,7 +28,10 @@
 /source/
 
 # Local project workspaces
-/projects/
+/projects/*
+!/projects/*/
+/projects/*/*
+!/projects/*/*.md
 
 # FFmpeg segment and diagnostic outputs
 segments_*/

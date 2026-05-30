@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import re
@@ -31,6 +32,8 @@ from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, 
 
 WORK = WORKSPACE_ROOT
 OUT_DIR = OUTPUT_OVERLAYS / "full_transcript_png_overlays"
+LAYOUT_PATH = OUT_DIR / "layout.json"
+PNG_MANIFEST_PATH = OUT_DIR / "manifest.json"
 MAX_IMAGE_WIDTH = 1760
 CAPTION_PAD_X = 18
 CAPTION_STROKE = 0
@@ -260,6 +263,34 @@ class Caption:
     end: str
     lines: tuple[str, ...]
     font_size: int
+
+
+def rgba_css(color: tuple[int, int, int, int]) -> str:
+    red, green, blue, alpha = color
+    return f"rgba({red}, {green}, {blue}, {alpha / 255:.4f})"
+
+
+def measure_simple_caption(
+    lines: tuple[str, ...],
+    font_size: int,
+    *,
+    stroke: int = CAPTION_STROKE,
+    pad_x: int = CAPTION_PAD_X,
+    pad_y: int = 10,
+    line_gap: int = 6,
+) -> tuple[int, int]:
+    font = ImageFont.truetype(str(FONT_PATH), font_size, index=1)
+    probe = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(probe)
+    widths: list[int] = []
+    heights: list[int] = []
+    for line in lines:
+        bbox = draw.textbbox((0, 0), line, font=font, stroke_width=stroke)
+        widths.append(tracked_text_width(draw, line, font, stroke) if len(line) > 1 else bbox[2] - bbox[0])
+        heights.append(bbox[3] - bbox[1])
+    max_width = max(widths, default=0)
+    total_height = sum(height + pad_y * 2 for height in heights) + line_gap * max(0, len(lines) - 1)
+    return max_width + pad_x * 2, total_height + pad_y * 2
 
 
 def parse_srt_seconds(timestamp: str) -> float:
@@ -667,13 +698,30 @@ def layout_timed_caption_chunks(source_index: int, start_raw: str, end_raw: str,
 
 def reset_output_dir() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for pattern in ("full_*.png", "manifest.json"):
+    for pattern in ("full_*.png", "manifest.json", "layout.json"):
         for path in OUT_DIR.glob(pattern):
             if path.is_file():
                 path.unlink()
 
 
+def parse_args() -> argparse.Namespace:
+    default_format = str(nested(APP_CONFIG, "render", "subtitleOverlayFormat", default="html") or "html").strip().lower()
+    if default_format in {"layout", "json", "html-css"}:
+        default_format = "html"
+    if default_format not in {"html", "png", "both"}:
+        default_format = "html"
+    parser = argparse.ArgumentParser(description="Generate full transcript subtitle layout data and optional PNG overlays.")
+    parser.add_argument(
+        "--format",
+        choices=["html", "png", "both"],
+        default=default_format,
+        help="html writes layout.json only; png/both also rasterize per-caption PNG assets.",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     reset_output_dir()
     if SRT is None:
         raise SystemExit("No subtitle file found. Run transcription or select a subtitle file before generating full overlays.")
@@ -684,31 +732,76 @@ def main() -> None:
     alpha = opacity_alpha(nested(APP_CONFIG, "style", "boxOpacity"), 185)
     onscreen_fill = hex_rgba(nested(APP_CONFIG, "style", "highlightColor"), alpha=alpha, default=LIGHT_PURPLE)
     interviewer_fill = (*BLACK[:3], alpha)
-    manifest = []
+    write_png = args.format in {"png", "both"}
+    layout_items = []
+    png_manifest = []
     for index, caption in enumerate(captions, start=1):
         role = roles.get(str(caption.source_index), "onscreen")
         box_fill = interviewer_fill if role == "interviewer" else onscreen_fill
-        image = render_simple_caption(
-            caption.lines,
-            caption.font_size,
-            stroke=CAPTION_STROKE,
-            pad_x=CAPTION_PAD_X,
-            pad_y=10,
-            line_gap=6,
-            box_fill=box_fill,
-        )
-        filename = f"full_{index:03d}.png"
-        image.save(OUT_DIR / filename)
-        manifest.append(
+        width, height = measure_simple_caption(caption.lines, caption.font_size)
+        item = {
+            **asdict(caption),
+            "speaker_role": role,
+            "width": width,
+            "height": height,
+        }
+        layout_items.append(item)
+        if write_png:
+            image = render_simple_caption(
+                caption.lines,
+                caption.font_size,
+                stroke=CAPTION_STROKE,
+                pad_x=CAPTION_PAD_X,
+                pad_y=10,
+                line_gap=6,
+                box_fill=box_fill,
+            )
+            filename = f"full_{index:03d}.png"
+            image.save(OUT_DIR / filename)
+            png_manifest.append({**item, "file": str((OUT_DIR / filename).relative_to(WORK)), "width": image.width, "height": image.height})
+    layout = {
+        "schemaVersion": "video-edit-subtitle-layout/v1",
+        "kind": "full-subtitle",
+        "renderMode": "html",
+        "source": {
+            "subtitlePath": str(SRT),
+            "speakerRolesPath": str(SPEAKER_ROLES),
+            "speakerRolesExist": SPEAKER_ROLES.exists(),
+        },
+        "style": {
+            "fontFamily": "Yu Gothic UI",
+            "fontPath": str(FONT_PATH),
+            "fontSize": int_value(APP_CONFIG, "style", "subtitleSize", default=FONT_SIZE),
+            "fontWeight": 700,
+            "tracking": TRACKING,
+            "maxImageWidth": MAX_IMAGE_WIDTH,
+            "padX": CAPTION_PAD_X,
+            "padY": 10,
+            "lineGap": 6,
+            "boxRadius": 10,
+            "bottomMargin": 16,
+            "textColor": "rgba(255, 255, 255, 1)",
+            "onscreenBoxColor": rgba_css(onscreen_fill),
+            "interviewerBoxColor": rgba_css(interviewer_fill),
+        },
+        "items": layout_items,
+    }
+    LAYOUT_PATH.write_text(json.dumps(layout, ensure_ascii=False, indent=2), encoding="utf-8")
+    if write_png:
+        PNG_MANIFEST_PATH.write_text(json.dumps(png_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(
+        json.dumps(
             {
-                **asdict(caption),
-                "speaker_role": role,
-                "file": str((OUT_DIR / filename).relative_to(WORK)),
-                "width": image.width,
-                "height": image.height,
-            }
+                "layout": str(LAYOUT_PATH),
+                "pngManifest": str(PNG_MANIFEST_PATH) if write_png else "",
+                "format": args.format,
+                "captionCount": len(layout_items),
+                "pngCount": len(png_manifest),
+            },
+            ensure_ascii=False,
+            indent=2,
         )
-    (OUT_DIR / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    )
 
 
 if __name__ == "__main__":

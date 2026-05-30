@@ -3412,7 +3412,10 @@ def subtitle_manifest(mode: str) -> tuple[Path, dict[str, object]]:
         },
     }
     config = modes[mode]
-    run([sys.executable, str(config["generator"])])
+    command = [sys.executable, str(config["generator"])]
+    if mode == "full":
+        command.extend(["--format", "png"])
+    run(command)
     return Path(config["manifest"]), config
 
 

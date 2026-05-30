@@ -158,6 +158,10 @@ def materialize_remotion_assets(manifest: dict[str, Any], stem: str) -> list[dic
     asset_dir = REMOTION_PUBLIC_ASSET_DIR / stem
     public_prefix = f"adapter-assets/{stem}"
     assets: list[dict[str, Any]] = []
+    root = REMOTION_PUBLIC_ASSET_DIR.resolve()
+    target = asset_dir.resolve()
+    if asset_dir.exists() and root in target.parents:
+        shutil.rmtree(asset_dir)
     layers = manifest.get("layers") if isinstance(manifest.get("layers"), list) else []
     for layer_index, layer in enumerate(layers, start=1):
         if not isinstance(layer, dict):
@@ -178,17 +182,27 @@ def materialize_remotion_assets(manifest: dict[str, Any], stem: str) -> list[dic
     return assets
 
 
-def overlay_manifest_items(path: Path, render_start: float, render_end: float) -> list[dict[str, Any]]:
+def overlay_manifest_payload(path: Path, render_start: float, render_end: float) -> dict[str, Any]:
     if not path.exists():
-        return []
+        return {"path": str(path), "exists": False, "items": [], "style": {}}
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
-        return []
-    if not isinstance(payload, list):
-        return []
+        return {"path": str(path), "exists": False, "items": [], "style": {}}
+    if isinstance(payload, dict):
+        raw_items = payload.get("items") if isinstance(payload.get("items"), list) else []
+        style = payload.get("style") if isinstance(payload.get("style"), dict) else {}
+        schema_version = str(payload.get("schemaVersion") or "")
+        render_mode = str(payload.get("renderMode") or "")
+    elif isinstance(payload, list):
+        raw_items = payload
+        style = {}
+        schema_version = ""
+        render_mode = "png"
+    else:
+        return {"path": str(path), "exists": False, "items": [], "style": {}}
     items: list[dict[str, Any]] = []
-    for item in payload:
+    for item in raw_items:
         if not isinstance(item, dict):
             continue
         start = seconds_from_timestamp(item.get("start"))
@@ -197,7 +211,8 @@ def overlay_manifest_items(path: Path, render_start: float, render_end: float) -
         visible_end = min(end, render_end)
         if visible_end <= visible_start:
             continue
-        file_path = resolve_path(str(item.get("file") or ""))
+        file_text = str(item.get("file") or "")
+        file_path = resolve_path(file_text) if file_text else Path("")
         items.append(
             {
                 "start": start,
@@ -206,15 +221,27 @@ def overlay_manifest_items(path: Path, render_start: float, render_end: float) -
                 "visibleEnd": visible_end,
                 "relativeStart": visible_start - render_start,
                 "relativeEnd": visible_end - render_start,
-                "file": str(file_path),
-                "exists": file_path.exists(),
+                "file": str(file_path) if file_text else "",
+                "exists": file_path.exists() if file_text else False,
                 "width": as_int(item.get("width"), 0),
                 "height": as_int(item.get("height"), 0),
+                "fontSize": as_int(item.get("font_size") or item.get("fontSize"), 0),
                 "lines": item.get("lines") if isinstance(item.get("lines"), list) else [],
                 "speakerRole": item.get("speaker_role") or item.get("speakerRole") or "",
             }
         )
-    return items
+    return {
+        "path": str(path),
+        "exists": path.exists(),
+        "schemaVersion": schema_version,
+        "renderMode": render_mode,
+        "style": style,
+        "items": items,
+    }
+
+
+def overlay_manifest_items(path: Path, render_start: float, render_end: float) -> list[dict[str, Any]]:
+    return overlay_manifest_payload(path, render_start, render_end)["items"]
 
 
 def resolve_render_range(timeline: dict[str, Any], args: argparse.Namespace) -> tuple[float, float]:
@@ -294,10 +321,7 @@ def clip_layer(
     metadata = layer["metadata"] if isinstance(layer.get("metadata"), dict) else {}
     manifest_path = metadata.get("overlayManifestPath")
     if manifest_path and layer["layerKind"] == "subtitle":
-        layer["overlayManifest"] = {
-            "path": str(resolve_path(str(manifest_path))),
-            "items": overlay_manifest_items(resolve_path(str(manifest_path)), render_start, render_end),
-        }
+        layer["overlayManifest"] = overlay_manifest_payload(resolve_path(str(manifest_path)), render_start, render_end)
     return layer
 
 
@@ -488,6 +512,7 @@ def build_html_adapter_report(
             "implemented": [
                 "bundled Remotion composition scaffold for overlay-layer rendering",
                 "Remotion public-asset materialization for image and subtitle PNG layers",
+                "Remotion HTML/CSS subtitle rendering from structured subtitle layout JSON",
                 "Remotion PNG-sequence overlay artifact export with alpha",
                 "FFmpeg composition handoff metadata through overlayArtifact",
                 "React layer manifest for timeline video/audio references",
@@ -534,6 +559,7 @@ def build_html_adapter_report(
             "implemented": [
                 "HTML layer manifest for timeline video/audio references",
                 "HTML layer manifest for subtitle, image, and generated overlay clips",
+                "structured subtitle layout JSON handoff for HTML/CSS rendering",
                 "partial timeline-range layer export",
                 "audited HyperFrames render argv export",
             ],

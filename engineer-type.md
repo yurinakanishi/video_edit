@@ -31,11 +31,15 @@ Keep these settings unless the user explicitly asks to change them.
 
 Current important inputs:
 
+- Media sources must be project-local:
+  `projects/new-folder-2/source/video/*.MP4` and `projects/new-folder-2/source/audio/*.WAV`.
 - Subtitle SRT: `projects/new-folder-2/output/transcripts/manifest_sources/external_140101-003.reviewed.srt`
 - Speaker roles: `projects/new-folder-2/output/reports/full_transcript_speaker_roles_audio_lr.json`
 - Manual camera plan: `projects/new-folder-2/output/reports/manual_camera_plan.json`
 - Right logo: configured in `project_state.json`
 - Chapter titles: `projects/new-folder-2/output/reports/chapter_titles_from_full_transcript.json`
+
+Do not read active render media from `Downloads` or any folder outside `C:\Users\yurin\Desktop\video_edit`. If a source file is outside the project, move it into the matching project source folder first, then update `project_state.json` and `output/reports/media_manifest.json`.
 
 ## Before Rendering
 

@@ -50,6 +50,11 @@ export const MUSIC_RANGE_SOURCES = [
 
 export const WORKFLOW_ACTIONS = [
 	["render-selected", "Create video from selected settings"],
+	["build-timeline", "Build validated timeline JSON"],
+	["validate-timeline", "Validate timeline JSON"],
+	["export-ffmpeg-command", "Export FFmpeg command from timeline"],
+	["export-ffmpeg-preview-command", "Export FFmpeg preview command"],
+	["render-timeline-ffmpeg", "Render timeline with FFmpeg adapter"],
 	["generate-proxies", "Generate proxy videos"],
 	["generate-punchlines", "Create catchy subtitle images"],
 	["generate-full-overlays", "Create full subtitle images"],

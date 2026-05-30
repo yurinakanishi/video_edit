@@ -17,6 +17,9 @@ FFPROBE = optional_path(APP_CONFIG, "tools", "ffprobe", default=Path(r"C:\Progra
 
 SIMPLE_PYTHON_ACTIONS = {
     "generate-punchlines": "generate_punchline_png_overlays.py",
+    "build-timeline": "build_edit_timeline.py",
+    "validate-timeline": "timeline_validate.py",
+    "export-ffmpeg-command": "ffmpeg_timeline_adapter.py",
     "generate-proxies": "generate_proxies.py",
     "generate-full-overlays": "generate_full_transcript_png_overlays.py",
     "precompose-png-overlay-video": "precompose_png_overlay_video.py",
@@ -254,6 +257,10 @@ def command_for_action(action: str) -> list[str]:
         return extract_still_command()
     if action in {"verify-duration", "verify-audio"}:
         return ffprobe_command(action)
+    if action == "export-ffmpeg-preview-command":
+        return [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--preview", "--proxy"]
+    if action == "render-timeline-ffmpeg":
+        return [sys.executable, str(SCRIPTS / "ffmpeg_timeline_adapter.py"), "--execute"]
     if action in SIMPLE_PYTHON_ACTIONS:
         return [sys.executable, str(SCRIPTS / SIMPLE_PYTHON_ACTIONS[action])]
     raise SystemExit(f"Unknown workflow action: {action}")

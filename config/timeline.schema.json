@@ -1,0 +1,272 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://local.video-edit/schemas/timeline.schema.json",
+  "title": "Video Edit Timeline",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "createdAt",
+    "project",
+    "timebase",
+    "duration",
+    "sources",
+    "tracks",
+    "clips",
+    "transitions",
+    "render",
+    "analysis",
+    "audit"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "video-edit-timeline/v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "root", "sourceRoot", "outputRoot"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "root": { "type": "string" },
+        "sourceRoot": { "type": "string" },
+        "outputRoot": { "type": "string" }
+      }
+    },
+    "timebase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unit", "fps"],
+      "properties": {
+        "unit": { "const": "seconds" },
+        "fps": {
+          "type": "string",
+          "pattern": "^\\d+(?:/\\d+)?(?:\\.\\d+)?$"
+        }
+      }
+    },
+    "duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/source" }
+    },
+    "tracks": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/track" }
+    },
+    "clips": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/clip" }
+    },
+    "transitions": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/transition" }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["targets"],
+      "properties": {
+        "targets": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/renderTarget" }
+        },
+        "preview": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled", "rangeStart", "rangeEnd", "proxy"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "rangeStart": { "type": "number", "minimum": 0 },
+            "rangeEnd": { "type": "number", "exclusiveMinimum": 0 },
+            "proxy": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mediaManifestPath", "reports"],
+      "properties": {
+        "mediaManifestPath": { "type": "string" },
+        "reports": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/reportRef" }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["createdBy", "inputs"],
+      "properties": {
+        "createdBy": { "type": "string", "minLength": 1 },
+        "inputs": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/reportRef" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "role", "path"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": ["video", "audio", "image", "subtitle", "data"]
+        },
+        "role": { "type": "string" },
+        "path": { "type": "string", "minLength": 1 },
+        "duration": { "type": "number", "minimum": 0 },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 },
+        "fps": { "type": ["number", "string"] },
+        "sampleRate": { "type": "integer", "minimum": 0 },
+        "channels": { "type": "integer", "minimum": 0 },
+        "codec": { "type": "string" },
+        "syncOffset": { "type": "number" },
+        "metadata": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "track": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "allowOverlap"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": ["video", "audio", "overlay", "subtitle", "music", "data"]
+        },
+        "label": { "type": "string" },
+        "allowOverlap": { "type": "boolean" }
+      }
+    },
+    "clip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "trackId", "kind", "timelineStart", "timelineEnd"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "trackId": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": ["video", "audio", "image", "subtitle", "generated", "music"]
+        },
+        "sourceId": { "type": "string" },
+        "timelineStart": { "type": "number", "minimum": 0 },
+        "timelineEnd": { "type": "number", "exclusiveMinimum": 0 },
+        "sourceIn": { "type": "number", "minimum": 0 },
+        "sourceOut": { "type": "number", "exclusiveMinimum": 0 },
+        "audioSyncOffset": { "type": "number" },
+        "allowOverlap": { "type": "boolean" },
+        "fit": { "$ref": "#/definitions/fit" },
+        "position": { "$ref": "#/definitions/position" },
+        "style": { "type": "object", "additionalProperties": true },
+        "effects": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/effect" }
+        },
+        "metadata": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "fit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": { "type": "string", "enum": ["cover", "contain", "stretch"] },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "scale": { "type": "number", "exclusiveMinimum": 0 },
+        "crop": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "centerX": { "type": "number", "minimum": 0, "maximum": 1 },
+            "centerY": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": ["number", "string"] },
+        "y": { "type": ["number", "string"] },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "anchor": { "type": "string" }
+      }
+    },
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "params"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1 },
+        "params": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "at"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "enum": ["cut", "fade", "crossfade"] },
+        "at": { "type": "number", "minimum": 0 },
+        "fromClipId": { "type": "string" },
+        "toClipId": { "type": "string" },
+        "duration": { "type": "number", "minimum": 0 }
+      }
+    },
+    "renderTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "format", "width", "height", "fps", "profile"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "minLength": 1 },
+        "format": { "type": "string", "enum": ["mp4", "mov", "webm", "image-sequence"] },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "fps": {
+          "type": "string",
+          "pattern": "^\\d+(?:/\\d+)?(?:\\.\\d+)?$"
+        },
+        "profile": { "type": "string", "enum": ["preview", "final", "proxy"] },
+        "videoCodec": { "type": "string" },
+        "audioCodec": { "type": "string" }
+      }
+    },
+    "reportRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "exists"],
+      "properties": {
+        "kind": { "type": "string", "minLength": 1 },
+        "path": { "type": "string" },
+        "exists": { "type": "boolean" }
+      }
+    }
+  }
+}

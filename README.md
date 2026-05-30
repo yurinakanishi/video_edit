@@ -29,12 +29,19 @@ python .\scripts\video_edit_run.py --action review-subtitles
 python .\scripts\video_edit_run.py --action apply-subtitle-corrections
 python .\scripts\video_edit_run.py --action classify-subtitle-speakers
 python .\scripts\video_edit_run.py --action compare-transcripts
+python .\scripts\video_edit_run.py --action build-timeline
+python .\scripts\video_edit_run.py --action validate-timeline
+python .\scripts\video_edit_run.py --action export-ffmpeg-command
+python .\scripts\video_edit_run.py --action export-ffmpeg-preview-command
+python .\scripts\video_edit_run.py --action render-timeline-ffmpeg
 python .\scripts\video_edit_run.py --action render-selected
 ```
 
 The Electron app writes a project-local runtime config under `projects\<project-id>\output\app\video_edit_app_config.runtime.json` and passes it through `VIDEO_EDIT_APP_CONFIG`. The runner delegates to common render, analysis, FFmpeg, and ffprobe commands. It requires project context and does not fall back to old root `source/` or `output/` files, nor to stale `.video-edit` runtime config.
 
 The operator and AI-editable project settings live in `projects\<project-id>\project_state.json`. The Electron UI keeps this file synchronized with current selections and reloads it while the project is active, so an AI agent can change options such as subtitle color, render mode, music, thumbnail, review, and analysis settings without using the human UI. Runtime config remains an execution snapshot generated from that project state. Command-line runs also read `project_state.json` when `VIDEO_EDIT_PROJECT` or `VIDEO_EDIT_PROJECT_ROOT` is set and `VIDEO_EDIT_APP_CONFIG` is not.
+
+Renderer-agnostic edit decisions now have a first-class timeline contract. `build-timeline` writes `projects\<project-id>\output\timelines\current.timeline.json` using `config\timeline.schema.json`, then validates it with `timeline_validate.py` and writes `output\reports\timeline_validation.json`. AI edits should target this timeline JSON or the project settings that generate it; renderer adapters are responsible for FFmpeg, Remotion, HyperFrames, or Blender command generation. `export-ffmpeg-command` is the first adapter slice: it reads the validated timeline and writes audited FFmpeg argv/filter-graph artifacts under `output\reports\renderer_commands` and `output\reports\filtergraphs`. `export-ffmpeg-preview-command` exports the timeline preview range as a proxy command without rendering by default. `render-timeline-ffmpeg` executes the validated FFmpeg adapter command and writes a render log under `output\reports\render_logs`.
 
 Background music is controlled by the runtime `music` config. The app can generate a reusable project music bed at `output/audio/music_bed.wav` and mix it either across the whole render or only inside omission/title-card ranges. Those ranges are auto-detected from current overlay manifests when possible, and operator-entered ranges such as `00:12-00:18` can be added as overrides.
 

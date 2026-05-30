@@ -7,6 +7,7 @@ This project should operate from the selected media, project state, and runtime 
 - Editable project state: `projects/<project-id>/project_state.json`
 - Runtime config snapshot: `projects/<project-id>/output/app/video_edit_app_config.runtime.json` through `VIDEO_EDIT_APP_CONFIG`; if that env var is unset, scripts read the active project's `project_state.json`
 - Media manifest: `assets.mediaManifest` or `assets.mediaManifestPath`
+- Normalized edit timeline: `projects/<project-id>/output/timelines/current.timeline.json`, validated against `config/timeline.schema.json`
 - Project roots: `project.sourceRoot` and `project.outputRoot`
 - Transcript overlays: generated from the current project transcript under `projects/<project-id>/output/transcripts/manifest_sources`
 
@@ -30,7 +31,34 @@ python .\scripts\video_edit_run.py --action apply-subtitle-corrections
 python .\scripts\video_edit_run.py --action classify-subtitle-speakers
 python .\scripts\video_edit_run.py --action classify-subtitle-speakers-audio
 python .\scripts\video_edit_run.py --action compare-transcripts
+python .\scripts\video_edit_run.py --action build-timeline
+python .\scripts\video_edit_run.py --action validate-timeline
+python .\scripts\video_edit_run.py --action export-ffmpeg-command
+python .\scripts\video_edit_run.py --action export-ffmpeg-preview-command
+python .\scripts\video_edit_run.py --action render-timeline-ffmpeg
 python .\scripts\video_edit_run.py --action render-selected
+```
+
+## Timeline Contract
+
+The AI/operator editing contract is moving from renderer commands to a normalized JSON timeline:
+
+- AI-editable decisions should be expressed as timeline JSON or as project-state settings that deterministically build timeline JSON.
+- `scripts/build_edit_timeline.py` converts the current project config, media manifest, sync offsets, transcript selection, camera plan reports, color reports, and selected style inputs into `output/timelines/current.timeline.json`.
+- `scripts/timeline_validate.py` validates strict schema conformance, source existence, media in/out bounds, non-overlapping tracks, preview range bounds, timeline duration bounds, and numeric bounded sync offsets before any renderer adapter runs.
+- Renderer adapters consume the validated timeline and generate technical commands. `scripts/ffmpeg_timeline_adapter.py` currently exports FFmpeg argv/filter-graph audit artifacts for the core timeline tracks, supports optional execution with render logs, and has full-target plus preview/proxy export modes; `scripts/render_app_interview.py` remains the production FFmpeg-backed renderer until adapter parity is complete. Future Remotion/HyperFrames/Blender adapters should consume the same timeline rather than asking the AI to write renderer-specific commands.
+- Audit artifacts should remain traceable: analysis reports, timeline JSON, validation report, renderer commands/filter graphs, and render logs.
+
+Current FFmpeg adapter scope:
+
+- Implemented: `video.main` clip trimming/concat, `audio.main` trimming/concat plus denoise/mastering, image overlays on `overlay.graphics`, FFmpeg-filter subtitle rendering for ASS/SRT/VTT subtitle clips, clip-level color filter chains embedded by the timeline builder, music-bed mixing when the timeline references an existing audio source, partial timeline-range export, low-resolution proxy export, optional execution, and render-log capture.
+- Explicitly reported as unsupported: rich PNG subtitle overlay precomposition parity, Remotion/HyperFrames layers, Blender-generated elements, person-aware crop parity, and natural-cut parity currently embedded in `render_app_interview.py`.
+
+Partial preview command example:
+
+```powershell
+$env:VIDEO_EDIT_PROJECT = "client-a-interview"
+python .\scripts\ffmpeg_timeline_adapter.py --range-start 1612 --range-end 1912 --proxy
 ```
 
 ## Render Contract

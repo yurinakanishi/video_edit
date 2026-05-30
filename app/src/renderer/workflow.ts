@@ -353,6 +353,14 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			: "";
 	}
 
+	function timelineOutputPath() {
+		return activeOutputRoot() ? joinPath(activeOutputRoot(), "timelines", "current.timeline.json") : "";
+	}
+
+	function rendererCommandOutputPath() {
+		return activeOutputRoot() ? joinPath(activeOutputRoot(), "reports", "renderer_commands") : "";
+	}
+
 	function blockingMetricsOutputPath() {
 		return activeOutputRoot()
 			? joinPath(activeOutputRoot(), "diagnostics", "opencv_blocking_analysis", "clip_metrics.json")
@@ -416,6 +424,16 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 					requirePath: true,
 				},
 			);
+		}
+		if (timelineOutputPath()) {
+			candidates.push({
+				key: "build-timeline",
+				label: "Timeline JSON",
+				status: "done",
+				detail: t("analysis.updatedOutput"),
+				path: timelineOutputPath(),
+				requirePath: true,
+			});
 		}
 		for (const item of [
 			["compare-transcripts", t("analysis.transcriptComparison"), transcriptComparisonOutputPath()],
@@ -658,6 +676,15 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		}
 		if (action === "transcribe-dropped") {
 			return joinPath(activeOutputRoot() || "output", "transcripts", "manifest_sources");
+		}
+		if (action === "build-timeline" || action === "validate-timeline") {
+			return timelineOutputPath() || activeOutputRoot();
+		}
+		if (action === "export-ffmpeg-command" || action === "export-ffmpeg-preview-command") {
+			return rendererCommandOutputPath() || activeOutputRoot();
+		}
+		if (action === "render-timeline-ffmpeg") {
+			return outputPathValue() || activeOutputRoot();
 		}
 		if (action === "generate-proxies") {
 			return proxyOutputPath() || joinPath(activeOutputRoot() || "output", "proxy");
@@ -1031,7 +1058,10 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"",
 			"Use the existing pipeline and docs first:",
 			"- Use the selected media manifest as the source of truth for cameras, audio, images, and subtitles.",
-			"- Use scripts\\render_app_interview.py for renders from selected media.",
+			"- Use scripts\\build_edit_timeline.py to express edit decisions as renderer-agnostic timeline JSON.",
+			"- Use scripts\\timeline_validate.py before rendering; invalid timelines must be fixed before adapters run.",
+			"- Use scripts\\ffmpeg_timeline_adapter.py to export audited FFmpeg commands, including preview/proxy commands, from a validated timeline.",
+			"- Use scripts\\render_app_interview.py only as the current FFmpeg-backed renderer while adapter migration is in progress.",
 			"- Use scripts\\analyze_person_edit_metadata.py before edit planning when person position/crop decisions matter.",
 			"- If a reference video is selected, analyze it first and use output\\reports\\reference_edit_profile.json as the style/layout target.",
 			"- Treat the material directory as cameras/audio/images/logo/subtitles only; reference video is selected separately.",
@@ -1075,6 +1105,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			`- Subtitle manual speaker roles: ${formValue("subtitleManualRoles") || "(none)"}`,
 			`- Subtitle mouth-motion diagnostic: ${formValue("subtitleMouthMotionDiagnostics")}`,
 			`- Transcript comparison report: ${transcriptComparisonOutputPath() || "(project output not set)"}`,
+			`- Timeline JSON: ${timelineOutputPath() || "(project output not set)"}`,
+			"- Timeline schema: config\\timeline.schema.json",
 			`- Preview start: ${formValue("previewStart")} seconds`,
 			`- Output duration: ${formValue("previewDuration")} seconds`,
 			`- Shorten long silence: ${formValue("shortenSilence")}`,
@@ -1147,7 +1179,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"- For source transcript comparison, compare only the current project transcript manifest and write the report under output\\reports.",
 			"- For subtitle QA audio clips, use only the current project primary transcript/audio and write clips under output\\diagnostics.",
 			"- For catchy subtitles, use the punchline overlay mode.",
-			"- Make minimal script changes needed for this request, then render or provide the exact command if rendering is blocked.",
+			"- Editing decisions must be expressed as validated timeline JSON, not raw FFmpeg commands.",
+			"- Build or update the timeline JSON first, validate it, then let renderer adapters generate technical commands.",
+			"- If rendering is blocked, report the validation error or missing input instead of hand-writing a renderer command.",
 			"- Report the output file path and any limitations.",
 		];
 		return lines.join("\n");
@@ -1182,6 +1216,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 				workflowAction: formValue("workflowAction"),
 				renderScript: formValue("renderScript"),
 				outputPath: outputPathValue(),
+				timelinePath: timelineOutputPath(),
 				syncOffsetsPath: syncReportPath(),
 				subtitleMode: state.subtitleMode,
 				renderProfile: formValue("renderProfile") || "final",

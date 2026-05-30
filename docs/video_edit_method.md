@@ -64,7 +64,7 @@ python .\scripts\video_edit_run.py --action render-selected
 The AI/operator editing contract is moving from renderer commands to a normalized JSON timeline:
 
 - AI-editable decisions should be expressed as timeline JSON or as project-state settings that deterministically build timeline JSON.
-- `scripts/build_edit_timeline.py` converts the current project config, media manifest, sync offsets, transcript selection, camera plan reports, face-center crop reports, color reports, and selected style inputs into `output/timelines/current.timeline.json`.
+- `scripts/build_edit_timeline.py` converts the current project config, media manifest, sync offsets, transcript selection, camera plan reports, natural-cut reports, face/person crop reports, color reports, and selected style inputs into `output/timelines/current.timeline.json`.
 - `scripts/timeline_validate.py` validates strict schema conformance, source existence, media in/out bounds, non-overlapping tracks, transition references/ranges, preview range bounds, timeline duration bounds, and numeric bounded sync offsets before any renderer adapter runs.
 - `scripts/timeline_changed_regions.py` compares the validated timeline with a previous/baseline timeline, writes `output/reports/timeline_changed_regions.json`, and can generate or execute per-region FFmpeg commands, optionally with Remotion and Blender overlay rendering first.
 - `scripts/timeline_otio_adapter.py` exports the validated timeline as OpenTimelineIO-style JSON and imports embedded video-edit timelines for interoperability.
@@ -73,8 +73,8 @@ The AI/operator editing contract is moving from renderer commands to a normalize
 
 Current FFmpeg adapter scope:
 
-- Implemented: `video.main` clip trimming/concat, `audio.main` trimming/concat plus denoise/mastering, image overlays on `overlay.graphics`, rich PNG subtitle overlay via generated or reused precomposed transparent video when the timeline references a PNG manifest, FFmpeg-filter subtitle fallback for ASS/SRT/VTT subtitle clips, optional Remotion/Blender PNG-sequence overlay composition, clip-level scale/crop-center and color filter chains embedded by the timeline builder, music-bed mixing when the timeline references an existing audio source, partial timeline-range export, low-resolution proxy export, changed-region command generation/execution, optional execution, and render-log capture.
-- Explicitly reported as unsupported in the FFmpeg adapter: full person-edit-plan crop parity and natural-cut parity currently embedded in `render_app_interview.py`. HyperFrames/Blender export is handled separately by `scripts/timeline_graphics_adapter.py`.
+- Implemented: `video.main` clip trimming/concat, `audio.main` trimming/concat plus denoise/mastering, camera-plan and natural-cut decisions already normalized into timeline clips, image overlays on `overlay.graphics`, rich PNG subtitle overlay via generated or reused precomposed transparent video when the timeline references a PNG manifest, FFmpeg-filter subtitle fallback for ASS/SRT/VTT subtitle clips, optional Remotion/Blender PNG-sequence overlay composition, clip-level scale/crop-center, person-edit-plan crop, and color filter chains embedded by the timeline builder, music-bed mixing when the timeline references an existing audio source, partial timeline-range export, low-resolution proxy export, changed-region command generation/execution, optional execution, and render-log capture.
+- HyperFrames/Blender export is handled separately by `scripts/timeline_graphics_adapter.py`.
 
 Current graphics adapter scope:
 

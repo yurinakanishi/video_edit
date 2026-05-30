@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from composition_rules import crop_window_center_for_subject, visible_ratio_for_area
 from project_paths import OUTPUT, OUTPUT_AUDIO, OUTPUT_OVERLAYS, OUTPUT_REPORTS, OUTPUT_VIDEOS, ROOT as WORK, SOURCE
 from timeline_validate import DEFAULT_REPORT, DEFAULT_SCHEMA, SCHEMA_VERSION, validate_timeline, write_report
 from video_edit_app_config import load_app_config, media_manifest, nested, selected_subtitle_path
@@ -18,6 +19,8 @@ DEFAULT_SYNC = OUTPUT_REPORTS / "app_sync_offsets.json"
 DEFAULT_CAMERA_PLAN = OUTPUT_REPORTS / "camera_cut_plan.json"
 DEFAULT_MANUAL_CAMERA_PLAN = OUTPUT_REPORTS / "manual_camera_plan.json"
 DEFAULT_COLOR_MATCH = OUTPUT_REPORTS / "camera_color_match.json"
+DEFAULT_NATURAL_CUT = OUTPUT_REPORTS / "natural_dialogue_cuts.json"
+DEFAULT_PERSON_EDIT_PLANS = OUTPUT_REPORTS / "person_edit_plans"
 DEFAULT_PERSON_CROP = OUTPUT_REPORTS / "person_crop_usage.json"
 DEFAULT_FACE_CROP = OUTPUT_REPORTS / "face_center_crop_usage.json"
 DEFAULT_FACE_CENTER_PLAN = OUTPUT_REPORTS / "face_center_crop_plan.json"
@@ -488,6 +491,161 @@ def face_center_segment_for_clip(
     return best if best_overlap > 0.0 else None
 
 
+def canonical_path_key(path: Path) -> str:
+    try:
+        return str(path.resolve()).casefold()
+    except OSError:
+        return str(path).casefold()
+
+
+def plan_match_keys(path: Path) -> set[str]:
+    keys = {canonical_path_key(path), path.name.casefold(), path.stem.casefold()}
+    for suffix in ("_person_edit_plan", "_person_bboxes"):
+        stem = path.stem.casefold()
+        if stem.endswith(suffix):
+            keys.add(stem[: -len(suffix)])
+    return keys
+
+
+def person_plan_keys(plan: dict[str, Any], plan_path: Path) -> set[str]:
+    keys = plan_match_keys(plan_path)
+    for key in ("video_path", "video"):
+        value = str(plan.get(key) or "")
+        if not value:
+            continue
+        candidate = resolve_path(value)
+        keys.update(plan_match_keys(candidate))
+    return keys
+
+
+def load_person_edit_plans(
+    config: dict[str, Any],
+    sources_by_id: dict[str, dict[str, Any]],
+    by_role: dict[str, str],
+) -> tuple[dict[str, dict[str, Any]], Path, str]:
+    if not bool_value(config, "render", "usePersonEditPlans", default=True):
+        return {}, DEFAULT_PERSON_EDIT_PLANS, "disabled"
+    configured_dir = text_value(config, "analysis", "personEditPlansDir", default="")
+    plan_dir = resolve_path(configured_dir) if configured_dir else DEFAULT_PERSON_EDIT_PLANS
+    if not plan_dir.exists():
+        return {}, plan_dir, "missing"
+    camera_keys: dict[str, set[str]] = {}
+    for role, source_id in by_role.items():
+        if role != "master" and not role.startswith("camera"):
+            continue
+        source = sources_by_id.get(source_id)
+        if not source:
+            continue
+        camera_keys[role] = plan_match_keys(resolve_path(source.get("path")))
+
+    plans: dict[str, dict[str, Any]] = {}
+    for plan_path in sorted(plan_dir.glob("*_person_edit_plan.json")):
+        plan = load_json(plan_path)
+        if not plan:
+            continue
+        keys = person_plan_keys(plan, plan_path)
+        for role, role_keys in camera_keys.items():
+            if role in plans or keys.isdisjoint(role_keys):
+                continue
+            plans[role] = {**plan, "_planPath": str(plan_path)}
+    return plans, plan_dir, "loaded" if plans else "empty"
+
+
+def person_plan_segment_at(plan: dict[str, Any], source_time: float) -> dict[str, Any] | None:
+    segments = plan.get("segments") if isinstance(plan.get("segments"), list) else []
+    for segment in segments:
+        if not isinstance(segment, dict):
+            continue
+        start = as_float(segment.get("start"), -1.0)
+        end = as_float(segment.get("end"), start)
+        if start <= source_time < end:
+            return segment
+    return None
+
+
+def ratio_list(value: Any, length: int) -> list[float] | None:
+    if not isinstance(value, list) or len(value) < length:
+        return None
+    values: list[float] = []
+    for item in value[:length]:
+        try:
+            values.append(float(item))
+        except (TypeError, ValueError):
+            return None
+    return values
+
+
+def constrain_window_center_for_box(
+    window_center: float,
+    visible_ratio: float,
+    box_start: float,
+    box_end: float,
+    start_margin: float,
+    end_margin: float,
+    low: float,
+    high: float,
+) -> float:
+    raw_start = clamp(min(box_start, box_end), 0.0, 1.0)
+    raw_end = clamp(max(box_start, box_end), 0.0, 1.0)
+    min_center = raw_end - (0.5 - end_margin) * visible_ratio
+    max_center = raw_start + (0.5 - start_margin) * visible_ratio
+    if min_center <= max_center:
+        return clamp(window_center, max(low, min_center), min(high, max_center))
+    return clamp((raw_start + raw_end) / 2, low, high)
+
+
+def person_plan_crop(
+    plan: dict[str, Any],
+    role: str,
+    source_time: float,
+) -> dict[str, Any] | None:
+    segment = person_plan_segment_at(plan, source_time)
+    if segment is None:
+        return None
+    crop_target = segment.get("crop_target") if isinstance(segment.get("crop_target"), dict) else {}
+    if not crop_target:
+        return None
+    try:
+        focus_x = float(crop_target.get("focus_x", crop_target.get("x")))
+        focus_y = float(crop_target.get("focus_y", crop_target.get("y")))
+        desired_x = float(crop_target.get("desired_subject_x_ratio", segment.get("desired_subject_x_ratio", 0.5)))
+        desired_y = float(crop_target.get("desired_subject_y_ratio", segment.get("desired_subject_y_ratio", 0.382)))
+    except (TypeError, ValueError):
+        return None
+    area_ratio = as_float(segment.get("avg_area_ratio"), 0.0)
+    visible_ratio = visible_ratio_for_area(area_ratio)
+    center_x = crop_window_center_for_subject(clamp(focus_x, 0.2, 0.8), clamp(desired_x, 0.35, 0.65), visible_ratio)
+    center_y = crop_window_center_for_subject(clamp(focus_y, 0.25, 0.75), clamp(desired_y, 0.30, 0.52), visible_ratio)
+    protect_bbox = ratio_list(
+        crop_target.get("protect_bbox_ratio")
+        or segment.get("avg_face_protect_bbox_ratio")
+        or crop_target.get("face_bbox_ratio")
+        or segment.get("avg_face_bbox_ratio"),
+        4,
+    )
+    if protect_bbox:
+        left, top, right, bottom = [clamp(value, 0.0, 1.0) for value in protect_bbox]
+        center_x = constrain_window_center_for_box(center_x, visible_ratio, left, right, 0.07, 0.07, 0.2, 0.8)
+        center_y = constrain_window_center_for_box(center_y, visible_ratio, top, bottom, 0.075, 0.14, 0.25, 0.75)
+    return {
+        "type": "personEditPlanCrop",
+        "role": role,
+        "sourceTime": round(source_time, 3),
+        "planPath": str(plan.get("_planPath") or ""),
+        "planStart": segment.get("start"),
+        "planEnd": segment.get("end"),
+        "centerX": round(center_x, 6),
+        "centerY": round(center_y, 6),
+        "scale": round(1.0 / max(0.001, visible_ratio), 6),
+        "cropStrategy": segment.get("crop_strategy"),
+        "position": segment.get("position"),
+        "shotSize": segment.get("shot_size"),
+        "faceDirection": segment.get("face_direction"),
+        "focusSource": segment.get("avg_focus_source"),
+        "cropTarget": crop_target,
+    }
+
+
 def build_video_clips(
     plan: list[dict[str, Any]],
     *,
@@ -503,6 +661,9 @@ def build_video_clips(
     face_center_segments: list[dict[str, Any]],
     face_center_plan_path: Path,
     face_center_status: str,
+    person_plans: dict[str, dict[str, Any]],
+    person_plans_dir: Path,
+    person_plans_status: str,
 ) -> list[dict[str, Any]]:
     clips: list[dict[str, Any]] = []
     for index, row in enumerate(plan, start=1):
@@ -514,9 +675,21 @@ def build_video_clips(
         effects = []
         crop_center_x = 0.5
         crop_center_y = 0.5
-        face_segment = face_center_segment_for_clip(face_center_segments, role, start, end)
+        clip_scale_value = global_zoom
+        source_midpoint = (source_in + source_out) / 2
+        person_crop = person_plan_crop(person_plans[role], role, source_midpoint) if role in person_plans else None
+        face_segment = None if person_crop else face_center_segment_for_clip(face_center_segments, role, start, end)
         crop_metadata: dict[str, Any] = {}
-        if face_segment:
+        if person_crop:
+            crop_center_x = as_float(person_crop.get("centerX"), 0.5)
+            crop_center_y = as_float(person_crop.get("centerY"), 0.5)
+            clip_scale_value = max(global_zoom, as_float(person_crop.get("scale"), 1.0))
+            crop_metadata = {
+                **person_crop,
+                "planDirectory": str(person_plans_dir),
+                "status": person_plans_status,
+            }
+        elif face_segment:
             detected_center_x = as_float(face_segment.get("centerX", face_segment.get("center_x")), 0.5)
             subject_screen_x = face_center_subject_screen_x(config, role)
             crop_center_x = adjusted_face_center_crop_x(detected_center_x, global_zoom, subject_screen_x)
@@ -533,9 +706,9 @@ def build_video_clips(
                 "centerY": round(crop_center_y, 6),
                 "subjectScreenX": round(subject_screen_x, 6),
             }
-        if abs(global_zoom - 1.0) > 0.0001:
+        if abs(clip_scale_value - 1.0) > 0.0001:
             params: dict[str, Any] = {
-                "scale": round(global_zoom, 6),
+                "scale": round(clip_scale_value, 6),
                 "crop": {"centerX": round(crop_center_x, 6), "centerY": round(crop_center_y, 6)},
             }
             if crop_metadata:
@@ -560,7 +733,7 @@ def build_video_clips(
                 "timelineEnd": end,
                 "sourceIn": round(max(0.0, source_in), 6),
                 "sourceOut": round(max(0.0, source_out), 6),
-                "fit": {"mode": "cover", "width": 1920, "height": 1080, "scale": round(global_zoom, 6)},
+                "fit": {"mode": "cover", "width": 1920, "height": 1080, "scale": round(clip_scale_value, 6)},
                 "effects": effects,
                 "metadata": {
                     "role": role,
@@ -766,6 +939,7 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
     color_filters, manual_color_filters, output_look_filter = load_color_filter_map(color_report)
     global_zoom = max(1.0, as_float(nested(config, "render", "globalVideoZoom", default=1.0), 1.0))
     face_center_segments, face_center_plan_path, face_center_status = load_face_center_segments(config)
+    person_plans, person_plans_dir, person_plans_status = load_person_edit_plans(config, sources_by_id, by_role)
     output_path = Path(text_value(config, "render", "outputPath", default=str(OUTPUT_VIDEOS / "app_interview_output.mp4")))
     video_clips = build_video_clips(
         plan,
@@ -781,6 +955,9 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
         face_center_segments=face_center_segments,
         face_center_plan_path=face_center_plan_path,
         face_center_status=face_center_status,
+        person_plans=person_plans,
+        person_plans_dir=person_plans_dir,
+        person_plans_status=person_plans_status,
     )
     clips = video_clips + build_extra_clips(
         config,
@@ -806,7 +983,9 @@ def build_timeline(config: dict[str, Any]) -> tuple[dict[str, Any], Path]:
         report_ref("manual-camera-plan", DEFAULT_MANUAL_CAMERA_PLAN),
         report_ref("source-coverage", DEFAULT_SOURCE_COVERAGE),
         report_ref("external-audio-cut-sync", DEFAULT_EXTERNAL_SYNC),
+        report_ref("natural-dialogue-cuts", DEFAULT_NATURAL_CUT),
         report_ref("camera-color-match", DEFAULT_COLOR_MATCH),
+        report_ref("person-edit-plans", person_plans_dir),
         report_ref("person-crop", DEFAULT_PERSON_CROP),
         report_ref("face-center-crop", DEFAULT_FACE_CROP),
         report_ref("face-center-plan", face_center_plan_path),

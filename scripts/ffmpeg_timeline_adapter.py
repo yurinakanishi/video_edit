@@ -984,16 +984,16 @@ def build_ffmpeg_command(
         "subtitle.main precomposition generation from timeline manifest when target artifact is absent or stale",
         "colorCorrection filter chains embedded in timeline clip effects",
         "scaleCrop zoom and crop-center expressions embedded in timeline clip effects",
+        "person edit plan crop intent when embedded as timeline scaleCrop effects",
         "audioCleanup denoise/mastering filter chain",
         "music.bed audio mix when a source file exists",
+        "camera-plan and natural-cut decisions already normalized into video.main timeline clips",
         "timeline-range preview export",
         "low-resolution proxy export",
     ]
     not_implemented_scope = [
         "Remotion/HyperFrames overlays",
         "Blender-generated elements",
-        "person-edit-plan crop parity",
-        "natural-cut parity",
     ]
     if with_remotion_overlays:
         implemented_scope = [

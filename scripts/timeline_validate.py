@@ -321,6 +321,14 @@ def validate_timeline(timeline: dict[str, Any], schema: dict[str, Any] | None = 
             continue
         source_kind = str(source.get("kind") or "")
         clip_kind = str(clip.get("kind") or "")
+        if clip_kind == "video" and source_kind != "video":
+            errors.append(f"clip {clip_id} is video but source {source_id} is {source_kind or 'unknown'}.")
+        elif clip_kind in {"audio", "music"} and source_kind not in {"audio", "video"}:
+            errors.append(f"clip {clip_id} is {clip_kind} but source {source_id} is {source_kind or 'unknown'}.")
+        elif clip_kind == "image" and source_kind != "image":
+            errors.append(f"clip {clip_id} is image but source {source_id} is {source_kind or 'unknown'}.")
+        elif clip_kind == "subtitle" and source_kind != "subtitle":
+            errors.append(f"clip {clip_id} is subtitle but source {source_id} is {source_kind or 'unknown'}.")
         if source_kind in {"video", "audio"} or clip_kind in {"video", "audio", "music"}:
             if not is_finite_number(clip.get("sourceIn")) or not is_finite_number(clip.get("sourceOut")):
                 errors.append(f"clip {clip_id} sourceIn/sourceOut are required for timed media.")

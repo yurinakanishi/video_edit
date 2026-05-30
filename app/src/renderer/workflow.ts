@@ -1101,7 +1101,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"- Use scripts\\timeline_validate.py before rendering; invalid timelines must be fixed before adapters run.",
 			"- Use scripts\\ffmpeg_timeline_adapter.py to export audited FFmpeg commands, including preview/proxy commands, from a validated timeline.",
 			"- Use scripts\\timeline_graphics_adapter.py to export audited Remotion, HyperFrames, or Blender layer/job commands from a validated timeline.",
-			"- Use scripts\\render_app_interview.py only as the current FFmpeg-backed renderer while adapter migration is in progress.",
+			"- Use scripts\\render_app_interview.py only as a legacy FFmpeg-backed fallback when a timeline adapter path cannot cover the requested workflow.",
 			"- Use scripts\\analyze_person_edit_metadata.py before edit planning when person position/crop decisions matter.",
 			"- If a reference video is selected, analyze it first and use output\\reports\\reference_edit_profile.json as the style/layout target.",
 			"- Treat the material directory as cameras/audio/images/logo/subtitles only; reference video is selected separately.",

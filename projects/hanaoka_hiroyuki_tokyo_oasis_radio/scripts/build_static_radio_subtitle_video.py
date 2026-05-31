@@ -74,16 +74,48 @@ def clean_text(text: str) -> str:
     return text
 
 
+def normalize_int_key_map(data: Any) -> dict[int, str]:
+    if not isinstance(data, dict):
+        return {}
+    result: dict[int, str] = {}
+    for key, value in data.items():
+        try:
+            result[int(key)] = str(value)
+        except (TypeError, ValueError):
+            continue
+    return result
+
+
+def normalize_role_override_map(data: Any) -> dict[int, str]:
+    allowed = {"interviewer", "interviewee"}
+    result: dict[int, str] = {}
+    for key, value in normalize_int_key_map(data).items():
+        if value in allowed:
+            result[key] = value
+    return result
+
+
 LINE_START_PROHIBITED = "、。，．！？!?・ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮんン）)]」』"
 LINE_END_PROHIBITED = "っゃゅょァィゥェォッャュョ（([「『"
 LINE_END_PREFERRED = "、。，．！？!?・はがをにでとへもやねし"
 MIN_NATURAL_LINE_CHARS = 6
 MAX_EXTRA_WRAP_LINES = 2
 PROTECTED_PHRASES = (
+    "Kiitos",
+    "青少年の居場所Kiitos",
+    "新生Kiitos",
+    "Kiitosのすごさというのは",
     "キートス",
     "花岡洋行",
     "花岡さん",
     "長谷川美穂",
+    "井の中の蛙",
+    "元手も必要",
+    "白旗眞生",
+    "白旗さん",
+    "止まり木",
+    "『Sing』",
+    "『You saved my life』",
     "新理事",
     "心理士",
     "お一人",
@@ -101,6 +133,34 @@ PROTECTED_PHRASES = (
     "青少年の居場所",
     "生きづらさ",
     "あり方",
+    "きちっと",
+    "きちっと運営",
+    "貢献できる",
+    "じっくりと",
+    "お伺いしてみたい",
+    "陰ながら",
+    "子ども食堂です",
+    "そうですね、はい",
+    "良いものにしたい",
+    "物乞い",
+    "事業をやっていく",
+    "ずっと居ちゃいけない",
+    "止まりたい",
+    "なんですけど",
+    "なんでしょうか",
+    "ですね",
+    "いけない",
+    "いかないといけない",
+    "ことかな",
+    "いいのかな",
+    "というふう",
+    "つなげられたら",
+    "連れてって",
+    "おありになった",
+    "いただける",
+    "かもしれない",
+    "『You saved my life』ですね",
+    "帰られて",
     "設立",
     "認識",
     "必要性",
@@ -128,6 +188,19 @@ LINE_START_AVOIDED_PREFIXES = (
     "ると思います",
     "という",
     "っていう",
+    "すけど",
+    "すね",
+    "けない",
+    "きる",
+    "りと",
+    "ら",
+    "な",
+    "うふう",
+    "なった",
+    "でしょうか",
+    "だける",
+    "しれない",
+    "ですね",
     "ところ",
     "もの",
     "こと",
@@ -170,6 +243,21 @@ LINE_END_AVOIDED_SUFFIXES = (
     "言",
     "キー",
     "キート",
+    "Ki",
+    "Kiit",
+    "すご",
+    "き",
+    "貢献で",
+    "じっく",
+    "陰なが",
+    "いかな",
+    "ことか",
+    "いいのか",
+    "とい",
+    "おありに",
+    "いた",
+    "かも",
+    "連れ",
     "いら",
     "いらっし",
     "し",
@@ -177,8 +265,8 @@ LINE_END_AVOIDED_SUFFIXES = (
     "と",
 )
 MANUAL_CAPTION_GROUPS = {
-    "さらに全国版のあしなが育英会の方に働かれて": (
-        ("さらに全国版の", "あしなが育英会の方に働かれて"),
+    "さらに全国版のあしなが育英会の方で働かれて": (
+        ("さらに全国版の", "あしなが育英会の方で働かれて"),
     ),
     "ただご飯をみんなで食べる場所じゃないんだよっていう明確なビジョンがあって": (
         ("ただご飯をみんなで",),
@@ -388,22 +476,28 @@ def build_caption_events(
     cut_end: float,
     replacements: list[dict[str, str]],
     max_line_chars: int,
+    segment_overrides: dict[int, str] | None = None,
+    role_overrides: dict[int, str] | None = None,
 ) -> list[dict[str, Any]]:
     units: list[dict[str, Any]] = []
     normalized_roles = {str(key): str(value) for key, value in roles.items()}
+    segment_overrides = segment_overrides or {}
+    role_overrides = role_overrides or {}
     for segment in segments:
+        segment_id = int(segment.get("id", 0))
         start = float(segment.get("start", 0.0))
         end = float(segment.get("end", 0.0))
         if end <= cut_start or start >= cut_end:
             continue
-        text = clean_text(apply_corrections(str(segment.get("text", "")), replacements))
+        source_text = segment_overrides.get(segment_id, str(segment.get("text", "")))
+        text = clean_text(apply_corrections(source_text, replacements))
         if not text:
             continue
         clipped_start = max(start, cut_start) - cut_start
         clipped_end = min(end, cut_end) - cut_start
         if clipped_end <= clipped_start:
             continue
-        role = role_for_segment(segment, normalized_roles)
+        role = role_overrides.get(segment_id) or role_for_segment(segment, normalized_roles)
         if units:
             previous = units[-1]
             gap = start - float(previous["sourceEnd"])
@@ -811,6 +905,54 @@ def ffmpeg_png_overlay_filter(
     return ";".join(filters)
 
 
+def ffmpeg_png_movie_overlay_filter(
+    config: dict[str, Any],
+    caption_items: list[dict[str, Any]],
+    *,
+    logo_index: int | None = None,
+    title_index: int | None = None,
+) -> str:
+    edit = config.get("radioEdit", {})
+    width = int(edit.get("targetWidth", 1920))
+    height = int(edit.get("targetHeight", 1080))
+    filters = [
+        f"[0:v]split=2[bgsrc][fgsrc]",
+        f"[bgsrc]scale={width}:{height}:force_original_aspect_ratio=increase,"
+        f"crop={width}:{height},boxblur=24:1,eq=brightness=-0.08:saturation=0.9[bg]",
+        f"[fgsrc]scale={width}:{height}:force_original_aspect_ratio=decrease[fg]",
+        f"[bg][fg]overlay=(W-w)/2:(H-h)/2,setsar=1[vbase]",
+    ]
+    current = "vbase"
+    if logo_index is not None:
+        logo_height = int(edit.get("logoFrameHeight" if edit.get("logoBoxEnabled") else "logoHeight", edit.get("logoHeight", 82)))
+        margin_x = int(edit.get("logoMarginX", 36))
+        margin_y = int(edit.get("logoMarginY", 28))
+        filters.append(f"[{logo_index}:v]scale=-1:{logo_height},format=rgba[logo]")
+        filters.append(f"[{current}][logo]overlay=W-w-{margin_x}:{margin_y}[vlogo]")
+        current = "vlogo"
+    if title_index is not None:
+        title_x = int(edit.get("titleX", 18))
+        title_y = int(edit.get("titleY", 18))
+        filters.append(f"[{title_index}:v]format=rgba[title]")
+        filters.append(f"[{current}][title]overlay={title_x}:{title_y}[vtitle]")
+        current = "vtitle"
+    margin_v = int(edit.get("subtitleMarginV", 16))
+    for offset, item in enumerate(caption_items):
+        source = str(item["file"]).replace("\\", "/").replace("'", r"\'")
+        label = f"cap{offset}"
+        out_label = f"v{label}"
+        start = float(item["start"])
+        end = float(item["end"])
+        filters.append(f"movie='{source}',format=rgba[{label}]")
+        filters.append(
+            f"[{current}][{label}]overlay=(W-w)/2:H-h-{margin_v}:"
+            f"enable='between(t\\,{start:.3f}\\,{end:.3f})'[{out_label}]"
+        )
+        current = out_label
+    filters.append(f"[{current}]format=yuv420p[v]")
+    return ";\n".join(filters)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build the static-image Tokyo Oasis radio subtitle video.")
     parser.add_argument("--project-root", type=Path, default=DEFAULT_ROOT)
@@ -847,10 +989,22 @@ def main() -> None:
     roles_data = load_json(roles_path) if roles_path.exists() else {"roles": {}}
     roles = {str(key): str(value) for key, value in dict(roles_data.get("roles", {})).items()}
     corrections_path = Path(str(edit.get("transcriptCorrectionsPath") or project_root / "config" / "transcript_corrections.json"))
-    corrections = load_json(corrections_path).get("replacements", []) if corrections_path.exists() else []
+    corrections_data = load_json(corrections_path) if corrections_path.exists() else {}
+    corrections = corrections_data.get("replacements", [])
     replacements = [item for item in corrections if isinstance(item, dict)]
+    segment_overrides = normalize_int_key_map(corrections_data.get("segmentOverrides", {}))
+    role_overrides = normalize_role_override_map(corrections_data.get("roleOverrides", {}))
     max_line_chars = int(edit.get("subtitleMaxLineChars", 20))
-    events = build_caption_events(segments, roles, cut_start, cut_end, replacements, max_line_chars)
+    events = build_caption_events(
+        segments,
+        roles,
+        cut_start,
+        cut_end,
+        replacements,
+        max_line_chars,
+        segment_overrides=segment_overrides,
+        role_overrides=role_overrides,
+    )
 
     output_audio = project_root / "output" / "audio" / "tokyo_oasis_20260205_hanaoka_cut.wav"
     output_srt = project_root / "output" / "subtitles" / "tokyo_oasis_20260205_hanaoka_cut.srt"
@@ -948,8 +1102,17 @@ def main() -> None:
                 title_index=title_index,
                 caption_start_index=caption_start_index,
             )
+            filter_args = ["-filter_complex", filter_graph]
         else:
-            filter_graph = ffmpeg_filter(output_ass, config, project_root, logo_index=logo_index, title_index=title_index)
+            filter_graph = ffmpeg_png_movie_overlay_filter(
+                config,
+                caption_items,
+                logo_index=logo_index,
+                title_index=title_index,
+            )
+            filter_script_path = caption_overlay_dir / "filter_complex_full.ffmpeg"
+            filter_script_path.write_text(filter_graph, encoding="utf-8")
+            filter_args = ["-filter_complex_script", str(filter_script_path)]
         audio_input_args = ["-i", str(output_audio)]
         if args.preview_duration is not None and preview_offset > 0:
             audio_input_args = ["-ss", f"{preview_offset:.3f}", "-i", str(output_audio)]
@@ -967,8 +1130,7 @@ def main() -> None:
             str(main_image),
             *audio_input_args,
             *extra_inputs,
-            "-filter_complex",
-            filter_graph,
+            *filter_args,
             "-map",
             "[v]",
             "-map",
@@ -1026,6 +1188,11 @@ def main() -> None:
         "keptOriginalSegmentCount": len(kept_original_ids),
         "mergedContinuationSegmentGroups": merged_continuation_groups,
         "roleCounts": role_counts,
+        "correctionCounts": {
+            "replacements": len(replacements),
+            "segmentOverrides": len(segment_overrides),
+            "roleOverrides": len(role_overrides),
+        },
         "outputs": {
             "audio": str(output_audio),
             "srt": str(output_srt),

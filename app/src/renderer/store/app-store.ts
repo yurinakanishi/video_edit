@@ -76,6 +76,8 @@ export type EditInstructionHistoryItem = {
 export type EditRequestState = {
 	instructionDraft: string;
 	instructionHistory: EditInstructionHistoryItem[];
+	requestedPreviewPath: string;
+	requestedFinalPath: string;
 	lastPreviewPath: string;
 	lastFinalPath: string;
 };
@@ -435,6 +437,8 @@ const defaultToolPaths = (): ToolPaths => ({
 const defaultEditRequest = (): EditRequestState => ({
 	instructionDraft: "",
 	instructionHistory: [],
+	requestedPreviewPath: "",
+	requestedFinalPath: "",
 	lastPreviewPath: "",
 	lastFinalPath: "",
 });

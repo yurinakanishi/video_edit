@@ -318,6 +318,8 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 		return {
 			instructionDraft: String(value?.instructionDraft || ""),
 			instructionHistory: history,
+			requestedPreviewPath: String(value?.requestedPreviewPath || ""),
+			requestedFinalPath: String(value?.requestedFinalPath || ""),
 			lastPreviewPath: String(value?.lastPreviewPath || ""),
 			lastFinalPath: String(value?.lastFinalPath || ""),
 		};

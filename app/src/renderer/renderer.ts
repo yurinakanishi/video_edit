@@ -562,6 +562,8 @@ function handleEditRequestChange(event: Event) {
 	state.editRequest = {
 		instructionDraft,
 		instructionHistory: [...(state.editRequest?.instructionHistory || [])],
+		requestedPreviewPath: state.editRequest?.requestedPreviewPath || "",
+		requestedFinalPath: state.editRequest?.requestedFinalPath || "",
 		lastPreviewPath: state.editRequest?.lastPreviewPath || "",
 		lastFinalPath: state.editRequest?.lastFinalPath || "",
 	};

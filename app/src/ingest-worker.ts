@@ -4,6 +4,7 @@ import { copyFile, mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { parentPort, workerData } from "node:worker_threads";
 import {
+	AUDIO_EXTENSIONS,
 	classifyManifest,
 	type MediaItem,
 	type MediaManifest,
@@ -239,6 +240,18 @@ function relativeTargetParts(item: MediaItem) {
 	};
 }
 
+function audioAppendItem(item: MediaItem) {
+	if (item.kind === "audio" || AUDIO_EXTENSIONS.has(item.extension.toLowerCase())) {
+		item.kind = "audio";
+		return true;
+	}
+	if (item.metadata?.hasAudio) {
+		item.kind = "audio";
+		return true;
+	}
+	return false;
+}
+
 async function importManifest(project: ProjectInfo, manifest: MediaManifest, mediaManifestName: string) {
 	const files = manifest.files || [];
 	for (const [index, item] of files.entries()) {
@@ -293,7 +306,9 @@ async function main() {
 		project: ProjectInfo;
 		ffprobePath: string;
 		mediaManifestName: string;
+		audioOnly?: boolean;
 	};
+	const audioOnly = Boolean((workerData as { audioOnly?: boolean }).audioOnly);
 	const inputs = (Array.isArray(sourcePaths) && sourcePaths.length ? sourcePaths : [sourceDirectory])
 		.filter(Boolean)
 		.map((item) => path.resolve(String(item)));
@@ -370,7 +385,11 @@ async function main() {
 		message: "カメラ・音声・画像・字幕を分類しています",
 		path: root,
 	});
-	const manifest = classifyManifest(root, items, inputs);
+	const manifestItems = audioOnly ? items.filter(audioAppendItem) : items;
+	if (audioOnly && !manifestItems.length) {
+		throw new Error("音声として追加できるファイルが見つかりません。");
+	}
+	const manifest = classifyManifest(root, manifestItems, inputs);
 	const imported = await importManifest(project, manifest, mediaManifestName || "media_manifest.json");
 	emitProgress({
 		stage: "ready",

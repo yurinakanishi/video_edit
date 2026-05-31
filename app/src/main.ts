@@ -78,6 +78,9 @@ const CODEX_EXE_NAME = process.platform === "win32" ? "codex.exe" : "codex";
 const SMOKE_QUIT_MS = Math.max(0, Number(process.env.VIDEO_EDIT_SMOKE_QUIT_MS || 0));
 const SMOKE_UI_DROP_RESULT = process.env.VIDEO_EDIT_SMOKE_UI_DROP_RESULT || "";
 const SMOKE_UI_DROP_TIMEOUT_MS = Math.max(1000, Number(process.env.VIDEO_EDIT_SMOKE_UI_DROP_TIMEOUT_MS || 45_000));
+const IS_SMOKE_RUN = process.env.VIDEO_EDIT_SMOKE === "1";
+const SMOKE_CODEX_CAPTURE_PATH = IS_SMOKE_RUN ? process.env.VIDEO_EDIT_SMOKE_CODEX_CAPTURE_PATH || "" : "";
+const SMOKE_SIMPLE_INSTRUCTION = IS_SMOKE_RUN ? process.env.VIDEO_EDIT_SMOKE_SIMPLE_INSTRUCTION || "" : "";
 
 function loadWorkflowActionManifest() {
 	const manifestPath = path.join(CONFIG_ROOT, "workflow_actions.json");
@@ -759,6 +762,7 @@ const PROJECT_STATE_SECTIONS = new Set([
 	"style",
 	"glossary",
 	"tools",
+	"editRequest",
 	"ui",
 ]);
 
@@ -2707,6 +2711,7 @@ async function runSimpleUiDropSmoke(window: BrowserWindow) {
 				const materialPaths = ${JSON.stringify(materialPaths)};
 				const audioPaths = ${JSON.stringify(audioPaths)};
 				const timeoutMs = ${SMOKE_UI_DROP_TIMEOUT_MS};
+				const instruction = ${JSON.stringify(SMOKE_SIMPLE_INSTRUCTION)};
 				const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 				async function waitFor(label, predicate) {
 					const started = Date.now();
@@ -2747,8 +2752,42 @@ async function runSimpleUiDropSmoke(window: BrowserWindow) {
 						const loaded = await window.editApp.loadProject({ project: materialEntry.project });
 						const files = (loaded.manifest && loaded.manifest.files) || [];
 						const audioCount = files.filter((item) => item.kind === "audio").length;
-						return files.length > materialCount && audioCount >= audioPaths.length ? loaded : null;
+						return files.length > materialCount && audioCount >= 1 ? loaded : null;
 					});
+				}
+				let editRequest = null;
+				if (instruction) {
+					document.dispatchEvent(new CustomEvent("video-edit:edit-request-change", { detail: { instructionDraft: instruction } }));
+					document.dispatchEvent(new CustomEvent("video-edit:simple-preview-request"));
+					const previewState = await waitFor("preview request", async () => {
+						const saved = await window.editApp.loadProjectState({ project: materialEntry.project });
+						const request = saved && saved.editRequest;
+						if (
+							request &&
+							String(request.requestedPreviewPath || "").includes("output") &&
+							String(request.requestedPreviewPath || "").includes("previews") &&
+							(request.instructionHistory || []).some((item) => item && item.mode === "preview")
+						) {
+							return saved;
+						}
+						return null;
+					});
+					document.dispatchEvent(new CustomEvent("video-edit:edit-request-change", { detail: { instructionDraft: instruction + " Add a concise finishing version." } }));
+					document.dispatchEvent(new CustomEvent("video-edit:simple-final-render"));
+					const finalState = await waitFor("final render request", async () => {
+						const saved = await window.editApp.loadProjectState({ project: materialEntry.project });
+						const request = saved && saved.editRequest;
+						if (
+							request &&
+							String(request.requestedFinalPath || "").includes("output") &&
+							String(request.requestedFinalPath || "").includes("final_") &&
+							(request.instructionHistory || []).some((item) => item && item.mode === "final")
+						) {
+							return saved;
+						}
+						return null;
+					});
+					editRequest = finalState.editRequest || previewState.editRequest || null;
 				}
 				const loaded = await window.editApp.loadProject({ project: materialEntry.project });
 				const manifest = loaded.manifest || {};
@@ -2775,6 +2814,7 @@ async function runSimpleUiDropSmoke(window: BrowserWindow) {
 						other: (manifest.other || []).length,
 					},
 					files,
+					editRequest,
 				};
 			})()
 			`,
@@ -3050,6 +3090,7 @@ ipcMain.handle("project:ingest-directory", async (_event, { project, directory, 
 			project: info,
 			ffprobePath,
 			mediaManifestName: workerManifestName,
+			audioOnly: Boolean(append),
 		},
 		emit,
 	);
@@ -3143,6 +3184,26 @@ ipcMain.handle("dialog:pick-output", async (_event, options) => {
 });
 
 ipcMain.handle("codex:start-turn", async (_event, { settings, prompt }) => {
+	if (SMOKE_CODEX_CAPTURE_PATH) {
+		const capturePath = path.resolve(SMOKE_CODEX_CAPTURE_PATH);
+		let turns: any[] = [];
+		try {
+			if (fs.existsSync(capturePath)) {
+				const current = JSON.parse(fs.readFileSync(capturePath, "utf8"));
+				turns = Array.isArray(current?.turns) ? current.turns : [];
+			}
+		} catch {
+			turns = [];
+		}
+		turns.push({
+			createdAt: new Date().toISOString(),
+			settings: settings || {},
+			prompt: String(prompt || ""),
+		});
+		fs.mkdirSync(path.dirname(capturePath), { recursive: true });
+		fs.writeFileSync(capturePath, JSON.stringify({ ok: true, turns }, null, 2), "utf8");
+		return { ok: true, smokeCaptured: true, turnCount: turns.length };
+	}
 	return codex.startTurn(settings || {}, prompt);
 });
 

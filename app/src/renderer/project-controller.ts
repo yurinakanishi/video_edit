@@ -89,6 +89,8 @@ export function createProjectController({
 			state.editRequest = {
 				instructionDraft: "",
 				instructionHistory: [],
+				requestedPreviewPath: "",
+				requestedFinalPath: "",
 				lastPreviewPath: "",
 				lastFinalPath: "",
 			};

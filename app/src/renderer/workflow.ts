@@ -626,6 +626,10 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		return new Date().toISOString().replace(/[:.]/g, "-").replace("T", "_").replace("Z", "");
 	}
 
+	function workspaceRootForPrompt() {
+		return state.env?.videoEditRoot || state.project?.root || ".";
+	}
+
 	function simpleEditOutputPath(mode: "preview" | "final") {
 		const root = activeOutputRoot();
 		if (!root) {
@@ -638,6 +642,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 	function setEditRequestState(patch: Record<string, any>) {
 		state.editRequest = {
 			instructionDraft: "",
+			requestedPreviewPath: "",
+			requestedFinalPath: "",
 			lastPreviewPath: "",
 			lastFinalPath: "",
 			...(state.editRequest || {}),
@@ -702,7 +708,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		const previousPreview = context.previousPreviewPath ?? state.editRequest?.lastPreviewPath ?? "";
 		const previousFinal = context.previousFinalPath ?? state.editRequest?.lastFinalPath ?? "";
 		const lines = [
-			"You are working in C:\\Users\\yurin\\Desktop\\video_edit.",
+			`You are working in ${workspaceRootForPrompt()}.`,
 			`Create the requested ${modeLabel} for the active video-edit project.`,
 			"",
 			"Use the repository's existing video-edit pipeline and keep generated artifacts inside the active project's output directory.",
@@ -1213,7 +1219,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 	function buildPrompt() {
 		const outputPath = outputPathValue() || "(choose an output path under the video_edit folder)";
 		const lines = [
-			"You are working in C:\\Users\\yurin\\Desktop\\video_edit.",
+			`You are working in ${workspaceRootForPrompt()}.`,
 			"Create or run the video edit requested by the Electron operator UI.",
 			"",
 			"Use the existing pipeline and docs first:",
@@ -1527,6 +1533,44 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		saveState();
 	}
 
+	async function outputPathExists(path: string) {
+		if (!path) {
+			return false;
+		}
+		try {
+			const entries = await editApp.describeMediaPaths({ paths: [path] });
+			return Boolean(entries?.some((entry) => entry?.path && entry.missing !== true && entry.exists !== false));
+		} catch (error) {
+			log("output existence check failed", { path, message: error.message });
+			return false;
+		}
+	}
+
+	async function promoteCompletedSimpleEditOutputs() {
+		const request = state.editRequest || {};
+		const patch: Record<string, string> = {};
+		if (
+			request.requestedPreviewPath &&
+			request.requestedPreviewPath !== request.lastPreviewPath &&
+			(await outputPathExists(request.requestedPreviewPath))
+		) {
+			patch.lastPreviewPath = request.requestedPreviewPath;
+		}
+		if (
+			request.requestedFinalPath &&
+			request.requestedFinalPath !== request.lastFinalPath &&
+			(await outputPathExists(request.requestedFinalPath))
+		) {
+			patch.lastFinalPath = request.requestedFinalPath;
+		}
+		if (!Object.keys(patch).length) {
+			return;
+		}
+		setEditRequestState(patch);
+		await persistProjectStateFileNow();
+		saveState();
+	}
+
 	async function runSimpleTranscription() {
 		if (!(await prepareProjectForRun())) {
 			setStatus(t("status.projectError"), "idle");
@@ -1648,7 +1692,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		setEditRequestState({
 			instructionDraft: "",
 			instructionHistory: nextHistory,
-			...(mode === "preview" ? { lastPreviewPath: targetPath } : { lastFinalPath: targetPath }),
+			...(mode === "preview" ? { requestedPreviewPath: targetPath } : { requestedFinalPath: targetPath }),
 		});
 		getAppState().setRunPreviewText({ promptPreviewText: prompt });
 		refreshCommand();
@@ -1861,6 +1905,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 				log(method, params);
 				return;
 			}
+			void promoteCompletedSimpleEditOutputs();
 			setStatus(t("status.codexIdle"), "ready");
 			log(method, params);
 			return;

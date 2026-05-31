@@ -74,6 +74,8 @@ export const state: any = {
 			targetPath: string;
 			createdAt: string;
 		}>,
+		requestedPreviewPath: "",
+		requestedFinalPath: "",
 		lastPreviewPath: "",
 		lastFinalPath: "",
 	},

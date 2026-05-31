@@ -9,6 +9,7 @@
 		"build": "pnpm run clean && tsc && vite build --config vite.renderer.config.mjs",
 		"start": "pnpm run build && electron .",
 		"smoke:simple-ui-drop": "pnpm run build && node scripts/smoke-simple-ui-drop.mjs",
+		"smoke:simple-e2e": "pnpm run smoke:simple-ui-drop",
 		"typecheck": "tsc --noEmit && tsc -p tsconfig.renderer.json --noEmit",
 		"lint": "biome check .",
 		"format": "biome check --write .",

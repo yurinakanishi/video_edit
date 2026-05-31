@@ -607,8 +607,7 @@ def build_sync_chunks(segments: list[dict[str, Any]]) -> list[SyncChunk]:
     # 1-based transcript segment ranges are anchored from transcript/waveform inspection.
     # Target times are edited-WAV transcript times. Source times are MP4-video times.
     specs = [
-        (26, 26, 259.76, 262.30, "Main intro pickup after pre-roll"),
-        (27, 174, 269.80, 846.78, "First interview block; stop before mid-program music"),
+        (27, 174, 269.80, 846.78, "First interview block; start after opening music pickup"),
         (175, 176, 1043.64, 1055.68, "Post-break re-introduction; remove mid-program music lead-in"),
         (177, 274, 1055.68, 1415.08, "Second interview block before edited retake"),
         (275, 345, 1429.19, 1721.17, "Final topic block after removed retake"),

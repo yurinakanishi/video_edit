@@ -84,7 +84,7 @@ export function App() {
 
 	return (
 		<>
-			<div className="app-shell">
+			<div className="min-h-screen">
 				<fieldset className="app-lock-scope" disabled={appLocked}>
 					<AppHeader />
 					<SimpleWorkspace />

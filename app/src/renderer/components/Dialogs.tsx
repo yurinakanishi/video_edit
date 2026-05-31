@@ -1,3 +1,4 @@
+import { Check, Plus, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import {
 	CONFIRM_DIALOG_CLOSE_EVENT,
@@ -6,7 +7,11 @@ import {
 	PROJECT_DIALOG_OPEN_PROJECT_EVENT,
 } from "../events.js";
 import { t } from "../i18n.js";
+import { cn } from "../lib/utils.js";
 import { useAppStore } from "../store/app-store.js";
+import { Badge } from "./ui/badge.js";
+import { Button } from "./ui/button.js";
+import { Input } from "./ui/input.js";
 
 function shortPath(value: string) {
 	if (!value) {
@@ -54,22 +59,38 @@ function ProjectDialogList() {
 
 	if (projectListLoading) {
 		return (
-			<div className="project-dialog-list" id="projectDialogList" data-locale={language}>
-				<div className="project-dialog-empty">{t("project.dialogLoading")}</div>
+			<div
+				className="grid min-h-40 max-h-[min(430px,48vh)] gap-2 overflow-auto pr-1"
+				id="projectDialogList"
+				data-locale={language}
+			>
+				<div className="grid min-h-40 place-items-center rounded-lg border border-dashed border-border text-sm text-muted-foreground">
+					{t("project.dialogLoading")}
+				</div>
 			</div>
 		);
 	}
 
 	if (!projectList.length) {
 		return (
-			<div className="project-dialog-list" id="projectDialogList" data-locale={language}>
-				<div className="project-dialog-empty">{t("project.dialogEmpty")}</div>
+			<div
+				className="grid min-h-40 max-h-[min(430px,48vh)] gap-2 overflow-auto pr-1"
+				id="projectDialogList"
+				data-locale={language}
+			>
+				<div className="grid min-h-40 place-items-center rounded-lg border border-dashed border-border text-sm text-muted-foreground">
+					{t("project.dialogEmpty")}
+				</div>
 			</div>
 		);
 	}
 
 	return (
-		<div className="project-dialog-list" id="projectDialogList" data-locale={language}>
+		<div
+			className="grid min-h-40 max-h-[min(430px,48vh)] gap-2 overflow-auto pr-1"
+			id="projectDialogList"
+			data-locale={language}
+		>
 			{projectList.map((entry, index) => {
 				const entryProject = entry.project;
 				const updated = formatProjectDate(entry.updatedAt || entry.lastModifiedAt, language);
@@ -79,23 +100,30 @@ function ProjectDialogList() {
 					<button
 						key={entryProject.id}
 						type="button"
-						className={`project-list-item${active ? " active" : ""}`}
+						className={cn(
+							"grid min-h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-lg border border-border bg-muted/35 p-3 text-left transition-colors hover:bg-accent/60",
+							active && "border-primary bg-accent",
+						)}
 						data-project-index={index}
 						onClick={() => dispatchProjectDialogOpenProject(index)}
 					>
-						<div className="project-list-main">
-							<strong title={entryProject.root}>{entryProject.name || entryProject.id}</strong>
-							<small title={entryProject.root}>{shortPath(entryProject.root)}</small>
-							<div className="project-list-meta">
-								{updated ? <span>{t("project.dialogUpdated", { date: updated })}</span> : null}
-								<span>
+						<div className="grid min-w-0 gap-1">
+							<strong className="truncate text-sm text-foreground" title={entryProject.root}>
+								{entryProject.name || entryProject.id}
+							</strong>
+							<small className="truncate text-xs text-muted-foreground" title={entryProject.root}>
+								{shortPath(entryProject.root)}
+							</small>
+							<div className="flex flex-wrap gap-1">
+								{updated ? <Badge variant="secondary">{t("project.dialogUpdated", { date: updated })}</Badge> : null}
+								<Badge variant="secondary">
 									{entry.hasManifest
 										? t("project.dialogMediaCount", { count: entry.mediaCount || 0 })
 										: t("project.dialogNoManifest")}
-								</span>
+								</Badge>
 							</div>
 						</div>
-						{active ? <span className="project-active-badge">{t("project.dialogActive")}</span> : null}
+						{active ? <Badge variant="default">{t("project.dialogActive")}</Badge> : null}
 					</button>
 				);
 			})}
@@ -127,35 +155,48 @@ export function Dialogs() {
 
 	return (
 		<>
-			<div className="modal-backdrop" id="projectDialog" hidden={!projectDialogOpen} data-locale={language}>
+			<div
+				className="modal-backdrop fixed inset-0 z-[900] grid place-items-center bg-slate-950/35 p-5"
+				id="projectDialog"
+				hidden={!projectDialogOpen}
+				data-locale={language}
+			>
 				<button
 					type="button"
-					className="modal-dismiss"
+					className="absolute inset-0 size-full cursor-default border-0 bg-transparent p-0"
 					aria-label={t("confirm.cancel")}
 					onClick={dispatchProjectDialogClose}
 				></button>
-				<section className="project-dialog" role="dialog" aria-modal="true" aria-labelledby="projectDialogTitle">
-					<header className="project-dialog-header">
+				<section
+					className="relative z-10 grid max-h-[calc(100vh-40px)] w-[min(760px,100%)] gap-4 overflow-hidden rounded-lg border border-border bg-card p-5 text-card-foreground shadow-2xl"
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby="projectDialogTitle"
+				>
+					<header className="flex items-start justify-between gap-3">
 						<div>
-							<h3 id="projectDialogTitle">Select project</h3>
-							<p>Open an existing project or create a new one.</p>
+							<h3 id="projectDialogTitle" className="text-lg font-semibold">
+								Select project
+							</h3>
+							<p className="mt-1 text-sm text-muted-foreground">Open an existing project or create a new one.</p>
 						</div>
-						<button
+						<Button
 							type="button"
-							className="icon-button"
+							variant="ghost"
+							size="icon"
 							id="closeProjectDialog"
 							ref={closeProjectDialogRef}
 							aria-label="Close"
 							title="Close"
 							onClick={dispatchProjectDialogClose}
 						>
-							×
-						</button>
+							<X className="size-4" aria-hidden="true" />
+						</Button>
 					</header>
-					<div className="project-dialog-create">
-						<label>
-							New project name
-							<input
+					<div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3 rounded-lg border border-border bg-muted/35 p-3 max-md:grid-cols-1">
+						<label htmlFor="projectDialogName" className="grid gap-1.5 text-sm font-medium text-foreground">
+							<span>New project name</span>
+							<Input
 								id="projectDialogName"
 								ref={projectDialogNameRef}
 								placeholder="e.g. client-a-edit"
@@ -169,58 +210,75 @@ export function Dialogs() {
 								}}
 							/>
 						</label>
-						<button
-							type="button"
-							className="primary-button"
-							id="createProjectFromDialog"
-							onClick={dispatchProjectDialogCreate}
-						>
+						<Button type="button" id="createProjectFromDialog" onClick={dispatchProjectDialogCreate}>
+							<Plus className="size-4" aria-hidden="true" />
 							Create
-						</button>
+						</Button>
 					</div>
-					<div className="project-dialog-list-heading">Project list</div>
+					<div className="text-sm font-semibold text-accent-foreground">Project list</div>
 					<ProjectDialogList />
-					<footer className="project-dialog-footer">
-						<button type="button" id="cancelProjectDialog" onClick={dispatchProjectDialogClose}>
+					<footer className="flex justify-end">
+						<Button type="button" variant="outline" id="cancelProjectDialog" onClick={dispatchProjectDialogClose}>
 							Cancel
-						</button>
+						</Button>
 					</footer>
 				</section>
 			</div>
-			<div className="modal-backdrop" id="confirmDialog" hidden={!confirmDialog.open} data-locale={language}>
+			<div
+				className="modal-backdrop fixed inset-0 z-[900] grid place-items-center bg-slate-950/35 p-5"
+				id="confirmDialog"
+				hidden={!confirmDialog.open}
+				data-locale={language}
+			>
 				<button
 					type="button"
-					className="modal-dismiss"
+					className="absolute inset-0 size-full cursor-default border-0 bg-transparent p-0"
 					aria-label={t("confirm.cancel")}
 					onClick={() => dispatchConfirmDialogClose(false)}
 				></button>
-				<section className="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="confirmDialogTitle">
-					<header className="project-dialog-header">
+				<section
+					className="relative z-10 grid w-[min(520px,100%)] gap-4 rounded-lg border border-border bg-card p-5 text-card-foreground shadow-2xl"
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby="confirmDialogTitle"
+				>
+					<header>
 						<div>
-							<h3 id="confirmDialogTitle">{confirmDialog.title}</h3>
-							<p id="confirmDialogMessage">{confirmDialog.message}</p>
+							<h3 id="confirmDialogTitle" className="text-lg font-semibold">
+								{confirmDialog.title}
+							</h3>
+							<p id="confirmDialogMessage" className="mt-1 text-sm text-muted-foreground">
+								{confirmDialog.message}
+							</p>
 						</div>
 					</header>
-					<code id="confirmDialogDetail" title={confirmDialog.detail} hidden={!confirmDialog.detail}>
+					<code
+						id="confirmDialogDetail"
+						className="block overflow-hidden whitespace-pre-line rounded-md border border-border bg-muted p-3 text-xs text-muted-foreground"
+						title={confirmDialog.detail}
+						hidden={!confirmDialog.detail}
+					>
 						{confirmDialog.detail}
 					</code>
-					<footer className="project-dialog-footer">
-						<button
+					<footer className="flex flex-wrap justify-end gap-2">
+						<Button
 							type="button"
+							variant="outline"
 							id="confirmDialogCancel"
 							ref={confirmDialogCancelRef}
 							onClick={() => dispatchConfirmDialogClose(false)}
 						>
 							{confirmDialog.cancelLabel || t("confirm.cancel")}
-						</button>
-						<button
+						</Button>
+						<Button
 							type="button"
-							className="danger-button"
+							variant="destructive"
 							id="confirmDialogConfirm"
 							onClick={() => dispatchConfirmDialogClose(true)}
 						>
+							<Check className="size-4" aria-hidden="true" />
 							{confirmDialog.confirmLabel || t("confirm.removeMaterialConfirm")}
-						</button>
+						</Button>
 					</footer>
 				</section>
 			</div>

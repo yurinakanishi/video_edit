@@ -32,6 +32,10 @@ export function syncAppStoreFromLegacyState() {
 		analysisResults: state.analysisResults.map((item) => ({ ...item })),
 		materialAnalysisStatus: { ...state.materialAnalysisStatus },
 		analysisTitleText: state.analysisTitleText,
+		editRequest: {
+			...state.editRequest,
+			instructionHistory: [...(state.editRequest?.instructionHistory || [])],
+		},
 		files: filesSnapshot(),
 		subtitleMode: normalizeSubtitleMode(state.subtitleMode),
 		syncReport: state.syncReport,

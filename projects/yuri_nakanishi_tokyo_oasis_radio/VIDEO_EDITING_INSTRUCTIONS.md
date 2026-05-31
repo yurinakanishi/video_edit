@@ -62,7 +62,7 @@ $env:VIDEO_EDIT_PROJECT = "yuri_nakanishi_tokyo_oasis_radio"
 - Use Japanese transcription with timestamps.
 - Keep subtitle lines readable: one or two lines, with natural Japanese phrase breaks.
 - Avoid orphan line starts such as `しております`, `ております`, `という`, `っていう`, or a line starting only with a particle.
-- Protect domain and name terms such as `キートス`, `中西裕理`, `東京オアシス`, `青少年の居場所`, and `認定NPO法人`.
+- Protect domain and name terms such as `Kiitos`, `中西裕理`, `東京オアシス`, `青少年の居場所`, `認定NPO法人`, `白旗眞生`, and `白旗さん`.
 - Fix obvious transcription errors in names, program terms, and places.
 - Preserve the spoken meaning; light cleanup of fillers is allowed when it improves readability.
 

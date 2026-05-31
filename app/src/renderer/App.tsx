@@ -1,17 +1,6 @@
 import { useEffect } from "react";
-import {
-	AppHeader,
-	AssetsPanel,
-	Dialogs,
-	EditPanel,
-	OutputPreview,
-	Overlays,
-	ProjectPanel,
-	RunPanel,
-	StylePanel,
-	Topbar,
-	WorkflowPanel,
-} from "./components/index.js";
+import { AppHeader, Dialogs, Overlays } from "./components/index.js";
+import { SimpleWorkspace } from "./components/SimpleWorkspace.js";
 import { FILE_DRAG_RESET_EVENT } from "./events.js";
 import { useAppStore } from "./store/app-store.js";
 
@@ -90,7 +79,6 @@ function useGlobalFileDragUi() {
 }
 
 export function App() {
-	const activeSection = useAppStore((appState) => appState.activeSection);
 	const appLocked = useAppStore((appState) => appState.appLocked);
 	useGlobalFileDragUi();
 
@@ -99,18 +87,7 @@ export function App() {
 			<div className="app-shell">
 				<fieldset className="app-lock-scope" disabled={appLocked}>
 					<AppHeader />
-					<main className="workspace">
-						<Topbar />
-						<OutputPreview />
-						<section className="content-grid">
-							<ProjectPanel hidden={activeSection !== "assets"} />
-							<AssetsPanel hidden={activeSection !== "assets"} />
-							<EditPanel hidden={activeSection !== "edit"} />
-							<StylePanel hidden={activeSection !== "style"} />
-							<WorkflowPanel hidden={activeSection !== "workflow"} />
-							<RunPanel hidden={activeSection !== "run"} />
-						</section>
-					</main>
+					<SimpleWorkspace />
 				</fieldset>
 			</div>
 			<Overlays />

@@ -1,35 +1,29 @@
 import { useEffect, useRef } from "react";
-import { LANGUAGE_CHANGE_EVENT, WORKFLOW_SECTION_CHANGE_EVENT } from "../events.js";
+import { LANGUAGE_CHANGE_EVENT, PROJECT_CHANGE_EVENT } from "../events.js";
 import { localizePlainText, t } from "../i18n.js";
+import { shortPath } from "../preview.js";
 import { useAppStore } from "../store/app-store.js";
-
-const WORKFLOW_STEPS = [
-	{ section: "assets", labelKey: "nav.assets" },
-	{ section: "edit", labelKey: "nav.edit" },
-	{ section: "style", labelKey: "nav.style" },
-	{ section: "workflow", labelKey: "nav.workflow" },
-	{ section: "run", labelKey: "nav.codex" },
-] as const;
 
 const DISPLAY_LANGUAGES = [
 	{ code: "ja", label: "日本語" },
 	{ code: "en", label: "EN" },
 ] as const;
 
-function dispatchWorkflowSectionChange(section: string) {
-	document.dispatchEvent(new CustomEvent(WORKFLOW_SECTION_CHANGE_EVENT, { detail: { section } }));
-}
-
 function dispatchLanguageChange(language: string) {
 	document.dispatchEvent(new CustomEvent(LANGUAGE_CHANGE_EVENT, { detail: { language } }));
 }
 
+function dispatchProjectChange() {
+	document.dispatchEvent(new CustomEvent(PROJECT_CHANGE_EVENT));
+}
+
 export function AppHeader() {
-	const activeSection = useAppStore((appState) => appState.activeSection);
 	const currentLanguage = useAppStore((appState) => appState.language);
 	const languageMenuOpen = useAppStore((appState) => appState.languageMenuOpen);
 	const setLanguageMenuOpen = useAppStore((appState) => appState.setLanguageMenuOpen);
 	const env = useAppStore((appState) => appState.env);
+	const project = useAppStore((appState) => appState.project);
+	const appLocked = useAppStore((appState) => appState.appLocked);
 	const statusText = useAppStore((appState) => appState.statusText);
 	const statusKind = useAppStore((appState) => appState.statusKind);
 	const languageSwitcherRef = useRef<HTMLDivElement | null>(null);
@@ -64,26 +58,18 @@ export function AppHeader() {
 				<div>
 					<h1>Video Edit</h1>
 					<p id="workspacePath" title={env?.videoEditRoot || ""}>
-						{t("app.workspaceLabel")}
+						{project ? shortPath(project.root) : t("app.workspaceLabel")}
 					</p>
 				</div>
 			</div>
-			<div className="steps" aria-label={t("nav.aria.workflow")} role="tablist">
-				{WORKFLOW_STEPS.map((step) => (
-					<button
-						key={step.section}
-						type="button"
-						className={`step-button${step.section === activeSection ? " active" : ""}`}
-						data-section={step.section}
-						role="tab"
-						aria-selected={step.section === activeSection ? "true" : "false"}
-						onClick={() => dispatchWorkflowSectionChange(step.section)}
-					>
-						{t(step.labelKey)}
-					</button>
-				))}
+			<div className="header-project">
+				<span>Project</span>
+				<strong title={project?.root || ""}>{project?.name || "-"}</strong>
 			</div>
 			<div className="header-tools">
+				<button type="button" disabled={appLocked} onClick={dispatchProjectChange}>
+					開く
+				</button>
 				<div className="server-status" id="serverStatus">
 					<span className={`status-dot ${statusKind}`}></span>
 					<span>{localizePlainText(statusText)}</span>

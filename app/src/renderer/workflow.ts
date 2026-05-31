@@ -8,6 +8,7 @@ import {
 } from "./form-options.js";
 import { localizePlainText, t } from "./i18n.js";
 import { log } from "./log.js";
+import { setOutputPathValue } from "./media-state.js";
 import {
 	activeOutputRoot,
 	activeProjectVideoSourceRoot,
@@ -619,6 +620,126 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 	function compactOutput(value: string) {
 		const text = String(value || "");
 		return text.length > 4000 ? `${text.slice(0, 1200)}\n...\n${text.slice(-2400)}` : text;
+	}
+
+	function timestampSlug() {
+		return new Date().toISOString().replace(/[:.]/g, "-").replace("T", "_").replace("Z", "");
+	}
+
+	function simpleEditOutputPath(mode: "preview" | "final") {
+		const root = activeOutputRoot();
+		if (!root) {
+			return "";
+		}
+		const filename = `${mode}_${timestampSlug()}.mp4`;
+		return mode === "preview" ? joinPath(root, "videos", "previews", filename) : joinPath(root, "videos", filename);
+	}
+
+	function setEditRequestState(patch: Record<string, any>) {
+		state.editRequest = {
+			instructionDraft: "",
+			lastPreviewPath: "",
+			lastFinalPath: "",
+			...(state.editRequest || {}),
+			...patch,
+			instructionHistory:
+				patch.instructionHistory ||
+				(state.editRequest?.instructionHistory ? [...state.editRequest.instructionHistory] : []),
+		};
+		getAppState().setEditRequest(state.editRequest);
+	}
+
+	function instructionHistoryLines(history = state.editRequest?.instructionHistory || []) {
+		if (!history.length) {
+			return "- (none)";
+		}
+		return history
+			.map((item, index) => {
+				const label = item.mode === "final" ? "final" : "preview";
+				return `- ${index + 1}. [${label}] ${item.text}\n  target: ${item.targetPath || "(not set)"}`;
+			})
+			.join("\n");
+	}
+
+	function mediaManifestSummaryLines() {
+		const manifest = state.mediaManifest;
+		if (!manifest?.files?.length) {
+			return ["- (no media manifest yet)"];
+		}
+		return [
+			`- Manifest: ${mediaManifestPath() || "(not saved)"}`,
+			`- Cameras: ${
+				manifestCameras()
+					.map((item) => `${item.role}: ${item.path}`)
+					.join("; ") || "(none)"
+			}`,
+			`- Audio: ${
+				manifestAudioSources()
+					.map((item) => `${item.role}: ${item.path}`)
+					.join("; ") || "(none)"
+			}`,
+			`- Images: ${(manifest.images || []).map((item) => `${item.role}: ${item.path}`).join("; ") || "(none)"}`,
+			`- Subtitles: ${(manifest.subtitles || []).map((item) => item.path).join("; ") || "(none)"}`,
+		];
+	}
+
+	function buildSimplePrompt(
+		mode: "preview" | "final",
+		targetPath: string,
+		context: {
+			history?: any[];
+			currentInstruction?: string;
+			previousPreviewPath?: string;
+			previousFinalPath?: string;
+		} = {},
+	) {
+		const history = context.history || state.editRequest?.instructionHistory || [];
+		const currentInstruction = String(
+			context.currentInstruction ?? state.editRequest?.instructionDraft ?? history.at(-1)?.text ?? "",
+		).trim();
+		const modeLabel = mode === "preview" ? "preview video" : "final full render";
+		const transcriptPath = transcriptManifestOutputPath();
+		const previousPreview = context.previousPreviewPath ?? state.editRequest?.lastPreviewPath ?? "";
+		const previousFinal = context.previousFinalPath ?? state.editRequest?.lastFinalPath ?? "";
+		const lines = [
+			"You are working in C:\\Users\\yurin\\Desktop\\video_edit.",
+			`Create the requested ${modeLabel} for the active video-edit project.`,
+			"",
+			"Use the repository's existing video-edit pipeline and keep generated artifacts inside the active project's output directory.",
+			"Do not ask the operator to use hidden UI controls. Interpret the natural language instructions below and update project-local state, timelines, scripts, or render commands as needed.",
+			"Prefer timeline JSON plus validation before rendering. If rendering is blocked, report the missing input or validation issue clearly.",
+			"",
+			"Active project:",
+			`- Name: ${state.project?.name || "(none)"}`,
+			`- Root: ${state.project?.root || "(none)"}`,
+			`- Source root: ${activeSourceRoot() || "(none)"}`,
+			`- Output root: ${activeOutputRoot() || "(none)"}`,
+			`- Runtime config: ${activeOutputRoot() ? joinPath(activeOutputRoot(), "app", "video_edit_app_config.runtime.json") : "(none)"}`,
+			"",
+			"Media:",
+			...mediaManifestSummaryLines(),
+			`- Transcript manifest: ${transcriptPath || "(not generated yet)"}`,
+			"",
+			"Instruction history:",
+			instructionHistoryLines(history),
+			"",
+			"Current operator instruction:",
+			currentInstruction || "(continue from the instruction history and current project state)",
+			"",
+			"Requested output:",
+			`- Mode: ${mode}`,
+			`- Target output path: ${targetPath}`,
+			`- Previous preview: ${previousPreview || "(none)"}`,
+			`- Previous final render: ${previousFinal || "(none)"}`,
+			"",
+			"Execution requirements:",
+			"- For preview mode, create a short preview render at the target output path.",
+			"- For final mode, render the complete final video at the target output path.",
+			"- Use current-project source files from the media manifest. The manifest paths are the copied project-local source paths.",
+			"- If transcription is needed and missing, run the existing transcription workflow for the active manifest.",
+			"- Report the output file path and any limitations when finished.",
+		];
+		return lines.join("\n");
 	}
 
 	function directRunLabel(action: string) {
@@ -1387,6 +1508,10 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 				enabled: formValue("termExplanations"),
 				terms: glossaryTerms(),
 			},
+			editRequest: {
+				...(state.editRequest || {}),
+				instructionHistory: [...(state.editRequest?.instructionHistory || [])],
+			},
 			tools: {
 				python: pythonExe(),
 				ffmpeg: ffmpegExe(),
@@ -1400,6 +1525,152 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		updateRunSummary();
 		getAppState().setRunPreviewText({ promptPreviewText: buildPrompt() });
 		saveState();
+	}
+
+	async function runSimpleTranscription() {
+		if (!(await prepareProjectForRun())) {
+			setStatus(t("status.projectError"), "idle");
+			return false;
+		}
+		if (!state.mediaManifest?.files?.length) {
+			setStatus("文字起こし対象の素材がありません", "idle");
+			log("transcription skipped", { reason: "media manifest is empty" });
+			return false;
+		}
+		const action = "transcribe-dropped";
+		const label = directRunLabel(action);
+		state.runningAction = action;
+		state.lastWorkflowProgressLog = 0;
+		state.lastWorkflowStage = "";
+		getAppState().setWorkflowSettings({ workflowAction: action });
+		await persistProjectStateFileNow();
+		setDirectRunRunning(true, label);
+		setAppLocked(true, t("format.runningMessage", { label }), t("analysis.statusRunning"));
+		setStatus(t("status.presetRunning"), "busy");
+		setIngestProgress({
+			progress: 0.01,
+			message: t("format.startingMessage", { label }),
+			path: directRunOutputPath(action),
+		});
+		log("workflow/transcribe", { action });
+		try {
+			const result = await editApp.runWorkflowAction({
+				action,
+				timeoutMs: 6 * 60 * 60 * 1000,
+				appConfig: buildAppConfig(),
+			});
+			if (result?.stdout) {
+				log("stdout", { text: compactOutput(result.stdout) });
+			}
+			if (result?.stderr) {
+				log("stderr", { text: compactOutput(result.stderr) });
+			}
+			const ok = result?.exitCode === 0;
+			if (ok) {
+				await restoreAnalysisResultsFromOutputs(state.mediaManifest);
+				await refreshTextOverlayFromAnalysis(state.mediaManifest);
+				await refreshMaterialAnalysisStatus();
+			}
+			setIngestProgress({
+				progress: ok ? 1 : state.lastWorkflowProgressLog || 0,
+				message: ok ? t("format.completeMessage", { label }) : t("format.errorMessage", { label }),
+				path: directRunOutputPath(action),
+			});
+			setStatus(ok ? t("status.runComplete") : t("status.commandFailed"), ok ? "ready" : "idle");
+			await persistProjectStateFileNow();
+			saveState();
+			return ok;
+		} catch (error) {
+			setStatus(t("status.commandError"), "idle");
+			setIngestProgress({
+				progress: state.lastWorkflowProgressLog || 0,
+				message: t("format.errorMessage", { label }),
+				path: directRunOutputPath(action),
+			});
+			log("transcription error", { message: error.message });
+			return false;
+		} finally {
+			setAppLocked(false);
+			setDirectRunRunning(false);
+			state.runningAction = "";
+		}
+	}
+
+	async function sendSimpleEditRequest(mode: "preview" | "final") {
+		if (!(await prepareProjectForRun())) {
+			setStatus(t("status.projectError"), "idle");
+			return;
+		}
+		if (!state.mediaManifest?.files?.length) {
+			setStatus("編集対象の素材がありません", "idle");
+			log("codex request blocked", { reason: "media manifest is empty" });
+			return;
+		}
+		const draft = String(state.editRequest?.instructionDraft || "").trim();
+		const history = state.editRequest?.instructionHistory || [];
+		const previousPreviewPath = state.editRequest?.lastPreviewPath || "";
+		const previousFinalPath = state.editRequest?.lastFinalPath || "";
+		if (!draft && !history.length) {
+			setStatus("自然言語の編集指示を入力してください", "idle");
+			log("codex request blocked", { reason: "instruction is empty" });
+			return;
+		}
+		const targetPath = simpleEditOutputPath(mode);
+		if (!targetPath) {
+			setStatus(t("status.projectError"), "idle");
+			log("codex request blocked", { reason: "output root is empty" });
+			return;
+		}
+		setOutputPathValue(targetPath);
+		getAppState().setWorkflowSettings({ workflowAction: "render-selected" });
+		getAppState().setRenderSettings({
+			renderProfile: mode === "preview" ? "preview" : "final",
+			rangeMode: mode === "preview" ? "range" : "full",
+		});
+		const nextHistory = draft
+			? [
+					...history,
+					{
+						id: `${mode}-${Date.now()}`,
+						mode,
+						text: draft,
+						targetPath,
+						createdAt: new Date().toISOString(),
+					},
+				]
+			: history;
+		const prompt = buildSimplePrompt(mode, targetPath, {
+			history: nextHistory,
+			currentInstruction: draft || history.at(-1)?.text || "",
+			previousPreviewPath,
+			previousFinalPath,
+		});
+		setEditRequestState({
+			instructionDraft: "",
+			instructionHistory: nextHistory,
+			...(mode === "preview" ? { lastPreviewPath: targetPath } : { lastFinalPath: targetPath }),
+		});
+		getAppState().setRunPreviewText({ promptPreviewText: prompt });
+		refreshCommand();
+		await persistProjectStateFileNow();
+		saveState();
+		setStatus(t("status.codexRunning"), "busy");
+		setCodexTurnRunning(true);
+		log("turn/start", { mode, targetPath });
+		try {
+			state.codexModel = selectedCodexModelForRun();
+			await editApp.startCodexTurn({
+				settings: {
+					model: state.codexModel,
+					effort: selectedCodexReasoningEffort(),
+				},
+				prompt,
+			});
+		} catch (error) {
+			setCodexTurnRunning(false);
+			setStatus(t("status.codexError"), "idle");
+			log("error", { message: error.message });
+		}
 	}
 
 	async function runPreset() {
@@ -1658,6 +1929,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		buildPrompt,
 		buildAppConfig,
 		refreshPrompt,
+		runSimpleTranscription,
+		sendSimpleEditRequest,
 		runPreset,
 		sendRequest,
 		stopCodexTurn,

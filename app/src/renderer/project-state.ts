@@ -88,6 +88,7 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 				subtitleMode: state.subtitleMode,
 				analysisResults: state.analysisResults,
 				ingestProgress: state.ingestProgress,
+				editRequest: state.editRequest,
 				glossaryTerms: state.glossaryTerms,
 				language: state.language,
 				activeSection: state.activeSection,
@@ -102,6 +103,8 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 		if (!raw) {
 			return;
 		}
+		const previousApplying = state.projectStateApplying;
+		state.projectStateApplying = true;
 		try {
 			const saved = JSON.parse(raw);
 			if (saved.language) {
@@ -172,12 +175,18 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 			if (saved.ingestProgress) {
 				setIngestProgress(saved.ingestProgress, { persist: false });
 			}
+			if (saved.editRequest && typeof saved.editRequest === "object") {
+				state.editRequest = normalizeEditRequest(saved.editRequest);
+				getAppState().setEditRequest(state.editRequest);
+			}
 			if (Array.isArray(saved.glossaryTerms)) {
 				state.glossaryTerms = saved.glossaryTerms;
 				renderGlossaryList();
 			}
 		} catch (error) {
 			log("saved state ignored", { message: error.message });
+		} finally {
+			state.projectStateApplying = previousApplying;
 		}
 	}
 
@@ -284,12 +293,33 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 			revision: state.projectStateRevision || 0,
 			updatedAt: new Date().toISOString(),
 			...buildAppConfig(),
+			editRequest: state.editRequest,
 			ui: {
 				activeSection: state.activeSection,
 				codexModel: state.codexModel,
 				language: state.language,
 				progress: state.ingestProgress,
 			},
+		};
+	}
+
+	function normalizeEditRequest(value: any) {
+		const history = Array.isArray(value?.instructionHistory)
+			? value.instructionHistory
+					.map((item: any) => ({
+						id: String(item?.id || ""),
+						mode: item?.mode === "final" ? "final" : "preview",
+						text: String(item?.text || ""),
+						targetPath: String(item?.targetPath || ""),
+						createdAt: String(item?.createdAt || ""),
+					}))
+					.filter((item: any) => item.text)
+			: [];
+		return {
+			instructionDraft: String(value?.instructionDraft || ""),
+			instructionHistory: history,
+			lastPreviewPath: String(value?.lastPreviewPath || ""),
+			lastFinalPath: String(value?.lastFinalPath || ""),
 		};
 	}
 
@@ -388,6 +418,10 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 			}
 			if (payload.style && "titleText" in payload.style) {
 				setAnalysisTitleText(String(payload.style.titleText || ""));
+			}
+			if (payload.editRequest && typeof payload.editRequest === "object") {
+				state.editRequest = normalizeEditRequest(payload.editRequest);
+				getAppState().setEditRequest(state.editRequest);
 			}
 			if (Array.isArray(payload.glossary?.terms)) {
 				state.glossaryTerms = payload.glossary.terms;

@@ -65,6 +65,21 @@ export type ProjectDraft = {
 	outputRoot: string;
 };
 
+export type EditInstructionHistoryItem = {
+	id: string;
+	mode: "preview" | "final";
+	text: string;
+	targetPath: string;
+	createdAt: string;
+};
+
+export type EditRequestState = {
+	instructionDraft: string;
+	instructionHistory: EditInstructionHistoryItem[];
+	lastPreviewPath: string;
+	lastFinalPath: string;
+};
+
 export type WorkflowSettings = {
 	editPreset: string;
 	workflowAction: string;
@@ -187,6 +202,7 @@ export type AppState = AppRunFlags &
 		subtitleReviewSettings: SubtitleReviewSettings;
 		subtitleSpeakerSettings: SubtitleSpeakerSettings;
 		toolPaths: ToolPaths;
+		editRequest: EditRequestState;
 		projectStatePath: string;
 		projectStateRevision: number;
 		projectStateApplying: boolean;
@@ -268,6 +284,7 @@ export type AppActions = {
 	setSubtitleReviewSettings: (settings: Partial<SubtitleReviewSettings>) => void;
 	setSubtitleSpeakerSettings: (settings: Partial<SubtitleSpeakerSettings>) => void;
 	setToolPaths: (paths: Partial<ToolPaths>) => void;
+	setEditRequest: (request: Partial<EditRequestState>) => void;
 	setFiles: (files: Partial<AppFiles>) => void;
 	setAnalysisResults: (results: AnalysisResult[]) => void;
 	setMaterialAnalysisStatus: (status: Record<string, MaterialAnalysisStatus>) => void;
@@ -415,6 +432,13 @@ const defaultToolPaths = (): ToolPaths => ({
 	ffprobePath: "",
 });
 
+const defaultEditRequest = (): EditRequestState => ({
+	instructionDraft: "",
+	instructionHistory: [],
+	lastPreviewPath: "",
+	lastFinalPath: "",
+});
+
 export function normalizeWorkflowSection(section: string | undefined | null): WorkflowSection {
 	return ["assets", "edit", "style", "workflow", "run"].includes(String(section))
 		? (section as WorkflowSection)
@@ -442,6 +466,7 @@ export const useAppStore = create<AppStore>((set) => ({
 	subtitleReviewSettings: defaultSubtitleReviewSettings(),
 	subtitleSpeakerSettings: defaultSubtitleSpeakerSettings(),
 	toolPaths: defaultToolPaths(),
+	editRequest: defaultEditRequest(),
 	projectStatePath: "",
 	projectStateRevision: 0,
 	projectStateApplying: false,
@@ -541,6 +566,14 @@ export const useAppStore = create<AppStore>((set) => ({
 	setSubtitleSpeakerSettings: (settings) =>
 		set((current) => ({ subtitleSpeakerSettings: { ...current.subtitleSpeakerSettings, ...settings } })),
 	setToolPaths: (paths) => set((current) => ({ toolPaths: { ...current.toolPaths, ...paths } })),
+	setEditRequest: (request) =>
+		set((current) => ({
+			editRequest: {
+				...current.editRequest,
+				...request,
+				instructionHistory: request.instructionHistory || current.editRequest.instructionHistory,
+			},
+		})),
 	setFiles: (files) => set((current) => ({ files: { ...current.files, ...files } })),
 	setAnalysisResults: (analysisResults) => set({ analysisResults }),
 	setMaterialAnalysisStatus: (materialAnalysisStatus) => set({ materialAnalysisStatus }),

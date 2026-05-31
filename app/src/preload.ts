@@ -24,6 +24,7 @@ contextBridge.exposeInMainWorld("editApp", {
 	execCodexCommand: (payload) => ipcRenderer.invoke("codex:exec-command", payload),
 	runWorkflowAction: (payload) => ipcRenderer.invoke("workflow:run-action", payload),
 	interruptCodex: () => ipcRenderer.invoke("codex:interrupt"),
+	resetCodexThread: () => ipcRenderer.invoke("codex:reset-thread"),
 	loadAnalysisState: (payload) => ipcRenderer.invoke("analysis-state:load", payload),
 	saveAnalysisState: (payload) => ipcRenderer.invoke("analysis-state:save", payload),
 	getMaterialAnalysisStatus: (payload) => ipcRenderer.invoke("analysis:material-status", payload),

@@ -194,9 +194,13 @@ function projectRelative(project: ProjectInfo, filePath: string) {
 	return relative && !relative.startsWith("..") && !path.isAbsolute(relative);
 }
 
+function sanitizePathSegment(value: string) {
+	return value.replace(/[^a-zA-Z0-9._-]+/g, "_") || "asset";
+}
+
 function uniqueTargetPath(targetDir: string, filename: string) {
 	const ext = path.extname(filename);
-	const stem = path.basename(filename, ext).replace(/[^a-zA-Z0-9._-]+/g, "_") || "asset";
+	const stem = sanitizePathSegment(path.basename(filename, ext));
 	let candidate = path.join(targetDir, `${stem}${ext}`);
 	let index = 2;
 	while (fs.existsSync(candidate)) {
@@ -204,6 +208,35 @@ function uniqueTargetPath(targetDir: string, filename: string) {
 		index += 1;
 	}
 	return candidate;
+}
+
+function bucketForMediaItem(item: MediaItem) {
+	if (item.kind === "audio") {
+		return "audio";
+	}
+	if (item.kind === "image") {
+		return "images";
+	}
+	if (item.kind === "subtitle") {
+		return "subtitles";
+	}
+	if (item.kind === "other") {
+		return "other";
+	}
+	return "video";
+}
+
+function relativeTargetParts(item: MediaItem) {
+	const relative = String(item.relativePath || item.name || "")
+		.split(/[\\/]+/)
+		.filter(Boolean);
+	if (!relative.length) {
+		return { dirParts: [], filename: item.name || path.basename(item.path) };
+	}
+	return {
+		dirParts: relative.slice(0, -1).map(sanitizePathSegment),
+		filename: relative.at(-1) || item.name || path.basename(item.path),
+	};
 }
 
 async function importManifest(project: ProjectInfo, manifest: MediaManifest, mediaManifestName: string) {
@@ -214,30 +247,29 @@ async function importManifest(project: ProjectInfo, manifest: MediaManifest, med
 			current: index + 1,
 			total: files.length,
 			progress: 0.7 + (files.length ? (index / files.length) * 0.18 : 0.18),
-			message:
-				item.kind === "video" || item.kind === "audio"
-					? "大容量素材はコピーせず参照しています"
-					: "軽量素材を取り込んでいます",
+			message: "プロジェクトへ素材を保存しています",
 			path: item.path,
 		});
 		item.originalPath = item.originalPath || item.path;
-		item.metadata.storage = item.kind === "video" || item.kind === "audio" ? "referenced" : "copied";
-		if (item.kind === "video" || item.kind === "audio") {
+		const alreadyInProject = Boolean(item.path && path.isAbsolute(item.path) && projectRelative(project, item.path));
+		if (!item.path || !path.isAbsolute(item.path) || !fs.existsSync(item.path) || alreadyInProject) {
+			if (alreadyInProject) {
+				item.metadata.storage = "project-source";
+			}
 			continue;
 		}
-		if (!item.path || !path.isAbsolute(item.path) || !fs.existsSync(item.path) || projectRelative(project, item.path)) {
-			continue;
-		}
-		const bucket = item.kind === "subtitle" ? "subtitles" : "images";
-		const prefix = item.role && item.role !== "ignore" ? item.role : item.kind;
-		const targetDir = path.join(project.sourceRoot, bucket);
+		const bucket = bucketForMediaItem(item);
+		const { dirParts, filename } = relativeTargetParts(item);
+		const targetDir = path.join(project.sourceRoot, bucket, ...dirParts);
 		await mkdir(targetDir, { recursive: true });
-		const target = uniqueTargetPath(targetDir, `${prefix}_${item.name}`);
+		const target = uniqueTargetPath(targetDir, filename);
 		await copyFile(item.path, target);
 		item.path = target;
+		item.metadata.storage = "copied";
 	}
 
 	rebuildManifestGroups(manifest);
+	manifest.sourceDirectory = project.sourceRoot;
 	const outputManifestPath = path.join(project.outputRoot, "reports", mediaManifestName);
 	manifest.manifestPath = outputManifestPath;
 	await mkdir(path.dirname(outputManifestPath), { recursive: true });
@@ -288,7 +320,7 @@ async function main() {
 		path: inputLabel,
 	});
 	const inputFiles = await collectInputFiles(inputs);
-	const supported = inputFiles.filter((filePath) => mediaKindForPath(filePath) !== "other");
+	const supported = inputFiles;
 	const root = configuredRoot || commonParent(supported.map((filePath) => path.dirname(filePath)));
 	const items: MediaItem[] = [];
 	for (const [index, filePath] of supported.entries()) {

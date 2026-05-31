@@ -65,6 +65,18 @@ export const state: any = {
 	analysisResults: [] as AnalysisResult[],
 	materialAnalysisStatus: {} as Record<string, MaterialAnalysisStatus>,
 	analysisTitleText: "",
+	editRequest: {
+		instructionDraft: "",
+		instructionHistory: [] as Array<{
+			id: string;
+			mode: "preview" | "final";
+			text: string;
+			targetPath: string;
+			createdAt: string;
+		}>,
+		lastPreviewPath: "",
+		lastFinalPath: "",
+	},
 	files: {
 		masterVideo: "",
 		rightCloseVideo: "",

@@ -85,6 +85,16 @@ export function createProjectController({
 		if (!project || project.id !== previousProjectId) {
 			state.projectStateRevision = 0;
 		}
+		if (project?.id !== previousProjectId) {
+			state.editRequest = {
+				instructionDraft: "",
+				instructionHistory: [],
+				lastPreviewPath: "",
+				lastFinalPath: "",
+			};
+			getAppState().setEditRequest(state.editRequest);
+			void editApp.resetCodexThread().catch((error) => log("codex thread reset failed", { message: error.message }));
+		}
 		getAppState().setProject(project, {
 			projectStatePath: state.projectStatePath,
 			projectStateRevision: state.projectStateRevision,
@@ -121,10 +131,16 @@ export function createProjectController({
 	}
 
 	async function activateProject(project: ProjectInfo, manifest: MediaManifest | null = null) {
-		setProject(project);
-		clearSelectedAssets();
-		setAnalysisResults([], { persistFile: false });
-		setMediaManifest(manifest || null);
+		const previousApplying = state.projectStateApplying;
+		state.projectStateApplying = true;
+		try {
+			setProject(project);
+			clearSelectedAssets();
+			setAnalysisResults([], { persistFile: false });
+			setMediaManifest(manifest || null);
+		} finally {
+			state.projectStateApplying = previousApplying;
+		}
 		const loadedProjectState = await loadProjectStateFile(project);
 		if (!loadedProjectState) {
 			await persistProjectStateFileNow();

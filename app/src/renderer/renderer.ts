@@ -54,7 +54,6 @@ const {
 	renderCodexModelStatus,
 	selectedCodexModelForRun,
 	selectedCodexReasoningEffort,
-	setSelectedCodexModel,
 } = codexModelController;
 
 const runStateController = createRunStateController({
@@ -94,15 +93,8 @@ const glossaryStateController = createGlossaryStateController({
 	refreshPrompt: () => currentRefreshPrompt(),
 });
 
-const {
-	glossaryTerms,
-	handleGlossaryTermChange,
-	handleGlossaryTermRemove,
-	normalizeGlossaryTerm,
-	renderGlossaryList,
-	setGlossaryTerms,
-	termsFromGlossaryManifest,
-} = glossaryStateController;
+const { glossaryTerms, normalizeGlossaryTerm, renderGlossaryList, setGlossaryTerms, termsFromGlossaryManifest } =
+	glossaryStateController;
 
 const assetFileController = createAssetFileController({
 	refreshPrompt: () => currentRefreshPrompt(),
@@ -110,14 +102,10 @@ const assetFileController = createAssetFileController({
 });
 
 const {
-	addStillImages,
 	clearSelectedAssets,
 	loadFilePreviews,
 	loadOutputTargetPreview,
 	loadWorkflowMediaPreviews,
-	pickFile,
-	pickOutput,
-	pickTool,
 	renderFileSlots,
 	renderOutputTargetPreview,
 	renderStillImageList,
@@ -137,15 +125,8 @@ const materialSourceController = createMaterialSourceController({
 	setIngestRunning,
 });
 
-const {
-	addMaterialSources,
-	loadMaterialSourcePreviews,
-	materialSourceLabel,
-	pickMaterialDirectory,
-	pickMaterialFiles,
-	setMaterialSources,
-	setMaterialSourcesFromPreviews,
-} = materialSourceController;
+const { loadMaterialSourcePreviews, materialSourceLabel, setMaterialSources, setMaterialSourcesFromPreviews } =
+	materialSourceController;
 
 const { closeConfirmDialog, confirmAction } = createConfirmDialogController();
 
@@ -162,16 +143,8 @@ const materialManifestController = createMaterialManifestController({
 	setStillImages,
 });
 
-const {
-	applyManifestSelections,
-	handleMaterialItemRemove,
-	handleMaterialRoleChange,
-	handleMaterialSourceRemove,
-	handleStillImageRemove,
-	rebuildMediaManifestGroups,
-	renderMediaManifest,
-	setMediaManifest,
-} = materialManifestController;
+const { applyManifestSelections, rebuildMediaManifestGroups, renderMediaManifest, setMediaManifest } =
+	materialManifestController;
 currentRenderMediaManifest = renderMediaManifest;
 
 const { restoreDefaultTextDrafts, setActiveSection, setLanguage, setSubtitleMode, setWaitingAnalysisProgress } =
@@ -221,7 +194,6 @@ const {
 	copyAssetsToProject,
 	createProjectFromDialog,
 	createProjectFromForm,
-	deleteCurrentProject,
 	openProject,
 	renderProjectDialogList,
 	restoreStartupProjectFromDisk,
@@ -304,10 +276,8 @@ workflowController = createWorkflowController({
 const {
 	renderSyncReport,
 	refreshSyncReport,
-	loadGlossaryCandidates,
 	refreshTextOverlayFromAnalysis,
 	refreshAnalysisTitleFromAnalysis,
-	addGlossaryTerm,
 	ffprobeExe,
 	personEditPlansDir,
 	referenceEditProfilePath,
@@ -325,9 +295,8 @@ const {
 	updateRunSummary,
 	buildAppConfig,
 	refreshPrompt,
-	runPreset,
-	sendRequest,
-	stopCodexTurn,
+	runSimpleTranscription,
+	sendSimpleEditRequest,
 	handleNotification,
 } = workflowController;
 currentDirectRunLabel = directRunLabel;
@@ -373,8 +342,234 @@ const materialAnalysisController = createMaterialAnalysisController({
 	transcriptManifestOutputPath,
 });
 
-const { cancelMaterialAnalysis, ingestMaterialDirectory, reanalyzeMaterialItem, syncMaterialSources } =
-	materialAnalysisController;
+const { cancelMaterialAnalysis } = materialAnalysisController;
+
+function uniquePaths(paths: string[]) {
+	return [
+		...new Set(
+			paths
+				.map(String)
+				.map((item) => item.trim())
+				.filter(Boolean),
+		),
+	];
+}
+
+function selectedItemsLabel(paths: string[]) {
+	return paths.length === 1 ? paths[0] : `${paths.length} selected item(s)`;
+}
+
+async function ingestSimpleMaterials(paths: string[]) {
+	const selected = uniquePaths(paths);
+	if (!selected.length) {
+		return false;
+	}
+	if (state.ingestRunning || state.appLocked) {
+		log("material import skipped", { reason: "another operation is running" });
+		return false;
+	}
+	const sourceLabel = selectedItemsLabel(selected);
+	state.fullAnalysisRunning = false;
+	state.materialAnalysisCancelable = true;
+	state.materialAnalysisCancelRequested = false;
+	setAnalysisResults([], { persistFile: false });
+	setAnalysisTitleText("");
+	state.syncReport = null;
+	renderSyncReport();
+	setStatus("素材を保存しています", "busy");
+	setIngestRunning(true);
+	setAppLocked(true, "プロジェクトを作成し、素材を source ディレクトリへ保存しています");
+	setIngestProgress({
+		progress: 0,
+		message: "素材の保存を開始しました",
+		path: sourceLabel,
+	});
+	log("simple material import", { paths: selected });
+	try {
+		const result = await editApp.ingestDirectory({
+			directory: selected.length === 1 ? selected[0] : "",
+			paths: selected,
+			tools: {
+				ffprobe: ffprobeExe(),
+			},
+		});
+		setProject(result.project);
+		clearSelectedAssets();
+		setAnalysisResults([], { persistFile: false });
+		setMediaManifest(result.manifest);
+		setDefaultProjectOutput(false);
+		await refreshMaterialAnalysisStatus();
+		refreshPrompt();
+		setIngestProgress({
+			progress: 1,
+			message: "素材をプロジェクトへ保存しました",
+			path: result.manifest?.manifestPath || sourceLabel,
+		});
+		setStatus("素材を保存しました", "ready");
+		await persistProjectStateFileNow();
+		return true;
+	} catch (error) {
+		setStatus("素材の保存に失敗しました", "idle");
+		setIngestProgress({
+			progress: 0,
+			message: "素材の保存に失敗しました",
+			path: sourceLabel,
+		});
+		log("simple material import failed", { message: error.message });
+		return false;
+	} finally {
+		state.materialAnalysisCancelable = false;
+		state.materialAnalysisCancelRequested = false;
+		setIngestRunning(false);
+		setAppLocked(false);
+	}
+}
+
+async function pickSimpleMaterialDirectory() {
+	const selected = await editApp.pickDirectory({ title: "素材フォルダを選択" });
+	if (selected) {
+		await ingestSimpleMaterials([selected]);
+	}
+}
+
+async function pickSimpleMaterialFiles() {
+	const selected = await editApp.pickFile({
+		title: "素材ファイルを選択",
+		filters: [
+			{
+				name: "Media and subtitles",
+				extensions: [
+					"mp4",
+					"mov",
+					"m4v",
+					"mkv",
+					"avi",
+					"mts",
+					"m2ts",
+					"wav",
+					"mp3",
+					"aac",
+					"m4a",
+					"flac",
+					"aiff",
+					"aif",
+					"png",
+					"jpg",
+					"jpeg",
+					"webp",
+					"srt",
+					"ass",
+					"vtt",
+				],
+			},
+			{ name: "All files", extensions: ["*"] },
+		],
+		multi: true,
+	});
+	if (Array.isArray(selected)) {
+		await ingestSimpleMaterials(selected);
+	} else if (selected) {
+		await ingestSimpleMaterials([selected]);
+	}
+}
+
+async function addSimpleAudioFiles(paths: string[]) {
+	const selected = uniquePaths(paths);
+	if (!selected.length) {
+		return false;
+	}
+	if (!state.project) {
+		setStatus("先に素材を投入してプロジェクトを作成してください", "idle");
+		log("audio import skipped", { reason: "project is required" });
+		return false;
+	}
+	if (state.ingestRunning || state.appLocked) {
+		log("audio import skipped", { reason: "another operation is running" });
+		return false;
+	}
+	const sourceLabel = selectedItemsLabel(selected);
+	state.materialAnalysisCancelable = true;
+	state.materialAnalysisCancelRequested = false;
+	setStatus("音声ファイルを追加しています", "busy");
+	setIngestRunning(true);
+	setAppLocked(true, "音声ファイルを source ディレクトリへ保存しています");
+	setIngestProgress({
+		progress: 0,
+		message: "音声ファイルの保存を開始しました",
+		path: sourceLabel,
+	});
+	log("simple audio import", { paths: selected, project: state.project.id });
+	try {
+		const result = await editApp.ingestDirectory({
+			project: state.project,
+			directory: selected.length === 1 ? selected[0] : "",
+			paths: selected,
+			append: true,
+			tools: {
+				ffprobe: ffprobeExe(),
+			},
+		});
+		setProject(result.project);
+		setMediaManifest(result.manifest);
+		await refreshMaterialAnalysisStatus();
+		refreshPrompt();
+		setIngestProgress({
+			progress: 1,
+			message: "音声ファイルを追加しました",
+			path: result.manifest?.manifestPath || sourceLabel,
+		});
+		setStatus("音声ファイルを追加しました", "ready");
+		await persistProjectStateFileNow();
+		return true;
+	} catch (error) {
+		setStatus("音声ファイルの追加に失敗しました", "idle");
+		setIngestProgress({
+			progress: 0,
+			message: "音声ファイルの追加に失敗しました",
+			path: sourceLabel,
+		});
+		log("simple audio import failed", { message: error.message });
+		return false;
+	} finally {
+		state.materialAnalysisCancelable = false;
+		state.materialAnalysisCancelRequested = false;
+		setIngestRunning(false);
+		setAppLocked(false);
+	}
+}
+
+async function pickSimpleAudioFiles() {
+	const selected = await editApp.pickFile({
+		title: "音声ファイルを選択",
+		filters: [
+			{
+				name: "Audio files",
+				extensions: ["wav", "mp3", "aac", "m4a", "flac", "aiff", "aif", "mp4", "mov"],
+			},
+			{ name: "All files", extensions: ["*"] },
+		],
+		multi: true,
+	});
+	if (Array.isArray(selected)) {
+		await addSimpleAudioFiles(selected);
+	} else if (selected) {
+		await addSimpleAudioFiles([selected]);
+	}
+}
+
+function handleEditRequestChange(event: Event) {
+	const instructionDraft = String((event as CustomEvent).detail?.instructionDraft || "");
+	state.editRequest = {
+		instructionDraft,
+		instructionHistory: [...(state.editRequest?.instructionHistory || [])],
+		lastPreviewPath: state.editRequest?.lastPreviewPath || "",
+		lastFinalPath: state.editRequest?.lastFinalPath || "",
+	};
+	getAppState().setEditRequest(state.editRequest);
+	refreshPrompt();
+	schedulePersistCurrentProjectState();
+	saveState();
+}
 
 function resetAnalysisForMaterialChange(path = materialSourceLabel()) {
 	setAnalysisResults([]);
@@ -396,49 +591,23 @@ async function refreshMaterialAnalysisStatus() {
 
 function bindEvents() {
 	bindRendererEvents({
-		addGlossaryTerm,
-		addMaterialSources,
-		addStillImages,
 		cancelMaterialAnalysis,
 		changeProject,
 		closeConfirmDialog,
-		copyAssetsToProject,
 		createProjectFromDialog,
-		createProjectFromForm,
-		deleteCurrentProject,
-		handleGlossaryTermChange,
-		handleGlossaryTermRemove,
-		handleMaterialItemRemove,
-		handleMaterialRoleChange,
-		handleMaterialSourceRemove,
-		reanalyzeMaterialItem,
-		syncMaterialSources,
-		handleNotification,
-		handleStillImageRemove,
-		ingestMaterialDirectory,
-		loadCodexModels,
-		loadGlossaryCandidates,
+		handleEditRequestChange,
+		ingestSimpleMaterials,
+		pickSimpleMaterialDirectory,
+		pickSimpleMaterialFiles,
+		addSimpleAudioFiles,
+		pickSimpleAudioFiles,
+		runSimpleTranscription,
+		sendSimpleEditRequest,
 		loadOutputPreview,
 		openProject,
 		outputPreviewTarget,
-		pickFile,
-		pickMaterialDirectory,
-		pickMaterialFiles,
-		pickOutput,
-		pickTool,
-		refreshCommand,
-		refreshPrompt,
-		refreshSyncReport,
-		runPreset,
-		saveState,
-		sendRequest,
-		setActiveSection,
-		setFile,
 		setLanguage,
 		setProjectDialogOpen,
-		setSelectedCodexModel,
-		setSubtitleMode,
-		stopCodexTurn,
 	});
 }
 
@@ -508,4 +677,5 @@ async function init() {
 		await refreshAnalysisTitleFromAnalysis(state.mediaManifest);
 		await refreshMaterialAnalysisStatus();
 	}
+	(window as unknown as Record<string, any>).__videoEditRendererReady = true;
 }

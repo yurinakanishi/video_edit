@@ -22,6 +22,7 @@ export type EditAppApi = {
 	execCodexCommand: (payload: any) => Promise<any>;
 	runWorkflowAction: (payload: any) => Promise<any>;
 	interruptCodex: () => Promise<any>;
+	resetCodexThread: () => Promise<any>;
 	loadAnalysisState: (payload: any) => Promise<any>;
 	saveAnalysisState: (payload: any) => Promise<any>;
 	getMaterialAnalysisStatus: (payload: any) => Promise<any>;

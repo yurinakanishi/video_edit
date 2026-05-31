@@ -76,6 +76,8 @@ const DEFAULT_FFPROBE_EXE = "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe";
 const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
 const CODEX_EXE_NAME = process.platform === "win32" ? "codex.exe" : "codex";
 const SMOKE_QUIT_MS = Math.max(0, Number(process.env.VIDEO_EDIT_SMOKE_QUIT_MS || 0));
+const SMOKE_UI_DROP_RESULT = process.env.VIDEO_EDIT_SMOKE_UI_DROP_RESULT || "";
+const SMOKE_UI_DROP_TIMEOUT_MS = Math.max(1000, Number(process.env.VIDEO_EDIT_SMOKE_UI_DROP_TIMEOUT_MS || 45_000));
 
 function loadWorkflowActionManifest() {
 	const manifestPath = path.join(CONFIG_ROOT, "workflow_actions.json");
@@ -222,6 +224,7 @@ const PROJECT_SUBDIRS = [
 	"source/audio",
 	"source/images",
 	"source/subtitles",
+	"source/other",
 	"output/videos",
 	"output/overlays",
 	"output/reports",
@@ -289,6 +292,17 @@ function projectInfo(id: string, name?: string): ProjectInfo {
 		sourceRoot: path.join(root, "source"),
 		outputRoot: path.join(root, "output"),
 	};
+}
+
+function uniqueProjectInfo(id: string, name?: string): ProjectInfo {
+	const baseId = safeProjectId(id);
+	let candidateId = baseId;
+	let index = 2;
+	while (fs.existsSync(path.join(PROJECTS_ROOT, candidateId))) {
+		candidateId = `${baseId}-${String(index).padStart(2, "0")}`;
+		index += 1;
+	}
+	return projectInfo(candidateId, name || candidateId);
 }
 
 function ensureProjectDirs(project: ProjectInfo) {
@@ -1625,6 +1639,85 @@ function persistMediaManifest(manifest: MediaManifest) {
 	fs.writeFileSync(manifest.manifestPath, JSON.stringify(manifest, null, 2), "utf8");
 }
 
+function nextMediaItemNumber(files: MediaItem[]) {
+	return (
+		files.reduce((max, item) => {
+			const match = String(item.id || "").match(/^media-(\d+)$/);
+			return match ? Math.max(max, Number(match[1]) || 0) : max;
+		}, 0) + 1
+	);
+}
+
+function uniqueMediaItemId(files: MediaItem[], nextNumber: number) {
+	const ids = new Set(files.map((item) => item.id));
+	let index = nextNumber;
+	let id = `media-${String(index).padStart(3, "0")}`;
+	while (ids.has(id)) {
+		index += 1;
+		id = `media-${String(index).padStart(3, "0")}`;
+	}
+	return { id, nextNumber: index + 1 };
+}
+
+function normalizeAppendedMediaItem(item: MediaItem, existingFiles: MediaItem[], nextNumber: number) {
+	const normalized = { ...item, metadata: { ...(item.metadata || {}) } };
+	const nextId = uniqueMediaItemId(existingFiles, nextNumber);
+	normalized.id = nextId.id;
+	if (normalized.kind === "audio") {
+		const audioCount = existingFiles.filter((candidate) => candidate.kind === "audio").length;
+		normalized.role = audioCount === 0 ? "external" : `external${audioCount + 1}`;
+		normalized.label = audioCount === 0 ? "External audio" : `External audio ${audioCount + 1}`;
+		normalized.reason = normalized.reason || "standalone audio source";
+	}
+	return { item: normalized, nextNumber: nextId.nextNumber };
+}
+
+function mergeProjectMediaManifest(project: ProjectInfo, incoming: MediaManifest) {
+	const existing = readProjectMediaManifest(project);
+	if (!existing) {
+		incoming.sourceDirectory = project.sourceRoot;
+		incoming.manifestPath = path.join(project.outputRoot, "reports", MEDIA_MANIFEST_NAME);
+		rebuildManifestGroups(incoming);
+		return incoming;
+	}
+	const files: MediaItem[] = [...(existing.files || [])];
+	const seenPaths = new Set(files.map((item) => path.resolve(String(item.path || "")).toLowerCase()).filter(Boolean));
+	let nextNumber = nextMediaItemNumber(files);
+	for (const item of incoming.files || []) {
+		const itemPath = String(item.path || "");
+		if (!itemPath) {
+			continue;
+		}
+		const key = path.resolve(itemPath).toLowerCase();
+		if (seenPaths.has(key)) {
+			continue;
+		}
+		const normalized = normalizeAppendedMediaItem(item, files, nextNumber);
+		nextNumber = normalized.nextNumber;
+		files.push(normalized.item);
+		seenPaths.add(key);
+	}
+	const merged: MediaManifest = {
+		...existing,
+		sourceDirectory: project.sourceRoot,
+		sourcePaths: [
+			...new Set([...(existing.sourcePaths || []), ...(incoming.sourcePaths || [])].map(String).filter(Boolean)),
+		],
+		generatedAt: new Date().toISOString(),
+		manifestPath: existing.manifestPath || path.join(project.outputRoot, "reports", MEDIA_MANIFEST_NAME),
+		files,
+		cameras: [],
+		audio: [],
+		images: [],
+		subtitles: [],
+		other: [],
+		selected: {},
+	};
+	rebuildManifestGroups(merged);
+	persistMediaManifest(merged);
+	return merged;
+}
+
 function projectRelative(project: ProjectInfo, filePath: string) {
 	const relative = path.relative(project.sourceRoot, filePath);
 	return relative && !relative.startsWith("..") && !path.isAbsolute(relative);
@@ -2440,6 +2533,11 @@ class CodexAppServer {
 		return this.request("turn/interrupt", { threadId: this.threadId });
 	}
 
+	resetThread() {
+		this.threadId = null;
+		return { reset: true };
+	}
+
 	stop() {
 		if (this.proc && !this.proc.killed) {
 			this.proc.kill();
@@ -2568,6 +2666,128 @@ function watchProjectState(project: ProjectInfo) {
 	}
 }
 
+function smokePathList(envName: string) {
+	const raw = process.env[envName] || "";
+	if (!raw.trim()) {
+		return [];
+	}
+	try {
+		const parsed = JSON.parse(raw);
+		if (Array.isArray(parsed)) {
+			return parsed.map(String).filter(Boolean);
+		}
+	} catch {
+		// Fall back to path-delimited input for ad hoc smoke runs.
+	}
+	return raw
+		.split(path.delimiter)
+		.map((item) => item.trim())
+		.filter(Boolean);
+}
+
+async function runSimpleUiDropSmoke(window: BrowserWindow) {
+	const resultPath = SMOKE_UI_DROP_RESULT;
+	if (!resultPath) {
+		return;
+	}
+	const materialPaths = smokePathList("VIDEO_EDIT_SMOKE_MATERIAL_PATHS");
+	const audioPaths = smokePathList("VIDEO_EDIT_SMOKE_AUDIO_PATHS");
+	const startedAt = Date.now();
+	const writeResult = (payload: Record<string, any>) => {
+		fs.mkdirSync(path.dirname(resultPath), { recursive: true });
+		fs.writeFileSync(resultPath, JSON.stringify({ ...payload, elapsedMs: Date.now() - startedAt }, null, 2), "utf8");
+	};
+	try {
+		if (!materialPaths.length) {
+			throw new Error("VIDEO_EDIT_SMOKE_MATERIAL_PATHS is required");
+		}
+		const result = await window.webContents.executeJavaScript(
+			`
+			(async () => {
+				const materialPaths = ${JSON.stringify(materialPaths)};
+				const audioPaths = ${JSON.stringify(audioPaths)};
+				const timeoutMs = ${SMOKE_UI_DROP_TIMEOUT_MS};
+				const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+				async function waitFor(label, predicate) {
+					const started = Date.now();
+					let lastError = "";
+					while (Date.now() - started < timeoutMs) {
+						try {
+							const value = await predicate();
+							if (value) {
+								return value;
+							}
+						} catch (error) {
+							lastError = error && error.message ? error.message : String(error);
+						}
+						await sleep(250);
+					}
+					throw new Error(label + " timed out" + (lastError ? ": " + lastError : ""));
+				}
+				await waitFor("renderer ready", () => window.__videoEditRendererReady && window.editApp);
+				const before = await window.editApp.listProjects();
+				const beforeIds = new Set((before.projects || []).map((entry) => entry.project && entry.project.id).filter(Boolean));
+				document.dispatchEvent(new CustomEvent("video-edit:simple-material-drop", { detail: { paths: materialPaths } }));
+				const materialEntry = await waitFor("material drop ingest", async () => {
+					const listed = await window.editApp.listProjects();
+					return (listed.projects || []).find(
+						(entry) => entry.project && !beforeIds.has(entry.project.id) && entry.hasManifest && entry.mediaCount >= 1,
+					);
+				});
+				const materialLoaded = await window.editApp.loadProject({ project: materialEntry.project });
+				const materialCount = (materialLoaded.manifest && materialLoaded.manifest.files || []).length;
+				await waitFor("material UI ready", () => {
+					const lockScope = document.querySelector(".app-lock-scope");
+					const projectName = document.querySelector(".header-project strong");
+					return lockScope && !lockScope.disabled && projectName && projectName.textContent === materialEntry.project.name;
+				});
+				if (audioPaths.length) {
+					document.dispatchEvent(new CustomEvent("video-edit:simple-audio-drop", { detail: { paths: audioPaths } }));
+					await waitFor("audio drop ingest", async () => {
+						const loaded = await window.editApp.loadProject({ project: materialEntry.project });
+						const files = (loaded.manifest && loaded.manifest.files) || [];
+						const audioCount = files.filter((item) => item.kind === "audio").length;
+						return files.length > materialCount && audioCount >= audioPaths.length ? loaded : null;
+					});
+				}
+				const loaded = await window.editApp.loadProject({ project: materialEntry.project });
+				const manifest = loaded.manifest || {};
+				const files = (manifest.files || []).map((item) => ({
+					id: item.id,
+					kind: item.kind,
+					role: item.role,
+					path: item.path,
+					originalPath: item.originalPath || "",
+					relativePath: item.relativePath || "",
+					name: item.name || "",
+					metadataStorage: item.metadata && item.metadata.storage || "",
+				}));
+				return {
+					project: loaded.project,
+					manifestPath: manifest.manifestPath || "",
+					sourceDirectory: manifest.sourceDirectory || "",
+					counts: {
+						files: files.length,
+						cameras: (manifest.cameras || []).length,
+						audio: (manifest.audio || []).length,
+						images: (manifest.images || []).length,
+						subtitles: (manifest.subtitles || []).length,
+						other: (manifest.other || []).length,
+					},
+					files,
+				};
+			})()
+			`,
+			true,
+		);
+		writeResult({ ok: true, result });
+		app.exit(0);
+	} catch (error) {
+		writeResult({ ok: false, error: error instanceof Error ? error.message : String(error) });
+		app.exit(1);
+	}
+}
+
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1360,
@@ -2592,7 +2812,11 @@ function createWindow() {
 	});
 
 	mainWindow.loadFile(path.join(__dirname, "renderer", "index.html"));
-	if (SMOKE_QUIT_MS > 0) {
+	if (SMOKE_UI_DROP_RESULT) {
+		mainWindow.webContents.once("did-finish-load", () => {
+			void runSimpleUiDropSmoke(mainWindow as BrowserWindow);
+		});
+	} else if (SMOKE_QUIT_MS > 0) {
 		mainWindow.webContents.once("did-finish-load", () => {
 			setTimeout(() => app.quit(), SMOKE_QUIT_MS);
 		});
@@ -2801,21 +3025,21 @@ ipcMain.handle("project-state:patch", async (_event, { project, operations, base
 	return patchProjectState(info, operations || [], baseRevision);
 });
 
-ipcMain.handle("project:ingest-directory", async (_event, { project, directory, paths, tools } = {}) => {
+ipcMain.handle("project:ingest-directory", async (_event, { project, directory, paths, tools, append } = {}) => {
 	const sourcePaths = existingInputPaths(directory, paths);
 	if (!sourcePaths.length) {
 		throw new Error("A material folder or file is required.");
 	}
 	const sourceDirectory = sourceRootForInputs(sourcePaths);
+	const defaultProjectName = path.basename(sourcePaths.length === 1 ? sourcePaths[0] : sourceDirectory);
 	const info = project?.id
 		? projectInfoFromPayload(project)
-		: projectInfo(
-				path.basename(sourcePaths.length === 1 ? sourcePaths[0] : sourceDirectory),
-				path.basename(sourceDirectory),
-			);
+		: uniqueProjectInfo(defaultProjectName, path.basename(sourceDirectory) || defaultProjectName);
 	ensureProjectDirs(info);
 	watchProjectState(info);
 	const ffprobePath = String(tools?.ffprobe || DEFAULT_FFPROBE_EXE);
+	const finalManifestPath = path.join(info.outputRoot, "reports", MEDIA_MANIFEST_NAME);
+	const workerManifestName = append ? `media_manifest_append_${Date.now()}.json` : MEDIA_MANIFEST_NAME;
 	const emit = (payload: IngestProgress) => {
 		_event.sender.send("project:ingest-progress", payload);
 	};
@@ -2825,16 +3049,26 @@ ipcMain.handle("project:ingest-directory", async (_event, { project, directory, 
 			sourcePaths,
 			project: info,
 			ffprobePath,
-			mediaManifestName: MEDIA_MANIFEST_NAME,
+			mediaManifestName: workerManifestName,
 		},
 		emit,
 	);
 	await enrichMediaManifestPreviews(importedManifest);
-	persistMediaManifest(importedManifest);
+	const manifest = append ? mergeProjectMediaManifest(info, importedManifest) : importedManifest;
+	manifest.sourceDirectory = info.sourceRoot;
+	manifest.manifestPath = finalManifestPath;
+	persistMediaManifest(manifest);
+	if (
+		append &&
+		importedManifest.manifestPath &&
+		path.resolve(importedManifest.manifestPath) !== path.resolve(finalManifestPath)
+	) {
+		fs.rmSync(importedManifest.manifestPath, { force: true });
+	}
 	return {
 		project: info,
-		manifest: importedManifest,
-		files: importedManifest.selected,
+		manifest,
+		files: manifest.selected,
 	};
 });
 
@@ -2950,6 +3184,10 @@ ipcMain.handle("workflow:run-action", async (event, { action, appConfig, timeout
 
 ipcMain.handle("codex:interrupt", async () => {
 	return codex.interrupt();
+});
+
+ipcMain.handle("codex:reset-thread", async () => {
+	return codex.resetThread();
 });
 
 ipcMain.handle("report:sync", async (_event, appConfig) => {

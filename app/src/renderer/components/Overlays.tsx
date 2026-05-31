@@ -58,7 +58,7 @@ export function Overlays() {
 					<span className="drop-target-icon" aria-hidden="true"></span>
 					<div>
 						<strong>ファイルをドロップできます</strong>
-						<span>素材エリアまたは各スロットの上にドロップしてください</span>
+						<span>素材または音声のエリアへドロップできます</span>
 					</div>
 				</div>
 			</div>

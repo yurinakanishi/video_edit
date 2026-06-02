@@ -4,7 +4,7 @@ import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-from project_paths import (
+from video_edit_core.paths import (
     CONFIG,
     OUTPUT_DIAGNOSTICS,
     OUTPUT_OVERLAYS,
@@ -23,8 +23,8 @@ from project_paths import (
 
 from PIL import Image, ImageDraw, ImageFont
 
-from subtitle_png_style import FONT_PATH, render_caption, tracked_text_width
-from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha, parse_punchline_text
+from video_edit_core.graphics.subtitle_png import FONT_PATH, render_caption, tracked_text_width
+from video_edit_core.app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha, parse_punchline_text
 
 
 WORK = WORKSPACE_ROOT

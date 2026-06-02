@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from project_paths import (
+from video_edit_core.paths import (
     CONFIG,
     OUTPUT_DIAGNOSTICS,
     OUTPUT_OVERLAYS,
@@ -29,7 +29,7 @@ from typing import Iterable
 import cv2
 import numpy as np
 
-from video_edit_app_config import load_app_config, nested, optional_path
+from video_edit_core.app_config import load_app_config, nested, optional_path
 
 JST = timezone(timedelta(hours=9))
 APP_CONFIG = load_app_config()

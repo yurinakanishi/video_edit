@@ -28,9 +28,10 @@ projects/<project-id>/
 
 - `VIDEO_EDITING_INSTRUCTIONS.md` describes the project's goal, materials, edit policy, one-off scripts, and verification checklist.
 - `projects/<project-id>/scripts` is for project-specific automation that composes shared app tools.
-- Shared app code under `scripts`, `app`, `remotion`, `config`, and `docs` must remain reusable across projects.
+- Shared app code under `video_edit_core`, `scripts`, `app`, `remotion`, `config`, and `docs` must remain reusable across projects.
 - Electron does not run project-local scripts directly. Codex or the CLI should run them after reading the project instructions.
 - Shared workflow actions and Python script allowlists live in `config/workflow_actions.json`; update that manifest instead of adding separate action lists in Python or Electron.
+- Reusable Python implementation belongs in `video_edit_core`; `scripts/*.py` should stay as stable CLI wrappers, action dispatchers, or compatibility shims.
 
 ## Common Commands
 

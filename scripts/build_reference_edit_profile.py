@@ -6,7 +6,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from project_paths import OUTPUT_REPORTS
+from video_edit_core.paths import OUTPUT_REPORTS
 
 
 def parse_args() -> argparse.Namespace:

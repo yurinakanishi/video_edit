@@ -6,8 +6,8 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from composition_rules import subject_target_for_face
-from project_paths import OUTPUT_REPORTS
+from video_edit_core.composition import subject_target_for_face
+from video_edit_core.paths import OUTPUT_REPORTS
 
 
 DEFAULT_INPUT_DIR = OUTPUT_REPORTS / "person_bboxes"

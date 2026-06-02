@@ -12,8 +12,8 @@ from typing import Any
 
 import numpy as np
 
-from project_paths import OUTPUT_REPORTS
-from video_edit_app_config import load_app_config, nested, selected_subtitle_path
+from video_edit_core.paths import OUTPUT_REPORTS
+from video_edit_core.app_config import load_app_config, nested, selected_subtitle_path
 
 
 APP_CONFIG = load_app_config()

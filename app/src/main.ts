@@ -21,6 +21,7 @@ import {
 function hasProjectMarkers(candidate) {
 	return (
 		fs.existsSync(path.join(candidate, "scripts")) &&
+		fs.existsSync(path.join(candidate, "video_edit_core", "__init__.py")) &&
 		fs.existsSync(path.join(candidate, "docs", "video_edit_method.md"))
 	);
 }

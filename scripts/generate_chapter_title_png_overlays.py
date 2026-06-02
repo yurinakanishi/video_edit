@@ -6,8 +6,8 @@ from typing import Any
 
 from PIL import Image, ImageDraw, ImageFont
 
-from project_paths import OUTPUT_OVERLAYS, ROOT as WORKSPACE_ROOT, resolve_project_path
-from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha
+from video_edit_core.paths import OUTPUT_OVERLAYS, ROOT as WORKSPACE_ROOT, resolve_project_path
+from video_edit_core.app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha
 
 
 WORK = WORKSPACE_ROOT

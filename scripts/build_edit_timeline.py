@@ -8,10 +8,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from composition_rules import crop_window_center_for_subject, visible_ratio_for_area
-from project_paths import OUTPUT, OUTPUT_AUDIO, OUTPUT_OVERLAYS, OUTPUT_REPORTS, OUTPUT_VIDEOS, ROOT as WORK, SOURCE
-from timeline_validate import DEFAULT_REPORT, DEFAULT_SCHEMA, SCHEMA_VERSION, validate_timeline, write_report
-from video_edit_app_config import load_app_config, media_manifest, nested, selected_subtitle_path
+from video_edit_core.composition import crop_window_center_for_subject, visible_ratio_for_area
+from video_edit_core.paths import OUTPUT, OUTPUT_AUDIO, OUTPUT_OVERLAYS, OUTPUT_REPORTS, OUTPUT_VIDEOS, ROOT as WORK, SOURCE
+from video_edit_core.timeline.validation import DEFAULT_REPORT, DEFAULT_SCHEMA, SCHEMA_VERSION, validate_timeline, write_report
+from video_edit_core.app_config import load_app_config, media_manifest, nested, selected_subtitle_path
 
 
 DEFAULT_TIMELINE = OUTPUT / "timelines" / "current.timeline.json"

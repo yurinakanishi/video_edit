@@ -5,7 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from project_paths import OUTPUT_REPORTS, SCRIPTS
+from video_edit_core.paths import OUTPUT_REPORTS, SCRIPTS
 
 
 def parse_args() -> argparse.Namespace:

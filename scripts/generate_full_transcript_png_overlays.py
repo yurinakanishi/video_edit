@@ -7,7 +7,7 @@ import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-from project_paths import (
+from video_edit_core.paths import (
     CONFIG,
     OUTPUT_DIAGNOSTICS,
     OUTPUT_OVERLAYS,
@@ -26,8 +26,8 @@ from project_paths import (
 
 from PIL import Image, ImageDraw, ImageFont
 
-from subtitle_png_style import BLACK, FONT_PATH, LIGHT_PURPLE, TRACKING, render_simple_caption, tracked_text_width
-from video_edit_app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha, selected_subtitle_path
+from video_edit_core.graphics.subtitle_png import BLACK, FONT_PATH, LIGHT_PURPLE, TRACKING, render_simple_caption, tracked_text_width
+from video_edit_core.app_config import hex_rgba, int_value, load_app_config, nested, opacity_alpha, selected_subtitle_path
 
 
 WORK = WORKSPACE_ROOT

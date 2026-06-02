@@ -6,6 +6,7 @@ Electron operator UI plus shared Python tools for project-based video editing.
 
 ```text
 app/                      Electron UI source
+video_edit_core/          Reusable Python package used by shared CLI wrappers
 scripts/                  Shared Python render, analysis, transcript, and adapter tools
 remotion/                 Shared Remotion overlay scaffold
 config/                   App-level schemas and portable config files
@@ -30,7 +31,7 @@ Large media, generated outputs, `.video-edit/`, `projects/*/source`, `projects/*
 
 ## App Boundary
 
-The app and shared scripts provide reusable editing parts:
+The app, shared scripts, and `video_edit_core` provide reusable editing parts:
 
 - project discovery, media manifests, and runtime config snapshots;
 - transcription, subtitle QA/correction, speaker classification, and sync analysis;
@@ -41,7 +42,7 @@ The app and shared scripts provide reusable editing parts:
 
 Project-specific goals, source notes, editing policy, QA findings, custom commands, and one-off automation belong under the project directory. Do not modify shared app code to satisfy a single project's requirement; create `projects/<project-id>/scripts/<task>.py` and call shared tools from there.
 
-Shared workflow actions and script allowlists are defined in `config/workflow_actions.json`. Python, Electron main, and architecture checks read that manifest so new shared actions are registered in one place.
+Shared workflow actions and script allowlists are defined in `config/workflow_actions.json`. Python, Electron main, and architecture checks read that manifest so new shared actions are registered in one place. Reusable Python implementation should live under `video_edit_core`; `scripts/*.py` files remain stable CLI entry points and compatibility wrappers.
 
 ## Common Entry Point
 

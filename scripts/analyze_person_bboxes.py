@@ -12,8 +12,8 @@ from typing import Any
 import cv2
 import numpy as np
 
-from project_paths import OUTPUT_REPORTS, SOURCE_VIDEO, multicam_source_root, resolve_project_path
-from composition_rules import subject_target_for_face
+from video_edit_core.paths import OUTPUT_REPORTS, SOURCE_VIDEO, multicam_source_root, resolve_project_path
+from video_edit_core.composition import subject_target_for_face
 from face_mesh_metrics import create_face_mesh, extract_face_mesh_faces
 
 

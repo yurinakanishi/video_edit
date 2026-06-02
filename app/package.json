@@ -45,6 +45,13 @@
 				]
 			},
 			{
+				"from": "../video_edit_core",
+				"to": "video_edit_core",
+				"filter": [
+					"**/*.py"
+				]
+			},
+			{
 				"from": "../docs",
 				"to": "docs",
 				"filter": [

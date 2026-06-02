@@ -10,9 +10,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from project_paths import OUTPUT_REPORTS, ROOT as WORK
-from timeline_validate import configured_timeline_path, load_timeline, validate_timeline
-from video_edit_app_config import load_app_config, nested
+from video_edit_core.paths import OUTPUT_REPORTS, ROOT as WORK
+from video_edit_core.timeline.validation import configured_timeline_path, load_timeline, validate_timeline
+from video_edit_core.app_config import load_app_config, nested
 
 
 APP_CONFIG = load_app_config()

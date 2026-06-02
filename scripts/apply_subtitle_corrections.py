@@ -7,8 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from project_paths import OUTPUT_REPORTS, OUTPUT_TRANSCRIPTS
-from video_edit_app_config import load_app_config, nested, transcript_manifest_fingerprint
+from video_edit_core.paths import OUTPUT_REPORTS, OUTPUT_TRANSCRIPTS
+from video_edit_core.app_config import load_app_config, nested, transcript_manifest_fingerprint
 
 
 APP_CONFIG = load_app_config()

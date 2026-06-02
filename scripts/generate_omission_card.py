@@ -7,8 +7,8 @@ from typing import Any
 
 from PIL import Image, ImageDraw, ImageFont
 
-from project_paths import OUTPUT_OVERLAYS
-from video_edit_app_config import hex_rgba, load_app_config, nested, opacity_alpha
+from video_edit_core.paths import OUTPUT_OVERLAYS
+from video_edit_core.app_config import hex_rgba, load_app_config, nested, opacity_alpha
 
 
 WIDTH = 1920

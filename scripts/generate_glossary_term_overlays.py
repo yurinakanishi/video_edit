@@ -7,8 +7,8 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-from project_paths import OUTPUT_OVERLAYS, ROOT as WORKSPACE_ROOT
-from video_edit_app_config import load_app_config, nested, selected_subtitle_path
+from video_edit_core.paths import OUTPUT_OVERLAYS, ROOT as WORKSPACE_ROOT
+from video_edit_core.app_config import load_app_config, nested, selected_subtitle_path
 
 
 WORK = WORKSPACE_ROOT

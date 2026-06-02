@@ -7,9 +7,9 @@ from typing import Any
 
 from faster_whisper import WhisperModel
 
-from project_paths import OUTPUT_TRANSCRIPTS
+from video_edit_core.paths import OUTPUT_TRANSCRIPTS
 from transcribe_manifest_sources import choose_primary, manifest_sources
-from transcription_quality import (
+from video_edit_core.transcription_quality import (
     filter_low_confidence_segments,
     float_config,
     initial_prompt,
@@ -22,7 +22,7 @@ from transcription_quality import (
     transcribe_model_name,
     write_srt,
 )
-from video_edit_app_config import load_app_config, nested, optional_path, transcript_manifest_fingerprint
+from video_edit_core.app_config import load_app_config, nested, optional_path, transcript_manifest_fingerprint
 
 
 APP_CONFIG = load_app_config()

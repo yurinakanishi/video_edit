@@ -13,7 +13,7 @@ from typing import Any
 import numpy as np
 from PIL import Image, ImageFilter, ImageStat
 
-from project_paths import (
+from video_edit_core.paths import (
     CONFIG,
     OUTPUT_AUDIO,
     OUTPUT_DIAGNOSTICS,
@@ -31,8 +31,8 @@ from project_paths import (
     resolve_project_path,
 )
 
-from shorten_silences import DEFAULT_KEEP_SILENCE, DEFAULT_MIN_SILENCE, DEFAULT_NOISE, SilenceShortenConfig, shorten_silences
-from video_edit_app_config import (
+from video_edit_core.audio.silence import DEFAULT_KEEP_SILENCE, DEFAULT_MIN_SILENCE, DEFAULT_NOISE, SilenceShortenConfig, shorten_silences
+from video_edit_core.app_config import (
     int_value,
     load_app_config,
     nested,
@@ -42,7 +42,7 @@ from video_edit_app_config import (
     video_encoder_crf,
     video_encoder_preset,
 )
-from composition_rules import crop_window_center_for_subject, subject_target_for_face, visible_ratio_for_area
+from video_edit_core.composition import crop_window_center_for_subject, subject_target_for_face, visible_ratio_for_area
 
 
 WORK = WORKSPACE_ROOT

@@ -8,7 +8,7 @@ from typing import Any
 
 from PIL import Image
 
-from project_paths import OUTPUT_OVERLAYS
+from video_edit_core.paths import OUTPUT_OVERLAYS
 
 
 def seconds(value: str) -> float:

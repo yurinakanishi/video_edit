@@ -10,6 +10,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config"
 SCRIPTS = ROOT / "scripts"
+CORE = ROOT / "video_edit_core"
 FORM_OPTIONS = ROOT / "app" / "src" / "renderer" / "form-options.ts"
 SHARED_SCAN_ROOTS = [
     ROOT / "README.md",
@@ -17,7 +18,30 @@ SHARED_SCAN_ROOTS = [
     ROOT / "config",
     ROOT / "docs",
     ROOT / "scripts",
+    CORE,
 ]
+CORE_REQUIRED_FILES = [
+    "__init__.py",
+    "paths.py",
+    "app_config.py",
+    "composition.py",
+    "graphics/__init__.py",
+    "graphics/subtitle_png.py",
+    "audio/__init__.py",
+    "audio/silence.py",
+    "timeline/__init__.py",
+    "timeline/validation.py",
+    "transcription_quality.py",
+]
+CORE_COMPAT_WRAPPERS = {
+    "project_paths.py": "from video_edit_core.paths import *",
+    "video_edit_app_config.py": "from video_edit_core.app_config import *",
+    "composition_rules.py": "from video_edit_core.composition import *",
+    "subtitle_png_style.py": "from video_edit_core.graphics.subtitle_png import *",
+    "transcription_quality.py": "from video_edit_core.transcription_quality import *",
+    "shorten_silences.py": "from video_edit_core.audio.silence import *",
+    "timeline_validate.py": "from video_edit_core.timeline.validation import *",
+}
 
 
 def fail(message: str) -> None:
@@ -27,6 +51,16 @@ def fail(message: str) -> None:
 
 def load_manifest() -> dict[str, Any]:
     path = CONFIG / "workflow_actions.json"
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        fail(f"cannot load {path}: {error}")
+    if not isinstance(payload, dict):
+        fail(f"{path} must contain a JSON object")
+    return payload
+
+
+def load_json_file(path: Path) -> dict[str, Any]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as error:
@@ -79,6 +113,35 @@ def assert_project_boundary() -> None:
     missing = [rule for rule in required_rules if rule not in gitignore]
     if missing:
         fail(f".gitignore is missing project tracking rules: {', '.join(missing)}")
+
+
+def assert_core_package() -> None:
+    missing = [path for path in CORE_REQUIRED_FILES if not (CORE / path).is_file()]
+    if missing:
+        fail(f"video_edit_core is missing required files: {', '.join(missing)}")
+    shim = SCRIPTS / "video_edit_core" / "__init__.py"
+    if not shim.is_file():
+        fail("scripts/video_edit_core/__init__.py must keep video_edit_core importable for direct script execution")
+    if "__path__" not in shim.read_text(encoding="utf-8"):
+        fail("scripts/video_edit_core/__init__.py must delegate submodules to the root video_edit_core package")
+    for script, marker in CORE_COMPAT_WRAPPERS.items():
+        path = SCRIPTS / script
+        if not path.is_file():
+            fail(f"compatibility wrapper is missing: scripts/{script}")
+        text = path.read_text(encoding="utf-8")
+        if marker not in text:
+            fail(f"scripts/{script} must delegate to {marker.removeprefix('from ').removesuffix(' import *')}")
+
+
+def assert_app_packaging_includes_core() -> None:
+    package = load_json_file(ROOT / "app" / "package.json")
+    resources = package.get("build", {}).get("extraResources", [])
+    if not isinstance(resources, list):
+        fail("app/package.json build.extraResources must be a list")
+    for item in resources:
+        if isinstance(item, dict) and item.get("from") == "../video_edit_core" and item.get("to") == "video_edit_core":
+            return
+    fail("app/package.json must package ../video_edit_core as video_edit_core")
 
 
 def shared_text_files() -> list[Path]:
@@ -181,6 +244,8 @@ def main() -> None:
         fail("workflow action order/list mismatch; " + "; ".join(details))
 
     assert_project_boundary()
+    assert_core_package()
+    assert_app_packaging_includes_core()
     assert_no_project_specific_shared_references()
     assert_renderer_boundary()
     print("architecture check passed")

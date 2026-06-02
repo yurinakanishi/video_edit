@@ -7,8 +7,8 @@ from typing import Any
 
 import numpy as np
 
-from project_paths import OUTPUT_REPORTS, ROOT as WORKSPACE_ROOT
-from video_edit_app_config import load_app_config, nested, optional_path, transcript_manifest_fingerprint
+from video_edit_core.paths import OUTPUT_REPORTS, ROOT as WORKSPACE_ROOT
+from video_edit_core.app_config import load_app_config, nested, optional_path, transcript_manifest_fingerprint
 
 
 WORK = WORKSPACE_ROOT

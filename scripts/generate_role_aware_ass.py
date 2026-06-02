@@ -11,9 +11,9 @@ from typing import Any
 
 from PIL import Image, ImageDraw, ImageFont
 
-from project_paths import OUTPUT_REPORTS, OUTPUT_TRANSCRIPTS
-from subtitle_png_style import FONT_PATH, TRACKING, tracked_text_width
-from video_edit_app_config import load_app_config, nested, selected_subtitle_path
+from video_edit_core.paths import OUTPUT_REPORTS, OUTPUT_TRANSCRIPTS
+from video_edit_core.graphics.subtitle_png import FONT_PATH, TRACKING, tracked_text_width
+from video_edit_core.app_config import load_app_config, nested, selected_subtitle_path
 
 
 APP_CONFIG = load_app_config()

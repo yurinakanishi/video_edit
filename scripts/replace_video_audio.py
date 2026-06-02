@@ -5,9 +5,9 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from project_paths import OUTPUT_REPORTS, ROOT as WORKSPACE_ROOT
-from shorten_silences import DEFAULT_KEEP_SILENCE, DEFAULT_MIN_SILENCE, DEFAULT_NOISE, SilenceShortenConfig, shorten_silences
-from video_edit_app_config import load_app_config, media_manifest, nested, optional_path
+from video_edit_core.paths import OUTPUT_REPORTS, ROOT as WORKSPACE_ROOT
+from video_edit_core.audio.silence import DEFAULT_KEEP_SILENCE, DEFAULT_MIN_SILENCE, DEFAULT_NOISE, SilenceShortenConfig, shorten_silences
+from video_edit_core.app_config import load_app_config, media_manifest, nested, optional_path
 
 
 WORK = WORKSPACE_ROOT

@@ -28,7 +28,8 @@ $env:VIDEO_EDIT_PROJECT = "yuri_nakanishi_tokyo_oasis_radio"
 - Use the WAV file as the only final audio source.
 - Do not use the audio embedded in the MP4 in the final render.
 - The MP4 is recorded in chronological order, but the WAV has already removed stumbles, retakes, and repeated phrasing. Analyze transcripts and audio/video waveforms, then cut the video so it follows the edited WAV cleanly.
-- Remove the opening introduction section and the final music section, as done in the 花岡洋行 project.
+- Remove the opening program/music introduction and the final music section, as done in the 花岡洋行 project.
+- The delivered video must begin with 1.0 second of silence over the original continuous main interview video, then start the audio/subtitle at `長谷川美穂です`.
 - Burn Japanese subtitles into the final MP4.
 - Separate subtitle colors by speaker. 中西裕理 / interviewee subtitles must be blue.
 
@@ -40,6 +41,8 @@ $env:VIDEO_EDIT_PROJECT = "yuri_nakanishi_tokyo_oasis_radio"
 - Cut and concatenate video segments to match the edited WAV timeline. Prefer keeping video motion continuous around speech; cut away from obvious retakes or dead time.
 - If exact waveform alignment is ambiguous, prefer transcript order and visible speech continuity over preserving original MP4 timing.
 - Replace all rendered audio with the edited WAV after applying the same opening and ending cuts.
+- Do not splice the old short pickup shot at the very beginning. The opening visual must use the same continuous main interview video as the first interview block.
+- For the first-half block, waveform matching shows a stable offset of `MP4 video audio time = edited WAV time + 144.98s`. Use this as the timing basis unless a later manual check proves otherwise.
 
 ## Cut Policy
 
@@ -47,7 +50,9 @@ $env:VIDEO_EDIT_PROJECT = "yuri_nakanishi_tokyo_oasis_radio"
 
 - First transcribe the full edited WAV, including the opening.
 - Identify the opening greeting/program setup using transcript content and waveform timing.
-- Start the final edit at the first substantive interview exchange after the greeting.
+- Start the final edit with 1.0 second of silence and continuous main interview video.
+- After the 1.0 second silence, start the edited WAV at the actual speech onset for `長谷川美穂です`, not the ASR timestamp that still includes the tail of the opening music.
+- Current inspected timing: ASR segment starts at `122.30s`, but the usable speech onset is `123.90s`; discard the music tail before `123.90s`.
 - Avoid cutting into the first meaningful word of the interview body.
 
 ### Ending Music
@@ -90,14 +95,32 @@ $env:VIDEO_EDIT_PROJECT = "yuri_nakanishi_tokyo_oasis_radio"
 9. Burn subtitles, title, and Kiitos logo into the synced video.
 10. Verify sync, decode, duration, subtitle readability, opening removal, ending music removal, and audio source replacement.
 
+## Current Render Implementation Notes
+
+- Project-local render script: `scripts/build_synced_video_subtitle_render.py`
+- Final output path: `output/videos/tokyo_oasis_20260528_nakanishi_synced_subtitled.mp4`
+- The final render uses MP4 video input `source/東京オアシス20260528.mp4` and WAV audio input `source/東京オアシス20260528.wav`.
+- MP4 audio is only used for analysis/waveform comparison; it must not be mapped into the final output.
+- Opening silence: `1.0s`.
+- First subtitle/audio event: `00:00:01,000 --> 00:00:01,940 長谷川美穂です`.
+- Current first-half sync:
+  - `長谷川美穂です`: edited WAV `123.900s -> 124.840s`, MP4 video `268.880s -> 269.820s`.
+  - `2月に青少年の居場所Kiitosから`: edited WAV starts `124.840s`, MP4 video starts `269.820s`.
+  - Continuous first-half video render starts at MP4 `267.880s` to preserve the 1.0 second silent lead-in without introducing a separate pickup shot.
+- Previous rejected approach: using MP4 `259.76s -> 260.70s` for the first second caused a visible unrelated opening shot before jumping to the main interview video. Do not restore that splice.
+- Current full-render duration after the silent lead-in is approximately `1304.8035s`.
+
 ## Verification Checklist
 
 - All active paths are under `projects/yuri_nakanishi_tokyo_oasis_radio`.
 - MP4 video is used for visuals.
 - WAV audio is used for final audio; MP4 audio is not mapped into the final output.
-- Opening introduction is absent from final output.
+- Opening program/music introduction is absent from final output.
+- The first second is silent, with continuous main interview video.
+- The first spoken audio/subtitle starts at `00:00:01,000` with `長谷川美穂です`.
 - Ending music section is absent from final output.
 - Video cuts follow the edited WAV and remain visually coherent.
+- The first-half video/audio sync follows the waveform-derived `+144.98s` MP4-vs-WAV offset.
 - 中西裕理 / interviewee subtitles use blue box backgrounds.
 - 長谷川さん / interviewer subtitles use pink box backgrounds.
 - Title `【東京オアシス】中西裕理さん出演会` is visible at top left.

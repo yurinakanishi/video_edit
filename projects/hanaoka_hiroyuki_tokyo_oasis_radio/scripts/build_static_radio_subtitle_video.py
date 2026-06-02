@@ -511,6 +511,179 @@ def detect_cut_end(segments: list[dict[str, Any]]) -> tuple[float, str]:
     return float(segments[-1]["end"]), "No music marker detected; using transcript end"
 
 
+def normalize_audio_remove_ranges(edit: dict[str, Any], cut_start: float, cut_end: float) -> list[dict[str, Any]]:
+    raw_ranges = edit.get("audioRemoveRangesSeconds", [])
+    if not isinstance(raw_ranges, list):
+        return []
+
+    ranges: list[dict[str, Any]] = []
+    for item in raw_ranges:
+        reason = ""
+        if isinstance(item, dict):
+            start_value = item.get("start", item.get("startSeconds"))
+            end_value = item.get("end", item.get("endSeconds"))
+            reason = str(item.get("reason", ""))
+        elif isinstance(item, (list, tuple)) and len(item) >= 2:
+            start_value = item[0]
+            end_value = item[1]
+        else:
+            continue
+
+        try:
+            start = float(start_value)
+            end = float(end_value)
+        except (TypeError, ValueError):
+            continue
+
+        start = max(cut_start, start)
+        end = min(cut_end, end)
+        if end <= start:
+            continue
+        ranges.append(
+            {
+                "start": round(start, 3),
+                "end": round(end, 3),
+                "duration": round(end - start, 3),
+                "reason": reason,
+            }
+        )
+
+    ranges.sort(key=lambda item: (float(item["start"]), float(item["end"])))
+    merged: list[dict[str, Any]] = []
+    for item in ranges:
+        if not merged or float(item["start"]) > float(merged[-1]["end"]):
+            merged.append(dict(item))
+            continue
+        merged[-1]["end"] = round(max(float(merged[-1]["end"]), float(item["end"])), 3)
+        merged[-1]["duration"] = round(float(merged[-1]["end"]) - float(merged[-1]["start"]), 3)
+        if item.get("reason"):
+            merged[-1]["reason"] = "; ".join(
+                part for part in [str(merged[-1].get("reason", "")), str(item.get("reason", ""))] if part
+            )
+    return merged
+
+
+def build_audio_keep_ranges(
+    cut_start: float,
+    cut_end: float,
+    edit: dict[str, Any],
+) -> tuple[list[tuple[float, float]], list[dict[str, Any]]]:
+    remove_ranges = normalize_audio_remove_ranges(edit, cut_start, cut_end)
+    keep_ranges: list[tuple[float, float]] = [(cut_start, cut_end)]
+    for remove_range in remove_ranges:
+        remove_start = float(remove_range["start"])
+        remove_end = float(remove_range["end"])
+        next_ranges: list[tuple[float, float]] = []
+        for keep_start, keep_end in keep_ranges:
+            if remove_end <= keep_start or remove_start >= keep_end:
+                next_ranges.append((keep_start, keep_end))
+                continue
+            if remove_start > keep_start:
+                next_ranges.append((keep_start, remove_start))
+            if remove_end < keep_end:
+                next_ranges.append((remove_end, keep_end))
+        keep_ranges = next_ranges
+    if not keep_ranges:
+        raise SystemExit("Audio remove ranges leave no content to render.")
+    return keep_ranges, remove_ranges
+
+
+def audio_timeline_duration(keep_ranges: list[tuple[float, float]]) -> float:
+    return sum(max(0.0, end - start) for start, end in keep_ranges)
+
+
+def remap_events_to_keep_ranges(
+    events: list[dict[str, Any]],
+    keep_ranges: list[tuple[float, float]],
+    cut_start: float,
+) -> list[dict[str, Any]]:
+    remapped: list[dict[str, Any]] = []
+    output_cursor = 0.0
+    for keep_start, keep_end in keep_ranges:
+        for event in events:
+            source_start = cut_start + float(event["start"])
+            source_end = cut_start + float(event["end"])
+            overlap_start = max(source_start, keep_start)
+            overlap_end = min(source_end, keep_end)
+            if overlap_end <= overlap_start:
+                continue
+            adjusted = dict(event)
+            adjusted["start"] = round(output_cursor + overlap_start - keep_start, 3)
+            adjusted["end"] = round(output_cursor + overlap_end - keep_start, 3)
+            if float(adjusted["end"]) <= float(adjusted["start"]):
+                continue
+            remapped.append(adjusted)
+        output_cursor += keep_end - keep_start
+    remapped.sort(key=lambda item: (float(item["start"]), float(item["end"])))
+    return remapped
+
+
+def write_cut_audio(
+    ffmpeg: str,
+    source_audio: Path,
+    output_audio: Path,
+    keep_ranges: list[tuple[float, float]],
+    project_root: Path,
+) -> None:
+    output_audio.parent.mkdir(parents=True, exist_ok=True)
+    if len(keep_ranges) == 1:
+        start, end = keep_ranges[0]
+        run(
+            [
+                ffmpeg,
+                "-hide_banner",
+                "-loglevel",
+                "error",
+                "-y",
+                "-ss",
+                f"{start:.3f}",
+                "-t",
+                f"{end - start:.3f}",
+                "-i",
+                str(source_audio),
+                "-vn",
+                "-af",
+                "loudnorm=I=-16:TP=-1.5:LRA=11",
+                "-c:a",
+                "pcm_s16le",
+                str(output_audio),
+            ],
+            cwd=project_root,
+        )
+        return
+
+    filter_parts: list[str] = []
+    labels: list[str] = []
+    for index, (start, end) in enumerate(keep_ranges):
+        label = f"a{index}"
+        labels.append(f"[{label}]")
+        filter_parts.append(
+            f"[0:a]atrim=start={start:.3f}:end={end:.3f},asetpts=PTS-STARTPTS[{label}]"
+        )
+    filter_parts.append(
+        f"{''.join(labels)}concat=n={len(labels)}:v=0:a=1,loudnorm=I=-16:TP=-1.5:LRA=11[a]"
+    )
+    run(
+        [
+            ffmpeg,
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            str(source_audio),
+            "-filter_complex",
+            ";".join(filter_parts),
+            "-map",
+            "[a]",
+            "-c:a",
+            "pcm_s16le",
+            str(output_audio),
+        ],
+        cwd=project_root,
+    )
+
+
 def build_caption_events(
     segments: list[dict[str, Any]],
     roles: dict[str, str],
@@ -1026,6 +1199,9 @@ def main() -> None:
     cut_end = float(args.end if args.end is not None else edit.get("cutEndSeconds", detected_end))
     if cut_end <= cut_start:
         raise SystemExit(f"Invalid cut range: {cut_start} - {cut_end}")
+    keep_ranges, remove_ranges = build_audio_keep_ranges(cut_start, cut_end, edit)
+    source_duration = cut_end - cut_start
+    duration = audio_timeline_duration(keep_ranges)
 
     roles_path = Path(str(edit.get("speakerRolesPath") or project_root / "output" / "reports" / "full_transcript_speaker_roles_lr_tuned.json"))
     roles_data = load_json(roles_path) if roles_path.exists() else {"roles": {}}
@@ -1037,7 +1213,7 @@ def main() -> None:
     segment_overrides = normalize_int_key_map(corrections_data.get("segmentOverrides", {}))
     role_overrides = normalize_role_override_map(corrections_data.get("roleOverrides", {}))
     max_line_chars = int(edit.get("subtitleMaxLineChars", 20))
-    events = build_caption_events(
+    source_events = build_caption_events(
         segments,
         roles,
         cut_start,
@@ -1047,6 +1223,7 @@ def main() -> None:
         segment_overrides=segment_overrides,
         role_overrides=role_overrides,
     )
+    events = remap_events_to_keep_ranges(source_events, keep_ranges, cut_start)
 
     output_audio = project_root / "output" / "audio" / "tokyo_oasis_20260205_hanaoka_cut.wav"
     output_srt = project_root / "output" / "subtitles" / "tokyo_oasis_20260205_hanaoka_cut.srt"
@@ -1072,7 +1249,6 @@ def main() -> None:
         logo_input_path = write_logo_overlay(logo_overlay, logo_path, config)
 
     ffmpeg = str(config.get("tools", {}).get("ffmpeg", "ffmpeg"))
-    duration = cut_end - cut_start
     preview_offset = max(0.0, min(duration, float(args.preview_offset or 0.0)))
     render_duration = duration
     if args.preview_duration is not None:
@@ -1092,29 +1268,7 @@ def main() -> None:
             adjusted["end"] = round(min(render_duration, event_end - preview_offset), 3)
             overlay_events.append(adjusted)
     caption_manifest, caption_items = write_caption_overlays(caption_overlay_dir, overlay_events, config, project_root)
-    output_audio.parent.mkdir(parents=True, exist_ok=True)
-    run(
-        [
-            ffmpeg,
-            "-hide_banner",
-            "-loglevel",
-            "error",
-            "-y",
-            "-ss",
-            f"{cut_start:.3f}",
-            "-t",
-            f"{duration:.3f}",
-            "-i",
-            str(source_audio),
-            "-vn",
-            "-af",
-            "loudnorm=I=-16:TP=-1.5:LRA=11",
-            "-c:a",
-            "pcm_s16le",
-            str(output_audio),
-        ],
-        cwd=project_root,
-    )
+    write_cut_audio(ffmpeg, source_audio, output_audio, keep_ranges, project_root)
 
     render_command: list[str] | None = None
     if not args.no_render:
@@ -1208,6 +1362,19 @@ def main() -> None:
             merged_continuation_groups.append(list(ids))
     omitted_opening = [segment for segment in segments if float(segment.get("end", 0.0)) <= cut_start]
     omitted_ending = [segment for segment in segments if float(segment.get("start", 0.0)) >= cut_end]
+    omitted_middle = [
+        {
+            "rangeStart": remove_range["start"],
+            "rangeEnd": remove_range["end"],
+            "segmentStart": segment.get("start"),
+            "segmentEnd": segment.get("end"),
+            "text": segment.get("text"),
+        }
+        for remove_range in remove_ranges
+        for segment in segments
+        if float(segment.get("end", 0.0)) > float(remove_range["start"])
+        and float(segment.get("start", 0.0)) < float(remove_range["end"])
+    ]
     role_counts = {
         "interviewer": sum(1 for event in events if event["role"] == "interviewer"),
         "interviewee": sum(1 for event in events if event["role"] == "interviewee"),
@@ -1221,6 +1388,12 @@ def main() -> None:
         "transcriptCorrections": str(corrections_path) if corrections_path.exists() else "",
         "cutStartSeconds": cut_start,
         "cutEndSeconds": cut_end,
+        "sourceTimelineDurationSeconds": round(source_duration, 3),
+        "audioRemoveRangesSeconds": remove_ranges,
+        "audioKeepRangesSeconds": [
+            {"start": round(start, 3), "end": round(end, 3), "duration": round(end - start, 3)}
+            for start, end in keep_ranges
+        ],
         "durationSeconds": round(duration, 3),
         "detectedStartSeconds": detected_start,
         "detectedEndSeconds": detected_end,
@@ -1253,6 +1426,7 @@ def main() -> None:
             {"start": segment.get("start"), "end": segment.get("end"), "text": segment.get("text")}
             for segment in omitted_ending[:10]
         ],
+        "omittedMiddlePreview": omitted_middle[:20],
         "renderCommand": render_command,
     }
     report_path.parent.mkdir(parents=True, exist_ok=True)

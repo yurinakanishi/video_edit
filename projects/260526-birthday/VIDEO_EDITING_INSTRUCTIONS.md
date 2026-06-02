@@ -3,26 +3,72 @@
 ## Source Handling
 
 - Use the current files that exist under `projects/260526-birthday/source`.
+- For still images, use only files under `projects/260526-birthday/source/phtp2605269`.
+- Do not use still images from any other source subfolder, including the `todoroki260526...` folder.
+- Source media has been renamed into readable sequential names while keeping the original stem at the end:
+  - videos: `video_###_<original-name>.<ext>`
+  - still images: `photo_###_<original-name>.<ext>`
+  - audio: `audio_###_<original-name>.<ext>`
+  - DJI sidecars: `sidecar_###_<original-name>.<ext>`
+- The rename manifest is `projects/260526-birthday/output/reports/source_rename_manifest.json`.
+- The build script must compare source rules by the original identity stem after removing the sequential prefix, so old instructions such as `ST-621` and `DJI_20000104172535_0017_D` continue to work after renaming.
 - Some source videos may have been deleted by the user after earlier renders. Re-scan `source` before each new timeline build and do not use missing files from old reports.
+- Exclude any deleted source videos. In particular, do not use `DJI_20000104185004_0032_D.MP4`; it has been removed from source.
+- Do not use these videos or their source files in future previews:
+  - `DJI_20000104170051_0008_D`
+  - `DJI_20000104174652_0024_D`
+  - `DJI_20000104172624_0018_D`
+  - `DJI_20000104174953_0026_D`
+  - `DJI_20000104174803_0025_D`
+  - `DJI_20000104175228_0028_D`
+  - `DJI_20000104175108_0027_D`
+  - `ST7_8341`
+  - `ST7_8342`
+  - `0875db90-5d21-463d-b4b0-9f0a19195ca2`
+  - `a2ecf072-e001-453b-8432-780011ee6fea`
+  - `e6eeaf64-3602-4238-af85-8ccfc6701205`
+- After excluding those videos, stretch the remaining videos to maintain the target duration. Use the video-analysis selected sample time and top visual/person-scored moments as the center of the longer clip, instead of extending arbitrary parts.
 - It is acceptable to omit some videos if the timeline would exceed 15 minutes, but use the available videos and images as evenly as possible.
-- Use all current still images. Do not remove still images only because they look similar to another image.
-- For the latest requested rebuild, the source check found 24 videos and 69 images.
+- Use the current still images, but do not repeat near-identical photos. Detect visually duplicated stills with perceptual hashing and keep the best-looking one from each duplicate group.
+- Do not use still image `ST-610`.
+- Do not use `ST-641` / `ST-641w`.
+- For the latest requested rebuild, exclude `a2ecf072-e001-453b-8432-780011ee6fea` and `DJI_20000104175108_0027_D` as well; the source check should leave 11 usable videos after exclusions.
 
 ## Overall Output
 
 - Build an emotional birthday highlight video.
-- Target duration can be up to 15 minutes.
+- Target duration for the current preview is 12 minutes.
 - Use a soft, consistent color grade across videos and still images.
 - Keep the final look gentle and warm rather than high-contrast or heavily saturated.
 - Produce a lightweight preview first with the Python build script before creating any heavier final render.
+- The preview should be about 12 minutes. A small timing difference is acceptable if all content rules are satisfied.
+- For normal previews, do not show the current source filename in the upper-left corner.
+- Use `--show-source-labels` only when a source-identification review render is explicitly requested.
+- Start the video with `ST-707bg` if present, otherwise use `ST-707.jpg`. This opening card must be 5 seconds, have no animation, and include a gentle home-birthday style title with the date and birthday wording in the upper-right corner.
+- After the title card, put only still images that pass the strict no-face opening gate together at the beginning. The gate must use refreshed image analysis, not stale cache, and must exclude any image with a detected or high-confidence suspected human face.
+- End the video with `ST-716.jpg`. Show the image without animation for 5 seconds, then fade to black over 5 seconds.
+- Place `ST-621` and `ST-709` consecutively around the 1-minute area.
+- Place `ST-737` immediately after `ST-738` as an exception, even though `ST-737` contains a person.
+- Place `ST-638` and `ST-608` together at a clean cut between 5 and 7 minutes, in that order.
+- Place `ST-729` and `ST-730` in the front half of the timeline.
+- Place `ST-736`, `ST-735`, and `ST-731` in the front half of the timeline.
+- Move `ST-667` and `ST-670` into the back half of the timeline and keep them separated from each other.
+- Place `ST-665` as the third-from-last still image by photo order.
+- Place `ST-721` as the second-from-last still image by photo order, immediately before the final `ST-716` image.
+- Move `ST-625` earlier than the final video/photo area. Do not add a replacement photo just to fill the old late slot.
+- Spread `ST-600`, `ST-601`, `ST-604`, `ST-617`, `ST-614`, `ST-618`, and `ST-625` across the timeline instead of letting them cluster in natural filename order.
+- Individual placement constraints override the no-face opening group. A no-face image must not be pulled into the opening group if it has a manual front-half, back-half, or distributed-placement rule.
 
 ## Video Selection
 
 - Analyze every current source video before selecting clips.
+- Apply the project exclusion list before video selection.
 - Select impressive moments, but prioritize stable camera sections.
 - Avoid parts where the camera is moving heavily, shaking, or panning too aggressively.
 - Prefer moments where many people are visible.
 - Use face/person position analysis when choosing the source-in point.
+- Allocate video duration by analysis score for the 12-minute version: shrink lower-impression clips and preserve more time for stronger clips.
+- Use `DJI_20000104172535_0017_D` and `DJI_20000104181624_0030_D`, in that order, as the final two video clips by video order. Still images may appear between and after those two videos.
 - Do not zoom video clips.
 - Do not crop video clips for motion effects. Preserve the source video framing by scaling to fit the output frame and padding if needed.
 - Cut clips from the original videos and play them normally.
@@ -30,11 +76,15 @@
 ## Still Image Selection
 
 - Analyze all current images before rendering them.
-- Do not deduplicate visually similar images. Use every image that currently exists in `source`.
-- Display each still image for 4 seconds.
+- Deduplicate near-identical still images. Known current duplicate groups include `ST-645/ST-645w`, `ST-665/ST-665w`, `ST-721/ST-721w`, and `ST-716/ST-717w`.
+- Exclude `ST-610` before image ordering and deduplication.
+- Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-621`, `ST-709`, `ST-737`, `ST-738`, `ST-638`, and `ST-608`.
+- Display each normal still image for 5 seconds.
+- The opening title still is 5 seconds with no zoom.
+- The final still is 10 seconds total: 5 seconds static, then 5 seconds fading to black.
 - If the still image aspect ratio does not match the output video aspect ratio, crop it to the video aspect ratio.
 - When cropping still images, first detect the subject area, draw a square around that subject area, and use the square center as the center point for the video-aspect-ratio crop.
-- For faces, use the union of detected faces with padding as the subject area. If faces are not detected, use edge/saliency fallback to estimate the main subject.
+- For faces, use the union of detected faces with padding as the subject area. The current script must run YuNet face detection plus Haar cascade fallback, store `faceDetection.noFaceOpeningEligible`, and use that flag for the opening no-face group instead of relying only on `personRelation.faceCount == 0`. If faces are not detected, use edge/saliency fallback to estimate the main subject.
 - Add subtle but visible motion to every still image.
 - Motion on a still image must be one direction only:
   - tiny zoom in,
@@ -48,11 +98,12 @@
 
 ## Audio
 
-- Use the 15-minute music file added under `source/audio` as background music.
-- For the current project, the selected BGM is `projects/260526-birthday/source/audio/european_relaxed_birthday_bgm_15min.mp3`.
+- Use `projects/260526-birthday/source/audio/audio_001_優しい気持ち.mp3` as the current background music source.
+- Delete the previously generated/downloaded BGM source files from `projects/260526-birthday/source/audio`; keep only the current requested MP3 unless the user adds another source later.
+- Loop and trim `audio_001_優しい気持ち.mp3` under the full preview.
 - Play the BGM under the whole video.
 - Keep the original video audio lower than the BGM, but do not remove it completely unless requested later.
-- Fade the BGM in and out gently.
+- Fade the mixed audio in slowly at the start of the video and fade it out slowly at the end of the video. Current fade length: 5 seconds in and 5 seconds out.
 
 ## Current Script Behavior
 
@@ -60,21 +111,42 @@
 - Use preview mode for lightweight review output:
 
 ```powershell
-python .\projects\260526-birthday\scripts\build_event_highlight.py --project-root 'C:\Users\yurin\Desktop\video_edit\projects\260526-birthday' --preview --target-seconds 900 --base-image-seconds 4 --background-audio auto --force --jobs 2
+python .\projects\260526-birthday\scripts\build_event_highlight.py --project-root 'C:\Users\yurin\Desktop\video_edit\projects\260526-birthday' --preview --target-seconds 720 --base-image-seconds 5 --background-audio 'source/audio/audio_001_優しい気持ち.mp3' --dedupe-images --force --jobs 2
 ```
 
 - The current preview output path is `projects/260526-birthday/output/videos/260526-birthday-preview.mp4`.
 - The timeline report is `projects/260526-birthday/output/reports/birthday_preview/birthday_preview_timeline.json`.
+- The used video review clips are written to `projects/260526-birthday/output/used_video_parts_preview`.
+- The used source images are copied to `projects/260526-birthday/output/used_images_preview`.
+- The used media export manifest is `projects/260526-birthday/output/reports/birthday_preview/birthday_preview_used_media_exports.json`.
 
 ## Verification Checklist
 
 - Confirm the source video count immediately before rendering.
+- Confirm source files are not double-prefixed when re-running the source rename step.
 - Confirm every video in the timeline still exists on disk.
-- Confirm no current source videos were accidentally skipped unless the duration limit requires it.
-- Confirm every current source image is included.
-- Confirm still images are exactly 4 seconds each.
+- Confirm excluded video stems are absent from the timeline.
+- Confirm excluded image stems such as `ST-610` are absent from the timeline.
+- Confirm no still images outside `source/phtp2605269` appear in the timeline.
+- Confirm `ST-641` / `ST-641w` are absent from the timeline.
+- Confirm no allowed current source videos were accidentally skipped unless the duration limit requires it.
+- Confirm near-identical still images are deduplicated and required images such as `ST-716` are preserved.
+- Confirm normal still images are exactly 5 seconds each.
+- Confirm `ST-729` and `ST-730` are in the front half.
+- Confirm `ST-736`, `ST-735`, and `ST-731` are in the front half.
+- Confirm `ST-667` and `ST-670` are in the back half and separated.
+- Confirm `ST-665` is the third-from-last still image by photo order.
+- Confirm `ST-721` is the second-from-last still image by photo order, immediately before `ST-716`.
+- Confirm `ST-625` has been moved earlier than the final video/photo area.
+- Confirm `DJI_20000104172535_0017_D` and `DJI_20000104181624_0030_D` are the final two video clips by video order, in that order.
+- Confirm `ST-600`, `ST-601`, `ST-604`, `ST-617`, `ST-614`, `ST-618`, and `ST-625` are distributed across the timeline.
+- Confirm the opening title card is `ST-707bg` or `ST-707.jpg`, has no animation, and includes a clear modern date plus birthday title in the upper-right corner.
+- Confirm all still images immediately after the title card have `faceDetection.noFaceOpeningEligible == true`, and confirm no image with any detected human face is included in that opening group.
+- Confirm the final visual item is `ST-716.jpg`, 10 seconds total: 5 seconds static plus 5 seconds slow fade to black.
 - Confirm every still-image segment has one-way zoom metadata and visible movement.
 - Confirm generated segment/log folders do not contain stale files from old timelines before checking durations or motion modes.
-- Confirm the final preview is 15 minutes long.
+- Confirm the final preview is about 12 minutes long.
 - Confirm the output has both video and BGM-mixed audio.
+- Confirm normal previews do not show the source filename label in the upper-left corner.
+- Confirm `used_video_parts_preview` and `used_images_preview` contain only current-timeline files with filenames based on the renamed source files.
 - Run a full `ffmpeg -v error -i <output> -f null -` decode check before delivery.

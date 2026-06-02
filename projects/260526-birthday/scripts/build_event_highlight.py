@@ -5,8 +5,10 @@ import concurrent.futures
 import json
 import math
 import re
+import shutil
 import subprocess
 import sys
+import urllib.request
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,7 +16,7 @@ from typing import Any
 
 import cv2
 import numpy as np
-from PIL import Image, ImageOps
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".m4v", ".avi", ".mkv"}
@@ -24,7 +26,63 @@ TARGET_WIDTH = 1920
 TARGET_HEIGHT = 1080
 TARGET_FPS = 30
 VIDEO_ANALYSIS_VERSION = "video-v2-stable-people"
-IMAGE_ANALYSIS_VERSION = "image-v2-subject-square"
+IMAGE_ANALYSIS_VERSION = "image-v4-yunet-face-opening-gate"
+YUNET_MODEL_URL = "https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx"
+YUNET_MODEL_RELATIVE_PATH = Path("output") / "models" / "face_detection_yunet_2023mar.onnx"
+YUNET_FACE_SCORE_THRESHOLD = 0.78
+BACKGROUND_AUDIO_FADE_SECONDS = 5.0
+RENAMED_SOURCE_PREFIX_RE = re.compile(r"^(?:video|photo|audio|sidecar)_\d{3,4}_(.+)$", re.IGNORECASE)
+ALLOWED_IMAGE_SOURCE_DIRS = {"phtp2605269"}
+DEFAULT_EXCLUDED_VIDEO_STEMS = {
+    "dji_20000104170051_0008_d",
+    "dji_20000104174652_0024_d",
+    "dji_20000104172624_0018_d",
+    "dji_20000104174953_0026_d",
+    "dji_20000104174803_0025_d",
+    "dji_20000104175228_0028_d",
+    "dji_20000104175108_0027_d",
+    "st7_8341",
+    "st7_8342",
+    "0875db90-5d21-463d-b4b0-9f0a19195ca2",
+    "a2ecf072-e001-453b-8432-780011ee6fea",
+    "e6eeaf64-3602-4238-af85-8ccfc6701205",
+}
+DEFAULT_EXCLUDED_IMAGE_STEMS = {
+    "st-610",
+    "st-641",
+    "st-641w",
+}
+MANUAL_ONE_MINUTE_IMAGE_STEMS = {"st-621", "st-709"}
+MANUAL_ONE_MINUTE_IMAGE_ORDER = ["st-621", "st-709"]
+MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_STEMS = {"st-608", "st-638"}
+MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_ORDER = ["st-638", "st-608"]
+MANUAL_AFTER_ST738_IMAGE_STEMS = {"st-737"}
+MANUAL_EARLY_IMAGE_STEMS = {"st-729", "st-730", "st-736", "st-735", "st-731"}
+MANUAL_EARLY_IMAGE_ORDER = ["st-729", "st-730", "st-736", "st-735", "st-731"]
+MANUAL_EARLY_IMAGE_TARGET_SECONDS = [155.0, 160.0, 245.0, 250.0, 255.0]
+MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-600", "st-601", "st-604", "st-617", "st-614", "st-618", "st-625"}
+MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-600", "st-604", "st-617", "st-601", "st-614", "st-625", "st-618"]
+MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [125.0, 235.0, 335.0, 405.0, 515.0, 555.0, 590.0]
+MANUAL_LATE_IMAGE_STEMS = {"st-667", "st-670"}
+MANUAL_LATE_IMAGE_ORDER = ["st-667", "st-670"]
+MANUAL_LATE_IMAGE_TARGET_SECONDS = [465.0, 625.0]
+MANUAL_THIRD_FROM_LAST_IMAGE_STEMS = {"st-665"}
+MANUAL_THIRD_FROM_LAST_IMAGE_ORDER = ["st-665"]
+MANUAL_SECOND_FROM_LAST_IMAGE_STEMS = {"st-721"}
+MANUAL_SECOND_FROM_LAST_IMAGE_ORDER = ["st-721"]
+FINAL_TIMELINE_VIDEO_ORDER = ["dji_20000104172535_0017_d", "dji_20000104181624_0030_d"]
+FINAL_TIMELINE_VIDEO_STEMS = set(FINAL_TIMELINE_VIDEO_ORDER)
+REQUIRED_IMAGE_STEM_PRIORITY = {
+    "st-716": 100,
+    "st-707bg": 95,
+    "st-707": 94,
+    "st-738": 90,
+    "st-737": 89,
+    "st-621": 88,
+    "st-709": 87,
+    "st-638": 86,
+    "st-608": 85,
+}
 
 
 def now_iso() -> str:
@@ -45,6 +103,29 @@ def ffmpeg_expr_float(value: float) -> str:
 
 def safe_stem(value: str) -> str:
     return re.sub(r"[^A-Za-z0-9_.-]+", "_", value).strip("._") or "asset"
+
+
+def source_identity_stem(value: str) -> str:
+    stem = Path(value).stem.lower()
+    match = RENAMED_SOURCE_PREFIX_RE.match(stem)
+    return match.group(1).lower() if match else stem
+
+
+def source_display_name(item: "MediaItem") -> str:
+    return Path(item.relative).name
+
+
+def ffmpeg_drawtext_escape(value: str) -> str:
+    return (
+        value.replace("\\", "\\\\")
+        .replace(":", "\\:")
+        .replace("'", "\\'")
+        .replace("%", "\\%")
+        .replace(",", "\\,")
+        .replace("[", "\\[")
+        .replace("]", "\\]")
+        .replace(";", "\\;")
+    )
 
 
 def run_json(command: list[str]) -> dict[str, Any]:
@@ -144,12 +225,44 @@ def hamming_distance(left: int, right: int) -> int:
     return int((left ^ right).bit_count())
 
 
-def load_face_detectors() -> dict[str, cv2.CascadeClassifier]:
+def ensure_yunet_model(project_root: Path) -> Path | None:
+    model_path = project_root / YUNET_MODEL_RELATIVE_PATH
+    if model_path.exists() and model_path.stat().st_size > 100_000:
+        return model_path
+    if not hasattr(cv2, "FaceDetectorYN_create"):
+        return None
+    try:
+        model_path.parent.mkdir(parents=True, exist_ok=True)
+        urllib.request.urlretrieve(YUNET_MODEL_URL, model_path)
+    except Exception as error:
+        print(f"[face detector] YuNet download failed, falling back to Haar cascades: {error}", file=sys.stderr, flush=True)
+        return None
+    if model_path.exists() and model_path.stat().st_size > 100_000:
+        return model_path
+    return None
+
+
+def load_face_detectors(project_root: Path) -> dict[str, Any]:
     base = Path(cv2.data.haarcascades)
-    return {
+    detectors: dict[str, Any] = {
         "front": cv2.CascadeClassifier(str(base / "haarcascade_frontalface_default.xml")),
+        "front_alt": cv2.CascadeClassifier(str(base / "haarcascade_frontalface_alt2.xml")),
         "profile": cv2.CascadeClassifier(str(base / "haarcascade_profileface.xml")),
     }
+    model_path = ensure_yunet_model(project_root)
+    if model_path is not None:
+        try:
+            detectors["yunet"] = cv2.FaceDetectorYN_create(
+                str(model_path),
+                "",
+                (320, 320),
+                score_threshold=0.30,
+                nms_threshold=0.30,
+                top_k=5000,
+            )
+        except Exception as error:
+            print(f"[face detector] YuNet init failed, falling back to Haar cascades: {error}", file=sys.stderr, flush=True)
+    return detectors
 
 
 def overlap_ratio(a: tuple[float, float, float, float], b: tuple[float, float, float, float]) -> float:
@@ -164,7 +277,7 @@ def overlap_ratio(a: tuple[float, float, float, float], b: tuple[float, float, f
     return intersection / area if area > 0 else 0.0
 
 
-def detect_faces(frame: np.ndarray, detectors: dict[str, cv2.CascadeClassifier]) -> list[dict[str, Any]]:
+def detect_faces(frame: np.ndarray, detectors: dict[str, Any]) -> list[dict[str, Any]]:
     height, width = frame.shape[:2]
     scale = 1.0
     working = frame
@@ -173,18 +286,38 @@ def detect_faces(frame: np.ndarray, detectors: dict[str, cv2.CascadeClassifier])
         working = cv2.resize(frame, (960, max(1, round(height * scale))))
     gray = cv2.cvtColor(working, cv2.COLOR_BGR2GRAY)
     min_size = (max(32, round(working.shape[1] * 0.035)), max(32, round(working.shape[0] * 0.035)))
-    raw: list[tuple[int, int, int, int]] = []
+    raw: list[tuple[int, int, int, int, str, float]] = []
+
+    yunet = detectors.get("yunet")
+    if yunet is not None:
+        try:
+            yunet.setInputSize((working.shape[1], working.shape[0]))
+            _, yunet_faces = yunet.detect(working)
+            if yunet_faces is not None:
+                for face in yunet_faces:
+                    score = float(face[-1])
+                    if score < YUNET_FACE_SCORE_THRESHOLD:
+                        continue
+                    x, y, w, h = [int(round(float(value))) for value in face[:4]]
+                    if w <= 0 or h <= 0:
+                        continue
+                    raw.append((x, y, w, h, "yunet", score))
+        except Exception:
+            pass
+
     for x, y, w, h in detectors["front"].detectMultiScale(gray, scaleFactor=1.08, minNeighbors=5, minSize=min_size):
-        raw.append((int(x), int(y), int(w), int(h)))
+        raw.append((int(x), int(y), int(w), int(h), "haar_front", 0.82))
+    for x, y, w, h in detectors["front_alt"].detectMultiScale(gray, scaleFactor=1.08, minNeighbors=5, minSize=min_size):
+        raw.append((int(x), int(y), int(w), int(h), "haar_front_alt", 0.82))
     for x, y, w, h in detectors["profile"].detectMultiScale(gray, scaleFactor=1.08, minNeighbors=4, minSize=min_size):
-        raw.append((int(x), int(y), int(w), int(h)))
+        raw.append((int(x), int(y), int(w), int(h), "haar_profile", 0.80))
     flipped = cv2.flip(gray, 1)
     for x, y, w, h in detectors["profile"].detectMultiScale(flipped, scaleFactor=1.08, minNeighbors=4, minSize=min_size):
-        raw.append((int(working.shape[1] - x - w), int(y), int(w), int(h)))
+        raw.append((int(working.shape[1] - x - w), int(y), int(w), int(h), "haar_profile_flipped", 0.80))
 
     faces: list[dict[str, Any]] = []
     inv = 1.0 / scale
-    for x, y, w, h in sorted(raw, key=lambda item: item[2] * item[3], reverse=True):
+    for x, y, w, h, source, confidence in sorted(raw, key=lambda item: (item[5], item[2] * item[3]), reverse=True):
         box = (x * inv, y * inv, (x + w) * inv, (y + h) * inv)
         if any(overlap_ratio(box, tuple(face["bbox_xyxy"])) > 0.45 for face in faces):
             continue
@@ -196,6 +329,8 @@ def detect_faces(frame: np.ndarray, detectors: dict[str, cv2.CascadeClassifier])
                 "bbox_xyxy": [round(x1, 2), round(y1, 2), round(x2, 2), round(y2, 2)],
                 "center_ratio": [round(((x1 + x2) / 2) / width, 4), round(((y1 + y2) / 2) / height, 4)],
                 "area_ratio": round(area_ratio, 5),
+                "detector": source,
+                "confidence": round(confidence, 4),
             }
         )
     return faces
@@ -491,6 +626,10 @@ class MediaItem:
     timeline_end: float = 0.0
 
 
+def media_stem(item: MediaItem) -> str:
+    return source_identity_stem(item.path.stem)
+
+
 def video_sample_times(duration: float, max_samples: int) -> list[float]:
     if duration <= 0:
         return [0.0]
@@ -502,7 +641,7 @@ def video_sample_times(duration: float, max_samples: int) -> list[float]:
     return [float(value) for value in np.linspace(safe_start, safe_end, count)]
 
 
-def analyze_video(item: MediaItem, detectors: dict[str, cv2.CascadeClassifier], max_samples: int) -> None:
+def analyze_video(item: MediaItem, detectors: dict[str, Any], max_samples: int) -> None:
     cap = cv2.VideoCapture(str(item.path))
     if not cap.isOpened():
         item.analysis = {"error": "could not open video", "cropCenter": [0.5, 0.5], "score": 0.0}
@@ -567,7 +706,7 @@ def analyze_video(item: MediaItem, detectors: dict[str, cv2.CascadeClassifier], 
     }
 
 
-def analyze_image(item: MediaItem, detectors: dict[str, cv2.CascadeClassifier]) -> None:
+def analyze_image(item: MediaItem, detectors: dict[str, Any]) -> None:
     frame = open_image_bgr(item.path, max_width=1400)
     faces = detect_faces(frame, detectors)
     fallback = focus_from_edges(frame)
@@ -584,12 +723,25 @@ def analyze_image(item: MediaItem, detectors: dict[str, cv2.CascadeClassifier]) 
             "positions": focus["positions"],
             "groupBox": focus["groupBox"],
         },
+        "faceDetection": {
+            "noFaceOpeningEligible": focus["faceCount"] == 0,
+            "detectors": sorted({str(face.get("detector", "unknown")) for face in faces}),
+            "thresholds": {"yunetFaceScore": YUNET_FACE_SCORE_THRESHOLD},
+            "faces": faces,
+        },
         "visual": metrics,
     }
 
 
-def discover_media(project_root: Path, ffprobe: Path) -> tuple[list[MediaItem], list[MediaItem]]:
+def discover_media(
+    project_root: Path,
+    ffprobe: Path,
+    excluded_video_stems: set[str] | None = None,
+    excluded_image_stems: set[str] | None = None,
+) -> tuple[list[MediaItem], list[MediaItem]]:
     source_root = project_root / "source"
+    excluded_video_stems = {source_identity_stem(stem) for stem in (excluded_video_stems or set())}
+    excluded_image_stems = {source_identity_stem(stem) for stem in (excluded_image_stems or set())}
     videos: list[MediaItem] = []
     images: list[MediaItem] = []
     for path in sorted(source_root.rglob("*"), key=lambda item: natural_key(str(item.relative_to(source_root)))):
@@ -598,6 +750,8 @@ def discover_media(project_root: Path, ffprobe: Path) -> tuple[list[MediaItem], 
         suffix = path.suffix.lower()
         relative = str(path.relative_to(source_root))
         if suffix in VIDEO_EXTENSIONS:
+            if source_identity_stem(path.stem) in excluded_video_stems:
+                continue
             metadata = probe_video(path, ffprobe)
             if metadata["duration"] <= 0 or metadata["width"] <= 0 or metadata["height"] <= 0:
                 continue
@@ -614,6 +768,11 @@ def discover_media(project_root: Path, ffprobe: Path) -> tuple[list[MediaItem], 
                 )
             )
         elif suffix in IMAGE_EXTENSIONS:
+            relative_parts = path.relative_to(source_root).parts
+            if not relative_parts or relative_parts[0].lower() not in ALLOWED_IMAGE_SOURCE_DIRS:
+                continue
+            if source_identity_stem(path.stem) in excluded_image_stems:
+                continue
             try:
                 width, height = image_dimensions(path)
             except Exception:
@@ -638,6 +797,10 @@ def image_selection_score(item: MediaItem) -> float:
         + brightness_score * 0.12
         + min(saturation / 0.42, 1.0) * 0.08
     )
+
+
+def duplicate_winner_score(item: MediaItem) -> tuple[int, float]:
+    return (REQUIRED_IMAGE_STEM_PRIORITY.get(media_stem(item), 0), image_selection_score(item))
 
 
 def select_best_images(images: list[MediaItem], hash_distance: int, max_images: int | None = None) -> tuple[list[MediaItem], dict[str, Any]]:
@@ -669,11 +832,12 @@ def select_best_images(images: list[MediaItem], hash_distance: int, max_images: 
     selected: list[MediaItem] = []
     omitted: list[dict[str, Any]] = []
     for group_index, group in enumerate(groups, start=1):
-        winner = max(group, key=image_selection_score)
+        winner = max(group, key=duplicate_winner_score)
         winner.analysis["duplicateGroup"] = {
             "groupId": group_index,
             "groupSize": len(group),
             "selected": True,
+            "selectionReason": "required-image-priority" if REQUIRED_IMAGE_STEM_PRIORITY.get(media_stem(winner), 0) else "best-image-score",
             "score": round(image_selection_score(winner), 5),
         }
         selected.append(winner)
@@ -694,6 +858,7 @@ def select_best_images(images: list[MediaItem], hash_distance: int, max_images: 
                     "selectedPath": str(winner.path),
                     "groupId": group_index,
                     "groupSize": len(group),
+                    "reason": "near-duplicate",
                 }
             )
     selected.sort(key=lambda item: natural_key(item.relative))
@@ -720,10 +885,19 @@ def select_best_images(images: list[MediaItem], hash_distance: int, max_images: 
             {
                 "groupId": index,
                 "size": len(group),
-                "selected": str(max(group, key=image_selection_score).path),
-                "members": [str(item.path) for item in group],
+                "selected": str(max(group, key=duplicate_winner_score).path),
+                "members": [
+                    {
+                        "path": str(item.path),
+                        "relative": item.relative,
+                        "score": round(image_selection_score(item), 5),
+                        "requiredPriority": REQUIRED_IMAGE_STEM_PRIORITY.get(media_stem(item), 0),
+                    }
+                    for item in group
+                ],
             }
             for index, group in enumerate(groups, start=1)
+            if len(group) > 1
         ],
         "omitted": omitted,
     }
@@ -744,13 +918,17 @@ def load_analysis_cache(*report_paths: Path) -> dict[str, dict[str, Any]]:
                 continue
             path = str(Path(str(item["path"])).resolve()).lower()
             cache[path] = dict(item["analysis"])
+            kind = str(item.get("kind") or "")
+            if kind:
+                identity = source_identity_stem(Path(str(item["path"])).stem)
+                cache[f"identity:{kind}:{identity}"] = dict(item["analysis"])
     return cache
 
 
 def apply_analysis_cache(items: list[MediaItem], cache: dict[str, dict[str, Any]]) -> int:
     applied = 0
     for item in items:
-        cached = cache.get(str(item.path.resolve()).lower())
+        cached = cache.get(str(item.path.resolve()).lower()) or cache.get(f"identity:{item.kind}:{media_stem(item)}")
         if not cached:
             continue
         probe = item.analysis.get("probe") if isinstance(item.analysis, dict) else None
@@ -811,29 +989,105 @@ def resolve_background_audio(value: str | None, project_root: Path, ffprobe: Pat
     return candidate.resolve() if candidate.exists() else None
 
 
+def image_clip_frames(item: MediaItem, base_image_frames: int) -> int:
+    if item.analysis.get("imageRole") == "final-fade":
+        return base_image_frames * 2
+    return base_image_frames
+
+
+def video_duration_weight(video: MediaItem) -> float:
+    analysis = video.analysis if isinstance(video.analysis, dict) else {}
+    score = clamp(float(analysis.get("score") or 0.20), 0.05, 1.0)
+    relation = analysis.get("personRelation") if isinstance(analysis.get("personRelation"), dict) else {}
+    max_faces = float(relation.get("maxFaceCount") or relation.get("faceCountAtSelection") or 0.0)
+    face_bonus = 1.0 + min(max_faces, 6.0) * 0.035
+    return max(0.01, (score**2.25) * face_bonus)
+
+
+def distribute_video_frames_by_analysis(videos: list[MediaItem], total_frames: int) -> None:
+    if not videos:
+        return
+    capacities = {id(video): max(1, int(math.floor(video.duration * TARGET_FPS))) for video in videos}
+    weights = {id(video): video_duration_weight(video) for video in videos}
+    minimum_frames = {
+        id(video): min(capacities[id(video)], max(1, int(round(12.0 * TARGET_FPS)))) for video in videos
+    }
+    assigned = {id(video): 0 for video in videos}
+    if total_frames <= sum(minimum_frames.values()):
+        total_weight = sum(weights.values()) or 1.0
+        remaining = total_frames
+        fractional: list[tuple[float, MediaItem]] = []
+        for video in videos:
+            raw = total_frames * weights[id(video)] / total_weight
+            frames = min(capacities[id(video)], max(1, int(math.floor(raw))))
+            assigned[id(video)] = frames
+            remaining -= frames
+            fractional.append((raw - math.floor(raw), video))
+        for _, video in sorted(fractional, key=lambda item: item[0], reverse=True):
+            if remaining <= 0:
+                break
+            available = capacities[id(video)] - assigned[id(video)]
+            if available <= 0:
+                continue
+            assigned[id(video)] += 1
+            remaining -= 1
+    else:
+        for video in videos:
+            assigned[id(video)] = minimum_frames[id(video)]
+        remaining = total_frames - sum(assigned.values())
+
+    while remaining > 0:
+        expandable = [video for video in videos if assigned[id(video)] < capacities[id(video)]]
+        if not expandable:
+            break
+        total_weight = sum(weights[id(video)] for video in expandable) or 1.0
+        planned: list[tuple[float, int, MediaItem]] = []
+        allocated = 0
+        for video in expandable:
+            raw = remaining * weights[id(video)] / total_weight
+            add = min(capacities[id(video)] - assigned[id(video)], int(math.floor(raw)))
+            planned.append((raw - math.floor(raw), add, video))
+            allocated += add
+        if allocated == 0:
+            for _, _, video in sorted(planned, key=lambda item: item[0], reverse=True):
+                if remaining <= 0:
+                    break
+                if assigned[id(video)] >= capacities[id(video)]:
+                    continue
+                assigned[id(video)] += 1
+                remaining -= 1
+            continue
+        for _, add, video in planned:
+            assigned[id(video)] += add
+            remaining -= add
+
+    for video in videos:
+        video.clip_frames = max(1, assigned[id(video)])
+        video.clip_duration = round(video.clip_frames / TARGET_FPS, 6)
+        video.analysis["durationAllocation"] = {
+            "method": "analysis-weighted",
+            "score": round(float(video.analysis.get("score") or 0.0), 5) if isinstance(video.analysis, dict) else 0.0,
+            "weight": round(weights[id(video)], 6),
+            "allocatedSeconds": video.clip_duration,
+        }
+
+
 def allocate_durations(videos: list[MediaItem], images: list[MediaItem], target_seconds: float, base_image_seconds: float) -> None:
     target_frames = max(1, int(round(target_seconds * TARGET_FPS)))
     image_frames = max(1, int(math.floor(base_image_seconds * TARGET_FPS + 0.5)))
     if videos:
-        while image_frames > 1 and target_frames - image_frames * len(images) < len(videos):
+        while image_frames > 1 and target_frames - sum(image_clip_frames(image, image_frames) for image in images) < len(videos):
             image_frames -= 1
-        remaining_video_frames = max(len(videos), target_frames - image_frames * len(images))
-        base_video_frames = max(1, remaining_video_frames // len(videos))
-        extra_video_frames = max(0, remaining_video_frames - base_video_frames * len(videos))
+        remaining_video_frames = max(len(videos), target_frames - sum(image_clip_frames(image, image_frames) for image in images))
     else:
-        base_video_frames = 0
-        extra_video_frames = 0
+        remaining_video_frames = 0
 
     for image in images:
-        image.clip_frames = image_frames
+        image.clip_frames = image_clip_frames(image, image_frames)
         image.clip_duration = round(image.clip_frames / TARGET_FPS, 6)
-    for index, video in enumerate(videos):
-        requested_frames = base_video_frames + (1 if index < extra_video_frames else 0)
-        available_frames = max(1, int(math.floor(video.duration * TARGET_FPS)))
-        video.clip_frames = max(1, min(available_frames, requested_frames))
-        video.clip_duration = round(video.clip_frames / TARGET_FPS, 6)
+    distribute_video_frames_by_analysis(videos, remaining_video_frames)
 
-    image_total_frames = image_frames * len(images)
+    image_total_frames = sum(image.clip_frames for image in images)
     unallocated_frames = max(0, target_frames - image_total_frames - sum(video.clip_frames for video in videos))
     while unallocated_frames > 0:
         expandable = [
@@ -864,16 +1118,320 @@ def allocate_durations(videos: list[MediaItem], images: list[MediaItem], target_
         image.source_out = image.clip_duration
 
 
+def image_face_count(item: MediaItem) -> int:
+    relation = item.analysis.get("personRelation") if isinstance(item.analysis, dict) else {}
+    if not isinstance(relation, dict):
+        return 0
+    return int(relation.get("faceCount") or 0)
+
+
+def image_no_face_opening_eligible(item: MediaItem) -> bool:
+    if not isinstance(item.analysis, dict):
+        return False
+    detection = item.analysis.get("faceDetection")
+    if not isinstance(detection, dict):
+        return False
+    return bool(detection.get("noFaceOpeningEligible")) and image_face_count(item) == 0
+
+
+def find_image_by_stems(images: list[MediaItem], stems: list[str]) -> MediaItem | None:
+    wanted = [stem.lower() for stem in stems]
+    for stem in wanted:
+        for image in images:
+            if media_stem(image) == stem:
+                return image
+    return None
+
+
+def sort_images_by_stem_order(images: list[MediaItem], stems: list[str]) -> list[MediaItem]:
+    order = {stem: index for index, stem in enumerate(stems)}
+    return sorted(images, key=lambda item: (order.get(media_stem(item), len(order)), natural_key(media_stem(item))))
+
+
+def prepare_special_image_sequence(images: list[MediaItem]) -> list[MediaItem]:
+    title = find_image_by_stems(images, ["st-707bg", "st-707"])
+    final = find_image_by_stems(images, ["st-716"])
+    manual_one_minute = [image for image in images if media_stem(image) in MANUAL_ONE_MINUTE_IMAGE_STEMS]
+    manual_five_to_seven = [image for image in images if media_stem(image) in MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_STEMS]
+    manual_after_st738 = [image for image in images if media_stem(image) in MANUAL_AFTER_ST738_IMAGE_STEMS]
+    manual_early = [image for image in images if media_stem(image) in MANUAL_EARLY_IMAGE_STEMS]
+    manual_distributed = [image for image in images if media_stem(image) in MANUAL_DISTRIBUTED_IMAGE_STEMS]
+    manual_late = [image for image in images if media_stem(image) in MANUAL_LATE_IMAGE_STEMS]
+    manual_third_from_last = [image for image in images if media_stem(image) in MANUAL_THIRD_FROM_LAST_IMAGE_STEMS]
+    manual_second_from_last = [image for image in images if media_stem(image) in MANUAL_SECOND_FROM_LAST_IMAGE_STEMS]
+    reserved = {id(item) for item in [title, final] if item is not None}
+    reserved.update(id(image) for image in manual_one_minute)
+    reserved.update(id(image) for image in manual_five_to_seven)
+    reserved.update(id(image) for image in manual_after_st738)
+    reserved.update(id(image) for image in manual_early)
+    reserved.update(id(image) for image in manual_distributed)
+    reserved.update(id(image) for image in manual_late)
+    reserved.update(id(image) for image in manual_third_from_last)
+    reserved.update(id(image) for image in manual_second_from_last)
+    regular = [image for image in images if id(image) not in reserved]
+
+    no_people_images = [image for image in regular if image_no_face_opening_eligible(image)]
+    no_people_ids = {id(image) for image in no_people_images}
+    regular = [image for image in regular if id(image) not in no_people_ids]
+
+    for image in images:
+        image.analysis.pop("imageRole", None)
+        image.analysis.pop("titleOverlay", None)
+    ordered: list[MediaItem] = []
+    if title is not None:
+        title.analysis["imageRole"] = "title-card"
+        title.analysis["titleOverlay"] = {"date": "2026.05.26", "title": "Birthday"}
+        ordered.append(title)
+    for image in no_people_images:
+        image.analysis["imageRole"] = "no-people-opening"
+    ordered.extend(no_people_images)
+    for image in manual_after_st738:
+        image.analysis["imageRole"] = "after-st738-exception"
+    for image in manual_one_minute:
+        image.analysis["imageRole"] = "manual-one-minute-group"
+    ordered.extend(sort_images_by_stem_order(manual_one_minute, MANUAL_ONE_MINUTE_IMAGE_ORDER))
+    for image in manual_early:
+        image.analysis["imageRole"] = "manual-early-group"
+    ordered.extend(sort_images_by_stem_order(manual_early, MANUAL_EARLY_IMAGE_ORDER))
+    for image in manual_five_to_seven:
+        image.analysis["imageRole"] = "manual-five-to-seven-minute-group"
+    ordered.extend(sort_images_by_stem_order(manual_five_to_seven, MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_ORDER))
+    ordered.extend(sorted(manual_after_st738, key=lambda item: natural_key(media_stem(item))))
+    for image in manual_distributed:
+        image.analysis["imageRole"] = "manual-distributed-group"
+    ordered.extend(sort_images_by_stem_order(manual_distributed, MANUAL_DISTRIBUTED_IMAGE_ORDER))
+    for image in manual_late:
+        image.analysis["imageRole"] = "manual-late-group"
+    ordered.extend(sort_images_by_stem_order(manual_late, MANUAL_LATE_IMAGE_ORDER))
+    for image in manual_third_from_last:
+        image.analysis["imageRole"] = "manual-third-from-last-photo"
+    ordered.extend(sort_images_by_stem_order(manual_third_from_last, MANUAL_THIRD_FROM_LAST_IMAGE_ORDER))
+    for image in manual_second_from_last:
+        image.analysis["imageRole"] = "manual-second-from-last-photo"
+    ordered.extend(sort_images_by_stem_order(manual_second_from_last, MANUAL_SECOND_FROM_LAST_IMAGE_ORDER))
+    ordered.extend(regular)
+    if final is not None:
+        final.analysis["imageRole"] = "final-fade"
+        ordered.append(final)
+    return ordered
+
+
+def reorder_videos_for_timeline(videos: list[MediaItem]) -> list[MediaItem]:
+    regular = [video for video in videos if media_stem(video) not in FINAL_TIMELINE_VIDEO_STEMS]
+    final = [video for video in videos if media_stem(video) in FINAL_TIMELINE_VIDEO_STEMS]
+    order = {stem: index for index, stem in enumerate(FINAL_TIMELINE_VIDEO_ORDER)}
+    regular.sort(key=lambda item: natural_key(item.relative))
+    final.sort(key=lambda item: (order.get(media_stem(item), len(order)), natural_key(item.relative)))
+    return regular + final
+
+
+def append_with_st738_exception(sequence: list[MediaItem], prefix_images: list[MediaItem], after_st738_images: list[MediaItem]) -> None:
+    inserted = False
+    for image in prefix_images:
+        sequence.append(image)
+        if media_stem(image) == "st-738":
+            sequence.extend(after_st738_images)
+            inserted = True
+    if not inserted:
+        sequence.extend(after_st738_images)
+
+
+def append_due_group(sequence: list[MediaItem], pending_group: list[MediaItem], cursor_frames: int, target_seconds: float) -> bool:
+    if pending_group and cursor_frames >= int(round(target_seconds * TARGET_FPS)):
+        sequence.extend(pending_group)
+        pending_group.clear()
+        return True
+    return False
+
+
+def append_due_distributed_images(
+    sequence: list[MediaItem],
+    images: list[MediaItem],
+    next_index: int,
+    cursor_frames: int,
+    target_seconds: list[float],
+) -> int:
+    while next_index < len(images):
+        target_index = min(next_index, len(target_seconds) - 1)
+        target_frames = int(round(target_seconds[target_index] * TARGET_FPS))
+        if cursor_frames < target_frames:
+            break
+        image = images[next_index]
+        image.analysis["manualTargetSeconds"] = target_seconds[target_index]
+        sequence.append(image)
+        cursor_frames += max(1, image.clip_frames)
+        next_index += 1
+    return next_index
+
+
+def append_due_targeted_images(
+    sequence: list[MediaItem],
+    images: list[MediaItem],
+    next_index: int,
+    cursor_frames: int,
+    target_seconds: list[float],
+    role_label: str,
+) -> int:
+    while next_index < len(images):
+        target_index = min(next_index, len(target_seconds) - 1)
+        target_frames = int(round(target_seconds[target_index] * TARGET_FPS))
+        if cursor_frames < target_frames:
+            break
+        image = images[next_index]
+        image.analysis["manualTargetSeconds"] = target_seconds[target_index]
+        image.analysis["manualPlacement"] = role_label
+        sequence.append(image)
+        cursor_frames += max(1, image.clip_frames)
+        next_index += 1
+    return next_index
+
+
 def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[MediaItem]:
     sequence: list[MediaItem] = []
+    videos = reorder_videos_for_timeline(videos)
+    prefix_images = [image for image in images if image.analysis.get("imageRole") in {"title-card", "no-people-opening"}]
+    after_st738_images = [image for image in images if image.analysis.get("imageRole") == "after-st738-exception"]
+    one_minute_images = [image for image in images if image.analysis.get("imageRole") == "manual-one-minute-group"]
+    early_images = [image for image in images if image.analysis.get("imageRole") == "manual-early-group"]
+    five_to_seven_images = [image for image in images if image.analysis.get("imageRole") == "manual-five-to-seven-minute-group"]
+    distributed_images = [image for image in images if image.analysis.get("imageRole") == "manual-distributed-group"]
+    late_images = [image for image in images if image.analysis.get("imageRole") == "manual-late-group"]
+    third_from_last_images = [image for image in images if image.analysis.get("imageRole") == "manual-third-from-last-photo"]
+    second_from_last_images = [image for image in images if image.analysis.get("imageRole") == "manual-second-from-last-photo"]
+    suffix_images = [image for image in images if image.analysis.get("imageRole") == "final-fade"]
+    middle_images = [
+        image
+        for image in images
+        if image.analysis.get("imageRole")
+        not in {
+            "title-card",
+            "no-people-opening",
+            "after-st738-exception",
+            "manual-one-minute-group",
+            "manual-early-group",
+            "manual-five-to-seven-minute-group",
+            "manual-distributed-group",
+            "manual-late-group",
+            "manual-third-from-last-photo",
+            "manual-second-from-last-photo",
+            "final-fade",
+        }
+    ]
+    append_with_st738_exception(sequence, prefix_images, after_st738_images)
+    sequence.extend(one_minute_images)
+    cursor_frames = sum(max(1, item.clip_frames) for item in sequence)
+    early_index = append_due_targeted_images(
+        sequence,
+        early_images,
+        0,
+        cursor_frames,
+        MANUAL_EARLY_IMAGE_TARGET_SECONDS,
+        "early-front-half",
+    )
+    late_index = append_due_targeted_images(
+        sequence,
+        late_images,
+        0,
+        cursor_frames,
+        MANUAL_LATE_IMAGE_TARGET_SECONDS,
+        "late-back-half",
+    )
+    distributed_index = append_due_distributed_images(
+        sequence,
+        distributed_images,
+        0,
+        cursor_frames,
+        MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS,
+    )
+    cursor_frames = sum(max(1, item.clip_frames) for item in sequence)
     image_index = 0
     for index, video in enumerate(videos, start=1):
         sequence.append(video)
-        target_image_count = round(index * len(images) / len(videos)) if videos else len(images)
-        while image_index < target_image_count and image_index < len(images):
-            sequence.append(images[image_index])
+        cursor_frames += max(1, video.clip_frames)
+        early_index = append_due_targeted_images(
+            sequence,
+            early_images,
+            early_index,
+            cursor_frames,
+            MANUAL_EARLY_IMAGE_TARGET_SECONDS,
+            "early-front-half",
+        )
+        append_due_group(sequence, five_to_seven_images, cursor_frames, 300.0)
+        late_index = append_due_targeted_images(
+            sequence,
+            late_images,
+            late_index,
+            cursor_frames,
+            MANUAL_LATE_IMAGE_TARGET_SECONDS,
+            "late-back-half",
+        )
+        distributed_index = append_due_distributed_images(
+            sequence,
+            distributed_images,
+            distributed_index,
+            cursor_frames,
+            MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS,
+        )
+        cursor_frames = sum(max(1, item.clip_frames) for item in sequence)
+        target_image_count = round(index * len(middle_images) / len(videos)) if videos else len(middle_images)
+        while image_index < target_image_count and image_index < len(middle_images):
+            sequence.append(middle_images[image_index])
+            cursor_frames += max(1, middle_images[image_index].clip_frames)
+            early_index = append_due_targeted_images(
+                sequence,
+                early_images,
+                early_index,
+                cursor_frames,
+                MANUAL_EARLY_IMAGE_TARGET_SECONDS,
+                "early-front-half",
+            )
+            append_due_group(sequence, five_to_seven_images, cursor_frames, 300.0)
+            late_index = append_due_targeted_images(
+                sequence,
+                late_images,
+                late_index,
+                cursor_frames,
+                MANUAL_LATE_IMAGE_TARGET_SECONDS,
+                "late-back-half",
+            )
+            distributed_index = append_due_distributed_images(
+                sequence,
+                distributed_images,
+                distributed_index,
+                cursor_frames,
+                MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS,
+            )
+            cursor_frames = sum(max(1, item.clip_frames) for item in sequence)
             image_index += 1
-    sequence.extend(images[image_index:])
+    if early_index < len(early_images):
+        sequence.extend(early_images[early_index:])
+    if five_to_seven_images:
+        sequence.extend(five_to_seven_images)
+    if distributed_index < len(distributed_images):
+        sequence.extend(distributed_images[distributed_index:])
+    if late_index < len(late_images):
+        sequence.extend(late_images[late_index:])
+    remaining_middle_images = middle_images[image_index:]
+    bridge_images: list[MediaItem] = []
+    if third_from_last_images and suffix_images and not second_from_last_images:
+        if remaining_middle_images:
+            bridge_images = [remaining_middle_images[-1]]
+            remaining_middle_images = remaining_middle_images[:-1]
+        else:
+            for bridge_index in range(len(sequence) - 1, -1, -1):
+                candidate = sequence[bridge_index]
+                if candidate.kind != "image":
+                    continue
+                role = candidate.analysis.get("imageRole") if isinstance(candidate.analysis, dict) else None
+                if role in {"title-card", "final-fade", "manual-third-from-last-photo"}:
+                    continue
+                bridge_images = [sequence.pop(bridge_index)]
+                break
+    sequence.extend(remaining_middle_images)
+    sequence.extend(third_from_last_images)
+    sequence.extend(bridge_images)
+    sequence.extend(second_from_last_images)
+    sequence.extend(suffix_images)
     time_cursor_frames = 0
     for item in sequence:
         if item.clip_frames <= 0:
@@ -909,11 +1467,31 @@ def crop_expr(center: list[float]) -> tuple[str, str]:
     )
 
 
-def video_filter(item: MediaItem, width: int, height: int, fps: int) -> str:
+def video_filter(item: MediaItem, width: int, height: int, fps: int, show_source_label: bool = False) -> str:
+    filters = [
+        f"scale={width}:{height}:force_original_aspect_ratio=decrease",
+        f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2",
+        look_filter(item),
+    ]
+    if show_source_label:
+        filters.append(source_label_filter(item, width))
+    filters.extend([f"fps={fps}", "setsar=1", "format=yuv420p"])
+    return ",".join(filters)
+
+
+def source_label_filter(item: MediaItem, width: int) -> str:
+    label = ffmpeg_drawtext_escape(source_display_name(item))
+    font_size = max(14, round(width * 0.020))
+    border = max(5, round(width * 0.009))
+    x = max(10, round(width * 0.018))
+    y = max(8, round(width * 0.024))
     return (
-        f"scale={width}:{height}:force_original_aspect_ratio=decrease,"
-        f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,"
-        f"{look_filter(item)},fps={fps},setsar=1,format=yuv420p"
+        "drawtext=fontfile='C\\:/Windows/Fonts/segoeui.ttf'"
+        f":text='{label}'"
+        f":x={x}:y={y}:fontsize={font_size}"
+        ":fontcolor=0x3F332D"
+        ":box=1:boxcolor=0xFFFAF1@0.82"
+        f":boxborderw={border}"
     )
 
 
@@ -977,6 +1555,110 @@ def render_ken_burns_frame(
     )
 
 
+def draw_title_overlay(frame: np.ndarray, overlay: dict[str, Any]) -> np.ndarray:
+    height, width = frame.shape[:2]
+    image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).convert("RGBA")
+    layer = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
+
+    title = str(overlay.get("title") or "Birthday")
+    date = str(overlay.get("date") or "2026.05.26")
+    title_font_path = Path(r"C:\Windows\Fonts\segoeprb.ttf")
+    date_font_path = Path(r"C:\Windows\Fonts\segoeui.ttf")
+    title_size_px = max(44, round(width * 0.062))
+    date_size_px = max(20, round(width * 0.027))
+    try:
+        title_font = ImageFont.truetype(str(title_font_path), title_size_px)
+        date_font = ImageFont.truetype(str(date_font_path), date_size_px)
+    except OSError:
+        title_font = ImageFont.load_default()
+        date_font = ImageFont.load_default()
+
+    title_bbox = draw.textbbox((0, 0), title, font=title_font)
+    date_bbox = draw.textbbox((0, 0), date, font=date_font)
+    title_w = title_bbox[2] - title_bbox[0]
+    title_h = title_bbox[3] - title_bbox[1]
+    date_w = date_bbox[2] - date_bbox[0]
+    date_h = date_bbox[3] - date_bbox[1]
+    pad_x = max(28, round(width * 0.035))
+    pad_top = max(18, round(height * 0.037))
+    pad_bottom = max(24, round(height * 0.044))
+    gap = max(9, round(height * 0.018))
+    accent_h = max(3, round(height * 0.006))
+    box_width = max(title_w, date_w) + pad_x * 2
+    box_height = pad_top + date_h + gap + title_h + pad_bottom
+    margin_x = max(34, round(width * 0.046))
+    margin_y = max(28, round(height * 0.065))
+    x0 = max(12, width - box_width - margin_x)
+    y0 = margin_y
+    x1 = min(width - 12, x0 + box_width)
+    y1 = min(height - 12, y0 + box_height)
+
+    shadow_offset = max(4, round(width * 0.005))
+    radius = max(8, round(width * 0.014))
+    draw.rounded_rectangle(
+        (x0 + shadow_offset, y0 + shadow_offset, x1 + shadow_offset, y1 + shadow_offset),
+        radius=radius,
+        fill=(80, 58, 48, 48),
+    )
+    draw.rounded_rectangle((x0, y0, x1, y1), radius=radius, fill=(255, 250, 241, 218))
+    draw.rectangle((x0 + pad_x, y0 + accent_h, x1 - pad_x, y0 + accent_h * 2), fill=(225, 146, 165, 185))
+
+    text_right = x1 - pad_x
+    date_visible_top = y0 + pad_top
+    title_visible_top = date_visible_top + date_h + gap
+    date_x = text_right - date_w - date_bbox[0]
+    date_y = date_visible_top - date_bbox[1]
+    title_x = text_right - title_w - title_bbox[0]
+    title_y = title_visible_top - title_bbox[1]
+    draw.text((date_x, date_y), date, font=date_font, fill=(126, 92, 83, 225))
+    draw.text((title_x, title_y), title, font=title_font, fill=(91, 63, 56, 245))
+
+    composited = Image.alpha_composite(image, layer).convert("RGB")
+    return cv2.cvtColor(np.array(composited), cv2.COLOR_RGB2BGR)
+
+
+def draw_source_label(frame: np.ndarray, label: str) -> np.ndarray:
+    if not label:
+        return frame
+    height, width = frame.shape[:2]
+    image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).convert("RGBA")
+    layer = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
+
+    font_path = Path(r"C:\Windows\Fonts\segoeui.ttf")
+    font_size = max(14, round(width * 0.020))
+    max_width = int(width * 0.72)
+    try:
+        font = ImageFont.truetype(str(font_path), font_size)
+        while font_size > 10 and draw.textbbox((0, 0), label, font=font)[2] > max_width:
+            font_size -= 1
+            font = ImageFont.truetype(str(font_path), font_size)
+    except OSError:
+        font = ImageFont.load_default()
+
+    bbox = draw.textbbox((0, 0), label, font=font)
+    text_w = bbox[2] - bbox[0]
+    text_h = bbox[3] - bbox[1]
+    pad_x = max(7, round(width * 0.009))
+    pad_y = max(5, round(height * 0.010))
+    x0 = max(10, round(width * 0.018))
+    y0 = max(8, round(height * 0.024))
+    x1 = x0 + text_w + pad_x * 2
+    y1 = y0 + text_h + pad_y * 2
+    radius = max(4, round(width * 0.006))
+    draw.rounded_rectangle((x0, y0, x1, y1), radius=radius, fill=(255, 250, 241, 214))
+    draw.text((x0 + pad_x, y0 + pad_y), label, font=font, fill=(63, 51, 45, 238))
+
+    composited = Image.alpha_composite(image, layer).convert("RGB")
+    return cv2.cvtColor(np.array(composited), cv2.COLOR_RGB2BGR)
+
+
+def apply_linear_fade_to_black(frame: np.ndarray, progress: float) -> np.ndarray:
+    factor = 1.0 - clamp(progress, 0.0, 1.0)
+    return np.clip(frame.astype(np.float32) * factor, 0, 255).astype(np.uint8)
+
+
 def render_image_segment_smooth(
     index: int,
     item: MediaItem,
@@ -987,13 +1669,20 @@ def render_image_segment_smooth(
     width: int,
     height: int,
     fps: int,
+    show_source_label: bool = False,
 ) -> dict[str, Any]:
     output.parent.mkdir(parents=True, exist_ok=True)
     logs_dir.mkdir(parents=True, exist_ok=True)
     total_frames = max(1, item.clip_frames or int(math.floor(item.clip_duration * fps + 0.5)))
     duration = total_frames / fps
     start_center, end_center = image_motion_centers(item, index)
-    motion_mode = "zoom-in" if index % 2 == 0 else "zoom-out"
+    image_role = str(item.analysis.get("imageRole") or "normal") if isinstance(item.analysis, dict) else "normal"
+    if image_role == "title-card":
+        motion_mode = "title-card"
+    elif image_role == "final-fade":
+        motion_mode = "fade-out"
+    else:
+        motion_mode = "zoom-in" if index % 2 == 0 else "zoom-out"
     command = [
         str(ffmpeg),
         "-hide_banner",
@@ -1069,11 +1758,20 @@ def render_image_segment_smooth(
                 image,
                 width=width,
                 height=height,
-                progress=progress,
+                progress=0.0 if image_role in {"title-card", "final-fade"} else progress,
                 start_center=start_center,
                 end_center=end_center,
                 motion_mode=motion_mode,
             )
+            if image_role == "title-card":
+                overlay = item.analysis.get("titleOverlay") if isinstance(item.analysis, dict) else {}
+                frame = draw_title_overlay(frame, overlay if isinstance(overlay, dict) else {})
+            elif image_role == "final-fade":
+                elapsed = frame_index / fps
+                fade_progress = clamp((elapsed - max(0.0, duration - 5.0)) / 5.0, 0.0, 1.0)
+                frame = apply_linear_fade_to_black(frame, fade_progress)
+            if show_source_label:
+                frame = draw_source_label(frame, source_display_name(item))
             proc.stdin.write(frame.tobytes())
         proc.stdin.close()
         stdout_bytes = proc.stdout.read() if proc.stdout is not None else b""
@@ -1096,9 +1794,13 @@ def render_image_segment_smooth(
                     "startCenter": start_center,
                     "endCenter": end_center,
                     "motionMode": motion_mode,
+                    "imageRole": image_role,
+                    "showSourceLabel": show_source_label,
                     "progressCurve": "linear",
                     "zoomStart": 1.032 if motion_mode == "zoom-out" else 1.0,
-                    "zoomEnd": 1.0 if motion_mode == "zoom-out" else 1.032,
+                    "zoomEnd": 1.0 if motion_mode == "zoom-out" else 1.032 if motion_mode == "zoom-in" else 1.0,
+                    "fadeStart": 1.0 if motion_mode == "fade-out" else None,
+                    "fadeEnd": 0.0 if motion_mode == "fade-out" else None,
                     "subject": item.analysis.get("subject") if isinstance(item.analysis, dict) else {},
                     "stdout": completed_stdout[-8000:],
                     "stderr": completed_stderr[-12000:],
@@ -1138,6 +1840,150 @@ def cleanup_force_render_outputs(segments_dir: Path, groups_dir: Path, logs_dir:
     }
 
 
+def cleanup_directory_files(directory: Path) -> int:
+    if not directory.exists():
+        return 0
+    removed = 0
+    for path in directory.iterdir():
+        if not path.is_file():
+            continue
+        path.unlink()
+        removed += 1
+    return removed
+
+
+def used_export_name(index: int, item: MediaItem, suffix: str | None = None) -> str:
+    source_name = Path(item.relative).name
+    source_stem = safe_stem(Path(source_name).stem)
+    if suffix:
+        return f"{index:03d}_used_{source_stem}_{suffix}.mp4"
+    return f"{index:03d}_used_{source_stem}{item.path.suffix.lower()}"
+
+
+def export_used_video_clip(ffmpeg: Path, item: MediaItem, output: Path) -> dict[str, Any]:
+    duration = max(0.1, item.source_out - item.source_in if item.source_out > item.source_in else item.clip_duration)
+    command = [
+        str(ffmpeg),
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-y",
+        "-ss",
+        f"{item.source_in:.3f}",
+        "-t",
+        f"{duration:.3f}",
+        "-i",
+        str(item.path),
+        "-map",
+        "0:v:0",
+        "-map",
+        "0:a?",
+        "-map_metadata",
+        "-1",
+        "-write_tmcd",
+        "0",
+        "-vf",
+        "scale=960:-2:force_original_aspect_ratio=decrease,setsar=1,format=yuv420p",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "22",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        "-ar",
+        "48000",
+        "-ac",
+        "2",
+        "-movflags",
+        "+faststart",
+        str(output),
+    ]
+    completed = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    return {
+        "command": command,
+        "returnCode": completed.returncode,
+        "stdout": completed.stdout[-2000:],
+        "stderr": completed.stderr[-4000:],
+    }
+
+
+def export_used_media_previews(
+    sequence: list[MediaItem],
+    output_root: Path,
+    ffmpeg: Path,
+    run_name: str,
+) -> dict[str, Any]:
+    export_suffix = "preview" if "preview" in run_name else "highlight"
+    video_dir = output_root / f"used_video_parts_{export_suffix}"
+    image_dir = output_root / f"used_images_{export_suffix}"
+    video_dir.mkdir(parents=True, exist_ok=True)
+    image_dir.mkdir(parents=True, exist_ok=True)
+    removed = {
+        "videos": cleanup_directory_files(video_dir),
+        "images": cleanup_directory_files(image_dir),
+    }
+
+    entries: list[dict[str, Any]] = []
+    for index, item in enumerate(sequence, start=1):
+        if item.kind == "image":
+            output = image_dir / used_export_name(index, item)
+            shutil.copy2(item.path, output)
+            entries.append(
+                {
+                    "index": index,
+                    "kind": item.kind,
+                    "source": str(item.path),
+                    "relative": item.relative,
+                    "sourceLabel": source_display_name(item),
+                    "sourceIdentityStem": media_stem(item),
+                    "timelineStart": item.timeline_start,
+                    "timelineEnd": item.timeline_end,
+                    "output": str(output),
+                }
+            )
+        elif item.kind == "video":
+            suffix = f"{item.source_in:.2f}-{item.source_out:.2f}"
+            output = video_dir / used_export_name(index, item, suffix)
+            result = export_used_video_clip(ffmpeg, item, output)
+            if result["returnCode"]:
+                log_path = video_dir / f"{output.stem}.error.log"
+                log_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+                raise RuntimeError(f"used video export failed: {output} (see {log_path})")
+            entries.append(
+                {
+                    "index": index,
+                    "kind": item.kind,
+                    "source": str(item.path),
+                    "relative": item.relative,
+                    "sourceLabel": source_display_name(item),
+                    "sourceIdentityStem": media_stem(item),
+                    "timelineStart": item.timeline_start,
+                    "timelineEnd": item.timeline_end,
+                    "sourceIn": item.source_in,
+                    "sourceOut": item.source_out,
+                    "output": str(output),
+                }
+            )
+
+    manifest = output_root / "reports" / run_name / f"{run_name}_used_media_exports.json"
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "createdAt": now_iso(),
+        "runName": run_name,
+        "videoDir": str(video_dir),
+        "imageDir": str(image_dir),
+        "removedBeforeExport": removed,
+        "media": entries,
+    }
+    manifest.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return {"manifest": str(manifest), "videoDir": str(video_dir), "imageDir": str(image_dir), "count": len(entries)}
+
+
 def render_segment(
     index: int,
     item: MediaItem,
@@ -1150,6 +1996,7 @@ def render_segment(
     height: int,
     fps: int,
     force: bool,
+    show_source_label: bool = False,
 ) -> dict[str, Any]:
     output.parent.mkdir(parents=True, exist_ok=True)
     logs_dir.mkdir(parents=True, exist_ok=True)
@@ -1166,6 +2013,7 @@ def render_segment(
             width=width,
             height=height,
             fps=fps,
+            show_source_label=show_source_label,
         )
 
     duration = max(0.1, (item.clip_frames or int(math.floor(item.clip_duration * fps + 0.5))) / fps)
@@ -1194,7 +2042,7 @@ def render_segment(
         f"[{audio_input}:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,"
         f"atrim=duration={duration:.6f},asetpts=PTS-STARTPTS,volume=0.96[a]"
     )
-    filter_complex = f"[0:v]{video_filter(item, width, height, fps)}[v];{audio_chain}"
+    filter_complex = f"[0:v]{video_filter(item, width, height, fps, show_source_label)}[v];{audio_chain}"
 
     command.extend(
         [
@@ -1448,20 +2296,21 @@ def mix_background_music(
     original_volume: float,
     music_volume: float,
     force: bool,
-) -> None:
+) -> Path:
     output.parent.mkdir(parents=True, exist_ok=True)
     if output.exists() and output.stat().st_size > 0 and not force:
-        return
+        return output
     temporary_output = output.with_name(f"{output.stem}.mixing{output.suffix}")
-    fade_out_start = max(0.0, duration - 1.8)
+    fade_seconds = min(BACKGROUND_AUDIO_FADE_SECONDS, max(0.1, duration / 2.0))
+    fade_out_start = max(0.0, duration - fade_seconds)
     filter_complex = (
         "[0:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,"
         f"atrim=duration={duration:.9f},asetpts=PTS-STARTPTS,volume={original_volume:.4f}[orig];"
         "[1:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,"
         f"atrim=duration={duration:.9f},asetpts=PTS-STARTPTS,"
-        f"afade=t=in:st=0:d=1.0,afade=t=out:st={fade_out_start:.6f}:d=1.8,"
         f"volume={music_volume:.4f}[music];"
         "[orig][music]amix=inputs=2:duration=first:dropout_transition=2,"
+        f"afade=t=in:st=0:d={fade_seconds:.6f},afade=t=out:st={fade_out_start:.6f}:d={fade_seconds:.6f},"
         "alimiter=limit=0.95[a]"
     )
     command = [
@@ -1506,7 +2355,16 @@ def mix_background_music(
         log_path = output.with_suffix(".mix-error.log")
         log_path.write_text(completed.stdout + "\n" + completed.stderr, encoding="utf-8")
         raise RuntimeError(f"background music mix failed (see {log_path})")
-    temporary_output.replace(output)
+    try:
+        temporary_output.replace(output)
+        return output
+    except PermissionError:
+        fallback_output = output.with_name(f"{output.stem}_latest{output.suffix}")
+        if fallback_output.exists():
+            fallback_output.unlink()
+        temporary_output.replace(fallback_output)
+        print(f"[background-audio] output locked; wrote {fallback_output}", file=sys.stderr, flush=True)
+        return fallback_output
 
 
 def write_timeline_report(
@@ -1518,6 +2376,8 @@ def write_timeline_report(
     segment_results: list[dict[str, Any]],
     selection_report_path: Path | None = None,
     background_audio: dict[str, Any] | None = None,
+    excluded_video_stems: set[str] | None = None,
+    excluded_image_stems: set[str] | None = None,
 ) -> None:
     payload = {
         "createdAt": now_iso(),
@@ -1525,9 +2385,12 @@ def write_timeline_report(
         "output": str(final_path),
         "duration": round(sequence[-1].timeline_end if sequence else 0.0, 3),
         "target": {"width": TARGET_WIDTH, "height": TARGET_HEIGHT, "fps": TARGET_FPS},
+        "allowedImageSourceDirs": sorted(ALLOWED_IMAGE_SOURCE_DIRS),
         "concatFile": str(concat_file),
         "selectionReport": str(selection_report_path) if selection_report_path else "",
         "backgroundAudio": background_audio or {},
+        "excludedVideoStems": sorted(excluded_video_stems or []),
+        "excludedImageStems": sorted(excluded_image_stems or []),
         "segmentResults": segment_results,
         "media": [
             {
@@ -1535,6 +2398,8 @@ def write_timeline_report(
                 "kind": item.kind,
                 "path": str(item.path),
                 "relative": item.relative,
+                "sourceIdentityStem": media_stem(item),
+                "sourceLabel": source_display_name(item),
                 "width": item.width,
                 "height": item.height,
                 "sourceDuration": round(item.duration, 3),
@@ -1558,20 +2423,38 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build an event highlight from project videos and still images.")
     parser.add_argument("--project-root", type=Path, required=True)
     parser.add_argument("--target-seconds", type=float, default=900.0)
-    parser.add_argument("--base-image-seconds", type=float, default=4.0)
+    parser.add_argument("--base-image-seconds", type=float, default=5.0)
     parser.add_argument("--video-max-samples", type=int, default=70)
     parser.add_argument("--jobs", type=int, default=2)
     parser.add_argument("--ffmpeg", type=Path, default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
     parser.add_argument("--ffprobe", type=Path, default=Path(r"C:\ProgramData\chocolatey\bin\ffprobe.exe"))
     parser.add_argument("--preview", action="store_true", help="Render a lightweight 960x540 preview instead of the full-size output.")
-    parser.add_argument("--dedupe-images", action="store_true", help="Group visually similar still images and keep the best one from each group.")
+    parser.add_argument(
+        "--dedupe-images",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Group visually similar still images and keep the best one from each group. Enabled by default.",
+    )
     parser.add_argument("--image-hash-distance", type=int, default=8, help="Perceptual-hash distance used for still-image duplicate grouping.")
     parser.add_argument("--background-audio", type=str, default=None, help="Background music path, or 'auto' to pick the best source/audio file.")
     parser.add_argument("--music-volume", type=float, default=0.24)
     parser.add_argument("--original-volume", type=float, default=0.50)
+    parser.add_argument(
+        "--exclude-video-stem",
+        action="append",
+        default=[],
+        help="Additional source video stem to exclude before timeline planning. Can be repeated.",
+    )
+    parser.add_argument(
+        "--exclude-image-stem",
+        action="append",
+        default=[],
+        help="Additional source image stem to exclude before timeline planning. Can be repeated.",
+    )
     parser.add_argument("--analyze-only", action="store_true")
     parser.add_argument("--render-only", action="store_true")
     parser.add_argument("--replan-from-report", action="store_true")
+    parser.add_argument("--show-source-labels", action="store_true", help="Overlay source filenames in the upper-left corner for review renders.")
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
 
@@ -1604,10 +2487,16 @@ def main() -> None:
             "duration": round(probe_duration(background_audio_path, args.ffprobe), 3),
             "musicVolume": args.music_volume,
             "originalVolume": args.original_volume,
+            "fadeInSeconds": BACKGROUND_AUDIO_FADE_SECONDS,
+            "fadeOutSeconds": BACKGROUND_AUDIO_FADE_SECONDS,
         }
         if background_audio_path
         else None
     )
+    excluded_video_stems = {source_identity_stem(stem) for stem in DEFAULT_EXCLUDED_VIDEO_STEMS}
+    excluded_video_stems.update(source_identity_stem(stem) for stem in args.exclude_video_stem)
+    excluded_image_stems = {source_identity_stem(stem) for stem in DEFAULT_EXCLUDED_IMAGE_STEMS}
+    excluded_image_stems.update(source_identity_stem(stem) for stem in args.exclude_image_stem)
 
     if args.render_only and report_path.exists():
         payload = json.loads(report_path.read_text(encoding="utf-8"))
@@ -1640,6 +2529,7 @@ def main() -> None:
                 images, selection_report = select_best_images(images, args.image_hash_distance)
                 selection_report_path.parent.mkdir(parents=True, exist_ok=True)
                 selection_report_path.write_text(json.dumps(selection_report, ensure_ascii=False, indent=2), encoding="utf-8")
+            images = prepare_special_image_sequence(images)
             allocate_durations(videos, images, args.target_seconds, args.base_image_seconds)
             sequence = interleave_media(videos, images)
             write_timeline_report(
@@ -1651,10 +2541,12 @@ def main() -> None:
                 [],
                 selection_report_path if args.dedupe_images else None,
                 background_audio_report,
+                excluded_video_stems,
+                excluded_image_stems,
             )
     else:
-        detectors = load_face_detectors()
-        videos, images = discover_media(project_root, args.ffprobe)
+        detectors = load_face_detectors(project_root)
+        videos, images = discover_media(project_root, args.ffprobe, excluded_video_stems, excluded_image_stems)
         if not videos and not images:
             raise SystemExit("No videos or images found in project source.")
         analysis_cache = load_analysis_cache(report_path, cache_report_path)
@@ -1675,6 +2567,7 @@ def main() -> None:
             images, selection_report = select_best_images(images, args.image_hash_distance)
             selection_report_path.parent.mkdir(parents=True, exist_ok=True)
             selection_report_path.write_text(json.dumps(selection_report, ensure_ascii=False, indent=2), encoding="utf-8")
+        images = prepare_special_image_sequence(images)
         allocate_durations(videos, images, args.target_seconds, args.base_image_seconds)
         sequence = interleave_media(videos, images)
         write_timeline_report(
@@ -1686,6 +2579,8 @@ def main() -> None:
             [],
             selection_report_path if args.dedupe_images else None,
             background_audio_report,
+            excluded_video_stems,
+            excluded_image_stems,
         )
 
     if args.analyze_only:
@@ -1716,6 +2611,7 @@ def main() -> None:
                 height=TARGET_HEIGHT,
                 fps=TARGET_FPS,
                 force=args.force,
+                show_source_label=args.show_source_labels,
             ): index
             for index, item in enumerate(sequence, start=1)
         }
@@ -1731,8 +2627,9 @@ def main() -> None:
     )
     group_paths = concat_segments_exact(args.ffmpeg, planned_paths, sequence, groups_dir, concat_output_path, args.force)
     results.append({"index": len(results) + 1, "kind": "group-concat", "groups": [str(path) for path in group_paths]})
+    actual_final_path = final_path
     if background_audio_path:
-        mix_background_music(
+        actual_final_path = mix_background_music(
             args.ffmpeg,
             concat_output_path,
             background_audio_path,
@@ -1742,21 +2639,32 @@ def main() -> None:
             music_volume=args.music_volume,
             force=args.force,
         )
-        results.append({"index": len(results) + 1, "kind": "background-audio", "path": str(background_audio_path)})
+        results.append(
+            {
+                "index": len(results) + 1,
+                "kind": "background-audio",
+                "path": str(background_audio_path),
+                "output": str(actual_final_path),
+            }
+        )
+    used_export = export_used_media_previews(sequence, output_root, args.ffmpeg, run_name)
+    results.append({"index": len(results) + 1, "kind": "used-media-export", **used_export})
     write_timeline_report(
         project_root,
         report_path,
         sequence,
-        final_path,
+        actual_final_path,
         concat_file,
         results,
         selection_report_path if args.dedupe_images else None,
         background_audio_report,
+        excluded_video_stems,
+        excluded_image_stems,
     )
     print(
         json.dumps(
             {
-                "output": str(final_path),
+                "output": str(actual_final_path),
                 "report": str(report_path),
                 "segments": len(planned_paths),
                 "duration": round(sequence[-1].timeline_end if sequence else 0.0, 3),

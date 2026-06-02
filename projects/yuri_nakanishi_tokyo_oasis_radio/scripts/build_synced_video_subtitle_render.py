@@ -607,16 +607,25 @@ def build_sync_chunks(segments: list[dict[str, Any]]) -> list[SyncChunk]:
     # 1-based transcript segment ranges are anchored from transcript/waveform inspection.
     # Target times are edited-WAV transcript times. Source times are MP4-video times.
     specs = [
-        (27, 174, 269.80, 846.78, "First interview block; start after opening music pickup"),
+        (26, 26, 268.88, 269.82, "Opening interviewer identification over continuous main video"),
+        (27, 174, 269.82, 846.80, "First interview block; waveform-aligned continuous video"),
         (175, 176, 1043.64, 1055.68, "Post-break re-introduction; remove mid-program music lead-in"),
         (177, 274, 1055.68, 1415.08, "Second interview block before edited retake"),
         (275, 345, 1429.19, 1721.17, "Final topic block after removed retake"),
-        (346, 354, 1721.17, 1769.04, "Song selection and closing setup"),
+        (346, 354, 1721.17, 1771.21, "Song selection and natural pause before closing recap"),
         (355, 359, 1771.21, 1783.89, "Final thanks before music introduction"),
     ]
     chunks: list[SyncChunk] = []
     for first_id, last_id, source_start, source_end, reason in specs:
         target_start, target_end = target_segment_bounds(segments, first_id, last_id)
+        if first_id == 26:
+            # ASR starts this cue on the tail of the opening music. Start on the actual
+            # speech onset so the render begins with "長谷川美穂です", not the music pickup.
+            # The source video uses the main continuous camera take. The first-half
+            # waveform match is stable at source_time = target_time + 144.98s.
+            target_start = 123.90
+            source_end = source_start + (target_end - target_start)
+            reason = f"{reason}; trimmed ASR music tail before speech onset"
         if first_id == 27:
             # Cut the middle break/music before the second-half radio pickup.
             target_end = 701.82
@@ -624,8 +633,8 @@ def build_sync_chunks(segments: list[dict[str, Any]]) -> list[SyncChunk]:
             # The ASR segment starts over the music bed; waveform match to MP4 speech starts here.
             target_start = 710.72
         if first_id == 346:
-            # Do not carry the short musical pause before the closing recap.
-            target_end = 1421.64
+            # Keep the natural pause after "いい曲でしょうね、きっとね"; do not hard-cut interview audio.
+            target_end = 1423.92
         chunks.append(
             SyncChunk(
                 target_start=round(target_start, 3),
@@ -636,6 +645,34 @@ def build_sync_chunks(segments: list[dict[str, Any]]) -> list[SyncChunk]:
             )
         )
     return chunks
+
+
+def build_video_chunks(chunks: list[SyncChunk], lead_in_seconds: float) -> list[SyncChunk]:
+    if not chunks:
+        return []
+    lead_in_seconds = max(0.0, lead_in_seconds)
+    if len(chunks) < 2:
+        first = chunks[0]
+        return [
+            SyncChunk(
+                target_start=0.0,
+                target_end=round(first.target_duration + lead_in_seconds, 3),
+                source_start=first.source_start,
+                source_end=round(first.source_start + first.target_duration + lead_in_seconds, 3),
+                reason=f"{first.reason}; video lead-in without audio",
+            )
+        ]
+
+    first_duration = chunks[0].target_duration + chunks[1].target_duration + lead_in_seconds
+    source_start = max(0.0, chunks[0].source_start - lead_in_seconds)
+    combined = SyncChunk(
+        target_start=0.0,
+        target_end=round(first_duration, 3),
+        source_start=round(source_start, 3),
+        source_end=round(source_start + first_duration, 3),
+        reason="Opening video uses the original continuous camera take while audio starts after one second of silence",
+    )
+    return [combined, *chunks[2:]]
 
 
 def build_caption_events(
@@ -810,10 +847,12 @@ def remap_events_to_output(
     cut_start: float,
     window_start: float = 0.0,
     duration: float | None = None,
+    output_offset: float = 0.0,
 ) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     window_end = None if duration is None else window_start + duration
     output_cursor = 0.0
+    output_offset = max(0.0, output_offset)
     for chunk in chunks:
         chunk_output_start = output_cursor
         chunk_output_end = output_cursor + chunk.target_duration
@@ -825,15 +864,19 @@ def remap_events_to_output(
             overlap_end = min(event_abs_end, chunk.target_end)
             if overlap_end <= overlap_start:
                 continue
-            output_start = chunk_output_start + (overlap_start - chunk.target_start)
-            output_end = chunk_output_start + (overlap_end - chunk.target_start)
+            output_start = output_offset + chunk_output_start + (overlap_start - chunk.target_start)
+            output_end = output_offset + chunk_output_start + (overlap_end - chunk.target_start)
             visible_start = max(output_start, window_start)
             visible_end = output_end if window_end is None else min(output_end, window_end)
             if visible_end <= visible_start:
                 continue
             adjusted = dict(event)
-            adjusted["start"] = round(visible_start - window_start, 3)
-            adjusted["end"] = round(visible_end - window_start, 3)
+            adjusted_start = round(visible_start - window_start, 3)
+            adjusted_end = round(visible_end - window_start, 3)
+            if adjusted_end <= adjusted_start:
+                continue
+            adjusted["start"] = adjusted_start
+            adjusted["end"] = adjusted_end
             result.append(adjusted)
     result.sort(key=lambda item: (float(item["start"]), float(item["end"]), str(item.get("text", ""))))
     return result
@@ -852,6 +895,7 @@ def write_filter_script(
     *,
     logo_index: int | None,
     title_index: int | None,
+    audio_lead_in_seconds: float = 0.0,
 ) -> Path:
     edit = config.get("radioEdit", {})
     width = int(edit.get("targetWidth", 1920))
@@ -898,11 +942,19 @@ def write_filter_script(
         current = out_label
     filters.append(f"[{current}]format=yuv420p[v]")
     audio_labels: list[str] = []
+    audio_lead_in_seconds = max(0.0, audio_lead_in_seconds)
+    if audio_lead_in_seconds > 0:
+        filters.append(f"anullsrc=channel_layout=stereo:sample_rate=44100:d={audio_lead_in_seconds:.3f}[asilence]")
+        audio_labels.append("[asilence]")
     for index, chunk in enumerate(audio_chunks):
         label = f"aseg{index}"
         filters.append(f"[1:a]atrim=start={chunk.target_start:.3f}:end={chunk.target_end:.3f},asetpts=PTS-STARTPTS[{label}]")
         audio_labels.append(f"[{label}]")
-    filters.append(f"{''.join(audio_labels)}concat=n={len(audio_labels)}:v=0:a=1,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000[a]")
+    start_fade = max(0.0, float(edit.get("audioStartFadeInSeconds", 0.04)))
+    audio_filter = f"{''.join(audio_labels)}concat=n={len(audio_labels)}:v=0:a=1,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000"
+    if start_fade > 0:
+        audio_filter += f",afade=t=in:st=0:d={start_fade:.3f}"
+    filters.append(f"{audio_filter}[a]")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(";\n".join(filters), encoding="utf-8")
     return path
@@ -958,6 +1010,8 @@ def main() -> None:
     cut_start, cut_start_reason = detect_cut_start(segments, replacements)
     cut_end, cut_end_reason = detect_cut_end(segments, replacements)
     chunks = build_sync_chunks(segments)
+    lead_in_silence = max(0.0, float(edit.get("openingSilenceSeconds", 1.0)))
+    video_chunks = build_video_chunks(chunks, lead_in_silence)
     max_line_chars = int(edit.get("subtitleMaxLineChars", 20))
     lr_by_segment = load_lr_by_segment(project_root)
     events = build_caption_events(
@@ -971,15 +1025,30 @@ def main() -> None:
         role_overrides=role_overrides,
     )
     source_duration = round(cut_end - cut_start, 3)
-    duration = round(sum(chunk.target_duration for chunk in chunks), 3)
+    content_duration = round(sum(chunk.target_duration for chunk in chunks), 3)
+    duration = round(lead_in_silence + content_duration, 3)
     preview_offset = max(0.0, min(duration, float(args.preview_offset or 0.0)))
     render_duration = duration if args.preview_duration is None else min(duration - preview_offset, max(0.0, float(args.preview_duration)))
-    render_chunks = clip_chunks_for_window(chunks, cut_start=cut_start, window_start=preview_offset, duration=render_duration)
-    audio_chunks = clip_audio_chunks_for_window(chunks, window_start=preview_offset, duration=render_duration)
+    render_chunks = clip_chunks_for_window(video_chunks, cut_start=cut_start, window_start=preview_offset, duration=render_duration)
+    render_audio_lead_in = max(0.0, min(lead_in_silence - preview_offset, render_duration))
+    audio_content_window_start = max(0.0, preview_offset - lead_in_silence)
+    audio_content_duration = max(0.0, render_duration - render_audio_lead_in)
+    audio_chunks = clip_audio_chunks_for_window(
+        chunks,
+        window_start=audio_content_window_start,
+        duration=audio_content_duration,
+    )
     if not render_chunks:
         raise SystemExit("No video sync chunks overlap the requested render window.")
-    output_events = remap_events_to_output(events, chunks, cut_start=cut_start)
-    overlay_events = remap_events_to_output(events, chunks, cut_start=cut_start, window_start=preview_offset, duration=render_duration)
+    output_events = remap_events_to_output(events, chunks, cut_start=cut_start, output_offset=lead_in_silence)
+    overlay_events = remap_events_to_output(
+        events,
+        chunks,
+        cut_start=cut_start,
+        window_start=preview_offset,
+        duration=render_duration,
+        output_offset=lead_in_silence,
+    )
 
     output_srt = project_root / "output" / "subtitles" / "tokyo_oasis_20260528_nakanishi_cut.srt"
     caption_overlay_dir = project_root / "output" / "overlays" / "synced_video_caption_png_overlays"
@@ -1008,6 +1077,7 @@ def main() -> None:
         config,
         logo_index=2 if logo_input_path.exists() else None,
         title_index=3 if title_overlay.exists() else None,
+        audio_lead_in_seconds=render_audio_lead_in,
     )
     render_command: list[str] | None = None
     if not args.no_render:
@@ -1068,11 +1138,15 @@ def main() -> None:
         "cutStartSeconds": cut_start,
         "cutEndSeconds": cut_end,
         "sourceTimelineDurationSeconds": source_duration,
+        "openingSilenceSeconds": lead_in_silence,
+        "contentDurationSeconds": content_duration,
         "durationSeconds": duration,
         "cutStartReason": cut_start_reason,
         "cutEndReason": cut_end_reason,
         "syncChunks": [asdict(chunk) | {"sourceDuration": round(chunk.source_duration, 3), "targetDuration": round(chunk.target_duration, 3), "setptsRatio": round(chunk.setpts_ratio, 6)} for chunk in chunks],
+        "videoChunks": [asdict(chunk) | {"sourceDuration": round(chunk.source_duration, 3), "targetDuration": round(chunk.target_duration, 3), "setptsRatio": round(chunk.setpts_ratio, 6)} for chunk in video_chunks],
         "renderChunks": [asdict(chunk) | {"sourceDuration": round(chunk.source_duration, 3), "targetDuration": round(chunk.target_duration, 3), "setptsRatio": round(chunk.setpts_ratio, 6)} for chunk in render_chunks],
+        "renderAudioLeadInSeconds": round(render_audio_lead_in, 3),
         "audioChunks": [asdict(chunk) | {"targetDuration": round(chunk.target_duration, 3)} for chunk in audio_chunks],
         "subtitleEventCount": len(output_events),
         "renderSubtitleEventCount": len(overlay_events),

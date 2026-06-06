@@ -1,0 +1,551 @@
+{
+  "schemaVersion": "reference-asset-analysis/v1",
+  "generatedAt": "2026-06-06T08:58:10.429874Z",
+  "asset": {
+    "assetId": "sample-9",
+    "mediaId": "media-009",
+    "collection": "layer-x",
+    "kind": "image",
+    "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-9\\sample-9.png",
+    "originalPath": "C:\\Users\\yurin\\Downloads\\layer-x\\Screenshot 2026-06-06 155601.png",
+    "sha256": "50983410e35f0c44d7a83f1a5d5dc2815e486a1c08075b0e8ce8834d15a3c667",
+    "sizeBytes": 1366215,
+    "relativePath": "collections\\layer-x\\images\\sample-9\\sample-9.png",
+    "name": "Screenshot 2026-06-06 155601.png",
+    "extension": ".png",
+    "width": 1838,
+    "height": 1032,
+    "duration": null,
+    "fps": null,
+    "codec": null
+  },
+  "summary": {
+    "frameCount": 1,
+    "sampledDurationSeconds": 0.0,
+    "personPresent": true,
+    "maxPeople": 2,
+    "avgPeople": 2.0,
+    "facePresent": true,
+    "maxFaces": 2,
+    "faceDirectionCounts": {
+      "right": 1,
+      "left": 1
+    },
+    "avgFaceAreaRatio": 0.031071,
+    "mainPersonCenterAvg": [
+      0.81949,
+      0.58115
+    ],
+    "subtitlePresent": true,
+    "titlePresent": true,
+    "logoPresent": true,
+    "annotationPresent": false,
+    "textRoleCounts": {
+      "logo_text": 1,
+      "title": 1,
+      "subtitle": 2
+    },
+    "splitScreenPresent": true,
+    "splitScreenFrameRatio": 1.0,
+    "dominantColors": [
+      {
+        "hex": "#7E737B",
+        "count": 1
+      },
+      {
+        "hex": "#634AF9",
+        "count": 1
+      }
+    ],
+    "referenceNotes": [
+      "Use as a split-screen interview composition reference.",
+      "Two-person layout with separate left/right subject zones.",
+      "Large lower-third Japanese text overlays are part of the style.",
+      "Top title/header treatment can be reused as a branded information strip.",
+      "Logo placement is a persistent brand marker, usually near the upper left.",
+      "Collection: layer-x; asset kind: image."
+    ]
+  },
+  "frames": [
+    {
+      "frameId": "frame-0000",
+      "timeSeconds": 0.0,
+      "width": 1838,
+      "height": 1032,
+      "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-9\\samples\\frame_0000.jpg",
+      "debugOverlayPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-9\\debug-overlays\\frame_0000_debug.jpg",
+      "people": [
+        {
+          "id": "person-01",
+          "bbox": {
+            "pixel": [
+              1190.86,
+              175.36,
+              630.72,
+              848.77
+            ],
+            "norm": [
+              0.64791,
+              0.16993,
+              0.34316,
+              0.82245
+            ],
+            "xyxyPixel": [
+              1190.86,
+              175.36,
+              1821.59,
+              1024.13
+            ]
+          },
+          "centerNorm": [
+            0.81949,
+            0.58115
+          ],
+          "areaRatio": 0.282232,
+          "confidence": 0.8812,
+          "detector": "ultralytics-yolo",
+          "faceId": "face-02",
+          "faceDirection": "left",
+          "faceBBox": {
+            "pixel": [
+              1319.93,
+              272.23,
+              228.11,
+              253.11
+            ],
+            "norm": [
+              0.71813,
+              0.26379,
+              0.12411,
+              0.24526
+            ],
+            "xyxyPixel": [
+              1319.93,
+              272.23,
+              1548.03,
+              525.34
+            ]
+          }
+        },
+        {
+          "id": "person-02",
+          "bbox": {
+            "pixel": [
+              19.82,
+              140.77,
+              660.36,
+              656.85
+            ],
+            "norm": [
+              0.01078,
+              0.13641,
+              0.35928,
+              0.63648
+            ],
+            "xyxyPixel": [
+              19.82,
+              140.77,
+              680.17,
+              797.62
+            ]
+          },
+          "centerNorm": [
+            0.19042,
+            0.45465
+          ],
+          "areaRatio": 0.228675,
+          "confidence": 0.7252,
+          "detector": "ultralytics-yolo",
+          "faceId": "face-01",
+          "faceDirection": "right",
+          "faceBBox": {
+            "pixel": [
+              291.12,
+              240.06,
+              233.71,
+              257.31
+            ],
+            "norm": [
+              0.15839,
+              0.23262,
+              0.12715,
+              0.24933
+            ],
+            "xyxyPixel": [
+              291.12,
+              240.06,
+              524.83,
+              497.37
+            ]
+          }
+        }
+      ],
+      "faces": [
+        {
+          "id": "face-01",
+          "bbox": {
+            "pixel": [
+              291.12,
+              240.06,
+              233.71,
+              257.31
+            ],
+            "norm": [
+              0.15839,
+              0.23262,
+              0.12715,
+              0.24933
+            ],
+            "xyxyPixel": [
+              291.12,
+              240.06,
+              524.83,
+              497.37
+            ]
+          },
+          "centerNorm": [
+            0.22197,
+            0.35728
+          ],
+          "areaRatio": 0.031702,
+          "direction": "right",
+          "directionConfidence": 0.6962,
+          "yawProxy": 0.05848,
+          "size": {
+            "widthRatio": 0.12715,
+            "heightRatio": 0.24933,
+            "areaRatio": 0.031702,
+            "label": "medium"
+          },
+          "detector": "mediapipe-face-mesh"
+        },
+        {
+          "id": "face-02",
+          "bbox": {
+            "pixel": [
+              1319.93,
+              272.23,
+              228.11,
+              253.11
+            ],
+            "norm": [
+              0.71813,
+              0.26379,
+              0.12411,
+              0.24526
+            ],
+            "xyxyPixel": [
+              1319.93,
+              272.23,
+              1548.03,
+              525.34
+            ]
+          },
+          "centerNorm": [
+            0.78019,
+            0.38642
+          ],
+          "areaRatio": 0.030439,
+          "direction": "left",
+          "directionConfidence": 0.8616,
+          "yawProxy": -0.12462,
+          "size": {
+            "widthRatio": 0.12411,
+            "heightRatio": 0.24526,
+            "areaRatio": 0.030439,
+            "label": "medium"
+          },
+          "detector": "mediapipe-face-mesh"
+        }
+      ],
+      "textOverlays": [
+        {
+          "id": "text-01",
+          "text": "Layerx",
+          "role": "logo_text",
+          "bbox": {
+            "pixel": [
+              161.0,
+              29.0,
+              240.0,
+              84.0
+            ],
+            "norm": [
+              0.0876,
+              0.0281,
+              0.13058,
+              0.0814
+            ],
+            "xyxyPixel": [
+              161.0,
+              29.0,
+              401.0,
+              113.0
+            ]
+          },
+          "fontSizePxEstimate": 84.0,
+          "confidence": 0.6301,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#78737F",
+            "dominantColors": [
+              {
+                "hex": "#78737F",
+                "ratio": 0.5164
+              },
+              {
+                "hex": "#9192B0",
+                "ratio": 0.3019
+              },
+              {
+                "hex": "#212A4E",
+                "ratio": 0.1817
+              }
+            ],
+            "saturation": 0.2072,
+            "brightness": 0.5276
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-02",
+          "text": "プラットフォームの成熟と生成Aよる変化",
+          "role": "title",
+          "bbox": {
+            "pixel": [
+              792.0,
+              34.0,
+              1034.0,
+              73.0
+            ],
+            "norm": [
+              0.4309,
+              0.03295,
+              0.56257,
+              0.07074
+            ],
+            "xyxyPixel": [
+              792.0,
+              34.0,
+              1826.0,
+              107.0
+            ]
+          },
+          "fontSizePxEstimate": 73.0,
+          "confidence": 0.6618,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#5B53F8",
+            "dominantColors": [
+              {
+                "hex": "#5B53F8",
+                "ratio": 0.5188
+              },
+              {
+                "hex": "#79707C",
+                "ratio": 0.3466
+              },
+              {
+                "hex": "#E3E3F6",
+                "ratio": 0.1346
+              }
+            ],
+            "saturation": 0.4122,
+            "brightness": 0.8121
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-03",
+          "text": "報えるデー夕量が",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              332.0,
+              621.0,
+              1063.0,
+              164.0
+            ],
+            "norm": [
+              0.18063,
+              0.60174,
+              0.57835,
+              0.15891
+            ],
+            "xyxyPixel": [
+              332.0,
+              621.0,
+              1395.0,
+              785.0
+            ]
+          },
+          "fontSizePxEstimate": 164.0,
+          "confidence": 0.2393,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#6245FA",
+            "dominantColors": [
+              {
+                "hex": "#6245FA",
+                "ratio": 0.443
+              },
+              {
+                "hex": "#EBE9F1",
+                "ratio": 0.3312
+              },
+              {
+                "hex": "#525270",
+                "ratio": 0.2258
+              }
+            ],
+            "saturation": 0.4147,
+            "brightness": 0.8474
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-04",
+          "text": "圧倒的に多くなつた",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              337.0,
+              815.0,
+              1166.0,
+              160.0
+            ],
+            "norm": [
+              0.18335,
+              0.78973,
+              0.63439,
+              0.15504
+            ],
+            "xyxyPixel": [
+              337.0,
+              815.0,
+              1503.0,
+              975.0
+            ]
+          },
+          "fontSizePxEstimate": 160.0,
+          "confidence": 0.7106,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#EFEDF6",
+            "dominantColors": [
+              {
+                "hex": "#EFEDF6",
+                "ratio": 0.3884
+              },
+              {
+                "hex": "#6A4BFA",
+                "ratio": 0.3753
+              },
+              {
+                "hex": "#655E73",
+                "ratio": 0.2364
+              }
+            ],
+            "saturation": 0.3414,
+            "brightness": 0.8584
+          },
+          "detector": "easyocr"
+        }
+      ],
+      "logos": [
+        {
+          "id": "logo-01",
+          "kind": "brand-text",
+          "label": "LayerX",
+          "bbox": {
+            "pixel": [
+              161.0,
+              29.0,
+              240.0,
+              84.0
+            ],
+            "norm": [
+              0.0876,
+              0.0281,
+              0.13058,
+              0.0814
+            ],
+            "xyxyPixel": [
+              161.0,
+              29.0,
+              401.0,
+              113.0
+            ]
+          },
+          "confidence": 0.6301,
+          "sourceTextId": "text-01"
+        }
+      ],
+      "annotations": [],
+      "composition": {
+        "aspectRatio": 1.78101,
+        "orientation": "landscape",
+        "splitScreen": {
+          "present": true,
+          "xRatio": 0.50544,
+          "confidence": 0.95
+        },
+        "personCount": 2,
+        "personCenters": [
+          [
+            0.81949,
+            0.58115
+          ],
+          [
+            0.19042,
+            0.45465
+          ]
+        ],
+        "mainSubjectMargins": {
+          "left": 0.64791,
+          "right": 0.00893,
+          "top": 0.16993,
+          "bottom": 0.00762
+        },
+        "lowerThirdTextCoverageRatio": 0.18945,
+        "textCoverageRatio": 0.23862,
+        "layoutTags": [
+          "vertical-split-screen",
+          "two-person-interview",
+          "large-lower-third-text",
+          "top-title-banner"
+        ]
+      },
+      "visualStyle": {
+        "brightness": 0.5243,
+        "contrast": 0.2385,
+        "saturation": 0.2658,
+        "warmth": -0.0977,
+        "exposure": "neutral",
+        "colorTemperature": "cool",
+        "dominantColors": [
+          {
+            "hex": "#7E737B",
+            "ratio": 0.3431
+          },
+          {
+            "hex": "#634AF9",
+            "ratio": 0.1859
+          },
+          {
+            "hex": "#F1EFF6",
+            "ratio": 0.1701
+          },
+          {
+            "hex": "#3A3547",
+            "ratio": 0.1641
+          },
+          {
+            "hex": "#B5A6AD",
+            "ratio": 0.1368
+          }
+        ]
+      }
+    }
+  ]
+}

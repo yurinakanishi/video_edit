@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "reference-analysis-settings/v1",
+  "libraryId": "reference-assets",
+  "collections": [
+    {
+      "collection": "layer-x",
+      "sourceDirectory": "C:/Users/yurin/Downloads/layer-x"
+    },
+    {
+      "collection": "user-local-company",
+      "sourceDirectory": "C:/Users/yurin/Downloads/user-local-company"
+    }
+  ],
+  "analysis": {
+    "sampleFps": 1.0,
+    "maxVideoSamples": 90,
+    "sceneChangeProbeIntervalSeconds": 0.5,
+    "sceneChangeMaxExtraSamples": 8,
+    "yoloModel": "C:/Users/yurin/Desktop/video_edit/.video-edit/models/yolov8n.pt",
+    "faceLandmarkerModel": "C:/Users/yurin/Desktop/video_edit/.video-edit/models/face_landmarker.task",
+    "faceLandmarkerModelUrl": "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task",
+    "yoloConfidence": 0.35,
+    "easyOcrLanguages": ["ja", "en"],
+    "cpuOnly": true
+  }
+}

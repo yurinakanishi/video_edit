@@ -26,6 +26,14 @@ Required flow:
 
 Project-local scripts are for one-off ordering, selection, tuning, QA, or render logic that should not become shared app behavior.
 
+### 3. Project Tests
+
+When creating project-shaped fixtures for tests or smoke runs, group them under a named test workspace, for example `projects/__smoke__/<test-name>/<run-id>/`.
+
+- Do not leave test fixtures as top-level `projects/<fixture-name>` entries.
+- Use the same project-local shape inside the named test workspace when the app or pipeline expects a normal project.
+- For Electron smoke tests, prefer `VIDEO_EDIT_PROJECTS_ROOT` to point project creation and discovery at the active test run directory.
+
 ## Rendering Workflow
 
 Never start with a final production render.

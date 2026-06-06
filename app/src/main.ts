@@ -61,7 +61,10 @@ const APP_STATE_ROOT = path.join(VIDEO_EDIT_ROOT, ".video-edit");
 const ELECTRON_PROFILE_ROOT = path.join(APP_STATE_ROOT, "electron-profile");
 const ELECTRON_CACHE_ROOT = path.join(APP_STATE_ROOT, "electron-cache");
 const OUTPUT_ROOT = APP_STATE_ROOT;
-const PROJECTS_ROOT = path.join(VIDEO_EDIT_ROOT, "projects");
+const DEFAULT_PROJECTS_ROOT = path.join(VIDEO_EDIT_ROOT, "projects");
+const PROJECTS_ROOT = process.env.VIDEO_EDIT_PROJECTS_ROOT
+	? path.resolve(process.env.VIDEO_EDIT_PROJECTS_ROOT)
+	: DEFAULT_PROJECTS_ROOT;
 const SCRIPTS_ROOT = path.join(VIDEO_EDIT_ROOT, "scripts");
 const CONFIG_ROOT = path.join(VIDEO_EDIT_ROOT, "config");
 const OUTPUT_APP_ROOT = path.join(OUTPUT_ROOT, "app");

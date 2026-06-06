@@ -1,0 +1,439 @@
+{
+  "schemaVersion": "reference-asset-analysis/v1",
+  "generatedAt": "2026-06-06T08:57:36.164644Z",
+  "asset": {
+    "assetId": "sample-2",
+    "mediaId": "media-002",
+    "collection": "layer-x",
+    "kind": "image",
+    "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-2\\sample-2.png",
+    "originalPath": "C:\\Users\\yurin\\Downloads\\layer-x\\Screenshot 2026-06-06 155219.png",
+    "sha256": "e69512a75079aa55a37a3a9095c66301994a0565aa0417d80c85de12fe30318a",
+    "sizeBytes": 1158730,
+    "relativePath": "collections\\layer-x\\images\\sample-2\\sample-2.png",
+    "name": "Screenshot 2026-06-06 155219.png",
+    "extension": ".png",
+    "width": 1834,
+    "height": 1032,
+    "duration": null,
+    "fps": null,
+    "codec": null
+  },
+  "summary": {
+    "frameCount": 1,
+    "sampledDurationSeconds": 0.0,
+    "personPresent": true,
+    "maxPeople": 2,
+    "avgPeople": 2.0,
+    "facePresent": true,
+    "maxFaces": 1,
+    "faceDirectionCounts": {
+      "right": 1
+    },
+    "avgFaceAreaRatio": 0.03325,
+    "mainPersonCenterAvg": [
+      0.18837,
+      0.58883
+    ],
+    "subtitlePresent": true,
+    "titlePresent": false,
+    "logoPresent": true,
+    "annotationPresent": false,
+    "textRoleCounts": {
+      "logo_text": 1,
+      "subtitle": 2
+    },
+    "splitScreenPresent": true,
+    "splitScreenFrameRatio": 1.0,
+    "dominantColors": [
+      {
+        "hex": "#7F737A",
+        "count": 1
+      },
+      {
+        "hex": "#5D4FF7",
+        "count": 1
+      }
+    ],
+    "referenceNotes": [
+      "Use as a split-screen interview composition reference.",
+      "Two-person layout with separate left/right subject zones.",
+      "Large lower-third Japanese text overlays are part of the style.",
+      "Logo placement is a persistent brand marker, usually near the upper left.",
+      "Collection: layer-x; asset kind: image."
+    ]
+  },
+  "frames": [
+    {
+      "frameId": "frame-0000",
+      "timeSeconds": 0.0,
+      "width": 1834,
+      "height": 1032,
+      "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-2\\samples\\frame_0000.jpg",
+      "debugOverlayPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-2\\debug-overlays\\frame_0000_debug.jpg",
+      "people": [
+        {
+          "id": "person-01",
+          "bbox": {
+            "pixel": [
+              21.93,
+              216.61,
+              647.06,
+              782.13
+            ],
+            "norm": [
+              0.01196,
+              0.20989,
+              0.35281,
+              0.75788
+            ],
+            "xyxyPixel": [
+              21.93,
+              216.61,
+              668.99,
+              998.74
+            ]
+          },
+          "centerNorm": [
+            0.18837,
+            0.58883
+          ],
+          "areaRatio": 0.267388,
+          "confidence": 0.8263,
+          "detector": "ultralytics-yolo",
+          "faceId": "face-01",
+          "faceDirection": "right",
+          "faceBBox": {
+            "pixel": [
+              308.37,
+              354.69,
+              241.56,
+              260.52
+            ],
+            "norm": [
+              0.16814,
+              0.34369,
+              0.13171,
+              0.25245
+            ],
+            "xyxyPixel": [
+              308.37,
+              354.69,
+              549.94,
+              615.22
+            ]
+          }
+        },
+        {
+          "id": "person-02",
+          "bbox": {
+            "pixel": [
+              1263.23,
+              247.19,
+              518.88,
+              738.59
+            ],
+            "norm": [
+              0.68878,
+              0.23952,
+              0.28292,
+              0.71569
+            ],
+            "xyxyPixel": [
+              1263.23,
+              247.19,
+              1782.11,
+              985.78
+            ]
+          },
+          "centerNorm": [
+            0.83024,
+            0.59737
+          ],
+          "areaRatio": 0.202483,
+          "confidence": 0.723,
+          "detector": "ultralytics-yolo"
+        }
+      ],
+      "faces": [
+        {
+          "id": "face-01",
+          "bbox": {
+            "pixel": [
+              308.37,
+              354.69,
+              241.56,
+              260.52
+            ],
+            "norm": [
+              0.16814,
+              0.34369,
+              0.13171,
+              0.25245
+            ],
+            "xyxyPixel": [
+              308.37,
+              354.69,
+              549.94,
+              615.22
+            ]
+          },
+          "centerNorm": [
+            0.234,
+            0.46991
+          ],
+          "areaRatio": 0.03325,
+          "direction": "right",
+          "directionConfidence": 0.8531,
+          "yawProxy": 0.12125,
+          "size": {
+            "widthRatio": 0.13171,
+            "heightRatio": 0.25245,
+            "areaRatio": 0.03325,
+            "label": "medium"
+          },
+          "detector": "mediapipe-face-mesh"
+        }
+      ],
+      "textOverlays": [
+        {
+          "id": "text-01",
+          "text": "Layerx",
+          "role": "logo_text",
+          "bbox": {
+            "pixel": [
+              142.0,
+              44.0,
+              179.0,
+              67.0
+            ],
+            "norm": [
+              0.07743,
+              0.04264,
+              0.0976,
+              0.06492
+            ],
+            "xyxyPixel": [
+              142.0,
+              44.0,
+              321.0,
+              111.0
+            ]
+          },
+          "fontSizePxEstimate": 67.0,
+          "confidence": 0.9935,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#FDFDFE",
+            "dominantColors": [
+              {
+                "hex": "#FDFDFE",
+                "ratio": 0.8728
+              },
+              {
+                "hex": "#2E373A",
+                "ratio": 0.0692
+              },
+              {
+                "hex": "#818BD9",
+                "ratio": 0.058
+              }
+            ],
+            "saturation": 0.0406,
+            "brightness": 0.9356
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-02",
+          "text": "元Palantir社員が語る",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              107.0,
+              621.0,
+              1360.0,
+              162.0
+            ],
+            "norm": [
+              0.05834,
+              0.60174,
+              0.74155,
+              0.15698
+            ],
+            "xyxyPixel": [
+              107.0,
+              621.0,
+              1467.0,
+              783.0
+            ]
+          },
+          "fontSizePxEstimate": 162.0,
+          "confidence": 0.3188,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#5A3EF8",
+            "dominantColors": [
+              {
+                "hex": "#5A3EF8",
+                "ratio": 0.3723
+              },
+              {
+                "hex": "#F1EFF6",
+                "ratio": 0.3592
+              },
+              {
+                "hex": "#736C79",
+                "ratio": 0.2685
+              }
+            ],
+            "saturation": 0.3588,
+            "brightness": 0.8557
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-03",
+          "text": "FDEの正体とは?",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              691.0,
+              815.0,
+              1028.0,
+              156.0
+            ],
+            "norm": [
+              0.37677,
+              0.78973,
+              0.56052,
+              0.15116
+            ],
+            "xyxyPixel": [
+              691.0,
+              815.0,
+              1719.0,
+              971.0
+            ]
+          },
+          "fontSizePxEstimate": 156.0,
+          "confidence": 0.2214,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#F5F3F8",
+            "dominantColors": [
+              {
+                "hex": "#F5F3F8",
+                "ratio": 0.5399
+              },
+              {
+                "hex": "#644DF8",
+                "ratio": 0.245
+              },
+              {
+                "hex": "#6B6071",
+                "ratio": 0.2151
+              }
+            ],
+            "saturation": 0.2426,
+            "brightness": 0.8689
+          },
+          "detector": "easyocr"
+        }
+      ],
+      "logos": [
+        {
+          "id": "logo-01",
+          "kind": "brand-text",
+          "label": "LayerX",
+          "bbox": {
+            "pixel": [
+              142.0,
+              44.0,
+              179.0,
+              67.0
+            ],
+            "norm": [
+              0.07743,
+              0.04264,
+              0.0976,
+              0.06492
+            ],
+            "xyxyPixel": [
+              142.0,
+              44.0,
+              321.0,
+              111.0
+            ]
+          },
+          "confidence": 0.9935,
+          "sourceTextId": "text-01"
+        }
+      ],
+      "annotations": [],
+      "composition": {
+        "aspectRatio": 1.77713,
+        "orientation": "landscape",
+        "splitScreen": {
+          "present": true,
+          "xRatio": 0.50545,
+          "confidence": 0.95
+        },
+        "personCount": 2,
+        "personCenters": [
+          [
+            0.18837,
+            0.58883
+          ],
+          [
+            0.83024,
+            0.59737
+          ]
+        ],
+        "mainSubjectMargins": {
+          "left": 0.01196,
+          "right": 0.63523,
+          "top": 0.20989,
+          "bottom": 0.03223
+        },
+        "lowerThirdTextCoverageRatio": 0.19898,
+        "textCoverageRatio": 0.20586,
+        "layoutTags": [
+          "vertical-split-screen",
+          "two-person-interview",
+          "large-lower-third-text"
+        ]
+      },
+      "visualStyle": {
+        "brightness": 0.5246,
+        "contrast": 0.2483,
+        "saturation": 0.2922,
+        "warmth": -0.1295,
+        "exposure": "neutral",
+        "colorTemperature": "cool",
+        "dominantColors": [
+          {
+            "hex": "#7F737A",
+            "ratio": 0.2888
+          },
+          {
+            "hex": "#5D4FF7",
+            "ratio": 0.2655
+          },
+          {
+            "hex": "#F8F7FB",
+            "ratio": 0.1717
+          },
+          {
+            "hex": "#393344",
+            "ratio": 0.1515
+          },
+          {
+            "hex": "#B4A4AA",
+            "ratio": 0.1224
+          }
+        ]
+      }
+    }
+  ]
+}

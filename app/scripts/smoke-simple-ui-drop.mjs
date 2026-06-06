@@ -5,11 +5,10 @@ import { fileURLToPath } from "node:url";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const appRoot = path.resolve(scriptDir, "..");
-const smokeRoot = path.join(
-	appRoot,
-	"smoke_outputs",
-	`simple-ui-drop-${new Date().toISOString().replace(/[:.]/g, "-")}`,
-);
+const videoEditRoot = path.resolve(appRoot, "..");
+const smokeRunName = `simple-ui-drop-${new Date().toISOString().replace(/[:.]/g, "-")}`;
+const smokeProjectsRoot = path.join(videoEditRoot, "projects", "__smoke__", "simple-ui-drop", smokeRunName);
+const smokeRoot = path.join(appRoot, "smoke_outputs", smokeRunName);
 const materialRoot = path.join(smokeRoot, "material folder");
 const audioRoot = path.join(smokeRoot, "audio folder");
 const resultPath = path.join(smokeRoot, "result.json");
@@ -150,6 +149,10 @@ function validateSmokeResult(payload, fixture) {
 	const files = result.files || [];
 	const counts = result.counts || {};
 	assert(project.root && project.sourceRoot && project.outputRoot, "project paths were not returned");
+	assert(
+		normalize(project.root).startsWith(normalize(smokeProjectsRoot)),
+		`project root is outside smoke project root: ${project.root}`,
+	);
 	assert(result.sourceDirectory === project.sourceRoot, "manifest sourceDirectory is not the project sourceRoot");
 	assert(
 		result.manifestPath && normalize(result.manifestPath).startsWith(normalize(project.outputRoot)),
@@ -407,6 +410,7 @@ run(electronCommand, electronArgs, {
 	env: {
 		...process.env,
 		VIDEO_EDIT_SMOKE: "1",
+		VIDEO_EDIT_PROJECTS_ROOT: smokeProjectsRoot,
 		VIDEO_EDIT_SMOKE_UI_DROP_RESULT: resultPath,
 		VIDEO_EDIT_SMOKE_MATERIAL_PATHS: JSON.stringify([materialRoot]),
 		VIDEO_EDIT_SMOKE_AUDIO_PATHS: JSON.stringify([fixture.audioPath, fixture.audioDecoyPath]),

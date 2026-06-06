@@ -22,6 +22,7 @@ Build artifacts are written to `..\release`. TypeScript sources live under `src`
 ## What It Does
 
 - Creates and selects per-video projects under `projects\<project-id>`.
+- Keeps smoke-test projects under named test roots such as `projects\__smoke__\simple-ui-drop\<run-id>` when `VIDEO_EDIT_PROJECTS_ROOT` is set.
 - Maintains project-local source/output roots, media manifests, runtime config snapshots, and AI-editable project state.
 - Accepts selected media for master/camera sources, external audio, logos, still images, subtitles, and output paths.
 - Runs shared workflow actions through `scripts\video_edit_run.py` with `VIDEO_EDIT_APP_CONFIG`; reusable Python implementation lives in `video_edit_core`.
@@ -62,5 +63,7 @@ pnpm run lint
 pnpm run typecheck
 pnpm run check
 ```
+
+`pnpm run smoke:simple-ui-drop` creates fixtures in `app\smoke_outputs` and creates app projects under `projects\__smoke__\simple-ui-drop\<run-id>` via `VIDEO_EDIT_PROJECTS_ROOT`. Keep any test-generated projects under a named test directory instead of the top-level `projects` list.
 
 The Windows build uses `app\build\icon.ico` and disables executable resource editing with `signAndEditExecutable: false`.

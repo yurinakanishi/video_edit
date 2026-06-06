@@ -37,6 +37,9 @@
 !/projects/*/config/
 !/projects/*/config/**
 
+# Shared reference asset library
+/reference-assets/output/
+
 # FFmpeg segment and diagnostic outputs
 segments_*/
 sync_diagnostics/

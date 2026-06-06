@@ -12,6 +12,7 @@ remotion/                 Shared Remotion overlay scaffold
 config/                   App-level schemas and portable config files
 docs/                     App architecture and shared workflow notes
 projects/<project-id>/    Project instructions, project-local scripts/config, media, and outputs
+projects/__smoke__/       Named test project workspaces and legacy smoke artifacts
 .video-edit/              Local runtime state, caches, and logs
 release/                  Packaged Electron builds
 ```
@@ -28,6 +29,8 @@ projects/<project-id>/
 ```
 
 Large media, generated outputs, `.video-edit/`, `projects/*/source`, `projects/*/output`, project state snapshots, dependencies, and packaged builds are ignored by Git. Project Markdown, `projects/*/scripts`, and `projects/*/config` are intentionally trackable.
+
+Test-only project workspaces must be grouped under a named test directory, for example `projects/__smoke__/simple-ui-drop/<run-id>/`. Do not leave generated smoke fixtures such as `material-folder` or `material-folder-02` at the top level of `projects/`; top-level entries should represent real user-facing projects.
 
 ## App Boundary
 
@@ -62,6 +65,8 @@ python .\scripts\video_edit_run.py --action build-timeline --dry-run
 ```
 
 The Electron app writes a project-local runtime config under `projects\<project-id>\output\app\video_edit_app_config.runtime.json` and passes it through `VIDEO_EDIT_APP_CONFIG`. Command-line runs can read `project_state.json` when `VIDEO_EDIT_PROJECT` or `VIDEO_EDIT_PROJECT_ROOT` is set and `VIDEO_EDIT_APP_CONFIG` is unset.
+
+Electron development and smoke runs can set `VIDEO_EDIT_PROJECTS_ROOT` to redirect app project discovery and creation to a test-specific root, such as `projects\__smoke__\simple-ui-drop\<run-id>`.
 
 ## Timeline Contract
 

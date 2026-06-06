@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "reference-asset-analysis/v1",
+  "generatedAt": "2026-06-06T08:58:05.577193Z",
+  "asset": {
+    "assetId": "sample-8",
+    "mediaId": "media-008",
+    "collection": "layer-x",
+    "kind": "image",
+    "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-8\\sample-8.png",
+    "originalPath": "C:\\Users\\yurin\\Downloads\\layer-x\\Screenshot 2026-06-06 155521.png",
+    "sha256": "44dd7119956954b312b3e7c9ae75fff41a7a8b4097f6582acedcebd77191ff1a",
+    "sizeBytes": 1433684,
+    "relativePath": "collections\\layer-x\\images\\sample-8\\sample-8.png",
+    "name": "Screenshot 2026-06-06 155521.png",
+    "extension": ".png",
+    "width": 1835,
+    "height": 1034,
+    "duration": null,
+    "fps": null,
+    "codec": null
+  },
+  "summary": {
+    "frameCount": 1,
+    "sampledDurationSeconds": 0.0,
+    "personPresent": true,
+    "maxPeople": 2,
+    "avgPeople": 2.0,
+    "facePresent": true,
+    "maxFaces": 2,
+    "faceDirectionCounts": {
+      "right": 1,
+      "left": 1
+    },
+    "avgFaceAreaRatio": 0.032198,
+    "mainPersonCenterAvg": [
+      0.80061,
+      0.57607
+    ],
+    "subtitlePresent": true,
+    "titlePresent": false,
+    "logoPresent": true,
+    "annotationPresent": true,
+    "textRoleCounts": {
+      "logo_text": 3,
+      "small_text": 1,
+      "subtitle": 4,
+      "annotation": 1
+    },
+    "splitScreenPresent": true,
+    "splitScreenFrameRatio": 1.0,
+    "dominantColors": [
+      {
+        "hex": "#7A6D74",
+        "count": 1
+      },
+      {
+        "hex": "#F8F7FA",
+        "count": 1
+      }
+    ],
+    "referenceNotes": [
+      "Use as a split-screen interview composition reference.",
+      "Two-person layout with separate left/right subject zones.",
+      "Large lower-third Japanese text overlays are part of the style.",
+      "Logo placement is a persistent brand marker, usually near the upper left.",
+      "Additional text annotations should be tracked separately from main subtitles.",
+      "Collection: layer-x; asset kind: image."
+    ]
+  },
+  "frames": [
+    {
+      "frameId": "frame-0000",
+      "timeSeconds": 0.0,
+      "width": 1835,
+      "height": 1034,
+      "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-8\\samples\\frame_0000.jpg",
+      "debugOverlayPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-8\\debug-overlays\\frame_0000_debug.jpg",
+      "people": [
+        {
+          "id": "person-02",
+          "bbox": {
+            "pixel": [
+              1121.28,
+              168.41,
+              695.69,
+              854.5
+            ],
+            "norm": [
+              0.61105,
+              0.16287,
+              0.37912,
+              0.8264
+            ],
+            "xyxyPixel": [
+              1121.28,
+              168.41,
+              1816.96,
+              1022.9
+            ]
+          },
+          "centerNorm": [
+            0.80061,
+            0.57607
+          ],
+          "areaRatio": 0.313305,
+          "confidence": 0.7204,
+          "detector": "ultralytics-yolo",
+          "faceId": "face-02",
+          "faceDirection": "left",
+          "faceBBox": {
+            "pixel": [
+              1337.06,
+              277.71,
+              223.27,
+              252.54
+            ],
+            "norm": [
+              0.72864,
+              0.26858,
+              0.12167,
+              0.24424
+            ],
+            "xyxyPixel": [
+              1337.06,
+              277.71,
+              1560.33,
+              530.26
+            ]
+          }
+        },
+        {
+          "id": "person-01",
+          "bbox": {
+            "pixel": [
+              25.51,
+              135.2,
+              752.57,
+              639.23
+            ],
+            "norm": [
+              0.0139,
+              0.13075,
+              0.41012,
+              0.61821
+            ],
+            "xyxyPixel": [
+              25.51,
+              135.2,
+              778.08,
+              774.43
+            ]
+          },
+          "centerNorm": [
+            0.21896,
+            0.43985
+          ],
+          "areaRatio": 0.25354,
+          "confidence": 0.8169,
+          "detector": "ultralytics-yolo",
+          "faceId": "face-01",
+          "faceDirection": "right",
+          "faceBBox": {
+            "pixel": [
+              282.01,
+              259.85,
+              241.4,
+              272.58
+            ],
+            "norm": [
+              0.15369,
+              0.25131,
+              0.13155,
+              0.26362
+            ],
+            "xyxyPixel": [
+              282.01,
+              259.85,
+              523.41,
+              532.43
+            ]
+          }
+        }
+      ],
+      "faces": [
+        {
+          "id": "face-01",
+          "bbox": {
+            "pixel": [
+              282.01,
+              259.85,
+              241.4,
+              272.58
+            ],
+            "norm": [
+              0.15369,
+              0.25131,
+              0.13155,
+              0.26362
+            ],
+            "xyxyPixel": [
+              282.01,
+              259.85,
+              523.41,
+              532.43
+            ]
+          },
+          "centerNorm": [
+            0.21946,
+            0.38312
+          ],
+          "areaRatio": 0.034679,
+          "direction": "right",
+          "directionConfidence": 0.7049,
+          "yawProxy": 0.06197,
+          "size": {
+            "widthRatio": 0.13155,
+            "heightRatio": 0.26362,
+            "areaRatio": 0.034679,
+            "label": "medium"
+          },
+          "detector": "mediapipe-face-mesh"
+        },
+        {
+          "id": "face-02",
+          "bbox": {
+            "pixel": [
+              1337.06,
+              277.71,
+              223.27,
+              252.54
+            ],
+            "norm": [
+              0.72864,
+              0.26858,
+              0.12167,
+              0.24424
+            ],
+            "xyxyPixel": [
+              1337.06,
+              277.71,
+              1560.33,
+              530.26
+            ]
+          },
+          "centerNorm": [
+            0.78947,
+            0.3907
+          ],
+          "areaRatio": 0.029717,
+          "direction": "left",
+          "directionConfidence": 0.6918,
+          "yawProxy": -0.05672,
+          "size": {
+            "widthRatio": 0.12167,
+            "heightRatio": 0.24424,
+            "areaRatio": 0.029717,
+            "label": "medium"
+          },
+          "detector": "mediapipe-face-mesh"
+        }
+      ],
+      "textOverlays": [
+        {
+          "id": "text-01",
+          "text": "Layerx",
+          "role": "logo_text",
+          "bbox": {
+            "pixel": [
+              161.0,
+              29.0,
+              240.0,
+              84.0
+            ],
+            "norm": [
+              0.08774,
+              0.02805,
+              0.13079,
+              0.08124
+            ],
+            "xyxyPixel": [
+              161.0,
+              29.0,
+              401.0,
+              113.0
+            ]
+          },
+          "fontSizePxEstimate": 84.0,
+          "confidence": 0.9913,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#77717C",
+            "dominantColors": [
+              {
+                "hex": "#77717C",
+                "ratio": 0.514
+              },
+              {
+                "hex": "#9090AD",
+                "ratio": 0.305
+              },
+              {
+                "hex": "#20294C",
+                "ratio": 0.181
+              }
+            ],
+            "saturation": 0.2098,
+            "brightness": 0.5209
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-02",
+          "text": "キャリア転換とLayerX参画のきっかけ",
+          "role": "logo_text",
+          "bbox": {
+            "pixel": [
+              918.0,
+              31.0,
+              911.0,
+              85.0
+            ],
+            "norm": [
+              0.50027,
+              0.02998,
+              0.49646,
+              0.08221
+            ],
+            "xyxyPixel": [
+              918.0,
+              31.0,
+              1829.0,
+              116.0
+            ]
+          },
+          "fontSizePxEstimate": 85.0,
+          "confidence": 0.7836,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#7E7176",
+            "dominantColors": [
+              {
+                "hex": "#7E7176",
+                "ratio": 0.4393
+              },
+              {
+                "hex": "#5B54F8",
+                "ratio": 0.4313
+              },
+              {
+                "hex": "#E3E3F4",
+                "ratio": 0.1294
+              }
+            ],
+            "saturation": 0.3663,
+            "brightness": 0.7723
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-03",
+          "text": "Layerx",
+          "role": "logo_text",
+          "bbox": {
+            "pixel": [
+              131.0,
+              737.0,
+              58.0,
+              18.0
+            ],
+            "norm": [
+              0.07139,
+              0.71277,
+              0.03161,
+              0.01741
+            ],
+            "xyxyPixel": [
+              131.0,
+              737.0,
+              189.0,
+              755.0
+            ]
+          },
+          "fontSizePxEstimate": 18.0,
+          "confidence": 0.9719,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#292527",
+            "dominantColors": [
+              {
+                "hex": "#292527",
+                "ratio": 0.6649
+              },
+              {
+                "hex": "#925C78",
+                "ratio": 0.1993
+              },
+              {
+                "hex": "#E2DEDD",
+                "ratio": 0.1358
+              }
+            ],
+            "saturation": 0.2316,
+            "brightness": 0.3632
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-04",
+          "text": "中村龍矢",
+          "role": "small_text",
+          "bbox": {
+            "pixel": [
+              130.0,
+              752.0,
+              74.0,
+              24.0
+            ],
+            "norm": [
+              0.07084,
+              0.72727,
+              0.04033,
+              0.02321
+            ],
+            "xyxyPixel": [
+              130.0,
+              752.0,
+              204.0,
+              776.0
+            ]
+          },
+          "fontSizePxEstimate": 24.0,
+          "confidence": 0.5879,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#292423",
+            "dominantColors": [
+              {
+                "hex": "#292423",
+                "ratio": 0.6141
+              },
+              {
+                "hex": "#9D6066",
+                "ratio": 0.2063
+              },
+              {
+                "hex": "#E3DCDA",
+                "ratio": 0.1795
+              }
+            ],
+            "saturation": 0.2415,
+            "brightness": 0.3887
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-05",
+          "text": "gPalantir",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              254.0,
+              796.0,
+              271.0,
+              78.0
+            ],
+            "norm": [
+              0.13842,
+              0.76983,
+              0.14768,
+              0.07544
+            ],
+            "xyxyPixel": [
+              254.0,
+              796.0,
+              525.0,
+              874.0
+            ]
+          },
+          "fontSizePxEstimate": 78.0,
+          "confidence": 0.6067,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#292427",
+            "dominantColors": [
+              {
+                "hex": "#292427",
+                "ratio": 0.6095
+              },
+              {
+                "hex": "#F4F0F0",
+                "ratio": 0.2382
+              },
+              {
+                "hex": "#937792",
+                "ratio": 0.1523
+              }
+            ],
+            "saturation": 0.2182,
+            "brightness": 0.4437
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-06",
+          "text": "2025/11/5に",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              579.0,
+              804.0,
+              317.0,
+              54.0
+            ],
+            "norm": [
+              0.31553,
+              0.77756,
+              0.17275,
+              0.05222
+            ],
+            "xyxyPixel": [
+              579.0,
+              804.0,
+              896.0,
+              858.0
+            ]
+          },
+          "fontSizePxEstimate": 54.0,
+          "confidence": 0.9984,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#FDFDFD",
+            "dominantColors": [
+              {
+                "hex": "#FDFDFD",
+                "ratio": 0.8322
+              },
+              {
+                "hex": "#27292B",
+                "ratio": 0.1019
+              },
+              {
+                "hex": "#7774C9",
+                "ratio": 0.066
+              }
+            ],
+            "saturation": 0.045,
+            "brightness": 0.8969
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-07",
+          "text": "エマビディアの次は",
+          "role": "annotation",
+          "bbox": {
+            "pixel": [
+              131.0,
+              881.0,
+              248.0,
+              40.0
+            ],
+            "norm": [
+              0.07139,
+              0.85203,
+              0.13515,
+              0.03868
+            ],
+            "xyxyPixel": [
+              131.0,
+              881.0,
+              379.0,
+              921.0
+            ]
+          },
+          "fontSizePxEstimate": 40.0,
+          "confidence": 0.4316,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#272124",
+            "dominantColors": [
+              {
+                "hex": "#272124",
+                "ratio": 0.5829
+              },
+              {
+                "hex": "#A66678",
+                "ratio": 0.2647
+              },
+              {
+                "hex": "#EFEAEB",
+                "ratio": 0.1524
+              }
+            ],
+            "saturation": 0.2536,
+            "brightness": 0.4254
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-08",
+          "text": "TBS CROSS DIG vith Bloombergで公開された動画",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              579.0,
+              862.0,
+              1142.0,
+              69.0
+            ],
+            "norm": [
+              0.31553,
+              0.83366,
+              0.62234,
+              0.06673
+            ],
+            "xyxyPixel": [
+              579.0,
+              862.0,
+              1721.0,
+              931.0
+            ]
+          },
+          "fontSizePxEstimate": 69.0,
+          "confidence": 0.9718,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#FCFCFD",
+            "dominantColors": [
+              {
+                "hex": "#FCFCFD",
+                "ratio": 0.755
+              },
+              {
+                "hex": "#2C282B",
+                "ratio": 0.1688
+              },
+              {
+                "hex": "#807B9B",
+                "ratio": 0.0762
+              }
+            ],
+            "saturation": 0.0581,
+            "brightness": 0.8076
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-09",
+          "text": "パランテイア」?",
+          "role": "subtitle",
+          "bbox": {
+            "pixel": [
+              143.0,
+              913.0,
+              379.0,
+              73.0
+            ],
+            "norm": [
+              0.07793,
+              0.88298,
+              0.20654,
+              0.0706
+            ],
+            "xyxyPixel": [
+              143.0,
+              913.0,
+              522.0,
+              986.0
+            ]
+          },
+          "fontSizePxEstimate": 73.0,
+          "confidence": 0.9205,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#755BAA",
+            "dominantColors": [
+              {
+                "hex": "#755BAA",
+                "ratio": 0.3944
+              },
+              {
+                "hex": "#242124",
+                "ratio": 0.3845
+              },
+              {
+                "hex": "#F8F7F8",
+                "ratio": 0.2212
+              }
+            ],
+            "saturation": 0.2735,
+            "brightness": 0.5662
+          },
+          "detector": "easyocr"
+        }
+      ],
+      "logos": [
+        {
+          "id": "logo-01",
+          "kind": "brand-text",
+          "label": "LayerX",
+          "bbox": {
+            "pixel": [
+              161.0,
+              29.0,
+              240.0,
+              84.0
+            ],
+            "norm": [
+              0.08774,
+              0.02805,
+              0.13079,
+              0.08124
+            ],
+            "xyxyPixel": [
+              161.0,
+              29.0,
+              401.0,
+              113.0
+            ]
+          },
+          "confidence": 0.9913,
+          "sourceTextId": "text-01"
+        },
+        {
+          "id": "logo-02",
+          "kind": "brand-text",
+          "label": "LayerX",
+          "bbox": {
+            "pixel": [
+              918.0,
+              31.0,
+              911.0,
+              85.0
+            ],
+            "norm": [
+              0.50027,
+              0.02998,
+              0.49646,
+              0.08221
+            ],
+            "xyxyPixel": [
+              918.0,
+              31.0,
+              1829.0,
+              116.0
+            ]
+          },
+          "confidence": 0.7836,
+          "sourceTextId": "text-02"
+        },
+        {
+          "id": "logo-03",
+          "kind": "brand-text",
+          "label": "LayerX",
+          "bbox": {
+            "pixel": [
+              131.0,
+              737.0,
+              58.0,
+              18.0
+            ],
+            "norm": [
+              0.07139,
+              0.71277,
+              0.03161,
+              0.01741
+            ],
+            "xyxyPixel": [
+              131.0,
+              737.0,
+              189.0,
+              755.0
+            ]
+          },
+          "confidence": 0.9719,
+          "sourceTextId": "text-03"
+        }
+      ],
+      "annotations": [
+        {
+          "id": "text-04",
+          "text": "中村龍矢",
+          "role": "small_text",
+          "bbox": {
+            "pixel": [
+              130.0,
+              752.0,
+              74.0,
+              24.0
+            ],
+            "norm": [
+              0.07084,
+              0.72727,
+              0.04033,
+              0.02321
+            ],
+            "xyxyPixel": [
+              130.0,
+              752.0,
+              204.0,
+              776.0
+            ]
+          },
+          "fontSizePxEstimate": 24.0,
+          "confidence": 0.5879,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#292423",
+            "dominantColors": [
+              {
+                "hex": "#292423",
+                "ratio": 0.6141
+              },
+              {
+                "hex": "#9D6066",
+                "ratio": 0.2063
+              },
+              {
+                "hex": "#E3DCDA",
+                "ratio": 0.1795
+              }
+            ],
+            "saturation": 0.2415,
+            "brightness": 0.3887
+          },
+          "detector": "easyocr"
+        },
+        {
+          "id": "text-07",
+          "text": "エマビディアの次は",
+          "role": "annotation",
+          "bbox": {
+            "pixel": [
+              131.0,
+              881.0,
+              248.0,
+              40.0
+            ],
+            "norm": [
+              0.07139,
+              0.85203,
+              0.13515,
+              0.03868
+            ],
+            "xyxyPixel": [
+              131.0,
+              881.0,
+              379.0,
+              921.0
+            ]
+          },
+          "fontSizePxEstimate": 40.0,
+          "confidence": 0.4316,
+          "backgroundBox": {
+            "detected": true,
+            "color": "#272124",
+            "dominantColors": [
+              {
+                "hex": "#272124",
+                "ratio": 0.5829
+              },
+              {
+                "hex": "#A66678",
+                "ratio": 0.2647
+              },
+              {
+                "hex": "#EFEAEB",
+                "ratio": 0.1524
+              }
+            ],
+            "saturation": 0.2536,
+            "brightness": 0.4254
+          },
+          "detector": "easyocr"
+        }
+      ],
+      "composition": {
+        "aspectRatio": 1.77466,
+        "orientation": "landscape",
+        "splitScreen": {
+          "present": true,
+          "xRatio": 0.50627,
+          "confidence": 0.95
+        },
+        "personCount": 2,
+        "personCenters": [
+          [
+            0.80061,
+            0.57607
+          ],
+          [
+            0.21896,
+            0.43985
+          ]
+        ],
+        "mainSubjectMargins": {
+          "left": 0.61105,
+          "right": 0.00983,
+          "top": 0.16287,
+          "bottom": 0.01073
+        },
+        "lowerThirdTextCoverageRatio": 0.08247,
+        "textCoverageRatio": 0.13326,
+        "layoutTags": [
+          "vertical-split-screen",
+          "two-person-interview",
+          "large-lower-third-text"
+        ]
+      },
+      "visualStyle": {
+        "brightness": 0.546,
+        "contrast": 0.2782,
+        "saturation": 0.1999,
+        "warmth": -0.0298,
+        "exposure": "neutral",
+        "colorTemperature": "neutral",
+        "dominantColors": [
+          {
+            "hex": "#7A6D74",
+            "ratio": 0.3547
+          },
+          {
+            "hex": "#F8F7FA",
+            "ratio": 0.2248
+          },
+          {
+            "hex": "#302C3B",
+            "ratio": 0.1913
+          },
+          {
+            "hex": "#B1A2A6",
+            "ratio": 0.1615
+          },
+          {
+            "hex": "#5C55F1",
+            "ratio": 0.0678
+          }
+        ]
+      }
+    }
+  ]
+}

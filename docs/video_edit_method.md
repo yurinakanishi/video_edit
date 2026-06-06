@@ -2,11 +2,14 @@
 
 This document is the app-level contract. It must stay project-neutral. Put project goals, source notes, QA findings, one-off commands, and custom scripts under `projects/<project-id>/`.
 
+Test-only project workspaces are also project-shaped, but they belong under a named test root such as `projects/__smoke__/<test-name>/<run-id>/`. They should not be left as top-level `projects/<fixture-name>` entries.
+
 ## Source Of Truth
 
 - Editable project state: `projects/<project-id>/project_state.json`.
 - Runtime config snapshot: `projects/<project-id>/output/app/video_edit_app_config.runtime.json`, passed through `VIDEO_EDIT_APP_CONFIG`.
 - Command-line project context: `VIDEO_EDIT_PROJECT=<project-id>` or `VIDEO_EDIT_PROJECT_ROOT=<absolute-project-root>`.
+- App project root override for development tests: `VIDEO_EDIT_PROJECTS_ROOT=<absolute-projects-root>`.
 - Media manifest: `assets.mediaManifest` or `assets.mediaManifestPath`.
 - Normalized timeline: `projects/<project-id>/output/timelines/current.timeline.json`, validated by `config/timeline.schema.json`.
 - Generated reports, transcripts, overlays, and renders stay under the active project's `output` tree.
@@ -26,10 +29,20 @@ projects/<project-id>/
   output/   # ignored generated artifacts
 ```
 
+Named test workspaces use the same internal layout under a reserved grouping directory:
+
+```text
+projects/__smoke__/<test-name>/<run-id>/<project-id>/
+  source/
+  output/
+  project.json
+```
+
 - `VIDEO_EDITING_INSTRUCTIONS.md` describes the project's goal, materials, edit policy, one-off scripts, and verification checklist.
 - `projects/<project-id>/scripts` is for project-specific automation that composes shared app tools.
 - Shared app code under `video_edit_core`, `scripts`, `app`, `remotion`, `config`, and `docs` must remain reusable across projects.
 - Electron does not run project-local scripts directly. Codex or the CLI should run them after reading the project instructions.
+- Electron smoke tests should set `VIDEO_EDIT_PROJECTS_ROOT` to their named test run directory so generated fixtures stay grouped and out of normal project discovery.
 - Shared workflow actions and Python script allowlists live in `config/workflow_actions.json`; update that manifest instead of adding separate action lists in Python or Electron.
 - Reusable Python implementation belongs in `video_edit_core`; `scripts/*.py` should stay as stable CLI wrappers, action dispatchers, or compatibility shims.
 

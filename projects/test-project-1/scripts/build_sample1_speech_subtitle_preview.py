@@ -960,7 +960,7 @@ def draw_caption_on_canvas(
         paste_gradient_box(line_layer, (x0, y0, x1, y1), colors, radius, shadow)
         bbox = text_bbox(draw, line, font)
         tx = x0 + (box_w - text_w) // 2 - bbox[0]
-        ty = y0 + (box_h - text_h) // 2 - bbox[1] - round(box_h * 0.03)
+        ty = y0 + (box_h - text_h) // 2 - bbox[1]
         draw_gradient_text(line_layer, (tx, ty), line, font, fill)
         reveal_width = max(1, min(PREVIEW_WIDTH - x0, round((x1 - x0) * visible_ratio)))
         reveal_mask = Image.new("L", canvas.size, 0)

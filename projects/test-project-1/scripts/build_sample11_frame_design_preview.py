@@ -18,6 +18,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = PROJECT_ROOT.parents[1]
 REFERENCE_ROOT = REPO_ROOT / "reference-assets"
 REFERENCE_ASSET_DIR = REFERENCE_ROOT / "library" / "collections" / "layer-x" / "images" / "sample-11"
+REFERENCE_VIDEO_SAMPLE_DIR = REFERENCE_ROOT / "library" / "collections" / "layer-x" / "video" / "sample-1" / "samples"
 REFERENCE_IMAGE = REFERENCE_ASSET_DIR / "sample-11.png"
 REFERENCE_ANALYSIS = REFERENCE_ASSET_DIR / "analysis.json"
 REFERENCE_SAMPLE = REFERENCE_ASSET_DIR / "samples" / "frame_0000.jpg"
@@ -47,6 +48,7 @@ MEDIA_MANIFEST = REFERENCE_ROOT / "output" / "reports" / "media_manifest.json"
 PREVIEW_WIDTH = 1280
 PREVIEW_HEIGHT = 720
 FPS = "24000/1001"
+OVERLAY_RENDER_SCALE = 4
 
 
 def now_iso() -> str:
@@ -197,6 +199,8 @@ def detect_faces(rgb: np.ndarray, top_height: int, bottom_start: int) -> list[di
     for x, y, w, h in raw_faces:
         if y < top_height or y + h > bottom_start:
             continue
+        if y > top_height + (bottom_start - top_height) * 0.55:
+            continue
         if h < 120:
             continue
         faces.append(
@@ -275,6 +279,7 @@ def analyze_reference_image() -> dict[str, Any]:
     band_color_variation = {
         "topBandStops": top_stops,
         "bottomBandStops": bottom_stops,
+        "topBandRightAccent": analyze_reference_video_top_band_accent(),
         "topDominantColors": dominant_colors(top_rgb[top_purple_mask].reshape((-1, 1, 3)) if top_purple_mask.any() else top_rgb, 5),
         "bottomDominantColors": dominant_colors(bottom_rgb[bottom_purple_mask].reshape((-1, 1, 3)) if bottom_purple_mask.any() else bottom_rgb, 5),
         "note": "The referenced band reads as blue-purple; green-channel values vary subtly across the band and are preserved in sampled RGB stops.",
@@ -348,6 +353,66 @@ def analyze_reference_image() -> dict[str, Any]:
     }
 
 
+def analyze_reference_video_top_band_accent() -> dict[str, Any]:
+    sample_paths = sorted(REFERENCE_VIDEO_SAMPLE_DIR.glob("*.jpg"))[:12]
+    if not sample_paths:
+        return {
+            "source": str(REFERENCE_VIDEO_SAMPLE_DIR),
+            "separatorXNorm": 0.836,
+            "rightRegionTint": "#625CF7",
+            "separatorColor": "#7C83FB",
+            "confidence": 0.35,
+        }
+
+    separator_norms: list[float] = []
+    right_colors: list[np.ndarray] = []
+    line_colors: list[np.ndarray] = []
+    for path in sample_paths:
+        rgb = np.array(Image.open(path).convert("RGB"))
+        height, width, _ = rgb.shape
+        top_h = round(height * 0.14)
+        # Use the purple band away from logo/title and subtitle content.
+        band = rgb[round(top_h * 0.2) : round(top_h * 0.86), round(width * 0.5) :]
+        if band.size == 0:
+            continue
+        mean_col = band.mean(axis=0)
+        diffs = np.linalg.norm(np.diff(mean_col, axis=0), axis=1)
+        search_left = round(width * 0.28)
+        search_right = round(width * 0.48)
+        if search_right <= search_left:
+            continue
+        local = diffs[search_left:search_right]
+        if local.size == 0:
+            continue
+        local_x = int(np.argmax(local) + search_left)
+        x = round(width * 0.5) + local_x
+        separator_norms.append(x / width)
+        line_colors.append(rgb[:top_h, max(0, min(width - 1, x))].mean(axis=0))
+        right_colors.append(rgb[:top_h, round(width * 0.9) : round(width * 0.96)].mean(axis=(0, 1)))
+
+    if not separator_norms:
+        return {
+            "source": str(REFERENCE_VIDEO_SAMPLE_DIR),
+            "separatorXNorm": 0.836,
+            "rightRegionTint": "#625CF7",
+            "separatorColor": "#7C83FB",
+            "confidence": 0.35,
+        }
+
+    separator_x = float(np.median(separator_norms))
+    line_rgb = np.median(np.array(line_colors), axis=0)
+    right_rgb = np.median(np.array(right_colors), axis=0)
+    return {
+        "source": str(REFERENCE_VIDEO_SAMPLE_DIR),
+        "sampleCount": len(separator_norms),
+        "separatorXNorm": round(separator_x, 6),
+        "rightRegionTint": hex_color(right_rgb),
+        "separatorColor": hex_color(line_rgb),
+        "confidence": 0.72,
+        "observation": "Sample-1 top band has a subtle vertical/right-side color break; median detected separator is used for the recreated frame overlay.",
+    }
+
+
 def crop_logo_source() -> Image.Image:
     logo = Image.open(PROJECT_LOGO).convert("RGBA")
     rgb = np.array(logo.convert("RGB"))
@@ -382,37 +447,54 @@ def render_frame_overlay(profile: dict[str, Any]) -> None:
     composition = analysis_frame["composition"]
     top_norm = composition["topBand"]["heightNorm"]
     bottom_norm = composition["bottomBand"]["heightNorm"]
-    top_h = round(top_norm * PREVIEW_HEIGHT)
-    bottom_h = round(bottom_norm * PREVIEW_HEIGHT)
-    canvas = Image.new("RGBA", (PREVIEW_WIDTH, PREVIEW_HEIGHT), (0, 0, 0, 0))
+    scale = OVERLAY_RENDER_SCALE
+    width = PREVIEW_WIDTH * scale
+    height = PREVIEW_HEIGHT * scale
+    top_h = round(top_norm * height)
+    bottom_h = round(bottom_norm * height)
+    canvas = Image.new("RGBA", (width, height), (0, 0, 0, 0))
 
-    top_gradient = draw_linear_gradient((PREVIEW_WIDTH, top_h), composition["topBand"]["gradientStops"])
-    bottom_gradient = draw_linear_gradient((PREVIEW_WIDTH, bottom_h), composition["bottomBand"]["gradientStops"])
+    top_gradient = draw_linear_gradient((width, top_h), composition["topBand"]["gradientStops"])
+    bottom_gradient = draw_linear_gradient((width, bottom_h), composition["bottomBand"]["gradientStops"])
     canvas.alpha_composite(top_gradient, (0, 0))
-    canvas.alpha_composite(bottom_gradient, (0, PREVIEW_HEIGHT - bottom_h))
+    canvas.alpha_composite(bottom_gradient, (0, height - bottom_h))
 
     draw = ImageDraw.Draw(canvas)
     panel = composition["logoPanel"]
     src_w = analysis_frame["width"]
     src_h = analysis_frame["height"]
-    top_right = round(panel["topRightPx"] / src_w * PREVIEW_WIDTH)
-    bottom_right = round(panel["bottomRightPx"] / src_w * PREVIEW_WIDTH)
+    top_right = round(panel["topRightPx"] / src_w * width)
+    bottom_right = round(panel["bottomRightPx"] / src_w * width)
     draw.polygon([(0, 0), (top_right, 0), (bottom_right, top_h), (0, top_h)], fill=(255, 255, 255, 255))
 
-    # Preserve the sampled color shift without drawing beyond the band edges.
-    draw.polygon([(round(PREVIEW_WIDTH * 0.78), PREVIEW_HEIGHT - bottom_h + 1), (PREVIEW_WIDTH, PREVIEW_HEIGHT - bottom_h + 1), (PREVIEW_WIDTH, PREVIEW_HEIGHT), (round(PREVIEW_WIDTH * 0.84), PREVIEW_HEIGHT)], fill=(112, 141, 244, 38))
+    accent = composition.get("bandColorVariation", {}).get("topBandRightAccent", {})
+    separator_x = round(float(accent.get("separatorXNorm", 0.836)) * width)
+    separator_x = max(round(width * 0.62), min(width - 3 * scale, separator_x))
+    right_tint = rgb_from_hex(str(accent.get("rightRegionTint", "#625CF7")))
+    line_rgb = rgb_from_hex(str(accent.get("separatorColor", "#7C83FB")))
+    accent_layer = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    accent_draw = ImageDraw.Draw(accent_layer)
+    accent_draw.line([(top_right, 0), (bottom_right, top_h)], fill=(91, 74, 242, 80), width=max(1, 2 * scale))
+    accent_draw.rectangle((separator_x, 0, width, top_h), fill=(*right_tint, 30))
+    accent_draw.line([(separator_x, 0), (separator_x + round(top_h * 0.05), top_h)], fill=(*line_rgb, 96), width=max(1, scale))
+    canvas.alpha_composite(accent_layer)
 
     logo_bbox = panel["logoDetectedBBox"]["xyxyPixel"]
-    logo_x = round(logo_bbox[0] / src_w * PREVIEW_WIDTH)
-    logo_y = round(logo_bbox[1] / src_h * PREVIEW_HEIGHT)
-    logo_h = max(1, round((logo_bbox[3] - logo_bbox[1]) / src_h * PREVIEW_HEIGHT))
+    logo_x = round(logo_bbox[0] / src_w * width)
+    logo_y = round(logo_bbox[1] / src_h * height)
+    logo_h = max(1, round((logo_bbox[3] - logo_bbox[1]) / src_h * height))
     logo = crop_logo_source()
     logo_w = round(logo.width * logo_h / max(1, logo.height))
     logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
     canvas.alpha_composite(logo, (logo_x, logo_y))
 
     FRAME_OVERLAY.parent.mkdir(parents=True, exist_ok=True)
-    canvas.save(FRAME_OVERLAY)
+    canvas.resize((PREVIEW_WIDTH, PREVIEW_HEIGHT), Image.Resampling.LANCZOS).save(FRAME_OVERLAY)
+
+
+def content_video_y_offset(profile: dict[str, Any]) -> int:
+    top_h = round(profile["frames"][0]["composition"]["topBand"]["heightNorm"] * PREVIEW_HEIGHT)
+    return max(0, round(top_h * 0.68))
 
 
 def write_reference_debug(profile: dict[str, Any]) -> None:
@@ -488,8 +570,7 @@ def video_duration(path: Path, ffprobe: str) -> float:
 
 def render_preview(profile: dict[str, Any], ffmpeg: str, ffprobe: str) -> float:
     duration = video_duration(SOURCE_VIDEO, ffprobe)
-    top_h = round(profile["frames"][0]["composition"]["topBand"]["heightNorm"] * PREVIEW_HEIGHT)
-    video_y = top_h
+    video_y = content_video_y_offset(profile)
     inputs = ["-i", str(SOURCE_VIDEO)]
     filter_parts = [f"[0:v]scale={PREVIEW_WIDTH}:{PREVIEW_HEIGHT}:flags=bicubic,setpts=PTS-STARTPTS[base]", f"color=c=black:s={PREVIEW_WIDTH}x{PREVIEW_HEIGHT}:r={FPS}:d={duration:.6f}[canvas]", f"[canvas][base]overlay=0:{video_y}:format=auto[video]"]
     current = "video"
@@ -561,7 +642,7 @@ def write_timeline(profile: dict[str, Any], duration: float) -> None:
             {"id": "audio.main", "kind": "audio", "label": "Source audio", "allowOverlap": False},
         ],
         "clips": [
-            {"id": "clip_video_master", "trackId": "video.main", "kind": "video", "sourceId": "src_master", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "sourceIn": 0.0, "sourceOut": round(duration, 6), "fit": {"mode": "cover", "width": PREVIEW_WIDTH, "height": PREVIEW_HEIGHT}, "style": {"yOffsetPx": round(profile["frames"][0]["composition"]["topBand"]["heightNorm"] * PREVIEW_HEIGHT)}},
+            {"id": "clip_video_master", "trackId": "video.main", "kind": "video", "sourceId": "src_master", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "sourceIn": 0.0, "sourceOut": round(duration, 6), "fit": {"mode": "cover", "width": PREVIEW_WIDTH, "height": PREVIEW_HEIGHT}, "style": {"yOffsetPx": content_video_y_offset(profile)}},
             {"id": "clip_frame_overlay", "trackId": "graphics.frame", "kind": "generated", "sourceId": "src_frame_overlay", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "style": {"referenceAnalysis": str(REFERENCE_ANALYSIS), "designProfile": str(DESIGN_PROFILE)}},
             {"id": "clip_audio_master", "trackId": "audio.main", "kind": "audio", "sourceId": "src_master", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "sourceIn": 0.0, "sourceOut": round(duration, 6)},
         ],
@@ -624,13 +705,14 @@ def main() -> None:
         "detected": {
             "topBandHeightPx": profile["summary"]["detectedTopBandHeightPx"],
             "bottomBandHeightPx": profile["summary"]["detectedBottomBandHeightPx"],
+            "contentVideoYOffsetPx": content_video_y_offset(profile),
             "topBandStops": profile["frames"][0]["composition"]["topBand"]["gradientStops"],
             "bottomBandStops": profile["frames"][0]["composition"]["bottomBand"]["gradientStops"],
             "logoPanel": profile["frames"][0]["composition"]["logoPanel"],
         },
         "notes": [
             "Preview render only; production render waits for user approval.",
-            "The source video is shifted down by the detected top-band height so faces do not sit under the header band.",
+            "The source video is shifted down less than the full header height so faces sit higher and avoid the speech subtitles.",
             "Header/footer RGB stops preserve the subtle channel differences detected in the reference image.",
         ],
     }

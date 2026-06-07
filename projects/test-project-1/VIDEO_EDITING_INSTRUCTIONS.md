@@ -112,11 +112,14 @@ python projects\test-project-1\scripts\build_sample11_frame_design_preview.py
 - 下部帯: 28px / 1034px
 - 上部帯 RGB stops: `#5A51FE`, `#5A51FD`, `#5D60FE`
 - 下部帯 RGB stops: `#5B59FD`, `#656AFD`, `#747FFC`
+- sample-1 参照動画サンプルから検出した上部帯右側の薄い色分割: separator `xNorm=0.952563`, right tint `#5F5AF5`, separator color `#605CF5`
 - 白い左上ロゴパネル: slanted polygon
 - ロゴ検出 bbox: `[61, 45, 310, 105]`
-- 帯の微妙な色差は、検出したRGB stopsと下部帯内の軽い色変化で再現する
+- 帯の微妙な色差は、検出したRGB stops、下部帯内の軽い色変化、上部帯右側の薄い色分割で再現する
+- 下部の紫線は途中で切らず、全幅に対して1本の連続した gradient band として描画する
+- 左上ロゴパネルと右側帯の斜め境界は、4倍解像度で描画してから LANCZOS で縮小し、ガタつきを抑える
 
-sample動画へ適用する時は、人物の顔が上部帯にかからないよう、映像を検出済み上部帯の高さ分だけ下げる。現在の preview では 1280x720 上で約102px下げている。
+sample動画へ適用する時は、上部帯と中央下字幕の両方を確認し、人物の顔が字幕にかぶりにくい位置へ調整する。現在の preview では、検出済み上部帯の高さ約102pxより浅い `69px` 下げに変更し、前回より人物表示を約33px上へ戻している。
 
 プレビュー生成後は必ず timeline を検証する。
 
@@ -127,8 +130,109 @@ python scripts\timeline_validate.py --timeline projects\test-project-1\output\ti
 
 直近の検証結果:
 
-- reference asset validation: ok
 - timeline validation: valid
 - errors: 0
 - warnings: 0
 - preview metadata: 1280x720 / 約60秒 / h264 + aac
+
+## Sample-1 Catchphrase Collection Preview
+
+`reference-assets/library/collections/layer-x/video/sample-1/sample-1.mp4` の前半約10秒は、キャッチフレーズの出し方と構成を把握するための参照として使う。実際に15秒へカット編集する素材は、このプロジェクトの sample video である `source/video/Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4` に限定する。抽出結果、参照アセット側のフック、プロジェクト動画側の編集範囲は JSON として保存する。
+
+現在の catchphrase collection preview は project-local script で生成する。
+
+```powershell
+python projects\test-project-1\scripts\build_sample1_catchphrase_collection_preview.py
+```
+
+生成物:
+
+- Preview video: `output/videos/preview_sample1_catchphrase_collection.mp4`
+- Preview still: `output/images/preview_sample1_catchphrase_collection_t0005.jpg`
+- Catchphrase JSON: `output/subtitles/sample1_catchphrase_collection.json`
+- Timeline: `output/timelines/sample1_catchphrase_collection_preview.timeline.json`
+- Report: `output/reports/sample1_catchphrase_collection_preview_report.json`
+
+参照アセット前半10秒から抽出したフック構成:
+
+- `00:00.0-00:03.4`: `元Palantir社員が語る / FDEの正体とは?`
+- `00:03.5-00:06.8`: `コンサルティングやSIerとは / 性質が異なる`
+- `00:07.0-00:10.0`: `基本はプロジェクトを / 進行していく仕事`
+
+プロジェクト sample video から選定した実カット:
+
+- `00:00.0-00:05.0`: `An eye-opening experience`
+- `00:07.34-00:12.34`: `Something that would have negative consequences`
+- `00:20.32-00:25.32`: `But now it was completely obvious`
+
+編集方針:
+
+- プロジェクト sample video の3箇所を、それぞれ約5秒の hard cut clip として連結する
+- 3本合計で約15秒の preview にする
+- 参照アセット動画は編集素材として使わず、`referenceHookPatterns` として JSON に残す
+- 参照側の2つ目の OCR 由来表記 `Sler` は、意味上 `SIer` として正規化して JSON に raw / normalized の両方を残す
+
+プレビュー生成後は必ず timeline を検証する。
+
+```powershell
+$env:VIDEO_EDIT_PROJECT='test-project-1'
+python scripts\timeline_validate.py --timeline projects\test-project-1\output\timelines\sample1_catchphrase_collection_preview.timeline.json --output-report projects\test-project-1\output\reports\sample1_catchphrase_collection_preview_timeline_validation.json
+```
+
+直近の検証結果:
+
+- timeline validation: valid
+- errors: 0
+- warnings: 0
+- preview metadata: 1280x720 / 15.00秒 / h264 + aac
+
+この作業は preview 段階。最終 production render は、カット選択、尺、表示位置、帯デザインがユーザー確認済みになってから実行する。
+
+## Sample-1 Catchphrase Collection Styled Preview
+
+`Sample-1 Catchphrase Collection Preview` の15秒カット編集に、これまで作成した字幕スタイルと sample-11 の帯/ロゴデザインを合成する。実際のカット素材は引き続きプロジェクト sample video のみで、参照アセット動画は字幕スタイル、キャッチフレーズ構成、デザイン解析の参照に限定する。
+
+現在の styled preview は project-local script で生成する。
+
+```powershell
+python projects\test-project-1\scripts\build_sample1_catchphrase_collection_styled_preview.py
+```
+
+生成物:
+
+- Styled preview video: `output/videos/preview_sample1_catchphrase_collection_styled.mp4`
+- Styled preview stills: `output/images/preview_sample1_catchphrase_collection_styled_t0001.jpg`, `output/images/preview_sample1_catchphrase_collection_styled_t0006.jpg`, `output/images/preview_sample1_catchphrase_collection_styled_t0011.jpg`
+- Styled subtitle profile: `output/subtitles/sample1_catchphrase_collection_styled_profile.json`
+- Animated subtitle overlay: `output/subtitles/sample1_catchphrase_collection_subtitle_overlay.mov`
+- Frame overlay: `output/overlays/sample11_frame_design/sample11_frame_overlay.png`
+- Timeline: `output/timelines/sample1_catchphrase_collection_styled_preview.timeline.json`
+- Report: `output/reports/sample1_catchphrase_collection_styled_preview_report.json`
+
+実装方針:
+
+- プロジェクト sample video の3カットを hard cut で連結する
+- sample-1 の発話字幕スタイル、色グラデーション、背景グラデーション、横方向 reveal アニメーションを使う
+- 英語キャッチフレーズが箱からはみ出さないよう、この15秒版ではフォント上限を `74px` に抑える
+- 参照パターンのうち上寄り字幕は、このプロジェクト映像の人物顔にかからないよう下段へ補正する
+- sample-11 の上部太帯、下部細帯、左上ロゴパネル、LayerXロゴを合成する
+- 映像本体は sample-11 frame design preview と同じく `69px` 下げで配置する
+- 字幕テキストは box height と text bbox から上下中央に配置し、以前の上寄せ補正は使わない
+- frame overlay は `OVERLAY_RENDER_SCALE=4` で supersampling し、斜め境界と細線を滑らかにする
+- Remotion は検討したが、今回の修正は静的 frame overlay と字幕配置計算の改善で完結するため、既存の PIL/ffmpeg project-local pipeline を継続する
+
+プレビュー生成後は必ず timeline を検証する。
+
+```powershell
+$env:VIDEO_EDIT_PROJECT='test-project-1'
+python scripts\timeline_validate.py --timeline projects\test-project-1\output\timelines\sample1_catchphrase_collection_styled_preview.timeline.json --output-report projects\test-project-1\output\reports\sample1_catchphrase_collection_styled_preview_timeline_validation.json
+```
+
+直近の検証結果:
+
+- timeline validation: valid
+- errors: 0
+- warnings: 0
+- preview metadata: 1280x720 / 15.01秒 / h264 + aac
+- visual QA stills: 1秒、6秒、11秒で字幕が顔にかからず、2行字幕もボックス内に収まり、下部線が全幅で連続していることを確認
+
+この作業は preview 段階。最終 production render は、styled preview の字幕位置、フォントサイズ、カット選択、帯デザインがユーザー確認済みになってから実行する。

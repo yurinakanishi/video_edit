@@ -85,30 +85,6 @@
           },
           "confidence": 0.55,
           "source": "opencv-haar-filtered"
-        },
-        {
-          "bbox": {
-            "pixel": [
-              1335,
-              628,
-              138,
-              138
-            ],
-            "xyxyPixel": [
-              1335,
-              628,
-              1473,
-              766
-            ],
-            "norm": [
-              0.726333,
-              0.60735,
-              0.075082,
-              0.133462
-            ]
-          },
-          "confidence": 0.55,
-          "source": "opencv-haar-filtered"
         }
       ],
       "textOverlays": [],
@@ -506,6 +482,15 @@
             "#656AFD",
             "#747FFC"
           ],
+          "topBandRightAccent": {
+            "source": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples",
+            "sampleCount": 12,
+            "separatorXNorm": 0.952563,
+            "rightRegionTint": "#5F5AF5",
+            "separatorColor": "#605CF5",
+            "confidence": 0.72,
+            "observation": "Sample-1 top band has a subtle vertical/right-side color break; median detected separator is used for the recreated frame overlay."
+          },
           "topDominantColors": [
             {
               "hex": "#5A52FE",

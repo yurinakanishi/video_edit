@@ -1,0 +1,585 @@
+{
+  "schemaVersion": "reference-asset-analysis/v1",
+  "asset": {
+    "assetId": "sample-11",
+    "mediaId": "media-011",
+    "collection": "layer-x",
+    "kind": "image",
+    "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\sample-11.png",
+    "originalPath": "C:\\Users\\yurin\\Downloads\\Screenshot 2026-06-07 101542.png",
+    "sha256": "9c0c33db0dad074b7903ccfb06e733b1346ee92842ea459a32f2d6060004c82f",
+    "sizeBytes": 1171723,
+    "relativePath": "collections\\layer-x\\images\\sample-11\\sample-11.png",
+    "name": "Screenshot 2026-06-07 101542.png",
+    "extension": ".png",
+    "width": 1838,
+    "height": 1034,
+    "duration": null,
+    "fps": null
+  },
+  "summary": {
+    "frameCount": 1,
+    "personPresent": true,
+    "facePresent": true,
+    "subtitlePresent": true,
+    "titlePresent": false,
+    "logoPresent": true,
+    "annotationPresent": true,
+    "detectedTopBandHeightPx": 146,
+    "detectedBottomBandHeightPx": 28
+  },
+  "frames": [
+    {
+      "frameId": "frame_0000",
+      "timeSeconds": 0.0,
+      "width": 1838,
+      "height": 1034,
+      "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\samples\\frame_0000.jpg",
+      "debugOverlayPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\debug-overlays\\frame_0000_debug.jpg",
+      "people": [],
+      "faces": [
+        {
+          "bbox": {
+            "pixel": [
+              312,
+              334,
+              253,
+              253
+            ],
+            "xyxyPixel": [
+              312,
+              334,
+              565,
+              587
+            ],
+            "norm": [
+              0.16975,
+              0.323017,
+              0.13765,
+              0.244681
+            ]
+          },
+          "confidence": 0.55,
+          "source": "opencv-haar-filtered"
+        },
+        {
+          "bbox": {
+            "pixel": [
+              1263,
+              366,
+              211,
+              211
+            ],
+            "xyxyPixel": [
+              1263,
+              366,
+              1474,
+              577
+            ],
+            "norm": [
+              0.68716,
+              0.353965,
+              0.114799,
+              0.204062
+            ]
+          },
+          "confidence": 0.55,
+          "source": "opencv-haar-filtered"
+        },
+        {
+          "bbox": {
+            "pixel": [
+              1335,
+              628,
+              138,
+              138
+            ],
+            "xyxyPixel": [
+              1335,
+              628,
+              1473,
+              766
+            ],
+            "norm": [
+              0.726333,
+              0.60735,
+              0.075082,
+              0.133462
+            ]
+          },
+          "confidence": 0.55,
+          "source": "opencv-haar-filtered"
+        }
+      ],
+      "textOverlays": [],
+      "logos": [
+        {
+          "role": "brand-logo",
+          "bbox": {
+            "pixel": [
+              61,
+              45,
+              249,
+              60
+            ],
+            "xyxyPixel": [
+              61,
+              45,
+              310,
+              105
+            ],
+            "norm": [
+              0.033188,
+              0.04352,
+              0.135473,
+              0.058027
+            ]
+          },
+          "source": "detected from screenshot; render uses provided project logo file"
+        }
+      ],
+      "annotations": [
+        {
+          "kind": "purple-background-subtitle",
+          "bbox": {
+            "pixel": [
+              44,
+              594,
+              1454,
+              233
+            ],
+            "xyxyPixel": [
+              44,
+              594,
+              1498,
+              827
+            ],
+            "norm": [
+              0.023939,
+              0.574468,
+              0.791077,
+              0.225338
+            ]
+          }
+        },
+        {
+          "kind": "purple-background-subtitle",
+          "bbox": {
+            "pixel": [
+              1253,
+              832,
+              130,
+              127
+            ],
+            "xyxyPixel": [
+              1253,
+              832,
+              1383,
+              959
+            ],
+            "norm": [
+              0.681719,
+              0.804642,
+              0.070729,
+              0.122824
+            ]
+          }
+        },
+        {
+          "kind": "purple-background-subtitle",
+          "bbox": {
+            "pixel": [
+              1120,
+              837,
+              126,
+              118
+            ],
+            "xyxyPixel": [
+              1120,
+              837,
+              1246,
+              955
+            ],
+            "norm": [
+              0.609358,
+              0.809478,
+              0.068553,
+              0.11412
+            ]
+          }
+        },
+        {
+          "kind": "white-background-subtitle",
+          "bbox": {
+            "pixel": [
+              674,
+              719,
+              1107,
+              265
+            ],
+            "xyxyPixel": [
+              674,
+              719,
+              1781,
+              984
+            ],
+            "norm": [
+              0.366703,
+              0.695358,
+              0.602285,
+              0.256286
+            ]
+          }
+        },
+        {
+          "kind": "white-background-subtitle",
+          "bbox": {
+            "pixel": [
+              1346,
+              649,
+              110,
+              114
+            ],
+            "xyxyPixel": [
+              1346,
+              649,
+              1456,
+              763
+            ],
+            "norm": [
+              0.732318,
+              0.62766,
+              0.059848,
+              0.110251
+            ]
+          }
+        }
+      ],
+      "composition": {
+        "topBand": {
+          "bbox": {
+            "pixel": [
+              0,
+              0,
+              1838,
+              146
+            ],
+            "xyxyPixel": [
+              0,
+              0,
+              1838,
+              146
+            ],
+            "norm": [
+              0.0,
+              0.0,
+              1.0,
+              0.141199
+            ]
+          },
+          "heightNorm": 0.141199,
+          "gradientStops": [
+            "#5A51FE",
+            "#5A51FD",
+            "#5D60FE"
+          ]
+        },
+        "bottomBand": {
+          "bbox": {
+            "pixel": [
+              0,
+              1006,
+              1838,
+              28
+            ],
+            "xyxyPixel": [
+              0,
+              1006,
+              1838,
+              1034
+            ],
+            "norm": [
+              0.0,
+              0.972921,
+              1.0,
+              0.027079
+            ]
+          },
+          "heightNorm": 0.027079,
+          "gradientStops": [
+            "#5B59FD",
+            "#656AFD",
+            "#747FFC"
+          ]
+        },
+        "logoPanel": {
+          "shape": "left-white-slanted-polygon",
+          "topRightPx": 410,
+          "bottomRightPx": 386,
+          "polygonPx": [
+            [
+              0,
+              0
+            ],
+            [
+              410,
+              0
+            ],
+            [
+              386,
+              146
+            ],
+            [
+              0,
+              146
+            ]
+          ],
+          "logoDetectedBBox": {
+            "pixel": [
+              61,
+              45,
+              249,
+              60
+            ],
+            "xyxyPixel": [
+              61,
+              45,
+              310,
+              105
+            ],
+            "norm": [
+              0.033188,
+              0.04352,
+              0.135473,
+              0.058027
+            ]
+          }
+        },
+        "contentArea": {
+          "bbox": {
+            "pixel": [
+              0,
+              146,
+              1838,
+              860
+            ],
+            "xyxyPixel": [
+              0,
+              146,
+              1838,
+              1006
+            ],
+            "norm": [
+              0.0,
+              0.141199,
+              1.0,
+              0.831721
+            ]
+          },
+          "note": "Video content begins below the top band and is protected from the header by shifting the source video down."
+        },
+        "subtitleRegions": [
+          {
+            "kind": "purple-background-subtitle",
+            "bbox": {
+              "pixel": [
+                44,
+                594,
+                1454,
+                233
+              ],
+              "xyxyPixel": [
+                44,
+                594,
+                1498,
+                827
+              ],
+              "norm": [
+                0.023939,
+                0.574468,
+                0.791077,
+                0.225338
+              ]
+            }
+          },
+          {
+            "kind": "purple-background-subtitle",
+            "bbox": {
+              "pixel": [
+                1253,
+                832,
+                130,
+                127
+              ],
+              "xyxyPixel": [
+                1253,
+                832,
+                1383,
+                959
+              ],
+              "norm": [
+                0.681719,
+                0.804642,
+                0.070729,
+                0.122824
+              ]
+            }
+          },
+          {
+            "kind": "purple-background-subtitle",
+            "bbox": {
+              "pixel": [
+                1120,
+                837,
+                126,
+                118
+              ],
+              "xyxyPixel": [
+                1120,
+                837,
+                1246,
+                955
+              ],
+              "norm": [
+                0.609358,
+                0.809478,
+                0.068553,
+                0.11412
+              ]
+            }
+          },
+          {
+            "kind": "white-background-subtitle",
+            "bbox": {
+              "pixel": [
+                674,
+                719,
+                1107,
+                265
+              ],
+              "xyxyPixel": [
+                674,
+                719,
+                1781,
+                984
+              ],
+              "norm": [
+                0.366703,
+                0.695358,
+                0.602285,
+                0.256286
+              ]
+            }
+          },
+          {
+            "kind": "white-background-subtitle",
+            "bbox": {
+              "pixel": [
+                1346,
+                649,
+                110,
+                114
+              ],
+              "xyxyPixel": [
+                1346,
+                649,
+                1456,
+                763
+              ],
+              "norm": [
+                0.732318,
+                0.62766,
+                0.059848,
+                0.110251
+              ]
+            }
+          }
+        ],
+        "bandColorVariation": {
+          "topBandStops": [
+            "#5A51FE",
+            "#5A51FD",
+            "#5D60FE"
+          ],
+          "bottomBandStops": [
+            "#5B59FD",
+            "#656AFD",
+            "#747FFC"
+          ],
+          "topDominantColors": [
+            {
+              "hex": "#5A52FE",
+              "ratio": 0.4405
+            },
+            {
+              "hex": "#5D5AFE",
+              "ratio": 0.2535
+            },
+            {
+              "hex": "#6066FE",
+              "ratio": 0.2061
+            },
+            {
+              "hex": "#544BFB",
+              "ratio": 0.0894
+            },
+            {
+              "hex": "#4840C3",
+              "ratio": 0.0105
+            }
+          ],
+          "bottomDominantColors": [
+            {
+              "hex": "#5A59FD",
+              "ratio": 0.2783
+            },
+            {
+              "hex": "#7782FB",
+              "ratio": 0.1954
+            },
+            {
+              "hex": "#6365FD",
+              "ratio": 0.1873
+            },
+            {
+              "hex": "#6A74FC",
+              "ratio": 0.1737
+            },
+            {
+              "hex": "#666CFC",
+              "ratio": 0.1654
+            }
+          ],
+          "note": "The referenced band reads as blue-purple; green-channel values vary subtly across the band and are preserved in sampled RGB stops."
+        }
+      },
+      "visualStyle": {
+        "brightness": 0.5199,
+        "contrast": 0.2509,
+        "saturation": 0.2996,
+        "dominantColors": [
+          {
+            "hex": "#7E7379",
+            "ratio": 0.2861
+          },
+          {
+            "hex": "#5C4EFB",
+            "ratio": 0.2532
+          },
+          {
+            "hex": "#F9F8FB",
+            "ratio": 0.1718
+          },
+          {
+            "hex": "#383449",
+            "ratio": 0.1639
+          },
+          {
+            "hex": "#B2A3A8",
+            "ratio": 0.125
+          }
+        ]
+      }
+    }
+  ]
+}

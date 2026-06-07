@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
@@ -32,7 +33,9 @@ OUTPUT_VIDEOS = PROJECT_ROOT / "output" / "videos"
 OUTPUT_OVERLAYS = PROJECT_ROOT / "output" / "overlays" / "sample1_speech_subtitles"
 
 STYLE_PROFILE = OUTPUT_SUBTITLES / "sample1_speech_subtitle_style_profile.json"
+PATTERN_LIBRARY = OUTPUT_SUBTITLES / "sample1_speech_subtitle_pattern_library.json"
 OVERLAY_MANIFEST = OUTPUT_SUBTITLES / "sample1_speech_subtitle_overlays.json"
+OVERLAY_VIDEO = OUTPUT_SUBTITLES / "sample1_speech_subtitle_overlay.mov"
 TIMELINE_PATH = OUTPUT_TIMELINES / "sample1_speech_subtitle_preview.timeline.json"
 REPORT_PATH = OUTPUT_REPORTS / "sample1_speech_subtitle_preview_report.json"
 PREVIEW_VIDEO = OUTPUT_VIDEOS / "preview_sample1_speech_subtitles.mp4"
@@ -44,12 +47,18 @@ VIDEO_HEIGHT = 1080
 PREVIEW_WIDTH = 1280
 PREVIEW_HEIGHT = 720
 FPS = "24000/1001"
+FPS_NUM = 24000
+FPS_DEN = 1001
+FPS_FLOAT = FPS_NUM / FPS_DEN
 PURPLE_DARK = "#4D15D7"
 PURPLE_MID = "#5A2DEF"
 PURPLE_LIGHT = "#7863F3"
 WHITE = "#FFFFFF"
 WHITE_WARM = "#F7F5FA"
 TEXT_PURPLE = "#572AF0"
+TEXT_PURPLE_DARK = "#511DE3"
+TEXT_PURPLE_MID = "#6442F2"
+TEXT_PURPLE_LIGHT = "#755FF4"
 MAX_CHARS_PER_CHUNK = 40
 
 
@@ -145,6 +154,10 @@ def hex_to_rgb(value: str) -> tuple[int, int, int]:
     return int(text[0:2], 16), int(text[2:4], 16), int(text[4:6], 16)
 
 
+def rgb_to_hex(value: tuple[int, int, int]) -> str:
+    return f"#{value[0]:02X}{value[1]:02X}{value[2]:02X}"
+
+
 def lerp(a: int, b: int, t: float) -> int:
     return round(a + (b - a) * t)
 
@@ -196,6 +209,28 @@ def paste_gradient_box(
     canvas.paste(rect, (x0, y0), mask)
 
 
+def draw_gradient_text(
+    layer: Image.Image,
+    position: tuple[int, int],
+    text: str,
+    font: ImageFont.FreeTypeFont,
+    fill: str | list[str],
+) -> None:
+    if isinstance(fill, str):
+        ImageDraw.Draw(layer).text(position, text, font=font, fill=fill)
+        return
+
+    text_mask = Image.new("L", layer.size, 0)
+    mask_draw = ImageDraw.Draw(text_mask)
+    mask_draw.text(position, text, font=font, fill=255)
+    bounds = text_mask.getbbox()
+    if bounds is None:
+        return
+    x0, y0, x1, y1 = bounds
+    text_gradient = gradient_image((x1 - x0, y1 - y0), fill)
+    layer.paste(text_gradient, (x0, y0), text_mask.crop(bounds))
+
+
 def text_bbox(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont) -> tuple[int, int, int, int]:
     return draw.textbbox((0, 0), text, font=font)
 
@@ -237,6 +272,121 @@ def split_caption_to_chunks(caption: Caption) -> list[Caption]:
         output.append(Caption(index=caption.index, start=cursor, end=end, text=chunk))
         cursor = end
     return output
+
+
+def ease_out_cubic(value: float) -> float:
+    value = max(0.0, min(1.0, value))
+    return 1.0 - (1.0 - value) ** 3
+
+
+def analyze_subtitle_animation(data: dict[str, Any]) -> dict[str, Any]:
+    states: list[dict[str, Any]] = []
+    for frame in data.get("frames", []):
+        if not isinstance(frame, dict):
+            continue
+        subtitles = [
+            item
+            for item in frame.get("textOverlays", [])
+            if isinstance(item, dict)
+            and item.get("role") == "subtitle"
+            and isinstance(item.get("bbox", {}).get("norm"), list)
+            and float(item["bbox"]["norm"][1]) >= 0.55
+        ]
+        if not subtitles:
+            states.append({"time": float(frame.get("timeSeconds", 0.0)), "subtitles": []})
+            continue
+        states.append(
+            {
+                "time": float(frame.get("timeSeconds", 0.0)),
+                "subtitles": [
+                    {
+                        "text": str(item.get("text") or ""),
+                        "x": float(item["bbox"]["norm"][0]),
+                        "y": float(item["bbox"]["norm"][1]),
+                        "w": float(item["bbox"]["norm"][2]),
+                        "h": float(item["bbox"]["norm"][3]),
+                    }
+                    for item in subtitles
+                ],
+            }
+        )
+
+    observations: list[dict[str, Any]] = []
+    previous: dict[str, Any] | None = None
+    for state in states:
+        current_subs = state["subtitles"]
+        if previous is None:
+            previous = state
+            continue
+        previous_subs = previous["subtitles"]
+        for current in current_subs:
+            best_previous = None
+            for candidate in previous_subs:
+                if current["text"].startswith(candidate["text"]) or candidate["text"].startswith(current["text"]):
+                    best_previous = candidate
+                    break
+            if best_previous and current["w"] > best_previous["w"] * 1.25:
+                observations.append(
+                    {
+                        "timeFrom": previous["time"],
+                        "timeTo": state["time"],
+                        "textFrom": best_previous["text"],
+                        "textTo": current["text"],
+                        "widthNormFrom": round(best_previous["w"], 6),
+                        "widthNormTo": round(current["w"], 6),
+                        "widthGrowthRatio": round(current["w"] / max(0.001, best_previous["w"]), 3),
+                        "interpretation": "same subtitle expands horizontally while text is revealed",
+                    }
+                )
+        if not previous_subs and current_subs:
+            observations.append(
+                {
+                    "timeFrom": previous["time"],
+                    "timeTo": state["time"],
+                    "textTo": " | ".join(item["text"] for item in current_subs),
+                    "interpretation": "subtitle group appears after empty state",
+                }
+            )
+        if len(current_subs) > len(previous_subs) and previous_subs:
+            observations.append(
+                {
+                    "timeFrom": previous["time"],
+                    "timeTo": state["time"],
+                    "lineCountFrom": len(previous_subs),
+                    "lineCountTo": len(current_subs),
+                    "interpretation": "second subtitle line is staggered after first line",
+                }
+            )
+        previous = state
+
+    growth_durations = [float(item["timeTo"]) - float(item["timeFrom"]) for item in observations if item.get("widthGrowthRatio")]
+    stagger_durations = [
+        float(item["timeTo"]) - float(item["timeFrom"])
+        for item in observations
+        if str(item.get("interpretation", "")).startswith("second subtitle line")
+    ]
+    return {
+        "analysisSource": "reference analysis subtitle OCR time series",
+        "samplingNote": "Reference analysis samples are sparse, so exact easing is inferred from observed partial-width subtitle states.",
+        "observations": observations[:12],
+        "in": {
+            "type": "horizontal-reveal",
+            "direction": "left-to-right",
+            "durationSeconds": round(median_or_default(growth_durations, 0.46), 3),
+            "easing": "easeOutCubic",
+            "initialVisibleWidthRatio": 0.08,
+            "initialOpacity": 0.0,
+            "opacityDurationSeconds": 0.12,
+        },
+        "secondaryLine": {
+            "staggerSeconds": round(min(0.18, median_or_default(stagger_durations, 0.12) * 0.35), 3),
+            "inheritsReveal": True,
+        },
+        "out": {
+            "type": "quick-fade",
+            "durationSeconds": 0.1,
+        },
+    }
 
 
 def best_two_line_split(text: str) -> list[str]:
@@ -308,6 +458,248 @@ def median_or_default(values: list[float], default: float) -> float:
     return float(median(values)) if values else default
 
 
+def median_rgb_or_default(values: list[tuple[int, int, int]], default: tuple[int, int, int]) -> tuple[int, int, int]:
+    if not values:
+        return default
+    return tuple(round(median([value[index] for value in values])) for index in range(3))
+
+
+def reference_sample_path(time_seconds: float) -> Path | None:
+    samples_dir = REFERENCE_ANALYSIS.parent / "samples"
+    patterns = [
+        f"*t{time_seconds:08.3f}.jpg",
+        f"*t{time_seconds:07.3f}.jpg",
+        f"*t{time_seconds:04.3f}.jpg",
+    ]
+    for pattern in patterns:
+        matches = sorted(samples_dir.glob(pattern))
+        if matches:
+            return matches[0]
+    return None
+
+
+def classify_anchor(x_norm: float, w_norm: float) -> str:
+    center = x_norm + w_norm / 2
+    if center <= 0.45:
+        return "left"
+    if center >= 0.55:
+        return "right"
+    return "center"
+
+
+def width_bucket(w_norm: float) -> str:
+    if w_norm >= 0.74:
+        return "wide"
+    if w_norm >= 0.48:
+        return "medium"
+    return "narrow"
+
+
+def sample_color_thirds(
+    image: Image.Image,
+    box: tuple[int, int, int, int],
+    predicate: Any,
+    default: tuple[int, int, int],
+) -> list[str]:
+    crop = image.crop(box)
+    width, height = crop.size
+    thirds: list[list[tuple[int, int, int]]] = [[], [], []]
+    for y in range(0, height, 2):
+        for x in range(0, width, 2):
+            pixel = crop.getpixel((x, y))
+            if predicate(pixel):
+                thirds[min(2, int(x / max(1, width) * 3))].append(pixel)
+    return [rgb_to_hex(median_rgb_or_default(values, default)) for values in thirds]
+
+
+def is_purple_pixel(pixel: tuple[int, int, int]) -> bool:
+    r, g, b = pixel
+    return b >= 145 and r <= 175 and g <= 165 and b - r >= 25 and b - g >= 45
+
+
+def is_white_pixel(pixel: tuple[int, int, int]) -> bool:
+    r, g, b = pixel
+    return r >= 220 and g >= 220 and b >= 220
+
+
+def is_purple_background_pixel(pixel: tuple[int, int, int]) -> bool:
+    r, g, b = pixel
+    return b >= 150 and r <= 145 and g <= 135 and b - g >= 45
+
+
+def normalize_purple_text_gradient(stops: list[str]) -> list[str]:
+    if len(stops) < 3:
+        return [TEXT_PURPLE_DARK, TEXT_PURPLE_MID, TEXT_PURPLE_LIGHT]
+    parsed = [hex_to_rgb(stop) for stop in stops[:3]]
+    if all(b >= 200 and b - r >= 20 and b - g >= 45 for r, g, b in parsed):
+        return stops[:3]
+    return [TEXT_PURPLE_DARK, TEXT_PURPLE_MID, TEXT_PURPLE_LIGHT]
+
+
+def analyze_line_from_frame(
+    image: Image.Image,
+    item: dict[str, Any],
+    ref_w: int,
+    ref_h: int,
+) -> dict[str, Any] | None:
+    bbox = item.get("bbox", {})
+    norm = bbox.get("norm")
+    xyxy = bbox.get("xyxyPixel")
+    if not isinstance(norm, list) or len(norm) != 4 or not isinstance(xyxy, list) or len(xyxy) != 4:
+        return None
+
+    x0, y0, x1, y1 = [max(0, round(float(value))) for value in xyxy]
+    x1 = min(ref_w, x1)
+    y1 = min(ref_h, y1)
+    if x1 <= x0 or y1 <= y0:
+        return None
+
+    crop = image.crop((x0, y0, x1, y1))
+    width, height = crop.size
+    purple_count = 0
+    white_count = 0
+    sample_count = 0
+    for y in range(0, height, 3):
+        for x in range(0, width, 3):
+            pixel = crop.getpixel((x, y))
+            sample_count += 1
+            if is_purple_background_pixel(pixel):
+                purple_count += 1
+            if is_white_pixel(pixel):
+                white_count += 1
+
+    background_kind = "purple" if purple_count >= white_count * 0.65 else "white"
+    if background_kind == "purple":
+        bg_default = hex_to_rgb(PURPLE_MID)
+        bg_gradient = sample_color_thirds(image, (x0, y0, x1, y1), is_purple_background_pixel, bg_default)
+        text_fill: str | list[str] = WHITE
+        text_kind = "white"
+    else:
+        bg_gradient = sample_color_thirds(image, (x0, y0, x1, y1), is_white_pixel, hex_to_rgb(WHITE))
+        purple_text = sample_color_thirds(image, (x0, y0, x1, y1), is_purple_pixel, hex_to_rgb(TEXT_PURPLE))
+        text_fill = normalize_purple_text_gradient(purple_text)
+        text_kind = "purple-gradient"
+
+    x_norm, y_norm, w_norm, h_norm = [float(value) for value in norm]
+    return {
+        "text": str(item.get("text") or ""),
+        "xNorm": round(x_norm, 6),
+        "yNorm": round(y_norm, 6),
+        "wNorm": round(w_norm, 6),
+        "hNorm": round(h_norm, 6),
+        "centerXNorm": round(x_norm + w_norm / 2, 6),
+        "rightNorm": round(x_norm + w_norm, 6),
+        "rowBand": "upper-speech" if y_norm < 0.72 else "lower-speech",
+        "anchor": classify_anchor(x_norm, w_norm),
+        "widthBucket": width_bucket(w_norm),
+        "backgroundKind": background_kind,
+        "backgroundGradient": bg_gradient,
+        "textKind": text_kind,
+        "textFill": text_fill,
+        "fontSizePxEstimate": item.get("fontSizePxEstimate"),
+        "sampledPixelCounts": {
+            "total": sample_count,
+            "purple": purple_count,
+            "white": white_count,
+        },
+    }
+
+
+def pattern_signature(lines: list[dict[str, Any]]) -> str:
+    parts = [f"lines={len(lines)}"]
+    for line in lines:
+        parts.append(
+            "|".join(
+                [
+                    str(line["rowBand"]),
+                    str(line["anchor"]),
+                    str(line["widthBucket"]),
+                    str(line["backgroundKind"]),
+                    str(line["textKind"]),
+                ]
+            )
+        )
+    return ";".join(parts)
+
+
+def build_reference_pattern_library(data: dict[str, Any]) -> dict[str, Any]:
+    asset = data.get("asset", {})
+    ref_w = int(asset.get("width") or 1834)
+    ref_h = int(asset.get("height") or 1030)
+    analyzed_frames: list[dict[str, Any]] = []
+    clusters: dict[str, dict[str, Any]] = {}
+
+    for frame in data.get("frames", []):
+        time_seconds = float(frame.get("timeSeconds", 0.0))
+        if abs(time_seconds - round(time_seconds)) > 0.001:
+            continue
+        sample_path = reference_sample_path(time_seconds)
+        if sample_path is None:
+            continue
+        image = Image.open(sample_path).convert("RGB")
+        lines: list[dict[str, Any]] = []
+        for item in frame.get("textOverlays", []):
+            if not isinstance(item, dict) or item.get("role") != "subtitle":
+                continue
+            bbox = item.get("bbox", {}).get("norm")
+            if not isinstance(bbox, list) or len(bbox) != 4 or float(bbox[1]) < 0.55:
+                continue
+            line = analyze_line_from_frame(image, item, ref_w, ref_h)
+            if line:
+                lines.append(line)
+        lines.sort(key=lambda line: (float(line["yNorm"]), float(line["xNorm"])))
+        if not lines:
+            continue
+        signature = pattern_signature(lines)
+        frame_entry = {
+            "timeSeconds": round(time_seconds, 3),
+            "samplePath": str(sample_path),
+            "signature": signature,
+            "lineCount": len(lines),
+            "lines": lines,
+        }
+        analyzed_frames.append(frame_entry)
+        cluster = clusters.setdefault(
+            signature,
+            {
+                "signature": signature,
+                "occurrences": [],
+                "lineCount": len(lines),
+                "lines": lines,
+            },
+        )
+        cluster["occurrences"].append(round(time_seconds, 3))
+
+    patterns: list[dict[str, Any]] = []
+    for index, cluster in enumerate(sorted(clusters.values(), key=lambda item: (-len(item["occurrences"]), item["signature"])), start=1):
+        cluster["id"] = f"sample1_pattern_{index:02d}"
+        cluster["occurrenceCount"] = len(cluster["occurrences"])
+        patterns.append(cluster)
+
+    return {
+        "schemaVersion": "speech-subtitle-pattern-library/v1",
+        "createdAt": now_iso(),
+        "sourceReference": {
+            "assetId": asset.get("assetId", "sample-1"),
+            "analysisPath": str(REFERENCE_ANALYSIS),
+            "sampleDirectory": str(REFERENCE_ANALYSIS.parent / "samples"),
+            "sampleIntervalSeconds": 1,
+            "targetRole": "subtitle",
+            "ignoredRoles": ["logo_text", "title", "small_text"],
+        },
+        "referenceCanvas": {"width": ref_w, "height": ref_h},
+        "frameCount": len(analyzed_frames),
+        "patternCount": len(patterns),
+        "patterns": patterns,
+        "frames": analyzed_frames,
+        "classificationRules": {
+            "anchor": "left if centerX <= 0.45, right if centerX >= 0.55, otherwise center",
+            "backgroundKind": "purple when sampled purple background pixels dominate sampled white pixels; otherwise white",
+            "signature": "line count plus each line row band, anchor, width bucket, background kind, and text kind",
+        },
+    }
+
+
 def style_profile_from_reference(path: Path) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     asset = data.get("asset", {})
@@ -323,6 +715,7 @@ def style_profile_from_reference(path: Path) -> dict[str, Any]:
 
     font_norm = median_or_default([float(item.get("fontSizePxEstimate")) / ref_h for item in all_rows if item.get("fontSizePxEstimate")], 0.155)
     row_height_norm = norm_values(all_rows, 3, 0.155)
+    pattern_library = build_reference_pattern_library(data)
     profile = {
         "schemaVersion": "speech-subtitle-style/v1",
         "createdAt": now_iso(),
@@ -382,6 +775,29 @@ def style_profile_from_reference(path: Path) -> dict[str, Any]:
                 "weight": 800,
                 "line1Fill": WHITE,
                 "line2Fill": TEXT_PURPLE,
+                "line2FillGradient": {
+                    "direction": "left-to-right",
+                    "stops": [TEXT_PURPLE_DARK, TEXT_PURPLE_MID, TEXT_PURPLE_LIGHT],
+                    "referenceSamples": [
+                        {
+                            "timeSeconds": 0.0,
+                            "text": "FDEの正体とは?",
+                            "bboxPixel": [691, 817, 1721, 975],
+                            "leftMedianRgb": [81, 29, 227],
+                            "middleMedianRgb": [100, 65, 241],
+                            "rightMedianRgb": [118, 95, 244],
+                        },
+                        {
+                            "timeSeconds": 1.0,
+                            "text": "FDEの正体とは?",
+                            "bboxPixel": [693, 817, 1721, 975],
+                            "leftMedianRgb": [82, 29, 226],
+                            "middleMedianRgb": [100, 65, 242],
+                            "rightMedianRgb": [117, 95, 244],
+                        },
+                    ],
+                    "analysisNote": "Purple text pixels on the white subtitle box are darker on the left and become slightly lighter/whiter toward the right.",
+                },
             },
             "background": {
                 "shape": "rounded-rectangle",
@@ -394,10 +810,13 @@ def style_profile_from_reference(path: Path) -> dict[str, Any]:
             },
             "compositionRules": {
                 "maxLines": 2,
-                "singleLineUsesPrimaryPurpleBox": True,
-                "twoLineUsesPurpleThenWhite": True,
+                "singleLineUsesPrimaryPurpleBox": False,
+                "twoLineUsesPurpleThenWhite": False,
                 "topLogoAndTitleIgnored": True,
+                "renderUsesExtractedReferencePatterns": True,
             },
+            "referencePatterns": pattern_library,
+            "animation": analyze_subtitle_animation(data),
         },
     }
     materialize_style_pixels(profile)
@@ -421,11 +840,107 @@ def materialize_style_pixels(profile: dict[str, Any]) -> None:
     shadow["offsetY"] = round(float(shadow["offsetYNorm"]) * PREVIEW_HEIGHT)
 
 
-def render_overlay_png(caption: Caption, profile: dict[str, Any], output: Path) -> dict[str, Any]:
+def line_animation_progress(caption: Caption, style: dict[str, Any], time_seconds: float | None, line_index: int) -> tuple[float, float]:
+    if time_seconds is None:
+        return 1.0, 1.0
+    animation = style["animation"]
+    start_delay = 0.0
+    if line_index > 0:
+        start_delay = float(animation["secondaryLine"]["staggerSeconds"])
+    start = caption.start + start_delay
+    reveal_duration = max(0.01, float(animation["in"]["durationSeconds"]))
+    opacity_duration = max(0.01, float(animation["in"]["opacityDurationSeconds"]))
+    out_duration = max(0.01, float(animation["out"]["durationSeconds"]))
+    reveal = ease_out_cubic((time_seconds - start) / reveal_duration)
+    opacity = min(1.0, max(0.0, (time_seconds - start) / opacity_duration))
+    if caption.end - out_duration <= time_seconds <= caption.end:
+        opacity *= max(0.0, (caption.end - time_seconds) / out_duration)
+    if time_seconds < start or time_seconds > caption.end:
+        return 0.0, 0.0
+    visible_start = float(animation["in"]["initialVisibleWidthRatio"])
+    visible_ratio = visible_start + (1.0 - visible_start) * reveal
+    return max(0.0, min(1.0, visible_ratio)), max(0.0, min(1.0, opacity))
+
+
+def apply_opacity(layer: Image.Image, opacity: float) -> Image.Image:
+    if opacity >= 0.999:
+        return layer
+    next_layer = layer.copy()
+    alpha = next_layer.getchannel("A").point(lambda value: round(value * opacity))
+    next_layer.putalpha(alpha)
+    return next_layer
+
+
+def choose_reference_pattern(caption: Caption, style: dict[str, Any], line_count: int) -> dict[str, Any] | None:
+    patterns = style.get("referencePatterns", {}).get("patterns", [])
+    if not patterns:
+        return None
+    eligible = [pattern for pattern in patterns if int(pattern.get("lineCount", 0)) == line_count]
+    if not eligible:
+        eligible = [pattern for pattern in patterns if int(pattern.get("lineCount", 0)) >= line_count]
+    if not eligible:
+        eligible = patterns
+    key = f"{caption.index}|{caption.start:.3f}|{caption.end:.3f}|{caption.text}|{line_count}"
+    digest = hashlib.sha256(key.encode("utf-8")).hexdigest()
+    return eligible[int(digest[:12], 16) % len(eligible)]
+
+
+def resolve_line_layout(
+    pattern: dict[str, Any] | None,
+    index: int,
+    row: dict[str, Any],
+    box_w: int,
+    box_h: int,
+) -> tuple[int, int, int, int, list[str], str | list[str], str, str]:
+    if not pattern or not pattern.get("lines"):
+        center_x = int(row["centerXPx"])
+        x0 = max(0, center_x - box_w // 2)
+        x1 = min(PREVIEW_WIDTH, x0 + box_w)
+        x0 = x1 - box_w
+        y0 = int(row["yPx"])
+        y1 = min(PREVIEW_HEIGHT - 6, y0 + box_h)
+        colors = [PURPLE_DARK, PURPLE_MID, PURPLE_LIGHT] if index == 0 else [WHITE, WHITE_WARM]
+        fill: str | list[str] = WHITE if index == 0 else [TEXT_PURPLE_DARK, TEXT_PURPLE_MID, TEXT_PURPLE_LIGHT]
+        return x0, y0, x1, y1, colors, fill, "fallback", "center"
+
+    pattern_lines = pattern["lines"]
+    line = pattern_lines[min(index, len(pattern_lines) - 1)]
+    anchor = str(line.get("anchor", "center"))
+    observed_x0 = round(float(line.get("xNorm", 0.1)) * PREVIEW_WIDTH)
+    observed_right = round(float(line.get("rightNorm", 0.9)) * PREVIEW_WIDTH)
+    observed_center = round(float(line.get("centerXNorm", 0.5)) * PREVIEW_WIDTH)
+    y0 = round(float(line.get("yNorm", float(row["yNorm"]))) * PREVIEW_HEIGHT)
+    if anchor == "left":
+        x0 = observed_x0
+    elif anchor == "right":
+        x0 = observed_right - box_w
+    else:
+        x0 = observed_center - box_w // 2
+    x0 = max(8, min(PREVIEW_WIDTH - box_w - 8, x0))
+    x1 = x0 + box_w
+    y1 = min(PREVIEW_HEIGHT - 6, y0 + box_h)
+    colors = line.get("backgroundGradient")
+    if not isinstance(colors, list) or not colors:
+        colors = [PURPLE_DARK, PURPLE_MID, PURPLE_LIGHT] if line.get("backgroundKind") == "purple" else [WHITE, WHITE_WARM]
+    fill_value = line.get("textFill")
+    if line.get("textKind") == "purple-gradient":
+        fill = fill_value if isinstance(fill_value, list) and fill_value else [TEXT_PURPLE_DARK, TEXT_PURPLE_MID, TEXT_PURPLE_LIGHT]
+    else:
+        fill = WHITE
+    return x0, y0, x1, y1, colors, fill, str(pattern.get("id", "")), anchor
+
+
+def draw_caption_on_canvas(
+    canvas: Image.Image,
+    caption: Caption,
+    profile: dict[str, Any],
+    *,
+    time_seconds: float | None = None,
+) -> list[dict[str, Any]]:
     style = profile["speechSubtitle"]
-    canvas = Image.new("RGBA", (PREVIEW_WIDTH, PREVIEW_HEIGHT), (0, 0, 0, 0))
     draw = ImageDraw.Draw(canvas)
     lines, font_size = fit_lines(caption.text, style, draw)
+    pattern = choose_reference_pattern(caption, style, len(lines))
     font = load_font(font_size)
     padding_x = int(style["background"]["paddingX"])
     padding_y = int(style["background"]["paddingY"])
@@ -433,33 +948,52 @@ def render_overlay_png(caption: Caption, profile: dict[str, Any], output: Path) 
     shadow = style["background"]["shadow"]
     rendered_lines: list[dict[str, Any]] = []
     for index, line in enumerate(lines[:2]):
+        visible_ratio, opacity = line_animation_progress(caption, style, time_seconds, index)
+        if visible_ratio <= 0.001 or opacity <= 0.001:
+            continue
         row = style["placement"]["rows"][min(index, 1)]
         text_w, text_h = text_size(draw, line, font)
-        box_w = min(int(row["maxWidthPx"]), text_w + padding_x * 2)
+        box_w = min(PREVIEW_WIDTH - 16, max(text_w + padding_x * 2, round(float(row["heightPx"]) * 2.1)))
         box_h = max(int(row["heightPx"]), text_h + padding_y * 2)
-        center_x = int(row["centerXPx"])
-        x0 = max(0, center_x - box_w // 2)
-        x1 = min(PREVIEW_WIDTH, x0 + box_w)
-        x0 = x1 - box_w
-        y0 = int(row["yPx"])
-        y1 = min(PREVIEW_HEIGHT - 6, y0 + box_h)
-        colors = style["background"]["line1Gradient"] if index == 0 else style["background"]["line2Gradient"]
-        fill = style["text"]["line1Fill"] if index == 0 else style["text"]["line2Fill"]
-        paste_gradient_box(canvas, (x0, y0, x1, y1), colors, radius, shadow)
+        x0, y0, x1, y1, colors, fill, pattern_id, anchor = resolve_line_layout(pattern, index, row, box_w, box_h)
+        line_layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+        paste_gradient_box(line_layer, (x0, y0, x1, y1), colors, radius, shadow)
         bbox = text_bbox(draw, line, font)
         tx = x0 + (box_w - text_w) // 2 - bbox[0]
         ty = y0 + (box_h - text_h) // 2 - bbox[1] - round(box_h * 0.03)
-        draw.text((tx, ty), line, font=font, fill=fill)
+        draw_gradient_text(line_layer, (tx, ty), line, font, fill)
+        reveal_width = max(1, min(PREVIEW_WIDTH - x0, round((x1 - x0) * visible_ratio)))
+        reveal_mask = Image.new("L", canvas.size, 0)
+        reveal_draw = ImageDraw.Draw(reveal_mask)
+        reveal_draw.rectangle((x0, max(0, y0 - 24), x0 + reveal_width, min(PREVIEW_HEIGHT, y1 + 24)), fill=255)
+        line_alpha = line_layer.getchannel("A")
+        line_alpha = Image.composite(line_alpha, Image.new("L", canvas.size, 0), reveal_mask)
+        line_layer.putalpha(line_alpha)
+        canvas.alpha_composite(apply_opacity(line_layer, opacity))
+        style_label = "whiteBoxPurpleGradientText" if isinstance(fill, list) else "purpleBoxWhiteText"
         rendered_lines.append(
             {
                 "text": line,
-                "style": "purpleBoxWhiteText" if index == 0 else "whiteBoxPurpleText",
+                "style": style_label,
                 "boxPx": [x0, y0, x1, y1],
                 "fontSizePx": font_size,
                 "textFill": fill,
+                "textFillMode": "solid" if isinstance(fill, str) else "left-to-right-gradient",
                 "backgroundGradient": colors,
+                "referencePatternId": pattern_id,
+                "referenceAnchor": anchor,
+                "animation": {
+                    "visibleWidthRatio": round(visible_ratio, 4),
+                    "opacity": round(opacity, 4),
+                },
             }
         )
+    return rendered_lines
+
+
+def render_overlay_png(caption: Caption, profile: dict[str, Any], output: Path) -> dict[str, Any]:
+    canvas = Image.new("RGBA", (PREVIEW_WIDTH, PREVIEW_HEIGHT), (0, 0, 0, 0))
+    rendered_lines = draw_caption_on_canvas(canvas, caption, profile, time_seconds=None)
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(output)
     return {
@@ -486,7 +1020,10 @@ def build_overlay_manifest(captions: list[Caption], profile: dict[str, Any]) -> 
         "schemaVersion": "speech-subtitle-overlays/v1",
         "createdAt": now_iso(),
         "styleProfile": str(STYLE_PROFILE),
+        "patternLibrary": str(PATTERN_LIBRARY),
+        "animatedOverlayVideo": str(OVERLAY_VIDEO),
         "canvas": {"width": PREVIEW_WIDTH, "height": PREVIEW_HEIGHT},
+        "animation": profile["speechSubtitle"]["animation"],
         "overlays": overlays,
     }
     OVERLAY_MANIFEST.parent.mkdir(parents=True, exist_ok=True)
@@ -499,44 +1036,83 @@ def video_duration(path: Path, ffprobe: str) -> float:
     return float(subprocess.check_output(command, cwd=REPO_ROOT, text=True).strip())
 
 
-def render_preview(ffmpeg: str, overlays: list[dict[str, Any]], output: Path) -> None:
+def render_animated_overlay_video(ffmpeg: str, captions: list[Caption], profile: dict[str, Any], duration: float) -> None:
+    OVERLAY_VIDEO.parent.mkdir(parents=True, exist_ok=True)
+    total_frames = math.ceil(duration * FPS_FLOAT)
+    chunks: list[Caption] = []
+    for caption in captions:
+        chunks.extend(split_caption_to_chunks(caption))
+    command = [
+        ffmpeg,
+        "-hide_banner",
+        "-y",
+        "-f",
+        "rawvideo",
+        "-pix_fmt",
+        "rgba",
+        "-s",
+        f"{PREVIEW_WIDTH}x{PREVIEW_HEIGHT}",
+        "-r",
+        FPS,
+        "-i",
+        "-",
+        "-an",
+        "-c:v",
+        "qtrle",
+        str(OVERLAY_VIDEO),
+    ]
+    process = subprocess.Popen(command, cwd=REPO_ROOT, stdin=subprocess.PIPE)
+    assert process.stdin is not None
+    try:
+        for frame_index in range(total_frames):
+            time_seconds = frame_index / FPS_FLOAT
+            canvas = Image.new("RGBA", (PREVIEW_WIDTH, PREVIEW_HEIGHT), (0, 0, 0, 0))
+            for chunk in chunks:
+                animation = profile["speechSubtitle"]["animation"]
+                earliest = chunk.start
+                latest = chunk.end
+                if earliest <= time_seconds <= latest + float(animation["out"]["durationSeconds"]):
+                    draw_caption_on_canvas(canvas, chunk, profile, time_seconds=time_seconds)
+            process.stdin.write(canvas.tobytes())
+    finally:
+        process.stdin.close()
+    if process.wait() != 0:
+        raise subprocess.CalledProcessError(process.returncode, command)
+
+
+def render_preview(ffmpeg: str, overlay_video: Path, output: Path) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
-    command = [ffmpeg, "-hide_banner", "-y", "-i", str(SOURCE_VIDEO)]
-    for item in overlays:
-        command.extend(["-i", str(item["file"])])
-    filters = [f"[0:v]scale={PREVIEW_WIDTH}:{PREVIEW_HEIGHT}:flags=bicubic[v0]"]
-    previous = "v0"
-    for index, item in enumerate(overlays, start=1):
-        current = f"v{index}"
-        start = float(item["start"])
-        end = float(item["end"])
-        filters.append(f"[{previous}][{index}:v]overlay=0:0:enable='between(t,{start:.3f},{end:.3f})'[{current}]")
-        previous = current
-    command.extend(
-        [
-            "-filter_complex",
-            ";".join(filters),
-            "-map",
-            f"[{previous}]",
-            "-map",
-            "0:a?",
-            "-c:v",
-            "libx264",
-            "-preset",
-            "veryfast",
-            "-crf",
-            "24",
-            "-pix_fmt",
-            "yuv420p",
-            "-c:a",
-            "aac",
-            "-b:a",
-            "128k",
-            "-movflags",
-            "+faststart",
-            str(output),
-        ]
-    )
+    filters = f"[0:v]scale={PREVIEW_WIDTH}:{PREVIEW_HEIGHT}:flags=bicubic[base];[base][1:v]overlay=0:0:format=auto[v]"
+    command = [
+        ffmpeg,
+        "-hide_banner",
+        "-y",
+        "-i",
+        str(SOURCE_VIDEO),
+        "-i",
+        str(overlay_video),
+        "-filter_complex",
+        filters,
+        "-map",
+        "[v]",
+        "-map",
+        "0:a?",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "24",
+        "-pix_fmt",
+        "yuv420p",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        "-movflags",
+        "+faststart",
+        str(output),
+    ]
     subprocess.run(command, cwd=REPO_ROOT, check=True)
 
 
@@ -564,7 +1140,9 @@ def write_timeline(duration: float) -> None:
             {"id": "src_master", "kind": "video", "role": "master", "path": str(SOURCE_VIDEO), "duration": round(duration, 6), "width": VIDEO_WIDTH, "height": VIDEO_HEIGHT, "fps": FPS, "codec": "h264"},
             {"id": "src_corrected_srt", "kind": "subtitle", "role": "subtitle", "path": str(CORRECTED_SRT)},
             {"id": "src_style_profile", "kind": "data", "role": "speech-subtitle-style-profile", "path": str(STYLE_PROFILE)},
+            {"id": "src_pattern_library", "kind": "data", "role": "speech-subtitle-pattern-library", "path": str(PATTERN_LIBRARY)},
             {"id": "src_overlay_manifest", "kind": "data", "role": "speech-subtitle-overlay-manifest", "path": str(OVERLAY_MANIFEST)},
+            {"id": "src_animated_overlay", "kind": "video", "role": "speech-subtitle-animated-overlay", "path": str(OVERLAY_VIDEO), "duration": round(duration, 6), "width": PREVIEW_WIDTH, "height": PREVIEW_HEIGHT, "fps": FPS, "codec": "qtrle"},
         ],
         "tracks": [
             {"id": "video.main", "kind": "video", "label": "Main video", "allowOverlap": False},
@@ -574,7 +1152,7 @@ def write_timeline(duration: float) -> None:
         "clips": [
             {"id": "clip_video_master", "trackId": "video.main", "kind": "video", "sourceId": "src_master", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "sourceIn": 0.0, "sourceOut": round(duration, 6), "fit": {"mode": "contain", "width": VIDEO_WIDTH, "height": VIDEO_HEIGHT}},
             {"id": "clip_audio_master", "trackId": "audio.main", "kind": "audio", "sourceId": "src_master", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "sourceIn": 0.0, "sourceOut": round(duration, 6)},
-            {"id": "clip_subtitle_overlay", "trackId": "subtitle.main", "kind": "generated", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "style": {"renderMethod": "png-overlay-gradient-boxes", "styleProfile": str(STYLE_PROFILE), "overlayManifest": str(OVERLAY_MANIFEST)}},
+            {"id": "clip_subtitle_overlay", "trackId": "subtitle.main", "kind": "generated", "timelineStart": 0.0, "timelineEnd": round(duration, 6), "style": {"renderMethod": "animated-alpha-overlay-video", "styleProfile": str(STYLE_PROFILE), "patternLibrary": str(PATTERN_LIBRARY), "overlayManifest": str(OVERLAY_MANIFEST), "overlayVideo": str(OVERLAY_VIDEO)}},
         ],
         "transitions": [],
         "render": {
@@ -587,7 +1165,9 @@ def write_timeline(duration: float) -> None:
                 {"kind": "media-manifest", "path": str(MEDIA_MANIFEST), "exists": MEDIA_MANIFEST.exists()},
                 {"kind": "reference-analysis", "path": str(REFERENCE_ANALYSIS), "exists": REFERENCE_ANALYSIS.exists()},
                 {"kind": "speech-subtitle-style-profile", "path": str(STYLE_PROFILE), "exists": STYLE_PROFILE.exists()},
+                {"kind": "speech-subtitle-pattern-library", "path": str(PATTERN_LIBRARY), "exists": PATTERN_LIBRARY.exists()},
                 {"kind": "speech-subtitle-overlay-manifest", "path": str(OVERLAY_MANIFEST), "exists": OVERLAY_MANIFEST.exists()},
+                {"kind": "speech-subtitle-animated-overlay-video", "path": str(OVERLAY_VIDEO), "exists": OVERLAY_VIDEO.exists()},
             ],
         },
         "audit": {
@@ -622,11 +1202,13 @@ def main() -> None:
     profile = style_profile_from_reference(REFERENCE_ANALYSIS)
     STYLE_PROFILE.parent.mkdir(parents=True, exist_ok=True)
     STYLE_PROFILE.write_text(json.dumps(profile, ensure_ascii=False, indent=2), encoding="utf-8")
+    PATTERN_LIBRARY.write_text(json.dumps(profile["speechSubtitle"]["referencePatterns"], ensure_ascii=False, indent=2), encoding="utf-8")
     overlay_manifest = build_overlay_manifest(captions, profile)
     write_timeline(duration)
 
     if not args.skip_render:
-        render_preview(args.ffmpeg, overlay_manifest["overlays"], PREVIEW_VIDEO)
+        render_animated_overlay_video(args.ffmpeg, captions, profile, duration)
+        render_preview(args.ffmpeg, OVERLAY_VIDEO, PREVIEW_VIDEO)
         extract_still(args.ffmpeg, PREVIEW_VIDEO, PREVIEW_STILL, "5")
         extract_still(args.ffmpeg, PREVIEW_VIDEO, OUTPUT_IMAGES / "preview_sample1_speech_subtitles_t0032.jpg", "32")
 
@@ -635,7 +1217,9 @@ def main() -> None:
         "sourceVideo": str(SOURCE_VIDEO),
         "referenceAnalysis": str(REFERENCE_ANALYSIS),
         "styleProfile": str(STYLE_PROFILE),
+        "patternLibrary": str(PATTERN_LIBRARY),
         "overlayManifest": str(OVERLAY_MANIFEST),
+        "animatedOverlayVideo": str(OVERLAY_VIDEO) if OVERLAY_VIDEO.exists() else "",
         "correctedSrt": str(CORRECTED_SRT),
         "correctedTranscriptText": str(CORRECTED_TXT),
         "timeline": str(TIMELINE_PATH),
@@ -643,11 +1227,14 @@ def main() -> None:
         "previewStill": str(PREVIEW_STILL) if PREVIEW_STILL.exists() else "",
         "captionCount": len(captions),
         "overlayCount": len(overlay_manifest["overlays"]),
+        "referencePatternCount": profile["speechSubtitle"]["referencePatterns"]["patternCount"],
+        "referencePatternFrameCount": profile["speechSubtitle"]["referencePatterns"]["frameCount"],
         "duration": round(duration, 6),
         "notes": [
             "Preview render only; production render should wait for user approval.",
             "Only sample-1 role=subtitle lower speech captions are profiled; top logo/title text is intentionally ignored.",
-            "Gradient subtitle boxes are rendered as transparent PNG overlays, not ASS subtitle backgrounds.",
+            "All whole-second sample-1 reference frames are classified into subtitle layout/background/anchor patterns.",
+            "Preview subtitles choose a deterministic random extracted reference pattern per caption chunk.",
         ],
     }
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)

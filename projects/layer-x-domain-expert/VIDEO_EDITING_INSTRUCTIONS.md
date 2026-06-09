@@ -604,3 +604,203 @@ FFmpeg-only timelines are harder for humans to adjust later. OTIO export gives t
 9. Render final production output only after the preview is reviewed and accepted.
 
 In one sentence: AI should create a validated edit timeline, and Python should safely compile that timeline into FFmpeg/OpenCV/OTIO outputs.
+
+---
+
+## Editorial Requirements
+
+The following are project-specific creative, caption, and cutting rules for this interview. Use them together with the JSON pipeline and `edit_plan.json` design above.
+
+### Deliverables
+
+| Output | Purpose | Settings |
+| --- | --- | --- |
+| `preview_720p` | Preview | 1280×720, fast encode, optimized for review iterations |
+| `final_1080p` | Client review | 1920×1080, production-quality review render |
+
+Do not treat `final_1080p` as the final delivery until the preview is approved. `master_4k` is not a required output for this specification.
+
+### Overall Editorial Direction
+
+Edit this video as a polished business interview, not as raw event footage. The goal is to keep viewers engaged through the end.
+
+Priorities:
+
+- Hook viewers with a 45-second opening digest
+- Establish all three participants and their titles at the start of the main section
+- Make each person's background clear during self-introductions
+- Emphasize only the most important words as on-screen captions
+- Show the current topic in the upper-right corner as the conversation moves
+- Add short explainers for proper nouns when needed
+- Use all four camera sources to keep the edit visually varied
+- Match the clean, professional business-interview look shown in the reference images
+
+### Opening Digest (First 45 Seconds)
+
+- Pull the strongest statements and reactions from the main interview into a digest of about 45 seconds
+- After the digest ends, enter the main section with a slide transition
+- Select digest captions from `highlight_candidates` / `digest_caption` in `semantic_marks.json`
+- Use fewer captions than in the main section, but keep each clip's message short and strong
+
+### Participant Introduction at the Start of the Main Section
+
+Immediately after the digest ends and the slide transition into the main section, start with a **wide shot that includes all three participants** (`layout.type: wide_group`).
+
+In that shot, place provisional title/name labels below each person's face.
+
+Examples:
+
+- LayerX ○○ Division — Yamada-san
+- LayerX △△ Division — Sato-san
+- LayerX □□ Division — Suzuki-san
+
+**Text management**
+
+- Placeholder titles and names are acceptable for now
+- Centralize editable text in `people_map.json` (`display_name`, `company`, `department`, `role_title`)
+- `edit_plan.json` overlays must reference `people_source: "people_map"` instead of hard-coding text
+- Overlay type: `lower_third_people`, `anchor: below_face`
+
+**Display style**
+
+- Follow the reference image design (`style_guide.json` → `name_tag_reference_style`)
+- Place labels naturally below each face so ownership is obvious at a glance
+- Keep a clean, professional business-interview look
+
+### Self-Introduction Layout
+
+When each person introduces themselves, place that person **large on the left or right side of the frame** (`layout.type: person_with_bio`).
+
+On the opposite side, show their background, role, and focus area as **large bullet points**.
+
+Examples:
+
+- LayerX ○○ Division
+- Product Manager
+- Leads the launch of SaaS businesses
+- Previously owned the ○○ domain
+
+**Text management**
+
+- Placeholder biography text is acceptable for now
+- Store bullet points in the `bio_bullets` array in `people_map.json`
+- `edit_plan.json` `bio_card` overlays must use `bullets_source: "people_map"`
+- Create one `person_with_bio` event per person and sync it to that person's self-introduction speech range
+
+**Display style**
+
+- Match the reference image layout, type size, spacing, color usage, and information hierarchy (`style_guide.json` → `bio_card_reference_style`)
+- Respect existing layout tokens such as `bio_card_width_ratio`
+
+### Caption Policy
+
+Do **not** display the full transcript as subtitles. Use editorial captions only: strong phrases, memorable lines, and points the viewer should take away.
+
+| Item | Policy |
+| --- | --- |
+| Data source | `transcript.json` is source material. Display text flows through `punchline_subtitles` in `semantic_marks.json` into `edit_plan.json` |
+| Frequency | Much higher than in the digest. Target roughly one caption every 30 seconds on average |
+| Back-to-back captions | Allowed when important lines continue in sequence; do not wait 30 seconds in those cases |
+| Gaps | Allowed when there is no strong line worth emphasizing; gaps longer than 30 seconds are fine |
+| Wording | Short, strong, readable, like a catchphrase |
+
+Bad example:
+
+> Um, well, for us, when we think about business growth, customer understanding is really important, and...
+
+Good example:
+
+> The starting point of business growth is customer understanding.
+
+Summarize and polish for readability without changing the speaker's meaning. Use `style_id: main_punchline_caption`.
+
+### Topic Title in the Upper Right
+
+During the main section, show a **topic title in the upper-right corner** for each conversation segment (`overlays.type: topic_title`, `position: top_right`).
+
+- Expect a topic change roughly once every 10 minutes across the full interview
+- Analyze subtitles and transcript segments, then assign appropriate titles to `topics` in `semantic_marks.json`
+- Keep the topic title visible continuously or for a defined duration, and change it naturally at topic boundaries
+
+Examples:
+
+- What It Means to Work at LayerX
+- The Reality of Building a Business
+- Behind Product Development
+- Delivering Results as a Team
+- What We Want to Take On Next
+
+### Proper-Noun Explainer Lower Thirds
+
+Analyze subtitles and transcript text. When a proper noun appears in conversation, add a short explainer lower third at the **bottom of the screen** when it helps comprehension (`overlays.type: entity_explainer`).
+
+Examples of targets:
+
+- Company names, service names, business names
+- Technical terms and industry terms
+- Personal names and project names
+
+Keep explanations short enough for context, not long definitions. Store them in `entity_explainers` in `semantic_marks.json`.
+
+Examples:
+
+**LayerX**
+A SaaS and fintech company with the mission to digitize all economic activity.
+
+**Bakuraku**
+LayerX's suite of workflow services for invoice processing, expense management, and related operations.
+
+**Placement rules**
+
+- Display at the bottom of the screen (`position: bottom`)
+- Adjust position, background, and spacing so regular captions do not overlap
+- Follow `validation_rules.captions_must_not_overlap_entity_explainers`
+
+### Four-Camera Cutting
+
+This interview has **three participants and four camera sources**. Cut based on conversational flow, not on a fixed timer.
+
+**Example shot usage**
+
+| Situation | Layout |
+| --- | --- |
+| Overall group energy | `wide_group` |
+| Active speaker close-up | `single` (select the speaker's `media_id`) |
+| Listener reaction | `single` or `speaker_reaction_pair` |
+| Important two-person exchange | `speaker_reaction_pair` or 2-up split |
+| Everyone talking at once / lively moment | `split_grid` (4-up allowed) |
+| 2-up when needed | `split_grid` (2 feeds) |
+
+**4-up rules**
+
+- A 4-up split is allowed when everyone is speaking together
+- Separate panels with a **thin light-green line** (`divider.color: #B7E6C1`)
+- Do not stay in 4-up all the time; switch layouts based on conversation needs
+
+**Cut-selection rules**
+
+- When someone makes an important statement, prioritize their close-up
+- When a two-person exchange matters, center those two participants
+- When group atmosphere matters, use the wide 3-person shot
+- When reactions are strong, include the listener's expression
+- Avoid staying on one angle too long; vary cuts throughout the interview
+
+Describe camera choices in `multicam_segment` events using `speaker_id`, mouth activity (`mouth_activity`), shot quality (`shot_quality`), gaze, and topic boundaries together.
+
+### Reference Images
+
+Use the project's **reference images** as the baseline for design, layout, caption style, participant name tags, and self-introduction information panels.
+
+Do not copy them exactly. Adapt them to this interview footage. Reflect extracted tokens in `style_guide.json` (colors, font sizes, spacing, component definitions).
+
+Elements to carry over from the reference images:
+
+- How participant names and titles are shown
+- Participant placement during self-introductions
+- Biography panel layout
+- Type size and spacing
+- Lower-third color usage
+- Information density balance
+- Clean business-interview presentation
+
+Store reference images under `projects/layer-x-domain-expert/reference/`. The renderer should read the optional `reference_image` field in `style_guide.json` when present.

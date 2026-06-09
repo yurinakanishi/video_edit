@@ -37,6 +37,15 @@ def intervals_overlap(left: tuple[float, float], right: tuple[float, float]) -> 
     return left[0] < right[1] and right[0] < left[1]
 
 
+def existing_reference_path(value: Any) -> bool:
+    if not value:
+        return True
+    path = Path(str(value))
+    if not path.is_absolute():
+        path = PROJECT_ROOT / path
+    return path.exists()
+
+
 def main() -> None:
     manifest = read_json(REPORTS / "project_manifest.json")
     people = read_json(REPORTS / "people_map.json")
@@ -84,6 +93,11 @@ def main() -> None:
                 errors.append(f"{event_id}: {source_key} range exceeds {media_id} duration")
 
         layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+        reference_alignment = layout.get("reference_alignment")
+        if isinstance(reference_alignment, dict):
+            for key in ("analysis_path", "fallback_analysis_path"):
+                if reference_alignment.get(key) and not existing_reference_path(reference_alignment.get(key)):
+                    errors.append(f"{event_id}: layout.reference_alignment.{key} does not exist")
         for key in ("target_person_id", "person_id"):
             value = layout.get(key)
             if value and str(value) not in person_ids:
@@ -113,6 +127,10 @@ def main() -> None:
                 caption_intervals.append(interval)
             if interval and overlay.get("type") == "entity_explainer":
                 explainer_intervals.append(interval)
+            reference_alignment = overlay.get("reference_alignment")
+            if isinstance(reference_alignment, dict) and reference_alignment.get("analysis_path"):
+                if not existing_reference_path(reference_alignment.get("analysis_path")):
+                    errors.append(f"{event_id}: overlay.reference_alignment.analysis_path does not exist")
         for caption in caption_intervals:
             for explainer in explainer_intervals:
                 if intervals_overlap(caption, explainer):

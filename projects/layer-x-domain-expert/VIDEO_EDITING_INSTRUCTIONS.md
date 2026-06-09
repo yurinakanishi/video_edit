@@ -78,6 +78,7 @@ Use separate artifacts for separate responsibilities.
 | `people_map.json` | Mapping between speakers, faces, and real people | Human confirmation |
 | `semantic_marks.json` | Highlights, topics, strong captions, entity explainers | LLM |
 | `style_guide.json` | Visual tokens and overlay component definitions | Human + AI |
+| `reference_image_analysis/*.json` | Per-reference framing, subject crop, face position, overlay zones, and section alignment rules | Human + Python |
 | `edit_plan.json` | Final video timeline and editorial decisions | LLM + validation |
 | `render_jobs.json` | Preview/final/master output profiles | Python |
 
@@ -698,6 +699,7 @@ Inputs:
 - people_map.json
 - semantic_marks.json
 - style_guide.json
+- reference_image_analysis/manifest.json
 
 Goals:
 - Create an opening digest from the strongest moments.

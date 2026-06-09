@@ -415,7 +415,8 @@ def build_vision_tracks() -> dict[str, Any]:
 
 def build_style_guide() -> dict[str, Any]:
     opening_style = read_json(CONFIG / "opening_digest_style.json", {})
-    return {
+    existing = read_json(REPORTS / "style_guide.json", {})
+    style_guide = {
         "schema_version": "style_guide.v1",
         "project_id": "layer-x-domain-expert",
         "generated_at": now_iso(),
@@ -447,6 +448,13 @@ def build_style_guide() -> dict[str, Any]:
             },
         },
     }
+    existing_sources = existing.get("style_sources") if isinstance(existing.get("style_sources"), dict) else {}
+    for key in ("reference_image_analysis_manifest", "reference_image_analysis"):
+        if key in existing_sources:
+            style_guide["style_sources"][key] = existing_sources[key]
+    if isinstance(existing.get("reference_alignment"), dict):
+        style_guide["reference_alignment"] = existing["reference_alignment"]
+    return style_guide
 
 
 def transcript_confidence(segment: dict[str, Any]) -> float | None:
@@ -732,6 +740,7 @@ def update_state(state: dict[str, Any], app_manifest: dict[str, Any]) -> dict[st
                 "audioSync": str(REPORTS / "audio_sync_clap_analysis.json"),
                 "audioTrackAnalysis": str(REPORTS / "audio_track_analysis.json"),
                 "syncMap": str(REPORTS / "sync_map.json"),
+                "referenceImageAnalysis": str(REPORTS / "reference_image_analysis" / "manifest.json"),
             },
             "transcriptionPolicy": {
                 "mode": "single_reference_source_only",

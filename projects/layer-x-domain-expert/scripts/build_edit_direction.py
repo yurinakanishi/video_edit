@@ -9,6 +9,7 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REPORTS = PROJECT_ROOT / "output" / "reports"
+REFERENCE_ANALYSIS = REPORTS / "reference_image_analysis"
 JST = timezone(timedelta(hours=9))
 
 
@@ -261,6 +262,63 @@ def trusted_camera_roles(sync_map: dict[str, Any]) -> list[dict[str, str]]:
     return trusted
 
 
+def apply_reference_alignment(plan: dict[str, Any]) -> dict[str, Any]:
+    plan["reference_image_analysis_source"] = str(REFERENCE_ANALYSIS / "manifest.json")
+    for event in plan.get("timeline", []):
+        if not isinstance(event, dict):
+            continue
+        layout = event.get("layout")
+        if not isinstance(layout, dict):
+            continue
+        section = str(event.get("section") or "")
+        layout_type = str(layout.get("type") or "")
+        if section == "digest":
+            layout["reference_alignment"] = {
+                "reference_image_id": "annotation_sample_review_meeting",
+                "analysis_path": str(REFERENCE_ANALYSIS / "annotation-sample2.json"),
+                "apply": ["wide_group_context", "logo_title_style", "caption_safe_lower_zone"],
+            }
+        elif section == "bridge":
+            layout["reference_alignment"] = {
+                "reference_image_id": None,
+                "apply": ["preserve_source_aspect", "no_interview_crop"],
+            }
+        elif event.get("event_id") == "main_intro_group":
+            layout["reference_alignment"] = {
+                "reference_image_id": "three_person_divided",
+                "analysis_path": str(REFERENCE_ANALYSIS / "three-people-divided-sample.json"),
+                "apply": ["balanced_three_person_face_positions", "physical_order", "topic_title_safe_area"],
+            }
+        elif layout_type == "single":
+            layout["reference_alignment"] = {
+                "reference_image_id": "single_person_nameplate",
+                "analysis_path": str(REFERENCE_ANALYSIS / "left-person-with-name-plate-sample.json"),
+                "apply": ["medium_closeup", "eyes_upper_third", "lower_nameplate_caption_safe_area"],
+            }
+        elif layout_type == "person_with_bio":
+            layout["reference_alignment"] = {
+                "reference_image_id": "person_introduction_bio_card",
+                "analysis_path": str(REFERENCE_ANALYSIS / "person-introduction-sample.json"),
+                "apply": ["opposite_side_bio_card", "large_person_crop", "bio_text_from_people_map"],
+            }
+        elif layout_type in {"split_grid", "speaker_reaction_pair"}:
+            layout["reference_alignment"] = {
+                "reference_image_id": "two_person_nameplate_split",
+                "analysis_path": str(REFERENCE_ANALYSIS / "middle-and-right-people-with-name-plate-divided-sample.json"),
+                "fallback_reference_image_id": "three_person_divided",
+                "fallback_analysis_path": str(REFERENCE_ANALYSIS / "three-people-divided-sample.json"),
+                "apply": ["stable_panel_order", "matched_face_scale", "thin_dividers"],
+            }
+        for overlay in event.get("overlays", []):
+            if isinstance(overlay, dict) and overlay.get("type") == "entity_explainer":
+                overlay["reference_alignment"] = {
+                    "reference_image_id": "annotation_sample",
+                    "analysis_path": str(REFERENCE_ANALYSIS / "annotation-sample.json"),
+                    "apply": ["white_lower_card", "blue_label_tab", "caption_collision_avoidance"],
+                }
+    return plan
+
+
 def build_edit_plan(manifest: dict[str, Any], semantic: dict[str, Any], sync: dict[str, Any], sync_map: dict[str, Any]) -> dict[str, Any]:
     timeline = []
     cursor = 0.0
@@ -393,7 +451,7 @@ def build_edit_plan(manifest: dict[str, Any], semantic: dict[str, Any], sync: di
         )
     if not semantic.get("highlight_candidates"):
         blockers.append("semantic marks contain no highlight candidates")
-    return {
+    return apply_reference_alignment({
         "schema_version": "edit_plan.v1",
         "project_id": "layer-x-domain-expert",
         "generated_at": now_iso(),
@@ -410,7 +468,7 @@ def build_edit_plan(manifest: dict[str, Any], semantic: dict[str, Any], sync: di
             "warnings": ["Draft generated from transcript heuristics; editorial review required before final render."],
         },
         "required_sequence": ["opening_digest", "company_movie_bridge", "main_interview"],
-    }
+    })
 
 
 def main() -> None:

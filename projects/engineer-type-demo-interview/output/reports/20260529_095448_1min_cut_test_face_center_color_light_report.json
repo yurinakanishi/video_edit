@@ -1,0 +1,69 @@
+{
+  "createdAt": "20260529_095448",
+  "config": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\app\\20260529_095448_1min_cut_test_face_center_color_light_config.json",
+  "outputVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_095448_1min_cut_test_face_center_color_light_full_png.mp4",
+  "faceCenterCropPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_1min_face_center_crop_plan.json",
+  "cameraExtraFilters": {
+    "camera5": "eq=brightness=0.0180:contrast=0.9200:saturation=0.8000"
+  },
+  "timelineStartSeconds": 1888.0,
+  "timelineEndSeconds": 1948.0,
+  "localCutSeconds": [
+    16.288,
+    48.288
+  ],
+  "verificationReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_095448_1min_face_center_verify.json",
+  "verifiedFaceCenters": [
+    {
+      "role": "camera5",
+      "time": 8.0,
+      "center": [
+        0.48906,
+        0.50556
+      ],
+      "centerError": [
+        -0.01094,
+        0.00556
+      ],
+      "color": {
+        "sat": 0.2940492139910586,
+        "val": 0.5390657599392564,
+        "contrast": 0.2461980461352031
+      }
+    },
+    {
+      "role": "master",
+      "time": 25.0,
+      "center": [
+        0.49557,
+        0.50694
+      ],
+      "centerError": [
+        -0.00443,
+        0.00694
+      ],
+      "color": {
+        "sat": 0.2934851972167174,
+        "val": 0.47312888969928457,
+        "contrast": 0.31706855952814406
+      }
+    },
+    {
+      "role": "camera5",
+      "time": 54.0,
+      "center": [
+        0.49661,
+        0.50787
+      ],
+      "centerError": [
+        -0.00339,
+        0.00787
+      ],
+      "color": {
+        "sat": 0.31746228414539507,
+        "val": 0.5659764096328678,
+        "contrast": 0.24798509081236006
+      }
+    }
+  ]
+}

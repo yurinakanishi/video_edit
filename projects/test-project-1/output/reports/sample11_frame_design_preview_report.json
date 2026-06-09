@@ -1,0 +1,74 @@
+{
+  "createdAt": "2026-06-07T01:51:33Z",
+  "referenceImage": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\sample-11.png",
+  "referenceAnalysis": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\analysis.json",
+  "designProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json",
+  "projectLogo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+  "frameOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample11_frame_design\\sample11_frame_overlay.png",
+  "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample11_frame_design.mp4",
+  "previewStill": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample11_frame_design_t0005.jpg",
+  "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample11_frame_design_preview.timeline.json",
+  "detected": {
+    "topBandHeightPx": 146,
+    "bottomBandHeightPx": 28,
+    "contentVideoYOffsetPx": 69,
+    "topBandStops": [
+      "#5A51FE",
+      "#5A51FD",
+      "#5D60FE"
+    ],
+    "bottomBandStops": [
+      "#5B59FD",
+      "#656AFD",
+      "#747FFC"
+    ],
+    "logoPanel": {
+      "shape": "left-white-slanted-polygon",
+      "topRightPx": 410,
+      "bottomRightPx": 386,
+      "polygonPx": [
+        [
+          0,
+          0
+        ],
+        [
+          410,
+          0
+        ],
+        [
+          386,
+          146
+        ],
+        [
+          0,
+          146
+        ]
+      ],
+      "logoDetectedBBox": {
+        "pixel": [
+          61,
+          45,
+          249,
+          60
+        ],
+        "xyxyPixel": [
+          61,
+          45,
+          310,
+          105
+        ],
+        "norm": [
+          0.033188,
+          0.04352,
+          0.135473,
+          0.058027
+        ]
+      }
+    }
+  },
+  "notes": [
+    "Preview render only; production render waits for user approval.",
+    "The source video is shifted down less than the full header height so faces sit higher and avoid the speech subtitles.",
+    "Header/footer RGB stops preserve the subtle channel differences detected in the reference image."
+  ]
+}

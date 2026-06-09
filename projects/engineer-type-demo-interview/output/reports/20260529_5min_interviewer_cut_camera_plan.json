@@ -1,0 +1,50 @@
+{
+  "mode": "manual-plan",
+  "source": "5min interviewer+cutted window",
+  "timelineStart": 1762.0,
+  "duration": 300.0,
+  "segments": [
+    {
+      "role": "camera5",
+      "start": 0.0,
+      "end": 2.288,
+      "timelineStart": 1762.0,
+      "timelineEnd": 1764.288
+    },
+    {
+      "role": "master",
+      "start": 2.288,
+      "end": 40.288,
+      "timelineStart": 1764.288,
+      "timelineEnd": 1802.288
+    },
+    {
+      "role": "camera5",
+      "start": 40.288,
+      "end": 142.288,
+      "timelineStart": 1802.288,
+      "timelineEnd": 1904.288
+    },
+    {
+      "role": "master",
+      "start": 142.288,
+      "end": 174.288,
+      "timelineStart": 1904.288,
+      "timelineEnd": 1936.288
+    },
+    {
+      "role": "camera5",
+      "start": 174.288,
+      "end": 264.288,
+      "timelineStart": 1936.288,
+      "timelineEnd": 2026.288
+    },
+    {
+      "role": "master",
+      "start": 264.288,
+      "end": 300.0,
+      "timelineStart": 2026.288,
+      "timelineEnd": 2062.0
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-29T02:17:57.566164+09:00",
+  "sourceDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source",
+  "items": [
+    {
+      "id": "st7-7550",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\ST7_7550.MP4",
+      "name": "ST7_7550.MP4",
+      "kind": "video",
+      "role": "master",
+      "metadata": {
+        "duration": 2968.4655,
+        "size": 22439369468,
+        "creationTime": "2026-05-15T11:24:46Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7189",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7189.MP4",
+      "name": "0H4A7189.MP4",
+      "kind": "video",
+      "role": "camera2",
+      "metadata": {
+        "duration": 568.568,
+        "size": 4259418208,
+        "creationTime": "2026-05-15T11:43:06Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7190",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7190.MP4",
+      "name": "0H4A7190.MP4",
+      "kind": "video",
+      "role": "camera3",
+      "metadata": {
+        "duration": 384.717667,
+        "size": 2881922728,
+        "creationTime": "2026-05-15T11:52:35Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7192",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7192.MP4",
+      "name": "0H4A7192.MP4",
+      "kind": "video",
+      "role": "camera4",
+      "metadata": {
+        "duration": 1124.890433,
+        "size": 8419095808,
+        "creationTime": "2026-05-15T12:01:52Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7193",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7193.MP4",
+      "name": "0H4A7193.MP4",
+      "kind": "video",
+      "role": "camera5",
+      "metadata": {
+        "duration": 1799.164033,
+        "size": 13467842008,
+        "creationTime": "2026-05-15T12:20:40Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "140101-003",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio\\140101-003.WAV",
+      "name": "140101-003.WAV",
+      "kind": "audio",
+      "role": "external",
+      "metadata": {
+        "duration": 3178.862585,
+        "size": 560784128,
+        "creationTime": "01:00:35",
+        "hasVideo": false,
+        "hasAudio": true,
+        "audioCodec": "pcm_s16le",
+        "sampleRate": 44100,
+        "channels": 2
+      }
+    }
+  ],
+  "notes": [
+    "Active media files are stored inside the project source directory; render scripts must not read from Downloads.",
+    "Render duration is locked to the longest video: ST7_7550.MP4.",
+    "Only 140101-003.WAV is selected for external-audio transcription to avoid transcribing every camera source."
+  ],
+  "files": [
+    {
+      "id": "st7-7550",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\ST7_7550.MP4",
+      "name": "ST7_7550.MP4",
+      "kind": "video",
+      "role": "master",
+      "metadata": {
+        "duration": 2968.4655,
+        "size": 22439369468,
+        "creationTime": "2026-05-15T11:24:46Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7189",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7189.MP4",
+      "name": "0H4A7189.MP4",
+      "kind": "video",
+      "role": "camera2",
+      "metadata": {
+        "duration": 568.568,
+        "size": 4259418208,
+        "creationTime": "2026-05-15T11:43:06Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7190",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7190.MP4",
+      "name": "0H4A7190.MP4",
+      "kind": "video",
+      "role": "camera3",
+      "metadata": {
+        "duration": 384.717667,
+        "size": 2881922728,
+        "creationTime": "2026-05-15T11:52:35Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7192",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7192.MP4",
+      "name": "0H4A7192.MP4",
+      "kind": "video",
+      "role": "camera4",
+      "metadata": {
+        "duration": 1124.890433,
+        "size": 8419095808,
+        "creationTime": "2026-05-15T12:01:52Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "0h4a7193",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7193.MP4",
+      "name": "0H4A7193.MP4",
+      "kind": "video",
+      "role": "camera5",
+      "metadata": {
+        "duration": 1799.164033,
+        "size": 13467842008,
+        "creationTime": "2026-05-15T12:20:40Z",
+        "hasVideo": true,
+        "hasAudio": false,
+        "width": 1920,
+        "height": 1080,
+        "videoCodec": "h264",
+        "avgFrameRate": "60000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2
+      }
+    },
+    {
+      "id": "140101-003",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio\\140101-003.WAV",
+      "name": "140101-003.WAV",
+      "kind": "audio",
+      "role": "external",
+      "metadata": {
+        "duration": 3178.862585,
+        "size": 560784128,
+        "creationTime": "01:00:35",
+        "hasVideo": false,
+        "hasAudio": true,
+        "audioCodec": "pcm_s16le",
+        "sampleRate": 44100,
+        "channels": 2
+      }
+    }
+  ],
+  "sourcePaths": [
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "model": "large-v3",
+  "language": "ja",
+  "beamSize": 5,
+  "conditionOnPreviousText": false,
+  "normalizeAudio": true,
+  "filterLowConfidence": true,
+  "manifestFingerprint": "b2a74eb83ee7bc0e9ea6f05b4063ce7fce2bb9f230c80deae04f8ff9e1fb3ee3",
+  "backend": {
+    "backend": "faster-whisper",
+    "device": "cuda",
+    "compute_type": "float16"
+  },
+  "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources",
+  "primarySrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\primary.srt",
+  "transcripts": [
+    {
+      "role": "external",
+      "kind": "audio",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+      "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\audio_preprocessed\\external_140101-003_16k_mono_norm_ce558104f8.wav",
+      "label": "external_140101-003",
+      "json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.json",
+      "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.srt",
+      "segmentCount": 822,
+      "filteredSegmentCount": 0,
+      "textLength": 17290,
+      "primary": true
+    }
+  ],
+  "errors": []
+}

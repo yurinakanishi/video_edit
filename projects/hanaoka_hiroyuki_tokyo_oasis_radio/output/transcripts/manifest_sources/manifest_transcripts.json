@@ -1,0 +1,32 @@
+{
+  "model": "large-v3",
+  "language": "ja",
+  "beamSize": 5,
+  "conditionOnPreviousText": false,
+  "normalizeAudio": true,
+  "filterLowConfidence": true,
+  "manifestFingerprint": "7362838f4943243b7bd87b18853dfb65f5d173beecfd3b97abb021a30f89dc46",
+  "backend": {
+    "backend": "faster-whisper",
+    "device": "cuda",
+    "compute_type": "float16"
+  },
+  "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources",
+  "primarySrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\primary.srt",
+  "transcripts": [
+    {
+      "role": "external",
+      "kind": "audio",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\source\\audio\\東京オアシス20260205 花岡洋行様.wav",
+      "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\audio_preprocessed\\external__20260205_16k_mono_norm_ce558104f8.wav",
+      "label": "external__20260205",
+      "json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\external__20260205.json",
+      "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\external__20260205.srt",
+      "segmentCount": 404,
+      "filteredSegmentCount": 0,
+      "textLength": 7894,
+      "primary": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,336 @@
+{
+  "sourceSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_105652_semiogo_sample_90s_local.srt",
+  "wordTimestamps": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_110900_semiogo_sample_90s_word_timestamps.json",
+  "rolesJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_111218_semiogo_sample_90s_speaker_roles_local.json",
+  "outputSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_112800_semiogo_sample_90s_readable_retimed.srt",
+  "settings": {
+    "leadIn": 0.35,
+    "strongDelay": 0.7,
+    "minDuration": 1.35,
+    "tailHold": 0.25,
+    "mergeMaxChars": 52,
+    "mergeMaxDuration": 8.5,
+    "mergeMaxGap": 0.35
+  },
+  "timingAdjustmentCount": 5,
+  "mergeCount": 5,
+  "outputCaptionCount": 15,
+  "outputRoles": {
+    "1": "onscreen",
+    "2": "onscreen",
+    "3": "interviewer",
+    "4": "interviewer",
+    "5": "interviewer",
+    "6": "interviewer",
+    "7": "interviewer",
+    "8": "interviewer",
+    "9": "interviewer",
+    "10": "onscreen",
+    "11": "interviewer",
+    "12": "onscreen",
+    "13": "onscreen",
+    "14": "onscreen",
+    "15": "onscreen"
+  },
+  "outputCaptions": [
+    {
+      "index": 1,
+      "sourceIndexes": [
+        "300",
+        "301"
+      ],
+      "role": "onscreen",
+      "start": 0.0,
+      "end": 7.78,
+      "text": "それをある程度セミオゴーだとかセミカスタマイズの形で届けるというところだと思っているので"
+    },
+    {
+      "index": 2,
+      "sourceIndexes": [
+        "302"
+      ],
+      "role": "onscreen",
+      "start": 7.82,
+      "end": 15.4,
+      "text": "そこが基本的にはそこで一定のスケールメリットが出ることが大事だと思います"
+    },
+    {
+      "index": 3,
+      "sourceIndexes": [
+        "303"
+      ],
+      "role": "interviewer",
+      "start": 16.09,
+      "end": 17.69,
+      "text": "ありがとうございます"
+    },
+    {
+      "index": 4,
+      "sourceIndexes": [
+        "304",
+        "305"
+      ],
+      "role": "interviewer",
+      "start": 20.45,
+      "end": 27.46,
+      "text": "ちょっと事前の想定ではPDMとFDに関する論争みたいな感じで続いて質問していこうかなと思ったんですけど"
+    },
+    {
+      "index": 5,
+      "sourceIndexes": [
+        "306",
+        "307"
+      ],
+      "role": "interviewer",
+      "start": 27.5,
+      "end": 32.06,
+      "text": "ある程度ちょっと先ほどの話の中からもちょっとお伺いできているところがあるんで"
+    },
+    {
+      "index": 6,
+      "sourceIndexes": [
+        "308"
+      ],
+      "role": "interviewer",
+      "start": 32.1,
+      "end": 35.42,
+      "text": "ちょっと被っちゃうところがあるかもしれないんですけど"
+    },
+    {
+      "index": 7,
+      "sourceIndexes": [
+        "309",
+        "310"
+      ],
+      "role": "interviewer",
+      "start": 36.75,
+      "end": 42.06,
+      "text": "今日はその話もちょっと触れたいなと思っていたのでもう一度ちょっと聞きたいんですが"
+    },
+    {
+      "index": 8,
+      "sourceIndexes": [
+        "311"
+      ],
+      "role": "interviewer",
+      "start": 42.1,
+      "end": 48.48,
+      "text": "そもそもあの論争について多分個別のものにそれに踏み込むつもりはないかなと思うんですが"
+    },
+    {
+      "index": 9,
+      "sourceIndexes": [
+        "312"
+      ],
+      "role": "interviewer",
+      "start": 48.52,
+      "end": 54.02,
+      "text": "どうしてああいう論争がなっちゃうのかなっていうところに関してはどう感じますかね"
+    },
+    {
+      "index": 10,
+      "sourceIndexes": [
+        "313"
+      ],
+      "role": "onscreen",
+      "start": 54.49,
+      "end": 61.82,
+      "text": "その論争の話っていうのはPDM廃止してFDに変えますみたいな話"
+    },
+    {
+      "index": 11,
+      "sourceIndexes": [
+        "314"
+      ],
+      "role": "interviewer",
+      "start": 61.86,
+      "end": 63.46,
+      "text": "そうですありがとうございます"
+    },
+    {
+      "index": 12,
+      "sourceIndexes": [
+        "315"
+      ],
+      "role": "onscreen",
+      "start": 66.68,
+      "end": 70.04,
+      "text": "なんか過剰反応されてるだけな気がしますけどね"
+    },
+    {
+      "index": 13,
+      "sourceIndexes": [
+        "316",
+        "317"
+      ],
+      "role": "onscreen",
+      "start": 73.89,
+      "end": 80.9,
+      "text": "みんな好きなんでしょうねそういうちょっとフレッシュな話題というか"
+    },
+    {
+      "index": 14,
+      "sourceIndexes": [
+        "318"
+      ],
+      "role": "onscreen",
+      "start": 80.94,
+      "end": 85.7,
+      "text": "今ちょうどみんなさすがに薄々"
+    },
+    {
+      "index": 15,
+      "sourceIndexes": [
+        "319"
+      ],
+      "role": "onscreen",
+      "start": 85.74,
+      "end": 90.5,
+      "text": "AIによって何かが変わるなっていうのはみんな覚悟してるというか"
+    }
+  ],
+  "timingAdjustments": [
+    {
+      "index": "303",
+      "text": "ありがとうございます",
+      "oldStart": 14.9,
+      "newStart": 16.09,
+      "matchedContentStart": 16.44,
+      "delay": 1.19,
+      "matchKind": "exact",
+      "prefix": "ありがとうございます"
+    },
+    {
+      "index": "304",
+      "text": "ちょっと事前の想定ではPDMとFDに関する論争みたいな感じで",
+      "oldStart": 16.9,
+      "newStart": 20.45,
+      "matchedContentStart": 20.8,
+      "delay": 3.55,
+      "matchKind": "exact",
+      "prefix": "ちょっと事前の想定ではpdmとf"
+    },
+    {
+      "index": "309",
+      "text": "今日はその話もちょっと触れたいなと思っていたので",
+      "oldStart": 34.92,
+      "newStart": 36.75,
+      "matchedContentStart": 37.1,
+      "delay": 1.83,
+      "matchKind": "exact",
+      "prefix": "今日はその話も"
+    },
+    {
+      "index": "313",
+      "text": "その論争の話っていうのはPDM廃止してFDに変えますみたいな話",
+      "oldStart": 53.52,
+      "newStart": 54.49,
+      "matchedContentStart": 54.84,
+      "delay": 0.97,
+      "matchKind": "exact",
+      "prefix": "その論争の話"
+    },
+    {
+      "index": "316",
+      "text": "みんな好きなんでしょうね",
+      "oldStart": 69.54,
+      "newStart": 73.89,
+      "matchedContentStart": 74.24,
+      "delay": 4.35,
+      "matchKind": "exact",
+      "prefix": "みんな好きなんでしょうね"
+    }
+  ],
+  "merges": [
+    {
+      "left": [
+        "300"
+      ],
+      "right": [
+        "301"
+      ],
+      "oldText": "それをある程度セミオゴーだとかセミカスタマイズの形で",
+      "rightText": "届けるというところだと思っているので",
+      "mergedIndexes": [
+        "300",
+        "301"
+      ],
+      "newStart": 0.0,
+      "newEnd": 7.78,
+      "newText": "それをある程度セミオゴーだとかセミカスタマイズの形で届けるというところだと思っているので",
+      "role": "onscreen"
+    },
+    {
+      "left": [
+        "304"
+      ],
+      "right": [
+        "305"
+      ],
+      "oldText": "ちょっと事前の想定ではPDMとFDに関する論争みたいな感じで",
+      "rightText": "続いて質問していこうかなと思ったんですけど",
+      "mergedIndexes": [
+        "304",
+        "305"
+      ],
+      "newStart": 20.45,
+      "newEnd": 27.46,
+      "newText": "ちょっと事前の想定ではPDMとFDに関する論争みたいな感じで続いて質問していこうかなと思ったんですけど",
+      "role": "interviewer"
+    },
+    {
+      "left": [
+        "306"
+      ],
+      "right": [
+        "307"
+      ],
+      "oldText": "ある程度ちょっと先ほどの話の中からも",
+      "rightText": "ちょっとお伺いできているところがあるんで",
+      "mergedIndexes": [
+        "306",
+        "307"
+      ],
+      "newStart": 27.5,
+      "newEnd": 32.06,
+      "newText": "ある程度ちょっと先ほどの話の中からもちょっとお伺いできているところがあるんで",
+      "role": "interviewer"
+    },
+    {
+      "left": [
+        "309"
+      ],
+      "right": [
+        "310"
+      ],
+      "oldText": "今日はその話もちょっと触れたいなと思っていたので",
+      "rightText": "もう一度ちょっと聞きたいんですが",
+      "mergedIndexes": [
+        "309",
+        "310"
+      ],
+      "newStart": 36.75,
+      "newEnd": 42.06,
+      "newText": "今日はその話もちょっと触れたいなと思っていたのでもう一度ちょっと聞きたいんですが",
+      "role": "interviewer"
+    },
+    {
+      "left": [
+        "316"
+      ],
+      "right": [
+        "317"
+      ],
+      "oldText": "みんな好きなんでしょうね",
+      "rightText": "そういうちょっとフレッシュな話題というか",
+      "mergedIndexes": [
+        "316",
+        "317"
+      ],
+      "newStart": 73.89,
+      "newEnd": 80.9,
+      "newText": "みんな好きなんでしょうねそういうちょっとフレッシュな話題というか",
+      "role": "onscreen"
+    }
+  ]
+}

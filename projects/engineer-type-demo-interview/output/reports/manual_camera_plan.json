@@ -1,0 +1,317 @@
+{
+  "mode": "manual-plan",
+  "source": "sync clamped long-form plan, reduced segment count for Windows ffmpeg command length",
+  "duration": 2968.4655,
+  "segments": [
+    {
+      "role": "master",
+      "start": 0.0,
+      "end": 32.0
+    },
+    {
+      "role": "camera2",
+      "start": 32.0,
+      "end": 56.0
+    },
+    {
+      "role": "camera4",
+      "start": 56.0,
+      "end": 94.0
+    },
+    {
+      "role": "camera2",
+      "start": 94.0,
+      "end": 122.0
+    },
+    {
+      "role": "master",
+      "start": 122.0,
+      "end": 166.0
+    },
+    {
+      "role": "camera4",
+      "start": 166.0,
+      "end": 196.0
+    },
+    {
+      "role": "camera2",
+      "start": 196.0,
+      "end": 228.0
+    },
+    {
+      "role": "camera4",
+      "start": 228.0,
+      "end": 252.0
+    },
+    {
+      "role": "master",
+      "start": 252.0,
+      "end": 290.0
+    },
+    {
+      "role": "camera2",
+      "start": 290.0,
+      "end": 318.0
+    },
+    {
+      "role": "camera4",
+      "start": 318.0,
+      "end": 362.0
+    },
+    {
+      "role": "camera2",
+      "start": 362.0,
+      "end": 392.0
+    },
+    {
+      "role": "master",
+      "start": 392.0,
+      "end": 424.0
+    },
+    {
+      "role": "camera4",
+      "start": 424.0,
+      "end": 448.0
+    },
+    {
+      "role": "camera2",
+      "start": 448.0,
+      "end": 486.0
+    },
+    {
+      "role": "camera4",
+      "start": 486.0,
+      "end": 514.0
+    },
+    {
+      "role": "master",
+      "start": 514.0,
+      "end": 551.368
+    },
+    {
+      "role": "camera4",
+      "start": 551.368,
+      "end": 637.368
+    },
+    {
+      "role": "master",
+      "start": 637.368,
+      "end": 675.368
+    },
+    {
+      "role": "camera4",
+      "start": 675.368,
+      "end": 777.368
+    },
+    {
+      "role": "master",
+      "start": 777.368,
+      "end": 809.368
+    },
+    {
+      "role": "camera4",
+      "start": 809.368,
+      "end": 899.368
+    },
+    {
+      "role": "master",
+      "start": 899.368,
+      "end": 931.57
+    },
+    {
+      "role": "camera4",
+      "start": 931.57,
+      "end": 961.57
+    },
+    {
+      "role": "camera3",
+      "start": 961.57,
+      "end": 993.57
+    },
+    {
+      "role": "camera4",
+      "start": 993.57,
+      "end": 1017.57
+    },
+    {
+      "role": "master",
+      "start": 1017.57,
+      "end": 1055.57
+    },
+    {
+      "role": "camera3",
+      "start": 1055.57,
+      "end": 1083.57
+    },
+    {
+      "role": "camera4",
+      "start": 1083.57,
+      "end": 1121.94
+    },
+    {
+      "role": "camera3",
+      "start": 1121.94,
+      "end": 1125.41
+    },
+    {
+      "role": "master",
+      "start": 1125.41,
+      "end": 1157.41
+    },
+    {
+      "role": "camera5",
+      "start": 1157.41,
+      "end": 1181.41
+    },
+    {
+      "role": "camera3",
+      "start": 1181.41,
+      "end": 1219.41
+    },
+    {
+      "role": "camera5",
+      "start": 1219.41,
+      "end": 1247.41
+    },
+    {
+      "role": "master",
+      "start": 1247.41,
+      "end": 1291.41
+    },
+    {
+      "role": "camera3",
+      "start": 1291.41,
+      "end": 1316.288
+    },
+    {
+      "role": "camera5",
+      "start": 1316.288,
+      "end": 1372.288
+    },
+    {
+      "role": "master",
+      "start": 1372.288,
+      "end": 1410.288
+    },
+    {
+      "role": "camera5",
+      "start": 1410.288,
+      "end": 1512.288
+    },
+    {
+      "role": "master",
+      "start": 1512.288,
+      "end": 1544.288
+    },
+    {
+      "role": "camera5",
+      "start": 1544.288,
+      "end": 1634.288
+    },
+    {
+      "role": "master",
+      "start": 1634.288,
+      "end": 1678.288
+    },
+    {
+      "role": "camera5",
+      "start": 1678.288,
+      "end": 1764.288
+    },
+    {
+      "role": "master",
+      "start": 1764.288,
+      "end": 1802.288
+    },
+    {
+      "role": "camera5",
+      "start": 1802.288,
+      "end": 1904.288
+    },
+    {
+      "role": "master",
+      "start": 1904.288,
+      "end": 1936.288
+    },
+    {
+      "role": "camera5",
+      "start": 1936.288,
+      "end": 2026.288
+    },
+    {
+      "role": "master",
+      "start": 2026.288,
+      "end": 2070.288
+    },
+    {
+      "role": "camera5",
+      "start": 2070.288,
+      "end": 2156.288
+    },
+    {
+      "role": "master",
+      "start": 2156.288,
+      "end": 2194.288
+    },
+    {
+      "role": "camera5",
+      "start": 2194.288,
+      "end": 2296.288
+    },
+    {
+      "role": "master",
+      "start": 2296.288,
+      "end": 2328.288
+    },
+    {
+      "role": "camera5",
+      "start": 2328.288,
+      "end": 2418.288
+    },
+    {
+      "role": "master",
+      "start": 2418.288,
+      "end": 2462.288
+    },
+    {
+      "role": "camera5",
+      "start": 2462.288,
+      "end": 2548.288
+    },
+    {
+      "role": "master",
+      "start": 2548.288,
+      "end": 2586.288
+    },
+    {
+      "role": "camera5",
+      "start": 2586.288,
+      "end": 2688.288
+    },
+    {
+      "role": "master",
+      "start": 2688.288,
+      "end": 2720.288
+    },
+    {
+      "role": "camera5",
+      "start": 2720.288,
+      "end": 2810.288
+    },
+    {
+      "role": "master",
+      "start": 2810.288,
+      "end": 2854.288
+    },
+    {
+      "role": "camera5",
+      "start": 2854.288,
+      "end": 2924.574
+    },
+    {
+      "role": "master",
+      "start": 2924.574,
+      "end": 2968.465
+    }
+  ]
+}

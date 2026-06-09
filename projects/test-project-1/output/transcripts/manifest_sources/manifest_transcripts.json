@@ -1,0 +1,26 @@
+{
+  "model": "large-v3",
+  "language": "en",
+  "beamSize": 5,
+  "conditionOnPreviousText": false,
+  "normalizeAudio": true,
+  "filterLowConfidence": true,
+  "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources",
+  "primarySrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary.srt",
+  "transcripts": [
+    {
+      "role": "master",
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\audio_preprocessed\\master_Interview_with_Michael_Eisen_on_Open_Access_middle_1min_16k_mono_norm_ce558104f8.wav",
+      "label": "master_Interview_with_Michael_Eisen_on_Open_Access_middle_1min",
+      "json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\master_Interview_with_Michael_Eisen_on_Open_Access_middle_1min.json",
+      "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\master_Interview_with_Michael_Eisen_on_Open_Access_middle_1min.srt",
+      "segmentCount": 15,
+      "filteredSegmentCount": 0,
+      "textLength": 832,
+      "primary": true
+    }
+  ],
+  "errors": []
+}

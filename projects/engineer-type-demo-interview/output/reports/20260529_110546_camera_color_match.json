@@ -1,0 +1,265 @@
+{
+  "enabled": true,
+  "items": [
+    {
+      "role": "master",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "reference": true,
+      "stats": {
+        "brightness": 0.7538062454611474,
+        "contrast": 0.23364520995610666,
+        "saturation": 0.1823565480513193,
+        "backgroundBrightness": 0.8301926640966226,
+        "backgroundSaturation": 0.16967989723652085,
+        "meanBgr": [
+          0.662646471798596,
+          0.7501287521181312,
+          0.7963024146695715
+        ],
+        "neutralBgr": [
+          0.707812840361138,
+          0.8121497756914451,
+          0.8629750303750434
+        ],
+        "backgroundBgr": [
+          0.728732956799051,
+          0.8278358708334684,
+          0.8736511486579424
+        ],
+        "samples": 5.0,
+        "skinBgr": [
+          0.4280053461446737,
+          0.5374712625079489,
+          0.7109272765228507
+        ],
+        "skinBrightness": 0.7109272765228507,
+        "skinSaturation": 0.4075205162544903,
+        "skinSamples": 5.0,
+        "skinPixels": 5894.0,
+        "skinFaceRoiSamples": 5.0
+      },
+      "sampleTimelineSeconds": [
+        1118.76,
+        1133.76,
+        1148.76,
+        1163.76,
+        1178.76
+      ],
+      "sampleSourceSeconds": [
+        1118.76,
+        1133.76,
+        1148.76,
+        1163.76,
+        1178.76
+      ]
+    },
+    {
+      "role": "camera2",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "skipped": "stats unavailable"
+    },
+    {
+      "role": "camera3",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "stats": {
+        "brightness": 0.6993068022270637,
+        "contrast": 0.28689594548864805,
+        "saturation": 0.24092052166545633,
+        "backgroundBrightness": 0.8782847887163843,
+        "backgroundSaturation": 0.17176799787942865,
+        "meanBgr": [
+          0.592092598644396,
+          0.6926305192447348,
+          0.7537912490922295
+        ],
+        "neutralBgr": [
+          0.7250043551674311,
+          0.842055291188714,
+          0.902827412480325
+        ],
+        "backgroundBgr": [
+          0.7654407733927668,
+          0.8772877137615079,
+          0.9239796505163043
+        ],
+        "samples": 5.0,
+        "skinBgr": [
+          0.5082847666128975,
+          0.6354658997556365,
+          0.7990693853568056
+        ],
+        "skinBrightness": 0.7990693853568056,
+        "skinSaturation": 0.37024482700492073,
+        "skinSamples": 5.0,
+        "skinPixels": 18982.0,
+        "skinFaceRoiSamples": 5.0
+      },
+      "sampleTimelineSeconds": [
+        1118.76,
+        1133.76,
+        1148.76,
+        1163.76,
+        1178.76
+      ],
+      "sampleSourceSeconds": [
+        187.19,
+        202.19,
+        217.19,
+        232.19,
+        247.19
+      ],
+      "redGain": 0.88969,
+      "greenGain": 0.86,
+      "blueGain": 0.86,
+      "brightness": -0.00417,
+      "brightnessComponents": {
+        "skinDelta": -0.08814,
+        "globalDelta": 0.0545,
+        "backgroundDelta": -0.04809,
+        "weightedDelta": -0.00994
+      },
+      "contrast": 0.84,
+      "saturation": 1.10068,
+      "colorMatchBasis": "skin+global+background",
+      "filter": "colorchannelmixer=rr=0.88969:gg=0.86000:bb=0.86000,eq=brightness=-0.0042:contrast=0.8400:saturation=1.1007"
+    },
+    {
+      "role": "camera4",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "stats": {
+        "brightness": 0.6343574195110143,
+        "contrast": 0.26950471782943386,
+        "saturation": 0.28072803195352214,
+        "backgroundBrightness": 0.7745232743842118,
+        "backgroundSaturation": 0.24531004052628305,
+        "meanBgr": [
+          0.518036220043573,
+          0.6246470285645123,
+          0.6984149721617042
+        ],
+        "neutralBgr": [
+          0.638109642434493,
+          0.7656285298059738,
+          0.8447806909634195
+        ],
+        "backgroundBgr": [
+          0.638109642434493,
+          0.7656285298059738,
+          0.8447806909634195
+        ],
+        "samples": 1.0,
+        "skinBgr": [
+          0.4224480865060207,
+          0.5390265249368286,
+          0.7130930702014426
+        ],
+        "skinBrightness": 0.7130930702014426,
+        "skinSaturation": 0.4153771227713548,
+        "skinSamples": 1.0,
+        "skinPixels": 2778.0,
+        "skinFaceRoiSamples": 1.0
+      },
+      "sampleTimelineSeconds": [
+        1118.76,
+        1133.76,
+        1148.76,
+        1163.76,
+        1178.76
+      ],
+      "sampleSourceSeconds": [
+        1121.71,
+        1136.71,
+        1151.71,
+        1166.71,
+        1181.71
+      ],
+      "redGain": 0.99696,
+      "greenGain": 0.99711,
+      "blueGain": 1.01315,
+      "brightness": 0.03058,
+      "brightnessComponents": {
+        "skinDelta": -0.00217,
+        "globalDelta": 0.11945,
+        "backgroundDelta": 0.05567,
+        "weightedDelta": 0.0728
+      },
+      "contrast": 0.86694,
+      "saturation": 0.98109,
+      "colorMatchBasis": "skin+global+background",
+      "filter": "eq=brightness=0.0306:contrast=0.8669:saturation=0.9811"
+    },
+    {
+      "role": "camera5",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "stats": {
+        "brightness": 0.6344230876301138,
+        "contrast": 0.2693672755218154,
+        "saturation": 0.27906637618010166,
+        "backgroundBrightness": 0.7749608563843899,
+        "backgroundSaturation": 0.2451055797336137,
+        "meanBgr": [
+          0.5183004478334544,
+          0.6245929254417817,
+          0.6985463628661341
+        ],
+        "neutralBgr": [
+          0.6386356759965943,
+          0.7659794937683894,
+          0.8452635490552955
+        ],
+        "backgroundBgr": [
+          0.6386356759965943,
+          0.7659794937683894,
+          0.8452635490552955
+        ],
+        "samples": 5.0,
+        "skinBgr": [
+          0.43121391732357506,
+          0.5491631017841188,
+          0.7255153941632164
+        ],
+        "skinBrightness": 0.7255153941632164,
+        "skinSaturation": 0.4146767517765788,
+        "skinSamples": 5.0,
+        "skinPixels": 14466.0,
+        "skinFaceRoiSamples": 5.0
+      },
+      "sampleTimelineSeconds": [
+        1118.76,
+        1133.76,
+        1148.76,
+        1163.76,
+        1178.76
+      ],
+      "sampleSourceSeconds": [
+        0.0,
+        8.35,
+        23.35,
+        38.35,
+        53.35
+      ],
+      "redGain": 0.97989,
+      "greenGain": 0.97871,
+      "blueGain": 0.99256,
+      "brightness": 0.02946,
+      "brightnessComponents": {
+        "skinDelta": -0.01459,
+        "globalDelta": 0.11938,
+        "backgroundDelta": 0.05523,
+        "weightedDelta": 0.07014
+      },
+      "contrast": 0.86739,
+      "saturation": 0.98274,
+      "colorMatchBasis": "skin+global+background",
+      "filter": "colorchannelmixer=rr=0.97989:gg=0.97871:bb=0.99256,eq=brightness=0.0295:contrast=0.8674:saturation=0.9827"
+    }
+  ],
+  "whiteBalance": true,
+  "manualExtraFilters": [
+    {
+      "role": "camera5",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "filter": "eq=brightness=0.0180:contrast=0.9200:saturation=0.8000"
+    }
+  ]
+}

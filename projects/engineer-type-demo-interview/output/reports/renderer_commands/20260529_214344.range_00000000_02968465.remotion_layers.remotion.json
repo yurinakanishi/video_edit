@@ -1,0 +1,89 @@
+{
+  "createdAt": "2026-05-30T04:38:33Z",
+  "adapter": "remotion",
+  "timelineSchemaVersion": "video-edit-timeline/v1",
+  "timelineId": "timeline_new-folder-2",
+  "timelinePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\timelines\\current.timeline.json",
+  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.range_00000000_02968465.remotion_layers",
+  "layerManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_artifacts\\20260529_214344.range_00000000_02968465.remotion.layers.json",
+  "overlayArtifact": {
+    "renderer": "remotion",
+    "format": "png-sequence",
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.range_00000000_02968465.remotion_layers",
+    "alpha": true,
+    "width": 1920,
+    "height": 1080,
+    "fps": "30000/1001",
+    "fpsNumber": 29.97002997002997,
+    "range": {
+      "start": 0.0,
+      "end": 2968.4655,
+      "duration": 2968.4655
+    },
+    "durationFrames": 88965,
+    "sourceLayerIds": [
+      "clip_overlay_logo",
+      "clip_subtitles_main"
+    ],
+    "imageFormat": "png",
+    "imageSequencePattern": "frame-[frame].[ext]",
+    "ffmpegGlob": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.range_00000000_02968465.remotion_layers\\*.png"
+  },
+  "argv": [
+    "C:\\Program Files\\nodejs\\npx.CMD",
+    "--yes",
+    "--package",
+    "@remotion/cli",
+    "--package",
+    "react",
+    "--package",
+    "react-dom",
+    "remotion",
+    "render",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\remotion\\index.tsx",
+    "VideoEditTimeline",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.range_00000000_02968465.remotion_layers",
+    "--props=C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_artifacts\\20260529_214344.range_00000000_02968465.remotion.layers.json",
+    "--fps",
+    "29.97002997002997",
+    "--width",
+    "1920",
+    "--height",
+    "1080",
+    "--sequence",
+    "--image-format",
+    "png",
+    "--image-sequence-pattern",
+    "frame-[frame].[ext]",
+    "--muted"
+  ],
+  "readyToExecute": true,
+  "missingDependencies": [],
+  "unsupportedClips": [],
+  "validationWarnings": [],
+  "preview": {
+    "range": {
+      "start": 0.0,
+      "end": 2968.4655
+    },
+    "proxy": false
+  },
+  "scope": {
+    "implemented": [
+      "bundled Remotion composition scaffold for overlay-layer rendering",
+      "Remotion public-asset materialization for image and subtitle PNG layers",
+      "Remotion PNG-sequence overlay artifact export with alpha",
+      "FFmpeg composition handoff metadata through overlayArtifact",
+      "React layer manifest for timeline video/audio references",
+      "React layer manifest for subtitle, image, and generated overlay clips",
+      "partial timeline-range layer export",
+      "audited Remotion render argv export"
+    ],
+    "notImplemented": [
+      "full source media playback inside Remotion; FFmpeg remains responsible for base media assembly",
+      "single-file alpha video overlay artifact export"
+    ]
+  },
+  "executed": false,
+  "commandReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_commands\\20260529_214344.range_00000000_02968465.remotion_layers.remotion.json"
+}

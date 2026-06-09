@@ -1,0 +1,58 @@
+{
+  "label": "20260529_101940_5min_interviewer_cut_rich_png",
+  "purpose": "5min test around interviewer speech and multicam cuts, with corrected speaker-role subtitles and pre-app rich PNG style",
+  "timelineStartSec": 1762.0,
+  "durationSec": 300.0,
+  "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_100536_5min_interviewer_cut_test_base.mp4",
+  "finalVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_101940_5min_interviewer_cut_test_rich_png.mp4",
+  "subtitleSourceSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_100536_5min_interviewer_cut_local.srt",
+  "correctedSpeakerRoles": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_5min_interviewer_cut_speaker_roles_corrected.json",
+  "speakerReview": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_5min_interviewer_cut_speaker_review.json",
+  "pngOverlayManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\full_transcript_png_overlays\\manifest.json",
+  "transparentOverlayVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\20260529_101940_5min_interviewer_cut_rich_png_overlay.mov",
+  "cameraPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_5min_interviewer_cut_camera_plan.json",
+  "faceCenterCropPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_5min_interviewer_cut_face_center_plan.json",
+  "diagnosticFrames": {
+    "interviewer_464_black": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\20260529_101940_rich_interviewer_464_black.png",
+    "onscreen_496_purple": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\20260529_101940_rich_onscreen_496_purple.png",
+    "interviewer_527_black": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\20260529_101940_rich_interviewer_527_black.png"
+  },
+  "correctedRoleExamples": [
+    {
+      "sourceIndex": 464,
+      "role": "interviewer",
+      "text": "確かに"
+    },
+    {
+      "sourceIndex": 465,
+      "role": "interviewer",
+      "text": "そのあたりはしっかりと考えてきてあるなという感じがします"
+    },
+    {
+      "sourceIndex": 496,
+      "role": "onscreen",
+      "text": "コアの仕事って何なの?"
+    },
+    {
+      "sourceIndex": 525,
+      "role": "interviewer",
+      "text": "確かに確かに"
+    },
+    {
+      "sourceIndex": 527,
+      "role": "interviewer",
+      "text": "PDMもFDも同じビルダーでしょ"
+    },
+    {
+      "sourceIndex": 538,
+      "role": "interviewer",
+      "text": "そうですね"
+    }
+  ],
+  "notes": [
+    "Subtitle style is restored to rich PNG overlay style instead of simplified ASS fallback.",
+    "Windows command-line length issue is avoided by precomposing PNG subtitles into a transparent qtrle MOV, then overlaying that single video.",
+    "Interviewer captions use semi-transparent black background; onscreen speaker captions use semi-transparent purple background.",
+    "Role detection was corrected by reading the local transcript meaning around the 5min test window, not only punctuation/short-text heuristics."
+  ]
+}

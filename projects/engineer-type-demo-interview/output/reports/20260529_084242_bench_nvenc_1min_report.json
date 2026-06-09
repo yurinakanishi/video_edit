@@ -1,0 +1,18 @@
+{
+  "encoder": "h264_nvenc",
+  "preset": "p4",
+  "cq": 19,
+  "previewStartSeconds": 120.0,
+  "durationSeconds": 60.0,
+  "baseRenderElapsedSeconds": 19.124,
+  "baseRenderRealtimeX": 3.137,
+  "subtitleBurnElapsedSeconds": 10.276,
+  "subtitleBurnRealtimeX": 5.839,
+  "totalElapsedSeconds": 29.4,
+  "totalRealtimeX": 2.041,
+  "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_084242_bench_nvenc_1min_base.mp4",
+  "finalVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_084242_bench_nvenc_1min.mp4",
+  "sampleFrame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\final_samples\\20260529_084242_bench_nvenc_1min.png",
+  "baseLog": "C:\\Users\\yurin\\Desktop\\video_edit\\.video-edit\\logs\\20260529_084242_bench_nvenc_1min_base.log",
+  "burnLog": "C:\\Users\\yurin\\Desktop\\video_edit\\.video-edit\\logs\\20260529_084242_bench_nvenc_1min_burn_retry.log"
+}

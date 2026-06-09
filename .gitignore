@@ -36,6 +36,29 @@
 !/projects/*/scripts/**
 !/projects/*/config/
 !/projects/*/config/**
+!/projects/*/project.json
+!/projects/*/project_state.json
+# Project analytics JSON artifacts (all projects; JSON only, not images/media)
+!/projects/**/output/
+/projects/**/output/**
+/projects/**/output/app/video_edit_app_config.runtime.json
+!/projects/**/output/reports/
+!/projects/**/output/reports/**/
+!/projects/**/output/reports/**/*.json
+!/projects/**/output/transcripts/
+!/projects/**/output/transcripts/**/
+!/projects/**/output/transcripts/**/*.json
+!/projects/**/output/timelines/
+!/projects/**/output/timelines/**/
+!/projects/**/output/timelines/**/*.json
+!/projects/**/output/subtitles/
+!/projects/**/output/subtitles/**/
+!/projects/**/output/subtitles/**/*.json
+/projects/**/output/**/*.png
+/projects/**/output/**/*.jpg
+/projects/**/output/**/*.jpeg
+/projects/**/output/**/*.webp
+/projects/**/output/**/*.gif
 
 # Shared reference asset library
 /reference-assets/output/

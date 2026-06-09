@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "schema_version": "app_sync_offsets.v1",
+  "generatedAt": "2026-06-10T07:22:11+09:00",
+  "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_sync_clap_analysis.json",
+  "method": "clap_plus_waveform_cross_correlation",
+  "referenceRole": "master",
+  "offsets": {
+    "master": 0.0,
+    "camera2": -3.332479,
+    "camera3": 7.467854,
+    "camera4": 13.38
+  },
+  "matches": {
+    "master": {
+      "status": "reference",
+      "offsetSeconds": 0.0,
+      "offsetMilliseconds": 0.0,
+      "referenceClapCandidates": [
+        {
+          "time": 407.317,
+          "score": 16.2254,
+          "envelope": 0.13501585
+        },
+        {
+          "time": 439.858,
+          "score": 22.4372,
+          "envelope": 0.18670654
+        },
+        {
+          "time": 441.391,
+          "score": 14.0463,
+          "envelope": 0.11688283
+        },
+        {
+          "time": 482.346,
+          "score": 24.1693,
+          "envelope": 0.20111926
+        },
+        {
+          "time": 495.498,
+          "score": 14.5525,
+          "envelope": 0.12109539
+        },
+        {
+          "time": 512.35,
+          "score": 14.3472,
+          "envelope": 0.11938708
+        },
+        {
+          "time": 512.847,
+          "score": 16.4068,
+          "envelope": 0.13652539
+        },
+        {
+          "time": 513.277,
+          "score": 20.0581,
+          "envelope": 0.16690944
+        },
+        {
+          "time": 516.303,
+          "score": 16.7177,
+          "envelope": 0.13911279
+        },
+        {
+          "time": 517.451,
+          "score": 15.3292,
+          "envelope": 0.12755845
+        },
+        {
+          "time": 518.275,
+          "score": 13.9356,
+          "envelope": 0.11596214
+        },
+        {
+          "time": 518.996,
+          "score": 15.5136,
+          "envelope": 0.12909329
+        }
+      ]
+    },
+    "camera2": {
+      "combined": {
+        "status": "confirmed",
+        "preferred": "clap",
+        "offsetSeconds": -3.332479,
+        "offsetMilliseconds": -3332.479,
+        "waveformClapDeltaMilliseconds": 2.479
+      },
+      "clap": {
+        "referenceClapTime": 439.858,
+        "sourceClapTime": 436.447,
+        "lagSamples": 3769,
+        "lagMilliseconds": 78.521,
+        "offsetSeconds": -3.332479,
+        "offsetMilliseconds": -3332.479,
+        "correlation": 0.413349,
+        "referenceCandidateScore": 22.4372,
+        "sourceCandidateScore": 11.9456,
+        "status": "matched"
+      },
+      "waveform": {
+        "status": "matched",
+        "offsetSeconds": -3.33,
+        "offsetMilliseconds": -3330.0,
+        "lagFrames": -333,
+        "hopMilliseconds": 10.0,
+        "correlation": 0.862478
+      }
+    },
+    "camera3": {
+      "combined": {
+        "status": "confirmed",
+        "preferred": "clap",
+        "offsetSeconds": 7.467854,
+        "offsetMilliseconds": 7467.854,
+        "waveformClapDeltaMilliseconds": 2.146
+      },
+      "clap": {
+        "referenceClapTime": 439.858,
+        "sourceClapTime": 447.331,
+        "lagSamples": -247,
+        "lagMilliseconds": -5.146,
+        "offsetSeconds": 7.467854,
+        "offsetMilliseconds": 7467.854,
+        "correlation": 0.431629,
+        "referenceCandidateScore": 22.4372,
+        "sourceCandidateScore": 15.7362,
+        "status": "matched"
+      },
+      "waveform": {
+        "status": "matched",
+        "offsetSeconds": 7.47,
+        "offsetMilliseconds": 7470.0,
+        "lagFrames": 747,
+        "hopMilliseconds": 10.0,
+        "correlation": 0.597429
+      }
+    },
+    "camera4": {
+      "combined": {
+        "status": "waveform_only",
+        "preferred": "waveform",
+        "offsetSeconds": 13.38,
+        "offsetMilliseconds": 13380.0
+      },
+      "clap": {
+        "referenceClapTime": 512.847,
+        "sourceClapTime": 507.282,
+        "lagSamples": -327,
+        "lagMilliseconds": -6.812,
+        "offsetSeconds": -5.571813,
+        "offsetMilliseconds": -5571.813,
+        "correlation": 0.246246,
+        "referenceCandidateScore": 16.4068,
+        "sourceCandidateScore": 12.105,
+        "status": "weak_match"
+      },
+      "waveform": {
+        "status": "matched",
+        "offsetSeconds": 13.38,
+        "offsetMilliseconds": 13380.0,
+        "lagFrames": 1338,
+        "hopMilliseconds": 10.0,
+        "correlation": 0.553411
+      }
+    }
+  }
+}

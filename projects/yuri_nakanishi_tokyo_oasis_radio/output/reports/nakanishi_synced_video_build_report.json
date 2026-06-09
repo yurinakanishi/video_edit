@@ -1,0 +1,332 @@
+{
+  "project": "yuri_nakanishi_tokyo_oasis_radio",
+  "sourceVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.mp4",
+  "sourceAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.wav",
+  "transcript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\external__20260528.json",
+  "cutStartSeconds": 122.3,
+  "cutEndSeconds": 1436.6,
+  "sourceTimelineDurationSeconds": 1314.3,
+  "openingSilenceSeconds": 1.0,
+  "contentDurationSeconds": 1303.8,
+  "durationSeconds": 1304.8,
+  "cutStartReason": "Detected main interviewer introduction: 長谷川美穂です",
+  "cutEndReason": "Detected music introduction; ending after final thanks",
+  "syncChunks": [
+    {
+      "target_start": 123.9,
+      "target_end": 124.84,
+      "source_start": 268.88,
+      "source_end": 269.82,
+      "reason": "Opening interviewer identification over continuous main video; trimmed ASR music tail before speech onset",
+      "sourceDuration": 0.94,
+      "targetDuration": 0.94,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 124.84,
+      "target_end": 701.82,
+      "source_start": 269.82,
+      "source_end": 846.8,
+      "reason": "First interview block; waveform-aligned continuous video",
+      "sourceDuration": 576.98,
+      "targetDuration": 576.98,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 710.72,
+      "target_end": 722.76,
+      "source_start": 1043.64,
+      "source_end": 1055.68,
+      "reason": "Post-break re-introduction; remove mid-program music lead-in",
+      "sourceDuration": 12.04,
+      "targetDuration": 12.04,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 722.76,
+      "target_end": 1081.9,
+      "source_start": 1055.68,
+      "source_end": 1415.08,
+      "reason": "Second interview block before edited retake",
+      "sourceDuration": 359.4,
+      "targetDuration": 359.14,
+      "setptsRatio": 0.999277
+    },
+    {
+      "target_start": 1081.9,
+      "target_end": 1373.88,
+      "source_start": 1429.19,
+      "source_end": 1721.17,
+      "reason": "Final topic block after removed retake",
+      "sourceDuration": 291.98,
+      "targetDuration": 291.98,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 1373.88,
+      "target_end": 1423.92,
+      "source_start": 1721.17,
+      "source_end": 1771.21,
+      "reason": "Song selection and natural pause before closing recap",
+      "sourceDuration": 50.04,
+      "targetDuration": 50.04,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 1423.92,
+      "target_end": 1436.6,
+      "source_start": 1771.21,
+      "source_end": 1783.89,
+      "reason": "Final thanks before music introduction",
+      "sourceDuration": 12.68,
+      "targetDuration": 12.68,
+      "setptsRatio": 1.0
+    }
+  ],
+  "videoChunks": [
+    {
+      "target_start": 0.0,
+      "target_end": 578.92,
+      "source_start": 267.88,
+      "source_end": 846.8,
+      "reason": "Opening video uses the original continuous camera take while audio starts after one second of silence",
+      "sourceDuration": 578.92,
+      "targetDuration": 578.92,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 710.72,
+      "target_end": 722.76,
+      "source_start": 1043.64,
+      "source_end": 1055.68,
+      "reason": "Post-break re-introduction; remove mid-program music lead-in",
+      "sourceDuration": 12.04,
+      "targetDuration": 12.04,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 722.76,
+      "target_end": 1081.9,
+      "source_start": 1055.68,
+      "source_end": 1415.08,
+      "reason": "Second interview block before edited retake",
+      "sourceDuration": 359.4,
+      "targetDuration": 359.14,
+      "setptsRatio": 0.999277
+    },
+    {
+      "target_start": 1081.9,
+      "target_end": 1373.88,
+      "source_start": 1429.19,
+      "source_end": 1721.17,
+      "reason": "Final topic block after removed retake",
+      "sourceDuration": 291.98,
+      "targetDuration": 291.98,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 1373.88,
+      "target_end": 1423.92,
+      "source_start": 1721.17,
+      "source_end": 1771.21,
+      "reason": "Song selection and natural pause before closing recap",
+      "sourceDuration": 50.04,
+      "targetDuration": 50.04,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 1423.92,
+      "target_end": 1436.6,
+      "source_start": 1771.21,
+      "source_end": 1783.89,
+      "reason": "Final thanks before music introduction",
+      "sourceDuration": 12.68,
+      "targetDuration": 12.68,
+      "setptsRatio": 1.0
+    }
+  ],
+  "renderChunks": [
+    {
+      "target_start": 0.0,
+      "target_end": 578.92,
+      "source_start": 267.88,
+      "source_end": 846.8,
+      "reason": "Opening video uses the original continuous camera take while audio starts after one second of silence",
+      "sourceDuration": 578.92,
+      "targetDuration": 578.92,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 578.92,
+      "target_end": 590.96,
+      "source_start": 1043.64,
+      "source_end": 1055.68,
+      "reason": "Post-break re-introduction; remove mid-program music lead-in",
+      "sourceDuration": 12.04,
+      "targetDuration": 12.04,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 590.96,
+      "target_end": 950.1,
+      "source_start": 1055.68,
+      "source_end": 1415.08,
+      "reason": "Second interview block before edited retake",
+      "sourceDuration": 359.4,
+      "targetDuration": 359.14,
+      "setptsRatio": 0.999277
+    },
+    {
+      "target_start": 950.1,
+      "target_end": 1242.08,
+      "source_start": 1429.19,
+      "source_end": 1721.17,
+      "reason": "Final topic block after removed retake",
+      "sourceDuration": 291.98,
+      "targetDuration": 291.98,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 1242.08,
+      "target_end": 1292.12,
+      "source_start": 1721.17,
+      "source_end": 1771.21,
+      "reason": "Song selection and natural pause before closing recap",
+      "sourceDuration": 50.04,
+      "targetDuration": 50.04,
+      "setptsRatio": 1.0
+    },
+    {
+      "target_start": 1292.12,
+      "target_end": 1304.8,
+      "source_start": 1771.21,
+      "source_end": 1783.89,
+      "reason": "Final thanks before music introduction",
+      "sourceDuration": 12.68,
+      "targetDuration": 12.68,
+      "setptsRatio": 1.0
+    }
+  ],
+  "renderAudioLeadInSeconds": 1.0,
+  "audioChunks": [
+    {
+      "target_start": 123.9,
+      "target_end": 124.84,
+      "source_start": 268.88,
+      "source_end": 269.82,
+      "reason": "Opening interviewer identification over continuous main video; trimmed ASR music tail before speech onset",
+      "targetDuration": 0.94
+    },
+    {
+      "target_start": 124.84,
+      "target_end": 701.82,
+      "source_start": 269.82,
+      "source_end": 846.8,
+      "reason": "First interview block; waveform-aligned continuous video",
+      "targetDuration": 576.98
+    },
+    {
+      "target_start": 710.72,
+      "target_end": 722.76,
+      "source_start": 1043.64,
+      "source_end": 1055.68,
+      "reason": "Post-break re-introduction; remove mid-program music lead-in",
+      "targetDuration": 12.04
+    },
+    {
+      "target_start": 722.76,
+      "target_end": 1081.9,
+      "source_start": 1055.68,
+      "source_end": 1415.08,
+      "reason": "Second interview block before edited retake",
+      "targetDuration": 359.14
+    },
+    {
+      "target_start": 1081.9,
+      "target_end": 1373.88,
+      "source_start": 1429.19,
+      "source_end": 1721.17,
+      "reason": "Final topic block after removed retake",
+      "targetDuration": 291.98
+    },
+    {
+      "target_start": 1373.88,
+      "target_end": 1423.92,
+      "source_start": 1721.17,
+      "source_end": 1771.21,
+      "reason": "Song selection and natural pause before closing recap",
+      "targetDuration": 50.04
+    },
+    {
+      "target_start": 1423.92,
+      "target_end": 1436.6,
+      "source_start": 1771.21,
+      "source_end": 1783.89,
+      "reason": "Final thanks before music introduction",
+      "targetDuration": 12.68
+    }
+  ],
+  "subtitleEventCount": 352,
+  "renderSubtitleEventCount": 352,
+  "subtitleAuditIssues": [],
+  "roleCounts": {
+    "interviewer": 221,
+    "interviewee": 131,
+    "unknown": 0
+  },
+  "correctionCounts": {
+    "replacements": 40,
+    "segmentOverrides": 123,
+    "roleOverrides": 122
+  },
+  "outputs": {
+    "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\subtitles\\tokyo_oasis_20260528_nakanishi_cut.srt",
+    "captionOverlayManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\overlays\\synced_video_caption_png_overlays\\manifest.json",
+    "titleOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\overlays\\title\\tokyo_oasis_nakanishi_title.png",
+    "logoOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\overlays\\logo\\kiitos_logo_box.png",
+    "filterScript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\overlays\\synced_video_filter_complex.ffmpeg",
+    "video": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\videos\\tokyo_oasis_20260528_nakanishi_synced_subtitled.mp4"
+  },
+  "renderCommand": [
+    "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-y",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.mp4",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.wav",
+    "-loop",
+    "1",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\overlays\\logo\\kiitos_logo_box.png",
+    "-loop",
+    "1",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\overlays\\title\\tokyo_oasis_nakanishi_title.png",
+    "-filter_complex_script",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\overlays\\synced_video_filter_complex.ffmpeg",
+    "-map",
+    "[v]",
+    "-map",
+    "[a]",
+    "-t",
+    "1304.800",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-crf",
+    "18",
+    "-c:a",
+    "aac",
+    "-b:a",
+    "192k",
+    "-ar",
+    "48000",
+    "-movflags",
+    "+faststart",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\videos\\tokyo_oasis_20260528_nakanishi_synced_subtitled.mp4"
+  ]
+}

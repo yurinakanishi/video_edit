@@ -1,0 +1,351 @@
+{
+  "version": 1,
+  "revision": 14,
+  "updatedAt": "2026-06-10T08:15:20+09:00",
+  "project": {
+    "id": "layer-x-domain-expert",
+    "name": "Layer X Domain Expert",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output"
+  },
+  "assets": {
+    "mediaDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source",
+    "materialPaths": [
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\company-movie.mp4",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png"
+    ],
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\media_manifest.json",
+    "mediaManifest": {
+      "version": 1,
+      "sourceDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source",
+      "sourcePaths": [
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\company-movie.mp4",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png"
+      ],
+      "generatedAt": "2026-06-10T08:15:20+09:00",
+      "files": [
+        {
+          "id": "group-wide",
+          "kind": "video",
+          "role": "master",
+          "label": "Group wide",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\C0007-007.MP4",
+          "relativePath": "video\\three people.mp4",
+          "name": "three people.mp4",
+          "extension": ".mp4",
+          "sizeBytes": 6046328300,
+          "confidence": 1,
+          "reason": "generated from current project source files by project-local analytics bootstrap",
+          "metadata": {
+            "duration": 2985.485,
+            "hasVideo": true,
+            "hasAudio": true,
+            "width": 1920,
+            "height": 1080,
+            "fps": 30.0,
+            "videoCodec": "h264",
+            "avgFrameRate": "30/1",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2,
+            "storage": "project-source"
+          }
+        },
+        {
+          "id": "cam-person-01",
+          "kind": "video",
+          "role": "camera2",
+          "label": "Left participant camera",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\C0011-002.MP4",
+          "relativePath": "video\\person-left.mp4",
+          "name": "person-left.mp4",
+          "extension": ".mp4",
+          "sizeBytes": 6258442453,
+          "confidence": 1,
+          "reason": "generated from current project source files by project-local analytics bootstrap",
+          "metadata": {
+            "duration": 3615.115,
+            "hasVideo": true,
+            "hasAudio": true,
+            "width": 1920,
+            "height": 1080,
+            "fps": 30.0,
+            "videoCodec": "h264",
+            "avgFrameRate": "30/1",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2,
+            "storage": "project-source"
+          }
+        },
+        {
+          "id": "cam-person-02",
+          "kind": "video",
+          "role": "camera3",
+          "label": "Middle participant camera",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\C0484-003.MP4",
+          "relativePath": "video\\person-middle.mp4",
+          "name": "person-middle.mp4",
+          "extension": ".mp4",
+          "sizeBytes": 6468581021,
+          "confidence": 1,
+          "reason": "generated from current project source files by project-local analytics bootstrap",
+          "metadata": {
+            "duration": 3630.133,
+            "hasVideo": true,
+            "hasAudio": true,
+            "width": 1920,
+            "height": 1080,
+            "fps": 30.0,
+            "videoCodec": "h264",
+            "avgFrameRate": "30/1",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2,
+            "storage": "project-source"
+          }
+        },
+        {
+          "id": "cam-person-03",
+          "kind": "video",
+          "role": "camera4",
+          "label": "Right participant camera",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\C0487-005.MP4",
+          "relativePath": "video\\person-right.mp4",
+          "name": "person-right.mp4",
+          "extension": ".mp4",
+          "sizeBytes": 7215370227,
+          "confidence": 1,
+          "reason": "generated from current project source files by project-local analytics bootstrap",
+          "metadata": {
+            "duration": 3639.135,
+            "hasVideo": true,
+            "hasAudio": true,
+            "width": 1920,
+            "height": 1080,
+            "fps": 30.0,
+            "videoCodec": "h264",
+            "avgFrameRate": "30/1",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2,
+            "storage": "project-source"
+          }
+        },
+        {
+          "id": "company-movie",
+          "kind": "video",
+          "role": "company_movie",
+          "label": "Company movie",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\company-movie.mp4",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\layerX_15sec_0920_2.mp4",
+          "relativePath": "video\\company-movie.mp4",
+          "name": "company-movie.mp4",
+          "extension": ".mp4",
+          "sizeBytes": 10935688,
+          "confidence": 1,
+          "reason": "generated from current project source files by project-local analytics bootstrap",
+          "metadata": {
+            "duration": 15.018,
+            "hasVideo": true,
+            "hasAudio": true,
+            "width": 1920,
+            "height": 1080,
+            "fps": 30.0,
+            "videoCodec": "h264",
+            "avgFrameRate": "30/1",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2,
+            "storage": "project-source"
+          }
+        },
+        {
+          "id": "layerx-logo-horizontal-rgb-color",
+          "kind": "image",
+          "role": "logo",
+          "label": "LayerX Logo Horizontal RGB Color",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\LayerX_Logo_Horizontal_RGB_Color.png",
+          "relativePath": "assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+          "name": "LayerX_Logo_Horizontal_RGB_Color.png",
+          "extension": ".png",
+          "sizeBytes": 39694,
+          "confidence": 1,
+          "reason": "generated from current project source files by project-local analytics bootstrap",
+          "metadata": {
+            "width": 2352,
+            "height": 866,
+            "codec": "png",
+            "storage": "project-source"
+          }
+        }
+      ],
+      "audio": [],
+      "images": [
+        {
+          "id": "layerx-logo-horizontal-rgb-color",
+          "kind": "image",
+          "role": "logo",
+          "label": "LayerX Logo Horizontal RGB Color",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\LayerX_Logo_Horizontal_RGB_Color.png",
+          "relativePath": "assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+          "name": "LayerX_Logo_Horizontal_RGB_Color.png",
+          "extension": ".png",
+          "sizeBytes": 39694,
+          "confidence": 1,
+          "reason": "generated from current project source files by project-local analytics bootstrap",
+          "metadata": {
+            "width": 2352,
+            "height": 866,
+            "codec": "png",
+            "storage": "project-source"
+          }
+        }
+      ],
+      "subtitles": [],
+      "other": [],
+      "selected": {
+        "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+        "rightCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+        "leftCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+        "companyMovie": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\company-movie.mp4",
+        "externalAudio": "",
+        "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+        "stillImages": [
+          "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png"
+        ]
+      },
+      "manifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\media_manifest.json"
+    },
+    "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+    "rightCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+    "leftCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+    "referenceVideo": "",
+    "externalAudio": "",
+    "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+    "stillImages": [
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png"
+    ],
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video"
+  },
+  "render": {
+    "editPreset": "new-interview",
+    "workflowAction": "render-selected",
+    "renderScript": "render_app_interview.py",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview.mp4",
+    "timelinePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\timelines\\current.timeline.json",
+    "subtitleMode": "none",
+    "renderProfile": "preview",
+    "rangeMode": "full",
+    "multicamMode": "single-camera",
+    "audioSource": "video",
+    "audioDenoise": false,
+    "audioMastering": false,
+    "previewStart": 0,
+    "previewDuration": 15,
+    "shortenSilence": false,
+    "keepUncut": true,
+    "syncOffsetsPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\app_sync_offsets.json"
+  },
+  "analysis": {
+    "transcribeModel": "large-v3",
+    "transcribeLanguage": "ja",
+    "transcribeBeamSize": 5,
+    "transcribeTemperature": 0,
+    "transcribePromptTerms": "LayerX, ドメインエキスパート",
+    "transcribeNormalizeAudio": true,
+    "transcribeFilterLowConfidence": true,
+    "conditionOnPreviousText": false,
+    "artifactPaths": {
+      "projectManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\project_manifest.json",
+      "mediaProbe": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\media_probe.json",
+      "transcript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\transcript.json",
+      "speakerDiarization": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\speaker_diarization.json",
+      "visionTracks": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\vision_tracks.json",
+      "peopleMap": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\people_map.json",
+      "semanticMarks": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\semantic_marks.json",
+      "styleGuide": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\style_guide.json",
+      "editPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
+      "renderJobs": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\render_jobs.json",
+      "audioSync": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_sync_clap_analysis.json",
+      "audioTrackAnalysis": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_track_analysis.json",
+      "syncMap": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\sync_map.json",
+      "contentWindow": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\content_window.json",
+      "speakerActivity": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\speaker_activity_analysis.json",
+      "referenceImageAnalysis": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\manifest.json"
+    },
+    "personBboxesDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\person_bboxes",
+    "personEditPlansDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\person_edit_plans",
+    "personModel": "C:\\Users\\yurin\\Desktop\\video_edit\\.video-edit\\models\\yolov8n.pt",
+    "personFpsSample": 0.5,
+    "personMaxSeconds": 90,
+    "transcriptionPolicy": {
+      "mode": "single_reference_source_only",
+      "sourceMediaId": "group_wide",
+      "sourceRole": "master",
+      "script": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\scripts\\transcribe_reference_only.py"
+    },
+    "syncPolicy": {
+      "mode": "timecode_audio_clap_visual_transcript_manual",
+      "script": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\scripts\\analyze_clap_sync.py",
+      "analysisPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_sync_clap_analysis.json",
+      "offsetsPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\app_sync_offsets.json",
+      "syncMapPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\sync_map.json"
+    }
+  },
+  "style": {
+    "subtitleSize": 60,
+    "highlightColor": "#5F5AF5",
+    "boxOpacity": 72,
+    "titleText": "",
+    "titleSize": 48,
+    "logoHeight": 48,
+    "punchlineText": ""
+  },
+  "glossary": {
+    "enabled": false,
+    "terms": []
+  },
+  "music": {
+    "enabled": false
+  },
+  "omissionCard": {
+    "enabled": false
+  },
+  "tools": {
+    "python": "python",
+    "ffmpeg": "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+    "ffprobe": "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe"
+  },
+  "codexWork": {
+    "latestPreviewTasks": [],
+    "analyticsBootstrap": {
+      "updatedAt": "2026-06-10T08:15:20+09:00",
+      "status": "foundation_json_created",
+      "transcriptStatus": "transcribed_pending_diarization",
+      "semanticStatus": "draft_from_transcript",
+      "editPlanStatus": "draft_needs_sync_review",
+      "visionStatus": "sampled"
+    }
+  },
+  "ui": {
+    "activeSection": "assets",
+    "codexModel": "",
+    "language": "ja"
+  }
+}

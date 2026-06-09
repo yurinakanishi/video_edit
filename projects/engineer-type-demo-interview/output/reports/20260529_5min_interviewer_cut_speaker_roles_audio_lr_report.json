@@ -1,0 +1,59 @@
+{
+  "output": "projects\\new-folder-2\\output\\reports\\20260529_5min_interviewer_cut_speaker_roles_audio_lr.json",
+  "source": "projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_100536_5min_interviewer_cut_local.srt",
+  "audio": "projects\\new-folder-2\\output\\videos\\20260529_100536_5min_interviewer_cut_test_base.mp4",
+  "interviewerCount": 16,
+  "onscreenCount": 72,
+  "audioFeatureSummary": {
+    "interviewer": {
+      "lrDb": {
+        "median": 3.929,
+        "mean": 3.9987,
+        "p10": 3.361,
+        "p90": 4.8175
+      },
+      "dbfsMono": {
+        "median": -15.7845,
+        "mean": -17.3889,
+        "p10": -21.3685,
+        "p90": -12.8775
+      }
+    },
+    "onscreen": {
+      "lrDb": {
+        "median": -3.5595,
+        "mean": -3.396,
+        "p10": -4.1855,
+        "p90": -2.418
+      },
+      "dbfsMono": {
+        "median": -15.392,
+        "mean": -15.6262,
+        "p10": -17.8818,
+        "p90": -13.4587
+      }
+    }
+  },
+  "lowConfidence": [
+    {
+      "index": 454,
+      "start": 0.0,
+      "end": 1.56,
+      "role": "onscreen",
+      "confidence": 0.2,
+      "lrDb": 0.144,
+      "text": "変にやっぱり注目されすぎているというか",
+      "reason": "weak channel separation lrDb=0.14; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 523,
+      "start": 249.82,
+      "end": 251.6,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": -0.096,
+      "text": "別に作ることじゃなくてもいいんじゃないですか",
+      "reason": "weak channel separation lrDb=-0.10; onscreen text hint"
+    }
+  ]
+}

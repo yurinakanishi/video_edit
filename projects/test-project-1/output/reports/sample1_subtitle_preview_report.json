@@ -1,0 +1,114 @@
+{
+  "createdAt": "2026-06-06T14:28:19Z",
+  "sourceVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+  "reference": {
+    "analysisPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+    "asset": {
+      "assetId": "sample-1",
+      "mediaId": "media-001",
+      "collection": "layer-x",
+      "kind": "video",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\sample-1.mp4",
+      "originalPath": "C:\\Users\\yurin\\Downloads\\layer-x\\Recording 2026-06-06 155821.mp4",
+      "sha256": "2745f2230dfaae5450f0c2b74952b5f625e1f02a21d11c506d9f6a529c71b51c",
+      "sizeBytes": 56629186,
+      "relativePath": "collections\\layer-x\\video\\sample-1\\sample-1.mp4",
+      "name": "Recording 2026-06-06 155821.mp4",
+      "extension": ".mp4",
+      "width": 1834,
+      "height": 1030,
+      "duration": 61.332938,
+      "fps": 30.0,
+      "codec": "h264"
+    },
+    "summary": {
+      "frameCount": 67,
+      "sampledDurationSeconds": 61.0,
+      "personPresent": true,
+      "maxPeople": 3,
+      "avgPeople": 1.597,
+      "facePresent": true,
+      "maxFaces": 3,
+      "faceDirectionCounts": {
+        "right": 14,
+        "left": 39,
+        "front": 28,
+        "unknown": 19
+      },
+      "avgFaceAreaRatio": 0.028123,
+      "mainPersonCenterAvg": [
+        0.49824,
+        0.55444
+      ],
+      "subtitlePresent": true,
+      "titlePresent": true,
+      "logoPresent": true,
+      "annotationPresent": true,
+      "textRoleCounts": {
+        "logo_text": 76,
+        "subtitle": 103,
+        "title": 17,
+        "small_text": 1
+      },
+      "splitScreenPresent": true,
+      "splitScreenFrameRatio": 0.6119,
+      "dominantColors": [
+        {
+          "hex": "#9E9296",
+          "count": 9
+        },
+        {
+          "hex": "#6B5A57",
+          "count": 5
+        },
+        {
+          "hex": "#6D5C58",
+          "count": 5
+        },
+        {
+          "hex": "#7C6F78",
+          "count": 4
+        },
+        {
+          "hex": "#FEFEFE",
+          "count": 4
+        },
+        {
+          "hex": "#E6E3EC",
+          "count": 4
+        }
+      ],
+      "referenceNotes": [
+        "Use as a split-screen interview composition reference.",
+        "Two-person layout with separate left/right subject zones.",
+        "Large lower-third Japanese text overlays are part of the style.",
+        "Top title/header treatment can be reused as a branded information strip.",
+        "Logo placement is a persistent brand marker, usually near the upper left.",
+        "Additional text annotations should be tracked separately from main subtitles.",
+        "Collection: layer-x; asset kind: video."
+      ]
+    },
+    "derivedStyle": {
+      "subtitleBoxCount": 103,
+      "titleBoxCount": 17,
+      "logoBoxCount": 76,
+      "subtitleColor": "#5A45EF",
+      "subtitleTreatment": "large lower-third opaque boxes with white/purple alternation",
+      "topTreatment": "LayerX-style brand marker plus purple title banner"
+    }
+  },
+  "primarySrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary.srt",
+  "correctedSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.srt",
+  "correctedTranscriptText": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.txt",
+  "ass": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_style.ass",
+  "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample1_subtitle_preview.timeline.json",
+  "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_subtitles.mp4",
+  "previewStill": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_subtitles_t0005.jpg",
+  "captionCount": 15,
+  "assEventCount": 31,
+  "duration": 60.018292,
+  "notes": [
+    "Preview render only; production render should wait for user approval.",
+    "Subtitle style derived from sample-1 analysis: large lower-third boxes, LayerX-style logo text, and purple top title banner."
+  ]
+}

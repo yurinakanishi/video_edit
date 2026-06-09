@@ -1,0 +1,25 @@
+{
+  "createdAt": "2026-06-06T15:27:43Z",
+  "sourceVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+  "referenceAnalysis": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+  "styleProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_style_profile.json",
+  "patternLibrary": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_pattern_library.json",
+  "overlayManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlays.json",
+  "animatedOverlayVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlay.mov",
+  "correctedSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.srt",
+  "correctedTranscriptText": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.txt",
+  "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample1_speech_subtitle_preview.timeline.json",
+  "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_speech_subtitles.mp4",
+  "previewStill": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_speech_subtitles_t0005.jpg",
+  "captionCount": 15,
+  "overlayCount": 28,
+  "referencePatternCount": 16,
+  "referencePatternFrameCount": 53,
+  "duration": 60.018292,
+  "notes": [
+    "Preview render only; production render should wait for user approval.",
+    "Only sample-1 role=subtitle lower speech captions are profiled; top logo/title text is intentionally ignored.",
+    "All whole-second sample-1 reference frames are classified into subtitle layout/background/anchor patterns.",
+    "Preview subtitles choose a deterministic random extracted reference pattern per caption chunk."
+  ]
+}

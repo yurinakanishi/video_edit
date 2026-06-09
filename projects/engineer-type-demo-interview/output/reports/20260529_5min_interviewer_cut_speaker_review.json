@@ -1,0 +1,797 @@
+{
+  "roles": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_5min_interviewer_cut_speaker_roles_corrected.json",
+  "items": [
+    {
+      "index": 454,
+      "start": "00:00:00,000",
+      "end": "00:00:01,560",
+      "text": "変にやっぱり注目されすぎているというか",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 455,
+      "start": "00:00:01,560",
+      "end": "00:00:04,300",
+      "text": "そこに引っ張られすぎているんだと思うんですよね",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 456,
+      "start": "00:00:04,300",
+      "end": "00:00:10,100",
+      "text": "FDEって仕事自体は別にそれを試行しているわけじゃないというか",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 457,
+      "start": "00:00:10,100",
+      "end": "00:00:14,840",
+      "text": "それは方法というか手段でしかなかったはずなんですよ",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 458,
+      "start": "00:00:14,840",
+      "end": "00:00:18,140",
+      "text": "いろんな役割を統合するということ自体は",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 459,
+      "start": "00:00:18,140",
+      "end": "00:00:19,600",
+      "text": "なんですけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 460,
+      "start": "00:00:19,600",
+      "end": "00:00:28,460",
+      "text": "AIによってみんな多分一人でできることが増えていくんだろうな",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 461,
+      "start": "00:00:28,460",
+      "end": "00:00:30,600",
+      "text": "ということ自体は思っているから",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 462,
+      "start": "00:00:30,600",
+      "end": "00:00:34,300",
+      "text": "それに自分寄せられちゃってる",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 463,
+      "start": "00:00:34,300",
+      "end": "00:00:37,700",
+      "text": "寄せていっちゃってるっていうような感じなんだと思います",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 464,
+      "start": "00:00:37,700",
+      "end": "00:00:39,680",
+      "text": "確かに",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen acknowledgement"
+    },
+    {
+      "index": 465,
+      "start": "00:00:39,680",
+      "end": "00:00:43,940",
+      "text": "そのあたりはしっかりと考えてきてあるなという感じがします",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen acknowledgement/comment"
+    },
+    {
+      "index": 466,
+      "start": "00:00:43,940",
+      "end": "00:00:52,180",
+      "text": "なのでFDAの話と巷でよく言われるプロダクトマネージャーはビルダーだみたいな論文っていうのは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 467,
+      "start": "00:00:52,180",
+      "end": "00:00:54,300",
+      "text": "若干違う話なんですよ",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 468,
+      "start": "00:00:54,300",
+      "end": "00:01:00,640",
+      "text": "だからFDAの話は基本的にビジネスモデルに紐づく役割定義の話で",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 469,
+      "start": "00:01:00,640",
+      "end": "00:01:04,660",
+      "text": "VDMもビルダーだみたいな話は",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 470,
+      "start": "00:01:04,660",
+      "end": "00:01:11,980",
+      "text": "各職種の役割が増えていくよっていう話だと思います",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 471,
+      "start": "00:01:11,980",
+      "end": "00:01:18,420",
+      "text": "ここに関してPDMはビルダーだみたいな話に関して僕が言えることとしては",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 472,
+      "start": "00:01:18,420",
+      "end": "00:01:21,840",
+      "text": "僕もともとエンジニア出身のプロダクトマネージャーなので",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 473,
+      "start": "00:01:21,840",
+      "end": "00:01:28,860",
+      "text": "エンジニア出身のプロダクトマネージャーゆえにあんまり言わないようにしていることとして",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 474,
+      "start": "00:01:28,860",
+      "end": "00:01:36,140",
+      "text": "プロダクトマネージャーエンジニアリング分かんないの問題外でしょっていうのを思ってるけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 475,
+      "start": "00:01:36,140",
+      "end": "00:01:41,420",
+      "text": "それはポジショントークになっちゃうから基本的には言わないようにしている部分があるんだけれども",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 476,
+      "start": "00:01:41,980",
+      "end": "00:01:48,800",
+      "text": "この時代になってくるとやったらいいじゃんと思うわけです",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 477,
+      "start": "00:01:48,800",
+      "end": "00:01:52,280",
+      "text": "やれるじゃんと別に行動じゃゼロから",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 478,
+      "start": "00:01:52,280",
+      "end": "00:01:54,040",
+      "text": "AIを使わずに書けとは言わないけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 479,
+      "start": "00:01:54,040",
+      "end": "00:01:56,560",
+      "text": "AIを使ってプロダクトとして",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 480,
+      "start": "00:01:56,560",
+      "end": "00:01:59,740",
+      "text": "人に使われるものをちょっと使ってみるっていうのは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 481,
+      "start": "00:01:59,740",
+      "end": "00:02:02,320",
+      "text": "やろうと思えば本当に1日でできる話なので",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 482,
+      "start": "00:02:02,320",
+      "end": "00:02:06,360",
+      "text": "それをやらないっていうのは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 483,
+      "start": "00:02:06,360",
+      "end": "00:02:11,140",
+      "text": "勉強不足というかちょっと努力不足かなっていうのは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 484,
+      "start": "00:02:11,140",
+      "end": "00:02:12,840",
+      "text": "シンプルに思いますと",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 485,
+      "start": "00:02:12,840",
+      "end": "00:02:16,080",
+      "text": "エンジニアとして一人前になるために",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 486,
+      "start": "00:02:16,080",
+      "end": "00:02:18,900",
+      "text": "3年かけてまずエンジニアリングやれとまでは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 487,
+      "start": "00:02:18,900",
+      "end": "00:02:20,340",
+      "text": "言わないんだけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 488,
+      "start": "00:02:20,340",
+      "end": "00:02:23,920",
+      "text": "作れるんだから作ってみたらいいじゃんっていうのは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 489,
+      "start": "00:02:23,920",
+      "end": "00:02:27,640",
+      "text": "シンプルに思うところとしてあるんですけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 490,
+      "start": "00:02:27,640",
+      "end": "00:02:29,560",
+      "text": "だからといって",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 491,
+      "start": "00:02:29,560",
+      "end": "00:02:31,960",
+      "text": "じゃあ全てのプロダクトマネージャーが",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 492,
+      "start": "00:02:31,960",
+      "end": "00:02:34,140",
+      "text": "エンジニアの仕事もやればいいじゃんっていうのは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 493,
+      "start": "00:02:34,140",
+      "end": "00:02:35,500",
+      "text": "結構暴力的だと思っていて",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 494,
+      "start": "00:02:35,500",
+      "end": "00:02:38,020",
+      "text": "じゃあそうなってくると逆に",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 495,
+      "start": "00:02:38,020",
+      "end": "00:02:39,740",
+      "text": "プロダクトマネージャーが今までやってた",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 496,
+      "start": "00:02:39,740",
+      "end": "00:02:40,980",
+      "text": "コアの仕事って何なの?",
+      "role": "onscreen",
+      "manual": true,
+      "reason": "manual transcript review: visible speaker rhetorical quote, not offscreen interviewer"
+    },
+    {
+      "index": 497,
+      "start": "00:02:41,140",
+      "end": "00:02:42,540",
+      "text": "みたいな話になるわけですよ",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 498,
+      "start": "00:02:42,540",
+      "end": "00:02:46,720",
+      "text": "だったらそもそも最初からエンジニアだけでよかったじゃん",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 499,
+      "start": "00:02:46,720",
+      "end": "00:02:48,280",
+      "text": "みたいな話になるので",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 500,
+      "start": "00:02:48,280",
+      "end": "00:02:52,240",
+      "text": "ただ特にプロダクトマネージャーみたいな仕事っていうのは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 501,
+      "start": "00:02:52,240",
+      "end": "00:02:54,580",
+      "text": "やっぱり統合する仕事なんですよね",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 502,
+      "start": "00:02:54,580",
+      "end": "00:02:58,520",
+      "text": "どちらかというといろんな役割ステークホルダーがいる中で",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 503,
+      "start": "00:02:58,520",
+      "end": "00:03:02,400",
+      "text": "そのステークホルダーの役割とか考え方とかを統合していって",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 504,
+      "start": "00:03:02,400",
+      "end": "00:03:05,060",
+      "text": "最終的に位置決定をするみたいなことを",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 505,
+      "start": "00:03:05,060",
+      "end": "00:03:10,520",
+      "text": "プロダクトマネージャーになっている仕事ですということを考えると",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 506,
+      "start": "00:03:10,520",
+      "end": "00:03:15,880",
+      "text": "じゃあエンジニアリングもやっぱり分かったりとかやってみたりとか",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 507,
+      "start": "00:03:15,880",
+      "end": "00:03:18,620",
+      "text": "分かるためにやってみた方がいいし",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 508,
+      "start": "00:03:18,620",
+      "end": "00:03:22,640",
+      "text": "デザインもやってみれた方がいいしっていうところを",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 509,
+      "start": "00:03:22,640",
+      "end": "00:03:29,960",
+      "text": "なんである意味PTMが最終的に統合するっていう役割を担うための",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 510,
+      "start": "00:03:29,960",
+      "end": "00:03:33,520",
+      "text": "学習環境がすごく揃ってるって感じだと思うんですよね",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 511,
+      "start": "00:03:33,520",
+      "end": "00:03:37,740",
+      "text": "実体験できる学習環境がAIによって揃ってるっていう形だと思うので",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 512,
+      "start": "00:03:37,740",
+      "end": "00:03:41,340",
+      "text": "プロダクトマネージャーっていう仕事を",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 513,
+      "start": "00:03:41,340",
+      "end": "00:03:45,580",
+      "text": "役割の本来の仕事が強化されるっていう方が",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 514,
+      "start": "00:03:45,580",
+      "end": "00:03:47,400",
+      "text": "考え方としては近いのかなと思います",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 515,
+      "start": "00:03:47,400",
+      "end": "00:03:51,840",
+      "text": "なんでAIビルダー論的にみんな作ろう",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 516,
+      "start": "00:03:51,840",
+      "end": "00:03:54,340",
+      "text": "AIビルダー論を聞くと",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 517,
+      "start": "00:03:54,340",
+      "end": "00:03:57,380",
+      "text": "みんな作れるプロダクトマネージャーにならなきゃいけなくて",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 518,
+      "start": "00:03:57,380",
+      "end": "00:03:59,740",
+      "text": "日々プルリクエストを投げなきゃいけないんだって",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 519,
+      "start": "00:03:59,740",
+      "end": "00:04:03,260",
+      "text": "思ってしまう節もあるかもしれないんですけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 520,
+      "start": "00:04:03,260",
+      "end": "00:04:05,600",
+      "text": "全然そんなことはなくて",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 521,
+      "start": "00:04:05,600",
+      "end": "00:04:07,560",
+      "text": "作ってみれた方がいいけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 522,
+      "start": "00:04:07,560",
+      "end": "00:04:09,820",
+      "text": "普段のあなたの仕事のコアバリューは",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 523,
+      "start": "00:04:09,820",
+      "end": "00:04:11,600",
+      "text": "別に作ることじゃなくてもいいんじゃないですか",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 524,
+      "start": "00:04:11,600",
+      "end": "00:04:12,580",
+      "text": "みたいなことは思います",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 525,
+      "start": "00:04:12,580",
+      "end": "00:04:14,140",
+      "text": "確かに確かに",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen acknowledgement"
+    },
+    {
+      "index": 526,
+      "start": "00:04:14,140",
+      "end": "00:04:15,900",
+      "text": "だからその今の話的に言うと",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen summary/question setup"
+    },
+    {
+      "index": 527,
+      "start": "00:04:15,900",
+      "end": "00:04:18,900",
+      "text": "PDMもFDも同じビルダーでしょ",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen summary/question setup"
+    },
+    {
+      "index": 528,
+      "start": "00:04:18,900",
+      "end": "00:04:21,320",
+      "text": "だったらFDでいいじゃんみたいな感じになっちゃう",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen summary/question setup"
+    },
+    {
+      "index": 529,
+      "start": "00:04:21,320",
+      "end": "00:04:21,720",
+      "text": "ということですよね",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen confirmation question"
+    },
+    {
+      "index": 530,
+      "start": "00:04:21,720",
+      "end": "00:04:22,180",
+      "text": "そうです",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 531,
+      "start": "00:04:22,180",
+      "end": "00:04:24,240",
+      "text": "間違って解釈をしちゃうと",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 532,
+      "start": "00:04:24,240",
+      "end": "00:04:27,480",
+      "text": "そうじゃなくてPDMはあくまでも",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 533,
+      "start": "00:04:27,480",
+      "end": "00:04:32,480",
+      "text": "みんなに同じプロダクトを届けるための",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 534,
+      "start": "00:04:32,480",
+      "end": "00:04:34,620",
+      "text": "判断をすることであったりとか",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 535,
+      "start": "00:04:34,620",
+      "end": "00:04:38,680",
+      "text": "フリーはまた別の役割を担うというところで",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 536,
+      "start": "00:04:38,680",
+      "end": "00:04:41,860",
+      "text": "本当に全然違うというのがありますから",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 537,
+      "start": "00:04:41,860",
+      "end": "00:04:46,240",
+      "text": "本来はそれが共存するという形が健全な形なのかなと思う",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 538,
+      "start": "00:04:46,240",
+      "end": "00:04:46,900",
+      "text": "そうですね",
+      "role": "interviewer",
+      "manual": true,
+      "reason": "manual transcript review: offscreen acknowledgement"
+    },
+    {
+      "index": 539,
+      "start": "00:04:46,900",
+      "end": "00:04:53,800",
+      "text": "僕が最近よく好んで使っている話なんですけど",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 540,
+      "start": "00:04:53,800",
+      "end": "00:04:59,800",
+      "text": "一人で物事を完結できる人たちが集まったからこそ",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    },
+    {
+      "index": 541,
+      "start": "00:04:59,800",
+      "end": "00:05:03,000",
+      "text": "生まれるシナジーを大事にできるというのが",
+      "role": "onscreen",
+      "manual": false,
+      "reason": "default"
+    }
+  ]
+}

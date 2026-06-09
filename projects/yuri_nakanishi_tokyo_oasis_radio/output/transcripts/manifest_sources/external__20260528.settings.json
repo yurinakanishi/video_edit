@@ -1,0 +1,27 @@
+{
+  "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.wav",
+  "model": "large-v3",
+  "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\audio_preprocessed\\external__20260528_16k_mono_norm_ce558104f8.wav",
+  "options": {
+    "language": "ja",
+    "task": "transcribe",
+    "beam_size": 5,
+    "temperature": 0.0,
+    "condition_on_previous_text": false,
+    "initial_prompt": "これは日本語の動画音声です。音声に忠実に文字起こししてください。\n聞き取れない部分は推測で補完しないでください。\n東京オアシス、中西裕理、ラジオ、インタビュー。冒頭挨拶と本編インタビューを音声に忠実に文字起こししてください。聞き取れない語は推測しないでください。",
+    "no_speech_threshold": 0.6,
+    "log_prob_threshold": -1.0,
+    "compression_ratio_threshold": 2.4,
+    "backend": "faster-whisper",
+    "device": "cuda",
+    "compute_type": "float16",
+    "initial_prompt_sha256": "a8aa788c4b2bccad6a8f2317595d5ac0ac2593fa41ffaf1d587cfb80e012eead"
+  },
+  "prompt": "これは日本語の動画音声です。音声に忠実に文字起こししてください。\n聞き取れない部分は推測で補完しないでください。\n東京オアシス、中西裕理、ラジオ、インタビュー。冒頭挨拶と本編インタビューを音声に忠実に文字起こししてください。聞き取れない語は推測しないでください。",
+  "quality": {
+    "normalize_audio": true,
+    "audio_filter": "loudnorm=I=-16:TP=-1.5:LRA=11",
+    "filter_low_confidence": true,
+    "source_mtime": 1780152980.0592363
+  }
+}

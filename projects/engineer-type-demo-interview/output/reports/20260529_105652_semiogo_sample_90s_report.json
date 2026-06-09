@@ -1,0 +1,69 @@
+{
+  "sample": "semiogo_sample_90s",
+  "createdAt": "2026-05-29T10:56:52+09:00",
+  "durationSec": 90.0,
+  "videoTimelineStartSec": 1103.76,
+  "transcriptTimelineStartSec": 1112.46,
+  "externalAudioOffsetSec": 8.7,
+  "targetCaption": {
+    "index": 300,
+    "sourceTime": "00:18:32,460 --> 00:18:38,000",
+    "text": "それをある程度セミオゴーだとかセミカスタマイズの形で",
+    "speakerRole": "onscreen"
+  },
+  "outputs": {
+    "finalVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_105652_semiogo_sample_90s.mp4",
+    "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_105652_semiogo_sample_90s_base.mp4",
+    "subtitleOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\20260529_105652_semiogo_sample_90s_overlay.mov",
+    "localSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_105652_semiogo_sample_90s_local.srt",
+    "cameraPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_105652_semiogo_sample_90s_camera_plan.json",
+    "faceCenterPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_105652_semiogo_sample_90s_face_center_plan.json"
+  },
+  "cameraPlan": [
+    {
+      "role": "camera4",
+      "startSec": 0.0,
+      "endSec": 18.18
+    },
+    {
+      "role": "camera3",
+      "startSec": 18.18,
+      "endSec": 21.65
+    },
+    {
+      "role": "master",
+      "startSec": 21.65,
+      "endSec": 53.65
+    },
+    {
+      "role": "camera5",
+      "startSec": 53.65,
+      "endSec": 77.65
+    },
+    {
+      "role": "camera3",
+      "startSec": 77.65,
+      "endSec": 90.0
+    }
+  ],
+  "renderVerification": {
+    "containerDurationSec": 90.0,
+    "video": {
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "avgFrameRate": "60000/1001"
+    },
+    "audio": {
+      "codec": "aac",
+      "sampleRate": 96000,
+      "channels": 2
+    }
+  },
+  "notes": [
+    "Subtitle overlay used full-transcript PNG style with audio-LR speaker role metadata.",
+    "Caption 300 is classified as onscreen and therefore uses the onscreen subtitle style.",
+    "The sample starts exactly at the requested phrase by converting transcript time through the external audio offset.",
+    "Master framing keeps the previous slight right-bias rule; sub cameras use horizontal face-centering with 20% zoom."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "people_map.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:15:20+09:00",
+  "identity_policy": {
+    "visible_names_are_transcript_inferred": true,
+    "requires_human_confirmation_before_final_render": true
+  },
+  "people": [
+    {
+      "person_id": "person_01",
+      "display_name": "矢野",
+      "company": "LayerX",
+      "department": "バクラク事業部",
+      "role_title": "聞き手",
+      "conversation_role": "interviewer",
+      "screen_position": "left",
+      "speaker_ids": [],
+      "face_track_ids": [],
+      "source_camera_media_ids": [
+        "cam_person_01"
+      ],
+      "identity_status": "transcript_inferred_unverified",
+      "identity_evidence": [
+        "seg_000178: バクラク事業部のヤナと申します",
+        "seg_000246: 矢野と申します"
+      ],
+      "bio_bullets": [
+        "LayerX",
+        "バクラク事業部",
+        "聞き手",
+        "ドメインエキスパート職種で入社"
+      ]
+    },
+    {
+      "person_id": "person_02",
+      "display_name": "根本",
+      "company": "LayerX",
+      "department": "プロダクト開発",
+      "role_title": "PDM / ドメインエキスパート",
+      "conversation_role": "interviewee",
+      "screen_position": "middle",
+      "speaker_ids": [],
+      "face_track_ids": [],
+      "source_camera_media_ids": [
+        "cam_person_02"
+      ],
+      "identity_status": "transcript_inferred_unverified",
+      "identity_evidence": [
+        "seg_000181: ネモさん",
+        "seg_000213: 根本と申します"
+      ],
+      "bio_bullets": [
+        "LayerX",
+        "PDM",
+        "経理バックグラウンド",
+        "ドメインエキスパート"
+      ]
+    },
+    {
+      "person_id": "person_03",
+      "display_name": "村田",
+      "company": "LayerX",
+      "department": "労務領域",
+      "role_title": "ドメインエキスパート",
+      "conversation_role": "interviewee",
+      "screen_position": "right",
+      "speaker_ids": [],
+      "face_track_ids": [],
+      "source_camera_media_ids": [
+        "cam_person_03"
+      ],
+      "identity_status": "transcript_inferred_unverified",
+      "identity_evidence": [
+        "seg_000181: 村田さん",
+        "seg_000233: 村田"
+      ],
+      "bio_bullets": [
+        "LayerX",
+        "労務領域",
+        "社会保険労務士バックグラウンド",
+        "開発へのドメイン知識提供"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "schema_version": "audio_window_scan.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T07:19:39+09:00",
+  "window_duration": 30.0,
+  "media": [
+    {
+      "role": "master",
+      "media_id": "group_wide",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+      "windows": [
+        {
+          "start": 0,
+          "rmsDbfs": -32.6,
+          "peakDbfs": -6.7,
+          "usable": true
+        },
+        {
+          "start": 180,
+          "rmsDbfs": -28.89,
+          "peakDbfs": -4.13,
+          "usable": true
+        },
+        {
+          "start": 360,
+          "rmsDbfs": -34.59,
+          "peakDbfs": -17.39,
+          "usable": true
+        },
+        {
+          "start": 600,
+          "rmsDbfs": -32.62,
+          "peakDbfs": -3.65,
+          "usable": true
+        },
+        {
+          "start": 900,
+          "rmsDbfs": -33.94,
+          "peakDbfs": -9.31,
+          "usable": true
+        },
+        {
+          "start": 1200,
+          "rmsDbfs": -35.28,
+          "peakDbfs": -10.68,
+          "usable": true
+        },
+        {
+          "start": 1500,
+          "rmsDbfs": -36.58,
+          "peakDbfs": -8.48,
+          "usable": true
+        },
+        {
+          "start": 1800,
+          "rmsDbfs": -34.68,
+          "peakDbfs": -7.59,
+          "usable": true
+        },
+        {
+          "start": 2100,
+          "rmsDbfs": -36.41,
+          "peakDbfs": -10.15,
+          "usable": true
+        },
+        {
+          "start": 2400,
+          "rmsDbfs": -36.91,
+          "peakDbfs": -14.16,
+          "usable": true
+        },
+        {
+          "start": 2700,
+          "rmsDbfs": -35.54,
+          "peakDbfs": -17.89,
+          "usable": true
+        }
+      ]
+    },
+    {
+      "role": "camera2",
+      "media_id": "cam_person_01",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+      "windows": [
+        {
+          "start": 0,
+          "rmsDbfs": -29.78,
+          "peakDbfs": -6.12,
+          "usable": true
+        },
+        {
+          "start": 180,
+          "rmsDbfs": -26.79,
+          "peakDbfs": -5.03,
+          "usable": true
+        },
+        {
+          "start": 360,
+          "rmsDbfs": -30.58,
+          "peakDbfs": -12.06,
+          "usable": true
+        },
+        {
+          "start": 600,
+          "rmsDbfs": -28.91,
+          "peakDbfs": -5.39,
+          "usable": true
+        },
+        {
+          "start": 900,
+          "rmsDbfs": -29.45,
+          "peakDbfs": -5.78,
+          "usable": true
+        },
+        {
+          "start": 1200,
+          "rmsDbfs": -30.38,
+          "peakDbfs": -6.9,
+          "usable": true
+        },
+        {
+          "start": 1500,
+          "rmsDbfs": -32.37,
+          "peakDbfs": -9.34,
+          "usable": true
+        },
+        {
+          "start": 1800,
+          "rmsDbfs": -30.51,
+          "peakDbfs": -7.45,
+          "usable": true
+        },
+        {
+          "start": 2100,
+          "rmsDbfs": -32.15,
+          "peakDbfs": -8.49,
+          "usable": true
+        },
+        {
+          "start": 2400,
+          "rmsDbfs": -31.98,
+          "peakDbfs": -8.13,
+          "usable": true
+        },
+        {
+          "start": 2700,
+          "rmsDbfs": -30.69,
+          "peakDbfs": -11.33,
+          "usable": true
+        }
+      ]
+    },
+    {
+      "role": "camera3",
+      "media_id": "cam_person_02",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+      "windows": [
+        {
+          "start": 0,
+          "rmsDbfs": -88.29,
+          "peakDbfs": -74.75,
+          "usable": false
+        },
+        {
+          "start": 180,
+          "rmsDbfs": -38.86,
+          "peakDbfs": -1.49,
+          "usable": true
+        },
+        {
+          "start": 360,
+          "rmsDbfs": -30.45,
+          "peakDbfs": -4.33,
+          "usable": true
+        },
+        {
+          "start": 600,
+          "rmsDbfs": -31.28,
+          "peakDbfs": -4.13,
+          "usable": true
+        },
+        {
+          "start": 900,
+          "rmsDbfs": -30.98,
+          "peakDbfs": -3.97,
+          "usable": true
+        },
+        {
+          "start": 1200,
+          "rmsDbfs": -29.46,
+          "peakDbfs": -4.13,
+          "usable": true
+        },
+        {
+          "start": 1500,
+          "rmsDbfs": -31.09,
+          "peakDbfs": -4.23,
+          "usable": true
+        },
+        {
+          "start": 1800,
+          "rmsDbfs": -30.56,
+          "peakDbfs": -5.13,
+          "usable": true
+        },
+        {
+          "start": 2100,
+          "rmsDbfs": -30.72,
+          "peakDbfs": -4.71,
+          "usable": true
+        },
+        {
+          "start": 2400,
+          "rmsDbfs": -32.12,
+          "peakDbfs": -9.73,
+          "usable": true
+        },
+        {
+          "start": 2700,
+          "rmsDbfs": -35.04,
+          "peakDbfs": -8.27,
+          "usable": true
+        }
+      ]
+    },
+    {
+      "role": "camera4",
+      "media_id": "cam_person_03",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+      "windows": [
+        {
+          "start": 0,
+          "rmsDbfs": -95.13,
+          "peakDbfs": -84.29,
+          "usable": false
+        },
+        {
+          "start": 180,
+          "rmsDbfs": -95.17,
+          "peakDbfs": -80.77,
+          "usable": false
+        },
+        {
+          "start": 360,
+          "rmsDbfs": -30.18,
+          "peakDbfs": -7.07,
+          "usable": true
+        },
+        {
+          "start": 600,
+          "rmsDbfs": -26.82,
+          "peakDbfs": -4.17,
+          "usable": true
+        },
+        {
+          "start": 900,
+          "rmsDbfs": -28.24,
+          "peakDbfs": -4.14,
+          "usable": true
+        },
+        {
+          "start": 1200,
+          "rmsDbfs": -30.02,
+          "peakDbfs": -4.11,
+          "usable": true
+        },
+        {
+          "start": 1500,
+          "rmsDbfs": -29.52,
+          "peakDbfs": -6.85,
+          "usable": true
+        },
+        {
+          "start": 1800,
+          "rmsDbfs": -27.88,
+          "peakDbfs": -4.78,
+          "usable": true
+        },
+        {
+          "start": 2100,
+          "rmsDbfs": -29.93,
+          "peakDbfs": -4.17,
+          "usable": true
+        },
+        {
+          "start": 2400,
+          "rmsDbfs": -36.87,
+          "peakDbfs": -13.92,
+          "usable": true
+        },
+        {
+          "start": 2700,
+          "rmsDbfs": -29.42,
+          "peakDbfs": -8.51,
+          "usable": true
+        }
+      ]
+    }
+  ]
+}

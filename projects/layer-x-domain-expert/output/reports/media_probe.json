@@ -1,0 +1,119 @@
+{
+  "schema_version": "media_probe.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:15:20+09:00",
+  "media": [
+    {
+      "media_id": "group_wide",
+      "path": "source\\video\\three people.mp4",
+      "kind": "video",
+      "role": "group_wide",
+      "probe": {
+        "duration": 2985.485,
+        "hasVideo": true,
+        "hasAudio": true,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "videoCodec": "h264",
+        "avgFrameRate": "30/1",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2,
+        "storage": "project-source"
+      }
+    },
+    {
+      "media_id": "cam_person_01",
+      "path": "source\\video\\person-left.mp4",
+      "kind": "video",
+      "role": "single_person",
+      "probe": {
+        "duration": 3615.115,
+        "hasVideo": true,
+        "hasAudio": true,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "videoCodec": "h264",
+        "avgFrameRate": "30/1",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2,
+        "storage": "project-source"
+      }
+    },
+    {
+      "media_id": "cam_person_02",
+      "path": "source\\video\\person-middle.mp4",
+      "kind": "video",
+      "role": "single_person",
+      "probe": {
+        "duration": 3630.133,
+        "hasVideo": true,
+        "hasAudio": true,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "videoCodec": "h264",
+        "avgFrameRate": "30/1",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2,
+        "storage": "project-source"
+      }
+    },
+    {
+      "media_id": "cam_person_03",
+      "path": "source\\video\\person-right.mp4",
+      "kind": "video",
+      "role": "single_person",
+      "probe": {
+        "duration": 3639.135,
+        "hasVideo": true,
+        "hasAudio": true,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "videoCodec": "h264",
+        "avgFrameRate": "30/1",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2,
+        "storage": "project-source"
+      }
+    },
+    {
+      "media_id": "company_movie",
+      "path": "source\\video\\company-movie.mp4",
+      "kind": "video",
+      "role": "company_movie",
+      "probe": {
+        "duration": 15.018,
+        "hasVideo": true,
+        "hasAudio": true,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "videoCodec": "h264",
+        "avgFrameRate": "30/1",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2,
+        "storage": "project-source"
+      }
+    },
+    {
+      "media_id": "layerx_logo",
+      "path": "source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+      "kind": "image",
+      "role": "logo",
+      "probe": {
+        "width": 2352,
+        "height": 866,
+        "codec": "png",
+        "storage": "project-source"
+      }
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "reference_image_analysis_manifest.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:35:21+09:00",
+  "references": [
+    {
+      "reference_image_id": "annotation_sample",
+      "source_image": "reference\\annotation-sample.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample.json",
+      "layout_types": [
+        "speaker_reaction_pair",
+        "entity_explainer"
+      ],
+      "intended_sections": [
+        "main_interview_topic_explainer",
+        "two_person_exchange"
+      ]
+    },
+    {
+      "reference_image_id": "annotation_sample_review_meeting",
+      "source_image": "reference\\annotation-sample2.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+      "layout_types": [
+        "wide_group",
+        "entity_explainer",
+        "review_context"
+      ],
+      "intended_sections": [
+        "opening_digest",
+        "main_interview_contextual_explainer"
+      ]
+    },
+    {
+      "reference_image_id": "single_person_nameplate",
+      "source_image": "reference\\left-person-with-name-plate-sample.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
+      "layout_types": [
+        "single",
+        "lower_third_person"
+      ],
+      "intended_sections": [
+        "participant_identification"
+      ]
+    },
+    {
+      "reference_image_id": "two_person_nameplate_split",
+      "source_image": "reference\\middle-and-right-people-with-name-plate-divided-sample.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+      "layout_types": [
+        "split_grid",
+        "speaker_reaction_pair"
+      ],
+      "intended_sections": [
+        "two_person_exchange"
+      ]
+    },
+    {
+      "reference_image_id": "person_introduction_bio_card",
+      "source_image": "reference\\person-introduction-sample.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\person-introduction-sample.json",
+      "layout_types": [
+        "person_with_bio",
+        "bio_card"
+      ],
+      "intended_sections": [
+        "participant_self_introduction",
+        "main_interview_intro"
+      ]
+    },
+    {
+      "reference_image_id": "three_person_divided",
+      "source_image": "reference\\three-people-divided-sample.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
+      "layout_types": [
+        "split_grid",
+        "wide_group",
+        "three_person_divided"
+      ],
+      "intended_sections": [
+        "main_intro_group",
+        "group_reaction",
+        "multi_participant_moment"
+      ]
+    }
+  ],
+  "rules": {
+    "section_layouts_must_reference_analysis": true,
+    "match_framing_crop_face_position_and_visual_style": true,
+    "adapt_reference_to_video_context": true
+  }
+}

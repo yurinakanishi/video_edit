@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "video-edit-timeline/v1",
+  "id": "timeline_test-project-1_sample1_speech_subtitle_preview",
+  "createdAt": "2026-06-06T15:25:16Z",
+  "project": {
+    "id": "test-project-1",
+    "name": "Test Project 1",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output"
+  },
+  "timebase": {
+    "unit": "seconds",
+    "fps": "24000/1001"
+  },
+  "duration": 60.018292,
+  "sources": [
+    {
+      "id": "src_master",
+      "kind": "video",
+      "role": "master",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "duration": 60.018292,
+      "width": 1920,
+      "height": 1080,
+      "fps": "24000/1001",
+      "codec": "h264"
+    },
+    {
+      "id": "src_corrected_srt",
+      "kind": "subtitle",
+      "role": "subtitle",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.srt"
+    },
+    {
+      "id": "src_style_profile",
+      "kind": "data",
+      "role": "speech-subtitle-style-profile",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_style_profile.json"
+    },
+    {
+      "id": "src_pattern_library",
+      "kind": "data",
+      "role": "speech-subtitle-pattern-library",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_pattern_library.json"
+    },
+    {
+      "id": "src_overlay_manifest",
+      "kind": "data",
+      "role": "speech-subtitle-overlay-manifest",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlays.json"
+    },
+    {
+      "id": "src_animated_overlay",
+      "kind": "video",
+      "role": "speech-subtitle-animated-overlay",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlay.mov",
+      "duration": 60.018292,
+      "width": 1280,
+      "height": 720,
+      "fps": "24000/1001",
+      "codec": "qtrle"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "video.main",
+      "kind": "video",
+      "label": "Main video",
+      "allowOverlap": false
+    },
+    {
+      "id": "audio.main",
+      "kind": "audio",
+      "label": "Source audio",
+      "allowOverlap": false
+    },
+    {
+      "id": "subtitle.main",
+      "kind": "subtitle",
+      "label": "Sample-1 speech subtitle overlays",
+      "allowOverlap": true
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip_video_master",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_master",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.018292,
+      "sourceIn": 0.0,
+      "sourceOut": 60.018292,
+      "fit": {
+        "mode": "contain",
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "id": "clip_audio_master",
+      "trackId": "audio.main",
+      "kind": "audio",
+      "sourceId": "src_master",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.018292,
+      "sourceIn": 0.0,
+      "sourceOut": 60.018292
+    },
+    {
+      "id": "clip_subtitle_overlay",
+      "trackId": "subtitle.main",
+      "kind": "generated",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.018292,
+      "style": {
+        "renderMethod": "animated-alpha-overlay-video",
+        "styleProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_style_profile.json",
+        "patternLibrary": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_pattern_library.json",
+        "overlayManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlays.json",
+        "overlayVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlay.mov"
+      }
+    }
+  ],
+  "transitions": [],
+  "render": {
+    "targets": [
+      {
+        "id": "preview",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_speech_subtitles.mp4",
+        "format": "mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": "24000/1001",
+        "profile": "preview",
+        "videoCodec": "libx264",
+        "audioCodec": "aac"
+      }
+    ],
+    "preview": {
+      "enabled": true,
+      "rangeStart": 0.0,
+      "rangeEnd": 60.018292,
+      "proxy": true
+    }
+  },
+  "analysis": {
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\media_manifest.json",
+    "reports": [
+      {
+        "kind": "media-manifest",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\media_manifest.json",
+        "exists": true
+      },
+      {
+        "kind": "reference-analysis",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+        "exists": true
+      },
+      {
+        "kind": "speech-subtitle-style-profile",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_style_profile.json",
+        "exists": true
+      },
+      {
+        "kind": "speech-subtitle-pattern-library",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_pattern_library.json",
+        "exists": true
+      },
+      {
+        "kind": "speech-subtitle-overlay-manifest",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlays.json",
+        "exists": true
+      },
+      {
+        "kind": "speech-subtitle-animated-overlay-video",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlay.mov",
+        "exists": true
+      }
+    ]
+  },
+  "audit": {
+    "createdBy": "projects/test-project-1/scripts/build_sample1_speech_subtitle_preview.py",
+    "inputs": [
+      {
+        "kind": "primary-srt",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary.srt",
+        "exists": true
+      },
+      {
+        "kind": "reference-analysis",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+        "exists": true
+      }
+    ]
+  }
+}

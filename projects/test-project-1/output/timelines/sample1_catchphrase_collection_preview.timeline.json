@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "video-edit-timeline/v1",
+  "id": "timeline_test-project-1_sample1_catchphrase_collection_preview",
+  "createdAt": "2026-06-07T02:12:42Z",
+  "project": {
+    "id": "test-project-1",
+    "name": "Test Project 1",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output"
+  },
+  "timebase": {
+    "unit": "seconds",
+    "fps": "24000/1001"
+  },
+  "duration": 15.0,
+  "sources": [
+    {
+      "id": "src_project_sample_video",
+      "kind": "video",
+      "role": "master",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "duration": 60.018292,
+      "width": 1920,
+      "height": 1080,
+      "fps": 23.976023976023978
+    },
+    {
+      "id": "src_reference_video",
+      "kind": "video",
+      "role": "reference-only",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\sample-1.mp4",
+      "duration": 61.332938,
+      "width": 1834,
+      "height": 1030,
+      "fps": 30.0
+    },
+    {
+      "id": "src_catchphrase_json",
+      "kind": "data",
+      "role": "catchphrase-selection",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "video.main",
+      "kind": "video",
+      "label": "Catchphrase hard cuts",
+      "allowOverlap": false
+    },
+    {
+      "id": "audio.main",
+      "kind": "audio",
+      "label": "Reference audio carried by cuts",
+      "allowOverlap": false
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip_project_catchphrase_01",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_project_sample_video",
+      "timelineStart": 0.0,
+      "timelineEnd": 5.0,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "fit": {
+        "mode": "contain",
+        "width": 1280,
+        "height": 720
+      },
+      "metadata": {
+        "catchphraseId": "project_catchphrase_01",
+        "displayText": "An eye-opening experience"
+      }
+    },
+    {
+      "id": "clip_project_catchphrase_02",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_project_sample_video",
+      "timelineStart": 5.0,
+      "timelineEnd": 10.0,
+      "sourceIn": 7.34,
+      "sourceOut": 12.34,
+      "fit": {
+        "mode": "contain",
+        "width": 1280,
+        "height": 720
+      },
+      "metadata": {
+        "catchphraseId": "project_catchphrase_02",
+        "displayText": "Something that would have negative consequences"
+      }
+    },
+    {
+      "id": "clip_project_catchphrase_03",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_project_sample_video",
+      "timelineStart": 10.0,
+      "timelineEnd": 15.0,
+      "sourceIn": 20.32,
+      "sourceOut": 25.32,
+      "fit": {
+        "mode": "contain",
+        "width": 1280,
+        "height": 720
+      },
+      "metadata": {
+        "catchphraseId": "project_catchphrase_03",
+        "displayText": "But now it was completely obvious"
+      }
+    }
+  ],
+  "transitions": [],
+  "render": {
+    "targets": [
+      {
+        "id": "preview",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_catchphrase_collection.mp4",
+        "format": "mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": "24000/1001",
+        "profile": "preview"
+      }
+    ]
+  },
+  "analysis": {
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\output\\reports\\media_manifest.json",
+    "reports": [
+      {
+        "kind": "reference-analysis",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+        "exists": true
+      },
+      {
+        "kind": "project-transcript",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.srt",
+        "exists": true
+      },
+      {
+        "kind": "catchphrase-selection",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json",
+        "exists": true
+      },
+      {
+        "kind": "catchphrase-report",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\sample1_catchphrase_collection_preview_report.json",
+        "exists": true
+      }
+    ]
+  },
+  "audit": {
+    "createdBy": "projects/test-project-1/scripts/build_sample1_catchphrase_collection_preview.py",
+    "inputs": [
+      {
+        "kind": "project-sample-video",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+        "exists": true
+      },
+      {
+        "kind": "project-transcript",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.srt",
+        "exists": true
+      },
+      {
+        "kind": "reference-video",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\sample-1.mp4",
+        "exists": true
+      },
+      {
+        "kind": "reference-analysis",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+        "exists": true
+      }
+    ]
+  }
+}

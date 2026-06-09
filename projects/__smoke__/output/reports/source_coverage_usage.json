@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "items": [
+    {
+      "role": "master",
+      "path": "master.mp4",
+      "duration": 30.0,
+      "syncOffset": 0.0,
+      "sourceLocalCoverage": [
+        0.0,
+        20.0
+      ]
+    },
+    {
+      "role": "camera2",
+      "path": "camera2.mp4",
+      "duration": 10.0,
+      "syncOffset": 0.0,
+      "sourceLocalCoverage": [
+        0.0,
+        10.0
+      ]
+    }
+  ],
+  "adjustments": [
+    {
+      "start": 10.0,
+      "end": 15.0,
+      "fromRole": "camera2",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    }
+  ],
+  "changed": true
+}

@@ -1,0 +1,199 @@
+{
+  "output": "projects\\new-folder-2\\output\\reports\\full_transcript_speaker_roles_audio_lr.json",
+  "source": "projects\\new-folder-2\\output\\transcripts\\manifest_sources\\primary.srt",
+  "audio": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+  "interviewerCount": 263,
+  "onscreenCount": 559,
+  "audioFeatureSummary": {
+    "interviewer": {
+      "lrDb": {
+        "median": 3.409,
+        "mean": 3.2886,
+        "p10": 2.6674,
+        "p90": 3.8682
+      },
+      "dbfsMono": {
+        "median": -32.881,
+        "mean": -34.035,
+        "p10": -42.2644,
+        "p90": -28.6074
+      }
+    },
+    "onscreen": {
+      "lrDb": {
+        "median": -3.708,
+        "mean": -3.527,
+        "p10": -4.2248,
+        "p90": -2.8218
+      },
+      "dbfsMono": {
+        "median": -32.695,
+        "mean": -33.1286,
+        "p10": -37.4652,
+        "p90": -29.5502
+      }
+    }
+  },
+  "lowConfidence": [
+    {
+      "index": 2,
+      "start": 2.0,
+      "end": 3.0,
+      "role": "onscreen",
+      "confidence": 0.473,
+      "lrDb": 0.71,
+      "text": "大丈夫です。",
+      "reason": "weak channel separation lrDb=0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 24,
+      "start": 84.08,
+      "end": 85.08,
+      "role": "onscreen",
+      "confidence": 0.424,
+      "lrDb": 0.636,
+      "text": "玉木さん。",
+      "reason": "weak channel separation lrDb=0.64; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 149,
+      "start": 511.18,
+      "end": 516.2,
+      "role": "interviewer",
+      "confidence": 0.5,
+      "lrDb": 0.148,
+      "text": "PDMやめてFDEにしますみたいな話とかですよね",
+      "reason": "weak channel separation lrDb=0.15; default onscreen for ambiguous audio; smoothed between neighboring interviewer captions"
+    },
+    {
+      "index": 327,
+      "start": 1230.74,
+      "end": 1236.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.5,
+      "text": "なんかえ?って思うと思っていて",
+      "reason": "weak channel separation lrDb=-0.50; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 353,
+      "start": 1314.64,
+      "end": 1317.4,
+      "role": "interviewer",
+      "confidence": 0.574,
+      "lrDb": -0.861,
+      "text": "確かに",
+      "reason": "weak channel separation lrDb=-0.86; interviewer text hint"
+    },
+    {
+      "index": 523,
+      "start": 2020.52,
+      "end": 2022.3,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": 0.567,
+      "text": "別に作ることじゃなくてもいいんじゃないですか",
+      "reason": "weak channel separation lrDb=0.57; onscreen text hint"
+    },
+    {
+      "index": 566,
+      "start": 2191.3,
+      "end": 2193.0,
+      "role": "interviewer",
+      "confidence": 0.593,
+      "lrDb": 0.889,
+      "text": "確かに",
+      "reason": "weak channel separation lrDb=0.89; interviewer text hint"
+    },
+    {
+      "index": 571,
+      "start": 2205.1,
+      "end": 2207.8,
+      "role": "onscreen",
+      "confidence": 0.449,
+      "lrDb": -0.673,
+      "text": "ならないと思いますね",
+      "reason": "weak channel separation lrDb=-0.67; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 587,
+      "start": 2299.76,
+      "end": 2303.6,
+      "role": "interviewer",
+      "confidence": 0.5,
+      "lrDb": -0.112,
+      "text": "FDEの職種って何ぞやろを調べて",
+      "reason": "weak channel separation lrDb=-0.11; default onscreen for ambiguous audio; smoothed between neighboring interviewer captions"
+    },
+    {
+      "index": 760,
+      "start": 2953.7,
+      "end": 2958.7,
+      "role": "interviewer",
+      "confidence": 0.592,
+      "lrDb": 0.888,
+      "text": "ありがとうございます",
+      "reason": "weak channel separation lrDb=0.89; interviewer text hint"
+    },
+    {
+      "index": 761,
+      "start": 2958.7,
+      "end": 2959.7,
+      "role": "interviewer",
+      "confidence": 0.5,
+      "lrDb": -0.428,
+      "text": "大丈夫ですか?",
+      "reason": "weak channel separation lrDb=-0.43; default onscreen for ambiguous audio; smoothed between neighboring interviewer captions"
+    },
+    {
+      "index": 763,
+      "start": 2964.7,
+      "end": 2971.7,
+      "role": "onscreen",
+      "confidence": 0.467,
+      "lrDb": -0.7,
+      "text": "最後にスチールをちょっと取ってください すみません",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 796,
+      "start": 3065.16,
+      "end": 3067.1,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": 0.642,
+      "text": "だから",
+      "reason": "weak channel separation lrDb=0.64; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 807,
+      "start": 3124.92,
+      "end": 3127.74,
+      "role": "onscreen",
+      "confidence": 0.55,
+      "lrDb": -0.427,
+      "text": "やってくれるならみたいな",
+      "reason": "weak channel separation lrDb=-0.43; nearest acoustic centroid=onscreen"
+    },
+    {
+      "index": 820,
+      "start": 3167.32,
+      "end": 3171.86,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.127,
+      "text": "水平的成長と垂直的成長っていう分け方を知ってたりするんですけど",
+      "reason": "weak channel separation lrDb=-0.13; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 822,
+      "start": 3175.78,
+      "end": 3178.44,
+      "role": "onscreen",
+      "confidence": 0.55,
+      "lrDb": -0.341,
+      "text": "AIって最高",
+      "reason": "weak channel separation lrDb=-0.34; nearest acoustic centroid=onscreen"
+    }
+  ]
+}

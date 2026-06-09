@@ -109,6 +109,7 @@ def main() -> None:
                     errors.append(f"{event_id}: source exceeds usable content window")
 
         layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+        layout_type = str(layout.get("type") or "")
         reference_alignment = layout.get("reference_alignment")
         if isinstance(reference_alignment, dict):
             for key in ("analysis_path", "fallback_analysis_path"):
@@ -127,6 +128,7 @@ def main() -> None:
 
         caption_intervals: list[tuple[float, float]] = []
         explainer_intervals: list[tuple[float, float]] = []
+        nameplate_intervals: list[tuple[float, float]] = []
         for overlay in event.get("overlays", []):
             if not isinstance(overlay, dict):
                 continue
@@ -147,6 +149,10 @@ def main() -> None:
                 caption_intervals.append(interval)
             if interval and overlay.get("type") == "entity_explainer":
                 explainer_intervals.append(interval)
+            if interval and overlay.get("type") in {"lower_third_person", "lower_third_people"}:
+                nameplate_intervals.append(interval)
+                if layout_type == "split_grid":
+                    errors.append(f"{event_id}: nameplate overlays are not allowed in split_grid layouts")
             reference_alignment = overlay.get("reference_alignment")
             if isinstance(reference_alignment, dict) and reference_alignment.get("analysis_path"):
                 if not existing_reference_path(reference_alignment.get("analysis_path")):
@@ -155,6 +161,9 @@ def main() -> None:
             for explainer in explainer_intervals:
                 if intervals_overlap(caption, explainer):
                     errors.append(f"{event_id}: caption overlaps entity explainer")
+            for nameplate in nameplate_intervals:
+                if intervals_overlap(caption, nameplate):
+                    errors.append(f"{event_id}: caption overlaps nameplate")
 
     report = {
         "schema_version": "edit_plan_validation_report.v1",

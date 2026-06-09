@@ -1,0 +1,63 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:35:21+09:00",
+  "source_image": "reference\\annotation-sample2.png",
+  "image": {
+    "width": 1861,
+    "height": 1045,
+    "aspect_ratio": 1.780861,
+    "mode": "RGBA"
+  },
+  "analysis_basis": "manual visual analysis of project reference still",
+  "reference_image_id": "annotation_sample_review_meeting",
+  "layout_types": [
+    "wide_group",
+    "entity_explainer",
+    "review_context"
+  ],
+  "intended_sections": [
+    "opening_digest",
+    "main_interview_contextual_explainer"
+  ],
+  "framing": {
+    "composition": "wide_three_person_review_meeting_with_explainer",
+    "subject_crop": "wide group crop; table, laptop, microphones, and all visible participants retained",
+    "face_position": "group faces distributed across upper-middle band, roughly y=0.25-0.42",
+    "safe_margins_norm": {
+      "x": 0.04,
+      "top": 0.09,
+      "bottom": 0.23
+    },
+    "context_priority": "retain table and object context when explaining meeting format or process"
+  },
+  "overlay_style": {
+    "logo": {
+      "position": "top_left",
+      "x_norm": 0.03,
+      "y_norm": 0.04,
+      "width_norm": 0.17
+    },
+    "topic_title": {
+      "position": "top_right",
+      "background": "#5F5AF5",
+      "text": "white bold"
+    },
+    "entity_explainer": {
+      "position": "bottom",
+      "body": "white wide card",
+      "label_tab": "#5F5AF5"
+    }
+  },
+  "render_directives": [
+    "Use when the edit needs a contextual group view rather than a tight speaker crop.",
+    "Do not crop out laptops, microphones, mugs, or table context if they support the topic.",
+    "Place captions above or separate from the explainer card; never stack readable text blocks directly on top of each other."
+  ],
+  "application_policy": {
+    "adapt_to_video_context": true,
+    "do_not_render_reference_image_directly": true,
+    "match_framing_crop_face_position_and_visual_style": true,
+    "allow_mirroring_when_layout_requires_opposite_bio_side": true
+  }
+}

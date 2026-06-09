@@ -1,0 +1,817 @@
+{
+  "createdAt": "2026-06-02T01:56:34Z",
+  "projectRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday",
+  "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source",
+  "renamedCount": 114,
+  "skippedCount": 2,
+  "renamed": [
+    {
+      "type": "audio",
+      "oldRelative": "audio\\優しい気持ち.mp3",
+      "newRelative": "audio\\audio_001_優しい気持ち.mp3",
+      "oldName": "優しい気持ち.mp3",
+      "newName": "audio_001_優しい気持ち.mp3"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104161921_0006_D.LRF",
+      "newRelative": "DJI_001\\sidecar_001_DJI_20000104161921_0006_D.LRF",
+      "oldName": "DJI_20000104161921_0006_D.LRF",
+      "newName": "sidecar_001_DJI_20000104161921_0006_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104161921_0006_D.MP4",
+      "newRelative": "DJI_001\\video_001_DJI_20000104161921_0006_D.MP4",
+      "oldName": "DJI_20000104161921_0006_D.MP4",
+      "newName": "video_001_DJI_20000104161921_0006_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104161921_0006_D.WAV",
+      "newRelative": "DJI_001\\audio_002_DJI_20000104161921_0006_D.WAV",
+      "oldName": "DJI_20000104161921_0006_D.WAV",
+      "newName": "audio_002_DJI_20000104161921_0006_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104164015_0007_D.LRF",
+      "newRelative": "DJI_001\\sidecar_002_DJI_20000104164015_0007_D.LRF",
+      "oldName": "DJI_20000104164015_0007_D.LRF",
+      "newName": "sidecar_002_DJI_20000104164015_0007_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104164015_0007_D.MP4",
+      "newRelative": "DJI_001\\video_002_DJI_20000104164015_0007_D.MP4",
+      "oldName": "DJI_20000104164015_0007_D.MP4",
+      "newName": "video_002_DJI_20000104164015_0007_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104164015_0007_D.WAV",
+      "newRelative": "DJI_001\\audio_003_DJI_20000104164015_0007_D.WAV",
+      "oldName": "DJI_20000104164015_0007_D.WAV",
+      "newName": "audio_003_DJI_20000104164015_0007_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104170227_0009_D.LRF",
+      "newRelative": "DJI_001\\sidecar_003_DJI_20000104170227_0009_D.LRF",
+      "oldName": "DJI_20000104170227_0009_D.LRF",
+      "newName": "sidecar_003_DJI_20000104170227_0009_D.LRF"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104170548_0012_D.LRF",
+      "newRelative": "DJI_001\\sidecar_004_DJI_20000104170548_0012_D.LRF",
+      "oldName": "DJI_20000104170548_0012_D.LRF",
+      "newName": "sidecar_004_DJI_20000104170548_0012_D.LRF"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104170752_0014_D.LRF",
+      "newRelative": "DJI_001\\sidecar_005_DJI_20000104170752_0014_D.LRF",
+      "oldName": "DJI_20000104170752_0014_D.LRF",
+      "newName": "sidecar_005_DJI_20000104170752_0014_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104171048_0015_D.MP4",
+      "newRelative": "DJI_001\\video_003_DJI_20000104171048_0015_D.MP4",
+      "oldName": "DJI_20000104171048_0015_D.MP4",
+      "newName": "video_003_DJI_20000104171048_0015_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104171048_0015_D.WAV",
+      "newRelative": "DJI_001\\audio_004_DJI_20000104171048_0015_D.WAV",
+      "oldName": "DJI_20000104171048_0015_D.WAV",
+      "newName": "audio_004_DJI_20000104171048_0015_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104171531_0016_D.LRF",
+      "newRelative": "DJI_001\\sidecar_006_DJI_20000104171531_0016_D.LRF",
+      "oldName": "DJI_20000104171531_0016_D.LRF",
+      "newName": "sidecar_006_DJI_20000104171531_0016_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104171531_0016_D.MP4",
+      "newRelative": "DJI_001\\video_004_DJI_20000104171531_0016_D.MP4",
+      "oldName": "DJI_20000104171531_0016_D.MP4",
+      "newName": "video_004_DJI_20000104171531_0016_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104171531_0016_D.WAV",
+      "newRelative": "DJI_001\\audio_005_DJI_20000104171531_0016_D.WAV",
+      "oldName": "DJI_20000104171531_0016_D.WAV",
+      "newName": "audio_005_DJI_20000104171531_0016_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104172535_0017_D.LRF",
+      "newRelative": "DJI_001\\sidecar_007_DJI_20000104172535_0017_D.LRF",
+      "oldName": "DJI_20000104172535_0017_D.LRF",
+      "newName": "sidecar_007_DJI_20000104172535_0017_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104172535_0017_D.MP4",
+      "newRelative": "DJI_001\\video_005_DJI_20000104172535_0017_D.MP4",
+      "oldName": "DJI_20000104172535_0017_D.MP4",
+      "newName": "video_005_DJI_20000104172535_0017_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104172535_0017_D.WAV",
+      "newRelative": "DJI_001\\audio_006_DJI_20000104172535_0017_D.WAV",
+      "oldName": "DJI_20000104172535_0017_D.WAV",
+      "newName": "audio_006_DJI_20000104172535_0017_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104172624_0018_D.LRF",
+      "newRelative": "DJI_001\\sidecar_008_DJI_20000104172624_0018_D.LRF",
+      "oldName": "DJI_20000104172624_0018_D.LRF",
+      "newName": "sidecar_008_DJI_20000104172624_0018_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104172624_0018_D.MP4",
+      "newRelative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
+      "oldName": "DJI_20000104172624_0018_D.MP4",
+      "newName": "video_006_DJI_20000104172624_0018_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104172624_0018_D.WAV",
+      "newRelative": "DJI_001\\audio_007_DJI_20000104172624_0018_D.WAV",
+      "oldName": "DJI_20000104172624_0018_D.WAV",
+      "newName": "audio_007_DJI_20000104172624_0018_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104173356_0019_D.LRF",
+      "newRelative": "DJI_001\\sidecar_009_DJI_20000104173356_0019_D.LRF",
+      "oldName": "DJI_20000104173356_0019_D.LRF",
+      "newName": "sidecar_009_DJI_20000104173356_0019_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104174652_0024_D.MP4",
+      "newRelative": "DJI_001\\video_007_DJI_20000104174652_0024_D.MP4",
+      "oldName": "DJI_20000104174652_0024_D.MP4",
+      "newName": "video_007_DJI_20000104174652_0024_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104174652_0024_D.WAV",
+      "newRelative": "DJI_001\\audio_008_DJI_20000104174652_0024_D.WAV",
+      "oldName": "DJI_20000104174652_0024_D.WAV",
+      "newName": "audio_008_DJI_20000104174652_0024_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104174803_0025_D.LRF",
+      "newRelative": "DJI_001\\sidecar_010_DJI_20000104174803_0025_D.LRF",
+      "oldName": "DJI_20000104174803_0025_D.LRF",
+      "newName": "sidecar_010_DJI_20000104174803_0025_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104174803_0025_D.MP4",
+      "newRelative": "DJI_001\\video_008_DJI_20000104174803_0025_D.MP4",
+      "oldName": "DJI_20000104174803_0025_D.MP4",
+      "newName": "video_008_DJI_20000104174803_0025_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104174803_0025_D.WAV",
+      "newRelative": "DJI_001\\audio_009_DJI_20000104174803_0025_D.WAV",
+      "oldName": "DJI_20000104174803_0025_D.WAV",
+      "newName": "audio_009_DJI_20000104174803_0025_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104174953_0026_D.LRF",
+      "newRelative": "DJI_001\\sidecar_011_DJI_20000104174953_0026_D.LRF",
+      "oldName": "DJI_20000104174953_0026_D.LRF",
+      "newName": "sidecar_011_DJI_20000104174953_0026_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104174953_0026_D.MP4",
+      "newRelative": "DJI_001\\video_009_DJI_20000104174953_0026_D.MP4",
+      "oldName": "DJI_20000104174953_0026_D.MP4",
+      "newName": "video_009_DJI_20000104174953_0026_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104174953_0026_D.WAV",
+      "newRelative": "DJI_001\\audio_010_DJI_20000104174953_0026_D.WAV",
+      "oldName": "DJI_20000104174953_0026_D.WAV",
+      "newName": "audio_010_DJI_20000104174953_0026_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104175108_0027_D.LRF",
+      "newRelative": "DJI_001\\sidecar_012_DJI_20000104175108_0027_D.LRF",
+      "oldName": "DJI_20000104175108_0027_D.LRF",
+      "newName": "sidecar_012_DJI_20000104175108_0027_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104175108_0027_D.MP4",
+      "newRelative": "DJI_001\\video_010_DJI_20000104175108_0027_D.MP4",
+      "oldName": "DJI_20000104175108_0027_D.MP4",
+      "newName": "video_010_DJI_20000104175108_0027_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104175108_0027_D.WAV",
+      "newRelative": "DJI_001\\audio_011_DJI_20000104175108_0027_D.WAV",
+      "oldName": "DJI_20000104175108_0027_D.WAV",
+      "newName": "audio_011_DJI_20000104175108_0027_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104175228_0028_D.LRF",
+      "newRelative": "DJI_001\\sidecar_013_DJI_20000104175228_0028_D.LRF",
+      "oldName": "DJI_20000104175228_0028_D.LRF",
+      "newName": "sidecar_013_DJI_20000104175228_0028_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104175228_0028_D.MP4",
+      "newRelative": "DJI_001\\video_011_DJI_20000104175228_0028_D.MP4",
+      "oldName": "DJI_20000104175228_0028_D.MP4",
+      "newName": "video_011_DJI_20000104175228_0028_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104175228_0028_D.WAV",
+      "newRelative": "DJI_001\\audio_012_DJI_20000104175228_0028_D.WAV",
+      "oldName": "DJI_20000104175228_0028_D.WAV",
+      "newName": "audio_012_DJI_20000104175228_0028_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104181624_0030_D.LRF",
+      "newRelative": "DJI_001\\sidecar_014_DJI_20000104181624_0030_D.LRF",
+      "oldName": "DJI_20000104181624_0030_D.LRF",
+      "newName": "sidecar_014_DJI_20000104181624_0030_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104181624_0030_D.MP4",
+      "newRelative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+      "oldName": "DJI_20000104181624_0030_D.MP4",
+      "newName": "video_012_DJI_20000104181624_0030_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104181624_0030_D.WAV",
+      "newRelative": "DJI_001\\audio_013_DJI_20000104181624_0030_D.WAV",
+      "oldName": "DJI_20000104181624_0030_D.WAV",
+      "newName": "audio_013_DJI_20000104181624_0030_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104181937_0031_D.LRF",
+      "newRelative": "DJI_001\\sidecar_015_DJI_20000104181937_0031_D.LRF",
+      "oldName": "DJI_20000104181937_0031_D.LRF",
+      "newName": "sidecar_015_DJI_20000104181937_0031_D.LRF"
+    },
+    {
+      "type": "video",
+      "oldRelative": "DJI_001\\DJI_20000104181937_0031_D.MP4",
+      "newRelative": "DJI_001\\video_013_DJI_20000104181937_0031_D.MP4",
+      "oldName": "DJI_20000104181937_0031_D.MP4",
+      "newName": "video_013_DJI_20000104181937_0031_D.MP4"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104181937_0031_D.WAV",
+      "newRelative": "DJI_001\\audio_014_DJI_20000104181937_0031_D.WAV",
+      "oldName": "DJI_20000104181937_0031_D.WAV",
+      "newName": "audio_014_DJI_20000104181937_0031_D.WAV"
+    },
+    {
+      "type": "sidecar",
+      "oldRelative": "DJI_001\\DJI_20000104185004_0032_D.LRF",
+      "newRelative": "DJI_001\\sidecar_016_DJI_20000104185004_0032_D.LRF",
+      "oldName": "DJI_20000104185004_0032_D.LRF",
+      "newName": "sidecar_016_DJI_20000104185004_0032_D.LRF"
+    },
+    {
+      "type": "audio",
+      "oldRelative": "DJI_001\\DJI_20000104185004_0032_D.WAV",
+      "newRelative": "DJI_001\\audio_015_DJI_20000104185004_0032_D.WAV",
+      "oldName": "DJI_20000104185004_0032_D.WAV",
+      "newName": "audio_015_DJI_20000104185004_0032_D.WAV"
+    },
+    {
+      "type": "video",
+      "oldRelative": "mp4\\ST7_8341.MP4",
+      "newRelative": "mp4\\video_014_ST7_8341.MP4",
+      "oldName": "ST7_8341.MP4",
+      "newName": "video_014_ST7_8341.MP4"
+    },
+    {
+      "type": "video",
+      "oldRelative": "mp4\\ST7_8342.MP4",
+      "newRelative": "mp4\\video_015_ST7_8342.MP4",
+      "oldName": "ST7_8342.MP4",
+      "newName": "video_015_ST7_8342.MP4"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-600.jpg",
+      "newRelative": "phtp2605269\\photo_001_ST-600.jpg",
+      "oldName": "ST-600.jpg",
+      "newName": "photo_001_ST-600.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-601.jpg",
+      "newRelative": "phtp2605269\\photo_002_ST-601.jpg",
+      "oldName": "ST-601.jpg",
+      "newName": "photo_002_ST-601.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-604.jpg",
+      "newRelative": "phtp2605269\\photo_003_ST-604.jpg",
+      "oldName": "ST-604.jpg",
+      "newName": "photo_003_ST-604.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-608.jpg",
+      "newRelative": "phtp2605269\\photo_004_ST-608.jpg",
+      "oldName": "ST-608.jpg",
+      "newName": "photo_004_ST-608.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-614.jpg",
+      "newRelative": "phtp2605269\\photo_005_ST-614.jpg",
+      "oldName": "ST-614.jpg",
+      "newName": "photo_005_ST-614.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-616.jpg",
+      "newRelative": "phtp2605269\\photo_006_ST-616.jpg",
+      "oldName": "ST-616.jpg",
+      "newName": "photo_006_ST-616.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-617.jpg",
+      "newRelative": "phtp2605269\\photo_007_ST-617.jpg",
+      "oldName": "ST-617.jpg",
+      "newName": "photo_007_ST-617.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-618.jpg",
+      "newRelative": "phtp2605269\\photo_008_ST-618.jpg",
+      "oldName": "ST-618.jpg",
+      "newName": "photo_008_ST-618.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-621.jpg",
+      "newRelative": "phtp2605269\\photo_009_ST-621.jpg",
+      "oldName": "ST-621.jpg",
+      "newName": "photo_009_ST-621.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-624.jpg",
+      "newRelative": "phtp2605269\\photo_010_ST-624.jpg",
+      "oldName": "ST-624.jpg",
+      "newName": "photo_010_ST-624.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-625.jpg",
+      "newRelative": "phtp2605269\\photo_011_ST-625.jpg",
+      "oldName": "ST-625.jpg",
+      "newName": "photo_011_ST-625.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-627.jpg",
+      "newRelative": "phtp2605269\\photo_012_ST-627.jpg",
+      "oldName": "ST-627.jpg",
+      "newName": "photo_012_ST-627.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-628.jpg",
+      "newRelative": "phtp2605269\\photo_013_ST-628.jpg",
+      "oldName": "ST-628.jpg",
+      "newName": "photo_013_ST-628.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-630.jpg",
+      "newRelative": "phtp2605269\\photo_014_ST-630.jpg",
+      "oldName": "ST-630.jpg",
+      "newName": "photo_014_ST-630.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-632.jpg",
+      "newRelative": "phtp2605269\\photo_015_ST-632.jpg",
+      "oldName": "ST-632.jpg",
+      "newName": "photo_015_ST-632.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-634.jpg",
+      "newRelative": "phtp2605269\\photo_016_ST-634.jpg",
+      "oldName": "ST-634.jpg",
+      "newName": "photo_016_ST-634.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-635.jpg",
+      "newRelative": "phtp2605269\\photo_017_ST-635.jpg",
+      "oldName": "ST-635.jpg",
+      "newName": "photo_017_ST-635.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-638.jpg",
+      "newRelative": "phtp2605269\\photo_018_ST-638.jpg",
+      "oldName": "ST-638.jpg",
+      "newName": "photo_018_ST-638.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-645.jpg",
+      "newRelative": "phtp2605269\\photo_019_ST-645.jpg",
+      "oldName": "ST-645.jpg",
+      "newName": "photo_019_ST-645.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-646.jpg",
+      "newRelative": "phtp2605269\\photo_020_ST-646.jpg",
+      "oldName": "ST-646.jpg",
+      "newName": "photo_020_ST-646.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-653.jpg",
+      "newRelative": "phtp2605269\\photo_021_ST-653.jpg",
+      "oldName": "ST-653.jpg",
+      "newName": "photo_021_ST-653.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-661.jpg",
+      "newRelative": "phtp2605269\\photo_022_ST-661.jpg",
+      "oldName": "ST-661.jpg",
+      "newName": "photo_022_ST-661.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-665.jpg",
+      "newRelative": "phtp2605269\\photo_023_ST-665.jpg",
+      "oldName": "ST-665.jpg",
+      "newName": "photo_023_ST-665.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-667.jpg",
+      "newRelative": "phtp2605269\\photo_024_ST-667.jpg",
+      "oldName": "ST-667.jpg",
+      "newName": "photo_024_ST-667.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-668.jpg",
+      "newRelative": "phtp2605269\\photo_025_ST-668.jpg",
+      "oldName": "ST-668.jpg",
+      "newName": "photo_025_ST-668.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-670.jpg",
+      "newRelative": "phtp2605269\\photo_026_ST-670.jpg",
+      "oldName": "ST-670.jpg",
+      "newName": "photo_026_ST-670.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-675.jpg",
+      "newRelative": "phtp2605269\\photo_027_ST-675.jpg",
+      "oldName": "ST-675.jpg",
+      "newName": "photo_027_ST-675.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-676.jpg",
+      "newRelative": "phtp2605269\\photo_028_ST-676.jpg",
+      "oldName": "ST-676.jpg",
+      "newName": "photo_028_ST-676.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-682.jpg",
+      "newRelative": "phtp2605269\\photo_029_ST-682.jpg",
+      "oldName": "ST-682.jpg",
+      "newName": "photo_029_ST-682.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-688.jpg",
+      "newRelative": "phtp2605269\\photo_030_ST-688.jpg",
+      "oldName": "ST-688.jpg",
+      "newName": "photo_030_ST-688.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-690.jpg",
+      "newRelative": "phtp2605269\\photo_031_ST-690.jpg",
+      "oldName": "ST-690.jpg",
+      "newName": "photo_031_ST-690.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-693.jpg",
+      "newRelative": "phtp2605269\\photo_032_ST-693.jpg",
+      "oldName": "ST-693.jpg",
+      "newName": "photo_032_ST-693.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-694.jpg",
+      "newRelative": "phtp2605269\\photo_033_ST-694.jpg",
+      "oldName": "ST-694.jpg",
+      "newName": "photo_033_ST-694.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-695.jpg",
+      "newRelative": "phtp2605269\\photo_034_ST-695.jpg",
+      "oldName": "ST-695.jpg",
+      "newName": "photo_034_ST-695.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-697.jpg",
+      "newRelative": "phtp2605269\\photo_035_ST-697.jpg",
+      "oldName": "ST-697.jpg",
+      "newName": "photo_035_ST-697.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-699.jpg",
+      "newRelative": "phtp2605269\\photo_036_ST-699.jpg",
+      "oldName": "ST-699.jpg",
+      "newName": "photo_036_ST-699.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-700.jpg",
+      "newRelative": "phtp2605269\\photo_037_ST-700.jpg",
+      "oldName": "ST-700.jpg",
+      "newName": "photo_037_ST-700.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-701.jpg",
+      "newRelative": "phtp2605269\\photo_038_ST-701.jpg",
+      "oldName": "ST-701.jpg",
+      "newName": "photo_038_ST-701.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-702.jpg",
+      "newRelative": "phtp2605269\\photo_039_ST-702.jpg",
+      "oldName": "ST-702.jpg",
+      "newName": "photo_039_ST-702.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-703.jpg",
+      "newRelative": "phtp2605269\\photo_040_ST-703.jpg",
+      "oldName": "ST-703.jpg",
+      "newName": "photo_040_ST-703.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-706.jpg",
+      "newRelative": "phtp2605269\\photo_041_ST-706.jpg",
+      "oldName": "ST-706.jpg",
+      "newName": "photo_041_ST-706.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-707.jpg",
+      "newRelative": "phtp2605269\\photo_042_ST-707.jpg",
+      "oldName": "ST-707.jpg",
+      "newName": "photo_042_ST-707.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-709.jpg",
+      "newRelative": "phtp2605269\\photo_043_ST-709.jpg",
+      "oldName": "ST-709.jpg",
+      "newName": "photo_043_ST-709.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-713.jpg",
+      "newRelative": "phtp2605269\\photo_044_ST-713.jpg",
+      "oldName": "ST-713.jpg",
+      "newName": "photo_044_ST-713.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-715.jpg",
+      "newRelative": "phtp2605269\\photo_045_ST-715.jpg",
+      "oldName": "ST-715.jpg",
+      "newName": "photo_045_ST-715.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-716.jpg",
+      "newRelative": "phtp2605269\\photo_046_ST-716.jpg",
+      "oldName": "ST-716.jpg",
+      "newName": "photo_046_ST-716.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-721.jpg",
+      "newRelative": "phtp2605269\\photo_047_ST-721.jpg",
+      "oldName": "ST-721.jpg",
+      "newName": "photo_047_ST-721.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-725.jpg",
+      "newRelative": "phtp2605269\\photo_048_ST-725.jpg",
+      "oldName": "ST-725.jpg",
+      "newName": "photo_048_ST-725.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-729.jpg",
+      "newRelative": "phtp2605269\\photo_049_ST-729.jpg",
+      "oldName": "ST-729.jpg",
+      "newName": "photo_049_ST-729.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-730.jpg",
+      "newRelative": "phtp2605269\\photo_050_ST-730.jpg",
+      "oldName": "ST-730.jpg",
+      "newName": "photo_050_ST-730.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-731.jpg",
+      "newRelative": "phtp2605269\\photo_051_ST-731.jpg",
+      "oldName": "ST-731.jpg",
+      "newName": "photo_051_ST-731.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-735.jpg",
+      "newRelative": "phtp2605269\\photo_052_ST-735.jpg",
+      "oldName": "ST-735.jpg",
+      "newName": "photo_052_ST-735.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-736.jpg",
+      "newRelative": "phtp2605269\\photo_053_ST-736.jpg",
+      "oldName": "ST-736.jpg",
+      "newName": "photo_053_ST-736.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-737.jpg",
+      "newRelative": "phtp2605269\\photo_054_ST-737.jpg",
+      "oldName": "ST-737.jpg",
+      "newName": "photo_054_ST-737.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "phtp2605269\\ST-738.jpg",
+      "newRelative": "phtp2605269\\photo_055_ST-738.jpg",
+      "oldName": "ST-738.jpg",
+      "newName": "photo_055_ST-738.jpg"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\ST-641w.JPG",
+      "newRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\photo_056_ST-641w.JPG",
+      "oldName": "ST-641w.JPG",
+      "newName": "photo_056_ST-641w.JPG"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\ST-645w.JPG",
+      "newRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\photo_057_ST-645w.JPG",
+      "oldName": "ST-645w.JPG",
+      "newName": "photo_057_ST-645w.JPG"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\ST-665w.JPG",
+      "newRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\photo_058_ST-665w.JPG",
+      "oldName": "ST-665w.JPG",
+      "newName": "photo_058_ST-665w.JPG"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\ST-717w.JPG",
+      "newRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\photo_059_ST-717w.JPG",
+      "oldName": "ST-717w.JPG",
+      "newName": "photo_059_ST-717w.JPG"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\ST-721w.JPG",
+      "newRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\photo_060_ST-721w.JPG",
+      "oldName": "ST-721w.JPG",
+      "newName": "photo_060_ST-721w.JPG"
+    },
+    {
+      "type": "photo",
+      "oldRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\ST-723w.JPG",
+      "newRelative": "todoroki260526 繧ｹ繝√・繝ｫ繝｡繧､繝ｳp-takei\\photo_061_ST-723w.JPG",
+      "oldName": "ST-723w.JPG",
+      "newName": "photo_061_ST-723w.JPG"
+    },
+    {
+      "type": "video",
+      "oldRelative": "video\\4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4",
+      "newRelative": "video\\video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4",
+      "oldName": "4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4",
+      "newName": "video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4"
+    },
+    {
+      "type": "video",
+      "oldRelative": "video\\8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4",
+      "newRelative": "video\\video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4",
+      "oldName": "8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4",
+      "newName": "video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4"
+    },
+    {
+      "type": "video",
+      "oldRelative": "video\\0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4",
+      "newRelative": "video\\video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4",
+      "oldName": "0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4",
+      "newName": "video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4"
+    },
+    {
+      "type": "video",
+      "oldRelative": "video\\503179b6-95c2-4918-8c7c-4efc3014d757.mp4",
+      "newRelative": "video\\video_019_503179b6-95c2-4918-8c7c-4efc3014d757.mp4",
+      "oldName": "503179b6-95c2-4918-8c7c-4efc3014d757.mp4",
+      "newName": "video_019_503179b6-95c2-4918-8c7c-4efc3014d757.mp4"
+    },
+    {
+      "type": "video",
+      "oldRelative": "video\\a2ecf072-e001-453b-8432-780011ee6fea.mp4",
+      "newRelative": "video\\video_020_a2ecf072-e001-453b-8432-780011ee6fea.mp4",
+      "oldName": "a2ecf072-e001-453b-8432-780011ee6fea.mp4",
+      "newName": "video_020_a2ecf072-e001-453b-8432-780011ee6fea.mp4"
+    },
+    {
+      "type": "video",
+      "oldRelative": "video\\e6eeaf64-3602-4238-af85-8ccfc6701205.mp4",
+      "newRelative": "video\\video_021_e6eeaf64-3602-4238-af85-8ccfc6701205.mp4",
+      "oldName": "e6eeaf64-3602-4238-af85-8ccfc6701205.mp4",
+      "newName": "video_021_e6eeaf64-3602-4238-af85-8ccfc6701205.mp4"
+    },
+    {
+      "type": "video",
+      "oldRelative": "video\\ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4",
+      "newRelative": "video\\video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4",
+      "oldName": "ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4",
+      "newName": "video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4"
+    }
+  ],
+  "skipped": [
+    {
+      "reason": "unsupported-or-system-file",
+      "relative": "DJI_001\\.DS_Store"
+    },
+    {
+      "reason": "unsupported-or-system-file",
+      "relative": "phtp2605269\\.DS_Store"
+    }
+  ]
+}

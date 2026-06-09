@@ -1,0 +1,62 @@
+{
+  "createdAt": "2026-05-30T03:35:38Z",
+  "adapter": "remotion",
+  "timelineSchemaVersion": "video-edit-timeline/v1",
+  "timelineId": "timeline_new-folder-2",
+  "timelinePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\timelines\\current.timeline.json",
+  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\remotion_smoke_16_18.mp4",
+  "layerManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_artifacts\\remotion_smoke_16_18.remotion.layers.json",
+  "argv": [
+    "C:\\Program Files\\nodejs\\npx.CMD",
+    "--yes",
+    "--package",
+    "@remotion/cli",
+    "--package",
+    "react",
+    "--package",
+    "react-dom",
+    "remotion",
+    "render",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\remotion\\index.tsx",
+    "VideoEditTimeline",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\remotion_smoke_16_18.mp4",
+    "--props=C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_artifacts\\remotion_smoke_16_18.remotion.layers.json",
+    "--fps",
+    "29.97002997002997",
+    "--width",
+    "1920",
+    "--height",
+    "1080"
+  ],
+  "readyToExecute": true,
+  "missingDependencies": [],
+  "unsupportedClips": [],
+  "validationWarnings": [],
+  "preview": {
+    "range": {
+      "start": 16.0,
+      "end": 18.0
+    },
+    "proxy": false
+  },
+  "scope": {
+    "implemented": [
+      "bundled Remotion composition scaffold for overlay-layer rendering",
+      "Remotion public-asset materialization for image and subtitle PNG layers",
+      "React layer manifest for timeline video/audio references",
+      "React layer manifest for subtitle, image, and generated overlay clips",
+      "partial timeline-range layer export",
+      "audited Remotion render argv export"
+    ],
+    "notImplemented": [
+      "full source media playback inside Remotion; FFmpeg remains responsible for base media assembly",
+      "automatic Remotion execution from Electron"
+    ]
+  },
+  "renderLog": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\render_logs\\remotion_smoke_16_18.remotion.log",
+  "executionStartedAt": "2026-05-30T03:35:38Z",
+  "executed": true,
+  "returnCode": 0,
+  "executionEndedAt": "2026-05-30T03:35:44Z",
+  "commandReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_commands\\remotion_smoke_16_18.remotion.json"
+}

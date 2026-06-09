@@ -1,0 +1,85 @@
+{
+  "outputVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_111823_semiogo_sample_90s_subtitle_content_start.mp4",
+  "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_110546_semiogo_sample_90s_master_bg_color_base.mp4",
+  "overlayVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\20260529_111823_semiogo_sample_90s_subtitle_content_start_overlay.mov",
+  "retimedSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_111218_semiogo_sample_90s_content_start_retimed.srt",
+  "wordTimestampJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_110900_semiogo_sample_90s_word_timestamps.json",
+  "speakerRoles": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_111218_semiogo_sample_90s_speaker_roles_local.json",
+  "durationSec": 90.0,
+  "silenceShortening": false,
+  "method": "Retimed subtitle starts later to first matched spoken content word using faster-whisper word timestamps from the subtitle-free base video audio. Existing base video was reused; only subtitle overlay was regenerated.",
+  "subtitleStartAdjustments": [
+    {
+      "index": "303",
+      "text": "ありがとうございます",
+      "oldStart": 14.9,
+      "newStart": 16.44,
+      "delay": 1.54,
+      "matchKind": "exact",
+      "prefix": "ありがとうございます"
+    },
+    {
+      "index": "304",
+      "text": "ちょっと事前の想定ではPDMとFDに関する論争みたいな感じで",
+      "oldStart": 16.9,
+      "newStart": 20.8,
+      "delay": 3.9,
+      "matchKind": "exact",
+      "prefix": "ちょっと事前の想定ではpdm"
+    },
+    {
+      "index": "309",
+      "text": "今日はその話もちょっと触れたいなと思っていたので",
+      "oldStart": 34.92,
+      "newStart": 37.1,
+      "delay": 2.18,
+      "matchKind": "exact",
+      "prefix": "今日はその話も"
+    },
+    {
+      "index": "311",
+      "text": "そもそもあの論争について多分個別のものにそれに踏み込むつもりはないかなと思うんですが",
+      "oldStart": 42.1,
+      "newStart": 42.68,
+      "delay": 0.58,
+      "matchKind": "exact",
+      "prefix": "そもそも"
+    },
+    {
+      "index": "312",
+      "text": "どうしてああいう論争がなっちゃうのかなっていうところに関してはどう感じますかね",
+      "oldStart": 48.52,
+      "newStart": 48.78,
+      "delay": 0.26,
+      "matchKind": "exact",
+      "prefix": "どうしてああいう論争がなっち"
+    },
+    {
+      "index": "313",
+      "text": "その論争の話っていうのはPDM廃止してFDに変えますみたいな話",
+      "oldStart": 53.52,
+      "newStart": 54.84,
+      "delay": 1.32,
+      "matchKind": "exact",
+      "prefix": "その論争の話"
+    },
+    {
+      "index": "315",
+      "text": "なんか過剰反応されてるだけな気がしますけどね",
+      "oldStart": 66.68,
+      "newStart": 67.0,
+      "delay": 0.32,
+      "matchKind": "leading_filler_stripped",
+      "prefix": "過剰反応されてるだけな気がし"
+    },
+    {
+      "index": "316",
+      "text": "みんな好きなんでしょうね",
+      "oldStart": 69.54,
+      "newStart": 74.24,
+      "delay": 4.7,
+      "matchKind": "exact",
+      "prefix": "みんな好きなんでしょうね"
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "schema_version": "style_guide.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:15:20+09:00",
+  "style_sources": {
+    "opening_digest_style": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\config\\opening_digest_style.json",
+    "reference_images": [
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\annotation-sample.png",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\annotation-sample2.png",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\left-person-with-name-plate-sample.png",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\middle-and-right-people-with-name-plate-divided-sample.png",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\person-introduction-sample.png",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\three-people-divided-sample.png"
+    ],
+    "reference_image_analysis_manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\manifest.json",
+    "reference_image_analysis": {
+      "annotation_sample": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample.json",
+      "annotation_sample_review_meeting": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+      "single_person_nameplate": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
+      "two_person_nameplate_split": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+      "person_introduction_bio_card": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\person-introduction-sample.json",
+      "three_person_divided": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json"
+    }
+  },
+  "styles": {
+    "opening_digest_sample_caption": {
+      "description": "Use the same lower catchphrase subtitle style as test-project-1 styled preview.",
+      "sourceText": "semantic_marks.highlight_candidates[].digest_caption or semantic_marks.punchline_subtitles[] selected for Opening Digest",
+      "policy": {
+        "fullTranscriptSubtitles": false,
+        "displayMode": "editorial_caption_subtitles_only",
+        "maxLines": 2,
+        "preferredCharactersPerLineJapanese": 16,
+        "preferredWordsPerLineEnglish": 7,
+        "displayOnlyStrongDigestPhrases": true,
+        "allowOneCaptionSwapPerSpeechSegment": true,
+        "captionSwapRule": "Prefer one short emphasized phrase. If the line is slightly longer, replace the on-screen caption once within the same speech segment. Do not chain multiple swaps to approximate full subtitles."
+      },
+      "placement": {
+        "anchor": "lower_middle",
+        "singleLine": {
+          "yPxAt720p": 510,
+          "centerXNorm": 0.5,
+          "maxWidthNorm": 0.9
+        },
+        "twoLine": {
+          "line1YPxAt720p": 480,
+          "line2YPxAt720p": 592,
+          "centerXNorm": 0.5,
+          "line1MaxWidthNorm": 0.9,
+          "line2MaxWidthNorm": 0.82,
+          "lineGapPxAt720p": 12
+        },
+        "minimumYNorm": 0.708,
+        "avoidFaceOverlap": true
+      },
+      "text": {
+        "fontFamily": "Yu Gothic Bold",
+        "fontPath": "C:\\Windows\\Fonts\\YuGothB.ttc",
+        "fontSizePxAt720p": 74,
+        "minFontSizePxAt720p": 56,
+        "fill": "#FFFFFF",
+        "weight": 800,
+        "lineHeight": 1.0,
+        "letterSpacing": 0
+      },
+      "box": {
+        "shape": "rounded_rectangle",
+        "radiusPxAt720p": 6,
+        "paddingXPxAt720p": 35,
+        "paddingYPxAt720p": 10,
+        "heightPxAt720p": 96,
+        "widthMode": "text_width_plus_padding",
+        "backgroundGradient": [
+          "#4D15D7",
+          "#5A2DEF",
+          "#7863F3"
+        ],
+        "shadow": {
+          "enabled": true,
+          "color": "#000000",
+          "opacity": 0.2,
+          "blurPxAt720p": 6,
+          "offsetYPxAt720p": 3
+        }
+      },
+      "animation": {
+        "in": {
+          "type": "horizontal_reveal",
+          "direction": "left_to_right",
+          "durationSeconds": 0.583,
+          "easing": "easeOutCubic",
+          "initialVisibleWidthRatio": 0.08,
+          "initialOpacity": 0.0,
+          "opacityDurationSeconds": 0.12
+        },
+        "secondaryLine": {
+          "staggerSeconds": 0.18,
+          "inheritsReveal": true
+        },
+        "out": {
+          "type": "quick_fade",
+          "durationSeconds": 0.1
+        }
+      }
+    },
+    "opening_digest_top_right_title": {
+      "description": "Place the Opening Digest topic/title in the same top-band visual language as the sample/reference title banners.",
+      "enabled": true,
+      "source": "edit_plan.timeline[].overlays[type=topic_title].text or semantic_marks.topics[].title",
+      "defaultText": "Domain Expert Digest",
+      "position": "top_right",
+      "box": {
+        "xNorm": 0.48,
+        "yPxAt720p": 20,
+        "heightPxAt720p": 56,
+        "maxWidthNorm": 0.49,
+        "paddingXPxAt720p": 22,
+        "slantedEnds": true
+      },
+      "text": {
+        "fontFamily": "Yu Gothic Bold",
+        "fontPath": "C:\\Windows\\Fonts\\YuGothB.ttc",
+        "fontSizePxAt720p": 36,
+        "fill": "#FFFFFF",
+        "weight": 800,
+        "align": "center",
+        "maxLines": 1,
+        "shrinkToFit": true
+      },
+      "background": {
+        "gradientStops": [
+          "#4D15D7",
+          "#5A2DEF",
+          "#7863F3"
+        ],
+        "opacity": 1.0
+      },
+      "collisionRules": [
+        "Do not overlap the left logo panel.",
+        "Do not cover faces.",
+        "If the title is long, shrink text or split at a natural phrase boundary before reducing header height."
+      ]
+    },
+    "opening_digest_sample_frame": {
+      "description": "Use the same sample-11 frame treatment used by test-project-1 styled preview.",
+      "topBand": {
+        "heightPxAt720p": 102,
+        "heightNorm": 0.141199,
+        "gradientStops": [
+          "#5A51FE",
+          "#5A51FD",
+          "#5D60FE"
+        ],
+        "rightAccent": {
+          "enabled": true,
+          "separatorXNorm": 0.952563,
+          "rightRegionTint": "#5F5AF5",
+          "separatorColor": "#605CF5"
+        }
+      },
+      "bottomBand": {
+        "heightPxAt720p": 20,
+        "heightNorm": 0.027079,
+        "continuousFullWidth": true,
+        "gradientStops": [
+          "#5B59FD",
+          "#656AFD",
+          "#747FFC"
+        ]
+      },
+      "logoPanel": {
+        "shape": "left-white-slanted-polygon",
+        "polygonPxAt720p": [
+          [
+            0,
+            0
+          ],
+          [
+            286,
+            0
+          ],
+          [
+            269,
+            102
+          ],
+          [
+            0,
+            102
+          ]
+        ],
+        "logoSource": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+        "logoBBoxPxAt720p": {
+          "x": 43,
+          "y": 31,
+          "w": 173,
+          "h": 42
+        },
+        "renderRule": "Use the project logo file, not OCR text. Preserve the white slanted panel and scale all coordinates from 720p."
+      },
+      "contentVideo": {
+        "fitMode": "cover",
+        "yOffsetPxAt720p": 69,
+        "avoidHeaderOverlap": true,
+        "note": "Use the same 69px downward content shift as the styled sample so faces sit below the header while leaving room for the lower digest captions."
+      },
+      "rendering": {
+        "overlayRenderScale": 4,
+        "resample": "lanczos",
+        "reason": "Supersampling keeps the slanted logo-panel edge and thin bands smooth."
+      }
+    },
+    "name_tag_reference_style": {
+      "reference": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\left-person-with-name-plate-sample.png",
+      "text_source": "people_map",
+      "anchor": "below_face"
+    },
+    "bio_card_reference_style": {
+      "reference": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\person-introduction-sample.png",
+      "bullets_source": "people_map"
+    },
+    "main_punchline_caption": {
+      "inherits": "opening_digest_sample_caption",
+      "mode": "editorial_caption_subtitles_only"
+    },
+    "entity_explainer_bottom": {
+      "position": "bottom",
+      "max_lines": 2,
+      "text_source": "semantic_marks.entity_explainers"
+    }
+  },
+  "reference_alignment": {
+    "opening_digest": {
+      "reference_image_id": "annotation_sample_review_meeting",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+      "alignment_goal": "wide group context with branded logo/title and digest caption space"
+    },
+    "company_movie_bridge": {
+      "reference_image_id": null,
+      "alignment_goal": "fit the source movie cleanly; no interview reference crop applied"
+    },
+    "main_intro_group": {
+      "reference_image_id": "three_person_divided",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
+      "alignment_goal": "all participants visible with balanced face size and stable physical order"
+    },
+    "main_single_speaker": {
+      "reference_image_id": "single_person_nameplate",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
+      "alignment_goal": "medium close-up, face in upper third, name/caption-safe lower area"
+    },
+    "self_introduction": {
+      "reference_image_id": "person_introduction_bio_card",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\person-introduction-sample.json",
+      "alignment_goal": "large person crop paired with opposite-side biography panel"
+    },
+    "two_person_exchange": {
+      "reference_image_id": "two_person_nameplate_split",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+      "alignment_goal": "stable panel order and comparable face positions"
+    },
+    "entity_explainer": {
+      "reference_image_id": "annotation_sample",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample.json",
+      "alignment_goal": "white lower explainer card with blue-purple label tab, no caption collision"
+    }
+  }
+}

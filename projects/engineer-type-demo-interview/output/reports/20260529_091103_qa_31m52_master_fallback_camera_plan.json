@@ -1,0 +1,13 @@
+{
+  "mode": "manual-plan",
+  "source": "31m52 QA master fallback for reported audio/content mismatch",
+  "timelineStart": 1762,
+  "duration": 300,
+  "segments": [
+    {
+      "role": "master",
+      "start": 0.0,
+      "end": 300
+    }
+  ]
+}

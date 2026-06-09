@@ -1,0 +1,309 @@
+{
+  "items": [
+    {
+      "label": "good_11m52",
+      "final_sec": 712,
+      "uncut_sec": 712.0,
+      "segment": {
+        "seg": 19,
+        "input": 3,
+        "src_start": 654.27,
+        "src_end": 707.49,
+        "dur": 53.22000000000003,
+        "out_start": 710.2399999999999,
+        "out_end": 763.4599999999999,
+        "out_mid": 736.8499999999999,
+        "role": "camera4",
+        "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+        "source_time_at_point": 656.03
+      },
+      "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400,colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600",
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\good_11m52_712.png",
+      "rgb": [
+        186.57,
+        173.16,
+        142.9
+      ],
+      "luma": 173.83,
+      "sat": 0.2404,
+      "warmth": 43.67,
+      "rb_ratio": 1.30558,
+      "prev_master": {
+        "seg": 18,
+        "input": 0,
+        "src_start": 637.398,
+        "src_end": 710.24,
+        "dur": 72.84199999999998,
+        "out_start": 637.3979999999999,
+        "out_end": 710.2399999999999,
+        "out_mid": 673.819
+      },
+      "next_master": {
+        "seg": 20,
+        "input": 0,
+        "src_start": 763.46,
+        "src_end": 809.378,
+        "dur": 45.918000000000006,
+        "out_start": 763.4599999999999,
+        "out_end": 809.3779999999999,
+        "out_mid": 786.4189999999999
+      }
+    },
+    {
+      "label": "white_26m",
+      "final_sec": 1560,
+      "uncut_sec": 1560.0,
+      "segment": {
+        "seg": 49,
+        "input": 4,
+        "src_start": 390.52,
+        "src_end": 476.878,
+        "dur": 86.358,
+        "out_start": 1547.9599999999996,
+        "out_end": 1634.3179999999995,
+        "out_mid": 1591.1389999999997,
+        "role": "camera5",
+        "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+        "source_time_at_point": 402.56
+      },
+      "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400,colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600",
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\white_26m_1560.png",
+      "rgb": [
+        176.87,
+        172.67,
+        150.76
+      ],
+      "luma": 171.98,
+      "sat": 0.1703,
+      "warmth": 26.12,
+      "rb_ratio": 1.17323,
+      "prev_master": {
+        "seg": 48,
+        "input": 0,
+        "src_start": 1503.4,
+        "src_end": 1547.96,
+        "dur": 44.559999999999945,
+        "out_start": 1503.3999999999996,
+        "out_end": 1547.9599999999996,
+        "out_mid": 1525.6799999999996
+      },
+      "next_master": {
+        "seg": 50,
+        "input": 0,
+        "src_start": 1634.318,
+        "src_end": 1678.118,
+        "dur": 43.799999999999955,
+        "out_start": 1634.3179999999995,
+        "out_end": 1678.1179999999995,
+        "out_mid": 1656.2179999999994
+      }
+    },
+    {
+      "label": "white_39m34",
+      "final_sec": 2374,
+      "uncut_sec": 2375.042,
+      "segment": {
+        "seg": 67,
+        "input": 4,
+        "src_start": 1216.98,
+        "src_end": 1260.878,
+        "dur": 43.89799999999991,
+        "out_start": 2374.42,
+        "out_end": 2418.318,
+        "out_mid": 2396.369,
+        "role": "camera5",
+        "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+        "source_time_at_point": 1217.602
+      },
+      "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400,colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600",
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\white_39m34_2374.png",
+      "rgb": [
+        180.14,
+        175.16,
+        152.67
+      ],
+      "luma": 174.6,
+      "sat": 0.1749,
+      "warmth": 27.47,
+      "rb_ratio": 1.17995,
+      "prev_master": {
+        "seg": 66,
+        "input": 0,
+        "src_start": 2213.38,
+        "src_end": 2374.42,
+        "dur": 161.03999999999996,
+        "out_start": 2213.38,
+        "out_end": 2374.42,
+        "out_mid": 2293.9
+      },
+      "next_master": {
+        "seg": 68,
+        "input": 0,
+        "src_start": 2418.318,
+        "src_end": 2462.258,
+        "dur": 43.9399999999996,
+        "out_start": 2418.318,
+        "out_end": 2462.258,
+        "out_mid": 2440.288
+      }
+    }
+  ],
+  "master_samples": [
+    {
+      "for": "good_11m52",
+      "kind": "prev_master",
+      "final_sec": 673.819,
+      "uncut_sec": 673.819,
+      "segment": {
+        "seg": 18,
+        "input": 0,
+        "src_start": 637.398,
+        "src_end": 710.24,
+        "dur": 72.84199999999998,
+        "out_start": 637.3979999999999,
+        "out_end": 710.2399999999999,
+        "out_mid": 673.819
+      },
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\good_11m52_prev_master_seg18.png",
+      "rgb": [
+        180.49,
+        167.12,
+        142.9
+      ],
+      "luma": 168.22,
+      "sat": 0.2365,
+      "warmth": 37.6,
+      "rb_ratio": 1.2631
+    },
+    {
+      "for": "good_11m52",
+      "kind": "next_master",
+      "final_sec": 786.419,
+      "uncut_sec": 786.419,
+      "segment": {
+        "seg": 20,
+        "input": 0,
+        "src_start": 763.46,
+        "src_end": 809.378,
+        "dur": 45.918000000000006,
+        "out_start": 763.4599999999999,
+        "out_end": 809.3779999999999,
+        "out_mid": 786.4189999999999
+      },
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\good_11m52_next_master_seg20.png",
+      "rgb": [
+        180.85,
+        167.39,
+        143.09
+      ],
+      "luma": 168.5,
+      "sat": 0.2368,
+      "warmth": 37.76,
+      "rb_ratio": 1.2639
+    },
+    {
+      "for": "white_26m",
+      "kind": "prev_master",
+      "final_sec": 1525.68,
+      "uncut_sec": 1525.68,
+      "segment": {
+        "seg": 48,
+        "input": 0,
+        "src_start": 1503.4,
+        "src_end": 1547.96,
+        "dur": 44.559999999999945,
+        "out_start": 1503.3999999999996,
+        "out_end": 1547.9599999999996,
+        "out_mid": 1525.6799999999996
+      },
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\white_26m_prev_master_seg48.png",
+      "rgb": [
+        180.85,
+        167.45,
+        143.27
+      ],
+      "luma": 168.55,
+      "sat": 0.2359,
+      "warmth": 37.58,
+      "rb_ratio": 1.26228
+    },
+    {
+      "for": "white_26m",
+      "kind": "next_master",
+      "final_sec": 1656.218,
+      "uncut_sec": 1656.218,
+      "segment": {
+        "seg": 50,
+        "input": 0,
+        "src_start": 1634.318,
+        "src_end": 1678.118,
+        "dur": 43.799999999999955,
+        "out_start": 1634.3179999999995,
+        "out_end": 1678.1179999999995,
+        "out_mid": 1656.2179999999994
+      },
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\white_26m_next_master_seg50.png",
+      "rgb": [
+        179.54,
+        166.48,
+        142.41
+      ],
+      "luma": 167.52,
+      "sat": 0.2367,
+      "warmth": 37.12,
+      "rb_ratio": 1.26067
+    },
+    {
+      "for": "white_39m34",
+      "kind": "prev_master",
+      "final_sec": 2292.858,
+      "uncut_sec": 2293.9,
+      "segment": {
+        "seg": 66,
+        "input": 0,
+        "src_start": 2213.38,
+        "src_end": 2374.42,
+        "dur": 161.03999999999996,
+        "out_start": 2213.38,
+        "out_end": 2374.42,
+        "out_mid": 2293.9
+      },
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\white_39m34_prev_master_seg66.png",
+      "rgb": [
+        176.63,
+        163.1,
+        139.37
+      ],
+      "luma": 164.26,
+      "sat": 0.2397,
+      "warmth": 37.26,
+      "rb_ratio": 1.26732
+    },
+    {
+      "for": "white_39m34",
+      "kind": "next_master",
+      "final_sec": 2439.246,
+      "uncut_sec": 2440.288,
+      "segment": {
+        "seg": 68,
+        "input": 0,
+        "src_start": 2418.318,
+        "src_end": 2462.258,
+        "dur": 43.9399999999996,
+        "out_start": 2418.318,
+        "out_end": 2462.258,
+        "out_mid": 2440.288
+      },
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_key_closeups\\white_39m34_next_master_seg68.png",
+      "rgb": [
+        172.97,
+        160.16,
+        137.05
+      ],
+      "luma": 161.21,
+      "sat": 0.2394,
+      "warmth": 35.92,
+      "rb_ratio": 1.26211
+    }
+  ]
+}

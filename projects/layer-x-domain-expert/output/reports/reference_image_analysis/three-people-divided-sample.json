@@ -1,0 +1,64 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:35:21+09:00",
+  "source_image": "reference\\three-people-divided-sample.png",
+  "image": {
+    "width": 1864,
+    "height": 1047,
+    "aspect_ratio": 1.780325,
+    "mode": "RGBA"
+  },
+  "analysis_basis": "manual visual analysis of project reference still",
+  "reference_image_id": "three_person_divided",
+  "layout_types": [
+    "split_grid",
+    "wide_group",
+    "three_person_divided"
+  ],
+  "intended_sections": [
+    "main_intro_group",
+    "group_reaction",
+    "multi_participant_moment"
+  ],
+  "framing": {
+    "composition": "three_equal_vertical_panels",
+    "subject_crop": "each participant fills their column with face and upper torso visible",
+    "face_position": "faces centered in each column around y=0.28-0.34",
+    "divider": {
+      "orientation": "vertical",
+      "color": "#8EC6FF",
+      "width_norm": 0.006
+    },
+    "panel_order_rule": "left participant, middle participant, right participant in physical seating order",
+    "safe_margins_norm": {
+      "x": 0.025,
+      "top": 0.08,
+      "bottom": 0.08
+    }
+  },
+  "overlay_style": {
+    "logo": {
+      "position": "top_left",
+      "x_norm": 0.03,
+      "y_norm": 0.04,
+      "width_norm": 0.18
+    },
+    "topic_title": {
+      "position": "top_right",
+      "background": "#5F5AF5",
+      "text": "white bold"
+    }
+  },
+  "render_directives": [
+    "Use when all three participants or the group dynamic should be visible.",
+    "Keep all faces at comparable size and vertical position.",
+    "Use thin blue/light-green dividers and avoid large lower text blocks unless needed."
+  ],
+  "application_policy": {
+    "adapt_to_video_context": true,
+    "do_not_render_reference_image_directly": true,
+    "match_framing_crop_face_position_and_visual_style": true,
+    "allow_mirroring_when_layout_requires_opposite_bio_side": true
+  }
+}

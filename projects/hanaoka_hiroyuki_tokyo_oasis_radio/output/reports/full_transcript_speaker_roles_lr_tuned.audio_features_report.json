@@ -1,0 +1,38 @@
+{
+  "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\reports\\full_transcript_speaker_roles_lr_tuned.json",
+  "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\primary.srt",
+  "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\source\\audio\\東京オアシス20260205 花岡洋行様.wav",
+  "interviewerCount": 222,
+  "onscreenCount": 182,
+  "audioFeatureSummary": {
+    "interviewer": {
+      "lrDb": {
+        "median": -0.376,
+        "mean": -0.3697,
+        "p10": -0.4599,
+        "p90": -0.329
+      },
+      "dbfsMono": {
+        "median": -23.2655,
+        "mean": -23.0905,
+        "p10": -26.5723,
+        "p90": -19.048
+      }
+    },
+    "onscreen": {
+      "lrDb": {
+        "median": -0.7175,
+        "mean": -0.7159,
+        "p10": -0.8406,
+        "p90": -0.5758
+      },
+      "dbfsMono": {
+        "median": -24.283,
+        "mean": -24.1437,
+        "p10": -27.837,
+        "p90": -20.0728
+      }
+    }
+  },
+  "lowConfidence": []
+}

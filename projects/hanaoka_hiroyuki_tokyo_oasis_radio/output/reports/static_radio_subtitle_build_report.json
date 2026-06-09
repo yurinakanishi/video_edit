@@ -1,0 +1,243 @@
+{
+  "project": "hanaoka_hiroyuki_tokyo_oasis_radio",
+  "sourceAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\source\\audio\\東京オアシス20260205 花岡洋行様.wav",
+  "mainImage": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\source\\images\\東京オアシス20260205_img1.jpg",
+  "transcript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\primary.json",
+  "speakerRoles": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\reports\\full_transcript_speaker_roles_lr_tuned.json",
+  "transcriptCorrections": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\config\\transcript_corrections.json",
+  "cutStartSeconds": 115.94,
+  "cutEndSeconds": 1499.84,
+  "sourceTimelineDurationSeconds": 1383.9,
+  "audioRemoveRangesSeconds": [
+    {
+      "start": 698.54,
+      "end": 711.55,
+      "duration": 13.01,
+      "reason": "Middle music break between the first-half close and second-half restart, including the short music tail before the second-half speech."
+    }
+  ],
+  "audioKeepRangesSeconds": [
+    {
+      "start": 115.94,
+      "end": 698.54,
+      "duration": 582.6
+    },
+    {
+      "start": 711.55,
+      "end": 1499.84,
+      "duration": 788.29
+    }
+  ],
+  "durationSeconds": 1370.89,
+  "detectedStartSeconds": 115.94000000000001,
+  "detectedEndSeconds": 1499.8400000000001,
+  "startReason": "Program greeting and opening guest setup end before the main interviewer introduction at 00:01:55.94.",
+  "endReason": "The interview closes with thanks at 00:24:59.84; the following segment introduces the music bed and should be omitted with the ending music.",
+  "subtitleEventCount": 365,
+  "keptOriginalSegmentCount": 343,
+  "mergedContinuationSegmentGroups": [
+    [
+      105,
+      106
+    ],
+    [
+      185,
+      186
+    ],
+    [
+      195,
+      196
+    ],
+    [
+      261,
+      262
+    ],
+    [
+      280,
+      281
+    ],
+    [
+      331,
+      332
+    ],
+    [
+      333,
+      334
+    ]
+  ],
+  "roleCounts": {
+    "interviewer": 174,
+    "interviewee": 191
+  },
+  "correctionCounts": {
+    "replacements": 31,
+    "segmentOverrides": 50,
+    "roleOverrides": 9
+  },
+  "outputs": {
+    "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\audio\\tokyo_oasis_20260205_hanaoka_cut.wav",
+    "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\subtitles\\tokyo_oasis_20260205_hanaoka_cut.srt",
+    "ass": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\subtitles\\tokyo_oasis_20260205_hanaoka_role_colored.ass",
+    "captionOverlayManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\overlays\\static_radio_caption_png_overlays\\manifest.json",
+    "titleOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\overlays\\title\\tokyo_oasis_hanaoka_title.png",
+    "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\source\\images\\kiitos_logo.webp",
+    "logoOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\overlays\\logo\\kiitos_logo_box.png",
+    "video": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\videos\\tokyo_oasis_20260205_hanaoka_static_subtitled.mp4"
+  },
+  "omittedOpeningPreview": [
+    {
+      "start": 73.1,
+      "end": 76.94,
+      "text": "私がね教育をやる前からのねことなんですよ"
+    },
+    {
+      "start": 76.94,
+      "end": 79.62,
+      "text": "でその素敵な場所があることを知って"
+    },
+    {
+      "start": 79.62,
+      "end": 85.14,
+      "text": "で調布の教育関係者はものすごく助けてもらったんですよね"
+    },
+    {
+      "start": 85.14,
+      "end": 91.12,
+      "text": "もうねそれを新理事さんがまた入ってどう変わっていくのかちょっと楽しみですね"
+    },
+    {
+      "start": 91.12,
+      "end": 93.96000000000001,
+      "text": "そうですね美穂さんもずっと関わっていらっしゃるので"
+    },
+    {
+      "start": 93.96000000000001,
+      "end": 97.18,
+      "text": "きっとインタビュー盛り上がるんじゃないかなと思うし"
+    },
+    {
+      "start": 97.18,
+      "end": 99.00000000000001,
+      "text": "私たちもまた勉強になりますね"
+    },
+    {
+      "start": 99.00000000000001,
+      "end": 101.68,
+      "text": "それでは早速美穂さんお願いします"
+    }
+  ],
+  "omittedEndingPreview": [
+    {
+      "start": 1499.8400000000001,
+      "end": 1505.52,
+      "text": "時間いっぱいまでU2のYour Song Saves My Lifeをお聴きください"
+    },
+    {
+      "start": 1505.52,
+      "end": 1506.64,
+      "text": "長谷川美穂でした"
+    },
+    {
+      "start": 1515.96,
+      "end": 1545.94,
+      "text": "ご視聴ありがとうございました"
+    },
+    {
+      "start": 1545.96,
+      "end": 1575.94,
+      "text": "ご視聴ありがとうございました"
+    },
+    {
+      "start": 1575.96,
+      "end": 1605.94,
+      "text": "おやすみなさい"
+    },
+    {
+      "start": 1605.96,
+      "end": 1630.58,
+      "text": "ただいまお聴きいただきましたのは"
+    },
+    {
+      "start": 1630.58,
+      "end": 1634.38,
+      "text": "U2のYour Song Saved My Lifeでした"
+    },
+    {
+      "start": 1634.38,
+      "end": 1638.24,
+      "text": "私はインドのお話がとっても"
+    },
+    {
+      "start": 1638.24,
+      "end": 1644.24,
+      "text": "やはり理事になる方は違うなと思います"
+    },
+    {
+      "start": 1644.24,
+      "end": 1646.24,
+      "text": "インドに行って赴任している時に"
+    }
+  ],
+  "omittedMiddlePreview": [
+    {
+      "rangeStart": 698.54,
+      "rangeEnd": 711.55,
+      "segmentStart": 693.12,
+      "segmentEnd": 698.5400000000001,
+      "text": "後半にはゆっくりとその花岡さんご自身にスポットを当ててみたいと思います"
+    },
+    {
+      "rangeStart": 698.54,
+      "rangeEnd": 711.55,
+      "segmentStart": 709.72,
+      "segmentEnd": 715.5400000000001,
+      "text": "今夜は調布市にあります認定NPO法人"
+    }
+  ],
+  "renderCommand": [
+    "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-y",
+    "-loop",
+    "1",
+    "-framerate",
+    "30000/1001",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\source\\images\\東京オアシス20260205_img1.jpg",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\audio\\tokyo_oasis_20260205_hanaoka_cut.wav",
+    "-loop",
+    "1",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\overlays\\logo\\kiitos_logo_box.png",
+    "-loop",
+    "1",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\overlays\\title\\tokyo_oasis_hanaoka_title.png",
+    "-filter_complex_script",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\overlays\\static_radio_caption_png_overlays\\filter_complex_full.ffmpeg",
+    "-map",
+    "[v]",
+    "-map",
+    "1:a",
+    "-t",
+    "1370.890",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-crf",
+    "18",
+    "-c:a",
+    "aac",
+    "-ar",
+    "48000",
+    "-b:a",
+    "192k",
+    "-movflags",
+    "+faststart",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\videos\\tokyo_oasis_20260205_hanaoka_static_subtitled.mp4"
+  ]
+}

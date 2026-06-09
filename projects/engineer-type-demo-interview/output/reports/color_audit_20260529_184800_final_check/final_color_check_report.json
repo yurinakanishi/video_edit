@@ -1,0 +1,48 @@
+{
+  "video": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_184800.mp4",
+  "records": [
+    {
+      "label": "good_11m52",
+      "time": 712,
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_184800_final_check\\good_11m52.png",
+      "rgb": [
+        186.57,
+        173.16,
+        142.9
+      ],
+      "luma": 173.83,
+      "sat": 0.2404,
+      "warmth": 43.67,
+      "rb_ratio": 1.30558
+    },
+    {
+      "label": "fixed_26m",
+      "time": 1560,
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_184800_final_check\\fixed_26m.png",
+      "rgb": [
+        172.92,
+        166.93,
+        135.71
+      ],
+      "luma": 165.95,
+      "sat": 0.2484,
+      "warmth": 37.21,
+      "rb_ratio": 1.2742
+    },
+    {
+      "label": "fixed_39m34",
+      "time": 2374,
+      "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_184800_final_check\\fixed_39m34.png",
+      "rgb": [
+        176.33,
+        169.38,
+        137.33
+      ],
+      "luma": 168.54,
+      "sat": 0.2525,
+      "warmth": 39.0,
+      "rb_ratio": 1.28395
+    }
+  ],
+  "contactSheet": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\color_audit_20260529_184800_final_check\\final_check_contact_sheet.jpg"
+}

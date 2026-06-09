@@ -1,0 +1,27 @@
+{
+  "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+  "model": "large-v3",
+  "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\audio_preprocessed\\master_three_people_16k_mono_norm_ce558104f8.wav",
+  "options": {
+    "language": "ja",
+    "task": "transcribe",
+    "beam_size": 5,
+    "temperature": 0.0,
+    "condition_on_previous_text": false,
+    "initial_prompt": "これは日本語の動画音声です。音声に忠実に文字起こししてください。\n聞き取れない部分は推測で補完しないでください。\n以下の語が出る可能性があります：LayerX、ドメインエキスパート。",
+    "no_speech_threshold": 0.6,
+    "log_prob_threshold": -1.0,
+    "compression_ratio_threshold": 2.4,
+    "backend": "faster-whisper",
+    "device": "cuda",
+    "compute_type": "float16",
+    "initial_prompt_sha256": "4b123a4948b6d68b900a7dfd4adf3609b18521acf739037b68d2a841f1c15ee3"
+  },
+  "prompt": "これは日本語の動画音声です。音声に忠実に文字起こししてください。\n聞き取れない部分は推測で補完しないでください。\n以下の語が出る可能性があります：LayerX、ドメインエキスパート。",
+  "quality": {
+    "normalize_audio": true,
+    "audio_filter": "loudnorm=I=-16:TP=-1.5:LRA=11",
+    "filter_low_confidence": true,
+    "source_mtime": 1781035454.6450002
+  }
+}

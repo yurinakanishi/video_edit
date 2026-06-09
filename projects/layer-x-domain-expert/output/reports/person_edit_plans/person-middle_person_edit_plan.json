@@ -1,0 +1,3255 @@
+{
+  "schema_version": "person-edit-plan/v1",
+  "video": "person-middle.mp4",
+  "video_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+  "source_analysis": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\person_bboxes\\person-middle_person_bboxes.json",
+  "fps_sample": 0.5,
+  "duration": 3630.133,
+  "camera_motion": {
+    "camera_motion_type": "moving",
+    "is_fixed_camera": false,
+    "sample_count": 45,
+    "median_global_motion_score": 0.003891,
+    "p90_global_motion_score": 0.067723,
+    "median_translation_ratio": 0.002045,
+    "p90_translation_ratio": 0.029312,
+    "avg_frame_diff": 0.08604
+  },
+  "camera_motion_type": "moving",
+  "is_fixed_camera": false,
+  "fixed_camera_face_direction": null,
+  "summary": {
+    "sampled_frames": 46,
+    "person_present_frames": 46,
+    "person_present_ratio": 1.0,
+    "max_person_count": 3,
+    "avg_person_count": 1.804,
+    "avg_main_area_ratio": 0.42988,
+    "avg_brightness": 0.3092,
+    "avg_contrast": 0.1993,
+    "avg_saturation": 0.4115,
+    "avg_warmth": 0.1094,
+    "face_direction_counts": {
+      "front": 12,
+      "left": 17,
+      "right": 10,
+      "unknown": 44
+    },
+    "camera_motion": {
+      "camera_motion_type": "moving",
+      "is_fixed_camera": false,
+      "sample_count": 45,
+      "median_global_motion_score": 0.003891,
+      "p90_global_motion_score": 0.067723,
+      "median_translation_ratio": 0.002045,
+      "p90_translation_ratio": 0.029312,
+      "avg_frame_diff": 0.08604
+    },
+    "camera_motion_type": "moving",
+    "is_fixed_camera": false
+  },
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7008,
+        0.4947
+      ],
+      "avg_focus_ratio": [
+        0.7008,
+        0.2381
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.4913,
+        0.0012,
+        0.9104,
+        0.9883
+      ],
+      "avg_area_ratio": 0.41376,
+      "avg_visual": {
+        "brightness": 0.3241,
+        "contrast": 0.2115,
+        "saturation": 0.3949,
+        "warmth": 0.0618
+      },
+      "crop_target": {
+        "x": 0.7008,
+        "y": 0.2381,
+        "focus_x": 0.7008,
+        "focus_y": 0.2381,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7008,
+          0.4947
+        ],
+        "person_bbox_ratio": [
+          0.4913,
+          0.0012,
+          0.9104,
+          0.9883
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 2.0,
+      "end": 4.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.731,
+        0.4954
+      ],
+      "avg_focus_ratio": [
+        0.731,
+        0.239
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.53,
+        0.0023,
+        0.9321,
+        0.9885
+      ],
+      "avg_area_ratio": 0.39649,
+      "avg_visual": {
+        "brightness": 0.3261,
+        "contrast": 0.2118,
+        "saturation": 0.4045,
+        "warmth": 0.0866
+      },
+      "crop_target": {
+        "x": 0.731,
+        "y": 0.239,
+        "focus_x": 0.731,
+        "focus_y": 0.239,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.731,
+          0.4954
+        ],
+        "person_bbox_ratio": [
+          0.53,
+          0.0023,
+          0.9321,
+          0.9885
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 4.0,
+      "end": 6.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "left",
+      "raw_face_direction": "left",
+      "look_space": "left",
+      "desired_subject_x_ratio": 0.618,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_right",
+      "crop_strategy": "shift_subject_right_for_left_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7287,
+        0.4939
+      ],
+      "avg_focus_ratio": [
+        0.5862,
+        0.144
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.5862,
+        0.144
+      ],
+      "avg_face_bbox_ratio": [
+        0.5687,
+        0.113,
+        0.6036,
+        0.175
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.5659,
+        0.1031,
+        0.6064,
+        0.18
+      ],
+      "avg_person_bbox_ratio": [
+        0.5085,
+        0.0,
+        0.9488,
+        0.9878
+      ],
+      "avg_area_ratio": 0.43495,
+      "avg_visual": {
+        "brightness": 0.3176,
+        "contrast": 0.2106,
+        "saturation": 0.412,
+        "warmth": 0.0833
+      },
+      "crop_target": {
+        "x": 0.5862,
+        "y": 0.144,
+        "focus_x": 0.5862,
+        "focus_y": 0.144,
+        "focus_source": "face_center",
+        "desired_subject_x_ratio": 0.618,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_right",
+        "subject_center_ratio": [
+          0.7287,
+          0.4939
+        ],
+        "face_center_ratio": [
+          0.5862,
+          0.144
+        ],
+        "face_bbox_ratio": [
+          0.5687,
+          0.113,
+          0.6036,
+          0.175
+        ],
+        "protect_bbox_ratio": [
+          0.5659,
+          0.1031,
+          0.6064,
+          0.18
+        ],
+        "person_bbox_ratio": [
+          0.5085,
+          0.0,
+          0.9488,
+          0.9878
+        ]
+      },
+      "recommendation": "人物が画面左を向いている。左側に視線余白を作るため、人物は右寄せでクロップする。"
+    },
+    {
+      "start": 6.0,
+      "end": 8.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7501,
+        0.4924
+      ],
+      "avg_focus_ratio": [
+        0.7501,
+        0.2373
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.5289,
+        0.0018,
+        0.9713,
+        0.983
+      ],
+      "avg_area_ratio": 0.43401,
+      "avg_visual": {
+        "brightness": 0.3233,
+        "contrast": 0.2105,
+        "saturation": 0.3991,
+        "warmth": 0.0723
+      },
+      "crop_target": {
+        "x": 0.7501,
+        "y": 0.2373,
+        "focus_x": 0.7501,
+        "focus_y": 0.2373,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7501,
+          0.4924
+        ],
+        "person_bbox_ratio": [
+          0.5289,
+          0.0018,
+          0.9713,
+          0.983
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 8.0,
+      "end": 10.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7234,
+        0.4962
+      ],
+      "avg_focus_ratio": [
+        0.7234,
+        0.2382
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.506,
+        0.0,
+        0.9409,
+        0.9925
+      ],
+      "avg_area_ratio": 0.43166,
+      "avg_visual": {
+        "brightness": 0.3211,
+        "contrast": 0.2141,
+        "saturation": 0.4129,
+        "warmth": 0.085
+      },
+      "crop_target": {
+        "x": 0.7234,
+        "y": 0.2382,
+        "focus_x": 0.7234,
+        "focus_y": 0.2382,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7234,
+          0.4962
+        ],
+        "person_bbox_ratio": [
+          0.506,
+          0.0,
+          0.9409,
+          0.9925
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 10.0,
+      "end": 12.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7298,
+        0.4967
+      ],
+      "avg_focus_ratio": [
+        0.7298,
+        0.2392
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.5092,
+        0.0015,
+        0.9503,
+        0.992
+      ],
+      "avg_area_ratio": 0.43688,
+      "avg_visual": {
+        "brightness": 0.3231,
+        "contrast": 0.2167,
+        "saturation": 0.4144,
+        "warmth": 0.0895
+      },
+      "crop_target": {
+        "x": 0.7298,
+        "y": 0.2392,
+        "focus_x": 0.7298,
+        "focus_y": 0.2392,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7298,
+          0.4967
+        ],
+        "person_bbox_ratio": [
+          0.5092,
+          0.0015,
+          0.9503,
+          0.992
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 12.0,
+      "end": 14.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7347,
+        0.4964
+      ],
+      "avg_focus_ratio": [
+        0.7347,
+        0.239
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.5195,
+        0.0014,
+        0.9499,
+        0.9914
+      ],
+      "avg_area_ratio": 0.42607,
+      "avg_visual": {
+        "brightness": 0.3141,
+        "contrast": 0.2076,
+        "saturation": 0.4196,
+        "warmth": 0.0881
+      },
+      "crop_target": {
+        "x": 0.7347,
+        "y": 0.239,
+        "focus_x": 0.7347,
+        "focus_y": 0.239,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7347,
+          0.4964
+        ],
+        "person_bbox_ratio": [
+          0.5195,
+          0.0014,
+          0.9499,
+          0.9914
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 14.0,
+      "end": 16.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "left",
+      "raw_face_direction": "left",
+      "look_space": "left",
+      "desired_subject_x_ratio": 0.618,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_right",
+      "crop_strategy": "shift_subject_right_for_left_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.729,
+        0.4946
+      ],
+      "avg_focus_ratio": [
+        0.5654,
+        0.2227
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.5654,
+        0.2227
+      ],
+      "avg_face_bbox_ratio": [
+        0.4906,
+        0.0898,
+        0.6401,
+        0.3556
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4786,
+        0.0473,
+        0.6521,
+        0.3769
+      ],
+      "avg_person_bbox_ratio": [
+        0.5116,
+        0.0001,
+        0.9464,
+        0.9892
+      ],
+      "avg_area_ratio": 0.43009,
+      "avg_visual": {
+        "brightness": 0.3164,
+        "contrast": 0.2113,
+        "saturation": 0.4151,
+        "warmth": 0.0886
+      },
+      "crop_target": {
+        "x": 0.5654,
+        "y": 0.2227,
+        "focus_x": 0.5654,
+        "focus_y": 0.2227,
+        "focus_source": "face_center",
+        "desired_subject_x_ratio": 0.618,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_right",
+        "subject_center_ratio": [
+          0.729,
+          0.4946
+        ],
+        "face_center_ratio": [
+          0.5654,
+          0.2227
+        ],
+        "face_bbox_ratio": [
+          0.4906,
+          0.0898,
+          0.6401,
+          0.3556
+        ],
+        "protect_bbox_ratio": [
+          0.4786,
+          0.0473,
+          0.6521,
+          0.3769
+        ],
+        "person_bbox_ratio": [
+          0.5116,
+          0.0001,
+          0.9464,
+          0.9892
+        ]
+      },
+      "recommendation": "人物が画面左を向いている。左側に視線余白を作るため、人物は右寄せでクロップする。"
+    },
+    {
+      "start": 16.0,
+      "end": 18.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "left",
+      "raw_face_direction": "left",
+      "look_space": "left",
+      "desired_subject_x_ratio": 0.618,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_right",
+      "crop_strategy": "shift_subject_right_for_left_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7166,
+        0.4955
+      ],
+      "avg_focus_ratio": [
+        0.6065,
+        0.3218
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.6065,
+        0.3218
+      ],
+      "avg_face_bbox_ratio": [
+        0.5854,
+        0.2843,
+        0.6276,
+        0.3593
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.582,
+        0.2723,
+        0.631,
+        0.3653
+      ],
+      "avg_person_bbox_ratio": [
+        0.5005,
+        0.0055,
+        0.9327,
+        0.9855
+      ],
+      "avg_area_ratio": 0.42353,
+      "avg_visual": {
+        "brightness": 0.3215,
+        "contrast": 0.213,
+        "saturation": 0.4154,
+        "warmth": 0.085
+      },
+      "crop_target": {
+        "x": 0.6065,
+        "y": 0.3218,
+        "focus_x": 0.6065,
+        "focus_y": 0.3218,
+        "focus_source": "face_center",
+        "desired_subject_x_ratio": 0.618,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_right",
+        "subject_center_ratio": [
+          0.7166,
+          0.4955
+        ],
+        "face_center_ratio": [
+          0.6065,
+          0.3218
+        ],
+        "face_bbox_ratio": [
+          0.5854,
+          0.2843,
+          0.6276,
+          0.3593
+        ],
+        "protect_bbox_ratio": [
+          0.582,
+          0.2723,
+          0.631,
+          0.3653
+        ],
+        "person_bbox_ratio": [
+          0.5005,
+          0.0055,
+          0.9327,
+          0.9855
+        ]
+      },
+      "recommendation": "人物が画面左を向いている。左側に視線余白を作るため、人物は右寄せでクロップする。"
+    },
+    {
+      "start": 18.0,
+      "end": 20.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7545,
+        0.5015
+      ],
+      "avg_focus_ratio": [
+        0.7545,
+        0.2476
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.509,
+        0.0132,
+        1.0,
+        0.9899
+      ],
+      "avg_area_ratio": 0.47955,
+      "avg_visual": {
+        "brightness": 0.3128,
+        "contrast": 0.2033,
+        "saturation": 0.4175,
+        "warmth": 0.1267
+      },
+      "crop_target": {
+        "x": 0.7545,
+        "y": 0.2476,
+        "focus_x": 0.7545,
+        "focus_y": 0.2476,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7545,
+          0.5015
+        ],
+        "person_bbox_ratio": [
+          0.509,
+          0.0132,
+          1.0,
+          0.9899
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 20.0,
+      "end": 22.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.7468,
+        0.4979
+      ],
+      "avg_focus_ratio": [
+        0.7468,
+        0.2576
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.4936,
+        0.0358,
+        1.0,
+        0.96
+      ],
+      "avg_area_ratio": 0.46802,
+      "avg_visual": {
+        "brightness": 0.3405,
+        "contrast": 0.2212,
+        "saturation": 0.4062,
+        "warmth": 0.1271
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 22.0,
+      "end": 24.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7465,
+        0.5
+      ],
+      "avg_focus_ratio": [
+        0.7466,
+        0.2435
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.4938,
+        0.0068,
+        0.9993,
+        0.9932
+      ],
+      "avg_area_ratio": 0.49864,
+      "avg_visual": {
+        "brightness": 0.3377,
+        "contrast": 0.2085,
+        "saturation": 0.3989,
+        "warmth": 0.1133
+      },
+      "crop_target": {
+        "x": 0.7466,
+        "y": 0.2435,
+        "focus_x": 0.7466,
+        "focus_y": 0.2435,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7465,
+          0.5
+        ],
+        "person_bbox_ratio": [
+          0.4938,
+          0.0068,
+          0.9993,
+          0.9932
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 24.0,
+      "end": 26.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 3,
+      "raw_person_count": 3,
+      "significant_person_count": 3,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.6315,
+        0.492
+      ],
+      "avg_focus_ratio": [
+        0.6315,
+        0.237
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.3137,
+        0.0017,
+        0.9492,
+        0.9823
+      ],
+      "avg_area_ratio": 0.62312,
+      "avg_visual": {
+        "brightness": 0.3801,
+        "contrast": 0.1779,
+        "saturation": 0.299,
+        "warmth": 0.1059
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 26.0,
+      "end": 28.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 2,
+      "significant_person_count": 1,
+      "position": "right",
+      "shot_size": "close",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "shift_crop_right",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.7138,
+        0.4973
+      ],
+      "avg_focus_ratio": [
+        0.7138,
+        0.2397
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.4281,
+        0.002,
+        0.9996,
+        0.9926
+      ],
+      "avg_area_ratio": 0.56615,
+      "avg_visual": {
+        "brightness": 0.3338,
+        "contrast": 0.1958,
+        "saturation": 0.343,
+        "warmth": 0.0786
+      },
+      "crop_target": {
+        "x": 0.7138,
+        "y": 0.2397,
+        "focus_x": 0.7138,
+        "focus_y": 0.2397,
+        "focus_source": "estimated_face_from_person_bbox",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.7138,
+          0.4973
+        ],
+        "person_bbox_ratio": [
+          0.4281,
+          0.002,
+          0.9996,
+          0.9926
+        ]
+      },
+      "recommendation": "人物が中央から外れている。縦動画/正方形化ではクロップ窓を人物側へ寄せる。"
+    },
+    {
+      "start": 28.0,
+      "end": 30.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.7492,
+        0.4952
+      ],
+      "avg_focus_ratio": [
+        0.7492,
+        0.2392
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.4996,
+        0.0029,
+        0.9988,
+        0.9875
+      ],
+      "avg_area_ratio": 0.49155,
+      "avg_visual": {
+        "brightness": 0.2867,
+        "contrast": 0.1856,
+        "saturation": 0.3752,
+        "warmth": 0.0898
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 30.0,
+      "end": 32.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.6551,
+        0.4963
+      ],
+      "avg_focus_ratio": [
+        0.6551,
+        0.2389
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.3454,
+        0.0013,
+        0.9648,
+        0.9914
+      ],
+      "avg_area_ratio": 0.61333,
+      "avg_visual": {
+        "brightness": 0.4042,
+        "contrast": 0.2031,
+        "saturation": 0.2583,
+        "warmth": 0.082
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 32.0,
+      "end": 34.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.5852,
+        0.4792
+      ],
+      "avg_focus_ratio": [
+        0.5852,
+        0.2305
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.3612,
+        0.001,
+        0.8092,
+        0.9574
+      ],
+      "avg_area_ratio": 0.42856,
+      "avg_visual": {
+        "brightness": 0.2886,
+        "contrast": 0.177,
+        "saturation": 0.3452,
+        "warmth": 0.0965
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 34.0,
+      "end": 36.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.6006,
+        0.4904
+      ],
+      "avg_focus_ratio": [
+        0.4393,
+        0.4116
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.4393,
+        0.4116
+      ],
+      "avg_face_bbox_ratio": [
+        0.4208,
+        0.3787,
+        0.4578,
+        0.4444
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4178,
+        0.3682,
+        0.4608,
+        0.4497
+      ],
+      "avg_person_bbox_ratio": [
+        0.3762,
+        0.0016,
+        0.825,
+        0.9792
+      ],
+      "avg_area_ratio": 0.43871,
+      "avg_visual": {
+        "brightness": 0.2633,
+        "contrast": 0.1664,
+        "saturation": 0.355,
+        "warmth": 0.1202
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 36.0,
+      "end": 38.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.5821,
+        0.488
+      ],
+      "avg_focus_ratio": [
+        0.4414,
+        0.4338
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.4414,
+        0.4338
+      ],
+      "avg_face_bbox_ratio": [
+        0.4224,
+        0.4,
+        0.4604,
+        0.4676
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4194,
+        0.3892,
+        0.4634,
+        0.473
+      ],
+      "avg_person_bbox_ratio": [
+        0.3662,
+        0.0015,
+        0.7981,
+        0.9746
+      ],
+      "avg_area_ratio": 0.42039,
+      "avg_visual": {
+        "brightness": 0.26,
+        "contrast": 0.1642,
+        "saturation": 0.3531,
+        "warmth": 0.1171
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 38.0,
+      "end": 40.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.6054,
+        0.486
+      ],
+      "avg_focus_ratio": [
+        0.4406,
+        0.4046
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.4406,
+        0.4046
+      ],
+      "avg_face_bbox_ratio": [
+        0.4203,
+        0.3685,
+        0.4609,
+        0.4407
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4171,
+        0.3569,
+        0.4641,
+        0.4465
+      ],
+      "avg_person_bbox_ratio": [
+        0.3711,
+        0.0016,
+        0.8397,
+        0.9705
+      ],
+      "avg_area_ratio": 0.45399,
+      "avg_visual": {
+        "brightness": 0.3933,
+        "contrast": 0.2167,
+        "saturation": 0.303,
+        "warmth": 0.0999
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 40.0,
+      "end": 42.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.5965,
+        0.4854
+      ],
+      "avg_focus_ratio": [
+        0.4331,
+        0.4514
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.4331,
+        0.4514
+      ],
+      "avg_face_bbox_ratio": [
+        0.4146,
+        0.4185,
+        0.4516,
+        0.4843
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4116,
+        0.408,
+        0.4546,
+        0.4896
+      ],
+      "avg_person_bbox_ratio": [
+        0.356,
+        0.0015,
+        0.8371,
+        0.9693
+      ],
+      "avg_area_ratio": 0.46557,
+      "avg_visual": {
+        "brightness": 0.3418,
+        "contrast": 0.1979,
+        "saturation": 0.3243,
+        "warmth": 0.1099
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 42.0,
+      "end": 44.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 3,
+      "raw_person_count": 3,
+      "significant_person_count": 3,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.5865,
+        0.4246
+      ],
+      "avg_focus_ratio": [
+        0.5039,
+        0.6736
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.5039,
+        0.6736
+      ],
+      "avg_face_bbox_ratio": [
+        0.4859,
+        0.6417,
+        0.5219,
+        0.7056
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.483,
+        0.6315,
+        0.5248,
+        0.7107
+      ],
+      "avg_person_bbox_ratio": [
+        0.3529,
+        0.002,
+        0.8201,
+        0.8471
+      ],
+      "avg_area_ratio": 0.39483,
+      "avg_visual": {
+        "brightness": 0.3194,
+        "contrast": 0.2,
+        "saturation": 0.3589,
+        "warmth": 0.1164
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 44.0,
+      "end": 46.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.5926,
+        0.4792
+      ],
+      "avg_focus_ratio": [
+        0.5234,
+        0.5278
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.5234,
+        0.5278
+      ],
+      "avg_face_bbox_ratio": [
+        0.5031,
+        0.4917,
+        0.5437,
+        0.5639
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4999,
+        0.4801,
+        0.5469,
+        0.5697
+      ],
+      "avg_person_bbox_ratio": [
+        0.3533,
+        0.0007,
+        0.8319,
+        0.9577
+      ],
+      "avg_area_ratio": 0.45803,
+      "avg_visual": {
+        "brightness": 0.2832,
+        "contrast": 0.1929,
+        "saturation": 0.4052,
+        "warmth": 0.1104
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 46.0,
+      "end": 48.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 3,
+      "raw_person_count": 3,
+      "significant_person_count": 3,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.6705,
+        0.448
+      ],
+      "avg_focus_ratio": [
+        0.6705,
+        0.2178
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.3475,
+        0.0054,
+        0.9935,
+        0.8906
+      ],
+      "avg_area_ratio": 0.57183,
+      "avg_visual": {
+        "brightness": 0.2877,
+        "contrast": 0.1723,
+        "saturation": 0.3491,
+        "warmth": 0.0872
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 48.0,
+      "end": 50.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "close",
+      "face_direction": "front",
+      "raw_face_direction": "front",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "center_crop",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.4846,
+        0.4961
+      ],
+      "avg_focus_ratio": [
+        0.6273,
+        0.6912
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.6242,
+        0.7042
+      ],
+      "avg_face_bbox_ratio": [
+        0.5312,
+        0.5389,
+        0.7172,
+        0.8694
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.5163,
+        0.486,
+        0.7321,
+        0.8958
+      ],
+      "avg_person_bbox_ratio": [
+        0.214,
+        0.0065,
+        0.7551,
+        0.9857
+      ],
+      "avg_area_ratio": 0.52995,
+      "avg_visual": {
+        "brightness": 0.2711,
+        "contrast": 0.1687,
+        "saturation": 0.3865,
+        "warmth": 0.1035
+      },
+      "crop_target": {
+        "x": 0.6273,
+        "y": 0.6912,
+        "focus_x": 0.6273,
+        "focus_y": 0.6912,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.4846,
+          0.4961
+        ],
+        "face_center_ratio": [
+          0.6242,
+          0.7042
+        ],
+        "face_bbox_ratio": [
+          0.5312,
+          0.5389,
+          0.7172,
+          0.8694
+        ],
+        "protect_bbox_ratio": [
+          0.5163,
+          0.486,
+          0.7321,
+          0.8958
+        ],
+        "person_bbox_ratio": [
+          0.214,
+          0.0065,
+          0.7551,
+          0.9857
+        ]
+      },
+      "recommendation": "人物が中央。通常のソロトーク区間として使いやすい。"
+    },
+    {
+      "start": 50.0,
+      "end": 52.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4595,
+        0.5242
+      ],
+      "avg_focus_ratio": [
+        0.428,
+        0.2442
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4529,
+        0.2801
+      ],
+      "avg_face_bbox_ratio": [
+        0.3615,
+        0.1176,
+        0.5443,
+        0.4426
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3469,
+        0.0656,
+        0.5589,
+        0.4686
+      ],
+      "avg_person_bbox_ratio": [
+        0.2449,
+        0.0581,
+        0.674,
+        0.9902
+      ],
+      "avg_area_ratio": 0.39995,
+      "avg_visual": {
+        "brightness": 0.2601,
+        "contrast": 0.182,
+        "saturation": 0.4452,
+        "warmth": 0.1308
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 52.0,
+      "end": 54.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 3,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4446,
+        0.5176
+      ],
+      "avg_focus_ratio": [
+        0.4013,
+        0.2361
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4263,
+        0.2699
+      ],
+      "avg_face_bbox_ratio": [
+        0.3391,
+        0.1148,
+        0.5135,
+        0.425
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3251,
+        0.0652,
+        0.5275,
+        0.4498
+      ],
+      "avg_person_bbox_ratio": [
+        0.2535,
+        0.0441,
+        0.6357,
+        0.9911
+      ],
+      "avg_area_ratio": 0.36193,
+      "avg_visual": {
+        "brightness": 0.2785,
+        "contrast": 0.1911,
+        "saturation": 0.4345,
+        "warmth": 0.1256
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 54.0,
+      "end": 56.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 3,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4428,
+        0.5528
+      ],
+      "avg_focus_ratio": [
+        0.574,
+        0.7833
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.574,
+        0.7833
+      ],
+      "avg_face_bbox_ratio": [
+        0.4771,
+        0.6111,
+        0.6708,
+        0.9556
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4616,
+        0.556,
+        0.6863,
+        0.9832
+      ],
+      "avg_person_bbox_ratio": [
+        0.2136,
+        0.1118,
+        0.672,
+        0.9939
+      ],
+      "avg_area_ratio": 0.40437,
+      "avg_visual": {
+        "brightness": 0.2599,
+        "contrast": 0.1972,
+        "saturation": 0.4352,
+        "warmth": 0.1176
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 56.0,
+      "end": 58.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 3,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "close",
+      "face_direction": "front",
+      "raw_face_direction": "front",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "center_crop",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.4454,
+        0.5311
+      ],
+      "avg_focus_ratio": [
+        0.4057,
+        0.2444
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4039,
+        0.2699
+      ],
+      "avg_face_bbox_ratio": [
+        0.3219,
+        0.1241,
+        0.4859,
+        0.4157
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3088,
+        0.0774,
+        0.499,
+        0.439
+      ],
+      "avg_person_bbox_ratio": [
+        0.2363,
+        0.0716,
+        0.6545,
+        0.9905
+      ],
+      "avg_area_ratio": 0.38428,
+      "avg_visual": {
+        "brightness": 0.3061,
+        "contrast": 0.1967,
+        "saturation": 0.445,
+        "warmth": 0.115
+      },
+      "crop_target": {
+        "x": 0.4057,
+        "y": 0.2444,
+        "focus_x": 0.4057,
+        "focus_y": 0.2444,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.4454,
+          0.5311
+        ],
+        "face_center_ratio": [
+          0.4039,
+          0.2699
+        ],
+        "face_bbox_ratio": [
+          0.3219,
+          0.1241,
+          0.4859,
+          0.4157
+        ],
+        "protect_bbox_ratio": [
+          0.3088,
+          0.0774,
+          0.499,
+          0.439
+        ],
+        "person_bbox_ratio": [
+          0.2363,
+          0.0716,
+          0.6545,
+          0.9905
+        ]
+      },
+      "recommendation": "人物が中央。通常のソロトーク区間として使いやすい。"
+    },
+    {
+      "start": 58.0,
+      "end": 60.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4531,
+        0.5331
+      ],
+      "avg_focus_ratio": [
+        0.4117,
+        0.2606
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4125,
+        0.2852
+      ],
+      "avg_face_bbox_ratio": [
+        0.338,
+        0.1528,
+        0.487,
+        0.4176
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3261,
+        0.1104,
+        0.4989,
+        0.4388
+      ],
+      "avg_person_bbox_ratio": [
+        0.2613,
+        0.0773,
+        0.6449,
+        0.989
+      ],
+      "avg_area_ratio": 0.34973,
+      "avg_visual": {
+        "brightness": 0.2759,
+        "contrast": 0.204,
+        "saturation": 0.4618,
+        "warmth": 0.1383
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 60.0,
+      "end": 62.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.454,
+        0.5141
+      ],
+      "avg_focus_ratio": [
+        0.5516,
+        0.7324
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.5516,
+        0.7324
+      ],
+      "avg_face_bbox_ratio": [
+        0.4635,
+        0.5759,
+        0.6396,
+        0.8889
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4494,
+        0.5258,
+        0.6537,
+        0.9139
+      ],
+      "avg_person_bbox_ratio": [
+        0.24,
+        0.0339,
+        0.668,
+        0.9943
+      ],
+      "avg_area_ratio": 0.41103,
+      "avg_visual": {
+        "brightness": 0.3051,
+        "contrast": 0.194,
+        "saturation": 0.4504,
+        "warmth": 0.1213
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 62.0,
+      "end": 64.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4657,
+        0.5153
+      ],
+      "avg_focus_ratio": [
+        0.3607,
+        0.2838
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.3607,
+        0.2838
+      ],
+      "avg_face_bbox_ratio": [
+        0.3432,
+        0.2528,
+        0.3781,
+        0.3148
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3404,
+        0.2429,
+        0.3809,
+        0.3198
+      ],
+      "avg_person_bbox_ratio": [
+        0.2716,
+        0.038,
+        0.6598,
+        0.9926
+      ],
+      "avg_area_ratio": 0.37055,
+      "avg_visual": {
+        "brightness": 0.3186,
+        "contrast": 0.203,
+        "saturation": 0.4422,
+        "warmth": 0.1168
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 64.0,
+      "end": 66.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.6242,
+        0.4992
+      ],
+      "avg_focus_ratio": [
+        0.4094,
+        0.2546
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4138,
+        0.2801
+      ],
+      "avg_face_bbox_ratio": [
+        0.3411,
+        0.1509,
+        0.4865,
+        0.4093
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3295,
+        0.1096,
+        0.4981,
+        0.43
+      ],
+      "avg_person_bbox_ratio": [
+        0.2577,
+        0.0063,
+        0.9906,
+        0.9921
+      ],
+      "avg_area_ratio": 0.7225,
+      "avg_visual": {
+        "brightness": 0.3156,
+        "contrast": 0.2134,
+        "saturation": 0.4291,
+        "warmth": 0.134
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 66.0,
+      "end": 68.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "right",
+      "raw_face_direction": "right",
+      "look_space": "right",
+      "desired_subject_x_ratio": 0.382,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_left",
+      "crop_strategy": "shift_subject_left_for_right_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.4431,
+        0.5316
+      ],
+      "avg_focus_ratio": [
+        0.4867,
+        0.2792
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.4867,
+        0.2792
+      ],
+      "avg_face_bbox_ratio": [
+        0.4688,
+        0.2472,
+        0.5047,
+        0.3111
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4659,
+        0.237,
+        0.5076,
+        0.3162
+      ],
+      "avg_person_bbox_ratio": [
+        0.2439,
+        0.0725,
+        0.6423,
+        0.9908
+      ],
+      "avg_area_ratio": 0.36584,
+      "avg_visual": {
+        "brightness": 0.3125,
+        "contrast": 0.2145,
+        "saturation": 0.4232,
+        "warmth": 0.1363
+      },
+      "crop_target": {
+        "x": 0.4867,
+        "y": 0.2792,
+        "focus_x": 0.4867,
+        "focus_y": 0.2792,
+        "focus_source": "face_center",
+        "desired_subject_x_ratio": 0.382,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_left",
+        "subject_center_ratio": [
+          0.4431,
+          0.5316
+        ],
+        "face_center_ratio": [
+          0.4867,
+          0.2792
+        ],
+        "face_bbox_ratio": [
+          0.4688,
+          0.2472,
+          0.5047,
+          0.3111
+        ],
+        "protect_bbox_ratio": [
+          0.4659,
+          0.237,
+          0.5076,
+          0.3162
+        ],
+        "person_bbox_ratio": [
+          0.2439,
+          0.0725,
+          0.6423,
+          0.9908
+        ]
+      },
+      "recommendation": "人物が画面右を向いている。右側に視線余白を作るため、人物は左寄せでクロップする。"
+    },
+    {
+      "start": 68.0,
+      "end": 70.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 2,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4582,
+        0.5322
+      ],
+      "avg_focus_ratio": [
+        0.4583,
+        0.2931
+      ],
+      "avg_focus_source": "estimated_face_from_person_bbox",
+      "avg_face_center_ratio": null,
+      "avg_face_bbox_ratio": null,
+      "avg_face_protect_bbox_ratio": null,
+      "avg_person_bbox_ratio": [
+        0.2636,
+        0.0725,
+        0.6529,
+        0.9918
+      ],
+      "avg_area_ratio": 0.35786,
+      "avg_visual": {
+        "brightness": 0.3153,
+        "contrast": 0.2103,
+        "saturation": 0.429,
+        "warmth": 0.1352
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 70.0,
+      "end": 72.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 2,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "front",
+      "raw_face_direction": "front",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "center_crop",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.4674,
+        0.53
+      ],
+      "avg_focus_ratio": [
+        0.456,
+        0.2602
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4609,
+        0.2833
+      ],
+      "avg_face_bbox_ratio": [
+        0.3943,
+        0.1648,
+        0.5276,
+        0.4019
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3836,
+        0.1269,
+        0.5383,
+        0.4209
+      ],
+      "avg_person_bbox_ratio": [
+        0.2744,
+        0.0692,
+        0.6603,
+        0.9909
+      ],
+      "avg_area_ratio": 0.35567,
+      "avg_visual": {
+        "brightness": 0.3066,
+        "contrast": 0.2049,
+        "saturation": 0.4297,
+        "warmth": 0.1288
+      },
+      "crop_target": {
+        "x": 0.456,
+        "y": 0.2602,
+        "focus_x": 0.456,
+        "focus_y": 0.2602,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.4674,
+          0.53
+        ],
+        "face_center_ratio": [
+          0.4609,
+          0.2833
+        ],
+        "face_bbox_ratio": [
+          0.3943,
+          0.1648,
+          0.5276,
+          0.4019
+        ],
+        "protect_bbox_ratio": [
+          0.3836,
+          0.1269,
+          0.5383,
+          0.4209
+        ],
+        "person_bbox_ratio": [
+          0.2744,
+          0.0692,
+          0.6603,
+          0.9909
+        ]
+      },
+      "recommendation": "人物が中央。通常のソロトーク区間として使いやすい。"
+    },
+    {
+      "start": 72.0,
+      "end": 74.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 2,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "front",
+      "raw_face_direction": "front",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "center_crop",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.4496,
+        0.535
+      ],
+      "avg_focus_ratio": [
+        0.4273,
+        0.2463
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4276,
+        0.2731
+      ],
+      "avg_face_bbox_ratio": [
+        0.351,
+        0.137,
+        0.5042,
+        0.4093
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3387,
+        0.0934,
+        0.5165,
+        0.4311
+      ],
+      "avg_person_bbox_ratio": [
+        0.253,
+        0.078,
+        0.6463,
+        0.992
+      ],
+      "avg_area_ratio": 0.35947,
+      "avg_visual": {
+        "brightness": 0.2999,
+        "contrast": 0.1991,
+        "saturation": 0.4764,
+        "warmth": 0.112
+      },
+      "crop_target": {
+        "x": 0.4273,
+        "y": 0.2463,
+        "focus_x": 0.4273,
+        "focus_y": 0.2463,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.4496,
+          0.535
+        ],
+        "face_center_ratio": [
+          0.4276,
+          0.2731
+        ],
+        "face_bbox_ratio": [
+          0.351,
+          0.137,
+          0.5042,
+          0.4093
+        ],
+        "protect_bbox_ratio": [
+          0.3387,
+          0.0934,
+          0.5165,
+          0.4311
+        ],
+        "person_bbox_ratio": [
+          0.253,
+          0.078,
+          0.6463,
+          0.992
+        ]
+      },
+      "recommendation": "人物が中央。通常のソロトーク区間として使いやすい。"
+    },
+    {
+      "start": 74.0,
+      "end": 76.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 3,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4387,
+        0.5405
+      ],
+      "avg_focus_ratio": [
+        0.3576,
+        0.3051
+      ],
+      "avg_focus_source": "face_center",
+      "avg_face_center_ratio": [
+        0.3576,
+        0.3051
+      ],
+      "avg_face_bbox_ratio": [
+        0.3396,
+        0.2731,
+        0.3755,
+        0.337
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3367,
+        0.2629,
+        0.3784,
+        0.3421
+      ],
+      "avg_person_bbox_ratio": [
+        0.2512,
+        0.0882,
+        0.6263,
+        0.9928
+      ],
+      "avg_area_ratio": 0.33934,
+      "avg_visual": {
+        "brightness": 0.2506,
+        "contrast": 0.1975,
+        "saturation": 0.4652,
+        "warmth": 0.1224
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 76.0,
+      "end": 78.0,
+      "duration": 2.0,
+      "presence": "multi",
+      "person_count": 2,
+      "raw_person_count": 3,
+      "significant_person_count": 2,
+      "position": "multi",
+      "shot_size": "wide",
+      "face_direction": "unknown",
+      "raw_face_direction": "unknown",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "keep_wide",
+      "direction_source": "multi",
+      "avg_center_ratio": [
+        0.4448,
+        0.5349
+      ],
+      "avg_focus_ratio": [
+        0.4947,
+        0.2938
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4721,
+        0.3264
+      ],
+      "avg_face_bbox_ratio": [
+        0.3656,
+        0.137,
+        0.5786,
+        0.5157
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3486,
+        0.0764,
+        0.5956,
+        0.546
+      ],
+      "avg_person_bbox_ratio": [
+        0.2574,
+        0.0776,
+        0.6323,
+        0.9921
+      ],
+      "avg_area_ratio": 0.34282,
+      "avg_visual": {
+        "brightness": 0.2833,
+        "contrast": 0.1968,
+        "saturation": 0.4816,
+        "warmth": 0.1276
+      },
+      "crop_target": null,
+      "recommendation": "複数人。対談・会話区間としてワイド寄りを維持する。"
+    },
+    {
+      "start": 78.0,
+      "end": 80.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "front",
+      "raw_face_direction": "front",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "center_crop",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.4494,
+        0.5294
+      ],
+      "avg_focus_ratio": [
+        0.4023,
+        0.2866
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4081,
+        0.3106
+      ],
+      "avg_face_bbox_ratio": [
+        0.3297,
+        0.1713,
+        0.4865,
+        0.45
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3172,
+        0.1267,
+        0.499,
+        0.4723
+      ],
+      "avg_person_bbox_ratio": [
+        0.2508,
+        0.0671,
+        0.6479,
+        0.9916
+      ],
+      "avg_area_ratio": 0.36716,
+      "avg_visual": {
+        "brightness": 0.2918,
+        "contrast": 0.1959,
+        "saturation": 0.4709,
+        "warmth": 0.1028
+      },
+      "crop_target": {
+        "x": 0.4023,
+        "y": 0.2866,
+        "focus_x": 0.4023,
+        "focus_y": 0.2866,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.4494,
+          0.5294
+        ],
+        "face_center_ratio": [
+          0.4081,
+          0.3106
+        ],
+        "face_bbox_ratio": [
+          0.3297,
+          0.1713,
+          0.4865,
+          0.45
+        ],
+        "protect_bbox_ratio": [
+          0.3172,
+          0.1267,
+          0.499,
+          0.4723
+        ],
+        "person_bbox_ratio": [
+          0.2508,
+          0.0671,
+          0.6479,
+          0.9916
+        ]
+      },
+      "recommendation": "人物が中央。通常のソロトーク区間として使いやすい。"
+    },
+    {
+      "start": 80.0,
+      "end": 82.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "right",
+      "raw_face_direction": "right",
+      "look_space": "right",
+      "desired_subject_x_ratio": 0.382,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_left",
+      "crop_strategy": "shift_subject_left_for_right_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.5393,
+        0.5437
+      ],
+      "avg_focus_ratio": [
+        0.5333,
+        0.2875
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.5117,
+        0.3181
+      ],
+      "avg_face_bbox_ratio": [
+        0.4182,
+        0.1519,
+        0.6052,
+        0.4843
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4032,
+        0.0987,
+        0.6202,
+        0.5109
+      ],
+      "avg_person_bbox_ratio": [
+        0.3526,
+        0.0964,
+        0.726,
+        0.9909
+      ],
+      "avg_area_ratio": 0.334,
+      "avg_visual": {
+        "brightness": 0.3135,
+        "contrast": 0.202,
+        "saturation": 0.4631,
+        "warmth": 0.1259
+      },
+      "crop_target": {
+        "x": 0.5333,
+        "y": 0.2875,
+        "focus_x": 0.5333,
+        "focus_y": 0.2875,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.382,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_left",
+        "subject_center_ratio": [
+          0.5393,
+          0.5437
+        ],
+        "face_center_ratio": [
+          0.5117,
+          0.3181
+        ],
+        "face_bbox_ratio": [
+          0.4182,
+          0.1519,
+          0.6052,
+          0.4843
+        ],
+        "protect_bbox_ratio": [
+          0.4032,
+          0.0987,
+          0.6202,
+          0.5109
+        ],
+        "person_bbox_ratio": [
+          0.3526,
+          0.0964,
+          0.726,
+          0.9909
+        ]
+      },
+      "recommendation": "人物が画面右を向いている。右側に視線余白を作るため、人物は左寄せでクロップする。"
+    },
+    {
+      "start": 82.0,
+      "end": 84.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 2,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "close",
+      "face_direction": "right",
+      "raw_face_direction": "right",
+      "look_space": "right",
+      "desired_subject_x_ratio": 0.382,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_left",
+      "crop_strategy": "shift_subject_left_for_right_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.4816,
+        0.5408
+      ],
+      "avg_focus_ratio": [
+        0.4719,
+        0.2889
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.4458,
+        0.3278
+      ],
+      "avg_face_bbox_ratio": [
+        0.3396,
+        0.1389,
+        0.5521,
+        0.5167
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.3226,
+        0.0785,
+        0.5691,
+        0.5469
+      ],
+      "avg_person_bbox_ratio": [
+        0.267,
+        0.0911,
+        0.6963,
+        0.9904
+      ],
+      "avg_area_ratio": 0.38608,
+      "avg_visual": {
+        "brightness": 0.2986,
+        "contrast": 0.202,
+        "saturation": 0.4829,
+        "warmth": 0.1202
+      },
+      "crop_target": {
+        "x": 0.4719,
+        "y": 0.2889,
+        "focus_x": 0.4719,
+        "focus_y": 0.2889,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.382,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_left",
+        "subject_center_ratio": [
+          0.4816,
+          0.5408
+        ],
+        "face_center_ratio": [
+          0.4458,
+          0.3278
+        ],
+        "face_bbox_ratio": [
+          0.3396,
+          0.1389,
+          0.5521,
+          0.5167
+        ],
+        "protect_bbox_ratio": [
+          0.3226,
+          0.0785,
+          0.5691,
+          0.5469
+        ],
+        "person_bbox_ratio": [
+          0.267,
+          0.0911,
+          0.6963,
+          0.9904
+        ]
+      },
+      "recommendation": "人物が画面右を向いている。右側に視線余白を作るため、人物は左寄せでクロップする。"
+    },
+    {
+      "start": 84.0,
+      "end": 86.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "right",
+      "raw_face_direction": "right",
+      "look_space": "right",
+      "desired_subject_x_ratio": 0.382,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_left",
+      "crop_strategy": "shift_subject_left_for_right_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.5413,
+        0.5334
+      ],
+      "avg_focus_ratio": [
+        0.5512,
+        0.2479
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.5268,
+        0.2838
+      ],
+      "avg_face_bbox_ratio": [
+        0.4328,
+        0.1167,
+        0.6208,
+        0.4509
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4178,
+        0.0632,
+        0.6358,
+        0.4776
+      ],
+      "avg_person_bbox_ratio": [
+        0.3506,
+        0.0756,
+        0.732,
+        0.9912
+      ],
+      "avg_area_ratio": 0.34918,
+      "avg_visual": {
+        "brightness": 0.313,
+        "contrast": 0.2018,
+        "saturation": 0.4756,
+        "warmth": 0.1293
+      },
+      "crop_target": {
+        "x": 0.5512,
+        "y": 0.2479,
+        "focus_x": 0.5512,
+        "focus_y": 0.2479,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.382,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_left",
+        "subject_center_ratio": [
+          0.5413,
+          0.5334
+        ],
+        "face_center_ratio": [
+          0.5268,
+          0.2838
+        ],
+        "face_bbox_ratio": [
+          0.4328,
+          0.1167,
+          0.6208,
+          0.4509
+        ],
+        "protect_bbox_ratio": [
+          0.4178,
+          0.0632,
+          0.6358,
+          0.4776
+        ],
+        "person_bbox_ratio": [
+          0.3506,
+          0.0756,
+          0.732,
+          0.9912
+        ]
+      },
+      "recommendation": "人物が画面右を向いている。右側に視線余白を作るため、人物は左寄せでクロップする。"
+    },
+    {
+      "start": 86.0,
+      "end": 88.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 1,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "front",
+      "raw_face_direction": "front",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "center_crop",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.5486,
+        0.5303
+      ],
+      "avg_focus_ratio": [
+        0.569,
+        0.2796
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.5677,
+        0.3102
+      ],
+      "avg_face_bbox_ratio": [
+        0.4901,
+        0.1722,
+        0.6453,
+        0.4481
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4777,
+        0.1281,
+        0.6577,
+        0.4702
+      ],
+      "avg_person_bbox_ratio": [
+        0.3564,
+        0.0701,
+        0.7407,
+        0.9905
+      ],
+      "avg_area_ratio": 0.35368,
+      "avg_visual": {
+        "brightness": 0.3053,
+        "contrast": 0.2005,
+        "saturation": 0.4799,
+        "warmth": 0.12
+      },
+      "crop_target": {
+        "x": 0.569,
+        "y": 0.2796,
+        "focus_x": 0.569,
+        "focus_y": 0.2796,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.5486,
+          0.5303
+        ],
+        "face_center_ratio": [
+          0.5677,
+          0.3102
+        ],
+        "face_bbox_ratio": [
+          0.4901,
+          0.1722,
+          0.6453,
+          0.4481
+        ],
+        "protect_bbox_ratio": [
+          0.4777,
+          0.1281,
+          0.6577,
+          0.4702
+        ],
+        "person_bbox_ratio": [
+          0.3564,
+          0.0701,
+          0.7407,
+          0.9905
+        ]
+      },
+      "recommendation": "人物が中央。通常のソロトーク区間として使いやすい。"
+    },
+    {
+      "start": 88.0,
+      "end": 90.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 2,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "front",
+      "raw_face_direction": "front",
+      "look_space": "balanced",
+      "desired_subject_x_ratio": 0.5,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "center",
+      "crop_strategy": "center_crop",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.525,
+        0.5311
+      ],
+      "avg_focus_ratio": [
+        0.5371,
+        0.3197
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.5404,
+        0.3551
+      ],
+      "avg_face_bbox_ratio": [
+        0.4656,
+        0.2222,
+        0.6151,
+        0.488
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4536,
+        0.1797,
+        0.6271,
+        0.5093
+      ],
+      "avg_person_bbox_ratio": [
+        0.3192,
+        0.0723,
+        0.7307,
+        0.99
+      ],
+      "avg_area_ratio": 0.37766,
+      "avg_visual": {
+        "brightness": 0.3136,
+        "contrast": 0.2008,
+        "saturation": 0.4631,
+        "warmth": 0.1225
+      },
+      "crop_target": {
+        "x": 0.5371,
+        "y": 0.3197,
+        "focus_x": 0.5371,
+        "focus_y": 0.3197,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.5,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "center",
+        "subject_center_ratio": [
+          0.525,
+          0.5311
+        ],
+        "face_center_ratio": [
+          0.5404,
+          0.3551
+        ],
+        "face_bbox_ratio": [
+          0.4656,
+          0.2222,
+          0.6151,
+          0.488
+        ],
+        "protect_bbox_ratio": [
+          0.4536,
+          0.1797,
+          0.6271,
+          0.5093
+        ],
+        "person_bbox_ratio": [
+          0.3192,
+          0.0723,
+          0.7307,
+          0.99
+        ]
+      },
+      "recommendation": "人物が中央。通常のソロトーク区間として使いやすい。"
+    },
+    {
+      "start": 90.0,
+      "end": 92.0,
+      "duration": 2.0,
+      "presence": "solo",
+      "person_count": 1,
+      "raw_person_count": 2,
+      "significant_person_count": 1,
+      "position": "center",
+      "shot_size": "medium",
+      "face_direction": "right",
+      "raw_face_direction": "right",
+      "look_space": "right",
+      "desired_subject_x_ratio": 0.382,
+      "desired_subject_y_ratio": 0.382,
+      "composition_anchor": "golden_left",
+      "crop_strategy": "shift_subject_left_for_right_look",
+      "direction_source": "frame",
+      "avg_center_ratio": [
+        0.5501,
+        0.5267
+      ],
+      "avg_focus_ratio": [
+        0.6066,
+        0.2586
+      ],
+      "avg_focus_source": "eye_center",
+      "avg_face_center_ratio": [
+        0.5792,
+        0.2833
+      ],
+      "avg_face_bbox_ratio": [
+        0.4823,
+        0.1111,
+        0.676,
+        0.4556
+      ],
+      "avg_face_protect_bbox_ratio": [
+        0.4668,
+        0.056,
+        0.6915,
+        0.4832
+      ],
+      "avg_person_bbox_ratio": [
+        0.3603,
+        0.0637,
+        0.74,
+        0.9897
+      ],
+      "avg_area_ratio": 0.35158,
+      "avg_visual": {
+        "brightness": 0.3095,
+        "contrast": 0.2038,
+        "saturation": 0.4793,
+        "warmth": 0.124
+      },
+      "crop_target": {
+        "x": 0.6066,
+        "y": 0.2586,
+        "focus_x": 0.6066,
+        "focus_y": 0.2586,
+        "focus_source": "eye_center",
+        "desired_subject_x_ratio": 0.382,
+        "desired_subject_y_ratio": 0.382,
+        "composition_anchor": "golden_left",
+        "subject_center_ratio": [
+          0.5501,
+          0.5267
+        ],
+        "face_center_ratio": [
+          0.5792,
+          0.2833
+        ],
+        "face_bbox_ratio": [
+          0.4823,
+          0.1111,
+          0.676,
+          0.4556
+        ],
+        "protect_bbox_ratio": [
+          0.4668,
+          0.056,
+          0.6915,
+          0.4832
+        ],
+        "person_bbox_ratio": [
+          0.3603,
+          0.0637,
+          0.74,
+          0.9897
+        ]
+      },
+      "recommendation": "人物が画面右を向いている。右側に視線余白を作るため、人物は左寄せでクロップする。"
+    }
+  ]
+}

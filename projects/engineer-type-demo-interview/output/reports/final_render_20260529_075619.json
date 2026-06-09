@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-05-28T23:37:31.025307+00:00",
+  "finalVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_075619.mp4",
+  "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_075619_base.mp4",
+  "subtitleAss": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_075619_role_aware_full.ass",
+  "speakerRoles": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\full_transcript_speaker_roles.json",
+  "transcriptionManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\manifest_transcripts.json",
+  "colorMatchReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+  "samples": [
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\final_samples\\20260529_075619_interviewer.png",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\final_samples\\20260529_075619_late.png",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\final_samples\\20260529_075619_onscreen.png"
+  ],
+  "notes": [
+    "Transcription used faster-whisper large-v3 on CUDA float16 with beam_size=5.",
+    "Speaker roles use strict interviewer patterns to avoid black-caption false positives on onscreen answers.",
+    "Camera color matching uses skinBgr when skin samples are detected, then falls back to neutral/global statistics.",
+    "Audio cleanup uses highpass, afftdn noise reduction, lowpass, dynaudnorm, compressor, loudnorm, and limiter."
+  ]
+}

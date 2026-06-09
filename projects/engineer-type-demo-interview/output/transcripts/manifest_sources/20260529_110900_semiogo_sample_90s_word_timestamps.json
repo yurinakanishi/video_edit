@@ -1,0 +1,1900 @@
+{
+  "language": "ja",
+  "duration": 90.005375,
+  "segments": [
+    {
+      "id": 0,
+      "start": 0.0,
+      "end": 15.04,
+      "text": "それをある程度セミオゴーだとか、セミカスタマイズな形で届けるっていうところだと思っているので、そこが基本的には、そこで一定のスケールメリットが出るってことが大事だと思いますね。",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.38,
+          "word": "それ",
+          "probability": 0.92822265625
+        },
+        {
+          "start": 0.38,
+          "end": 0.58,
+          "word": "を",
+          "probability": 0.99755859375
+        },
+        {
+          "start": 0.58,
+          "end": 1.18,
+          "word": "ある",
+          "probability": 0.9755859375
+        },
+        {
+          "start": 1.18,
+          "end": 1.34,
+          "word": "程",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 1.34,
+          "end": 1.48,
+          "word": "度",
+          "probability": 1.0
+        },
+        {
+          "start": 1.48,
+          "end": 2.56,
+          "word": "セ",
+          "probability": 0.97900390625
+        },
+        {
+          "start": 2.56,
+          "end": 3.0,
+          "word": "ミ",
+          "probability": 1.0
+        },
+        {
+          "start": 3.0,
+          "end": 3.66,
+          "word": "オ",
+          "probability": 0.68408203125
+        },
+        {
+          "start": 3.66,
+          "end": 3.66,
+          "word": "ゴ",
+          "probability": 0.002124786376953125
+        },
+        {
+          "start": 3.66,
+          "end": 3.7,
+          "word": "ー",
+          "probability": 0.381591796875
+        },
+        {
+          "start": 3.7,
+          "end": 3.8,
+          "word": "だ",
+          "probability": 0.806640625
+        },
+        {
+          "start": 3.8,
+          "end": 3.98,
+          "word": "とか、",
+          "probability": 0.8232421875
+        },
+        {
+          "start": 4.04,
+          "end": 4.12,
+          "word": "セ",
+          "probability": 0.90478515625
+        },
+        {
+          "start": 4.12,
+          "end": 4.24,
+          "word": "ミ",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 4.24,
+          "end": 4.34,
+          "word": "カ",
+          "probability": 0.994140625
+        },
+        {
+          "start": 4.34,
+          "end": 4.44,
+          "word": "ス",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 4.44,
+          "end": 4.52,
+          "word": "タ",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 4.52,
+          "end": 4.68,
+          "word": "マ",
+          "probability": 0.99658203125
+        },
+        {
+          "start": 4.68,
+          "end": 4.68,
+          "word": "イ",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 4.68,
+          "end": 4.74,
+          "word": "ズ",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 4.74,
+          "end": 4.86,
+          "word": "な",
+          "probability": 0.7880859375
+        },
+        {
+          "start": 4.86,
+          "end": 5.04,
+          "word": "形",
+          "probability": 0.97607421875
+        },
+        {
+          "start": 5.04,
+          "end": 5.36,
+          "word": "で",
+          "probability": 0.99560546875
+        },
+        {
+          "start": 5.36,
+          "end": 5.88,
+          "word": "届",
+          "probability": 0.936279296875
+        },
+        {
+          "start": 5.88,
+          "end": 6.12,
+          "word": "ける",
+          "probability": 0.9951171875
+        },
+        {
+          "start": 6.12,
+          "end": 6.38,
+          "word": "っていう",
+          "probability": 0.4267578125
+        },
+        {
+          "start": 6.38,
+          "end": 6.68,
+          "word": "ところ",
+          "probability": 0.97216796875
+        },
+        {
+          "start": 6.68,
+          "end": 6.82,
+          "word": "だ",
+          "probability": 0.9873046875
+        },
+        {
+          "start": 6.82,
+          "end": 7.02,
+          "word": "と思",
+          "probability": 0.78369140625
+        },
+        {
+          "start": 7.02,
+          "end": 7.32,
+          "word": "って",
+          "probability": 0.96435546875
+        },
+        {
+          "start": 7.32,
+          "end": 7.5,
+          "word": "いる",
+          "probability": 0.97802734375
+        },
+        {
+          "start": 7.5,
+          "end": 7.72,
+          "word": "ので、",
+          "probability": 0.98828125
+        },
+        {
+          "start": 7.92,
+          "end": 9.46,
+          "word": "そ",
+          "probability": 0.95703125
+        },
+        {
+          "start": 9.46,
+          "end": 9.58,
+          "word": "こ",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 9.58,
+          "end": 9.78,
+          "word": "が",
+          "probability": 0.91650390625
+        },
+        {
+          "start": 9.78,
+          "end": 10.22,
+          "word": "基本",
+          "probability": 0.99267578125
+        },
+        {
+          "start": 10.22,
+          "end": 10.46,
+          "word": "的",
+          "probability": 0.9970703125
+        },
+        {
+          "start": 10.46,
+          "end": 10.68,
+          "word": "には、",
+          "probability": 0.9375
+        },
+        {
+          "start": 10.82,
+          "end": 11.26,
+          "word": "そ",
+          "probability": 0.96826171875
+        },
+        {
+          "start": 11.26,
+          "end": 11.36,
+          "word": "こ",
+          "probability": 1.0
+        },
+        {
+          "start": 11.36,
+          "end": 11.52,
+          "word": "で",
+          "probability": 0.998046875
+        },
+        {
+          "start": 11.52,
+          "end": 12.0,
+          "word": "一定",
+          "probability": 0.88818359375
+        },
+        {
+          "start": 12.0,
+          "end": 12.64,
+          "word": "の",
+          "probability": 0.98876953125
+        },
+        {
+          "start": 12.64,
+          "end": 12.74,
+          "word": "ス",
+          "probability": 0.9951171875
+        },
+        {
+          "start": 12.74,
+          "end": 12.74,
+          "word": "ケ",
+          "probability": 0.437255859375
+        },
+        {
+          "start": 12.74,
+          "end": 12.88,
+          "word": "ール",
+          "probability": 0.9951171875
+        },
+        {
+          "start": 12.88,
+          "end": 12.92,
+          "word": "メ",
+          "probability": 0.990234375
+        },
+        {
+          "start": 12.92,
+          "end": 13.0,
+          "word": "リ",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 13.0,
+          "end": 13.06,
+          "word": "ット",
+          "probability": 1.0
+        },
+        {
+          "start": 13.06,
+          "end": 13.24,
+          "word": "が",
+          "probability": 0.99169921875
+        },
+        {
+          "start": 13.24,
+          "end": 13.36,
+          "word": "出",
+          "probability": 0.9833984375
+        },
+        {
+          "start": 13.36,
+          "end": 13.46,
+          "word": "る",
+          "probability": 0.99658203125
+        },
+        {
+          "start": 13.46,
+          "end": 13.56,
+          "word": "って",
+          "probability": 0.564453125
+        },
+        {
+          "start": 13.56,
+          "end": 13.66,
+          "word": "こと",
+          "probability": 0.84326171875
+        },
+        {
+          "start": 13.66,
+          "end": 13.78,
+          "word": "が",
+          "probability": 0.994140625
+        },
+        {
+          "start": 13.78,
+          "end": 13.94,
+          "word": "大",
+          "probability": 0.98779296875
+        },
+        {
+          "start": 13.94,
+          "end": 14.14,
+          "word": "事",
+          "probability": 1.0
+        },
+        {
+          "start": 14.14,
+          "end": 14.36,
+          "word": "だ",
+          "probability": 0.97509765625
+        },
+        {
+          "start": 14.36,
+          "end": 14.66,
+          "word": "と思います",
+          "probability": 0.97412109375
+        },
+        {
+          "start": 14.66,
+          "end": 15.04,
+          "word": "ね。",
+          "probability": 0.85400390625
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "start": 16.44,
+      "end": 16.78,
+      "text": "ありがとうございます。",
+      "words": [
+        {
+          "start": 16.44,
+          "end": 16.78,
+          "word": "ありがとうございます。",
+          "probability": 0.94873046875
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "start": 20.8,
+      "end": 27.4,
+      "text": "ちょっと事前の想定では、PDMとFDEに関する論争みたいな感じで続いて質問しておこうかなと思ったんですけど、",
+      "words": [
+        {
+          "start": 20.8,
+          "end": 21.14,
+          "word": "ちょっと",
+          "probability": 0.6650390625
+        },
+        {
+          "start": 21.14,
+          "end": 21.34,
+          "word": "事",
+          "probability": 0.97998046875
+        },
+        {
+          "start": 21.34,
+          "end": 21.54,
+          "word": "前",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 21.54,
+          "end": 21.7,
+          "word": "の",
+          "probability": 0.99462890625
+        },
+        {
+          "start": 21.7,
+          "end": 21.84,
+          "word": "想",
+          "probability": 0.99609375
+        },
+        {
+          "start": 21.84,
+          "end": 22.1,
+          "word": "定",
+          "probability": 1.0
+        },
+        {
+          "start": 22.1,
+          "end": 22.28,
+          "word": "では、",
+          "probability": 0.99755859375
+        },
+        {
+          "start": 22.54,
+          "end": 23.5,
+          "word": "PD",
+          "probability": 0.9609375
+        },
+        {
+          "start": 23.5,
+          "end": 23.7,
+          "word": "M",
+          "probability": 0.98876953125
+        },
+        {
+          "start": 23.7,
+          "end": 23.82,
+          "word": "と",
+          "probability": 0.93359375
+        },
+        {
+          "start": 23.82,
+          "end": 23.96,
+          "word": "F",
+          "probability": 0.70263671875
+        },
+        {
+          "start": 23.96,
+          "end": 24.14,
+          "word": "DE",
+          "probability": 0.2291259765625
+        },
+        {
+          "start": 24.14,
+          "end": 24.22,
+          "word": "に",
+          "probability": 0.98828125
+        },
+        {
+          "start": 24.22,
+          "end": 24.42,
+          "word": "関",
+          "probability": 0.999267578125
+        },
+        {
+          "start": 24.42,
+          "end": 24.56,
+          "word": "する",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 24.56,
+          "end": 24.74,
+          "word": "論",
+          "probability": 0.99267578125
+        },
+        {
+          "start": 24.74,
+          "end": 24.92,
+          "word": "争",
+          "probability": 0.998779296875
+        },
+        {
+          "start": 24.92,
+          "end": 25.08,
+          "word": "みたい",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 25.08,
+          "end": 25.24,
+          "word": "な",
+          "probability": 0.99462890625
+        },
+        {
+          "start": 25.24,
+          "end": 25.4,
+          "word": "感じ",
+          "probability": 0.99609375
+        },
+        {
+          "start": 25.4,
+          "end": 25.48,
+          "word": "で",
+          "probability": 1.0
+        },
+        {
+          "start": 25.48,
+          "end": 25.7,
+          "word": "続",
+          "probability": 0.80078125
+        },
+        {
+          "start": 25.7,
+          "end": 25.84,
+          "word": "いて",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 25.84,
+          "end": 25.98,
+          "word": "質",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 25.98,
+          "end": 26.22,
+          "word": "問",
+          "probability": 1.0
+        },
+        {
+          "start": 26.22,
+          "end": 26.36,
+          "word": "して",
+          "probability": 0.98193359375
+        },
+        {
+          "start": 26.36,
+          "end": 26.48,
+          "word": "お",
+          "probability": 0.5517578125
+        },
+        {
+          "start": 26.48,
+          "end": 26.56,
+          "word": "こう",
+          "probability": 0.79931640625
+        },
+        {
+          "start": 26.56,
+          "end": 26.72,
+          "word": "かな",
+          "probability": 0.99609375
+        },
+        {
+          "start": 26.72,
+          "end": 26.92,
+          "word": "と思",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 26.92,
+          "end": 27.08,
+          "word": "った",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 27.08,
+          "end": 27.22,
+          "word": "んです",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 27.22,
+          "end": 27.4,
+          "word": "けど、",
+          "probability": 0.94580078125
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "start": 27.4,
+      "end": 29.9,
+      "text": "ある程度先ほどの話の中からも",
+      "words": [
+        {
+          "start": 27.4,
+          "end": 27.7,
+          "word": "ある",
+          "probability": 0.74365234375
+        },
+        {
+          "start": 27.7,
+          "end": 27.92,
+          "word": "程",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 27.92,
+          "end": 28.02,
+          "word": "度",
+          "probability": 1.0
+        },
+        {
+          "start": 28.02,
+          "end": 28.3,
+          "word": "先",
+          "probability": 0.75
+        },
+        {
+          "start": 28.3,
+          "end": 29.02,
+          "word": "ほど",
+          "probability": 0.994140625
+        },
+        {
+          "start": 29.02,
+          "end": 29.14,
+          "word": "の",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 29.14,
+          "end": 29.28,
+          "word": "話",
+          "probability": 0.998046875
+        },
+        {
+          "start": 29.28,
+          "end": 29.46,
+          "word": "の",
+          "probability": 0.990234375
+        },
+        {
+          "start": 29.46,
+          "end": 29.6,
+          "word": "中",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 29.6,
+          "end": 29.84,
+          "word": "から",
+          "probability": 0.80908203125
+        },
+        {
+          "start": 29.84,
+          "end": 29.9,
+          "word": "も",
+          "probability": 0.884765625
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "start": 29.9,
+      "end": 31.8,
+      "text": "お伺いできているところがあるので",
+      "words": [
+        {
+          "start": 29.9,
+          "end": 30.34,
+          "word": "お",
+          "probability": 0.406982421875
+        },
+        {
+          "start": 30.34,
+          "end": 30.62,
+          "word": "伺",
+          "probability": 0.99658203125
+        },
+        {
+          "start": 30.62,
+          "end": 30.74,
+          "word": "い",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 30.74,
+          "end": 30.88,
+          "word": "でき",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 30.88,
+          "end": 30.98,
+          "word": "て",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 30.98,
+          "end": 31.06,
+          "word": "いる",
+          "probability": 0.88671875
+        },
+        {
+          "start": 31.06,
+          "end": 31.26,
+          "word": "ところ",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 31.26,
+          "end": 31.46,
+          "word": "が",
+          "probability": 1.0
+        },
+        {
+          "start": 31.46,
+          "end": 31.6,
+          "word": "ある",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 31.6,
+          "end": 31.8,
+          "word": "ので",
+          "probability": 0.70166015625
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "start": 32.22,
+      "end": 34.36,
+      "text": "かぶっちゃうところがあるかもしれないですけど",
+      "words": [
+        {
+          "start": 32.22,
+          "end": 32.58,
+          "word": "か",
+          "probability": 0.39306640625
+        },
+        {
+          "start": 32.58,
+          "end": 32.7,
+          "word": "ぶ",
+          "probability": 1.0
+        },
+        {
+          "start": 32.7,
+          "end": 32.88,
+          "word": "っちゃ",
+          "probability": 0.98974609375
+        },
+        {
+          "start": 32.88,
+          "end": 32.98,
+          "word": "う",
+          "probability": 1.0
+        },
+        {
+          "start": 32.98,
+          "end": 33.18,
+          "word": "ところ",
+          "probability": 1.0
+        },
+        {
+          "start": 33.18,
+          "end": 33.38,
+          "word": "が",
+          "probability": 1.0
+        },
+        {
+          "start": 33.38,
+          "end": 33.46,
+          "word": "ある",
+          "probability": 1.0
+        },
+        {
+          "start": 33.46,
+          "end": 33.54,
+          "word": "か",
+          "probability": 1.0
+        },
+        {
+          "start": 33.54,
+          "end": 33.72,
+          "word": "もし",
+          "probability": 1.0
+        },
+        {
+          "start": 33.72,
+          "end": 33.92,
+          "word": "れない",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 33.92,
+          "end": 34.16,
+          "word": "です",
+          "probability": 0.8232421875
+        },
+        {
+          "start": 34.16,
+          "end": 34.36,
+          "word": "けど",
+          "probability": 0.93505859375
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "start": 37.1,
+      "end": 39.76,
+      "text": "今日はその話も触れたいなと思って",
+      "words": [
+        {
+          "start": 37.1,
+          "end": 37.46,
+          "word": "今日は",
+          "probability": 0.9951171875
+        },
+        {
+          "start": 37.46,
+          "end": 37.82,
+          "word": "その",
+          "probability": 1.0
+        },
+        {
+          "start": 37.82,
+          "end": 38.12,
+          "word": "話",
+          "probability": 1.0
+        },
+        {
+          "start": 38.12,
+          "end": 38.34,
+          "word": "も",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 38.34,
+          "end": 38.92,
+          "word": "触",
+          "probability": 0.987060546875
+        },
+        {
+          "start": 38.92,
+          "end": 39.0,
+          "word": "れ",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 39.0,
+          "end": 39.14,
+          "word": "たい",
+          "probability": 1.0
+        },
+        {
+          "start": 39.14,
+          "end": 39.26,
+          "word": "な",
+          "probability": 0.99658203125
+        },
+        {
+          "start": 39.26,
+          "end": 39.52,
+          "word": "と思",
+          "probability": 0.95849609375
+        },
+        {
+          "start": 39.52,
+          "end": 39.76,
+          "word": "って",
+          "probability": 0.998046875
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "start": 39.76,
+      "end": 41.72,
+      "text": "もう一度聞きたいんですが",
+      "words": [
+        {
+          "start": 39.76,
+          "end": 40.04,
+          "word": "もう",
+          "probability": 0.331787109375
+        },
+        {
+          "start": 40.04,
+          "end": 40.58,
+          "word": "一",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 40.58,
+          "end": 40.68,
+          "word": "度",
+          "probability": 1.0
+        },
+        {
+          "start": 40.68,
+          "end": 40.96,
+          "word": "聞",
+          "probability": 0.97802734375
+        },
+        {
+          "start": 40.96,
+          "end": 41.18,
+          "word": "き",
+          "probability": 1.0
+        },
+        {
+          "start": 41.18,
+          "end": 41.34,
+          "word": "たい",
+          "probability": 1.0
+        },
+        {
+          "start": 41.34,
+          "end": 41.5,
+          "word": "んです",
+          "probability": 0.9609375
+        },
+        {
+          "start": 41.5,
+          "end": 41.72,
+          "word": "が",
+          "probability": 0.9990234375
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "start": 42.68,
+      "end": 44.18,
+      "text": "そもそも論争について",
+      "words": [
+        {
+          "start": 42.68,
+          "end": 43.04,
+          "word": "そ",
+          "probability": 0.99169921875
+        },
+        {
+          "start": 43.04,
+          "end": 43.12,
+          "word": "も",
+          "probability": 1.0
+        },
+        {
+          "start": 43.12,
+          "end": 43.26,
+          "word": "そ",
+          "probability": 1.0
+        },
+        {
+          "start": 43.26,
+          "end": 43.32,
+          "word": "も",
+          "probability": 0.9921875
+        },
+        {
+          "start": 43.32,
+          "end": 43.6,
+          "word": "論",
+          "probability": 0.93310546875
+        },
+        {
+          "start": 43.6,
+          "end": 43.84,
+          "word": "争",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 43.84,
+          "end": 44.0,
+          "word": "に",
+          "probability": 1.0
+        },
+        {
+          "start": 44.0,
+          "end": 44.06,
+          "word": "つ",
+          "probability": 1.0
+        },
+        {
+          "start": 44.06,
+          "end": 44.18,
+          "word": "いて",
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "start": 44.18,
+      "end": 48.34,
+      "text": "個別のものに踏み込むつもりはないかなと思うんですが",
+      "words": [
+        {
+          "start": 44.18,
+          "end": 44.5,
+          "word": "個",
+          "probability": 0.91064453125
+        },
+        {
+          "start": 44.5,
+          "end": 45.08,
+          "word": "別",
+          "probability": 1.0
+        },
+        {
+          "start": 45.08,
+          "end": 45.2,
+          "word": "の",
+          "probability": 0.978515625
+        },
+        {
+          "start": 45.2,
+          "end": 45.4,
+          "word": "もの",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 45.4,
+          "end": 45.58,
+          "word": "に",
+          "probability": 1.0
+        },
+        {
+          "start": 45.58,
+          "end": 46.04,
+          "word": "踏",
+          "probability": 0.903076171875
+        },
+        {
+          "start": 46.04,
+          "end": 46.14,
+          "word": "み",
+          "probability": 1.0
+        },
+        {
+          "start": 46.14,
+          "end": 46.22,
+          "word": "込",
+          "probability": 1.0
+        },
+        {
+          "start": 46.22,
+          "end": 46.34,
+          "word": "む",
+          "probability": 0.99267578125
+        },
+        {
+          "start": 46.34,
+          "end": 46.48,
+          "word": "つ",
+          "probability": 1.0
+        },
+        {
+          "start": 46.48,
+          "end": 46.52,
+          "word": "も",
+          "probability": 1.0
+        },
+        {
+          "start": 46.52,
+          "end": 46.6,
+          "word": "り",
+          "probability": 1.0
+        },
+        {
+          "start": 46.6,
+          "end": 46.68,
+          "word": "は",
+          "probability": 1.0
+        },
+        {
+          "start": 46.68,
+          "end": 46.88,
+          "word": "ない",
+          "probability": 1.0
+        },
+        {
+          "start": 46.88,
+          "end": 47.08,
+          "word": "かな",
+          "probability": 0.9833984375
+        },
+        {
+          "start": 47.08,
+          "end": 47.42,
+          "word": "と思",
+          "probability": 0.95166015625
+        },
+        {
+          "start": 47.42,
+          "end": 47.92,
+          "word": "うん",
+          "probability": 0.9921875
+        },
+        {
+          "start": 47.92,
+          "end": 48.08,
+          "word": "です",
+          "probability": 1.0
+        },
+        {
+          "start": 48.08,
+          "end": 48.34,
+          "word": "が",
+          "probability": 0.99951171875
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "start": 48.78,
+      "end": 50.7,
+      "text": "どうしてああいう論争がなっちゃうのかな",
+      "words": [
+        {
+          "start": 48.78,
+          "end": 49.14,
+          "word": "どう",
+          "probability": 1.0
+        },
+        {
+          "start": 49.14,
+          "end": 49.26,
+          "word": "して",
+          "probability": 0.9970703125
+        },
+        {
+          "start": 49.26,
+          "end": 49.42,
+          "word": "ああ",
+          "probability": 0.98583984375
+        },
+        {
+          "start": 49.42,
+          "end": 49.58,
+          "word": "いう",
+          "probability": 1.0
+        },
+        {
+          "start": 49.58,
+          "end": 49.76,
+          "word": "論",
+          "probability": 1.0
+        },
+        {
+          "start": 49.76,
+          "end": 49.94,
+          "word": "争",
+          "probability": 1.0
+        },
+        {
+          "start": 49.94,
+          "end": 50.1,
+          "word": "が",
+          "probability": 0.8125
+        },
+        {
+          "start": 50.1,
+          "end": 50.22,
+          "word": "な",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 50.22,
+          "end": 50.38,
+          "word": "っちゃ",
+          "probability": 0.99169921875
+        },
+        {
+          "start": 50.38,
+          "end": 50.52,
+          "word": "う",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 50.52,
+          "end": 50.54,
+          "word": "の",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 50.54,
+          "end": 50.7,
+          "word": "かな",
+          "probability": 0.9794921875
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "start": 50.7,
+      "end": 52.72,
+      "text": "というところに関してはどう感じますかね",
+      "words": [
+        {
+          "start": 50.7,
+          "end": 51.02,
+          "word": "という",
+          "probability": 0.93701171875
+        },
+        {
+          "start": 51.02,
+          "end": 51.26,
+          "word": "ところ",
+          "probability": 0.9970703125
+        },
+        {
+          "start": 51.26,
+          "end": 51.38,
+          "word": "に",
+          "probability": 0.9365234375
+        },
+        {
+          "start": 51.38,
+          "end": 51.56,
+          "word": "関",
+          "probability": 0.98828125
+        },
+        {
+          "start": 51.56,
+          "end": 51.7,
+          "word": "して",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 51.7,
+          "end": 51.8,
+          "word": "は",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 51.8,
+          "end": 51.98,
+          "word": "どう",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 51.98,
+          "end": 52.24,
+          "word": "感じ",
+          "probability": 0.85205078125
+        },
+        {
+          "start": 52.24,
+          "end": 52.46,
+          "word": "ます",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 52.46,
+          "end": 52.6,
+          "word": "か",
+          "probability": 1.0
+        },
+        {
+          "start": 52.6,
+          "end": 52.72,
+          "word": "ね",
+          "probability": 0.79150390625
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "start": 54.84,
+      "end": 56.52,
+      "text": "その論争の話というのは",
+      "words": [
+        {
+          "start": 54.84,
+          "end": 55.2,
+          "word": "その",
+          "probability": 0.91357421875
+        },
+        {
+          "start": 55.2,
+          "end": 55.48,
+          "word": "論",
+          "probability": 1.0
+        },
+        {
+          "start": 55.48,
+          "end": 55.72,
+          "word": "争",
+          "probability": 1.0
+        },
+        {
+          "start": 55.72,
+          "end": 55.9,
+          "word": "の",
+          "probability": 1.0
+        },
+        {
+          "start": 55.9,
+          "end": 56.04,
+          "word": "話",
+          "probability": 1.0
+        },
+        {
+          "start": 56.04,
+          "end": 56.28,
+          "word": "という",
+          "probability": 0.65673828125
+        },
+        {
+          "start": 56.28,
+          "end": 56.52,
+          "word": "のは",
+          "probability": 0.99951171875
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "start": 56.52,
+      "end": 61.68,
+      "text": "pdm 廃止して fd に変えますみたいな",
+      "words": [
+        {
+          "start": 56.52,
+          "end": 56.96,
+          "word": "p",
+          "probability": 0.146484375
+        },
+        {
+          "start": 56.96,
+          "end": 57.36,
+          "word": "d",
+          "probability": 0.96044921875
+        },
+        {
+          "start": 57.36,
+          "end": 57.82,
+          "word": "m",
+          "probability": 0.9189453125
+        },
+        {
+          "start": 57.82,
+          "end": 59.86,
+          "word": "廃",
+          "probability": 0.88818359375
+        },
+        {
+          "start": 59.86,
+          "end": 60.0,
+          "word": "止",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 60.0,
+          "end": 60.2,
+          "word": "して",
+          "probability": 0.984375
+        },
+        {
+          "start": 60.2,
+          "end": 60.44,
+          "word": "f",
+          "probability": 0.54833984375
+        },
+        {
+          "start": 60.44,
+          "end": 60.6,
+          "word": "d",
+          "probability": 0.95947265625
+        },
+        {
+          "start": 60.6,
+          "end": 60.86,
+          "word": "に",
+          "probability": 0.286376953125
+        },
+        {
+          "start": 60.86,
+          "end": 61.04,
+          "word": "変",
+          "probability": 0.81201171875
+        },
+        {
+          "start": 61.04,
+          "end": 61.1,
+          "word": "え",
+          "probability": 0.98095703125
+        },
+        {
+          "start": 61.1,
+          "end": 61.28,
+          "word": "ます",
+          "probability": 0.97998046875
+        },
+        {
+          "start": 61.28,
+          "end": 61.52,
+          "word": "みたい",
+          "probability": 0.701171875
+        },
+        {
+          "start": 61.52,
+          "end": 61.68,
+          "word": "な",
+          "probability": 0.95458984375
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "start": 61.68,
+      "end": 62.4,
+      "text": "そうですありがとうございます",
+      "words": [
+        {
+          "start": 61.68,
+          "end": 61.9,
+          "word": "そう",
+          "probability": 0.40283203125
+        },
+        {
+          "start": 61.9,
+          "end": 62.08,
+          "word": "です",
+          "probability": 0.89599609375
+        },
+        {
+          "start": 62.08,
+          "end": 62.4,
+          "word": "ありがとうございます",
+          "probability": 0.76025390625
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "start": 63.64000000000001,
+      "end": 64.4,
+      "text": "まあなんか",
+      "words": [
+        {
+          "start": 63.64000000000001,
+          "end": 64.02000000000001,
+          "word": "まあ",
+          "probability": 0.32568359375
+        },
+        {
+          "start": 64.02000000000001,
+          "end": 64.4,
+          "word": "なんか",
+          "probability": 0.80078125
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "start": 67.0,
+      "end": 71.38,
+      "text": "過剰反応されてるだけな気がしますけどね 別になんていうかな",
+      "words": [
+        {
+          "start": 67.0,
+          "end": 67.38,
+          "word": "過",
+          "probability": 0.923828125
+        },
+        {
+          "start": 67.38,
+          "end": 67.58,
+          "word": "剰",
+          "probability": 0.999755859375
+        },
+        {
+          "start": 67.58,
+          "end": 67.72,
+          "word": "反",
+          "probability": 0.9931640625
+        },
+        {
+          "start": 67.72,
+          "end": 67.84,
+          "word": "応",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 67.84,
+          "end": 67.98,
+          "word": "さ",
+          "probability": 0.97021484375
+        },
+        {
+          "start": 67.98,
+          "end": 68.14,
+          "word": "れて",
+          "probability": 0.99755859375
+        },
+        {
+          "start": 68.14,
+          "end": 68.26,
+          "word": "る",
+          "probability": 0.7392578125
+        },
+        {
+          "start": 68.26,
+          "end": 68.46,
+          "word": "だけ",
+          "probability": 0.9951171875
+        },
+        {
+          "start": 68.46,
+          "end": 68.58,
+          "word": "な",
+          "probability": 0.9697265625
+        },
+        {
+          "start": 68.58,
+          "end": 68.7,
+          "word": "気",
+          "probability": 0.9912109375
+        },
+        {
+          "start": 68.7,
+          "end": 68.78,
+          "word": "が",
+          "probability": 0.99609375
+        },
+        {
+          "start": 68.78,
+          "end": 68.98,
+          "word": "します",
+          "probability": 0.98828125
+        },
+        {
+          "start": 68.98,
+          "end": 69.26,
+          "word": "けど",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 69.26,
+          "end": 69.42,
+          "word": "ね",
+          "probability": 0.98583984375
+        },
+        {
+          "start": 69.52,
+          "end": 69.78,
+          "word": "別",
+          "probability": 0.55029296875
+        },
+        {
+          "start": 69.78,
+          "end": 69.92,
+          "word": "に",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 69.92,
+          "end": 70.76,
+          "word": "なん",
+          "probability": 0.63134765625
+        },
+        {
+          "start": 70.76,
+          "end": 71.12,
+          "word": "て",
+          "probability": 0.8466796875
+        },
+        {
+          "start": 71.12,
+          "end": 71.24,
+          "word": "いう",
+          "probability": 0.8583984375
+        },
+        {
+          "start": 71.24,
+          "end": 71.38,
+          "word": "かな",
+          "probability": 0.8994140625
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "start": 74.24000000000001,
+      "end": 77.68,
+      "text": "みんな好きなんでしょうね そういうちょっとこう",
+      "words": [
+        {
+          "start": 74.24000000000001,
+          "end": 74.62,
+          "word": "み",
+          "probability": 0.386962890625
+        },
+        {
+          "start": 74.62,
+          "end": 75.0,
+          "word": "んな",
+          "probability": 0.99658203125
+        },
+        {
+          "start": 75.0,
+          "end": 75.16,
+          "word": "好",
+          "probability": 0.95703125
+        },
+        {
+          "start": 75.16,
+          "end": 75.26,
+          "word": "き",
+          "probability": 1.0
+        },
+        {
+          "start": 75.26,
+          "end": 75.46,
+          "word": "なん",
+          "probability": 0.9091796875
+        },
+        {
+          "start": 75.46,
+          "end": 75.76,
+          "word": "でしょう",
+          "probability": 0.9560546875
+        },
+        {
+          "start": 75.76,
+          "end": 76.0,
+          "word": "ね",
+          "probability": 0.97705078125
+        },
+        {
+          "start": 76.0,
+          "end": 76.38,
+          "word": "そう",
+          "probability": 0.381103515625
+        },
+        {
+          "start": 76.38,
+          "end": 76.62,
+          "word": "いう",
+          "probability": 0.9794921875
+        },
+        {
+          "start": 76.62,
+          "end": 77.34,
+          "word": "ちょっと",
+          "probability": 0.87939453125
+        },
+        {
+          "start": 77.34,
+          "end": 77.68,
+          "word": "こう",
+          "probability": 0.91162109375
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "start": 79.02000000000001,
+      "end": 82.4,
+      "text": "フレッシュな話題というか 今ちょうどみんな",
+      "words": [
+        {
+          "start": 79.02000000000001,
+          "end": 79.4,
+          "word": "フ",
+          "probability": 0.95654296875
+        },
+        {
+          "start": 79.4,
+          "end": 79.54,
+          "word": "レ",
+          "probability": 1.0
+        },
+        {
+          "start": 79.54,
+          "end": 79.64,
+          "word": "ッ",
+          "probability": 1.0
+        },
+        {
+          "start": 79.64,
+          "end": 79.66,
+          "word": "シ",
+          "probability": 1.0
+        },
+        {
+          "start": 79.66,
+          "end": 79.72,
+          "word": "ュ",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 79.72,
+          "end": 79.8,
+          "word": "な",
+          "probability": 0.998046875
+        },
+        {
+          "start": 79.8,
+          "end": 79.96,
+          "word": "話",
+          "probability": 0.99658203125
+        },
+        {
+          "start": 79.96,
+          "end": 80.14,
+          "word": "題",
+          "probability": 1.0
+        },
+        {
+          "start": 80.14,
+          "end": 80.32,
+          "word": "という",
+          "probability": 0.9130859375
+        },
+        {
+          "start": 80.32,
+          "end": 80.6,
+          "word": "か",
+          "probability": 0.99755859375
+        },
+        {
+          "start": 80.86,
+          "end": 81.2,
+          "word": "今",
+          "probability": 0.98583984375
+        },
+        {
+          "start": 81.2,
+          "end": 81.98,
+          "word": "ちょ",
+          "probability": 0.8916015625
+        },
+        {
+          "start": 81.98,
+          "end": 82.0,
+          "word": "う",
+          "probability": 1.0
+        },
+        {
+          "start": 82.0,
+          "end": 82.1,
+          "word": "ど",
+          "probability": 0.998046875
+        },
+        {
+          "start": 82.1,
+          "end": 82.28,
+          "word": "み",
+          "probability": 0.970703125
+        },
+        {
+          "start": 82.28,
+          "end": 82.4,
+          "word": "んな",
+          "probability": 0.99853515625
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "start": 82.4,
+      "end": 89.46,
+      "text": "そんなさすがに薄々AIによって何かが変わるなっていうのは",
+      "words": [
+        {
+          "start": 82.4,
+          "end": 83.24,
+          "word": "そんな",
+          "probability": 0.1986083984375
+        },
+        {
+          "start": 83.24,
+          "end": 84.04,
+          "word": "さ",
+          "probability": 0.42236328125
+        },
+        {
+          "start": 84.04,
+          "end": 84.36,
+          "word": "す",
+          "probability": 0.99072265625
+        },
+        {
+          "start": 84.36,
+          "end": 84.52,
+          "word": "が",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 84.52,
+          "end": 84.7,
+          "word": "に",
+          "probability": 0.99609375
+        },
+        {
+          "start": 84.7,
+          "end": 85.26,
+          "word": "薄",
+          "probability": 0.648681640625
+        },
+        {
+          "start": 85.26,
+          "end": 85.44,
+          "word": "々",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 85.44,
+          "end": 86.48,
+          "word": "AI",
+          "probability": 0.5732421875
+        },
+        {
+          "start": 86.48,
+          "end": 86.78,
+          "word": "に",
+          "probability": 0.970703125
+        },
+        {
+          "start": 86.78,
+          "end": 86.86,
+          "word": "よ",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 86.86,
+          "end": 87.1,
+          "word": "って",
+          "probability": 0.998046875
+        },
+        {
+          "start": 87.1,
+          "end": 87.94,
+          "word": "何",
+          "probability": 0.8310546875
+        },
+        {
+          "start": 87.94,
+          "end": 88.24,
+          "word": "か",
+          "probability": 0.99609375
+        },
+        {
+          "start": 88.24,
+          "end": 88.42,
+          "word": "が",
+          "probability": 0.9375
+        },
+        {
+          "start": 88.42,
+          "end": 88.58,
+          "word": "変",
+          "probability": 0.93212890625
+        },
+        {
+          "start": 88.58,
+          "end": 88.72,
+          "word": "わ",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 88.72,
+          "end": 88.76,
+          "word": "る",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 88.76,
+          "end": 88.94,
+          "word": "な",
+          "probability": 0.9765625
+        },
+        {
+          "start": 88.94,
+          "end": 89.18,
+          "word": "っていう",
+          "probability": 0.84228515625
+        },
+        {
+          "start": 89.18,
+          "end": 89.46,
+          "word": "のは",
+          "probability": 0.748046875
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "createdAt": "2026-06-07T04:00:57Z",
+  "catchphraseJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json",
+  "styleProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_styled_profile.json",
+  "subtitleOverlayVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_subtitle_overlay.mov",
+  "frameDesignProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json",
+  "frameOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample11_frame_design\\sample11_frame_overlay.png",
+  "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_catchphrase_collection_styled.mp4",
+  "previewStill": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_styled_t0005.jpg",
+  "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample1_catchphrase_collection_styled_preview.timeline.json",
+  "duration": 15.0,
+  "contentVideoYOffsetPx": 69,
+  "phrases": [
+    {
+      "id": "project_catchphrase_01",
+      "displayText": "An eye-opening experience",
+      "editClip": {
+        "sourceIn": 0.0,
+        "sourceOut": 5.0,
+        "timelineStart": 0.0,
+        "timelineEnd": 5.0
+      }
+    },
+    {
+      "id": "project_catchphrase_02",
+      "displayText": "Something that would have negative consequences",
+      "editClip": {
+        "sourceIn": 7.34,
+        "sourceOut": 12.34,
+        "timelineStart": 5.0,
+        "timelineEnd": 10.0
+      }
+    },
+    {
+      "id": "project_catchphrase_03",
+      "displayText": "But now it was completely obvious",
+      "editClip": {
+        "sourceIn": 20.32,
+        "sourceOut": 25.32,
+        "timelineStart": 10.0,
+        "timelineEnd": 15.0
+      }
+    }
+  ],
+  "notes": [
+    "Preview render only; production render waits for user approval.",
+    "Project sample video is the only cut source; sample-1 asset video is used only as subtitle-style and hook-structure reference.",
+    "Sample-11 band/logo design is composited above the animated speech subtitle overlay."
+  ]
+}

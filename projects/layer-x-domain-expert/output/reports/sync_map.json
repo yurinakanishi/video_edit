@@ -1,0 +1,137 @@
+{
+  "schema_version": "sync_map.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T07:22:11+09:00",
+  "master_clock": {
+    "media_id": "group_wide",
+    "role": "master",
+    "reason": "best available scratch audio and wide reference"
+  },
+  "time_mapping": {
+    "formula": "master_time = camera_time * rate + offset_sec",
+    "app_offsets_formula": "source_time = master_timeline_time + app_offset_sec"
+  },
+  "media_sync": [
+    {
+      "media_id": "group_wide",
+      "role": "master",
+      "sync_status": "master",
+      "sync_model": "identity",
+      "offset_sec": 0.0,
+      "app_offset_sec": 0.0,
+      "rate": 1.0,
+      "confidence": 1.0,
+      "audio_analysis": {
+        "rms_dbfs": -31.95,
+        "max_dbfs": -4.68,
+        "usable_for_waveform_sync": true
+      },
+      "anchors": []
+    },
+    {
+      "media_id": "cam_person_01",
+      "role": "camera2",
+      "sync_status": "synced",
+      "sync_model": "offset_only",
+      "offset_sec": 3.332479,
+      "app_offset_sec": -3.332479,
+      "rate": 1.0,
+      "method": "clap",
+      "confidence": 0.9,
+      "audio_analysis": {
+        "rms_dbfs": -28.86,
+        "max_dbfs": -4.59,
+        "usable_for_waveform_sync": true
+      },
+      "anchors": [
+        {
+          "anchor_id": "camera2_audio_clap_001",
+          "camera_time": 436.447,
+          "master_time": 439.858,
+          "method": "audio_clap_transient_cross_correlation",
+          "confidence": 0.413349,
+          "lag_milliseconds": 78.521
+        }
+      ],
+      "manual_review_required": false,
+      "recommended_next_methods": [],
+      "failed_audio_correlation": null
+    },
+    {
+      "media_id": "cam_person_02",
+      "role": "camera3",
+      "sync_status": "synced",
+      "sync_model": "offset_only",
+      "offset_sec": -7.467854,
+      "app_offset_sec": 7.467854,
+      "rate": 1.0,
+      "method": "clap",
+      "confidence": 0.9,
+      "audio_analysis": {
+        "rms_dbfs": -32.06,
+        "max_dbfs": -3.36,
+        "usable_for_waveform_sync": true
+      },
+      "anchors": [
+        {
+          "anchor_id": "camera3_audio_clap_001",
+          "camera_time": 447.331,
+          "master_time": 439.858,
+          "method": "audio_clap_transient_cross_correlation",
+          "confidence": 0.431629,
+          "lag_milliseconds": -5.146
+        }
+      ],
+      "manual_review_required": false,
+      "recommended_next_methods": [],
+      "failed_audio_correlation": null
+    },
+    {
+      "media_id": "cam_person_03",
+      "role": "camera4",
+      "sync_status": "synced",
+      "sync_model": "offset_only",
+      "offset_sec": -13.38,
+      "app_offset_sec": 13.38,
+      "rate": 1.0,
+      "method": "not_yet_determined",
+      "confidence": 0.75,
+      "audio_analysis": {
+        "rms_dbfs": -29.69,
+        "max_dbfs": -3.66,
+        "usable_for_waveform_sync": true
+      },
+      "anchors": [
+        {
+          "anchor_id": "camera4_waveform_corr_001",
+          "camera_time": 373.38,
+          "master_time": 360.0,
+          "method": "broad_waveform_cross_correlation",
+          "confidence": 0.553411
+        }
+      ],
+      "manual_review_required": true,
+      "recommended_next_methods": [
+        "timecode_or_ltc_metadata",
+        "visual_clap_frame",
+        "mouth_movement_phrase_match",
+        "hand_gesture_anchor",
+        "manual_marker"
+      ],
+      "failed_audio_correlation": null
+    }
+  ],
+  "rules": {
+    "do_not_use_failed_audio_correlation": true,
+    "require_two_anchors_for_clips_longer_than_20_minutes": true,
+    "manual_review_if_confidence_below": 0.9,
+    "preferred_method_order": [
+      "timecode_ltc_metadata",
+      "usable_scratch_audio_waveform",
+      "audio_or_visual_clap_slate",
+      "visual_mouth_hand_scene_events",
+      "transcript_rough_sync",
+      "manual_anchors_with_drift_correction"
+    ]
+  }
+}

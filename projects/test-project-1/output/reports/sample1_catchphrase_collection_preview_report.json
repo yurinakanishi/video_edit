@@ -1,0 +1,44 @@
+{
+  "createdAt": "2026-06-07T02:12:42Z",
+  "catchphraseJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json",
+  "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_catchphrase_collection.mp4",
+  "previewStill": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_t0005.jpg",
+  "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample1_catchphrase_collection_preview.timeline.json",
+  "phraseCount": 3,
+  "targetDurationSeconds": 15.0,
+  "phrases": [
+    {
+      "id": "project_catchphrase_01",
+      "displayText": "An eye-opening experience",
+      "editClip": {
+        "sourceIn": 0.0,
+        "sourceOut": 5.0,
+        "timelineStart": 0.0,
+        "timelineEnd": 5.0
+      }
+    },
+    {
+      "id": "project_catchphrase_02",
+      "displayText": "Something that would have negative consequences",
+      "editClip": {
+        "sourceIn": 7.34,
+        "sourceOut": 12.34,
+        "timelineStart": 5.0,
+        "timelineEnd": 10.0
+      }
+    },
+    {
+      "id": "project_catchphrase_03",
+      "displayText": "But now it was completely obvious",
+      "editClip": {
+        "sourceIn": 20.32,
+        "sourceOut": 25.32,
+        "timelineStart": 10.0,
+        "timelineEnd": 15.0
+      }
+    }
+  ],
+  "notes": [
+    "Preview render only; production render waits for user approval."
+  ]
+}

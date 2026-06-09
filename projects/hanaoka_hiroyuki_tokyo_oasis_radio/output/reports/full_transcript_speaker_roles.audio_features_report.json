@@ -1,0 +1,3999 @@
+{
+  "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\reports\\full_transcript_speaker_roles.json",
+  "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\output\\transcripts\\manifest_sources\\primary.srt",
+  "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\hanaoka_hiroyuki_tokyo_oasis_radio\\source\\audio\\東京オアシス20260205 花岡洋行様.wav",
+  "interviewerCount": 9,
+  "onscreenCount": 395,
+  "audioFeatureSummary": {
+    "interviewer": {
+      "lrDb": {
+        "median": -0.389,
+        "mean": -0.4056,
+        "p10": -0.4724,
+        "p90": -0.3528
+      },
+      "dbfsMono": {
+        "median": -26.183,
+        "mean": -25.5538,
+        "p10": -28.3742,
+        "p90": -21.7988
+      }
+    },
+    "onscreen": {
+      "lrDb": {
+        "median": -0.471,
+        "mean": -0.5284,
+        "p10": -0.794,
+        "p90": -0.3404
+      },
+      "dbfsMono": {
+        "median": -23.521,
+        "mean": -23.5197,
+        "p10": -27.398,
+        "p90": -19.6784
+      }
+    }
+  },
+  "lowConfidence": [
+    {
+      "index": 1,
+      "start": 0.0,
+      "end": 9.94,
+      "role": "onscreen",
+      "confidence": 0.383,
+      "lrDb": -0.575,
+      "text": "この東京の夜空の下、素敵なオアシスがここに。東京オアシス。",
+      "reason": "weak channel separation lrDb=-0.57; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 2,
+      "start": 9.94,
+      "end": 30.8,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.34,
+      "text": "皆さまいかがお過ごしでしょうか",
+      "reason": "weak channel separation lrDb=-0.34; interviewer text hint"
+    },
+    {
+      "index": 3,
+      "start": 30.8,
+      "end": 33.22,
+      "role": "onscreen",
+      "confidence": 0.245,
+      "lrDb": -0.367,
+      "text": "オーマイカンパニーの大町恵子です",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 4,
+      "start": 33.22,
+      "end": 34.56,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.506,
+      "text": "木山瑞穂です",
+      "reason": "weak channel separation lrDb=-0.51; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 5,
+      "start": 34.56,
+      "end": 38.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.368,
+      "text": "立春といってもまだまだ寒い日が続きますね",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 6,
+      "start": 38.16,
+      "end": 41.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.415,
+      "text": "立春の前日のほうまきを食べる日",
+      "reason": "weak channel separation lrDb=-0.41; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 7,
+      "start": 41.82,
+      "end": 44.52,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.376,
+      "text": "みぞおちゃん何かお願いしました",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 8,
+      "start": 44.52,
+      "end": 47.52,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.497,
+      "text": "いえ何にも願うのを忘れてました",
+      "reason": "weak channel separation lrDb=-0.50; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 9,
+      "start": 47.52,
+      "end": 48.68,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.424,
+      "text": "残念",
+      "reason": "weak channel separation lrDb=-0.42; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 10,
+      "start": 48.68,
+      "end": 50.6,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.388,
+      "text": "そうですか",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 11,
+      "start": 50.6,
+      "end": 53.2,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.396,
+      "text": "今日のゲストはね",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 12,
+      "start": 53.2,
+      "end": 55.6,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.391,
+      "text": "みほさんがお話を伺うんですけども",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 13,
+      "start": 55.6,
+      "end": 57.08,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.385,
+      "text": "ゲストの紹介をお願いします",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 14,
+      "start": 57.08,
+      "end": 61.64,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.489,
+      "text": "今日のゲストはキートスの新理事花岡ひろゆきさんです",
+      "reason": "weak channel separation lrDb=-0.49; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 15,
+      "start": 61.64,
+      "end": 63.5,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.387,
+      "text": "キートスっていうと",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 16,
+      "start": 63.5,
+      "end": 66.78,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.383,
+      "text": "白旗牧さんが資材を投じて",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 17,
+      "start": 66.78,
+      "end": 70.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.389,
+      "text": "でマンションの室から始めた子どもの居場所",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 18,
+      "start": 70.36,
+      "end": 73.1,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.383,
+      "text": "どれだけの子どもが救われたことか",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 19,
+      "start": 73.1,
+      "end": 76.94,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.375,
+      "text": "私がね教育をやる前からのねことなんですよ",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 20,
+      "start": 76.94,
+      "end": 79.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.375,
+      "text": "でその素敵な場所があることを知って",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 21,
+      "start": 79.62,
+      "end": 85.14,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.363,
+      "text": "で調布の教育関係者はものすごく助けてもらったんですよね",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 22,
+      "start": 85.14,
+      "end": 91.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.365,
+      "text": "もうねそれを新理事さんがまた入ってどう変わっていくのかちょっと楽しみですね",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 23,
+      "start": 91.12,
+      "end": 93.96000000000001,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.474,
+      "text": "そうですね美穂さんもずっと関わっていらっしゃるので",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 24,
+      "start": 93.96000000000001,
+      "end": 97.18,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.494,
+      "text": "きっとインタビュー盛り上がるんじゃないかなと思うし",
+      "reason": "weak channel separation lrDb=-0.49; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 25,
+      "start": 97.18,
+      "end": 99.0,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.486,
+      "text": "私たちもまた勉強になりますね",
+      "reason": "weak channel separation lrDb=-0.49; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 26,
+      "start": 99.0,
+      "end": 101.68,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.453,
+      "text": "それでは早速美穂さんお願いします",
+      "reason": "weak channel separation lrDb=-0.45; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 27,
+      "start": 115.94,
+      "end": 117.06,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.39,
+      "text": "長谷川美穂です",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 28,
+      "start": 117.06,
+      "end": 119.47999999999999,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.409,
+      "text": "皆さんは調布市にあります",
+      "reason": "weak channel separation lrDb=-0.41; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 29,
+      "start": 119.47999999999999,
+      "end": 123.1,
+      "role": "onscreen",
+      "confidence": 0.268,
+      "lrDb": -0.402,
+      "text": "生きづらさを抱える若者のための居場所",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 30,
+      "start": 123.1,
+      "end": 126.36,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.389,
+      "text": "青少年の居場所キートスをご存知でしょうか",
+      "reason": "weak channel separation lrDb=-0.39; interviewer text hint"
+    },
+    {
+      "index": 31,
+      "start": 126.36,
+      "end": 130.5,
+      "role": "onscreen",
+      "confidence": 0.262,
+      "lrDb": -0.393,
+      "text": "平成22年7月に設立以来",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 32,
+      "start": 130.5,
+      "end": 135.3,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.367,
+      "text": "15年間調布市はもとより近隣区市町村の",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 33,
+      "start": 135.3,
+      "end": 138.5,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.384,
+      "text": "悩める若者の居場所として運営されてきました",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 34,
+      "start": 138.5,
+      "end": 144.46,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.403,
+      "text": "そして昨年8月には認定NPOを取得し",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 35,
+      "start": 144.46,
+      "end": 149.18,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.364,
+      "text": "キートスの必要性がますます社会に認識されてきました",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 36,
+      "start": 149.18,
+      "end": 158.14,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.345,
+      "text": "今夜はそのキートスの新理事のお一人でいらっしゃる 花岡博之さんをスタジオにお招きしております",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 37,
+      "start": 158.14,
+      "end": 163.2,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": -0.341,
+      "text": "若者支援のあり方など お話ししていきたいと思います",
+      "reason": "weak channel separation lrDb=-0.34; onscreen text hint"
+    },
+    {
+      "index": 38,
+      "start": 163.2,
+      "end": 166.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.316,
+      "text": "花岡さんようこそ東京アシスへ",
+      "reason": "weak channel separation lrDb=-0.32; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 39,
+      "start": 166.36,
+      "end": 171.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.664,
+      "text": "はじめまして花岡博之と申します",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 40,
+      "start": 171.74,
+      "end": 176.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.665,
+      "text": "長夫子在住で娘2人の父親になります",
+      "reason": "weak channel separation lrDb=-0.67; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 41,
+      "start": 176.54,
+      "end": 178.4,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.625,
+      "text": "今日は皆さんよろしくお願いします",
+      "reason": "weak channel separation lrDb=-0.62; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 42,
+      "start": 178.4,
+      "end": 182.94,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.444,
+      "text": "かわいいお嬢さんのお父様でもいらっしゃる花岡さんですけれども",
+      "reason": "weak channel separation lrDb=-0.44; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 43,
+      "start": 182.94,
+      "end": 185.78,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.395,
+      "text": "よろしくお願いいたします",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 44,
+      "start": 185.78,
+      "end": 190.24,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.373,
+      "text": "実はね花岡さん私も微力ながらなんですけれども",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 45,
+      "start": 190.24,
+      "end": 194.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.393,
+      "text": "このキートスの設立直後ぐらいから",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 46,
+      "start": 194.16,
+      "end": 197.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.385,
+      "text": "まあ長々と細々となんですけれども",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 47,
+      "start": 197.28,
+      "end": 200.06,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.382,
+      "text": "携わらせていただいているんですけれども",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 48,
+      "start": 200.06,
+      "end": 202.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.386,
+      "text": "もう15年ぐらい経ちますとね",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 49,
+      "start": 202.38,
+      "end": 206.9,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.398,
+      "text": "中にどっぷり入っちゃって中から見るキートスしか知らないという",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 50,
+      "start": 206.9,
+      "end": 210.74,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.401,
+      "text": "ちょっと胃の中のカワズ的なところがあるので",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 51,
+      "start": 210.74,
+      "end": 213.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.397,
+      "text": "今日はいろいろ教えていただきたいと思いますので",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 52,
+      "start": 213.62,
+      "end": 215.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.404,
+      "text": "よろしくお願いいたします",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 53,
+      "start": 215.28,
+      "end": 216.78,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.551,
+      "text": "はいよろしくお願いします",
+      "reason": "weak channel separation lrDb=-0.55; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 54,
+      "start": 216.78,
+      "end": 221.74,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.365,
+      "text": "あのですね認定NPOを取得したということで",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 55,
+      "start": 221.74,
+      "end": 225.54,
+      "role": "onscreen",
+      "confidence": 0.26,
+      "lrDb": -0.39,
+      "text": "ますますねキートス必要なんだなって",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 56,
+      "start": 225.54,
+      "end": 228.48,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.375,
+      "text": "実感するところなんですけどいかがなんでしょうか",
+      "reason": "weak channel separation lrDb=-0.38; interviewer text hint"
+    },
+    {
+      "index": 57,
+      "start": 228.48,
+      "end": 230.2,
+      "role": "onscreen",
+      "confidence": 0.461,
+      "lrDb": -0.692,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.69; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 58,
+      "start": 230.2,
+      "end": 234.9,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.598,
+      "text": "まずですね認定NPOっていうのがですね",
+      "reason": "weak channel separation lrDb=-0.60; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 59,
+      "start": 234.9,
+      "end": 240.04,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.664,
+      "text": "NPOの中でも本当に限られたところしか取得できない",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 60,
+      "start": 240.04,
+      "end": 242.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.606,
+      "text": "非常に稀有なものでして",
+      "reason": "weak channel separation lrDb=-0.61; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 61,
+      "start": 242.36,
+      "end": 244.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.663,
+      "text": "それによってですね",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 62,
+      "start": 244.16,
+      "end": 247.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.649,
+      "text": "寄付金に対して支援者が税制優遇を受けられるとかですね",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 63,
+      "start": 247.16,
+      "end": 250.08,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.669,
+      "text": "大変メリットがあります",
+      "reason": "weak channel separation lrDb=-0.67; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 64,
+      "start": 250.08,
+      "end": 254.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.365,
+      "text": "寄付する側にメリットがあるということですね",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 65,
+      "start": 254.62,
+      "end": 255.92,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.46,
+      "text": "おっしゃる通り",
+      "reason": "weak channel separation lrDb=-0.46; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 66,
+      "start": 255.92,
+      "end": 258.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.515,
+      "text": "何がすごいというのが",
+      "reason": "weak channel separation lrDb=-0.52; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 67,
+      "start": 258.38,
+      "end": 261.66,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.566,
+      "text": "東京都の中ではいくつかあるんですけれども",
+      "reason": "weak channel separation lrDb=-0.57; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 68,
+      "start": 261.66,
+      "end": 264.84,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.591,
+      "text": "調子の中ではですね今一つしかないんですよ",
+      "reason": "weak channel separation lrDb=-0.59; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 69,
+      "start": 264.84,
+      "end": 265.72,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.353,
+      "text": "キートスだけ",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 70,
+      "start": 265.72,
+      "end": 266.7,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.586,
+      "text": "そうです",
+      "reason": "weak channel separation lrDb=-0.59; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 71,
+      "start": 266.7,
+      "end": 269.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.35,
+      "text": "すごいことなんですね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 72,
+      "start": 269.54,
+      "end": 273.04,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.379,
+      "text": "いやーそれはちょっと知りませんでしたけれども",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 73,
+      "start": 273.04,
+      "end": 276.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.393,
+      "text": "本当になんかちょっと身が引き締まります",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 74,
+      "start": 276.36,
+      "end": 278.42,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.372,
+      "text": "その中にいるっていうだけで",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 75,
+      "start": 278.42,
+      "end": 279.65999999999997,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.412,
+      "text": "そうなんですね",
+      "reason": "weak channel separation lrDb=-0.41; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 76,
+      "start": 279.65999999999997,
+      "end": 283.56,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.373,
+      "text": "そうするとやはり東京都または国から",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 77,
+      "start": 283.56,
+      "end": 288.1,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.387,
+      "text": "頑張れよとエールをかけられた感じなんですかね",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 78,
+      "start": 288.1,
+      "end": 289.1,
+      "role": "onscreen",
+      "confidence": 0.489,
+      "lrDb": -0.734,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 79,
+      "start": 289.1,
+      "end": 298.15999999999997,
+      "role": "onscreen",
+      "confidence": 0.471,
+      "lrDb": -0.707,
+      "text": "頑張れよというのとあとは長年ですね15年続けてこられた実績もそうですし",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 80,
+      "start": 298.15999999999997,
+      "end": 306.78,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.65,
+      "text": "そこにどれだけの方が支えてきたかというのも評価されての認定取得という形にはなっています",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 81,
+      "start": 306.78,
+      "end": 314.72,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.378,
+      "text": "これ認定をいただいたっていうことはキートスにとってももちろんメリットがあるということですよね",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 82,
+      "start": 314.72,
+      "end": 321.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.659,
+      "text": "そうですねキートスにとっては先ほどの寄付者が税制優遇を受けられますので",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 83,
+      "start": 321.62,
+      "end": 327.1,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.671,
+      "text": "一般的には寄付が増えるというふうには言われていますので",
+      "reason": "weak channel separation lrDb=-0.67; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 84,
+      "start": 327.1,
+      "end": 332.0,
+      "role": "onscreen",
+      "confidence": 0.477,
+      "lrDb": -0.715,
+      "text": "キートスを今後活動を継続していくにあたっての土台を作るために",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 85,
+      "start": 332.0,
+      "end": 338.96,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": -0.71,
+      "text": "寄付金を集めていくという方向の中では非常に大事なものにはなっていると思います",
+      "reason": "weak channel separation lrDb=-0.71; onscreen text hint"
+    },
+    {
+      "index": 86,
+      "start": 338.96,
+      "end": 344.42,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.355,
+      "text": "より良い活動をするには元でも必要ですよね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 87,
+      "start": 344.42,
+      "end": 348.48,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.344,
+      "text": "それなのでリスナーの皆さん",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 88,
+      "start": 348.48,
+      "end": 352.2,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.332,
+      "text": "キートス何だろうと思われる方は",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 89,
+      "start": 352.2,
+      "end": 353.96,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.362,
+      "text": "ぜひぜひキートスのホームページ",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 90,
+      "start": 353.96,
+      "end": 355.58,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.331,
+      "text": "ご覧になってみてください",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 91,
+      "start": 355.58,
+      "end": 357.8,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.324,
+      "text": "とても分かりやすいホームページに",
+      "reason": "weak channel separation lrDb=-0.32; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 92,
+      "start": 357.8,
+      "end": 359.68,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.303,
+      "text": "刷新されていますし",
+      "reason": "weak channel separation lrDb=-0.30; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 93,
+      "start": 359.68,
+      "end": 363.34,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.357,
+      "text": "よしじゃあ税制優遇が得られるなら",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 94,
+      "start": 363.34,
+      "end": 364.76,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.371,
+      "text": "寄付してみようという人は",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 95,
+      "start": 364.76,
+      "end": 367.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.352,
+      "text": "どしどし寄付していただきたいと思いますね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 96,
+      "start": 367.82,
+      "end": 369.06,
+      "role": "onscreen",
+      "confidence": 0.475,
+      "lrDb": -0.713,
+      "text": "よろしくお願いします",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 97,
+      "start": 369.06,
+      "end": 370.96,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.377,
+      "text": "そしてですね",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 98,
+      "start": 370.96,
+      "end": 374.24,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.387,
+      "text": "今までこの15年間なんですけれども",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 99,
+      "start": 374.24,
+      "end": 382.64,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.335,
+      "text": "白旗牧さんという代表が居心地のいい家づくりを目指してということで",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 100,
+      "start": 382.64,
+      "end": 392.56,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.339,
+      "text": "本当にホワーッとしたちょっと温泉に浸かったような雰囲気の居場所づくりをやってきたわけなんですけれども",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 101,
+      "start": 392.56,
+      "end": 396.18,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.403,
+      "text": "そこを大切にしていたというところですけど",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 102,
+      "start": 396.18,
+      "end": 400.32,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.413,
+      "text": "花岡さんも新理事に加わっていただいて",
+      "reason": "weak channel separation lrDb=-0.41; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 103,
+      "start": 400.32,
+      "end": 405.04,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.388,
+      "text": "他にも何人かね新理事の方がいらっしゃるそうですけれども",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 104,
+      "start": 405.04,
+      "end": 408.9,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.409,
+      "text": "そういう形で刷新していって",
+      "reason": "weak channel separation lrDb=-0.41; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 105,
+      "start": 408.9,
+      "end": 412.15999999999997,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.429,
+      "text": "どのように変わっていくのか",
+      "reason": "weak channel separation lrDb=-0.43; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 106,
+      "start": 412.15999999999997,
+      "end": 415.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.445,
+      "text": "変わろうとしているのかもしくは変わらないのか",
+      "reason": "weak channel separation lrDb=-0.45; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 107,
+      "start": 415.62,
+      "end": 417.92,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.419,
+      "text": "っていうところをお聞きしたいなと思ってます",
+      "reason": "weak channel separation lrDb=-0.42; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 108,
+      "start": 417.92,
+      "end": 425.0,
+      "role": "onscreen",
+      "confidence": 0.542,
+      "lrDb": -0.813,
+      "text": "そうですね今回私と同じタイミングで理事になった方がですね",
+      "reason": "weak channel separation lrDb=-0.81; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 109,
+      "start": 425.0,
+      "end": 429.22,
+      "role": "onscreen",
+      "confidence": 0.512,
+      "lrDb": -0.768,
+      "text": "私の他にも長年教師されてきた山本さんという方",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 110,
+      "start": 429.22,
+      "end": 438.9,
+      "role": "onscreen",
+      "confidence": 0.501,
+      "lrDb": -0.752,
+      "text": "もしくはコミュニティオーガナイザーとして地域福祉や社会生活政策に関する研究と実践を行っている室田さんという方ですね",
+      "reason": "weak channel separation lrDb=-0.75; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 111,
+      "start": 438.9,
+      "end": 442.74,
+      "role": "onscreen",
+      "confidence": 0.511,
+      "lrDb": -0.767,
+      "text": "様々なバックボーンを持つ方も一緒に入られています",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 112,
+      "start": 442.74,
+      "end": 446.28,
+      "role": "onscreen",
+      "confidence": 0.509,
+      "lrDb": -0.764,
+      "text": "でもすでに理事になっていた方だけではなくて",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 113,
+      "start": 446.28,
+      "end": 456.02,
+      "role": "onscreen",
+      "confidence": 0.481,
+      "lrDb": -0.721,
+      "text": "この支え続けてこられた方たちも含めて非常に多様なものをキートスとしては今持っていると思いますので",
+      "reason": "weak channel separation lrDb=-0.72; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 114,
+      "start": 456.02,
+      "end": 461.76,
+      "role": "onscreen",
+      "confidence": 0.479,
+      "lrDb": -0.719,
+      "text": "それをどう生かすかというのがこれから考えていくことかなというふうに思っています",
+      "reason": "weak channel separation lrDb=-0.72; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 115,
+      "start": 461.76,
+      "end": 468.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.606,
+      "text": "実際にですね私が入ってこんな素晴らしくなりますっていうことを言うつもり全くなくてですね",
+      "reason": "weak channel separation lrDb=-0.61; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 116,
+      "start": 468.54,
+      "end": 472.32,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.627,
+      "text": "もうすでに素晴らしいんですよ活動がですね",
+      "reason": "weak channel separation lrDb=-0.63; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 117,
+      "start": 472.32,
+      "end": 475.76,
+      "role": "onscreen",
+      "confidence": 0.455,
+      "lrDb": -0.683,
+      "text": "素晴らしいんですけども逆にですね",
+      "reason": "weak channel separation lrDb=-0.68; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 118,
+      "start": 475.76,
+      "end": 480.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.637,
+      "text": "キートスのこの良さをどうやって維持していくかっていうところに",
+      "reason": "weak channel separation lrDb=-0.64; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 119,
+      "start": 480.38,
+      "end": 485.8,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.611,
+      "text": "やっぱりこれから頑張っていかないといけないかなというふうに思っています",
+      "reason": "weak channel separation lrDb=-0.61; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 120,
+      "start": 485.8,
+      "end": 492.7,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.387,
+      "text": "キートスの良さっていうのは花岡さんからご覧になってどんなところにあると思われますか",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 121,
+      "start": 492.7,
+      "end": 498.22,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.637,
+      "text": "そうですね子ども若者の居場所支援というとですね",
+      "reason": "weak channel separation lrDb=-0.64; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 122,
+      "start": 498.22,
+      "end": 502.72,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.651,
+      "text": "いろんな文脈で語られることがあるんですけれども",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 123,
+      "start": 502.72,
+      "end": 506.74,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.633,
+      "text": "特に子どもとか若者に支援をしようとすると",
+      "reason": "weak channel separation lrDb=-0.63; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 124,
+      "start": 507.48,
+      "end": 513.2,
+      "role": "onscreen",
+      "confidence": 0.461,
+      "lrDb": -0.691,
+      "text": "こっちから与えていくような形が多いんですけれども",
+      "reason": "weak channel separation lrDb=-0.69; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 125,
+      "start": 513.2,
+      "end": 519.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.658,
+      "text": "逆にですねキートスは誰でも来れるような場をあえて作って",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 126,
+      "start": 519.28,
+      "end": 523.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.662,
+      "text": "子ども若者の泊まり木になるような存在を目指しているという",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 127,
+      "start": 523.82,
+      "end": 526.56,
+      "role": "onscreen",
+      "confidence": 0.474,
+      "lrDb": -0.711,
+      "text": "そこが少し異なるところ",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 128,
+      "start": 526.56,
+      "end": 531.86,
+      "role": "onscreen",
+      "confidence": 0.507,
+      "lrDb": -0.76,
+      "text": "なので逆に子ども若者は安心してその場に来れるっていうですね",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 129,
+      "start": 531.86,
+      "end": 534.4,
+      "role": "onscreen",
+      "confidence": 0.497,
+      "lrDb": -0.745,
+      "text": "すごく本当の居場所",
+      "reason": "weak channel separation lrDb=-0.74; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 130,
+      "start": 534.4,
+      "end": 539.2,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.657,
+      "text": "ただの場所じゃなくて受け入れてくれる人がきちっといる居場所っていう意味で",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 131,
+      "start": 539.2,
+      "end": 543.18,
+      "role": "onscreen",
+      "confidence": 0.493,
+      "lrDb": -0.739,
+      "text": "もうキートスのすごさというのはありますので",
+      "reason": "weak channel separation lrDb=-0.74; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 132,
+      "start": 543.18,
+      "end": 544.66,
+      "role": "onscreen",
+      "confidence": 0.496,
+      "lrDb": -0.744,
+      "text": "そこは変わらないように",
+      "reason": "weak channel separation lrDb=-0.74; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 133,
+      "start": 544.66,
+      "end": 547.68,
+      "role": "onscreen",
+      "confidence": 0.481,
+      "lrDb": -0.722,
+      "text": "でもその活動をより拡大して",
+      "reason": "weak channel separation lrDb=-0.72; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 134,
+      "start": 547.68,
+      "end": 553.84,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.643,
+      "text": "より子ども若者にとっての支援につなげられたらいいのかなというふうに思っています",
+      "reason": "weak channel separation lrDb=-0.64; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 135,
+      "start": 553.84,
+      "end": 558.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.351,
+      "text": "そうですね私もどっぷり言ってですね思うのは",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 136,
+      "start": 558.28,
+      "end": 562.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.371,
+      "text": "毎日違う顔ぶれなんですね",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 137,
+      "start": 562.54,
+      "end": 567.6,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.351,
+      "text": "何をしているかって言ったら何もしてないというか",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 138,
+      "start": 567.6,
+      "end": 572.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.387,
+      "text": "こちらでお茶飲んで喋っている人たちがいて",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 139,
+      "start": 572.62,
+      "end": 577.14,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.395,
+      "text": "隣の部屋では毛布かぶって寝ている",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 140,
+      "start": 577.14,
+      "end": 581.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.378,
+      "text": "これは誰だろうっていうちょっと毛布を履いてみて",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 141,
+      "start": 581.16,
+      "end": 583.22,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.396,
+      "text": "ああこの子かみたいな",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 142,
+      "start": 583.22,
+      "end": 588.44,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.356,
+      "text": "なんかそういうまずでなんか傍らではちょっと勉強かな宿題かな",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 143,
+      "start": 588.44,
+      "end": 594.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.357,
+      "text": "ちょこっとしている子もいればスマホをずっといじってる子もいる",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 144,
+      "start": 594.12,
+      "end": 597.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.372,
+      "text": "ちょっとこれは何なんだろうっていう",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 145,
+      "start": 597.12,
+      "end": 602.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.354,
+      "text": "でもよくよく考えたら家ってそんな感じですよね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 146,
+      "start": 602.16,
+      "end": 608.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.393,
+      "text": "それをやっぱり団体として継続していくっていうのも",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 147,
+      "start": 608.38,
+      "end": 613.92,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.391,
+      "text": "ある意味結構大変なことだったのかなって今更ながら思います",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 148,
+      "start": 613.92,
+      "end": 615.9,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.427,
+      "text": "本当に大変ですね",
+      "reason": "weak channel separation lrDb=-0.43; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 149,
+      "start": 615.9,
+      "end": 620.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.394,
+      "text": "でもそれをまた新理事の花岡さんたちが",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 150,
+      "start": 620.82,
+      "end": 626.04,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.389,
+      "text": "どのようにこの未来に向かって連れてってくれるのかなっていう意味では",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 151,
+      "start": 626.04,
+      "end": 631.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.369,
+      "text": "たぶん白畑さんもちょっとワクワクと見守っているのかなとは思うんですけれども",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 152,
+      "start": 631.54,
+      "end": 637.4,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.374,
+      "text": "そんなわけでこれからスタートというところなのかな",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 153,
+      "start": 637.4,
+      "end": 638.18,
+      "role": "onscreen",
+      "confidence": 0.477,
+      "lrDb": -0.716,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.72; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 154,
+      "start": 638.18,
+      "end": 640.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.509,
+      "text": "って思えばいいんでしょうかね",
+      "reason": "weak channel separation lrDb=-0.51; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 155,
+      "start": 640.28,
+      "end": 640.9,
+      "role": "onscreen",
+      "confidence": 0.486,
+      "lrDb": -0.729,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 156,
+      "start": 640.9,
+      "end": 644.18,
+      "role": "onscreen",
+      "confidence": 0.451,
+      "lrDb": -0.676,
+      "text": "そういった活動をやっていくとですね",
+      "reason": "weak channel separation lrDb=-0.68; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 157,
+      "start": 644.18,
+      "end": 650.22,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": -0.72,
+      "text": "本当に子ども若者が安心安全の場を作るっていうのは",
+      "reason": "weak channel separation lrDb=-0.72; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 158,
+      "start": 650.22,
+      "end": 654.9,
+      "role": "onscreen",
+      "confidence": 0.474,
+      "lrDb": -0.711,
+      "text": "もう言うのは簡単ですけどやっていくのは本当に大変で",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 159,
+      "start": 654.9,
+      "end": 659.02,
+      "role": "onscreen",
+      "confidence": 0.461,
+      "lrDb": -0.691,
+      "text": "特に今後団体としてきちっと運営をしていかないと",
+      "reason": "weak channel separation lrDb=-0.69; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 160,
+      "start": 659.02,
+      "end": 661.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.65,
+      "text": "その土台が崩れてしまう可能性もあるので",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 161,
+      "start": 661.82,
+      "end": 666.46,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.644,
+      "text": "まさに私が関わる意義というか意味はそういったところ",
+      "reason": "weak channel separation lrDb=-0.64; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 162,
+      "start": 666.46,
+      "end": 671.68,
+      "role": "onscreen",
+      "confidence": 0.455,
+      "lrDb": -0.682,
+      "text": "運営的な部分を自分のキャリアと照らし合わせても求められて",
+      "reason": "weak channel separation lrDb=-0.68; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 163,
+      "start": 671.68,
+      "end": 675.9,
+      "role": "onscreen",
+      "confidence": 0.465,
+      "lrDb": -0.697,
+      "text": "そこで貢献できるのかなというふうには思っています",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 164,
+      "start": 675.9,
+      "end": 679.72,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.371,
+      "text": "今キャリアというお話が出たんですけれども",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 165,
+      "start": 679.72,
+      "end": 686.18,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.357,
+      "text": "そのキャリアについては後半でじっくりとお伺いしてみたいと思うんですけれども",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 166,
+      "start": 686.18,
+      "end": 693.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.369,
+      "text": "本当に新生キートス14年にないての花岡さん本当に期待しております",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 167,
+      "start": 693.12,
+      "end": 698.54,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": -0.424,
+      "text": "後半にはゆっくりとその花岡さんご自身にスポットを当ててみたいと思います",
+      "reason": "weak channel separation lrDb=-0.42; onscreen text hint"
+    },
+    {
+      "index": 168,
+      "start": 709.72,
+      "end": 715.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.336,
+      "text": "今夜は調布市にあります認定NPO法人",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 169,
+      "start": 715.54,
+      "end": 719.7,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.325,
+      "text": "青少年の居場所キートスの新理事でいらっしゃる",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 170,
+      "start": 719.7,
+      "end": 723.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.359,
+      "text": "花岡博之さんにお話を伺っております",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 171,
+      "start": 723.38,
+      "end": 726.46,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.355,
+      "text": "さて前半いろいろね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 172,
+      "start": 726.46,
+      "end": 730.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.309,
+      "text": "これからのキートスのことをお伺いしたんですけれども",
+      "reason": "weak channel separation lrDb=-0.31; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 173,
+      "start": 730.12,
+      "end": 735.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.341,
+      "text": "新生キートスの理事として期待されている花岡さんなんですけれども",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 174,
+      "start": 736.3,
+      "end": 739.7,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.328,
+      "text": "いやーこのね混沌としたと言ったらいいのかなんだろう",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 175,
+      "start": 739.7,
+      "end": 743.44,
+      "role": "onscreen",
+      "confidence": 0.268,
+      "lrDb": -0.402,
+      "text": "ちょっとつかみどころのないこのキートスにですね",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 176,
+      "start": 743.44,
+      "end": 747.36,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.395,
+      "text": "飛び込んでみようと思われたのはどうしてなんでしょうか",
+      "reason": "weak channel separation lrDb=-0.40; interviewer text hint"
+    },
+    {
+      "index": 177,
+      "start": 747.36,
+      "end": 751.64,
+      "role": "onscreen",
+      "confidence": 0.506,
+      "lrDb": -0.759,
+      "text": "そうですね直接のきっかけとしてはですね",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 178,
+      "start": 751.64,
+      "end": 756.94,
+      "role": "onscreen",
+      "confidence": 0.525,
+      "lrDb": -0.787,
+      "text": "自分自身のキャリア半分以上今NPO業界に身を置いてるんですけれども",
+      "reason": "weak channel separation lrDb=-0.79; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 179,
+      "start": 756.94,
+      "end": 763.86,
+      "role": "onscreen",
+      "confidence": 0.47,
+      "lrDb": -0.705,
+      "text": "そのNPO業界で本当に尊敬する先輩の一人から紹介されたっていうのが",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 180,
+      "start": 763.86,
+      "end": 765.9,
+      "role": "onscreen",
+      "confidence": 0.489,
+      "lrDb": -0.734,
+      "text": "直接的なきっかけになります",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 181,
+      "start": 765.9,
+      "end": 770.5,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.356,
+      "text": "それまではキートスの存在っていうのはご存知だったんでしょうか",
+      "reason": "weak channel separation lrDb=-0.36; interviewer text hint"
+    },
+    {
+      "index": 182,
+      "start": 770.5,
+      "end": 775.54,
+      "role": "onscreen",
+      "confidence": 0.504,
+      "lrDb": -0.756,
+      "text": "恥ずかしながらですねきちっとは認識をしてなかったんですよ",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 183,
+      "start": 775.54,
+      "end": 778.18,
+      "role": "onscreen",
+      "confidence": 0.488,
+      "lrDb": -0.732,
+      "text": "調布に住んでながらですねちょっと恥ずかしいんですけど",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 184,
+      "start": 778.18,
+      "end": 780.9,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.381,
+      "text": "全然恥ずかしいということはないと思うんですけど",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 185,
+      "start": 780.9,
+      "end": 789.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.351,
+      "text": "やはり15年私も中にどっぷりいて思うのはあまり発信してないですものね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 186,
+      "start": 789.54,
+      "end": 796.24,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.366,
+      "text": "なのでやっぱりあの知られてない存在だったのかもしれないっていうのはずっとありました",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 187,
+      "start": 796.24,
+      "end": 801.44,
+      "role": "onscreen",
+      "confidence": 0.255,
+      "lrDb": -0.382,
+      "text": "のであの知っていただいて嬉しいです一人として",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 188,
+      "start": 801.44,
+      "end": 810.06,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.385,
+      "text": "それで紹介されてあのケイトス覗いてみようよという感じだったんでしょうか",
+      "reason": "weak channel separation lrDb=-0.39; interviewer text hint"
+    },
+    {
+      "index": 189,
+      "start": 810.06,
+      "end": 817.02,
+      "role": "onscreen",
+      "confidence": 0.482,
+      "lrDb": -0.723,
+      "text": "そうですねはいあのまあ紹介されたタイミングもタイミングだったんですけども",
+      "reason": "weak channel separation lrDb=-0.72; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 190,
+      "start": 817.02,
+      "end": 824.76,
+      "role": "onscreen",
+      "confidence": 0.521,
+      "lrDb": -0.782,
+      "text": "私はずっとNPOに身を置きながらそのNPOは全国規模のNPOだったんですね",
+      "reason": "weak channel separation lrDb=-0.78; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 191,
+      "start": 824.76,
+      "end": 826.58,
+      "role": "onscreen",
+      "confidence": 0.535,
+      "lrDb": -0.803,
+      "text": "2団体ともですね",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 192,
+      "start": 826.58,
+      "end": 834.18,
+      "role": "onscreen",
+      "confidence": 0.487,
+      "lrDb": -0.73,
+      "text": "ただこの中で娘が調布に生まれて娘が住みやすい町",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 193,
+      "start": 834.18,
+      "end": 839.8,
+      "role": "onscreen",
+      "confidence": 0.547,
+      "lrDb": -0.821,
+      "text": "彼女たちが成長していくより良い町にしたいっていうところから",
+      "reason": "weak channel separation lrDb=-0.82; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 195,
+      "start": 845.36,
+      "end": 849.0,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.615,
+      "text": "その先輩と話し合ってたぐらいのタイミングで",
+      "reason": "weak channel separation lrDb=-0.61; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 196,
+      "start": 849.0,
+      "end": 855.44,
+      "role": "onscreen",
+      "confidence": 0.531,
+      "lrDb": -0.797,
+      "text": "その先輩からそれだったらこういうすごい活動をしているところがあるっていう紹介を受けた",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 197,
+      "start": 855.44,
+      "end": 858.54,
+      "role": "onscreen",
+      "confidence": 0.457,
+      "lrDb": -0.685,
+      "text": "っていうのがタイミングですね",
+      "reason": "weak channel separation lrDb=-0.69; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 198,
+      "start": 858.54,
+      "end": 865.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.418,
+      "text": "全国版のNPOで働いてらしたということなんですけれども",
+      "reason": "weak channel separation lrDb=-0.42; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 199,
+      "start": 865.94,
+      "end": 867.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.428,
+      "text": "お見受けするところはあれですね",
+      "reason": "weak channel separation lrDb=-0.43; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 200,
+      "start": 867.82,
+      "end": 873.2,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.393,
+      "text": "花岡さんって私の息子世代っていう感じがするんですけども",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 201,
+      "start": 873.2,
+      "end": 888.74,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.333,
+      "text": "そうなると、新卒でNPOっていうのもね、なかなかはっきり申し上げて、生活資金的にはNPOってそれほどいただけるものもいただけないような感じがするんですけれども、",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 202,
+      "start": 889.48,
+      "end": 893.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.378,
+      "text": "いきなりNPOに飛び込まれたっていうところなんでしょうか、新卒で。",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 203,
+      "start": 893.82,
+      "end": 902.46,
+      "role": "onscreen",
+      "confidence": 0.51,
+      "lrDb": -0.765,
+      "text": "実はですね新卒では本当に一般企業でもともと国際的な仕事をしたくてですね",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 204,
+      "start": 902.46,
+      "end": 907.56,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.654,
+      "text": "国際的な仕事ができる一般企業に入ったんです",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 205,
+      "start": 907.56,
+      "end": 913.06,
+      "role": "onscreen",
+      "confidence": 0.511,
+      "lrDb": -0.766,
+      "text": "本当にその時にNPOで働くとはまさか思ってはいなかったという",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 206,
+      "start": 913.06,
+      "end": 919.92,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.473,
+      "text": "しかもこの地域で働くとは思ってなかったということで",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 207,
+      "start": 919.92,
+      "end": 929.2,
+      "role": "onscreen",
+      "confidence": 0.281,
+      "lrDb": -0.422,
+      "text": "その国際的なお仕事からそこからNPOに移られたっていうことですよね",
+      "reason": "weak channel separation lrDb=-0.42; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 208,
+      "start": 929.2,
+      "end": 932.3,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.446,
+      "text": "そのきっかけって終わりになったんでしょうか",
+      "reason": "weak channel separation lrDb=-0.45; interviewer text hint"
+    },
+    {
+      "index": 209,
+      "start": 932.3,
+      "end": 936.64,
+      "role": "onscreen",
+      "confidence": 0.558,
+      "lrDb": -0.837,
+      "text": "国際的な仕事をする中でですね",
+      "reason": "weak channel separation lrDb=-0.84; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 210,
+      "start": 936.64,
+      "end": 941.42,
+      "role": "onscreen",
+      "confidence": 0.504,
+      "lrDb": -0.756,
+      "text": "インドで実際に働く機会が",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 211,
+      "start": 941.42,
+      "end": 945.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.518,
+      "text": "駐在みたいな形で働く機会がありまして",
+      "reason": "weak channel separation lrDb=-0.52; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 212,
+      "start": 945.16,
+      "end": 948.96,
+      "role": "onscreen",
+      "confidence": 0.495,
+      "lrDb": -0.742,
+      "text": "非常に大変な経験だったんですけども",
+      "reason": "weak channel separation lrDb=-0.74; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 213,
+      "start": 948.96,
+      "end": 950.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.451,
+      "text": "それがいくつぐらいの時だったんですか",
+      "reason": "weak channel separation lrDb=-0.45; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 214,
+      "start": 950.54,
+      "end": 953.84,
+      "role": "onscreen",
+      "confidence": 0.493,
+      "lrDb": -0.74,
+      "text": "それがちょうど30歳ぐらいですね",
+      "reason": "weak channel separation lrDb=-0.74; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 215,
+      "start": 953.84,
+      "end": 957.72,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.494,
+      "text": "30歳で初めての海外赴任がインドでしたか",
+      "reason": "weak channel separation lrDb=-0.49; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 216,
+      "start": 957.72,
+      "end": 960.26,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.603,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.60; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 217,
+      "start": 960.26,
+      "end": 963.9,
+      "role": "onscreen",
+      "confidence": 0.466,
+      "lrDb": -0.699,
+      "text": "そこのインドでやっぱりですね",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 218,
+      "start": 963.9,
+      "end": 965.82,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.63,
+      "text": "仕事も大変だったんですけど",
+      "reason": "weak channel separation lrDb=-0.63; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 219,
+      "start": 965.82,
+      "end": 969.38,
+      "role": "onscreen",
+      "confidence": 0.451,
+      "lrDb": -0.677,
+      "text": "それ以上にやっぱり残ったのがですね",
+      "reason": "weak channel separation lrDb=-0.68; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 220,
+      "start": 969.38,
+      "end": 971.76,
+      "role": "onscreen",
+      "confidence": 0.517,
+      "lrDb": -0.775,
+      "text": "私は中大みたいな立場なので",
+      "reason": "weak channel separation lrDb=-0.78; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 221,
+      "start": 971.76,
+      "end": 974.9,
+      "role": "onscreen",
+      "confidence": 0.51,
+      "lrDb": -0.765,
+      "text": "クーラーがガンガンに効いた車の中で",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 222,
+      "start": 974.9,
+      "end": 977.48,
+      "role": "onscreen",
+      "confidence": 0.543,
+      "lrDb": -0.815,
+      "text": "運転手がインド人運転手がついたっていう",
+      "reason": "weak channel separation lrDb=-0.81; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 223,
+      "start": 977.48,
+      "end": 980.38,
+      "role": "onscreen",
+      "confidence": 0.535,
+      "lrDb": -0.803,
+      "text": "すごく恵まれた中で",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 224,
+      "start": 980.38,
+      "end": 983.26,
+      "role": "onscreen",
+      "confidence": 0.545,
+      "lrDb": -0.818,
+      "text": "毎日出勤するその途上に",
+      "reason": "weak channel separation lrDb=-0.82; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 225,
+      "start": 983.26,
+      "end": 985.36,
+      "role": "onscreen",
+      "confidence": 0.537,
+      "lrDb": -0.806,
+      "text": "車が交差点止まると",
+      "reason": "weak channel separation lrDb=-0.81; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 226,
+      "start": 985.36,
+      "end": 987.94,
+      "role": "onscreen",
+      "confidence": 0.558,
+      "lrDb": -0.837,
+      "text": "その快適な車の周りに",
+      "reason": "weak channel separation lrDb=-0.84; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 227,
+      "start": 987.94,
+      "end": 991.32,
+      "role": "onscreen",
+      "confidence": 0.536,
+      "lrDb": -0.804,
+      "text": "わらっと子どもたちが集まるんですよね",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 228,
+      "start": 991.32,
+      "end": 994.04,
+      "role": "onscreen",
+      "confidence": 0.524,
+      "lrDb": -0.786,
+      "text": "外はものすごい暑い中で",
+      "reason": "weak channel separation lrDb=-0.79; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 229,
+      "start": 994.04,
+      "end": 997.7,
+      "role": "onscreen",
+      "confidence": 0.529,
+      "lrDb": -0.794,
+      "text": "もう本当に裸足の子どもたちが集まる",
+      "reason": "weak channel separation lrDb=-0.79; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 230,
+      "start": 997.7,
+      "end": 998.86,
+      "role": "onscreen",
+      "confidence": 0.557,
+      "lrDb": -0.836,
+      "text": "物恋をする",
+      "reason": "weak channel separation lrDb=-0.84; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 231,
+      "start": 998.86,
+      "end": 1000.46,
+      "role": "onscreen",
+      "confidence": 0.57,
+      "lrDb": -0.855,
+      "text": "もしくは何か買ってくれっていう",
+      "reason": "weak channel separation lrDb=-0.85; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 232,
+      "start": 1000.46,
+      "end": 1002.7,
+      "role": "onscreen",
+      "confidence": 0.597,
+      "lrDb": -0.895,
+      "text": "この対比が",
+      "reason": "weak channel separation lrDb=-0.90; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 235,
+      "start": 1008.38,
+      "end": 1012.08,
+      "role": "onscreen",
+      "confidence": 0.533,
+      "lrDb": -0.8,
+      "text": "それを知ってしまった責任として",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 236,
+      "start": 1012.08,
+      "end": 1014.46,
+      "role": "onscreen",
+      "confidence": 0.547,
+      "lrDb": -0.821,
+      "text": "このまま日本に帰って",
+      "reason": "weak channel separation lrDb=-0.82; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 237,
+      "start": 1014.46,
+      "end": 1016.7,
+      "role": "onscreen",
+      "confidence": 0.565,
+      "lrDb": -0.848,
+      "text": "普通に仕事をしていいのかっていう",
+      "reason": "weak channel separation lrDb=-0.85; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 238,
+      "start": 1016.7,
+      "end": 1019.28,
+      "role": "onscreen",
+      "confidence": 0.57,
+      "lrDb": -0.855,
+      "text": "悶々としたものがずっとあって",
+      "reason": "weak channel separation lrDb=-0.85; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 239,
+      "start": 1019.28,
+      "end": 1023.24,
+      "role": "onscreen",
+      "confidence": 0.58,
+      "lrDb": -0.87,
+      "text": "いろいろ探した結果",
+      "reason": "weak channel separation lrDb=-0.87; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 240,
+      "start": 1023.24,
+      "end": 1025.54,
+      "role": "onscreen",
+      "confidence": 0.535,
+      "lrDb": -0.802,
+      "text": "NPOにたどり着いたというのが",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 241,
+      "start": 1025.54,
+      "end": 1029.66,
+      "role": "onscreen",
+      "confidence": 0.507,
+      "lrDb": -0.76,
+      "text": "30歳過ぎたぐらいからの自分自身ですね",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 242,
+      "start": 1029.66,
+      "end": 1035.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.456,
+      "text": "やっぱりなるべくしてと言いますか",
+      "reason": "weak channel separation lrDb=-0.46; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 243,
+      "start": 1035.36,
+      "end": 1037.26,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.484,
+      "text": "インドにいらしたんですね",
+      "reason": "weak channel separation lrDb=-0.48; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 244,
+      "start": 1037.26,
+      "end": 1038.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.398,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 245,
+      "start": 1038.28,
+      "end": 1041.72,
+      "role": "onscreen",
+      "confidence": 0.477,
+      "lrDb": -0.715,
+      "text": "何かに引き寄せられたのかもしれないですね",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 246,
+      "start": 1041.72,
+      "end": 1043.78,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.536,
+      "text": "やはり体験って大きいですね",
+      "reason": "weak channel separation lrDb=-0.54; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 247,
+      "start": 1043.78,
+      "end": 1047.3,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.497,
+      "text": "やっぱりそれを見るか見ないか",
+      "reason": "weak channel separation lrDb=-0.50; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 248,
+      "start": 1047.3,
+      "end": 1048.84,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.471,
+      "text": "自分の目で",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 249,
+      "start": 1048.84,
+      "end": 1058.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.451,
+      "text": "車のボディのバリアーがあるっていうことなんですね",
+      "reason": "weak channel separation lrDb=-0.45; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 250,
+      "start": 1058.16,
+      "end": 1060.18,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.412,
+      "text": "同じ人間でありながら",
+      "reason": "weak channel separation lrDb=-0.41; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 251,
+      "start": 1060.18,
+      "end": 1063.26,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.459,
+      "text": "でもやっぱりそこを",
+      "reason": "weak channel separation lrDb=-0.46; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 252,
+      "start": 1063.26,
+      "end": 1072.42,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.473,
+      "text": "花岡さんご自身がこの心で受け止めてそれを深く考えるっていうやっぱり素晴らしい方ですね",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 253,
+      "start": 1072.42,
+      "end": 1079.92,
+      "role": "onscreen",
+      "confidence": 0.47,
+      "lrDb": -0.705,
+      "text": "いやどうなんですかね本当に皆さんが同じ経験したら同じように感じるんじゃないかなって思うぐらい",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 254,
+      "start": 1079.92,
+      "end": 1084.16,
+      "role": "onscreen",
+      "confidence": 0.467,
+      "lrDb": -0.7,
+      "text": "やっぱり衝撃的な経験だなと思いますね",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 255,
+      "start": 1084.16,
+      "end": 1086.26,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.486,
+      "text": "そちらに何年ぐらいいらしたんですか",
+      "reason": "weak channel separation lrDb=-0.49; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 256,
+      "start": 1086.26,
+      "end": 1088.32,
+      "role": "onscreen",
+      "confidence": 0.482,
+      "lrDb": -0.723,
+      "text": "そこは1年ちょっとですね",
+      "reason": "weak channel separation lrDb=-0.72; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 257,
+      "start": 1088.32,
+      "end": 1091.7,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.472,
+      "text": "1年ちょっとでそこで変えられて",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 258,
+      "start": 1091.7,
+      "end": 1094.44,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.488,
+      "text": "で方向転換ということですね",
+      "reason": "weak channel separation lrDb=-0.49; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 259,
+      "start": 1094.44,
+      "end": 1094.78,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.616,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.62; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 260,
+      "start": 1094.78,
+      "end": 1099.24,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.649,
+      "text": "何が自分にできるかっていうのをそこから模索して",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 261,
+      "start": 1099.24,
+      "end": 1101.92,
+      "role": "onscreen",
+      "confidence": 0.494,
+      "lrDb": -0.741,
+      "text": "ダブルスクール通ったりとか",
+      "reason": "weak channel separation lrDb=-0.74; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 262,
+      "start": 1101.92,
+      "end": 1104.5,
+      "role": "onscreen",
+      "confidence": 0.487,
+      "lrDb": -0.73,
+      "text": "NPOのことをいろいろ勉強したりとか",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 263,
+      "start": 1104.5,
+      "end": 1106.74,
+      "role": "onscreen",
+      "confidence": 0.47,
+      "lrDb": -0.705,
+      "text": "っていうのをやった結果",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 264,
+      "start": 1106.74,
+      "end": 1109.76,
+      "role": "onscreen",
+      "confidence": 0.487,
+      "lrDb": -0.731,
+      "text": "一旦まだ若いし",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 265,
+      "start": 1109.76,
+      "end": 1112.02,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.607,
+      "text": "NPOで経験しようって言って",
+      "reason": "weak channel separation lrDb=-0.61; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 266,
+      "start": 1112.02,
+      "end": 1113.6,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.558,
+      "text": "2,3年のつもりで",
+      "reason": "weak channel separation lrDb=-0.56; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 267,
+      "start": 1113.6,
+      "end": 1118.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.664,
+      "text": "たまたま巡り合ったNPOの足長育英会という",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 268,
+      "start": 1118.12,
+      "end": 1121.86,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.54,
+      "text": "維持支援の団体に入ったんですね",
+      "reason": "weak channel separation lrDb=-0.54; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 269,
+      "start": 1121.86,
+      "end": 1123.02,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.367,
+      "text": "玉井会長さん",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 270,
+      "start": 1123.02,
+      "end": 1124.78,
+      "role": "onscreen",
+      "confidence": 0.462,
+      "lrDb": -0.693,
+      "text": "玉井会長のもとでですね",
+      "reason": "weak channel separation lrDb=-0.69; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 271,
+      "start": 1124.78,
+      "end": 1128.3,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.442,
+      "text": "本当にカリスマ的なところで",
+      "reason": "weak channel separation lrDb=-0.44; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 272,
+      "start": 1128.3,
+      "end": 1131.44,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.376,
+      "text": "本当に全国レベルで",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 273,
+      "start": 1131.44,
+      "end": 1136.66,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.349,
+      "text": "皆さんが認識されているNPOですものね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 274,
+      "start": 1136.66,
+      "end": 1143.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.359,
+      "text": "やっぱり交通維持という弱者に寄り添うという団体で",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 275,
+      "start": 1143.62,
+      "end": 1146.48,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.364,
+      "text": "そこで何年間ぐらい揉まれましたか",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 276,
+      "start": 1146.48,
+      "end": 1152.88,
+      "role": "onscreen",
+      "confidence": 0.561,
+      "lrDb": -0.841,
+      "text": "実はですね足長育営会は交通維持以外の維持を支援する団体なんですよ",
+      "reason": "weak channel separation lrDb=-0.84; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 277,
+      "start": 1152.88,
+      "end": 1153.72,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.362,
+      "text": "そうなんですか",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 278,
+      "start": 1153.72,
+      "end": 1155.06,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.492,
+      "text": "そうなんですよ実はですね",
+      "reason": "weak channel separation lrDb=-0.49; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 279,
+      "start": 1155.06,
+      "end": 1158.18,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.355,
+      "text": "もう私交通維持とインプットされちゃっていて",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 280,
+      "start": 1158.18,
+      "end": 1161.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.638,
+      "text": "そうなんです交通維持育営会はまだ別にあって",
+      "reason": "weak channel separation lrDb=-0.64; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 281,
+      "start": 1161.54,
+      "end": 1166.44,
+      "role": "onscreen",
+      "confidence": 0.454,
+      "lrDb": -0.681,
+      "text": "会長はそこから出てそれ以外の維持",
+      "reason": "weak channel separation lrDb=-0.68; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 282,
+      "start": 1166.44,
+      "end": 1170.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.548,
+      "text": "災害とか自殺で親を亡くした子どもをどう救うかで",
+      "reason": "weak channel separation lrDb=-0.55; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 283,
+      "start": 1170.38,
+      "end": 1173.84,
+      "role": "onscreen",
+      "confidence": 0.584,
+      "lrDb": -0.876,
+      "text": "ゼロから立ち上げた団体が足長育営会っていう",
+      "reason": "weak channel separation lrDb=-0.88; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 284,
+      "start": 1173.84,
+      "end": 1175.04,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.498,
+      "text": "ありがとうございます",
+      "reason": "weak channel separation lrDb=-0.50; interviewer text hint"
+    },
+    {
+      "index": 285,
+      "start": 1175.04,
+      "end": 1178.7,
+      "role": "onscreen",
+      "confidence": 0.357,
+      "lrDb": -0.535,
+      "text": "認識を新たにさせていただきました",
+      "reason": "weak channel separation lrDb=-0.54; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 286,
+      "start": 1178.7,
+      "end": 1182.94,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.502,
+      "text": "そちらで学ばれたわけなんですね",
+      "reason": "weak channel separation lrDb=-0.50; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 287,
+      "start": 1182.94,
+      "end": 1185.44,
+      "role": "onscreen",
+      "confidence": 0.494,
+      "lrDb": -0.741,
+      "text": "そうですね年間で6000人ぐらいですね",
+      "reason": "weak channel separation lrDb=-0.74; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 288,
+      "start": 1185.44,
+      "end": 1190.28,
+      "role": "onscreen",
+      "confidence": 0.497,
+      "lrDb": -0.746,
+      "text": "親を亡くした子どももしくは親が障害で働けない家庭の子どもたちへ",
+      "reason": "weak channel separation lrDb=-0.75; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 289,
+      "start": 1190.28,
+      "end": 1193.94,
+      "role": "onscreen",
+      "confidence": 0.518,
+      "lrDb": -0.777,
+      "text": "奨学金を出してっていう授業をやっていく中で",
+      "reason": "weak channel separation lrDb=-0.78; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 290,
+      "start": 1193.94,
+      "end": 1201.8,
+      "role": "onscreen",
+      "confidence": 0.513,
+      "lrDb": -0.769,
+      "text": "そのおっしゃっていただいた会長創業者で会長の玉井さんの横でずっと仕事をして",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 291,
+      "start": 1201.8,
+      "end": 1207.58,
+      "role": "onscreen",
+      "confidence": 0.538,
+      "lrDb": -0.807,
+      "text": "その中で運営の事務局的な仕事もずっとになってきたっていう経験ですね",
+      "reason": "weak channel separation lrDb=-0.81; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 292,
+      "start": 1207.58,
+      "end": 1216.02,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.391,
+      "text": "グローバルの一般企業から帰られて勉強なさって",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 293,
+      "start": 1216.02,
+      "end": 1222.06,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.365,
+      "text": "さらに全国版の足長育英会の方に働かれて",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 294,
+      "start": 1222.06,
+      "end": 1223.34,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.418,
+      "text": "いろいろ学ばれて",
+      "reason": "weak channel separation lrDb=-0.42; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 295,
+      "start": 1223.34,
+      "end": 1229.04,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.37,
+      "text": "随分いっぱい貯められましたね力を",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 296,
+      "start": 1229.04,
+      "end": 1235.9,
+      "role": "onscreen",
+      "confidence": 0.539,
+      "lrDb": -0.808,
+      "text": "もうそれは全く謙遜するつもりなくて",
+      "reason": "weak channel separation lrDb=-0.81; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 297,
+      "start": 1235.9,
+      "end": 1241.16,
+      "role": "onscreen",
+      "confidence": 0.513,
+      "lrDb": -0.769,
+      "text": "本当にそのタイミングで足長育英会もしくは会長に会えて",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 298,
+      "start": 1241.16,
+      "end": 1243.16,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.625,
+      "text": "すごい良かったなと思いますし",
+      "reason": "weak channel separation lrDb=-0.62; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 299,
+      "start": 1243.16,
+      "end": 1246.6,
+      "role": "onscreen",
+      "confidence": 0.522,
+      "lrDb": -0.783,
+      "text": "そこでやっぱり得た知見とかネットワークっていうのは",
+      "reason": "weak channel separation lrDb=-0.78; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 300,
+      "start": 1246.6,
+      "end": 1251.3,
+      "role": "onscreen",
+      "confidence": 0.572,
+      "lrDb": -0.858,
+      "text": "これからの一生で本当に活用していかなければいけない責任が",
+      "reason": "weak channel separation lrDb=-0.86; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 301,
+      "start": 1251.3,
+      "end": 1252.98,
+      "role": "onscreen",
+      "confidence": 0.553,
+      "lrDb": -0.829,
+      "text": "逆にあるなというふうに思います",
+      "reason": "weak channel separation lrDb=-0.83; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 302,
+      "start": 1252.98,
+      "end": 1260.44,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.383,
+      "text": "その後はそちらを辞められた後っていうのは",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 303,
+      "start": 1260.44,
+      "end": 1262.92,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.395,
+      "text": "今別のNPOにも",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 304,
+      "start": 1262.92,
+      "end": 1263.62,
+      "role": "onscreen",
+      "confidence": 0.507,
+      "lrDb": -0.761,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 305,
+      "start": 1263.62,
+      "end": 1268.8,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.648,
+      "text": "そこがちょうど10年ぐらいやって",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 306,
+      "start": 1268.8,
+      "end": 1272.22,
+      "role": "onscreen",
+      "confidence": 0.514,
+      "lrDb": -0.771,
+      "text": "一区切りやり切った後に",
+      "reason": "weak channel separation lrDb=-0.77; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 307,
+      "start": 1272.22,
+      "end": 1274.86,
+      "role": "onscreen",
+      "confidence": 0.585,
+      "lrDb": -0.877,
+      "text": "私今全国子ども食堂支援センター",
+      "reason": "weak channel separation lrDb=-0.88; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 309,
+      "start": 1275.86,
+      "end": 1279.72,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.545,
+      "text": "今ACでもテレビで出ているような",
+      "reason": "weak channel separation lrDb=-0.55; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 310,
+      "start": 1279.72,
+      "end": 1284.4,
+      "role": "onscreen",
+      "confidence": 0.506,
+      "lrDb": -0.759,
+      "text": "全国の子ども食堂を陰ながら応援していくような",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 311,
+      "start": 1284.4,
+      "end": 1289.66,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.651,
+      "text": "そこも全国的なNPUに今所属をしています",
+      "reason": "weak channel separation lrDb=-0.65; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 312,
+      "start": 1289.66,
+      "end": 1295.32,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.366,
+      "text": "やはりそこも運営に関わっているということなんですね",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 313,
+      "start": 1295.32,
+      "end": 1295.66,
+      "role": "onscreen",
+      "confidence": 0.476,
+      "lrDb": -0.714,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 314,
+      "start": 1295.66,
+      "end": 1300.78,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.662,
+      "text": "もともと運営経営的な部分も含めた運営に従事していたんですが",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 315,
+      "start": 1300.78,
+      "end": 1304.2,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.673,
+      "text": "今その中でも特に助成金事業ですね",
+      "reason": "weak channel separation lrDb=-0.67; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 316,
+      "start": 1304.2,
+      "end": 1310.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.635,
+      "text": "年間で数千団体の子ども食堂に助成金を出す助成事業に今従事しています",
+      "reason": "weak channel separation lrDb=-0.64; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 317,
+      "start": 1310.36,
+      "end": 1316.3,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.346,
+      "text": "そうですかもう今あのあちらもこちらもねその子ども食堂っていうの",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 318,
+      "start": 1316.3,
+      "end": 1319.04,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.348,
+      "text": "全国でどのぐらいあるんですかね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 319,
+      "start": 1319.04,
+      "end": 1325.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.56,
+      "text": "今1万2000箇所以上が確認されています実際はもっと多いかもしれないですけれども",
+      "reason": "weak channel separation lrDb=-0.56; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 320,
+      "start": 1325.28,
+      "end": 1330.02,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.397,
+      "text": "よくキートスの話に戻るんですけれども",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 321,
+      "start": 1330.02,
+      "end": 1335.92,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.336,
+      "text": "キートスは子ども食堂と捉えていらっしゃる方も多いですよね",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 322,
+      "start": 1335.92,
+      "end": 1339.26,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.351,
+      "text": "ちょっとキートスの話に戻らせていただくと",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 323,
+      "start": 1339.26,
+      "end": 1343.76,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.338,
+      "text": "キートスと子ども食堂が違うよっていうのは",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 324,
+      "start": 1343.76,
+      "end": 1347.24,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.345,
+      "text": "やっぱりどんなところにあると思われますか",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 325,
+      "start": 1349.72,
+      "end": 1350.04,
+      "role": "onscreen",
+      "confidence": 0.486,
+      "lrDb": -0.729,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 326,
+      "start": 1350.04,
+      "end": 1354.38,
+      "role": "onscreen",
+      "confidence": 0.467,
+      "lrDb": -0.701,
+      "text": "子ども食堂も明確な定義があるわけでは実はないんですよね",
+      "reason": "weak channel separation lrDb=-0.70; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 327,
+      "start": 1354.38,
+      "end": 1356.7,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.656,
+      "text": "行政が決めたものではなくて",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 328,
+      "start": 1356.7,
+      "end": 1360.76,
+      "role": "onscreen",
+      "confidence": 0.475,
+      "lrDb": -0.712,
+      "text": "自分たちは子ども食堂ですって言ったところが",
+      "reason": "weak channel separation lrDb=-0.71; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 329,
+      "start": 1360.76,
+      "end": 1362.74,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.425,
+      "text": "子ども食堂ではあるんですけども",
+      "reason": "weak channel separation lrDb=-0.42; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 330,
+      "start": 1362.74,
+      "end": 1365.4,
+      "role": "onscreen",
+      "confidence": 0.529,
+      "lrDb": -0.794,
+      "text": "やっぱり一番違うのはですね",
+      "reason": "weak channel separation lrDb=-0.79; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 331,
+      "start": 1365.4,
+      "end": 1368.34,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.553,
+      "text": "特に白旗さん自身が",
+      "reason": "weak channel separation lrDb=-0.55; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 332,
+      "start": 1368.34,
+      "end": 1372.18,
+      "role": "onscreen",
+      "confidence": 0.503,
+      "lrDb": -0.755,
+      "text": "ただご飯をみんなで食べる場所じゃないんだよ",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 333,
+      "start": 1372.18,
+      "end": 1375.66,
+      "role": "onscreen",
+      "confidence": 0.507,
+      "lrDb": -0.761,
+      "text": "っていう明確なビジョンがあって",
+      "reason": "weak channel separation lrDb=-0.76; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 334,
+      "start": 1375.66,
+      "end": 1378.54,
+      "role": "onscreen",
+      "confidence": 0.522,
+      "lrDb": -0.783,
+      "text": "子ども食堂とはあえて言ってないんだろうな",
+      "reason": "weak channel separation lrDb=-0.78; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 335,
+      "start": 1378.54,
+      "end": 1380.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.395,
+      "text": "というふうには思いますね",
+      "reason": "weak channel separation lrDb=-0.40; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 336,
+      "start": 1380.12,
+      "end": 1384.42,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.336,
+      "text": "さまざまな生活を一緒にする",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 337,
+      "start": 1384.42,
+      "end": 1388.22,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.331,
+      "text": "そして泊まり木であるというところですね",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 338,
+      "start": 1388.22,
+      "end": 1392.86,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.356,
+      "text": "泊まり木であるっていうことはずっと言っちゃいけないんですよね",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 339,
+      "start": 1392.86,
+      "end": 1393.74,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.533,
+      "text": "そうですね",
+      "reason": "weak channel separation lrDb=-0.53; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 340,
+      "start": 1393.74,
+      "end": 1397.84,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.583,
+      "text": "どれだけいるかいないかっていうのも",
+      "reason": "weak channel separation lrDb=-0.58; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 341,
+      "start": 1397.84,
+      "end": 1402.9,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.567,
+      "text": "子どもとか若者の状況次第だと思うんですけれども",
+      "reason": "weak channel separation lrDb=-0.57; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 342,
+      "start": 1402.9,
+      "end": 1406.52,
+      "role": "onscreen",
+      "confidence": 0.533,
+      "lrDb": -0.8,
+      "text": "ただ少なくとも泊まりたいって思った子が",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 343,
+      "start": 1406.52,
+      "end": 1409.42,
+      "role": "onscreen",
+      "confidence": 0.532,
+      "lrDb": -0.798,
+      "text": "止まれる枝がどれだけあるかっていうのはやっぱり",
+      "reason": "weak channel separation lrDb=-0.80; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 344,
+      "start": 1409.42,
+      "end": 1411.88,
+      "role": "onscreen",
+      "confidence": 0.525,
+      "lrDb": -0.787,
+      "text": "すごい大事なことだなとは思いますね",
+      "reason": "weak channel separation lrDb=-0.79; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 345,
+      "start": 1411.88,
+      "end": 1414.98,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.329,
+      "text": "その一枝にねこれからもキートスどんどんと",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 346,
+      "start": 1414.98,
+      "end": 1418.5,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.329,
+      "text": "枝を広げていっていただきたいですよね",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 347,
+      "start": 1418.5,
+      "end": 1421.6,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.324,
+      "text": "頑張ってすごく期待してます",
+      "reason": "weak channel separation lrDb=-0.32; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 348,
+      "start": 1421.6,
+      "end": 1424.6,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.303,
+      "text": "もうグローバルそして全国レベルから",
+      "reason": "weak channel separation lrDb=-0.30; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 349,
+      "start": 1424.6,
+      "end": 1427.62,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.319,
+      "text": "そしてまた地域に戻られたわけなんですけれども",
+      "reason": "weak channel separation lrDb=-0.32; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 350,
+      "start": 1427.62,
+      "end": 1431.54,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.328,
+      "text": "まあなんかちょっとあっという間の時間になってしまったんですけれども",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 351,
+      "start": 1431.54,
+      "end": 1437.1,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.332,
+      "text": "この増え続けているこの生きにくさを抱えている青少年の問題っていうのは",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 352,
+      "start": 1437.1,
+      "end": 1443.12,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.335,
+      "text": "私たち大人の問題として責任が大きいかなと思うんですけども",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 353,
+      "start": 1443.12,
+      "end": 1447.84,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": -0.36,
+      "text": "ぜひぜひご一緒に充実させていっていただきたいと思います",
+      "reason": "weak channel separation lrDb=-0.36; onscreen text hint"
+    },
+    {
+      "index": 354,
+      "start": 1447.84,
+      "end": 1449.06,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.374,
+      "text": "よろしくお願いいたします",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 355,
+      "start": 1449.06,
+      "end": 1454.86,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.369,
+      "text": "最後になんですけどもリスナーに1曲プレゼントしていただきたいんですが",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 356,
+      "start": 1454.86,
+      "end": 1457.48,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.394,
+      "text": "今日は何にしましょうか",
+      "reason": "weak channel separation lrDb=-0.39; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 358,
+      "start": 1461.62,
+      "end": 1464.3,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.661,
+      "text": "娘2人大好きな曲なんですけども",
+      "reason": "weak channel separation lrDb=-0.66; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 359,
+      "start": 1464.3,
+      "end": 1465.86,
+      "role": "onscreen",
+      "confidence": 0.597,
+      "lrDb": -0.895,
+      "text": "You Save My Lifeですね",
+      "reason": "weak channel separation lrDb=-0.90; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 360,
+      "start": 1465.86,
+      "end": 1468.92,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.53,
+      "text": "直訳するとあなたの歌が私を救った",
+      "reason": "weak channel separation lrDb=-0.53; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 361,
+      "start": 1468.92,
+      "end": 1472.46,
+      "role": "onscreen",
+      "confidence": 0.485,
+      "lrDb": -0.727,
+      "text": "歌でなくても人の行う何か",
+      "reason": "weak channel separation lrDb=-0.73; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 362,
+      "start": 1472.46,
+      "end": 1475.14,
+      "role": "onscreen",
+      "confidence": 0.595,
+      "lrDb": -0.892,
+      "text": "もしくはその存在だけで救われることって",
+      "reason": "weak channel separation lrDb=-0.89; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 366,
+      "start": 1483.62,
+      "end": 1485.96,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.351,
+      "text": "素晴らしい憂鬱ですね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 367,
+      "start": 1485.96,
+      "end": 1497.0,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.354,
+      "text": "今日は認定NPO法人青少年の居場所キートスの新理事になられた花岡博之さんにお話を伺いました",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 368,
+      "start": 1497.0,
+      "end": 1498.06,
+      "role": "onscreen",
+      "confidence": 0.2,
+      "lrDb": -0.289,
+      "text": "ありがとうございました",
+      "reason": "weak channel separation lrDb=-0.29; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 369,
+      "start": 1498.06,
+      "end": 1499.84,
+      "role": "interviewer",
+      "confidence": 0.48,
+      "lrDb": -0.466,
+      "text": "ありがとうございます",
+      "reason": "weak channel separation lrDb=-0.47; interviewer text hint"
+    },
+    {
+      "index": 370,
+      "start": 1499.84,
+      "end": 1505.52,
+      "role": "onscreen",
+      "confidence": 0.221,
+      "lrDb": -0.331,
+      "text": "時間いっぱいまでU2のYour Song Saves My Lifeをお聴きください",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio"
+    },
+    {
+      "index": 371,
+      "start": 1505.52,
+      "end": 1506.64,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.286,
+      "text": "長谷川美穂でした",
+      "reason": "weak channel separation lrDb=-0.29; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 372,
+      "start": 1515.96,
+      "end": 1545.94,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": 0.262,
+      "text": "ご視聴ありがとうございました",
+      "reason": "weak channel separation lrDb=0.26; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 373,
+      "start": 1545.96,
+      "end": 1575.94,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": 0.369,
+      "text": "ご視聴ありがとうございました",
+      "reason": "weak channel separation lrDb=0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 374,
+      "start": 1575.96,
+      "end": 1605.94,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": 0.236,
+      "text": "おやすみなさい",
+      "reason": "weak channel separation lrDb=0.24; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 375,
+      "start": 1605.96,
+      "end": 1630.58,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": 0.254,
+      "text": "ただいまお聴きいただきましたのは",
+      "reason": "weak channel separation lrDb=0.25; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 376,
+      "start": 1630.58,
+      "end": 1634.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.45,
+      "text": "U2のYour Song Saved My Lifeでした",
+      "reason": "weak channel separation lrDb=-0.45; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 377,
+      "start": 1634.38,
+      "end": 1638.24,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.466,
+      "text": "私はインドのお話がとっても",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 378,
+      "start": 1638.24,
+      "end": 1644.24,
+      "role": "onscreen",
+      "confidence": 0.48,
+      "lrDb": -0.419,
+      "text": "やはり理事になる方は違うなと思います",
+      "reason": "weak channel separation lrDb=-0.42; onscreen text hint"
+    },
+    {
+      "index": 379,
+      "start": 1644.24,
+      "end": 1646.24,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.412,
+      "text": "インドに行って赴任している時に",
+      "reason": "weak channel separation lrDb=-0.41; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 380,
+      "start": 1646.24,
+      "end": 1648.42,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.384,
+      "text": "子どもたちが群がって",
+      "reason": "weak channel separation lrDb=-0.38; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 381,
+      "start": 1648.42,
+      "end": 1652.8,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.456,
+      "text": "自分たちはクーラーの利いた高級車に乗っていて",
+      "reason": "weak channel separation lrDb=-0.46; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 382,
+      "start": 1652.8,
+      "end": 1656.34,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.446,
+      "text": "この格差に対してこれを味わったからには",
+      "reason": "weak channel separation lrDb=-0.45; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 383,
+      "start": 1656.34,
+      "end": 1659.84,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.471,
+      "text": "これを自分が仕事で何とかしていかなきゃいけない",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 384,
+      "start": 1659.84,
+      "end": 1662.04,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.462,
+      "text": "男の中の男だと思いました",
+      "reason": "weak channel separation lrDb=-0.46; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 385,
+      "start": 1662.04,
+      "end": 1663.28,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.331,
+      "text": "本当ですね",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 386,
+      "start": 1663.28,
+      "end": 1666.38,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.325,
+      "text": "さあ来週もゲストが続くんですけども",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 387,
+      "start": 1666.38,
+      "end": 1667.94,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.32,
+      "text": "アダルトチルドレンって言葉",
+      "reason": "weak channel separation lrDb=-0.32; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 388,
+      "start": 1667.94,
+      "end": 1670.5,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.34,
+      "text": "一時ね話題になりましたよね",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 389,
+      "start": 1670.5,
+      "end": 1671.22,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.37,
+      "text": "話題になりましたね",
+      "reason": "weak channel separation lrDb=-0.37; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 390,
+      "start": 1671.22,
+      "end": 1674.1,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.32,
+      "text": "そのねアダルトチルドレン悩んでる方を",
+      "reason": "weak channel separation lrDb=-0.32; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 391,
+      "start": 1674.1,
+      "end": 1677.4,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.323,
+      "text": "父親役となって助けるカウンセラー",
+      "reason": "weak channel separation lrDb=-0.32; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 392,
+      "start": 1677.4,
+      "end": 1678.64,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.349,
+      "text": "っていう方がいらっしゃるんですよ",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 393,
+      "start": 1678.64,
+      "end": 1680.96,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.343,
+      "text": "大堀良造さん",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 394,
+      "start": 1680.96,
+      "end": 1682.42,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.364,
+      "text": "私見つけちゃったんですよ",
+      "reason": "weak channel separation lrDb=-0.36; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 395,
+      "start": 1682.42,
+      "end": 1685.3,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.343,
+      "text": "その方にスタジオにお越しいただきます",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 396,
+      "start": 1685.3,
+      "end": 1689.0,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.465,
+      "text": "もうまちこさんも本当に人脈がすごいわね",
+      "reason": "weak channel separation lrDb=-0.47; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 397,
+      "start": 1689.0,
+      "end": 1689.48,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.329,
+      "text": "いやいや",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 398,
+      "start": 1689.48,
+      "end": 1694.58,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.451,
+      "text": "もう自分が知らないことを本当に教えていただいてます楽しみです",
+      "reason": "weak channel separation lrDb=-0.45; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 399,
+      "start": 1694.58,
+      "end": 1697.26,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.353,
+      "text": "本当アダルトチルネどんな世界なんでしょうね",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 400,
+      "start": 1697.26,
+      "end": 1700.98,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.333,
+      "text": "さて今日の東京へそろそろお別れの時間になりました",
+      "reason": "weak channel separation lrDb=-0.33; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 401,
+      "start": 1700.98,
+      "end": 1705.48,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.348,
+      "text": "次回は2月12日木曜日夜9時30分からです",
+      "reason": "weak channel separation lrDb=-0.35; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 402,
+      "start": 1705.48,
+      "end": 1708.36,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.342,
+      "text": "それではこの後も素敵な夜を過ごしください",
+      "reason": "weak channel separation lrDb=-0.34; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 403,
+      "start": 1708.36,
+      "end": 1710.52,
+      "role": "onscreen",
+      "confidence": 0.5,
+      "lrDb": -0.461,
+      "text": "オーマイカンパニーがお送りいたしました",
+      "reason": "weak channel separation lrDb=-0.46; default onscreen for ambiguous audio; smoothed between neighboring onscreen captions"
+    },
+    {
+      "index": 404,
+      "start": 1719.48,
+      "end": 1749.46,
+      "role": "onscreen",
+      "confidence": 0.221,
+      "lrDb": 0.331,
+      "text": "ご視聴ありがとうございました",
+      "reason": "weak channel separation lrDb=0.33; default onscreen for ambiguous audio"
+    }
+  ]
+}

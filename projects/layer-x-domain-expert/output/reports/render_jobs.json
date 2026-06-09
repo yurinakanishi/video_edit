@@ -1,0 +1,27 @@
+{
+  "schema_version": "render_jobs.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:15:20+09:00",
+  "jobs": [
+    {
+      "name": "preview_720p",
+      "purpose": "fast user review preview",
+      "width": 1280,
+      "height": 720,
+      "codec": "h264",
+      "preset": "veryfast",
+      "crf": 28,
+      "allowed_before_user_approval": true
+    },
+    {
+      "name": "final_1080p",
+      "purpose": "production-quality review render",
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "preset": "medium",
+      "crf": 20,
+      "allowed_before_user_approval": false
+    }
+  ]
+}

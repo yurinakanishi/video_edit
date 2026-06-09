@@ -1,0 +1,141 @@
+{
+  "project": {
+    "id": "yuri_nakanishi_tokyo_oasis_radio",
+    "name": "Tokyo Oasis 20260528 Yuri Nakanishi radio",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output"
+  },
+  "tools": {
+    "ffmpeg": "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+    "ffprobe": "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe"
+  },
+  "assets": {
+    "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.mp4",
+    "externalAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.wav",
+    "mainImage": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528_img1.jpg",
+    "alternateImage": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528_img2.jpg",
+    "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\kiitos_logo.webp",
+    "mediaManifest": {
+      "files": [
+        {
+          "kind": "video",
+          "role": "master",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.mp4",
+          "metadata": {
+            "durationSeconds": 1988.816067,
+            "width": 1920,
+            "height": 1080,
+            "fps": 30,
+            "codec": "hevc",
+            "hasAudio": true
+          }
+        },
+        {
+          "kind": "audio",
+          "role": "external",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528.wav",
+          "metadata": {
+            "durationSeconds": 1740.820998,
+            "sampleRate": 44100,
+            "channels": 2,
+            "codec": "pcm_s16le"
+          }
+        },
+        {
+          "kind": "image",
+          "role": "main",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528_img1.jpg",
+          "metadata": {
+            "width": 1477,
+            "height": 1108
+          }
+        },
+        {
+          "kind": "image",
+          "role": "alternate",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\東京オアシス20260528_img2.jpg",
+          "metadata": {
+            "width": 1108,
+            "height": 1477
+          }
+        },
+        {
+          "kind": "image",
+          "role": "logo",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\kiitos_logo.webp",
+          "metadata": {
+            "width": 600,
+            "height": 251
+          }
+        }
+      ]
+    }
+  },
+  "analysis": {
+    "transcribeBackend": "faster-whisper",
+    "transcribeModel": "large-v3",
+    "transcribeLanguage": "ja",
+    "transcribeDevice": "cuda",
+    "fasterWhisperComputeType": "float16",
+    "transcribeBeamSize": 5,
+    "transcribeTemperature": 0,
+    "conditionOnPreviousText": false,
+    "transcribeNormalizeAudio": true,
+    "transcribeFilterLowConfidence": true,
+    "transcribeNoSpeechThreshold": 0.6,
+    "transcribeAvgLogprobFilterThreshold": -1.0,
+    "transcribeCompressionRatioThreshold": 2.4,
+    "transcribeInitialPrompt": "東京オアシス、中西裕理、ラジオ、インタビュー。冒頭挨拶と本編インタビューを音声に忠実に文字起こししてください。聞き取れない語は推測しないでください。",
+    "transcribeFp16": true
+  },
+  "radioEdit": {
+    "removeOpeningGreeting": true,
+    "removeEndingMusic": true,
+    "speakerRolesPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\reports\\full_transcript_speaker_roles_lr_tuned.json",
+    "transcriptCorrectionsPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\config\\transcript_corrections.json",
+    "subtitleTextColor": "#FFFFFF",
+    "hasegawaSubtitleBoxColor": "#E85AA3",
+    "nakanishiSubtitleBoxColor": "#2F80ED",
+    "unknownSubtitleBoxColor": "#555555",
+    "subtitleBoxOpacity": 1.0,
+    "subtitleBoxPadding": 18,
+    "subtitleTracking": 4,
+    "subtitleMaxLineChars": 20,
+    "subtitleShadowAlpha": 0,
+    "subtitleOverlayMode": "png-rounded",
+    "subtitleRadius": 10,
+    "subtitleLineGap": 6,
+    "subtitleStrokeWidth": 0,
+    "titleText": "【東京オアシス】中西裕理さん出演会",
+    "titleFontSize": 58,
+    "titleRenderScale": 1.2,
+    "titleTextColor": "#F28C28",
+    "titleAccentColor": "#F28C28",
+    "titleBoxColor": "#FFFFFF",
+    "titleBoxOpacity": 0.94,
+    "titleStripeHeight": 10,
+    "titleX": 18,
+    "titleY": 18,
+    "titlePaddingX": 24,
+    "titlePaddingY": 11,
+    "logoPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\source\\kiitos_logo.webp",
+    "logoHeight": 120,
+    "logoBoxEnabled": true,
+    "logoBoxPaddingX": 24,
+    "logoBoxPaddingY": 16,
+    "logoFrameHeight": 152,
+    "logoMarginX": 24,
+    "logoMarginY": 20,
+    "targetWidth": 1920,
+    "targetHeight": 1080,
+    "subtitleFontSize": 80,
+    "subtitleMarginV": 16
+  },
+  "render": {
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\yuri_nakanishi_tokyo_oasis_radio\\output\\videos\\tokyo_oasis_20260528_nakanishi_synced_subtitled.mp4",
+    "outputFps": "30000/1001",
+    "videoEncoder": "libx264",
+    "videoCrf": 18,
+    "videoPreset": "veryfast"
+  }
+}

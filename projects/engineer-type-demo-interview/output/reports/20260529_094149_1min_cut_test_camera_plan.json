@@ -1,0 +1,23 @@
+{
+  "mode": "manual-plan",
+  "source": "1min cut test around 31m52 using original camera5/master/camera5 cuts",
+  "timelineStart": 1888.0,
+  "duration": 60.0,
+  "segments": [
+    {
+      "role": "camera5",
+      "start": 0.0,
+      "end": 16.288
+    },
+    {
+      "role": "master",
+      "start": 16.288,
+      "end": 48.288
+    },
+    {
+      "role": "camera5",
+      "start": 48.288,
+      "end": 60.0
+    }
+  ]
+}

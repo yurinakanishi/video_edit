@@ -1,0 +1,63 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:35:21+09:00",
+  "source_image": "reference\\left-person-with-name-plate-sample.png",
+  "image": {
+    "width": 1864,
+    "height": 1048,
+    "aspect_ratio": 1.778626,
+    "mode": "RGBA"
+  },
+  "analysis_basis": "manual visual analysis of project reference still",
+  "reference_image_id": "single_person_nameplate",
+  "layout_types": [
+    "single",
+    "lower_third_person"
+  ],
+  "intended_sections": [
+    "participant_identification"
+  ],
+  "framing": {
+    "composition": "single_person_medium_closeup_with_large_nameplate",
+    "subject_crop": "upper torso crop with breathing room above head and shoulders visible",
+    "face_position": "face centered around x=0.48,y=0.28; eyes near upper third",
+    "safe_margins_norm": {
+      "x": 0.06,
+      "top": 0.09,
+      "bottom": 0.22
+    },
+    "background": "office context kept softly visible, not cropped to a plain backdrop"
+  },
+  "overlay_style": {
+    "logo": {
+      "position": "top_left",
+      "x_norm": 0.03,
+      "y_norm": 0.04,
+      "width_norm": 0.18
+    },
+    "topic_title": {
+      "position": "top_right",
+      "background": "#5F5AF5",
+      "text": "white bold"
+    },
+    "nameplate": {
+      "position": "lower_center",
+      "role_line": "white bold with blue-purple outline/shadow above plate",
+      "name_box": "#5F5AF5 solid rectangle with very large white name",
+      "width_norm": 0.56
+    }
+  },
+  "render_directives": [
+    "Use this only for participant introduction or first clear identification cuts.",
+    "Keep the subject large enough that facial expression reads clearly; avoid cutting off the microphone.",
+    "Name, title, and role text must come from people_map.json.",
+    "Do not render caption subtitles during the interval where the nameplate is visible."
+  ],
+  "application_policy": {
+    "adapt_to_video_context": true,
+    "do_not_render_reference_image_directly": true,
+    "match_framing_crop_face_position_and_visual_style": true,
+    "allow_mirroring_when_layout_requires_opposite_bio_side": true
+  }
+}

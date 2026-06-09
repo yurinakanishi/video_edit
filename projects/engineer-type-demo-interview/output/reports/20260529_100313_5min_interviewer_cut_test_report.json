@@ -1,0 +1,21 @@
+{
+  "createdAt": "20260529_100313",
+  "config": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\app\\20260529_100313_5min_interviewer_cut_test_config.json",
+  "outputVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_100313_5min_interviewer_cut_test_full_png.mp4",
+  "timelineStartSeconds": 1762.0,
+  "timelineEndSeconds": 2062.0,
+  "localCutSeconds": [
+    2.288,
+    40.288,
+    142.288,
+    174.288,
+    264.288
+  ],
+  "interviewerCaption": {
+    "timelineStart": 1930.44,
+    "localStart": 168.44,
+    "text": "コアの仕事って何なの?"
+  },
+  "faceCenterCrop": "horizontal-only",
+  "globalVideoZoom": 1.2
+}

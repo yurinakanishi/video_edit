@@ -1,0 +1,483 @@
+{
+  "schema_version": "audio_sync_clap_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T07:22:11+09:00",
+  "time_unit": "seconds",
+  "sample_rate": 48000,
+  "analysis_range": {
+    "start": 360.0,
+    "duration": 240.0
+  },
+  "method": {
+    "clap_detection": "short-window transient energy with local floor subtraction",
+    "confirmation": "normalized waveform cross-correlation around candidate clap windows",
+    "waveform_check": "broad waveform/transient-envelope cross-correlation across the scanned range",
+    "precision": "sample lag reported in milliseconds"
+  },
+  "reference_role": "master",
+  "reference_media_id": "group_wide",
+  "sources": [
+    {
+      "role": "master",
+      "media_id": "group_wide",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+      "audio_statistics": {
+        "rms": 0.02525667,
+        "peak": 0.58346558,
+        "rmsDbfs": -31.95,
+        "peakDbfs": -4.68,
+        "likelySilent": false,
+        "usableForWaveformSync": true
+      },
+      "clap_candidates": [
+        {
+          "time": 407.317,
+          "score": 16.2254,
+          "envelope": 0.13501585
+        },
+        {
+          "time": 439.858,
+          "score": 22.4372,
+          "envelope": 0.18670654
+        },
+        {
+          "time": 441.391,
+          "score": 14.0463,
+          "envelope": 0.11688283
+        },
+        {
+          "time": 482.346,
+          "score": 24.1693,
+          "envelope": 0.20111926
+        },
+        {
+          "time": 495.498,
+          "score": 14.5525,
+          "envelope": 0.12109539
+        },
+        {
+          "time": 512.35,
+          "score": 14.3472,
+          "envelope": 0.11938708
+        },
+        {
+          "time": 512.847,
+          "score": 16.4068,
+          "envelope": 0.13652539
+        },
+        {
+          "time": 513.277,
+          "score": 20.0581,
+          "envelope": 0.16690944
+        },
+        {
+          "time": 516.303,
+          "score": 16.7177,
+          "envelope": 0.13911279
+        },
+        {
+          "time": 517.451,
+          "score": 15.3292,
+          "envelope": 0.12755845
+        },
+        {
+          "time": 518.275,
+          "score": 13.9356,
+          "envelope": 0.11596214
+        },
+        {
+          "time": 518.996,
+          "score": 15.5136,
+          "envelope": 0.12909329
+        }
+      ]
+    },
+    {
+      "role": "camera2",
+      "media_id": "cam_person_01",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+      "audio_statistics": {
+        "rms": 0.03603739,
+        "peak": 0.5894165,
+        "rmsDbfs": -28.86,
+        "peakDbfs": -4.59,
+        "likelySilent": false,
+        "usableForWaveformSync": true
+      },
+      "clap_candidates": [
+        {
+          "time": 403.803,
+          "score": 12.0048,
+          "envelope": 0.13251193
+        },
+        {
+          "time": 430.969,
+          "score": 22.6215,
+          "envelope": 0.24970175
+        },
+        {
+          "time": 436.447,
+          "score": 11.9456,
+          "envelope": 0.1318585
+        },
+        {
+          "time": 438.038,
+          "score": 13.6119,
+          "envelope": 0.15025179
+        },
+        {
+          "time": 448.225,
+          "score": 11.3707,
+          "envelope": 0.12551229
+        },
+        {
+          "time": 479.014,
+          "score": 16.6121,
+          "envelope": 0.18336847
+        },
+        {
+          "time": 479.507,
+          "score": 13.4574,
+          "envelope": 0.14854628
+        },
+        {
+          "time": 488.277,
+          "score": 13.2721,
+          "envelope": 0.14650084
+        },
+        {
+          "time": 488.909,
+          "score": 11.764,
+          "envelope": 0.12985444
+        },
+        {
+          "time": 490.881,
+          "score": 12.9155,
+          "envelope": 0.14256486
+        },
+        {
+          "time": 492.366,
+          "score": 11.4069,
+          "envelope": 0.12591186
+        },
+        {
+          "time": 566.046,
+          "score": 16.2782,
+          "envelope": 0.17968298
+        }
+      ]
+    },
+    {
+      "role": "camera3",
+      "media_id": "cam_person_02",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+      "audio_statistics": {
+        "rms": 0.02493607,
+        "peak": 0.67910767,
+        "rmsDbfs": -32.06,
+        "peakDbfs": -3.36,
+        "likelySilent": false,
+        "usableForWaveformSync": true
+      },
+      "clap_candidates": [
+        {
+          "time": 363.58,
+          "score": 17.5002,
+          "envelope": 0.20354825
+        },
+        {
+          "time": 375.391,
+          "score": 18.1649,
+          "envelope": 0.21127945
+        },
+        {
+          "time": 414.651,
+          "score": 14.6583,
+          "envelope": 0.17049426
+        },
+        {
+          "time": 415.293,
+          "score": 25.8449,
+          "envelope": 0.30060774
+        },
+        {
+          "time": 416.058,
+          "score": 17.8431,
+          "envelope": 0.20753698
+        },
+        {
+          "time": 447.331,
+          "score": 15.7362,
+          "envelope": 0.18303174
+        },
+        {
+          "time": 459.409,
+          "score": 22.8397,
+          "envelope": 0.26565319
+        },
+        {
+          "time": 459.812,
+          "score": 20.3157,
+          "envelope": 0.23629591
+        },
+        {
+          "time": 487.483,
+          "score": 14.5133,
+          "envelope": 0.16880742
+        },
+        {
+          "time": 489.81,
+          "score": 27.2861,
+          "envelope": 0.31737125
+        },
+        {
+          "time": 496.482,
+          "score": 15.7919,
+          "envelope": 0.18367909
+        },
+        {
+          "time": 501.809,
+          "score": 18.5099,
+          "envelope": 0.21529233
+        }
+      ]
+    },
+    {
+      "role": "camera4",
+      "media_id": "cam_person_03",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+      "audio_statistics": {
+        "rms": 0.03276076,
+        "peak": 0.65634155,
+        "rmsDbfs": -29.69,
+        "peakDbfs": -3.66,
+        "likelySilent": false,
+        "usableForWaveformSync": true
+      },
+      "clap_candidates": [
+        {
+          "time": 381.056,
+          "score": 11.3261,
+          "envelope": 0.15211384
+        },
+        {
+          "time": 420.405,
+          "score": 14.1093,
+          "envelope": 0.18949285
+        },
+        {
+          "time": 420.895,
+          "score": 15.9476,
+          "envelope": 0.21418183
+        },
+        {
+          "time": 453.437,
+          "score": 18.373,
+          "envelope": 0.24675502
+        },
+        {
+          "time": 495.731,
+          "score": 17.9754,
+          "envelope": 0.24141574
+        },
+        {
+          "time": 502.409,
+          "score": 12.7139,
+          "envelope": 0.17075251
+        },
+        {
+          "time": 507.282,
+          "score": 12.105,
+          "envelope": 0.16257453
+        },
+        {
+          "time": 539.129,
+          "score": 12.29,
+          "envelope": 0.16505827
+        },
+        {
+          "time": 573.547,
+          "score": 11.7455,
+          "envelope": 0.1577456
+        },
+        {
+          "time": 582.744,
+          "score": 11.3935,
+          "envelope": 0.15301812
+        },
+        {
+          "time": 589.975,
+          "score": 13.1281,
+          "envelope": 0.17631422
+        },
+        {
+          "time": 592.203,
+          "score": 11.2655,
+          "envelope": 0.15129901
+        }
+      ]
+    }
+  ],
+  "matches": {
+    "master": {
+      "status": "reference",
+      "offsetSeconds": 0.0,
+      "offsetMilliseconds": 0.0,
+      "referenceClapCandidates": [
+        {
+          "time": 407.317,
+          "score": 16.2254,
+          "envelope": 0.13501585
+        },
+        {
+          "time": 439.858,
+          "score": 22.4372,
+          "envelope": 0.18670654
+        },
+        {
+          "time": 441.391,
+          "score": 14.0463,
+          "envelope": 0.11688283
+        },
+        {
+          "time": 482.346,
+          "score": 24.1693,
+          "envelope": 0.20111926
+        },
+        {
+          "time": 495.498,
+          "score": 14.5525,
+          "envelope": 0.12109539
+        },
+        {
+          "time": 512.35,
+          "score": 14.3472,
+          "envelope": 0.11938708
+        },
+        {
+          "time": 512.847,
+          "score": 16.4068,
+          "envelope": 0.13652539
+        },
+        {
+          "time": 513.277,
+          "score": 20.0581,
+          "envelope": 0.16690944
+        },
+        {
+          "time": 516.303,
+          "score": 16.7177,
+          "envelope": 0.13911279
+        },
+        {
+          "time": 517.451,
+          "score": 15.3292,
+          "envelope": 0.12755845
+        },
+        {
+          "time": 518.275,
+          "score": 13.9356,
+          "envelope": 0.11596214
+        },
+        {
+          "time": 518.996,
+          "score": 15.5136,
+          "envelope": 0.12909329
+        }
+      ]
+    },
+    "camera2": {
+      "combined": {
+        "status": "confirmed",
+        "preferred": "clap",
+        "offsetSeconds": -3.332479,
+        "offsetMilliseconds": -3332.479,
+        "waveformClapDeltaMilliseconds": 2.479
+      },
+      "clap": {
+        "referenceClapTime": 439.858,
+        "sourceClapTime": 436.447,
+        "lagSamples": 3769,
+        "lagMilliseconds": 78.521,
+        "offsetSeconds": -3.332479,
+        "offsetMilliseconds": -3332.479,
+        "correlation": 0.413349,
+        "referenceCandidateScore": 22.4372,
+        "sourceCandidateScore": 11.9456,
+        "status": "matched"
+      },
+      "waveform": {
+        "status": "matched",
+        "offsetSeconds": -3.33,
+        "offsetMilliseconds": -3330.0,
+        "lagFrames": -333,
+        "hopMilliseconds": 10.0,
+        "correlation": 0.862478
+      }
+    },
+    "camera3": {
+      "combined": {
+        "status": "confirmed",
+        "preferred": "clap",
+        "offsetSeconds": 7.467854,
+        "offsetMilliseconds": 7467.854,
+        "waveformClapDeltaMilliseconds": 2.146
+      },
+      "clap": {
+        "referenceClapTime": 439.858,
+        "sourceClapTime": 447.331,
+        "lagSamples": -247,
+        "lagMilliseconds": -5.146,
+        "offsetSeconds": 7.467854,
+        "offsetMilliseconds": 7467.854,
+        "correlation": 0.431629,
+        "referenceCandidateScore": 22.4372,
+        "sourceCandidateScore": 15.7362,
+        "status": "matched"
+      },
+      "waveform": {
+        "status": "matched",
+        "offsetSeconds": 7.47,
+        "offsetMilliseconds": 7470.0,
+        "lagFrames": 747,
+        "hopMilliseconds": 10.0,
+        "correlation": 0.597429
+      }
+    },
+    "camera4": {
+      "combined": {
+        "status": "waveform_only",
+        "preferred": "waveform",
+        "offsetSeconds": 13.38,
+        "offsetMilliseconds": 13380.0
+      },
+      "clap": {
+        "referenceClapTime": 512.847,
+        "sourceClapTime": 507.282,
+        "lagSamples": -327,
+        "lagMilliseconds": -6.812,
+        "offsetSeconds": -5.571813,
+        "offsetMilliseconds": -5571.813,
+        "correlation": 0.246246,
+        "referenceCandidateScore": 16.4068,
+        "sourceCandidateScore": 12.105,
+        "status": "weak_match"
+      },
+      "waveform": {
+        "status": "matched",
+        "offsetSeconds": 13.38,
+        "offsetMilliseconds": 13380.0,
+        "lagFrames": 1338,
+        "hopMilliseconds": 10.0,
+        "correlation": 0.553411
+      }
+    }
+  },
+  "offsets": {
+    "master": 0.0,
+    "camera2": -3.332479,
+    "camera3": 7.467854,
+    "camera4": 13.38
+  },
+  "status": "partial"
+}

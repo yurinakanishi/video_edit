@@ -1,0 +1,65 @@
+{
+  "enabled": true,
+  "items": [
+    {
+      "role": "master",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "duration": 2968.465,
+      "syncOffset": 0.0,
+      "sourceLocalCoverage": [
+        0.0,
+        2968.465
+      ]
+    },
+    {
+      "role": "camera2",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "duration": 568.568,
+      "syncOffset": 17.2,
+      "sourceLocalCoverage": [
+        0.0,
+        551.368
+      ]
+    },
+    {
+      "role": "camera3",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "duration": 384.718,
+      "syncOffset": -931.57,
+      "sourceLocalCoverage": [
+        931.57,
+        1316.288
+      ]
+    },
+    {
+      "role": "camera4",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "duration": 1124.89,
+      "syncOffset": 2.95,
+      "sourceLocalCoverage": [
+        0.0,
+        1121.94
+      ]
+    },
+    {
+      "role": "camera5",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "duration": 1799.164,
+      "syncOffset": -1125.41,
+      "sourceLocalCoverage": [
+        1125.41,
+        2924.574
+      ]
+    }
+  ],
+  "adjustments": [
+    {
+      "start": 2924.574,
+      "end": 2924.604,
+      "fromRole": "camera5",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    }
+  ],
+  "changed": true
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:35:21+09:00",
+  "source_image": "reference\\annotation-sample.png",
+  "image": {
+    "width": 1838,
+    "height": 1033,
+    "aspect_ratio": 1.779284,
+    "mode": "RGBA"
+  },
+  "analysis_basis": "manual visual analysis of project reference still",
+  "reference_image_id": "annotation_sample",
+  "layout_types": [
+    "speaker_reaction_pair",
+    "entity_explainer"
+  ],
+  "intended_sections": [
+    "main_interview_topic_explainer",
+    "two_person_exchange"
+  ],
+  "framing": {
+    "composition": "two_person_split_with_logo_topic_and_explainer",
+    "subject_crop": "medium close-up to medium shot; shoulders and upper torso visible",
+    "face_position": "left subject face centered near x=0.23,y=0.28; right subject face centered near x=0.74,y=0.30",
+    "panel_order_rule": "preserve conversation-role order; interviewer left when included",
+    "divider": {
+      "orientation": "vertical",
+      "x_norm": 0.5,
+      "color": "#8EC6FF",
+      "width_norm": 0.006
+    },
+    "safe_margins_norm": {
+      "x": 0.035,
+      "top": 0.07,
+      "bottom": 0.18
+    }
+  },
+  "overlay_style": {
+    "logo": {
+      "position": "top_left",
+      "x_norm": 0.03,
+      "y_norm": 0.035,
+      "width_norm": 0.18
+    },
+    "topic_title": {
+      "position": "top_right",
+      "background": "#5F5AF5",
+      "text": "white bold",
+      "height_norm": 0.09
+    },
+    "entity_explainer": {
+      "position": "lower_third",
+      "label_tab": "#5F5AF5",
+      "body": "white card with dense black Japanese text",
+      "avoid_caption_overlap": true
+    }
+  },
+  "render_directives": [
+    "Use for short term/entity explanations during a focused two-person exchange.",
+    "Keep faces above the explainer card and outside the top logo/title band.",
+    "Crop each panel so eyes sit in the upper third and microphones/hands remain visible when context matters."
+  ],
+  "application_policy": {
+    "adapt_to_video_context": true,
+    "do_not_render_reference_image_directly": true,
+    "match_framing_crop_face_position_and_visual_style": true,
+    "allow_mirroring_when_layout_requires_opposite_bio_side": true
+  }
+}

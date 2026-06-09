@@ -1,0 +1,55 @@
+{
+  "createdAt": "20260529_face_center_cut_test",
+  "timelineStart": 1888.0,
+  "duration": 60.0,
+  "basisReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_1min_face_color_probe.json",
+  "segments": [
+    {
+      "role": "camera5",
+      "start": 0.0,
+      "end": 16.288,
+      "centerX": 0.66471,
+      "centerY": 0.44375,
+      "zoom": 1.5,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "sourceStart": 762.59,
+      "sourceEnd": 778.878,
+      "saturationMean": 0.34615,
+      "valueMean": 0.44513
+    },
+    {
+      "role": "master",
+      "start": 16.288,
+      "end": 48.288,
+      "centerX": 0.59444,
+      "centerY": 0.38858,
+      "zoom": 1.3,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "sourceStart": 1904.288,
+      "sourceEnd": 1936.288,
+      "saturationMean": 0.29645,
+      "valueMean": 0.48297
+    },
+    {
+      "role": "camera5",
+      "start": 48.288,
+      "end": 60.0,
+      "centerX": 0.65816,
+      "centerY": 0.43148,
+      "zoom": 1.5,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "sourceStart": 810.878,
+      "sourceEnd": 822.59,
+      "saturationMean": 0.3422,
+      "valueMean": 0.46472
+    }
+  ],
+  "notes": [
+    "camera5 face center is around x=0.66, so 1.2x zoom cannot fully center it; use 1.5x for close-up test segments.",
+    "master face center is around x=0.59; use 1.3x for this test segment.",
+    "camera5 saturation is higher than master, so render config applies an extra saturation/contrast reduction to camera5."
+  ]
+}

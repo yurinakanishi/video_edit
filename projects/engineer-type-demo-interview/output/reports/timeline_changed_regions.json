@@ -1,0 +1,66 @@
+{
+  "createdAt": "2026-05-30T05:21:53Z",
+  "timelinePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\timelines\\current.timeline.json",
+  "previousTimelinePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\timelines\\previous.timeline.json",
+  "previousTimelineExists": false,
+  "valid": true,
+  "validationWarnings": [],
+  "padding": 2.0,
+  "regionCount": 1,
+  "regions": [
+    {
+      "start": 0.0,
+      "end": 2968.4655,
+      "reasons": [
+        {
+          "reason": "missing_previous_timeline",
+          "id": ""
+        }
+      ],
+      "id": "changed_region_001",
+      "duration": 2968.4655
+    }
+  ],
+  "commandPlan": [
+    {
+      "regionId": "changed_region_001",
+      "commands": [
+        [
+          "C:\\Users\\yurin\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "C:\\Users\\yurin\\Desktop\\video_edit\\scripts\\timeline_graphics_adapter.py",
+          "--adapter",
+          "remotion",
+          "--range-start",
+          "0.000000",
+          "--range-end",
+          "2968.465500"
+        ],
+        [
+          "C:\\Users\\yurin\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "C:\\Users\\yurin\\Desktop\\video_edit\\scripts\\timeline_graphics_adapter.py",
+          "--adapter",
+          "blender",
+          "--range-start",
+          "0.000000",
+          "--range-end",
+          "2968.465500"
+        ],
+        [
+          "C:\\Users\\yurin\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "C:\\Users\\yurin\\Desktop\\video_edit\\scripts\\ffmpeg_timeline_adapter.py",
+          "--range-start",
+          "0.000000",
+          "--range-end",
+          "2968.465500",
+          "--output",
+          "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.changed_region_001_00000000_02968466.proxy.mp4",
+          "--proxy",
+          "--with-remotion-overlays",
+          "--with-blender-overlays"
+        ]
+      ]
+    }
+  ],
+  "executed": false,
+  "executionResults": []
+}

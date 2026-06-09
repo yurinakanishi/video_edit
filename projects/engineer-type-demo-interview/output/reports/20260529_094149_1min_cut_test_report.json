@@ -1,0 +1,19 @@
+{
+  "createdAt": "20260529_094149",
+  "timelineStartSeconds": 1888.0,
+  "timelineEndSeconds": 1948.0,
+  "containsCutsAtTimelineSeconds": [
+    1904.288,
+    1936.288
+  ],
+  "localCutSeconds": [
+    16.288,
+    48.288
+  ],
+  "sourceTranscript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\primary.srt",
+  "timelineShiftedTranscript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_094149_primary_timeline_shifted_existing_transcript.srt",
+  "cameraPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_094149_1min_cut_test_camera_plan.json",
+  "config": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\app\\20260529_094149_1min_cut_test_config.json",
+  "outputVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_094149_1min_cut_test_full_png.mp4",
+  "note": "No transcription run. Existing primary.srt timestamp-shifted by external audio offset only."
+}

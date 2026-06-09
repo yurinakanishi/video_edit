@@ -1,0 +1,7249 @@
+{
+  "schema_version": "transcript.v1",
+  "project_id": "layer-x-domain-expert",
+  "source_audio_media_id": "group_wide",
+  "language": "ja",
+  "status": "transcribed_pending_diarization",
+  "generated_at": "2026-06-10T08:15:20+09:00",
+  "source_manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\manifest_transcripts.json",
+  "source_primary_json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\primary.json",
+  "source_primary_srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\primary.srt",
+  "segments": [
+    {
+      "segment_id": "seg_000001",
+      "start": 0.0,
+      "end": 5.0,
+      "speaker_id": null,
+      "text": "音声に忠実に文字起こしないでください。",
+      "confidence": 0.7804,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000002",
+      "start": 5.0,
+      "end": 10.0,
+      "speaker_id": null,
+      "text": "音声に忠実に文字起こしないでください。",
+      "confidence": 0.7804,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000003",
+      "start": 10.0,
+      "end": 15.0,
+      "speaker_id": null,
+      "text": "音声に忠実に文字起こしないでください。",
+      "confidence": 0.7804,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000004",
+      "start": 15.0,
+      "end": 20.0,
+      "speaker_id": null,
+      "text": "音声に忠実に文字起こしないでください。",
+      "confidence": 0.7804,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000005",
+      "start": 20.0,
+      "end": 25.0,
+      "speaker_id": null,
+      "text": "音声に忠実に文字起こしないでください。",
+      "confidence": 0.7804,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000006",
+      "start": 25.0,
+      "end": 27.0,
+      "speaker_id": null,
+      "text": "あ、じゃあ",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000007",
+      "start": 27.0,
+      "end": 33.0,
+      "speaker_id": null,
+      "text": "修理構成すぎるんで、そっちからの方が話しやすかったら、そっちから始まっちゃっていい?",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000008",
+      "start": 33.0,
+      "end": 35.0,
+      "speaker_id": null,
+      "text": "そっちから始まっちゃっていい?",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000009",
+      "start": 35.0,
+      "end": 43.0,
+      "speaker_id": null,
+      "text": "その方が、僕らの一隣りが、最初春入るから、つなげるし",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000010",
+      "start": 43.0,
+      "end": 45.0,
+      "speaker_id": null,
+      "text": "いや、もう、修理で大丈夫",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000011",
+      "start": 45.0,
+      "end": 47.0,
+      "speaker_id": null,
+      "text": "そう、修理で大丈夫",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000012",
+      "start": 47.0,
+      "end": 49.0,
+      "speaker_id": null,
+      "text": "修理すごいすごい",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000013",
+      "start": 49.0,
+      "end": 51.0,
+      "speaker_id": null,
+      "text": "修理じゃない",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000014",
+      "start": 51.0,
+      "end": 53.0,
+      "speaker_id": null,
+      "text": "それがあるんだよ",
+      "confidence": 0.5494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000015",
+      "start": 53.0,
+      "end": 55.0,
+      "speaker_id": null,
+      "text": "すみません、もうちょっと",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000016",
+      "start": 55.0,
+      "end": 57.0,
+      "speaker_id": null,
+      "text": "いや、でもね",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000017",
+      "start": 57.0,
+      "end": 58.0,
+      "speaker_id": null,
+      "text": "だいぶ違いますよ、これ",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000018",
+      "start": 58.0,
+      "end": 62.0,
+      "speaker_id": null,
+      "text": "全然違う、僕ら今ずっとリモートでZoomでやってるんだけど",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000019",
+      "start": 62.0,
+      "end": 63.0,
+      "speaker_id": null,
+      "text": "ありがとうございます",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000020",
+      "start": 63.0,
+      "end": 65.0,
+      "speaker_id": null,
+      "text": "意外に3人が近いっていう",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000021",
+      "start": 65.0,
+      "end": 69.0,
+      "speaker_id": null,
+      "text": "前回の動画に引き続きじゃないけど",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000022",
+      "start": 69.0,
+      "end": 71.0,
+      "speaker_id": null,
+      "text": "いや、ダビですよ、ただいま",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000023",
+      "start": 71.0,
+      "end": 74.0,
+      "speaker_id": null,
+      "text": "あ、飛んでくださいね、水入れてるんで",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000024",
+      "start": 74.0,
+      "end": 75.0,
+      "speaker_id": null,
+      "text": "ちゃんと喋ってたら",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000025",
+      "start": 75.0,
+      "end": 77.0,
+      "speaker_id": null,
+      "text": "ロゴをこっちに",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000026",
+      "start": 79.0,
+      "end": 81.0,
+      "speaker_id": null,
+      "text": "喋ってる?",
+      "confidence": 0.6407,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000027",
+      "start": 81.0,
+      "end": 84.9,
+      "speaker_id": null,
+      "text": "お水をお借りお願いします",
+      "confidence": 0.587,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000028",
+      "start": 84.9,
+      "end": 86.38,
+      "speaker_id": null,
+      "text": "除菌で",
+      "confidence": 0.587,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000029",
+      "start": 86.38,
+      "end": 96.38,
+      "speaker_id": null,
+      "text": "噛んだりとかしたら言い直してもらって",
+      "confidence": 0.587,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000030",
+      "start": 96.38,
+      "end": 100.14,
+      "speaker_id": null,
+      "text": "もう一回やり直しますみたいな感じで",
+      "confidence": 0.587,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000031",
+      "start": 111.0,
+      "end": 117.0,
+      "speaker_id": null,
+      "text": "普段よりもちょっとリアクションを大きめぐらいにしていただくとちょうどいいです",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000032",
+      "start": 117.0,
+      "end": 119.0,
+      "speaker_id": null,
+      "text": "あれ、ちなみにこれは全部撮ってるんですか?",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000033",
+      "start": 119.0,
+      "end": 120.0,
+      "speaker_id": null,
+      "text": "撮ってません",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000034",
+      "start": 120.0,
+      "end": 125.0,
+      "speaker_id": null,
+      "text": "一人ずつの顔と全体を撮ってる可能性があるので",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000035",
+      "start": 128.0,
+      "end": 131.0,
+      "speaker_id": null,
+      "text": "僕らは普通にカメラを見なくていいです",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000036",
+      "start": 131.0,
+      "end": 133.0,
+      "speaker_id": null,
+      "text": "見なくていいですね、意識しなくていい",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000037",
+      "start": 133.0,
+      "end": 134.0,
+      "speaker_id": null,
+      "text": "意識しなくていいです",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000038",
+      "start": 134.0,
+      "end": 137.0,
+      "speaker_id": null,
+      "text": "カメラをみんなで見てると不自然なので",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000039",
+      "start": 137.0,
+      "end": 141.0,
+      "speaker_id": null,
+      "text": "普通に3人で喋ってるっていうのがいいです",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000040",
+      "start": 141.0,
+      "end": 143.16,
+      "speaker_id": null,
+      "text": "最初挨拶するときだけ",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000041",
+      "start": 143.16,
+      "end": 146.9,
+      "speaker_id": null,
+      "text": "他のカメラ来て直接ケーブルつないだら",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000042",
+      "start": 146.9,
+      "end": 147.88,
+      "speaker_id": null,
+      "text": "データ撮れるじゃないですか",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000043",
+      "start": 147.88,
+      "end": 151.04,
+      "speaker_id": null,
+      "text": "6400だけケーブルの2つ違う",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000044",
+      "start": 151.04,
+      "end": 152.0,
+      "speaker_id": null,
+      "text": "全体撮ってるのがこれ",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000045",
+      "start": 152.0,
+      "end": 157.06,
+      "speaker_id": null,
+      "text": "これで撮ったんでこれで多分撮れるはずなんで",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000046",
+      "start": 157.06,
+      "end": 159.48,
+      "speaker_id": null,
+      "text": "これで最後すい出し",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000047",
+      "start": 159.48,
+      "end": 160.24,
+      "speaker_id": null,
+      "text": "すい出し分かりました",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000048",
+      "start": 160.24,
+      "end": 163.2,
+      "speaker_id": null,
+      "text": "これと同じカメラのバックに入れてもらえますか",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000049",
+      "start": 163.2,
+      "end": 163.6,
+      "speaker_id": null,
+      "text": "分かりました",
+      "confidence": 0.7125,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000050",
+      "start": 163.6,
+      "end": 170.6,
+      "speaker_id": null,
+      "text": "終わりのときから",
+      "confidence": 0.53,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000051",
+      "start": 170.6,
+      "end": 172.6,
+      "speaker_id": null,
+      "text": "終わりのときから",
+      "confidence": 0.53,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000052",
+      "start": 172.6,
+      "end": 177.6,
+      "speaker_id": null,
+      "text": "今日はこんな感じでお話ししてきましたけど",
+      "confidence": 0.53,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000053",
+      "start": 177.6,
+      "end": 180.6,
+      "speaker_id": null,
+      "text": "最後にみなさんどうでした?って",
+      "confidence": 0.53,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000054",
+      "start": 180.6,
+      "end": 188.6,
+      "speaker_id": null,
+      "text": "どこにつけたら邪魔じゃない?この辺",
+      "confidence": 0.53,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000055",
+      "start": 188.6,
+      "end": 190.42,
+      "speaker_id": null,
+      "text": "辺 おっきゅん",
+      "confidence": 0.0035,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000056",
+      "start": 190.42,
+      "end": 194.57999999999998,
+      "speaker_id": null,
+      "text": "本当にあるん スポーツで",
+      "confidence": 0.0035,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000057",
+      "start": 194.57999999999998,
+      "end": 198.26,
+      "speaker_id": null,
+      "text": "概要欄 きましたねいきましたここのメンバー",
+      "confidence": 0.0035,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000058",
+      "start": 198.26,
+      "end": 202.9,
+      "speaker_id": null,
+      "text": "かっこいいんじゃないですかしっかり 兄さんあのこれ",
+      "confidence": 0.0035,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000059",
+      "start": 202.9,
+      "end": 210.44,
+      "speaker_id": null,
+      "text": "電源を知れそうに電源ボタンを押したら やっぱりした基本はこれから出した",
+      "confidence": 0.0035,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000060",
+      "start": 210.44,
+      "end": 213.44,
+      "speaker_id": null,
+      "text": "そっちも来てない?",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000061",
+      "start": 213.44,
+      "end": 215.44,
+      "speaker_id": null,
+      "text": "皆さんマイク本体を",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000062",
+      "start": 215.44,
+      "end": 216.44,
+      "speaker_id": null,
+      "text": "ありがとうございます",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000063",
+      "start": 216.44,
+      "end": 218.44,
+      "speaker_id": null,
+      "text": "あの緑が絶対です",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000064",
+      "start": 223.44,
+      "end": 224.44,
+      "speaker_id": null,
+      "text": "あとなんか電池",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000065",
+      "start": 224.44,
+      "end": 226.44,
+      "speaker_id": null,
+      "text": "ゆるいやつって止めた方がいいです?",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000066",
+      "start": 226.44,
+      "end": 227.44,
+      "speaker_id": null,
+      "text": "これです",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000067",
+      "start": 227.44,
+      "end": 228.44,
+      "speaker_id": null,
+      "text": "これ?",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000068",
+      "start": 228.44,
+      "end": 230.44,
+      "speaker_id": null,
+      "text": "なんか落ちてきちゃうやつ",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000069",
+      "start": 231.44,
+      "end": 232.44,
+      "speaker_id": null,
+      "text": "でもついてる",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000070",
+      "start": 232.44,
+      "end": 234.44,
+      "speaker_id": null,
+      "text": "もう触らなければ大丈夫",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000071",
+      "start": 238.44,
+      "end": 239.44,
+      "speaker_id": null,
+      "text": "スマホとか置かない方がいいですか?",
+      "confidence": 0.6371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000072",
+      "start": 240.44,
+      "end": 245.68,
+      "speaker_id": null,
+      "text": "あ、でも私が出します。 もしあれだったら、次のまま入ってくださいとか。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000073",
+      "start": 245.68,
+      "end": 247.68,
+      "speaker_id": null,
+      "text": "分かりやすいです。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000074",
+      "start": 247.68,
+      "end": 249.68,
+      "speaker_id": null,
+      "text": "1回、2回撮るんですか?",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000075",
+      "start": 249.68,
+      "end": 251.68,
+      "speaker_id": null,
+      "text": "あ、もうずーっと通していいです。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000076",
+      "start": 251.68,
+      "end": 253.68,
+      "speaker_id": null,
+      "text": "あー、なるほど。喋り続けていいです。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000077",
+      "start": 253.68,
+      "end": 255.68,
+      "speaker_id": null,
+      "text": "ありがとうございます。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000078",
+      "start": 255.68,
+      "end": 257.68,
+      "speaker_id": null,
+      "text": "あ、じゃあ、挨拶は2回やるんですか?",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000079",
+      "start": 257.68,
+      "end": 264.68,
+      "speaker_id": null,
+      "text": "そうですね。最後に、一番話し終わって、最後にちょっとそこの2回目の入りのところだけ撮るとかができるので。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000080",
+      "start": 264.68,
+      "end": 266.68,
+      "speaker_id": null,
+      "text": "あー、なるほど。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000081",
+      "start": 266.68,
+      "end": 268.68,
+      "speaker_id": null,
+      "text": "もう、喋り切っちゃっていいです。",
+      "confidence": 0.5951,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000082",
+      "start": 268.68,
+      "end": 272.68,
+      "speaker_id": null,
+      "text": "あと、あいさんと何かこんにちはして、一通り喋って",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000083",
+      "start": 272.68,
+      "end": 274.68,
+      "speaker_id": null,
+      "text": "あ、ですです。",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000084",
+      "start": 274.68,
+      "end": 276.68,
+      "speaker_id": null,
+      "text": "じゃあ、一旦は始まる程度です。",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000085",
+      "start": 276.68,
+      "end": 278.68,
+      "speaker_id": null,
+      "text": "はい、そこのセリフだけ。",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000086",
+      "start": 278.68,
+      "end": 282.68,
+      "speaker_id": null,
+      "text": "お尻も後でやればいいの?",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000087",
+      "start": 282.68,
+      "end": 284.68,
+      "speaker_id": null,
+      "text": "大丈夫です。",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000088",
+      "start": 284.68,
+      "end": 286.68,
+      "speaker_id": null,
+      "text": "じゃあ、長尻喋っていけばいいの?",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000089",
+      "start": 286.68,
+      "end": 288.68,
+      "speaker_id": null,
+      "text": "はい、おしゃべりしていけばいいです。",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000090",
+      "start": 288.68,
+      "end": 294.68,
+      "speaker_id": null,
+      "text": "必要な素材だけ最後に、最後の5分くらいでこのセリフだけ言ってくださいとか、",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000091",
+      "start": 294.68,
+      "end": 296.68,
+      "speaker_id": null,
+      "text": "足したいところは言うの。",
+      "confidence": 0.6359,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000092",
+      "start": 296.68,
+      "end": 298.68,
+      "speaker_id": null,
+      "text": "ありがたい",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000093",
+      "start": 298.68,
+      "end": 300.68,
+      "speaker_id": null,
+      "text": "信仰かも",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000094",
+      "start": 300.68,
+      "end": 302.68,
+      "speaker_id": null,
+      "text": "矢野さんはやっぱり挨拶とか",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000095",
+      "start": 306.68,
+      "end": 308.68,
+      "speaker_id": null,
+      "text": "矢野さんと村田さんが聞かれたこととかに",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000096",
+      "start": 308.68,
+      "end": 310.68,
+      "speaker_id": null,
+      "text": "自由に答えていただいて",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000097",
+      "start": 310.68,
+      "end": 312.68,
+      "speaker_id": null,
+      "text": "矢野さんにも話を振ってもらえると",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000098",
+      "start": 312.68,
+      "end": 314.68,
+      "speaker_id": null,
+      "text": "一方的に質問を",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000099",
+      "start": 314.68,
+      "end": 316.68,
+      "speaker_id": null,
+      "text": "それ忘れそうですよ",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000100",
+      "start": 318.68,
+      "end": 320.68,
+      "speaker_id": null,
+      "text": "話そうとしてない",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000101",
+      "start": 320.68,
+      "end": 322.68,
+      "speaker_id": null,
+      "text": "お互いが話すみたいなのが",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000102",
+      "start": 322.68,
+      "end": 324.68,
+      "speaker_id": null,
+      "text": "面白いんで",
+      "confidence": 0.7174,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000103",
+      "start": 324.68,
+      "end": 328.48,
+      "speaker_id": null,
+      "text": "法的に話されたのを聞くだけだと感情になっちゃうんですよね",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000104",
+      "start": 328.48,
+      "end": 331.5,
+      "speaker_id": null,
+      "text": "ヤナさんこそどうなんですかみたいなのをちょっと振ってもらえれば",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000105",
+      "start": 331.5,
+      "end": 332.84000000000003,
+      "speaker_id": null,
+      "text": "めっちゃ振ったのか",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000106",
+      "start": 332.84000000000003,
+      "end": 335.26,
+      "speaker_id": null,
+      "text": "村瀬さんの話興味ありますか",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000107",
+      "start": 335.26,
+      "end": 336.0,
+      "speaker_id": null,
+      "text": "僕も分からない",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000108",
+      "start": 336.0,
+      "end": 338.16,
+      "speaker_id": null,
+      "text": "僕らと2人MCで",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000109",
+      "start": 338.16,
+      "end": 341.74,
+      "speaker_id": null,
+      "text": "どっちの方が弱くなっているのか",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000110",
+      "start": 341.74,
+      "end": 344.08,
+      "speaker_id": null,
+      "text": "関係ないです",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000111",
+      "start": 344.08,
+      "end": 345.92,
+      "speaker_id": null,
+      "text": "関係ない",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000112",
+      "start": 345.92,
+      "end": 353.06,
+      "speaker_id": null,
+      "text": "緑です",
+      "confidence": 0.6382,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000113",
+      "start": 353.06,
+      "end": 355.92,
+      "speaker_id": null,
+      "text": "いつも始められるので",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000114",
+      "start": 355.92,
+      "end": 358.84,
+      "speaker_id": null,
+      "text": "はい、でも始められるので一回やってきますか",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000115",
+      "start": 358.84,
+      "end": 359.54,
+      "speaker_id": null,
+      "text": "リハで挨拶",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000116",
+      "start": 359.54,
+      "end": 361.12,
+      "speaker_id": null,
+      "text": "挨拶というか、入りだけ",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000117",
+      "start": 361.12,
+      "end": 362.32,
+      "speaker_id": null,
+      "text": "多分噛むんで絶対",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000118",
+      "start": 362.32,
+      "end": 363.68,
+      "speaker_id": null,
+      "text": "みんなでみんな噛む",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000119",
+      "start": 363.68,
+      "end": 367.28000000000003,
+      "speaker_id": null,
+      "text": "AIXのYouTubeチャンネルをご覧の皆さんこんにちは",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000120",
+      "start": 367.28000000000003,
+      "end": 370.78,
+      "speaker_id": null,
+      "text": "バックラック授業部のヤナです",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000121",
+      "start": 370.78,
+      "end": 377.64,
+      "speaker_id": null,
+      "text": "今日はバックラック授業部でドメインエキスパートと呼ばれている",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000122",
+      "start": 377.64,
+      "end": 380.24,
+      "speaker_id": null,
+      "text": "役回りで働いていただいている",
+      "confidence": 0.7665,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000123",
+      "start": 380.24,
+      "end": 383.78000000000003,
+      "speaker_id": null,
+      "text": "村田さんとネモさんにお越しいただきました",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000124",
+      "start": 383.78000000000003,
+      "end": 384.62,
+      "speaker_id": null,
+      "text": "はいお願いします",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000125",
+      "start": 384.62,
+      "end": 390.68,
+      "speaker_id": null,
+      "text": "今日はですね皆さんドメインエキスパートって言われてもあんまりピンとこないと思って",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000126",
+      "start": 390.68,
+      "end": 394.88,
+      "speaker_id": null,
+      "text": "どういう役割で普段働いているのかとか",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000127",
+      "start": 394.88,
+      "end": 397.34000000000003,
+      "speaker_id": null,
+      "text": "そういうキャリアの選択肢として",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000128",
+      "start": 397.34000000000003,
+      "end": 402.1,
+      "speaker_id": null,
+      "text": "ドメインエキスパートって何なのかっていうのを話してもらいたいなと思っています",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000129",
+      "start": 402.1,
+      "end": 402.82,
+      "speaker_id": null,
+      "text": "よろしくお願いします",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000130",
+      "start": 402.82,
+      "end": 403.68,
+      "speaker_id": null,
+      "text": "よろしくお願いします",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000131",
+      "start": 403.68,
+      "end": 405.16,
+      "speaker_id": null,
+      "text": "っていう感じでバッチリでした",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000132",
+      "start": 405.16,
+      "end": 406.56,
+      "speaker_id": null,
+      "text": "はい",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000133",
+      "start": 406.56,
+      "end": 409.46000000000004,
+      "speaker_id": null,
+      "text": "あんまりセンターカメラを見る人がいない",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000134",
+      "start": 409.46000000000004,
+      "end": 410.04,
+      "speaker_id": null,
+      "text": "確かに",
+      "confidence": 0.7907,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000135",
+      "start": 410.04,
+      "end": 412.72,
+      "speaker_id": null,
+      "text": "僕はあんまり最初だけでいいです",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000136",
+      "start": 412.72,
+      "end": 414.22,
+      "speaker_id": null,
+      "text": "最初だけでいいです",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000137",
+      "start": 414.22,
+      "end": 415.72,
+      "speaker_id": null,
+      "text": "こんにちはのとこだけでいいです",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000138",
+      "start": 415.72,
+      "end": 420.44,
+      "speaker_id": null,
+      "text": "こういうことを話していこうと思いますとかは",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000139",
+      "start": 420.44,
+      "end": 423.98,
+      "speaker_id": null,
+      "text": "視聴者に語りかけているところはこっちを",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000140",
+      "start": 423.98,
+      "end": 424.86,
+      "speaker_id": null,
+      "text": "分かりました",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000141",
+      "start": 424.86,
+      "end": 431.48,
+      "speaker_id": null,
+      "text": "アイスブレイクとかで最初に出ていただいて",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000142",
+      "start": 431.48,
+      "end": 433.28000000000003,
+      "speaker_id": null,
+      "text": "面白しますねみたいなところで",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000143",
+      "start": 433.28000000000003,
+      "end": 434.92,
+      "speaker_id": null,
+      "text": "入れてもらってもいいですね",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000144",
+      "start": 434.92,
+      "end": 437.68,
+      "speaker_id": null,
+      "text": "リアリティね",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000145",
+      "start": 437.68,
+      "end": 438.86,
+      "speaker_id": null,
+      "text": "楽しい",
+      "confidence": 0.6549,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000146",
+      "start": 438.86,
+      "end": 440.86,
+      "speaker_id": null,
+      "text": "楽しいです",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000147",
+      "start": 440.86,
+      "end": 442.86,
+      "speaker_id": null,
+      "text": "こんな照明みたいなの全然",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000148",
+      "start": 442.86,
+      "end": 444.86,
+      "speaker_id": null,
+      "text": "そういうの入れていただいて",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000149",
+      "start": 444.86,
+      "end": 446.86,
+      "speaker_id": null,
+      "text": "吉田に",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000150",
+      "start": 446.86,
+      "end": 448.86,
+      "speaker_id": null,
+      "text": "収集をしますので",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000151",
+      "start": 448.86,
+      "end": 450.86,
+      "speaker_id": null,
+      "text": "ちなみにめちゃくちゃ噛むんで",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000152",
+      "start": 450.86,
+      "end": 452.86,
+      "speaker_id": null,
+      "text": "噛むと",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000153",
+      "start": 452.86,
+      "end": 454.86,
+      "speaker_id": null,
+      "text": "ぜひカットします",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000154",
+      "start": 454.86,
+      "end": 456.86,
+      "speaker_id": null,
+      "text": "普段みんながご相談している雰囲気が",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000155",
+      "start": 456.86,
+      "end": 458.86,
+      "speaker_id": null,
+      "text": "伝わるって感じがいいので",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000156",
+      "start": 458.86,
+      "end": 460.86,
+      "speaker_id": null,
+      "text": "確かに",
+      "confidence": 0.6272,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000157",
+      "start": 460.86,
+      "end": 483.74,
+      "speaker_id": null,
+      "text": "このカメラのレンズの交差するポイントを",
+      "confidence": 0.752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000158",
+      "start": 483.74,
+      "end": 485.84000000000003,
+      "speaker_id": null,
+      "text": "イメージしてやってもらえるといいです",
+      "confidence": 0.752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000159",
+      "start": 485.84000000000003,
+      "end": 486.7,
+      "speaker_id": null,
+      "text": "全部入ってますね",
+      "confidence": 0.752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000160",
+      "start": 486.7,
+      "end": 487.2,
+      "speaker_id": null,
+      "text": "素晴らしいです",
+      "confidence": 0.752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000161",
+      "start": 487.2,
+      "end": 489.2,
+      "speaker_id": null,
+      "text": "オッケーです",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000162",
+      "start": 491.38,
+      "end": 493.38,
+      "speaker_id": null,
+      "text": "ここから10秒後",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000163",
+      "start": 494.38,
+      "end": 497.38,
+      "speaker_id": null,
+      "text": "10秒後に行きますか",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000164",
+      "start": 497.38,
+      "end": 498.38,
+      "speaker_id": null,
+      "text": "じゃあ",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000165",
+      "start": 498.38,
+      "end": 499.38,
+      "speaker_id": null,
+      "text": "10",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000166",
+      "start": 499.38,
+      "end": 503.38,
+      "speaker_id": null,
+      "text": "本当にケーブル切ると事故になるよね",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000167",
+      "start": 503.38,
+      "end": 504.38,
+      "speaker_id": null,
+      "text": "8",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000168",
+      "start": 504.38,
+      "end": 505.38,
+      "speaker_id": null,
+      "text": "7",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000169",
+      "start": 505.38,
+      "end": 506.38,
+      "speaker_id": null,
+      "text": "6",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000170",
+      "start": 506.38,
+      "end": 507.38,
+      "speaker_id": null,
+      "text": "5",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000171",
+      "start": 507.38,
+      "end": 510.38,
+      "speaker_id": null,
+      "text": "じゃあ本番5秒前から",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000172",
+      "start": 510.38,
+      "end": 511.38,
+      "speaker_id": null,
+      "text": "やってみましょう",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000173",
+      "start": 511.38,
+      "end": 512.38,
+      "speaker_id": null,
+      "text": "いきますか",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000174",
+      "start": 512.38,
+      "end": 515.38,
+      "speaker_id": null,
+      "text": "じゃあ本番5秒前からカウントしますので",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000175",
+      "start": 515.38,
+      "end": 516.38,
+      "speaker_id": null,
+      "text": "お願いします",
+      "confidence": 0.4927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000176",
+      "start": 516.38,
+      "end": 519.14,
+      "speaker_id": null,
+      "text": "3番、5、4、3",
+      "confidence": 0.8784,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000177",
+      "start": 519.14,
+      "end": 524.9399999999999,
+      "speaker_id": null,
+      "text": "AXのYouTubeチャンネルをご覧の皆さん、こんにちは",
+      "confidence": 0.8784,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000178",
+      "start": 524.9399999999999,
+      "end": 528.7,
+      "speaker_id": null,
+      "text": "バクラク事業部のヤナと申します",
+      "confidence": 0.8784,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000179",
+      "start": 528.7,
+      "end": 532.1,
+      "speaker_id": null,
+      "text": "本日はですね、バクラク事業部で",
+      "confidence": 0.8784,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000180",
+      "start": 532.1,
+      "end": 535.54,
+      "speaker_id": null,
+      "text": "ドメインエキスパートという役割で働いている",
+      "confidence": 0.8784,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000181",
+      "start": 535.54,
+      "end": 539.62,
+      "speaker_id": null,
+      "text": "ネモさんと村田さんにお越しいただきました",
+      "confidence": 0.8784,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000182",
+      "start": 539.62,
+      "end": 542.52,
+      "speaker_id": null,
+      "text": "ドメインエキスパートという仕事",
+      "confidence": 0.8784,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000183",
+      "start": 542.52,
+      "end": 547.28,
+      "speaker_id": null,
+      "text": "これあんまり皆さん聞いたことない役回りかなと思うんですけど",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000184",
+      "start": 547.28,
+      "end": 550.14,
+      "speaker_id": null,
+      "text": "どういったことを普段しているのかというような話とか",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000185",
+      "start": 550.14,
+      "end": 553.54,
+      "speaker_id": null,
+      "text": "2人がどういったキャリアを考えているかというところを",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000186",
+      "start": 553.54,
+      "end": 555.5799999999999,
+      "speaker_id": null,
+      "text": "いろいろ聞いていきたいなと思っております",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000187",
+      "start": 555.5799999999999,
+      "end": 556.36,
+      "speaker_id": null,
+      "text": "よろしくお願いします",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000188",
+      "start": 556.36,
+      "end": 557.86,
+      "speaker_id": null,
+      "text": "よろしくお願いします",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000189",
+      "start": 557.86,
+      "end": 562.86,
+      "speaker_id": null,
+      "text": "まずこのドミニクスパートっていう言葉なんですけど",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000190",
+      "start": 562.86,
+      "end": 565.66,
+      "speaker_id": null,
+      "text": "レイアイクスの中でいうと",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000191",
+      "start": 565.66,
+      "end": 568.04,
+      "speaker_id": null,
+      "text": "職種っていうよりはどちらかというと",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000192",
+      "start": 568.04,
+      "end": 572.36,
+      "speaker_id": null,
+      "text": "開発チームの中での役回りみたいな話かなと思っていて",
+      "confidence": 0.8494,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000193",
+      "start": 572.36,
+      "end": 575.48,
+      "speaker_id": null,
+      "text": "なんかドメインエキスパートチームがあるわけではなくて",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000194",
+      "start": 575.48,
+      "end": 578.52,
+      "speaker_id": null,
+      "text": "例えばモラットさんだったらロームをやりながら",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000195",
+      "start": 578.52,
+      "end": 582.42,
+      "speaker_id": null,
+      "text": "開発の方にドメインエキスパートとして関与してもらってたりとか",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000196",
+      "start": 582.42,
+      "end": 586.58,
+      "speaker_id": null,
+      "text": "ネモさんはPDMとしてプロダクトを作る中で",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000197",
+      "start": 586.58,
+      "end": 588.22,
+      "speaker_id": null,
+      "text": "バックグラウンドはドメインエキスパートで",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000198",
+      "start": 588.22,
+      "end": 593.02,
+      "speaker_id": null,
+      "text": "ドメインエキスパートという立場でやってるみたいな形かなと思ってます",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000199",
+      "start": 593.02,
+      "end": 597.48,
+      "speaker_id": null,
+      "text": "なのでこれ会社さんによってちょっと役割とかも違う可能性があるんですけど",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000200",
+      "start": 597.48,
+      "end": 600.76,
+      "speaker_id": null,
+      "text": "うちは会社さんの感じでやっていますというところ",
+      "confidence": 0.8929,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000201",
+      "start": 600.76,
+      "end": 602.62,
+      "speaker_id": null,
+      "text": "まずちょっと前提の話ですね",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000202",
+      "start": 602.62,
+      "end": 604.12,
+      "speaker_id": null,
+      "text": "大丈夫ですかね",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000203",
+      "start": 604.12,
+      "end": 605.04,
+      "speaker_id": null,
+      "text": "異常な緊張感",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000204",
+      "start": 605.04,
+      "end": 609.48,
+      "speaker_id": null,
+      "text": "あまり感じない緊張感",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000205",
+      "start": 609.48,
+      "end": 611.6,
+      "speaker_id": null,
+      "text": "コーポレート真面目なイメージ",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000206",
+      "start": 611.6,
+      "end": 612.52,
+      "speaker_id": null,
+      "text": "ただでさえありますから",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000207",
+      "start": 612.52,
+      "end": 612.9399999999999,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000208",
+      "start": 612.9399999999999,
+      "end": 614.36,
+      "speaker_id": null,
+      "text": "砕けた感じがします",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000209",
+      "start": 614.36,
+      "end": 619.3199999999999,
+      "speaker_id": null,
+      "text": "まず簡単に2人から自己紹介いただいても",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000210",
+      "start": 619.3199999999999,
+      "end": 620.8199999999999,
+      "speaker_id": null,
+      "text": "よいでしょうか",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000211",
+      "start": 620.8199999999999,
+      "end": 621.4399999999999,
+      "speaker_id": null,
+      "text": "はいじゃあ",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000212",
+      "start": 621.4399999999999,
+      "end": 623.52,
+      "speaker_id": null,
+      "text": "はい",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000213",
+      "start": 623.52,
+      "end": 625.04,
+      "speaker_id": null,
+      "text": "根本と申します",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000214",
+      "start": 625.04,
+      "end": 626.78,
+      "speaker_id": null,
+      "text": "会社名は根本と呼ばれてまして",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000215",
+      "start": 626.78,
+      "end": 627.66,
+      "speaker_id": null,
+      "text": "僕はですね",
+      "confidence": 0.7067,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000216",
+      "start": 627.66,
+      "end": 631.74,
+      "speaker_id": null,
+      "text": "もともと新卒で大手のメーカーに入って",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000217",
+      "start": 631.74,
+      "end": 634.56,
+      "speaker_id": null,
+      "text": "そこで10年くらい経理をやってました",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000218",
+      "start": 634.56,
+      "end": 637.0,
+      "speaker_id": null,
+      "text": "工場にいたりとか本社にいて",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000219",
+      "start": 637.0,
+      "end": 637.9599999999999,
+      "speaker_id": null,
+      "text": "だいぶ書いてやってました",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000220",
+      "start": 637.9599999999999,
+      "end": 641.56,
+      "speaker_id": null,
+      "text": "その後スタートアップに転職をして",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000221",
+      "start": 641.56,
+      "end": 642.6,
+      "speaker_id": null,
+      "text": "3年くらいですかね",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000222",
+      "start": 642.6,
+      "end": 644.4,
+      "speaker_id": null,
+      "text": "そこでは実はロームをちょこっとだけ",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000223",
+      "start": 644.4,
+      "end": 645.4599999999999,
+      "speaker_id": null,
+      "text": "かじった",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000224",
+      "start": 645.4599999999999,
+      "end": 648.78,
+      "speaker_id": null,
+      "text": "コンフォレント全般とかをやって",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000225",
+      "start": 648.78,
+      "end": 653.16,
+      "speaker_id": null,
+      "text": "たまたまAXに全職のメンバーが何人か入っていて",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000226",
+      "start": 653.16,
+      "end": 657.06,
+      "speaker_id": null,
+      "text": "その人から開発とかどうですかみたいな感じで",
+      "confidence": 0.8294,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000227",
+      "start": 657.0600000000001,
+      "end": 661.0600000000001,
+      "speaker_id": null,
+      "text": "当時はプロダクトマネージャーという言葉も全然知らなくて",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000228",
+      "start": 661.0600000000001,
+      "end": 664.0600000000001,
+      "speaker_id": null,
+      "text": "コード書けないですけど大丈夫ですかみたいな感じで",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000229",
+      "start": 664.0600000000001,
+      "end": 667.0600000000001,
+      "speaker_id": null,
+      "text": "いろいろ話を聞いていくと面白そうだなと思って",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000230",
+      "start": 667.0600000000001,
+      "end": 671.0600000000001,
+      "speaker_id": null,
+      "text": "1年半くらい前ですかねに入ってきたという感じでございます",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000231",
+      "start": 671.0600000000001,
+      "end": 673.0600000000001,
+      "speaker_id": null,
+      "text": "ありがとうございます",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000232",
+      "start": 673.0600000000001,
+      "end": 675.0600000000001,
+      "speaker_id": null,
+      "text": "じゃあ村田さんお願いします",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000233",
+      "start": 675.0600000000001,
+      "end": 678.0600000000001,
+      "speaker_id": null,
+      "text": "私は村田とスラッグネームみたいな",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000234",
+      "start": 678.0600000000001,
+      "end": 680.0600000000001,
+      "speaker_id": null,
+      "text": "社内の2店舗なんですね",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000235",
+      "start": 680.0600000000001,
+      "end": 685.0600000000001,
+      "speaker_id": null,
+      "text": "どちらもホームネームでやらせていただいているんですけど",
+      "confidence": 0.7002,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000236",
+      "start": 685.0600000000001,
+      "end": 689.86,
+      "speaker_id": null,
+      "text": "もともとは社会保険法の司法人で、会社の勤務を長くしておりまして、",
+      "confidence": 0.7006,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000237",
+      "start": 689.86,
+      "end": 697.0600000000001,
+      "speaker_id": null,
+      "text": "割と事業会社さんに外からアドバイスをさせていただくという立場で、経験をいろいろと積ませていただきました。",
+      "confidence": 0.7006,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000238",
+      "start": 697.0600000000001,
+      "end": 704.0600000000001,
+      "speaker_id": null,
+      "text": "ただ、やっぱり中からやりたいなと思いが強くなってきて、事業会社の人事として、",
+      "confidence": 0.7006,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000239",
+      "start": 704.0600000000001,
+      "end": 713.0600000000001,
+      "speaker_id": null,
+      "text": "レイアイクスが3社目ですからね、間に業務系のBPOのサービス提供する会社から仕上げたりとか色々あったんですけど、",
+      "confidence": 0.7006,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000240",
+      "start": 713.0600000000001,
+      "end": 717.3800000000001,
+      "speaker_id": null,
+      "text": "今はレイヤーエクセローを主務として",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000241",
+      "start": 717.3800000000001,
+      "end": 721.3000000000001,
+      "speaker_id": null,
+      "text": "大きい部の形で開発に携わっていただいております",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000242",
+      "start": 721.3000000000001,
+      "end": 722.5000000000001,
+      "speaker_id": null,
+      "text": "ありがとうございます",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000243",
+      "start": 722.5000000000001,
+      "end": 724.5200000000001,
+      "speaker_id": null,
+      "text": "どういうふうに働いているかというのは",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000244",
+      "start": 724.5200000000001,
+      "end": 727.46,
+      "speaker_id": null,
+      "text": "またいろいろと伺えたいなと思っています",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000245",
+      "start": 727.46,
+      "end": 731.5400000000001,
+      "speaker_id": null,
+      "text": "最後に簡単に私の自己紹介をさせていただきます",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000246",
+      "start": 731.5400000000001,
+      "end": 734.36,
+      "speaker_id": null,
+      "text": "改めましてレイヤーエクセローの矢野と申します",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000247",
+      "start": 734.36,
+      "end": 737.5600000000001,
+      "speaker_id": null,
+      "text": "もともと新卒で監査法人に入って",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000248",
+      "start": 737.5600000000001,
+      "end": 740.94,
+      "speaker_id": null,
+      "text": "そこから事業会社で経営デザインとか",
+      "confidence": 0.7831,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000249",
+      "start": 740.94,
+      "end": 747.3800000000001,
+      "speaker_id": null,
+      "text": "経営企画、IRみたいなそういった仕事をして、そこまでいわゆるバックオフィスの仕事を中心になったんですけど、",
+      "confidence": 0.76,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000250",
+      "start": 747.3800000000001,
+      "end": 753.5,
+      "speaker_id": null,
+      "text": "レイアクセに入って初めて、いわゆる事業側というかビジネス側の仕事をしてました。",
+      "confidence": 0.76,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000251",
+      "start": 753.5,
+      "end": 757.82,
+      "speaker_id": null,
+      "text": "実は僕はドメインエキスパートという職種で入社したんですけど、",
+      "confidence": 0.76,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000252",
+      "start": 757.82,
+      "end": 766.0600000000001,
+      "speaker_id": null,
+      "text": "なんですけど、当時4年前くらいだったので、ドメインエキスパート何をやるか会社でまだ決まってないみたいな。",
+      "confidence": 0.76,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000253",
+      "start": 766.0600000000001,
+      "end": 784.3800000000001,
+      "speaker_id": null,
+      "text": "まずヒアリングをするところから始まるみたいな感じで、結果的に最初は今でいうプロダクトマーケティングみたいな、うちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって、2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします。",
+      "confidence": 0.8516,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000254",
+      "start": 784.38,
+      "end": 786.18,
+      "speaker_id": null,
+      "text": "はい",
+      "confidence": 0.5546,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000255",
+      "start": 786.18,
+      "end": 795.88,
+      "speaker_id": null,
+      "text": "ひもがすみませんさっきひもが中途半端だったんで",
+      "confidence": 0.5546,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000256",
+      "start": 795.88,
+      "end": 802.02,
+      "speaker_id": null,
+      "text": "面白い",
+      "confidence": 0.5546,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000257",
+      "start": 802.02,
+      "end": 803.1,
+      "speaker_id": null,
+      "text": "面白い",
+      "confidence": 0.5546,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000258",
+      "start": 803.1,
+      "end": 805.0,
+      "speaker_id": null,
+      "text": "いやいやむずい",
+      "confidence": 0.5546,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000259",
+      "start": 805.0,
+      "end": 809.2,
+      "speaker_id": null,
+      "text": "いい感じです",
+      "confidence": 0.5546,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000260",
+      "start": 809.2,
+      "end": 813.14,
+      "speaker_id": null,
+      "text": "なんでフェイレックスとか",
+      "confidence": 0.5546,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000261",
+      "start": 813.14,
+      "end": 820.14,
+      "speaker_id": null,
+      "text": "なんでPDMだったのかな?",
+      "confidence": 0.4673,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000262",
+      "start": 820.14,
+      "end": 824.14,
+      "speaker_id": null,
+      "text": "PDMじゃないよ",
+      "confidence": 0.4673,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000263",
+      "start": 824.14,
+      "end": 828.14,
+      "speaker_id": null,
+      "text": "なんで開発をやってるのか",
+      "confidence": 0.4673,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000264",
+      "start": 828.14,
+      "end": 831.14,
+      "speaker_id": null,
+      "text": "確かにそれはお話ですが",
+      "confidence": 0.4673,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000265",
+      "start": 831.14,
+      "end": 836.14,
+      "speaker_id": null,
+      "text": "じゃあ再開しましょうか",
+      "confidence": 0.4673,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000266",
+      "start": 836.14,
+      "end": 840.14,
+      "speaker_id": null,
+      "text": "ではですね最初ちょっとお二人に聞きたいのが",
+      "confidence": 0.4673,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000267",
+      "start": 840.14,
+      "end": 844.38,
+      "speaker_id": null,
+      "text": "なんでレイアックスに入社されたのかというところを",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000268",
+      "start": 844.38,
+      "end": 846.36,
+      "speaker_id": null,
+      "text": "NEMOさんはPDMとして入社して",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000269",
+      "start": 846.36,
+      "end": 848.72,
+      "speaker_id": null,
+      "text": "村田さんはローンとして入社されて",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000270",
+      "start": 848.72,
+      "end": 852.3,
+      "speaker_id": null,
+      "text": "そこから今開発にも関与いただいているという話かなと思うんですけど",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000271",
+      "start": 852.3,
+      "end": 857.6999999999999,
+      "speaker_id": null,
+      "text": "お二人のレイアックスに入社した背景とかきっかけみたいなところを",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000272",
+      "start": 857.6999999999999,
+      "end": 858.9,
+      "speaker_id": null,
+      "text": "伺ってもよいでしょうか",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000273",
+      "start": 858.9,
+      "end": 860.26,
+      "speaker_id": null,
+      "text": "じゃあここから",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000274",
+      "start": 860.26,
+      "end": 861.1,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000275",
+      "start": 861.1,
+      "end": 862.38,
+      "speaker_id": null,
+      "text": "お願いします",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000276",
+      "start": 862.38,
+      "end": 866.7,
+      "speaker_id": null,
+      "text": "そもそもレイアックスなぜかというと",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000277",
+      "start": 866.7,
+      "end": 869.4399999999999,
+      "speaker_id": null,
+      "text": "以前に僕らが経理をずっとやっていて",
+      "confidence": 0.7763,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000278",
+      "start": 869.44,
+      "end": 873.24,
+      "speaker_id": null,
+      "text": "正直会計基準とかにそんなに興味なくて",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000279",
+      "start": 873.24,
+      "end": 880.12,
+      "speaker_id": null,
+      "text": "というよりは働いていく中で経理の生産性に対して",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000280",
+      "start": 880.12,
+      "end": 883.5400000000001,
+      "speaker_id": null,
+      "text": "すごい問題意識を感じることが多くて",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000281",
+      "start": 883.5400000000001,
+      "end": 887.1600000000001,
+      "speaker_id": null,
+      "text": "やっぱり決算になると毎日夜長払いで持って",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000282",
+      "start": 887.1600000000001,
+      "end": 889.0200000000001,
+      "speaker_id": null,
+      "text": "終電で帰るみたいな",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000283",
+      "start": 889.0200000000001,
+      "end": 890.6800000000001,
+      "speaker_id": null,
+      "text": "それが当たり前みたいな",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000284",
+      "start": 890.6800000000001,
+      "end": 894.2,
+      "speaker_id": null,
+      "text": "結構会社さんによってはそんな感じなんですよね",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000285",
+      "start": 894.2,
+      "end": 895.98,
+      "speaker_id": null,
+      "text": "それすごい本当不健全だなと思うんです",
+      "confidence": 0.8088,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000286",
+      "start": 895.98,
+      "end": 904.04,
+      "speaker_id": null,
+      "text": "その時に前職でたまたまAXを使った爆落を導入したんですよ",
+      "confidence": 0.7978,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000287",
+      "start": 904.04,
+      "end": 908.36,
+      "speaker_id": null,
+      "text": "それまでも結構いろんな会社のプロダクトとか触ってきてて",
+      "confidence": 0.7978,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000288",
+      "start": 908.36,
+      "end": 909.9,
+      "speaker_id": null,
+      "text": "導入とかもやってたんですけど",
+      "confidence": 0.7978,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000289",
+      "start": 909.9,
+      "end": 913.0,
+      "speaker_id": null,
+      "text": "爆落触っているときにめっちゃいいなと思って",
+      "confidence": 0.7978,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000290",
+      "start": 913.0,
+      "end": 922.26,
+      "speaker_id": null,
+      "text": "今までのものって僕の中ではちょっとこれできないなとか",
+      "confidence": 0.7978,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000291",
+      "start": 922.26,
+      "end": 925.38,
+      "speaker_id": null,
+      "text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
+      "confidence": 0.7978,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000292",
+      "start": 925.38,
+      "end": 927.38,
+      "speaker_id": null,
+      "text": "バクランクなんかあんまなくて",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000293",
+      "start": 927.38,
+      "end": 930.78,
+      "speaker_id": null,
+      "text": "いいなって思って使ってた時に",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000294",
+      "start": 930.78,
+      "end": 933.58,
+      "speaker_id": null,
+      "text": "たまたまその前職のメンバーが",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000295",
+      "start": 933.58,
+      "end": 934.98,
+      "speaker_id": null,
+      "text": "レイヤーさん入ってて",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000296",
+      "start": 934.98,
+      "end": 938.28,
+      "speaker_id": null,
+      "text": "その人からちょっと開発とかどうですかみたいな",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000297",
+      "start": 938.28,
+      "end": 939.48,
+      "speaker_id": null,
+      "text": "なるほどね",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000298",
+      "start": 939.48,
+      "end": 941.08,
+      "speaker_id": null,
+      "text": "全然経理とかじゃなくて開発",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000299",
+      "start": 941.08,
+      "end": 942.48,
+      "speaker_id": null,
+      "text": "あ、そうですそうです",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000300",
+      "start": 942.48,
+      "end": 944.78,
+      "speaker_id": null,
+      "text": "もう経理だったら僕前職でいいと思ってたんですよ",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000301",
+      "start": 944.78,
+      "end": 946.98,
+      "speaker_id": null,
+      "text": "前職は全然楽しかったんで",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000302",
+      "start": 946.98,
+      "end": 949.28,
+      "speaker_id": null,
+      "text": "でも開発って言われて",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000303",
+      "start": 949.28,
+      "end": 951.28,
+      "speaker_id": null,
+      "text": "え、なんでですかみたいな",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000304",
+      "start": 951.28,
+      "end": 953.08,
+      "speaker_id": null,
+      "text": "コード書けないですけどみたいになって",
+      "confidence": 0.7362,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000305",
+      "start": 953.08,
+      "end": 955.1,
+      "speaker_id": null,
+      "text": "でもいろいろ聞いていったらって感じですよね",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000306",
+      "start": 955.1,
+      "end": 960.0,
+      "speaker_id": null,
+      "text": "じゃあもともと別に転職をしようとか思っただけでもなく",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000307",
+      "start": 960.0,
+      "end": 963.24,
+      "speaker_id": null,
+      "text": "そういう選択肢として開発を探してたわけじゃないですか",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000308",
+      "start": 963.24,
+      "end": 965.12,
+      "speaker_id": null,
+      "text": "全然開発を探してないです",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000309",
+      "start": 965.12,
+      "end": 966.86,
+      "speaker_id": null,
+      "text": "自分と関係ないことだと思ってたんです",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000310",
+      "start": 966.86,
+      "end": 971.3000000000001,
+      "speaker_id": null,
+      "text": "ただキャリアへの迷いは結構正直なことだというか",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000311",
+      "start": 971.3000000000001,
+      "end": 975.0,
+      "speaker_id": null,
+      "text": "さっきの話とか会計基準にそんなに専門性があったりとか",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000312",
+      "start": 975.0,
+      "end": 979.4000000000001,
+      "speaker_id": null,
+      "text": "例えばM&Aとかがんがんやれますみたいな感じもないんで",
+      "confidence": 0.7752,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000313",
+      "start": 979.4,
+      "end": 984.16,
+      "speaker_id": null,
+      "text": "専門性もないしこの後どうやって生きていくのかなみたいな",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000314",
+      "start": 984.16,
+      "end": 987.52,
+      "speaker_id": null,
+      "text": "やっぱ僕らぐらいの年齢になると結構そういう専門性ないと",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000315",
+      "start": 987.52,
+      "end": 990.3,
+      "speaker_id": null,
+      "text": "なかなか経理一本だと厳しいじゃないですか",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000316",
+      "start": 990.3,
+      "end": 993.22,
+      "speaker_id": null,
+      "text": "どうしようかなって思ってたタイミングではありました",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000317",
+      "start": 993.22,
+      "end": 996.8199999999999,
+      "speaker_id": null,
+      "text": "経理としてはどう伸ばしていくのか",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000318",
+      "start": 996.8199999999999,
+      "end": 998.5799999999999,
+      "speaker_id": null,
+      "text": "めちゃくちゃ難しいですよ",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000319",
+      "start": 998.5799999999999,
+      "end": 1002.62,
+      "speaker_id": null,
+      "text": "大手だと結構バネジメントみたいなとかで",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000320",
+      "start": 1002.62,
+      "end": 1005.74,
+      "speaker_id": null,
+      "text": "そういう組織作るみたいなのがあるんですけど",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000321",
+      "start": 1005.74,
+      "end": 1007.86,
+      "speaker_id": null,
+      "text": "スタートアップにいたらあんまりそういうのがなかったので",
+      "confidence": 0.829,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000322",
+      "start": 1007.86,
+      "end": 1011.0600000000001,
+      "speaker_id": null,
+      "text": "どうしようかなみたいな感じはありました",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000323",
+      "start": 1011.0600000000001,
+      "end": 1014.44,
+      "speaker_id": null,
+      "text": "そういったタイミングでちょうど開発の話が出て",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000324",
+      "start": 1014.44,
+      "end": 1015.38,
+      "speaker_id": null,
+      "text": "そうなんですよ",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000325",
+      "start": 1015.38,
+      "end": 1017.3000000000001,
+      "speaker_id": null,
+      "text": "めちゃくちゃタイミングを本当にありがたいです",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000326",
+      "start": 1017.3000000000001,
+      "end": 1018.52,
+      "speaker_id": null,
+      "text": "誘っていただいたので",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000327",
+      "start": 1018.52,
+      "end": 1019.84,
+      "speaker_id": null,
+      "text": "なるほどな",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000328",
+      "start": 1019.84,
+      "end": 1021.5,
+      "speaker_id": null,
+      "text": "岩田さんはどうですか?",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000329",
+      "start": 1022.12,
+      "end": 1022.48,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000330",
+      "start": 1022.48,
+      "end": 1025.22,
+      "speaker_id": null,
+      "text": "僕も開けないくらいちょっといい話で聞いて",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000331",
+      "start": 1025.22,
+      "end": 1026.16,
+      "speaker_id": null,
+      "text": "おー聞きましたか",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000332",
+      "start": 1026.16,
+      "end": 1031.24,
+      "speaker_id": null,
+      "text": "先ほどお話した通り",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000333",
+      "start": 1031.24,
+      "end": 1034.76,
+      "speaker_id": null,
+      "text": "もともと事業会社の人事みたいなのをやっていて",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000334",
+      "start": 1034.76,
+      "end": 1037.28,
+      "speaker_id": null,
+      "text": "前職では今はローマですけど",
+      "confidence": 0.6293,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000335",
+      "start": 1037.28,
+      "end": 1043.28,
+      "speaker_id": null,
+      "text": "前職では人事のいわゆる企画領域と労務領域と両方担当させていただいたわけですよね",
+      "confidence": 0.6701,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000336",
+      "start": 1043.28,
+      "end": 1048.28,
+      "speaker_id": null,
+      "text": "人事制度を作るとかみたいなときに、例外としてはずっとベンチマークはしていたんですよ",
+      "confidence": 0.6701,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000337",
+      "start": 1048.28,
+      "end": 1051.28,
+      "speaker_id": null,
+      "text": "やっぱり徳と…",
+      "confidence": 0.6701,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000338",
+      "start": 1051.28,
+      "end": 1054.28,
+      "speaker_id": null,
+      "text": "カルチャーだと結構押し出してますよね",
+      "confidence": 0.6701,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000339",
+      "start": 1054.28,
+      "end": 1057.28,
+      "speaker_id": null,
+      "text": "カルチャーの部分でベンチマークをする",
+      "confidence": 0.6701,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000340",
+      "start": 1057.28,
+      "end": 1061.28,
+      "speaker_id": null,
+      "text": "すごく個人的に徳がすごい好きなんだと思うんですよ",
+      "confidence": 0.6701,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000341",
+      "start": 1061.28,
+      "end": 1070.28,
+      "speaker_id": null,
+      "text": "なので、すごく人事企画として、職種、自治企画だとするにあたって、ベンチマークしている会社さんだとずっと認識はしていて、",
+      "confidence": 0.7054,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000342",
+      "start": 1070.28,
+      "end": 1077.28,
+      "speaker_id": null,
+      "text": "そこまで正直その時点ではあまりプロダクトに興味がなかったというか、やっぱり会計側が強かったりもするので、",
+      "confidence": 0.7054,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000343",
+      "start": 1077.28,
+      "end": 1080.28,
+      "speaker_id": null,
+      "text": "あまり人事領域を出してもらえなかったです。",
+      "confidence": 0.7054,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000344",
+      "start": 1080.28,
+      "end": 1088.28,
+      "speaker_id": null,
+      "text": "で、多分何かでスカウトをいただいた、全然転職本当に足りないというのがあったんですけど、",
+      "confidence": 0.7054,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000345",
+      "start": 1088.28,
+      "end": 1105.28,
+      "speaker_id": null,
+      "text": "あの今をときめくのがですね、採用体験どんなものなのかとか、人事の勉強として経験させて頂こうと思って受けるだけ受けてきたのが、実はHCL、HR領域を作ろうとしてるんですよ、されてですね。",
+      "confidence": 0.5324,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000346",
+      "start": 1105.28,
+      "end": 1115.28,
+      "speaker_id": null,
+      "text": "今はロームで開発を考えたわけではなかったんですけれども、いわゆるレイヤーXのカルチャーの中でHRテックを作っていく。",
+      "confidence": 0.6183,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000347",
+      "start": 1115.28,
+      "end": 1123.28,
+      "speaker_id": null,
+      "text": "どんなものができるんだろうと一気に興味を持ち込んで、全然本当に転職を考えていなかったので、じゃあ作りますと言ってレイヤーXに来た感じですね。",
+      "confidence": 0.6183,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000348",
+      "start": 1123.28,
+      "end": 1126.28,
+      "speaker_id": null,
+      "text": "そこで金太郎を作ろうとしていた感じですね。",
+      "confidence": 0.6183,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000349",
+      "start": 1126.28,
+      "end": 1130.28,
+      "speaker_id": null,
+      "text": "それはただ開発じゃなくてロームとして入手はされたんですか?",
+      "confidence": 0.6183,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000350",
+      "start": 1130.28,
+      "end": 1140.28,
+      "speaker_id": null,
+      "text": "そうですね、多分当時別にHR領域の専門家は何かの開発側を求めているという状況ではなかった",
+      "confidence": 0.6711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000351",
+      "start": 1140.28,
+      "end": 1142.28,
+      "speaker_id": null,
+      "text": "まだその前というか",
+      "confidence": 0.6711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000352",
+      "start": 1142.28,
+      "end": 1143.28,
+      "speaker_id": null,
+      "text": "ずっと前だと思います",
+      "confidence": 0.6711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000353",
+      "start": 1143.28,
+      "end": 1148.28,
+      "speaker_id": null,
+      "text": "ただ開発に参画できるというか、まさか壁打ちだとさせていただくことがあると思うんですけど",
+      "confidence": 0.6711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000354",
+      "start": 1148.28,
+      "end": 1153.28,
+      "speaker_id": null,
+      "text": "そのあたりも、こっちでお貸しいただけますかみたいな誘い方をしていただいて",
+      "confidence": 0.6711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000355",
+      "start": 1153.28,
+      "end": 1155.28,
+      "speaker_id": null,
+      "text": "こんな面白い状況があると私は思いました",
+      "confidence": 0.6711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000356",
+      "start": 1155.28,
+      "end": 1158.28,
+      "speaker_id": null,
+      "text": "本田さんと一緒にロームだけやると全職",
+      "confidence": 0.6711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000357",
+      "start": 1158.28,
+      "end": 1165.28,
+      "speaker_id": null,
+      "text": "なのでそのお話、開発を進めていくんですという話に惹かれて店長を務めたわけです",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000358",
+      "start": 1165.28,
+      "end": 1169.28,
+      "speaker_id": null,
+      "text": "カルチャー力というか、もしかしてこの後お話出てくるんでしょうか",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000359",
+      "start": 1169.28,
+      "end": 1172.28,
+      "speaker_id": null,
+      "text": "やっぱ大事じゃないですか、人間力っていうか",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000360",
+      "start": 1172.28,
+      "end": 1173.28,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000361",
+      "start": 1173.28,
+      "end": 1177.28,
+      "speaker_id": null,
+      "text": "人事企画って給与制度とか評価制度のイメージ",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000362",
+      "start": 1177.28,
+      "end": 1181.28,
+      "speaker_id": null,
+      "text": "だから結構定量的な話かと思って、結構カルチャーとか見てるんですか",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000363",
+      "start": 1181.28,
+      "end": 1183.28,
+      "speaker_id": null,
+      "text": "カルチャーといいますね",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000364",
+      "start": 1183.28,
+      "end": 1184.28,
+      "speaker_id": null,
+      "text": "面白い",
+      "confidence": 0.6886,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000365",
+      "start": 1184.28,
+      "end": 1189.28,
+      "speaker_id": null,
+      "text": "それは他にもいろいろな会社さんの方は受けてないですか?",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000366",
+      "start": 1189.28,
+      "end": 1191.28,
+      "speaker_id": null,
+      "text": "いや、全然一生受けてなくて",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000367",
+      "start": 1191.28,
+      "end": 1193.28,
+      "speaker_id": null,
+      "text": "例書考えてないですか?",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000368",
+      "start": 1193.28,
+      "end": 1195.28,
+      "speaker_id": null,
+      "text": "僕も同じです",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000369",
+      "start": 1195.28,
+      "end": 1199.28,
+      "speaker_id": null,
+      "text": "その話だけ聞いて、じゃあ行きますって言って",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000370",
+      "start": 1199.28,
+      "end": 1201.28,
+      "speaker_id": null,
+      "text": "相当びっくりされましたね",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000371",
+      "start": 1201.28,
+      "end": 1208.28,
+      "speaker_id": null,
+      "text": "そうですよ、単純に今経理とかロームとか人事とかやってる中で",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000372",
+      "start": 1208.28,
+      "end": 1211.28,
+      "speaker_id": null,
+      "text": "ちょっと違うキャリアじゃないですか",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000373",
+      "start": 1211.28,
+      "end": 1213.28,
+      "speaker_id": null,
+      "text": "そこは不安とかなかったんですかね",
+      "confidence": 0.7028,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000374",
+      "start": 1213.28,
+      "end": 1216.28,
+      "speaker_id": null,
+      "text": "そこに踏み出す?",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000375",
+      "start": 1216.28,
+      "end": 1220.28,
+      "speaker_id": null,
+      "text": "それで言うと、私の場合あくまでオファーは",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000376",
+      "start": 1220.28,
+      "end": 1221.28,
+      "speaker_id": null,
+      "text": "そうです",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000377",
+      "start": 1221.28,
+      "end": 1225.28,
+      "speaker_id": null,
+      "text": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000378",
+      "start": 1225.28,
+      "end": 1229.28,
+      "speaker_id": null,
+      "text": "そこは、ある意味4歳くらい気楽にとりたい",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000379",
+      "start": 1229.28,
+      "end": 1231.28,
+      "speaker_id": null,
+      "text": "いけるだろう、ぐらいの感じで",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000380",
+      "start": 1231.28,
+      "end": 1234.28,
+      "speaker_id": null,
+      "text": "好きなこと言えばいいんでしょ、みたいな感じでした",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000381",
+      "start": 1234.28,
+      "end": 1236.28,
+      "speaker_id": null,
+      "text": "でも、どうですか?",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000382",
+      "start": 1236.28,
+      "end": 1240.28,
+      "speaker_id": null,
+      "text": "僕は最初開発って言われた時によくわかんないじゃないですか",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000383",
+      "start": 1240.28,
+      "end": 1241.28,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.6649,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000384",
+      "start": 1241.28,
+      "end": 1244.68,
+      "speaker_id": null,
+      "text": "たまたまもう一人ドメイキスパートがすでにいて",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000385",
+      "start": 1244.68,
+      "end": 1246.94,
+      "speaker_id": null,
+      "text": "メンバーとしてさせてもらった時に",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000386",
+      "start": 1246.94,
+      "end": 1248.92,
+      "speaker_id": null,
+      "text": "ちょっとこの本読んでみてくださいって言われて",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000387",
+      "start": 1248.92,
+      "end": 1251.52,
+      "speaker_id": null,
+      "text": "プロダクトマネージャーの本を紹介してくださった",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000388",
+      "start": 1251.52,
+      "end": 1254.56,
+      "speaker_id": null,
+      "text": "最初の本を読んでみたら",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000389",
+      "start": 1254.56,
+      "end": 1257.16,
+      "speaker_id": null,
+      "text": "プロダクトマネージャーってコードを書けないといけないと思ってたんですよ",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000390",
+      "start": 1257.16,
+      "end": 1262.3999999999999,
+      "speaker_id": null,
+      "text": "見てると結構プロダクトの成長のために何でもやる人です",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000391",
+      "start": 1262.3999999999999,
+      "end": 1265.3,
+      "speaker_id": null,
+      "text": "例えば営業やるのもいいし",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000392",
+      "start": 1265.3,
+      "end": 1268.16,
+      "speaker_id": null,
+      "text": "カスタマーサポートもやるしみたいな",
+      "confidence": 0.8497,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000393",
+      "start": 1268.16,
+      "end": 1274.66,
+      "speaker_id": null,
+      "text": "それを見ていて、そこは僕がポジティブすぎるのかもしれないですけど、これだったらいけないんじゃないかと思ったんです。",
+      "confidence": 0.7047,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000394",
+      "start": 1274.66,
+      "end": 1277.16,
+      "speaker_id": null,
+      "text": "要はコードをかけなくてもいいんだと思ったんです。",
+      "confidence": 0.7047,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000395",
+      "start": 1277.16,
+      "end": 1279.16,
+      "speaker_id": null,
+      "text": "コードに対しての結構な抵抗感があるんですね。",
+      "confidence": 0.7047,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000396",
+      "start": 1279.16,
+      "end": 1285.16,
+      "speaker_id": null,
+      "text": "コードをかけって言われたら、多分そこで開発をする職種ですって言われたら、多分受けられないんだと思います。",
+      "confidence": 0.7047,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000397",
+      "start": 1285.16,
+      "end": 1293.16,
+      "speaker_id": null,
+      "text": "自分の知識を活かして、いろんなことをやればいいんだったら、もともと結構フットワークは仮フォードだと思っていたので、",
+      "confidence": 0.7047,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000398",
+      "start": 1293.16,
+      "end": 1299.72,
+      "speaker_id": null,
+      "text": "これもしかしたら、ダメだったら落とされるし、もともとそういうちょっとやりたかった気持ちもあるんですよ",
+      "confidence": 0.6486,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000399",
+      "start": 1299.72,
+      "end": 1305.16,
+      "speaker_id": null,
+      "text": "そういう生産性を変えたいみたいな感じだから、ワンチャンあるかなと思って",
+      "confidence": 0.6486,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000400",
+      "start": 1305.16,
+      "end": 1307.16,
+      "speaker_id": null,
+      "text": "なるほどね、キャリアの問題でしたしね",
+      "confidence": 0.6486,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000401",
+      "start": 1307.16,
+      "end": 1311.16,
+      "speaker_id": null,
+      "text": "ちょうど良かったっていう、行動覚醒がなかなかできるかなと思って",
+      "confidence": 0.6486,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000402",
+      "start": 1311.16,
+      "end": 1317.16,
+      "speaker_id": null,
+      "text": "家族には経理系の仕事だからとか言って、経理系では同じようなことやるんでしょみたいな",
+      "confidence": 0.6486,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000403",
+      "start": 1317.16,
+      "end": 1321.16,
+      "speaker_id": null,
+      "text": "リスクは取ってない感を出して、それで受けたと思います",
+      "confidence": 0.6486,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000404",
+      "start": 1321.16,
+      "end": 1330.28,
+      "speaker_id": null,
+      "text": "今はロームメインとプロダクト マネージャーメインでっていう",
+      "confidence": 0.7157,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000405",
+      "start": 1330.28,
+      "end": 1335.5400000000002,
+      "speaker_id": null,
+      "text": "感じだと思うんですけど共通点 としてはプロダクト開発にドメイン",
+      "confidence": 0.7157,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000406",
+      "start": 1335.5400000000002,
+      "end": 1340.0400000000002,
+      "speaker_id": null,
+      "text": "の知識を持って関与してるっていう ところがお二人共通してるかな",
+      "confidence": 0.7157,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000407",
+      "start": 1340.0400000000002,
+      "end": 1344.92,
+      "speaker_id": null,
+      "text": "と思ってるんですけど村田さん は今どれぐらい関与してるんですか",
+      "confidence": 0.7157,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000408",
+      "start": 1344.92,
+      "end": 1347.92,
+      "speaker_id": null,
+      "text": "だいたい半々ぐらいじゃないですか",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000409",
+      "start": 1347.92,
+      "end": 1350.92,
+      "speaker_id": null,
+      "text": "結構半分ぐらいかもしれないですね",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000410",
+      "start": 1350.92,
+      "end": 1353.92,
+      "speaker_id": null,
+      "text": "仕様の検討とかも入れていただいて",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000411",
+      "start": 1353.92,
+      "end": 1356.92,
+      "speaker_id": null,
+      "text": "ありがたいことに何かあるとメンションして聞いていただいて",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000412",
+      "start": 1356.92,
+      "end": 1359.92,
+      "speaker_id": null,
+      "text": "そうするとこっちもちょっと楽しくなってきちゃう",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000413",
+      "start": 1359.92,
+      "end": 1362.92,
+      "speaker_id": null,
+      "text": "やっぱり今まで絶対そうと思うんですけど",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000414",
+      "start": 1362.92,
+      "end": 1364.92,
+      "speaker_id": null,
+      "text": "実務で感じてきたんですよ",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000415",
+      "start": 1364.92,
+      "end": 1365.92,
+      "speaker_id": null,
+      "text": "なんかん?みたいな",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000416",
+      "start": 1365.92,
+      "end": 1366.92,
+      "speaker_id": null,
+      "text": "おやおやみたいなのが",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000417",
+      "start": 1366.92,
+      "end": 1368.92,
+      "speaker_id": null,
+      "text": "それをちゃんと持った上で",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000418",
+      "start": 1368.92,
+      "end": 1371.92,
+      "speaker_id": null,
+      "text": "落とし込んでもらえるっていうんですかね",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000419",
+      "start": 1371.92,
+      "end": 1373.92,
+      "speaker_id": null,
+      "text": "文句言うとすぐ次に",
+      "confidence": 0.6754,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000420",
+      "start": 1373.92,
+      "end": 1377.92,
+      "speaker_id": null,
+      "text": "楽しくなってきちゃうね、こっちからすると。",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000421",
+      "start": 1377.92,
+      "end": 1380.92,
+      "speaker_id": null,
+      "text": "薄毛みたいなのが出てくるんで、外に入れちゃう。",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000422",
+      "start": 1380.92,
+      "end": 1383.92,
+      "speaker_id": null,
+      "text": "最初は3割くらいっていうお話だったんですけど、",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000423",
+      "start": 1383.92,
+      "end": 1387.92,
+      "speaker_id": null,
+      "text": "僕の方もじわじわ前延べになってしまった。",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000424",
+      "start": 1387.92,
+      "end": 1390.92,
+      "speaker_id": null,
+      "text": "確かにうちの会社のカルチャーとして、",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000425",
+      "start": 1390.92,
+      "end": 1392.92,
+      "speaker_id": null,
+      "text": "フィードバックを良しとするというか、",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000426",
+      "start": 1392.92,
+      "end": 1394.92,
+      "speaker_id": null,
+      "text": "喜んでする側も受ける側も、",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000427",
+      "start": 1394.92,
+      "end": 1397.92,
+      "speaker_id": null,
+      "text": "基本的にはそれはあるべきだよっていう、",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000428",
+      "start": 1397.92,
+      "end": 1400.92,
+      "speaker_id": null,
+      "text": "そういうスタンスもあるから、より言いやすいし、",
+      "confidence": 0.7201,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000429",
+      "start": 1400.92,
+      "end": 1405.3600000000001,
+      "speaker_id": null,
+      "text": "受ける側も言ってくれっていうスタンスがあるかなと思っていて",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000430",
+      "start": 1405.3600000000001,
+      "end": 1408.3200000000002,
+      "speaker_id": null,
+      "text": "PDMの人は仕様を考えるのももちろんなんですけど",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000431",
+      "start": 1408.3200000000002,
+      "end": 1412.3400000000001,
+      "speaker_id": null,
+      "text": "エンジニアの方も自分から仕様を考えてくださるので",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000432",
+      "start": 1412.3400000000001,
+      "end": 1416.0800000000002,
+      "speaker_id": null,
+      "text": "とりあえず違和感を持ったら言うといいものになっていくっていうのが",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000433",
+      "start": 1416.0800000000002,
+      "end": 1417.54,
+      "speaker_id": null,
+      "text": "すごく大変な人としてあって",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000434",
+      "start": 1417.54,
+      "end": 1421.18,
+      "speaker_id": null,
+      "text": "そうすると気軽に言ってしまうというか",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000435",
+      "start": 1421.18,
+      "end": 1425.0,
+      "speaker_id": null,
+      "text": "意見出してしまうとそうすると次の人が言うのがいいなという感じがあります",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000436",
+      "start": 1425.0,
+      "end": 1426.66,
+      "speaker_id": null,
+      "text": "楽しくなってしまいますよね",
+      "confidence": 0.7618,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000437",
+      "start": 1426.66,
+      "end": 1433.38,
+      "speaker_id": null,
+      "text": "そうですよね、僕らも結構実際どれくらい大変なのかとかは、ちょっと一旦ドバイシして、",
+      "confidence": 0.594,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000438",
+      "start": 1433.38,
+      "end": 1443.26,
+      "speaker_id": null,
+      "text": "もうこれやりたいですとか、ちょっと違和感ありますとか、そういうのを結構普通に言いますよね。",
+      "confidence": 0.594,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000439",
+      "start": 1443.26,
+      "end": 1445.3000000000002,
+      "speaker_id": null,
+      "text": "それが喜ばれるのがやっぱり一番いいですね。",
+      "confidence": 0.594,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000440",
+      "start": 1445.3000000000002,
+      "end": 1447.5800000000002,
+      "speaker_id": null,
+      "text": "いい感じですね、確かに。",
+      "confidence": 0.594,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000441",
+      "start": 1447.5800000000002,
+      "end": 1448.66,
+      "speaker_id": null,
+      "text": "ありがとうございます。",
+      "confidence": 0.594,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000442",
+      "start": 1448.66,
+      "end": 1452.5400000000002,
+      "speaker_id": null,
+      "text": "Memoさんはどんな感じで過ごしてるんですか?PDMとして。",
+      "confidence": 0.594,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000443",
+      "start": 1452.54,
+      "end": 1455.36,
+      "speaker_id": null,
+      "text": "でも結構本当に日によるかなと思って",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000444",
+      "start": 1455.36,
+      "end": 1457.58,
+      "speaker_id": null,
+      "text": "本当に新しい機能を作るときは",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000445",
+      "start": 1457.58,
+      "end": 1459.68,
+      "speaker_id": null,
+      "text": "エンジニアのそれこそさっきの話で",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000446",
+      "start": 1459.68,
+      "end": 1461.22,
+      "speaker_id": null,
+      "text": "エンジニアの人と議論したりとか",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000447",
+      "start": 1461.22,
+      "end": 1463.5,
+      "speaker_id": null,
+      "text": "機能の話を議論したりとかもあるけど",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000448",
+      "start": 1463.5,
+      "end": 1466.18,
+      "speaker_id": null,
+      "text": "その機能をリリースした後に",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000449",
+      "start": 1466.18,
+      "end": 1468.02,
+      "speaker_id": null,
+      "text": "どう使ってもらっているかみたいな",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000450",
+      "start": 1468.02,
+      "end": 1470.3999999999999,
+      "speaker_id": null,
+      "text": "お客さんとコミュニケーションしたりする",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000451",
+      "start": 1470.3999999999999,
+      "end": 1471.76,
+      "speaker_id": null,
+      "text": "っていう時もあれば",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000452",
+      "start": 1471.76,
+      "end": 1474.6,
+      "speaker_id": null,
+      "text": "リリース前はサポート記事書いて",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000453",
+      "start": 1474.6,
+      "end": 1475.6599999999999,
+      "speaker_id": null,
+      "text": "サポートサイトに書いて",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000454",
+      "start": 1475.6599999999999,
+      "end": 1478.3999999999999,
+      "speaker_id": null,
+      "text": "プレスリリース書いたりとかもしてるし",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000455",
+      "start": 1478.3999999999999,
+      "end": 1480.96,
+      "speaker_id": null,
+      "text": "日によって結構やってることとか",
+      "confidence": 0.8555,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000456",
+      "start": 1480.96,
+      "end": 1484.96,
+      "speaker_id": null,
+      "text": "関わっている人は結構違うかもしれません 確かに",
+      "confidence": 0.7374,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000457",
+      "start": 1484.96,
+      "end": 1490.56,
+      "speaker_id": null,
+      "text": "結構プロダクトのフェーズとかそういうものによっても全然違うし 確かにそれはありますよね",
+      "confidence": 0.7374,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000458",
+      "start": 1490.56,
+      "end": 1496.64,
+      "speaker_id": null,
+      "text": "それが結構面白くもあり難しくもあるというか 結構自分が今何しなきゃいけないのかを",
+      "confidence": 0.7374,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000459",
+      "start": 1496.64,
+      "end": 1500.72,
+      "speaker_id": null,
+      "text": "毎日考えながら優先度を決めてるってことですか? 確かに",
+      "confidence": 0.7374,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000460",
+      "start": 1500.72,
+      "end": 1508.76,
+      "speaker_id": null,
+      "text": "ちなみにお二人の中でこれまで開発に関わる仕事をする中で これめっちゃ大変でしたとか",
+      "confidence": 0.7374,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000461",
+      "start": 1508.76,
+      "end": 1511.36,
+      "speaker_id": null,
+      "text": "そうですね、難しかったですね",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000462",
+      "start": 1511.36,
+      "end": 1517.0,
+      "speaker_id": null,
+      "text": "それで言うと、やはり自分ももともと趣味がある",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000463",
+      "start": 1517.0,
+      "end": 1519.76,
+      "speaker_id": null,
+      "text": "ケーブルの視点でPDMとしてと言えば",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000464",
+      "start": 1519.76,
+      "end": 1524.56,
+      "speaker_id": null,
+      "text": "免疫スパーの指揮官のようなやつとして期待している",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000465",
+      "start": 1524.56,
+      "end": 1528.36,
+      "speaker_id": null,
+      "text": "ただ、実務の中で感じたモヤモヤとか",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000466",
+      "start": 1528.36,
+      "end": 1531.12,
+      "speaker_id": null,
+      "text": "それが当たり前、慣行になっているとかを",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000467",
+      "start": 1531.12,
+      "end": 1533.42,
+      "speaker_id": null,
+      "text": "エンジニアの方とかPDMの方に",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000468",
+      "start": 1533.42,
+      "end": 1535.3,
+      "speaker_id": null,
+      "text": "なんでそうするんですかって聞かれた時に",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000469",
+      "start": 1535.3,
+      "end": 1538.62,
+      "speaker_id": null,
+      "text": "ものすごくこれを言語化するのに大変だった",
+      "confidence": 0.6026,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000470",
+      "start": 1538.6200000000001,
+      "end": 1549.6200000000001,
+      "speaker_id": null,
+      "text": "癖とか、慣れとか、そういうもので今までやってきたんだなっていうのが分かる、それを言語化して頑張って言語化していくと、ちゃんと意味が当たっていくから。",
+      "confidence": 0.7244,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000471",
+      "start": 1549.6200000000001,
+      "end": 1556.6200000000001,
+      "speaker_id": null,
+      "text": "だからこうなったんだけど、自分のその仕事の中にあったことがあって、その言語化ですかね、今までの当たり前を言語化する。",
+      "confidence": 0.7244,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000472",
+      "start": 1556.6200000000001,
+      "end": 1562.6200000000001,
+      "speaker_id": null,
+      "text": "多分これはローム同士とかだったら、そうだよね、終わってた話も。で、なんでなんですかってちょっと惹かれる。",
+      "confidence": 0.7244,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000473",
+      "start": 1562.6200000000001,
+      "end": 1563.6200000000001,
+      "speaker_id": null,
+      "text": "そうですよね。",
+      "confidence": 0.7244,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000474",
+      "start": 1563.6200000000001,
+      "end": 1566.6200000000001,
+      "speaker_id": null,
+      "text": "なんでって言われてもみたいに、この言語化ですね。",
+      "confidence": 0.7244,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000475",
+      "start": 1566.6200000000001,
+      "end": 1571.1200000000001,
+      "speaker_id": null,
+      "text": "なるほどなぁ すごい時間をかけた仕事をしたような気がしますね",
+      "confidence": 0.7667,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000476",
+      "start": 1571.1200000000001,
+      "end": 1581.6200000000001,
+      "speaker_id": null,
+      "text": "確かにこの辺も例えば業務として当たり前のことも意外と背景にこういう法律とか理由があるからとか",
+      "confidence": 0.7667,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000477",
+      "start": 1581.6200000000001,
+      "end": 1588.6200000000001,
+      "speaker_id": null,
+      "text": "会社のルールがあるからとか結構そういう裏側の事情とかもあるじゃないですか",
+      "confidence": 0.7667,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000478",
+      "start": 1588.6200000000001,
+      "end": 1593.6200000000001,
+      "speaker_id": null,
+      "text": "うちの会社のエンジニアの人達ってやたらそういう法律とかめちゃくちゃ詳しい",
+      "confidence": 0.7667,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000479",
+      "start": 1593.6200000000001,
+      "end": 1595.6200000000001,
+      "speaker_id": null,
+      "text": "そうなんですよ",
+      "confidence": 0.7667,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000480",
+      "start": 1595.6200000000001,
+      "end": 1601.22,
+      "speaker_id": null,
+      "text": "結構なんかドメインエキスパートって言うと何でも知ってそうな感じがあると思ってて",
+      "confidence": 0.7582,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000481",
+      "start": 1601.22,
+      "end": 1604.1000000000001,
+      "speaker_id": null,
+      "text": "この辺へのハードルの高さというか",
+      "confidence": 0.7582,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000482",
+      "start": 1604.1000000000001,
+      "end": 1611.94,
+      "speaker_id": null,
+      "text": "要は自分が知らないことも知ってるんじゃないかと思われることの難しさとか抵抗感っていうのもありましたね",
+      "confidence": 0.7582,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000483",
+      "start": 1611.94,
+      "end": 1619.16,
+      "speaker_id": null,
+      "text": "いやでもそれはあんまりそこはそこまですごくいつも建設的な話にはなるので",
+      "confidence": 0.7582,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000484",
+      "start": 1619.16,
+      "end": 1623.92,
+      "speaker_id": null,
+      "text": "本当におっしゃっていたけどもうすごい皆さんドメインの方めっちゃ調べてるんですよ",
+      "confidence": 0.7582,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000485",
+      "start": 1623.92,
+      "end": 1627.72,
+      "speaker_id": null,
+      "text": "正直全然僕より詳しいという意味はあるんでしょうけどね",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000486",
+      "start": 1627.72,
+      "end": 1630.18,
+      "speaker_id": null,
+      "text": "でもそれはこれってこういう資料もあったんですけど",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000487",
+      "start": 1630.18,
+      "end": 1633.8200000000002,
+      "speaker_id": null,
+      "text": "そんな本当に悪いとかたいなと教えてくれますし",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000488",
+      "start": 1633.8200000000002,
+      "end": 1635.44,
+      "speaker_id": null,
+      "text": "そこが伝説的な議論に何度もあって",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000489",
+      "start": 1635.44,
+      "end": 1638.76,
+      "speaker_id": null,
+      "text": "そこに対して怖いというのはないです",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000490",
+      "start": 1638.76,
+      "end": 1641.88,
+      "speaker_id": null,
+      "text": "ただその代わり好きかって言った後に",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000491",
+      "start": 1641.88,
+      "end": 1643.5600000000002,
+      "speaker_id": null,
+      "text": "なんでなんですかを絶対に逃がしてくれない",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000492",
+      "start": 1643.5600000000002,
+      "end": 1647.6200000000001,
+      "speaker_id": null,
+      "text": "そこのある意味健全なプレッシャーというのが来た",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000493",
+      "start": 1647.6200000000001,
+      "end": 1650.76,
+      "speaker_id": null,
+      "text": "ちゃんと伝えるには背景まで整理して",
+      "confidence": 0.7671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000494",
+      "start": 1650.76,
+      "end": 1653.6,
+      "speaker_id": null,
+      "text": "言語化して伝えなきゃいけないよなっていうところは",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000495",
+      "start": 1653.6,
+      "end": 1654.76,
+      "speaker_id": null,
+      "text": "鍛えていただきたいと思います",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000496",
+      "start": 1654.76,
+      "end": 1658.44,
+      "speaker_id": null,
+      "text": "自分がこれまで当たり前だと思ったものが",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000497",
+      "start": 1658.44,
+      "end": 1661.78,
+      "speaker_id": null,
+      "text": "ある種そういう過程で結構激化されて成長されて",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000498",
+      "start": 1661.78,
+      "end": 1663.72,
+      "speaker_id": null,
+      "text": "めっちゃ大事です",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000499",
+      "start": 1663.72,
+      "end": 1665.04,
+      "speaker_id": null,
+      "text": "経理も労働もそうだけど",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000500",
+      "start": 1665.04,
+      "end": 1668.86,
+      "speaker_id": null,
+      "text": "法律も何十年前の名残みたいなのが結構あるじゃないですか",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000501",
+      "start": 1668.86,
+      "end": 1672.4,
+      "speaker_id": null,
+      "text": "それを通貨で流しちゃうというよりは",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000502",
+      "start": 1672.4,
+      "end": 1674.48,
+      "speaker_id": null,
+      "text": "一個一個なんてか調べていくっていうのは結構",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000503",
+      "start": 1674.48,
+      "end": 1677.84,
+      "speaker_id": null,
+      "text": "実は目的、実はもういりませんでしたみたいなことも",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000504",
+      "start": 1677.84,
+      "end": 1678.5,
+      "speaker_id": null,
+      "text": "全然あるじゃないですか",
+      "confidence": 0.7638,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000505",
+      "start": 1678.5,
+      "end": 1681.5,
+      "speaker_id": null,
+      "text": "結構大事ですよね、その費用が。",
+      "confidence": 0.6513,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000506",
+      "start": 1681.5,
+      "end": 1688.5,
+      "speaker_id": null,
+      "text": "そのきっかけで、ちょっと市場に向けての体験の良いものを提供できたな、みたいなこともあるので。",
+      "confidence": 0.6513,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000507",
+      "start": 1688.5,
+      "end": 1697.5,
+      "speaker_id": null,
+      "text": "僕、勝手な偏見かもしれないですけど、お二人すごいこだわり強い人だと思っていて、",
+      "confidence": 0.6513,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000508",
+      "start": 1697.5,
+      "end": 1709.5,
+      "speaker_id": null,
+      "text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中で、これ気をつけてますとか、",
+      "confidence": 0.7906,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000509",
+      "start": 1709.5,
+      "end": 1718.5,
+      "speaker_id": null,
+      "text": "要は期待されてるものもあると思うんですけど、こういうことを心がけて仕事してますみたいな話ってあったりします?",
+      "confidence": 0.7906,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000510",
+      "start": 1718.5,
+      "end": 1734.5,
+      "speaker_id": null,
+      "text": "それで言うと、もしかすると皆さんなんとなく分かりやすいんですけれども、開発される方ってめちゃめちゃロジックある、エンジニアの方だったり、前衛というか先進というか。",
+      "confidence": 0.6253,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000511",
+      "start": 1734.5,
+      "end": 1742.5,
+      "speaker_id": null,
+      "text": "ただ、ローン経営の方ってミスっちゃいけない領域があって、やっぱり結構堅い方多いじゃないですか。",
+      "confidence": 0.6253,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000512",
+      "start": 1742.5,
+      "end": 1749.5,
+      "speaker_id": null,
+      "text": "自分の目で確かめたい、その感覚をちゃんと伝えるようにして",
+      "confidence": 0.7846,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000513",
+      "start": 1749.5,
+      "end": 1752.5,
+      "speaker_id": null,
+      "text": "全部これ自動でやってくれます、はいいんですけど",
+      "confidence": 0.7846,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000514",
+      "start": 1752.5,
+      "end": 1755.5,
+      "speaker_id": null,
+      "text": "多分使ってる側は心配になって、自分で調べるようになる",
+      "confidence": 0.7846,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000515",
+      "start": 1755.5,
+      "end": 1757.5,
+      "speaker_id": null,
+      "text": "自分で使われない機能になる",
+      "confidence": 0.7846,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000516",
+      "start": 1757.5,
+      "end": 1761.5,
+      "speaker_id": null,
+      "text": "これをとにかく避けるために、ドメインスパークの実務の経験者",
+      "confidence": 0.7846,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000517",
+      "start": 1761.5,
+      "end": 1765.5,
+      "speaker_id": null,
+      "text": "開発にする意味があるんだなっていうのは最初の頃からずっと思っていて",
+      "confidence": 0.7846,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000518",
+      "start": 1765.5,
+      "end": 1770.5,
+      "speaker_id": null,
+      "text": "それをちゃんと伝えるということはすごく意識して",
+      "confidence": 0.7846,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000519",
+      "start": 1770.5,
+      "end": 1772.5,
+      "speaker_id": null,
+      "text": "気がしますね、気をつけてる",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000520",
+      "start": 1772.5,
+      "end": 1776.5,
+      "speaker_id": null,
+      "text": "確かにすごくいい話だと思います",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000521",
+      "start": 1776.5,
+      "end": 1778.5,
+      "speaker_id": null,
+      "text": "すごいですね、こだわり",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000522",
+      "start": 1778.5,
+      "end": 1779.5,
+      "speaker_id": null,
+      "text": "ちょっと近いかもしれないですけど",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000523",
+      "start": 1779.5,
+      "end": 1781.5,
+      "speaker_id": null,
+      "text": "何かをやる時に",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000524",
+      "start": 1781.5,
+      "end": 1784.5,
+      "speaker_id": null,
+      "text": "この機能で何が実現したくて",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000525",
+      "start": 1784.5,
+      "end": 1787.5,
+      "speaker_id": null,
+      "text": "ユーザーの人にどうなってほしいのかっていうのを",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000526",
+      "start": 1787.5,
+      "end": 1790.5,
+      "speaker_id": null,
+      "text": "自分の体験込みで伝えるっていうのは結構意識してる",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000527",
+      "start": 1790.5,
+      "end": 1791.5,
+      "speaker_id": null,
+      "text": "はいはいはい",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000528",
+      "start": 1791.5,
+      "end": 1793.5,
+      "speaker_id": null,
+      "text": "結構開発やってると",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000529",
+      "start": 1793.5,
+      "end": 1794.5,
+      "speaker_id": null,
+      "text": "あれもしたいこれもしたい",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000530",
+      "start": 1794.5,
+      "end": 1795.5,
+      "speaker_id": null,
+      "text": "いっぱい出てくるじゃないですか",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000531",
+      "start": 1795.5,
+      "end": 1796.5,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000532",
+      "start": 1796.5,
+      "end": 1797.5,
+      "speaker_id": null,
+      "text": "それ全部やってると",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000533",
+      "start": 1797.5,
+      "end": 1799.5,
+      "speaker_id": null,
+      "text": "やっぱスピードも遅くなるし",
+      "confidence": 0.8115,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000534",
+      "start": 1799.5,
+      "end": 1803.76,
+      "speaker_id": null,
+      "text": "結局なんか画面見たけどこれどっから触ればいいかみたいなこととかにもなるんで",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000535",
+      "start": 1803.76,
+      "end": 1806.28,
+      "speaker_id": null,
+      "text": "まずもうコアとしてはこれをやりたいですと",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000536",
+      "start": 1806.28,
+      "end": 1809.76,
+      "speaker_id": null,
+      "text": "逆に言うとそれ以外のところは多少ちょっと落としたりとか",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000537",
+      "start": 1809.76,
+      "end": 1811.94,
+      "speaker_id": null,
+      "text": "そういう意思決定も全然あり得るようなみたいな",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000538",
+      "start": 1811.94,
+      "end": 1816.18,
+      "speaker_id": null,
+      "text": "それなんか道筋をはっきり説得力のある形でちゃんと伝えて",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000539",
+      "start": 1816.18,
+      "end": 1818.58,
+      "speaker_id": null,
+      "text": "なんかうちの演じりだってそれ伝えると結構やってくれるじゃないですか",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000540",
+      "start": 1818.58,
+      "end": 1819.66,
+      "speaker_id": null,
+      "text": "ある程度",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000541",
+      "start": 1819.66,
+      "end": 1823.44,
+      "speaker_id": null,
+      "text": "逆に言うとそれがないと多分みんな動けないと思うんで",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000542",
+      "start": 1823.44,
+      "end": 1827.14,
+      "speaker_id": null,
+      "text": "そこをちゃんとこう自分の経験とかを踏まえながら",
+      "confidence": 0.8386,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000543",
+      "start": 1827.14,
+      "end": 1831.6200000000001,
+      "speaker_id": null,
+      "text": "はっきりさせるっていうのは、結構こだわってやらなきゃいけない",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000544",
+      "start": 1831.6200000000001,
+      "end": 1834.5400000000002,
+      "speaker_id": null,
+      "text": "確かにな、結構うちのエンジニアも",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000545",
+      "start": 1834.5400000000002,
+      "end": 1836.96,
+      "speaker_id": null,
+      "text": "例えばエンジニアだからこれはやらないとか",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000546",
+      "start": 1836.96,
+      "end": 1840.22,
+      "speaker_id": null,
+      "text": "そういう選挙があんまりしない人たちが多いから",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000547",
+      "start": 1840.22,
+      "end": 1843.7,
+      "speaker_id": null,
+      "text": "そこはPTMだからこれやらなきゃいけないとか",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000548",
+      "start": 1843.7,
+      "end": 1845.9,
+      "speaker_id": null,
+      "text": "あんまり明確にはない",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000549",
+      "start": 1845.9,
+      "end": 1848.5400000000002,
+      "speaker_id": null,
+      "text": "多分、僕がいなくても",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000550",
+      "start": 1848.5400000000002,
+      "end": 1850.8600000000001,
+      "speaker_id": null,
+      "text": "ルールを調べて機能を作るんだったら",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000551",
+      "start": 1850.8600000000001,
+      "end": 1853.76,
+      "speaker_id": null,
+      "text": "エンジニアの人はできると思うんですよ",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000552",
+      "start": 1853.76,
+      "end": 1855.46,
+      "speaker_id": null,
+      "text": "いらない、いらないじゃないですか",
+      "confidence": 0.6664,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000553",
+      "start": 1855.46,
+      "end": 1861.46,
+      "speaker_id": null,
+      "text": "だから、そうじゃなくて、これからのこの機能でこういうことが実現したいんだっていう",
+      "confidence": 0.7636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000554",
+      "start": 1861.46,
+      "end": 1866.46,
+      "speaker_id": null,
+      "text": "ビジョン的なものを描く、逆に言うとそれぐらいしかないんじゃないかっていうぐらい",
+      "confidence": 0.7636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000555",
+      "start": 1866.46,
+      "end": 1869.46,
+      "speaker_id": null,
+      "text": "確かに、そこ求められてる気がする",
+      "confidence": 0.7636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000556",
+      "start": 1869.46,
+      "end": 1875.46,
+      "speaker_id": null,
+      "text": "いろんな方たちも、多分ドメインの専門家とか実務家たちのプライドって",
+      "confidence": 0.7636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000557",
+      "start": 1875.46,
+      "end": 1879.46,
+      "speaker_id": null,
+      "text": "先ほども自分で確認したように、そこをちゃんとリスペクトしてくれていて",
+      "confidence": 0.7636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000558",
+      "start": 1879.46,
+      "end": 1881.46,
+      "speaker_id": null,
+      "text": "だからこそそこにちょっと不安がある",
+      "confidence": 0.7636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000559",
+      "start": 1881.46,
+      "end": 1887.14,
+      "speaker_id": null,
+      "text": "そのプライドを無視して機能をルール優先を作っていないかっていうのを常に気にされていて",
+      "confidence": 0.6666,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000560",
+      "start": 1887.14,
+      "end": 1892.58,
+      "speaker_id": null,
+      "text": "だからそれを僕の方からフィードバックするっていうことをちょっとこだわりじゃないですか",
+      "confidence": 0.6666,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000561",
+      "start": 1892.58,
+      "end": 1897.06,
+      "speaker_id": null,
+      "text": "それを喜んでいただいているし、良いものが作れるっていう実感が",
+      "confidence": 0.6666,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000562",
+      "start": 1897.06,
+      "end": 1901.46,
+      "speaker_id": null,
+      "text": "ひとつプロダクト一緒に作ってきて、給与ですけども感じられたんで",
+      "confidence": 0.6666,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000563",
+      "start": 1901.46,
+      "end": 1903.8600000000001,
+      "speaker_id": null,
+      "text": "そこちょっとこだわってる気がしますし",
+      "confidence": 0.6666,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000564",
+      "start": 1903.8600000000001,
+      "end": 1907.8600000000001,
+      "speaker_id": null,
+      "text": "結構何かいらないものをちゃんと言ってあげるっていうのも",
+      "confidence": 0.6666,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000565",
+      "start": 1907.8600000000001,
+      "end": 1916.3600000000001,
+      "speaker_id": null,
+      "text": "たぶん皆さん経理とかロームのドメインを知っているから、これなくて大丈夫かなとか、必要なものをどんどんやっちゃうんですけど、",
+      "confidence": 0.674,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000566",
+      "start": 1916.3600000000001,
+      "end": 1922.1000000000001,
+      "speaker_id": null,
+      "text": "たぶんいらないって言えるのが、結構僕らのことだと。これはもうなくていいですとか。",
+      "confidence": 0.674,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000567",
+      "start": 1922.1000000000001,
+      "end": 1928.8600000000001,
+      "speaker_id": null,
+      "text": "結構やっぱりバックオフィスの仕事って、前提ミスが許されませんっていう、通説としてあるじゃないですか。",
+      "confidence": 0.674,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000568",
+      "start": 1928.8600000000001,
+      "end": 1935.7,
+      "speaker_id": null,
+      "text": "ただ、それとはいえっていうところがあるし、コロナ禍でもこれは別にどっちでもいいみたいなシーンもある。",
+      "confidence": 0.674,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000569",
+      "start": 1935.7,
+      "end": 1940.6000000000001,
+      "speaker_id": null,
+      "text": "そこをあえて何か別にやらなくていいですよってところを止めたりとか",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000570",
+      "start": 1940.6000000000001,
+      "end": 1941.96,
+      "speaker_id": null,
+      "text": "その優先順位付けっていうのは確かに",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000571",
+      "start": 1941.96,
+      "end": 1944.5800000000002,
+      "speaker_id": null,
+      "text": "そこは僕は結構こだわっている",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000572",
+      "start": 1944.5800000000002,
+      "end": 1947.72,
+      "speaker_id": null,
+      "text": "自分がやった方がいいだろうなと思っている範囲では",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000573",
+      "start": 1947.72,
+      "end": 1949.2,
+      "speaker_id": null,
+      "text": "確かに",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000574",
+      "start": 1949.2,
+      "end": 1951.2,
+      "speaker_id": null,
+      "text": "普通にルールを読むようなのをやると絶対やるって書いてある",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000575",
+      "start": 1951.2,
+      "end": 1955.94,
+      "speaker_id": null,
+      "text": "基準とかそういうのが法律だったら完全にそうですけど",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000576",
+      "start": 1955.94,
+      "end": 1959.16,
+      "speaker_id": null,
+      "text": "それこそロームだって役所とかに聞いたら",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000577",
+      "start": 1959.16,
+      "end": 1961.66,
+      "speaker_id": null,
+      "text": "それはやらなくていいですと絶対答え返ってこない",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000578",
+      "start": 1961.66,
+      "end": 1964.1000000000001,
+      "speaker_id": null,
+      "text": "税理さんとかに聞いても",
+      "confidence": 0.7495,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000579",
+      "start": 1964.1000000000001,
+      "end": 1973.1000000000001,
+      "speaker_id": null,
+      "text": "いらないと言えないから、そこを言ってあげるっていうのはちょっと大事だと思います。",
+      "confidence": 0.6671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000580",
+      "start": 1973.1000000000001,
+      "end": 1983.1000000000001,
+      "speaker_id": null,
+      "text": "いわゆるAIが普及してきて、エンジニアの人たちもすごい効率、生産性も上がってるみたいな話もあると思うんですけど、",
+      "confidence": 0.6671,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000581",
+      "start": 1983.1000000000001,
+      "end": 1990.1000000000001,
+      "speaker_id": null,
+      "text": "僕らも仕事の中でAIを使うのが前提になってきている中で",
+      "confidence": 0.7547,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000582",
+      "start": 1990.1000000000001,
+      "end": 1995.1000000000001,
+      "speaker_id": null,
+      "text": "ドミンエキスポートの役割というか重要性みたいなもので",
+      "confidence": 0.7547,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000583",
+      "start": 1995.1000000000001,
+      "end": 2000.1000000000001,
+      "speaker_id": null,
+      "text": "何か足元、何か重要性が上がっていると思うかというと",
+      "confidence": 0.7547,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000584",
+      "start": 2000.1000000000001,
+      "end": 2004.1000000000001,
+      "speaker_id": null,
+      "text": "自分たちで言うのも、確かに面白い話ではないんですけど",
+      "confidence": 0.7547,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000585",
+      "start": 2004.1000000000001,
+      "end": 2010.1000000000001,
+      "speaker_id": null,
+      "text": "何だろうな、個人的にはやっぱりさっきNemoさんが言っていたみたいに",
+      "confidence": 0.7547,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000586",
+      "start": 2010.1000000000001,
+      "end": 2016.8200000000002,
+      "speaker_id": null,
+      "text": "自分たちに求められることは結構研ぎ澄まされてきているなという感覚があって",
+      "confidence": 0.7927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000587",
+      "start": 2016.8200000000002,
+      "end": 2020.7,
+      "speaker_id": null,
+      "text": "仕様をゴリゴリ書いていくというよりは",
+      "confidence": 0.7927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000588",
+      "start": 2020.7,
+      "end": 2022.72,
+      "speaker_id": null,
+      "text": "ちゃんとなんでこれをやるのかとか",
+      "confidence": 0.7927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000589",
+      "start": 2022.72,
+      "end": 2025.5200000000002,
+      "speaker_id": null,
+      "text": "どういうことを実現していきたいのかとか",
+      "confidence": 0.7927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000590",
+      "start": 2025.5200000000002,
+      "end": 2029.1200000000001,
+      "speaker_id": null,
+      "text": "そういう思いとかその道筋を考えていくっていう",
+      "confidence": 0.7927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000591",
+      "start": 2029.1200000000001,
+      "end": 2033.2,
+      "speaker_id": null,
+      "text": "そういうことの方が結構最近期待されているような気がしていて",
+      "confidence": 0.7927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000592",
+      "start": 2033.2,
+      "end": 2037.94,
+      "speaker_id": null,
+      "text": "この辺の開発チームの中でもドミニエキスパートって",
+      "confidence": 0.7927,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000593",
+      "start": 2037.94,
+      "end": 2042.18,
+      "speaker_id": null,
+      "text": "直近の役割の強さというのを感じることがあります",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000594",
+      "start": 2042.18,
+      "end": 2046.14,
+      "speaker_id": null,
+      "text": "そこをお話戻っちゃいますが",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000595",
+      "start": 2046.14,
+      "end": 2051.54,
+      "speaker_id": null,
+      "text": "手触りが実務家の実務の経験みたいなものですから",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000596",
+      "start": 2051.54,
+      "end": 2053.82,
+      "speaker_id": null,
+      "text": "AIに行くとリサーチすごい優秀",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000597",
+      "start": 2053.82,
+      "end": 2056.14,
+      "speaker_id": null,
+      "text": "自分が調べるよりも全然",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000598",
+      "start": 2056.14,
+      "end": 2059.7400000000002,
+      "speaker_id": null,
+      "text": "それこそ細かい通達とかを引っ張ってきてくれるとか",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000599",
+      "start": 2059.7400000000002,
+      "end": 2061.42,
+      "speaker_id": null,
+      "text": "探し出してきてくれるんですけど",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000600",
+      "start": 2061.42,
+      "end": 2065.76,
+      "speaker_id": null,
+      "text": "それ一辺倒だとさっきのいらないものが失ったりとか",
+      "confidence": 0.7722,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000601",
+      "start": 2065.76,
+      "end": 2068.82,
+      "speaker_id": null,
+      "text": "何かちょっと使いづらい機能になってしまうので",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000602",
+      "start": 2068.82,
+      "end": 2072.5800000000004,
+      "speaker_id": null,
+      "text": "どこまでそれが一般的な支援なのかとか",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000603",
+      "start": 2072.5800000000004,
+      "end": 2073.86,
+      "speaker_id": null,
+      "text": "そのあたりを含めて",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000604",
+      "start": 2073.86,
+      "end": 2077.84,
+      "speaker_id": null,
+      "text": "実務的な部分をお伝えをしていくというところは",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000605",
+      "start": 2077.84,
+      "end": 2081.6400000000003,
+      "speaker_id": null,
+      "text": "やっぱり本当に多分それは専門家じゃできない",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000606",
+      "start": 2081.6400000000003,
+      "end": 2085.44,
+      "speaker_id": null,
+      "text": "実務家じゃできないなっていうのは感じますね",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000607",
+      "start": 2085.44,
+      "end": 2088.0400000000004,
+      "speaker_id": null,
+      "text": "確かにそうですよね",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000608",
+      "start": 2088.0400000000004,
+      "end": 2089.2400000000002,
+      "speaker_id": null,
+      "text": "リサーチは勝てないね",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000609",
+      "start": 2089.2400000000002,
+      "end": 2092.0800000000004,
+      "speaker_id": null,
+      "text": "本当に勝てない",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000610",
+      "start": 2092.0800000000004,
+      "end": 2094.7400000000002,
+      "speaker_id": null,
+      "text": "本当にミーティングをちょろっとされている場合",
+      "confidence": 0.6692,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000611",
+      "start": 2094.7400000000002,
+      "end": 2096.7400000000002,
+      "speaker_id": null,
+      "text": "もうこれバーってチラッといっておくと",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000612",
+      "start": 2096.7400000000002,
+      "end": 2098.7400000000002,
+      "speaker_id": null,
+      "text": "見終わったら全部出てきてくる",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000613",
+      "start": 2098.7400000000002,
+      "end": 2100.7400000000002,
+      "speaker_id": null,
+      "text": "これは勝てないですね",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000614",
+      "start": 2100.7400000000002,
+      "end": 2104.7400000000002,
+      "speaker_id": null,
+      "text": "多分今の延長のものを調べるとか作るだったら",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000615",
+      "start": 2104.7400000000002,
+      "end": 2106.7400000000002,
+      "speaker_id": null,
+      "text": "多分AIって一瞬でできると思うんですよね",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000616",
+      "start": 2106.7400000000002,
+      "end": 2108.7400000000002,
+      "speaker_id": null,
+      "text": "そこにどう付加価値を付けていくかとか",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000617",
+      "start": 2108.7400000000002,
+      "end": 2110.7400000000002,
+      "speaker_id": null,
+      "text": "じゃあこれ実際例えば",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000618",
+      "start": 2110.7400000000002,
+      "end": 2114.7400000000002,
+      "speaker_id": null,
+      "text": "Zoomのやってる人が触ったらどういう印象になるかみたいな",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000619",
+      "start": 2114.7400000000002,
+      "end": 2116.7400000000002,
+      "speaker_id": null,
+      "text": "ちょっとそういう感情的な部分を",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000620",
+      "start": 2116.7400000000002,
+      "end": 2120.7400000000002,
+      "speaker_id": null,
+      "text": "するみたいなことはまだ必要なんじゃないかなって気がします",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000621",
+      "start": 2120.7400000000002,
+      "end": 2122.7400000000002,
+      "speaker_id": null,
+      "text": "確かにありがとうございます",
+      "confidence": 0.7371,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000622",
+      "start": 2122.7400000000002,
+      "end": 2131.7400000000002,
+      "speaker_id": null,
+      "text": "あとはそうですね、これはちょっと僕の興味なんですけど、お二人の今後のキャリアはどう考えていますかって。",
+      "confidence": 0.7025,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000623",
+      "start": 2131.7400000000002,
+      "end": 2139.7400000000002,
+      "speaker_id": null,
+      "text": "そうですね、結構こういう経理とか労務とか人事とかから、村田さんはメインは労務とか、",
+      "confidence": 0.7025,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000624",
+      "start": 2139.7400000000002,
+      "end": 2149.7400000000002,
+      "speaker_id": null,
+      "text": "開発とかそういうものにも関与する中で、今後のキャリアって結構僕らも聞かれることってある。",
+      "confidence": 0.7025,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000625",
+      "start": 2149.7400000000002,
+      "end": 2152.7400000000002,
+      "speaker_id": null,
+      "text": "どう思ってます?",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000626",
+      "start": 2152.7400000000002,
+      "end": 2154.7400000000002,
+      "speaker_id": null,
+      "text": "何かありますね",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000627",
+      "start": 2154.7400000000002,
+      "end": 2156.7400000000002,
+      "speaker_id": null,
+      "text": "PTDMになるとか",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000628",
+      "start": 2156.7400000000002,
+      "end": 2158.7400000000002,
+      "speaker_id": null,
+      "text": "100%",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000629",
+      "start": 2158.7400000000002,
+      "end": 2160.7400000000002,
+      "speaker_id": null,
+      "text": "100%",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000630",
+      "start": 2160.7400000000002,
+      "end": 2162.7400000000002,
+      "speaker_id": null,
+      "text": "難しいですね",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000631",
+      "start": 2162.7400000000002,
+      "end": 2165.7400000000002,
+      "speaker_id": null,
+      "text": "でもそうですね",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000632",
+      "start": 2165.7400000000002,
+      "end": 2171.7400000000002,
+      "speaker_id": null,
+      "text": "やっぱり今フラッグオフィスもAIたちをすごく求められている中で",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000633",
+      "start": 2171.7400000000002,
+      "end": 2173.7400000000002,
+      "speaker_id": null,
+      "text": "同じお話ぐらいにしちゃいますけど",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000634",
+      "start": 2173.7400000000002,
+      "end": 2175.7400000000002,
+      "speaker_id": null,
+      "text": "リサーチであるとか",
+      "confidence": 0.6295,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000635",
+      "start": 2175.7400000000002,
+      "end": 2180.7400000000002,
+      "speaker_id": null,
+      "text": "どんな裁判員がいて、どんなかの判断が出されているか、",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000636",
+      "start": 2180.7400000000002,
+      "end": 2183.7400000000002,
+      "speaker_id": null,
+      "text": "そういう話はAIにはとても勝てない。",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000637",
+      "start": 2183.7400000000002,
+      "end": 2186.7400000000002,
+      "speaker_id": null,
+      "text": "これを活用しないという選択肢はない。",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000638",
+      "start": 2186.7400000000002,
+      "end": 2191.7400000000002,
+      "speaker_id": null,
+      "text": "ただ、やっぱりそこに先に質問からの話じゃないですけど、",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000639",
+      "start": 2191.7400000000002,
+      "end": 2193.7400000000002,
+      "speaker_id": null,
+      "text": "それこそ制度に落とし込んで、",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000640",
+      "start": 2193.7400000000002,
+      "end": 2195.7400000000002,
+      "speaker_id": null,
+      "text": "なんとなく一応お会いをするために、",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000641",
+      "start": 2195.7400000000002,
+      "end": 2199.7400000000002,
+      "speaker_id": null,
+      "text": "人間力みたいなお話が必要になってくるので、",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000642",
+      "start": 2199.7400000000002,
+      "end": 2201.7400000000002,
+      "speaker_id": null,
+      "text": "そこはちょっと…",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000643",
+      "start": 2201.7400000000002,
+      "end": 2203.7400000000002,
+      "speaker_id": null,
+      "text": "人間力?",
+      "confidence": 0.6855,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000644",
+      "start": 2203.7400000000002,
+      "end": 2222.7400000000002,
+      "speaker_id": null,
+      "text": "大事だなとは思いますが、それが大前提として、AIが普及していくのは間違いないので、AIが逃げないみたいなところは、バックオフィスでキャリアを築く上では絶対に必要だなと思います。",
+      "confidence": 0.6466,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000645",
+      "start": 2222.7400000000002,
+      "end": 2229.4,
+      "speaker_id": null,
+      "text": "それを人事のことや人のことだからみたいな形で 頭書きにしていると",
+      "confidence": 0.6109,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000646",
+      "start": 2229.4,
+      "end": 2232.5800000000004,
+      "speaker_id": null,
+      "text": "多分結構キャリアがポジティブに対してもらえる",
+      "confidence": 0.6109,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000647",
+      "start": 2232.5800000000004,
+      "end": 2238.1800000000003,
+      "speaker_id": null,
+      "text": "なんでレイアイクスで開発を兼務させてもらっている 良さだと思うんですけど",
+      "confidence": 0.6109,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000648",
+      "start": 2238.1800000000003,
+      "end": 2241.5400000000004,
+      "speaker_id": null,
+      "text": "AIの活用を皆さん当たり前なんですよね",
+      "confidence": 0.6109,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000649",
+      "start": 2241.5400000000004,
+      "end": 2248.0400000000004,
+      "speaker_id": null,
+      "text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いは選んでいないなとは思います",
+      "confidence": 0.6109,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000650",
+      "start": 2248.04,
+      "end": 2259.04,
+      "speaker_id": null,
+      "text": "確かに何かの職種というよりは、基本的にはAIをベースとして働く基盤はあって、そこで何をやるかという話にもなってくるかもしれませんが、",
+      "confidence": 0.6456,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000651",
+      "start": 2259.04,
+      "end": 2261.04,
+      "speaker_id": null,
+      "text": "どんな存在がありますか?",
+      "confidence": 0.6456,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000652",
+      "start": 2261.04,
+      "end": 2265.04,
+      "speaker_id": null,
+      "text": "いやいやね、聞かれると結構迷うんじゃないですか。",
+      "confidence": 0.6456,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000653",
+      "start": 2265.04,
+      "end": 2267.04,
+      "speaker_id": null,
+      "text": "僕がんばりましたよ。",
+      "confidence": 0.6456,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000654",
+      "start": 2267.04,
+      "end": 2276.04,
+      "speaker_id": null,
+      "text": "正直よく言われるのが、入った時にPDMにダメだったら、また経理に戻ればいいですよって言われてたんですよ。",
+      "confidence": 0.7136,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000655",
+      "start": 2276.04,
+      "end": 2282.04,
+      "speaker_id": null,
+      "text": "正直そういう気は全くなくて、大げさに言うと結構退路を絶ってきてるぐらいの感じ。",
+      "confidence": 0.7136,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000656",
+      "start": 2282.04,
+      "end": 2289.04,
+      "speaker_id": null,
+      "text": "正直今から経理に戻っても、あんまり伸びしろないって自分で思ってるんですね。",
+      "confidence": 0.7136,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000657",
+      "start": 2289.04,
+      "end": 2297.04,
+      "speaker_id": null,
+      "text": "なので、どうなるかわからないけど、一旦キャリアとしてはPDMとして結果を出していきたいと思うし、",
+      "confidence": 0.7208,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000658",
+      "start": 2297.04,
+      "end": 2307.04,
+      "speaker_id": null,
+      "text": "あとは、今は結構ドメインのアドバンテージがあるっていいですけど、それがないところでも一定活躍できるようなスキルはあと数年で使いたいなとは思っています。",
+      "confidence": 0.7208,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000659",
+      "start": 2307.04,
+      "end": 2308.04,
+      "speaker_id": null,
+      "text": "怖いですね。",
+      "confidence": 0.7208,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000660",
+      "start": 2308.04,
+      "end": 2310.04,
+      "speaker_id": null,
+      "text": "いや、怖い。本当に怖いですよね。",
+      "confidence": 0.7208,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000661",
+      "start": 2310.04,
+      "end": 2314.04,
+      "speaker_id": null,
+      "text": "僕もPDMどうで使ってよって、それがすごい頭を寄る。",
+      "confidence": 0.7208,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000662",
+      "start": 2314.04,
+      "end": 2324.04,
+      "speaker_id": null,
+      "text": "人事領域、労務領域ならまあまあやれる気がするけど、それが何もなく貯金がなくなった時、全然関係ないプロジェクトを作っているという話をして",
+      "confidence": 0.6663,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000663",
+      "start": 2324.04,
+      "end": 2330.04,
+      "speaker_id": null,
+      "text": "いや、無理ですよね。こんな会議室でスキボーで喋っても、全部裏側があるから喋ってる",
+      "confidence": 0.6663,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000664",
+      "start": 2330.04,
+      "end": 2334.04,
+      "speaker_id": null,
+      "text": "そうなんですよ。それ実務なんで、自分取り換えればそういう",
+      "confidence": 0.6663,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000665",
+      "start": 2334.04,
+      "end": 2339.04,
+      "speaker_id": null,
+      "text": "俺これやってたからさ、みたいに言えるけど、これ無くなったら俺何ができてるみたいな",
+      "confidence": 0.6663,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000666",
+      "start": 2339.04,
+      "end": 2341.86,
+      "speaker_id": null,
+      "text": "それをエンジニアの方に強烈に作ることができますね",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000667",
+      "start": 2341.86,
+      "end": 2346.22,
+      "speaker_id": null,
+      "text": "本当にこの領域やってるのはすごいですよ",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000668",
+      "start": 2346.22,
+      "end": 2355.68,
+      "speaker_id": null,
+      "text": "お二人開発にも関与していると思うんですけど",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000669",
+      "start": 2355.68,
+      "end": 2357.96,
+      "speaker_id": null,
+      "text": "バックラックのPDMないしは",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000670",
+      "start": 2357.96,
+      "end": 2359.16,
+      "speaker_id": null,
+      "text": "ドメインエキスパートとして",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000671",
+      "start": 2359.16,
+      "end": 2361.86,
+      "speaker_id": null,
+      "text": "関わっていただいている中で",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000672",
+      "start": 2361.86,
+      "end": 2366.2599999999998,
+      "speaker_id": null,
+      "text": "今後こういうバックオフィスに対して",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000673",
+      "start": 2366.2599999999998,
+      "end": 2368.66,
+      "speaker_id": null,
+      "text": "こういうプロダクトを作っていきたいとか",
+      "confidence": 0.7851,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000674",
+      "start": 2368.66,
+      "end": 2379.66,
+      "speaker_id": null,
+      "text": "バックオフィスという事業のプロダクトを通じて、こういう世の中で実現していきたいとか、そういった話があったりされますか?",
+      "confidence": 0.636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000675",
+      "start": 2379.66,
+      "end": 2383.66,
+      "speaker_id": null,
+      "text": "ちょっとやってしまいそうな気がする。",
+      "confidence": 0.636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000676",
+      "start": 2383.66,
+      "end": 2389.66,
+      "speaker_id": null,
+      "text": "やっぱりバックオフィスって、いろいろ人間によるための話もしましたけど、",
+      "confidence": 0.636,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000677",
+      "start": 2389.66,
+      "end": 2395.7799999999997,
+      "speaker_id": null,
+      "text": "やっぱり誰がやってもアウトプットは変わらない。作業の部分ってすごく多いと思うんですよね。",
+      "confidence": 0.5945,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000678",
+      "start": 2395.7799999999997,
+      "end": 2403.3199999999997,
+      "speaker_id": null,
+      "text": "月次申し込みとか、それぞれの仕事を減らすというようなところは、",
+      "confidence": 0.5945,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000679",
+      "start": 2403.3199999999997,
+      "end": 2409.3799999999997,
+      "speaker_id": null,
+      "text": "楽のプロダクトで貢献できることがあればいいなみたいなのはずっと思っていますね。",
+      "confidence": 0.5945,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000680",
+      "start": 2409.3799999999997,
+      "end": 2415.7,
+      "speaker_id": null,
+      "text": "ありがとうございます。直近だと金貸とか給与とかかかっていただいていると思うんですけど、",
+      "confidence": 0.5945,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000681",
+      "start": 2415.7000000000003,
+      "end": 2424.7000000000003,
+      "speaker_id": null,
+      "text": "この辺特に、それぞれのプロダクトに対して、こういう思いで作ったとか、こだわりのある、これは印象に残っている?",
+      "confidence": 0.6921,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000682",
+      "start": 2424.7000000000003,
+      "end": 2431.7000000000003,
+      "speaker_id": null,
+      "text": "いっぱいあるんですけど、いっぱいあるんですけど、",
+      "confidence": 0.6921,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000683",
+      "start": 2431.7000000000003,
+      "end": 2441.7000000000003,
+      "speaker_id": null,
+      "text": "いや、まあ、給料とかはそうですね、エンジニアの方がもちろん主体で作っていただいて、自分なんか本当にエッセンス出しぐらいはあるんですけども、",
+      "confidence": 0.6921,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000684",
+      "start": 2441.7000000000003,
+      "end": 2465.2000000000003,
+      "speaker_id": null,
+      "text": "休憩室のチェックの部分ですね、やっぱり最後グッといろんなものが集まってきて、休憩室のチェックができて、それをチェックするというステップになったときに、やっぱりエビデンスとか、調整器になるものみたいなもの、コンプになるものみたいなものが散らばっているので、それをできる限りプロダクトの中でその画面だけでチェックができるような機能があるんですね。",
+      "confidence": 0.7756,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000685",
+      "start": 2465.2000000000003,
+      "end": 2482.2000000000003,
+      "speaker_id": null,
+      "text": "もちろんQKさんはプロだったんですけれども、そのあたりは思いを込めて作業量をチェック、時間をすごく短縮する、やりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね。",
+      "confidence": 0.6384,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000686",
+      "start": 2482.2000000000003,
+      "end": 2489.2000000000003,
+      "speaker_id": null,
+      "text": "そうですね、これ実際の画面をお見せしたいぐらいの気合が入っていたらと思います。",
+      "confidence": 0.6384,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000687",
+      "start": 2489.2000000000003,
+      "end": 2491.94,
+      "speaker_id": null,
+      "text": "気合が結構自信作ですね",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000688",
+      "start": 2491.94,
+      "end": 2494.86,
+      "speaker_id": null,
+      "text": "たぶん本当に喜んでいただける労働担当者の方が",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000689",
+      "start": 2494.86,
+      "end": 2497.26,
+      "speaker_id": null,
+      "text": "見ていただいた方がいらっしゃるかなと思います",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000690",
+      "start": 2497.26,
+      "end": 2498.8,
+      "speaker_id": null,
+      "text": "結構なんかあれをデモするだけでも",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000691",
+      "start": 2498.8,
+      "end": 2502.1000000000004,
+      "speaker_id": null,
+      "text": "だいぶ目の色が変わる方がよくいらっしゃるっていう",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000692",
+      "start": 2502.1000000000004,
+      "end": 2503.6000000000004,
+      "speaker_id": null,
+      "text": "ありがとうございますって思いつつ",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000693",
+      "start": 2503.6000000000004,
+      "end": 2505.6000000000004,
+      "speaker_id": null,
+      "text": "また4年も",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000694",
+      "start": 2505.6000000000004,
+      "end": 2508.1600000000003,
+      "speaker_id": null,
+      "text": "そういう意義を持ってほしい",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000695",
+      "start": 2508.1600000000003,
+      "end": 2510.2000000000003,
+      "speaker_id": null,
+      "text": "やはりでも経理でも使えますよね",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000696",
+      "start": 2510.2000000000003,
+      "end": 2511.2000000000003,
+      "speaker_id": null,
+      "text": "そうですよね",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000697",
+      "start": 2511.2000000000003,
+      "end": 2514.2000000000003,
+      "speaker_id": null,
+      "text": "いろんなエースが詰まってると思うんですよね",
+      "confidence": 0.5328,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000698",
+      "start": 2514.2000000000003,
+      "end": 2523.2000000000003,
+      "speaker_id": null,
+      "text": "そういう時に結構、何だろう、開発に関わっているやりがいみたいな感じのシーンもあったりしますね。",
+      "confidence": 0.5944,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000699",
+      "start": 2523.2000000000003,
+      "end": 2534.2000000000003,
+      "speaker_id": null,
+      "text": "感じます。あれは本当に実務家の自分のいろんな話を生かしていただけたなという感じですね。",
+      "confidence": 0.5944,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000700",
+      "start": 2534.2000000000003,
+      "end": 2535.2000000000003,
+      "speaker_id": null,
+      "text": "ありがとうございます。",
+      "confidence": 0.5944,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000701",
+      "start": 2535.2000000000003,
+      "end": 2550.2000000000003,
+      "speaker_id": null,
+      "text": "エモさん、結構入社してから割とAIを活用した機能とか、直近だと爆落インテリジェンスっていう、実績をもとに分析するみたいな、そういったプロダクトも作ってると思うんですけど、",
+      "confidence": 0.7381,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000702",
+      "start": 2550.2000000000003,
+      "end": 2555.2000000000003,
+      "speaker_id": null,
+      "text": "この辺、特にこだわった点とか、印象に残ってるものってあったりしますか?",
+      "confidence": 0.7381,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000703",
+      "start": 2555.2000000000003,
+      "end": 2559.6200000000003,
+      "speaker_id": null,
+      "text": "これも抽象的な話になっちゃうんですけど",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000704",
+      "start": 2559.6200000000003,
+      "end": 2561.9800000000005,
+      "speaker_id": null,
+      "text": "分析の機能を作った時に",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000705",
+      "start": 2561.9800000000005,
+      "end": 2567.32,
+      "speaker_id": null,
+      "text": "実は今まで関係していた経理の人が浮かぶんですよ",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000706",
+      "start": 2567.32,
+      "end": 2568.9800000000005,
+      "speaker_id": null,
+      "text": "作っている時に",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000707",
+      "start": 2568.9800000000005,
+      "end": 2571.6600000000003,
+      "speaker_id": null,
+      "text": "結構今作業時間を短縮して",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000708",
+      "start": 2571.6600000000003,
+      "end": 2574.1400000000003,
+      "speaker_id": null,
+      "text": "余った時間で付加価値のあることをやりましょう",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000709",
+      "start": 2574.1400000000003,
+      "end": 2576.1000000000004,
+      "speaker_id": null,
+      "text": "よくサースだと言うじゃないですか",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000710",
+      "start": 2576.1000000000004,
+      "end": 2578.86,
+      "speaker_id": null,
+      "text": "実際付加価値のある仕事をやるって",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000711",
+      "start": 2578.86,
+      "end": 2580.82,
+      "speaker_id": null,
+      "text": "実際結構難しいんですよ",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000712",
+      "start": 2580.82,
+      "end": 2582.26,
+      "speaker_id": null,
+      "text": "それって何なんですか",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000713",
+      "start": 2582.26,
+      "end": 2584.2200000000003,
+      "speaker_id": null,
+      "text": "例えばロームでもそうだと思うんですけど",
+      "confidence": 0.8037,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000714",
+      "start": 2584.2200000000003,
+      "end": 2589.46,
+      "speaker_id": null,
+      "text": "その人にとってはチェックしたりとか作業することが今の職業じゃないですか",
+      "confidence": 0.8401,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000715",
+      "start": 2589.46,
+      "end": 2591.4,
+      "speaker_id": null,
+      "text": "いきなりそれなくなったからって",
+      "confidence": 0.8401,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000716",
+      "start": 2591.4,
+      "end": 2596.0600000000004,
+      "speaker_id": null,
+      "text": "じゃあ次にいきなりいけるかっていうと難しいと思って",
+      "confidence": 0.8401,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000717",
+      "start": 2596.0600000000004,
+      "end": 2600.1600000000003,
+      "speaker_id": null,
+      "text": "僕はそこをプロダクトでアシストしていきたいというか",
+      "confidence": 0.8401,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000718",
+      "start": 2600.1600000000003,
+      "end": 2604.5800000000004,
+      "speaker_id": null,
+      "text": "今までは作業しかできてなかった人とか",
+      "confidence": 0.8401,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000719",
+      "start": 2604.5800000000004,
+      "end": 2608.34,
+      "speaker_id": null,
+      "text": "AIの力を借りて分析できるようになりましたとか",
+      "confidence": 0.8401,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000720",
+      "start": 2608.34,
+      "end": 2612.0600000000004,
+      "speaker_id": null,
+      "text": "ちょっと会社のコスト無駄じゃないですか提案できるようになったとか",
+      "confidence": 0.8401,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000721",
+      "start": 2612.06,
+      "end": 2620.06,
+      "speaker_id": null,
+      "text": "それはいきなり何もなしだと難しいと思うんですけれども、ちょっとAIのプロダクトの力で人を動かしていくんですよね。",
+      "confidence": 0.6737,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000722",
+      "start": 2620.06,
+      "end": 2627.06,
+      "speaker_id": null,
+      "text": "まだできてないんですけど、そういう感じのことはやりたいなと思ってずっと作ってましたね。",
+      "confidence": 0.6737,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000723",
+      "start": 2627.06,
+      "end": 2629.06,
+      "speaker_id": null,
+      "text": "いい話ですね。",
+      "confidence": 0.6737,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000724",
+      "start": 2633.06,
+      "end": 2637.06,
+      "speaker_id": null,
+      "text": "僕らって業務の自動運転みたいなものを掲げてるじゃないですか。",
+      "confidence": 0.6737,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000725",
+      "start": 2637.06,
+      "end": 2644.66,
+      "speaker_id": null,
+      "text": "最終的にはそういった今僕らは手でやったりするようなバックオフィスの業務をできるだけ自動化していって",
+      "confidence": 0.8413,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000726",
+      "start": 2644.66,
+      "end": 2650.02,
+      "speaker_id": null,
+      "text": "人を確認するだけっていう最終的なものを描いていると思うんですけど",
+      "confidence": 0.8413,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000727",
+      "start": 2650.02,
+      "end": 2653.94,
+      "speaker_id": null,
+      "text": "業務の自動運転って別にそこで完結しないというか",
+      "confidence": 0.8413,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000728",
+      "start": 2653.94,
+      "end": 2658.0,
+      "speaker_id": null,
+      "text": "その先に新しい働き方があって",
+      "confidence": 0.8413,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000729",
+      "start": 2658.0,
+      "end": 2662.32,
+      "speaker_id": null,
+      "text": "その新しい働き方をある種の定義していきながら",
+      "confidence": 0.8413,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000730",
+      "start": 2662.32,
+      "end": 2667.9,
+      "speaker_id": null,
+      "text": "別にそこに何かすごいもともと知識とか経験とかなかったとしても",
+      "confidence": 0.8536,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000731",
+      "start": 2667.9,
+      "end": 2674.02,
+      "speaker_id": null,
+      "text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
+      "confidence": 0.8536,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000732",
+      "start": 2674.02,
+      "end": 2679.32,
+      "speaker_id": null,
+      "text": "経理とか労務の領域ってすごい専門性が高くて",
+      "confidence": 0.8536,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000733",
+      "start": 2679.32,
+      "end": 2684.36,
+      "speaker_id": null,
+      "text": "ある程度そういうプロフェッショナルじゃなくてできないみたいな印象は結構持たれてる",
+      "confidence": 0.8536,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000734",
+      "start": 2684.36,
+      "end": 2686.42,
+      "speaker_id": null,
+      "text": "実際そうなのかもしれないですけど",
+      "confidence": 0.8536,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000735",
+      "start": 2686.42,
+      "end": 2689.52,
+      "speaker_id": null,
+      "text": "だけどこれから別にAIの力借りれば",
+      "confidence": 0.8536,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000736",
+      "start": 2689.52,
+      "end": 2694.16,
+      "speaker_id": null,
+      "text": "じゃあちょっと将来経営とかやってみたいなって人がちょっと新卒入って",
+      "confidence": 0.8684,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000737",
+      "start": 2694.16,
+      "end": 2698.18,
+      "speaker_id": null,
+      "text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ",
+      "confidence": 0.8684,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000738",
+      "start": 2698.18,
+      "end": 2701.32,
+      "speaker_id": null,
+      "text": "そういうのを新しい働き方でできるという",
+      "confidence": 0.8684,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000739",
+      "start": 2701.32,
+      "end": 2706.44,
+      "speaker_id": null,
+      "text": "確かに結構いわゆる俗人性みたいなものが割とバックオフィスで強いと思うので",
+      "confidence": 0.8684,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000740",
+      "start": 2706.44,
+      "end": 2711.2,
+      "speaker_id": null,
+      "text": "そういうものを人に帰属させるんじゃなくて基本的にはAIに入るんです",
+      "confidence": 0.8684,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000741",
+      "start": 2711.2,
+      "end": 2716.68,
+      "speaker_id": null,
+      "text": "ただそういうバックオフィスの汎用的な知識とか経験って役に立つから",
+      "confidence": 0.8684,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000742",
+      "start": 2716.68,
+      "end": 2730.68,
+      "speaker_id": null,
+      "text": "だから、こういうものをジョブローテーションの中に組み込んで、みんなが経理とかローンとかバックオフィスの仕事を経験した上で、それぞれ活躍するみたいな、そういうのができると、それはそれで面白そうなんですよ。",
+      "confidence": 0.6966,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000743",
+      "start": 2730.68,
+      "end": 2733.68,
+      "speaker_id": null,
+      "text": "それはプロダクトの先生コミュニティとか。",
+      "confidence": 0.6966,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000744",
+      "start": 2733.68,
+      "end": 2738.68,
+      "speaker_id": null,
+      "text": "そうですね。プロダクトの中にプロのトレンチャーを立てていけるから。",
+      "confidence": 0.6966,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000745",
+      "start": 2738.68,
+      "end": 2742.98,
+      "speaker_id": null,
+      "text": "結局その人しかわからないみたいなのが多いじゃないですか",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000746",
+      "start": 2742.98,
+      "end": 2744.64,
+      "speaker_id": null,
+      "text": "どういう業務において",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000747",
+      "start": 2744.64,
+      "end": 2750.48,
+      "speaker_id": null,
+      "text": "過去の処理とかどういう風にやってたかを確認して",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000748",
+      "start": 2750.48,
+      "end": 2752.98,
+      "speaker_id": null,
+      "text": "ちょっとそれに合わせた処理をするとかって",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000749",
+      "start": 2752.98,
+      "end": 2755.44,
+      "speaker_id": null,
+      "text": "こういうマクロフィスってよくあると思うので",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000750",
+      "start": 2755.44,
+      "end": 2757.64,
+      "speaker_id": null,
+      "text": "その辺は今後数年でだいぶ変わってくる",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000751",
+      "start": 2757.64,
+      "end": 2758.14,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000752",
+      "start": 2758.14,
+      "end": 2759.96,
+      "speaker_id": null,
+      "text": "健全じゃないですかね",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000753",
+      "start": 2759.96,
+      "end": 2763.64,
+      "speaker_id": null,
+      "text": "難しい話が俗人化してるわけでもないですもん",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000754",
+      "start": 2763.64,
+      "end": 2764.8199999999997,
+      "speaker_id": null,
+      "text": "別に",
+      "confidence": 0.6762,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000755",
+      "start": 2764.82,
+      "end": 2775.82,
+      "speaker_id": null,
+      "text": "ちなみにそういう新しい働き方みたいな話で言うと",
+      "confidence": 0.8257,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000756",
+      "start": 2775.82,
+      "end": 2780.1200000000003,
+      "speaker_id": null,
+      "text": "バックオフィスの業務とかバックオフィスの職種みたいなものっていうのは",
+      "confidence": 0.8257,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000757",
+      "start": 2780.1200000000003,
+      "end": 2786.2200000000003,
+      "speaker_id": null,
+      "text": "例えばここ数年くらいでどういうふうに変わっていくのかみたいな話ってよくある",
+      "confidence": 0.8257,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000758",
+      "start": 2786.2200000000003,
+      "end": 2792.86,
+      "speaker_id": null,
+      "text": "昔からAIにとって変わられる仕事みたいな話ってよくあるじゃないですか",
+      "confidence": 0.8257,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000759",
+      "start": 2792.86,
+      "end": 2804.86,
+      "speaker_id": null,
+      "text": "そういう単純な技能じゃないと思うんですけど、少なくとも働き方というか時間の使い方は変わってくるのかなと思っていて、そういうのってお二人感じるところがあったりしますか?",
+      "confidence": 0.7432,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000760",
+      "start": 2804.86,
+      "end": 2807.86,
+      "speaker_id": null,
+      "text": "そうですね。",
+      "confidence": 0.7432,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000761",
+      "start": 2807.86,
+      "end": 2819.86,
+      "speaker_id": null,
+      "text": "多分、私がそこまで対人系ですかね、人とお話しさせていただくみたいな、そういうところを担当している感じですけど、",
+      "confidence": 0.7085,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000762",
+      "start": 2819.86,
+      "end": 2822.86,
+      "speaker_id": null,
+      "text": "あんまりまだ明確にその辺をイメージできていなくてですね、",
+      "confidence": 0.7085,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000763",
+      "start": 2822.86,
+      "end": 2832.86,
+      "speaker_id": null,
+      "text": "結局、社内のナレッジなんかをAIに飲み込ませておいて、ちょっと音で飛び合わせしたらAIが返すみたいな、",
+      "confidence": 0.7085,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000764",
+      "start": 2832.86,
+      "end": 2840.58,
+      "speaker_id": null,
+      "text": "よくある仕事なんですけど、これやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ。",
+      "confidence": 0.6334,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000765",
+      "start": 2840.58,
+      "end": 2846.54,
+      "speaker_id": null,
+      "text": "なので、まだそこまで労務配置が… 労務と経理でもだいぶ違いそうですよね。",
+      "confidence": 0.6334,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000766",
+      "start": 2846.54,
+      "end": 2853.6800000000003,
+      "speaker_id": null,
+      "text": "正直そこはまだ、僕が課長できてないだけなんですけど、あんまり強烈にメディアできてない。",
+      "confidence": 0.6334,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000767",
+      "start": 2853.68,
+      "end": 2862.44,
+      "speaker_id": null,
+      "text": "経理でいうと労務よりは効率化が早いんじゃないかなとは思いますね",
+      "confidence": 0.7969,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000768",
+      "start": 2862.44,
+      "end": 2866.04,
+      "speaker_id": null,
+      "text": "やっぱり一定ミスが許容される領域も正直あるので",
+      "confidence": 0.7969,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000769",
+      "start": 2866.04,
+      "end": 2869.7599999999998,
+      "speaker_id": null,
+      "text": "AIは結構フィットしやすい部分もあると思いますよね",
+      "confidence": 0.7969,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000770",
+      "start": 2869.7599999999998,
+      "end": 2876.04,
+      "speaker_id": null,
+      "text": "ただ経理がAIによってなくなるとか失業しますみたいな",
+      "confidence": 0.7969,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000771",
+      "start": 2876.04,
+      "end": 2878.3199999999997,
+      "speaker_id": null,
+      "text": "それはちょっと極端すぎるかなと思っていて",
+      "confidence": 0.7969,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000772",
+      "start": 2878.3199999999997,
+      "end": 2881.3199999999997,
+      "speaker_id": null,
+      "text": "さっきの話じゃないけど役割が変わる",
+      "confidence": 0.7969,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000773",
+      "start": 2881.32,
+      "end": 2885.7200000000003,
+      "speaker_id": null,
+      "text": "今はずっとパソコンの前で仕分けを打つってことは多分なくなって",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000774",
+      "start": 2885.7200000000003,
+      "end": 2888.6800000000003,
+      "speaker_id": null,
+      "text": "その分じゃあ例えば人に向き合うとか",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000775",
+      "start": 2888.6800000000003,
+      "end": 2890.82,
+      "speaker_id": null,
+      "text": "人席に向き合うとか",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000776",
+      "start": 2890.82,
+      "end": 2893.6800000000003,
+      "speaker_id": null,
+      "text": "向き合うものは結構変わってくるんじゃないかなと思いますけど",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000777",
+      "start": 2893.6800000000003,
+      "end": 2897.28,
+      "speaker_id": null,
+      "text": "ただ健全な方向なんじゃないかなとは正直思いますけど",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000778",
+      "start": 2897.28,
+      "end": 2902.1200000000003,
+      "speaker_id": null,
+      "text": "そもそも労働人口自体が低いと言われている中で",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000779",
+      "start": 2902.1200000000003,
+      "end": 2906.6600000000003,
+      "speaker_id": null,
+      "text": "バックオフィスにかかわれる人もどうしても少なくなってくるとか",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000780",
+      "start": 2906.6600000000003,
+      "end": 2910.04,
+      "speaker_id": null,
+      "text": "それも自明なのでそういう中で働くことができる",
+      "confidence": 0.796,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000781",
+      "start": 2910.04,
+      "end": 2914.04,
+      "speaker_id": null,
+      "text": "そうですね",
+      "confidence": 0.8104,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000782",
+      "start": 2914.04,
+      "end": 2918.04,
+      "speaker_id": null,
+      "text": "あとはそうですが、お二人のこれまでの経験を踏まえて",
+      "confidence": 0.8104,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000783",
+      "start": 2918.04,
+      "end": 2922.04,
+      "speaker_id": null,
+      "text": "もし今バックオフィスで働いている方に対して",
+      "confidence": 0.8104,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000784",
+      "start": 2922.04,
+      "end": 2926.04,
+      "speaker_id": null,
+      "text": "こういうドミニキスパートとかプロダクトマネージャーみたいなキャリア",
+      "confidence": 0.8104,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000785",
+      "start": 2926.04,
+      "end": 2930.04,
+      "speaker_id": null,
+      "text": "そこに対して",
+      "confidence": 0.8104,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000786",
+      "start": 2930.04,
+      "end": 2934.04,
+      "speaker_id": null,
+      "text": "メッセージじゃないですけど、お二人から",
+      "confidence": 0.8104,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000787",
+      "start": 2934.04,
+      "end": 2938.04,
+      "speaker_id": null,
+      "text": "おすすめしてくださいって言うわけじゃないんですけど",
+      "confidence": 0.8104,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000788",
+      "start": 2938.04,
+      "end": 2940.04,
+      "speaker_id": null,
+      "text": "おすすめするんですよ",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000789",
+      "start": 2940.04,
+      "end": 2942.04,
+      "speaker_id": null,
+      "text": "削るのめちゃめちゃおすすめ",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000790",
+      "start": 2942.04,
+      "end": 2944.04,
+      "speaker_id": null,
+      "text": "めちゃめちゃおすすめですよ",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000791",
+      "start": 2944.04,
+      "end": 2946.04,
+      "speaker_id": null,
+      "text": "本当に細かいところですけど",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000792",
+      "start": 2946.04,
+      "end": 2948.04,
+      "speaker_id": null,
+      "text": "さっきちょっとお話した",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000793",
+      "start": 2948.04,
+      "end": 2950.04,
+      "speaker_id": null,
+      "text": "自分が",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000794",
+      "start": 2950.04,
+      "end": 2952.04,
+      "speaker_id": null,
+      "text": "暗黙地とかなんとなく",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000795",
+      "start": 2952.04,
+      "end": 2954.04,
+      "speaker_id": null,
+      "text": "観光でやっていたものがちゃんと言語化される",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000796",
+      "start": 2954.04,
+      "end": 2956.04,
+      "speaker_id": null,
+      "text": "タイミングが来るとか",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000797",
+      "start": 2956.04,
+      "end": 2958.04,
+      "speaker_id": null,
+      "text": "すごく視野が広がるなあ",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000798",
+      "start": 2958.04,
+      "end": 2960.04,
+      "speaker_id": null,
+      "text": "それはそうですね",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000799",
+      "start": 2960.04,
+      "end": 2962.04,
+      "speaker_id": null,
+      "text": "さっきのAIの活用、向けようが変わるとかっていうところも",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000800",
+      "start": 2962.04,
+      "end": 2964.04,
+      "speaker_id": null,
+      "text": "やっぱりこの経験を張ると",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000801",
+      "start": 2964.04,
+      "end": 2966.04,
+      "speaker_id": null,
+      "text": "だいぶイメージができるようになるだろうなってもあるので",
+      "confidence": 0.7711,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000802",
+      "start": 2966.04,
+      "end": 2973.7,
+      "speaker_id": null,
+      "text": "その後もちろん専門家としてすごく一個に尖っていくっていうのもいいキャリアだと思うんですけれども",
+      "confidence": 0.7534,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000803",
+      "start": 2973.7,
+      "end": 2980.62,
+      "speaker_id": null,
+      "text": "やっぱりちょっと一瞬でもいいのでこういう形で広く見れるっていうのはめちゃめちゃおすすめだと思います",
+      "confidence": 0.7534,
+      "words": []
+    },
+    {
+      "segment_id": "seg_000804",
+      "start": 2980.62,
+      "end": 2985.48,
+      "speaker_id": null,
+      "text": "確かになんかその仮にそのある種",
+      "confidence": 0.7534,
+      "words": []
+    }
+  ]
+}

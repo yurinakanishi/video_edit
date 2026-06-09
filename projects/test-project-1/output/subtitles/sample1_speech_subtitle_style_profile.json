@@ -1,0 +1,4180 @@
+{
+  "schemaVersion": "speech-subtitle-style/v1",
+  "createdAt": "2026-06-06T15:25:13Z",
+  "sourceReference": {
+    "assetId": "sample-1",
+    "analysisPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+    "targetRole": "subtitle",
+    "ignoredRoles": [
+      "logo_text",
+      "title",
+      "small_text"
+    ]
+  },
+  "referenceCanvas": {
+    "width": 1834,
+    "height": 1030,
+    "aspectRatio": 1.7805825242718447
+  },
+  "renderCanvas": {
+    "width": 1280,
+    "height": 720,
+    "profile": "preview"
+  },
+  "measurements": {
+    "subtitleBoxCount": 100,
+    "row1BoxCount": 33,
+    "row2BoxCount": 67,
+    "fontSizeNormMedian": 0.15534,
+    "rowHeightNormMedian": 0.15534,
+    "row1NormMedian": {
+      "x": 0.08888,
+      "y": 0.60485,
+      "w": 0.6892,
+      "h": 0.16311
+    },
+    "row2NormMedian": {
+      "x": 0.11232,
+      "y": 0.78641,
+      "w": 0.23719,
+      "h": 0.1165
+    }
+  },
+  "speechSubtitle": {
+    "placement": {
+      "anchor": "lower-middle",
+      "rows": [
+        {
+          "name": "primary",
+          "centerXNorm": 0.5,
+          "yNorm": 0.60485,
+          "heightNorm": 0.15534,
+          "maxWidthNorm": 0.9,
+          "yPx": 435,
+          "heightPx": 112,
+          "maxWidthPx": 1152,
+          "centerXPx": 640
+        },
+        {
+          "name": "secondary",
+          "centerXNorm": 0.5,
+          "yNorm": 0.78641,
+          "heightNorm": 0.15534,
+          "maxWidthNorm": 0.74,
+          "yPx": 566,
+          "heightPx": 112,
+          "maxWidthPx": 947,
+          "centerXPx": 640
+        }
+      ]
+    },
+    "text": {
+      "fontFamily": "Yu Gothic Bold",
+      "fontPath": "C:\\Windows\\Fonts\\YuGothB.ttc",
+      "fontSizeNorm": 0.15534,
+      "fontSizePx": 101,
+      "minFontSizePx": 74,
+      "weight": 800,
+      "line1Fill": "#FFFFFF",
+      "line2Fill": "#572AF0",
+      "line2FillGradient": {
+        "direction": "left-to-right",
+        "stops": [
+          "#511DE3",
+          "#6442F2",
+          "#755FF4"
+        ],
+        "referenceSamples": [
+          {
+            "timeSeconds": 0.0,
+            "text": "FDEの正体とは?",
+            "bboxPixel": [
+              691,
+              817,
+              1721,
+              975
+            ],
+            "leftMedianRgb": [
+              81,
+              29,
+              227
+            ],
+            "middleMedianRgb": [
+              100,
+              65,
+              241
+            ],
+            "rightMedianRgb": [
+              118,
+              95,
+              244
+            ]
+          },
+          {
+            "timeSeconds": 1.0,
+            "text": "FDEの正体とは?",
+            "bboxPixel": [
+              693,
+              817,
+              1721,
+              975
+            ],
+            "leftMedianRgb": [
+              82,
+              29,
+              226
+            ],
+            "middleMedianRgb": [
+              100,
+              65,
+              242
+            ],
+            "rightMedianRgb": [
+              117,
+              95,
+              244
+            ]
+          }
+        ],
+        "analysisNote": "Purple text pixels on the white subtitle box are darker on the left and become slightly lighter/whiter toward the right."
+      }
+    },
+    "background": {
+      "shape": "rounded-rectangle",
+      "radiusNorm": 0.008,
+      "paddingXNorm": 0.027,
+      "paddingYNorm": 0.016,
+      "line1Gradient": [
+        "#4D15D7",
+        "#5A2DEF",
+        "#7863F3"
+      ],
+      "line2Gradient": [
+        "#FFFFFF",
+        "#F7F5FA"
+      ],
+      "shadow": {
+        "enabled": true,
+        "color": "#000000",
+        "opacity": 0.2,
+        "blurNorm": 0.008,
+        "offsetYNorm": 0.004,
+        "blur": 6,
+        "offsetY": 3
+      },
+      "radiusPx": 6,
+      "paddingX": 35,
+      "paddingY": 12
+    },
+    "compositionRules": {
+      "maxLines": 2,
+      "singleLineUsesPrimaryPurpleBox": false,
+      "twoLineUsesPurpleThenWhite": false,
+      "topLogoAndTitleIgnored": true,
+      "renderUsesExtractedReferencePatterns": true
+    },
+    "referencePatterns": {
+      "schemaVersion": "speech-subtitle-pattern-library/v1",
+      "createdAt": "2026-06-06T15:25:13Z",
+      "sourceReference": {
+        "assetId": "sample-1",
+        "analysisPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+        "sampleDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples",
+        "sampleIntervalSeconds": 1,
+        "targetRole": "subtitle",
+        "ignoredRoles": [
+          "logo_text",
+          "title",
+          "small_text"
+        ]
+      },
+      "referenceCanvas": {
+        "width": 1834,
+        "height": 1030
+      },
+      "frameCount": 53,
+      "patternCount": 16,
+      "patterns": [
+        {
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "occurrences": [
+            46.0,
+            47.0,
+            48.0,
+            49.0,
+            50.0,
+            51.0,
+            52.0,
+            53.0,
+            54.0,
+            55.0,
+            56.0
+          ],
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorkforce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5546BB",
+                "#4F45BD",
+                "#5143BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 739,
+                "white": 336
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23664,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.23064,
+              "rightNorm": 0.34896,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5E4BF1",
+                "#604BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5800,
+                "purple": 3646,
+                "white": 1413
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEB"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3522,
+                "white": 1438
+              }
+            }
+          ],
+          "id": "sample1_pattern_01",
+          "occurrenceCount": 11
+        },
+        {
+          "signature": "lines=1;upper-speech|center|medium|purple|white",
+          "occurrences": [
+            8.0,
+            19.0,
+            20.0,
+            21.0,
+            22.0,
+            23.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.1554,
+              "yNorm": 0.60194,
+              "wNorm": 0.68975,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.500275,
+              "rightNorm": 0.84515,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4912EF",
+                "#5F29F3",
+                "#7C61F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 23210,
+                "purple": 15692,
+                "white": 6755
+              }
+            }
+          ],
+          "id": "sample1_pattern_02",
+          "occurrenceCount": 6
+        },
+        {
+          "signature": "lines=1;lower-speech|center|wide|purple|white",
+          "occurrences": [
+            37.0,
+            38.0,
+            39.0,
+            40.0,
+            41.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "結果を出すエンジーア",
+              "xNorm": 0.11287,
+              "yNorm": 0.78155,
+              "wNorm": 0.76499,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.495365,
+              "rightNorm": 0.87786,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4CF4",
+                "#5F4EF6",
+                "#604EF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 27612,
+                "purple": 18552,
+                "white": 8371
+              }
+            }
+          ],
+          "id": "sample1_pattern_03",
+          "occurrenceCount": 5
+        },
+        {
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|left|medium|purple|white",
+          "occurrences": [
+            9.0,
+            10.0,
+            11.0,
+            12.0,
+            13.0
+          ],
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.15485,
+              "yNorm": 0.60194,
+              "wNorm": 0.69138,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50054,
+              "rightNorm": 0.84623,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4816F0",
+                "#5D2BF3",
+                "#7A63F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 23688,
+                "purple": 16111,
+                "white": 6771
+              }
+            },
+            {
+              "text": "進行していく仕事",
+              "xNorm": 0.15376,
+              "yNorm": 0.79029,
+              "wNorm": 0.57306,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.44029,
+              "rightNorm": 0.72682,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5519F1",
+                "#5618F2",
+                "#7340F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 18954,
+                "purple": 12406,
+                "white": 5757
+              }
+            }
+          ],
+          "id": "sample1_pattern_04",
+          "occurrenceCount": 5
+        },
+        {
+          "signature": "lines=2;upper-speech|left|wide|purple|white;lower-speech|right|medium|white|purple-gradient",
+          "occurrences": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "元Palantir社員が語る",
+              "xNorm": 0.05943,
+              "yNorm": 0.60874,
+              "wNorm": 0.74155,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.430205,
+              "rightNorm": 0.80098,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A19F1",
+                "#4E1CF1",
+                "#7554F6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 24062,
+                "purple": 14689,
+                "white": 8310
+              }
+            },
+            {
+              "text": "FDEの正体とは?",
+              "xNorm": 0.37677,
+              "yNorm": 0.7932,
+              "wNorm": 0.56161,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.657575,
+              "rightNorm": 0.93838,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "medium",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FFFFFF",
+                "#FFFFFF",
+                "#FFFFFF"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#4402EC",
+                "#6441F1",
+                "#765FF4"
+              ],
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18232,
+                "purple": 6026,
+                "white": 11439
+              }
+            }
+          ],
+          "id": "sample1_pattern_05",
+          "occurrenceCount": 4
+        },
+        {
+          "signature": "lines=1;lower-speech|center|medium|purple|white",
+          "occurrences": [
+            24.0,
+            25.0,
+            36.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "ぶち当たった壁を",
+              "xNorm": 0.22083,
+              "yNorm": 0.79515,
+              "wNorm": 0.56052,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.50109,
+              "rightNorm": 0.78135,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5419F0",
+                "#5619F1",
+                "#7752F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18179,
+                "purple": 11358,
+                "white": 6045
+              }
+            }
+          ],
+          "id": "sample1_pattern_06",
+          "occurrenceCount": 3
+        },
+        {
+          "signature": "lines=1;upper-speech|left|medium|purple|white",
+          "occurrences": [
+            7.0,
+            31.0,
+            32.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "基本はプロジェク",
+              "xNorm": 0.15431,
+              "yNorm": 0.59903,
+              "wNorm": 0.57852,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.44357,
+              "rightNorm": 0.73283,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A0DEF",
+                "#4D11DB",
+                "#6E45DC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 20886,
+                "purple": 14282,
+                "white": 4076
+              }
+            }
+          ],
+          "id": "sample1_pattern_07",
+          "occurrenceCount": 3
+        },
+        {
+          "signature": "lines=2;upper-speech|center|wide|purple|white;lower-speech|left|narrow|purple|white",
+          "occurrences": [
+            4.0,
+            5.0,
+            6.0
+          ],
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "コンサルティングやSlerとは",
+              "xNorm": 0.03435,
+              "yNorm": 0.60097,
+              "wNorm": 0.92312,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.49591,
+              "rightNorm": 0.95747,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4C0EF1",
+                "#5B1EF3",
+                "#7B60F9"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 33335,
+                "purple": 24344,
+                "white": 7562
+              }
+            },
+            {
+              "text": "性質が異なる",
+              "xNorm": 0.04635,
+              "yNorm": 0.7932,
+              "wNorm": 0.44166,
+              "hNorm": 0.15534,
+              "centerXNorm": 0.26718,
+              "rightNorm": 0.48801,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5115EF",
+                "#5619F0",
+                "#632EF3"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 160.0,
+              "sampledPixelCounts": {
+                "total": 14580,
+                "purple": 8403,
+                "white": 5480
+              }
+            }
+          ],
+          "id": "sample1_pattern_08",
+          "occurrenceCount": 3
+        },
+        {
+          "signature": "lines=2;upper-speech|left|medium|purple|white;lower-speech|center|wide|purple|white",
+          "occurrences": [
+            33.0,
+            34.0,
+            35.0
+          ],
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "ビジネスサイドと",
+              "xNorm": 0.03817,
+              "yNorm": 0.60583,
+              "wNorm": 0.55289,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.314615,
+              "rightNorm": 0.59106,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4D16F0",
+                "#5A22F4",
+                "#7A61F7"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 18928,
+                "purple": 13859,
+                "white": 4514
+              }
+            },
+            {
+              "text": "自社プロダクトを結びつけで",
+              "xNorm": 0.04144,
+              "yNorm": 0.78641,
+              "wNorm": 0.92366,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50327,
+              "rightNorm": 0.9651,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5317F1",
+                "#5B1FF2",
+                "#7C60F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 31640,
+                "purple": 21520,
+                "white": 9008
+              }
+            }
+          ],
+          "id": "sample1_pattern_09",
+          "occurrenceCount": 3
+        },
+        {
+          "signature": "lines=1;lower-speech|center|wide|white|purple-gradient",
+          "occurrences": [
+            28.0,
+            29.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "PalantirのFDEとは?",
+              "xNorm": 0.06107,
+              "yNorm": 0.77282,
+              "wNorm": 0.88386,
+              "hNorm": 0.1835,
+              "centerXNorm": 0.503,
+              "rightNorm": 0.94493,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FEFDFE",
+                "#FEFFFF",
+                "#FFFFFB"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#511DE3",
+                "#6442F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 189.0,
+              "sampledPixelCounts": {
+                "total": 34083,
+                "purple": 1,
+                "white": 9886
+              }
+            }
+          ],
+          "id": "sample1_pattern_10",
+          "occurrenceCount": 2
+        },
+        {
+          "signature": "lines=1;upper-speech|center|wide|purple|white",
+          "occurrences": [
+            14.0,
+            15.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "常に良い意見・アイデアを",
+              "xNorm": 0.08942,
+              "yNorm": 0.60388,
+              "wNorm": 0.82388,
+              "hNorm": 0.16019,
+              "centerXNorm": 0.50136,
+              "rightNorm": 0.9133,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A10F0",
+                "#632DF3",
+                "#7B60F9"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 165.0,
+              "sampledPixelCounts": {
+                "total": 27720,
+                "purple": 18278,
+                "white": 8450
+              }
+            }
+          ],
+          "id": "sample1_pattern_11",
+          "occurrenceCount": 2
+        },
+        {
+          "signature": "lines=2;upper-speech|center|wide|purple|white;lower-speech|left|medium|purple|white",
+          "occurrences": [
+            16.0,
+            17.0
+          ],
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "常に良い意見・アイデアを",
+              "xNorm": 0.08997,
+              "yNorm": 0.60194,
+              "wNorm": 0.82388,
+              "hNorm": 0.16505,
+              "centerXNorm": 0.50191,
+              "rightNorm": 0.91385,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4715EF",
+                "#6032F3",
+                "#7863F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 170.0,
+              "sampledPixelCounts": {
+                "total": 28728,
+                "purple": 19336,
+                "white": 8435
+              }
+            },
+            {
+              "text": "取り込みながら",
+              "xNorm": 0.08615,
+              "yNorm": 0.79223,
+              "wNorm": 0.50218,
+              "hNorm": 0.16019,
+              "centerXNorm": 0.33724,
+              "rightNorm": 0.58833,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5217F0",
+                "#5C1FF1",
+                "#6B3FF6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 165.0,
+              "sampledPixelCounts": {
+                "total": 16885,
+                "purple": 10903,
+                "white": 5352
+              }
+            }
+          ],
+          "id": "sample1_pattern_12",
+          "occurrenceCount": 2
+        },
+        {
+          "signature": "lines=1;upper-speech|left|narrow|purple|white",
+          "occurrences": [
+            30.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "ビジネス",
+              "xNorm": 0.03435,
+              "yNorm": 0.60485,
+              "wNorm": 0.29226,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.18048,
+              "rightNorm": 0.32661,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A11D3",
+                "#4911CF",
+                "#561FD2"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 9845,
+                "purple": 6896,
+                "white": 830
+              }
+            }
+          ],
+          "id": "sample1_pattern_13",
+          "occurrenceCount": 1
+        },
+        {
+          "signature": "lines=1;upper-speech|left|narrow|white|purple-gradient",
+          "occurrences": [
+            26.0
+          ],
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "雲",
+              "xNorm": 0.05507,
+              "yNorm": 0.5767,
+              "wNorm": 0.17993,
+              "hNorm": 0.17184,
+              "centerXNorm": 0.145035,
+              "rightNorm": 0.235,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#F5F8FF",
+                "#FEFEFF",
+                "#EDEFFF"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#511DE3",
+                "#6442F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 177.0,
+              "sampledPixelCounts": {
+                "total": 6490,
+                "purple": 7,
+                "white": 2678
+              }
+            }
+          ],
+          "id": "sample1_pattern_14",
+          "occurrenceCount": 1
+        },
+        {
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|center|medium|purple|white",
+          "occurrences": [
+            18.0
+          ],
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "プラットフォームを",
+              "xNorm": 0.18593,
+              "yNorm": 0.61068,
+              "wNorm": 0.59215,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.482005,
+              "rightNorm": 0.77808,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4B0EF1",
+                "#5013F2",
+                "#703EF6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 19186,
+                "purple": 14314,
+                "white": 4345
+              }
+            },
+            {
+              "text": "ぽいやすくしていく",
+              "xNorm": 0.18321,
+              "yNorm": 0.79126,
+              "wNorm": 0.62977,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.498095,
+              "rightNorm": 0.81298,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5719F0",
+                "#6538F2",
+                "#7350E0"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 20790,
+                "purple": 14698,
+                "white": 4223
+              }
+            }
+          ],
+          "id": "sample1_pattern_15",
+          "occurrenceCount": 1
+        },
+        {
+          "signature": "lines=4;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "occurrences": [
+            57.0
+          ],
+          "lineCount": 4,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5747BC",
+                "#5044BE",
+                "#5243BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 742,
+                "white": 329
+              }
+            },
+            {
+              "text": "Ai VNorkforce事業部FDE Enabler",
+              "xNorm": 0.62486,
+              "yNorm": 0.73786,
+              "wNorm": 0.33588,
+              "hNorm": 0.05049,
+              "centerXNorm": 0.7928,
+              "rightNorm": 0.96074,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5D4FC1",
+                "#5A4CC1",
+                "#5645BF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 52.0,
+              "sampledPixelCounts": {
+                "total": 3708,
+                "purple": 1240,
+                "white": 703
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23555,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.230095,
+              "rightNorm": 0.34787,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5E4BF1",
+                "#5F4BF0"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5760,
+                "purple": 3608,
+                "white": 1417
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62377,
+              "yNorm": 0.78932,
+              "wNorm": 0.23501,
+              "hNorm": 0.11068,
+              "centerXNorm": 0.741275,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF2",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 114.0,
+              "sampledPixelCounts": {
+                "total": 5472,
+                "purple": 3503,
+                "white": 1461
+              }
+            }
+          ],
+          "id": "sample1_pattern_16",
+          "occurrenceCount": 1
+        }
+      ],
+      "frames": [
+        {
+          "timeSeconds": 0.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0000_t0000.000.jpg",
+          "signature": "lines=2;upper-speech|left|wide|purple|white;lower-speech|right|medium|white|purple-gradient",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "元Palantir社員が語る",
+              "xNorm": 0.05943,
+              "yNorm": 0.60874,
+              "wNorm": 0.74155,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.430205,
+              "rightNorm": 0.80098,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A19F1",
+                "#4E1CF1",
+                "#7554F6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 24062,
+                "purple": 14689,
+                "white": 8310
+              }
+            },
+            {
+              "text": "FDEの正体とは?",
+              "xNorm": 0.37677,
+              "yNorm": 0.7932,
+              "wNorm": 0.56161,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.657575,
+              "rightNorm": 0.93838,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "medium",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FFFFFF",
+                "#FFFFFF",
+                "#FFFFFF"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#4402EC",
+                "#6441F1",
+                "#765FF4"
+              ],
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18232,
+                "purple": 6026,
+                "white": 11439
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 1.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0001_t0001.000.jpg",
+          "signature": "lines=2;upper-speech|left|wide|purple|white;lower-speech|right|medium|white|purple-gradient",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "元Palantir社員が語る",
+              "xNorm": 0.05889,
+              "yNorm": 0.60583,
+              "wNorm": 0.74318,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.43048,
+              "rightNorm": 0.80207,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4817F0",
+                "#4A17F1",
+                "#7152F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 25025,
+                "purple": 15635,
+                "white": 8245
+              }
+            },
+            {
+              "text": "FDEの正体とは?",
+              "xNorm": 0.37786,
+              "yNorm": 0.7932,
+              "wNorm": 0.56052,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.65812,
+              "rightNorm": 0.93838,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "medium",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FFFFFF",
+                "#FFFFFF",
+                "#FFFFFF"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#4502ED",
+                "#6441F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18179,
+                "purple": 6019,
+                "white": 11382
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 2.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0002_t0002.000.jpg",
+          "signature": "lines=2;upper-speech|left|wide|purple|white;lower-speech|right|medium|white|purple-gradient",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "元Palantir社員が語る",
+              "xNorm": 0.05889,
+              "yNorm": 0.60583,
+              "wNorm": 0.74318,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.43048,
+              "rightNorm": 0.80207,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4712F0",
+                "#4810F0",
+                "#704FF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 25025,
+                "purple": 15640,
+                "white": 8207
+              }
+            },
+            {
+              "text": "FDEの正体とは?",
+              "xNorm": 0.37786,
+              "yNorm": 0.7932,
+              "wNorm": 0.56052,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.65812,
+              "rightNorm": 0.93838,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "medium",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FFFFFF",
+                "#FFFFFF",
+                "#FFFFFF"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#4502EC",
+                "#6442F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18179,
+                "purple": 6014,
+                "white": 11386
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 3.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0003_t0003.000.jpg",
+          "signature": "lines=2;upper-speech|left|wide|purple|white;lower-speech|right|medium|white|purple-gradient",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "元Palantir社員が語る",
+              "xNorm": 0.05834,
+              "yNorm": 0.60388,
+              "wNorm": 0.74318,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.42993,
+              "rightNorm": 0.80152,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4811F0",
+                "#4810EF",
+                "#704FF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 25480,
+                "purple": 16232,
+                "white": 8472
+              }
+            },
+            {
+              "text": "FDEの正体とは?",
+              "xNorm": 0.37786,
+              "yNorm": 0.7932,
+              "wNorm": 0.56052,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.65812,
+              "rightNorm": 0.93838,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "medium",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FFFFFF",
+                "#FFFFFF",
+                "#FFFFFF"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#4502EC",
+                "#6442F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18179,
+                "purple": 6014,
+                "white": 11385
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 4.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0005_t0004.000.jpg",
+          "signature": "lines=2;upper-speech|center|wide|purple|white;lower-speech|left|narrow|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "コンサルティングやSlerとは",
+              "xNorm": 0.03435,
+              "yNorm": 0.60097,
+              "wNorm": 0.92312,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.49591,
+              "rightNorm": 0.95747,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4C0EF1",
+                "#5B1EF3",
+                "#7B60F9"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 33335,
+                "purple": 24344,
+                "white": 7562
+              }
+            },
+            {
+              "text": "性質が異なる",
+              "xNorm": 0.04635,
+              "yNorm": 0.7932,
+              "wNorm": 0.44166,
+              "hNorm": 0.15534,
+              "centerXNorm": 0.26718,
+              "rightNorm": 0.48801,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5115EF",
+                "#5619F0",
+                "#632EF3"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 160.0,
+              "sampledPixelCounts": {
+                "total": 14580,
+                "purple": 8403,
+                "white": 5480
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 5.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0006_t0005.000.jpg",
+          "signature": "lines=2;upper-speech|center|wide|purple|white;lower-speech|left|narrow|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "コンサルティングやSlerとは",
+              "xNorm": 0.03435,
+              "yNorm": 0.60097,
+              "wNorm": 0.92312,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.49591,
+              "rightNorm": 0.95747,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4C18F1",
+                "#5F2CF4",
+                "#7D65F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 33335,
+                "purple": 24331,
+                "white": 7607
+              }
+            },
+            {
+              "text": "性質が異なる",
+              "xNorm": 0.04635,
+              "yNorm": 0.7932,
+              "wNorm": 0.44166,
+              "hNorm": 0.15534,
+              "centerXNorm": 0.26718,
+              "rightNorm": 0.48801,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5119F0",
+                "#5720F2",
+                "#6938F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 160.0,
+              "sampledPixelCounts": {
+                "total": 14580,
+                "purple": 8389,
+                "white": 5501
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 6.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0007_t0006.000.jpg",
+          "signature": "lines=2;upper-speech|center|wide|purple|white;lower-speech|left|narrow|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "コンサルティングやSlerとは",
+              "xNorm": 0.03435,
+              "yNorm": 0.60097,
+              "wNorm": 0.92312,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.49591,
+              "rightNorm": 0.95747,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4816F0",
+                "#5927F3",
+                "#7963F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 33335,
+                "purple": 24368,
+                "white": 7592
+              }
+            },
+            {
+              "text": "性質が異なる",
+              "xNorm": 0.04635,
+              "yNorm": 0.7932,
+              "wNorm": 0.44275,
+              "hNorm": 0.15534,
+              "centerXNorm": 0.267725,
+              "rightNorm": 0.4891,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4F20F0",
+                "#5526F2",
+                "#663BF4"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 160.0,
+              "sampledPixelCounts": {
+                "total": 14634,
+                "purple": 8453,
+                "white": 5506
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 7.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0008_t0007.000.jpg",
+          "signature": "lines=1;upper-speech|left|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "基本はプロジェク",
+              "xNorm": 0.15431,
+              "yNorm": 0.59903,
+              "wNorm": 0.57852,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.44357,
+              "rightNorm": 0.73283,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A0DEF",
+                "#4D11DB",
+                "#6E45DC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 20886,
+                "purple": 14282,
+                "white": 4076
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 8.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0009_t0008.000.jpg",
+          "signature": "lines=1;upper-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.1554,
+              "yNorm": 0.60194,
+              "wNorm": 0.68975,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.500275,
+              "rightNorm": 0.84515,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4912EF",
+                "#5F29F3",
+                "#7C61F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 23210,
+                "purple": 15692,
+                "white": 6755
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 9.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0010_t0009.000.jpg",
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|left|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.15485,
+              "yNorm": 0.60194,
+              "wNorm": 0.69138,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50054,
+              "rightNorm": 0.84623,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4816F0",
+                "#5D2BF3",
+                "#7A63F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 23688,
+                "purple": 16111,
+                "white": 6771
+              }
+            },
+            {
+              "text": "進行していく仕事",
+              "xNorm": 0.15376,
+              "yNorm": 0.79029,
+              "wNorm": 0.57306,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.44029,
+              "rightNorm": 0.72682,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5519F1",
+                "#5618F2",
+                "#7340F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 18954,
+                "purple": 12406,
+                "white": 5757
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 10.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0011_t0010.000.jpg",
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|left|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.15485,
+              "yNorm": 0.60194,
+              "wNorm": 0.69138,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50054,
+              "rightNorm": 0.84623,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4613F0",
+                "#5A27F3",
+                "#7862F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 23688,
+                "purple": 16121,
+                "white": 6768
+              }
+            },
+            {
+              "text": "進行していく仕事",
+              "xNorm": 0.15376,
+              "yNorm": 0.79029,
+              "wNorm": 0.57306,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.44029,
+              "rightNorm": 0.72682,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5624F1",
+                "#5F30F3",
+                "#754EF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 18954,
+                "purple": 12393,
+                "white": 5821
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 11.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0012_t0011.000.jpg",
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|left|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.1554,
+              "yNorm": 0.60485,
+              "wNorm": 0.6892,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.5,
+              "rightNorm": 0.8446,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4510EF",
+                "#5924F2",
+                "#7962F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 23210,
+                "purple": 15698,
+                "white": 6750
+              }
+            },
+            {
+              "text": "進行していく仕事",
+              "xNorm": 0.15376,
+              "yNorm": 0.79029,
+              "wNorm": 0.57306,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.44029,
+              "rightNorm": 0.72682,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5124F2",
+                "#5527F2",
+                "#6D47F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 18954,
+                "purple": 12418,
+                "white": 5811
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 12.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0013_t0012.000.jpg",
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|left|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.15431,
+              "yNorm": 0.60291,
+              "wNorm": 0.69193,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.500275,
+              "rightNorm": 0.84624,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4910F0",
+                "#5C24F3",
+                "#7C62F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 23688,
+                "purple": 16103,
+                "white": 6740
+              }
+            },
+            {
+              "text": "進行していく仕事",
+              "xNorm": 0.15376,
+              "yNorm": 0.79029,
+              "wNorm": 0.57306,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.44029,
+              "rightNorm": 0.72682,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4E1FF0",
+                "#4F1DF1",
+                "#6941F4"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 18954,
+                "purple": 12441,
+                "white": 5788
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 13.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0014_t0013.000.jpg",
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|left|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "基本はプロジェクトを",
+              "xNorm": 0.15431,
+              "yNorm": 0.60291,
+              "wNorm": 0.69193,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.500275,
+              "rightNorm": 0.84624,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4B10F0",
+                "#5D24F3",
+                "#7E62F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 23688,
+                "purple": 16070,
+                "white": 6743
+              }
+            },
+            {
+              "text": "進行していく仕事",
+              "xNorm": 0.15485,
+              "yNorm": 0.79029,
+              "wNorm": 0.57197,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.440835,
+              "rightNorm": 0.72682,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4E1CF0",
+                "#4F19F0",
+                "#6A40F3"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 18900,
+                "purple": 12371,
+                "white": 5802
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 14.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0015_t0014.000.jpg",
+          "signature": "lines=1;upper-speech|center|wide|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "常に良い意見・アイデアを",
+              "xNorm": 0.08942,
+              "yNorm": 0.60388,
+              "wNorm": 0.82388,
+              "hNorm": 0.16019,
+              "centerXNorm": 0.50136,
+              "rightNorm": 0.9133,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A10F0",
+                "#632DF3",
+                "#7B60F9"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 165.0,
+              "sampledPixelCounts": {
+                "total": 27720,
+                "purple": 18278,
+                "white": 8450
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 15.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0016_t0015.000.jpg",
+          "signature": "lines=1;upper-speech|center|wide|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "常に良い意見・アイデアを",
+              "xNorm": 0.08888,
+              "yNorm": 0.60291,
+              "wNorm": 0.82552,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50164,
+              "rightNorm": 0.9144,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4918F0",
+                "#6235F3",
+                "#7A64F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 28280,
+                "purple": 19002,
+                "white": 8419
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 16.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0017_t0016.000.jpg",
+          "signature": "lines=2;upper-speech|center|wide|purple|white;lower-speech|left|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "常に良い意見・アイデアを",
+              "xNorm": 0.08997,
+              "yNorm": 0.60194,
+              "wNorm": 0.82388,
+              "hNorm": 0.16505,
+              "centerXNorm": 0.50191,
+              "rightNorm": 0.91385,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4715EF",
+                "#6032F3",
+                "#7863F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 170.0,
+              "sampledPixelCounts": {
+                "total": 28728,
+                "purple": 19336,
+                "white": 8435
+              }
+            },
+            {
+              "text": "取り込みながら",
+              "xNorm": 0.08615,
+              "yNorm": 0.79223,
+              "wNorm": 0.50218,
+              "hNorm": 0.16019,
+              "centerXNorm": 0.33724,
+              "rightNorm": 0.58833,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5217F0",
+                "#5C1FF1",
+                "#6B3FF6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 165.0,
+              "sampledPixelCounts": {
+                "total": 16885,
+                "purple": 10903,
+                "white": 5352
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 17.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0018_t0017.000.jpg",
+          "signature": "lines=2;upper-speech|center|wide|purple|white;lower-speech|left|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "常に良い意見・アイデアを",
+              "xNorm": 0.08997,
+              "yNorm": 0.60291,
+              "wNorm": 0.82388,
+              "hNorm": 0.16408,
+              "centerXNorm": 0.50191,
+              "rightNorm": 0.91385,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4511EF",
+                "#5E2FF2",
+                "#7861F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 169.0,
+              "sampledPixelCounts": {
+                "total": 28728,
+                "purple": 19454,
+                "white": 8435
+              }
+            },
+            {
+              "text": "取り込みながら",
+              "xNorm": 0.08615,
+              "yNorm": 0.79223,
+              "wNorm": 0.50218,
+              "hNorm": 0.16019,
+              "centerXNorm": 0.33724,
+              "rightNorm": 0.58833,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#521FF0",
+                "#5E2EF1",
+                "#724CF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 165.0,
+              "sampledPixelCounts": {
+                "total": 16885,
+                "purple": 10890,
+                "white": 5387
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 18.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0019_t0018.000.jpg",
+          "signature": "lines=2;upper-speech|center|medium|purple|white;lower-speech|center|medium|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "プラットフォームを",
+              "xNorm": 0.18593,
+              "yNorm": 0.61068,
+              "wNorm": 0.59215,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.482005,
+              "rightNorm": 0.77808,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4B0EF1",
+                "#5013F2",
+                "#703EF6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 19186,
+                "purple": 14314,
+                "white": 4345
+              }
+            },
+            {
+              "text": "ぽいやすくしていく",
+              "xNorm": 0.18321,
+              "yNorm": 0.79126,
+              "wNorm": 0.62977,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.498095,
+              "rightNorm": 0.81298,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5719F0",
+                "#6538F2",
+                "#7350E0"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 20790,
+                "purple": 14698,
+                "white": 4223
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 19.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0020_t0019.000.jpg",
+          "signature": "lines=1;upper-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "プラットフォームを",
+              "xNorm": 0.18484,
+              "yNorm": 0.60971,
+              "wNorm": 0.59269,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.481185,
+              "rightNorm": 0.77753,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A17F1",
+                "#501FF2",
+                "#6F47F6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 19239,
+                "purple": 14430,
+                "white": 4438
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 20.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0021_t0020.000.jpg",
+          "signature": "lines=1;upper-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "プラットフォームを",
+              "xNorm": 0.18539,
+              "yNorm": 0.60971,
+              "wNorm": 0.59269,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.481735,
+              "rightNorm": 0.77808,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4715F0",
+                "#4C1AF0",
+                "#6B44F4"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 19965,
+                "purple": 15179,
+                "white": 4426
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 21.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0022_t0021.000.jpg",
+          "signature": "lines=1;upper-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "プラットフォームを",
+              "xNorm": 0.1843,
+              "yNorm": 0.60971,
+              "wNorm": 0.59378,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.48119,
+              "rightNorm": 0.77808,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4510F0",
+                "#4813F0",
+                "#6840F4"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 19965,
+                "purple": 15135,
+                "white": 4413
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 22.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0023_t0022.000.jpg",
+          "signature": "lines=1;upper-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "プラットフォームを",
+              "xNorm": 0.1843,
+              "yNorm": 0.60971,
+              "wNorm": 0.59378,
+              "hNorm": 0.15728,
+              "centerXNorm": 0.48119,
+              "rightNorm": 0.77808,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#480FF1",
+                "#4B11F1",
+                "#6B40F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 162.0,
+              "sampledPixelCounts": {
+                "total": 19602,
+                "purple": 14767,
+                "white": 4407
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 23.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0024_t0023.000.jpg",
+          "signature": "lines=1;upper-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "プラットフォームを",
+              "xNorm": 0.1843,
+              "yNorm": 0.60971,
+              "wNorm": 0.59378,
+              "hNorm": 0.15534,
+              "centerXNorm": 0.48119,
+              "rightNorm": 0.77808,
+              "rowBand": "upper-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4F0FF0",
+                "#5011F2",
+                "#7040F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 160.0,
+              "sampledPixelCounts": {
+                "total": 19602,
+                "purple": 14754,
+                "white": 4408
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 24.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0025_t0024.000.jpg",
+          "signature": "lines=1;lower-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "ぶち当たった壁を",
+              "xNorm": 0.22083,
+              "yNorm": 0.79515,
+              "wNorm": 0.56052,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.50109,
+              "rightNorm": 0.78135,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5419F0",
+                "#5619F1",
+                "#7752F5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18179,
+                "purple": 11358,
+                "white": 6045
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 25.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0026_t0025.000.jpg",
+          "signature": "lines=1;lower-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "ぶち当たった壁を",
+              "xNorm": 0.22083,
+              "yNorm": 0.79515,
+              "wNorm": 0.56052,
+              "hNorm": 0.1534,
+              "centerXNorm": 0.50109,
+              "rightNorm": 0.78135,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5720F2",
+                "#612AF4",
+                "#7957F7"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 158.0,
+              "sampledPixelCounts": {
+                "total": 18179,
+                "purple": 11341,
+                "white": 6077
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 26.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0027_t0026.000.jpg",
+          "signature": "lines=1;upper-speech|left|narrow|white|purple-gradient",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "雲",
+              "xNorm": 0.05507,
+              "yNorm": 0.5767,
+              "wNorm": 0.17993,
+              "hNorm": 0.17184,
+              "centerXNorm": 0.145035,
+              "rightNorm": 0.235,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#F5F8FF",
+                "#FEFEFF",
+                "#EDEFFF"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#511DE3",
+                "#6442F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 177.0,
+              "sampledPixelCounts": {
+                "total": 6490,
+                "purple": 7,
+                "white": 2678
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 28.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0029_t0028.000.jpg",
+          "signature": "lines=1;lower-speech|center|wide|white|purple-gradient",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "PalantirのFDEとは?",
+              "xNorm": 0.06107,
+              "yNorm": 0.77282,
+              "wNorm": 0.88386,
+              "hNorm": 0.1835,
+              "centerXNorm": 0.503,
+              "rightNorm": 0.94493,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FEFDFE",
+                "#FEFFFF",
+                "#FFFFFB"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#511DE3",
+                "#6442F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 189.0,
+              "sampledPixelCounts": {
+                "total": 34083,
+                "purple": 1,
+                "white": 9886
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 29.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0030_t0029.000.jpg",
+          "signature": "lines=1;lower-speech|center|wide|white|purple-gradient",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "PalantirのFDEとは?",
+              "xNorm": 0.06107,
+              "yNorm": 0.77282,
+              "wNorm": 0.88386,
+              "hNorm": 0.1835,
+              "centerXNorm": 0.503,
+              "rightNorm": 0.94493,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "white",
+              "backgroundGradient": [
+                "#FEFDFE",
+                "#FEFFFF",
+                "#FFFFFB"
+              ],
+              "textKind": "purple-gradient",
+              "textFill": [
+                "#511DE3",
+                "#6442F2",
+                "#755FF4"
+              ],
+              "fontSizePxEstimate": 189.0,
+              "sampledPixelCounts": {
+                "total": 34083,
+                "purple": 0,
+                "white": 9895
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 30.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0031_t0030.000.jpg",
+          "signature": "lines=1;upper-speech|left|narrow|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "ビジネス",
+              "xNorm": 0.03435,
+              "yNorm": 0.60485,
+              "wNorm": 0.29226,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.18048,
+              "rightNorm": 0.32661,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4A11D3",
+                "#4911CF",
+                "#561FD2"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 9845,
+                "purple": 6896,
+                "white": 830
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 31.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0033_t0031.000.jpg",
+          "signature": "lines=1;upper-speech|left|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "ビジネスサイドと",
+              "xNorm": 0.03762,
+              "yNorm": 0.6068,
+              "wNorm": 0.55289,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.314065,
+              "rightNorm": 0.59051,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4C12F2",
+                "#5A21F3",
+                "#775EF8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 18590,
+                "purple": 13622,
+                "white": 4546
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 32.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0034_t0032.000.jpg",
+          "signature": "lines=1;upper-speech|left|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "ビジネスサイドと",
+              "xNorm": 0.03871,
+              "yNorm": 0.6068,
+              "wNorm": 0.5518,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.31461,
+              "rightNorm": 0.59051,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4D0FF0",
+                "#591FF2",
+                "#755CF7"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 18590,
+                "purple": 13561,
+                "white": 4565
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 33.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0035_t0033.000.jpg",
+          "signature": "lines=2;upper-speech|left|medium|purple|white;lower-speech|center|wide|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "ビジネスサイドと",
+              "xNorm": 0.03817,
+              "yNorm": 0.60583,
+              "wNorm": 0.55289,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.314615,
+              "rightNorm": 0.59106,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4D16F0",
+                "#5A22F4",
+                "#7A61F7"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 18928,
+                "purple": 13859,
+                "white": 4514
+              }
+            },
+            {
+              "text": "自社プロダクトを結びつけで",
+              "xNorm": 0.04144,
+              "yNorm": 0.78641,
+              "wNorm": 0.92366,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50327,
+              "rightNorm": 0.9651,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5317F1",
+                "#5B1FF2",
+                "#7C60F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 31640,
+                "purple": 21520,
+                "white": 9008
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 34.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0036_t0034.000.jpg",
+          "signature": "lines=2;upper-speech|left|medium|purple|white;lower-speech|center|wide|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "ビジネスサイドと",
+              "xNorm": 0.03817,
+              "yNorm": 0.60583,
+              "wNorm": 0.5518,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.31407,
+              "rightNorm": 0.58997,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4919F1",
+                "#5723F3",
+                "#765FF7"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 18928,
+                "purple": 13871,
+                "white": 4512
+              }
+            },
+            {
+              "text": "自社プロダクトを結びつけて",
+              "xNorm": 0.04144,
+              "yNorm": 0.78641,
+              "wNorm": 0.92366,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50327,
+              "rightNorm": 0.9651,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5321F2",
+                "#6335F3",
+                "#7B65F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 31640,
+                "purple": 21519,
+                "white": 9086
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 35.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0037_t0035.000.jpg",
+          "signature": "lines=2;upper-speech|left|medium|purple|white;lower-speech|center|wide|purple|white",
+          "lineCount": 2,
+          "lines": [
+            {
+              "text": "ビジネスサイドと",
+              "xNorm": 0.03817,
+              "yNorm": 0.60583,
+              "wNorm": 0.55289,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.314615,
+              "rightNorm": 0.59106,
+              "rowBand": "upper-speech",
+              "anchor": "left",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#4714F1",
+                "#5622F3",
+                "#755DF7"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 18928,
+                "purple": 13872,
+                "white": 4505
+              }
+            },
+            {
+              "text": "自社プロダクトを結びつけで",
+              "xNorm": 0.04144,
+              "yNorm": 0.78641,
+              "wNorm": 0.92366,
+              "hNorm": 0.16311,
+              "centerXNorm": 0.50327,
+              "rightNorm": 0.9651,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5020F2",
+                "#582DF2",
+                "#7763F8"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 168.0,
+              "sampledPixelCounts": {
+                "total": 31640,
+                "purple": 21543,
+                "white": 9055
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 36.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0038_t0036.000.jpg",
+          "signature": "lines=1;lower-speech|center|medium|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "結果を出すエンジニア",
+              "xNorm": 0.1374,
+              "yNorm": 0.78641,
+              "wNorm": 0.71701,
+              "hNorm": 0.15922,
+              "centerXNorm": 0.495905,
+              "rightNorm": 0.85441,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "medium",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#614CF5",
+                "#5F4DF6",
+                "#614EF6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 164.0,
+              "sampledPixelCounts": {
+                "total": 24145,
+                "purple": 15868,
+                "white": 7074
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 37.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0039_t0037.000.jpg",
+          "signature": "lines=1;lower-speech|center|wide|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "結果を出すエンジーア",
+              "xNorm": 0.11287,
+              "yNorm": 0.78155,
+              "wNorm": 0.76499,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.495365,
+              "rightNorm": 0.87786,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4CF4",
+                "#5F4EF6",
+                "#604EF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 27612,
+                "purple": 18552,
+                "white": 8371
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 38.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0040_t0038.000.jpg",
+          "signature": "lines=1;lower-speech|center|wide|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "結果を出すエンジーア",
+              "xNorm": 0.11287,
+              "yNorm": 0.78155,
+              "wNorm": 0.76499,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.495365,
+              "rightNorm": 0.87786,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4CF4",
+                "#5F4EF6",
+                "#604EF6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 27612,
+                "purple": 18557,
+                "white": 8370
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 39.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0041_t0039.000.jpg",
+          "signature": "lines=1;lower-speech|center|wide|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "結果を出すエンジーア",
+              "xNorm": 0.11287,
+              "yNorm": 0.78155,
+              "wNorm": 0.76499,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.495365,
+              "rightNorm": 0.87786,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4CF4",
+                "#5F4EF6",
+                "#604EF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 27612,
+                "purple": 18558,
+                "white": 8368
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 40.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0042_t0040.000.jpg",
+          "signature": "lines=1;lower-speech|center|wide|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "結果を出すエンジーア",
+              "xNorm": 0.11287,
+              "yNorm": 0.78155,
+              "wNorm": 0.76499,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.495365,
+              "rightNorm": 0.87786,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4CF4",
+                "#5F4EF6",
+                "#604EF6"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 27612,
+                "purple": 18558,
+                "white": 8370
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 41.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0043_t0041.000.jpg",
+          "signature": "lines=1;lower-speech|center|wide|purple|white",
+          "lineCount": 1,
+          "lines": [
+            {
+              "text": "結果を出すエンジーア",
+              "xNorm": 0.11287,
+              "yNorm": 0.78155,
+              "wNorm": 0.76499,
+              "hNorm": 0.1699,
+              "centerXNorm": 0.495365,
+              "rightNorm": 0.87786,
+              "rowBand": "lower-speech",
+              "anchor": "center",
+              "widthBucket": "wide",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4CF4",
+                "#5F4EF6",
+                "#604EF5"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 175.0,
+              "sampledPixelCounts": {
+                "total": 27612,
+                "purple": 18558,
+                "white": 8370
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 46.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0050_t0046.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorkforce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5546BB",
+                "#4F45BD",
+                "#5143BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 739,
+                "white": 336
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23664,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.23064,
+              "rightNorm": 0.34896,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5E4BF1",
+                "#604BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5800,
+                "purple": 3646,
+                "white": 1413
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEB"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3522,
+                "white": 1438
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 47.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0051_t0047.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai Vorkforce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73301,
+              "wNorm": 0.23446,
+              "hNorm": 0.04951,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5847BB",
+                "#5044BE",
+                "#5343BD"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 51.0,
+              "sampledPixelCounts": {
+                "total": 2448,
+                "purple": 829,
+                "white": 341
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23719,
+              "hNorm": 0.11748,
+              "centerXNorm": 0.230915,
+              "rightNorm": 0.34951,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5E4BF1",
+                "#604BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 121.0,
+              "sampledPixelCounts": {
+                "total": 5945,
+                "purple": 3639,
+                "white": 1415
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF2",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3528,
+                "white": 1444
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 48.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0052_t0048.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorkforce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73398,
+              "wNorm": 0.23446,
+              "hNorm": 0.04854,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5545BB",
+                "#5044BE",
+                "#5243BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 50.0,
+              "sampledPixelCounts": {
+                "total": 2448,
+                "purple": 837,
+                "white": 374
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23719,
+              "hNorm": 0.11748,
+              "centerXNorm": 0.230915,
+              "rightNorm": 0.34951,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4CF1",
+                "#5F4BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 121.0,
+              "sampledPixelCounts": {
+                "total": 5945,
+                "purple": 3655,
+                "white": 1413
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3512,
+                "white": 1435
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 49.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0053_t0049.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5545BC",
+                "#5045BF",
+                "#5143BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 742,
+                "white": 338
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23664,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.23064,
+              "rightNorm": 0.34896,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4CF1",
+                "#5F4BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5800,
+                "purple": 3652,
+                "white": 1420
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3521,
+                "white": 1439
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 50.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0054_t0050.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5646BC",
+                "#5044BF",
+                "#5143BD"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 750,
+                "white": 339
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23719,
+              "hNorm": 0.11748,
+              "centerXNorm": 0.230915,
+              "rightNorm": 0.34951,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4CF1",
+                "#5F4BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 121.0,
+              "sampledPixelCounts": {
+                "total": 5945,
+                "purple": 3653,
+                "white": 1420
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3524,
+                "white": 1438
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 51.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0055_t0051.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5645BB",
+                "#5044BE",
+                "#5143BD"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 751,
+                "white": 341
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23664,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.23064,
+              "rightNorm": 0.34896,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4CF1",
+                "#5F4BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5800,
+                "purple": 3644,
+                "white": 1420
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3524,
+                "white": 1446
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 52.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0056_t0052.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73398,
+              "wNorm": 0.23446,
+              "hNorm": 0.04854,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5545BA",
+                "#5045BE",
+                "#5143BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 50.0,
+              "sampledPixelCounts": {
+                "total": 2448,
+                "purple": 834,
+                "white": 372
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23719,
+              "hNorm": 0.11748,
+              "centerXNorm": 0.230915,
+              "rightNorm": 0.34951,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4CF1",
+                "#5F4BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 121.0,
+              "sampledPixelCounts": {
+                "total": 5945,
+                "purple": 3651,
+                "white": 1421
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3524,
+                "white": 1445
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 53.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0057_t0053.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorkforce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5645BB",
+                "#5044BE",
+                "#5143BD"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 741,
+                "white": 347
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23664,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.23064,
+              "rightNorm": 0.34896,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4CF1",
+                "#5F4BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5800,
+                "purple": 3652,
+                "white": 1419
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3522,
+                "white": 1448
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 54.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0058_t0054.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5546BC",
+                "#5044BF",
+                "#5143BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 745,
+                "white": 332
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23719,
+              "hNorm": 0.11748,
+              "centerXNorm": 0.230915,
+              "rightNorm": 0.34951,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5E4BF1",
+                "#5F4BEF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 121.0,
+              "sampledPixelCounts": {
+                "total": 5945,
+                "purple": 3646,
+                "white": 1418
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF2",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3513,
+                "white": 1450
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 55.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0059_t0055.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorkforce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5646BB",
+                "#5145BF",
+                "#5143BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 745,
+                "white": 331
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.2361,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.23037,
+              "rightNorm": 0.34842,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5E4CF1",
+                "#5F4BF0"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5800,
+                "purple": 3646,
+                "white": 1417
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62541,
+              "yNorm": 0.78932,
+              "wNorm": 0.23337,
+              "hNorm": 0.11262,
+              "centerXNorm": 0.742095,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF2",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 116.0,
+              "sampledPixelCounts": {
+                "total": 5577,
+                "purple": 3519,
+                "white": 1448
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 56.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0060_t0056.000.jpg",
+          "signature": "lines=3;lower-speech|left|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 3,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5746BC",
+                "#5044BE",
+                "#5143BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 737,
+                "white": 326
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23664,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.23064,
+              "rightNorm": 0.34896,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BF0"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5800,
+                "purple": 3644,
+                "white": 1420
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62432,
+              "yNorm": 0.78932,
+              "wNorm": 0.23446,
+              "hNorm": 0.11068,
+              "centerXNorm": 0.74155,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF1",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 114.0,
+              "sampledPixelCounts": {
+                "total": 5472,
+                "purple": 3477,
+                "white": 1414
+              }
+            }
+          ]
+        },
+        {
+          "timeSeconds": 57.0,
+          "samplePath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples\\frame_0061_t0057.000.jpg",
+          "signature": "lines=4;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white;lower-speech|left|narrow|purple|white;lower-speech|right|narrow|purple|white",
+          "lineCount": 4,
+          "lines": [
+            {
+              "text": "Ai VVorktorce事業 CEO",
+              "xNorm": 0.10905,
+              "yNorm": 0.73592,
+              "wNorm": 0.23446,
+              "hNorm": 0.0466,
+              "centerXNorm": 0.22628,
+              "rightNorm": 0.34351,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5747BC",
+                "#5044BE",
+                "#5243BC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 48.0,
+              "sampledPixelCounts": {
+                "total": 2304,
+                "purple": 742,
+                "white": 329
+              }
+            },
+            {
+              "text": "Ai VNorkforce事業部FDE Enabler",
+              "xNorm": 0.62486,
+              "yNorm": 0.73786,
+              "wNorm": 0.33588,
+              "hNorm": 0.05049,
+              "centerXNorm": 0.7928,
+              "rightNorm": 0.96074,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5D4FC1",
+                "#5A4CC1",
+                "#5645BF"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 52.0,
+              "sampledPixelCounts": {
+                "total": 3708,
+                "purple": 1240,
+                "white": 703
+              }
+            },
+            {
+              "text": "中村 龍矢",
+              "xNorm": 0.11232,
+              "yNorm": 0.78641,
+              "wNorm": 0.23555,
+              "hNorm": 0.1165,
+              "centerXNorm": 0.230095,
+              "rightNorm": 0.34787,
+              "rowBand": "lower-speech",
+              "anchor": "left",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5E4BF1",
+                "#5F4BF0"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 120.0,
+              "sampledPixelCounts": {
+                "total": 5760,
+                "purple": 3608,
+                "white": 1417
+              }
+            },
+            {
+              "text": "大治 慶晃",
+              "xNorm": 0.62377,
+              "yNorm": 0.78932,
+              "wNorm": 0.23501,
+              "hNorm": 0.11068,
+              "centerXNorm": 0.741275,
+              "rightNorm": 0.85878,
+              "rowBand": "lower-speech",
+              "anchor": "right",
+              "widthBucket": "narrow",
+              "backgroundKind": "purple",
+              "backgroundGradient": [
+                "#5F4BF1",
+                "#5F4BF2",
+                "#5F4BEC"
+              ],
+              "textKind": "white",
+              "textFill": "#FFFFFF",
+              "fontSizePxEstimate": 114.0,
+              "sampledPixelCounts": {
+                "total": 5472,
+                "purple": 3503,
+                "white": 1461
+              }
+            }
+          ]
+        }
+      ],
+      "classificationRules": {
+        "anchor": "left if centerX <= 0.45, right if centerX >= 0.55, otherwise center",
+        "backgroundKind": "purple when sampled purple background pixels dominate sampled white pixels; otherwise white",
+        "signature": "line count plus each line row band, anchor, width bucket, background kind, and text kind"
+      }
+    },
+    "animation": {
+      "analysisSource": "reference analysis subtitle OCR time series",
+      "samplingNote": "Reference analysis samples are sparse, so exact easing is inferred from observed partial-width subtitle states.",
+      "observations": [
+        {
+          "timeFrom": 3.5,
+          "timeTo": 4.0,
+          "textFrom": "コンサルテ",
+          "textTo": "コンサルティングやSlerとは",
+          "widthNormFrom": 0.3795,
+          "widthNormTo": 0.92312,
+          "widthGrowthRatio": 2.432,
+          "interpretation": "same subtitle expands horizontally while text is revealed"
+        },
+        {
+          "timeFrom": 3.5,
+          "timeTo": 4.0,
+          "lineCountFrom": 1,
+          "lineCountTo": 2,
+          "interpretation": "second subtitle line is staggered after first line"
+        },
+        {
+          "timeFrom": 8.0,
+          "timeTo": 9.0,
+          "lineCountFrom": 1,
+          "lineCountTo": 2,
+          "interpretation": "second subtitle line is staggered after first line"
+        },
+        {
+          "timeFrom": 15.0,
+          "timeTo": 16.0,
+          "lineCountFrom": 1,
+          "lineCountTo": 2,
+          "interpretation": "second subtitle line is staggered after first line"
+        },
+        {
+          "timeFrom": 27.0,
+          "timeTo": 28.0,
+          "textTo": "PalantirのFDEとは?",
+          "interpretation": "subtitle group appears after empty state"
+        },
+        {
+          "timeFrom": 30.0,
+          "timeTo": 30.666,
+          "textFrom": "ビジネス",
+          "textTo": "ビジネスサイドと",
+          "widthNormFrom": 0.29226,
+          "widthNormTo": 0.55289,
+          "widthGrowthRatio": 1.892,
+          "interpretation": "same subtitle expands horizontally while text is revealed"
+        },
+        {
+          "timeFrom": 32.0,
+          "timeTo": 33.0,
+          "lineCountFrom": 1,
+          "lineCountTo": 2,
+          "interpretation": "second subtitle line is staggered after first line"
+        },
+        {
+          "timeFrom": 45.0,
+          "timeTo": 45.5,
+          "textTo": "Ai VVorkforce事業 CEO | 中村 龍矢",
+          "interpretation": "subtitle group appears after empty state"
+        },
+        {
+          "timeFrom": 45.5,
+          "timeTo": 46.0,
+          "lineCountFrom": 2,
+          "lineCountTo": 3,
+          "interpretation": "second subtitle line is staggered after first line"
+        },
+        {
+          "timeFrom": 56.0,
+          "timeTo": 57.0,
+          "lineCountFrom": 3,
+          "lineCountTo": 4,
+          "interpretation": "second subtitle line is staggered after first line"
+        }
+      ],
+      "in": {
+        "type": "horizontal-reveal",
+        "direction": "left-to-right",
+        "durationSeconds": 0.583,
+        "easing": "easeOutCubic",
+        "initialVisibleWidthRatio": 0.08,
+        "initialOpacity": 0.0,
+        "opacityDurationSeconds": 0.12
+      },
+      "secondaryLine": {
+        "staggerSeconds": 0.18,
+        "inheritsReveal": true
+      },
+      "out": {
+        "type": "quick-fade",
+        "durationSeconds": 0.1
+      }
+    }
+  }
+}

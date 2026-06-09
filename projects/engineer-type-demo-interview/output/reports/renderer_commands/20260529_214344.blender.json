@@ -1,0 +1,39 @@
+{
+  "createdAt": "2026-05-30T03:37:37Z",
+  "adapter": "blender",
+  "timelineSchemaVersion": "video-edit-timeline/v1",
+  "timelineId": "timeline_new-folder-2",
+  "timelinePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\timelines\\current.timeline.json",
+  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.blender_frames",
+  "jobsManifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_artifacts\\20260529_214344.blender_frames.blender.jobs.json",
+  "script": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_artifacts\\20260529_214344.blender_frames.blender.py",
+  "jobCount": 0,
+  "argv": [],
+  "readyToExecute": false,
+  "noOp": true,
+  "missingDependencies": [],
+  "unsupportedClips": [],
+  "validationWarnings": [],
+  "preview": {
+    "range": {
+      "start": 0.0,
+      "end": 2968.4655
+    },
+    "proxy": false
+  },
+  "scope": {
+    "implemented": [
+      "Blender job manifest for clips explicitly marked renderer=blender",
+      "Blender Python script generation for transparent PNG 3D text layers",
+      "partial timeline-range job export",
+      "audited Blender background argv export when jobs exist"
+    ],
+    "notImplemented": [
+      "automatic selection of Blender for ordinary 2D overlay clips",
+      "automatic Blender execution from Electron",
+      "automatic compositing of Blender frame sequences back into final FFmpeg render"
+    ]
+  },
+  "executed": false,
+  "commandReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_commands\\20260529_214344.blender.json"
+}

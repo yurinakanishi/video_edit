@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "revision": 5,
+  "updatedAt": "2026-06-07T13:03:04.7498786+09:00",
+  "project": {
+    "id": "test-project-1",
+    "name": "Test Project 1",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output"
+  },
+  "assets": {
+    "mediaDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+    "materialPaths": [
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4"
+    ],
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\media_manifest.json",
+    "mediaManifest": {
+      "version": 1,
+      "sourceDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+      "sourcePaths": [
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4"
+      ],
+      "generatedAt": "2026-06-06T22:15:31.0449705+09:00",
+      "files": [
+        {
+          "id": "interview-with-michael-eisen-middle-1min",
+          "kind": "video",
+          "role": "master",
+          "label": "Master video",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+          "originalPath": "C:\\Users\\yurin\\Downloads\\Interview_with_Michael_Eisen_on_Open_Access.webm",
+          "relativePath": "video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+          "name": "Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+          "extension": ".mp4",
+          "sizeBytes": 18776501,
+          "confidence": 1,
+          "reason": "created by Codex as a 1 minute middle clip for this test project",
+          "metadata": {
+            "duration": 60.018292,
+            "sourceStart": 475.22,
+            "sourceDuration": 60,
+            "hasVideo": true,
+            "hasAudio": true,
+            "width": 1920,
+            "height": 1080,
+            "fps": 23.976023976023978,
+            "videoCodec": "h264",
+            "avgFrameRate": "24000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2,
+            "storage": "project-source"
+          }
+        }
+      ],
+      "audio": [],
+      "images": [],
+      "subtitles": [],
+      "other": [],
+      "selected": {
+        "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+        "rightCloseVideo": "",
+        "leftCloseVideo": "",
+        "externalAudio": "",
+        "logo": "",
+        "stillImages": []
+      },
+      "manifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\media_manifest.json"
+    },
+    "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+    "rightCloseVideo": "",
+    "leftCloseVideo": "",
+    "referenceVideo": "",
+    "externalAudio": "",
+    "logo": "",
+    "stillImages": [],
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video"
+  },
+  "render": {
+    "editPreset": "new-interview",
+    "workflowAction": "render-selected",
+    "renderScript": "render_app_interview.py",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview.mp4",
+    "timelinePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\current.timeline.json",
+    "subtitleMode": "none",
+    "renderProfile": "preview",
+    "rangeMode": "full",
+    "multicamMode": "single-camera",
+    "audioSource": "video",
+    "audioDenoise": false,
+    "audioMastering": false,
+    "previewStart": 0,
+    "previewDuration": 60.018292,
+    "shortenSilence": false,
+    "keepUncut": true
+  },
+  "analysis": {
+    "transcribeModel": "large-v3",
+    "transcribeLanguage": "en",
+    "transcribeBeamSize": 5,
+    "transcribeTemperature": 0,
+    "transcribePromptTerms": "Michael Eisen, open access",
+    "transcribeNormalizeAudio": true,
+    "transcribeFilterLowConfidence": true,
+    "conditionOnPreviousText": false
+  },
+  "style": {
+    "subtitleSize": 60,
+    "highlightColor": "#ae48e0",
+    "boxOpacity": 72,
+    "titleText": "",
+    "titleSize": 48,
+    "logoHeight": 48,
+    "punchlineText": ""
+  },
+  "glossary": {
+    "enabled": false,
+    "terms": []
+  },
+  "music": {
+    "enabled": false
+  },
+  "omissionCard": {
+    "enabled": false
+  },
+  "tools": {
+    "python": "python",
+    "ffmpeg": "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+    "ffprobe": "C:\\ProgramData\\chocolatey\\bin\\ffprobe.exe"
+  },
+  "codexWork": {
+    "latestPreviewTasks": [
+      {
+        "id": "sample11-frame-design-preview",
+        "description": "Apply sample-11 purple band and logo frame design while moving the source video upward from the previous placement so the face avoids the speech subtitle area.",
+        "script": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\scripts\\build_sample11_frame_design_preview.py",
+        "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample11_frame_design.mp4",
+        "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample11_frame_design_preview.timeline.json",
+        "validationReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\sample11_frame_design_preview_timeline_validation.json",
+        "status": "preview-valid",
+        "metadata": {
+          "contentVideoYOffsetPx": 69,
+          "frameOverlayRenderScale": 4,
+          "bottomBandContinuous": true,
+          "topBandRightAccentSource": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples",
+          "topBandRightAccent": {
+            "separatorXNorm": 0.952563,
+            "rightRegionTint": "#5F5AF5",
+            "separatorColor": "#605CF5",
+            "confidence": 0.72
+          },
+          "videoWidth": 1280,
+          "videoHeight": 720,
+          "durationSeconds": 60.01
+        }
+      },
+      {
+        "id": "sample1-catchphrase-collection-preview",
+        "description": "Use the first roughly 10 seconds of reference sample-1 to infer hook structure, then hard-cut the project sample video into a roughly 15 second preview collection.",
+        "script": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\scripts\\build_sample1_catchphrase_collection_preview.py",
+        "catchphraseJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json",
+        "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_catchphrase_collection.mp4",
+        "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample1_catchphrase_collection_preview.timeline.json",
+        "validationReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\sample1_catchphrase_collection_preview_timeline_validation.json",
+        "status": "preview-valid",
+        "metadata": {
+          "cutSource": "project-sample-video",
+          "sourceWindowSeconds": [
+            0.0,
+            10.0
+          ],
+          "targetDurationSeconds": 15.0,
+          "videoWidth": 1280,
+          "videoHeight": 720
+        }
+      },
+      {
+        "id": "sample1-catchphrase-collection-styled-preview",
+        "description": "Add the sampled speech subtitle style and sample-11 band/logo frame design to the project-sample catchphrase collection preview.",
+        "script": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\scripts\\build_sample1_catchphrase_collection_styled_preview.py",
+        "catchphraseJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json",
+        "styleProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_styled_profile.json",
+        "previewVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_catchphrase_collection_styled.mp4",
+        "timeline": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\timelines\\sample1_catchphrase_collection_styled_preview.timeline.json",
+        "validationReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\sample1_catchphrase_collection_styled_preview_timeline_validation.json",
+        "status": "preview-valid",
+        "metadata": {
+          "cutSource": "project-sample-video",
+          "targetDurationSeconds": 15.0,
+          "contentVideoYOffsetPx": 69,
+          "subtitleFontSizePx": 74,
+          "subtitleVerticalCentering": true,
+          "frameOverlayRenderScale": 4,
+          "bottomBandContinuous": true,
+          "topBandRightAccentSource": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\samples",
+          "topBandRightAccent": {
+            "separatorXNorm": 0.952563,
+            "rightRegionTint": "#5F5AF5",
+            "separatorColor": "#605CF5",
+            "confidence": 0.72
+          },
+          "remotionUsed": false,
+          "remotionDecision": "Existing PIL/ffmpeg project-local pipeline is sufficient for static frame overlay precision and subtitle text placement corrections.",
+          "videoWidth": 1280,
+          "videoHeight": 720,
+          "visualQaStills": [
+            "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_styled_t0001.jpg",
+            "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_styled_t0006.jpg",
+            "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_styled_t0011.jpg"
+          ]
+        }
+      }
+    ]
+  },
+  "ui": {
+    "activeSection": "assets",
+    "codexModel": "",
+    "language": "ja"
+  }
+}

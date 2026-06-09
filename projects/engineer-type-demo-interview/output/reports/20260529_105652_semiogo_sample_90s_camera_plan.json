@@ -1,0 +1,33 @@
+{
+  "mode": "manual-plan",
+  "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\manual_camera_plan.json",
+  "timelineStart": 1103.76,
+  "duration": 90.0,
+  "segments": [
+    {
+      "role": "camera4",
+      "start": 0.0,
+      "end": 18.18
+    },
+    {
+      "role": "camera3",
+      "start": 18.18,
+      "end": 21.65
+    },
+    {
+      "role": "master",
+      "start": 21.65,
+      "end": 53.65
+    },
+    {
+      "role": "camera5",
+      "start": 53.65,
+      "end": 77.65
+    },
+    {
+      "role": "camera3",
+      "start": 77.65,
+      "end": 90.0
+    }
+  ]
+}

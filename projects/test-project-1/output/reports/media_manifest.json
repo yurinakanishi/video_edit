@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "sourceDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+  "sourcePaths": [
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4"
+  ],
+  "generatedAt": "2026-06-06T22:15:31.0449705+09:00",
+  "files": [
+    {
+      "id": "interview-with-michael-eisen-middle-1min",
+      "kind": "video",
+      "role": "master",
+      "label": "Master video",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "originalPath": "C:\\Users\\yurin\\Downloads\\Interview_with_Michael_Eisen_on_Open_Access.webm",
+      "relativePath": "video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "name": "Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "extension": ".mp4",
+      "sizeBytes": 18776501,
+      "confidence": 1,
+      "reason": "created by Codex as a 1 minute middle clip for this test project",
+      "metadata": {
+        "duration": 60.018292,
+        "sourceStart": 475.22,
+        "sourceDuration": 60,
+        "hasVideo": true,
+        "hasAudio": true,
+        "width": 1920,
+        "height": 1080,
+        "fps": 23.976023976023978,
+        "videoCodec": "h264",
+        "avgFrameRate": "24000/1001",
+        "audioCodec": "aac",
+        "sampleRate": 48000,
+        "channels": 2,
+        "storage": "project-source"
+      }
+    }
+  ],
+  "audio": [],
+  "images": [],
+  "subtitles": [],
+  "other": [],
+  "selected": {
+    "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+    "rightCloseVideo": "",
+    "leftCloseVideo": "",
+    "externalAudio": "",
+    "logo": "",
+    "stillImages": []
+  },
+  "manifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\media_manifest.json"
+}

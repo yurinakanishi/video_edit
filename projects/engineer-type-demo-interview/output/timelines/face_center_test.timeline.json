@@ -1,0 +1,508 @@
+{
+  "schemaVersion": "video-edit-timeline/v1",
+  "id": "timeline_new-folder-2",
+  "createdAt": "2026-05-30T02:55:02Z",
+  "project": {
+    "id": "new-folder-2",
+    "name": "new-folder-2",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output"
+  },
+  "timebase": {
+    "unit": "seconds",
+    "fps": "30000/1001"
+  },
+  "duration": 60.0,
+  "sources": [
+    {
+      "id": "src_master",
+      "kind": "video",
+      "role": "master",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "metadata": {
+        "name": "ST7_7550.MP4",
+        "manifestId": "st7-7550",
+        "relativePath": ""
+      },
+      "duration": 2968.4655,
+      "width": 1920,
+      "height": 1080,
+      "fps": "60000/1001",
+      "sampleRate": 48000,
+      "channels": 2,
+      "codec": "h264",
+      "syncOffset": 0.0
+    },
+    {
+      "id": "src_camera2",
+      "kind": "video",
+      "role": "camera2",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "metadata": {
+        "name": "0H4A7189.MP4",
+        "manifestId": "0h4a7189",
+        "relativePath": ""
+      },
+      "duration": 568.568,
+      "width": 1920,
+      "height": 1080,
+      "fps": "60000/1001",
+      "sampleRate": 48000,
+      "channels": 2,
+      "codec": "h264",
+      "syncOffset": 17.2
+    },
+    {
+      "id": "src_camera3",
+      "kind": "video",
+      "role": "camera3",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "metadata": {
+        "name": "0H4A7190.MP4",
+        "manifestId": "0h4a7190",
+        "relativePath": ""
+      },
+      "duration": 384.717667,
+      "width": 1920,
+      "height": 1080,
+      "fps": "60000/1001",
+      "sampleRate": 48000,
+      "channels": 2,
+      "codec": "h264",
+      "syncOffset": -931.57
+    },
+    {
+      "id": "src_camera4",
+      "kind": "video",
+      "role": "camera4",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "metadata": {
+        "name": "0H4A7192.MP4",
+        "manifestId": "0h4a7192",
+        "relativePath": ""
+      },
+      "duration": 1124.890433,
+      "width": 1920,
+      "height": 1080,
+      "fps": "60000/1001",
+      "sampleRate": 48000,
+      "channels": 2,
+      "codec": "h264",
+      "syncOffset": 2.95
+    },
+    {
+      "id": "src_camera5",
+      "kind": "video",
+      "role": "camera5",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "metadata": {
+        "name": "0H4A7193.MP4",
+        "manifestId": "0h4a7193",
+        "relativePath": ""
+      },
+      "duration": 1799.164033,
+      "width": 1920,
+      "height": 1080,
+      "fps": "60000/1001",
+      "sampleRate": 48000,
+      "channels": 2,
+      "codec": "h264",
+      "syncOffset": -1125.41
+    },
+    {
+      "id": "src_external",
+      "kind": "audio",
+      "role": "external",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+      "metadata": {
+        "name": "140101-003.WAV",
+        "manifestId": "140101-003",
+        "relativePath": ""
+      },
+      "duration": 3178.862585,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "pcm_s16le",
+      "syncOffset": 8.7
+    },
+    {
+      "id": "src_logo",
+      "kind": "image",
+      "role": "logo",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\images\\right_logo_pre_fb05.png"
+    },
+    {
+      "id": "src_subtitle",
+      "kind": "subtitle",
+      "role": "subtitle",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "video.main",
+      "kind": "video",
+      "label": "Main video",
+      "allowOverlap": false
+    },
+    {
+      "id": "audio.main",
+      "kind": "audio",
+      "label": "Main dialogue audio",
+      "allowOverlap": false
+    },
+    {
+      "id": "overlay.graphics",
+      "kind": "overlay",
+      "label": "Graphic overlays",
+      "allowOverlap": true
+    },
+    {
+      "id": "subtitle.main",
+      "kind": "subtitle",
+      "label": "Subtitles",
+      "allowOverlap": true
+    },
+    {
+      "id": "music.bed",
+      "kind": "music",
+      "label": "Background music",
+      "allowOverlap": true
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip_video_0001",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_master",
+      "timelineStart": 0.0,
+      "timelineEnd": 32.0,
+      "sourceIn": 0.0,
+      "sourceOut": 32.0,
+      "fit": {
+        "mode": "cover",
+        "width": 1920,
+        "height": 1080,
+        "scale": 1.2
+      },
+      "effects": [
+        {
+          "type": "scaleCrop",
+          "params": {
+            "scale": 1.2,
+            "crop": {
+              "centerX": 0.59444,
+              "centerY": 0.5
+            },
+            "source": {
+              "type": "faceCenterCrop",
+              "planPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_1min_face_center_crop_plan.json",
+              "status": "loaded",
+              "source": "opencv_haar_face_median",
+              "detections": 5,
+              "detectedCenterX": 0.59444,
+              "centerX": 0.59444,
+              "centerY": 0.5,
+              "subjectScreenX": 0.5
+            }
+          }
+        },
+        {
+          "type": "colorCorrection",
+          "params": {
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "role": "master",
+            "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
+          }
+        }
+      ],
+      "metadata": {
+        "role": "master",
+        "decisionSource": "camera plan",
+        "crop": {
+          "type": "faceCenterCrop",
+          "planPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_1min_face_center_crop_plan.json",
+          "status": "loaded",
+          "source": "opencv_haar_face_median",
+          "detections": 5,
+          "detectedCenterX": 0.59444,
+          "centerX": 0.59444,
+          "centerY": 0.5,
+          "subjectScreenX": 0.5
+        }
+      }
+    },
+    {
+      "id": "clip_video_0002",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_camera2",
+      "timelineStart": 32.0,
+      "timelineEnd": 56.0,
+      "sourceIn": 49.2,
+      "sourceOut": 73.2,
+      "fit": {
+        "mode": "cover",
+        "width": 1920,
+        "height": 1080,
+        "scale": 1.2
+      },
+      "effects": [
+        {
+          "type": "scaleCrop",
+          "params": {
+            "scale": 1.2,
+            "crop": {
+              "centerX": 0.5,
+              "centerY": 0.5
+            }
+          }
+        },
+        {
+          "type": "colorCorrection",
+          "params": {
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "role": "camera2",
+            "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
+          }
+        }
+      ],
+      "metadata": {
+        "role": "camera2",
+        "decisionSource": "camera plan",
+        "crop": {}
+      }
+    },
+    {
+      "id": "clip_video_0003",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_camera4",
+      "timelineStart": 56.0,
+      "timelineEnd": 60.0,
+      "sourceIn": 58.95,
+      "sourceOut": 62.95,
+      "fit": {
+        "mode": "cover",
+        "width": 1920,
+        "height": 1080,
+        "scale": 1.2
+      },
+      "effects": [
+        {
+          "type": "scaleCrop",
+          "params": {
+            "scale": 1.2,
+            "crop": {
+              "centerX": 0.5,
+              "centerY": 0.5
+            }
+          }
+        },
+        {
+          "type": "colorCorrection",
+          "params": {
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
+            "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
+          }
+        }
+      ],
+      "metadata": {
+        "role": "camera4",
+        "decisionSource": "camera plan",
+        "crop": {}
+      }
+    },
+    {
+      "id": "clip_audio_main",
+      "trackId": "audio.main",
+      "kind": "audio",
+      "sourceId": "src_external",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.0,
+      "sourceIn": 8.7,
+      "sourceOut": 68.7,
+      "audioSyncOffset": 8.7,
+      "effects": [
+        {
+          "type": "audioCleanup",
+          "params": {
+            "denoise": true,
+            "strength": 16,
+            "mastering": true
+          }
+        }
+      ],
+      "metadata": {
+        "role": "external",
+        "selection": "external-if-selected"
+      }
+    },
+    {
+      "id": "clip_overlay_logo",
+      "trackId": "overlay.graphics",
+      "kind": "image",
+      "sourceId": "src_logo",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.0,
+      "position": {
+        "x": "W-w-40",
+        "y": 40,
+        "height": 48.0,
+        "anchor": "top-right"
+      },
+      "effects": [],
+      "metadata": {
+        "role": "logo"
+      }
+    },
+    {
+      "id": "clip_subtitles_main",
+      "trackId": "subtitle.main",
+      "kind": "subtitle",
+      "sourceId": "src_subtitle",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.0,
+      "style": {
+        "mode": "none",
+        "fontSize": 80,
+        "highlightColor": "#8b5cf6",
+        "boxOpacity": 65.0,
+        "renderMethod": "ffmpeg-subtitles-filter"
+      },
+      "effects": [],
+      "metadata": {
+        "timebase": "auto"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "id": "transition_0001",
+      "type": "cut",
+      "at": 32.0,
+      "fromClipId": "clip_video_0001",
+      "toClipId": "clip_video_0002",
+      "duration": 0.0
+    },
+    {
+      "id": "transition_0002",
+      "type": "cut",
+      "at": 56.0,
+      "fromClipId": "clip_video_0002",
+      "toClipId": "clip_video_0003",
+      "duration": 0.0
+    }
+  ],
+  "render": {
+    "targets": [
+      {
+        "id": "final",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\face_center_test.mp4",
+        "format": "mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": "30000/1001",
+        "profile": "final",
+        "videoCodec": "h264_nvenc",
+        "audioCodec": "aac"
+      }
+    ],
+    "preview": {
+      "enabled": false,
+      "rangeStart": 0.0,
+      "rangeEnd": 60.0,
+      "proxy": false
+    }
+  },
+  "analysis": {
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+    "reports": [
+      {
+        "kind": "media-manifest",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+        "exists": true
+      },
+      {
+        "kind": "sync-offsets",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\app_sync_offsets.json",
+        "exists": true
+      },
+      {
+        "kind": "transcript-manifest",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\manifest_transcripts.json",
+        "exists": true
+      },
+      {
+        "kind": "camera-plan",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_cut_plan.json",
+        "exists": true
+      },
+      {
+        "kind": "manual-camera-plan",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\manual_camera_plan.json",
+        "exists": true
+      },
+      {
+        "kind": "source-coverage",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\source_coverage_usage.json",
+        "exists": true
+      },
+      {
+        "kind": "external-audio-cut-sync",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\external_audio_cut_sync_report.json",
+        "exists": true
+      },
+      {
+        "kind": "camera-color-match",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+        "exists": true
+      },
+      {
+        "kind": "person-crop",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\person_crop_usage.json",
+        "exists": true
+      },
+      {
+        "kind": "face-center-crop",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\face_center_crop_usage.json",
+        "exists": true
+      },
+      {
+        "kind": "face-center-plan",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_1min_face_center_crop_plan.json",
+        "exists": true
+      }
+    ]
+  },
+  "audit": {
+    "createdBy": "scripts/build_edit_timeline.py",
+    "inputs": [
+      {
+        "kind": "schema",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\config\\timeline.schema.json",
+        "exists": true
+      },
+      {
+        "kind": "runtime-config",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\app\\face_center_test_config.json",
+        "exists": true
+      },
+      {
+        "kind": "camera-plan-source",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\render.cameraPlanPath",
+        "exists": false
+      }
+    ],
+    "planning": {
+      "cameraPlanSource": "render.cameraPlanPath",
+      "renderStart": 0.0,
+      "syncOffsetSource": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\app_sync_offsets.json",
+      "note": "Timeline stores edit intent only. Renderer adapters generate FFmpeg/Remotion/Blender commands."
+    }
+  }
+}

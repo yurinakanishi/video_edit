@@ -1,0 +1,32 @@
+{
+  "createdAt": "20260529_091103",
+  "reportedIssueTimelineSeconds": 1912,
+  "testStartSeconds": 1762,
+  "testDurationSeconds": 300,
+  "externalAudioOffsetSeconds": 8.7,
+  "sourceTranscript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\primary.srt",
+  "timelineShiftedTranscript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_091103_primary_timeline_shifted_existing_transcript.srt",
+  "cameraPlan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\20260529_091103_qa_31m52_master_fallback_camera_plan.json",
+  "config": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\app\\20260529_091103_qa_31m52_5min_config.json",
+  "outputVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_091103_31m52_5min_syncfix_full_png.mp4",
+  "notes": [
+    "No transcription was run. Existing primary.srt was timestamp-shifted by the external audio offset only.",
+    "Reported camera5 region is replaced with master camera in this QA render to avoid the observed content mismatch around 31:52.",
+    "Full subtitles use the PNG overlay generator, matching the pre-app style baseline rather than simplified ASS.",
+    "Color matching code now samples sub cameras at timeline timestamp plus sync offset against the long master camera."
+  ],
+  "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_091103_31m52_5min_syncfix_base.mp4",
+  "subtitleOverlayVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\qa_31m52_subtitle_overlay.mov",
+  "finalVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_091103_31m52_5min_syncfix_full_png.mp4",
+  "sampleFrame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\qa_31m52_mid_frame.png",
+  "verification": {
+    "durationSeconds": 300.0,
+    "video": "h264 1920x1080 60000/1001fps",
+    "audio": "aac stereo 96000Hz"
+  },
+  "localWaveformCheck": {
+    "camera5Around31m52AdditionalShiftSeconds": 0.04,
+    "masterAround31m52AdditionalShiftSeconds": 0.013,
+    "interpretation": "No large local waveform offset was detected; reported content mismatch is treated as a bad/suspect camera cut, so QA render falls back to master in this region."
+  }
+}

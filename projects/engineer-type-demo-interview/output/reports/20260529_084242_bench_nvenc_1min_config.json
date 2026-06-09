@@ -1,0 +1,479 @@
+{
+  "version": 1,
+  "projectId": "new-folder-2",
+  "updatedAt": "2026-05-28T22:56:19.021125+00:00",
+  "assets": {
+    "mediaDirectory": "C:\\Users\\yurin\\Downloads\\New folder (2)",
+    "materialPaths": [
+      "C:\\Users\\yurin\\Downloads\\New folder (2)"
+    ],
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+    "mediaManifest": {
+      "version": 1,
+      "generatedAt": "2026-05-28T17:17:57.566164+00:00",
+      "sourceDirectory": "C:\\Users\\yurin\\Downloads\\New folder (2)",
+      "items": [
+        {
+          "id": "st7-7549",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7549.MP4",
+          "name": "ST7_7549.MP4",
+          "kind": "video",
+          "role": "ignore",
+          "metadata": {
+            "duration": 1012.077733,
+            "size": 7651050160,
+            "creationTime": "2026-05-15T11:05:00.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          },
+          "reason": "Earlier non-overlapping clip relative to longest master video."
+        },
+        {
+          "id": "st7-7550",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+          "name": "ST7_7550.MP4",
+          "kind": "video",
+          "role": "master",
+          "metadata": {
+            "duration": 2968.4655,
+            "size": 22439369468,
+            "creationTime": "2026-05-15T11:24:46.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7189",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+          "name": "0H4A7189.MP4",
+          "kind": "video",
+          "role": "camera2",
+          "metadata": {
+            "duration": 568.568,
+            "size": 4259418208,
+            "creationTime": "2026-05-15T11:43:06.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7190",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+          "name": "0H4A7190.MP4",
+          "kind": "video",
+          "role": "camera3",
+          "metadata": {
+            "duration": 384.717667,
+            "size": 2881922728,
+            "creationTime": "2026-05-15T11:52:35.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7192",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+          "name": "0H4A7192.MP4",
+          "kind": "video",
+          "role": "camera4",
+          "metadata": {
+            "duration": 1124.890433,
+            "size": 8419095808,
+            "creationTime": "2026-05-15T12:01:52.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7193",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+          "name": "0H4A7193.MP4",
+          "kind": "video",
+          "role": "camera5",
+          "metadata": {
+            "duration": 1799.164033,
+            "size": 13467842008,
+            "creationTime": "2026-05-15T12:20:40.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "140101-001",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-001.WAV",
+          "name": "140101-001.WAV",
+          "kind": "audio",
+          "role": "ignore",
+          "metadata": {
+            "duration": 257.285805,
+            "size": 45417984,
+            "creationTime": "00:38:21",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          },
+          "reason": "Short auxiliary audio; longest external audio is selected for this project."
+        },
+        {
+          "id": "140101-002",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-002.WAV",
+          "name": "140101-002.WAV",
+          "kind": "audio",
+          "role": "ignore",
+          "metadata": {
+            "duration": 935.961542,
+            "size": 165136384,
+            "creationTime": "00:44:59",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          },
+          "reason": "Short auxiliary audio; longest external audio is selected for this project."
+        },
+        {
+          "id": "140101-003",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+          "name": "140101-003.WAV",
+          "kind": "audio",
+          "role": "external",
+          "metadata": {
+            "duration": 3178.862585,
+            "size": 560784128,
+            "creationTime": "01:00:35",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          }
+        }
+      ],
+      "notes": [
+        "Large media files are referenced in place instead of copied into the repository.",
+        "Render duration is locked to the longest video: ST7_7550.MP4.",
+        "Only 140101-003.WAV is selected for external-audio transcription to avoid transcribing every camera source."
+      ],
+      "files": [
+        {
+          "id": "st7-7549",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7549.MP4",
+          "name": "ST7_7549.MP4",
+          "kind": "video",
+          "role": "ignore",
+          "metadata": {
+            "duration": 1012.077733,
+            "size": 7651050160,
+            "creationTime": "2026-05-15T11:05:00.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          },
+          "reason": "Earlier non-overlapping clip relative to longest master video."
+        },
+        {
+          "id": "st7-7550",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+          "name": "ST7_7550.MP4",
+          "kind": "video",
+          "role": "master",
+          "metadata": {
+            "duration": 2968.4655,
+            "size": 22439369468,
+            "creationTime": "2026-05-15T11:24:46.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7189",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+          "name": "0H4A7189.MP4",
+          "kind": "video",
+          "role": "camera2",
+          "metadata": {
+            "duration": 568.568,
+            "size": 4259418208,
+            "creationTime": "2026-05-15T11:43:06.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7190",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+          "name": "0H4A7190.MP4",
+          "kind": "video",
+          "role": "camera3",
+          "metadata": {
+            "duration": 384.717667,
+            "size": 2881922728,
+            "creationTime": "2026-05-15T11:52:35.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7192",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+          "name": "0H4A7192.MP4",
+          "kind": "video",
+          "role": "camera4",
+          "metadata": {
+            "duration": 1124.890433,
+            "size": 8419095808,
+            "creationTime": "2026-05-15T12:01:52.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7193",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+          "name": "0H4A7193.MP4",
+          "kind": "video",
+          "role": "camera5",
+          "metadata": {
+            "duration": 1799.164033,
+            "size": 13467842008,
+            "creationTime": "2026-05-15T12:20:40.000000Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "140101-001",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-001.WAV",
+          "name": "140101-001.WAV",
+          "kind": "audio",
+          "role": "ignore",
+          "metadata": {
+            "duration": 257.285805,
+            "size": 45417984,
+            "creationTime": "00:38:21",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          },
+          "reason": "Short auxiliary audio; longest external audio is selected for this project."
+        },
+        {
+          "id": "140101-002",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-002.WAV",
+          "name": "140101-002.WAV",
+          "kind": "audio",
+          "role": "ignore",
+          "metadata": {
+            "duration": 935.961542,
+            "size": 165136384,
+            "creationTime": "00:44:59",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          },
+          "reason": "Short auxiliary audio; longest external audio is selected for this project."
+        },
+        {
+          "id": "140101-003",
+          "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+          "name": "140101-003.WAV",
+          "kind": "audio",
+          "role": "external",
+          "metadata": {
+            "duration": 3178.862585,
+            "size": 560784128,
+            "creationTime": "01:00:35",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          }
+        }
+      ]
+    },
+    "masterVideo": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+    "rightCloseVideo": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+    "leftCloseVideo": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+    "externalAudio": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+    "logoPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\images\\right_logo_pre_fb05.png",
+    "referenceImages": [],
+    "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\images\\right_logo_pre_fb05.png"
+  },
+  "analysis": {
+    "transcribeModel": "large-v3",
+    "transcribeLanguage": "ja",
+    "transcribeDevice": "cuda",
+    "transcribeSources": "external-only",
+    "useVideoAudioForSubtitle": false,
+    "syncMethod": "waveform-first",
+    "transcribeBeamSize": 5,
+    "transcribeTemperature": 0,
+    "conditionOnPreviousText": false,
+    "transcribeNormalizeAudio": true,
+    "transcribeFilterLowConfidence": true,
+    "transcribeNoSpeechThreshold": 0.6,
+    "transcribeAvgLogprobFilterThreshold": -1.0,
+    "transcribeCompressionRatioThreshold": 2.4,
+    "transcribeInitialPrompt": "専門用語候補: セミオゴー、Semiogo、EDM、PDM、PDM廃止、フリー、リサイクル、サステナブル、個別最適、インタビュー。音声に忠実に、聞こえない語は推測しない。",
+    "transcribeFp16": true,
+    "transcribeBackend": "faster-whisper",
+    "fasterWhisperComputeType": "float16"
+  },
+  "render": {
+    "script": "render_app_interview.py",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_084242_bench_nvenc_1min_base.mp4",
+    "previewStart": 120.0,
+    "previewDuration": 60.0,
+    "subtitleMode": "none",
+    "multicamMode": "manual-plan",
+    "audioSource": "external-if-selected",
+    "omitInterviewerQuestion": false,
+    "shortenSilence": false,
+    "audioDenoise": true,
+    "audioMastering": true,
+    "colorMatchCameras": true,
+    "useTranscriptComparisonSync": false,
+    "usePersonEditPlans": true,
+    "naturalDialogueCuts": true,
+    "cropPercent": 0,
+    "speed": "normal",
+    "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\manual_camera_plan.json",
+    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_084242_bench_nvenc_1min.mp4",
+    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_084242_bench_nvenc_1min_base.mp4",
+    "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_084242_bench_nvenc_1min.ass",
+    "subtitleBurnMode": "role-aware-ass-postprocess",
+    "lastRenderReportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\longest_video_render_report.json",
+    "renderScript": "render_app_interview.py",
+    "audioDenoiseStrength": 16,
+    "audioCleanupFilter": "highpass + afftdn nr=16 + lowpass + dynaudnorm + compressor + loudnorm + limiter",
+    "videoEncoder": "h264_nvenc",
+    "nvencPreset": "p4",
+    "cq": 19
+  },
+  "style": {
+    "titleText": "AIエンジニアの今",
+    "titleSize": 58,
+    "titleColor": "#ffffff",
+    "titleBoxColor": "#b31be8",
+    "titleBoxOpacity": 0.82,
+    "subtitleSize": 80,
+    "subtitleColor": "#ffffff",
+    "subtitleBoxColor": "#9b6bd3",
+    "subtitleBoxOpacity": 0.73,
+    "font": "Yu Gothic Bold",
+    "letterSpacing": 2,
+    "logoHeight": 48
+  },
+  "glossary": {
+    "enabled": true,
+    "mode": "auto-candidates",
+    "terms": []
+  },
+  "omissionCard": {
+    "enabled": false
+  },
+  "music": {
+    "enabled": false
+  },
+  "subtitleSpeakers": {
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\full_transcript_speaker_roles.json",
+    "mouthMotionDiagnostics": false,
+    "interviewerPatterns": [
+      "[？?]$",
+      "(でしょうか|何でしょうか|なんですか|思いますか|感じますか)[？?]?$",
+      "(教えてください|聞かせてください|伺ってもいいですか)[？?]?$",
+      "^(ありがとうございます|そうです、ありがとうございます|よろしくお願いします)$"
+    ]
+  }
+}

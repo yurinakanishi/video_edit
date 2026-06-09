@@ -1,0 +1,526 @@
+{
+  "createdAt": "20260529_5min_interviewer_cut_face_center_horizontal_only",
+  "timelineStart": 1762.0,
+  "duration": 300.0,
+  "axis": "x",
+  "zoom": 1.2,
+  "segments": [
+    {
+      "role": "camera5",
+      "start": 0.0,
+      "end": 2.288,
+      "timelineStart": 1762.0,
+      "timelineEnd": 1764.288,
+      "centerX": 0.642535,
+      "centerY": 0.446605,
+      "zoom": 1.2,
+      "source": "opencv_haar_face_median",
+      "detections": 2,
+      "samples": [
+        {
+          "local": 0.763,
+          "source": 637.353,
+          "ok": true,
+          "face": [
+            1016.0,
+            274.0,
+            417.3,
+            417.3
+          ],
+          "center": [
+            0.63785,
+            0.44691
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 1.525,
+          "source": 638.115,
+          "ok": true,
+          "face": [
+            1017.3,
+            256.7,
+            450.7,
+            450.7
+          ],
+          "center": [
+            0.64722,
+            0.4463
+          ],
+          "method": "profile"
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "start": 2.288,
+      "end": 40.288,
+      "timelineStart": 1764.288,
+      "timelineEnd": 1802.288,
+      "centerX": 0.583854,
+      "centerY": 0.393981,
+      "zoom": 1.2,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "samples": [
+        {
+          "local": 8.621,
+          "source": 1770.621,
+          "ok": true,
+          "face": [
+            1008.7,
+            306.0,
+            262.0,
+            262.0
+          ],
+          "center": [
+            0.59358,
+            0.40463
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 14.955,
+          "source": 1776.955,
+          "ok": true,
+          "face": [
+            1008.0,
+            290.0,
+            262.0,
+            262.0
+          ],
+          "center": [
+            0.59323,
+            0.38981
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 21.288,
+          "source": 1783.288,
+          "ok": true,
+          "face": [
+            996.0,
+            302.0,
+            244.7,
+            244.7
+          ],
+          "center": [
+            0.58247,
+            0.3929
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 27.621,
+          "source": 1789.621,
+          "ok": true,
+          "face": [
+            987.5,
+            292.0,
+            267.0,
+            267.0
+          ],
+          "center": [
+            0.58385,
+            0.39398
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 33.955,
+          "source": 1795.955,
+          "ok": true,
+          "face": [
+            968.0,
+            305.0,
+            270.0,
+            270.0
+          ],
+          "center": [
+            0.57448,
+            0.40741
+          ],
+          "method": "profile"
+        }
+      ]
+    },
+    {
+      "role": "camera5",
+      "start": 40.288,
+      "end": 142.288,
+      "timelineStart": 1802.288,
+      "timelineEnd": 1904.288,
+      "centerX": 0.653819,
+      "centerY": 0.437037,
+      "zoom": 1.2,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "samples": [
+        {
+          "local": 57.288,
+          "source": 693.878,
+          "ok": true,
+          "face": [
+            999.5,
+            261.0,
+            422.0,
+            422.0
+          ],
+          "center": [
+            0.63047,
+            0.43704
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 74.288,
+          "source": 710.878,
+          "ok": true,
+          "face": [
+            1078.0,
+            199.3,
+            422.0,
+            422.0
+          ],
+          "center": [
+            0.67135,
+            0.37994
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 91.288,
+          "source": 727.878,
+          "ok": true,
+          "face": [
+            1001.5,
+            267.5,
+            416.0,
+            416.0
+          ],
+          "center": [
+            0.62995,
+            0.44028
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 108.288,
+          "source": 744.878,
+          "ok": true,
+          "face": [
+            1065.0,
+            231.0,
+            479.0,
+            479.0
+          ],
+          "center": [
+            0.67943,
+            0.43565
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 125.288,
+          "source": 761.878,
+          "ok": true,
+          "face": [
+            1046.0,
+            266.7,
+            418.7,
+            418.7
+          ],
+          "center": [
+            0.65382,
+            0.44074
+          ],
+          "method": "profile"
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "start": 142.288,
+      "end": 174.288,
+      "timelineStart": 1904.288,
+      "timelineEnd": 1936.288,
+      "centerX": 0.594444,
+      "centerY": 0.38858,
+      "zoom": 1.2,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "samples": [
+        {
+          "local": 147.621,
+          "source": 1909.621,
+          "ok": true,
+          "face": [
+            1019.3,
+            290.0,
+            244.0,
+            244.0
+          ],
+          "center": [
+            0.59444,
+            0.38148
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 152.955,
+          "source": 1914.955,
+          "ok": true,
+          "face": [
+            1013.0,
+            304.0,
+            240.0,
+            240.0
+          ],
+          "center": [
+            0.5901,
+            0.39259
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 158.288,
+          "source": 1920.288,
+          "ok": true,
+          "face": [
+            1002.0,
+            311.3,
+            231.3,
+            231.3
+          ],
+          "center": [
+            0.58212,
+            0.39537
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 163.621,
+          "source": 1925.621,
+          "ok": true,
+          "face": [
+            1022.0,
+            293.3,
+            252.7,
+            252.7
+          ],
+          "center": [
+            0.59809,
+            0.38858
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 168.955,
+          "source": 1930.955,
+          "ok": true,
+          "face": [
+            1020.7,
+            294.7,
+            242.7,
+            242.7
+          ],
+          "center": [
+            0.59479,
+            0.38519
+          ],
+          "method": "profile"
+        }
+      ]
+    },
+    {
+      "role": "camera5",
+      "start": 174.288,
+      "end": 264.288,
+      "timelineStart": 1936.288,
+      "timelineEnd": 2026.288,
+      "centerX": 0.64375,
+      "centerY": 0.443056,
+      "zoom": 1.2,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "samples": [
+        {
+          "local": 189.288,
+          "source": 825.878,
+          "ok": true,
+          "face": [
+            996.0,
+            314.0,
+            426.0,
+            426.0
+          ],
+          "center": [
+            0.62969,
+            0.48796
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 204.288,
+          "source": 840.878,
+          "ok": true,
+          "face": [
+            1019.5,
+            295.5,
+            429.0,
+            429.0
+          ],
+          "center": [
+            0.64271,
+            0.47222
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 219.288,
+          "source": 855.878,
+          "ok": true,
+          "face": [
+            1031.0,
+            273.0,
+            411.0,
+            411.0
+          ],
+          "center": [
+            0.64401,
+            0.44306
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 234.288,
+          "source": 870.878,
+          "ok": true,
+          "face": [
+            1064.7,
+            264.7,
+            412.0,
+            412.0
+          ],
+          "center": [
+            0.66181,
+            0.4358
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 249.288,
+          "source": 885.878,
+          "ok": true,
+          "face": [
+            1038.7,
+            272.0,
+            394.7,
+            394.7
+          ],
+          "center": [
+            0.64375,
+            0.43457
+          ],
+          "method": "profile"
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "start": 264.288,
+      "end": 300.0,
+      "timelineStart": 2026.288,
+      "timelineEnd": 2062.0,
+      "centerX": 0.592708,
+      "centerY": 0.387037,
+      "zoom": 1.2,
+      "source": "opencv_haar_face_median",
+      "detections": 5,
+      "samples": [
+        {
+          "local": 270.24,
+          "source": 2032.24,
+          "ok": true,
+          "face": [
+            1016.5,
+            290.0,
+            254.5,
+            254.5
+          ],
+          "center": [
+            0.5957,
+            0.38634
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 276.192,
+          "source": 2038.192,
+          "ok": true,
+          "face": [
+            1018.7,
+            290.0,
+            249.3,
+            249.3
+          ],
+          "center": [
+            0.59549,
+            0.38395
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 282.144,
+          "source": 2044.144,
+          "ok": true,
+          "face": [
+            1012.0,
+            292.0,
+            252.0,
+            252.0
+          ],
+          "center": [
+            0.59271,
+            0.38704
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 288.096,
+          "source": 2050.096,
+          "ok": true,
+          "face": [
+            996.7,
+            304.0,
+            252.7,
+            252.7
+          ],
+          "center": [
+            0.5849,
+            0.39846
+          ],
+          "method": "profile"
+        },
+        {
+          "local": 294.048,
+          "source": 2056.048,
+          "ok": true,
+          "face": [
+            998.7,
+            304.0,
+            247.3,
+            247.3
+          ],
+          "center": [
+            0.58455,
+            0.39599
+          ],
+          "method": "profile"
+        }
+      ]
+    }
+  ],
+  "note": "Horizontal face centering only. Vertical crop remains original centered 20% zoom."
+}

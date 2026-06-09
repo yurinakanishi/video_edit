@@ -1,0 +1,292 @@
+{
+  "schema_version": "audio_track_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T07:18:25+09:00",
+  "method": "ffprobe stream inspection plus ffmpeg volumedetect",
+  "media": [
+    {
+      "role": "master",
+      "media_id": "group_wide",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "start_time": "0.000000",
+            "duration": "2985.466667",
+            "tags": {
+              "language": "und",
+              "handler_name": "Video Media Handler",
+              "encoder": "Lavc62.28.101 h264_nvenc"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "start_time": "0.000000",
+            "duration": "2985.485000",
+            "tags": {
+              "language": "und",
+              "handler_name": "Sound Media Handler"
+            }
+          }
+        ],
+        "format": {
+          "duration": "2985.485000",
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf62.12.101"
+          }
+        }
+      },
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "2985.485000",
+          "tags": {
+            "language": "und",
+            "handler_name": "Sound Media Handler"
+          }
+        }
+      ],
+      "volumedetect": {
+        "returncode": 0,
+        "mean_volume_db": -33.8,
+        "max_volume_db": -1.5,
+        "histogram_available": true
+      },
+      "classification": {
+        "usable_for_waveform_sync": true,
+        "near_silence": false,
+        "recommended_sync_method": "audio_waveform_or_clap"
+      }
+    },
+    {
+      "role": "camera2",
+      "media_id": "cam_person_01",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "start_time": "0.000000",
+            "duration": "3615.100000",
+            "tags": {
+              "language": "und",
+              "handler_name": "Video Media Handler",
+              "encoder": "Lavc62.28.101 h264_nvenc"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "start_time": "0.000000",
+            "duration": "3615.115000",
+            "tags": {
+              "language": "und",
+              "handler_name": "Sound Media Handler"
+            }
+          }
+        ],
+        "format": {
+          "duration": "3615.115000",
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf62.12.101"
+          }
+        }
+      },
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "3615.115000",
+          "tags": {
+            "language": "und",
+            "handler_name": "Sound Media Handler"
+          }
+        }
+      ],
+      "volumedetect": {
+        "returncode": 0,
+        "mean_volume_db": -29.5,
+        "max_volume_db": -0.5,
+        "histogram_available": true
+      },
+      "classification": {
+        "usable_for_waveform_sync": true,
+        "near_silence": false,
+        "recommended_sync_method": "audio_waveform_or_clap"
+      }
+    },
+    {
+      "role": "camera3",
+      "media_id": "cam_person_02",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "start_time": "0.000000",
+            "duration": "3630.133008",
+            "tags": {
+              "language": "und",
+              "handler_name": "Video Media Handler",
+              "encoder": "Lavc62.28.101 h264_nvenc"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "start_time": "0.000000",
+            "duration": "3630.130000",
+            "tags": {
+              "language": "und",
+              "handler_name": "Sound Media Handler"
+            }
+          }
+        ],
+        "format": {
+          "duration": "3630.133008",
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf62.12.101"
+          }
+        }
+      },
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "3630.130000",
+          "tags": {
+            "language": "und",
+            "handler_name": "Sound Media Handler"
+          }
+        }
+      ],
+      "volumedetect": {
+        "returncode": 0,
+        "mean_volume_db": -28.6,
+        "max_volume_db": -1.1,
+        "histogram_available": true
+      },
+      "classification": {
+        "usable_for_waveform_sync": true,
+        "near_silence": false,
+        "recommended_sync_method": "audio_waveform_or_clap"
+      }
+    },
+    {
+      "role": "camera4",
+      "media_id": "cam_person_03",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "start_time": "0.000000",
+            "duration": "3639.133008",
+            "tags": {
+              "language": "und",
+              "handler_name": "Video Media Handler",
+              "encoder": "Lavc62.28.101 h264_nvenc"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "start_time": "0.000000",
+            "duration": "3639.135000",
+            "tags": {
+              "language": "und",
+              "handler_name": "Sound Media Handler"
+            }
+          }
+        ],
+        "format": {
+          "duration": "3639.135000",
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf62.12.101"
+          }
+        }
+      },
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "3639.135000",
+          "tags": {
+            "language": "und",
+            "handler_name": "Sound Media Handler"
+          }
+        }
+      ],
+      "volumedetect": {
+        "returncode": 0,
+        "mean_volume_db": -29.3,
+        "max_volume_db": -0.1,
+        "histogram_available": true
+      },
+      "classification": {
+        "usable_for_waveform_sync": true,
+        "near_silence": false,
+        "recommended_sync_method": "audio_waveform_or_clap"
+      }
+    }
+  ]
+}

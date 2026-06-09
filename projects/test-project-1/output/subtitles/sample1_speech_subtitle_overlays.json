@@ -1,0 +1,1450 @@
+{
+  "schemaVersion": "speech-subtitle-overlays/v1",
+  "createdAt": "2026-06-06T15:25:16Z",
+  "styleProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_style_profile.json",
+  "patternLibrary": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_pattern_library.json",
+  "animatedOverlayVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_speech_subtitle_overlay.mov",
+  "canvas": {
+    "width": 1280,
+    "height": 720
+  },
+  "animation": {
+    "analysisSource": "reference analysis subtitle OCR time series",
+    "samplingNote": "Reference analysis samples are sparse, so exact easing is inferred from observed partial-width subtitle states.",
+    "observations": [
+      {
+        "timeFrom": 3.5,
+        "timeTo": 4.0,
+        "textFrom": "コンサルテ",
+        "textTo": "コンサルティングやSlerとは",
+        "widthNormFrom": 0.3795,
+        "widthNormTo": 0.92312,
+        "widthGrowthRatio": 2.432,
+        "interpretation": "same subtitle expands horizontally while text is revealed"
+      },
+      {
+        "timeFrom": 3.5,
+        "timeTo": 4.0,
+        "lineCountFrom": 1,
+        "lineCountTo": 2,
+        "interpretation": "second subtitle line is staggered after first line"
+      },
+      {
+        "timeFrom": 8.0,
+        "timeTo": 9.0,
+        "lineCountFrom": 1,
+        "lineCountTo": 2,
+        "interpretation": "second subtitle line is staggered after first line"
+      },
+      {
+        "timeFrom": 15.0,
+        "timeTo": 16.0,
+        "lineCountFrom": 1,
+        "lineCountTo": 2,
+        "interpretation": "second subtitle line is staggered after first line"
+      },
+      {
+        "timeFrom": 27.0,
+        "timeTo": 28.0,
+        "textTo": "PalantirのFDEとは?",
+        "interpretation": "subtitle group appears after empty state"
+      },
+      {
+        "timeFrom": 30.0,
+        "timeTo": 30.666,
+        "textFrom": "ビジネス",
+        "textTo": "ビジネスサイドと",
+        "widthNormFrom": 0.29226,
+        "widthNormTo": 0.55289,
+        "widthGrowthRatio": 1.892,
+        "interpretation": "same subtitle expands horizontally while text is revealed"
+      },
+      {
+        "timeFrom": 32.0,
+        "timeTo": 33.0,
+        "lineCountFrom": 1,
+        "lineCountTo": 2,
+        "interpretation": "second subtitle line is staggered after first line"
+      },
+      {
+        "timeFrom": 45.0,
+        "timeTo": 45.5,
+        "textTo": "Ai VVorkforce事業 CEO | 中村 龍矢",
+        "interpretation": "subtitle group appears after empty state"
+      },
+      {
+        "timeFrom": 45.5,
+        "timeTo": 46.0,
+        "lineCountFrom": 2,
+        "lineCountTo": 3,
+        "interpretation": "second subtitle line is staggered after first line"
+      },
+      {
+        "timeFrom": 56.0,
+        "timeTo": 57.0,
+        "lineCountFrom": 3,
+        "lineCountTo": 4,
+        "interpretation": "second subtitle line is staggered after first line"
+      }
+    ],
+    "in": {
+      "type": "horizontal-reveal",
+      "direction": "left-to-right",
+      "durationSeconds": 0.583,
+      "easing": "easeOutCubic",
+      "initialVisibleWidthRatio": 0.08,
+      "initialOpacity": 0.0,
+      "opacityDurationSeconds": 0.12
+    },
+    "secondaryLine": {
+      "staggerSeconds": 0.18,
+      "inheritsReveal": true
+    },
+    "out": {
+      "type": "quick-fade",
+      "durationSeconds": 0.1
+    }
+  },
+  "overlays": [
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0001.png",
+      "start": 0.0,
+      "end": 2.5,
+      "text": "an eye-opening experience.",
+      "lines": [
+        {
+          "text": "an eye-opening experience.",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            44,
+            435,
+            1174,
+            547
+          ],
+          "fontSizePx": 79,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A11D3",
+            "#4911CF",
+            "#561FD2"
+          ],
+          "referencePatternId": "sample1_pattern_13",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0002.png",
+      "start": 2.5,
+      "end": 5.56,
+      "text": "It had never occurred to us before",
+      "lines": [
+        {
+          "text": "It had never",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            359,
+            433,
+            912,
+            545
+          ],
+          "fontSizePx": 83,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4C0EF1",
+            "#5B1EF3",
+            "#7B60F9"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "occurred to us before",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            59,
+            571,
+            997,
+            683
+          ],
+          "fontSizePx": 83,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5115EF",
+            "#5619F0",
+            "#632EF3"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0003.png",
+      "start": 5.56,
+      "end": 7.34,
+      "text": "that we were doing something bad,",
+      "lines": [
+        {
+          "text": "that we were doing",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            112,
+            440,
+            1123,
+            564
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4B0EF1",
+            "#5013F2",
+            "#703EF6"
+          ],
+          "referencePatternId": "sample1_pattern_15",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "something bad,",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            226,
+            570,
+            1051,
+            694
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5719F0",
+            "#6538F2",
+            "#7350E0"
+          ],
+          "referencePatternId": "sample1_pattern_15",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0004.png",
+      "start": 7.34,
+      "end": 8.809,
+      "text": "we were doing something that would have",
+      "lines": [
+        {
+          "text": "we were doing something",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            71,
+            433,
+            1199,
+            545
+          ],
+          "fontSizePx": 85,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4C0EF1",
+            "#5B1EF3",
+            "#7B60F9"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "that would have",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            59,
+            571,
+            790,
+            683
+          ],
+          "fontSizePx": 85,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5115EF",
+            "#5619F0",
+            "#632EF3"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0005.png",
+      "start": 8.809,
+      "end": 9.6,
+      "text": "negative consequences",
+      "lines": [
+        {
+          "text": "negative consequences",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            77,
+            556,
+            1211,
+            670
+          ],
+          "fontSizePx": 93,
+          "textFill": [
+            "#511DE3",
+            "#6442F2",
+            "#755FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FEFDFE",
+            "#FEFFFF",
+            "#FFFFFB"
+          ],
+          "referencePatternId": "sample1_pattern_10",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0006.png",
+      "start": 9.6,
+      "end": 11.801905,
+      "text": "when we sent papers to traditional",
+      "lines": [
+        {
+          "text": "when we sent",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            76,
+            438,
+            736,
+            550
+          ],
+          "fontSizePx": 87,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A19F1",
+            "#4E1CF1",
+            "#7554F6"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "papers to traditional",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            272,
+            571,
+            1201,
+            683
+          ],
+          "fontSizePx": 87,
+          "textFill": [
+            "#4402EC",
+            "#6441F1",
+            "#765FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FFFFFF",
+            "#FFFFFF",
+            "#FFFFFF"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "right",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0007.png",
+      "start": 11.801905,
+      "end": 12.32,
+      "text": "journals",
+      "lines": [
+        {
+          "text": "journals",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            70,
+            415,
+            537,
+            539
+          ],
+          "fontSizePx": 101,
+          "textFill": [
+            "#511DE3",
+            "#6442F2",
+            "#755FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#F5F8FF",
+            "#FEFEFF",
+            "#EDEFFF"
+          ],
+          "referencePatternId": "sample1_pattern_14",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0008.png",
+      "start": 12.32,
+      "end": 14.168,
+      "text": "and we signed over our copyright to",
+      "lines": [
+        {
+          "text": "and we signed over",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            76,
+            438,
+            1097,
+            562
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A19F1",
+            "#4E1CF1",
+            "#7554F6"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "our copyright to",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            353,
+            571,
+            1201,
+            695
+          ],
+          "fontSizePx": 101,
+          "textFill": [
+            "#4402EC",
+            "#6441F1",
+            "#765FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FFFFFF",
+            "#FFFFFF",
+            "#FFFFFF"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "right",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0009.png",
+      "start": 14.168,
+      "end": 14.96,
+      "text": "those journals.",
+      "lines": [
+        {
+          "text": "those journals.",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            44,
+            435,
+            841,
+            559
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A11D3",
+            "#4911CF",
+            "#561FD2"
+          ],
+          "referencePatternId": "sample1_pattern_13",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0010.png",
+      "start": 14.96,
+      "end": 16.768,
+      "text": "We never thought about that as being",
+      "lines": [
+        {
+          "text": "We never thought",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            49,
+            436,
+            916,
+            551
+          ],
+          "fontSizePx": 93,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4D16F0",
+            "#5A22F4",
+            "#7A61F7"
+          ],
+          "referencePatternId": "sample1_pattern_09",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "about that as being",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            172,
+            566,
+            1116,
+            681
+          ],
+          "fontSizePx": 93,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5317F1",
+            "#5B1FF2",
+            "#7C60F8"
+          ],
+          "referencePatternId": "sample1_pattern_09",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0011.png",
+      "start": 16.768,
+      "end": 17.22,
+      "text": "something",
+      "lines": [
+        {
+          "text": "something",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            342,
+            563,
+            927,
+            687
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5F4CF4",
+            "#5F4EF6",
+            "#604EF5"
+          ],
+          "referencePatternId": "sample1_pattern_03",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0012.png",
+      "start": 17.22,
+      "end": 19.458889,
+      "text": "that would impair the ability of anyone",
+      "lines": [
+        {
+          "text": "that would impair",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            228,
+            433,
+            1043,
+            545
+          ],
+          "fontSizePx": 87,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4C0EF1",
+            "#5B1EF3",
+            "#7B60F9"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "the ability of anyone",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            59,
+            571,
+            993,
+            683
+          ],
+          "fontSizePx": 87,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5115EF",
+            "#5619F0",
+            "#632EF3"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0013.png",
+      "start": 19.458889,
+      "end": 20.32,
+      "text": "else to use it.",
+      "lines": [
+        {
+          "text": "else to use it.",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            281,
+            556,
+            1007,
+            668
+          ],
+          "fontSizePx": 101,
+          "textFill": [
+            "#511DE3",
+            "#6442F2",
+            "#755FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FEFDFE",
+            "#FEFFFF",
+            "#FFFFFB"
+          ],
+          "referencePatternId": "sample1_pattern_10",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0014.png",
+      "start": 20.32,
+      "end": 23.88,
+      "text": "But now it was completely obvious.",
+      "lines": [
+        {
+          "text": "But now it was",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            76,
+            438,
+            787,
+            550
+          ],
+          "fontSizePx": 89,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A19F1",
+            "#4E1CF1",
+            "#7554F6"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "completely obvious.",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            271,
+            571,
+            1201,
+            683
+          ],
+          "fontSizePx": 89,
+          "textFill": [
+            "#4402EC",
+            "#6441F1",
+            "#765FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FFFFFF",
+            "#FFFFFF",
+            "#FFFFFF"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "right",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0015.png",
+      "start": 23.88,
+      "end": 27.28,
+      "text": "And so that set in motion,",
+      "lines": [
+        {
+          "text": "And so that set in motion,",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            80,
+            556,
+            1208,
+            668
+          ],
+          "fontSizePx": 85,
+          "textFill": [
+            "#511DE3",
+            "#6442F2",
+            "#755FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FEFDFE",
+            "#FEFFFF",
+            "#FFFFFB"
+          ],
+          "referencePatternId": "sample1_pattern_10",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0016.png",
+      "start": 27.28,
+      "end": 31.477849,
+      "text": "And that realization that, first of all,",
+      "lines": [
+        {
+          "text": "And that realization",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            120,
+            433,
+            1151,
+            545
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4C0EF1",
+            "#5B1EF3",
+            "#7B60F9"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "that, first of all,",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            59,
+            571,
+            883,
+            691
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5115EF",
+            "#5619F0",
+            "#632EF3"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0017.png",
+      "start": 31.477849,
+      "end": 35.36086,
+      "text": "electronic publishing enabled a whole",
+      "lines": [
+        {
+          "text": "electronic publishing",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            94,
+            433,
+            1191,
+            557
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4715EF",
+            "#6032F3",
+            "#7863F8"
+          ],
+          "referencePatternId": "sample1_pattern_12",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "enabled a whole",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            110,
+            570,
+            983,
+            682
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5217F0",
+            "#5C1FF1",
+            "#6B3FF6"
+          ],
+          "referencePatternId": "sample1_pattern_12",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0018.png",
+      "start": 35.36086,
+      "end": 37.04,
+      "text": "new way of using",
+      "lines": [
+        {
+          "text": "new way of using",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            179,
+            433,
+            1102,
+            557
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4912EF",
+            "#5F29F3",
+            "#7C61F8"
+          ],
+          "referencePatternId": "sample1_pattern_02",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0019.png",
+      "start": 37.04,
+      "end": 39.630909,
+      "text": "the scientific literature that had never",
+      "lines": [
+        {
+          "text": "the scientific",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            76,
+            438,
+            615,
+            550
+          ],
+          "fontSizePx": 74,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A19F1",
+            "#4E1CF1",
+            "#7554F6"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "literature that had never",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            254,
+            571,
+            1201,
+            683
+          ],
+          "fontSizePx": 74,
+          "textFill": [
+            "#4402EC",
+            "#6441F1",
+            "#765FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FFFFFF",
+            "#FFFFFF",
+            "#FFFFFF"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "right",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0020.png",
+      "start": 39.630909,
+      "end": 42.157045,
+      "text": "been possible before, and the fact that",
+      "lines": [
+        {
+          "text": "been possible before,",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            73,
+            433,
+            1198,
+            557
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4C0EF1",
+            "#5B1EF3",
+            "#7B60F9"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "and the fact that",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            59,
+            571,
+            946,
+            683
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5115EF",
+            "#5619F0",
+            "#632EF3"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0021.png",
+      "start": 42.157045,
+      "end": 42.74,
+      "text": "the silly",
+      "lines": [
+        {
+          "text": "the silly",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            415,
+            573,
+            868,
+            697
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5419F0",
+            "#5619F1",
+            "#7752F5"
+          ],
+          "referencePatternId": "sample1_pattern_06",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0022.png",
+      "start": 42.74,
+      "end": 44.935217,
+      "text": "way in which we choose to pay for",
+      "lines": [
+        {
+          "text": "way in which we",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            49,
+            436,
+            930,
+            560
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4D16F0",
+            "#5A22F4",
+            "#7A61F7"
+          ],
+          "referencePatternId": "sample1_pattern_09",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "choose to pay for",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            185,
+            566,
+            1104,
+            690
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5317F1",
+            "#5B1FF2",
+            "#7C60F8"
+          ],
+          "referencePatternId": "sample1_pattern_09",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0023.png",
+      "start": 44.935217,
+      "end": 47.463043,
+      "text": "scientific journals, and the fact that",
+      "lines": [
+        {
+          "text": "scientific journals,",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            148,
+            433,
+            1122,
+            557
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4C0EF1",
+            "#5B1EF3",
+            "#7B60F9"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "and the fact that",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            59,
+            571,
+            946,
+            683
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5115EF",
+            "#5619F0",
+            "#632EF3"
+          ],
+          "referencePatternId": "sample1_pattern_08",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0024.png",
+      "start": 47.463043,
+      "end": 48.86,
+      "text": "authors of scientific",
+      "lines": [
+        {
+          "text": "authors of scientific",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            115,
+            433,
+            1166,
+            545
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4912EF",
+            "#5F29F3",
+            "#7C61F8"
+          ],
+          "referencePatternId": "sample1_pattern_02",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0025.png",
+      "start": 48.86,
+      "end": 51.34,
+      "text": "papers give their rights away to",
+      "lines": [
+        {
+          "text": "papers give their",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            195,
+            433,
+            1088,
+            557
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4816F0",
+            "#5D2BF3",
+            "#7A63F8"
+          ],
+          "referencePatternId": "sample1_pattern_04",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "rights away to",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            197,
+            569,
+            961,
+            693
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5519F1",
+            "#5618F2",
+            "#7340F5"
+          ],
+          "referencePatternId": "sample1_pattern_04",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0026.png",
+      "start": 51.34,
+      "end": 54.44,
+      "text": "publishers, we now realize that that was",
+      "lines": [
+        {
+          "text": "publishers, we now",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            198,
+            433,
+            1086,
+            545
+          ],
+          "fontSizePx": 87,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4715EF",
+            "#6032F3",
+            "#7863F8"
+          ],
+          "referencePatternId": "sample1_pattern_12",
+          "referenceAnchor": "center",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "realize that that was",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            110,
+            570,
+            1046,
+            682
+          ],
+          "fontSizePx": 87,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#5217F0",
+            "#5C1FF1",
+            "#6B3FF6"
+          ],
+          "referencePatternId": "sample1_pattern_12",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0027.png",
+      "start": 54.44,
+      "end": 55.68,
+      "text": "the big obstacle",
+      "lines": [
+        {
+          "text": "the big obstacle",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            198,
+            431,
+            1052,
+            555
+          ],
+          "fontSizePx": 101,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A0DEF",
+            "#4D11DB",
+            "#6E45DC"
+          ],
+          "referencePatternId": "sample1_pattern_07",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample1_speech_subtitles\\speech_subtitle_0028.png",
+      "start": 55.68,
+      "end": 59.98,
+      "text": "to achieving a better publishing system.",
+      "lines": [
+        {
+          "text": "to achieving a better",
+          "style": "purpleBoxWhiteText",
+          "boxPx": [
+            76,
+            438,
+            1094,
+            556
+          ],
+          "fontSizePx": 95,
+          "textFill": "#FFFFFF",
+          "textFillMode": "solid",
+          "backgroundGradient": [
+            "#4A19F1",
+            "#4E1CF1",
+            "#7554F6"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "left",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        },
+        {
+          "text": "publishing system.",
+          "style": "whiteBoxPurpleGradientText",
+          "boxPx": [
+            266,
+            571,
+            1201,
+            689
+          ],
+          "fontSizePx": 95,
+          "textFill": [
+            "#4402EC",
+            "#6441F1",
+            "#765FF4"
+          ],
+          "textFillMode": "left-to-right-gradient",
+          "backgroundGradient": [
+            "#FFFFFF",
+            "#FFFFFF",
+            "#FFFFFF"
+          ],
+          "referencePatternId": "sample1_pattern_05",
+          "referenceAnchor": "right",
+          "animation": {
+            "visibleWidthRatio": 1.0,
+            "opacity": 1.0
+          }
+        }
+      ]
+    }
+  ]
+}

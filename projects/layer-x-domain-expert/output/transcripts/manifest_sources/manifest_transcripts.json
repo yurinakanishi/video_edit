@@ -1,0 +1,25 @@
+{
+  "model": "large-v3",
+  "language": "ja",
+  "singleReferenceOnly": true,
+  "referenceRole": "master",
+  "manifestFingerprint": "4e9d22eeb9ea31507cc409fe24895f7dce5004451fcbabd4246926e9ac840006",
+  "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources",
+  "primarySrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\primary.srt",
+  "transcripts": [
+    {
+      "role": "master",
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+      "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\audio_preprocessed\\master_three_people_16k_mono_norm_ce558104f8.wav",
+      "label": "master_three_people",
+      "json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\master_three_people.json",
+      "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\master_three_people.srt",
+      "segmentCount": 804,
+      "filteredSegmentCount": 0,
+      "textLength": 17242,
+      "primary": true
+    }
+  ],
+  "errors": []
+}

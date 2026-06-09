@@ -1,0 +1,18 @@
+{
+  "completedAt": "2026-05-28T18:38:11.915304+00:00",
+  "projectId": "new-folder-2",
+  "durationSeconds": 2968.5,
+  "durationSource": "longest video ST7_7550.MP4",
+  "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_025545.mp4",
+  "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_025545_base.mp4",
+  "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\primary_shifted_full.ass",
+  "syncReportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\app_sync_offsets.json",
+  "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\manual_camera_plan.json",
+  "blockingReportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\sync_blocking_analysis\\sync_blocking_analysis.json",
+  "notes": [
+    "Large source media are referenced in place from Downloads.",
+    "External audio is shifted by waveform sync before rendering.",
+    "Full subtitles are burned in a second ASS pass to avoid Windows ffmpeg command-length limits for long videos.",
+    "Whisper base model was used for first-pass speed; quality can be improved by rerunning transcription with small/medium."
+  ]
+}

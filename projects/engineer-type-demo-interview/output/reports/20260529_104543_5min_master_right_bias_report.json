@@ -1,0 +1,90 @@
+{
+  "outputVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_104543_5min_master_right_bias.mp4",
+  "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_104543_5min_master_right_bias_base.mp4",
+  "durationSec": 300.0,
+  "timelineStartSec": 1762.0,
+  "subtitleOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\20260529_103617_audio_lr_5min_overlay.mov",
+  "faceCenterCropUsage": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\face_center_crop_usage.json",
+  "masterSubjectScreenX": 0.54,
+  "note": "Only master camera uses subjectScreenX=0.54. Sub cameras remain centered at 0.50.",
+  "segments": [
+    {
+      "role": "camera5",
+      "outputStart": 0.0,
+      "outputEnd": 2.288,
+      "zoom": 1.2,
+      "detectedCenterX": 0.64253,
+      "centerX": 0.64253,
+      "centerY": 0.5,
+      "subjectScreenX": 0.5,
+      "detectedCenterY": 0.446605,
+      "source": "opencv_haar_face_median",
+      "detections": 2
+    },
+    {
+      "role": "master",
+      "outputStart": 2.288,
+      "outputEnd": 40.288,
+      "zoom": 1.2,
+      "detectedCenterX": 0.58385,
+      "centerX": 0.55052,
+      "centerY": 0.5,
+      "subjectScreenX": 0.54,
+      "detectedCenterY": 0.393981,
+      "source": "opencv_haar_face_median",
+      "detections": 5
+    },
+    {
+      "role": "camera5",
+      "outputStart": 40.288,
+      "outputEnd": 142.288,
+      "zoom": 1.2,
+      "detectedCenterX": 0.65382,
+      "centerX": 0.65382,
+      "centerY": 0.5,
+      "subjectScreenX": 0.5,
+      "detectedCenterY": 0.437037,
+      "source": "opencv_haar_face_median",
+      "detections": 5
+    },
+    {
+      "role": "master",
+      "outputStart": 142.288,
+      "outputEnd": 174.288,
+      "zoom": 1.2,
+      "detectedCenterX": 0.59444,
+      "centerX": 0.56111,
+      "centerY": 0.5,
+      "subjectScreenX": 0.54,
+      "detectedCenterY": 0.38858,
+      "source": "opencv_haar_face_median",
+      "detections": 5
+    },
+    {
+      "role": "camera5",
+      "outputStart": 174.288,
+      "outputEnd": 264.288,
+      "zoom": 1.2,
+      "detectedCenterX": 0.64375,
+      "centerX": 0.64375,
+      "centerY": 0.5,
+      "subjectScreenX": 0.5,
+      "detectedCenterY": 0.443056,
+      "source": "opencv_haar_face_median",
+      "detections": 5
+    },
+    {
+      "role": "master",
+      "outputStart": 264.288,
+      "outputEnd": 300.0,
+      "zoom": 1.2,
+      "detectedCenterX": 0.59271,
+      "centerX": 0.55937,
+      "centerY": 0.5,
+      "subjectScreenX": 0.54,
+      "detectedCenterY": 0.387037,
+      "source": "opencv_haar_face_median",
+      "detections": 5
+    }
+  ]
+}

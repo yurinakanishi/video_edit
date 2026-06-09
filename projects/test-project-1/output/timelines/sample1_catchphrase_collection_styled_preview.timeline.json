@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "video-edit-timeline/v1",
+  "id": "timeline_test-project-1_sample1_catchphrase_collection_styled_preview",
+  "createdAt": "2026-06-07T04:00:57Z",
+  "project": {
+    "id": "test-project-1",
+    "name": "Test Project 1",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output"
+  },
+  "timebase": {
+    "unit": "seconds",
+    "fps": "24000/1001"
+  },
+  "duration": 15.0,
+  "sources": [
+    {
+      "id": "src_project_sample_video",
+      "kind": "video",
+      "role": "master",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "duration": 60.018292,
+      "width": 1920,
+      "height": 1080,
+      "fps": "24000/1001"
+    },
+    {
+      "id": "src_catchphrase_json",
+      "kind": "data",
+      "role": "catchphrase-selection",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json"
+    },
+    {
+      "id": "src_style_profile",
+      "kind": "data",
+      "role": "speech-subtitle-style-profile",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_styled_profile.json"
+    },
+    {
+      "id": "src_subtitle_overlay",
+      "kind": "video",
+      "role": "speech-subtitle-animated-overlay",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_subtitle_overlay.mov",
+      "duration": 15.0,
+      "width": 1280,
+      "height": 720,
+      "fps": "24000/1001",
+      "codec": "qtrle"
+    },
+    {
+      "id": "src_frame_overlay",
+      "kind": "image",
+      "role": "sample-11-frame-overlay",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample11_frame_design\\sample11_frame_overlay.png"
+    },
+    {
+      "id": "src_design_profile",
+      "kind": "data",
+      "role": "sample-11-frame-design-profile",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "video.main",
+      "kind": "video",
+      "label": "Project catchphrase hard cuts",
+      "allowOverlap": false
+    },
+    {
+      "id": "subtitle.main",
+      "kind": "subtitle",
+      "label": "Sample-1 speech subtitle style",
+      "allowOverlap": true
+    },
+    {
+      "id": "graphics.frame",
+      "kind": "overlay",
+      "label": "Sample-11 band and logo design",
+      "allowOverlap": true
+    },
+    {
+      "id": "audio.main",
+      "kind": "audio",
+      "label": "Project sample audio carried by cuts",
+      "allowOverlap": false
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip_project_catchphrase_01",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_project_sample_video",
+      "timelineStart": 0.0,
+      "timelineEnd": 5.0,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "fit": {
+        "mode": "cover",
+        "width": 1280,
+        "height": 720
+      },
+      "style": {
+        "yOffsetPx": 69
+      },
+      "metadata": {
+        "catchphraseId": "project_catchphrase_01",
+        "displayText": "An eye-opening experience"
+      }
+    },
+    {
+      "id": "clip_project_catchphrase_02",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_project_sample_video",
+      "timelineStart": 5.0,
+      "timelineEnd": 10.0,
+      "sourceIn": 7.34,
+      "sourceOut": 12.34,
+      "fit": {
+        "mode": "cover",
+        "width": 1280,
+        "height": 720
+      },
+      "style": {
+        "yOffsetPx": 69
+      },
+      "metadata": {
+        "catchphraseId": "project_catchphrase_02",
+        "displayText": "Something that would have negative consequences"
+      }
+    },
+    {
+      "id": "clip_project_catchphrase_03",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_project_sample_video",
+      "timelineStart": 10.0,
+      "timelineEnd": 15.0,
+      "sourceIn": 20.32,
+      "sourceOut": 25.32,
+      "fit": {
+        "mode": "cover",
+        "width": 1280,
+        "height": 720
+      },
+      "style": {
+        "yOffsetPx": 69
+      },
+      "metadata": {
+        "catchphraseId": "project_catchphrase_03",
+        "displayText": "But now it was completely obvious"
+      }
+    },
+    {
+      "id": "clip_subtitle_overlay",
+      "trackId": "subtitle.main",
+      "kind": "generated",
+      "sourceId": "src_subtitle_overlay",
+      "timelineStart": 0.0,
+      "timelineEnd": 15.0,
+      "sourceIn": 0.0,
+      "sourceOut": 15.0,
+      "style": {
+        "styleProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_styled_profile.json",
+        "catchphraseJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json"
+      }
+    },
+    {
+      "id": "clip_frame_overlay",
+      "trackId": "graphics.frame",
+      "kind": "generated",
+      "sourceId": "src_frame_overlay",
+      "timelineStart": 0.0,
+      "timelineEnd": 15.0,
+      "style": {
+        "designProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json",
+        "referenceAnalysis": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\analysis.json"
+      }
+    }
+  ],
+  "transitions": [],
+  "render": {
+    "targets": [
+      {
+        "id": "preview",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_catchphrase_collection_styled.mp4",
+        "format": "mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": "24000/1001",
+        "profile": "preview",
+        "videoCodec": "libx264",
+        "audioCodec": "aac"
+      }
+    ],
+    "preview": {
+      "enabled": true,
+      "rangeStart": 0.0,
+      "rangeEnd": 15.0,
+      "proxy": true
+    }
+  },
+  "analysis": {
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\media_manifest.json",
+    "reports": [
+      {
+        "kind": "catchphrase-selection",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json",
+        "exists": true
+      },
+      {
+        "kind": "speech-subtitle-style-profile",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_styled_profile.json",
+        "exists": true
+      },
+      {
+        "kind": "sample-11-frame-design-profile",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json",
+        "exists": true
+      },
+      {
+        "kind": "styled-preview-report",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\sample1_catchphrase_collection_styled_preview_report.json",
+        "exists": true
+      }
+    ]
+  },
+  "audit": {
+    "createdBy": "projects/test-project-1/scripts/build_sample1_catchphrase_collection_styled_preview.py",
+    "inputs": [
+      {
+        "kind": "project-sample-video",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+        "exists": true
+      },
+      {
+        "kind": "catchphrase-json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection.json",
+        "exists": true
+      },
+      {
+        "kind": "reference-subtitle-analysis",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+        "exists": true
+      },
+      {
+        "kind": "reference-frame-analysis",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\analysis.json",
+        "exists": true
+      }
+    ]
+  }
+}

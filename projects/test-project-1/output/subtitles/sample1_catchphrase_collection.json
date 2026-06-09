@@ -1,0 +1,303 @@
+{
+  "schemaVersion": "sample1-catchphrase-collection/v1",
+  "createdAt": "2026-06-07T02:12:42Z",
+  "referenceSource": {
+    "video": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\sample-1.mp4",
+    "analysis": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\video\\sample-1\\analysis.json",
+    "sourceWindowSeconds": [
+      0.0,
+      10.0
+    ],
+    "usage": "Reference only. The asset video is used to infer catchphrase structure, not as the cut-edit source."
+  },
+  "observedReferenceSubtitleFrames": [
+    {
+      "timeSeconds": 0.0,
+      "subtitles": [
+        "元Palantir社員が語る",
+        "FDEの正体とは?"
+      ]
+    },
+    {
+      "timeSeconds": 1.0,
+      "subtitles": [
+        "元Palantir社員が語る",
+        "FDEの正体とは?"
+      ]
+    },
+    {
+      "timeSeconds": 2.0,
+      "subtitles": [
+        "元Palantir社員が語る",
+        "FDEの正体とは?"
+      ]
+    },
+    {
+      "timeSeconds": 3.0,
+      "subtitles": [
+        "元Palantir社員が語る",
+        "FDEの正体とは?"
+      ]
+    },
+    {
+      "timeSeconds": 3.5,
+      "subtitles": [
+        "コンサルテ"
+      ]
+    },
+    {
+      "timeSeconds": 4.0,
+      "subtitles": [
+        "コンサルティングやSlerとは",
+        "性質が異なる"
+      ]
+    },
+    {
+      "timeSeconds": 5.0,
+      "subtitles": [
+        "コンサルティングやSlerとは",
+        "性質が異なる"
+      ]
+    },
+    {
+      "timeSeconds": 6.0,
+      "subtitles": [
+        "コンサルティングやSlerとは",
+        "性質が異なる"
+      ]
+    },
+    {
+      "timeSeconds": 7.0,
+      "subtitles": [
+        "基本はプロジェク"
+      ]
+    },
+    {
+      "timeSeconds": 8.0,
+      "subtitles": [
+        "基本はプロジェクトを"
+      ]
+    },
+    {
+      "timeSeconds": 9.0,
+      "subtitles": [
+        "基本はプロジェクトを",
+        "進行していく仕事"
+      ]
+    },
+    {
+      "timeSeconds": 10.0,
+      "subtitles": [
+        "基本はプロジェクトを",
+        "進行していく仕事"
+      ]
+    }
+  ],
+  "referenceHookPatterns": [
+    {
+      "id": "reference_hook_01",
+      "displayText": "元Palantir社員が語る / FDEの正体とは?",
+      "normalizedLines": [
+        "元Palantir社員が語る",
+        "FDEの正体とは?"
+      ],
+      "sourceTimeRange": {
+        "start": 0.0,
+        "end": 3.4
+      },
+      "selectionReason": "Opening hook that states the speaker credibility and the core topic."
+    },
+    {
+      "id": "reference_hook_02",
+      "displayText": "コンサルティングやSIerとは / 性質が異なる",
+      "sourceTextRaw": [
+        "コンサルティングやSlerとは",
+        "性質が異なる"
+      ],
+      "normalizedLines": [
+        "コンサルティングやSIerとは",
+        "性質が異なる"
+      ],
+      "sourceTimeRange": {
+        "start": 3.5,
+        "end": 6.8
+      },
+      "selectionReason": "Clear contrast phrase that defines what FDE is not."
+    },
+    {
+      "id": "reference_hook_03",
+      "displayText": "基本はプロジェクトを / 進行していく仕事",
+      "normalizedLines": [
+        "基本はプロジェクトを",
+        "進行していく仕事"
+      ],
+      "sourceTimeRange": {
+        "start": 7.0,
+        "end": 10.0
+      },
+      "selectionReason": "Concise explanatory phrase that turns the topic into a concrete job description."
+    }
+  ],
+  "projectSource": {
+    "video": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+    "transcript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\transcripts\\manifest_sources\\primary_corrected.srt",
+    "usage": "Actual source for the 15-second hard-cut preview."
+  },
+  "projectTranscriptSegments": [
+    {
+      "index": "1",
+      "start": 0.0,
+      "end": 2.5,
+      "text": "an eye-opening experience."
+    },
+    {
+      "index": "2",
+      "start": 2.5,
+      "end": 5.5600000000000005,
+      "text": "It had never occurred to us before"
+    },
+    {
+      "index": "3",
+      "start": 5.5600000000000005,
+      "end": 7.34,
+      "text": "that we were doing something bad,"
+    },
+    {
+      "index": "4",
+      "start": 7.34,
+      "end": 9.6,
+      "text": "we were doing something that would have negative consequences"
+    },
+    {
+      "index": "5",
+      "start": 9.6,
+      "end": 12.32,
+      "text": "when we sent papers to traditional journals"
+    },
+    {
+      "index": "6",
+      "start": 12.32,
+      "end": 14.96,
+      "text": "and we signed over our copyright to those journals."
+    },
+    {
+      "index": "7",
+      "start": 14.96,
+      "end": 17.22,
+      "text": "We never thought about that as being something"
+    },
+    {
+      "index": "8",
+      "start": 17.22,
+      "end": 20.32,
+      "text": "that would impair the ability of anyone else to use it."
+    },
+    {
+      "index": "9",
+      "start": 20.32,
+      "end": 23.88,
+      "text": "But now it was completely obvious."
+    },
+    {
+      "index": "10",
+      "start": 23.88,
+      "end": 27.28,
+      "text": "And so that set in motion,"
+    },
+    {
+      "index": "11",
+      "start": 27.28,
+      "end": 37.04,
+      "text": "And that realization that, first of all, electronic publishing enabled a whole new way of using"
+    },
+    {
+      "index": "12",
+      "start": 37.04,
+      "end": 42.74,
+      "text": "the scientific literature that had never been possible before, and the fact that the silly"
+    },
+    {
+      "index": "13",
+      "start": 42.74,
+      "end": 48.86,
+      "text": "way in which we choose to pay for scientific journals, and the fact that authors of scientific"
+    },
+    {
+      "index": "14",
+      "start": 48.86,
+      "end": 55.68,
+      "text": "papers give their rights away to publishers, we now realize that that was the big obstacle"
+    },
+    {
+      "index": "15",
+      "start": 55.68,
+      "end": 59.98,
+      "text": "to achieving a better publishing system."
+    }
+  ],
+  "phrases": [
+    {
+      "id": "project_catchphrase_01",
+      "displayText": "An eye-opening experience",
+      "normalizedLines": [
+        "An eye-opening experience"
+      ],
+      "sourceTimeRange": {
+        "start": 0.0,
+        "end": 2.5
+      },
+      "editClip": {
+        "sourceIn": 0.0,
+        "sourceOut": 5.0,
+        "timelineStart": 0.0,
+        "timelineEnd": 5.0
+      },
+      "selectionReason": "A compact opening hook from the project sample that mirrors the reference asset's first strong topic-setting phrase."
+    },
+    {
+      "id": "project_catchphrase_02",
+      "displayText": "Something that would have negative consequences",
+      "normalizedLines": [
+        "Something that would have negative consequences"
+      ],
+      "sourceTimeRange": {
+        "start": 7.34,
+        "end": 12.32
+      },
+      "editClip": {
+        "sourceIn": 7.34,
+        "sourceOut": 12.34,
+        "timelineStart": 5.0,
+        "timelineEnd": 10.0
+      },
+      "selectionReason": "A clear consequence phrase from the project sample, matching the reference pattern of a short explanatory contrast."
+    },
+    {
+      "id": "project_catchphrase_03",
+      "displayText": "But now it was completely obvious",
+      "normalizedLines": [
+        "But now it was completely obvious"
+      ],
+      "sourceTimeRange": {
+        "start": 20.32,
+        "end": 23.88
+      },
+      "editClip": {
+        "sourceIn": 20.32,
+        "sourceOut": 25.32,
+        "timelineStart": 10.0,
+        "timelineEnd": 15.0
+      },
+      "selectionReason": "A concise realization phrase from the project sample, selected as the closing hook for the 15-second collection."
+    }
+  ],
+  "edit": {
+    "targetDurationSeconds": 15.0,
+    "method": "hard-cut concat of three 5-second clips from the project sample video",
+    "videoSize": [
+      1280,
+      720
+    ],
+    "fps": "24000/1001"
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "video-edit-timeline/v1",
+  "id": "timeline_test-project-1_sample11_frame_design_preview",
+  "createdAt": "2026-06-07T01:51:33Z",
+  "project": {
+    "id": "test-project-1",
+    "name": "Test Project 1",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output"
+  },
+  "timebase": {
+    "unit": "seconds",
+    "fps": "24000/1001"
+  },
+  "duration": 60.018292,
+  "sources": [
+    {
+      "id": "src_master",
+      "kind": "video",
+      "role": "master",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+      "duration": 60.018292,
+      "width": 1920,
+      "height": 1080,
+      "fps": "24000/1001"
+    },
+    {
+      "id": "src_reference_image",
+      "kind": "image",
+      "role": "reference-design",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\sample-11.png"
+    },
+    {
+      "id": "src_reference_analysis",
+      "kind": "data",
+      "role": "reference-analysis",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\analysis.json"
+    },
+    {
+      "id": "src_logo",
+      "kind": "image",
+      "role": "brand-logo",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png"
+    },
+    {
+      "id": "src_frame_overlay",
+      "kind": "image",
+      "role": "generated-frame-overlay",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample11_frame_design\\sample11_frame_overlay.png"
+    },
+    {
+      "id": "src_design_profile",
+      "kind": "data",
+      "role": "frame-design-profile",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "video.main",
+      "kind": "video",
+      "label": "Downshifted source video",
+      "allowOverlap": false
+    },
+    {
+      "id": "graphics.frame",
+      "kind": "overlay",
+      "label": "Sample-11 frame overlay",
+      "allowOverlap": true
+    },
+    {
+      "id": "audio.main",
+      "kind": "audio",
+      "label": "Source audio",
+      "allowOverlap": false
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip_video_master",
+      "trackId": "video.main",
+      "kind": "video",
+      "sourceId": "src_master",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.018292,
+      "sourceIn": 0.0,
+      "sourceOut": 60.018292,
+      "fit": {
+        "mode": "cover",
+        "width": 1280,
+        "height": 720
+      },
+      "style": {
+        "yOffsetPx": 69
+      }
+    },
+    {
+      "id": "clip_frame_overlay",
+      "trackId": "graphics.frame",
+      "kind": "generated",
+      "sourceId": "src_frame_overlay",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.018292,
+      "style": {
+        "referenceAnalysis": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\analysis.json",
+        "designProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json"
+      }
+    },
+    {
+      "id": "clip_audio_master",
+      "trackId": "audio.main",
+      "kind": "audio",
+      "sourceId": "src_master",
+      "timelineStart": 0.0,
+      "timelineEnd": 60.018292,
+      "sourceIn": 0.0,
+      "sourceOut": 60.018292
+    }
+  ],
+  "transitions": [],
+  "render": {
+    "targets": [
+      {
+        "id": "preview",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample11_frame_design.mp4",
+        "format": "mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": "24000/1001",
+        "profile": "preview"
+      }
+    ]
+  },
+  "analysis": {
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\output\\reports\\media_manifest.json",
+    "reports": [
+      {
+        "kind": "media-manifest",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\output\\reports\\media_manifest.json",
+        "exists": true
+      },
+      {
+        "kind": "reference-analysis",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\analysis.json",
+        "exists": true
+      },
+      {
+        "kind": "frame-design-profile",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json",
+        "exists": true
+      },
+      {
+        "kind": "frame-design-report",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\reports\\sample11_frame_design_preview_report.json",
+        "exists": true
+      }
+    ]
+  },
+  "audit": {
+    "createdBy": "projects/test-project-1/scripts/build_sample11_frame_design_preview.py",
+    "inputs": [
+      {
+        "kind": "reference-image",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\reference-assets\\library\\collections\\layer-x\\images\\sample-11\\sample-11.png",
+        "exists": true
+      },
+      {
+        "kind": "project-logo",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+        "exists": true
+      },
+      {
+        "kind": "source-video",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+        "exists": true
+      }
+    ]
+  }
+}

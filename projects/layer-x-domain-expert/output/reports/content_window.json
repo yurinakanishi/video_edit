@@ -1,0 +1,41 @@
+{
+  "schema_version": "content_window.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T07:56:35+09:00",
+  "time_unit": "seconds",
+  "reference_media_id": "group_wide",
+  "usable_master_range": {
+    "start_sec": 519.14,
+    "end_sec": 2985.485,
+    "start_inclusive": true,
+    "end_exclusive": true
+  },
+  "start_marker": {
+    "start_sec": 519.14,
+    "anchor_segment_id": "seg_000177",
+    "anchor_text": "AXのYouTubeチャンネルをご覧の皆さん、こんにちは",
+    "detected_from": "first speech segment after final 本番 / 5,4,3 countdown marker"
+  },
+  "end_marker": {
+    "end_sec": null,
+    "anchor_segment_id": null,
+    "anchor_text": null,
+    "detected_from": "closing marker not present in current master transcript",
+    "detected": false
+  },
+  "rules": {
+    "exclude_before_start": true,
+    "exclude_after_end_marker": true,
+    "do_not_use_preroll_rehearsal_or_countdown": true,
+    "do_not_use_closing_thanks_or_anything_after": true,
+    "company_movie_bridge_uses_own_source_time": true
+  },
+  "forbidden_text_markers": [
+    "本番5秒前",
+    "5、4、3",
+    "本番543",
+    "ご視聴いただきました。ありがとうございました。",
+    "ご視聴いただきありがとうございました。",
+    "ありがとうございました。"
+  ]
+}

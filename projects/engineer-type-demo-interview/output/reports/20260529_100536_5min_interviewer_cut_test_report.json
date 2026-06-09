@@ -1,0 +1,31 @@
+{
+  "createdAt": "20260529_100536",
+  "config": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\app\\20260529_100536_5min_interviewer_cut_test_base_config.json",
+  "baseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_100536_5min_interviewer_cut_test_base.mp4",
+  "outputVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_100536_5min_interviewer_cut_test_ass_full.mp4",
+  "localSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_100536_5min_interviewer_cut_local.srt",
+  "ass": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_100536_5min_interviewer_cut_role_aware.ass",
+  "timelineStartSeconds": 1762.0,
+  "timelineEndSeconds": 2062.0,
+  "localCutSeconds": [
+    2.288,
+    40.288,
+    142.288,
+    174.288,
+    264.288
+  ],
+  "interviewerCaption": {
+    "sourceIndex": 496,
+    "localStart": 159.74,
+    "text": "コアの仕事って何なの?",
+    "expectedStyle": "Interviewer black box"
+  },
+  "faceCenterCrop": "horizontal-only",
+  "globalVideoZoom": 1.2,
+  "verifiedDurationSeconds": 300.0,
+  "faceCenterCropUsage": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\face_center_crop_usage.json",
+  "interviewerSubtitleAssLine": "Dialogue: 0,0:02:39.74,0:02:40.98,Interviewer,,0,0,0,,コアの仕事って何なの?",
+  "interviewerSubtitleFrame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\20260529_100536_interviewer_black_subtitle_frame.png",
+  "afterCutFrame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\diagnostics\\20260529_100536_after_cut_frame.png",
+  "subtitleImplementation": "role-aware ASS fallback because 5 min of individual PNG subtitle inputs exceeds Windows command-line length"
+}

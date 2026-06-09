@@ -1,0 +1,438 @@
+{
+  "timelineRole": "master",
+  "manifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+  "sourceCount": 6,
+  "offsets": {
+    "master": {
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "kind": "video",
+      "offsetSeconds": 0.0,
+      "score": 1.0,
+      "selectedEvidence": "reference",
+      "evidence": {
+        "waveform": {
+          "available": true,
+          "offsetSeconds": 0.0,
+          "score": 1.0,
+          "kind": "reference"
+        },
+        "transcript": {
+          "available": false,
+          "reason": "comparison report missing"
+        },
+        "mouth": {
+          "available": true,
+          "offsetSeconds": 0.0,
+          "score": 1.0,
+          "kind": "reference",
+          "sampleCount": 600
+        }
+      },
+      "note": "timeline reference"
+    },
+    "camera2": {
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "kind": "video",
+      "offsetSeconds": 17.2,
+      "score": 0.870958,
+      "selectedEvidence": "waveform",
+      "evidence": {
+        "waveform": {
+          "available": true,
+          "offsetSeconds": 17.2,
+          "coarseOffsetSeconds": 17.2,
+          "score": 0.870958,
+          "matchedMasterStartSeconds": 0.0,
+          "fineRefinement": {
+            "offsetSeconds": 17.2,
+            "coarseOffsetSeconds": 17.2,
+            "refinedShiftSeconds": 0.0,
+            "refinedScore": 0.3829713761806488,
+            "refined": true,
+            "refinedFrameSeconds": 0.01,
+            "refinedWindowSeconds": 24.0,
+            "refinedMasterStartSeconds": 0.0
+          }
+        },
+        "transcript": {
+          "available": false,
+          "reason": "comparison report missing"
+        },
+        "mouth": {
+          "available": true,
+          "offsetSeconds": 5.8,
+          "score": 0.537594,
+          "matchedMasterStartSeconds": 20.0,
+          "sampleCount": 600,
+          "detectedCount": 572
+        }
+      },
+      "note": "source timestamp = synced timeline timestamp + offsetSeconds",
+      "coarseOffsetSeconds": 17.2,
+      "matchedMasterStartSeconds": 0.0,
+      "fineRefinement": {
+        "offsetSeconds": 17.2,
+        "coarseOffsetSeconds": 17.2,
+        "refinedShiftSeconds": 0.0,
+        "refinedScore": 0.3829713761806488,
+        "refined": true,
+        "refinedFrameSeconds": 0.01,
+        "refinedWindowSeconds": 24.0,
+        "refinedMasterStartSeconds": 0.0
+      }
+    },
+    "camera3": {
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "kind": "video",
+      "offsetSeconds": -931.57,
+      "score": 0.711559,
+      "selectedEvidence": "waveform",
+      "evidence": {
+        "waveform": {
+          "available": true,
+          "offsetSeconds": -931.57,
+          "coarseOffsetSeconds": -932.2,
+          "score": 0.711559,
+          "matchedMasterStartSeconds": 1260.0,
+          "fineRefinement": {
+            "offsetSeconds": -931.57,
+            "coarseOffsetSeconds": -932.2,
+            "refinedShiftSeconds": 0.63,
+            "refinedScore": 0.1592811793088913,
+            "refined": true,
+            "refinedFrameSeconds": 0.01,
+            "refinedWindowSeconds": 24.0,
+            "refinedMasterStartSeconds": 1260.0
+          }
+        },
+        "transcript": {
+          "available": false,
+          "reason": "comparison report missing"
+        },
+        "mouth": {
+          "available": true,
+          "offsetSeconds": 20.6,
+          "score": 0.518563,
+          "matchedMasterStartSeconds": 36.0,
+          "sampleCount": 600,
+          "detectedCount": 595
+        }
+      },
+      "note": "source timestamp = synced timeline timestamp + offsetSeconds",
+      "coarseOffsetSeconds": -932.2,
+      "matchedMasterStartSeconds": 1260.0,
+      "fineRefinement": {
+        "offsetSeconds": -931.57,
+        "coarseOffsetSeconds": -932.2,
+        "refinedShiftSeconds": 0.63,
+        "refinedScore": 0.1592811793088913,
+        "refined": true,
+        "refinedFrameSeconds": 0.01,
+        "refinedWindowSeconds": 24.0,
+        "refinedMasterStartSeconds": 1260.0
+      }
+    },
+    "camera4": {
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "kind": "video",
+      "offsetSeconds": 2.95,
+      "score": 0.965862,
+      "selectedEvidence": "waveform",
+      "evidence": {
+        "waveform": {
+          "available": true,
+          "offsetSeconds": 2.95,
+          "coarseOffsetSeconds": 2.95,
+          "score": 0.965862,
+          "matchedMasterStartSeconds": 675.0,
+          "fineRefinement": {
+            "offsetSeconds": 2.9500000000000455,
+            "coarseOffsetSeconds": 2.9500000000000455,
+            "refinedShiftSeconds": 0.0,
+            "refinedScore": 0.7784074544906616,
+            "refined": true,
+            "refinedFrameSeconds": 0.01,
+            "refinedWindowSeconds": 24.0,
+            "refinedMasterStartSeconds": 675.0
+          }
+        },
+        "transcript": {
+          "available": false,
+          "reason": "comparison report missing"
+        },
+        "mouth": {
+          "available": true,
+          "offsetSeconds": 0.4,
+          "score": 0.689051,
+          "matchedMasterStartSeconds": 56.0,
+          "sampleCount": 600,
+          "detectedCount": 527
+        }
+      },
+      "note": "source timestamp = synced timeline timestamp + offsetSeconds",
+      "coarseOffsetSeconds": 2.95,
+      "matchedMasterStartSeconds": 675.0,
+      "fineRefinement": {
+        "offsetSeconds": 2.9500000000000455,
+        "coarseOffsetSeconds": 2.9500000000000455,
+        "refinedShiftSeconds": 0.0,
+        "refinedScore": 0.7784074544906616,
+        "refined": true,
+        "refinedFrameSeconds": 0.01,
+        "refinedWindowSeconds": 24.0,
+        "refinedMasterStartSeconds": 675.0
+      }
+    },
+    "camera5": {
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "kind": "video",
+      "offsetSeconds": -1125.41,
+      "score": 0.972227,
+      "selectedEvidence": "waveform",
+      "evidence": {
+        "waveform": {
+          "available": true,
+          "offsetSeconds": -1125.41,
+          "coarseOffsetSeconds": -1125.4,
+          "score": 0.972227,
+          "matchedMasterStartSeconds": 2215.0,
+          "fineRefinement": {
+            "offsetSeconds": -1125.4099999999999,
+            "coarseOffsetSeconds": -1125.3999999999999,
+            "refinedShiftSeconds": -0.01,
+            "refinedScore": 0.7787483930587769,
+            "refined": true,
+            "refinedFrameSeconds": 0.01,
+            "refinedWindowSeconds": 24.0,
+            "refinedMasterStartSeconds": 2215.0
+          }
+        },
+        "transcript": {
+          "available": false,
+          "reason": "comparison report missing"
+        },
+        "mouth": {
+          "available": true,
+          "offsetSeconds": 66.0,
+          "score": 0.589936,
+          "matchedMasterStartSeconds": 32.0,
+          "sampleCount": 600,
+          "detectedCount": 573
+        }
+      },
+      "note": "source timestamp = synced timeline timestamp + offsetSeconds",
+      "coarseOffsetSeconds": -1125.4,
+      "matchedMasterStartSeconds": 2215.0,
+      "fineRefinement": {
+        "offsetSeconds": -1125.4099999999999,
+        "coarseOffsetSeconds": -1125.3999999999999,
+        "refinedShiftSeconds": -0.01,
+        "refinedScore": 0.7787483930587769,
+        "refined": true,
+        "refinedFrameSeconds": 0.01,
+        "refinedWindowSeconds": 24.0,
+        "refinedMasterStartSeconds": 2215.0
+      }
+    },
+    "external": {
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+      "kind": "audio",
+      "offsetSeconds": 8.7,
+      "score": 0.977558,
+      "selectedEvidence": "waveform",
+      "evidence": {
+        "waveform": {
+          "available": true,
+          "offsetSeconds": 8.7,
+          "coarseOffsetSeconds": 8.7,
+          "score": 0.977558,
+          "matchedMasterStartSeconds": 790.0,
+          "fineRefinement": {
+            "offsetSeconds": 8.700000000000045,
+            "coarseOffsetSeconds": 8.700000000000045,
+            "refinedShiftSeconds": 0.0,
+            "refinedScore": 0.9151168465614319,
+            "refined": true,
+            "refinedFrameSeconds": 0.01,
+            "refinedWindowSeconds": 24.0,
+            "refinedMasterStartSeconds": 790.0
+          }
+        },
+        "transcript": {
+          "available": false,
+          "reason": "comparison report missing"
+        },
+        "mouth": {
+          "available": false,
+          "reason": "source is not video"
+        }
+      },
+      "note": "source timestamp = synced timeline timestamp + offsetSeconds",
+      "coarseOffsetSeconds": 8.7,
+      "matchedMasterStartSeconds": 790.0,
+      "fineRefinement": {
+        "offsetSeconds": 8.700000000000045,
+        "coarseOffsetSeconds": 8.700000000000045,
+        "refinedShiftSeconds": 0.0,
+        "refinedScore": 0.9151168465614319,
+        "refined": true,
+        "refinedFrameSeconds": 0.01,
+        "refinedWindowSeconds": 24.0,
+        "refinedMasterStartSeconds": 790.0
+      }
+    }
+  },
+  "timeline": [
+    {
+      "role": "master",
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "durationSeconds": 2968.465,
+      "offsetSeconds": 0.0,
+      "timelineStartSeconds": -0.0,
+      "timelineEndSeconds": 2968.465,
+      "score": 1.0,
+      "selectedEvidence": "reference"
+    },
+    {
+      "role": "camera2",
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "durationSeconds": 568.568,
+      "offsetSeconds": 17.2,
+      "timelineStartSeconds": -17.2,
+      "timelineEndSeconds": 551.368,
+      "score": 0.870958,
+      "selectedEvidence": "waveform"
+    },
+    {
+      "role": "camera3",
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "durationSeconds": 384.718,
+      "offsetSeconds": -931.57,
+      "timelineStartSeconds": 931.57,
+      "timelineEndSeconds": 1316.288,
+      "score": 0.711559,
+      "selectedEvidence": "waveform"
+    },
+    {
+      "role": "camera4",
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "durationSeconds": 1124.89,
+      "offsetSeconds": 2.95,
+      "timelineStartSeconds": -2.95,
+      "timelineEndSeconds": 1121.94,
+      "score": 0.965862,
+      "selectedEvidence": "waveform"
+    },
+    {
+      "role": "camera5",
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "durationSeconds": 1799.164,
+      "offsetSeconds": -1125.41,
+      "timelineStartSeconds": 1125.41,
+      "timelineEndSeconds": 2924.574,
+      "score": 0.972227,
+      "selectedEvidence": "waveform"
+    },
+    {
+      "role": "external",
+      "kind": "audio",
+      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+      "durationSeconds": 3178.863,
+      "offsetSeconds": 8.7,
+      "timelineStartSeconds": -8.7,
+      "timelineEndSeconds": 3170.163,
+      "score": 0.977558,
+      "selectedEvidence": "waveform"
+    }
+  ],
+  "overlapSegments": [
+    {
+      "startSeconds": -8.7,
+      "endSeconds": -2.95,
+      "activeRoles": [
+        "camera2",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": -2.95,
+      "endSeconds": -0.0,
+      "activeRoles": [
+        "camera2",
+        "camera4",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": -0.0,
+      "endSeconds": 551.368,
+      "activeRoles": [
+        "master",
+        "camera2",
+        "camera4",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": 551.368,
+      "endSeconds": 931.57,
+      "activeRoles": [
+        "master",
+        "camera4",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": 931.57,
+      "endSeconds": 1121.94,
+      "activeRoles": [
+        "master",
+        "camera3",
+        "camera4",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": 1121.94,
+      "endSeconds": 1125.41,
+      "activeRoles": [
+        "master",
+        "camera3",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": 1125.41,
+      "endSeconds": 1316.288,
+      "activeRoles": [
+        "master",
+        "camera3",
+        "camera5",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": 1316.288,
+      "endSeconds": 2924.574,
+      "activeRoles": [
+        "master",
+        "camera5",
+        "external"
+      ]
+    },
+    {
+      "startSeconds": 2924.574,
+      "endSeconds": 2968.465,
+      "activeRoles": [
+        "master",
+        "external"
+      ]
+    }
+  ],
+  "hasOverlap": true
+}

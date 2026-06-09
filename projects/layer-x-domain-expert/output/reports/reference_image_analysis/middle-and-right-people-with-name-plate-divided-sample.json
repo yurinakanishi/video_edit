@@ -1,0 +1,60 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:35:21+09:00",
+  "source_image": "reference\\middle-and-right-people-with-name-plate-divided-sample.png",
+  "image": {
+    "width": 1860,
+    "height": 1042,
+    "aspect_ratio": 1.785029,
+    "mode": "RGBA"
+  },
+  "analysis_basis": "manual visual analysis of project reference still",
+  "reference_image_id": "two_person_nameplate_split",
+  "layout_types": [
+    "split_grid",
+    "speaker_reaction_pair"
+  ],
+  "intended_sections": [
+    "two_person_exchange"
+  ],
+  "framing": {
+    "composition": "two_equal_vertical_panels_with_nameplates",
+    "subject_crop": "each person medium close-up; shoulders and microphone visible",
+    "face_position": "left panel face around x=0.27,y=0.30; right panel face around x=0.74,y=0.28",
+    "divider": {
+      "orientation": "vertical",
+      "x_norm": 0.5,
+      "color": "#8EC6FF",
+      "width_norm": 0.006
+    },
+    "panel_order_rule": "if interviewer is included, interviewer panel stays left; if middle/right only, middle stays left and right stays right"
+  },
+  "overlay_style": {
+    "logo": {
+      "position": "top_left",
+      "x_norm": 0.03,
+      "y_norm": 0.04,
+      "width_norm": 0.18
+    },
+    "topic_title": {
+      "position": "top_right",
+      "background": "#5F5AF5",
+      "text": "white bold"
+    },
+    "nameplate": {
+      "current_project_policy": "do_not_render_nameplates_in_split_layouts"
+    }
+  },
+  "render_directives": [
+    "Use for important exchanges where both faces should remain readable.",
+    "Keep panel order stable; do not swap panels to chase the active speaker.",
+    "Do not show nameplates in split layouts for this project; reserve large nameplates for single-person introduction cuts."
+  ],
+  "application_policy": {
+    "adapt_to_video_context": true,
+    "do_not_render_reference_image_directly": true,
+    "match_framing_crop_face_position_and_visual_style": true,
+    "allow_mirroring_when_layout_requires_opposite_bio_side": true
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": "project_manifest.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T08:15:20+09:00",
+  "time_unit": "seconds",
+  "coordinate_system": "normalized_0_1",
+  "master_canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0
+  },
+  "media": [
+    {
+      "media_id": "group_wide",
+      "path": "source\\video\\three people.mp4",
+      "kind": "video",
+      "role": "group_wide",
+      "camera_index": 1,
+      "screen_position": "wide",
+      "sync_offset": 0.0,
+      "duration": 2985.485
+    },
+    {
+      "media_id": "cam_person_01",
+      "path": "source\\video\\person-left.mp4",
+      "kind": "video",
+      "role": "single_person",
+      "camera_index": 2,
+      "screen_position": "left",
+      "person_id_hint": "person_01",
+      "sync_offset": 0.0,
+      "duration": 3615.115
+    },
+    {
+      "media_id": "cam_person_02",
+      "path": "source\\video\\person-middle.mp4",
+      "kind": "video",
+      "role": "single_person",
+      "camera_index": 3,
+      "screen_position": "middle",
+      "person_id_hint": "person_02",
+      "sync_offset": 0.0,
+      "duration": 3630.133
+    },
+    {
+      "media_id": "cam_person_03",
+      "path": "source\\video\\person-right.mp4",
+      "kind": "video",
+      "role": "single_person",
+      "camera_index": 4,
+      "screen_position": "right",
+      "person_id_hint": "person_03",
+      "sync_offset": 0.0,
+      "duration": 3639.135
+    },
+    {
+      "media_id": "company_movie",
+      "path": "source\\video\\company-movie.mp4",
+      "kind": "video",
+      "role": "company_movie",
+      "sync_offset": 0.0,
+      "duration": 15.018
+    },
+    {
+      "media_id": "layerx_logo",
+      "path": "source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+      "kind": "image",
+      "role": "logo",
+      "sync_offset": 0.0,
+      "duration": null
+    }
+  ],
+  "outputs": [
+    {
+      "name": "preview_720p",
+      "width": 1280,
+      "height": 720,
+      "codec": "h264",
+      "preset": "veryfast",
+      "crf": 28
+    },
+    {
+      "name": "final_1080p",
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "preset": "medium",
+      "crf": 20
+    }
+  ],
+  "rules": {
+    "final_render_requires_user_approval": true,
+    "person_labels_require_people_map": true,
+    "full_transcript_subtitles_allowed": false
+  },
+  "transcription": {
+    "policy": "single_reference_source_only",
+    "source_audio_media_id": "group_wide",
+    "reason": "interview cameras were recorded at the same time; synced timeline can share one transcript"
+  },
+  "sync": {
+    "policy": "priority_order_timecode_audio_clap_visual_transcript_manual",
+    "reference_media_id": "group_wide",
+    "offset_report": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\app_sync_offsets.json",
+    "sync_map": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\sync_map.json",
+    "audio_track_analysis": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_track_analysis.json",
+    "analysis_report": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_sync_clap_analysis.json",
+    "precision_target": "millisecond"
+  }
+}

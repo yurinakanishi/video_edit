@@ -1,0 +1,14 @@
+{
+  "schema_version": "edit_plan_validation_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
+  "ready_for_preview": true,
+  "errors": [],
+  "warnings": [
+    "Draft generated from transcript heuristics; editorial review required before final render."
+  ],
+  "plan_blockers": [
+    "manual sync review required for camera4 (not_yet_determined, confidence 0.75)"
+  ],
+  "event_count": 22
+}

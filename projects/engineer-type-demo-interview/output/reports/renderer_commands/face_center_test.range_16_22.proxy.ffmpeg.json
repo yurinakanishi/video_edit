@@ -1,0 +1,98 @@
+{
+  "createdAt": "2026-05-30T02:59:58Z",
+  "adapter": "ffmpeg",
+  "timelineSchemaVersion": "video-edit-timeline/v1",
+  "timelineId": "timeline_new-folder-2",
+  "outputPath": "projects\\new-folder-2\\output\\videos\\face_center_test.range_16_22.proxy.mp4",
+  "filterScript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\filtergraphs\\face_center_test.range_16_22.proxy.timeline.ffgraph",
+  "argv": [
+    "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+    "-hide_banner",
+    "-y",
+    "-i",
+    "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+    "-i",
+    "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+    "-i",
+    "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+    "-i",
+    "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+    "-loop",
+    "1",
+    "-framerate",
+    "30000/1001",
+    "-t",
+    "60.000000",
+    "-i",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\images\\right_logo_pre_fb05.png",
+    "-filter_complex_script",
+    "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\filtergraphs\\face_center_test.range_16_22.proxy.timeline.ffgraph",
+    "-map",
+    "[vproxy]",
+    "-map",
+    "[arange]",
+    "-c:v",
+    "h264_nvenc",
+    "-preset",
+    "p4",
+    "-cq",
+    "19",
+    "-b:v",
+    "0",
+    "-c:a",
+    "aac",
+    "-b:a",
+    "192k",
+    "-shortest",
+    "projects\\new-folder-2\\output\\videos\\face_center_test.range_16_22.proxy.mp4"
+  ],
+  "inputSourceIds": [
+    "src_master",
+    "src_camera2",
+    "src_camera4",
+    "src_external",
+    "src_logo"
+  ],
+  "generatedArtifacts": [],
+  "unsupportedClips": [],
+  "validationWarnings": [],
+  "preview": {
+    "range": {
+      "start": 16.0,
+      "end": 22.0
+    },
+    "proxy": true,
+    "proxySize": {
+      "width": 960,
+      "height": 540
+    }
+  },
+  "scope": {
+    "implemented": [
+      "video.main clip concat",
+      "audio.main trim/concat",
+      "overlay.graphics image overlay",
+      "subtitle.main ASS/SRT/VTT rendering through FFmpeg subtitles filters",
+      "subtitle.main precomposed rich PNG transparent-video overlay when referenced by timeline",
+      "subtitle.main precomposition generation from timeline manifest when target artifact is absent or stale",
+      "colorCorrection filter chains embedded in timeline clip effects",
+      "scaleCrop zoom and crop-center expressions embedded in timeline clip effects",
+      "audioCleanup denoise/mastering filter chain",
+      "music.bed audio mix when a source file exists",
+      "timeline-range preview export",
+      "low-resolution proxy export"
+    ],
+    "notImplemented": [
+      "Remotion/HyperFrames overlays",
+      "Blender-generated elements",
+      "person-edit-plan crop parity",
+      "natural-cut parity"
+    ]
+  },
+  "commandReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\renderer_commands\\face_center_test.range_16_22.proxy.ffmpeg.json",
+  "renderLog": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\render_logs\\face_center_test.range_16_22.proxy.ffmpeg.log",
+  "executionStartedAt": "2026-05-30T02:59:58Z",
+  "executed": true,
+  "returnCode": 0,
+  "executionEndedAt": "2026-05-30T03:00:13Z"
+}

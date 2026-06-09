@@ -627,7 +627,7 @@ Edit this video as a polished business interview, not as raw event footage. The 
 Priorities:
 
 - Hook viewers with a 45-second opening digest
-- Establish all three participants and their titles at the start of the main section
+- Establish all three participants and their titles near the start of the main section
 - Make each person's background clear during self-introductions
 - Emphasize only the most important words as on-screen captions
 - Show the current topic in the upper-right corner as the conversation moves
@@ -662,11 +662,38 @@ For all Opening Digest clips, keep these elements consistent with the sample:
 - Horizontal reveal animation for caption entry, staggered reveal for second caption lines, and quick fade out
 - Content video shifted down by the same sample-derived offset so faces avoid the header and lower captions
 
+During the Opening Digest, the upper-right title is the **overall title for this video**. It is not a chapter title.
+
 Do not render full transcript subtitles in the Opening Digest. Render only strong short `digest_caption` phrases from `semantic_marks.json`, using `style_id: opening_digest_sample_caption`.
+
+### Main Section Visual Difference From Digest
+
+The main section uses the same basic visual language as the digest, but it is not identical.
+
+Keep these consistent with the digest/sample style:
+
+- Editorial caption placement and style
+- LayerX logo placement and scale
+- Upper-right title placement
+- Upper-right title blue-purple box background
+- Caption colors, rounded boxes, reveal animation, and quick fade timing
+
+Remove these digest-only frame elements from the main section:
+
+- The full-width thick purple top band background
+- The thin purple bottom band line
+
+Important: the upper-right title's own purple box background remains in the main section. Only the digest-style full-width top band and bottom line are removed.
+
+In the main section, the upper-right title is the **chapter/topic title** for the current segment. Derive chapter titles from transcript/subtitle analysis and store them in `semantic_marks.json` `topics`, then reference them from `edit_plan.json` as `overlays.type: topic_title`, `position: top_right`.
 
 ### Participant Introduction at the Start of the Main Section
 
-Immediately after the digest ends and the slide transition into the main section, start with a **wide shot that includes all three participants** (`layout.type: wide_group`).
+Participant introduction belongs to the **main section**, not to the digest. Treat it as the early part of the main section.
+
+Do not assume the introduction begins at a fixed timestamp. Determine the participant introduction and each self-introduction range from the transcript/transcribed subtitles, speaker turns, and semantic content.
+
+Near the start of the main section, when the transcript indicates participant introduction, use a **wide shot that includes all three participants** (`layout.type: wide_group`).
 
 In that shot, place provisional title/name labels below each person's face.
 
@@ -740,6 +767,8 @@ Summarize and polish for readability without changing the speaker's meaning. Use
 
 During the main section, show a **topic title in the upper-right corner** for each conversation segment (`overlays.type: topic_title`, `position: top_right`).
 
+- Digest: use the overall video title in the upper-right title box.
+- Main section: use the current chapter/topic title in the upper-right title box.
 - Expect a topic change roughly once every 10 minutes across the full interview
 - Analyze subtitles and transcript segments, then assign appropriate titles to `topics` in `semantic_marks.json`
 - Keep the topic title visible continuously or for a defined duration, and change it naturally at topic boundaries

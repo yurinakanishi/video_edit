@@ -203,6 +203,10 @@
   "openingDigestRules": {
     "durationSecondsTarget": 45,
     "clipStructure": "Hard-cut strongest statements and reactions. Use the same frame, logo, title, and caption treatment throughout the digest.",
+    "topRightTitleText": {
+      "source": "overall_project_title",
+      "rule": "During the digest, the upper-right title is the overall title for the whole video, not a chapter title."
+    },
     "allowedLayouts": [
       "single",
       "speaker_reaction_pair",
@@ -216,6 +220,44 @@
       "Captions must not cover the active speaker's mouth or key facial expression.",
       "Logo panel, top band, top-right title, and bottom band must remain visible for every digest shot.",
       "No full transcript subtitles in Opening Digest."
+    ]
+  },
+  "mainSectionStyleOverrides": {
+    "description": "The main section uses the same basic caption, logo, and upper-right title placement as the digest, but removes the digest-only top and bottom bands.",
+    "appliesAfterDigest": true,
+    "includesIntroduction": true,
+    "introductionRule": "Participant introduction and self-introduction segments are part of the main section. Detect them from the transcript/transcribed subtitles and speaker turns, then create the appropriate main-section events.",
+    "sharedWithDigest": [
+      "LayerX logo placement and scale",
+      "upper-right title text placement",
+      "upper-right title blue-purple box background",
+      "editorial caption box style",
+      "caption font, color, rounded box, reveal animation, and fade timing"
+    ],
+    "removedFromMainSection": {
+      "topFullWidthPurpleBand": true,
+      "bottomThinPurpleBand": true,
+      "note": "Keep only the upper-right title's purple box background. Do not draw the digest-style full-width top band or bottom band line in main-section clips."
+    },
+    "topRightTitleText": {
+      "source": "semantic_marks.topics[].title",
+      "rule": "During the main section, the upper-right title changes by chapter/topic. Use the chapter title for the current transcript-derived segment."
+    },
+    "captionSource": {
+      "source": "semantic_marks.punchline_subtitles",
+      "rule": "Use editorial captions selected from the transcript, not full subtitles."
+    },
+    "styleIds": {
+      "mainCaption": "main_punchline_caption",
+      "mainTopicTitle": "topic_title_top_right",
+      "mainLogo": "main_layerx_logo",
+      "mainFrame": "main_no_digest_bands"
+    },
+    "validation": [
+      "Main-section renders must not include the digest top full-width purple band.",
+      "Main-section renders must not include the digest bottom purple line.",
+      "Main-section upper-right title boxes must remain visible and use the same blue-purple title style.",
+      "Introduction events must be selected from transcript evidence, not assumed to occur at a fixed timestamp."
     ]
   },
   "editPlanExample": {

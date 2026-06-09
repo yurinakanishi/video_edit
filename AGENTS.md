@@ -48,6 +48,46 @@ For every direct Codex editing task:
 
 The preview stage should be optimized for speed and reviewability. The final render should be produced only after the edit decisions, timing, subtitles, audio, overlays, and visual treatment are accepted.
 
+## AI Editing Methodology
+
+For AI-assisted editing work, keep the AI responsible for edit decisions and keep Python responsible for validation and rendering.
+
+Prefer this layered structure:
+
+1. Analysis JSON: media probes, transcript, speaker diarization, face/person tracks, framing, camera quality, audio levels, and named entities.
+2. Semantic JSON: highlight candidates, topics, strong quotes, entity explainers, subtitle candidates, and editorial intent.
+3. Edit Decision JSON: the final timeline, selected source ranges, camera/layout choices, captions, overlays, audio behavior, and transitions.
+
+The key artifact is `edit_plan.json`. It should describe what the finished video should show, not how FFmpeg should spell the filter graph. Do not ask an AI model to produce the final production `filter_complex` as the source of truth. Generate FFmpeg/OpenCV/overlay operations from validated JSON in Python.
+
+Keep identity concepts separate:
+
+- `speaker_id` is a diarized audio speaker.
+- `face_track_id` is a tracked face in video.
+- `person_id` is a confirmed real person.
+
+Do not render names, titles, departments, biographies, or person-specific lower thirds unless they come from a verified project source such as `people_map.json`. AI-inferred identities must remain placeholders until confirmed.
+
+Design project-local schemas and scripts to support any number of participants and cameras. Avoid hard-coded assumptions such as exactly two speakers, exactly three people, exactly four cameras, or count-specific layout names unless the requested output explicitly requires that exact count. Use participant-aware and count-independent concepts such as `wide_group`, `single`, `person_with_bio`, `speaker_reaction_pair`, `split_grid`, and `auto_by_media_count`.
+
+Use seconds for timing and normalized coordinates for analysis geometry by default. Convert to preview, final, or master pixels during rendering.
+
+Keep full transcripts separate from editorial captions:
+
+- `transcript.json` is the source transcript.
+- `semantic_marks.json` contains caption candidates and highlights.
+- `edit_plan.json` contains the captions that will actually be displayed.
+
+Before rendering, validate at minimum:
+
+- all referenced media IDs, person IDs, speaker IDs, face track IDs, and style IDs exist;
+- all source ranges are within media duration;
+- timeline gaps and overlaps are intentional;
+- captions and overlays do not collide unless explicitly allowed;
+- person labels require a verified people map.
+
+When the project needs custom ordering, selection, tuning, QA, or render behavior, keep that logic under `projects/<project-id>/scripts/` unless it is clearly reusable across projects.
+
 ## Shared vs Project-Specific Code
 
 - Put reusable Python implementation in `video_edit_core/`.

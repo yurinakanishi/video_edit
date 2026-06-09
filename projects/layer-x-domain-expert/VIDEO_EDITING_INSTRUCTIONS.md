@@ -804,3 +804,37 @@ Elements to carry over from the reference images:
 - Clean business-interview presentation
 
 Store reference images under `projects/layer-x-domain-expert/reference/`. The renderer should read the optional `reference_image` field in `style_guide.json` when present.
+
+#### Project Reference Image Inventory
+
+Use these project-local sample images as visual references. They are design references only; do not render them directly into the final video.
+
+| Reference image | Use for | Relevant plan/style IDs |
+| --- | --- | --- |
+| `reference/person-introduction-sample.png` | Self-introduction biography layout with one large person crop and a large opposite-side career/background panel | `layout.type: person_with_bio`, `bio_card_reference_style` |
+| `reference/annotation-sample.png` | Proper-noun explainer card, two-person split composition, upper-right topic title, and top-left LayerX logo placement | `entity_explainer_bottom`, `speaker_reaction_pair`, `topic_title_top_right` |
+| `reference/three-people-divided-sample.png` | Three-person divided layout with vertical separators and a persistent upper-right topic title | `split_grid`, `auto_by_media_count`, `topic_title_top_right` |
+| `reference/middle-and-right-people-with-name-plate-divided-sample.png` | Two-person split layout with large name plates for both participants | `split_grid`, `lower_third_people`, `name_tag_reference_style` |
+| `reference/left-person-with-name-plate-sample.png` | Single-person close-up with a large centered lower-third name plate and role/title text above it | `single`, `lower_third_people`, `name_tag_reference_style` |
+
+#### Extracted Reference Design Notes
+
+Carry these observations into `style_guide.json` component definitions and renderer layout logic:
+
+- Brand color: use a saturated LayerX blue-purple as the primary overlay color, approximately `#5F5AF5` to `#6258F7`.
+- Split dividers: use thin light-blue or light-green vertical rules, approximately `#8EC6FF` or `#B7E6C1`, with enough contrast against interview footage.
+- Logo: place the LayerX logo at the upper-left safe area when a branded topic or split layout is shown. Keep it clear of faces and topic bars.
+- Topic title: use a blue-purple upper-right banner with white bold Japanese text. The banner can have angled/slanted ends and subtle translucent geometric texture, but text readability is more important than decoration.
+- Name plates: use a two-tier treatment. Put role/title text above or near the plate in bold white with blue-purple outline or shadow, then place the display name in a solid blue-purple rectangle with very large white type.
+- Explainer card: use a white rectangular card at the lower third with black bold Japanese text, paired with a blue-purple label tab above or attached to the card. Keep the card below faces and above the bottom safe edge.
+- Biography card: use a large blue-purple panel on the side opposite the person. Use a centered section title, a thin horizontal separator line, and large white bullet text with generous line spacing.
+- Person framing: for `person_with_bio`, keep the person large on one side and crop around head/torso while preserving breathing room. For split layouts, keep each face centered within its panel and avoid cutting off microphones or name plates.
+- Information density: the reference images allow dense Japanese text, but only in explicit explanation or biography cards. Strong captions should remain shorter and more readable than the bio/explainer text.
+
+#### Reference-Specific Application Rules
+
+- For `person-introduction-sample.png`, use the person side plus biography-panel structure when rendering each person's self-introduction. The panel should use `people_map.bio_bullets`, not hard-coded text.
+- For `annotation-sample.png`, use the lower white explainer card for terms such as LayerX, Bakuraku, FDE, CPO, CTO, and CISO when they help viewer comprehension. Validate that this card does not overlap regular captions.
+- For `three-people-divided-sample.png`, use the three-column divided look when all participants or the group dynamic should be visible. Keep the topic banner in the upper-right and preserve the top-left logo.
+- For `middle-and-right-people-with-name-plate-divided-sample.png`, use the two-up divided look for important exchanges between two participants. Each participant's name plate must be anchored to that participant's panel and sourced from `people_map.json`.
+- For `left-person-with-name-plate-sample.png`, use the single-person lower-third style when one speaker is the clear focus. The role/title line and display name must both come from `people_map.json`; placeholders are allowed only until confirmed identity data is available.

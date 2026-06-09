@@ -75,6 +75,7 @@ Use separate artifacts for separate responsibilities.
 | `audio_sync_clap_analysis.json` | Clap candidates, waveform correlation, and camera sync offsets | Python |
 | `sync_map.json` | Evidence-backed master/camera time mapping, anchors, confidence, and drift model | Python + manual review |
 | `content_window.json` | Master timeline range allowed for production use, excluding pre-roll/countdown/rehearsal and closing thanks | Python + human rule |
+| `speaker_activity_analysis.json` | Per-candidate active speaker and reaction-person estimates from synced close-camera mouth/face motion | Python |
 | `vision_tracks.json` | Face/person tracks, locations, quality, mouth activity | OpenCV or vision model |
 | `people_map.json` | Mapping between speakers, faces, and real people | Human confirmation |
 | `semantic_marks.json` | Highlights, topics, strong captions, entity explainers | LLM |
@@ -725,6 +726,8 @@ Inputs:
 - speaker_diarization.json
 - audio_sync_clap_analysis.json
 - sync_map.json
+- content_window.json
+- speaker_activity_analysis.json
 - vision_tracks.json
 - people_map.json
 - semantic_marks.json

@@ -12,6 +12,12 @@ REPORTS = PROJECT_ROOT / "output" / "reports"
 REFERENCE_ANALYSIS = REPORTS / "reference_image_analysis"
 JST = timezone(timedelta(hours=9))
 
+PERSON_CAMERA = {
+    "person_01": {"media_id": "cam_person_01", "role": "camera2"},
+    "person_02": {"media_id": "cam_person_02", "role": "camera3"},
+    "person_03": {"media_id": "cam_person_03", "role": "camera4"},
+}
+
 
 def now_iso() -> str:
     return datetime.now(JST).isoformat(timespec="seconds")
@@ -50,6 +56,15 @@ def load_content_window() -> dict[str, Any]:
         "usable_master_range": {"start_sec": 0.0, "end_sec": None},
         "rules": {"exclude_before_start": False, "exclude_after_end_marker": False},
     }
+
+
+def load_speaker_activity() -> dict[str, dict[str, Any]]:
+    payload = read_json(REPORTS / "speaker_activity_analysis.json", {})
+    result: dict[str, dict[str, Any]] = {}
+    for item in payload.get("segments", []):
+        if isinstance(item, dict) and item.get("segment_id"):
+            result[str(item["segment_id"])] = item
+    return result
 
 
 def segment_in_content_window(segment: dict[str, Any], content_window: dict[str, Any]) -> bool:
@@ -290,6 +305,125 @@ def trusted_camera_roles(sync_map: dict[str, Any]) -> list[dict[str, str]]:
     return trusted
 
 
+def ordered_people(left: str, right: str) -> list[str]:
+    seating_order = ["person_01", "person_02", "person_03"]
+    pair = [left, right]
+    return [person_id for person_id in seating_order if person_id in pair]
+
+
+def provisional_media_ids(person_ids: list[str], sync_map: dict[str, Any]) -> list[str]:
+    media_to_item = {item.get("media_id"): item for item in sync_map.get("media_sync", []) if isinstance(item, dict)}
+    result = []
+    for person_id in person_ids:
+        media_id = PERSON_CAMERA.get(person_id, {}).get("media_id")
+        item = media_to_item.get(media_id)
+        if media_id and (not item or item.get("manual_review_required") or float(item.get("confidence") or 0.0) < 0.9):
+            result.append(media_id)
+    return result
+
+
+def choose_layout_from_activity(
+    punchline: dict[str, Any],
+    activity: dict[str, Any] | None,
+    sync_map: dict[str, Any],
+) -> tuple[str, float, dict[str, Any]]:
+    source_start = float(punchline.get("start") or 0.0)
+    text = str(punchline.get("text") or "")
+    if not activity:
+        return (
+            "group_wide",
+            source_start,
+            {
+                "type": "wide_group",
+                "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                "selection_reason": "No speaker activity analysis available for this segment; use group-safe coverage.",
+            },
+        )
+
+    active = str(activity.get("active_person_id") or "")
+    reaction = str(activity.get("reaction_person_id") or "")
+    confidence = float(activity.get("confidence") or 0.0)
+    scores = activity.get("activity_scores") if isinstance(activity.get("activity_scores"), list) else []
+    top = float((scores[0] or {}).get("score") or 0.0) if scores else 0.0
+    second = float((scores[1] or {}).get("score") or 0.0) if len(scores) > 1 else 0.0
+    third = float((scores[2] or {}).get("score") or 0.0) if len(scores) > 2 else 0.0
+
+    if active not in PERSON_CAMERA:
+        return (
+            "group_wide",
+            source_start,
+            {
+                "type": "wide_group",
+                "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                "speaker_activity": activity,
+                "selection_reason": "Speaker activity confidence is low, so a wide group shot is safer than a false speaker cut.",
+            },
+        )
+
+    multi_person = second >= top * 0.82 and third >= top * 0.62
+    if multi_person:
+        people = ["person_01", "person_02", "person_03"]
+        media_ids = [PERSON_CAMERA[person_id]["media_id"] for person_id in people]
+        layout = {
+            "type": "split_grid",
+            "media_ids": media_ids,
+            "grid_strategy": "three_person_vertical_split",
+            "panel_order": people,
+            "active_person_id": active,
+            "reaction_person_ids": [person_id for person_id in people if person_id != active],
+            "speaker_activity": activity,
+            "divider": {"color": "#B7E6C1", "width_px_at_base": 6},
+            "selection_reason": "Three visible participants show comparable activity, so use a three-way divided reference cut.",
+        }
+        provisional = provisional_media_ids(people, sync_map)
+        if provisional:
+            layout["uses_provisional_media_ids"] = provisional
+        return "group_wide", source_start, layout
+
+    if confidence < 0.48:
+        return (
+            "group_wide",
+            source_start,
+            {
+                "type": "wide_group",
+                "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                "speaker_activity": activity,
+                "selection_reason": "Speaker activity confidence is low and not clearly multi-person, so a wide group shot is safer than a false speaker cut.",
+            },
+        )
+
+    question_like = any(token in text for token in ("ですか", "ますか", "どう", "お二人", "?"))
+    exchange_like = active == "person_01" or question_like or (reaction in PERSON_CAMERA and second >= top * 0.58)
+    if exchange_like and reaction in PERSON_CAMERA:
+        people = ordered_people(active, reaction)
+        media_ids = [PERSON_CAMERA[person_id]["media_id"] for person_id in people]
+        layout = {
+            "type": "split_grid",
+            "media_ids": media_ids,
+            "grid_strategy": "two_person_vertical_split",
+            "panel_order": people,
+            "active_person_id": active,
+            "reaction_person_ids": [person_id for person_id in people if person_id != active],
+            "speaker_activity": activity,
+            "divider": {"color": "#B7E6C1", "width_px_at_base": 6},
+            "selection_reason": "Two-up selected because the active speaker and strongest reaction candidate form the conversational exchange.",
+        }
+        provisional = provisional_media_ids(people, sync_map)
+        if provisional:
+            layout["uses_provisional_media_ids"] = provisional
+        return "group_wide", source_start, layout
+
+    selected = PERSON_CAMERA[active]
+    layout = {
+        "type": "single",
+        "selected_media_id": selected["media_id"],
+        "target_person_id": active,
+        "speaker_activity": activity,
+        "selection_reason": "Single-speaker close-up selected because mouth-motion analysis identifies one dominant active speaker.",
+    }
+    return selected["media_id"], source_start, layout
+
+
 def apply_reference_alignment(plan: dict[str, Any]) -> dict[str, Any]:
     plan["reference_image_analysis_source"] = str(REFERENCE_ANALYSIS / "manifest.json")
     for event in plan.get("timeline", []):
@@ -357,7 +491,7 @@ def build_edit_plan(
     timeline = []
     cursor = 0.0
     offsets = sync.get("offsets") if isinstance(sync.get("offsets"), dict) else {}
-    trusted_roles = trusted_camera_roles(sync_map)
+    activity_by_segment = load_speaker_activity()
     digest_highlights = semantic.get("highlight_candidates", [])[:5]
     for index, highlight in enumerate(digest_highlights, start=1):
         source_start = float(highlight.get("source_start") or 0.0)
@@ -438,21 +572,13 @@ def build_edit_plan(
     for index, punchline in enumerate(semantic.get("punchline_subtitles", [])[:12], start=1):
         source_start = float(punchline.get("start") or 0.0)
         duration = 18.0
-        selected = trusted_roles[(index - 1) % len(trusted_roles)] if trusted_roles else None
-        if selected:
-            selected_media = selected["media_id"]
-            selected_role = selected["role"]
-            selected_source_start = max(0.0, source_start + float(offsets.get(selected_role, 0.0)))
-            layout = {
-                "type": "single",
-                "selected_media_id": selected_media,
-                "target_person_id": selected["person_id"],
-                "selection_reason": f"{selected_role} is sync-confirmed and usable for visual variety",
-            }
+        activity = activity_by_segment.get(str(punchline.get("segment_id") or ""))
+        selected_media, selected_source_start, layout = choose_layout_from_activity(punchline, activity, sync_map)
+        if selected_media in ("cam_person_01", "cam_person_02", "cam_person_03"):
+            role = MEDIA_TO_ROLE = {"cam_person_01": "camera2", "cam_person_02": "camera3", "cam_person_03": "camera4"}[selected_media]
+            selected_source_start = max(0.0, source_start + float(offsets.get(role, 0.0)))
         else:
-            selected_media = "group_wide"
             selected_source_start = source_start
-            layout = {"type": "wide_group", "selection_reason": "wide shot is the only fully trusted sync source"}
         timeline.append(
             {
                 "event_id": f"main_segment_{index:03d}",
@@ -495,6 +621,7 @@ def build_edit_plan(
         "sync_source": str(REPORTS / "app_sync_offsets.json"),
         "sync_map_source": str(REPORTS / "sync_map.json"),
         "content_window_source": str(REPORTS / "content_window.json"),
+        "speaker_activity_source": str(REPORTS / "speaker_activity_analysis.json"),
         "content_window": content_window.get("usable_master_range"),
         "timeline": timeline,
         "validation": {

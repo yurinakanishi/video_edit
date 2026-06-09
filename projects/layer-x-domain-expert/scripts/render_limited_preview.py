@@ -13,6 +13,7 @@ REPORTS = PROJECT_ROOT / "output" / "reports"
 VIDEOS = PROJECT_ROOT / "output" / "videos"
 DIAGNOSTICS = PROJECT_ROOT / "output" / "diagnostics"
 FFMPEG_DEFAULT = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
+FONT_FILE = Path(r"C:\Windows\Fonts\YuGothB.ttc")
 
 
 MEDIA_PATHS = {
@@ -21,6 +22,13 @@ MEDIA_PATHS = {
     "cam_person_02": PROJECT_ROOT / "source" / "video" / "person-middle.mp4",
     "cam_person_03": PROJECT_ROOT / "source" / "video" / "person-right.mp4",
     "company_movie": PROJECT_ROOT / "source" / "video" / "company-movie.mp4",
+}
+
+MEDIA_TO_ROLE = {
+    "cam_person_01": "camera2",
+    "cam_person_02": "camera3",
+    "cam_person_03": "camera4",
+    "group_wide": "master",
 }
 
 
@@ -38,6 +46,21 @@ def ffmpeg_path() -> str:
     if FFMPEG_DEFAULT.exists():
         return str(FFMPEG_DEFAULT)
     return "ffmpeg"
+
+
+def app_offsets() -> dict[str, float]:
+    path = REPORTS / "app_sync_offsets.json"
+    if not path.exists():
+        return {"master": 0.0}
+    payload = read_json(path)
+    offsets = payload.get("offsets") if isinstance(payload.get("offsets"), dict) else {}
+    result = {"master": 0.0}
+    for key, value in offsets.items():
+        try:
+            result[str(key)] = float(value)
+        except (TypeError, ValueError):
+            pass
+    return result
 
 
 def duration(event: dict[str, Any]) -> float:
@@ -58,14 +81,74 @@ def audio_source(event: dict[str, Any]) -> dict[str, Any]:
     return clip_source(event)
 
 
+def ffmpeg_text(value: str) -> str:
+    return (
+        value.replace("\\", "\\\\")
+        .replace(":", "\\:")
+        .replace("'", "\\'")
+        .replace(",", "\\,")
+        .replace("[", "\\[")
+        .replace("]", "\\]")
+        .replace("%", "\\%")
+    )
+
+
+def caption_filters(event: dict[str, Any]) -> str:
+    filters = []
+    for overlay in event.get("overlays", []):
+        if not isinstance(overlay, dict) or overlay.get("type") != "caption":
+            continue
+        text = str(overlay.get("text") or "").strip()
+        if not text:
+            continue
+        start = float(overlay.get("start") or 0.0)
+        end = float(overlay.get("end") or duration(event))
+        font = FONT_FILE.as_posix().replace(":", "\\:")
+        filters.append(
+            "drawtext="
+            f"fontfile='{font}':"
+            f"text='{ffmpeg_text(text)}':"
+            "x=(w-text_w)/2:"
+            "y=h-128:"
+            "fontsize=38:"
+            "fontcolor=white:"
+            "borderw=2:"
+            "bordercolor=black@0.65:"
+            "box=1:"
+            "boxcolor=0x5F5AF5@0.88:"
+            "boxborderw=18:"
+            f"enable='between(t\\,{start:.3f}\\,{end:.3f})'"
+        )
+    return "," + ",".join(filters) if filters else ""
+
+
 def video_filter(event: dict[str, Any]) -> str:
     section = str(event.get("section") or "")
     if section == "bridge":
-        return "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1"
-    return "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1"
+        base = "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1"
+    else:
+        base = "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1"
+    return base + caption_filters(event)
+
+
+def synced_media_start(media_id: str, master_time: float, offsets: dict[str, float]) -> float:
+    role = MEDIA_TO_ROLE.get(media_id, "master")
+    return max(0.0, master_time + offsets.get(role, 0.0))
+
+
+def split_media_ids(event: dict[str, Any]) -> list[str]:
+    layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+    media_ids = layout.get("media_ids")
+    if isinstance(media_ids, list):
+        return [str(media_id) for media_id in media_ids if str(media_id) in MEDIA_PATHS]
+    return []
 
 
 def render_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> None:
+    layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+    if layout.get("type") == "split_grid" and split_media_ids(event):
+        render_split_segment(ffmpeg, event, output)
+        return
     src = clip_source(event)
     aud = audio_source(event)
     video_path = MEDIA_PATHS.get(str(src.get("media_id")))
@@ -116,6 +199,62 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> None:
         "-shortest",
         str(output),
     ]
+    subprocess.run(command, cwd=WORKSPACE_ROOT, check=True)
+
+
+def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> None:
+    aud = audio_source(event)
+    audio_path = MEDIA_PATHS.get(str(aud.get("media_id")))
+    if audio_path is None or not audio_path.exists():
+        raise FileNotFoundError(f"Audio media not available for preview: {aud.get('media_id')}")
+    media_ids = split_media_ids(event)
+    dur = duration(event)
+    master_in = float((event.get("reference_source") or {}).get("in") or (event.get("source") or {}).get("in") or 0.0)
+    offsets = app_offsets()
+    command = [ffmpeg, "-hide_banner", "-loglevel", "warning", "-y"]
+    for media_id in media_ids:
+        video_path = MEDIA_PATHS[media_id]
+        command.extend(["-ss", f"{synced_media_start(media_id, master_in, offsets):.3f}", "-t", f"{dur:.3f}", "-i", str(video_path)])
+    command.extend(["-ss", f"{float(aud.get('in') or master_in):.3f}", "-t", f"{dur:.3f}", "-i", str(audio_path)])
+
+    filters = []
+    if len(media_ids) == 2:
+        for index in range(2):
+            filters.append(f"[{index}:v]scale=640:720:force_original_aspect_ratio=increase,crop=640:720,setsar=1[v{index}]")
+        stack = "[v0][v1]hstack=inputs=2"
+    elif len(media_ids) == 3:
+        for index in range(3):
+            filters.append(f"[{index}:v]scale=426:720:force_original_aspect_ratio=increase,crop=426:720,setsar=1[v{index}]")
+        stack = "[v0][v1][v2]hstack=inputs=3,pad=1280:720:1:0"
+    else:
+        raise ValueError(f"Unsupported split media count: {len(media_ids)}")
+    filters.append(stack + caption_filters(event) + "[vout]")
+    command.extend(
+        [
+            "-filter_complex",
+            ";".join(filters),
+            "-map",
+            "[vout]",
+            "-map",
+            f"{len(media_ids)}:a:0?",
+            "-r",
+            "30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "veryfast",
+            "-crf",
+            "28",
+            "-c:a",
+            "aac",
+            "-b:a",
+            "128k",
+            "-ar",
+            "48000",
+            "-shortest",
+            str(output),
+        ]
+    )
     subprocess.run(command, cwd=WORKSPACE_ROOT, check=True)
 
 

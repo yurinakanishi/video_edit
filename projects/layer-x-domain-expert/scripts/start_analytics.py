@@ -757,6 +757,7 @@ def update_state(state: dict[str, Any], app_manifest: dict[str, Any]) -> dict[st
                 "audioTrackAnalysis": str(REPORTS / "audio_track_analysis.json"),
                 "syncMap": str(REPORTS / "sync_map.json"),
                 "contentWindow": str(REPORTS / "content_window.json"),
+                "speakerActivity": str(REPORTS / "speaker_activity_analysis.json"),
                 "referenceImageAnalysis": str(REPORTS / "reference_image_analysis" / "manifest.json"),
             },
             "transcriptionPolicy": {

@@ -239,6 +239,8 @@ Use normalized coordinates from `0` to `1`. Convert them to preview, final, or m
       "company": "LayerX",
       "department": "Domain Expert Team",
       "role_title": "Domain Expert",
+      "conversation_role": "interviewer",
+      "screen_position": "left",
       "speaker_ids": ["spk_01"],
       "face_track_ids": ["face_001", "face_014"],
       "bio_bullets": [
@@ -252,6 +254,13 @@ Use normalized coordinates from `0` to `1`. Convert them to preview, final, or m
 ```
 
 The `people` array can contain one person or many people. The edit logic must iterate over the array instead of hard-coding a participant count.
+
+For this project, preserve the participant roles and physical screen positions in `people_map.json`:
+
+- The left-side participant is the interviewer: `conversation_role: "interviewer"`, `screen_position: "left"`.
+- The middle and right participants are interviewees: `conversation_role: "interviewee"`, `screen_position: "middle"` / `"right"`.
+- When rendering any two-person divided layout that includes the interviewer, the interviewer must appear on the left side of the split, regardless of who is speaking.
+- When rendering a two-person divided layout between only the middle and right interviewees, keep their natural order: middle participant on the left panel, right participant on the right panel.
 
 ## Semantic Marks Example
 
@@ -828,6 +837,13 @@ This interview has **three participants and four camera sources**. Cut based on 
 - Separate panels with a **thin light-green line** (`divider.color: #B7E6C1`)
 - Do not stay in 4-up all the time; switch layouts based on conversation needs
 
+**2-up divided layout rules**
+
+- The left-side participant is the interviewer. Whenever a 2-up / two-person divided layout includes this interviewer, place the interviewer in the left panel.
+- The middle and right participants are interviewees. When the 2-up layout includes only these two interviewees, place the middle participant in the left panel and the right participant in the right panel.
+- Do not swap panel order just because the active speaker changes. Use visual emphasis, captions, or camera selection to indicate the current speaker while preserving the role/order rule.
+- Encode the selected panel order in `edit_plan.json`, for example `layout.panel_order: ["interviewer", "interviewee_middle"]` or person IDs from `people_map.json`.
+
 **Cut-selection rules**
 
 - When someone makes an important statement, prioritize their close-up
@@ -887,5 +903,5 @@ Carry these observations into `style_guide.json` component definitions and rende
 - For `person-introduction-sample.png`, use the person side plus biography-panel structure when rendering each person's self-introduction. The panel should use `people_map.bio_bullets`, not hard-coded text.
 - For `annotation-sample.png`, use the lower white explainer card for terms such as LayerX, Bakuraku, FDE, CPO, CTO, and CISO when they help viewer comprehension. Validate that this card does not overlap regular captions.
 - For `three-people-divided-sample.png`, use the three-column divided look when all participants or the group dynamic should be visible. Keep the topic banner in the upper-right and preserve the top-left logo.
-- For `middle-and-right-people-with-name-plate-divided-sample.png`, use the two-up divided look for important exchanges between two participants. Each participant's name plate must be anchored to that participant's panel and sourced from `people_map.json`.
+- For `middle-and-right-people-with-name-plate-divided-sample.png`, use the two-up divided look for important exchanges between two participants. Each participant's name plate must be anchored to that participant's panel and sourced from `people_map.json`. If the interviewer is one of the two participants, keep the interviewer in the left panel; if the split is between the middle and right interviewees only, keep the middle participant left and the right participant right.
 - For `left-person-with-name-plate-sample.png`, use the single-person lower-third style when one speaker is the clear focus. The role/title line and display name must both come from `people_map.json`; placeholders are allowed only until confirmed identity data is available.

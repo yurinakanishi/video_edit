@@ -123,6 +123,12 @@ This structure supports any number of people and any number of cameras. Do not a
       "role": "single_person",
       "camera_index": 3,
       "sync_offset": -0.04
+    },
+    {
+      "media_id": "company_movie",
+      "path": "source/video/company-movie.mp4",
+      "role": "company_movie",
+      "sync_offset": 0.0
     }
   ],
   "outputs": [
@@ -311,7 +317,7 @@ For this project, preserve the participant roles and physical screen positions i
 }
 ```
 
-These captions are not full subtitles. They are strong, editorial captions selected for emphasis.
+These captions are not full transcript subtitles. They are editorial caption subtitles selected for emphasis. Slightly longer lines may use one caption swap within the same speech segment.
 
 ## Edit Plan Example
 
@@ -361,9 +367,30 @@ The renderer should be able to read `edit_plan.json` and generate the render wit
       "reason": "Strong opening statement for the digest."
     },
     {
-      "event_id": "main_intro_group",
+      "event_id": "digest_to_main_company_movie",
       "timeline_start": 10.8,
-      "timeline_end": 23.5,
+      "timeline_end": 18.8,
+      "type": "source_clip",
+      "section": "bridge",
+      "source": {
+        "media_id": "company_movie",
+        "in": 0.0,
+        "out": 8.0
+      },
+      "layout": {
+        "type": "single",
+        "crop_mode": "fit"
+      },
+      "audio": {
+        "mode": "source"
+      },
+      "overlays": [],
+      "reason": "Company movie bridge between Opening Digest and main section."
+    },
+    {
+      "event_id": "main_intro_group",
+      "timeline_start": 18.8,
+      "timeline_end": 31.5,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -387,8 +414,8 @@ The renderer should be able to read `edit_plan.json` and generate the render wit
     },
     {
       "event_id": "self_intro_person_01",
-      "timeline_start": 23.5,
-      "timeline_end": 53.5,
+      "timeline_start": 31.5,
+      "timeline_end": 61.5,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -413,8 +440,8 @@ The renderer should be able to read `edit_plan.json` and generate the render wit
     },
     {
       "event_id": "main_multicam_001",
-      "timeline_start": 53.5,
-      "timeline_end": 69.5,
+      "timeline_start": 61.5,
+      "timeline_end": 77.5,
       "type": "multicam_segment",
       "section": "main",
       "source_time": {
@@ -445,8 +472,8 @@ The renderer should be able to read `edit_plan.json` and generate the render wit
     },
     {
       "event_id": "main_grid_001",
-      "timeline_start": 69.5,
-      "timeline_end": 83.5,
+      "timeline_start": 77.5,
+      "timeline_end": 91.5,
       "type": "multicam_segment",
       "section": "main",
       "source_time": {
@@ -567,11 +594,12 @@ Inputs:
 
 Goals:
 - Create an opening digest from the strongest moments.
-- Transition from the digest into the main section.
+- After the digest, insert source/video/company-movie.mp4 as a bridge before the main section.
 - Use a group view when introducing the conversation.
 - Render person labels only from people_map.json.
 - During self-introductions, show the person and a short biography card.
-- Do not create full subtitles; show only strong editorial captions.
+- Do not create full transcript subtitles in either section; use editorial caption subtitles only.
+- Prefer short emphasized phrases; allow one caption swap within a speech segment when the line is slightly longer.
 - Show topic titles and entity explainers when they add clarity.
 - Use camera selection based on speaker, reactions, visual quality, and variety.
 - Support any number of participants and cameras.
@@ -638,7 +666,8 @@ Priorities:
 - Hook viewers with a 45-second opening digest
 - Establish all three participants and their titles near the start of the main section
 - Make each person's background clear during self-introductions
-- Emphasize only the most important words as on-screen captions
+- Use editorial caption subtitles in both digest and main section; never full transcript subtitles
+- Emphasize only the most important words as on-screen captions; allow one caption swap when a line is slightly longer
 - Show the current topic in the upper-right corner as the conversation moves
 - Add short explainers for proper nouns when needed
 - Use all four camera sources to keep the edit visually varied
@@ -647,9 +676,10 @@ Priorities:
 ### Opening Digest (First 45 Seconds)
 
 - Pull the strongest statements and reactions from the main interview into a digest of about 45 seconds
-- After the digest ends, enter the main section with a slide transition
+- After the digest ends, insert `source/video/company-movie.mp4` as a bridge clip before the main section begins
 - Select digest captions from `highlight_candidates` / `digest_caption` in `semantic_marks.json`
-- Use fewer captions than in the main section, but keep each clip's message short and strong
+- Use fewer captions than in the main section
+- Prefer short, strong emphasized phrases; if a line is slightly longer, one caption swap within the same speech segment is acceptable
 
 **Opening Digest visual style**
 
@@ -673,7 +703,25 @@ For all Opening Digest clips, keep these elements consistent with the sample:
 
 During the Opening Digest, the upper-right title is the **overall title for this video**. It is not a chapter title.
 
-Do not render full transcript subtitles in the Opening Digest. Render only strong short `digest_caption` phrases from `semantic_marks.json`, using `style_id: opening_digest_sample_caption`.
+Do not render full transcript subtitles in the Opening Digest. Render only editorial caption subtitles from `semantic_marks.json`, using `style_id: opening_digest_sample_caption`.
+
+Digest caption length:
+
+- Default: one short emphasized phrase per clip
+- Allowed: a slightly longer line that needs one caption swap within the same speech segment (show caption A, then replace it once with caption B before the clip ends)
+- Not allowed: full transcript subtitles or continuous line-by-line subtitle coverage
+
+### Digest-to-Main Bridge (`company-movie.mp4`)
+
+Between the Opening Digest and the main section, insert the company movie clip:
+
+- Source: `projects/layer-x-domain-expert/source/video/company-movie.mp4`
+- Manifest `media_id`: `company_movie`
+- Timeline `section`: `bridge`
+- Use the clip as a visual and narrative bridge from the digest hook into the interview main section
+- Trim `in` / `out` to the editorially appropriate portion of the company movie; use the full clip only if that length fits the pacing goal
+- Do not add digest captions, topic titles, or interview overlays to this bridge clip unless a future style rule explicitly requires them
+- Place this event after the last digest event and before the first main-section event in `edit_plan.json`
 
 ### Main Section Visual Difference From Digest
 
@@ -694,7 +742,9 @@ Remove these digest-only frame elements from the main section:
 
 Important: the upper-right title's own purple box background remains in the main section. Only the digest-style full-width top band and bottom line are removed.
 
-In the main section, the upper-right title is the **chapter/topic title** for the current segment. Derive chapter titles from transcript/subtitle analysis and store them in `semantic_marks.json` `topics`, then reference them from `edit_plan.json` as `overlays.type: topic_title`, `position: top_right`.
+In the main section, the upper-right title is the **chapter/topic title** for the current segment. Derive chapter titles from transcript analysis and store them in `semantic_marks.json` `topics`, then reference them from `edit_plan.json` as `overlays.type: topic_title`, `position: top_right`.
+
+The main section also uses editorial caption subtitles only. Do not switch to full transcript subtitles after the digest.
 
 ### Participant Introduction at the Start of the Main Section
 
@@ -752,15 +802,18 @@ Examples:
 
 ### Caption Policy
 
-Do **not** display the full transcript as subtitles. Use editorial captions only: strong phrases, memorable lines, and points the viewer should take away.
+Do **not** display the full transcript as subtitles in either the Opening Digest or the main section. Use **editorial caption subtitles** only: strong phrases, memorable lines, and points the viewer should take away.
 
 | Item | Policy |
 | --- | --- |
-| Data source | `transcript.json` is source material. Display text flows through `punchline_subtitles` in `semantic_marks.json` into `edit_plan.json` |
-| Frequency | Much higher than in the digest. Target roughly one caption every 30 seconds on average |
+| Display mode | Caption subtitles only. Never render continuous full-transcript subtitles. |
+| Digest source | `semantic_marks.json` → `highlight_candidates` / `digest_caption` |
+| Main source | `transcript.json` is source material only. Display text flows through `punchline_subtitles` in `semantic_marks.json` into `edit_plan.json` |
+| Frequency | Main section: much higher than in the digest. Target roughly one caption every 30 seconds on average |
 | Back-to-back captions | Allowed when important lines continue in sequence; do not wait 30 seconds in those cases |
 | Gaps | Allowed when there is no strong line worth emphasizing; gaps longer than 30 seconds are fine |
-| Wording | Short, strong, readable, like a catchphrase |
+| Length | Prefer short, strong, readable catchphrases. If a line is slightly longer, one caption swap within the same speech segment is acceptable |
+| Caption swap | Replace the on-screen caption once with the next caption phrase for the same speech segment. Do not chain multiple swaps to approximate full subtitles |
 
 Bad example:
 
@@ -770,7 +823,12 @@ Good example:
 
 > The starting point of business growth is customer understanding.
 
-Summarize and polish for readability without changing the speaker's meaning. Use `style_id: main_punchline_caption`.
+Slightly longer but still acceptable (one swap within the segment):
+
+> Caption 1: Customer understanding is the starting point of business growth.
+> Caption 2: That understanding has to come before product decisions.
+
+Summarize and polish for readability without changing the speaker's meaning. Use `style_id: main_punchline_caption` in the main section and `style_id: opening_digest_sample_caption` in the digest.
 
 ### Topic Title in the Upper Right
 

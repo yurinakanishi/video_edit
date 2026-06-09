@@ -127,10 +127,13 @@
     "sourceText": "semantic_marks.highlight_candidates[].digest_caption or semantic_marks.punchline_subtitles[] selected for Opening Digest",
     "policy": {
       "fullTranscriptSubtitles": false,
+      "displayMode": "editorial_caption_subtitles_only",
       "maxLines": 2,
       "preferredCharactersPerLineJapanese": 16,
       "preferredWordsPerLineEnglish": 7,
-      "displayOnlyStrongDigestPhrases": true
+      "displayOnlyStrongDigestPhrases": true,
+      "allowOneCaptionSwapPerSpeechSegment": true,
+      "captionSwapRule": "Prefer one short emphasized phrase. If the line is slightly longer, replace the on-screen caption once within the same speech segment. Do not chain multiple swaps to approximate full subtitles."
     },
     "placement": {
       "anchor": "lower_middle",
@@ -213,13 +216,20 @@
       "wide_group",
       "split_grid"
     ],
-    "captionFrequency": "Fewer captions than the main section. Prefer one strong phrase per digest clip.",
-    "transitionOut": "After the digest ends, transition into the main section with the project-approved slide transition.",
+    "captionFrequency": "Fewer captions than the main section. Prefer one strong phrase per digest clip. One caption swap within the same speech segment is allowed when the line is slightly longer.",
+    "transitionOut": {
+      "type": "company_movie_bridge",
+      "mediaPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\company-movie.mp4",
+      "manifestMediaId": "company_movie",
+      "editPlanSection": "bridge",
+      "rule": "After the digest ends, insert company-movie.mp4 before the first main-section event. Trim in/out to the editorially appropriate portion."
+    },
     "validation": [
       "All digest captions must fit inside their boxes at preview and final scales.",
       "Captions must not cover the active speaker's mouth or key facial expression.",
       "Logo panel, top band, top-right title, and bottom band must remain visible for every digest shot.",
-      "No full transcript subtitles in Opening Digest."
+      "No full transcript subtitles in Opening Digest.",
+      "At most one caption swap per speech segment in the digest."
     ]
   },
   "mainSectionStyleOverrides": {
@@ -245,7 +255,12 @@
     },
     "captionSource": {
       "source": "semantic_marks.punchline_subtitles",
-      "rule": "Use editorial captions selected from the transcript, not full subtitles."
+      "rule": "Use editorial caption subtitles selected from the transcript, not full transcript subtitles."
+    },
+    "captionLength": {
+      "preferShortCatchphrases": true,
+      "allowOneCaptionSwapPerSpeechSegment": true,
+      "rule": "Main section caption subtitles follow the same length policy as the digest: short emphasized phrases by default, with one caption swap allowed when a line is slightly longer."
     },
     "styleIds": {
       "mainCaption": "main_punchline_caption",
@@ -257,8 +272,16 @@
       "Main-section renders must not include the digest top full-width purple band.",
       "Main-section renders must not include the digest bottom purple line.",
       "Main-section upper-right title boxes must remain visible and use the same blue-purple title style.",
-      "Introduction events must be selected from transcript evidence, not assumed to occur at a fixed timestamp."
-    ]
+      "Introduction events must be selected from transcript evidence, not assumed to occur at a fixed timestamp.",
+      "Main section must use editorial caption subtitles only; never full transcript subtitles.",
+      "At most one caption swap per speech segment in the main section."
+    ],
+    "bridgeClip": {
+      "mediaPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\company-movie.mp4",
+      "manifestMediaId": "company_movie",
+      "placement": "between_digest_and_main",
+      "overlays": "none_by_default"
+    }
   },
   "editPlanExample": {
     "layout": {

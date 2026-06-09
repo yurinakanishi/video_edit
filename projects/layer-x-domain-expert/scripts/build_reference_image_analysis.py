@@ -88,8 +88,8 @@ REFERENCE_ANALYSIS: dict[str, dict[str, Any]] = {
     },
     "left-person-with-name-plate-sample.png": {
         "reference_image_id": "single_person_nameplate",
-        "layout_types": ["single", "lower_third_people"],
-        "intended_sections": ["main_interview_single_speaker", "participant_identification"],
+        "layout_types": ["single", "lower_third_person"],
+        "intended_sections": ["participant_identification"],
         "framing": {
             "composition": "single_person_medium_closeup_with_large_nameplate",
             "subject_crop": "upper torso crop with breathing room above head and shoulders visible",
@@ -108,15 +108,16 @@ REFERENCE_ANALYSIS: dict[str, dict[str, Any]] = {
             },
         },
         "render_directives": [
-            "Use this for single-speaker close-ups and any first clear identification of one participant.",
+            "Use this only for participant introduction or first clear identification cuts.",
             "Keep the subject large enough that facial expression reads clearly; avoid cutting off the microphone.",
             "Name, title, and role text must come from people_map.json.",
+            "Do not render caption subtitles during the interval where the nameplate is visible.",
         ],
     },
     "middle-and-right-people-with-name-plate-divided-sample.png": {
         "reference_image_id": "two_person_nameplate_split",
-        "layout_types": ["split_grid", "speaker_reaction_pair", "lower_third_people"],
-        "intended_sections": ["two_person_exchange", "participant_identification"],
+        "layout_types": ["split_grid", "speaker_reaction_pair"],
+        "intended_sections": ["two_person_exchange"],
         "framing": {
             "composition": "two_equal_vertical_panels_with_nameplates",
             "subject_crop": "each person medium close-up; shoulders and microphone visible",
@@ -127,12 +128,12 @@ REFERENCE_ANALYSIS: dict[str, dict[str, Any]] = {
         "overlay_style": {
             "logo": {"position": "top_left", "x_norm": 0.03, "y_norm": 0.04, "width_norm": 0.18},
             "topic_title": {"position": "top_right", "background": "#5F5AF5", "text": "white bold"},
-            "nameplate": {"position": "per_panel_lower_third", "source": "people_map", "background": "#5F5AF5"},
+            "nameplate": {"current_project_policy": "do_not_render_nameplates_in_split_layouts"},
         },
         "render_directives": [
             "Use for important exchanges where both faces should remain readable.",
             "Keep panel order stable; do not swap panels to chase the active speaker.",
-            "Anchor each nameplate inside its own panel, below the correct face.",
+            "Do not show nameplates in split layouts for this project; reserve large nameplates for single-person introduction cuts.",
         ],
     },
     "person-introduction-sample.png": {

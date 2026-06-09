@@ -18,6 +18,30 @@ PERSON_CAMERA = {
     "person_03": {"media_id": "cam_person_03", "role": "camera4"},
 }
 
+INTRODUCTION_CUES = [
+    {
+        "event_id": "intro_person_02_nemoto",
+        "person_id": "person_02",
+        "master_in": 623.52,
+        "duration": 14.0,
+        "reason": "根本さんの自己紹介開始に合わせて、単独カメラで大きなネームプレートを表示。",
+    },
+    {
+        "event_id": "intro_person_03_murata",
+        "person_id": "person_03",
+        "master_in": 675.06,
+        "duration": 14.0,
+        "reason": "村田さんの自己紹介開始に合わせて、単独カメラで大きなネームプレートを表示。",
+    },
+    {
+        "event_id": "intro_person_01_yano",
+        "person_id": "person_01",
+        "master_in": 727.46,
+        "duration": 14.0,
+        "reason": "矢野さんの自己紹介開始に合わせて、単独カメラで大きなネームプレートを表示。",
+    },
+]
+
 
 def now_iso() -> str:
     return datetime.now(JST).isoformat(timespec="seconds")
@@ -271,6 +295,16 @@ def media_duration(manifest: dict[str, Any], media_id: str) -> float:
             except (TypeError, ValueError):
                 return 0.0
     return 0.0
+
+
+def synced_source_start_for_person(person_id: str, master_time: float, offsets: dict[str, Any]) -> tuple[str, float]:
+    camera = PERSON_CAMERA[person_id]
+    role = camera["role"]
+    try:
+        offset = float(offsets.get(role, 0.0))
+    except (TypeError, ValueError):
+        offset = 0.0
+    return camera["media_id"], max(0.0, master_time + offset)
 
 
 def sync_review_items(sync_map: dict[str, Any]) -> list[dict[str, Any]]:
@@ -548,7 +582,7 @@ def build_edit_plan(
 
     topics = semantic.get("topics", [])
     main_start = float(topics[0].get("start") or 0.0) if topics else 0.0
-    intro_duration = 18.0
+    intro_duration = 10.0
     timeline.append(
         {
             "event_id": "main_intro_group",
@@ -561,13 +595,60 @@ def build_edit_plan(
             "layout": {"type": "wide_group", "ensure_people_visible": ["person_01", "person_02", "person_03"], "safe_margin": 0.06},
             "audio": {"mode": "source", "source_media_id": "group_wide"},
             "overlays": [
-                {"type": "lower_third_people", "people_source": "people_map", "anchor": "below_face", "style_id": "name_tag_reference_style"},
                 {"type": "topic_title", "position": "top_right", "topic_id": topics[0]["topic_id"] if topics else None, "style_id": "opening_digest_top_right_title"},
             ],
-            "reason": "Establish all participants at the start of the main section.",
+            "reason": "Establish all participants before individual nameplate introduction cuts.",
         }
     )
     cursor += intro_duration
+
+    for cue in INTRODUCTION_CUES:
+        person_id = cue["person_id"]
+        master_in = float(cue["master_in"])
+        cue_duration = float(cue["duration"])
+        selected_media, source_start = synced_source_start_for_person(person_id, master_in, offsets)
+        timeline.append(
+            {
+                "event_id": cue["event_id"],
+                "timeline_start": round(cursor, 3),
+                "timeline_end": round(cursor + cue_duration, 3),
+                "type": "source_clip",
+                "section": "main",
+                "source": {
+                    "media_id": selected_media,
+                    "in": round(source_start, 3),
+                    "out": safe_source_out(media_duration(manifest, selected_media), source_start, cue_duration),
+                },
+                "reference_source": {
+                    "media_id": "group_wide",
+                    "in": round(master_in, 3),
+                    "out": safe_source_out(media_duration(manifest, "group_wide"), master_in, cue_duration),
+                },
+                "layout": {
+                    "type": "single",
+                    "selected_media_id": selected_media,
+                    "target_person_id": person_id,
+                    "crop_mode": "person_centered",
+                    "introduction_nameplate": True,
+                    "selection_reason": "Introduction nameplate cuts must show one participant at a time, not a split layout.",
+                },
+                "audio": {"mode": "source", "source_media_id": "group_wide"},
+                "overlays": [
+                    {
+                        "type": "lower_third_person",
+                        "person_id": person_id,
+                        "people_source": "people_map",
+                        "anchor": "lower_center",
+                        "style_id": "name_tag_reference_style",
+                        "start": 0.25,
+                        "end": min(cue_duration - 0.25, 8.5),
+                    }
+                ],
+                "caption_policy": "no_caption_while_nameplate_visible",
+                "reason": cue["reason"],
+            }
+        )
+        cursor += cue_duration
 
     for index, punchline in enumerate(semantic.get("punchline_subtitles", [])[:12], start=1):
         source_start = float(punchline.get("start") or 0.0)

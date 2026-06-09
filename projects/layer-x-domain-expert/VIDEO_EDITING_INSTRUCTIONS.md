@@ -895,9 +895,9 @@ Participant introduction belongs to the **main section**, not to the digest. Tre
 
 Do not assume the introduction begins at a fixed timestamp. Determine the participant introduction and each self-introduction range from the transcript/transcribed subtitles, speaker turns, and semantic content.
 
-Near the start of the main section, when the transcript indicates participant introduction, use a **wide shot that includes all three participants** (`layout.type: wide_group`).
+Near the start of the main section, first use a brief **wide shot that includes all three participants** (`layout.type: wide_group`) to establish the room.
 
-In that shot, place provisional title/name labels below each person's face.
+After the wide establishing shot, render participant nameplates only in introduction cuts where the target person is being introduced or self-introducing. These nameplate cuts must be **single-person camera shots**, not divided layouts.
 
 Examples:
 
@@ -907,15 +907,17 @@ Examples:
 
 **Text management**
 
-- Placeholder titles and names are acceptable for now
+- Names may be transcript-inferred for preview, but must remain marked as unverified until human confirmation
 - Centralize editable text in `people_map.json` (`display_name`, `company`, `department`, `role_title`)
 - `edit_plan.json` overlays must reference `people_source: "people_map"` instead of hard-coding text
-- Overlay type: `lower_third_people`, `anchor: below_face`
+- Overlay type for a single introduction plate: `lower_third_person`, `anchor: lower_center`
+- Do not render caption subtitles during the time range where a nameplate is visible
+- Do not render nameplates inside 2-up, 3-up, or 4-up split layouts for this project
 
 **Display style**
 
 - Follow the reference image design (`style_guide.json` → `name_tag_reference_style`)
-- Place labels naturally below each face so ownership is obvious at a glance
+- Use a large lower-center nameplate so the identity is obvious at a glance
 - Keep a clean, professional business-interview look
 
 ### Self-Introduction Layout
@@ -1082,8 +1084,8 @@ Use these project-local sample images as visual references. They are design refe
 | `reference/person-introduction-sample.png` | Self-introduction biography layout with one large person crop and a large opposite-side career/background panel | `layout.type: person_with_bio`, `bio_card_reference_style` |
 | `reference/annotation-sample.png` | Proper-noun explainer card, two-person split composition, upper-right topic title, and top-left LayerX logo placement | `entity_explainer_bottom`, `speaker_reaction_pair`, `topic_title_top_right` |
 | `reference/three-people-divided-sample.png` | Three-person divided layout with vertical separators and a persistent upper-right topic title | `split_grid`, `auto_by_media_count`, `topic_title_top_right` |
-| `reference/middle-and-right-people-with-name-plate-divided-sample.png` | Two-person split layout with large name plates for both participants | `split_grid`, `lower_third_people`, `name_tag_reference_style` |
-| `reference/left-person-with-name-plate-sample.png` | Single-person close-up with a large centered lower-third name plate and role/title text above it | `single`, `lower_third_people`, `name_tag_reference_style` |
+| `reference/middle-and-right-people-with-name-plate-divided-sample.png` | Two-person split composition and panel order reference only; do not use its nameplates in this project unless explicitly requested later | `split_grid`, `speaker_reaction_pair` |
+| `reference/left-person-with-name-plate-sample.png` | Single-person introduction close-up with a large centered lower-third name plate and role/title text above it | `single`, `lower_third_person`, `name_tag_reference_style` |
 
 #### Extracted Reference Design Notes
 
@@ -1093,7 +1095,7 @@ Carry these observations into `style_guide.json` component definitions and rende
 - Split dividers: use thin light-blue or light-green vertical rules, approximately `#8EC6FF` or `#B7E6C1`, with enough contrast against interview footage.
 - Logo: place the LayerX logo at the upper-left safe area when a branded topic or split layout is shown. Keep it clear of faces and topic bars.
 - Topic title: use a blue-purple upper-right banner with white bold Japanese text. The banner can have angled/slanted ends and subtle translucent geometric texture, but text readability is more important than decoration.
-- Name plates: use a two-tier treatment. Put role/title text above or near the plate in bold white with blue-purple outline or shadow, then place the display name in a solid blue-purple rectangle with very large white type.
+- Name plates: use a large single-person introduction treatment only. Put role/title text above or near the plate in bold white with blue-purple outline or shadow, then place the display name in a solid blue-purple rectangle with very large white type. Do not show nameplates during split layouts.
 - Explainer card: use a white rectangular card at the lower third with black bold Japanese text, paired with a blue-purple label tab above or attached to the card. Keep the card below faces and above the bottom safe edge.
 - Biography card: use a large blue-purple panel on the side opposite the person. Use a centered section title, a thin horizontal separator line, and large white bullet text with generous line spacing.
 - Person framing: for `person_with_bio`, keep the person large on one side and crop around head/torso while preserving breathing room. For split layouts, keep each face centered within its panel and avoid cutting off microphones or name plates.
@@ -1104,5 +1106,5 @@ Carry these observations into `style_guide.json` component definitions and rende
 - For `person-introduction-sample.png`, use the person side plus biography-panel structure when rendering each person's self-introduction. The panel should use `people_map.bio_bullets`, not hard-coded text.
 - For `annotation-sample.png`, use the lower white explainer card for terms such as LayerX, Bakuraku, FDE, CPO, CTO, and CISO when they help viewer comprehension. Validate that this card does not overlap regular captions.
 - For `three-people-divided-sample.png`, use the three-column divided look when all participants or the group dynamic should be visible. Keep the topic banner in the upper-right and preserve the top-left logo.
-- For `middle-and-right-people-with-name-plate-divided-sample.png`, use the two-up divided look for important exchanges between two participants. Each participant's name plate must be anchored to that participant's panel and sourced from `people_map.json`. If the interviewer is one of the two participants, keep the interviewer in the left panel; if the split is between the middle and right interviewees only, keep the middle participant left and the right participant right.
-- For `left-person-with-name-plate-sample.png`, use the single-person lower-third style when one speaker is the clear focus. The role/title line and display name must both come from `people_map.json`; placeholders are allowed only until confirmed identity data is available.
+- For `middle-and-right-people-with-name-plate-divided-sample.png`, use the two-up divided look for important exchanges between two participants, but ignore the sample's per-panel nameplates for this project. If the interviewer is one of the two participants, keep the interviewer in the left panel; if the split is between the middle and right interviewees only, keep the middle participant left and the right participant right.
+- For `left-person-with-name-plate-sample.png`, use the single-person lower-third style only when a participant is being introduced or self-introducing. The role/title line and display name must both come from `people_map.json`; transcript-inferred names are allowed for preview but require human confirmation before final render.

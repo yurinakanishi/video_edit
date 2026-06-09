@@ -14,6 +14,7 @@ VIDEOS = PROJECT_ROOT / "output" / "videos"
 DIAGNOSTICS = PROJECT_ROOT / "output" / "diagnostics"
 FFMPEG_DEFAULT = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
 FONT_FILE = Path(r"C:\Windows\Fonts\YuGothB.ttc")
+LOGO_PATH = PROJECT_ROOT / "source" / "assets" / "LayerX_Logo_Horizontal_RGB_Color.png"
 
 
 MEDIA_PATHS = {
@@ -63,6 +64,30 @@ def app_offsets() -> dict[str, float]:
     return result
 
 
+def topic_titles() -> dict[str, str]:
+    path = REPORTS / "semantic_marks.json"
+    if not path.exists():
+        return {}
+    payload = read_json(path)
+    result = {}
+    for topic in payload.get("topics", []):
+        if isinstance(topic, dict) and topic.get("topic_id") and topic.get("title"):
+            result[str(topic["topic_id"])] = str(topic["title"])
+    return result
+
+
+def people_map() -> dict[str, dict[str, Any]]:
+    path = REPORTS / "people_map.json"
+    if not path.exists():
+        return {}
+    payload = read_json(path)
+    return {
+        str(person.get("person_id")): person
+        for person in payload.get("people", [])
+        if isinstance(person, dict) and person.get("person_id")
+    }
+
+
 def duration(event: dict[str, Any]) -> float:
     return max(0.01, float(event["timeline_end"]) - float(event["timeline_start"]))
 
@@ -93,7 +118,109 @@ def ffmpeg_text(value: str) -> str:
     )
 
 
-def caption_filters(event: dict[str, Any]) -> str:
+def title_text(event: dict[str, Any]) -> str:
+    titles = topic_titles()
+    for overlay in event.get("overlays", []):
+        if not isinstance(overlay, dict) or overlay.get("type") != "topic_title":
+            continue
+        if overlay.get("text"):
+            return str(overlay["text"])
+        topic_id = overlay.get("topic_id")
+        if topic_id and str(topic_id) in titles:
+            return titles[str(topic_id)]
+    section = str(event.get("section") or "")
+    if section == "digest":
+        return "Domain Expert Digest"
+    return ""
+
+
+def title_filter(event: dict[str, Any]) -> list[str]:
+    if str(event.get("section") or "") == "bridge":
+        return []
+    text = title_text(event).strip()
+    if not text:
+        return []
+    font = FONT_FILE.as_posix().replace(":", "\\:")
+    return [
+        "drawtext="
+        f"fontfile='{font}':"
+        f"text='{ffmpeg_text(text)}':"
+        "x=w-text_w-34:"
+        "y=24:"
+        "fontsize=30:"
+        "fontcolor=white:"
+        "borderw=1:"
+        "bordercolor=black@0.25:"
+        "box=1:"
+        "boxcolor=0x5F5AF5@0.94:"
+        "boxborderw=13"
+    ]
+
+
+def nameplate_text(person_id: str) -> str:
+    person = people_map().get(person_id, {})
+    company = str(person.get("company") or "LayerX")
+    role = str(person.get("role_title") or "TBD")
+    name = str(person.get("display_name") or person_id)
+    if name.startswith("Placeholder "):
+        position = str(person.get("screen_position") or person_id).title()
+        name = f"{position} Participant"
+    if role == "TBD":
+        return f"{company}  {name}"
+    return f"{company} {role}  {name}"
+
+
+def layout_people(event: dict[str, Any]) -> list[tuple[str, int, int, int, int, float, float]]:
+    section = str(event.get("section") or "")
+    if section != "main":
+        return []
+    layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+    layout_type = str(layout.get("type") or "")
+    if layout_type == "split_grid":
+        return []
+    result = []
+    for overlay in event.get("overlays", []):
+        if not isinstance(overlay, dict):
+            continue
+        start = float(overlay.get("start") or 0.0)
+        end = float(overlay.get("end") or duration(event))
+        if overlay.get("type") == "lower_third_person" and overlay.get("person_id"):
+            result.append((str(overlay["person_id"]), 74, 520, 1130, 42, start, end))
+        elif overlay.get("type") == "lower_third_people" and layout_type != "split_grid":
+            result.extend(
+                [
+                    ("person_01", 70, 500, 330, 22, start, end),
+                    ("person_02", 475, 500, 330, 22, start, end),
+                    ("person_03", 870, 500, 330, 22, start, end),
+                ]
+            )
+    return result
+
+
+def nameplate_filter_list(event: dict[str, Any]) -> list[str]:
+    filters = []
+    font = FONT_FILE.as_posix().replace(":", "\\:")
+    for person_id, x, y, width, font_size, start, end in layout_people(event):
+        text = ffmpeg_text(nameplate_text(person_id))
+        filters.append(
+            "drawtext="
+            f"fontfile='{font}':"
+            f"text='{text}':"
+            f"x={x}:"
+            f"y={y}:"
+            f"fontsize={font_size}:"
+            "fontcolor=white:"
+            "borderw=2:"
+            "bordercolor=black@0.45:"
+            "box=1:"
+            "boxcolor=0x5F5AF5@0.88:"
+            "boxborderw=18:"
+            f"enable='between(t\\,{start:.3f}\\,{end:.3f})'"
+        )
+    return filters
+
+
+def caption_filter_list(event: dict[str, Any]) -> list[str]:
     filters = []
     for overlay in event.get("overlays", []):
         if not isinstance(overlay, dict) or overlay.get("type") != "caption":
@@ -119,16 +246,50 @@ def caption_filters(event: dict[str, Any]) -> str:
             "boxborderw=18:"
             f"enable='between(t\\,{start:.3f}\\,{end:.3f})'"
         )
+    return filters
+
+
+def overlay_chain(event: dict[str, Any]) -> str:
+    filters = title_filter(event) + nameplate_filter_list(event) + caption_filter_list(event)
     return "," + ",".join(filters) if filters else ""
 
 
-def video_filter(event: dict[str, Any]) -> str:
+def brand_base_chain(event: dict[str, Any]) -> str:
+    if str(event.get("section") or "") != "digest":
+        return ""
+    return (
+        ",drawbox=x=0:y=0:w=1280:h=102:color=0x5F5AF5@1:t=fill"
+        ",drawbox=x=0:y=700:w=1280:h=20:color=0x5F5AF5@1:t=fill"
+        ",drawbox=x=0:y=0:w=286:h=102:color=white@1:t=fill"
+    )
+
+
+def logo_width(event: dict[str, Any]) -> int:
+    return 173 if str(event.get("section") or "") == "digest" else 168
+
+
+def logo_position(event: dict[str, Any]) -> tuple[int, int]:
+    return (43, 31) if str(event.get("section") or "") == "digest" else (26, 22)
+
+
+def base_video_filter(event: dict[str, Any]) -> str:
     section = str(event.get("section") or "")
     if section == "bridge":
-        base = "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1"
-    else:
-        base = "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1"
-    return base + caption_filters(event)
+        return "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1"
+    return "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1"
+
+
+def split_divider_chain(event: dict[str, Any], media_count: int) -> str:
+    layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+    color = "0xB7E6C1"
+    divider = layout.get("divider") if isinstance(layout.get("divider"), dict) else {}
+    if str(divider.get("color") or "").upper() == "#8EC6FF":
+        color = "0x8EC6FF"
+    if media_count == 2:
+        return f",drawbox=x=638:y=0:w=4:h=720:color={color}@1:t=fill"
+    if media_count == 3:
+        return f",drawbox=x=424:y=0:w=4:h=720:color={color}@1:t=fill,drawbox=x=852:y=0:w=4:h=720:color={color}@1:t=fill"
+    return ""
 
 
 def synced_media_start(media_id: str, master_time: float, offsets: dict[str, float]) -> float:
@@ -176,12 +337,18 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> None:
         f"{dur:.3f}",
         "-i",
         str(audio_path),
+        "-loop",
+        "1",
+        "-i",
+        str(LOGO_PATH),
+        "-filter_complex",
+        f"[0:v]{base_video_filter(event)}{brand_base_chain(event)}[base];"
+        f"[2:v]scale={logo_width(event)}:-1[logo];"
+        f"[base][logo]overlay={logo_position(event)[0]}:{logo_position(event)[1]}{overlay_chain(event)}[vout]",
         "-map",
-        "0:v:0",
+        "[vout]",
         "-map",
         "1:a:0?",
-        "-vf",
-        video_filter(event),
         "-r",
         "30",
         "-c:v",
@@ -216,19 +383,23 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> No
         video_path = MEDIA_PATHS[media_id]
         command.extend(["-ss", f"{synced_media_start(media_id, master_in, offsets):.3f}", "-t", f"{dur:.3f}", "-i", str(video_path)])
     command.extend(["-ss", f"{float(aud.get('in') or master_in):.3f}", "-t", f"{dur:.3f}", "-i", str(audio_path)])
+    command.extend(["-loop", "1", "-i", str(LOGO_PATH)])
 
     filters = []
     if len(media_ids) == 2:
         for index in range(2):
             filters.append(f"[{index}:v]scale=640:720:force_original_aspect_ratio=increase,crop=640:720,setsar=1[v{index}]")
-        stack = "[v0][v1]hstack=inputs=2"
+        stack = "[v0][v1]hstack=inputs=2[base]"
     elif len(media_ids) == 3:
         for index in range(3):
             filters.append(f"[{index}:v]scale=426:720:force_original_aspect_ratio=increase,crop=426:720,setsar=1[v{index}]")
-        stack = "[v0][v1][v2]hstack=inputs=3,pad=1280:720:1:0"
+        stack = "[v0][v1][v2]hstack=inputs=3,pad=1280:720:1:0[base]"
     else:
         raise ValueError(f"Unsupported split media count: {len(media_ids)}")
-    filters.append(stack + caption_filters(event) + "[vout]")
+    logo_index = len(media_ids) + 1
+    filters.append(stack.replace("[base]", f"{split_divider_chain(event, len(media_ids))}[base]"))
+    filters.append(f"[{logo_index}:v]scale={logo_width(event)}:-1[logo]")
+    filters.append(f"[base][logo]overlay={logo_position(event)[0]}:{logo_position(event)[1]}{overlay_chain(event)}[vout]")
     command.extend(
         [
             "-filter_complex",

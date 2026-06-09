@@ -309,26 +309,56 @@ def build_app_manifest(media: list[dict[str, Any]], probes: dict[str, Any]) -> d
 
 
 def build_people_map() -> dict[str, Any]:
+    inferred_people = [
+        {
+            "person_id": "person_01",
+            "position": "left",
+            "conversation_role": "interviewer",
+            "display_name": "矢野",
+            "department": "バクラク事業部",
+            "role_title": "聞き手",
+            "evidence": ["seg_000178: バクラク事業部のヤナと申します", "seg_000246: 矢野と申します"],
+            "bio_bullets": ["LayerX", "バクラク事業部", "聞き手", "ドメインエキスパート職種で入社"],
+        },
+        {
+            "person_id": "person_02",
+            "position": "middle",
+            "conversation_role": "interviewee",
+            "display_name": "根本",
+            "department": "プロダクト開発",
+            "role_title": "PDM / ドメインエキスパート",
+            "evidence": ["seg_000181: ネモさん", "seg_000213: 根本と申します"],
+            "bio_bullets": ["LayerX", "PDM", "経理バックグラウンド", "ドメインエキスパート"],
+        },
+        {
+            "person_id": "person_03",
+            "position": "right",
+            "conversation_role": "interviewee",
+            "display_name": "村田",
+            "department": "労務領域",
+            "role_title": "ドメインエキスパート",
+            "evidence": ["seg_000181: 村田さん", "seg_000233: 村田"],
+            "bio_bullets": ["LayerX", "労務領域", "社会保険労務士バックグラウンド", "開発へのドメイン知識提供"],
+        },
+    ]
     people = []
-    for person_id, position, role in (
-        ("person_01", "left", "interviewer"),
-        ("person_02", "middle", "interviewee"),
-        ("person_03", "right", "interviewee"),
-    ):
+    for item in inferred_people:
+        person_id = item["person_id"]
         people.append(
             {
                 "person_id": person_id,
-                "display_name": f"Placeholder {position.title()} Participant",
+                "display_name": item["display_name"],
                 "company": "LayerX",
-                "department": "TBD",
-                "role_title": "TBD",
-                "conversation_role": role,
-                "screen_position": position,
+                "department": item["department"],
+                "role_title": item["role_title"],
+                "conversation_role": item["conversation_role"],
+                "screen_position": item["position"],
                 "speaker_ids": [],
                 "face_track_ids": [],
                 "source_camera_media_ids": [f"cam_person_0{int(person_id[-1])}"],
-                "identity_status": "placeholder_unverified",
-                "bio_bullets": ["LayerX", "Department TBD", "Role TBD", "Domain expertise TBD"],
+                "identity_status": "transcript_inferred_unverified",
+                "identity_evidence": item["evidence"],
+                "bio_bullets": item["bio_bullets"],
             }
         )
     return {
@@ -336,7 +366,7 @@ def build_people_map() -> dict[str, Any]:
         "project_id": "layer-x-domain-expert",
         "generated_at": now_iso(),
         "identity_policy": {
-            "visible_names_are_placeholders": True,
+            "visible_names_are_transcript_inferred": True,
             "requires_human_confirmation_before_final_render": True,
         },
         "people": people,

@@ -41,6 +41,31 @@ def is_transcript_artifact(text: str) -> bool:
     return any(artifact in text for artifact in artifacts)
 
 
+def load_content_window() -> dict[str, Any]:
+    path = REPORTS / "content_window.json"
+    payload = read_json(path, {})
+    if isinstance(payload, dict) and payload.get("schema_version") == "content_window.v1":
+        return payload
+    return {
+        "usable_master_range": {"start_sec": 0.0, "end_sec": None},
+        "rules": {"exclude_before_start": False, "exclude_after_end_marker": False},
+    }
+
+
+def segment_in_content_window(segment: dict[str, Any], content_window: dict[str, Any]) -> bool:
+    usable = content_window.get("usable_master_range") if isinstance(content_window.get("usable_master_range"), dict) else {}
+    start_bound = float(usable.get("start_sec") or 0.0)
+    end_bound_raw = usable.get("end_sec")
+    end_bound = float(end_bound_raw) if end_bound_raw is not None else None
+    start = float(segment.get("start") or 0.0)
+    end = float(segment.get("end") or start)
+    if start < start_bound:
+        return False
+    if end_bound is not None and end > end_bound:
+        return False
+    return True
+
+
 def caption_text(text: str, *, max_chars: int = 34) -> str:
     text = clean_text(text)
     if len(text) <= max_chars:
@@ -118,11 +143,13 @@ def find_topic_id(topics: list[dict[str, Any]], time_value: float) -> str | None
     return topics[-1]["topic_id"] if topics else None
 
 
-def build_semantic_marks(transcript: dict[str, Any]) -> dict[str, Any]:
+def build_semantic_marks(transcript: dict[str, Any], content_window: dict[str, Any]) -> dict[str, Any]:
     segments = [
         segment
         for segment in transcript.get("segments", [])
-        if clean_text(str(segment.get("text") or "")) and not is_transcript_artifact(str(segment.get("text") or ""))
+        if clean_text(str(segment.get("text") or ""))
+        and not is_transcript_artifact(str(segment.get("text") or ""))
+        and segment_in_content_window(segment, content_window)
     ]
     topics = build_topics(segments)
     ranked = sorted(
@@ -209,6 +236,7 @@ def build_semantic_marks(transcript: dict[str, Any]) -> dict[str, Any]:
         "generated_at": now_iso(),
         "status": "draft_from_transcript",
         "analysis_method": "project-local heuristic draft; requires editorial review before final render",
+        "content_window_source": str(REPORTS / "content_window.json"),
         "highlight_candidates": highlights,
         "topics": topics,
         "entity_explainers": entity_terms,
@@ -319,7 +347,13 @@ def apply_reference_alignment(plan: dict[str, Any]) -> dict[str, Any]:
     return plan
 
 
-def build_edit_plan(manifest: dict[str, Any], semantic: dict[str, Any], sync: dict[str, Any], sync_map: dict[str, Any]) -> dict[str, Any]:
+def build_edit_plan(
+    manifest: dict[str, Any],
+    semantic: dict[str, Any],
+    sync: dict[str, Any],
+    sync_map: dict[str, Any],
+    content_window: dict[str, Any],
+) -> dict[str, Any]:
     timeline = []
     cursor = 0.0
     offsets = sync.get("offsets") if isinstance(sync.get("offsets"), dict) else {}
@@ -460,6 +494,8 @@ def build_edit_plan(manifest: dict[str, Any], semantic: dict[str, Any], sync: di
         "status": "draft_ready_for_limited_preview" if not blockers else "draft_needs_sync_review",
         "sync_source": str(REPORTS / "app_sync_offsets.json"),
         "sync_map_source": str(REPORTS / "sync_map.json"),
+        "content_window_source": str(REPORTS / "content_window.json"),
+        "content_window": content_window.get("usable_master_range"),
         "timeline": timeline,
         "validation": {
             "ready_for_preview": bool(timeline and semantic.get("highlight_candidates")),
@@ -478,8 +514,9 @@ def main() -> None:
     manifest = read_json(REPORTS / "project_manifest.json", {})
     sync = read_json(REPORTS / "app_sync_offsets.json", {"offsets": {"master": 0.0}})
     sync_map = read_json(REPORTS / "sync_map.json", {})
-    semantic = build_semantic_marks(transcript)
-    edit_plan = build_edit_plan(manifest, semantic, sync, sync_map)
+    content_window = load_content_window()
+    semantic = build_semantic_marks(transcript, content_window)
+    edit_plan = build_edit_plan(manifest, semantic, sync, sync_map, content_window)
     write_json(REPORTS / "semantic_marks.json", semantic)
     write_json(REPORTS / "edit_plan.json", edit_plan)
     print(json.dumps({"semantic_marks": str(REPORTS / "semantic_marks.json"), "edit_plan": str(REPORTS / "edit_plan.json"), "edit_status": edit_plan["status"]}, ensure_ascii=False, indent=2))

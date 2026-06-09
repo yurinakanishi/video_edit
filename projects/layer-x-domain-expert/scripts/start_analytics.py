@@ -594,6 +594,22 @@ def build_sync_map() -> dict[str, Any]:
     }
 
 
+def build_content_window() -> dict[str, Any]:
+    path = REPORTS / "content_window.json"
+    if path.exists():
+        payload = read_json(path, {})
+        if isinstance(payload, dict) and payload.get("schema_version") == "content_window.v1":
+            return payload
+    return {
+        "schema_version": "content_window.v1",
+        "project_id": "layer-x-domain-expert",
+        "status": "pending_content_window_detection",
+        "reference_media_id": "group_wide",
+        "usable_master_range": {"start_sec": None, "end_sec": None},
+        "blockers": ["run projects/layer-x-domain-expert/scripts/build_content_window.py"],
+    }
+
+
 def build_pending_semantic(transcript: dict[str, Any]) -> dict[str, Any]:
     has_segments = bool(transcript.get("segments"))
     status = "pending_semantic_analysis" if has_segments else "pending_transcript"
@@ -740,6 +756,7 @@ def update_state(state: dict[str, Any], app_manifest: dict[str, Any]) -> dict[st
                 "audioSync": str(REPORTS / "audio_sync_clap_analysis.json"),
                 "audioTrackAnalysis": str(REPORTS / "audio_track_analysis.json"),
                 "syncMap": str(REPORTS / "sync_map.json"),
+                "contentWindow": str(REPORTS / "content_window.json"),
                 "referenceImageAnalysis": str(REPORTS / "reference_image_analysis" / "manifest.json"),
             },
             "transcriptionPolicy": {
@@ -807,6 +824,7 @@ def main() -> None:
         "audio_track_analysis.json": build_audio_track_analysis(),
         "audio_sync_clap_analysis.json": build_audio_sync(),
         "sync_map.json": build_sync_map(),
+        "content_window.json": build_content_window(),
         "semantic_marks.json": build_semantic_artifact(transcript),
         "style_guide.json": build_style_guide(),
         "edit_plan.json": build_edit_plan_artifact(),

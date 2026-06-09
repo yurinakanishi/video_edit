@@ -51,6 +51,7 @@ def main() -> None:
     people = read_json(REPORTS / "people_map.json")
     style_guide = read_json(REPORTS / "style_guide.json")
     plan = read_json(REPORTS / "edit_plan.json")
+    content_window = read_json(REPORTS / "content_window.json") if (REPORTS / "content_window.json").exists() else {}
 
     media_durations = {
         str(item.get("media_id")): float(item.get("duration") or 0.0)
@@ -62,6 +63,11 @@ def main() -> None:
 
     errors: list[str] = []
     warnings: list[str] = []
+    usable = content_window.get("usable_master_range") if isinstance(content_window.get("usable_master_range"), dict) else {}
+    usable_start = float(usable.get("start_sec") or 0.0)
+    usable_end_raw = usable.get("end_sec")
+    usable_end = float(usable_end_raw) if usable_end_raw is not None else None
+    forbidden_markers = [str(item) for item in content_window.get("forbidden_text_markers", [])] if isinstance(content_window.get("forbidden_text_markers"), list) else []
     previous_end: float | None = None
     events = [item for item in plan.get("timeline", []) if isinstance(item, dict)]
     for event in events:
@@ -91,6 +97,16 @@ def main() -> None:
                 errors.append(f"{event_id}: invalid {source_key} range {source_in:.3f}-{source_out:.3f}")
             if source_out > media_durations[media_id] + 0.001:
                 errors.append(f"{event_id}: {source_key} range exceeds {media_id} duration")
+            if source_key == "reference_source" and media_id == "group_wide":
+                if source_in < usable_start - 0.001:
+                    errors.append(f"{event_id}: reference_source starts before usable content window")
+                if usable_end is not None and source_out > usable_end + 0.001:
+                    errors.append(f"{event_id}: reference_source exceeds usable content window")
+            if source_key == "source" and media_id == "group_wide":
+                if source_in < usable_start - 0.001:
+                    errors.append(f"{event_id}: source starts before usable content window")
+                if usable_end is not None and source_out > usable_end + 0.001:
+                    errors.append(f"{event_id}: source exceeds usable content window")
 
         layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
         reference_alignment = layout.get("reference_alignment")
@@ -117,6 +133,10 @@ def main() -> None:
             style_id = overlay.get("style_id")
             if style_id and str(style_id) not in known_styles:
                 errors.append(f"{event_id}: overlay style_id does not exist: {style_id}")
+            text = str(overlay.get("text") or "")
+            for marker in forbidden_markers:
+                if marker and marker in text:
+                    errors.append(f"{event_id}: overlay text contains forbidden marker: {marker}")
             person_id = overlay.get("person_id")
             if person_id and str(person_id) not in person_ids:
                 errors.append(f"{event_id}: overlay person_id does not exist: {person_id}")

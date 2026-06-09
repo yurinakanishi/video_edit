@@ -74,6 +74,7 @@ Use separate artifacts for separate responsibilities.
 | `speaker_diarization.json` | Which audio speaker speaks when | Diarization model |
 | `audio_sync_clap_analysis.json` | Clap candidates, waveform correlation, and camera sync offsets | Python |
 | `sync_map.json` | Evidence-backed master/camera time mapping, anchors, confidence, and drift model | Python + manual review |
+| `content_window.json` | Master timeline range allowed for production use, excluding pre-roll/countdown/rehearsal and closing thanks | Python + human rule |
 | `vision_tracks.json` | Face/person tracks, locations, quality, mouth activity | OpenCV or vision model |
 | `people_map.json` | Mapping between speakers, faces, and real people | Human confirmation |
 | `semantic_marks.json` | Highlights, topics, strong captions, entity explainers | LLM |
@@ -193,6 +194,35 @@ Required sync rules:
 - Render a 4-way sync-check grid before treating provisional cameras as trusted edit coverage.
 
 `project_manifest.json` and `edit_plan.json` source timing should use these sync offsets. If clap and waveform evidence conflict, mark sync as requiring manual review instead of guessing. Do not use a transcript comparison between all camera transcripts as the primary sync method for this project.
+
+## Content Window Policy
+
+Do not use pre-roll, rehearsal, setup chatter, countdown, or closing thanks in production edits.
+
+For this project, the production-usable master range starts after the final countdown marker:
+
+```text
+start_sec: 519.140
+anchor: "AXのYouTubeチャンネルをご覧の皆さん、こんにちは"
+reason: first production speech after "本番5秒前" / "5、4、3"
+```
+
+Everything before this start point, including the rehearsal intro around 363 seconds and the production countdown around 503-519 seconds, must be excluded from semantic selection, edit decisions, preview renders, and final renders.
+
+If a closing marker such as the following is detected, stop before that marker and do not use anything after it:
+
+```text
+ご視聴いただきました。ありがとうございました。
+ありがとうございました。
+```
+
+Store the active rule in:
+
+```text
+output/reports/content_window.json
+```
+
+`semantic_marks.json` and `edit_plan.json` must reference only interview source ranges inside this content window. The company movie bridge uses its own source time and is not constrained by the interview master content window.
 
 ## Project Manifest Example
 

@@ -1,0 +1,139 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+REPORTS = PROJECT_ROOT / "output" / "reports"
+
+
+def read_json(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def style_ids(style_guide: dict[str, Any]) -> set[str]:
+    ids = set()
+    for key in ("styles", "components"):
+        value = style_guide.get(key)
+        if isinstance(value, dict):
+            ids.update(str(item) for item in value)
+    return ids
+
+
+def overlay_interval(event: dict[str, Any], overlay: dict[str, Any]) -> tuple[float, float] | None:
+    duration = float(event.get("timeline_end") or 0.0) - float(event.get("timeline_start") or 0.0)
+    start = overlay.get("start")
+    end = overlay.get("end")
+    if start is None and end is None:
+        return None
+    start_f = float(start or 0.0)
+    end_f = float(end if end is not None else duration)
+    return (start_f, end_f)
+
+
+def intervals_overlap(left: tuple[float, float], right: tuple[float, float]) -> bool:
+    return left[0] < right[1] and right[0] < left[1]
+
+
+def main() -> None:
+    manifest = read_json(REPORTS / "project_manifest.json")
+    people = read_json(REPORTS / "people_map.json")
+    style_guide = read_json(REPORTS / "style_guide.json")
+    plan = read_json(REPORTS / "edit_plan.json")
+
+    media_durations = {
+        str(item.get("media_id")): float(item.get("duration") or 0.0)
+        for item in manifest.get("media", [])
+        if item.get("media_id")
+    }
+    person_ids = {str(item.get("person_id")) for item in people.get("people", []) if item.get("person_id")}
+    known_styles = style_ids(style_guide)
+
+    errors: list[str] = []
+    warnings: list[str] = []
+    previous_end: float | None = None
+    events = [item for item in plan.get("timeline", []) if isinstance(item, dict)]
+    for event in events:
+        event_id = str(event.get("event_id") or "unknown_event")
+        start = float(event.get("timeline_start") or 0.0)
+        end = float(event.get("timeline_end") or 0.0)
+        if end <= start:
+            errors.append(f"{event_id}: timeline_end must be greater than timeline_start")
+        if previous_end is not None:
+            if start < previous_end - 0.001:
+                errors.append(f"{event_id}: overlaps previous event by {previous_end - start:.3f}s")
+            elif start > previous_end + 0.001:
+                warnings.append(f"{event_id}: timeline gap of {start - previous_end:.3f}s before event")
+        previous_end = end
+
+        for source_key in ("source", "reference_source"):
+            source = event.get(source_key)
+            if not isinstance(source, dict):
+                continue
+            media_id = str(source.get("media_id") or "")
+            if media_id not in media_durations:
+                errors.append(f"{event_id}: {source_key}.media_id does not exist: {media_id}")
+                continue
+            source_in = float(source.get("in") or 0.0)
+            source_out = float(source.get("out") or 0.0)
+            if source_in < -0.001 or source_out <= source_in:
+                errors.append(f"{event_id}: invalid {source_key} range {source_in:.3f}-{source_out:.3f}")
+            if source_out > media_durations[media_id] + 0.001:
+                errors.append(f"{event_id}: {source_key} range exceeds {media_id} duration")
+
+        layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+        for key in ("target_person_id", "person_id"):
+            value = layout.get(key)
+            if value and str(value) not in person_ids:
+                errors.append(f"{event_id}: layout.{key} does not exist: {value}")
+        for key in ("ensure_people_visible", "person_ids"):
+            values = layout.get(key)
+            if isinstance(values, list):
+                missing = [str(value) for value in values if str(value) not in person_ids]
+                if missing:
+                    errors.append(f"{event_id}: layout.{key} has unknown people: {', '.join(missing)}")
+
+        caption_intervals: list[tuple[float, float]] = []
+        explainer_intervals: list[tuple[float, float]] = []
+        for overlay in event.get("overlays", []):
+            if not isinstance(overlay, dict):
+                continue
+            style_id = overlay.get("style_id")
+            if style_id and str(style_id) not in known_styles:
+                errors.append(f"{event_id}: overlay style_id does not exist: {style_id}")
+            person_id = overlay.get("person_id")
+            if person_id and str(person_id) not in person_ids:
+                errors.append(f"{event_id}: overlay person_id does not exist: {person_id}")
+            interval = overlay_interval(event, overlay)
+            if interval and interval[1] <= interval[0]:
+                errors.append(f"{event_id}: overlay has invalid interval {interval[0]:.3f}-{interval[1]:.3f}")
+            if interval and overlay.get("type") == "caption":
+                caption_intervals.append(interval)
+            if interval and overlay.get("type") == "entity_explainer":
+                explainer_intervals.append(interval)
+        for caption in caption_intervals:
+            for explainer in explainer_intervals:
+                if intervals_overlap(caption, explainer):
+                    errors.append(f"{event_id}: caption overlaps entity explainer")
+
+    report = {
+        "schema_version": "edit_plan_validation_report.v1",
+        "project_id": "layer-x-domain-expert",
+        "source": str(REPORTS / "edit_plan.json"),
+        "ready_for_preview": bool(events) and not errors and bool((plan.get("validation") or {}).get("ready_for_preview")),
+        "errors": errors,
+        "warnings": warnings + list((plan.get("validation") or {}).get("warnings") or []),
+        "plan_blockers": list((plan.get("validation") or {}).get("blockers") or []),
+        "event_count": len(events),
+    }
+    output = REPORTS / "edit_plan_validation_report.json"
+    output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    if errors:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()

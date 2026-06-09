@@ -25,7 +25,8 @@ The most important artifact is `edit_plan.json`. It is the complete blueprint fo
 ```text
 Source media
 -> ffprobe media inspection
--> speech transcription
+-> clap plus waveform audio sync analysis
+-> speech transcription from one synced reference source
 -> speaker diarization
 -> face/person/framing analysis
 -> optional human identity mapping
@@ -71,6 +72,8 @@ Use separate artifacts for separate responsibilities.
 | `media_probe.json` | Duration, fps, resolution, codecs, streams | ffprobe |
 | `transcript.json` | Utterances, word timestamps, confidence | STT |
 | `speaker_diarization.json` | Which audio speaker speaks when | Diarization model |
+| `audio_sync_clap_analysis.json` | Clap candidates, waveform correlation, and camera sync offsets | Python |
+| `sync_map.json` | Evidence-backed master/camera time mapping, anchors, confidence, and drift model | Python + manual review |
 | `vision_tracks.json` | Face/person tracks, locations, quality, mouth activity | OpenCV or vision model |
 | `people_map.json` | Mapping between speakers, faces, and real people | Human confirmation |
 | `semantic_marks.json` | Highlights, topics, strong captions, entity explainers | LLM |
@@ -87,6 +90,108 @@ person_id      = a confirmed real person
 ```
 
 Speaker diarization alone does not prove a real name. Face tracking alone does not prove identity. For interviews, panels, customer stories, internal films, or any multi-person video, use `people_map.json` before rendering name tags, departments, titles, or biography cards.
+
+## Transcription And Sync Policy
+
+The interview cameras were recorded at the same time, so do not transcribe every camera by default.
+
+Use one audio-bearing interview source as the transcript authority:
+
+- `source_audio_media_id`: `group_wide`
+- app/render role: `master`
+- source file: `source/video/three people.mp4`
+
+The transcript from this source is shared across the synced multicam timeline. Other camera audio should be used for sync confirmation and fallback audio diagnostics, not duplicate transcription.
+
+Use this sync evidence priority order:
+
+1. Timecode, LTC, or metadata timecode
+2. Usable scratch audio / waveform correlation
+3. Clap or slate point, using audio or visual contact frame
+4. Visual sync from mouth movement, hand motion, or scene events
+5. Transcript-based rough sync
+6. Manual anchor points plus drift correction
+
+Camera audio near `-85` / `-90` dBFS is not reliable for waveform sync unless there is a recoverable transient such as a clap, table hit, laugh burst, or camera beep. Inspect the tracks first with `ffprobe`, `volumedetect`, and/or `astats`; then try one rescued waveform pass with gain and filtering. If the correlation peak is weak, record the failure and do not force an offset from it.
+
+Before generating semantic marks or edit decisions, run project-local audio sync analysis:
+
+```text
+projects/layer-x-domain-expert/scripts/analyze_clap_sync.py
+```
+
+The sync analysis must combine:
+
+- clap-like transient detection, if a clap exists near the start of the recording;
+- broad waveform/transient-envelope correlation across the scanned audio range;
+- millisecond-level cross-correlation around the clap candidate to confirm the final offset.
+
+Store the detailed evidence in:
+
+```text
+output/reports/audio_sync_clap_analysis.json
+```
+
+Store renderer-compatible offsets in:
+
+```text
+output/reports/app_sync_offsets.json
+```
+
+Store the evidence-backed sync model and anchors in:
+
+```text
+output/reports/sync_map.json
+```
+
+`sync_map.json` uses this timing convention:
+
+```text
+master_time = camera_time * rate + offset_sec
+```
+
+Renderer/app offsets may also be stored separately when a renderer expects:
+
+```text
+source_time = master_timeline_time + app_offset_sec
+```
+
+For long clips, prefer at least two anchors, one near the beginning and one near the end, and fit a linear model when drift is measurable:
+
+```json
+{
+  "media_id": "cam_person_02",
+  "sync_model": "linear",
+  "offset_sec": -2.3334,
+  "rate": 0.999982,
+  "drift_ppm": -18.0,
+  "anchors": [
+    {
+      "camera_time": 12.4167,
+      "master_time": 10.0833,
+      "method": "visual_clap_frame",
+      "confidence": 0.95
+    },
+    {
+      "camera_time": 3612.5,
+      "master_time": 3610.1,
+      "method": "mouth_movement_phrase_match",
+      "confidence": 0.87
+    }
+  ],
+  "manual_review_required": true
+}
+```
+
+Required sync rules:
+
+- Do not use failed or weak audio correlation as if it were a confirmed offset.
+- Mark low-confidence entries with `manual_review_required: true`.
+- Require two anchors for clips longer than 20 minutes when practical.
+- For silent or nearly silent cameras, prefer visual clap, mouth movement, hand gesture, scene event, or manual anchor evidence.
+- Render a 4-way sync-check grid before treating provisional cameras as trusted edit coverage.
+
+`project_manifest.json` and `edit_plan.json` source timing should use these sync offsets. If clap and waveform evidence conflict, mark sync as requiring manual review instead of guessing. Do not use a transcript comparison between all camera transcripts as the primary sync method for this project.
 
 ## Project Manifest Example
 
@@ -587,6 +692,8 @@ Inputs:
 - media_probe.json
 - transcript.json
 - speaker_diarization.json
+- audio_sync_clap_analysis.json
+- sync_map.json
 - vision_tracks.json
 - people_map.json
 - semantic_marks.json
@@ -609,6 +716,7 @@ Output:
 - Strictly follow the JSON Schema.
 - Do not invent media_id, person_id, style_id, speaker_id, or face_track_id.
 - Keep all source in/out values within media duration.
+- Apply sync offsets from audio_sync_clap_analysis.json / app_sync_offsets.json.
 - Avoid unintended timeline gaps and overlaps.
 - Do not render names, titles, or departments unless they exist in people_map.json.
 ```

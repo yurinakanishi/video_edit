@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "layer-x-domain-expert.opening-digest-style.v1",
+  "createdAt": "2026-06-10T05:55:00+09:00",
+  "purpose": "Opening Digest must reproduce the test-project-1 styled sample look for captions, logo panel, top-right title, colors, and frame treatment.",
+  "referenceSample": {
+    "project": "test-project-1",
+    "sourceVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\source\\video\\Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4",
+    "styledPreview": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\videos\\preview_sample1_catchphrase_collection_styled.mp4",
+    "styleProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample1_catchphrase_collection_styled_profile.json",
+    "frameDesignProfile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\subtitles\\sample11_frame_design_profile.json",
+    "frameOverlay": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\overlays\\sample11_frame_design\\sample11_frame_overlay.png",
+    "qaStills": [
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_styled_t0001.jpg",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_styled_t0006.jpg",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\test-project-1\\output\\images\\preview_sample1_catchphrase_collection_styled_t0011.jpg"
+    ]
+  },
+  "styleIds": {
+    "digestFrame": "opening_digest_sample_frame",
+    "digestCaption": "opening_digest_sample_caption",
+    "digestTopicTitle": "opening_digest_top_right_title",
+    "digestLogo": "opening_digest_layerx_logo_panel"
+  },
+  "canvas": {
+    "baseWidth": 1280,
+    "baseHeight": 720,
+    "fps": 30,
+    "scaleToFinal1080p": 1.5,
+    "coordinateSystem": "preview_px_and_normalized_0_1"
+  },
+  "frameTreatment": {
+    "description": "Use the same sample-11 frame treatment used by test-project-1 styled preview.",
+    "topBand": {
+      "heightPxAt720p": 102,
+      "heightNorm": 0.141199,
+      "gradientStops": [
+        "#5A51FE",
+        "#5A51FD",
+        "#5D60FE"
+      ],
+      "rightAccent": {
+        "enabled": true,
+        "separatorXNorm": 0.952563,
+        "rightRegionTint": "#5F5AF5",
+        "separatorColor": "#605CF5"
+      }
+    },
+    "bottomBand": {
+      "heightPxAt720p": 20,
+      "heightNorm": 0.027079,
+      "continuousFullWidth": true,
+      "gradientStops": [
+        "#5B59FD",
+        "#656AFD",
+        "#747FFC"
+      ]
+    },
+    "logoPanel": {
+      "shape": "left-white-slanted-polygon",
+      "polygonPxAt720p": [
+        [0, 0],
+        [286, 0],
+        [269, 102],
+        [0, 102]
+      ],
+      "logoSource": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\assets\\LayerX_Logo_Horizontal_RGB_Color.png",
+      "logoBBoxPxAt720p": {
+        "x": 43,
+        "y": 31,
+        "w": 173,
+        "h": 42
+      },
+      "renderRule": "Use the project logo file, not OCR text. Preserve the white slanted panel and scale all coordinates from 720p."
+    },
+    "contentVideo": {
+      "fitMode": "cover",
+      "yOffsetPxAt720p": 69,
+      "avoidHeaderOverlap": true,
+      "note": "Use the same 69px downward content shift as the styled sample so faces sit below the header while leaving room for the lower digest captions."
+    },
+    "rendering": {
+      "overlayRenderScale": 4,
+      "resample": "lanczos",
+      "reason": "Supersampling keeps the slanted logo-panel edge and thin bands smooth."
+    }
+  },
+  "topRightTitle": {
+    "description": "Place the Opening Digest topic/title in the same top-band visual language as the sample/reference title banners.",
+    "enabled": true,
+    "source": "edit_plan.timeline[].overlays[type=topic_title].text or semantic_marks.topics[].title",
+    "defaultText": "Domain Expert Digest",
+    "position": "top_right",
+    "box": {
+      "xNorm": 0.48,
+      "yPxAt720p": 20,
+      "heightPxAt720p": 56,
+      "maxWidthNorm": 0.49,
+      "paddingXPxAt720p": 22,
+      "slantedEnds": true
+    },
+    "text": {
+      "fontFamily": "Yu Gothic Bold",
+      "fontPath": "C:\\Windows\\Fonts\\YuGothB.ttc",
+      "fontSizePxAt720p": 36,
+      "fill": "#FFFFFF",
+      "weight": 800,
+      "align": "center",
+      "maxLines": 1,
+      "shrinkToFit": true
+    },
+    "background": {
+      "gradientStops": [
+        "#4D15D7",
+        "#5A2DEF",
+        "#7863F3"
+      ],
+      "opacity": 1.0
+    },
+    "collisionRules": [
+      "Do not overlap the left logo panel.",
+      "Do not cover faces.",
+      "If the title is long, shrink text or split at a natural phrase boundary before reducing header height."
+    ]
+  },
+  "captionStyle": {
+    "description": "Use the same lower catchphrase subtitle style as test-project-1 styled preview.",
+    "sourceText": "semantic_marks.highlight_candidates[].digest_caption or semantic_marks.punchline_subtitles[] selected for Opening Digest",
+    "policy": {
+      "fullTranscriptSubtitles": false,
+      "maxLines": 2,
+      "preferredCharactersPerLineJapanese": 16,
+      "preferredWordsPerLineEnglish": 7,
+      "displayOnlyStrongDigestPhrases": true
+    },
+    "placement": {
+      "anchor": "lower_middle",
+      "singleLine": {
+        "yPxAt720p": 510,
+        "centerXNorm": 0.5,
+        "maxWidthNorm": 0.9
+      },
+      "twoLine": {
+        "line1YPxAt720p": 480,
+        "line2YPxAt720p": 592,
+        "centerXNorm": 0.5,
+        "line1MaxWidthNorm": 0.9,
+        "line2MaxWidthNorm": 0.82,
+        "lineGapPxAt720p": 12
+      },
+      "minimumYNorm": 0.708,
+      "avoidFaceOverlap": true
+    },
+    "text": {
+      "fontFamily": "Yu Gothic Bold",
+      "fontPath": "C:\\Windows\\Fonts\\YuGothB.ttc",
+      "fontSizePxAt720p": 74,
+      "minFontSizePxAt720p": 56,
+      "fill": "#FFFFFF",
+      "weight": 800,
+      "lineHeight": 1.0,
+      "letterSpacing": 0
+    },
+    "box": {
+      "shape": "rounded_rectangle",
+      "radiusPxAt720p": 6,
+      "paddingXPxAt720p": 35,
+      "paddingYPxAt720p": 10,
+      "heightPxAt720p": 96,
+      "widthMode": "text_width_plus_padding",
+      "backgroundGradient": [
+        "#4D15D7",
+        "#5A2DEF",
+        "#7863F3"
+      ],
+      "shadow": {
+        "enabled": true,
+        "color": "#000000",
+        "opacity": 0.2,
+        "blurPxAt720p": 6,
+        "offsetYPxAt720p": 3
+      }
+    },
+    "animation": {
+      "in": {
+        "type": "horizontal_reveal",
+        "direction": "left_to_right",
+        "durationSeconds": 0.583,
+        "easing": "easeOutCubic",
+        "initialVisibleWidthRatio": 0.08,
+        "initialOpacity": 0.0,
+        "opacityDurationSeconds": 0.12
+      },
+      "secondaryLine": {
+        "staggerSeconds": 0.18,
+        "inheritsReveal": true
+      },
+      "out": {
+        "type": "quick_fade",
+        "durationSeconds": 0.1
+      }
+    }
+  },
+  "openingDigestRules": {
+    "durationSecondsTarget": 45,
+    "clipStructure": "Hard-cut strongest statements and reactions. Use the same frame, logo, title, and caption treatment throughout the digest.",
+    "allowedLayouts": [
+      "single",
+      "speaker_reaction_pair",
+      "wide_group",
+      "split_grid"
+    ],
+    "captionFrequency": "Fewer captions than the main section. Prefer one strong phrase per digest clip.",
+    "transitionOut": "After the digest ends, transition into the main section with the project-approved slide transition.",
+    "validation": [
+      "All digest captions must fit inside their boxes at preview and final scales.",
+      "Captions must not cover the active speaker's mouth or key facial expression.",
+      "Logo panel, top band, top-right title, and bottom band must remain visible for every digest shot.",
+      "No full transcript subtitles in Opening Digest."
+    ]
+  },
+  "editPlanExample": {
+    "layout": {
+      "type": "single",
+      "crop_mode": "person_centered"
+    },
+    "overlays": [
+      {
+        "type": "frame",
+        "style_id": "opening_digest_sample_frame"
+      },
+      {
+        "type": "topic_title",
+        "position": "top_right",
+        "text": "Domain Expert Digest",
+        "style_id": "opening_digest_top_right_title"
+      },
+      {
+        "type": "caption",
+        "text_source": "semantic_marks.highlight_candidates[].digest_caption",
+        "style_id": "opening_digest_sample_caption"
+      }
+    ]
+  }
+}

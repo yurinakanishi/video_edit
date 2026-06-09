@@ -642,6 +642,28 @@ Priorities:
 - Select digest captions from `highlight_candidates` / `digest_caption` in `semantic_marks.json`
 - Use fewer captions than in the main section, but keep each clip's message short and strong
 
+**Opening Digest visual style**
+
+Opening Digest must use the same visual treatment as the styled sample from `projects/test-project-1`:
+
+- Style specification: `config/opening_digest_style.json`
+- Reference source video: `projects/test-project-1/source/video/Interview_with_Michael_Eisen_on_Open_Access_middle_1min.mp4`
+- Reference styled preview: `projects/test-project-1/output/videos/preview_sample1_catchphrase_collection_styled.mp4`
+- Reference frame profile: `projects/test-project-1/output/subtitles/sample11_frame_design_profile.json`
+- Reference subtitle profile: `projects/test-project-1/output/subtitles/sample1_catchphrase_collection_styled_profile.json`
+
+For all Opening Digest clips, keep these elements consistent with the sample:
+
+- Top blue-purple band with the white slanted LayerX logo panel
+- LayerX logo placement and size inside the left panel
+- Upper-right title banner using the same blue-purple family, white bold text, and slanted banner feel
+- Continuous thin bottom blue-purple band
+- Large lower digest captions in rounded blue-purple boxes with white bold text
+- Horizontal reveal animation for caption entry, staggered reveal for second caption lines, and quick fade out
+- Content video shifted down by the same sample-derived offset so faces avoid the header and lower captions
+
+Do not render full transcript subtitles in the Opening Digest. Render only strong short `digest_caption` phrases from `semantic_marks.json`, using `style_id: opening_digest_sample_caption`.
+
 ### Participant Introduction at the Start of the Main Section
 
 Immediately after the digest ends and the slide transition into the main section, start with a **wide shot that includes all three participants** (`layout.type: wide_group`).

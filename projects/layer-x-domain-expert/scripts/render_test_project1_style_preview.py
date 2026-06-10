@@ -27,6 +27,7 @@ FPS = 30
 PURPLE_DARK = "#4D15D7"
 PURPLE_MID = "#5A2DEF"
 PURPLE_LIGHT = "#7863F3"
+CAPTION_STOPS = ["#4015E8", "#6333F4", "#7B63F7"]
 TOP_STOPS = ["#5A51FE", "#5A51FD", "#5D60FE"]
 BOTTOM_STOPS = ["#5B59FD", "#656AFD", "#747FFC"]
 TITLE_STOPS = ["#4D15D7", "#5A2DEF", "#7863F3"]
@@ -200,7 +201,7 @@ def fit_font(text: str, max_width: int, size: int, min_size: int) -> ImageFont.F
     return ImageFont.truetype(str(FONT_FILE), min_size)
 
 
-def wrap_caption_text(text: str, max_chars: int = 18) -> list[str]:
+def wrap_caption_text(text: str, max_chars: int = 22) -> list[str]:
     text = " ".join(str(text).split())
     if len(text) <= max_chars:
         return [text]
@@ -209,8 +210,14 @@ def wrap_caption_text(text: str, max_chars: int = 18) -> list[str]:
     for char in break_chars:
         best = max(best, text.rfind(char, 0, max_chars + 1))
     if best >= 7:
-        return [text[:best].strip(" 、。！？"), text[best + 1 :].strip()][:2]
-    return [text[:max_chars].strip(), text[max_chars:].strip()][:2]
+        first = text[:best].strip(" 、。！？")
+        second = text[best + 1 :].strip()
+    else:
+        first = text[:max_chars].strip()
+        second = text[max_chars:].strip()
+    if second and len(second) < 5 and len(first) + len(second) <= max_chars + 5:
+        return [f"{first}{second}"]
+    return [first, second][:2]
 
 
 def draw_gradient_text(layer: Image.Image, position: tuple[int, int], text: str, font: ImageFont.FreeTypeFont, fill: str) -> None:
@@ -340,29 +347,32 @@ def draw_white_intro_label(canvas: Image.Image, person_id: str, x: int, y: int, 
 
 def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float) -> None:
     lines = wrap_caption_text(text)
-    line_height = 84
-    y_positions = [510] if len(lines) == 1 else [472, 590]
+    line_height = 76
+    gap = 8
+    stack_h = len(lines) * line_height + (len(lines) - 1) * gap
+    y_base = 642 - stack_h
+    y_positions = [y_base + index * (line_height + gap) for index in range(len(lines))]
     draw = ImageDraw.Draw(canvas)
     for index, line in enumerate(lines):
-        line_start = start + index * 0.18
+        line_start = start + index * 0.12
         if now < line_start or now > end + 0.1:
             continue
         reveal = ease_out_cubic((now - line_start) / 0.583)
         opacity = min(1.0, max(0.0, (now - line_start) / 0.12))
         if now > end:
             opacity *= max(0.0, 1.0 - (now - end) / 0.1)
-        font = fit_font(line, 1100, 58, 42)
+        font = fit_font(line, 1110, 62, 46)
         bbox = draw.textbbox((0, 0), line, font=font)
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
-        box_w = min(1180, text_w + 72)
+        box_w = min(1180, text_w + 60)
         box_h = line_height
         x0 = round((WIDTH - box_w) / 2)
         y0 = y_positions[index]
         line_layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
-        paste_gradient_box(line_layer, (x0, y0, x0 + box_w, y0 + box_h), [PURPLE_DARK, PURPLE_MID, PURPLE_LIGHT], 7, round(255 * opacity), True)
+        paste_gradient_box(line_layer, (x0, y0, x0 + box_w, y0 + box_h), CAPTION_STOPS, 5, round(245 * opacity), True)
         text_x = x0 + (box_w - text_w) / 2
-        text_y = y0 + (box_h - text_h) / 2 - 6
+        text_y = y0 + (box_h - text_h) / 2 - 5
         ImageDraw.Draw(line_layer).text((text_x, text_y), line, font=font, fill=(255, 255, 255, round(255 * opacity)))
         visible_w = round(WIDTH * reveal)
         mask = Image.new("L", (WIDTH, HEIGHT), 0)

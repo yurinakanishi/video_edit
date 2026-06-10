@@ -1,7 +1,7 @@
 {
   "schema_version": "edit_plan.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T11:27:20+09:00",
+  "generated_at": "2026-06-10T15:16:50+09:00",
   "canvas": {
     "width": 1920,
     "height": 1080,
@@ -21,90 +21,34 @@
   },
   "timeline": [
     {
-      "event_id": "digest_001",
+      "event_id": "digest_qa_01_question_01",
       "timeline_start": 0.0,
-      "timeline_end": 9.0,
+      "timeline_end": 8.04,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_02",
-        "in": 2376.128,
-        "out": 2385.128
+        "media_id": "group_wide",
+        "in": 1500.72,
+        "out": 1508.76
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 2368.66,
-        "out": 2377.66
+        "in": 1500.72,
+        "out": 1508.76
       },
       "layout": {
-        "type": "single",
-        "crop_mode": "person_centered",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "speaker_activity": {
-          "segment_id": "seg_000674",
-          "start": 2368.66,
-          "end": 2375.66,
-          "text": "現場理解をプロダクトの価値へつなげる",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_01",
-          "confidence": 0.371,
-          "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 2376.128,
-              "source_end": 2383.128,
-              "score": 18.40591,
-              "peak_score": 25.05656,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 2365.328,
-              "source_end": 2372.328,
-              "score": 17.7948,
-              "peak_score": 22.6796,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 2382.04,
-              "source_end": 2389.04,
-              "score": 11.70832,
-              "peak_score": 18.04977,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_03",
+        "selection_reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
           "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
@@ -116,113 +60,77 @@
         }
       },
       "audio": {
-        "mode": "source",
+        "mode": "continuous_reference",
         "source_media_id": "group_wide",
-        "fade_in": 0.08,
-        "fade_out": 0.12
+        "fade_in": 0.04,
+        "fade_out": 0.08
       },
       "overlays": [
         {
           "type": "topic_title",
           "position": "top_right",
-          "text": "Domain Expert Digest",
+          "text": "AI時代のドメインエキスパート論",
           "style_id": "opening_digest_top_right_title"
         },
         {
           "type": "caption",
-          "start": 0.35,
-          "end": 6.5,
-          "text": "現場理解をプロダクトの価値へつなげる",
-          "style_id": "opening_digest_sample_caption"
+          "start": 0.0,
+          "end": 4.02,
+          "text": "ちなみにお二人の中でこれまで開発に関わる仕事",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 460,
+          "source_timecode": "00:25:00,720 --> 00:25:08,760"
+        },
+        {
+          "type": "caption",
+          "start": 4.02,
+          "end": 8.04,
+          "text": "をする中で これめっちゃ大変でしたとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 460,
+          "source_timecode": "00:25:00,720 --> 00:25:08,760"
         }
       ],
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
+      "digest_qa_source": {
+        "question": "開発に関わって、一番大変だったことは何ですか？",
+        "clip_title": "当たり前を言語化する難しさ",
+        "part_kind": "question",
+        "start_timecode": "00:25:00,720",
+        "end_timecode": "00:25:08,760",
+        "answer_summary": "実務で当たり前や慣行として処理していたことを、エンジニアやPDMに説明できる言葉へ変換するのが大変だった。労務同士なら流せる話でも、背景や意味を整理する必要があった。",
+        "evidence_excerpt": "「なんでそうするんですかって聞かれた時に」「ものすごくこれを言語化するのに大変だった」「今までの当たり前を言語化する」"
+      },
+      "reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。"
     },
     {
-      "event_id": "digest_002",
-      "timeline_start": 9.0,
-      "timeline_end": 17.5,
+      "event_id": "digest_qa_01_answer_02",
+      "timeline_start": 8.04,
+      "timeline_end": 43.54,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_02",
-        "in": 1915.328,
-        "out": 1923.828
+        "media_id": "group_wide",
+        "in": 1531.12,
+        "out": 1566.62
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 1907.86,
-        "out": 1916.36
+        "in": 1531.12,
+        "out": 1566.62
       },
       "layout": {
-        "type": "single",
-        "crop_mode": "person_centered",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "speaker_activity": {
-          "segment_id": "seg_000565",
-          "start": 1907.86,
-          "end": 1914.86,
-          "text": "実務の専門性が開発の前提になる",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_03",
-          "confidence": 0.388,
-          "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 1915.328,
-              "source_end": 1922.328,
-              "score": 17.39352,
-              "peak_score": 24.05492,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 1921.24,
-              "source_end": 1928.24,
-              "score": 16.37001,
-              "peak_score": 29.83537,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 1904.528,
-              "source_end": 1911.528,
-              "score": 13.67149,
-              "peak_score": 20.16851,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_03",
+        "selection_reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
           "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
@@ -234,113 +142,203 @@
         }
       },
       "audio": {
-        "mode": "source",
+        "mode": "continuous_reference",
         "source_media_id": "group_wide",
-        "fade_in": 0.08,
-        "fade_out": 0.12
+        "fade_in": 0.04,
+        "fade_out": 0.08
       },
       "overlays": [
         {
           "type": "topic_title",
           "position": "top_right",
-          "text": "Domain Expert Digest",
+          "text": "AI時代のドメインエキスパート論",
           "style_id": "opening_digest_top_right_title"
         },
         {
           "type": "caption",
-          "start": 0.35,
-          "end": 6.5,
-          "text": "たぶん皆さん経理とか労務のドメインを知っているから",
-          "style_id": "opening_digest_sample_caption"
+          "start": 0.0,
+          "end": 2.3,
+          "text": "エンジニアの方とかPDMの方に",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 467,
+          "source_timecode": "00:25:31,120 --> 00:25:33,420"
+        },
+        {
+          "type": "caption",
+          "start": 2.3,
+          "end": 4.18,
+          "text": "なんでそうするんですかって聞かれた時に",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 468,
+          "source_timecode": "00:25:33,420 --> 00:25:35,300"
+        },
+        {
+          "type": "caption",
+          "start": 4.18,
+          "end": 7.5,
+          "text": "ものすごくこれを言語化するのに大変だった",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 469,
+          "source_timecode": "00:25:35,300 --> 00:25:38,620"
+        },
+        {
+          "type": "caption",
+          "start": 7.5,
+          "end": 10.25,
+          "text": "癖とか、慣れとか、そういうもので今までやって",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 470,
+          "source_timecode": "00:25:38,620 --> 00:25:49,620"
+        },
+        {
+          "type": "caption",
+          "start": 10.25,
+          "end": 13.0,
+          "text": "きたんだなっていうのが分かる",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 470,
+          "source_timecode": "00:25:38,620 --> 00:25:49,620"
+        },
+        {
+          "type": "caption",
+          "start": 13.0,
+          "end": 15.75,
+          "text": "それを言語化して頑張って言語化していくと",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 470,
+          "source_timecode": "00:25:38,620 --> 00:25:49,620"
+        },
+        {
+          "type": "caption",
+          "start": 15.75,
+          "end": 18.5,
+          "text": "ちゃんと意味が当たっていくから",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 470,
+          "source_timecode": "00:25:38,620 --> 00:25:49,620"
+        },
+        {
+          "type": "caption",
+          "start": 18.5,
+          "end": 20.833,
+          "text": "だからこうなったんだけど",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 471,
+          "source_timecode": "00:25:49,620 --> 00:25:56,620"
+        },
+        {
+          "type": "caption",
+          "start": 20.833,
+          "end": 23.167,
+          "text": "自分のその仕事の中にあったことがあって",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 471,
+          "source_timecode": "00:25:49,620 --> 00:25:56,620"
+        },
+        {
+          "type": "caption",
+          "start": 23.167,
+          "end": 25.5,
+          "text": "その言語化ですかね、今までの当たり前を言語化する",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 471,
+          "source_timecode": "00:25:49,620 --> 00:25:56,620"
+        },
+        {
+          "type": "caption",
+          "start": 25.5,
+          "end": 27.5,
+          "text": "多分これは労務同士とかだったら、そうだよね",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 472,
+          "source_timecode": "00:25:56,620 --> 00:26:02,620"
+        },
+        {
+          "type": "caption",
+          "start": 27.5,
+          "end": 29.5,
+          "text": "終わってた話も。で、なんでなんですかってちょ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 472,
+          "source_timecode": "00:25:56,620 --> 00:26:02,620"
+        },
+        {
+          "type": "caption",
+          "start": 29.5,
+          "end": 31.5,
+          "text": "っと惹かれる",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 472,
+          "source_timecode": "00:25:56,620 --> 00:26:02,620"
+        },
+        {
+          "type": "caption",
+          "start": 31.5,
+          "end": 32.5,
+          "text": "そうですよね。",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 473,
+          "source_timecode": "00:26:02,620 --> 00:26:03,620"
+        },
+        {
+          "type": "caption",
+          "start": 32.5,
+          "end": 34.0,
+          "text": "なんでって言われてもみたいに",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 474,
+          "source_timecode": "00:26:03,620 --> 00:26:06,620"
+        },
+        {
+          "type": "caption",
+          "start": 34.0,
+          "end": 35.5,
+          "text": "この言語化ですね",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 474,
+          "source_timecode": "00:26:03,620 --> 00:26:06,620"
         }
       ],
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
+      "digest_qa_source": {
+        "question": "開発に関わって、一番大変だったことは何ですか？",
+        "clip_title": "当たり前を言語化する難しさ",
+        "part_kind": "answer",
+        "start_timecode": "00:25:31,120",
+        "end_timecode": "00:26:06,620",
+        "answer_summary": "実務で当たり前や慣行として処理していたことを、エンジニアやPDMに説明できる言葉へ変換するのが大変だった。労務同士なら流せる話でも、背景や意味を整理する必要があった。",
+        "evidence_excerpt": "「なんでそうするんですかって聞かれた時に」「ものすごくこれを言語化するのに大変だった」「今までの当たり前を言語化する」"
+      },
+      "reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。"
     },
     {
-      "event_id": "digest_003",
-      "timeline_start": 17.5,
-      "timeline_end": 26.5,
+      "event_id": "digest_qa_02_question_context_01",
+      "timeline_start": 43.54,
+      "timeline_end": 61.04,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_02",
-        "in": 2304.508,
-        "out": 2313.508
+        "media_id": "group_wide",
+        "in": 1571.12,
+        "out": 1588.62
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 2297.04,
-        "out": 2306.04
+        "in": 1571.12,
+        "out": 1588.62
       },
       "layout": {
-        "type": "single",
-        "crop_mode": "person_centered",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "speaker_activity": {
-          "segment_id": "seg_000658",
-          "start": 2297.04,
-          "end": 2304.04,
-          "text": "ドメイン知識がプロダクトの強みになる",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_03",
-          "confidence": 0.9,
-          "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 2304.508,
-              "source_end": 2311.508,
-              "score": 19.62628,
-              "peak_score": 24.78037,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 2310.42,
-              "source_end": 2317.42,
-              "score": 9.03103,
-              "peak_score": 10.77323,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 2293.708,
-              "source_end": 2300.708,
-              "score": 6.17806,
-              "peak_score": 11.31361,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_03",
+        "selection_reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
           "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
@@ -352,113 +350,95 @@
         }
       },
       "audio": {
-        "mode": "source",
+        "mode": "continuous_reference",
         "source_media_id": "group_wide",
-        "fade_in": 0.08,
-        "fade_out": 0.12
+        "fade_in": 0.04,
+        "fade_out": 0.08
       },
       "overlays": [
         {
           "type": "topic_title",
           "position": "top_right",
-          "text": "Domain Expert Digest",
+          "text": "AI時代のドメインエキスパート論",
           "style_id": "opening_digest_top_right_title"
         },
         {
           "type": "caption",
-          "start": 0.35,
-          "end": 6.5,
-          "text": "ドメイン知識がプロダクトの強みになる",
-          "style_id": "opening_digest_sample_caption"
+          "start": 0.0,
+          "end": 5.25,
+          "text": "確かにこの辺も例えば業務として当たり前のこと",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 476,
+          "source_timecode": "00:26:11,120 --> 00:26:21,620"
+        },
+        {
+          "type": "caption",
+          "start": 5.25,
+          "end": 10.5,
+          "text": "も意外と背景にこういう法律とか理由があるからとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 476,
+          "source_timecode": "00:26:11,120 --> 00:26:21,620"
+        },
+        {
+          "type": "caption",
+          "start": 10.5,
+          "end": 14.0,
+          "text": "会社のルールがあるからとか結構そういう裏側の",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 477,
+          "source_timecode": "00:26:21,620 --> 00:26:28,620"
+        },
+        {
+          "type": "caption",
+          "start": 14.0,
+          "end": 17.5,
+          "text": "事情とかもあるじゃないですか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 477,
+          "source_timecode": "00:26:21,620 --> 00:26:28,620"
         }
       ],
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
+      "digest_qa_source": {
+        "question": "ドメインエキスパートは、何でも知っていないといけないんですか？",
+        "clip_title": "何でも知っている人ではない",
+        "part_kind": "question_context",
+        "start_timecode": "00:26:11,120",
+        "end_timecode": "00:26:28,620",
+        "answer_summary": "ドメインエキスパートは何でも知っていそうに見えるが、実際には知らないこともある。エンジニア側もかなり調べており、一方的に教えるより建設的に議論している。",
+        "evidence_excerpt": "「何でも知ってそうな感じ」「自分が知らないことも知ってるんじゃないか」「皆さんドメインの方めっちゃ調べてる」「建設的な議論」"
+      },
+      "reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。"
     },
     {
-      "event_id": "digest_004",
-      "timeline_start": 26.5,
-      "timeline_end": 34.1,
+      "event_id": "digest_qa_02_answer_02",
+      "timeline_start": 61.04,
+      "timeline_end": 104.18,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_02",
-        "in": 2644.528,
-        "out": 2652.128
+        "media_id": "group_wide",
+        "in": 1595.62,
+        "out": 1638.76
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 2637.06,
-        "out": 2644.66
+        "in": 1595.62,
+        "out": 1638.76
       },
       "layout": {
-        "type": "single",
-        "crop_mode": "person_centered",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "speaker_activity": {
-          "segment_id": "seg_000725",
-          "start": 2637.06,
-          "end": 2644.06,
-          "text": "手作業の業務をプロダクトで変えていく",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_01",
-          "confidence": 0.75,
-          "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 2644.528,
-              "source_end": 2651.528,
-              "score": 24.33495,
-              "peak_score": 38.26652,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 2633.728,
-              "source_end": 2640.728,
-              "score": 14.70813,
-              "peak_score": 24.41519,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 2650.44,
-              "source_end": 2657.44,
-              "score": 12.97914,
-              "peak_score": 31.17318,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_03",
+        "selection_reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
           "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
@@ -470,113 +450,194 @@
         }
       },
       "audio": {
-        "mode": "source",
+        "mode": "continuous_reference",
         "source_media_id": "group_wide",
-        "fade_in": 0.08,
-        "fade_out": 0.12
+        "fade_in": 0.04,
+        "fade_out": 0.08
       },
       "overlays": [
         {
           "type": "topic_title",
           "position": "top_right",
-          "text": "Domain Expert Digest",
+          "text": "AI時代のドメインエキスパート論",
           "style_id": "opening_digest_top_right_title"
         },
         {
           "type": "caption",
-          "start": 0.35,
-          "end": 6.5,
-          "text": "手作業の業務をプロダクトで変えていく",
-          "style_id": "opening_digest_sample_caption"
+          "start": 0.0,
+          "end": 2.8,
+          "text": "結構なんかドメインエキスパートって言うと何で",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 480,
+          "source_timecode": "00:26:35,620 --> 00:26:41,220"
+        },
+        {
+          "type": "caption",
+          "start": 2.8,
+          "end": 5.6,
+          "text": "も知ってそうな感じがあると思ってて",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 480,
+          "source_timecode": "00:26:35,620 --> 00:26:41,220"
+        },
+        {
+          "type": "caption",
+          "start": 5.6,
+          "end": 8.48,
+          "text": "この辺へのハードルの高さというか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 481,
+          "source_timecode": "00:26:41,220 --> 00:26:44,100"
+        },
+        {
+          "type": "caption",
+          "start": 8.48,
+          "end": 11.093,
+          "text": "要は自分が知らないことも知ってるんじゃないか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 482,
+          "source_timecode": "00:26:44,100 --> 00:26:51,940"
+        },
+        {
+          "type": "caption",
+          "start": 11.093,
+          "end": 13.707,
+          "text": "と思われることの難しさとか抵抗感っていうのも",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 482,
+          "source_timecode": "00:26:44,100 --> 00:26:51,940"
+        },
+        {
+          "type": "caption",
+          "start": 13.707,
+          "end": 16.32,
+          "text": "ありましたね",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 482,
+          "source_timecode": "00:26:44,100 --> 00:26:51,940"
+        },
+        {
+          "type": "caption",
+          "start": 16.32,
+          "end": 19.93,
+          "text": "いやでもそれはあんまりそこはそこまですごくい",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 483,
+          "source_timecode": "00:26:51,940 --> 00:26:59,160"
+        },
+        {
+          "type": "caption",
+          "start": 19.93,
+          "end": 23.54,
+          "text": "つも建設的な話にはなるので",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 483,
+          "source_timecode": "00:26:51,940 --> 00:26:59,160"
+        },
+        {
+          "type": "caption",
+          "start": 23.54,
+          "end": 25.92,
+          "text": "本当におっしゃっていたけどもうすごい皆さんド",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 484,
+          "source_timecode": "00:26:59,160 --> 00:27:03,920"
+        },
+        {
+          "type": "caption",
+          "start": 25.92,
+          "end": 28.3,
+          "text": "メインの方めっちゃ調べてるんですよ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 484,
+          "source_timecode": "00:26:59,160 --> 00:27:03,920"
+        },
+        {
+          "type": "caption",
+          "start": 28.3,
+          "end": 32.1,
+          "text": "正直全然僕より詳しいという意味はあるんでしょうけどね",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 485,
+          "source_timecode": "00:27:03,920 --> 00:27:07,720"
+        },
+        {
+          "type": "caption",
+          "start": 32.1,
+          "end": 34.56,
+          "text": "でもそれはこれってこういう資料もあったんですけど",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 486,
+          "source_timecode": "00:27:07,720 --> 00:27:10,180"
+        },
+        {
+          "type": "caption",
+          "start": 34.56,
+          "end": 38.2,
+          "text": "そんな本当に違うとかタイミングよく教えてくれますし",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 487,
+          "source_timecode": "00:27:10,180 --> 00:27:13,820"
+        },
+        {
+          "type": "caption",
+          "start": 38.2,
+          "end": 39.82,
+          "text": "そこが建設的な議論に何度もあって",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 488,
+          "source_timecode": "00:27:13,820 --> 00:27:15,440"
+        },
+        {
+          "type": "caption",
+          "start": 39.82,
+          "end": 43.14,
+          "text": "そこに対して怖いというのはないです",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 489,
+          "source_timecode": "00:27:15,440 --> 00:27:18,760"
         }
       ],
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
+      "digest_qa_source": {
+        "question": "ドメインエキスパートは、何でも知っていないといけないんですか？",
+        "clip_title": "何でも知っている人ではない",
+        "part_kind": "answer",
+        "start_timecode": "00:26:35,620",
+        "end_timecode": "00:27:18,760",
+        "answer_summary": "ドメインエキスパートは何でも知っていそうに見えるが、実際には知らないこともある。エンジニア側もかなり調べており、一方的に教えるより建設的に議論している。",
+        "evidence_excerpt": "「何でも知ってそうな感じ」「自分が知らないことも知ってるんじゃないか」「皆さんドメインの方めっちゃ調べてる」「建設的な議論」"
+      },
+      "reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。"
     },
     {
-      "event_id": "digest_005",
-      "timeline_start": 34.1,
-      "timeline_end": 41.1,
+      "event_id": "digest_qa_03_answer_01",
+      "timeline_start": 104.18,
+      "timeline_end": 129.14,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_03",
-        "in": 1083.66,
-        "out": 1090.66
+        "media_id": "group_wide",
+        "in": 1638.76,
+        "out": 1663.72
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 1070.28,
-        "out": 1077.28
+        "in": 1638.76,
+        "out": 1663.72
       },
       "layout": {
-        "type": "single",
-        "crop_mode": "person_centered",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "speaker_activity": {
-          "segment_id": "seg_000342",
-          "start": 1070.28,
-          "end": 1077.28,
-          "text": "入社前はプロダクトに強い興味はなかった",
-          "active_person_id": "person_03",
-          "reaction_person_id": "person_02",
-          "confidence": 0.559,
-          "activity_scores": [
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 1083.66,
-              "source_end": 1090.66,
-              "score": 10.84665,
-              "peak_score": 15.9154,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            },
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 1077.748,
-              "source_end": 1084.748,
-              "score": 8.07864,
-              "peak_score": 9.76052,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 1066.948,
-              "source_end": 1073.948,
-              "score": 6.05246,
-              "peak_score": 11.17517,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_03",
+        "selection_reason": "指定テーマのキーワードが連続し、回答が短く強いのでダイジェスト向き。",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
           "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
@@ -588,32 +649,866 @@
         }
       },
       "audio": {
-        "mode": "source",
+        "mode": "continuous_reference",
         "source_media_id": "group_wide",
-        "fade_in": 0.08,
-        "fade_out": 0.12
+        "fade_in": 0.04,
+        "fade_out": 0.08
       },
       "overlays": [
         {
           "type": "topic_title",
           "position": "top_right",
-          "text": "Domain Expert Digest",
+          "text": "AI時代のドメインエキスパート論",
           "style_id": "opening_digest_top_right_title"
         },
         {
           "type": "caption",
-          "start": 0.35,
-          "end": 6.5,
-          "text": "入社前はプロダクトに強い興味はなかった",
-          "style_id": "opening_digest_sample_caption"
+          "start": 0.0,
+          "end": 3.12,
+          "text": "ただその代わり好きかって言った後に",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 490,
+          "source_timecode": "00:27:18,760 --> 00:27:21,880"
+        },
+        {
+          "type": "caption",
+          "start": 3.12,
+          "end": 4.8,
+          "text": "なんでなんですかを絶対に逃がしてくれない",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 491,
+          "source_timecode": "00:27:21,880 --> 00:27:23,560"
+        },
+        {
+          "type": "caption",
+          "start": 4.8,
+          "end": 8.86,
+          "text": "そこのある意味健全なプレッシャーというのが来た",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 492,
+          "source_timecode": "00:27:23,560 --> 00:27:27,620"
+        },
+        {
+          "type": "caption",
+          "start": 8.86,
+          "end": 12.0,
+          "text": "ちゃんと伝えるには背景まで整理して",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 493,
+          "source_timecode": "00:27:27,620 --> 00:27:30,760"
+        },
+        {
+          "type": "caption",
+          "start": 12.0,
+          "end": 14.84,
+          "text": "言語化して伝えなきゃいけないよなっていうところは",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 494,
+          "source_timecode": "00:27:30,760 --> 00:27:33,600"
+        },
+        {
+          "type": "caption",
+          "start": 14.84,
+          "end": 16.0,
+          "text": "鍛えていただきたいと思います",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 495,
+          "source_timecode": "00:27:33,600 --> 00:27:34,760"
+        },
+        {
+          "type": "caption",
+          "start": 16.0,
+          "end": 19.68,
+          "text": "自分がこれまで当たり前だと思ったものが",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 496,
+          "source_timecode": "00:27:34,760 --> 00:27:38,440"
+        },
+        {
+          "type": "caption",
+          "start": 19.68,
+          "end": 23.02,
+          "text": "ある種そういう過程で結構磨かれて成長されて",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 497,
+          "source_timecode": "00:27:38,440 --> 00:27:41,780"
+        },
+        {
+          "type": "caption",
+          "start": 23.02,
+          "end": 24.96,
+          "text": "めっちゃ大事です",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 498,
+          "source_timecode": "00:27:41,780 --> 00:27:43,720"
         }
       ],
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
+      "digest_qa_source": {
+        "question": "エンジニアから「なんで？」と聞かれるのは怖くないですか？",
+        "clip_title": "なんで？が成長につながる",
+        "part_kind": "answer",
+        "start_timecode": "00:27:18,760",
+        "end_timecode": "00:27:43,720",
+        "answer_summary": "意見を言った後に「なんでなんですか」を逃がしてくれないことが、怖さではなく健全なプレッシャーになっている。背景まで整理して言語化する力が鍛えられ、自分の当たり前が磨かれる。",
+        "evidence_excerpt": "「なんでなんですかを絶対に逃がしてくれない」「健全なプレッシャー」「背景まで整理して言語化」「磨かれて成長」"
+      },
+      "reason": "指定テーマのキーワードが連続し、回答が短く強いのでダイジェスト向き。"
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "timeline_start": 129.14,
+      "timeline_end": 151.14,
+      "type": "source_clip",
+      "section": "digest",
+      "source": {
+        "media_id": "group_wide",
+        "in": 1973.1,
+        "out": 1995.1
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1973.1,
+        "out": 1995.1
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_02",
+        "selection_reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。",
+        "reference_alignment": {
+          "reference_image_id": "annotation_sample_review_meeting",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+          "apply": [
+            "wide_group_context",
+            "logo_title_style",
+            "caption_safe_lower_zone"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide",
+        "fade_in": 0.04,
+        "fade_out": 0.08
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "text": "AI時代のドメインエキスパート論",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 3.333,
+          "text": "いわゆるAIが普及してきて",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 580,
+          "source_timecode": "00:32:53,100 --> 00:33:03,100"
+        },
+        {
+          "type": "caption",
+          "start": 3.333,
+          "end": 6.667,
+          "text": "エンジニアの人たちもすごい効率",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 580,
+          "source_timecode": "00:32:53,100 --> 00:33:03,100"
+        },
+        {
+          "type": "caption",
+          "start": 6.667,
+          "end": 10.0,
+          "text": "生産性も上がってるみたいな話もあると思うんですけど",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 580,
+          "source_timecode": "00:32:53,100 --> 00:33:03,100"
+        },
+        {
+          "type": "caption",
+          "start": 10.0,
+          "end": 13.5,
+          "text": "僕らも仕事の中でAIを使うのが前提になってき",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 581,
+          "source_timecode": "00:33:03,100 --> 00:33:10,100"
+        },
+        {
+          "type": "caption",
+          "start": 13.5,
+          "end": 17.0,
+          "text": "ている中で",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 581,
+          "source_timecode": "00:33:03,100 --> 00:33:10,100"
+        },
+        {
+          "type": "caption",
+          "start": 17.0,
+          "end": 19.5,
+          "text": "ドメインエキスパートの役割というか重要性みた",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 582,
+          "source_timecode": "00:33:10,100 --> 00:33:15,100"
+        },
+        {
+          "type": "caption",
+          "start": 19.5,
+          "end": 22.0,
+          "text": "いなもので",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 582,
+          "source_timecode": "00:33:10,100 --> 00:33:15,100"
+        }
+      ],
+      "digest_qa_source": {
+        "question": "AI時代に、ドメインエキスパートの価値は何ですか？",
+        "clip_title": "AI時代の実務家の手触り",
+        "part_kind": "question",
+        "start_timecode": "00:32:53,100",
+        "end_timecode": "00:33:15,100",
+        "answer_summary": "AI利用が前提になるほど、ドメインエキスパートには仕様を書く以上に「なぜやるのか」「何を実現したいのか」を考える役割が求められる。AIのリサーチ力は強いが、実務家の手触りやユーザーが触った印象を伝える価値は残る。",
+        "evidence_excerpt": "「AIを使うのが前提」「求められることは研ぎ澄まされて」「仕様をゴリゴリ」「なんでこれをやるのか」「手触り」「使いづらい機能」"
+      },
+      "reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。"
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "timeline_start": 151.14,
+      "timeline_end": 214.9,
+      "type": "source_clip",
+      "section": "digest",
+      "source": {
+        "media_id": "group_wide",
+        "in": 2010.1,
+        "out": 2073.86
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 2010.1,
+        "out": 2073.86
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_02",
+        "selection_reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。",
+        "reference_alignment": {
+          "reference_image_id": "annotation_sample_review_meeting",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+          "apply": [
+            "wide_group_context",
+            "logo_title_style",
+            "caption_safe_lower_zone"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide",
+        "fade_in": 0.04,
+        "fade_out": 0.08
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "text": "AI時代のドメインエキスパート論",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 3.36,
+          "text": "自分たちに求められることは結構研ぎ澄まされて",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 586,
+          "source_timecode": "00:33:30,100 --> 00:33:36,820"
+        },
+        {
+          "type": "caption",
+          "start": 3.36,
+          "end": 6.72,
+          "text": "きているなという感覚があって",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 586,
+          "source_timecode": "00:33:30,100 --> 00:33:36,820"
+        },
+        {
+          "type": "caption",
+          "start": 6.72,
+          "end": 10.6,
+          "text": "仕様をゴリゴリ書いていくというよりは",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 587,
+          "source_timecode": "00:33:36,820 --> 00:33:40,700"
+        },
+        {
+          "type": "caption",
+          "start": 10.6,
+          "end": 12.62,
+          "text": "ちゃんとなんでこれをやるのかとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 588,
+          "source_timecode": "00:33:40,700 --> 00:33:42,720"
+        },
+        {
+          "type": "caption",
+          "start": 12.62,
+          "end": 15.42,
+          "text": "どういうことを実現していきたいのかとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 589,
+          "source_timecode": "00:33:42,720 --> 00:33:45,520"
+        },
+        {
+          "type": "caption",
+          "start": 15.42,
+          "end": 19.02,
+          "text": "そういう思いとかその道筋を考えていくっていう",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 590,
+          "source_timecode": "00:33:45,520 --> 00:33:49,120"
+        },
+        {
+          "type": "caption",
+          "start": 19.02,
+          "end": 21.06,
+          "text": "そういうことの方が結構最近期待されているよう",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 591,
+          "source_timecode": "00:33:49,120 --> 00:33:53,200"
+        },
+        {
+          "type": "caption",
+          "start": 21.06,
+          "end": 23.1,
+          "text": "な気がしていて",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 591,
+          "source_timecode": "00:33:49,120 --> 00:33:53,200"
+        },
+        {
+          "type": "caption",
+          "start": 23.1,
+          "end": 27.84,
+          "text": "この辺の開発チームの中でもドメインエキスパートって",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 592,
+          "source_timecode": "00:33:53,200 --> 00:33:57,940"
+        },
+        {
+          "type": "caption",
+          "start": 27.84,
+          "end": 32.08,
+          "text": "直近の役割の強さというのを感じることがあります",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 593,
+          "source_timecode": "00:33:57,940 --> 00:34:02,180"
+        },
+        {
+          "type": "caption",
+          "start": 32.08,
+          "end": 36.04,
+          "text": "そこをお話戻っちゃいますが",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 594,
+          "source_timecode": "00:34:02,180 --> 00:34:06,140"
+        },
+        {
+          "type": "caption",
+          "start": 36.04,
+          "end": 41.44,
+          "text": "手触りが実務家の実務の経験みたいなものですから",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 595,
+          "source_timecode": "00:34:06,140 --> 00:34:11,540"
+        },
+        {
+          "type": "caption",
+          "start": 41.44,
+          "end": 43.72,
+          "text": "AIに行くとリサーチすごい優秀",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 596,
+          "source_timecode": "00:34:11,540 --> 00:34:13,820"
+        },
+        {
+          "type": "caption",
+          "start": 43.72,
+          "end": 46.04,
+          "text": "自分が調べるよりも全然",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 597,
+          "source_timecode": "00:34:13,820 --> 00:34:16,140"
+        },
+        {
+          "type": "caption",
+          "start": 46.04,
+          "end": 49.64,
+          "text": "それこそ細かい通達とかを引っ張ってきてくれるとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 598,
+          "source_timecode": "00:34:16,140 --> 00:34:19,740"
+        },
+        {
+          "type": "caption",
+          "start": 49.64,
+          "end": 51.32,
+          "text": "探し出してきてくれるんですけど",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 599,
+          "source_timecode": "00:34:19,740 --> 00:34:21,420"
+        },
+        {
+          "type": "caption",
+          "start": 51.32,
+          "end": 55.66,
+          "text": "それ一辺倒だとさっきのいらないものが失ったりとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 600,
+          "source_timecode": "00:34:21,420 --> 00:34:25,760"
+        },
+        {
+          "type": "caption",
+          "start": 55.66,
+          "end": 58.72,
+          "text": "何かちょっと使いづらい機能になってしまうので",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 601,
+          "source_timecode": "00:34:25,760 --> 00:34:28,820"
+        },
+        {
+          "type": "caption",
+          "start": 58.72,
+          "end": 62.48,
+          "text": "どこまでそれが一般的な支援なのかとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 602,
+          "source_timecode": "00:34:28,820 --> 00:34:32,580"
+        },
+        {
+          "type": "caption",
+          "start": 62.48,
+          "end": 63.76,
+          "text": "そのあたりを含めて",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 603,
+          "source_timecode": "00:34:32,580 --> 00:34:33,860"
+        }
+      ],
+      "digest_qa_source": {
+        "question": "AI時代に、ドメインエキスパートの価値は何ですか？",
+        "clip_title": "AI時代の実務家の手触り",
+        "part_kind": "answer",
+        "start_timecode": "00:33:30,100",
+        "end_timecode": "00:34:33,860",
+        "answer_summary": "AI利用が前提になるほど、ドメインエキスパートには仕様を書く以上に「なぜやるのか」「何を実現したいのか」を考える役割が求められる。AIのリサーチ力は強いが、実務家の手触りやユーザーが触った印象を伝える価値は残る。",
+        "evidence_excerpt": "「AIを使うのが前提」「求められることは研ぎ澄まされて」「仕様をゴリゴリ」「なんでこれをやるのか」「手触り」「使いづらい機能」"
+      },
+      "reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。"
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "timeline_start": 214.9,
+      "timeline_end": 238.9,
+      "type": "source_clip",
+      "section": "digest",
+      "source": {
+        "media_id": "group_wide",
+        "in": 2914.04,
+        "out": 2938.04
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 2914.04,
+        "out": 2938.04
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_02",
+        "selection_reason": "質問から推奨理由までが明確で、ショート動画やチャプターに使いやすい結論がある。",
+        "reference_alignment": {
+          "reference_image_id": "annotation_sample_review_meeting",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+          "apply": [
+            "wide_group_context",
+            "logo_title_style",
+            "caption_safe_lower_zone"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide",
+        "fade_in": 0.04,
+        "fade_out": 0.08
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "text": "AI時代のドメインエキスパート論",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 4.0,
+          "text": "あとはそうですが、お二人のこれまでの経験を踏まえて",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 782,
+          "source_timecode": "00:48:34,040 --> 00:48:38,040"
+        },
+        {
+          "type": "caption",
+          "start": 4.0,
+          "end": 8.0,
+          "text": "もし今バックオフィスで働いている方に対して",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 783,
+          "source_timecode": "00:48:38,040 --> 00:48:42,040"
+        },
+        {
+          "type": "caption",
+          "start": 8.0,
+          "end": 10.0,
+          "text": "こういうドメインエキスパートとかプロダクトマ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 784,
+          "source_timecode": "00:48:42,040 --> 00:48:46,040"
+        },
+        {
+          "type": "caption",
+          "start": 10.0,
+          "end": 12.0,
+          "text": "ネージャーみたいなキャリア",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 784,
+          "source_timecode": "00:48:42,040 --> 00:48:46,040"
+        },
+        {
+          "type": "caption",
+          "start": 12.0,
+          "end": 16.0,
+          "text": "そこに対して",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 785,
+          "source_timecode": "00:48:46,040 --> 00:48:50,040"
+        },
+        {
+          "type": "caption",
+          "start": 16.0,
+          "end": 20.0,
+          "text": "メッセージじゃないですけど、お二人から",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 786,
+          "source_timecode": "00:48:50,040 --> 00:48:54,040"
+        },
+        {
+          "type": "caption",
+          "start": 20.0,
+          "end": 24.0,
+          "text": "おすすめしてくださいって言うわけじゃないんですけど",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 787,
+          "source_timecode": "00:48:54,040 --> 00:48:58,040"
+        }
+      ],
+      "digest_qa_source": {
+        "question": "バックオフィス経験者に、PDMや開発関与のキャリアはおすすめですか？",
+        "clip_title": "バックオフィス経験は開発で広がる",
+        "part_kind": "question",
+        "start_timecode": "00:48:34,040",
+        "end_timecode": "00:48:58,040",
+        "answer_summary": "バックオフィス経験者にとって、ドメインエキスパートやPDM的なキャリアは強くおすすめできる。暗黙知や慣行が言語化され、視野が広がり、AIとの向き合い方も変わる。",
+        "evidence_excerpt": "「バックオフィスで働いている方」「ドメインエキスパートとかプロダクトマネージャー」「めちゃめちゃおすすめ」「暗黙知」「視野が広がる」「AIの活用、向き合い方」"
+      },
+      "reason": "質問から推奨理由までが明確で、ショート動画やチャプターに使いやすい結論がある。"
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "timeline_start": 238.9,
+      "timeline_end": 281.48,
+      "type": "source_clip",
+      "section": "digest",
+      "source": {
+        "media_id": "group_wide",
+        "in": 2938.04,
+        "out": 2980.62
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 2938.04,
+        "out": 2980.62
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "digest_qa_two_person_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_02",
+        "selection_reason": "質問から推奨理由までが明確で、ショート動画やチャプターに使いやすい結論がある。",
+        "reference_alignment": {
+          "reference_image_id": "annotation_sample_review_meeting",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+          "apply": [
+            "wide_group_context",
+            "logo_title_style",
+            "caption_safe_lower_zone"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide",
+        "fade_in": 0.04,
+        "fade_out": 0.08
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "text": "AI時代のドメインエキスパート論",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 2.0,
+          "text": "おすすめするんですよ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 788,
+          "source_timecode": "00:48:58,040 --> 00:49:00,040"
+        },
+        {
+          "type": "caption",
+          "start": 2.0,
+          "end": 4.0,
+          "text": "学ぶの、めちゃめちゃおすすめ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 789,
+          "source_timecode": "00:49:00,040 --> 00:49:02,040"
+        },
+        {
+          "type": "caption",
+          "start": 4.0,
+          "end": 6.0,
+          "text": "めちゃめちゃおすすめですよ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 790,
+          "source_timecode": "00:49:02,040 --> 00:49:04,040"
+        },
+        {
+          "type": "caption",
+          "start": 6.0,
+          "end": 8.0,
+          "text": "本当に細かいところですけど",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 791,
+          "source_timecode": "00:49:04,040 --> 00:49:06,040"
+        },
+        {
+          "type": "caption",
+          "start": 8.0,
+          "end": 10.0,
+          "text": "さっきちょっとお話した",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 792,
+          "source_timecode": "00:49:06,040 --> 00:49:08,040"
+        },
+        {
+          "type": "caption",
+          "start": 10.0,
+          "end": 12.0,
+          "text": "自分が",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 793,
+          "source_timecode": "00:49:08,040 --> 00:49:10,040"
+        },
+        {
+          "type": "caption",
+          "start": 12.0,
+          "end": 14.0,
+          "text": "暗黙知とかなんとなく",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 794,
+          "source_timecode": "00:49:10,040 --> 00:49:12,040"
+        },
+        {
+          "type": "caption",
+          "start": 14.0,
+          "end": 16.0,
+          "text": "慣行でやっていたものがちゃんと言語化される",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 795,
+          "source_timecode": "00:49:12,040 --> 00:49:14,040"
+        },
+        {
+          "type": "caption",
+          "start": 16.0,
+          "end": 18.0,
+          "text": "タイミングが来るとか",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 796,
+          "source_timecode": "00:49:14,040 --> 00:49:16,040"
+        },
+        {
+          "type": "caption",
+          "start": 18.0,
+          "end": 20.0,
+          "text": "すごく視野が広がるなあ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 797,
+          "source_timecode": "00:49:16,040 --> 00:49:18,040"
+        },
+        {
+          "type": "caption",
+          "start": 20.0,
+          "end": 22.0,
+          "text": "それはそうですね",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 798,
+          "source_timecode": "00:49:18,040 --> 00:49:20,040"
+        },
+        {
+          "type": "caption",
+          "start": 22.0,
+          "end": 23.0,
+          "text": "さっきのAIの活用、向き合い方が変わるとかっ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 799,
+          "source_timecode": "00:49:20,040 --> 00:49:22,040"
+        },
+        {
+          "type": "caption",
+          "start": 23.0,
+          "end": 24.0,
+          "text": "ていうところも",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 799,
+          "source_timecode": "00:49:20,040 --> 00:49:22,040"
+        },
+        {
+          "type": "caption",
+          "start": 24.0,
+          "end": 26.0,
+          "text": "やっぱりこの経験を積むと",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 800,
+          "source_timecode": "00:49:22,040 --> 00:49:24,040"
+        },
+        {
+          "type": "caption",
+          "start": 26.0,
+          "end": 27.0,
+          "text": "だいぶイメージができるようになるだろうなって",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 801,
+          "source_timecode": "00:49:24,040 --> 00:49:26,040"
+        },
+        {
+          "type": "caption",
+          "start": 27.0,
+          "end": 28.0,
+          "text": "もあるので",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 801,
+          "source_timecode": "00:49:24,040 --> 00:49:26,040"
+        },
+        {
+          "type": "caption",
+          "start": 28.0,
+          "end": 31.83,
+          "text": "その後もちろん専門家としてすごく一個に尖って",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 802,
+          "source_timecode": "00:49:26,040 --> 00:49:33,700"
+        },
+        {
+          "type": "caption",
+          "start": 31.83,
+          "end": 35.66,
+          "text": "いくっていうのもいいキャリアだと思うんですけれども",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 802,
+          "source_timecode": "00:49:26,040 --> 00:49:33,700"
+        },
+        {
+          "type": "caption",
+          "start": 35.66,
+          "end": 37.967,
+          "text": "やっぱりちょっと一瞬でもいいのでこういう形で",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 803,
+          "source_timecode": "00:49:33,700 --> 00:49:40,620"
+        },
+        {
+          "type": "caption",
+          "start": 37.967,
+          "end": 40.273,
+          "text": "広く見れるっていうのはめちゃめちゃおすすめだ",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 803,
+          "source_timecode": "00:49:33,700 --> 00:49:40,620"
+        },
+        {
+          "type": "caption",
+          "start": 40.273,
+          "end": 42.58,
+          "text": "と思います",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 803,
+          "source_timecode": "00:49:33,700 --> 00:49:40,620"
+        }
+      ],
+      "digest_qa_source": {
+        "question": "バックオフィス経験者に、PDMや開発関与のキャリアはおすすめですか？",
+        "clip_title": "バックオフィス経験は開発で広がる",
+        "part_kind": "answer",
+        "start_timecode": "00:48:58,040",
+        "end_timecode": "00:49:40,620",
+        "answer_summary": "バックオフィス経験者にとって、ドメインエキスパートやPDM的なキャリアは強くおすすめできる。暗黙知や慣行が言語化され、視野が広がり、AIとの向き合い方も変わる。",
+        "evidence_excerpt": "「バックオフィスで働いている方」「ドメインエキスパートとかプロダクトマネージャー」「めちゃめちゃおすすめ」「暗黙知」「視野が広がる」「AIの活用、向き合い方」"
+      },
+      "reason": "質問から推奨理由までが明確で、ショート動画やチャプターに使いやすい結論がある。"
     },
     {
       "event_id": "digest_to_main_company_movie",
-      "timeline_start": 41.1,
-      "timeline_end": 56.118,
+      "timeline_start": 281.48,
+      "timeline_end": 296.498,
       "type": "source_clip",
       "section": "bridge",
       "source": {
@@ -645,8 +1540,8 @@
     },
     {
       "event_id": "main_intro_group_greeting",
-      "timeline_start": 56.118,
-      "timeline_end": 61.918,
+      "timeline_start": 296.498,
+      "timeline_end": 302.298,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -684,8 +1579,8 @@
     },
     {
       "event_id": "main_intro_yano_self",
-      "timeline_start": 61.918,
-      "timeline_end": 69.078,
+      "timeline_start": 302.298,
+      "timeline_end": 309.458,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -741,8 +1636,8 @@
     },
     {
       "event_id": "main_intro_wide_after_yano",
-      "timeline_start": 69.078,
-      "timeline_end": 72.518,
+      "timeline_start": 309.458,
+      "timeline_end": 312.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -780,8 +1675,8 @@
     },
     {
       "event_id": "main_intro_two_guests_named",
-      "timeline_start": 72.518,
-      "timeline_end": 83.518,
+      "timeline_start": 312.898,
+      "timeline_end": 323.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -851,8 +1746,8 @@
     },
     {
       "event_id": "main_intro_yano_explains_001",
-      "timeline_start": 83.518,
-      "timeline_end": 98.518,
+      "timeline_start": 323.898,
+      "timeline_end": 338.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -899,8 +1794,8 @@
     },
     {
       "event_id": "main_intro_wide_context_001",
-      "timeline_start": 98.518,
-      "timeline_end": 113.518,
+      "timeline_start": 338.898,
+      "timeline_end": 353.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -938,8 +1833,8 @@
     },
     {
       "event_id": "main_intro_yano_explains_002",
-      "timeline_start": 113.518,
-      "timeline_end": 128.518,
+      "timeline_start": 353.898,
+      "timeline_end": 368.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -986,8 +1881,8 @@
     },
     {
       "event_id": "main_intro_two_guest_reaction",
-      "timeline_start": 128.518,
-      "timeline_end": 143.518,
+      "timeline_start": 368.898,
+      "timeline_end": 383.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1046,8 +1941,8 @@
     },
     {
       "event_id": "main_intro_yano_prompt_selfintro",
-      "timeline_start": 143.518,
-      "timeline_end": 160.498,
+      "timeline_start": 383.898,
+      "timeline_end": 400.878,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1094,8 +1989,8 @@
     },
     {
       "event_id": "intro_person_02_nemoto",
-      "timeline_start": 160.498,
-      "timeline_end": 208.038,
+      "timeline_start": 400.878,
+      "timeline_end": 448.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1165,8 +2060,8 @@
     },
     {
       "event_id": "intro_between_nemoto_murata",
-      "timeline_start": 208.038,
-      "timeline_end": 212.038,
+      "timeline_start": 448.418,
+      "timeline_end": 452.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1204,8 +2099,8 @@
     },
     {
       "event_id": "intro_person_03_murata",
-      "timeline_start": 212.038,
-      "timeline_end": 259.478,
+      "timeline_start": 452.418,
+      "timeline_end": 499.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1275,8 +2170,8 @@
     },
     {
       "event_id": "main_segment_001",
-      "timeline_start": 259.478,
-      "timeline_end": 274.478,
+      "timeline_start": 499.858,
+      "timeline_end": 514.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1410,8 +2305,8 @@
     },
     {
       "event_id": "main_segment_002",
-      "timeline_start": 274.478,
-      "timeline_end": 289.478,
+      "timeline_start": 514.858,
+      "timeline_end": 529.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1542,8 +2437,8 @@
     },
     {
       "event_id": "main_segment_003",
-      "timeline_start": 289.478,
-      "timeline_end": 304.478,
+      "timeline_start": 529.858,
+      "timeline_end": 544.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1674,8 +2569,8 @@
     },
     {
       "event_id": "main_segment_004",
-      "timeline_start": 304.478,
-      "timeline_end": 319.478,
+      "timeline_start": 544.858,
+      "timeline_end": 559.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1809,8 +2704,8 @@
     },
     {
       "event_id": "main_segment_005",
-      "timeline_start": 319.478,
-      "timeline_end": 334.478,
+      "timeline_start": 559.858,
+      "timeline_end": 574.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1924,8 +2819,8 @@
     },
     {
       "event_id": "main_segment_006",
-      "timeline_start": 334.478,
-      "timeline_end": 349.478,
+      "timeline_start": 574.858,
+      "timeline_end": 589.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2056,8 +2951,8 @@
     },
     {
       "event_id": "main_segment_007",
-      "timeline_start": 349.478,
-      "timeline_end": 364.478,
+      "timeline_start": 589.858,
+      "timeline_end": 604.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2102,8 +2997,8 @@
     },
     {
       "event_id": "main_segment_008",
-      "timeline_start": 364.478,
-      "timeline_end": 379.478,
+      "timeline_start": 604.858,
+      "timeline_end": 619.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2148,8 +3043,8 @@
     },
     {
       "event_id": "main_segment_009",
-      "timeline_start": 379.478,
-      "timeline_end": 394.478,
+      "timeline_start": 619.858,
+      "timeline_end": 634.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2280,8 +3175,8 @@
     },
     {
       "event_id": "main_segment_010",
-      "timeline_start": 394.478,
-      "timeline_end": 409.478,
+      "timeline_start": 634.858,
+      "timeline_end": 649.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2415,8 +3310,8 @@
     },
     {
       "event_id": "main_segment_011",
-      "timeline_start": 409.478,
-      "timeline_end": 424.478,
+      "timeline_start": 649.858,
+      "timeline_end": 664.858,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2547,8 +3442,8 @@
     },
     {
       "event_id": "main_segment_012",
-      "timeline_start": 424.478,
-      "timeline_end": 439.478,
+      "timeline_start": 664.858,
+      "timeline_end": 679.858,
       "type": "source_clip",
       "section": "main",
       "source": {

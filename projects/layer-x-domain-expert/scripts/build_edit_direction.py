@@ -343,6 +343,22 @@ def media_duration(manifest: dict[str, Any], media_id: str) -> float:
     return 0.0
 
 
+def load_digest_qa_selection() -> dict[str, Any] | None:
+    path = REPORTS / "digest_qa_selection.json"
+    payload = read_json(path, None)
+    if isinstance(payload, dict) and payload.get("schema_version") == "digest_qa_selection.v1":
+        return payload
+    return None
+
+
+def project_video_title() -> str:
+    payload = read_json(REPORTS / "video_title.json", {})
+    if isinstance(payload, dict):
+        display = payload.get("display") if isinstance(payload.get("display"), dict) else {}
+        return str(display.get("digest_top_right") or payload.get("title") or "AI時代のドメインエキスパート論")
+    return "AI時代のドメインエキスパート論"
+
+
 def synced_source_start_for_person(person_id: str, master_time: float, offsets: dict[str, Any]) -> tuple[str, float]:
     camera = PERSON_CAMERA[person_id]
     role = camera["role"]
@@ -580,65 +596,127 @@ def build_edit_plan(
     cursor = 0.0
     offsets = sync.get("offsets") if isinstance(sync.get("offsets"), dict) else {}
     activity_by_segment = load_speaker_activity()
-    middle_right_digest = [
-        highlight
-        for highlight in semantic.get("highlight_candidates", [])
-        if digest_speaker_activity(highlight, activity_by_segment)
-    ]
-    digest_highlights = middle_right_digest[:5]
-    if len(digest_highlights) < 5:
-        digest_highlights.extend(
-            highlight
-            for highlight in semantic.get("highlight_candidates", [])
-            if highlight not in digest_highlights and float(highlight.get("source_start") or 0.0) >= 620.0
-        )
-    digest_highlights = digest_highlights[:5]
-    for index, highlight in enumerate(digest_highlights, start=1):
-        source_start = float(highlight.get("source_start") or 0.0)
-        source_end = float(highlight.get("source_end") or source_start + 6.0)
-        duration = min(9.0, max(4.0, source_end - source_start))
-        activity = digest_speaker_activity(highlight, activity_by_segment)
-        target_person_id = str((activity or {}).get("active_person_id") or "person_02")
-        if target_person_id not in {"person_02", "person_03"}:
-            target_person_id = "person_02"
-        selected_media, selected_source_start = synced_source_start_for_person(target_person_id, source_start, offsets)
-        timeline.append(
-            {
-                "event_id": f"digest_{index:03d}",
-                "timeline_start": round(cursor, 3),
-                "timeline_end": round(cursor + duration, 3),
-                "type": "source_clip",
-                "section": "digest",
-                "source": {"media_id": selected_media, "in": round(selected_source_start, 3), "out": safe_source_out(media_duration(manifest, selected_media), selected_source_start, duration)},
-                "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
-                "layout": {
-                    "type": "single",
-                    "crop_mode": "person_centered",
-                    "selected_media_id": selected_media,
-                    "target_person_id": target_person_id,
-                    "speaker_activity": activity,
-                    "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
-                },
-                "audio": {"mode": "source", "source_media_id": "group_wide", "fade_in": 0.08, "fade_out": 0.12},
-                "overlays": [
+    digest_qa = load_digest_qa_selection()
+    if digest_qa:
+        digest_title = project_video_title()
+        for index, clip in enumerate(digest_qa.get("clips", []), start=1):
+            layout = clip.get("layout") if isinstance(clip.get("layout"), dict) else {}
+            media_ids = [str(item) for item in layout.get("media_ids", []) if str(item) in PERSON_CAMERA.get("person_02", {}) or str(item).startswith("cam_")]
+            if not media_ids:
+                media_ids = ["cam_person_02", "cam_person_03"]
+            parts = clip.get("parts") if isinstance(clip.get("parts"), list) else []
+            if not parts:
+                parts = [clip]
+            for part_index, part in enumerate(parts, start=1):
+                if not isinstance(part, dict):
+                    continue
+                source_start = float(part.get("start_sec") or clip.get("start_sec") or 0.0)
+                source_end = float(part.get("end_sec") or clip.get("end_sec") or source_start + 1.0)
+                duration = max(0.01, source_end - source_start)
+                overlays = [
                     {
                         "type": "topic_title",
                         "position": "top_right",
-                        "text": "Domain Expert Digest",
+                        "text": digest_title,
                         "style_id": "opening_digest_top_right_title",
-                    },
+                    }
+                ]
+                for caption in part.get("caption_overlays", []):
+                    if isinstance(caption, dict) and caption.get("text"):
+                        overlays.append(caption)
+                event_id = str(part.get("part_id") or f"{clip.get('clip_id', f'digest_qa_{index:02d}')}_part_{part_index:02d}")
+                timeline.append(
                     {
-                        "type": "caption",
-                        "start": 0.35,
-                        "end": min(duration - 0.25, 6.5),
-                        "text": highlight.get("digest_caption"),
-                        "style_id": "opening_digest_sample_caption",
+                        "event_id": event_id,
+                        "timeline_start": round(cursor, 3),
+                        "timeline_end": round(cursor + duration, 3),
+                        "type": "source_clip",
+                        "section": "digest",
+                        "source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
+                        "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
+                        "layout": {
+                            "type": "split_grid",
+                            "media_ids": media_ids,
+                            "grid_strategy": "digest_qa_two_person_split",
+                            "panel_order": ["person_02", "person_03"],
+                            "active_person_id": str(layout.get("active_person_id") or "person_02"),
+                            "selection_reason": str(clip.get("selection_reason") or "Requested Q&A digest clip from SRT."),
+                        },
+                        "audio": {"mode": "continuous_reference", "source_media_id": "group_wide", "fade_in": 0.04, "fade_out": 0.08},
+                        "overlays": overlays,
+                        "digest_qa_source": {
+                            "question": clip.get("question"),
+                            "clip_title": clip.get("clip_title"),
+                            "part_kind": part.get("kind"),
+                            "start_timecode": part.get("start_timecode") or clip.get("start_timecode"),
+                            "end_timecode": part.get("end_timecode") or clip.get("end_timecode"),
+                            "answer_summary": clip.get("answer_summary"),
+                            "evidence_excerpt": clip.get("evidence_excerpt"),
+                        },
+                        "reason": str(clip.get("selection_reason") or "Requested Q&A digest replaces previous digest."),
+                    }
+                )
+                cursor += duration
+    else:
+        middle_right_digest = [
+            highlight
+            for highlight in semantic.get("highlight_candidates", [])
+            if digest_speaker_activity(highlight, activity_by_segment)
+        ]
+        digest_highlights = middle_right_digest[:5]
+        if len(digest_highlights) < 5:
+            digest_highlights.extend(
+                highlight
+                for highlight in semantic.get("highlight_candidates", [])
+                if highlight not in digest_highlights and float(highlight.get("source_start") or 0.0) >= 620.0
+            )
+        digest_highlights = digest_highlights[:5]
+        for index, highlight in enumerate(digest_highlights, start=1):
+            source_start = float(highlight.get("source_start") or 0.0)
+            source_end = float(highlight.get("source_end") or source_start + 6.0)
+            duration = min(9.0, max(4.0, source_end - source_start))
+            activity = digest_speaker_activity(highlight, activity_by_segment)
+            target_person_id = str((activity or {}).get("active_person_id") or "person_02")
+            if target_person_id not in {"person_02", "person_03"}:
+                target_person_id = "person_02"
+            selected_media, selected_source_start = synced_source_start_for_person(target_person_id, source_start, offsets)
+            timeline.append(
+                {
+                    "event_id": f"digest_{index:03d}",
+                    "timeline_start": round(cursor, 3),
+                    "timeline_end": round(cursor + duration, 3),
+                    "type": "source_clip",
+                    "section": "digest",
+                    "source": {"media_id": selected_media, "in": round(selected_source_start, 3), "out": safe_source_out(media_duration(manifest, selected_media), selected_source_start, duration)},
+                    "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
+                    "layout": {
+                        "type": "single",
+                        "crop_mode": "person_centered",
+                        "selected_media_id": selected_media,
+                        "target_person_id": target_person_id,
+                        "speaker_activity": activity,
+                        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
                     },
-                ],
-                "reason": highlight.get("reason"),
-            }
-        )
-        cursor += duration
+                    "audio": {"mode": "source", "source_media_id": "group_wide", "fade_in": 0.08, "fade_out": 0.12},
+                    "overlays": [
+                        {
+                            "type": "topic_title",
+                            "position": "top_right",
+                            "text": "Domain Expert Digest",
+                            "style_id": "opening_digest_top_right_title",
+                        },
+                        {
+                            "type": "caption",
+                            "start": 0.35,
+                            "end": min(duration - 0.25, 6.5),
+                            "text": highlight.get("digest_caption"),
+                            "style_id": "opening_digest_sample_caption",
+                        },
+                    ],
+                    "reason": highlight.get("reason"),
+                }
+            )
+            cursor += duration
 
     company_duration = media_duration(manifest, "company_movie") or 8.0
     timeline.append(

@@ -1,0 +1,64 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "reference_id": "caption_style_gradient_large_two_line_reference_a",
+  "source_image": "reference\\caption-style-gradient-large-two-line-reference-a.png",
+  "generated_at": "2026-06-10T15:16:50+09:00",
+  "image": {
+    "width": 811,
+    "height": 451
+  },
+  "purpose": "Caption subtitle style reference for all editorial captions in digest and main sections.",
+  "caption_style": {
+    "text_color": "#FFFFFF",
+    "font_family": "Yu Gothic / Japanese bold sans-serif",
+    "font_weight": "heavy_bold",
+    "black_stroke": false,
+    "shadow": "none or extremely subtle; no visible black outline",
+    "font_size_ratio_to_720p_height": 0.083,
+    "target_font_size_720p": 60,
+    "min_font_size_720p": 46,
+    "line_height_720p": 76,
+    "inter_line_gap_720p": 8,
+    "box_padding_x_720p": 30,
+    "box_padding_y_720p": 8,
+    "box_radius_720p": 5,
+    "box_gradient": {
+      "direction": "left_to_right",
+      "stops": [
+        "#4015E8",
+        "#6333F4",
+        "#7B63F7"
+      ],
+      "opacity": 0.96
+    },
+    "placement": {
+      "lower_third_centered": true,
+      "bottom_safe_margin_720p": 54,
+      "two_line_stack_uses_independent_boxes": true,
+      "vertical_gap_between_boxes_720p": 8
+    },
+    "animation": {
+      "entry": "horizontal_reveal",
+      "secondary_line_stagger_sec": 0.12,
+      "fade_out_sec": 0.1
+    }
+  },
+  "observations": {
+    "observed_caption_lines": 1,
+    "observed_text": "論点にこだわり続けられる人",
+    "caption_box_norm": {
+      "x": 0.034,
+      "y": 0.786,
+      "w": 0.929,
+      "h": 0.139
+    },
+    "top_band": "blue-purple gradient header with white slanted logo panel",
+    "topic_title": "white bold text in the top-right header"
+  },
+  "renderer_requirements": [
+    "Use this caption style for all caption overlays, not only digest captions.",
+    "Use large heavy white text without black stroke.",
+    "Use tight stacked boxes for two-line captions.",
+    "Match the blue-purple gradient and box padding from this reference."
+  ]
+}

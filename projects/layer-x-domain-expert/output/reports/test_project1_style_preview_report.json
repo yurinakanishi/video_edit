@@ -1,0 +1,12 @@
+{
+  "schema_version": "test_project1_style_preview_report.v1",
+  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style.mp4",
+  "segments": 13,
+  "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
+  "notes": [
+    "Digest uses opaque top/bottom bands and slanted white LayerX logo panel.",
+    "Main section uses translucent top/bottom bands so interview footage remains visible.",
+    "Captions are rendered as animated RGBA overlays with horizontal reveal and quick fade.",
+    "Split dividers use a bluer color and 3x the previous width."
+  ]
+}

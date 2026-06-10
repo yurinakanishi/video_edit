@@ -264,5 +264,19 @@
       "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample.json",
       "alignment_goal": "white lower explainer card with blue-purple label tab, no caption collision"
     }
+  },
+  "renderers": {
+    "test_project1_style_preview": {
+      "script": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\scripts\\render_test_project1_style_preview.py",
+      "style_reference": "projects/test-project-1 styled preview implementation",
+      "uses_frame_overlay": true,
+      "uses_animated_caption_overlay": true,
+      "digest_frame": "opaque sample-11 bands and slanted logo panel",
+      "main_frame": "translucent sample-11 bands with gradient title box",
+      "split_divider": {
+        "color": "#58B9FF",
+        "width_px_at_720p": 12
+      }
+    }
   }
 }

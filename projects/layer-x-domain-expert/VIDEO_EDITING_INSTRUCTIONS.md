@@ -791,6 +791,35 @@ In one sentence: AI should create a validated edit timeline, and Python should s
 
 The following are project-specific creative, caption, and cutting rules for this interview. Use them together with the JSON pipeline and `edit_plan.json` design above.
 
+### Test-Project-1 Style Lock
+
+Use `projects/test-project-1` as the visual style authority for this project, especially:
+
+- `projects/test-project-1/output/videos/preview_sample1_catchphrase_collection_styled.mp4`
+- `projects/test-project-1/output/subtitles/sample1_catchphrase_collection_styled_profile.json`
+- `projects/test-project-1/output/subtitles/sample11_frame_design_profile.json`
+- `projects/test-project-1/output/overlays/sample11_frame_design/sample11_frame_overlay.png`
+
+The LayerX preview renderer must follow the same system:
+
+- Compose a frame/style overlay separately from the base video.
+- Render editorial captions as an animated transparent overlay, not as plain FFmpeg `drawtext` boxes.
+- Use horizontal reveal, secondary-line stagger, and quick fade for captions.
+- Use purple/blue gradient caption boxes, bold white text, shadow, and the same lower caption placement family as `test-project-1`.
+- Use the sample-11 frame treatment for the Opening Digest: opaque top band, opaque bottom band, white slanted left logo panel, and LayerX logo.
+- In the main section, keep the same design language but make the full-width top and bottom band backgrounds translucent so the interview image is not blocked.
+- Keep the current upper-right title font size; add a gradient background box behind it.
+- Make split dividers blue-leaning and about three times thicker than the previous preview divider.
+- Place split-panel faces horizontally centered within each panel where the source crop allows it.
+
+The project-local styled preview renderer is:
+
+```text
+projects/layer-x-domain-expert/scripts/render_test_project1_style_preview.py
+```
+
+`render_limited_preview.py` may remain as a fast diagnostic renderer, but style review should use the test-project-1 styled renderer above.
+
 ### Deliverables
 
 | Output | Purpose | Settings |
@@ -844,6 +873,8 @@ For all Opening Digest clips, keep these elements consistent with the sample:
 - Horizontal reveal animation for caption entry, staggered reveal for second caption lines, and quick fade out
 - Content video shifted down by the same sample-derived offset so faces avoid the header and lower captions
 
+Only the Opening Digest may use non-contiguous highlight cuts. The main interview section must preserve the conversation order. Camera switching is allowed in the main section, but do not remove the introduction or jump over introduction content.
+
 During the Opening Digest, the upper-right title is the **overall title for this video**. It is not a chapter title.
 
 Do not render full transcript subtitles in the Opening Digest. Render only editorial caption subtitles from `semantic_marks.json`, using `style_id: opening_digest_sample_caption`.
@@ -893,7 +924,16 @@ The main section also uses editorial caption subtitles only. Do not switch to fu
 
 Participant introduction belongs to the **main section**, not to the digest. Treat it as the early part of the main section.
 
-Do not assume the introduction begins at a fixed timestamp. Determine the participant introduction and each self-introduction range from the transcript/transcribed subtitles, speaker turns, and semantic content.
+Do not assume the introduction begins at a fixed timestamp. Determine the participant introduction and each self-introduction range from the transcript/transcribed subtitles, speaker turns, and semantic content. For this project, the detected production introduction begins at `519.140` and the self-introduction block continues through the host's self-introduction around `766.060`.
+
+Do not cut out the introduction. The main-section intro must preserve this master-time range in order:
+
+- Opening host setup: `519.140-623.520`
+- 根本 self-introduction: `623.520-671.060`
+- Handoff to 村田: `671.060-675.060`
+- 村田 self-introduction: `675.060-722.500`
+- Handoff to 矢野: `722.500-727.460`
+- 矢野 self-introduction: `727.460-766.060`
 
 Near the start of the main section, first use a brief **wide shot that includes all three participants** (`layout.type: wide_group`) to establish the room.
 
@@ -974,6 +1014,8 @@ Slightly longer but still acceptable (one swap within the segment):
 > Caption 2: That understanding has to come before product decisions.
 
 Summarize and polish for readability without changing the speaker's meaning. Use `style_id: main_punchline_caption` in the main section and `style_id: opening_digest_sample_caption` in the digest.
+
+Caption selection must prioritize meaningful statements over easy-to-style fragments. Prefer concrete claims about customer understanding, domain expertise, product development, business value, AI use, back-office workflow, and the role of practitioners. Do not emphasize greetings, handoffs, filler reactions, unclear transcription artifacts, or isolated fragments that do not communicate a useful point.
 
 ### Topic Title in the Upper Right
 

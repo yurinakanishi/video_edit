@@ -116,6 +116,49 @@ def caption_text(text: str, *, max_chars: int = 34) -> str:
     return text[:max_chars].strip()
 
 
+def editorial_caption(text: str, *, max_chars: int = 34) -> str:
+    text = clean_text(text)
+    rules = [
+        (("ヒアリング",), "顧客の声を聞くところから始まる"),
+        (("ドメイン", "アドバンテージ"), "ドメイン知識がプロダクトの強みになる"),
+        (("バックオフィス", "プロダクト"), "現場理解をプロダクトの価値へつなげる"),
+        (("ジョブローテーション",), "経験を循環させてドメイン理解を広げる"),
+        (("プロダクトマネージャー", "コード"), "コードだけではないプロダクトづくり"),
+        (("経理", "ローム", "ドメイン"), "実務の専門性が開発の前提になる"),
+        (("専門家", "実務家"), "実務家のプライドをプロダクトに活かす"),
+        (("顧客", "課題"), "顧客理解から課題を見つける"),
+        (("AI", "活用"), "AI活用にもドメイン理解が効いてくる"),
+        (("手で", "バックオフィス"), "手作業の業務をプロダクトで変えていく"),
+        (("プロダクト", "興味がなかった"), "入社前はプロダクトに強い興味はなかった"),
+        (("いきなり", "難しい"), "何もないところから専門性は育たない"),
+        (("それぞれのプロダクト",), "プロダクトごとの思いを理解して作る"),
+        (("共通点", "プロダクト開発", "ドメイン"), "ドメイン知識を開発に接続する"),
+    ]
+    for keywords, caption in rules:
+        if all(keyword in text for keyword in keywords):
+            return caption
+    return caption_text(text, max_chars=max_chars)
+
+
+def editorial_candidate_score(text: str) -> float:
+    text = clean_text(text)
+    if not text:
+        return -1.0
+    weak_markers = ("よろしくお願いします", "ありがとうございます", "大丈夫ですか", "緊張感", "休憩室", "QK", "3社目です")
+    if any(marker in text for marker in weak_markers):
+        return -0.5
+    score = 0.0
+    for keyword in ("ドメイン", "専門", "顧客", "業務", "価値", "課題", "プロダクト", "事業", "現場", "ヒアリング", "バックオフィス", "AI", "経理", "労務"):
+        if keyword in text:
+            score += 0.18
+    concrete_markers = ("する", "できる", "つな", "始ま", "活用", "関与", "理解", "作")
+    if any(marker in text for marker in concrete_markers):
+        score += 0.2
+    if 18 <= len(text) <= 90:
+        score += 0.15
+    return score
+
+
 def score_segment(segment: dict[str, Any]) -> float:
     text = clean_text(str(segment.get("text") or ""))
     duration = max(0.01, float(segment.get("end") or 0.0) - float(segment.get("start") or 0.0))
@@ -125,7 +168,7 @@ def score_segment(segment: dict[str, Any]) -> float:
     for keyword in ("ドメイン", "専門", "顧客", "業務", "価値", "課題", "LayerX", "プロダクト", "事業", "現場"):
         if keyword in text:
             keyword_bonus += 0.08
-    return round(min(1.0, 0.2 + length_score * 0.35 + density * 0.25 + keyword_bonus), 4)
+    return round(min(1.0, 0.2 + length_score * 0.25 + density * 0.2 + keyword_bonus + max(0.0, editorial_candidate_score(text)) * 0.35), 4)
 
 
 def segment_id(segment: dict[str, Any], index: int) -> str:
@@ -191,7 +234,7 @@ def build_semantic_marks(transcript: dict[str, Any], content_window: dict[str, A
         and segment_in_content_window(segment, content_window)
     ]
     topics = build_topics(segments)
-    ranked = sorted(
+    ranked_all = sorted(
         (
             {
                 "segment": segment,
@@ -203,6 +246,9 @@ def build_semantic_marks(transcript: dict[str, Any], content_window: dict[str, A
         key=lambda item: item["score"],
         reverse=True,
     )
+    ranked = [item for item in ranked_all if editorial_candidate_score(str(item["segment"].get("text") or "")) > 0.35]
+    if len(ranked) < 12:
+        ranked = ranked + [item for item in ranked_all if item not in ranked]
     highlights = []
     for order, item in enumerate(ranked[:12], start=1):
         segment = item["segment"]
@@ -218,7 +264,7 @@ def build_semantic_marks(transcript: dict[str, Any], content_window: dict[str, A
                 "speaker_id": segment.get("speaker_id"),
                 "score": item["score"],
                 "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
-                "digest_caption": caption_text(text, max_chars=30),
+                "digest_caption": editorial_caption(text, max_chars=30),
                 "recommended_duration": round(max(4.0, min(10.0, end - start)), 3),
                 "topic_id": find_topic_id(topics, start),
             }
@@ -232,7 +278,7 @@ def build_semantic_marks(transcript: dict[str, Any], content_window: dict[str, A
         if any(abs(start - used) < 25.0 for used in used_windows):
             continue
         end = float(segment.get("end") or start)
-        text = caption_text(str(segment.get("text") or ""), max_chars=34)
+        text = editorial_caption(str(segment.get("text") or ""), max_chars=34)
         if not text:
             continue
         used_windows.append(start)
@@ -582,7 +628,7 @@ def build_edit_plan(
 
     topics = semantic.get("topics", [])
     main_start = float(topics[0].get("start") or 0.0) if topics else 0.0
-    intro_duration = 10.0
+    intro_duration = 104.38
     timeline.append(
         {
             "event_id": "main_intro_group",
@@ -597,12 +643,54 @@ def build_edit_plan(
             "overlays": [
                 {"type": "topic_title", "position": "top_right", "topic_id": topics[0]["topic_id"] if topics else None, "style_id": "opening_digest_top_right_title"},
             ],
-            "reason": "Establish all participants before individual nameplate introduction cuts.",
+            "reason": "Keep the opening introduction continuous from the production start through the self-introduction prompt.",
         }
     )
     cursor += intro_duration
 
-    for cue in INTRODUCTION_CUES:
+    intro_ranges = [
+        {**INTRODUCTION_CUES[0], "duration": 47.54},
+        {
+            "event_id": "intro_between_nemoto_murata",
+            "person_id": None,
+            "master_in": 671.06,
+            "duration": 4.0,
+            "reason": "Keep the handoff to 村田さん without cutting the introduction.",
+        },
+        {**INTRODUCTION_CUES[1], "duration": 47.44},
+        {
+            "event_id": "intro_between_murata_yano",
+            "person_id": None,
+            "master_in": 722.50,
+            "duration": 4.96,
+            "reason": "Keep the handoff to 矢野さん without cutting the introduction.",
+        },
+        {**INTRODUCTION_CUES[2], "duration": 38.60},
+    ]
+
+    for cue in intro_ranges:
+        if cue["person_id"] is None:
+            master_in = float(cue["master_in"])
+            cue_duration = float(cue["duration"])
+            timeline.append(
+                {
+                    "event_id": cue["event_id"],
+                    "timeline_start": round(cursor, 3),
+                    "timeline_end": round(cursor + cue_duration, 3),
+                    "type": "source_clip",
+                    "section": "main",
+                    "source": {"media_id": "group_wide", "in": round(master_in, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), master_in, cue_duration)},
+                    "reference_source": {"media_id": "group_wide", "in": round(master_in, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), master_in, cue_duration)},
+                    "layout": {"type": "wide_group", "ensure_people_visible": ["person_01", "person_02", "person_03"], "safe_margin": 0.06},
+                    "audio": {"mode": "source", "source_media_id": "group_wide"},
+                    "overlays": [
+                        {"type": "topic_title", "position": "top_right", "topic_id": topics[0]["topic_id"] if topics else None, "style_id": "opening_digest_top_right_title"},
+                    ],
+                    "reason": cue["reason"],
+                }
+            )
+            cursor += cue_duration
+            continue
         person_id = cue["person_id"]
         master_in = float(cue["master_in"])
         cue_duration = float(cue["duration"])

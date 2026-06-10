@@ -621,10 +621,12 @@ def source_skip_sec(event: dict[str, Any]) -> float:
     return 0.0
 
 
-def audio_filter_chain(media_id: str) -> str:
+def segment_audio_filter_chain(media_id: str) -> str:
+    return "anull"
+
+
+def final_audio_filter_chain() -> str:
     loudnorm = f"loudnorm=I={TARGET_AUDIO_LUFS}:TP=-1.5:LRA=11"
-    if media_id == "company_movie":
-        return loudnorm
     return (
         "highpass=f=80,"
         "lowpass=f=12000,"
@@ -760,7 +762,7 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
     ]
     if text_path:
         inputs.extend(["-i", str(text_path)])
-    audio_filter = audio_filter_chain(str(aud.get("media_id") or ""))
+    audio_filter = segment_audio_filter_chain(str(aud.get("media_id") or ""))
     if text_path:
         filter_complex = f"[0:v]{filter_base}[base];[base][2:v]overlay=0:0:format=auto[styled];[styled][3:v]overlay=0:0:format=auto[vout];[1:a]{audio_filter}[aout]"
     else:
@@ -835,7 +837,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
         filters.append(f"[styled][{text_index}:v]overlay=0:0:format=auto[vout]")
     else:
         filters.append(f"[base][{style_index}:v]overlay=0:0:format=auto[vout]")
-    filters.append(f"[{len(media_ids)}:a]{audio_filter_chain(str(aud.get('media_id') or ''))}[aout]")
+    filters.append(f"[{len(media_ids)}:a]{segment_audio_filter_chain(str(aud.get('media_id') or ''))}[aout]")
     command.extend(
         [
             "-filter_complex",
@@ -873,6 +875,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
 
 def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
     list_path = DIAGNOSTICS / "test_project1_style_preview_concat.txt"
+    temp_output = output.with_name(f"{output.stem}_audio_unprocessed{output.suffix}")
     list_path.parent.mkdir(parents=True, exist_ok=True)
     list_path.write_text("".join(f"file '{path.as_posix()}'\n" for path in segments), encoding="utf-8")
     subprocess.run(
@@ -904,11 +907,45 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
             "48000",
             "-movflags",
             "+faststart",
+            str(temp_output),
+        ],
+        cwd=WORKSPACE_ROOT,
+        check=True,
+    )
+    subprocess.run(
+        [
+            ffmpeg,
+            "-hide_banner",
+            "-loglevel",
+            "warning",
+            "-y",
+            "-i",
+            str(temp_output),
+            "-map",
+            "0:v:0",
+            "-map",
+            "0:a:0",
+            "-c:v",
+            "copy",
+            "-af",
+            final_audio_filter_chain(),
+            "-c:a",
+            "aac",
+            "-b:a",
+            "128k",
+            "-ar",
+            "48000",
+            "-movflags",
+            "+faststart",
             str(output),
         ],
         cwd=WORKSPACE_ROOT,
         check=True,
     )
+    try:
+        temp_output.unlink()
+    except OSError:
+        pass
 
 
 def main() -> None:

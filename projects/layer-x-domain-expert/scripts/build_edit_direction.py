@@ -1189,6 +1189,122 @@ def build_edit_plan(
         master_cursor += duration
         full_index += 1
 
+    def attach_main_caption_plan_items() -> dict[str, Any]:
+        attached: list[dict[str, Any]] = []
+        skipped: list[dict[str, Any]] = []
+
+        for event in timeline:
+            if event.get("section") != "main":
+                continue
+            event["overlays"] = [
+                overlay
+                for overlay in event.get("overlays", [])
+                if not (overlay.get("type") == "caption" and overlay.get("style_id") == "main_punchline_caption")
+            ]
+            event["main_caption_plan_items"] = []
+            event["_main_caption_slots"] = []
+
+        def main_event_for_caption(caption_start: float) -> dict[str, Any] | None:
+            for event in timeline:
+                if event.get("section") != "main":
+                    continue
+                reference = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
+                try:
+                    reference_in = float(reference.get("in"))
+                    reference_out = float(reference.get("out"))
+                except (TypeError, ValueError):
+                    continue
+                if reference_in - 0.25 <= caption_start < reference_out:
+                    return event
+            return None
+
+        for caption in main_captions:
+            caption_id = str(caption.get("caption_id") or "")
+            try:
+                caption_start = float(caption.get("caption_start_sec") or 0.0)
+            except (TypeError, ValueError):
+                skipped.append({"caption_id": caption_id, "reason": "invalid_caption_start"})
+                continue
+
+            event = main_event_for_caption(caption_start)
+            if event is None:
+                skipped.append({"caption_id": caption_id, "reason": "no_matching_main_event", "caption_start_sec": caption_start})
+                continue
+            if event.get("caption_policy") == "no_caption_while_nameplate_visible":
+                skipped.append(
+                    {
+                        "caption_id": caption_id,
+                        "reason": "nameplate_visible",
+                        "event_id": event.get("event_id"),
+                        "caption_start_sec": caption_start,
+                    }
+                )
+                continue
+
+            reference = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
+            reference_in = float(reference.get("in") or caption_start)
+            event_duration = float(event.get("timeline_end") or 0.0) - float(event.get("timeline_start") or 0.0)
+            if event_duration <= 1.2:
+                skipped.append({"caption_id": caption_id, "reason": "event_too_short", "event_id": event.get("event_id")})
+                continue
+
+            display_duration = min(4.8, max(2.8, event_duration - 0.8))
+            raw_local_start = caption_start - reference_in
+            latest_start = max(0.35, event_duration - display_duration - 0.35)
+            local_start = max(0.35, min(raw_local_start, latest_start))
+            slots = event.setdefault("_main_caption_slots", [])
+            if slots:
+                local_start = max(local_start, float(slots[-1][1]) + 0.25)
+            local_end = min(event_duration - 0.25, local_start + display_duration)
+
+            if local_end - local_start < 2.4:
+                local_start = max(0.35, event_duration - 2.8 - 0.25)
+                local_end = min(event_duration - 0.25, local_start + 2.8)
+            if local_end - local_start < 2.0:
+                skipped.append({"caption_id": caption_id, "reason": "insufficient_display_room", "event_id": event.get("event_id")})
+                continue
+
+            event.setdefault("overlays", []).append(
+                {
+                    "type": "caption",
+                    "start": round(local_start, 3),
+                    "end": round(local_end, 3),
+                    "text": clean_text(str(caption.get("display_text") or "")),
+                    "style_id": "main_punchline_caption",
+                    "caption_id": caption_id,
+                    "caption_no": caption.get("caption_no"),
+                    "speaker_person_id": caption.get("speaker_person_id"),
+                    "metadata": {
+                        "main_caption_id": caption_id,
+                        "source": "main_caption_plan",
+                        "caption_start_sec": caption.get("caption_start_sec"),
+                        "caption_end_sec": caption.get("caption_end_sec"),
+                        "speaker_name": caption.get("speaker_name"),
+                    },
+                }
+            )
+            event.setdefault("main_caption_plan_items", []).append(caption)
+            slots.append((local_start, local_end))
+            attached.append({"caption_id": caption_id, "event_id": event.get("event_id")})
+
+        for event in timeline:
+            event.pop("_main_caption_slots", None)
+            if event.get("section") == "main":
+                event["overlays"] = sorted(
+                    event.get("overlays", []),
+                    key=lambda overlay: (float(overlay.get("start", 0.0)) if "start" in overlay else -1.0, str(overlay.get("type") or "")),
+                )
+
+        return {
+            "source": "main_caption_plan.json",
+            "total_candidates": len(main_captions),
+            "attached_count": len(attached),
+            "skipped_count": len(skipped),
+            "skipped": skipped,
+        }
+
+    main_caption_assignment = attach_main_caption_plan_items()
+
     unresolved = [role for role in ("camera2", "camera3", "camera4") if role not in (sync.get("offsets") or {})]
     review_required = sync_review_items(sync_map)
     blockers = []
@@ -1213,6 +1329,7 @@ def build_edit_plan(
         "content_window_source": str(REPORTS / "content_window.json"),
         "speaker_activity_source": str(REPORTS / "speaker_activity_analysis.json"),
         "content_window": content_window.get("usable_master_range"),
+        "main_caption_assignment": main_caption_assignment,
         "timeline": timeline,
         "validation": {
             "ready_for_preview": bool(timeline and semantic.get("highlight_candidates")),

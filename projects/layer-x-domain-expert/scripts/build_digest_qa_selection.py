@@ -63,17 +63,129 @@ def parse_srt(path: Path) -> list[dict[str, Any]]:
     return entries
 
 
-def split_caption_text(text: str, max_chars: int = 22) -> list[str]:
+PROTECTED_CAPTION_TERMS = [
+    "ドメインエキスパート",
+    "プロダクトマネージャー",
+    "バックオフィス",
+    "エンジニア",
+    "PDM",
+    "AI",
+    "LayerX",
+    "開発",
+    "言語化",
+    "当たり前",
+    "暗黙知",
+    "慣行",
+    "建設的",
+    "プレッシャー",
+    "リサーチ",
+    "プロダクト",
+    "キャリア",
+    "引っ張って",
+    "使いづらい",
+    "めっちゃ",
+    "めちゃめちゃ",
+    "おすすめ",
+    "絶対に逃がして",
+    "ある種",
+    "っていう",
+    "そういう",
+    "という",
+    "AIを",
+    "建設的な",
+    "ものすごく",
+    "ドメインの方",
+    "知らないことも知ってるんじゃないか",
+    "何でも知ってそう",
+    "知ってそうな感じ",
+    "知ってるんじゃないか",
+    "思われること",
+    "ことの難しさ",
+]
+
+
+def protected_spans(text: str) -> list[tuple[int, int]]:
+    spans: list[tuple[int, int]] = []
+    for term in PROTECTED_CAPTION_TERMS:
+        start = 0
+        while True:
+            index = text.find(term, start)
+            if index < 0:
+                break
+            spans.append((index, index + len(term)))
+            start = index + len(term)
+    return spans
+
+
+def inside_protected_span(index: int, spans: list[tuple[int, int]]) -> bool:
+    return any(start < index < end for start, end in spans)
+
+
+def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]:
+    candidates = set()
+    break_after = (
+        "、",
+        "。",
+        "？",
+        "！",
+        " ",
+        "とか",
+        "けど",
+        "ので",
+        "から",
+        "って",
+        "には",
+        "では",
+        "とは",
+        "という",
+        "みたいな",
+        "ですけど",
+        "ですよ",
+        "ですね",
+        "ます",
+        "ました",
+        "する",
+        "いる",
+        "ある",
+        "なる",
+        "できる",
+    )
+    for phrase in break_after:
+        start = 0
+        while True:
+            index = text.find(phrase, start)
+            if index < 0:
+                break
+            candidates.add(index + len(phrase))
+            start = index + len(phrase)
+    for start, end in spans:
+        candidates.add(start)
+        candidates.add(end)
+    return sorted(index for index in candidates if 0 < index < len(text) and not inside_protected_span(index, spans))
+
+
+def split_caption_text(text: str, max_chars: int = 15) -> list[str]:
     text = clean_text(text)
     if len(text) <= max_chars:
         return [text]
     chunks: list[str] = []
     remaining = text
-    break_chars = "、。！？,. "
     while len(remaining) > max_chars:
-        cut = max(remaining.rfind(mark, 0, max_chars + 1) for mark in break_chars)
-        if cut < 10:
-            cut = max_chars
+        spans = protected_spans(remaining)
+        candidates = caption_cut_candidates(remaining, spans)
+        lower_bound = max(6, max_chars - 5)
+        preferred = [index for index in candidates if lower_bound <= index <= max_chars]
+        if preferred:
+            cut = preferred[-1]
+        else:
+            forward = [index for index in candidates if max_chars < index <= max_chars + 9]
+            if forward:
+                cut = forward[0]
+            else:
+                backward = [index for index in candidates if index < lower_bound]
+                cut = backward[-1] if backward else max_chars
+                while cut < len(remaining) and inside_protected_span(cut, spans):
+                    cut += 1
         chunk = remaining[:cut].strip(" 、。！？,.")
         next_remaining = remaining[cut:].strip(" 、。！？,.")
         if next_remaining and len(next_remaining) < 5 and len(chunk) + len(next_remaining) <= max_chars + 5:
@@ -85,7 +197,16 @@ def split_caption_text(text: str, max_chars: int = 22) -> list[str]:
         remaining = next_remaining
     if remaining:
         chunks.append(remaining)
-    return chunks
+    merged: list[str] = []
+    for chunk in chunks:
+        chunk = chunk.strip()
+        if not chunk:
+            continue
+        if merged and len(chunk) <= 3 and len(merged[-1]) + len(chunk) <= max_chars + 8:
+            merged[-1] = f"{merged[-1]}{chunk}"
+        else:
+            merged.append(chunk)
+    return merged
 
 
 def subtitles_for_range(entries: list[dict[str, Any]], start: float, end: float) -> list[dict[str, Any]]:
@@ -134,6 +255,7 @@ def part_payload(entries: list[dict[str, Any]], part: dict[str, Any], order: int
         "start_timecode": seconds_to_srt(start),
         "end_timecode": seconds_to_srt(end),
         "duration_sec": round(end - start, 3),
+        "layout": part.get("layout"),
         "caption_overlays": caption_overlays(entries, start, end),
         "srt_evidence": [
             {
@@ -204,8 +326,8 @@ def build_selection() -> dict[str, Any]:
             "clip_title": "当たり前を言語化する難しさ",
             "question_title": "開発に関わって、一番大変だったことは何ですか？",
             "parts": [
-                {"kind": "question", "start": 1500.720, "end": 1508.760},
-                {"kind": "answer", "start": 1531.120, "end": 1566.620},
+                {"kind": "question", "start": 1500.720, "end": 1508.760, "layout": {"type": "wide_group", "active_person_id": "person_01"}},
+                {"kind": "answer", "start": 1533.420, "end": 1556.620, "layout": {"type": "single", "target_person_id": "person_03"}},
             ],
             "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_03"},
             "visual_strategy": "two-person split of interviewees; focus on the respondent while keeping the other reaction visible",
@@ -218,8 +340,9 @@ def build_selection() -> dict[str, Any]:
             "clip_title": "何でも知っている人ではない",
             "question_title": "ドメインエキスパートは、何でも知っていないといけないんですか？",
             "parts": [
-                {"kind": "question_context", "start": 1571.120, "end": 1588.620},
-                {"kind": "answer", "start": 1595.620, "end": 1638.760},
+                {"kind": "question_context", "start": 1595.620, "end": 1611.940, "layout": {"type": "single", "target_person_id": "person_03"}},
+                {"kind": "answer", "start": 1619.160, "end": 1627.720, "layout": {"type": "single", "target_person_id": "person_02"}},
+                {"kind": "answer", "start": 1633.820, "end": 1638.760, "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_02"}},
             ],
             "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_03"},
             "visual_strategy": "two-person split of interviewees; use both faces because the answer is about discussion with engineers",
@@ -232,7 +355,7 @@ def build_selection() -> dict[str, Any]:
             "clip_title": "なんで？が成長につながる",
             "question_title": "エンジニアから「なんで？」と聞かれるのは怖くないですか？",
             "parts": [
-                {"kind": "answer", "start": 1638.760, "end": 1663.720},
+                {"kind": "answer", "start": 1641.880, "end": 1663.720, "layout": {"type": "single", "target_person_id": "person_03"}},
             ],
             "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_03"},
             "visual_strategy": "two-person split of interviewees; keep the respondent and reaction visible",
@@ -245,8 +368,9 @@ def build_selection() -> dict[str, Any]:
             "clip_title": "AI時代の実務家の手触り",
             "question_title": "AI時代に、ドメインエキスパートの価値は何ですか？",
             "parts": [
-                {"kind": "question", "start": 1973.100, "end": 1995.100},
-                {"kind": "answer", "start": 2010.100, "end": 2073.860},
+                {"kind": "question", "start": 1983.100, "end": 1995.100, "layout": {"type": "wide_group", "active_person_id": "person_01"}},
+                {"kind": "answer", "start": 2010.100, "end": 2029.120, "layout": {"type": "single", "target_person_id": "person_02"}},
+                {"kind": "answer", "start": 2051.540, "end": 2068.820, "layout": {"type": "single", "target_person_id": "person_02"}},
             ],
             "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_02"},
             "visual_strategy": "two-person split of interviewees; use middle/right because the answer moves between domain expertise and practical judgment",
@@ -265,8 +389,9 @@ def build_selection() -> dict[str, Any]:
             "clip_title": "バックオフィス経験は開発で広がる",
             "question_title": "バックオフィス経験者に、PDMや開発関与のキャリアはおすすめですか？",
             "parts": [
-                {"kind": "question", "start": 2914.040, "end": 2938.040},
-                {"kind": "answer", "start": 2938.040, "end": 2980.620},
+                {"kind": "question", "start": 2918.040, "end": 2938.040, "layout": {"type": "wide_group", "active_person_id": "person_01"}},
+                {"kind": "answer", "start": 2938.040, "end": 2958.040, "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_02"}},
+                {"kind": "answer", "start": 2973.700, "end": 2980.620, "layout": {"type": "single", "target_person_id": "person_02"}},
             ],
             "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_02"},
             "visual_strategy": "two-person split of interviewees; keep both answers visible because both recommend the career path",

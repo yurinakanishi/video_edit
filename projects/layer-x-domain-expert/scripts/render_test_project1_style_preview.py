@@ -18,6 +18,7 @@ OVERLAYS = PROJECT_ROOT / "output" / "overlays" / "test_project1_style"
 DIAGNOSTICS = PROJECT_ROOT / "output" / "diagnostics"
 FFMPEG_DEFAULT = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
 FONT_FILE = Path(r"C:\Windows\Fonts\YuGothB.ttc")
+CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicB.ttc")
 LOGO_PATH = PROJECT_ROOT / "source" / "assets" / "LayerX_Logo_Horizontal_RGB_Color.png"
 
 WIDTH = 1280
@@ -190,34 +191,156 @@ def paste_slanted_gradient(canvas: Image.Image, polygon: list[tuple[int, int]], 
     canvas.paste(rect, (x0, y0), mask)
 
 
-def fit_font(text: str, max_width: int, size: int, min_size: int) -> ImageFont.FreeTypeFont:
+def fit_font(text: str, max_width: int, size: int, min_size: int, font_file: Path = FONT_FILE) -> ImageFont.FreeTypeFont:
     probe = Image.new("RGBA", (10, 10), (0, 0, 0, 0))
     draw = ImageDraw.Draw(probe)
     for font_size in range(size, min_size - 1, -2):
-        font = ImageFont.truetype(str(FONT_FILE), font_size)
+        font = ImageFont.truetype(str(font_file), font_size)
         bbox = draw.textbbox((0, 0), text, font=font)
         if bbox[2] - bbox[0] <= max_width:
             return font
-    return ImageFont.truetype(str(FONT_FILE), min_size)
+    return ImageFont.truetype(str(font_file), min_size)
 
 
-def wrap_caption_text(text: str, max_chars: int = 22) -> list[str]:
+PROTECTED_CAPTION_TERMS = [
+    "ドメインエキスパート",
+    "プロダクトマネージャー",
+    "バックオフィス",
+    "エンジニア",
+    "PDM",
+    "AI",
+    "LayerX",
+    "開発",
+    "言語化",
+    "当たり前",
+    "暗黙知",
+    "慣行",
+    "建設的",
+    "プレッシャー",
+    "リサーチ",
+    "プロダクト",
+    "キャリア",
+    "引っ張って",
+    "使いづらい",
+    "めっちゃ",
+    "めちゃめちゃ",
+    "おすすめ",
+    "絶対に逃がして",
+    "ある種",
+    "っていう",
+    "そういう",
+    "という",
+    "AIを",
+    "建設的な",
+    "ものすごく",
+    "ドメインの方",
+    "知らないことも知ってるんじゃないか",
+    "何でも知ってそう",
+    "知ってそうな感じ",
+    "知ってるんじゃないか",
+    "思われること",
+    "ことの難しさ",
+]
+
+
+def protected_spans(text: str) -> list[tuple[int, int]]:
+    spans: list[tuple[int, int]] = []
+    for term in PROTECTED_CAPTION_TERMS:
+        start = 0
+        while True:
+            index = text.find(term, start)
+            if index < 0:
+                break
+            spans.append((index, index + len(term)))
+            start = index + len(term)
+    return spans
+
+
+def inside_protected_span(index: int, spans: list[tuple[int, int]]) -> bool:
+    return any(start < index < end for start, end in spans)
+
+
+def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]:
+    candidates = set()
+    break_after = (
+        "、",
+        "。",
+        "？",
+        "！",
+        " ",
+        "とか",
+        "けど",
+        "ので",
+        "から",
+        "って",
+        "には",
+        "では",
+        "とは",
+        "という",
+        "みたいな",
+        "ですけど",
+        "ですよ",
+        "ですね",
+        "ます",
+        "ました",
+        "する",
+        "いる",
+        "ある",
+        "なる",
+        "できる",
+    )
+    for phrase in break_after:
+        start = 0
+        while True:
+            index = text.find(phrase, start)
+            if index < 0:
+                break
+            candidates.add(index + len(phrase))
+            start = index + len(phrase)
+    for start, end in spans:
+        candidates.add(start)
+        candidates.add(end)
+    return sorted(index for index in candidates if 0 < index < len(text) and not inside_protected_span(index, spans))
+
+
+def wrap_caption_text(text: str, max_chars: int = 15) -> list[str]:
     text = " ".join(str(text).split())
     if len(text) <= max_chars:
         return [text]
-    break_chars = "、。！？ "
-    best = -1
-    for char in break_chars:
-        best = max(best, text.rfind(char, 0, max_chars + 1))
-    if best >= 7:
-        first = text[:best].strip(" 、。！？")
-        second = text[best + 1 :].strip()
+    spans = protected_spans(text)
+    candidates = caption_cut_candidates(text, spans)
+    lower_bound = max(6, max_chars - 5)
+    preferred = [index for index in candidates if lower_bound <= index <= max_chars]
+    if preferred:
+        cut = preferred[-1]
     else:
-        first = text[:max_chars].strip()
-        second = text[max_chars:].strip()
+        forward = [index for index in candidates if max_chars < index <= max_chars + 9]
+        if forward:
+            cut = forward[0]
+        else:
+            cut = max_chars
+            while cut < len(text) and inside_protected_span(cut, spans):
+                cut += 1
+    first = text[:cut].strip(" 、。！？")
+    second = text[cut:].strip(" 、。！？")
     if second and len(second) < 5 and len(first) + len(second) <= max_chars + 5:
         return [f"{first}{second}"]
-    return [first, second][:2]
+    result = [line for line in (first, second) if line]
+    if len(result) == 2 and len(result[1]) <= 3 and len(result[0]) + len(result[1]) <= max_chars + 8:
+        return [result[0] + result[1]]
+    return result[:2]
+
+
+def condensed_text_image(text: str, font: ImageFont.FreeTypeFont, fill: tuple[int, int, int, int], scale_x: float = 0.92) -> Image.Image:
+    probe = Image.new("RGBA", (10, 10), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(probe)
+    bbox = draw.textbbox((0, 0), text, font=font)
+    width = max(1, bbox[2] - bbox[0] + 8)
+    height = max(1, bbox[3] - bbox[1] + 8)
+    text_layer = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    ImageDraw.Draw(text_layer).text((4 - bbox[0], 4 - bbox[1]), text, font=font, fill=fill)
+    target_width = max(1, round(width * scale_x))
+    return text_layer.resize((target_width, height), Image.Resampling.LANCZOS)
 
 
 def draw_gradient_text(layer: Image.Image, position: tuple[int, int], text: str, font: ImageFont.FreeTypeFont, fill: str) -> None:
@@ -347,10 +470,10 @@ def draw_white_intro_label(canvas: Image.Image, person_id: str, x: int, y: int, 
 
 def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float) -> None:
     lines = wrap_caption_text(text)
-    line_height = 76
-    gap = 8
+    line_height = 106
+    gap = 6
     stack_h = len(lines) * line_height + (len(lines) - 1) * gap
-    y_base = 642 - stack_h
+    y_base = 662 - stack_h
     y_positions = [y_base + index * (line_height + gap) for index in range(len(lines))]
     draw = ImageDraw.Draw(canvas)
     for index, line in enumerate(lines):
@@ -361,19 +484,22 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
         opacity = min(1.0, max(0.0, (now - line_start) / 0.12))
         if now > end:
             opacity *= max(0.0, 1.0 - (now - end) / 0.1)
-        font = fit_font(line, 1110, 62, 46)
+        font = fit_font(line, 1080, 94, 70, CAPTION_FONT_FILE)
         bbox = draw.textbbox((0, 0), line, font=font)
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
-        box_w = min(1180, text_w + 60)
+        text_image = condensed_text_image(line, font, (255, 255, 255, round(255 * opacity)), 0.92)
+        text_w = text_image.width
+        text_h = text_image.height
+        box_w = min(1198, text_w + 66)
         box_h = line_height
         x0 = round((WIDTH - box_w) / 2)
         y0 = y_positions[index]
         line_layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
         paste_gradient_box(line_layer, (x0, y0, x0 + box_w, y0 + box_h), CAPTION_STOPS, 5, round(245 * opacity), True)
         text_x = x0 + (box_w - text_w) / 2
-        text_y = y0 + (box_h - text_h) / 2 - 5
-        ImageDraw.Draw(line_layer).text((text_x, text_y), line, font=font, fill=(255, 255, 255, round(255 * opacity)))
+        text_y = y0 + (box_h - text_h) / 2
+        line_layer.alpha_composite(text_image, (round(text_x), round(text_y)))
         visible_w = round(WIDTH * reveal)
         mask = Image.new("L", (WIDTH, HEIGHT), 0)
         ImageDraw.Draw(mask).rectangle((0, 0, visible_w, HEIGHT), fill=255)

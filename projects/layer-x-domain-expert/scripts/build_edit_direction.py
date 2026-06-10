@@ -600,10 +600,6 @@ def build_edit_plan(
     if digest_qa:
         digest_title = project_video_title()
         for index, clip in enumerate(digest_qa.get("clips", []), start=1):
-            layout = clip.get("layout") if isinstance(clip.get("layout"), dict) else {}
-            media_ids = [str(item) for item in layout.get("media_ids", []) if str(item) in PERSON_CAMERA.get("person_02", {}) or str(item).startswith("cam_")]
-            if not media_ids:
-                media_ids = ["cam_person_02", "cam_person_03"]
             parts = clip.get("parts") if isinstance(clip.get("parts"), list) else []
             if not parts:
                 parts = [clip]
@@ -613,6 +609,44 @@ def build_edit_plan(
                 source_start = float(part.get("start_sec") or clip.get("start_sec") or 0.0)
                 source_end = float(part.get("end_sec") or clip.get("end_sec") or source_start + 1.0)
                 duration = max(0.01, source_end - source_start)
+                part_layout = part.get("layout") if isinstance(part.get("layout"), dict) else {}
+                clip_layout = clip.get("layout") if isinstance(clip.get("layout"), dict) else {}
+                requested_layout = part_layout or clip_layout
+                layout_type = str(requested_layout.get("type") or "split_grid")
+                active_person_id = str(requested_layout.get("active_person_id") or requested_layout.get("target_person_id") or "person_02")
+                source_media_id = "group_wide"
+                source_media_start = source_start
+                event_layout: dict[str, Any]
+                if layout_type == "single":
+                    target_person_id = str(requested_layout.get("target_person_id") or active_person_id)
+                    source_media_id, source_media_start = synced_source_start_for_person(target_person_id, source_start, offsets)
+                    event_layout = {
+                        "type": "single",
+                        "selected_media_id": source_media_id,
+                        "target_person_id": target_person_id,
+                        "crop_mode": "person_centered",
+                        "selection_reason": "Digest answer cut uses the active speaker close-up.",
+                    }
+                elif layout_type == "wide_group":
+                    event_layout = {
+                        "type": "wide_group",
+                        "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                        "active_person_id": active_person_id,
+                        "safe_margin": 0.06,
+                        "selection_reason": "Digest question/context cut uses the three-person wide shot so the speaker stays in frame.",
+                    }
+                else:
+                    media_ids = [str(item) for item in requested_layout.get("media_ids", []) if str(item).startswith("cam_")]
+                    if not media_ids:
+                        media_ids = ["cam_person_02", "cam_person_03"]
+                    event_layout = {
+                        "type": "split_grid",
+                        "media_ids": media_ids,
+                        "grid_strategy": "digest_qa_two_person_split",
+                        "panel_order": ["person_02", "person_03"],
+                        "active_person_id": active_person_id,
+                        "selection_reason": str(clip.get("selection_reason") or "Requested Q&A digest clip from SRT."),
+                    }
                 overlays = [
                     {
                         "type": "topic_title",
@@ -632,16 +666,9 @@ def build_edit_plan(
                         "timeline_end": round(cursor + duration, 3),
                         "type": "source_clip",
                         "section": "digest",
-                        "source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
+                        "source": {"media_id": source_media_id, "in": round(source_media_start, 3), "out": safe_source_out(media_duration(manifest, source_media_id), source_media_start, duration)},
                         "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
-                        "layout": {
-                            "type": "split_grid",
-                            "media_ids": media_ids,
-                            "grid_strategy": "digest_qa_two_person_split",
-                            "panel_order": ["person_02", "person_03"],
-                            "active_person_id": str(layout.get("active_person_id") or "person_02"),
-                            "selection_reason": str(clip.get("selection_reason") or "Requested Q&A digest clip from SRT."),
-                        },
+                        "layout": event_layout,
                         "audio": {"mode": "continuous_reference", "source_media_id": "group_wide", "fade_in": 0.04, "fade_out": 0.08},
                         "overlays": overlays,
                         "digest_qa_source": {

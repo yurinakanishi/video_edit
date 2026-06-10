@@ -255,9 +255,39 @@ def caption_overlays(entries: list[dict[str, Any]], start: float, end: float) ->
     return overlays
 
 
+def manual_caption_overlays(part: dict[str, Any], start: float, end: float) -> list[dict[str, Any]] | None:
+    captions = part.get("captions")
+    if not isinstance(captions, list):
+        return None
+    overlays: list[dict[str, Any]] = []
+    duration = end - start
+    for index, caption in enumerate(captions, start=1):
+        if not isinstance(caption, dict):
+            continue
+        text = clean_text(str(caption.get("text") or ""))
+        if not text:
+            continue
+        local_start = float(caption.get("start", 0.0))
+        local_end = float(caption.get("end", min(duration, local_start + 2.0)))
+        overlays.append(
+            {
+                "type": "caption",
+                "start": round(max(0.0, min(duration, local_start)), 3),
+                "end": round(max(0.0, min(duration, local_end)), 3),
+                "text": text,
+                "style_id": "opening_digest_sample_caption",
+                "source_srt_index": caption.get("source_srt_index"),
+                "source_timecode": caption.get("source_timecode"),
+                "editorial_note": caption.get("editorial_note", "manual_digest_caption"),
+            }
+        )
+    return overlays
+
+
 def part_payload(entries: list[dict[str, Any]], part: dict[str, Any], order: int, part_order: int) -> dict[str, Any]:
     start = float(part["start"])
     end = float(part["end"])
+    manual_captions = manual_caption_overlays(part, start, end)
     return {
         "part_id": f"digest_qa_{order:02d}_{part['kind']}_{part_order:02d}",
         "kind": part["kind"],
@@ -267,7 +297,7 @@ def part_payload(entries: list[dict[str, Any]], part: dict[str, Any], order: int
         "end_timecode": seconds_to_srt(end),
         "duration_sec": round(end - start, 3),
         "layout": part.get("layout"),
-        "caption_overlays": caption_overlays(entries, start, end),
+        "caption_overlays": manual_captions if manual_captions is not None else caption_overlays(entries, start, end),
         "srt_evidence": [
             {
                 "index": entry["index"],
@@ -337,8 +367,74 @@ def build_selection() -> dict[str, Any]:
             "clip_title": "当たり前を言語化する難しさ",
             "question_title": "開発に関わって、一番大変だったことは何ですか？",
             "parts": [
-                {"kind": "question", "start": 1500.720, "end": 1508.760, "layout": {"type": "wide_group", "active_person_id": "person_01"}},
-                {"kind": "answer", "start": 1533.420, "end": 1556.620, "layout": {"type": "single", "target_person_id": "person_03"}},
+                {
+                    "kind": "question",
+                    "start": 1500.720,
+                    "end": 1508.760,
+                    "layout": {"type": "wide_group", "active_person_id": "person_01"},
+                    "captions": [
+                        {
+                            "start": 0.0,
+                            "end": 4.02,
+                            "text": "開発に関わる仕事をする中で",
+                            "source_srt_index": 460,
+                            "source_timecode": "00:25:00,720 --> 00:25:08,760",
+                        },
+                        {
+                            "start": 4.02,
+                            "end": 8.04,
+                            "text": "これめっちゃ大変でしたとかありますか？",
+                            "source_srt_index": 460,
+                            "source_timecode": "00:25:00,720 --> 00:25:08,760",
+                            "editorial_note": "Question phrased for digest clarity; SRT ends at 'とか'.",
+                        },
+                    ],
+                },
+                {
+                    "kind": "answer",
+                    "start": 1533.420,
+                    "end": 1543.020,
+                    "layout": {"type": "single", "target_person_id": "person_03"},
+                    "captions": [
+                        {
+                            "start": 0.0,
+                            "end": 1.88,
+                            "text": "なんでそうするんですかって聞かれた時に",
+                            "source_srt_index": 468,
+                            "source_timecode": "00:25:33,420 --> 00:25:35,300",
+                        },
+                        {
+                            "start": 1.88,
+                            "end": 5.2,
+                            "text": "ものすごくこれを言語化するのに大変だった",
+                            "source_srt_index": 469,
+                            "source_timecode": "00:25:35,300 --> 00:25:38,620",
+                        },
+                        {
+                            "start": 5.2,
+                            "end": 9.6,
+                            "text": "癖とか慣れとかそういうもので今までやってきた",
+                            "source_srt_index": 470,
+                            "source_timecode": "00:25:38,620 --> 00:25:49,620",
+                        },
+                    ],
+                },
+                {
+                    "kind": "answer",
+                    "start": 1553.120,
+                    "end": 1556.620,
+                    "layout": {"type": "single", "target_person_id": "person_03"},
+                    "captions": [
+                        {
+                            "start": 0.0,
+                            "end": 3.5,
+                            "text": "今までの当たり前を言語化する",
+                            "source_srt_index": 471,
+                            "source_timecode": "00:25:49,620 --> 00:25:56,620",
+                            "editorial_note": "Cut after the core phrase; middle explanatory sentence omitted.",
+                        }
+                    ],
+                },
             ],
             "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_03"},
             "visual_strategy": "two-person split of interviewees; focus on the respondent while keeping the other reaction visible",
@@ -351,9 +447,58 @@ def build_selection() -> dict[str, Any]:
             "clip_title": "何でも知っている人ではない",
             "question_title": "ドメインエキスパートは、何でも知っていないといけないんですか？",
             "parts": [
-                {"kind": "question_context", "start": 1595.620, "end": 1611.940, "layout": {"type": "single", "target_person_id": "person_03"}},
-                {"kind": "answer", "start": 1619.160, "end": 1627.720, "layout": {"type": "single", "target_person_id": "person_02"}},
-                {"kind": "answer", "start": 1633.820, "end": 1638.760, "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_02"}},
+                {
+                    "kind": "question_context",
+                    "start": 1595.620,
+                    "end": 1604.100,
+                    "layout": {"type": "single", "target_person_id": "person_03"},
+                    "captions": [
+                        {
+                            "start": 0.0,
+                            "end": 2.8,
+                            "text": "ドメインエキスパートって言うと",
+                            "source_srt_index": 480,
+                            "source_timecode": "00:26:35,620 --> 00:26:41,220",
+                        },
+                        {
+                            "start": 2.8,
+                            "end": 5.6,
+                            "text": "何でも知ってそうな感じがあると思ってて",
+                            "source_srt_index": 480,
+                            "source_timecode": "00:26:35,620 --> 00:26:41,220",
+                        },
+                        {
+                            "start": 5.6,
+                            "end": 8.48,
+                            "text": "この辺へのハードルの高さというか",
+                            "source_srt_index": 481,
+                            "source_timecode": "00:26:41,220 --> 00:26:44,100",
+                        },
+                    ],
+                },
+                {
+                    "kind": "answer",
+                    "start": 1619.160,
+                    "end": 1627.720,
+                    "layout": {"type": "single", "target_person_id": "person_02"},
+                    "captions": [
+                        {
+                            "start": 0.0,
+                            "end": 4.76,
+                            "text": "すごい皆さんドメインの方めっちゃ調べてるんですよ",
+                            "source_srt_index": 484,
+                            "source_timecode": "00:26:59,160 --> 00:27:03,920",
+                        },
+                        {
+                            "start": 4.76,
+                            "end": 8.56,
+                            "text": "正直全然僕より詳しいということもある",
+                            "source_srt_index": 485,
+                            "source_timecode": "00:27:03,920 --> 00:27:07,720",
+                            "editorial_note": "Digest wording normalized from SRT phrase '意味はあるんでしょうけどね'.",
+                        },
+                    ],
+                },
             ],
             "layout": {"type": "split_grid", "media_ids": ["cam_person_02", "cam_person_03"], "active_person_id": "person_03"},
             "visual_strategy": "two-person split of interviewees; use both faces because the answer is about discussion with engineers",

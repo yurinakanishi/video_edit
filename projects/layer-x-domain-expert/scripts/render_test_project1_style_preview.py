@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from functools import lru_cache
 import json
 import math
 import subprocess
@@ -259,12 +260,24 @@ PROTECTED_CAPTION_TERMS = [
     "実現していきたいのか",
     "こういう形で広く見れる",
     "めちゃめちゃおすすめだと思います",
+    "プロダクトマネージャ",
+    "言語化する",
+    "実現して",
+    "役割というか",
+    "使うのが",
+    "当時",
+    "とって",
+    "働く人にとって",
+    "ハードル",
+    "僕より",
 ]
 
 
 def protected_spans(text: str) -> list[tuple[int, int]]:
     spans: list[tuple[int, int]] = []
     for term in PROTECTED_CAPTION_TERMS:
+        if len(term) > 14:
+            continue
         start = 0
         while True:
             index = text.find(term, start)
@@ -302,6 +315,17 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
         "ですね",
         "ます",
         "ました",
+        "これまで",
+        "今まで",
+        "こと",
+        "意味",
+        "自分",
+        "ドメイン",
+        "プロダクト",
+        "機能",
+        "経理",
+        "労務",
+        "AI",
     )
     for phrase in break_after:
         start = 0
@@ -317,32 +341,126 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
     return sorted(index for index in candidates if 0 < index < len(text) and not inside_protected_span(index, spans))
 
 
+@lru_cache(maxsize=4096)
+def caption_text_width(text: str) -> int:
+    probe = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(probe)
+    font = ImageFont.truetype(str(CAPTION_FONT_FILE), CAPTION_FONT_SIZE)
+    bbox = draw.textbbox((0, 0), text, font=font)
+    return bbox[2] - bbox[0]
+
+
+def caption_line_fits(text: str) -> bool:
+    return caption_text_width(text) + 66 <= 1198 and caption_text_width(text) <= CAPTION_MAX_TEXT_WIDTH
+
+
+def bad_caption_break(line: str) -> bool:
+    return line.endswith(
+        (
+            "の",
+            "に",
+            "を",
+            "が",
+            "は",
+            "と",
+            "で",
+            "も",
+            "へ",
+            "や",
+            "から",
+            "まで",
+            "より",
+            "という",
+            "す",
+            "し",
+            "いけ",
+            "あ",
+            "い",
+            "こ",
+            "そ",
+            "ち",
+            "ちゃ",
+            "仕",
+            "け",
+            "しゃっ",
+            "ハー",
+            "ハード",
+            "怖",
+            "背",
+            "求めら",
+            "使い",
+            "当",
+            "とっ",
+            "高",
+            "詳",
+            "僕よ",
+        )
+    )
+
+
+def bad_caption_start(line: str) -> bool:
+    return line.startswith(("の", "に", "を", "が", "は", "と", "で", "も", "へ", "や", "って", "て", "する", "した", "った", "る", "れ", "ん", "け", "い", "ゃ", "ど", "さ", "しい", "り", "ード", "ドル", "ル", "事", "味", "メイン"))
+
+
+def best_caption_cut(text: str, lines_left: int, spans: list[tuple[int, int]]) -> int:
+    semantic_candidates = set(caption_cut_candidates(text, spans))
+    raw_candidates = [
+        index
+        for index in range(1, len(text))
+        if not inside_protected_span(index, spans) and caption_line_fits(text[:index].strip(" 、。"))
+    ]
+    if not raw_candidates:
+        fallback = 1
+        for index in range(1, len(text)):
+            if inside_protected_span(index, spans):
+                continue
+            if caption_text_width(text[:index].strip(" 、。")) > CAPTION_MAX_TEXT_WIDTH:
+                break
+            fallback = index
+        return fallback
+
+    target = max(1, round(len(text) / max(1, lines_left)))
+
+    def score(index: int) -> tuple[float, int]:
+        first = text[:index].strip(" 、。")
+        rest = text[index:].strip(" 、。")
+        first_w = caption_text_width(first)
+        rest_pressure = max(0, caption_text_width(rest) - CAPTION_MAX_TEXT_WIDTH * max(1, lines_left - 1))
+        semantic_bonus = -8 if index in semantic_candidates else 0
+        bad_break_penalty = 12 if bad_caption_break(first) else 0
+        bad_start_penalty = 16 if bad_caption_start(rest) else 0
+        short_line_penalty = 8 if len(first) < 6 else 0
+        return (
+            abs(index - target) + rest_pressure / 80 + bad_break_penalty + bad_start_penalty + short_line_penalty + semantic_bonus,
+            -index,
+        )
+
+    return min(raw_candidates, key=score)
+
+
 def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
     text = " ".join(str(text).replace("、", "").split())
-    if len(text) <= max_chars:
+    if caption_line_fits(text):
         return [text]
     spans = protected_spans(text)
-    candidates = caption_cut_candidates(text, spans)
-    lower_bound = max(6, max_chars - 5)
-    preferred = [index for index in candidates if lower_bound <= index <= max_chars]
-    if preferred:
-        cut = preferred[-1]
-    else:
-        forward = [index for index in candidates if max_chars < index <= max_chars + 9]
-        if forward:
-            cut = forward[0]
-        else:
-            cut = max_chars
-            while cut < len(text) and inside_protected_span(cut, spans):
-                cut += 1
-    first = text[:cut].strip(" 、。！？")
-    second = text[cut:].strip(" 、。！？")
-    if second and len(second) < 5 and len(first) + len(second) <= max_chars + 5:
-        return [f"{first}{second}"]
-    result = [line for line in (first, second) if line]
-    if len(result) == 2 and len(result[1]) <= 3 and len(result[0]) + len(result[1]) <= max_chars + 8:
-        return [result[0] + result[1]]
-    return result[:2]
+    two_line_candidates = []
+    for index in range(1, len(text)):
+        if inside_protected_span(index, spans):
+            continue
+        first = text[:index].strip(" 、。")
+        second = text[index:].strip(" 、。")
+        if first and second and caption_line_fits(first) and caption_line_fits(second):
+            semantic_bonus = -8 if index in set(caption_cut_candidates(text, spans)) else 0
+            bad_break_penalty = 12 if bad_caption_break(first) else 0
+            bad_start_penalty = 16 if bad_caption_start(second) else 0
+            balance = abs(caption_text_width(first) - caption_text_width(second)) / 100
+            two_line_candidates.append((balance + bad_break_penalty + bad_start_penalty + semantic_bonus, index))
+    if two_line_candidates:
+        _, cut = min(two_line_candidates)
+        return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line]
+
+    cut = best_caption_cut(text, 2, spans)
+    return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line][:2]
 
 
 def condensed_text_image(text: str, font: ImageFont.FreeTypeFont, fill: tuple[int, int, int, int], scale_x: float = 0.92) -> Image.Image:
@@ -507,7 +625,7 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
         bbox = draw.textbbox((0, 0), line, font=font)
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
-        scale_x = min(0.98, CAPTION_MAX_TEXT_WIDTH / max(1, text_w + 16))
+        scale_x = 0.98
         text_image = condensed_text_image(line, font, (255, 255, 255, round(255 * opacity)), scale_x)
         text_w = text_image.width
         text_h = text_image.height

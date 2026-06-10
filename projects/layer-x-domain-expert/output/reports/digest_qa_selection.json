@@ -1,7 +1,7 @@
 {
   "schema_version": "digest_qa_selection.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T17:45:57+09:00",
+  "generated_at": "2026-06-10T20:46:25+09:00",
   "source_srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\primary.srt",
   "video_title_ref": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\video_title.json",
   "selection_policy": {
@@ -23,7 +23,7 @@
       "end_sec": 1556.62,
       "start_timecode": "00:25:00,720",
       "end_timecode": "00:25:56,620",
-      "recommended_duration_sec": 31.24,
+      "recommended_duration_sec": 21.14,
       "source_range_note": "This digest clip is intentionally built from core question/answer parts; intervening non-core material is omitted.",
       "parts": [
         {
@@ -43,19 +43,21 @@
               "type": "caption",
               "start": 0.0,
               "end": 4.02,
-              "text": "ちなみにお二人の中でこれまで開発に関わる仕事をする中で",
+              "text": "開発に関わる仕事をする中で",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 460,
-              "source_timecode": "00:25:00,720 --> 00:25:08,760"
+              "source_timecode": "00:25:00,720 --> 00:25:08,760",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
               "start": 4.02,
               "end": 8.04,
-              "text": "これめっちゃ大変でしたとか",
+              "text": "これめっちゃ大変でしたとかありますか？",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 460,
-              "source_timecode": "00:25:00,720 --> 00:25:08,760"
+              "source_timecode": "00:25:00,720 --> 00:25:08,760",
+              "editorial_note": "Question phrased for digest clarity; SRT ends at 'とか'."
             }
           ],
           "srt_evidence": [
@@ -71,10 +73,10 @@
           "part_id": "digest_qa_01_answer_02",
           "kind": "answer",
           "start_sec": 1533.42,
-          "end_sec": 1556.62,
+          "end_sec": 1543.02,
           "start_timecode": "00:25:33,420",
-          "end_timecode": "00:25:56,620",
-          "duration_sec": 23.2,
+          "end_timecode": "00:25:43,020",
+          "duration_sec": 9.6,
           "layout": {
             "type": "single",
             "target_person_id": "person_03"
@@ -87,7 +89,8 @@
               "text": "なんでそうするんですかって聞かれた時に",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 468,
-              "source_timecode": "00:25:33,420 --> 00:25:35,300"
+              "source_timecode": "00:25:33,420 --> 00:25:35,300",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
@@ -96,52 +99,18 @@
               "text": "ものすごくこれを言語化するのに大変だった",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 469,
-              "source_timecode": "00:25:35,300 --> 00:25:38,620"
+              "source_timecode": "00:25:35,300 --> 00:25:38,620",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
               "start": 5.2,
-              "end": 8.867,
-              "text": "癖とか慣れとかそういうもので今までやってきたんだな",
+              "end": 9.6,
+              "text": "癖とか慣れとかそういうもので今までやってきた",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 470,
-              "source_timecode": "00:25:38,620 --> 00:25:49,620"
-            },
-            {
-              "type": "caption",
-              "start": 8.867,
-              "end": 12.533,
-              "text": "っていうのが分かるそれを言語化して頑張って言語化",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 470,
-              "source_timecode": "00:25:38,620 --> 00:25:49,620"
-            },
-            {
-              "type": "caption",
-              "start": 12.533,
-              "end": 16.2,
-              "text": "していくとちゃんと意味が当たっていくから",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 470,
-              "source_timecode": "00:25:38,620 --> 00:25:49,620"
-            },
-            {
-              "type": "caption",
-              "start": 16.2,
-              "end": 19.7,
-              "text": "だからこうなったんだけど自分のその仕事の中にあったことがあって",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 471,
-              "source_timecode": "00:25:49,620 --> 00:25:56,620"
-            },
-            {
-              "type": "caption",
-              "start": 19.7,
-              "end": 23.2,
-              "text": "その言語化ですかね今までの当たり前を言語化する",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 471,
-              "source_timecode": "00:25:49,620 --> 00:25:56,620"
+              "source_timecode": "00:25:38,620 --> 00:25:49,620",
+              "editorial_note": "manual_digest_caption"
             }
           ],
           "srt_evidence": [
@@ -162,7 +131,34 @@
               "start": "00:25:38,620",
               "end": "00:25:49,620",
               "text": "癖とか慣れとかそういうもので今までやってきたんだなっていうのが分かるそれを言語化して頑張って言語化していくとちゃんと意味が当たっていくから。"
-            },
+            }
+          ]
+        },
+        {
+          "part_id": "digest_qa_01_answer_03",
+          "kind": "answer",
+          "start_sec": 1553.12,
+          "end_sec": 1556.62,
+          "start_timecode": "00:25:53,120",
+          "end_timecode": "00:25:56,620",
+          "duration_sec": 3.5,
+          "layout": {
+            "type": "single",
+            "target_person_id": "person_03"
+          },
+          "caption_overlays": [
+            {
+              "type": "caption",
+              "start": 0.0,
+              "end": 3.5,
+              "text": "今までの当たり前を言語化する",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 471,
+              "source_timecode": "00:25:49,620 --> 00:25:56,620",
+              "editorial_note": "Cut after the core phrase; middle explanatory sentence omitted."
+            }
+          ],
+          "srt_evidence": [
             {
               "index": 471,
               "start": "00:25:49,620",
@@ -199,19 +195,21 @@
           "type": "caption",
           "start": 0.0,
           "end": 4.02,
-          "text": "ちなみにお二人の中でこれまで開発に関わる仕事をする中で",
+          "text": "開発に関わる仕事をする中で",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 460,
-          "source_timecode": "00:25:00,720 --> 00:25:08,760"
+          "source_timecode": "00:25:00,720 --> 00:25:08,760",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 4.02,
           "end": 8.04,
-          "text": "これめっちゃ大変でしたとか",
+          "text": "これめっちゃ大変でしたとかありますか？",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 460,
-          "source_timecode": "00:25:00,720 --> 00:25:08,760"
+          "source_timecode": "00:25:00,720 --> 00:25:08,760",
+          "editorial_note": "Question phrased for digest clarity; SRT ends at 'とか'."
         },
         {
           "type": "caption",
@@ -220,7 +218,8 @@
           "text": "なんでそうするんですかって聞かれた時に",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 468,
-          "source_timecode": "00:25:33,420 --> 00:25:35,300"
+          "source_timecode": "00:25:33,420 --> 00:25:35,300",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
@@ -229,52 +228,28 @@
           "text": "ものすごくこれを言語化するのに大変だった",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 469,
-          "source_timecode": "00:25:35,300 --> 00:25:38,620"
+          "source_timecode": "00:25:35,300 --> 00:25:38,620",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 5.2,
-          "end": 8.867,
-          "text": "癖とか慣れとかそういうもので今までやってきたんだな",
+          "end": 9.6,
+          "text": "癖とか慣れとかそういうもので今までやってきた",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 470,
-          "source_timecode": "00:25:38,620 --> 00:25:49,620"
+          "source_timecode": "00:25:38,620 --> 00:25:49,620",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
-          "start": 8.867,
-          "end": 12.533,
-          "text": "っていうのが分かるそれを言語化して頑張って言語化",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 470,
-          "source_timecode": "00:25:38,620 --> 00:25:49,620"
-        },
-        {
-          "type": "caption",
-          "start": 12.533,
-          "end": 16.2,
-          "text": "していくとちゃんと意味が当たっていくから",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 470,
-          "source_timecode": "00:25:38,620 --> 00:25:49,620"
-        },
-        {
-          "type": "caption",
-          "start": 16.2,
-          "end": 19.7,
-          "text": "だからこうなったんだけど自分のその仕事の中にあったことがあって",
+          "start": 0.0,
+          "end": 3.5,
+          "text": "今までの当たり前を言語化する",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 471,
-          "source_timecode": "00:25:49,620 --> 00:25:56,620"
-        },
-        {
-          "type": "caption",
-          "start": 19.7,
-          "end": 23.2,
-          "text": "その言語化ですかね今までの当たり前を言語化する",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 471,
-          "source_timecode": "00:25:49,620 --> 00:25:56,620"
+          "source_timecode": "00:25:49,620 --> 00:25:56,620",
+          "editorial_note": "Cut after the core phrase; middle explanatory sentence omitted."
         }
       ],
       "srt_evidence": [
@@ -362,20 +337,20 @@
       "clip_title": "何でも知っている人ではない",
       "question_title": "ドメインエキスパートは、何でも知っていないといけないんですか？",
       "start_sec": 1595.62,
-      "end_sec": 1638.76,
+      "end_sec": 1627.72,
       "start_timecode": "00:26:35,620",
-      "end_timecode": "00:27:18,760",
-      "recommended_duration_sec": 29.82,
+      "end_timecode": "00:27:07,720",
+      "recommended_duration_sec": 17.04,
       "source_range_note": "This digest clip is intentionally built from core question/answer parts; intervening non-core material is omitted.",
       "parts": [
         {
           "part_id": "digest_qa_02_question_context_01",
           "kind": "question_context",
           "start_sec": 1595.62,
-          "end_sec": 1611.94,
+          "end_sec": 1604.1,
           "start_timecode": "00:26:35,620",
-          "end_timecode": "00:26:51,940",
-          "duration_sec": 16.32,
+          "end_timecode": "00:26:44,100",
+          "duration_sec": 8.48,
           "layout": {
             "type": "single",
             "target_person_id": "person_03"
@@ -385,10 +360,11 @@
               "type": "caption",
               "start": 0.0,
               "end": 2.8,
-              "text": "結構なんかドメインエキスパートって言うと",
+              "text": "ドメインエキスパートって言うと",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 480,
-              "source_timecode": "00:26:35,620 --> 00:26:41,220"
+              "source_timecode": "00:26:35,620 --> 00:26:41,220",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
@@ -397,7 +373,8 @@
               "text": "何でも知ってそうな感じがあると思ってて",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 480,
-              "source_timecode": "00:26:35,620 --> 00:26:41,220"
+              "source_timecode": "00:26:35,620 --> 00:26:41,220",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
@@ -406,34 +383,8 @@
               "text": "この辺へのハードルの高さというか",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 481,
-              "source_timecode": "00:26:41,220 --> 00:26:44,100"
-            },
-            {
-              "type": "caption",
-              "start": 8.48,
-              "end": 11.093,
-              "text": "要は自分が知らないことも知ってるんじゃないかと",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 482,
-              "source_timecode": "00:26:44,100 --> 00:26:51,940"
-            },
-            {
-              "type": "caption",
-              "start": 11.093,
-              "end": 13.707,
-              "text": "思われることの難しさとか抵抗感っていう",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 482,
-              "source_timecode": "00:26:44,100 --> 00:26:51,940"
-            },
-            {
-              "type": "caption",
-              "start": 13.707,
-              "end": 16.32,
-              "text": "のもありましたね",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 482,
-              "source_timecode": "00:26:44,100 --> 00:26:51,940"
+              "source_timecode": "00:26:41,220 --> 00:26:44,100",
+              "editorial_note": "manual_digest_caption"
             }
           ],
           "srt_evidence": [
@@ -448,12 +399,6 @@
               "start": "00:26:41,220",
               "end": "00:26:44,100",
               "text": "この辺へのハードルの高さというか"
-            },
-            {
-              "index": 482,
-              "start": "00:26:44,100",
-              "end": "00:26:51,940",
-              "text": "要は自分が知らないことも知ってるんじゃないかと思われることの難しさとか抵抗感っていうのもありましたね"
             }
           ]
         },
@@ -473,29 +418,22 @@
             {
               "type": "caption",
               "start": 0.0,
-              "end": 2.38,
-              "text": "本当におっしゃっていたけどもうすごい皆さん",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 484,
-              "source_timecode": "00:26:59,160 --> 00:27:03,920"
-            },
-            {
-              "type": "caption",
-              "start": 2.38,
               "end": 4.76,
-              "text": "ドメインの方めっちゃ調べてるんですよ",
+              "text": "すごい皆さんドメインの方めっちゃ調べてるんですよ",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 484,
-              "source_timecode": "00:26:59,160 --> 00:27:03,920"
+              "source_timecode": "00:26:59,160 --> 00:27:03,920",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
               "start": 4.76,
               "end": 8.56,
-              "text": "正直全然僕より詳しいという意味はあるんでしょうけどね",
+              "text": "正直全然僕より詳しいということもある",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 485,
-              "source_timecode": "00:27:03,920 --> 00:27:07,720"
+              "source_timecode": "00:27:03,920 --> 00:27:07,720",
+              "editorial_note": "Digest wording normalized from SRT phrase '意味はあるんでしょうけどね'."
             }
           ],
           "srt_evidence": [
@@ -510,57 +448,6 @@
               "start": "00:27:03,920",
               "end": "00:27:07,720",
               "text": "正直全然僕より詳しいという意味はあるんでしょうけどね"
-            }
-          ]
-        },
-        {
-          "part_id": "digest_qa_02_answer_03",
-          "kind": "answer",
-          "start_sec": 1633.82,
-          "end_sec": 1638.76,
-          "start_timecode": "00:27:13,820",
-          "end_timecode": "00:27:18,760",
-          "duration_sec": 4.94,
-          "layout": {
-            "type": "split_grid",
-            "media_ids": [
-              "cam_person_02",
-              "cam_person_03"
-            ],
-            "active_person_id": "person_02"
-          },
-          "caption_overlays": [
-            {
-              "type": "caption",
-              "start": 0.0,
-              "end": 1.62,
-              "text": "そこが建設的な議論に何度もあって",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 488,
-              "source_timecode": "00:27:13,820 --> 00:27:15,440"
-            },
-            {
-              "type": "caption",
-              "start": 1.62,
-              "end": 4.94,
-              "text": "そこに対して怖いというのはないです",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 489,
-              "source_timecode": "00:27:15,440 --> 00:27:18,760"
-            }
-          ],
-          "srt_evidence": [
-            {
-              "index": 488,
-              "start": "00:27:13,820",
-              "end": "00:27:15,440",
-              "text": "そこが建設的な議論に何度もあって"
-            },
-            {
-              "index": 489,
-              "start": "00:27:15,440",
-              "end": "00:27:18,760",
-              "text": "そこに対して怖いというのはないです"
             }
           ]
         }
@@ -578,13 +465,13 @@
       "video_source": {
         "media_id": "group_wide",
         "in": 1595.62,
-        "out": 1638.76,
+        "out": 1627.72,
         "visual_strategy": "two-person split of interviewees; use both faces because the answer is about discussion with engineers"
       },
       "audio_source": {
         "media_id": "group_wide",
         "in": 1595.62,
-        "out": 1638.76,
+        "out": 1627.72,
         "policy": "continuous_reference_audio; do not switch audio by camera cut"
       },
       "caption_overlays": [
@@ -592,10 +479,11 @@
           "type": "caption",
           "start": 0.0,
           "end": 2.8,
-          "text": "結構なんかドメインエキスパートって言うと",
+          "text": "ドメインエキスパートって言うと",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 480,
-          "source_timecode": "00:26:35,620 --> 00:26:41,220"
+          "source_timecode": "00:26:35,620 --> 00:26:41,220",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
@@ -604,7 +492,8 @@
           "text": "何でも知ってそうな感じがあると思ってて",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 480,
-          "source_timecode": "00:26:35,620 --> 00:26:41,220"
+          "source_timecode": "00:26:35,620 --> 00:26:41,220",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
@@ -613,79 +502,28 @@
           "text": "この辺へのハードルの高さというか",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 481,
-          "source_timecode": "00:26:41,220 --> 00:26:44,100"
-        },
-        {
-          "type": "caption",
-          "start": 8.48,
-          "end": 11.093,
-          "text": "要は自分が知らないことも知ってるんじゃないかと",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 482,
-          "source_timecode": "00:26:44,100 --> 00:26:51,940"
-        },
-        {
-          "type": "caption",
-          "start": 11.093,
-          "end": 13.707,
-          "text": "思われることの難しさとか抵抗感っていう",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 482,
-          "source_timecode": "00:26:44,100 --> 00:26:51,940"
-        },
-        {
-          "type": "caption",
-          "start": 13.707,
-          "end": 16.32,
-          "text": "のもありましたね",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 482,
-          "source_timecode": "00:26:44,100 --> 00:26:51,940"
+          "source_timecode": "00:26:41,220 --> 00:26:44,100",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 0.0,
-          "end": 2.38,
-          "text": "本当におっしゃっていたけどもうすごい皆さん",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 484,
-          "source_timecode": "00:26:59,160 --> 00:27:03,920"
-        },
-        {
-          "type": "caption",
-          "start": 2.38,
           "end": 4.76,
-          "text": "ドメインの方めっちゃ調べてるんですよ",
+          "text": "すごい皆さんドメインの方めっちゃ調べてるんですよ",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 484,
-          "source_timecode": "00:26:59,160 --> 00:27:03,920"
+          "source_timecode": "00:26:59,160 --> 00:27:03,920",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 4.76,
           "end": 8.56,
-          "text": "正直全然僕より詳しいという意味はあるんでしょうけどね",
+          "text": "正直全然僕より詳しいということもある",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 485,
-          "source_timecode": "00:27:03,920 --> 00:27:07,720"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 1.62,
-          "text": "そこが建設的な議論に何度もあって",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 488,
-          "source_timecode": "00:27:13,820 --> 00:27:15,440"
-        },
-        {
-          "type": "caption",
-          "start": 1.62,
-          "end": 4.94,
-          "text": "そこに対して怖いというのはないです",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 489,
-          "source_timecode": "00:27:15,440 --> 00:27:18,760"
+          "source_timecode": "00:27:03,920 --> 00:27:07,720",
+          "editorial_note": "Digest wording normalized from SRT phrase '意味はあるんでしょうけどね'."
         }
       ],
       "srt_evidence": [
@@ -724,30 +562,6 @@
           "start": "00:27:03,920",
           "end": "00:27:07,720",
           "text": "正直全然僕より詳しいという意味はあるんでしょうけどね"
-        },
-        {
-          "index": 486,
-          "start": "00:27:07,720",
-          "end": "00:27:10,180",
-          "text": "でもそれはこれってこういう資料もあったんですけど"
-        },
-        {
-          "index": 487,
-          "start": "00:27:10,180",
-          "end": "00:27:13,820",
-          "text": "そんな本当に違うとかタイミングよく教えてくれますし"
-        },
-        {
-          "index": 488,
-          "start": "00:27:13,820",
-          "end": "00:27:15,440",
-          "text": "そこが建設的な議論に何度もあって"
-        },
-        {
-          "index": 489,
-          "start": "00:27:15,440",
-          "end": "00:27:18,760",
-          "text": "そこに対して怖いというのはないです"
         }
       ],
       "evidence_excerpt": "「何でも知ってそうな感じ」「自分が知らないことも知ってるんじゃないか」「皆さんドメインの方めっちゃ調べてる」「建設的な議論」",

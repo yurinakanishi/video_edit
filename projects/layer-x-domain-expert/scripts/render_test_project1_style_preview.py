@@ -601,6 +601,8 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
         "[vout]",
         "-map",
         "1:a:0?",
+        "-t",
+        f"{dur:.3f}",
         "-r",
         str(FPS),
         "-c:v",
@@ -666,6 +668,8 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
             "[vout]",
             "-map",
             f"{len(media_ids)}:a:0?",
+            "-t",
+            f"{dur:.3f}",
             "-r",
             str(FPS),
             "-c:v",
@@ -736,6 +740,8 @@ def main() -> None:
         events = events[: args.max_events]
     segment_dir = VIDEOS / "preview_test_project1_style_segments"
     segment_dir.mkdir(parents=True, exist_ok=True)
+    for old_segment in segment_dir.glob("*.mp4"):
+        old_segment.unlink()
     ffmpeg = ffmpeg_path()
     rendered = []
     for index, event in enumerate(events, start=1):

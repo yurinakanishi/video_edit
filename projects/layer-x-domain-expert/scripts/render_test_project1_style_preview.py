@@ -240,13 +240,16 @@ def title_text(event: dict[str, Any]) -> str:
     return ""
 
 
-def draw_logo(canvas: Image.Image, section: str) -> None:
+def draw_logo(canvas: Image.Image, section: str, is_split: bool = False) -> None:
     if not LOGO_PATH.exists():
         return
     logo = Image.open(LOGO_PATH).convert("RGBA")
     if section == "digest":
         logo_w = 300
         pos = (10, 20)
+    elif is_split:
+        logo_w = 320
+        pos = (4, 4)
     else:
         logo_w = 405
         pos = (2, 2)
@@ -257,6 +260,8 @@ def draw_logo(canvas: Image.Image, section: str) -> None:
 
 def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
     section = str(event.get("section") or "")
+    layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+    is_split = layout.get("type") == "split_grid"
     canvas = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     draw = ImageDraw.Draw(canvas)
     if section == "digest":
@@ -265,7 +270,7 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
         draw.polygon([(0, 0), (380, 0), (350, 102), (0, 102)], fill=(255, 255, 255, 255))
 
     if section != "bridge":
-        draw_logo(canvas, section)
+        draw_logo(canvas, section, is_split)
         title = title_text(event).strip()
         if title:
             font = fit_font(title, 680, 45, 34)

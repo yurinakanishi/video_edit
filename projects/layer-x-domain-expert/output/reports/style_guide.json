@@ -19,7 +19,9 @@
       "single_person_nameplate": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
       "two_person_nameplate_split": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
       "person_introduction_bio_card": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\person-introduction-sample.json",
-      "three_person_divided": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json"
+      "single_person_fullscreen_intro_white_text": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+      "three_person_divided": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
+      "two_person_split_intro_white_names": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json"
     }
   },
   "styles": {
@@ -227,6 +229,39 @@
       "position": "bottom",
       "max_lines": 2,
       "text_source": "semantic_marks.entity_explainers"
+    },
+    "single_intro_white_text_reference": {
+      "description": "Lower-left white role/name text for full-screen first self-introduction, based on single-person introduction reference.",
+      "reference_image_id": "single_person_fullscreen_intro_white_text",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+      "text": {
+        "role_line_color": "#FFFFFF",
+        "name_line_color": "#FFFFFF",
+        "stroke_outline": "none",
+        "shadow": "soft gray drop shadow"
+      },
+      "placement": {
+        "anchor": "lower_left",
+        "x_norm": 0.0625,
+        "y_norm": 0.694
+      }
+    },
+    "two_person_intro_white_names_reference": {
+      "description": "Per-panel white role/name labels for two-person split introduction.",
+      "reference_image_id": "two_person_split_intro_white_names",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+      "text": {
+        "role_line_color": "#FFFFFF",
+        "name_line_color": "#FFFFFF",
+        "stroke_outline": "none",
+        "shadow": "soft gray drop shadow"
+      },
+      "placement": {
+        "anchor": "lower_area_per_panel",
+        "left_x_norm": 0.04,
+        "right_x_norm": 0.555,
+        "y_norm": 0.69
+      }
     }
   },
   "reference_alignment": {
@@ -245,8 +280,8 @@
       "alignment_goal": "all participants visible with balanced face size and stable physical order"
     },
     "main_single_speaker": {
-      "reference_image_id": "single_person_nameplate",
-      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
+      "reference_image_id": "single_person_fullscreen_intro_white_text",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
       "alignment_goal": "medium close-up, face in upper third, name/caption-safe lower area"
     },
     "self_introduction": {
@@ -255,14 +290,19 @@
       "alignment_goal": "large person crop paired with opposite-side biography panel"
     },
     "two_person_exchange": {
-      "reference_image_id": "two_person_nameplate_split",
-      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
-      "alignment_goal": "stable panel order and comparable face positions"
+      "reference_image_id": "two_person_split_intro_white_names",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+      "alignment_goal": "two equal panels with matched face positions and white role/name labels below each person"
     },
     "entity_explainer": {
       "reference_image_id": "annotation_sample",
       "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample.json",
       "alignment_goal": "white lower explainer card with blue-purple label tab, no caption collision"
+    },
+    "first_self_introduction": {
+      "reference_image_id": "single_person_fullscreen_intro_white_text",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+      "alignment_goal": "full-screen left participant close-up with lower-left white role/name text"
     }
   },
   "renderers": {

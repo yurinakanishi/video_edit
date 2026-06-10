@@ -805,11 +805,12 @@ The LayerX preview renderer must follow the same system:
 - Compose a frame/style overlay separately from the base video.
 - Render editorial captions as an animated transparent overlay, not as plain FFmpeg `drawtext` boxes.
 - Use horizontal reveal, secondary-line stagger, and quick fade for captions.
-- Use purple/blue gradient caption boxes, bold white text, shadow, and the same lower caption placement family as `test-project-1`.
+- Use purple/blue gradient caption boxes, bold white text, and the same lower caption placement family as `test-project-1`. Do not add black stroke outlines around white text.
 - Use the sample-11 frame treatment for the Opening Digest: opaque top band, opaque bottom band, white slanted left logo panel, and LayerX logo.
+- Keep the Opening Digest top-left LayerX logo and upper-right title text the same size as the main section. The digest title remains text-only without a purple background box.
 - In the main section, remove the full-width top and bottom band backgrounds completely so the interview image is unobstructed.
 - Make the upper-right title about 1.5x larger than the earlier preview and add a gradient background box behind it in the main section.
-- Make split dividers blue-leaning and about three times thicker than the previous preview divider.
+- Make split dividers theme-purple and slightly thinner than the previous thick blue preview divider.
 - In split layouts, align each participant's face size, horizontal face center, and vertical face/eye height across the 2-up or 3-up panels where the source crop allows it. Do not only line people up side by side; match face scale and head height to the reference divided layouts while preserving shoulder room.
 
 The project-local styled preview renderer is:
@@ -866,7 +867,7 @@ Opening Digest must use the same visual treatment as the styled sample from `pro
 For all Opening Digest clips, keep these elements consistent with the sample:
 
 - Top blue-purple band with the white slanted LayerX logo panel
-- LayerX logo placement inside the left panel. Keep it smaller than the earlier oversized draft and pinned tightly to the upper-left edge.
+- LayerX logo placement inside the left panel. Trim transparent logo padding, use the same logo size as the main section, and keep it close to the upper-left edge.
 - Upper-right title text only. Do not draw the purple background box behind the digest title.
 - Continuous thin bottom blue-purple band
 - Large lower digest captions in rounded blue-purple boxes with white bold text
@@ -893,7 +894,8 @@ Between the Opening Digest and the main section, insert the company movie clip:
 - Manifest `media_id`: `company_movie`
 - Timeline `section`: `bridge`
 - Use the clip as a visual and narrative bridge from the digest hook into the interview main section
-- Trim `in` / `out` to the editorially appropriate portion of the company movie; use the full clip only if that length fits the pacing goal
+- Use the full company movie clip from start to finish. Do not cut it midway in the current preview.
+- After the company movie, cut only the silent waiting beat where the three participants are visible before the greeting. The first main-section shot should begin at the production greeting around `519.140`, not during the preceding silence.
 - Do not add digest captions, topic titles, or interview overlays to this bridge clip unless a future style rule explicitly requires them
 - Place this event after the last digest event and before the first main-section event in `edit_plan.json`
 
@@ -909,6 +911,7 @@ Keep these consistent with the digest/sample style:
 - Upper-right title blue-purple box background in the main section only
 - Caption colors, rounded boxes, reveal animation, and quick fade timing
 - Color matching: the three close-up cameras (`cam_person_01`, `cam_person_02`, `cam_person_03`) must be corrected to match the less saturated, more neutral look of the three-person wide camera. Do not leave close-up shots with noticeably denser saturation or contrast than the group camera.
+- Audio source policy: use one continuous interview audio source throughout the digest and main interview. For this project, that source is `group_wide`. Do not switch to close-camera audio when the video angle changes. The company movie bridge may use its own embedded audio, then the main interview returns to the same continuous `group_wide` source.
 
 Remove these digest-only frame elements from the main section:
 
@@ -927,18 +930,19 @@ Participant introduction belongs to the **main section**, not to the digest. Tre
 
 Do not assume the introduction begins at a fixed timestamp. Determine the participant introduction and each self-introduction range from the transcript/transcribed subtitles, speaker turns, and semantic content. For this project, the detected production introduction begins at `519.140` and the self-introduction block continues through the host's self-introduction around `766.060`.
 
-Do not cut out the introduction. The main-section intro must preserve this master-time range in order:
+Do not cut out the introduction. The main-section intro must preserve the production greeting and setup in order, but it should be cut visually according to speaker and introduction cues:
 
-- Opening host setup: `519.140-623.520`
-- 根本 self-introduction: `623.520-671.060`
-- Handoff to 村田: `671.060-675.060`
-- 村田 self-introduction: `675.060-722.500`
-- Handoff to 矢野: `722.500-727.460`
-- 矢野 self-introduction: `727.460-766.060`
+- `519.140-524.940`: show all three participants in the wide camera for the opening greeting
+- `524.940-532.100`: cut to Yano close-up when he says he is Yano; keep his name text visible for the entire close-up
+- `532.100-535.540`: briefly return to the three-person wide camera
+- `535.540`: when he says "根本さんと…", cut to the two-person split of Nemoto and Murata
+- After that, keep switching shots roughly every 15 seconds, and whenever practical, cut to the person who is speaking
+- 根本 self-introduction starts at `623.520`
+- 村田 self-introduction starts at `675.060`
 
 Near the start of the main section, first use a brief **wide shot that includes all three participants** (`layout.type: wide_group`) to establish the room.
 
-After the wide establishing shot, render participant nameplates only in introduction cuts where the target person is being introduced or self-introducing. These nameplate cuts must be **single-person camera shots**, not divided layouts.
+After the wide establishing shot, render participant name text only in introduction cuts where the target person is being introduced or self-introducing. The first Yano name text must be on a **single-person close-up**. The two-interviewee introduction is an explicit exception: it uses a two-person split with one white role/name label under each person.
 
 Examples:
 
@@ -951,15 +955,45 @@ Examples:
 - Names may be transcript-inferred for preview, but must remain marked as unverified until human confirmation
 - Centralize editable text in `people_map.json` (`display_name`, `company`, `department`, `role_title`)
 - `edit_plan.json` overlays must reference `people_source: "people_map"` instead of hard-coding text
-- Overlay type for a single introduction plate: `lower_third_person`, `anchor: lower_center`
+- Overlay type for a single introduction plate: `lower_third_person`, `anchor: lower_left`
+- Overlay type for the two-interviewee introduction split: `split_person_labels`
 - Do not render caption subtitles during the time range where a nameplate is visible
-- Do not render nameplates inside 2-up, 3-up, or 4-up split layouts for this project
+- Do not render purple boxed nameplates inside split layouts. The two-interviewee introduction may use white text labels under each person.
 
 **Display style**
 
 - Follow the reference image design (`style_guide.json` → `name_tag_reference_style`)
 - Use a large lower-center nameplate so the identity is obvious at a glance
 - Keep a clean, professional business-interview look
+
+### Updated Introduction Reference Rules
+
+Use the following additional references for the introduction sequence:
+
+- `reference/single-person-introduction-name-subtitle-reference.png`
+- `reference/two-person-split-introduction-name-subtitle-reference.png`
+
+The generated analysis files are:
+
+- `output/reports/reference_image_analysis/single-person-introduction-name-subtitle-reference.json`
+- `output/reports/reference_image_analysis/two-person-split-introduction-name-subtitle-reference.json`
+
+For the first self-introduction, show the left participant (`person_01`, `cam_person_01`) full-screen. Match the single-person reference:
+
+- Full-screen close-up, not a split layout
+- Face in the upper-middle area with torso and microphone visible
+- Lower-left white text only: smaller department/role line plus large name line
+- No purple name box and no black text outline
+- Do not show normal caption subtitles while the name text is visible
+
+After the first left-participant introduction, introduce the two interviewees together in a two-person split (`person_02` left, `person_03` right). Match the two-person reference:
+
+- Two equal vertical panels
+- Comparable face size and eye/head height between the two people
+- White role/name text below each person
+- No purple name boxes
+- Stable panel order: middle participant on the left panel, right participant on the right panel
+- In the preview timeline, this split should begin around `01:06` because the main section begins after the digest and company bridge.
 
 ### Self-Introduction Layout
 
@@ -1128,6 +1162,8 @@ Use these project-local sample images as visual references. They are design refe
 | Reference image | Use for | Relevant plan/style IDs |
 | --- | --- | --- |
 | `reference/person-introduction-sample.png` | Self-introduction biography layout with one large person crop and a large opposite-side career/background panel | `layout.type: person_with_bio`, `bio_card_reference_style` |
+| `reference/single-person-introduction-name-subtitle-reference.png` | First self-introduction full-screen close-up with lower-left white role/name text | `single`, `lower_third_person`, `single_intro_white_text_reference` |
+| `reference/two-person-split-introduction-name-subtitle-reference.png` | Two-person interviewee introduction split with white role/name text below each person | `split_grid`, `split_person_labels`, `two_person_intro_white_names_reference` |
 | `reference/annotation-sample.png` | Proper-noun explainer card, two-person split composition, upper-right topic title, and top-left LayerX logo placement | `entity_explainer_bottom`, `speaker_reaction_pair`, `topic_title_top_right` |
 | `reference/three-people-divided-sample.png` | Three-person divided layout with vertical separators and a persistent upper-right topic title | `split_grid`, `auto_by_media_count`, `topic_title_top_right` |
 | `reference/middle-and-right-people-with-name-plate-divided-sample.png` | Two-person split composition and panel order reference only; do not use its nameplates in this project unless explicitly requested later | `split_grid`, `speaker_reaction_pair` |
@@ -1138,8 +1174,8 @@ Use these project-local sample images as visual references. They are design refe
 Carry these observations into `style_guide.json` component definitions and renderer layout logic:
 
 - Brand color: use a saturated LayerX blue-purple as the primary overlay color, approximately `#5F5AF5` to `#6258F7`.
-- Split dividers: use light blue vertical rules, approximately `#58B9FF` or `#8EC6FF`, with enough contrast against interview footage. For this preview, use a visibly thicker rule than the early draft.
-- Logo: place the LayerX logo at the upper-left edge when a branded topic or split layout is shown. Keep it smaller than the oversized draft, pinned close to the corner, and clear of faces and topic bars.
+- Split dividers: use the theme purple vertical rule, approximately `#5A2DEF`, with enough contrast against interview footage. Keep the divider thinner than the previous thick blue draft.
+- Logo: trim transparent padding from the LayerX logo and place it near the upper-left edge when a branded topic or split layout is shown. Keep it smaller than the oversized draft, slightly inset from the absolute corner, and clear of faces and topic bars.
 - Topic title: use a blue-purple upper-right banner with white bold Japanese text. The banner can have angled/slanted ends and subtle translucent geometric texture, but text readability is more important than decoration.
 - Name plates: use a large single-person introduction treatment only. Put role/title text above or near the plate in bold white with blue-purple outline or shadow, then place the display name in a solid blue-purple rectangle with very large white type. Do not show nameplates during split layouts.
 - Explainer card: use a white rectangular card at the lower third with black bold Japanese text, paired with a blue-purple label tab above or attached to the card. Keep the card below faces and above the bottom safe edge.

@@ -24,25 +24,9 @@ def clean(text: str) -> str:
     return " ".join(str(text).split())
 
 
-def join_segments(items: list[dict], *, paragraph_gap_sec: float = 2.0) -> str:
-    if not items:
-        return ""
-    paragraphs: list[str] = []
-    current: list[str] = []
-    previous_end = float(items[0].get("start", 0) or 0)
-    for item in items:
-        text = str(item.get("text", "")).strip()
-        if not text:
-            continue
-        start = float(item.get("start", 0) or 0)
-        if current and start - previous_end >= paragraph_gap_sec:
-            paragraphs.append("".join(current))
-            current = []
-        current.append(text)
-        previous_end = float(item.get("end", start) or start)
-    if current:
-        paragraphs.append("".join(current))
-    return "\n\n".join(paragraphs)
+def format_segments(items: list[dict]) -> str:
+    texts = [str(item.get("text", "")).strip() for item in items if str(item.get("text", "")).strip()]
+    return "\n\n".join(texts)
 
 
 def main() -> None:
@@ -76,13 +60,13 @@ def main() -> None:
             main.append(item)
 
     all_items = pre_roll + main + post
-    full_text = join_segments(all_items)
-    main_text = join_segments(main)
+    full_text = format_segments(all_items)
+    main_text = format_segments(main)
 
     lines: list[str] = [
         "# LayerX Domain Expert 全会話文字起こし（補正済み）",
         "",
-        "> 一覧確認用。`transcript.json` の補正済みテキストを1本の文章としてまとめたものです。",
+        "> 一覧確認用。`transcript.json` の補正済みテキストを、発音セグメントごとに空行を挟んで並べたものです。",
         "",
         "## 概要",
         "",
@@ -95,24 +79,24 @@ def main() -> None:
         "",
         "## 目次",
         "",
-        "1. [全会話（1本の文章）](#全会話1本の文章)",
-        "2. [本編のみ（1本の文章）](#本編のみ1本の文章)",
+        "1. [全会話（発音ごと）](#全会話発音ごと)",
+        "2. [本編のみ（発音ごと）](#本編のみ発音ごと)",
         "3. [タイムコード付き一覧](#タイムコード付き一覧)",
         "4. [本編タイムコード付き一覧](#本編タイムコード付き一覧)",
         "",
         "---",
         "",
-        "## 全会話（1本の文章）",
+        "## 全会話（発音ごと）",
         "",
-        '<a id="全会話1本の文章"></a>',
+        '<a id="全会話発音ごと"></a>',
         "",
         full_text,
         "",
         "---",
         "",
-        "## 本編のみ（1本の文章）",
+        "## 本編のみ（発音ごと）",
         "",
-        '<a id="本編のみ1本の文章"></a>',
+        '<a id="本編のみ発音ごと"></a>',
         "",
         main_text,
         "",
@@ -125,7 +109,9 @@ def main() -> None:
     ]
 
     for item in all_items:
-        lines.append(f"**[{fmt_time(item['start'])} - {fmt_time(item['end'])}]** {item['text']}")
+        lines.append(f"**[{fmt_time(item['start'])} - {fmt_time(item['end'])}]**")
+        lines.append("")
+        lines.append(item["text"])
         lines.append("")
 
     lines.extend(
@@ -140,7 +126,9 @@ def main() -> None:
     )
 
     for item in main:
-        lines.append(f"**[{fmt_time(item['start'])} - {fmt_time(item['end'])}]** {item['text']}")
+        lines.append(f"**[{fmt_time(item['start'])} - {fmt_time(item['end'])}]**")
+        lines.append("")
+        lines.append(item["text"])
         lines.append("")
 
     OUT_PATH.write_text("\n".join(lines), encoding="utf-8")

@@ -1,0 +1,132 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T11:05:20+09:00",
+  "source_image": "reference\\single-person-introduction-name-subtitle-reference.png",
+  "image": {
+    "width": 1838,
+    "height": 1033,
+    "aspect_ratio": 1.779284,
+    "mode": "RGBA"
+  },
+  "analysis_basis": "manual visual analysis of project reference still",
+  "reference_image_id": "single_person_fullscreen_intro_white_text",
+  "layout_types": [
+    "single",
+    "lower_third_person",
+    "intro_white_text"
+  ],
+  "intended_sections": [
+    "first_self_introduction",
+    "participant_identification"
+  ],
+  "detected_content": {
+    "person_count": 1,
+    "visible_text": {
+      "role_description": "バクラク事業部 HCM本部 本部長",
+      "name": "吉田 達輝(takkyy)"
+    },
+    "text_language": "Japanese"
+  },
+  "framing": {
+    "composition": "one full-screen medium close-up over office background with logo top-left and white lower-left identification text",
+    "subject_crop": "person shown from head through seated torso; shoulders and microphone visible; table foreground may remain visible",
+    "person_placement": {
+      "body_center_norm": [
+        0.55,
+        0.58
+      ],
+      "face_center_norm": [
+        0.52,
+        0.29
+      ],
+      "face_box_norm": {
+        "x": 0.472,
+        "y": 0.175,
+        "w": 0.102,
+        "h": 0.182
+      },
+      "face_size_relative_to_frame_height": 0.182,
+      "eyes_band_y_norm": 0.245
+    },
+    "safe_margins_norm": {
+      "left": 0.045,
+      "right": 0.04,
+      "top": 0.035,
+      "bottom": 0.08
+    },
+    "background": "bright office environment kept visible; subject is not isolated on a plain card"
+  },
+  "text_layout": {
+    "text_block_position": "lower_left",
+    "text_block_bbox_norm": {
+      "x": 0.077,
+      "y": 0.692,
+      "w": 0.43,
+      "h": 0.145
+    },
+    "role_description": {
+      "bbox_norm": {
+        "x": 0.078,
+        "y": 0.7,
+        "w": 0.34,
+        "h": 0.042
+      },
+      "font_size_ratio_to_height": 0.044,
+      "relative_size": "small label line",
+      "color": "#FFFFFF",
+      "shadow": "soft gray drop shadow"
+    },
+    "name": {
+      "bbox_norm": {
+        "x": 0.079,
+        "y": 0.745,
+        "w": 0.43,
+        "h": 0.085
+      },
+      "font_size_ratio_to_height": 0.085,
+      "relative_size": "large primary name line",
+      "color": "#FFFFFF",
+      "shadow": "soft gray drop shadow"
+    },
+    "paragraph_structure": [
+      "one role/department line",
+      "one large name line"
+    ],
+    "background_box": "none",
+    "stroke_outline": "none"
+  },
+  "overlay_style": {
+    "logo": {
+      "position": "top_left",
+      "x_norm": 0.022,
+      "y_norm": 0.033,
+      "width_norm": 0.16
+    },
+    "nameplate": {
+      "position": "lower_left",
+      "role_line": "white bold smaller text with soft shadow only",
+      "name_line": "very large white bold text with soft shadow only",
+      "box": "none",
+      "avoid_caption_subtitles": true
+    }
+  },
+  "comparison_to_two_person": {
+    "single_person_reference": "one full-screen person, no divider, one lower-left text block for that person",
+    "two_person_reference": "two equal vertical panels, each person has a lower text block under their own panel, and a center divider separates the views",
+    "framing_difference": "single-person face/body can be larger and slightly right of center; two-person faces are smaller and matched across panels",
+    "text_difference": "single-person name can be largest; two-person names remain large but slightly smaller to fit per-panel width"
+  },
+  "render_directives": [
+    "Use for the first self-introduction when the left participant introduces himself.",
+    "Show the left participant close-up full-screen; do not use split layout for this first self-introduction.",
+    "Match the reference's lower-left white role/name text sizes, position, and margins.",
+    "Do not add a purple name box or black text stroke."
+  ],
+  "application_policy": {
+    "adapt_to_video_context": true,
+    "do_not_render_reference_image_directly": true,
+    "match_framing_crop_face_position_and_visual_style": true,
+    "allow_mirroring_when_layout_requires_opposite_bio_side": true
+  }
+}

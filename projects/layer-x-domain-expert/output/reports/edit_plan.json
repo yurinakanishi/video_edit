@@ -1,7 +1,7 @@
 {
   "schema_version": "edit_plan.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T09:32:43+09:00",
+  "generated_at": "2026-06-10T11:27:20+09:00",
   "canvas": {
     "width": 1920,
     "height": 1080,
@@ -141,7 +141,125 @@
     {
       "event_id": "digest_002",
       "timeline_start": 9.0,
-      "timeline_end": 18.0,
+      "timeline_end": 17.5,
+      "type": "source_clip",
+      "section": "digest",
+      "source": {
+        "media_id": "cam_person_02",
+        "in": 1915.328,
+        "out": 1923.828
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1907.86,
+        "out": 1916.36
+      },
+      "layout": {
+        "type": "single",
+        "crop_mode": "person_centered",
+        "selected_media_id": "cam_person_02",
+        "target_person_id": "person_02",
+        "speaker_activity": {
+          "segment_id": "seg_000565",
+          "start": 1907.86,
+          "end": 1914.86,
+          "text": "実務の専門性が開発の前提になる",
+          "active_person_id": "person_02",
+          "reaction_person_id": "person_03",
+          "confidence": 0.388,
+          "activity_scores": [
+            {
+              "person_id": "person_02",
+              "media_id": "cam_person_02",
+              "role": "camera3",
+              "source_start": 1915.328,
+              "source_end": 1922.328,
+              "score": 17.39352,
+              "peak_score": 24.05492,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                887,
+                208,
+                1230,
+                458
+              ]
+            },
+            {
+              "person_id": "person_03",
+              "media_id": "cam_person_03",
+              "role": "camera4",
+              "source_start": 1921.24,
+              "source_end": 1928.24,
+              "score": 16.37001,
+              "peak_score": 29.83537,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                890,
+                156,
+                1407,
+                421
+              ]
+            },
+            {
+              "person_id": "person_01",
+              "media_id": "cam_person_01",
+              "role": "camera2",
+              "source_start": 1904.528,
+              "source_end": 1911.528,
+              "score": 13.67149,
+              "peak_score": 20.16851,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                582,
+                277,
+                1040,
+                507
+              ]
+            }
+          ],
+          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
+        },
+        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
+        "reference_alignment": {
+          "reference_image_id": "annotation_sample_review_meeting",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
+          "apply": [
+            "wide_group_context",
+            "logo_title_style",
+            "caption_safe_lower_zone"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide",
+        "fade_in": 0.08,
+        "fade_out": 0.12
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "text": "Domain Expert Digest",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.35,
+          "end": 6.5,
+          "text": "たぶん皆さん経理とか労務のドメインを知っているから",
+          "style_id": "opening_digest_sample_caption"
+        }
+      ],
+      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
+    },
+    {
+      "event_id": "digest_003",
+      "timeline_start": 17.5,
+      "timeline_end": 26.5,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -257,9 +375,9 @@
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
     },
     {
-      "event_id": "digest_003",
-      "timeline_start": 18.0,
-      "timeline_end": 25.6,
+      "event_id": "digest_004",
+      "timeline_start": 26.5,
+      "timeline_end": 34.1,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -369,124 +487,6 @@
           "start": 0.35,
           "end": 6.5,
           "text": "手作業の業務をプロダクトで変えていく",
-          "style_id": "opening_digest_sample_caption"
-        }
-      ],
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate."
-    },
-    {
-      "event_id": "digest_004",
-      "timeline_start": 25.6,
-      "timeline_end": 34.1,
-      "type": "source_clip",
-      "section": "digest",
-      "source": {
-        "media_id": "cam_person_02",
-        "in": 1915.328,
-        "out": 1923.828
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 1907.86,
-        "out": 1916.36
-      },
-      "layout": {
-        "type": "single",
-        "crop_mode": "person_centered",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "speaker_activity": {
-          "segment_id": "seg_000565",
-          "start": 1907.86,
-          "end": 1914.86,
-          "text": "実務の専門性が開発の前提になる",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_03",
-          "confidence": 0.388,
-          "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 1915.328,
-              "source_end": 1922.328,
-              "score": 17.39352,
-              "peak_score": 24.05492,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 1921.24,
-              "source_end": 1928.24,
-              "score": 16.37001,
-              "peak_score": 29.83537,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 1904.528,
-              "source_end": 1911.528,
-              "score": 13.67149,
-              "peak_score": 20.16851,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
-        "reference_alignment": {
-          "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
-          "apply": [
-            "wide_group_context",
-            "logo_title_style",
-            "caption_safe_lower_zone"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "source",
-        "source_media_id": "group_wide",
-        "fade_in": 0.08,
-        "fade_out": 0.12
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "text": "Domain Expert Digest",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.35,
-          "end": 6.5,
-          "text": "実務の専門性が開発の前提になる",
           "style_id": "opening_digest_sample_caption"
         }
       ],
@@ -613,18 +613,18 @@
     {
       "event_id": "digest_to_main_company_movie",
       "timeline_start": 41.1,
-      "timeline_end": 51.1,
+      "timeline_end": 56.118,
       "type": "source_clip",
       "section": "bridge",
       "source": {
         "media_id": "company_movie",
         "in": 0.0,
-        "out": 10.0
+        "out": 15.018
       },
       "reference_source": {
         "media_id": "company_movie",
         "in": 0.0,
-        "out": 10.0
+        "out": 15.018
       },
       "layout": {
         "type": "single",
@@ -641,23 +641,23 @@
         "mode": "source"
       },
       "overlays": [],
-      "reason": "Company movie bridge between the opening digest and main interview."
+      "reason": "Full company movie bridge between the opening digest and main interview; do not cut it midway."
     },
     {
-      "event_id": "main_intro_group",
-      "timeline_start": 51.1,
-      "timeline_end": 155.48,
+      "event_id": "main_intro_group_greeting",
+      "timeline_start": 56.118,
+      "timeline_end": 61.918,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 519.14,
-        "out": 623.52
+        "out": 524.94
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 519.14,
-        "out": 623.52
+        "out": 524.94
       },
       "layout": {
         "type": "wide_group",
@@ -666,14 +666,366 @@
           "person_02",
           "person_03"
         ],
-        "safe_margin": 0.06,
+        "safe_margin": 0.06
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "reason": "Initial greeting must show all three participants."
+    },
+    {
+      "event_id": "main_intro_yano_self",
+      "timeline_start": 61.918,
+      "timeline_end": 69.078,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 521.608,
+        "out": 528.768
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 524.94,
+        "out": 532.1
+      },
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "single_intro_reference_fullscreen",
+        "introduction_nameplate": true,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference.",
         "reference_alignment": {
-          "reference_image_id": "three_person_divided",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
+          "reference_image_id": "single_person_fullscreen_intro_white_text",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
           "apply": [
-            "balanced_three_person_face_positions",
-            "physical_order",
-            "topic_title_safe_area"
+            "medium_closeup",
+            "eyes_upper_third",
+            "lower_left_white_role_name"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "lower_third_person",
+          "person_id": "person_01",
+          "people_source": "people_map",
+          "anchor": "lower_left",
+          "style_id": "single_intro_white_text_reference",
+          "start": 0.0,
+          "end": 7.159999999999968
+        }
+      ],
+      "caption_policy": "no_caption_while_nameplate_visible",
+      "reason": "Cut to Yano close-up exactly when he says he is Yano; keep his name visible throughout."
+    },
+    {
+      "event_id": "main_intro_wide_after_yano",
+      "timeline_start": 69.078,
+      "timeline_end": 72.518,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 532.1,
+        "out": 535.54
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 532.1,
+        "out": 535.54
+      },
+      "layout": {
+        "type": "wide_group",
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "safe_margin": 0.06
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "reason": "Briefly return to the three-person camera before introducing the two guests."
+    },
+    {
+      "event_id": "main_intro_two_guests_named",
+      "timeline_start": 72.518,
+      "timeline_end": 83.518,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 535.54,
+        "out": 546.54
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 535.54,
+        "out": 546.54
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "two_person_intro_vertical_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_02",
+        "reaction_person_ids": [
+          "person_03"
+        ],
+        "introduction_nameplate": true,
+        "selection_reason": "Show the two interviewees in split view when they are introduced by name.",
+        "reference_alignment": {
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+          "fallback_reference_image_id": "three_person_divided",
+          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
+          "apply": [
+            "stable_panel_order",
+            "matched_face_scale",
+            "per_panel_white_name_labels"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "split_person_labels",
+          "person_ids": [
+            "person_02",
+            "person_03"
+          ],
+          "people_source": "people_map",
+          "style_id": "two_person_intro_white_names_reference",
+          "start": 0.0,
+          "end": 11.0
+        }
+      ],
+      "caption_policy": "no_caption_while_nameplate_visible",
+      "reason": "At '根本さんと…', cut to the two-person split and show both names."
+    },
+    {
+      "event_id": "main_intro_yano_explains_001",
+      "timeline_start": 83.518,
+      "timeline_end": 98.518,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 543.208,
+        "out": 558.208
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 546.54,
+        "out": 561.54
+      },
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "single_intro_reference_fullscreen",
+        "introduction_nameplate": false,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference.",
+        "reference_alignment": {
+          "reference_image_id": "single_person_fullscreen_intro_white_text",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+          "apply": [
+            "medium_closeup",
+            "eyes_upper_third",
+            "lower_left_white_role_name"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "caption_policy": "editorial_captions_allowed",
+      "reason": "Yano continues the setup; cut back to the speaking person."
+    },
+    {
+      "event_id": "main_intro_wide_context_001",
+      "timeline_start": 98.518,
+      "timeline_end": 113.518,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 561.54,
+        "out": 576.54
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 561.54,
+        "out": 576.54
+      },
+      "layout": {
+        "type": "wide_group",
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "safe_margin": 0.06
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "reason": "Wide context cut to keep pacing around 15 seconds."
+    },
+    {
+      "event_id": "main_intro_yano_explains_002",
+      "timeline_start": 113.518,
+      "timeline_end": 128.518,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 573.208,
+        "out": 588.208
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 576.54,
+        "out": 591.54
+      },
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "single_intro_reference_fullscreen",
+        "introduction_nameplate": false,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference.",
+        "reference_alignment": {
+          "reference_image_id": "single_person_fullscreen_intro_white_text",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+          "apply": [
+            "medium_closeup",
+            "eyes_upper_third",
+            "lower_left_white_role_name"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "caption_policy": "editorial_captions_allowed",
+      "reason": "Yano explains the domain expert role; show the speaker."
+    },
+    {
+      "event_id": "main_intro_two_guest_reaction",
+      "timeline_start": 128.518,
+      "timeline_end": 143.518,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 591.54,
+        "out": 606.54
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 591.54,
+        "out": 606.54
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "two_person_intro_vertical_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_02",
+        "reaction_person_ids": [
+          "person_03"
+        ],
+        "introduction_nameplate": false,
+        "selection_reason": "Show the two interviewees in split view when they are introduced by name.",
+        "reference_alignment": {
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+          "fallback_reference_image_id": "three_person_divided",
+          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
+          "apply": [
+            "stable_panel_order",
+            "matched_face_scale",
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -689,18 +1041,67 @@
           "style_id": "opening_digest_top_right_title"
         }
       ],
-      "reason": "Keep the opening introduction continuous from the production start through the self-introduction prompt."
+      "caption_policy": "editorial_captions_allowed",
+      "reason": "Reaction cut to the introduced guests while keeping the 15-second rhythm."
     },
     {
-      "event_id": "intro_person_02_nemoto",
-      "timeline_start": 155.48,
-      "timeline_end": 203.02,
+      "event_id": "main_intro_yano_prompt_selfintro",
+      "timeline_start": 143.518,
+      "timeline_end": 160.498,
       "type": "source_clip",
       "section": "main",
       "source": {
-        "media_id": "cam_person_02",
-        "in": 630.988,
-        "out": 678.528
+        "media_id": "cam_person_01",
+        "in": 603.208,
+        "out": 620.188
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 606.54,
+        "out": 623.52
+      },
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "single_intro_reference_fullscreen",
+        "introduction_nameplate": false,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference.",
+        "reference_alignment": {
+          "reference_image_id": "single_person_fullscreen_intro_white_text",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+          "apply": [
+            "medium_closeup",
+            "eyes_upper_third",
+            "lower_left_white_role_name"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "continuous_reference",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "caption_policy": "editorial_captions_allowed",
+      "reason": "Yano asks the guests to introduce themselves; show the speaker."
+    },
+    {
+      "event_id": "intro_person_02_nemoto",
+      "timeline_start": 160.498,
+      "timeline_end": 208.038,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 623.52,
+        "out": 671.06
       },
       "reference_source": {
         "media_id": "group_wide",
@@ -708,35 +1109,55 @@
         "out": 671.06
       },
       "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "crop_mode": "person_centered",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "two_person_intro_vertical_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_02",
+        "reaction_person_ids": [
+          "person_03"
+        ],
         "introduction_nameplate": true,
-        "selection_reason": "Introduction nameplate cuts must show one participant at a time, not a split layout.",
+        "selection_reason": "After the left-person self-introduction, identify the two interviewees together in a two-person split matching the new reference.",
         "reference_alignment": {
-          "reference_image_id": "single_person_nameplate",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+          "fallback_reference_image_id": "three_person_divided",
+          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_nameplate_caption_safe_area"
+            "stable_panel_order",
+            "matched_face_scale",
+            "per_panel_white_name_labels"
           ]
         }
       },
       "audio": {
-        "mode": "source",
+        "mode": "continuous_reference",
         "source_media_id": "group_wide"
       },
       "overlays": [
         {
-          "type": "lower_third_person",
-          "person_id": "person_02",
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_001",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "split_person_labels",
+          "person_ids": [
+            "person_02",
+            "person_03"
+          ],
           "people_source": "people_map",
-          "anchor": "lower_center",
-          "style_id": "name_tag_reference_style",
+          "style_id": "two_person_intro_white_names_reference",
           "start": 0.25,
-          "end": 8.5
+          "end": 47.54
         }
       ],
       "caption_policy": "no_caption_while_nameplate_visible",
@@ -744,8 +1165,8 @@
     },
     {
       "event_id": "intro_between_nemoto_murata",
-      "timeline_start": 203.02,
-      "timeline_end": 207.02,
+      "timeline_start": 208.038,
+      "timeline_end": 212.038,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -783,14 +1204,14 @@
     },
     {
       "event_id": "intro_person_03_murata",
-      "timeline_start": 207.02,
-      "timeline_end": 254.46,
+      "timeline_start": 212.038,
+      "timeline_end": 259.478,
       "type": "source_clip",
       "section": "main",
       "source": {
-        "media_id": "cam_person_03",
-        "in": 688.44,
-        "out": 735.88
+        "media_id": "group_wide",
+        "in": 675.06,
+        "out": 722.5
       },
       "reference_source": {
         "media_id": "group_wide",
@@ -798,67 +1219,36 @@
         "out": 722.5
       },
       "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "crop_mode": "person_centered",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "two_person_intro_vertical_split",
+        "panel_order": [
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_03",
+        "reaction_person_ids": [
+          "person_02"
+        ],
         "introduction_nameplate": true,
-        "selection_reason": "Introduction nameplate cuts must show one participant at a time, not a split layout.",
+        "selection_reason": "After the left-person self-introduction, identify the two interviewees together in a two-person split matching the new reference.",
         "reference_alignment": {
-          "reference_image_id": "single_person_nameplate",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+          "fallback_reference_image_id": "three_person_divided",
+          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_nameplate_caption_safe_area"
+            "stable_panel_order",
+            "matched_face_scale",
+            "per_panel_white_name_labels"
           ]
         }
       },
       "audio": {
-        "mode": "source",
-        "source_media_id": "group_wide"
-      },
-      "overlays": [
-        {
-          "type": "lower_third_person",
-          "person_id": "person_03",
-          "people_source": "people_map",
-          "anchor": "lower_center",
-          "style_id": "name_tag_reference_style",
-          "start": 0.25,
-          "end": 8.5
-        }
-      ],
-      "caption_policy": "no_caption_while_nameplate_visible",
-      "reason": "村田さんの自己紹介開始に合わせて、単独カメラで大きなネームプレートを表示。"
-    },
-    {
-      "event_id": "intro_between_murata_yano",
-      "timeline_start": 254.46,
-      "timeline_end": 259.42,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "group_wide",
-        "in": 722.5,
-        "out": 727.46
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 722.5,
-        "out": 727.46
-      },
-      "layout": {
-        "type": "wide_group",
-        "ensure_people_visible": [
-          "person_01",
-          "person_02",
-          "person_03"
-        ],
-        "safe_margin": 0.06
-      },
-      "audio": {
-        "mode": "source",
+        "mode": "continuous_reference",
         "source_media_id": "group_wide"
       },
       "overlays": [
@@ -867,76 +1257,37 @@
           "position": "top_right",
           "topic_id": "topic_001",
           "style_id": "opening_digest_top_right_title"
-        }
-      ],
-      "reason": "Keep the handoff to 矢野さん without cutting the introduction."
-    },
-    {
-      "event_id": "intro_person_01_yano",
-      "timeline_start": 259.42,
-      "timeline_end": 298.02,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "cam_person_01",
-        "in": 724.128,
-        "out": 762.728
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 727.46,
-        "out": 766.06
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_01",
-        "target_person_id": "person_01",
-        "crop_mode": "person_centered",
-        "introduction_nameplate": true,
-        "selection_reason": "Introduction nameplate cuts must show one participant at a time, not a split layout.",
-        "reference_alignment": {
-          "reference_image_id": "single_person_nameplate",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
-          "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_nameplate_caption_safe_area"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "source",
-        "source_media_id": "group_wide"
-      },
-      "overlays": [
+        },
         {
-          "type": "lower_third_person",
-          "person_id": "person_01",
+          "type": "split_person_labels",
+          "person_ids": [
+            "person_02",
+            "person_03"
+          ],
           "people_source": "people_map",
-          "anchor": "lower_center",
-          "style_id": "name_tag_reference_style",
+          "style_id": "two_person_intro_white_names_reference",
           "start": 0.25,
-          "end": 8.5
+          "end": 47.44
         }
       ],
       "caption_policy": "no_caption_while_nameplate_visible",
-      "reason": "矢野さんの自己紹介開始に合わせて、単独カメラで大きなネームプレートを表示。"
+      "reason": "村田さんの自己紹介開始に合わせて、単独カメラで大きなネームプレートを表示。"
     },
     {
       "event_id": "main_segment_001",
-      "timeline_start": 298.02,
-      "timeline_end": 316.02,
+      "timeline_start": 259.478,
+      "timeline_end": 274.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 2368.66,
-        "out": 2386.66
+        "out": 2383.66
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 2368.66,
-        "out": 2386.66
+        "out": 2383.66
       },
       "layout": {
         "type": "split_grid",
@@ -1025,14 +1376,14 @@
         },
         "selection_reason": "Three visible participants show comparable activity, so use a three-way divided reference cut.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -1059,19 +1410,19 @@
     },
     {
       "event_id": "main_segment_002",
-      "timeline_start": 316.02,
-      "timeline_end": 334.02,
+      "timeline_start": 274.478,
+      "timeline_end": 289.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 2535.2,
-        "out": 2553.2
+        "out": 2550.2
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 2535.2,
-        "out": 2553.2
+        "out": 2550.2
       },
       "layout": {
         "type": "split_grid",
@@ -1157,14 +1508,14 @@
         },
         "selection_reason": "Two-up selected because the active speaker and strongest reaction candidate form the conversational exchange.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -1191,134 +1542,19 @@
     },
     {
       "event_id": "main_segment_003",
-      "timeline_start": 334.02,
-      "timeline_end": 352.02,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "cam_person_02",
-        "in": 2304.508,
-        "out": 2322.508
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 2297.04,
-        "out": 2315.04
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "speaker_activity": {
-          "segment_id": "seg_000658",
-          "start": 2297.04,
-          "end": 2304.04,
-          "text": "ドメイン知識がプロダクトの強みになる",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_03",
-          "confidence": 0.9,
-          "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 2304.508,
-              "source_end": 2311.508,
-              "score": 19.62628,
-              "peak_score": 24.78037,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 2310.42,
-              "source_end": 2317.42,
-              "score": 9.03103,
-              "peak_score": 10.77323,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 2293.708,
-              "source_end": 2300.708,
-              "score": 6.17806,
-              "peak_score": 11.31361,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Single-speaker close-up selected because mouth-motion analysis identifies one dominant active speaker.",
-        "reference_alignment": {
-          "reference_image_id": "single_person_nameplate",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
-          "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_nameplate_caption_safe_area"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "source",
-        "source_media_id": "group_wide"
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_005",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 1.0,
-          "end": 8.0,
-          "text": "ドメイン知識がプロダクトの強みになる",
-          "style_id": "main_punchline_caption"
-        }
-      ],
-      "reason": "Draft main-section beat from transcript-derived punchline candidate."
-    },
-    {
-      "event_id": "main_segment_004",
-      "timeline_start": 352.02,
-      "timeline_end": 370.02,
+      "timeline_start": 289.478,
+      "timeline_end": 304.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
-        "in": 2637.06,
-        "out": 2655.06
+        "in": 2716.68,
+        "out": 2731.68
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 2637.06,
-        "out": 2655.06
+        "in": 2716.68,
+        "out": 2731.68
       },
       "layout": {
         "type": "split_grid",
@@ -1331,44 +1567,27 @@
           "person_01",
           "person_02"
         ],
-        "active_person_id": "person_02",
+        "active_person_id": "person_01",
         "reaction_person_ids": [
-          "person_01"
+          "person_02"
         ],
         "speaker_activity": {
-          "segment_id": "seg_000725",
-          "start": 2637.06,
-          "end": 2644.06,
-          "text": "手作業の業務をプロダクトで変えていく",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_01",
-          "confidence": 0.75,
+          "segment_id": "seg_000742",
+          "start": 2716.68,
+          "end": 2723.68,
+          "text": "経験を循環させてドメイン理解を広げる",
+          "active_person_id": "person_01",
+          "reaction_person_id": "person_02",
+          "confidence": 0.727,
           "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 2644.528,
-              "source_end": 2651.528,
-              "score": 24.33495,
-              "peak_score": 38.26652,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
             {
               "person_id": "person_01",
               "media_id": "cam_person_01",
               "role": "camera2",
-              "source_start": 2633.728,
-              "source_end": 2640.728,
-              "score": 14.70813,
-              "peak_score": 24.41519,
+              "source_start": 2713.348,
+              "source_end": 2720.348,
+              "score": 21.66645,
+              "peak_score": 29.17264,
               "samples": 5,
               "status": "sampled",
               "roi": [
@@ -1379,13 +1598,30 @@
               ]
             },
             {
+              "person_id": "person_02",
+              "media_id": "cam_person_02",
+              "role": "camera3",
+              "source_start": 2724.148,
+              "source_end": 2731.148,
+              "score": 13.39772,
+              "peak_score": 16.56069,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                887,
+                208,
+                1230,
+                458
+              ]
+            },
+            {
               "person_id": "person_03",
               "media_id": "cam_person_03",
               "role": "camera4",
-              "source_start": 2650.44,
-              "source_end": 2657.44,
-              "score": 12.97914,
-              "peak_score": 31.17318,
+              "source_start": 2730.06,
+              "source_end": 2737.06,
+              "score": 8.86129,
+              "peak_score": 15.30466,
               "samples": 5,
               "status": "sampled",
               "roi": [
@@ -1404,14 +1640,14 @@
         },
         "selection_reason": "Two-up selected because the active speaker and strongest reaction candidate form the conversational exchange.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -1430,27 +1666,27 @@
           "type": "caption",
           "start": 1.0,
           "end": 8.0,
-          "text": "手作業の業務をプロダクトで変えていく",
+          "text": "経験を循環させてドメイン理解を広げる",
           "style_id": "main_punchline_caption"
         }
       ],
       "reason": "Draft main-section beat from transcript-derived punchline candidate."
     },
     {
-      "event_id": "main_segment_005",
-      "timeline_start": 370.02,
-      "timeline_end": 388.02,
+      "event_id": "main_segment_004",
+      "timeline_start": 304.478,
+      "timeline_end": 319.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 1907.86,
-        "out": 1925.86
+        "out": 1922.86
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 1907.86,
-        "out": 1925.86
+        "out": 1922.86
       },
       "layout": {
         "type": "split_grid",
@@ -1539,14 +1775,14 @@
         },
         "selection_reason": "Three visible participants show comparable activity, so use a three-way divided reference cut.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -1565,77 +1801,49 @@
           "type": "caption",
           "start": 1.0,
           "end": 8.0,
-          "text": "実務の専門性が開発の前提になる",
+          "text": "たぶん皆さん経理とか労務のドメインを知っているから",
           "style_id": "main_punchline_caption"
         }
       ],
       "reason": "Draft main-section beat from transcript-derived punchline candidate."
     },
     {
-      "event_id": "main_segment_006",
-      "timeline_start": 388.02,
-      "timeline_end": 406.02,
+      "event_id": "main_segment_005",
+      "timeline_start": 319.478,
+      "timeline_end": 334.478,
       "type": "source_clip",
       "section": "main",
       "source": {
-        "media_id": "group_wide",
-        "in": 2716.68,
-        "out": 2734.68
+        "media_id": "cam_person_02",
+        "in": 2304.508,
+        "out": 2319.508
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 2716.68,
-        "out": 2734.68
+        "in": 2297.04,
+        "out": 2312.04
       },
       "layout": {
-        "type": "split_grid",
-        "media_ids": [
-          "cam_person_01",
-          "cam_person_02"
-        ],
-        "grid_strategy": "two_person_vertical_split",
-        "panel_order": [
-          "person_01",
-          "person_02"
-        ],
-        "active_person_id": "person_01",
-        "reaction_person_ids": [
-          "person_02"
-        ],
+        "type": "single",
+        "selected_media_id": "cam_person_02",
+        "target_person_id": "person_02",
         "speaker_activity": {
-          "segment_id": "seg_000742",
-          "start": 2716.68,
-          "end": 2723.68,
-          "text": "経験を循環させてドメイン理解を広げる",
-          "active_person_id": "person_01",
-          "reaction_person_id": "person_02",
-          "confidence": 0.727,
+          "segment_id": "seg_000658",
+          "start": 2297.04,
+          "end": 2304.04,
+          "text": "ドメイン知識がプロダクトの強みになる",
+          "active_person_id": "person_02",
+          "reaction_person_id": "person_03",
+          "confidence": 0.9,
           "activity_scores": [
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 2713.348,
-              "source_end": 2720.348,
-              "score": 21.66645,
-              "peak_score": 29.17264,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            },
             {
               "person_id": "person_02",
               "media_id": "cam_person_02",
               "role": "camera3",
-              "source_start": 2724.148,
-              "source_end": 2731.148,
-              "score": 13.39772,
-              "peak_score": 16.56069,
+              "source_start": 2304.508,
+              "source_end": 2311.508,
+              "score": 19.62628,
+              "peak_score": 24.78037,
               "samples": 5,
               "status": "sampled",
               "roi": [
@@ -1649,10 +1857,153 @@
               "person_id": "person_03",
               "media_id": "cam_person_03",
               "role": "camera4",
-              "source_start": 2730.06,
-              "source_end": 2737.06,
-              "score": 8.86129,
-              "peak_score": 15.30466,
+              "source_start": 2310.42,
+              "source_end": 2317.42,
+              "score": 9.03103,
+              "peak_score": 10.77323,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                890,
+                156,
+                1407,
+                421
+              ]
+            },
+            {
+              "person_id": "person_01",
+              "media_id": "cam_person_01",
+              "role": "camera2",
+              "source_start": 2293.708,
+              "source_end": 2300.708,
+              "score": 6.17806,
+              "peak_score": 11.31361,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                582,
+                277,
+                1040,
+                507
+              ]
+            }
+          ],
+          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
+        },
+        "selection_reason": "Single-speaker close-up selected because mouth-motion analysis identifies one dominant active speaker.",
+        "reference_alignment": {
+          "reference_image_id": "single_person_fullscreen_intro_white_text",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+          "apply": [
+            "medium_closeup",
+            "eyes_upper_third",
+            "lower_left_white_role_name"
+          ]
+        }
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_005",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 1.0,
+          "end": 8.0,
+          "text": "ドメイン知識がプロダクトの強みになる",
+          "style_id": "main_punchline_caption"
+        }
+      ],
+      "reason": "Draft main-section beat from transcript-derived punchline candidate."
+    },
+    {
+      "event_id": "main_segment_006",
+      "timeline_start": 334.478,
+      "timeline_end": 349.478,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 2637.06,
+        "out": 2652.06
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 2637.06,
+        "out": 2652.06
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_01",
+          "cam_person_02"
+        ],
+        "grid_strategy": "two_person_vertical_split",
+        "panel_order": [
+          "person_01",
+          "person_02"
+        ],
+        "active_person_id": "person_02",
+        "reaction_person_ids": [
+          "person_01"
+        ],
+        "speaker_activity": {
+          "segment_id": "seg_000725",
+          "start": 2637.06,
+          "end": 2644.06,
+          "text": "手作業の業務をプロダクトで変えていく",
+          "active_person_id": "person_02",
+          "reaction_person_id": "person_01",
+          "confidence": 0.75,
+          "activity_scores": [
+            {
+              "person_id": "person_02",
+              "media_id": "cam_person_02",
+              "role": "camera3",
+              "source_start": 2644.528,
+              "source_end": 2651.528,
+              "score": 24.33495,
+              "peak_score": 38.26652,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                887,
+                208,
+                1230,
+                458
+              ]
+            },
+            {
+              "person_id": "person_01",
+              "media_id": "cam_person_01",
+              "role": "camera2",
+              "source_start": 2633.728,
+              "source_end": 2640.728,
+              "score": 14.70813,
+              "peak_score": 24.41519,
+              "samples": 5,
+              "status": "sampled",
+              "roi": [
+                582,
+                277,
+                1040,
+                507
+              ]
+            },
+            {
+              "person_id": "person_03",
+              "media_id": "cam_person_03",
+              "role": "camera4",
+              "source_start": 2650.44,
+              "source_end": 2657.44,
+              "score": 12.97914,
+              "peak_score": 31.17318,
               "samples": 5,
               "status": "sampled",
               "roi": [
@@ -1671,14 +2022,14 @@
         },
         "selection_reason": "Two-up selected because the active speaker and strongest reaction candidate form the conversational exchange.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -1697,7 +2048,7 @@
           "type": "caption",
           "start": 1.0,
           "end": 8.0,
-          "text": "経験を循環させてドメイン理解を広げる",
+          "text": "手作業の業務をプロダクトで変えていく",
           "style_id": "main_punchline_caption"
         }
       ],
@@ -1705,19 +2056,111 @@
     },
     {
       "event_id": "main_segment_007",
-      "timeline_start": 406.02,
-      "timeline_end": 424.02,
+      "timeline_start": 349.478,
+      "timeline_end": 364.478,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 2922.04,
+        "out": 2937.04
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 2922.04,
+        "out": 2937.04
+      },
+      "layout": {
+        "type": "wide_group",
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "selection_reason": "No speaker activity analysis available for this segment; use group-safe coverage."
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_006",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 1.0,
+          "end": 8.0,
+          "text": "こういうドメインエキスパートとかプロダクトマネージャーみたいなキャリ",
+          "style_id": "main_punchline_caption"
+        }
+      ],
+      "reason": "Draft main-section beat from transcript-derived punchline candidate."
+    },
+    {
+      "event_id": "main_segment_008",
+      "timeline_start": 364.478,
+      "timeline_end": 379.478,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "group_wide",
+        "in": 2441.7,
+        "out": 2456.7
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 2441.7,
+        "out": 2456.7
+      },
+      "layout": {
+        "type": "wide_group",
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "selection_reason": "No speaker activity analysis available for this segment; use group-safe coverage."
+      },
+      "audio": {
+        "mode": "source",
+        "source_media_id": "group_wide"
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_005",
+          "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 1.0,
+          "end": 8.0,
+          "text": "就業時間のチェックの部分ですね",
+          "style_id": "main_punchline_caption"
+        }
+      ],
+      "reason": "Draft main-section beat from transcript-derived punchline candidate."
+    },
+    {
+      "event_id": "main_segment_009",
+      "timeline_start": 379.478,
+      "timeline_end": 394.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 1070.28,
-        "out": 1088.28
+        "out": 1085.28
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 1070.28,
-        "out": 1088.28
+        "out": 1085.28
       },
       "layout": {
         "type": "split_grid",
@@ -1803,14 +2246,14 @@
         },
         "selection_reason": "Two-up selected because the active speaker and strongest reaction candidate form the conversational exchange.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -1836,20 +2279,20 @@
       "reason": "Draft main-section beat from transcript-derived punchline candidate."
     },
     {
-      "event_id": "main_segment_008",
-      "timeline_start": 424.02,
-      "timeline_end": 442.02,
+      "event_id": "main_segment_010",
+      "timeline_start": 394.478,
+      "timeline_end": 409.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 2612.06,
-        "out": 2630.06
+        "out": 2627.06
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 2612.06,
-        "out": 2630.06
+        "out": 2627.06
       },
       "layout": {
         "type": "split_grid",
@@ -1938,14 +2381,14 @@
         },
         "selection_reason": "Three visible participants show comparable activity, so use a three-way divided reference cut.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -1971,20 +2414,20 @@
       "reason": "Draft main-section beat from transcript-derived punchline candidate."
     },
     {
-      "event_id": "main_segment_009",
-      "timeline_start": 442.02,
-      "timeline_end": 460.02,
+      "event_id": "main_segment_011",
+      "timeline_start": 409.478,
+      "timeline_end": 424.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 1869.46,
-        "out": 1887.46
+        "out": 1884.46
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 1869.46,
-        "out": 1887.46
+        "out": 1884.46
       },
       "layout": {
         "type": "split_grid",
@@ -2070,14 +2513,14 @@
         },
         "selection_reason": "Two-up selected because the active speaker and strongest reaction candidate form the conversational exchange.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -2103,20 +2546,20 @@
       "reason": "Draft main-section beat from transcript-derived punchline candidate."
     },
     {
-      "event_id": "main_segment_010",
-      "timeline_start": 460.02,
-      "timeline_end": 478.02,
+      "event_id": "main_segment_012",
+      "timeline_start": 424.478,
+      "timeline_end": 439.478,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
         "in": 2415.7,
-        "out": 2433.7
+        "out": 2430.7
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 2415.7,
-        "out": 2433.7
+        "out": 2430.7
       },
       "layout": {
         "type": "split_grid",
@@ -2202,14 +2645,14 @@
         },
         "selection_reason": "Two-up selected because the active speaker and strongest reaction candidate form the conversational exchange.",
         "reference_alignment": {
-          "reference_image_id": "two_person_nameplate_split",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
+          "reference_image_id": "two_person_split_intro_white_names",
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
           "fallback_reference_image_id": "three_person_divided",
           "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
           "apply": [
             "stable_panel_order",
             "matched_face_scale",
-            "thin_dividers"
+            "per_panel_white_name_labels"
           ]
         }
       },
@@ -2229,230 +2672,6 @@
           "start": 1.0,
           "end": 8.0,
           "text": "プロダクトごとの思いを理解して作る",
-          "style_id": "main_punchline_caption"
-        }
-      ],
-      "reason": "Draft main-section beat from transcript-derived punchline candidate."
-    },
-    {
-      "event_id": "main_segment_011",
-      "timeline_start": 478.02,
-      "timeline_end": 496.02,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "cam_person_02",
-        "in": 1337.748,
-        "out": 1355.748
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 1330.28,
-        "out": 1348.28
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
-        "speaker_activity": {
-          "segment_id": "seg_000405",
-          "start": 1330.28,
-          "end": 1335.54,
-          "text": "ドメイン知識を開発に接続する",
-          "active_person_id": "person_02",
-          "reaction_person_id": "person_01",
-          "confidence": 0.9,
-          "activity_scores": [
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 1337.748,
-              "source_end": 1343.008,
-              "score": 18.4317,
-              "peak_score": 24.11557,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            },
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 1326.948,
-              "source_end": 1332.208,
-              "score": 8.70661,
-              "peak_score": 12.45278,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 1343.66,
-              "source_end": 1348.92,
-              "score": 8.70379,
-              "peak_score": 16.39069,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Single-speaker close-up selected because mouth-motion analysis identifies one dominant active speaker.",
-        "reference_alignment": {
-          "reference_image_id": "single_person_nameplate",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
-          "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_nameplate_caption_safe_area"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "source",
-        "source_media_id": "group_wide"
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_002",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 1.0,
-          "end": 8.0,
-          "text": "ドメイン知識を開発に接続する",
-          "style_id": "main_punchline_caption"
-        }
-      ],
-      "reason": "Draft main-section beat from transcript-derived punchline candidate."
-    },
-    {
-      "event_id": "main_segment_012",
-      "timeline_start": 496.02,
-      "timeline_end": 514.02,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "group_wide",
-        "in": 2203.74,
-        "out": 2221.74
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 2203.74,
-        "out": 2221.74
-      },
-      "layout": {
-        "type": "wide_group",
-        "ensure_people_visible": [
-          "person_01",
-          "person_02",
-          "person_03"
-        ],
-        "speaker_activity": {
-          "segment_id": "seg_000644",
-          "start": 2203.74,
-          "end": 2210.74,
-          "text": "大事だなとは思いますが、それが大前提として",
-          "active_person_id": "person_01",
-          "reaction_person_id": "person_03",
-          "confidence": 0.424,
-          "activity_scores": [
-            {
-              "person_id": "person_01",
-              "media_id": "cam_person_01",
-              "role": "camera2",
-              "source_start": 2200.408,
-              "source_end": 2207.408,
-              "score": 26.40459,
-              "peak_score": 39.16196,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                582,
-                277,
-                1040,
-                507
-              ]
-            },
-            {
-              "person_id": "person_03",
-              "media_id": "cam_person_03",
-              "role": "camera4",
-              "source_start": 2217.12,
-              "source_end": 2224.12,
-              "score": 23.5363,
-              "peak_score": 49.83896,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                890,
-                156,
-                1407,
-                421
-              ]
-            },
-            {
-              "person_id": "person_02",
-              "media_id": "cam_person_02",
-              "role": "camera3",
-              "source_start": 2211.208,
-              "source_end": 2218.208,
-              "score": 6.01552,
-              "peak_score": 14.97949,
-              "samples": 5,
-              "status": "sampled",
-              "roi": [
-                887,
-                208,
-                1230,
-                458
-              ]
-            }
-          ],
-          "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-        },
-        "selection_reason": "Speaker activity confidence is low and not clearly multi-person, so a wide group shot is safer than a false speaker cut."
-      },
-      "audio": {
-        "mode": "source",
-        "source_media_id": "group_wide"
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_005",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 1.0,
-          "end": 8.0,
-          "text": "大事だなとは思いますが、それが大前提として",
           "style_id": "main_punchline_caption"
         }
       ],

@@ -36,6 +36,156 @@ def rel(path: Path) -> str:
 
 
 REFERENCE_ANALYSIS: dict[str, dict[str, Any]] = {
+    "single-person-introduction-name-subtitle-reference.png": {
+        "reference_image_id": "single_person_fullscreen_intro_white_text",
+        "layout_types": ["single", "lower_third_person", "intro_white_text"],
+        "intended_sections": ["first_self_introduction", "participant_identification"],
+        "detected_content": {
+            "person_count": 1,
+            "visible_text": {
+                "role_description": "バクラク事業部 HCM本部 本部長",
+                "name": "吉田 達輝(takkyy)",
+            },
+            "text_language": "Japanese",
+        },
+        "framing": {
+            "composition": "one full-screen medium close-up over office background with logo top-left and white lower-left identification text",
+            "subject_crop": "person shown from head through seated torso; shoulders and microphone visible; table foreground may remain visible",
+            "person_placement": {
+                "body_center_norm": [0.55, 0.58],
+                "face_center_norm": [0.52, 0.29],
+                "face_box_norm": {"x": 0.472, "y": 0.175, "w": 0.102, "h": 0.182},
+                "face_size_relative_to_frame_height": 0.182,
+                "eyes_band_y_norm": 0.245,
+            },
+            "safe_margins_norm": {"left": 0.045, "right": 0.04, "top": 0.035, "bottom": 0.08},
+            "background": "bright office environment kept visible; subject is not isolated on a plain card",
+        },
+        "text_layout": {
+            "text_block_position": "lower_left",
+            "text_block_bbox_norm": {"x": 0.077, "y": 0.692, "w": 0.43, "h": 0.145},
+            "role_description": {
+                "bbox_norm": {"x": 0.078, "y": 0.700, "w": 0.34, "h": 0.042},
+                "font_size_ratio_to_height": 0.044,
+                "relative_size": "small label line",
+                "color": "#FFFFFF",
+                "shadow": "soft gray drop shadow",
+            },
+            "name": {
+                "bbox_norm": {"x": 0.079, "y": 0.745, "w": 0.43, "h": 0.085},
+                "font_size_ratio_to_height": 0.085,
+                "relative_size": "large primary name line",
+                "color": "#FFFFFF",
+                "shadow": "soft gray drop shadow",
+            },
+            "paragraph_structure": ["one role/department line", "one large name line"],
+            "background_box": "none",
+            "stroke_outline": "none",
+        },
+        "overlay_style": {
+            "logo": {"position": "top_left", "x_norm": 0.022, "y_norm": 0.033, "width_norm": 0.16},
+            "nameplate": {
+                "position": "lower_left",
+                "role_line": "white bold smaller text with soft shadow only",
+                "name_line": "very large white bold text with soft shadow only",
+                "box": "none",
+                "avoid_caption_subtitles": True,
+            },
+        },
+        "comparison_to_two_person": {
+            "single_person_reference": "one full-screen person, no divider, one lower-left text block for that person",
+            "two_person_reference": "two equal vertical panels, each person has a lower text block under their own panel, and a center divider separates the views",
+            "framing_difference": "single-person face/body can be larger and slightly right of center; two-person faces are smaller and matched across panels",
+            "text_difference": "single-person name can be largest; two-person names remain large but slightly smaller to fit per-panel width",
+        },
+        "render_directives": [
+            "Use for the first self-introduction when the left participant introduces himself.",
+            "Show the left participant close-up full-screen; do not use split layout for this first self-introduction.",
+            "Match the reference's lower-left white role/name text sizes, position, and margins.",
+            "Do not add a purple name box or black text stroke.",
+        ],
+    },
+    "two-person-split-introduction-name-subtitle-reference.png": {
+        "reference_image_id": "two_person_split_intro_white_names",
+        "layout_types": ["split_grid", "two_person_intro", "split_person_labels"],
+        "intended_sections": ["interviewee_introduction_pair", "two_person_identification"],
+        "detected_content": {
+            "person_count": 2,
+            "visible_text": [
+                {"panel": "left", "role_description": "上級執行役員COO バクラク事業CEO", "name": "福島 広浩(Kozo)"},
+                {"panel": "right", "role_description": "バクラク事業部 プロダクトグロース部 / AI-BPO事業責任者", "name": "秋葉 佑哉(akiba)"},
+            ],
+            "text_language": "Japanese",
+        },
+        "framing": {
+            "composition": "two equal vertical panels with a center divider, LayerX logo top-left, and white name/role text under each person",
+            "subject_crop": "each person medium close-up, head through upper torso visible, face sizes matched across panels",
+            "panel_geometry": {
+                "left_panel_norm": {"x": 0.0, "y": 0.0, "w": 0.5, "h": 1.0},
+                "right_panel_norm": {"x": 0.5, "y": 0.0, "w": 0.5, "h": 1.0},
+                "divider": {"orientation": "vertical", "x_norm": 0.5, "width_norm": 0.008, "color": "#8EC6FF"},
+            },
+            "people": [
+                {
+                    "panel": "left",
+                    "face_center_norm": [0.260, 0.285],
+                    "face_box_norm": {"x": 0.196, "y": 0.171, "w": 0.128, "h": 0.227},
+                    "face_size_relative_to_frame_height": 0.227,
+                    "body_center_norm": [0.26, 0.58],
+                },
+                {
+                    "panel": "right",
+                    "face_center_norm": [0.763, 0.346],
+                    "face_box_norm": {"x": 0.710, "y": 0.252, "w": 0.106, "h": 0.188},
+                    "face_size_relative_to_frame_height": 0.188,
+                    "body_center_norm": [0.75, 0.62],
+                },
+            ],
+            "face_matching_rule": "keep both face boxes visually comparable and align eyes within the upper-middle band",
+            "safe_margins_norm": {"left": 0.04, "right": 0.04, "top": 0.035, "bottom": 0.07},
+        },
+        "text_layout": {
+            "text_block_position": "lower_area_per_panel",
+            "left_text_block_bbox_norm": {"x": 0.046, "y": 0.686, "w": 0.38, "h": 0.165},
+            "right_text_block_bbox_norm": {"x": 0.57, "y": 0.650, "w": 0.39, "h": 0.205},
+            "role_description": {
+                "font_size_ratio_to_height": 0.040,
+                "relative_size": "small to medium multiline descriptor",
+                "color": "#FFFFFF",
+                "shadow": "soft gray drop shadow",
+            },
+            "name": {
+                "font_size_ratio_to_height": 0.078,
+                "relative_size": "large primary name line",
+                "color": "#FFFFFF",
+                "shadow": "soft gray drop shadow",
+            },
+            "paragraph_structure": ["role/department line or two lines", "large name line"],
+            "background_box": "none",
+            "stroke_outline": "none",
+        },
+        "overlay_style": {
+            "logo": {"position": "top_left", "x_norm": 0.022, "y_norm": 0.033, "width_norm": 0.16},
+            "divider": {"color": "#8EC6FF", "width_norm": 0.008},
+            "split_person_labels": {
+                "position": "bottom_of_each_panel",
+                "role_line": "white bold smaller text with soft shadow only",
+                "name_line": "large white bold text with soft shadow only",
+                "box": "none",
+            },
+        },
+        "comparison_to_single_person": {
+            "single_person_reference": "one full-screen person; one lower-left text block; no center divider",
+            "two_person_reference": "two equal panels; each panel has its own lower text block; faces are smaller but matched; center divider separates panels",
+            "text_difference": "two-person role text can wrap to two lines; name size remains large but slightly smaller than single-person name",
+        },
+        "render_directives": [
+            "Use after the first left-person self-introduction to identify the two interviewees together.",
+            "Place middle interviewee on the left panel and right interviewee on the right panel.",
+            "Show each person's name below that person in the same white text style as the reference.",
+            "Do not use purple name boxes for this two-person introduction layout.",
+        ],
+    },
     "annotation-sample.png": {
         "reference_image_id": "annotation_sample",
         "layout_types": ["speaker_reaction_pair", "entity_explainer"],
@@ -223,6 +373,37 @@ def update_style_guide(manifest: dict[str, Any]) -> None:
         item["reference_image_id"]: item["analysis_path"] for item in manifest["references"]
     }
     style.setdefault("reference_alignment", {})
+    style.setdefault("styles", {})
+    style["styles"].setdefault(
+        "single_intro_white_text_reference",
+        {
+            "description": "Lower-left white role/name text for full-screen first self-introduction, based on single-person introduction reference.",
+            "reference_image_id": "single_person_fullscreen_intro_white_text",
+            "analysis_path": str(ANALYSIS_DIR / "single-person-introduction-name-subtitle-reference.json"),
+            "text": {
+                "role_line_color": "#FFFFFF",
+                "name_line_color": "#FFFFFF",
+                "stroke_outline": "none",
+                "shadow": "soft gray drop shadow",
+            },
+            "placement": {"anchor": "lower_left", "x_norm": 0.0625, "y_norm": 0.694},
+        },
+    )
+    style["styles"].setdefault(
+        "two_person_intro_white_names_reference",
+        {
+            "description": "Per-panel white role/name labels for two-person split introduction.",
+            "reference_image_id": "two_person_split_intro_white_names",
+            "analysis_path": str(ANALYSIS_DIR / "two-person-split-introduction-name-subtitle-reference.json"),
+            "text": {
+                "role_line_color": "#FFFFFF",
+                "name_line_color": "#FFFFFF",
+                "stroke_outline": "none",
+                "shadow": "soft gray drop shadow",
+            },
+            "placement": {"anchor": "lower_area_per_panel", "left_x_norm": 0.04, "right_x_norm": 0.555, "y_norm": 0.69},
+        },
+    )
     style["reference_alignment"].update(
         {
             "opening_digest": {
@@ -240,9 +421,14 @@ def update_style_guide(manifest: dict[str, Any]) -> None:
                 "alignment_goal": "all participants visible with balanced face size and stable physical order",
             },
             "main_single_speaker": {
-                "reference_image_id": "single_person_nameplate",
-                "analysis_path": str(ANALYSIS_DIR / "left-person-with-name-plate-sample.json"),
+                "reference_image_id": "single_person_fullscreen_intro_white_text",
+                "analysis_path": str(ANALYSIS_DIR / "single-person-introduction-name-subtitle-reference.json"),
                 "alignment_goal": "medium close-up, face in upper third, name/caption-safe lower area",
+            },
+            "first_self_introduction": {
+                "reference_image_id": "single_person_fullscreen_intro_white_text",
+                "analysis_path": str(ANALYSIS_DIR / "single-person-introduction-name-subtitle-reference.json"),
+                "alignment_goal": "full-screen left participant close-up with lower-left white role/name text",
             },
             "self_introduction": {
                 "reference_image_id": "person_introduction_bio_card",
@@ -250,9 +436,9 @@ def update_style_guide(manifest: dict[str, Any]) -> None:
                 "alignment_goal": "large person crop paired with opposite-side biography panel",
             },
             "two_person_exchange": {
-                "reference_image_id": "two_person_nameplate_split",
-                "analysis_path": str(ANALYSIS_DIR / "middle-and-right-people-with-name-plate-divided-sample.json"),
-                "alignment_goal": "stable panel order and comparable face positions",
+                "reference_image_id": "two_person_split_intro_white_names",
+                "analysis_path": str(ANALYSIS_DIR / "two-person-split-introduction-name-subtitle-reference.json"),
+                "alignment_goal": "two equal panels with matched face positions and white role/name labels below each person",
             },
             "entity_explainer": {
                 "reference_image_id": "annotation_sample",
@@ -297,8 +483,8 @@ def update_edit_plan() -> None:
             }
         elif layout_type == "single":
             layout["reference_alignment"] = {
-                "reference_image_id": "single_person_nameplate",
-                "analysis_path": str(ANALYSIS_DIR / "left-person-with-name-plate-sample.json"),
+                "reference_image_id": "single_person_fullscreen_intro_white_text",
+                "analysis_path": str(ANALYSIS_DIR / "single-person-introduction-name-subtitle-reference.json"),
                 "apply": ["medium_closeup", "eyes_upper_third", "lower_nameplate_caption_safe_area"],
             }
         elif layout_type == "person_with_bio":
@@ -309,11 +495,11 @@ def update_edit_plan() -> None:
             }
         elif layout_type in {"split_grid", "speaker_reaction_pair"}:
             layout["reference_alignment"] = {
-                "reference_image_id": "two_person_nameplate_split",
-                "analysis_path": str(ANALYSIS_DIR / "middle-and-right-people-with-name-plate-divided-sample.json"),
+                "reference_image_id": "two_person_split_intro_white_names",
+                "analysis_path": str(ANALYSIS_DIR / "two-person-split-introduction-name-subtitle-reference.json"),
                 "fallback_reference_image_id": "three_person_divided",
                 "fallback_analysis_path": str(ANALYSIS_DIR / "three-people-divided-sample.json"),
-                "apply": ["stable_panel_order", "matched_face_scale", "thin_dividers"],
+                "apply": ["stable_panel_order", "matched_face_scale", "per_panel_white_name_labels"],
             }
         for overlay in event.get("overlays", []):
             if isinstance(overlay, dict) and overlay.get("type") == "entity_explainer":

@@ -1,7 +1,7 @@
 {
   "schema_version": "reference_image_analysis_manifest.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T08:35:21+09:00",
+  "generated_at": "2026-06-10T11:05:20+09:00",
   "references": [
     {
       "reference_image_id": "annotation_sample",
@@ -68,6 +68,20 @@
       ]
     },
     {
+      "reference_image_id": "single_person_fullscreen_intro_white_text",
+      "source_image": "reference\\single-person-introduction-name-subtitle-reference.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+      "layout_types": [
+        "single",
+        "lower_third_person",
+        "intro_white_text"
+      ],
+      "intended_sections": [
+        "first_self_introduction",
+        "participant_identification"
+      ]
+    },
+    {
       "reference_image_id": "three_person_divided",
       "source_image": "reference\\three-people-divided-sample.png",
       "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
@@ -80,6 +94,20 @@
         "main_intro_group",
         "group_reaction",
         "multi_participant_moment"
+      ]
+    },
+    {
+      "reference_image_id": "two_person_split_intro_white_names",
+      "source_image": "reference\\two-person-split-introduction-name-subtitle-reference.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+      "layout_types": [
+        "split_grid",
+        "two_person_intro",
+        "split_person_labels"
+      ],
+      "intended_sections": [
+        "interviewee_introduction_pair",
+        "two_person_identification"
       ]
     }
   ],

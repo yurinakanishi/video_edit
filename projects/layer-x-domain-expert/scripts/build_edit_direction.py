@@ -535,15 +535,15 @@ def apply_reference_alignment(plan: dict[str, Any]) -> dict[str, Any]:
             }
         elif event.get("event_id") == "main_intro_group":
             layout["reference_alignment"] = {
-                "reference_image_id": "three_person_divided",
-                "analysis_path": str(REFERENCE_ANALYSIS / "three-people-divided-sample.json"),
-                "apply": ["balanced_three_person_face_positions", "physical_order", "topic_title_safe_area"],
+                "reference_image_id": "single_person_fullscreen_intro_white_text",
+                "analysis_path": str(REFERENCE_ANALYSIS / "single-person-introduction-name-subtitle-reference.json"),
+                "apply": ["full_screen_left_person_closeup", "lower_left_white_role_name", "match_single_intro_reference"],
             }
         elif layout_type == "single":
             layout["reference_alignment"] = {
-                "reference_image_id": "single_person_nameplate",
-                "analysis_path": str(REFERENCE_ANALYSIS / "left-person-with-name-plate-sample.json"),
-                "apply": ["medium_closeup", "eyes_upper_third", "lower_nameplate_caption_safe_area"],
+                "reference_image_id": "single_person_fullscreen_intro_white_text",
+                "analysis_path": str(REFERENCE_ANALYSIS / "single-person-introduction-name-subtitle-reference.json"),
+                "apply": ["medium_closeup", "eyes_upper_third", "lower_left_white_role_name"],
             }
         elif layout_type == "person_with_bio":
             layout["reference_alignment"] = {
@@ -553,11 +553,11 @@ def apply_reference_alignment(plan: dict[str, Any]) -> dict[str, Any]:
             }
         elif layout_type in {"split_grid", "speaker_reaction_pair"}:
             layout["reference_alignment"] = {
-                "reference_image_id": "two_person_nameplate_split",
-                "analysis_path": str(REFERENCE_ANALYSIS / "middle-and-right-people-with-name-plate-divided-sample.json"),
+                "reference_image_id": "two_person_split_intro_white_names",
+                "analysis_path": str(REFERENCE_ANALYSIS / "two-person-split-introduction-name-subtitle-reference.json"),
                 "fallback_reference_image_id": "three_person_divided",
                 "fallback_analysis_path": str(REFERENCE_ANALYSIS / "three-people-divided-sample.json"),
-                "apply": ["stable_panel_order", "matched_face_scale", "thin_dividers"],
+                "apply": ["stable_panel_order", "matched_face_scale", "per_panel_white_name_labels"],
             }
         for overlay in event.get("overlays", []):
             if isinstance(overlay, dict) and overlay.get("type") == "entity_explainer":
@@ -640,7 +640,7 @@ def build_edit_plan(
         )
         cursor += duration
 
-    company_duration = min(10.0, media_duration(manifest, "company_movie") or 10.0)
+    company_duration = media_duration(manifest, "company_movie") or 8.0
     timeline.append(
         {
             "event_id": "digest_to_main_company_movie",
@@ -653,32 +653,132 @@ def build_edit_plan(
             "layout": {"type": "single", "crop_mode": "fit"},
             "audio": {"mode": "source"},
             "overlays": [],
-            "reason": "Company movie bridge between the opening digest and main interview.",
+            "reason": "Full company movie bridge between the opening digest and main interview; do not cut it midway.",
         }
     )
     cursor += company_duration
 
     topics = semantic.get("topics", [])
     main_start = float(topics[0].get("start") or 0.0) if topics else 0.0
-    intro_duration = 104.38
-    timeline.append(
-        {
-            "event_id": "main_intro_group",
-            "timeline_start": round(cursor, 3),
-            "timeline_end": round(cursor + intro_duration, 3),
-            "type": "source_clip",
-            "section": "main",
-            "source": {"media_id": "group_wide", "in": round(main_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), main_start, intro_duration)},
-            "reference_source": {"media_id": "group_wide", "in": round(main_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), main_start, intro_duration)},
-            "layout": {"type": "wide_group", "ensure_people_visible": ["person_01", "person_02", "person_03"], "safe_margin": 0.06},
-            "audio": {"mode": "source", "source_media_id": "group_wide"},
-            "overlays": [
-                {"type": "topic_title", "position": "top_right", "topic_id": topics[0]["topic_id"] if topics else None, "style_id": "opening_digest_top_right_title"},
-            ],
-            "reason": "Keep the opening introduction continuous from the production start through the self-introduction prompt.",
-        }
-    )
-    cursor += intro_duration
+    intro_topic = topics[0]["topic_id"] if topics else None
+
+    def append_wide_intro(event_id: str, master_in: float, master_out: float, reason: str) -> None:
+        nonlocal cursor
+        duration = master_out - master_in
+        timeline.append(
+            {
+                "event_id": event_id,
+                "timeline_start": round(cursor, 3),
+                "timeline_end": round(cursor + duration, 3),
+                "type": "source_clip",
+                "section": "main",
+                "source": {"media_id": "group_wide", "in": round(master_in, 3), "out": round(master_out, 3)},
+                "reference_source": {"media_id": "group_wide", "in": round(master_in, 3), "out": round(master_out, 3)},
+                "layout": {"type": "wide_group", "ensure_people_visible": ["person_01", "person_02", "person_03"], "safe_margin": 0.06},
+                "audio": {"mode": "source", "source_media_id": "group_wide"},
+                "overlays": [
+                    {"type": "topic_title", "position": "top_right", "topic_id": intro_topic, "style_id": "opening_digest_top_right_title"},
+                ],
+                "reason": reason,
+            }
+        )
+        cursor += duration
+
+    def append_yano_intro(event_id: str, master_in: float, master_out: float, *, show_name: bool, reason: str) -> None:
+        nonlocal cursor
+        duration = master_out - master_in
+        media_id, source_start = synced_source_start_for_person("person_01", master_in, offsets)
+        overlays = [{"type": "topic_title", "position": "top_right", "topic_id": intro_topic, "style_id": "opening_digest_top_right_title"}]
+        if show_name:
+            overlays.append(
+                {
+                    "type": "lower_third_person",
+                    "person_id": "person_01",
+                    "people_source": "people_map",
+                    "anchor": "lower_left",
+                    "style_id": "single_intro_white_text_reference",
+                    "start": 0.0,
+                    "end": duration,
+                }
+            )
+        timeline.append(
+            {
+                "event_id": event_id,
+                "timeline_start": round(cursor, 3),
+                "timeline_end": round(cursor + duration, 3),
+                "type": "source_clip",
+                "section": "main",
+                "source": {"media_id": media_id, "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, media_id), source_start, duration)},
+                "reference_source": {"media_id": "group_wide", "in": round(master_in, 3), "out": round(master_out, 3)},
+                "layout": {
+                    "type": "single",
+                    "selected_media_id": media_id,
+                    "target_person_id": "person_01",
+                    "crop_mode": "single_intro_reference_fullscreen",
+                    "introduction_nameplate": show_name,
+                    "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference.",
+                },
+                "audio": {"mode": "continuous_reference", "source_media_id": "group_wide"},
+                "overlays": overlays,
+                "caption_policy": "no_caption_while_nameplate_visible" if show_name else "editorial_captions_allowed",
+                "reason": reason,
+            }
+        )
+        cursor += duration
+
+    def append_two_person_intro(event_id: str, master_in: float, master_out: float, active_person_id: str, *, show_labels: bool, reason: str) -> None:
+        nonlocal cursor
+        duration = master_out - master_in
+        people = ["person_02", "person_03"]
+        media_ids = [PERSON_CAMERA[item]["media_id"] for item in people]
+        overlays = [{"type": "topic_title", "position": "top_right", "topic_id": intro_topic, "style_id": "opening_digest_top_right_title"}]
+        if show_labels:
+            overlays.append(
+                {
+                    "type": "split_person_labels",
+                    "person_ids": people,
+                    "people_source": "people_map",
+                    "style_id": "two_person_intro_white_names_reference",
+                    "start": 0.0,
+                    "end": duration,
+                }
+            )
+        timeline.append(
+            {
+                "event_id": event_id,
+                "timeline_start": round(cursor, 3),
+                "timeline_end": round(cursor + duration, 3),
+                "type": "source_clip",
+                "section": "main",
+                "source": {"media_id": "group_wide", "in": round(master_in, 3), "out": round(master_out, 3)},
+                "reference_source": {"media_id": "group_wide", "in": round(master_in, 3), "out": round(master_out, 3)},
+                "layout": {
+                    "type": "split_grid",
+                    "media_ids": media_ids,
+                    "grid_strategy": "two_person_intro_vertical_split",
+                    "panel_order": people,
+                    "active_person_id": active_person_id,
+                    "reaction_person_ids": [item for item in people if item != active_person_id],
+                    "introduction_nameplate": show_labels,
+                    "selection_reason": "Show the two interviewees in split view when they are introduced by name.",
+                },
+                "audio": {"mode": "source", "source_media_id": "group_wide"},
+                "overlays": overlays,
+                "caption_policy": "no_caption_while_nameplate_visible" if show_labels else "editorial_captions_allowed",
+                "reason": reason,
+            }
+        )
+        cursor += duration
+
+    append_wide_intro("main_intro_group_greeting", 519.14, 524.94, "Initial greeting must show all three participants.")
+    append_yano_intro("main_intro_yano_self", 524.94, 532.10, show_name=True, reason="Cut to Yano close-up exactly when he says he is Yano; keep his name visible throughout.")
+    append_wide_intro("main_intro_wide_after_yano", 532.10, 535.54, "Briefly return to the three-person camera before introducing the two guests.")
+    append_two_person_intro("main_intro_two_guests_named", 535.54, 546.54, "person_02", show_labels=True, reason="At '根本さんと…', cut to the two-person split and show both names.")
+    append_yano_intro("main_intro_yano_explains_001", 546.54, 561.54, show_name=False, reason="Yano continues the setup; cut back to the speaking person.")
+    append_wide_intro("main_intro_wide_context_001", 561.54, 576.54, "Wide context cut to keep pacing around 15 seconds.")
+    append_yano_intro("main_intro_yano_explains_002", 576.54, 591.54, show_name=False, reason="Yano explains the domain expert role; show the speaker.")
+    append_two_person_intro("main_intro_two_guest_reaction", 591.54, 606.54, "person_02", show_labels=False, reason="Reaction cut to the introduced guests while keeping the 15-second rhythm.")
+    append_yano_intro("main_intro_yano_prompt_selfintro", 606.54, 623.52, show_name=False, reason="Yano asks the guests to introduce themselves; show the speaker.")
 
     intro_ranges = [
         {**INTRODUCTION_CUES[0], "duration": 47.54},
@@ -690,14 +790,6 @@ def build_edit_plan(
             "reason": "Keep the handoff to 村田さん without cutting the introduction.",
         },
         {**INTRODUCTION_CUES[1], "duration": 47.44},
-        {
-            "event_id": "intro_between_murata_yano",
-            "person_id": None,
-            "master_in": 722.50,
-            "duration": 4.96,
-            "reason": "Keep the handoff to 矢野さん without cutting the introduction.",
-        },
-        {**INTRODUCTION_CUES[2], "duration": 38.60},
     ]
 
     for cue in intro_ranges:
@@ -726,6 +818,54 @@ def build_edit_plan(
         person_id = cue["person_id"]
         master_in = float(cue["master_in"])
         cue_duration = float(cue["duration"])
+        if person_id in {"person_02", "person_03"}:
+            people = ["person_02", "person_03"]
+            media_ids = [PERSON_CAMERA[item]["media_id"] for item in people]
+            timeline.append(
+                {
+                    "event_id": cue["event_id"],
+                    "timeline_start": round(cursor, 3),
+                    "timeline_end": round(cursor + cue_duration, 3),
+                    "type": "source_clip",
+                    "section": "main",
+                    "source": {
+                        "media_id": "group_wide",
+                        "in": round(master_in, 3),
+                        "out": safe_source_out(media_duration(manifest, "group_wide"), master_in, cue_duration),
+                    },
+                    "reference_source": {
+                        "media_id": "group_wide",
+                        "in": round(master_in, 3),
+                        "out": safe_source_out(media_duration(manifest, "group_wide"), master_in, cue_duration),
+                    },
+                    "layout": {
+                        "type": "split_grid",
+                        "media_ids": media_ids,
+                        "grid_strategy": "two_person_intro_vertical_split",
+                        "panel_order": people,
+                        "active_person_id": person_id,
+                        "reaction_person_ids": [item for item in people if item != person_id],
+                        "introduction_nameplate": True,
+                        "selection_reason": "After the left-person self-introduction, identify the two interviewees together in a two-person split matching the new reference.",
+                    },
+                    "audio": {"mode": "continuous_reference", "source_media_id": "group_wide"},
+                    "overlays": [
+                        {"type": "topic_title", "position": "top_right", "topic_id": topics[0]["topic_id"] if topics else None, "style_id": "opening_digest_top_right_title"},
+                        {
+                            "type": "split_person_labels",
+                            "person_ids": people,
+                            "people_source": "people_map",
+                            "style_id": "two_person_intro_white_names_reference",
+                            "start": 0.25,
+                            "end": cue_duration,
+                        },
+                    ],
+                    "caption_policy": "no_caption_while_nameplate_visible",
+                    "reason": cue["reason"],
+                }
+            )
+            cursor += cue_duration
+            continue
         selected_media, source_start = synced_source_start_for_person(person_id, master_in, offsets)
         timeline.append(
             {
@@ -772,7 +912,7 @@ def build_edit_plan(
 
     for index, punchline in enumerate(semantic.get("punchline_subtitles", [])[:12], start=1):
         source_start = float(punchline.get("start") or 0.0)
-        duration = 18.0
+        duration = 15.0
         activity = activity_by_segment.get(str(punchline.get("segment_id") or ""))
         selected_media, selected_source_start, layout = choose_layout_from_activity(punchline, activity, sync_map)
         if selected_media in ("cam_person_01", "cam_person_02", "cam_person_03"):

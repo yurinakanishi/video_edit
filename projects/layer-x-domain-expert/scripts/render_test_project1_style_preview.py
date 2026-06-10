@@ -30,7 +30,7 @@ PURPLE_LIGHT = "#7863F3"
 TOP_STOPS = ["#5A51FE", "#5A51FD", "#5D60FE"]
 BOTTOM_STOPS = ["#5B59FD", "#656AFD", "#747FFC"]
 TITLE_STOPS = ["#4D15D7", "#5A2DEF", "#7863F3"]
-DIVIDER_COLOR = "0x58B9FF"
+DIVIDER_COLOR = "0x5A2DEF"
 
 MEDIA_PATHS = {
     "group_wide": PROJECT_ROOT / "source" / "video" / "three people.mp4",
@@ -45,6 +45,12 @@ MEDIA_TO_ROLE = {
     "cam_person_02": "camera3",
     "cam_person_03": "camera4",
     "group_wide": "master",
+}
+
+PERSON_TO_MEDIA = {
+    "person_01": "cam_person_01",
+    "person_02": "cam_person_02",
+    "person_03": "cam_person_03",
 }
 
 
@@ -119,10 +125,12 @@ def clip_source(event: dict[str, Any]) -> dict[str, Any]:
 
 
 def audio_source(event: dict[str, Any]) -> dict[str, Any]:
-    reference = event.get("reference_source")
-    if isinstance(reference, dict):
-        return reference
-    return clip_source(event)
+    source = event.get("source") if isinstance(event.get("source"), dict) else {}
+    reference = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
+    if str(event.get("section") or "") == "bridge" or str(source.get("media_id") or "") == "company_movie":
+        return source
+    master_in = float(reference.get("in") or source.get("in") or 0.0)
+    return {"media_id": "group_wide", "in": master_in, "out": master_in + duration(event)}
 
 
 def hex_to_rgb(value: str) -> tuple[int, int, int]:
@@ -244,15 +252,18 @@ def draw_logo(canvas: Image.Image, section: str, is_split: bool = False) -> None
     if not LOGO_PATH.exists():
         return
     logo = Image.open(LOGO_PATH).convert("RGBA")
+    bbox = logo.getbbox()
+    if bbox:
+        logo = logo.crop(bbox)
     if section == "digest":
-        logo_w = 260
-        pos = (0, 8)
+        logo_w = 270
+        pos = (18, 18)
     elif is_split:
-        logo_w = 260
-        pos = (0, 0)
+        logo_w = 220
+        pos = (18, 18)
     else:
-        logo_w = 320
-        pos = (0, 0)
+        logo_w = 270
+        pos = (18, 18)
     logo_h = round(logo.height * logo_w / logo.width)
     logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
     canvas.alpha_composite(logo, pos)
@@ -287,7 +298,7 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
             if section != "digest":
                 paste_slanted_gradient(canvas, [(x0 + 18, y0), (x1, y0), (x1 - 18, y1), (x0, y1)], TITLE_STOPS, 244)
             draw = ImageDraw.Draw(canvas)
-            draw.text((x0 + (box_w - text_w) / 2, y0 + (box_h - text_h) / 2 - 4), title, font=font, fill=(255, 255, 255, 255), stroke_width=2, stroke_fill=(0, 0, 0, 110))
+            draw.text((x0 + (box_w - text_w) / 2, y0 + (box_h - text_h) / 2 - 4), title, font=font, fill=(255, 255, 255, 255))
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(output)
 
@@ -298,6 +309,33 @@ def person_label(person_id: str) -> str:
     role = str(person.get("role_title") or "").strip()
     name = str(person.get("display_name") or person_id)
     return f"{company} {role}  {name}".replace("  ", " ").strip()
+
+
+def person_intro_lines(person_id: str) -> tuple[str, str]:
+    person = people_map().get(person_id, {})
+    department = str(person.get("department") or "").strip()
+    role = str(person.get("role_title") or "").strip()
+    name = str(person.get("display_name") or person_id).strip()
+    descriptor = " ".join(part for part in (department, role) if part)
+    return descriptor or "LayerX", name
+
+
+def draw_shadow_text(draw: ImageDraw.ImageDraw, position: tuple[float, float], text: str, font: ImageFont.FreeTypeFont, fill: tuple[int, int, int, int]) -> None:
+    x, y = position
+    shadow = (80, 80, 80, max(80, fill[3] - 40))
+    for dx, dy in ((2, 2), (3, 3)):
+        draw.text((x + dx, y + dy), text, font=font, fill=shadow)
+    draw.text((x, y), text, font=font, fill=fill)
+
+
+def draw_white_intro_label(canvas: Image.Image, person_id: str, x: int, y: int, max_width: int, *, name_size: int, role_size: int, opacity: float = 1.0) -> None:
+    role, name = person_intro_lines(person_id)
+    draw = ImageDraw.Draw(canvas)
+    role_font = fit_font(role, max_width, role_size, max(20, role_size - 10))
+    name_font = fit_font(name, max_width, name_size, max(36, name_size - 18))
+    alpha = round(255 * max(0.0, min(1.0, opacity)))
+    draw_shadow_text(draw, (x, y), role, role_font, (255, 255, 255, alpha))
+    draw_shadow_text(draw, (x, y + role_size + 12), name, name_font, (255, 255, 255, alpha))
 
 
 def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float) -> None:
@@ -325,15 +363,20 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
         paste_gradient_box(line_layer, (x0, y0, x0 + box_w, y0 + box_h), [PURPLE_DARK, PURPLE_MID, PURPLE_LIGHT], 7, round(255 * opacity), True)
         text_x = x0 + (box_w - text_w) / 2
         text_y = y0 + (box_h - text_h) / 2 - 6
-        ImageDraw.Draw(line_layer).text((text_x, text_y), line, font=font, fill=(255, 255, 255, round(255 * opacity)), stroke_width=1, stroke_fill=(0, 0, 0, round(80 * opacity)))
+        ImageDraw.Draw(line_layer).text((text_x, text_y), line, font=font, fill=(255, 255, 255, round(255 * opacity)))
         visible_w = round(WIDTH * reveal)
         mask = Image.new("L", (WIDTH, HEIGHT), 0)
         ImageDraw.Draw(mask).rectangle((0, 0, visible_w, HEIGHT), fill=255)
         canvas.alpha_composite(Image.composite(line_layer, Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0)), mask))
 
 
-def draw_nameplate(canvas: Image.Image, person_id: str, start: float, end: float, now: float) -> None:
+def draw_nameplate(canvas: Image.Image, overlay: dict[str, Any], start: float, end: float, now: float) -> None:
     if not (start <= now <= end):
+        return
+    person_id = str(overlay["person_id"])
+    if overlay.get("style_id") == "single_intro_white_text_reference":
+        opacity = min(1.0, max(0.0, (now - start) / 0.2))
+        draw_white_intro_label(canvas, person_id, 80, 500, 720, name_size=64, role_size=34, opacity=opacity)
         return
     label = person_label(person_id)
     font = fit_font(label, 1080, 48, 36)
@@ -346,13 +389,25 @@ def draw_nameplate(canvas: Image.Image, person_id: str, start: float, end: float
     x0 = 52
     y0 = 510
     paste_gradient_box(canvas, (x0, y0, x0 + box_w, y0 + box_h), [PURPLE_DARK, PURPLE_MID, PURPLE_LIGHT], 4, 244, True)
-    draw.text((x0 + 38, y0 + (box_h - text_h) / 2 - 6), label, font=font, fill=(255, 255, 255, 255), stroke_width=1, stroke_fill=(0, 0, 0, 80))
+    draw.text((x0 + 38, y0 + (box_h - text_h) / 2 - 6), label, font=font, fill=(255, 255, 255, 255))
+
+
+def draw_split_person_labels(canvas: Image.Image, overlay: dict[str, Any], start: float, end: float, now: float) -> None:
+    if not (start <= now <= end):
+        return
+    person_ids = [str(item) for item in overlay.get("person_ids", [])]
+    if len(person_ids) != 2:
+        return
+    opacity = min(1.0, max(0.0, (now - start) / 0.2))
+    draw_white_intro_label(canvas, person_ids[0], 52, 500, 520, name_size=56, role_size=28, opacity=opacity)
+    draw_white_intro_label(canvas, person_ids[1], 710, 500, 520, name_size=56, role_size=28, opacity=opacity)
 
 
 def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> bool:
     captions = [overlay for overlay in event.get("overlays", []) if isinstance(overlay, dict) and overlay.get("type") == "caption" and overlay.get("text")]
     nameplates = [overlay for overlay in event.get("overlays", []) if isinstance(overlay, dict) and overlay.get("type") == "lower_third_person" and overlay.get("person_id")]
-    if not captions and not nameplates:
+    split_labels = [overlay for overlay in event.get("overlays", []) if isinstance(overlay, dict) and overlay.get("type") == "split_person_labels"]
+    if not captions and not nameplates and not split_labels:
         return False
     dur = duration(event)
     total_frames = math.ceil(dur * FPS)
@@ -387,7 +442,9 @@ def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> boo
             for overlay in captions:
                 draw_caption(canvas, str(overlay["text"]), now, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur))
             for overlay in nameplates:
-                draw_nameplate(canvas, str(overlay["person_id"]), float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
+                draw_nameplate(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
+            for overlay in split_labels:
+                draw_split_person_labels(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
             process.stdin.write(canvas.tobytes())
     finally:
         process.stdin.close()
@@ -402,13 +459,19 @@ def color_match_filter(media_id: str) -> str:
     return ""
 
 
+def source_skip_sec(event: dict[str, Any]) -> float:
+    if str(event.get("event_id") or "") == "digest_001":
+        return 0.45
+    return 0.0
+
+
 def base_video_filter(event: dict[str, Any], media_id: str) -> str:
     section = str(event.get("section") or "")
     if section == "bridge":
-        return "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1"
+        return "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,setpts=PTS-STARTPTS"
     if section == "digest":
-        return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1[scaled];color=c=black:s=1280x720:r=30:d={{dur}}[canvas];[canvas][scaled]overlay=0:69:format=auto"
-    return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1"
+        return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1,setpts=PTS-STARTPTS[scaled];color=c=black:s=1280x720:r=30:d={{dur}}[canvas];[canvas][scaled]overlay=0:69:format=auto"
+    return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1,setpts=PTS-STARTPTS"
 
 
 def synced_media_start(media_id: str, master_time: float, offsets: dict[str, float]) -> float:
@@ -425,7 +488,7 @@ def split_media_ids(event: dict[str, Any]) -> list[str]:
 
 
 def split_divider_chain(media_count: int) -> str:
-    width = 12
+    width = 8
     if media_count == 2:
         return f",drawbox=x={640 - width // 2}:y=0:w={width}:h=720:color={DIVIDER_COLOR}@1:t=fill"
     if media_count == 3:
@@ -469,11 +532,11 @@ def split_panel_filter(index: int, media_id: str, panel_width: int) -> str:
         return (
             f"[{index}:v]scale=-2:{scale_h}:force_original_aspect_ratio=increase,"
             f"crop={panel_width}:{scale_h}:{crop_x}:0,"
-            f"pad={panel_width}:720:0:{y_pad}{color_match_filter(media_id)},setsar=1[v{index}]"
+            f"pad={panel_width}:720:0:{y_pad}{color_match_filter(media_id)},setsar=1,setpts=PTS-STARTPTS[v{index}]"
         )
     return (
         f"[{index}:v]scale=-2:{scale_h}:force_original_aspect_ratio=increase,"
-        f"crop={panel_width}:720:{crop_x}:{crop_y}{color_match_filter(media_id)},setsar=1[v{index}]"
+        f"crop={panel_width}:720:{crop_x}:{crop_y}{color_match_filter(media_id)},setsar=1,setpts=PTS-STARTPTS[v{index}]"
     )
 
 
@@ -499,6 +562,7 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
     if audio_path is None or not audio_path.exists():
         raise FileNotFoundError(f"Audio media not available for preview: {aud.get('media_id')}")
     dur = duration(event)
+    skip = source_skip_sec(event)
     style_path, text_path = overlay_assets(ffmpeg, event, segment_id)
     filter_base = base_video_filter(event, str(src.get("media_id"))).format(dur=f"{dur:.3f}")
     inputs = [
@@ -508,13 +572,13 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
         "warning",
         "-y",
         "-ss",
-        f"{float(src.get('in') or 0.0):.3f}",
+        f"{float(src.get('in') or 0.0) + skip:.3f}",
         "-t",
         f"{dur:.3f}",
         "-i",
         str(video_path),
         "-ss",
-        f"{float(aud.get('in') or 0.0):.3f}",
+        f"{float(aud.get('in') or 0.0) + skip:.3f}",
         "-t",
         f"{dur:.3f}",
         "-i",
@@ -690,8 +754,10 @@ def main() -> None:
             "Digest uses opaque top/bottom bands and slanted white LayerX logo panel.",
             "Main section removes the full-width top/bottom bands completely.",
             "Captions are rendered as animated RGBA overlays with horizontal reveal and quick fade.",
-            "Split dividers use a bluer color and 3x the previous width.",
+            "Split dividers use the theme purple color and a thinner rule.",
             "Split crops align face scale and vertical head height across participants.",
+            "White overlay text is rendered without black stroke outlines.",
+            "Interview audio uses one continuous group_wide reference source across all video cuts.",
         ],
     }
     write_json(REPORTS / "test_project1_style_preview_report.json", report)

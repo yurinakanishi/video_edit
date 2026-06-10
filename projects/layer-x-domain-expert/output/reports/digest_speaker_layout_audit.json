@@ -1,0 +1,363 @@
+{
+  "schema_version": "digest_speaker_layout_audit.v1",
+  "project_id": "layer-x-domain-expert",
+  "policy": {
+    "single_speaker_digest_event": "split_grid is allowed, but active_person_id must match the current speaker",
+    "primary_camera_person_id": "must_match_caption_speaker_person_id",
+    "split_grid": "allowed only when multiple active participants are intentionally needed"
+  },
+  "summary": {
+    "digest_events": 13,
+    "issue_count": 0,
+    "ready": true
+  },
+  "issues": [],
+  "events": [
+    {
+      "event_id": "digest_qa_01_question_01",
+      "timeline_start": 0.0,
+      "timeline_end": 8.04,
+      "source": {
+        "media_id": "group_wide",
+        "in": 1500.72,
+        "out": 1508.76
+      },
+      "layout_type": "wide_group",
+      "primary_camera_person_id": "person_01",
+      "visible_people": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_01"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "開発に関わる仕事をする中で",
+        "これめっちゃ大変でしたとかありますか？"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "timeline_start": 8.04,
+      "timeline_end": 17.64,
+      "source": {
+        "media_id": "group_wide",
+        "in": 1533.42,
+        "out": 1543.02
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "なんでそうするんですかって聞かれた時に",
+        "ものすごくこれを言語化するのに大変だった",
+        "癖とか慣れとかそういうもので今までやってきた"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_01_answer_03",
+      "timeline_start": 17.64,
+      "timeline_end": 21.14,
+      "source": {
+        "media_id": "group_wide",
+        "in": 1553.12,
+        "out": 1556.62
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "今までの当たり前を言語化する"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "timeline_start": 21.14,
+      "timeline_end": 29.62,
+      "source": {
+        "media_id": "group_wide",
+        "in": 1595.62,
+        "out": 1604.1
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "ドメインエキスパートって言うと",
+        "何でも知ってそうな感じがあると思ってて",
+        "この辺へのハードルの高さというか"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "timeline_start": 29.62,
+      "timeline_end": 38.18,
+      "source": {
+        "media_id": "group_wide",
+        "in": 1619.16,
+        "out": 1627.72
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "すごい皆さんドメインの方めっちゃ調べてるんですよ",
+        "正直全然僕より詳しいということもある"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "timeline_start": 38.18,
+      "timeline_end": 60.02,
+      "source": {
+        "media_id": "group_wide",
+        "in": 1641.88,
+        "out": 1663.72
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "なんでなんですかを絶対に逃がしてくれない",
+        "そこのある意味健全なプレッシャーというのが来た",
+        "ちゃんと伝えるには背景まで整理して",
+        "言語化して伝えなきゃいけないよなっていうところは",
+        "鍛えていただきたいと思います",
+        "自分がこれまで当たり前だと思ったものが",
+        "ある種そういう過程で結構磨かれて成長されて",
+        "めっちゃ大事です"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "timeline_start": 60.02,
+      "timeline_end": 72.02,
+      "source": {
+        "media_id": "group_wide",
+        "in": 1983.1,
+        "out": 1995.1
+      },
+      "layout_type": "wide_group",
+      "primary_camera_person_id": "person_01",
+      "visible_people": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_01"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "僕らも仕事の中でAIを使うのが前提になってきている中で",
+        "ドメインエキスパートの役割というか",
+        "重要性みたいなもので"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "timeline_start": 72.02,
+      "timeline_end": 91.04,
+      "source": {
+        "media_id": "group_wide",
+        "in": 2010.1,
+        "out": 2029.12
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "自分たちに求められることは結構研ぎ澄まされてきている",
+        "なという",
+        "感覚があって",
+        "仕様をゴリゴリ書いていくというよりは",
+        "ちゃんとなんでこれをやるのかとか",
+        "どういうことを実現していきたいのかとか",
+        "そういう思いとかその道筋を考えていくっていう"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "timeline_start": 91.04,
+      "timeline_end": 108.32,
+      "source": {
+        "media_id": "group_wide",
+        "in": 2051.54,
+        "out": 2068.82
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "AIに行くとリサーチすごい優秀",
+        "自分が調べるよりも全然",
+        "それこそ細かい通達とかを引っ張ってきてくれるとか",
+        "探し出してきてくれるんですけど",
+        "それ一辺倒だとさっきのいらないものが失ったりとか",
+        "何かちょっと使いづらい機能になってしまうので"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "timeline_start": 108.32,
+      "timeline_end": 128.32,
+      "source": {
+        "media_id": "group_wide",
+        "in": 2918.04,
+        "out": 2938.04
+      },
+      "layout_type": "wide_group",
+      "primary_camera_person_id": "person_01",
+      "visible_people": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_01"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "もし今バックオフィスで働いている方に対して",
+        "こういうドメインエキスパートとかプロダクトマネージャー",
+        "みたいなキャリア",
+        "そこに対して",
+        "メッセージじゃないですけどお二人から",
+        "おすすめしてくださいって",
+        "言うわけじゃないんですけど"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "timeline_start": 128.32,
+      "timeline_end": 134.32,
+      "source": {
+        "media_id": "group_wide",
+        "in": 2938.04,
+        "out": 2944.04
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_02",
+      "visible_people": [
+        "person_02"
+      ],
+      "caption_speaker_person_ids": [
+        "person_02"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "おすすめするんですよ",
+        "学ぶのめちゃめちゃおすすめ",
+        "めちゃめちゃおすすめですよ"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "timeline_start": 134.32,
+      "timeline_end": 148.32,
+      "source": {
+        "media_id": "group_wide",
+        "in": 2944.04,
+        "out": 2958.04
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "本当に細かいところですけど",
+        "さっきちょっとお話した",
+        "自分が",
+        "暗黙知とかなんとなく",
+        "慣行でやっていたものがちゃんと言語化される",
+        "タイミングが来るとか",
+        "すごく視野が広がるなあ"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    },
+    {
+      "event_id": "digest_qa_05_answer_04",
+      "timeline_start": 148.32,
+      "timeline_end": 155.24,
+      "source": {
+        "media_id": "group_wide",
+        "in": 2973.7,
+        "out": 2980.62
+      },
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speaker_person_ids": [
+        "person_03"
+      ],
+      "speaker_focused": true,
+      "caption_texts": [
+        "やっぱりちょっと一瞬でもいいのでこういう形で広く見れる",
+        "っていうのはめちゃめちゃおすすめだと思います"
+      ],
+      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
+    }
+  ]
+}

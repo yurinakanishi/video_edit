@@ -104,6 +104,7 @@
       "fontSizePxAt720p": 36,
       "fill": "#FFFFFF",
       "weight": 800,
+      "letterSpacingScaleX": 0.96,
       "align": "center",
       "maxLines": 1,
       "shrinkToFit": true
@@ -154,12 +155,13 @@
       "avoidFaceOverlap": true
     },
     "text": {
-      "fontFamily": "Yu Gothic Bold",
-      "fontPath": "C:\\Windows\\Fonts\\YuGothB.ttc",
+      "fontFamily": "BIZ UDPGothic Regular",
+      "fontPath": "C:\\Windows\\Fonts\\BIZ-UDGothicR.ttc",
       "fontSizePxAt720p": 74,
       "minFontSizePxAt720p": 56,
       "fill": "#FFFFFF",
-      "weight": 800,
+      "weight": 700,
+      "renderWeight": "one_step_lighter_than_previous_preview",
       "lineHeight": 1.0,
       "letterSpacing": 0
     },

@@ -1,0 +1,2622 @@
+{
+  "summary": {
+    "schema_version": "caption_audio_alignment.v1",
+    "method": "RMS energy speech bounds from group_wide master audio, applied after caption splitting",
+    "audio_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\audio\\group_wide_mono_16k.wav",
+    "aligned_group_count": 119,
+    "changed_event_count": 82,
+    "changed_events": [
+      "digest_qa_01_answer_02",
+      "digest_qa_01_answer_03",
+      "digest_qa_01_question_01",
+      "digest_qa_02_answer_02",
+      "digest_qa_02_question_context_01",
+      "digest_qa_03_answer_01",
+      "digest_qa_04_answer_02",
+      "digest_qa_04_answer_03",
+      "digest_qa_04_question_01",
+      "digest_qa_05_answer_02",
+      "digest_qa_05_answer_03",
+      "digest_qa_05_answer_04",
+      "digest_qa_05_question_01",
+      "main_full_003",
+      "main_full_007",
+      "main_full_008",
+      "main_full_009",
+      "main_full_010",
+      "main_full_011",
+      "main_full_013",
+      "main_full_015",
+      "main_full_016",
+      "main_full_018",
+      "main_full_020",
+      "main_full_021",
+      "main_full_023",
+      "main_full_024",
+      "main_full_026",
+      "main_full_027",
+      "main_full_029",
+      "main_full_032",
+      "main_full_033",
+      "main_full_036",
+      "main_full_038",
+      "main_full_039",
+      "main_full_040",
+      "main_full_042",
+      "main_full_043",
+      "main_full_044",
+      "main_full_045",
+      "main_full_046",
+      "main_full_049",
+      "main_full_051",
+      "main_full_055",
+      "main_full_057",
+      "main_full_059",
+      "main_full_060",
+      "main_full_061",
+      "main_full_062",
+      "main_full_063",
+      "main_full_067",
+      "main_full_069",
+      "main_full_071",
+      "main_full_072",
+      "main_full_073",
+      "main_full_075",
+      "main_full_077",
+      "main_full_079",
+      "main_full_089",
+      "main_full_105",
+      "main_full_108",
+      "main_full_110",
+      "main_full_112",
+      "main_full_114",
+      "main_full_116",
+      "main_full_119",
+      "main_full_121",
+      "main_full_123",
+      "main_full_127",
+      "main_full_129",
+      "main_full_132",
+      "main_full_135",
+      "main_full_138",
+      "main_full_140",
+      "main_full_143",
+      "main_full_146",
+      "main_full_147",
+      "main_full_149",
+      "main_full_150",
+      "main_intro_two_guest_reaction",
+      "main_intro_wide_context_001",
+      "main_intro_yano_explains_002"
+    ],
+    "overlap_adjustment_count": 12
+  },
+  "groups": [
+    {
+      "event_id": "digest_qa_01_question_01",
+      "group_size": 2,
+      "source_window_sec": [
+        1500.72,
+        1508.76
+      ],
+      "speech_window_sec": [
+        1500.86,
+        1506.66
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007738,
+        "peak": 0.031331,
+        "threshold": 0.013928,
+        "active_frame_count": 280
+      }
+    },
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        1533.42,
+        1535.3
+      ],
+      "speech_window_sec": [
+        1533.43,
+        1535.07
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008694,
+        "peak": 0.017159,
+        "threshold": 0.015648,
+        "active_frame_count": 19
+      }
+    },
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        1535.3,
+        1538.62
+      ],
+      "speech_window_sec": [
+        1535.3,
+        1538.22
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008838,
+        "peak": 0.021851,
+        "threshold": 0.015908,
+        "active_frame_count": 64
+      }
+    },
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        1538.62,
+        1549.62
+      ],
+      "speech_window_sec": [
+        1538.66,
+        1549.62
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008054,
+        "peak": 0.023639,
+        "threshold": 0.014497,
+        "active_frame_count": 274
+      }
+    },
+    {
+      "event_id": "digest_qa_01_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        1549.62,
+        1556.62
+      ],
+      "speech_window_sec": [
+        1549.62,
+        1556.25
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008756,
+        "peak": 0.021302,
+        "threshold": 0.015761,
+        "active_frame_count": 144
+      }
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "group_size": 2,
+      "source_window_sec": [
+        1595.62,
+        1601.22
+      ],
+      "speech_window_sec": [
+        1595.69,
+        1600.93
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008639,
+        "peak": 0.032416,
+        "threshold": 0.015551,
+        "active_frame_count": 205
+      }
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1601.22,
+        1604.1
+      ],
+      "speech_window_sec": [
+        1601.31,
+        1603.61
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007781,
+        "peak": 0.031332,
+        "threshold": 0.014005,
+        "active_frame_count": 104
+      }
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        1619.16,
+        1623.92
+      ],
+      "speech_window_sec": [
+        1619.76,
+        1623.53
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008255,
+        "peak": 0.022832,
+        "threshold": 0.014859,
+        "active_frame_count": 110
+      }
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        1623.92,
+        1627.72
+      ],
+      "speech_window_sec": [
+        1624.0,
+        1627.32
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009246,
+        "peak": 0.066984,
+        "threshold": 0.016643,
+        "active_frame_count": 145
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1641.88,
+        1643.56
+      ],
+      "speech_window_sec": [
+        1641.88,
+        1643.47
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009383,
+        "peak": 0.022094,
+        "threshold": 0.01689,
+        "active_frame_count": 34
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 2,
+      "source_window_sec": [
+        1643.56,
+        1647.62
+      ],
+      "speech_window_sec": [
+        1643.56,
+        1647.47
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.011106,
+        "peak": 0.059112,
+        "threshold": 0.019991,
+        "active_frame_count": 172
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1647.62,
+        1650.76
+      ],
+      "speech_window_sec": [
+        1647.69,
+        1650.4
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008302,
+        "peak": 0.023352,
+        "threshold": 0.014944,
+        "active_frame_count": 88
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1650.76,
+        1653.6
+      ],
+      "speech_window_sec": [
+        1650.79,
+        1653.6
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008457,
+        "peak": 0.021242,
+        "threshold": 0.015222,
+        "active_frame_count": 62
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1653.6,
+        1654.76
+      ],
+      "speech_window_sec": [
+        1653.67,
+        1654.43
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009059,
+        "peak": 0.020277,
+        "threshold": 0.016305,
+        "active_frame_count": 17
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1654.76,
+        1658.44
+      ],
+      "speech_window_sec": [
+        1656.14,
+        1658.44
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007763,
+        "peak": 0.027949,
+        "threshold": 0.013974,
+        "active_frame_count": 117
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1658.44,
+        1661.78
+      ],
+      "speech_window_sec": [
+        1658.47,
+        1661.78
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008238,
+        "peak": 0.025736,
+        "threshold": 0.014828,
+        "active_frame_count": 104
+      }
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1661.78,
+        1663.72
+      ],
+      "speech_window_sec": [
+        1661.85,
+        1663.72
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007699,
+        "peak": 0.022025,
+        "threshold": 0.013857,
+        "active_frame_count": 36
+      }
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "group_size": 1,
+      "source_window_sec": [
+        1983.1,
+        1990.1
+      ],
+      "speech_window_sec": [
+        1983.13,
+        1990.1
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008728,
+        "peak": 0.029185,
+        "threshold": 0.01571,
+        "active_frame_count": 273
+      }
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "group_size": 2,
+      "source_window_sec": [
+        1990.1,
+        1995.1
+      ],
+      "speech_window_sec": [
+        1990.1,
+        1995.1
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008157,
+        "peak": 0.025525,
+        "threshold": 0.014682,
+        "active_frame_count": 150
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "group_size": 2,
+      "source_window_sec": [
+        2010.1,
+        2016.82
+      ],
+      "speech_window_sec": [
+        2010.74,
+        2016.7
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008382,
+        "peak": 0.034177,
+        "threshold": 0.015087,
+        "active_frame_count": 245
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        2016.82,
+        2020.7
+      ],
+      "speech_window_sec": [
+        2016.93,
+        2020.53
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008407,
+        "peak": 0.036161,
+        "threshold": 0.015133,
+        "active_frame_count": 163
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        2020.7,
+        2022.72
+      ],
+      "speech_window_sec": [
+        2020.79,
+        2022.72
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009611,
+        "peak": 0.02956,
+        "threshold": 0.0173,
+        "active_frame_count": 78
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        2022.72,
+        2025.52
+      ],
+      "speech_window_sec": [
+        2022.77,
+        2024.87
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008416,
+        "peak": 0.028603,
+        "threshold": 0.01515,
+        "active_frame_count": 90
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        2025.52,
+        2029.12
+      ],
+      "speech_window_sec": [
+        2025.93,
+        2029.12
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008147,
+        "peak": 0.023952,
+        "threshold": 0.014665,
+        "active_frame_count": 95
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2051.54,
+        2053.82
+      ],
+      "speech_window_sec": [
+        2051.56,
+        2053.42
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008657,
+        "peak": 0.021204,
+        "threshold": 0.015583,
+        "active_frame_count": 54
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2053.82,
+        2056.14
+      ],
+      "speech_window_sec": [
+        2054.0,
+        2055.57
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008836,
+        "peak": 0.02215,
+        "threshold": 0.015905,
+        "active_frame_count": 57
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2056.14,
+        2059.74
+      ],
+      "speech_window_sec": [
+        2056.19,
+        2059.19
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007922,
+        "peak": 0.018115,
+        "threshold": 0.014259,
+        "active_frame_count": 65
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2059.74,
+        2061.42
+      ],
+      "speech_window_sec": [
+        2059.74,
+        2060.37
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009144,
+        "peak": 0.017062,
+        "threshold": 0.01646,
+        "active_frame_count": 10
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2061.42,
+        2065.76
+      ],
+      "speech_window_sec": [
+        2061.78,
+        2065.46
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008313,
+        "peak": 0.022373,
+        "threshold": 0.014963,
+        "active_frame_count": 88
+      }
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2065.76,
+        2068.82
+      ],
+      "speech_window_sec": [
+        2065.79,
+        2068.15
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007685,
+        "peak": 0.01648,
+        "threshold": 0.013833,
+        "active_frame_count": 46
+      }
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "group_size": 1,
+      "source_window_sec": [
+        2918.04,
+        2922.04
+      ],
+      "speech_window_sec": [
+        2918.05,
+        2921.99
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008046,
+        "peak": 0.024655,
+        "threshold": 0.014483,
+        "active_frame_count": 103
+      }
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "group_size": 2,
+      "source_window_sec": [
+        2922.04,
+        2926.04
+      ],
+      "speech_window_sec": [
+        2922.04,
+        2926.04
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007535,
+        "peak": 0.022074,
+        "threshold": 0.013563,
+        "active_frame_count": 134
+      }
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "group_size": 1,
+      "source_window_sec": [
+        2926.04,
+        2930.04
+      ],
+      "speech_window_sec": [
+        2926.04,
+        2929.59
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007574,
+        "peak": 0.022575,
+        "threshold": 0.013633,
+        "active_frame_count": 101
+      }
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "group_size": 1,
+      "source_window_sec": [
+        2930.04,
+        2934.04
+      ],
+      "speech_window_sec": [
+        2930.67,
+        2933.84
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007713,
+        "peak": 0.023654,
+        "threshold": 0.013883,
+        "active_frame_count": 103
+      }
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "group_size": 2,
+      "source_window_sec": [
+        2934.04,
+        2938.04
+      ],
+      "speech_window_sec": [
+        2934.39,
+        2938.04
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007801,
+        "peak": 0.033821,
+        "threshold": 0.014042,
+        "active_frame_count": 107
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        2938.04,
+        2940.04
+      ],
+      "speech_window_sec": [
+        2938.07,
+        2940.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.015375,
+        "peak": 0.086798,
+        "threshold": 0.027676,
+        "active_frame_count": 106
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        2940.04,
+        2942.04
+      ],
+      "speech_window_sec": [
+        2940.04,
+        2942.04
+      ],
+      "changed_overlays": 0,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009004,
+        "peak": 0.033739,
+        "threshold": 0.016207,
+        "active_frame_count": 73
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "group_size": 1,
+      "source_window_sec": [
+        2942.04,
+        2944.04
+      ],
+      "speech_window_sec": [
+        2942.1,
+        2943.36
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.012289,
+        "peak": 0.037796,
+        "threshold": 0.022121,
+        "active_frame_count": 66
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2944.04,
+        2946.04
+      ],
+      "speech_window_sec": [
+        2944.91,
+        2946.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008855,
+        "peak": 0.02219,
+        "threshold": 0.015939,
+        "active_frame_count": 46
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2946.04,
+        2948.04
+      ],
+      "speech_window_sec": [
+        2946.04,
+        2947.69
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008354,
+        "peak": 0.015608,
+        "threshold": 0.015037,
+        "active_frame_count": 17
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2948.04,
+        2950.04
+      ],
+      "speech_window_sec": [
+        2949.22,
+        2950.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007556,
+        "peak": 0.024984,
+        "threshold": 0.013601,
+        "active_frame_count": 40
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2950.04,
+        2952.04
+      ],
+      "speech_window_sec": [
+        2950.04,
+        2952.04
+      ],
+      "changed_overlays": 0,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007688,
+        "peak": 0.02575,
+        "threshold": 0.013839,
+        "active_frame_count": 68
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2952.04,
+        2954.04
+      ],
+      "speech_window_sec": [
+        2952.05,
+        2953.99
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009742,
+        "peak": 0.024515,
+        "threshold": 0.017535,
+        "active_frame_count": 31
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2954.04,
+        2956.04
+      ],
+      "speech_window_sec": [
+        2954.07,
+        2956.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007878,
+        "peak": 0.016216,
+        "threshold": 0.01418,
+        "active_frame_count": 32
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "group_size": 1,
+      "source_window_sec": [
+        2956.04,
+        2958.04
+      ],
+      "speech_window_sec": [
+        2956.04,
+        2957.63
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009138,
+        "peak": 0.025029,
+        "threshold": 0.016448,
+        "active_frame_count": 37
+      }
+    },
+    {
+      "event_id": "digest_qa_05_answer_04",
+      "group_size": 3,
+      "source_window_sec": [
+        2973.7,
+        2980.62
+      ],
+      "speech_window_sec": [
+        2973.8,
+        2980.62
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008114,
+        "peak": 0.020156,
+        "threshold": 0.014606,
+        "active_frame_count": 162
+      }
+    },
+    {
+      "event_id": "main_intro_wide_context_001",
+      "group_size": 1,
+      "source_window_sec": [
+        556.36,
+        557.86
+      ],
+      "speech_window_sec": [
+        556.45,
+        557.18
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007445,
+        "peak": 0.019392,
+        "threshold": 0.013402,
+        "active_frame_count": 31
+      }
+    },
+    {
+      "event_id": "main_intro_wide_context_001",
+      "group_size": 1,
+      "source_window_sec": [
+        565.66,
+        568.04
+      ],
+      "speech_window_sec": [
+        565.66,
+        567.78
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009127,
+        "peak": 0.049141,
+        "threshold": 0.016429,
+        "active_frame_count": 86
+      }
+    },
+    {
+      "event_id": "main_intro_yano_explains_002",
+      "group_size": 1,
+      "source_window_sec": [
+        578.52,
+        582.42
+      ],
+      "speech_window_sec": [
+        578.52,
+        582.42
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008291,
+        "peak": 0.061053,
+        "threshold": 0.014923,
+        "active_frame_count": 159
+      }
+    },
+    {
+      "event_id": "main_intro_two_guest_reaction",
+      "group_size": 1,
+      "source_window_sec": [
+        588.22,
+        593.02
+      ],
+      "speech_window_sec": [
+        588.22,
+        592.93
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007947,
+        "peak": 0.030764,
+        "threshold": 0.014304,
+        "active_frame_count": 144
+      }
+    },
+    {
+      "event_id": "main_full_003",
+      "group_size": 1,
+      "source_window_sec": [
+        737.56,
+        740.94
+      ],
+      "speech_window_sec": [
+        737.62,
+        740.53
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008547,
+        "peak": 0.03103,
+        "threshold": 0.015384,
+        "active_frame_count": 134
+      }
+    },
+    {
+      "event_id": "main_full_007",
+      "group_size": 1,
+      "source_window_sec": [
+        795.88,
+        802.02
+      ],
+      "speech_window_sec": [
+        796.13,
+        802.02
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.006911,
+        "peak": 0.012231,
+        "threshold": 0.012439,
+        "active_frame_count": 29
+      }
+    },
+    {
+      "event_id": "main_full_008",
+      "group_size": 1,
+      "source_window_sec": [
+        813.14,
+        820.14
+      ],
+      "speech_window_sec": [
+        813.81,
+        820.14
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007756,
+        "peak": 0.02124,
+        "threshold": 0.01396,
+        "active_frame_count": 171
+      }
+    },
+    {
+      "event_id": "main_full_009",
+      "group_size": 1,
+      "source_window_sec": [
+        840.14,
+        844.38
+      ],
+      "speech_window_sec": [
+        840.23,
+        844.38
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008894,
+        "peak": 0.04398,
+        "threshold": 0.01601,
+        "active_frame_count": 171
+      }
+    },
+    {
+      "event_id": "main_full_010",
+      "group_size": 1,
+      "source_window_sec": [
+        869.44,
+        873.24
+      ],
+      "speech_window_sec": [
+        869.44,
+        873.08
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008665,
+        "peak": 0.027836,
+        "threshold": 0.015597,
+        "active_frame_count": 102
+      }
+    },
+    {
+      "event_id": "main_full_011",
+      "group_size": 1,
+      "source_window_sec": [
+        880.12,
+        883.54
+      ],
+      "speech_window_sec": [
+        880.49,
+        883.08
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008534,
+        "peak": 0.027724,
+        "threshold": 0.015361,
+        "active_frame_count": 85
+      }
+    },
+    {
+      "event_id": "main_full_013",
+      "group_size": 2,
+      "source_window_sec": [
+        909.9,
+        913.0
+      ],
+      "speech_window_sec": [
+        910.5,
+        913.0
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007895,
+        "peak": 0.027505,
+        "threshold": 0.014212,
+        "active_frame_count": 80
+      }
+    },
+    {
+      "event_id": "main_full_015",
+      "group_size": 1,
+      "source_window_sec": [
+        942.48,
+        944.78
+      ],
+      "speech_window_sec": [
+        942.48,
+        944.78
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.010497,
+        "peak": 0.026357,
+        "threshold": 0.018894,
+        "active_frame_count": 67
+      }
+    },
+    {
+      "event_id": "main_full_016",
+      "group_size": 1,
+      "source_window_sec": [
+        960.0,
+        963.24
+      ],
+      "speech_window_sec": [
+        960.0,
+        963.24
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008601,
+        "peak": 0.033806,
+        "threshold": 0.015482,
+        "active_frame_count": 118
+      }
+    },
+    {
+      "event_id": "main_full_018",
+      "group_size": 1,
+      "source_window_sec": [
+        984.16,
+        987.52
+      ],
+      "speech_window_sec": [
+        984.23,
+        987.33
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009015,
+        "peak": 0.031436,
+        "threshold": 0.016226,
+        "active_frame_count": 132
+      }
+    },
+    {
+      "event_id": "main_full_020",
+      "group_size": 1,
+      "source_window_sec": [
+        993.22,
+        996.82
+      ],
+      "speech_window_sec": [
+        993.63,
+        996.75
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008035,
+        "peak": 0.034257,
+        "threshold": 0.014464,
+        "active_frame_count": 109
+      }
+    },
+    {
+      "event_id": "main_full_021",
+      "group_size": 1,
+      "source_window_sec": [
+        1022.48,
+        1025.22
+      ],
+      "speech_window_sec": [
+        1022.48,
+        1024.79
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008211,
+        "peak": 0.018432,
+        "threshold": 0.01478,
+        "active_frame_count": 40
+      }
+    },
+    {
+      "event_id": "main_full_023",
+      "group_size": 1,
+      "source_window_sec": [
+        1054.28,
+        1057.28
+      ],
+      "speech_window_sec": [
+        1054.45,
+        1057.28
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008457,
+        "peak": 0.019827,
+        "threshold": 0.015223,
+        "active_frame_count": 62
+      }
+    },
+    {
+      "event_id": "main_full_024",
+      "group_size": 1,
+      "source_window_sec": [
+        1077.28,
+        1080.28
+      ],
+      "speech_window_sec": [
+        1077.33,
+        1080.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008541,
+        "peak": 0.021179,
+        "threshold": 0.015373,
+        "active_frame_count": 47
+      }
+    },
+    {
+      "event_id": "main_full_026",
+      "group_size": 1,
+      "source_window_sec": [
+        1105.28,
+        1115.28
+      ],
+      "speech_window_sec": [
+        1105.66,
+        1115.08
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008297,
+        "peak": 0.021169,
+        "threshold": 0.014935,
+        "active_frame_count": 216
+      }
+    },
+    {
+      "event_id": "main_full_027",
+      "group_size": 1,
+      "source_window_sec": [
+        1115.28,
+        1123.28
+      ],
+      "speech_window_sec": [
+        1115.32,
+        1122.51
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008292,
+        "peak": 0.023405,
+        "threshold": 0.014925,
+        "active_frame_count": 200
+      }
+    },
+    {
+      "event_id": "main_full_029",
+      "group_size": 1,
+      "source_window_sec": [
+        1143.28,
+        1148.28
+      ],
+      "speech_window_sec": [
+        1143.81,
+        1148.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008878,
+        "peak": 0.025539,
+        "threshold": 0.01598,
+        "active_frame_count": 136
+      }
+    },
+    {
+      "event_id": "main_full_032",
+      "group_size": 1,
+      "source_window_sec": [
+        1181.28,
+        1183.28
+      ],
+      "speech_window_sec": [
+        1181.37,
+        1183.28
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008242,
+        "peak": 0.027534,
+        "threshold": 0.014835,
+        "active_frame_count": 55
+      }
+    },
+    {
+      "event_id": "main_full_033",
+      "group_size": 1,
+      "source_window_sec": [
+        1199.28,
+        1201.28
+      ],
+      "speech_window_sec": [
+        1199.43,
+        1200.9
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007805,
+        "peak": 0.021832,
+        "threshold": 0.014049,
+        "active_frame_count": 29
+      }
+    },
+    {
+      "event_id": "main_full_036",
+      "group_size": 1,
+      "source_window_sec": [
+        1251.52,
+        1254.56
+      ],
+      "speech_window_sec": [
+        1251.52,
+        1254.48
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008813,
+        "peak": 0.040409,
+        "threshold": 0.015863,
+        "active_frame_count": 122
+      }
+    },
+    {
+      "event_id": "main_full_038",
+      "group_size": 1,
+      "source_window_sec": [
+        1277.16,
+        1279.16
+      ],
+      "speech_window_sec": [
+        1277.16,
+        1279.16
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.012777,
+        "peak": 0.062569,
+        "threshold": 0.022998,
+        "active_frame_count": 107
+      }
+    },
+    {
+      "event_id": "main_full_039",
+      "group_size": 1,
+      "source_window_sec": [
+        1285.16,
+        1293.16
+      ],
+      "speech_window_sec": [
+        1285.16,
+        1293.16
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009835,
+        "peak": 0.035658,
+        "threshold": 0.017703,
+        "active_frame_count": 297
+      }
+    },
+    {
+      "event_id": "main_full_040",
+      "group_size": 1,
+      "source_window_sec": [
+        1307.16,
+        1311.16
+      ],
+      "speech_window_sec": [
+        1307.16,
+        1311.16
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.010636,
+        "peak": 0.055057,
+        "threshold": 0.019144,
+        "active_frame_count": 157
+      }
+    },
+    {
+      "event_id": "main_full_040",
+      "group_size": 1,
+      "source_window_sec": [
+        1317.16,
+        1321.16
+      ],
+      "speech_window_sec": [
+        1317.27,
+        1321.16
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007755,
+        "peak": 0.03168,
+        "threshold": 0.013958,
+        "active_frame_count": 144
+      }
+    },
+    {
+      "event_id": "main_full_042",
+      "group_size": 1,
+      "source_window_sec": [
+        1344.92,
+        1347.92
+      ],
+      "speech_window_sec": [
+        1344.92,
+        1347.92
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009183,
+        "peak": 0.020611,
+        "threshold": 0.016529,
+        "active_frame_count": 51
+      }
+    },
+    {
+      "event_id": "main_full_043",
+      "group_size": 1,
+      "source_window_sec": [
+        1356.92,
+        1359.92
+      ],
+      "speech_window_sec": [
+        1357.06,
+        1359.92
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007786,
+        "peak": 0.023217,
+        "threshold": 0.014016,
+        "active_frame_count": 86
+      }
+    },
+    {
+      "event_id": "main_full_044",
+      "group_size": 1,
+      "source_window_sec": [
+        1368.92,
+        1371.92
+      ],
+      "speech_window_sec": [
+        1369.17,
+        1371.92
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008895,
+        "peak": 0.0215,
+        "threshold": 0.01601,
+        "active_frame_count": 61
+      }
+    },
+    {
+      "event_id": "main_full_045",
+      "group_size": 1,
+      "source_window_sec": [
+        1387.92,
+        1390.92
+      ],
+      "speech_window_sec": [
+        1388.92,
+        1390.92
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007425,
+        "peak": 0.028885,
+        "threshold": 0.013365,
+        "active_frame_count": 75
+      }
+    },
+    {
+      "event_id": "main_full_046",
+      "group_size": 1,
+      "source_window_sec": [
+        1405.36,
+        1408.32
+      ],
+      "speech_window_sec": [
+        1405.78,
+        1408.32
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00803,
+        "peak": 0.017418,
+        "threshold": 0.014455,
+        "active_frame_count": 41
+      }
+    },
+    {
+      "event_id": "main_full_049",
+      "group_size": 1,
+      "source_window_sec": [
+        1447.58,
+        1448.66
+      ],
+      "speech_window_sec": [
+        1447.595,
+        1447.955
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.006951,
+        "peak": 0.011644,
+        "threshold": 0.012512,
+        "active_frame_count": 4
+      }
+    },
+    {
+      "event_id": "main_full_051",
+      "group_size": 1,
+      "source_window_sec": [
+        1471.76,
+        1474.6
+      ],
+      "speech_window_sec": [
+        1471.78,
+        1474.6
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009057,
+        "peak": 0.033779,
+        "threshold": 0.016302,
+        "active_frame_count": 84
+      }
+    },
+    {
+      "event_id": "main_full_055",
+      "group_size": 1,
+      "source_window_sec": [
+        1535.3,
+        1538.62
+      ],
+      "speech_window_sec": [
+        1535.3,
+        1538.22
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008838,
+        "peak": 0.021851,
+        "threshold": 0.015908,
+        "active_frame_count": 64
+      }
+    },
+    {
+      "event_id": "main_full_057",
+      "group_size": 1,
+      "source_window_sec": [
+        1566.62,
+        1571.12
+      ],
+      "speech_window_sec": [
+        1566.75,
+        1569.91
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007888,
+        "peak": 0.02,
+        "threshold": 0.014198,
+        "active_frame_count": 77
+      }
+    },
+    {
+      "event_id": "main_full_059",
+      "group_size": 1,
+      "source_window_sec": [
+        1595.62,
+        1601.22
+      ],
+      "speech_window_sec": [
+        1595.69,
+        1600.93
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008639,
+        "peak": 0.032416,
+        "threshold": 0.015551,
+        "active_frame_count": 205
+      }
+    },
+    {
+      "event_id": "main_full_060",
+      "group_size": 1,
+      "source_window_sec": [
+        1611.94,
+        1619.16
+      ],
+      "speech_window_sec": [
+        1612.0,
+        1618.68
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008773,
+        "peak": 0.021377,
+        "threshold": 0.015792,
+        "active_frame_count": 162
+      }
+    },
+    {
+      "event_id": "main_full_061",
+      "group_size": 1,
+      "source_window_sec": [
+        1630.18,
+        1633.82
+      ],
+      "speech_window_sec": [
+        1630.4,
+        1633.65
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008907,
+        "peak": 0.019776,
+        "threshold": 0.016032,
+        "active_frame_count": 64
+      }
+    },
+    {
+      "event_id": "main_full_062",
+      "group_size": 1,
+      "source_window_sec": [
+        1638.76,
+        1641.88
+      ],
+      "speech_window_sec": [
+        1638.76,
+        1641.88
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008139,
+        "peak": 0.020711,
+        "threshold": 0.01465,
+        "active_frame_count": 80
+      }
+    },
+    {
+      "event_id": "main_full_063",
+      "group_size": 1,
+      "source_window_sec": [
+        1653.6,
+        1654.76
+      ],
+      "speech_window_sec": [
+        1653.67,
+        1654.43
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009059,
+        "peak": 0.020277,
+        "threshold": 0.016305,
+        "active_frame_count": 17
+      }
+    },
+    {
+      "event_id": "main_full_063",
+      "group_size": 1,
+      "source_window_sec": [
+        1663.72,
+        1665.04
+      ],
+      "speech_window_sec": [
+        1663.96,
+        1664.94
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008775,
+        "peak": 0.031171,
+        "threshold": 0.015795,
+        "active_frame_count": 38
+      }
+    },
+    {
+      "event_id": "main_full_067",
+      "group_size": 1,
+      "source_window_sec": [
+        1718.5,
+        1734.5
+      ],
+      "speech_window_sec": [
+        1720.22,
+        1734.5
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007916,
+        "peak": 0.019685,
+        "threshold": 0.014249,
+        "active_frame_count": 306
+      }
+    },
+    {
+      "event_id": "main_full_069",
+      "group_size": 1,
+      "source_window_sec": [
+        1742.5,
+        1749.5
+      ],
+      "speech_window_sec": [
+        1742.54,
+        1749.25
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008252,
+        "peak": 0.021711,
+        "threshold": 0.014854,
+        "active_frame_count": 214
+      }
+    },
+    {
+      "event_id": "main_full_069",
+      "group_size": 1,
+      "source_window_sec": [
+        1752.5,
+        1755.5
+      ],
+      "speech_window_sec": [
+        1752.5,
+        1755.5
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009937,
+        "peak": 0.027823,
+        "threshold": 0.017887,
+        "active_frame_count": 81
+      }
+    },
+    {
+      "event_id": "main_full_071",
+      "group_size": 1,
+      "source_window_sec": [
+        1781.5,
+        1784.5
+      ],
+      "speech_window_sec": [
+        1782.07,
+        1784.43
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008828,
+        "peak": 0.024368,
+        "threshold": 0.01589,
+        "active_frame_count": 84
+      }
+    },
+    {
+      "event_id": "main_full_072",
+      "group_size": 1,
+      "source_window_sec": [
+        1790.5,
+        1791.5
+      ],
+      "speech_window_sec": [
+        1790.64,
+        1791.5
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007994,
+        "peak": 0.015692,
+        "threshold": 0.014388,
+        "active_frame_count": 14
+      }
+    },
+    {
+      "event_id": "main_full_073",
+      "group_size": 1,
+      "source_window_sec": [
+        1803.76,
+        1806.28
+      ],
+      "speech_window_sec": [
+        1804.0,
+        1806.06
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009067,
+        "peak": 0.029732,
+        "threshold": 0.01632,
+        "active_frame_count": 87
+      }
+    },
+    {
+      "event_id": "main_full_075",
+      "group_size": 1,
+      "source_window_sec": [
+        1845.9,
+        1848.54
+      ],
+      "speech_window_sec": [
+        1845.9,
+        1848.33
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009201,
+        "peak": 0.026901,
+        "threshold": 0.016562,
+        "active_frame_count": 76
+      }
+    },
+    {
+      "event_id": "main_full_077",
+      "group_size": 2,
+      "source_window_sec": [
+        1875.46,
+        1879.46
+      ],
+      "speech_window_sec": [
+        1875.46,
+        1879.18
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008603,
+        "peak": 0.019489,
+        "threshold": 0.015486,
+        "active_frame_count": 96
+      }
+    },
+    {
+      "event_id": "main_full_079",
+      "group_size": 2,
+      "source_window_sec": [
+        1903.86,
+        1907.86
+      ],
+      "speech_window_sec": [
+        1903.94,
+        1907.62
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008351,
+        "peak": 0.024798,
+        "threshold": 0.015032,
+        "active_frame_count": 107
+      }
+    },
+    {
+      "event_id": "main_full_089",
+      "group_size": 2,
+      "source_window_sec": [
+        2042.18,
+        2046.14
+      ],
+      "speech_window_sec": [
+        2043.59,
+        2046.06
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007302,
+        "peak": 0.020133,
+        "threshold": 0.013144,
+        "active_frame_count": 97
+      }
+    },
+    {
+      "event_id": "main_full_105",
+      "group_size": 1,
+      "source_window_sec": [
+        2276.04,
+        2282.04
+      ],
+      "speech_window_sec": [
+        2276.25,
+        2282.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008657,
+        "peak": 0.033499,
+        "threshold": 0.015583,
+        "active_frame_count": 201
+      }
+    },
+    {
+      "event_id": "main_full_108",
+      "group_size": 2,
+      "source_window_sec": [
+        2310.04,
+        2314.04
+      ],
+      "speech_window_sec": [
+        2310.04,
+        2314.04
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.010134,
+        "peak": 0.059118,
+        "threshold": 0.018241,
+        "active_frame_count": 193
+      }
+    },
+    {
+      "event_id": "main_full_110",
+      "group_size": 1,
+      "source_window_sec": [
+        2341.86,
+        2346.22
+      ],
+      "speech_window_sec": [
+        2341.89,
+        2346.07
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.01108,
+        "peak": 0.038234,
+        "threshold": 0.019945,
+        "active_frame_count": 127
+      }
+    },
+    {
+      "event_id": "main_full_112",
+      "group_size": 1,
+      "source_window_sec": [
+        2379.66,
+        2383.66
+      ],
+      "speech_window_sec": [
+        2380.2,
+        2383.66
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008669,
+        "peak": 0.079623,
+        "threshold": 0.015604,
+        "active_frame_count": 162
+      }
+    },
+    {
+      "event_id": "main_full_114",
+      "group_size": 1,
+      "source_window_sec": [
+        2409.38,
+        2415.7
+      ],
+      "speech_window_sec": [
+        2409.55,
+        2415.17
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007842,
+        "peak": 0.022644,
+        "threshold": 0.014115,
+        "active_frame_count": 144
+      }
+    },
+    {
+      "event_id": "main_full_116",
+      "group_size": 1,
+      "source_window_sec": [
+        2431.7,
+        2441.7
+      ],
+      "speech_window_sec": [
+        2431.91,
+        2441.14
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008367,
+        "peak": 0.018625,
+        "threshold": 0.01506,
+        "active_frame_count": 135
+      }
+    },
+    {
+      "event_id": "main_full_119",
+      "group_size": 1,
+      "source_window_sec": [
+        2491.94,
+        2494.86
+      ],
+      "speech_window_sec": [
+        2491.98,
+        2494.17
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009251,
+        "peak": 0.020703,
+        "threshold": 0.016652,
+        "active_frame_count": 52
+      }
+    },
+    {
+      "event_id": "main_full_121",
+      "group_size": 1,
+      "source_window_sec": [
+        2523.2,
+        2534.2
+      ],
+      "speech_window_sec": [
+        2523.2,
+        2533.26
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007877,
+        "peak": 0.01659,
+        "threshold": 0.014178,
+        "active_frame_count": 143
+      }
+    },
+    {
+      "event_id": "main_full_123",
+      "group_size": 1,
+      "source_window_sec": [
+        2535.2,
+        2550.2
+      ],
+      "speech_window_sec": [
+        2535.37,
+        2549.14
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007879,
+        "peak": 0.028085,
+        "threshold": 0.014183,
+        "active_frame_count": 415
+      }
+    },
+    {
+      "event_id": "main_full_127",
+      "group_size": 2,
+      "source_window_sec": [
+        2596.06,
+        2600.16
+      ],
+      "speech_window_sec": [
+        2596.12,
+        2600.16
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008812,
+        "peak": 0.029029,
+        "threshold": 0.015862,
+        "active_frame_count": 124
+      }
+    },
+    {
+      "event_id": "main_full_129",
+      "group_size": 1,
+      "source_window_sec": [
+        2637.06,
+        2644.66
+      ],
+      "speech_window_sec": [
+        2637.54,
+        2644.66
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008738,
+        "peak": 0.030024,
+        "threshold": 0.015728,
+        "active_frame_count": 230
+      }
+    },
+    {
+      "event_id": "main_full_132",
+      "group_size": 2,
+      "source_window_sec": [
+        2679.32,
+        2684.36
+      ],
+      "speech_window_sec": [
+        2679.33,
+        2684.36
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008977,
+        "peak": 0.029225,
+        "threshold": 0.016158,
+        "active_frame_count": 173
+      }
+    },
+    {
+      "event_id": "main_full_135",
+      "group_size": 1,
+      "source_window_sec": [
+        2716.68,
+        2730.68
+      ],
+      "speech_window_sec": [
+        2716.68,
+        2729.05
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008219,
+        "peak": 0.034833,
+        "threshold": 0.014794,
+        "active_frame_count": 433
+      }
+    },
+    {
+      "event_id": "main_full_138",
+      "group_size": 1,
+      "source_window_sec": [
+        2763.64,
+        2764.82
+      ],
+      "speech_window_sec": [
+        2763.64,
+        2764.77
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.014639,
+        "peak": 0.08975,
+        "threshold": 0.026351,
+        "active_frame_count": 55
+      }
+    },
+    {
+      "event_id": "main_full_140",
+      "group_size": 1,
+      "source_window_sec": [
+        2792.86,
+        2804.86
+      ],
+      "speech_window_sec": [
+        2792.86,
+        2803.59
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00754,
+        "peak": 0.020361,
+        "threshold": 0.013572,
+        "active_frame_count": 314
+      }
+    },
+    {
+      "event_id": "main_full_143",
+      "group_size": 1,
+      "source_window_sec": [
+        2846.54,
+        2853.68
+      ],
+      "speech_window_sec": [
+        2846.58,
+        2852.48
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008303,
+        "peak": 0.02342,
+        "threshold": 0.014946,
+        "active_frame_count": 204
+      }
+    },
+    {
+      "event_id": "main_full_146",
+      "group_size": 1,
+      "source_window_sec": [
+        2890.82,
+        2893.68
+      ],
+      "speech_window_sec": [
+        2890.82,
+        2893.36
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008969,
+        "peak": 0.023476,
+        "threshold": 0.016144,
+        "active_frame_count": 76
+      }
+    },
+    {
+      "event_id": "main_full_147",
+      "group_size": 1,
+      "source_window_sec": [
+        2906.66,
+        2910.04
+      ],
+      "speech_window_sec": [
+        2906.72,
+        2909.81
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008043,
+        "peak": 0.020329,
+        "threshold": 0.014477,
+        "active_frame_count": 64
+      }
+    },
+    {
+      "event_id": "main_full_149",
+      "group_size": 1,
+      "source_window_sec": [
+        2942.04,
+        2944.04
+      ],
+      "speech_window_sec": [
+        2942.1,
+        2943.36
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.012289,
+        "peak": 0.037796,
+        "threshold": 0.022121,
+        "active_frame_count": 66
+      }
+    },
+    {
+      "event_id": "main_full_150",
+      "group_size": 1,
+      "source_window_sec": [
+        2956.04,
+        2958.04
+      ],
+      "speech_window_sec": [
+        2956.04,
+        2957.63
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009138,
+        "peak": 0.025029,
+        "threshold": 0.016448,
+        "active_frame_count": 37
+      }
+    }
+  ],
+  "overlap_adjustments": [
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "text": "鍛えていただきたいと思います",
+      "old": [
+        11.72,
+        12.62
+      ],
+      "new": [
+        11.76,
+        12.66
+      ]
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "text": "ある種そういう過程で結構磨かれて成長されて",
+      "old": [
+        16.59,
+        19.9
+      ],
+      "new": [
+        16.6,
+        19.91
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "text": "ドメインエキスパートの役割というか",
+      "old": [
+        7.0,
+        10.108
+      ],
+      "new": [
+        7.04,
+        10.148
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "text": "重要性みたいなもので",
+      "old": [
+        10.148,
+        12.0
+      ],
+      "new": [
+        10.188,
+        12.0
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "text": "そこに対して",
+      "old": [
+        8.0,
+        11.55
+      ],
+      "new": [
+        8.04,
+        11.59
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "text": "学ぶのめちゃめちゃおすすめ",
+      "old": [
+        2.0,
+        4.0
+      ],
+      "new": [
+        2.04,
+        4.04
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "text": "めちゃめちゃおすすめですよ",
+      "old": [
+        4.06,
+        5.32
+      ],
+      "new": [
+        4.08,
+        5.34
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "text": "さっきちょっとお話した",
+      "old": [
+        2.0,
+        3.65
+      ],
+      "new": [
+        2.04,
+        3.69
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "text": "暗黙知とかなんとなく",
+      "old": [
+        6.0,
+        8.0
+      ],
+      "new": [
+        6.08,
+        8.08
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "text": "慣行でやっていたものがちゃんと言語化される",
+      "old": [
+        8.01,
+        9.95
+      ],
+      "new": [
+        8.12,
+        10.06
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "text": "タイミングが来るとか",
+      "old": [
+        10.03,
+        12.0
+      ],
+      "new": [
+        10.1,
+        12.07
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "text": "すごく視野が広がるなあ",
+      "old": [
+        12.0,
+        13.59
+      ],
+      "new": [
+        12.11,
+        13.7
+      ]
+    }
+  ]
+}

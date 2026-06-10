@@ -19,7 +19,7 @@ OVERLAYS = PROJECT_ROOT / "output" / "overlays" / "test_project1_style"
 DIAGNOSTICS = PROJECT_ROOT / "output" / "diagnostics"
 FFMPEG_DEFAULT = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
 FONT_FILE = Path(r"C:\Windows\Fonts\YuGothB.ttc")
-CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicB.ttc")
+CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicR.ttc")
 LOGO_PATH = PROJECT_ROOT / "source" / "assets" / "LayerX_Logo_Horizontal_RGB_Color.png"
 
 WIDTH = 1280
@@ -35,7 +35,9 @@ BOTTOM_STOPS = ["#5B59FD", "#656AFD", "#747FFC"]
 TITLE_STOPS = ["#4D15D7", "#5A2DEF", "#7863F3"]
 DIVIDER_COLOR = "0x5A2DEF"
 CAPTION_FONT_SIZE = 76
-CAPTION_MAX_TEXT_WIDTH = 1080
+CAPTION_BOX_MAX_WIDTH = 1224
+CAPTION_HORIZONTAL_PADDING = 44
+CAPTION_MAX_TEXT_WIDTH = CAPTION_BOX_MAX_WIDTH - CAPTION_HORIZONTAL_PADDING
 TARGET_AUDIO_LUFS = -17.0
 
 MEDIA_PATHS = {
@@ -286,6 +288,44 @@ PROTECTED_CAPTION_TERMS = [
     "プロダクト",
     "バックオフィス",
     "ドメイン知識",
+    "開発チーム",
+    "ドメインエキスパートの役割",
+    "キャリア",
+    "なくていい",
+    "こうできたらいいのに",
+    "結果",
+    "経験",
+    "事業",
+    "チーム",
+    "役割",
+    "生産性",
+    "問題意識",
+    "関係ない",
+    "迷った",
+    "生きる",
+    "カルチャー",
+    "ベンチマーク",
+    "採用体験",
+    "壁打ち",
+    "モヤモヤ",
+    "フィードバック",
+    "法律",
+    "期待の高さ",
+    "建設的に議論",
+    "健全なプレッシャー",
+    "制度や実務",
+    "実務にどう落とし込むか",
+    "体験込み",
+    "スピード",
+    "無視していないか",
+    "変わらない",
+    "作業",
+    "画面",
+    "確認時間",
+    "働き方",
+    "向き合う",
+    "得られる",
+    "変わっていく",
 ]
 
 
@@ -342,6 +382,22 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
         "経理",
         "労務",
         "AI",
+        "「",
+        "」",
+        "なく",
+        "だけでなく",
+        "足すだけでなく",
+        "と言える",
+        "できたら",
+        "いいのに",
+        "関係ない",
+        "見ること",
+        "知識で",
+        "ことで",
+        "として",
+        "ではなく",
+        "だけでなく",
+        "役割は",
     )
     for phrase in break_after:
         start = 0
@@ -367,7 +423,8 @@ def caption_text_width(text: str) -> int:
 
 
 def caption_line_fits(text: str) -> bool:
-    return caption_text_width(text) + 66 <= 1198 and caption_text_width(text) <= CAPTION_MAX_TEXT_WIDTH
+    text_width = caption_text_width(text)
+    return text_width + CAPTION_HORIZONTAL_PADDING <= CAPTION_BOX_MAX_WIDTH and text_width <= CAPTION_MAX_TEXT_WIDTH
 
 
 def bad_caption_break(line: str) -> bool:
@@ -410,12 +467,41 @@ def bad_caption_break(line: str) -> bool:
             "高",
             "詳",
             "僕よ",
+            "な",
+            "なく「な",
+            "なく",
+            "い",
+            "いけ",
+            "結",
+            "体",
+            "採用体",
+            "ベ",
+            "壁打",
+            "モヤ",
+            "ユーザ",
+            "自",
+            "体",
+            "多",
+            "変",
+            "向き合",
+            "こうできたら",
+            "関係",
+            "生産性",
+            "役",
+            "チー",
+            "チーム",
+            "経",
+            "事",
+            "業",
+            "作",
+            "画",
+            "働",
         )
     )
 
 
 def bad_caption_start(line: str) -> bool:
-    return line.startswith(("の", "に", "を", "が", "は", "と", "で", "も", "へ", "や", "って", "て", "する", "した", "った", "る", "れ", "ん", "け", "い", "ゃ", "ど", "さ", "しい", "り", "ード", "ドル", "ル", "事", "味", "メイン"))
+    return line.startswith(("の", "に", "を", "が", "は", "と", "で", "も", "へ", "や", "って", "て", "する", "した", "った", "る", "れ", "ん", "け", "い", "ゃ", "ど", "さ", "しい", "り", "ード", "ドル", "ル", "事", "味", "メイン", "く", "くて", "なく", "ない", "ら", "構", "験", "業", "ム", "割", "に強い", "ないもの", "ことも", "して", "なく建設的", "が健全", "くの人", "なる", "う時間"))
 
 
 def best_caption_cut(text: str, lines_left: int, spans: list[tuple[int, int]]) -> int:
@@ -454,8 +540,37 @@ def best_caption_cut(text: str, lines_left: int, spans: list[tuple[int, int]]) -
     return min(raw_candidates, key=score)
 
 
+CAPTION_WRAP_OVERRIDES = {
+    "ドメインエキスパートの役割というか": ["ドメインエキスパートの役割", "というか"],
+    "やっぱりちょっと一瞬でもいいのでこういう形で広く見れる": ["やっぱりちょっと一瞬でもいいので", "こういう形で広く見れる"],
+    "足すだけでなく「なくていい」と言えることも価値": ["足すだけでなく", "「なくていい」と言えることも価値"],
+    "ルール調査だけでなくビジョンが必要になる": ["ルール調査だけでなく", "ビジョンが必要になる"],
+    "実務家のプライドを無視していないかを気にしている": ["実務家のプライドを無視していないか", "気にしている"],
+    "実務家のプライドを無視していないか": ["実務家のプライドを", "無視していないか"],
+    "ドメインがない領域でも活躍できるスキルを身につけたい": ["ドメインがない領域でも", "活躍できるスキルを身につけたい"],
+    "誰がやっても変わらない手作業が多い": ["誰がやっても変わらない", "手作業が多い"],
+    "必要な情報を一つの画面で確認できるようにした": ["必要な情報を一つの画面で", "確認できるようにした"],
+    "作業量を減らし確認時間を短縮する": ["作業量を減らし", "確認時間を短縮する"],
+    "自分の経験がプロダクトに活かされる瞬間がやりがい": ["自分の経験がプロダクトに", "活かされる瞬間がやりがい"],
+    "分析機能では経理の人たちの顔が浮かぶ": ["分析機能では", "経理の人たちの顔が浮かぶ"],
+    "AIで作業者が分析できるようになる変化を支援したい": ["AIで作業者が分析できるようになる", "変化を支援したい"],
+    "AIで専門家の経験を多くの人が得られるかもしれない": ["AIで専門家の経験を", "多くの人が得られるかもしれない"],
+    "対人領域では人に聞きに来ることがある": ["対人領域では", "人に聞きに来ることがある"],
+    "根本さんは経理や労務の経験を積んできた": ["根本さんは経理や労務の", "経験を積んできた"],
+    "矢野さんはLayerXで初めて事業側の仕事に関わった": ["矢野さんはLayerXで初めて", "事業側の仕事に関わった"],
+    "バックオフィスの生産性に強い問題意識があった": ["バックオフィスの生産性に", "強い問題意識があった"],
+    "バクラクには「こうできたらいいのに」が少なかった": ["バクラクには", "「こうできたらいいのに」が少なかった"],
+    "労務領域では自分の目で確かめたい感覚が強い": ["労務領域では自分の目で", "確かめたい感覚が強い"],
+    "活躍できるスキルを身につけたい": ["活躍できるスキルを", "身につけたい"],
+    "AIで作業者が分析できるようになる": ["AIで作業者が分析できる", "ようになる"],
+    "「なくていい」と言えることも価値": ["「なくていい」と言えることも", "価値"],
+}
+
+
 def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
     text = " ".join(str(text).replace("、", "").split())
+    if text in CAPTION_WRAP_OVERRIDES:
+        return CAPTION_WRAP_OVERRIDES[text]
     if caption_line_fits(text):
         return [text]
     spans = protected_spans(text)
@@ -479,7 +594,14 @@ def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
     return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line][:2]
 
 
-def condensed_text_image(text: str, font: ImageFont.FreeTypeFont, fill: tuple[int, int, int, int], scale_x: float = 0.92) -> Image.Image:
+def condensed_text_image(
+    text: str,
+    font: ImageFont.FreeTypeFont,
+    fill: tuple[int, int, int, int],
+    scale_x: float = 0.92,
+    *,
+    faux_bold_offsets: tuple[tuple[int, int], ...] = ((0, 0),),
+) -> Image.Image:
     probe = Image.new("RGBA", (10, 10), (0, 0, 0, 0))
     draw = ImageDraw.Draw(probe)
     bbox = draw.textbbox((0, 0), text, font=font)
@@ -489,8 +611,8 @@ def condensed_text_image(text: str, font: ImageFont.FreeTypeFont, fill: tuple[in
     text_draw = ImageDraw.Draw(text_layer)
     base_x = 8 - bbox[0]
     base_y = 7 - bbox[1]
-    for dx, dy in ((0, 0), (1, 0), (0, 1), (1, 1), (-1, 0), (2, 0), (0, 2), (2, 1), (1, 2)):
-        text_draw.text((base_x + dx, base_y + dy), text, font=font, fill=fill, stroke_width=1, stroke_fill=fill)
+    for dx, dy in faux_bold_offsets:
+        text_draw.text((base_x + dx, base_y + dy), text, font=font, fill=fill)
     target_width = max(1, round(width * scale_x))
     return text_layer.resize((target_width, height), Image.Resampling.LANCZOS)
 
@@ -571,6 +693,9 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
             bbox = draw.textbbox((0, 0), title, font=font)
             text_w = bbox[2] - bbox[0]
             text_h = bbox[3] - bbox[1]
+            title_image = condensed_text_image(title, font, (255, 255, 255, 255), 0.96)
+            text_w = title_image.width
+            text_h = title_image.height
             pad_x = 18
             box_h = 72
             box_w = min(720, text_w + pad_x * 2 + 32)
@@ -581,7 +706,7 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
             if section != "digest":
                 paste_slanted_gradient(canvas, [(x0 + 18, y0), (x1, y0), (x1 - 18, y1), (x0, y1)], TITLE_STOPS, 244)
             draw = ImageDraw.Draw(canvas)
-            draw.text((x0 + (box_w - text_w) / 2, y0 + (box_h - text_h) / 2 - 4), title, font=font, fill=(255, 255, 255, 255))
+            canvas.alpha_composite(title_image, (round(x0 + (box_w - text_w) / 2), round(y0 + (box_h - text_h) / 2 - 4)))
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(output)
 
@@ -642,10 +767,16 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
         scale_x = 0.98
-        text_image = condensed_text_image(line, font, (255, 255, 255, round(255 * opacity)), scale_x)
+        text_image = condensed_text_image(
+            line,
+            font,
+            (255, 255, 255, round(255 * opacity)),
+            scale_x,
+            faux_bold_offsets=((0, 0), (1, 0), (0, 1)),
+        )
         text_w = text_image.width
         text_h = text_image.height
-        box_w = min(1198, text_w + 66)
+        box_w = min(CAPTION_BOX_MAX_WIDTH, text_w + CAPTION_HORIZONTAL_PADDING)
         box_h = line_height
         x0 = round((WIDTH - box_w) / 2)
         y0 = y_positions[index]

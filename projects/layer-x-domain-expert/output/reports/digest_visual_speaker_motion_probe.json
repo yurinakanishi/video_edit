@@ -1,0 +1,111 @@
+{
+  "schema_version": "digest_visual_speaker_motion_probe.v1",
+  "method": "sampled lower-face ROI frame-difference on synced close cameras; used as edit guidance with SRT context",
+  "ranges": [
+    {
+      "range_id": "qa02_context",
+      "master_start": 1595.62,
+      "master_end": 1604.1,
+      "scores": {
+        "person_02": {
+          "score": 5.3473,
+          "samples": 50,
+          "source_start": 1603.088,
+          "source_end": 1611.568
+        },
+        "person_03": {
+          "score": 6.6171,
+          "samples": 50,
+          "source_start": 1609.0,
+          "source_end": 1617.48
+        }
+      },
+      "inferred_active_person_id": "person_03",
+      "score_ratio": 1.237
+    },
+    {
+      "range_id": "qa02_answer",
+      "master_start": 1619.16,
+      "master_end": 1627.72,
+      "scores": {
+        "person_02": {
+          "score": 4.4609,
+          "samples": 50,
+          "source_start": 1626.628,
+          "source_end": 1635.188
+        },
+        "person_03": {
+          "score": 5.852,
+          "samples": 50,
+          "source_start": 1632.54,
+          "source_end": 1641.1
+        }
+      },
+      "inferred_active_person_id": "person_03",
+      "score_ratio": 1.312
+    },
+    {
+      "range_id": "qa05_answer_a",
+      "master_start": 2938.04,
+      "master_end": 2944.04,
+      "scores": {
+        "person_02": {
+          "score": 10.1936,
+          "samples": 35,
+          "source_start": 2945.508,
+          "source_end": 2951.508
+        },
+        "person_03": {
+          "score": 6.0258,
+          "samples": 35,
+          "source_start": 2951.42,
+          "source_end": 2957.42
+        }
+      },
+      "inferred_active_person_id": "person_02",
+      "score_ratio": 1.692
+    },
+    {
+      "range_id": "qa05_answer_b",
+      "master_start": 2944.04,
+      "master_end": 2958.04,
+      "scores": {
+        "person_02": {
+          "score": 4.7175,
+          "samples": 83,
+          "source_start": 2951.508,
+          "source_end": 2965.508
+        },
+        "person_03": {
+          "score": 5.4662,
+          "samples": 83,
+          "source_start": 2957.42,
+          "source_end": 2971.42
+        }
+      },
+      "inferred_active_person_id": "person_03",
+      "score_ratio": 1.159
+    },
+    {
+      "range_id": "qa05_answer_closing",
+      "master_start": 2973.7,
+      "master_end": 2980.62,
+      "scores": {
+        "person_02": {
+          "score": 3.8078,
+          "samples": 40,
+          "source_start": 2981.168,
+          "source_end": 2988.088
+        },
+        "person_03": {
+          "score": 4.9634,
+          "samples": 41,
+          "source_start": 2987.08,
+          "source_end": 2994.0
+        }
+      },
+      "inferred_active_person_id": "person_03",
+      "score_ratio": 1.303
+    }
+  ]
+}

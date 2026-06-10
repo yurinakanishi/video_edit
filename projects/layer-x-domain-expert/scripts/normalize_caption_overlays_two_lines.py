@@ -44,8 +44,20 @@ def bad_unit(text: str) -> bool:
     return text.endswith(("という", "として", "ではなく", "だけで", "ことも", "ものでは", "感じを", "実", "経", "判", "こ", "とい"))
 
 
+UNIT_SPLIT_OVERRIDES = {
+    "ドメインエキスパートの役割というか重要性みたいなもので": ["ドメインエキスパートの役割というか", "重要性みたいなもので"],
+    "足すだけでなく「なくていい」と言えることも価値": ["足すだけでなく", "「なくていい」と言えることも価値"],
+    "実務家のプライドを無視していないかを気にしている": ["実務家のプライドを無視していないか", "気にしている"],
+    "ドメインがない領域でも活躍できるスキルを身につけたい": ["ドメインがない領域でも", "活躍できるスキルを身につけたい"],
+    "AIで作業者が分析できるようになる変化を支援したい": ["AIで作業者が分析できるようになる", "変化を支援したい"],
+    "AIで専門家の経験を多くの人が得られるかもしれない": ["AIで専門家の経験を", "多くの人が得られるかもしれない"],
+}
+
+
 def split_text_units(review: Any, text: str) -> list[str]:
     remaining = clean_text(text)
+    if remaining in UNIT_SPLIT_OVERRIDES:
+        return UNIT_SPLIT_OVERRIDES[remaining]
     units: list[str] = []
     while remaining:
         if unit_fits(review, remaining):

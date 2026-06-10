@@ -1,7 +1,7 @@
 {
   "schema_version": "digest_qa_selection.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T20:55:26+09:00",
+  "generated_at": "2026-06-10T22:42:00+09:00",
   "source_srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\manifest_sources\\primary.srt",
   "video_title_ref": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\video_title.json",
   "selection_policy": {
@@ -412,7 +412,8 @@
           "duration_sec": 8.56,
           "layout": {
             "type": "single",
-            "target_person_id": "person_02"
+            "target_person_id": "person_03",
+            "speaker_analysis": "visual mouth-motion probe is stronger on the right participant for this range"
           },
           "caption_overlays": [
             {
@@ -939,7 +940,7 @@
           "duration_sec": 19.02,
           "layout": {
             "type": "single",
-            "target_person_id": "person_02"
+            "target_person_id": "person_03"
           },
           "caption_overlays": [
             {
@@ -1040,7 +1041,7 @@
           "duration_sec": 17.28,
           "layout": {
             "type": "single",
-            "target_person_id": "person_02"
+            "target_person_id": "person_03"
           },
           "caption_overlays": [
             {
@@ -1146,13 +1147,13 @@
           "cam_person_02",
           "cam_person_03"
         ],
-        "active_person_id": "person_02"
+        "active_person_id": "person_03"
       },
       "video_source": {
         "media_id": "group_wide",
         "in": 1983.1,
         "out": 2068.82,
-        "visual_strategy": "two-person split of interviewees; use middle/right because the answer moves between domain expertise and practical judgment"
+        "visual_strategy": "right interviewee close-up for the core answer; the speaker references Nemo, so do not cut to Nemo for that line"
       },
       "audio_source": {
         "media_id": "group_wide",
@@ -1552,17 +1553,13 @@
           "part_id": "digest_qa_05_answer_02",
           "kind": "answer",
           "start_sec": 2938.04,
-          "end_sec": 2958.04,
+          "end_sec": 2944.04,
           "start_timecode": "00:48:58,040",
-          "end_timecode": "00:49:18,040",
-          "duration_sec": 20.0,
+          "end_timecode": "00:49:04,040",
+          "duration_sec": 6.0,
           "layout": {
-            "type": "split_grid",
-            "media_ids": [
-              "cam_person_02",
-              "cam_person_03"
-            ],
-            "active_person_id": "person_02"
+            "type": "single",
+            "target_person_id": "person_02"
           },
           "caption_overlays": [
             {
@@ -1572,7 +1569,8 @@
               "text": "おすすめするんですよ",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 788,
-              "source_timecode": "00:48:58,040 --> 00:49:00,040"
+              "source_timecode": "00:48:58,040 --> 00:49:00,040",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
@@ -1581,7 +1579,8 @@
               "text": "学ぶのめちゃめちゃおすすめ",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 789,
-              "source_timecode": "00:49:00,040 --> 00:49:02,040"
+              "source_timecode": "00:49:00,040 --> 00:49:02,040",
+              "editorial_note": "manual_digest_caption"
             },
             {
               "type": "caption",
@@ -1590,70 +1589,8 @@
               "text": "めちゃめちゃおすすめですよ",
               "style_id": "opening_digest_sample_caption",
               "source_srt_index": 790,
-              "source_timecode": "00:49:02,040 --> 00:49:04,040"
-            },
-            {
-              "type": "caption",
-              "start": 6.0,
-              "end": 8.0,
-              "text": "本当に細かいところですけど",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 791,
-              "source_timecode": "00:49:04,040 --> 00:49:06,040"
-            },
-            {
-              "type": "caption",
-              "start": 8.0,
-              "end": 10.0,
-              "text": "さっきちょっとお話した",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 792,
-              "source_timecode": "00:49:06,040 --> 00:49:08,040"
-            },
-            {
-              "type": "caption",
-              "start": 10.0,
-              "end": 12.0,
-              "text": "自分が",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 793,
-              "source_timecode": "00:49:08,040 --> 00:49:10,040"
-            },
-            {
-              "type": "caption",
-              "start": 12.0,
-              "end": 14.0,
-              "text": "暗黙知とかなんとなく",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 794,
-              "source_timecode": "00:49:10,040 --> 00:49:12,040"
-            },
-            {
-              "type": "caption",
-              "start": 14.0,
-              "end": 16.0,
-              "text": "慣行でやっていたものがちゃんと言語化される",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 795,
-              "source_timecode": "00:49:12,040 --> 00:49:14,040"
-            },
-            {
-              "type": "caption",
-              "start": 16.0,
-              "end": 18.0,
-              "text": "タイミングが来るとか",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 796,
-              "source_timecode": "00:49:14,040 --> 00:49:16,040"
-            },
-            {
-              "type": "caption",
-              "start": 18.0,
-              "end": 20.0,
-              "text": "すごく視野が広がるなあ",
-              "style_id": "opening_digest_sample_caption",
-              "source_srt_index": 797,
-              "source_timecode": "00:49:16,040 --> 00:49:18,040"
+              "source_timecode": "00:49:02,040 --> 00:49:04,040",
+              "editorial_note": "manual_digest_caption"
             }
           ],
           "srt_evidence": [
@@ -1674,7 +1611,95 @@
               "start": "00:49:02,040",
               "end": "00:49:04,040",
               "text": "めちゃめちゃおすすめですよ"
+            }
+          ]
+        },
+        {
+          "part_id": "digest_qa_05_answer_03",
+          "kind": "answer",
+          "start_sec": 2944.04,
+          "end_sec": 2958.04,
+          "start_timecode": "00:49:04,040",
+          "end_timecode": "00:49:18,040",
+          "duration_sec": 14.0,
+          "layout": {
+            "type": "single",
+            "target_person_id": "person_03",
+            "speaker_analysis": "visual mouth-motion probe is stronger on the right participant after the initial recommendation line"
+          },
+          "caption_overlays": [
+            {
+              "type": "caption",
+              "start": 0.0,
+              "end": 2.0,
+              "text": "本当に細かいところですけど",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 791,
+              "source_timecode": "00:49:04,040 --> 00:49:06,040",
+              "editorial_note": "manual_digest_caption"
             },
+            {
+              "type": "caption",
+              "start": 2.0,
+              "end": 4.0,
+              "text": "さっきちょっとお話した",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 792,
+              "source_timecode": "00:49:06,040 --> 00:49:08,040",
+              "editorial_note": "manual_digest_caption"
+            },
+            {
+              "type": "caption",
+              "start": 4.0,
+              "end": 6.0,
+              "text": "自分が",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 793,
+              "source_timecode": "00:49:08,040 --> 00:49:10,040",
+              "editorial_note": "manual_digest_caption"
+            },
+            {
+              "type": "caption",
+              "start": 6.0,
+              "end": 8.0,
+              "text": "暗黙知とかなんとなく",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 794,
+              "source_timecode": "00:49:10,040 --> 00:49:12,040",
+              "editorial_note": "manual_digest_caption"
+            },
+            {
+              "type": "caption",
+              "start": 8.0,
+              "end": 10.0,
+              "text": "慣行でやっていたものがちゃんと言語化される",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 795,
+              "source_timecode": "00:49:12,040 --> 00:49:14,040",
+              "editorial_note": "manual_digest_caption"
+            },
+            {
+              "type": "caption",
+              "start": 10.0,
+              "end": 12.0,
+              "text": "タイミングが来るとか",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 796,
+              "source_timecode": "00:49:14,040 --> 00:49:16,040",
+              "editorial_note": "manual_digest_caption"
+            },
+            {
+              "type": "caption",
+              "start": 12.0,
+              "end": 14.0,
+              "text": "すごく視野が広がるなあ",
+              "style_id": "opening_digest_sample_caption",
+              "source_srt_index": 797,
+              "source_timecode": "00:49:16,040 --> 00:49:18,040",
+              "editorial_note": "manual_digest_caption"
+            }
+          ],
+          "srt_evidence": [
             {
               "index": 791,
               "start": "00:49:04,040",
@@ -1720,7 +1745,7 @@
           ]
         },
         {
-          "part_id": "digest_qa_05_answer_03",
+          "part_id": "digest_qa_05_answer_04",
           "kind": "answer",
           "start_sec": 2973.7,
           "end_sec": 2980.62,
@@ -1729,7 +1754,8 @@
           "duration_sec": 6.92,
           "layout": {
             "type": "single",
-            "target_person_id": "person_02"
+            "target_person_id": "person_03",
+            "speaker_analysis": "visual mouth-motion probe is stronger on the right participant for the closing recommendation"
           },
           "caption_overlays": [
             {
@@ -1769,13 +1795,13 @@
           "cam_person_02",
           "cam_person_03"
         ],
-        "active_person_id": "person_02"
+        "active_person_id": "person_03"
       },
       "video_source": {
         "media_id": "group_wide",
         "in": 2918.04,
         "out": 2980.62,
-        "visual_strategy": "two-person split of interviewees; keep both answers visible because both recommend the career path"
+        "visual_strategy": "speaker-focused close-ups; switch from middle to right when the right participant takes over the recommendation answer"
       },
       "audio_source": {
         "media_id": "group_wide",
@@ -1854,7 +1880,8 @@
           "text": "おすすめするんですよ",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 788,
-          "source_timecode": "00:48:58,040 --> 00:49:00,040"
+          "source_timecode": "00:48:58,040 --> 00:49:00,040",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
@@ -1863,7 +1890,8 @@
           "text": "学ぶのめちゃめちゃおすすめ",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 789,
-          "source_timecode": "00:49:00,040 --> 00:49:02,040"
+          "source_timecode": "00:49:00,040 --> 00:49:02,040",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
@@ -1872,70 +1900,78 @@
           "text": "めちゃめちゃおすすめですよ",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 790,
-          "source_timecode": "00:49:02,040 --> 00:49:04,040"
+          "source_timecode": "00:49:02,040 --> 00:49:04,040",
+          "editorial_note": "manual_digest_caption"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 2.0,
+          "text": "本当に細かいところですけど",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 791,
+          "source_timecode": "00:49:04,040 --> 00:49:06,040",
+          "editorial_note": "manual_digest_caption"
+        },
+        {
+          "type": "caption",
+          "start": 2.0,
+          "end": 4.0,
+          "text": "さっきちょっとお話した",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 792,
+          "source_timecode": "00:49:06,040 --> 00:49:08,040",
+          "editorial_note": "manual_digest_caption"
+        },
+        {
+          "type": "caption",
+          "start": 4.0,
+          "end": 6.0,
+          "text": "自分が",
+          "style_id": "opening_digest_sample_caption",
+          "source_srt_index": 793,
+          "source_timecode": "00:49:08,040 --> 00:49:10,040",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 6.0,
           "end": 8.0,
-          "text": "本当に細かいところですけど",
+          "text": "暗黙知とかなんとなく",
           "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 791,
-          "source_timecode": "00:49:04,040 --> 00:49:06,040"
+          "source_srt_index": 794,
+          "source_timecode": "00:49:10,040 --> 00:49:12,040",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 8.0,
           "end": 10.0,
-          "text": "さっきちょっとお話した",
+          "text": "慣行でやっていたものがちゃんと言語化される",
           "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 792,
-          "source_timecode": "00:49:06,040 --> 00:49:08,040"
+          "source_srt_index": 795,
+          "source_timecode": "00:49:12,040 --> 00:49:14,040",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 10.0,
           "end": 12.0,
-          "text": "自分が",
+          "text": "タイミングが来るとか",
           "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 793,
-          "source_timecode": "00:49:08,040 --> 00:49:10,040"
+          "source_srt_index": 796,
+          "source_timecode": "00:49:14,040 --> 00:49:16,040",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",
           "start": 12.0,
           "end": 14.0,
-          "text": "暗黙知とかなんとなく",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 794,
-          "source_timecode": "00:49:10,040 --> 00:49:12,040"
-        },
-        {
-          "type": "caption",
-          "start": 14.0,
-          "end": 16.0,
-          "text": "慣行でやっていたものがちゃんと言語化される",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 795,
-          "source_timecode": "00:49:12,040 --> 00:49:14,040"
-        },
-        {
-          "type": "caption",
-          "start": 16.0,
-          "end": 18.0,
-          "text": "タイミングが来るとか",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 796,
-          "source_timecode": "00:49:14,040 --> 00:49:16,040"
-        },
-        {
-          "type": "caption",
-          "start": 18.0,
-          "end": 20.0,
           "text": "すごく視野が広がるなあ",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 797,
-          "source_timecode": "00:49:16,040 --> 00:49:18,040"
+          "source_timecode": "00:49:16,040 --> 00:49:18,040",
+          "editorial_note": "manual_digest_caption"
         },
         {
           "type": "caption",

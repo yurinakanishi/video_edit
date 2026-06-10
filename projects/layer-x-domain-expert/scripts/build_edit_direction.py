@@ -620,6 +620,9 @@ def build_edit_plan(
     main_caption_plan = load_main_caption_plan()
     if digest_qa:
         digest_title = project_video_title()
+        digest_gap_cut_threshold = 0.35
+        digest_edge_pad = 0.03
+        digest_pacing_report = []
         for index, clip in enumerate(digest_qa.get("clips", []), start=1):
             parts = clip.get("parts") if isinstance(clip.get("parts"), list) else []
             if not parts:
@@ -627,84 +630,132 @@ def build_edit_plan(
             for part_index, part in enumerate(parts, start=1):
                 if not isinstance(part, dict):
                     continue
-                source_start = float(part.get("start_sec") or clip.get("start_sec") or 0.0)
-                source_end = float(part.get("end_sec") or clip.get("end_sec") or source_start + 1.0)
-                duration = max(0.01, source_end - source_start)
+                part_source_start = float(part.get("start_sec") or clip.get("start_sec") or 0.0)
+                part_source_end = float(part.get("end_sec") or clip.get("end_sec") or part_source_start + 1.0)
+                part_duration = max(0.01, part_source_end - part_source_start)
                 part_layout = part.get("layout") if isinstance(part.get("layout"), dict) else {}
                 clip_layout = clip.get("layout") if isinstance(clip.get("layout"), dict) else {}
                 requested_layout = part_layout or clip_layout
                 layout_type = str(requested_layout.get("type") or "split_grid")
                 active_person_id = str(requested_layout.get("active_person_id") or requested_layout.get("target_person_id") or "person_02")
-                source_media_id = "group_wide"
-                source_media_start = source_start
-                event_layout: dict[str, Any]
-                if layout_type == "single":
-                    target_person_id = str(requested_layout.get("target_person_id") or active_person_id)
-                    source_media_id, source_media_start = synced_source_start_for_person(target_person_id, source_start, offsets)
-                    event_layout = {
-                        "type": "single",
-                        "selected_media_id": source_media_id,
-                        "target_person_id": target_person_id,
-                        "crop_mode": "person_centered",
-                        "selection_reason": "Digest answer cut uses the active speaker close-up.",
-                    }
-                elif layout_type == "wide_group":
-                    event_layout = {
-                        "type": "wide_group",
-                        "ensure_people_visible": ["person_01", "person_02", "person_03"],
-                        "active_person_id": active_person_id,
-                        "safe_margin": 0.06,
-                        "selection_reason": "Digest question/context cut uses the three-person wide shot so the speaker stays in frame.",
-                    }
-                else:
-                    media_ids = [str(item) for item in requested_layout.get("media_ids", []) if str(item).startswith("cam_")]
-                    if not media_ids:
-                        media_ids = ["cam_person_02", "cam_person_03"]
-                    event_layout = {
-                        "type": "split_grid",
-                        "media_ids": media_ids,
-                        "grid_strategy": "digest_qa_two_person_split",
-                        "panel_order": ["person_02", "person_03"],
-                        "active_person_id": active_person_id,
-                        "selection_reason": str(clip.get("selection_reason") or "Requested Q&A digest clip from SRT."),
-                    }
-                overlays = [
+                captions = [dict(caption) for caption in part.get("caption_overlays", []) if isinstance(caption, dict) and caption.get("text")]
+                caption_windows = []
+                for caption in captions:
+                    try:
+                        start = max(0.0, min(part_duration, float(caption.get("start") or 0.0)))
+                        end = max(start + 0.01, min(part_duration, float(caption.get("end") or start + 0.01)))
+                    except (TypeError, ValueError):
+                        continue
+                    caption_windows.append((start, end, caption))
+                caption_windows.sort(key=lambda item: (item[0], item[1]))
+
+                clusters: list[dict[str, Any]] = []
+                for start, end, caption in caption_windows:
+                    if not clusters or start - float(clusters[-1]["end"]) > digest_gap_cut_threshold:
+                        clusters.append({"start": start, "end": end, "captions": [caption]})
+                    else:
+                        clusters[-1]["end"] = max(float(clusters[-1]["end"]), end)
+                        clusters[-1]["captions"].append(caption)
+                if not clusters:
+                    clusters = [{"start": 0.0, "end": part_duration, "captions": []}]
+
+                base_event_id = str(part.get("part_id") or f"{clip.get('clip_id', f'digest_qa_{index:02d}')}_part_{part_index:02d}")
+                removed_duration = 0.0
+                for cluster_index, cluster in enumerate(clusters, start=1):
+                    cluster_start = max(0.0, float(cluster["start"]) - digest_edge_pad)
+                    cluster_end = min(part_duration, float(cluster["end"]) + digest_edge_pad)
+                    source_start = part_source_start + cluster_start
+                    source_end = part_source_start + cluster_end
+                    duration = max(0.01, source_end - source_start)
+                    removed_duration += max(0.0, cluster_start - (float(clusters[cluster_index - 2]["end"]) + digest_edge_pad if cluster_index > 1 else 0.0))
+
+                    source_media_id = "group_wide"
+                    source_media_start = source_start
+                    event_layout: dict[str, Any]
+                    if layout_type == "single":
+                        target_person_id = str(requested_layout.get("target_person_id") or active_person_id)
+                        source_media_id, source_media_start = synced_source_start_for_person(target_person_id, source_start, offsets)
+                        event_layout = {
+                            "type": "single",
+                            "selected_media_id": source_media_id,
+                            "target_person_id": target_person_id,
+                            "crop_mode": "person_centered",
+                            "selection_reason": "Digest answer cut uses the active speaker close-up.",
+                        }
+                    elif layout_type == "wide_group":
+                        event_layout = {
+                            "type": "wide_group",
+                            "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                            "active_person_id": active_person_id,
+                            "safe_margin": 0.06,
+                            "selection_reason": "Digest question/context cut uses the three-person wide shot so the speaker stays in frame.",
+                        }
+                    else:
+                        media_ids = [str(item) for item in requested_layout.get("media_ids", []) if str(item).startswith("cam_")]
+                        if not media_ids:
+                            media_ids = ["cam_person_02", "cam_person_03"]
+                        event_layout = {
+                            "type": "split_grid",
+                            "media_ids": media_ids,
+                            "grid_strategy": "digest_qa_two_person_split",
+                            "panel_order": ["person_02", "person_03"],
+                            "active_person_id": active_person_id,
+                            "selection_reason": str(clip.get("selection_reason") or "Requested Q&A digest clip from SRT."),
+                        }
+                    overlays = [
+                        {
+                            "type": "topic_title",
+                            "position": "top_right",
+                            "text": digest_title,
+                            "style_id": "opening_digest_top_right_title",
+                        }
+                    ]
+                    for caption in cluster["captions"]:
+                        caption_overlay = dict(caption)
+                        caption_overlay["start"] = round(max(0.0, float(caption_overlay.get("start") or 0.0) - cluster_start), 3)
+                        caption_overlay["end"] = round(min(duration, max(caption_overlay["start"] + 0.01, float(caption.get("end") or 0.0) - cluster_start)), 3)
+                        caption_overlay.setdefault("speaker_person_id", active_person_id)
+                        overlays.append(caption_overlay)
+
+                    event_id = base_event_id if len(clusters) == 1 else f"{base_event_id}_cut{cluster_index:02d}"
+                    timeline.append(
+                        {
+                            "event_id": event_id,
+                            "timeline_start": round(cursor, 3),
+                            "timeline_end": round(cursor + duration, 3),
+                            "type": "source_clip",
+                            "section": "digest",
+                            "source": {"media_id": source_media_id, "in": round(source_media_start, 3), "out": safe_source_out(media_duration(manifest, source_media_id), source_media_start, duration)},
+                            "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
+                            "layout": event_layout,
+                            "audio": {"mode": "continuous_reference", "source_media_id": "group_wide", "fade_in": 0.02, "fade_out": 0.04},
+                            "overlays": overlays,
+                            "digest_qa_source": {
+                                "question": clip.get("question"),
+                                "clip_title": clip.get("clip_title"),
+                                "part_kind": part.get("kind"),
+                                "start_timecode": part.get("start_timecode") or clip.get("start_timecode"),
+                                "end_timecode": part.get("end_timecode") or clip.get("end_timecode"),
+                                "answer_summary": clip.get("answer_summary"),
+                                "evidence_excerpt": clip.get("evidence_excerpt"),
+                                "caption_only_cut": True,
+                                "cluster_index": cluster_index,
+                                "cluster_count": len(clusters),
+                            },
+                            "reason": str(clip.get("selection_reason") or "Requested Q&A digest replaces previous digest."),
+                        }
+                    )
+                    cursor += duration
+
+                digest_pacing_report.append(
                     {
-                        "type": "topic_title",
-                        "position": "top_right",
-                        "text": digest_title,
-                        "style_id": "opening_digest_top_right_title",
-                    }
-                ]
-                for caption in part.get("caption_overlays", []):
-                    if isinstance(caption, dict) and caption.get("text"):
-                        overlays.append(caption)
-                event_id = str(part.get("part_id") or f"{clip.get('clip_id', f'digest_qa_{index:02d}')}_part_{part_index:02d}")
-                timeline.append(
-                    {
-                        "event_id": event_id,
-                        "timeline_start": round(cursor, 3),
-                        "timeline_end": round(cursor + duration, 3),
-                        "type": "source_clip",
-                        "section": "digest",
-                        "source": {"media_id": source_media_id, "in": round(source_media_start, 3), "out": safe_source_out(media_duration(manifest, source_media_id), source_media_start, duration)},
-                        "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
-                        "layout": event_layout,
-                        "audio": {"mode": "continuous_reference", "source_media_id": "group_wide", "fade_in": 0.04, "fade_out": 0.08},
-                        "overlays": overlays,
-                        "digest_qa_source": {
-                            "question": clip.get("question"),
-                            "clip_title": clip.get("clip_title"),
-                            "part_kind": part.get("kind"),
-                            "start_timecode": part.get("start_timecode") or clip.get("start_timecode"),
-                            "end_timecode": part.get("end_timecode") or clip.get("end_timecode"),
-                            "answer_summary": clip.get("answer_summary"),
-                            "evidence_excerpt": clip.get("evidence_excerpt"),
-                        },
-                        "reason": str(clip.get("selection_reason") or "Requested Q&A digest replaces previous digest."),
+                        "part_id": base_event_id,
+                        "original_duration_sec": round(part_duration, 3),
+                        "caption_cluster_count": len(clusters),
+                        "kept_duration_sec": round(sum(max(0.01, min(part_duration, float(cluster["end"]) + digest_edge_pad) - max(0.0, float(cluster["start"]) - digest_edge_pad)) for cluster in clusters), 3),
+                        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut.",
                     }
                 )
-                cursor += duration
     else:
         middle_right_digest = [
             highlight
@@ -1204,7 +1255,24 @@ def build_edit_plan(
             event["main_caption_plan_items"] = []
             event["_main_caption_slots"] = []
 
-        def main_event_for_caption(caption_start: float) -> dict[str, Any] | None:
+        def main_event_for_caption(caption_start: float, caption_end: float) -> dict[str, Any] | None:
+            best_event = None
+            best_overlap = 0.0
+            for event in timeline:
+                if event.get("section") != "main":
+                    continue
+                reference = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
+                try:
+                    reference_in = float(reference.get("in"))
+                    reference_out = float(reference.get("out"))
+                except (TypeError, ValueError):
+                    continue
+                overlap = min(caption_end, reference_out) - max(caption_start, reference_in)
+                if overlap > best_overlap:
+                    best_event = event
+                    best_overlap = overlap
+            if best_event is not None and best_overlap >= 0.5:
+                return best_event
             for event in timeline:
                 if event.get("section") != "main":
                     continue
@@ -1216,17 +1284,18 @@ def build_edit_plan(
                     continue
                 if reference_in - 0.25 <= caption_start < reference_out:
                     return event
-            return None
+            return best_event
 
         for caption in main_captions:
             caption_id = str(caption.get("caption_id") or "")
             try:
                 caption_start = float(caption.get("caption_start_sec") or 0.0)
+                caption_end = float(caption.get("caption_end_sec") or caption.get("source_end_sec") or caption_start + 3.0)
             except (TypeError, ValueError):
                 skipped.append({"caption_id": caption_id, "reason": "invalid_caption_start"})
                 continue
 
-            event = main_event_for_caption(caption_start)
+            event = main_event_for_caption(caption_start, max(caption_start + 0.35, caption_end))
             if event is None:
                 skipped.append({"caption_id": caption_id, "reason": "no_matching_main_event", "caption_start_sec": caption_start})
                 continue
@@ -1279,6 +1348,8 @@ def build_edit_plan(
                         "source": "main_caption_plan",
                         "caption_start_sec": caption.get("caption_start_sec"),
                         "caption_end_sec": caption.get("caption_end_sec"),
+                        "source_start_sec": caption.get("source_start_sec"),
+                        "source_end_sec": caption.get("source_end_sec"),
                         "speaker_name": caption.get("speaker_name"),
                     },
                 }
@@ -1329,6 +1400,12 @@ def build_edit_plan(
         "content_window_source": str(REPORTS / "content_window.json"),
         "speaker_activity_source": str(REPORTS / "speaker_activity_analysis.json"),
         "content_window": content_window.get("usable_master_range"),
+        "digest_pacing": {
+            "policy": "Keep only opening digest ranges that have captioned speech; cut non-captioned pauses and reconnect with short hard cuts.",
+            "gap_cut_threshold_sec": digest_gap_cut_threshold if digest_qa else None,
+            "edge_pad_sec": digest_edge_pad if digest_qa else None,
+            "parts": digest_pacing_report if digest_qa else [],
+        },
         "main_caption_assignment": main_caption_assignment,
         "timeline": timeline,
         "validation": {

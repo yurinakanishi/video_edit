@@ -1,0 +1,330 @@
+{
+  "schema_version": "digest_camera_silence_audit.v1",
+  "project_id": "layer-x-domain-expert",
+  "policy": {
+    "digest_caption_or_speech_gap_over_1s": "not_allowed_inside_event",
+    "source_gaps_between_selected_parts_over_1s": "must_be_cut_from_digest_timeline",
+    "caption_speaker_must_be_visible": "required"
+  },
+  "summary": {
+    "digest_events": 12,
+    "caption_gap_issue_count": 0,
+    "speaker_visibility_issue_count": 0,
+    "source_gaps_cut_count": 10,
+    "ready": true
+  },
+  "caption_gap_issues": [],
+  "speaker_visibility_issues": [],
+  "source_gaps_cut_from_timeline": [
+    {
+      "from_event_id": "digest_qa_01_question_01",
+      "to_event_id": "digest_qa_01_answer_02",
+      "source_gap_sec": 24.66,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_01_answer_02",
+      "to_event_id": "digest_qa_01_answer_03",
+      "source_gap_sec": 10.1,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_01_answer_03",
+      "to_event_id": "digest_qa_02_question_context_01",
+      "source_gap_sec": 39.0,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_02_question_context_01",
+      "to_event_id": "digest_qa_02_answer_02",
+      "source_gap_sec": 15.06,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_02_answer_02",
+      "to_event_id": "digest_qa_03_answer_01",
+      "source_gap_sec": 14.16,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_03_answer_01",
+      "to_event_id": "digest_qa_04_question_01",
+      "source_gap_sec": 319.38,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_04_question_01",
+      "to_event_id": "digest_qa_04_answer_02",
+      "source_gap_sec": 15.0,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_04_answer_02",
+      "to_event_id": "digest_qa_04_answer_03",
+      "source_gap_sec": 22.42,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_04_answer_03",
+      "to_event_id": "digest_qa_05_question_01",
+      "source_gap_sec": 849.22,
+      "status": "cut_from_digest_timeline"
+    },
+    {
+      "from_event_id": "digest_qa_05_answer_02",
+      "to_event_id": "digest_qa_05_answer_03",
+      "source_gap_sec": 15.66,
+      "status": "cut_from_digest_timeline"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "digest_qa_01_question_01",
+      "timeline_range_sec": [
+        0.0,
+        8.04
+      ],
+      "source_range_sec": [
+        1500.72,
+        1508.76
+      ],
+      "layout_type": "wide_group",
+      "visible_people": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_01"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "timeline_range_sec": [
+        8.04,
+        17.64
+      ],
+      "source_range_sec": [
+        1533.42,
+        1543.02
+      ],
+      "layout_type": "single",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_03"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_01_answer_03",
+      "timeline_range_sec": [
+        17.64,
+        21.14
+      ],
+      "source_range_sec": [
+        1553.12,
+        1556.62
+      ],
+      "layout_type": "single",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_03"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "timeline_range_sec": [
+        21.14,
+        29.62
+      ],
+      "source_range_sec": [
+        1595.62,
+        1604.1
+      ],
+      "layout_type": "split_grid",
+      "visible_people": [
+        "person_02",
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_03"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "timeline_range_sec": [
+        29.62,
+        38.18
+      ],
+      "source_range_sec": [
+        1619.16,
+        1627.72
+      ],
+      "layout_type": "single",
+      "visible_people": [
+        "person_02"
+      ],
+      "caption_speakers": [
+        "person_02"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "timeline_range_sec": [
+        38.18,
+        60.02
+      ],
+      "source_range_sec": [
+        1641.88,
+        1663.72
+      ],
+      "layout_type": "single",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_03"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "timeline_range_sec": [
+        60.02,
+        72.02
+      ],
+      "source_range_sec": [
+        1983.1,
+        1995.1
+      ],
+      "layout_type": "wide_group",
+      "visible_people": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_01"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "timeline_range_sec": [
+        72.02,
+        91.04
+      ],
+      "source_range_sec": [
+        2010.1,
+        2029.12
+      ],
+      "layout_type": "single",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_03"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "timeline_range_sec": [
+        91.04,
+        108.32
+      ],
+      "source_range_sec": [
+        2051.54,
+        2068.82
+      ],
+      "layout_type": "single",
+      "visible_people": [
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_03"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "timeline_range_sec": [
+        108.32,
+        128.32
+      ],
+      "source_range_sec": [
+        2918.04,
+        2938.04
+      ],
+      "layout_type": "wide_group",
+      "visible_people": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_01"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "timeline_range_sec": [
+        128.32,
+        148.32
+      ],
+      "source_range_sec": [
+        2938.04,
+        2958.04
+      ],
+      "layout_type": "split_grid",
+      "visible_people": [
+        "person_02",
+        "person_03"
+      ],
+      "caption_speakers": [
+        "person_02"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "timeline_range_sec": [
+        148.32,
+        155.24
+      ],
+      "source_range_sec": [
+        2973.7,
+        2980.62
+      ],
+      "layout_type": "single",
+      "visible_people": [
+        "person_02"
+      ],
+      "caption_speakers": [
+        "person_02"
+      ],
+      "caption_gap_over_1s": [],
+      "speaker_visible": true
+    }
+  ]
+}

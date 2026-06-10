@@ -245,14 +245,14 @@ def draw_logo(canvas: Image.Image, section: str, is_split: bool = False) -> None
         return
     logo = Image.open(LOGO_PATH).convert("RGBA")
     if section == "digest":
-        logo_w = 300
-        pos = (10, 20)
+        logo_w = 260
+        pos = (0, 8)
     elif is_split:
-        logo_w = 320
-        pos = (4, 4)
+        logo_w = 260
+        pos = (0, 0)
     else:
-        logo_w = 405
-        pos = (2, 2)
+        logo_w = 320
+        pos = (0, 0)
     logo_h = round(logo.height * logo_w / logo.width)
     logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
     canvas.alpha_composite(logo, pos)
@@ -396,13 +396,19 @@ def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> boo
     return True
 
 
-def base_video_filter(event: dict[str, Any]) -> str:
+def color_match_filter(media_id: str) -> str:
+    if media_id in {"cam_person_01", "cam_person_02", "cam_person_03"}:
+        return ",eq=saturation=0.72:contrast=0.92:brightness=0.025:gamma=1.03"
+    return ""
+
+
+def base_video_filter(event: dict[str, Any], media_id: str) -> str:
     section = str(event.get("section") or "")
     if section == "bridge":
         return "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1"
     if section == "digest":
-        return "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1[scaled];color=c=black:s=1280x720:r=30:d={dur}[canvas];[canvas][scaled]overlay=0:69:format=auto"
-    return "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1"
+        return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1[scaled];color=c=black:s=1280x720:r=30:d={{dur}}[canvas];[canvas][scaled]overlay=0:69:format=auto"
+    return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1"
 
 
 def synced_media_start(media_id: str, master_time: float, offsets: dict[str, float]) -> float:
@@ -463,11 +469,11 @@ def split_panel_filter(index: int, media_id: str, panel_width: int) -> str:
         return (
             f"[{index}:v]scale=-2:{scale_h}:force_original_aspect_ratio=increase,"
             f"crop={panel_width}:{scale_h}:{crop_x}:0,"
-            f"pad={panel_width}:720:0:{y_pad},setsar=1[v{index}]"
+            f"pad={panel_width}:720:0:{y_pad}{color_match_filter(media_id)},setsar=1[v{index}]"
         )
     return (
         f"[{index}:v]scale=-2:{scale_h}:force_original_aspect_ratio=increase,"
-        f"crop={panel_width}:720:{crop_x}:{crop_y},setsar=1[v{index}]"
+        f"crop={panel_width}:720:{crop_x}:{crop_y}{color_match_filter(media_id)},setsar=1[v{index}]"
     )
 
 
@@ -494,7 +500,7 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
         raise FileNotFoundError(f"Audio media not available for preview: {aud.get('media_id')}")
     dur = duration(event)
     style_path, text_path = overlay_assets(ffmpeg, event, segment_id)
-    filter_base = base_video_filter(event).format(dur=f"{dur:.3f}")
+    filter_base = base_video_filter(event, str(src.get("media_id"))).format(dur=f"{dur:.3f}")
     inputs = [
         ffmpeg,
         "-hide_banner",

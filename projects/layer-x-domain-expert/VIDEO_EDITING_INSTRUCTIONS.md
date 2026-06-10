@@ -866,7 +866,7 @@ Opening Digest must use the same visual treatment as the styled sample from `pro
 For all Opening Digest clips, keep these elements consistent with the sample:
 
 - Top blue-purple band with the white slanted LayerX logo panel
-- LayerX logo placement and size inside the left panel
+- LayerX logo placement inside the left panel. Keep it smaller than the earlier oversized draft and pinned tightly to the upper-left edge.
 - Upper-right title text only. Do not draw the purple background box behind the digest title.
 - Continuous thin bottom blue-purple band
 - Large lower digest captions in rounded blue-purple boxes with white bold text
@@ -908,6 +908,7 @@ Keep these consistent with the digest/sample style:
 - Upper-right title placement
 - Upper-right title blue-purple box background in the main section only
 - Caption colors, rounded boxes, reveal animation, and quick fade timing
+- Color matching: the three close-up cameras (`cam_person_01`, `cam_person_02`, `cam_person_03`) must be corrected to match the less saturated, more neutral look of the three-person wide camera. Do not leave close-up shots with noticeably denser saturation or contrast than the group camera.
 
 Remove these digest-only frame elements from the main section:
 
@@ -1138,7 +1139,7 @@ Carry these observations into `style_guide.json` component definitions and rende
 
 - Brand color: use a saturated LayerX blue-purple as the primary overlay color, approximately `#5F5AF5` to `#6258F7`.
 - Split dividers: use light blue vertical rules, approximately `#58B9FF` or `#8EC6FF`, with enough contrast against interview footage. For this preview, use a visibly thicker rule than the early draft.
-- Logo: place the LayerX logo at the upper-left safe area when a branded topic or split layout is shown. Keep it clear of faces and topic bars.
+- Logo: place the LayerX logo at the upper-left edge when a branded topic or split layout is shown. Keep it smaller than the oversized draft, pinned close to the corner, and clear of faces and topic bars.
 - Topic title: use a blue-purple upper-right banner with white bold Japanese text. The banner can have angled/slanted ends and subtle translucent geometric texture, but text readability is more important than decoration.
 - Name plates: use a large single-person introduction treatment only. Put role/title text above or near the plate in bold white with blue-purple outline or shadow, then place the display name in a solid blue-purple rectangle with very large white type. Do not show nameplates during split layouts.
 - Explainer card: use a white rectangular card at the lower third with black bold Japanese text, paired with a blue-purple label tab above or attached to the card. Keep the card below faces and above the bottom safe edge.

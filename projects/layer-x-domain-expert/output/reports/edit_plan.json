@@ -1,7 +1,7 @@
 {
   "schema_version": "edit_plan.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T20:46:38+09:00",
+  "generated_at": "2026-06-10T20:55:41+09:00",
   "canvas": {
     "width": 1920,
     "height": 1080,
@@ -1343,7 +1343,7 @@
           "type": "caption",
           "start": 0.35,
           "end": 5.15,
-          "text": "LayerXのYouTubeチャンネルでドメインエキスパートという",
+          "text": "ドメインエキスパートの役割とキャリアを聞いていく",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_051",
           "caption_no": 51,
@@ -1370,7 +1370,7 @@
           "source_end_sec": 524.94,
           "caption_start_sec": 519.0,
           "caption_end_sec": 555.0,
-          "display_text": "LayerXのYouTubeチャンネルでドメインエキスパートという",
+          "display_text": "ドメインエキスパートの役割とキャリアを聞いていく",
           "full_reference_text": "LayerXのYouTubeチャンネルでドメインエキスパートという役割が普段どう働いているのかそしてキャリアの選択肢としてどういう意味を持つのかを聞いていきます。",
           "search_keys": [
             "LayerXのYouTubeチャンネル",
@@ -1603,33 +1603,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "LayerXの中でいうドメインエキスパートは職",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_052_part01",
-          "caption_no": 52,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_052",
-            "source": "main_caption_plan",
-            "caption_start_sec": 557.0,
-            "caption_end_sec": 590.0,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "LayerXの中でいうドメインエキスパートは職種という",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "種という",
+          "text": "LayerXでは開発チームの中でドメイン知識を活かす",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_052_part02",
+          "caption_id": "main_caption_052",
           "caption_no": 52,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -1638,12 +1615,6 @@
             "caption_start_sec": 557.0,
             "caption_end_sec": 590.0,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "LayerXの中でいうドメインエキスパートは職種という",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -1661,7 +1632,7 @@
           "source_end_sec": 557.86,
           "caption_start_sec": 557.0,
           "caption_end_sec": 590.0,
-          "display_text": "LayerXの中でいうドメインエキスパートは職種という",
+          "display_text": "LayerXでは開発チームの中でドメイン知識を活かす",
           "full_reference_text": "LayerXの中でいうドメインエキスパートは職種というより開発チームの中でドメイン知識を活かす役割に近い。",
           "search_keys": [
             "LayerXの中でいうと",
@@ -1716,33 +1687,10 @@
         {
           "type": "caption",
           "start": 4.12,
-          "end": 6.42,
-          "text": "LayerXにおけるドメインエキスパートは職",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_001_part01",
-          "caption_no": 1,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_001",
-            "source": "main_caption_plan",
-            "caption_start_sec": 565.66,
-            "caption_end_sec": 568.66,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "LayerXにおけるドメインエキスパートは職種という",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 6.52,
           "end": 8.92,
-          "text": "種という",
+          "text": "ドメインエキスパートは開発チームの中での役割",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_001_part02",
+          "caption_id": "main_caption_001",
           "caption_no": 1,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -1751,12 +1699,6 @@
             "caption_start_sec": 565.66,
             "caption_end_sec": 568.66,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "LayerXにおけるドメインエキスパートは職種という",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -1773,7 +1715,7 @@
           "source_end_sec": 568.04,
           "caption_start_sec": 565.66,
           "caption_end_sec": 568.66,
-          "display_text": "LayerXにおけるドメインエキスパートは職種という",
+          "display_text": "ドメインエキスパートは開発チームの中での役割",
           "full_reference_text": "LayerXにおけるドメインエキスパートは職種というより開発チームの中での役割に近い。",
           "search_keys": [
             "ドメインエキスパート",
@@ -1836,33 +1778,10 @@
         {
           "type": "caption",
           "start": 1.98,
-          "end": 4.28,
-          "text": "ドメインエキスパートとは専門知識を持っているだけではなく",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_003_part01",
-          "caption_no": 3,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_003",
-            "source": "main_caption_plan",
-            "caption_start_sec": 578.52,
-            "caption_end_sec": 582.42,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "ドメインエキスパートとは専門知識を持っているだけではなく実務の経験をプロ",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 4.38,
           "end": 6.78,
-          "text": "実務の経験をプロ",
+          "text": "実務経験をプロダクト開発に持ち込む役割",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_003_part02",
+          "caption_id": "main_caption_003",
           "caption_no": 3,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -1871,19 +1790,13 @@
             "caption_start_sec": 578.52,
             "caption_end_sec": 582.42,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "ドメインエキスパートとは専門知識を持っているだけではなく実務の経験をプロ",
-            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "会社によってドメインエキスパートの役割",
+          "text": "LayerXでは開発チームに入り実務知識を活かす",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_053",
           "caption_no": 53,
@@ -1911,7 +1824,7 @@
           "source_end_sec": 582.42,
           "caption_start_sec": 578.52,
           "caption_end_sec": 582.42,
-          "display_text": "ドメインエキスパートとは専門知識を持っているだけではなく実務の経験をプロ",
+          "display_text": "実務経験をプロダクト開発に持ち込む役割",
           "full_reference_text": "ドメインエキスパートとは専門知識を持っているだけではなく実務の経験をプロダクト開発に持ち込む役割。",
           "search_keys": [
             "ドメインエキスパート",
@@ -1936,7 +1849,7 @@
           "source_end_sec": 593.02,
           "caption_start_sec": 590.0,
           "caption_end_sec": 600.0,
-          "display_text": "会社によってドメインエキスパートの役割",
+          "display_text": "LayerXでは開発チームに入り実務知識を活かす",
           "full_reference_text": "会社によってドメインエキスパートの役割は違うかもしれないがLayerXでは開発チームに入りながら実務知識を活かす形で関わっている。",
           "search_keys": [
             "会社さんによって",
@@ -2060,33 +1973,10 @@
         {
           "type": "caption",
           "start": 11.83,
-          "end": 14.13,
-          "text": "根元さんは新卒で大手メーカーに入り工場や本社で10年ほど経",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_054_part01",
-          "caption_no": 54,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_054",
-            "source": "main_caption_plan",
-            "caption_start_sec": 623.0,
-            "caption_end_sec": 661.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "根元さんは新卒で大手メーカーに入り工場や本社で10年ほど経理を経験したあ",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 14.23,
           "end": 16.63,
-          "text": "理を経験したあ",
+          "text": "根本さんは経理や労務の経験を積んできた",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_054_part02",
+          "caption_id": "main_caption_054",
           "caption_no": 54,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -2095,12 +1985,6 @@
             "caption_start_sec": 623.0,
             "caption_end_sec": 661.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "根元さんは新卒で大手メーカーに入り工場や本社で10年ほど経理を経験したあ",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -2118,7 +2002,7 @@
           "source_end_sec": 623.52,
           "caption_start_sec": 623.0,
           "caption_end_sec": 661.0,
-          "display_text": "根元さんは新卒で大手メーカーに入り工場や本社で10年ほど経理を経験したあ",
+          "display_text": "根本さんは経理や労務の経験を積んできた",
           "full_reference_text": "根元さんは新卒で大手メーカーに入り工場や本社で10年ほど経理を経験したあとスタートアップでコンプライアンスや労務にも関わってきた。",
           "search_keys": [
             "大手のメーカー",
@@ -2246,7 +2130,7 @@
           "type": "caption",
           "start": 0.45,
           "end": 3.65,
-          "text": "当時はプロダクトマネージャーという",
+          "text": "コードを書けなくても大丈夫かという感覚から始まった",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_056",
           "caption_no": 56,
@@ -2273,7 +2157,7 @@
           "source_end_sec": 675.06,
           "caption_start_sec": 674.0,
           "caption_end_sec": 686.0,
-          "display_text": "当時はプロダクトマネージャーという",
+          "display_text": "コードを書けなくても大丈夫かという感覚から始まった",
           "full_reference_text": "当時はプロダクトマネージャーという言葉もよく知らず「コードを書けないですけど大丈夫ですか」という感覚から始まった。",
           "search_keys": [
             "プロダクトマネージャー",
@@ -2459,33 +2343,10 @@
         {
           "type": "caption",
           "start": 2.5,
-          "end": 4.8,
-          "text": "矢野さんは監査法人から事業会社の経営企画やIRを経て",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_059_part01",
-          "caption_no": 59,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_059",
-            "source": "main_caption_plan",
-            "caption_start_sec": 740.0,
-            "caption_end_sec": 802.0,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "矢野さんは監査法人から事業会社の経営企画やIRを経てLayerXで初めて",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 4.9,
           "end": 7.3,
-          "text": "LayerXで初めて",
+          "text": "矢野さんはLayerXで初めて事業側の仕事に関わった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_059_part02",
+          "caption_id": "main_caption_059",
           "caption_no": 59,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -2494,12 +2355,6 @@
             "caption_start_sec": 740.0,
             "caption_end_sec": 802.0,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "矢野さんは監査法人から事業会社の経営企画やIRを経てLayerXで初めて",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -2515,7 +2370,7 @@
           "source_end_sec": 740.94,
           "caption_start_sec": 740.0,
           "caption_end_sec": 802.0,
-          "display_text": "矢野さんは監査法人から事業会社の経営企画やIRを経てLayerXで初めて",
+          "display_text": "矢野さんはLayerXで初めて事業側の仕事に関わった",
           "full_reference_text": "矢野さんは監査法人から事業会社の経営企画やIRを経てLayerXで初めて事業側・ビジネス側の仕事に関わった。",
           "search_keys": [
             "監査法人",
@@ -2713,33 +2568,10 @@
         {
           "type": "caption",
           "start": 4.5,
-          "end": 6.8,
-          "text": "矢野さんが入社した",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_060_part01",
-          "caption_no": 60,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_060",
-            "source": "main_caption_plan",
-            "caption_start_sec": 802.0,
-            "caption_end_sec": 830.0,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "矢野さんが入社した当時はドメインエキスパートが何をやるのかもまだ決まって",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 6.9,
           "end": 9.3,
-          "text": "当時はドメインエキスパートが何をやるのかもまだ決まって",
+          "text": "最初はヒアリングから始まった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_060_part02",
+          "caption_id": "main_caption_060",
           "caption_no": 60,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -2748,12 +2580,6 @@
             "caption_start_sec": 802.0,
             "caption_end_sec": 830.0,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "矢野さんが入社した当時はドメインエキスパートが何をやるのかもまだ決まって",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -2769,7 +2595,7 @@
           "source_end_sec": 802.02,
           "caption_start_sec": 802.0,
           "caption_end_sec": 830.0,
-          "display_text": "矢野さんが入社した当時はドメインエキスパートが何をやるのかもまだ決まって",
+          "display_text": "最初はヒアリングから始まった",
           "full_reference_text": "矢野さんが入社した当時はドメインエキスパートが何をやるのかもまだ決まっておらずまずはヒアリングから始まった。",
           "search_keys": [
             "ドメインエキスパート何をやるか",
@@ -2843,33 +2669,10 @@
         {
           "type": "caption",
           "start": 5.5,
-          "end": 7.8,
-          "text": "最初はプロダクトマーケティングのように製品をどうお客",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_061_part01",
-          "caption_no": 61,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_061",
-            "source": "main_caption_plan",
-            "caption_start_sec": 818.0,
-            "caption_end_sec": 840.0,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "最初はプロダクトマーケティングのように製品をどうお客様に伝えるかを中心に",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 7.9,
           "end": 10.3,
-          "text": "様に伝えるかを中心に",
+          "text": "最初は製品をどう伝えるかを中心に担当した",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_061_part02",
+          "caption_id": "main_caption_061",
           "caption_no": 61,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -2878,12 +2681,6 @@
             "caption_start_sec": 818.0,
             "caption_end_sec": 840.0,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "最初はプロダクトマーケティングのように製品をどうお客様に伝えるかを中心に",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -2899,7 +2696,7 @@
           "source_end_sec": 820.14,
           "caption_start_sec": 818.0,
           "caption_end_sec": 840.0,
-          "display_text": "最初はプロダクトマーケティングのように製品をどうお客様に伝えるかを中心に",
+          "display_text": "最初は製品をどう伝えるかを中心に担当した",
           "full_reference_text": "最初はプロダクトマーケティングのように製品をどうお客様に伝えるかを中心に担当しその後に開発へ関与していった。",
           "search_keys": [
             "プロダクトマーケティング",
@@ -3014,33 +2811,10 @@
         {
           "type": "caption",
           "start": 1.5,
-          "end": 3.8,
-          "text": "根元さんはPDMとして村田さんは労務として入社しそこか",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_062_part01",
-          "caption_no": 62,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_062",
-            "source": "main_caption_plan",
-            "caption_start_sec": 844.0,
-            "caption_end_sec": 864.0,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "根元さんはPDMとして村田さんは労務として入社しそこから開発にも関わって",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 3.9,
           "end": 6.3,
-          "text": "ら開発にも関わって",
+          "text": "二人が開発に関わった背景が対談のテーマ",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_062_part02",
+          "caption_id": "main_caption_062",
           "caption_no": 62,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -3049,12 +2823,6 @@
             "caption_start_sec": 844.0,
             "caption_end_sec": 864.0,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "根元さんはPDMとして村田さんは労務として入社しそこから開発にも関わって",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -3070,7 +2838,7 @@
           "source_end_sec": 844.38,
           "caption_start_sec": 844.0,
           "caption_end_sec": 864.0,
-          "display_text": "根元さんはPDMとして村田さんは労務として入社しそこから開発にも関わって",
+          "display_text": "二人が開発に関わった背景が対談のテーマ",
           "full_reference_text": "根元さんはPDMとして村田さんは労務として入社しそこから開発にも関わっていった。その背景やきっかけがこの対談の大きなテーマになっている。",
           "search_keys": [
             "PDMとして入社",
@@ -3144,33 +2912,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "経理として働く中でバックオフィスの生産",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_004_part01",
-          "caption_no": 4,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_004",
-            "source": "main_caption_plan",
-            "caption_start_sec": 869.44,
-            "caption_end_sec": 873.24,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "経理として働く中でバックオフィスの生産性に強い問題意識を感じていた。",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "性に強い問題意識を感じていた",
+          "text": "バックオフィスの生産性に強い問題意識があった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_004_part02",
+          "caption_id": "main_caption_004",
           "caption_no": 4,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -3179,12 +2924,6 @@
             "caption_start_sec": 869.44,
             "caption_end_sec": 873.24,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "経理として働く中でバックオフィスの生産性に強い問題意識を感じていた。",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -3200,7 +2939,7 @@
           "source_end_sec": 873.24,
           "caption_start_sec": 869.44,
           "caption_end_sec": 873.24,
-          "display_text": "経理として働く中でバックオフィスの生産性に強い問題意識を感じていた。",
+          "display_text": "バックオフィスの生産性に強い問題意識があった",
           "full_reference_text": "経理として働く中でバックオフィスの生産性に強い問題意識を感じていた。",
           "search_keys": [
             "経理",
@@ -3275,7 +3014,7 @@
           "type": "caption",
           "start": 7.62,
           "end": 12.42,
-          "text": "決算になると毎日夜遅くまで働き終電で帰る",
+          "text": "決算期に終電で帰る状況は不健全だと思った",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_005",
           "caption_no": 5,
@@ -3301,7 +3040,7 @@
           "source_end_sec": 883.54,
           "caption_start_sec": 880.12,
           "caption_end_sec": 883.54,
-          "display_text": "決算になると毎日夜遅くまで働き終電で帰る",
+          "display_text": "決算期に終電で帰る状況は不健全だと思った",
           "full_reference_text": "決算になると毎日夜遅くまで働き終電で帰る。それが当たり前になっている状況は本当に不健全だと思った。",
           "search_keys": [
             "決算",
@@ -3433,33 +3172,10 @@
         {
           "type": "caption",
           "start": 7.4,
-          "end": 9.7,
-          "text": "前職でバクラクを使ったときこれまで感じていた「ここができ",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_006_part01",
-          "caption_no": 6,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_006",
-            "source": "main_caption_plan",
-            "caption_start_sec": 909.9,
-            "caption_end_sec": 913.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "前職でバクラクを使ったときこれまで感じていた「ここができない」「こうでき",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 9.8,
           "end": 12.2,
-          "text": "ない」「こうでき",
+          "text": "バクラクには「こうできたらいいのに」が少なかった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_006_part02",
+          "caption_id": "main_caption_006",
           "caption_no": 6,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -3468,12 +3184,6 @@
             "caption_start_sec": 909.9,
             "caption_end_sec": 913.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "前職でバクラクを使ったときこれまで感じていた「ここができない」「こうでき",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -3489,7 +3199,7 @@
           "source_end_sec": 913.0,
           "caption_start_sec": 909.9,
           "caption_end_sec": 913.0,
-          "display_text": "前職でバクラクを使ったときこれまで感じていた「ここができない」「こうでき",
+          "display_text": "バクラクには「こうできたらいいのに」が少なかった",
           "full_reference_text": "前職でバクラクを使ったときこれまで感じていた「ここができない」「こうできたらいいのに」があまりなかった。",
           "search_keys": [
             "バクラク",
@@ -3605,7 +3315,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "経理として働き続けるなら前職でよかった",
+          "text": "LayerXに惹かれた理由は開発に関われること",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_007",
           "caption_no": 7,
@@ -3631,7 +3341,7 @@
           "source_end_sec": 944.78,
           "caption_start_sec": 942.48,
           "caption_end_sec": 945.48,
-          "display_text": "経理として働き続けるなら前職でよかった",
+          "display_text": "LayerXに惹かれた理由は開発に関われること",
           "full_reference_text": "経理として働き続けるなら前職でよかった。だからLayerXに惹かれた理由は「開発に関われること」だった。",
           "search_keys": [
             "経理だったら前職でいい",
@@ -3704,33 +3414,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "最初から開発を探していたわけではなくむしろ",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_008_part01",
-          "caption_no": 8,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_008",
-            "source": "main_caption_plan",
-            "caption_start_sec": 960.0,
-            "caption_end_sec": 963.24,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "最初から開発を探していたわけではなくむしろ開発は自分とは関係ないものだと",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "開発は自分とは関係ないものだと",
+          "text": "開発は自分とは関係ないものだと思っていた",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_008_part02",
+          "caption_id": "main_caption_008",
           "caption_no": 8,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -3739,12 +3426,6 @@
             "caption_start_sec": 960.0,
             "caption_end_sec": 963.24,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "最初から開発を探していたわけではなくむしろ開発は自分とは関係ないものだと",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -3760,7 +3441,7 @@
           "source_end_sec": 963.24,
           "caption_start_sec": 960.0,
           "caption_end_sec": 963.24,
-          "display_text": "最初から開発を探していたわけではなくむしろ開発は自分とは関係ないものだと",
+          "display_text": "開発は自分とは関係ないものだと思っていた",
           "full_reference_text": "最初から開発を探していたわけではなくむしろ開発は自分とは関係ないものだと思っていた。",
           "search_keys": [
             "開発を探してない",
@@ -3874,33 +3555,10 @@
         {
           "type": "caption",
           "start": 6.66,
-          "end": 8.96,
-          "text": "経理一本でこの先どう生きていくのか",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_009_part01",
-          "caption_no": 9,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_009",
-            "source": "main_caption_plan",
-            "caption_start_sec": 984.16,
-            "caption_end_sec": 987.52,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "経理一本でこの先どう生きていくのかキャリアへの迷いがあったタイミングで開",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 9.06,
           "end": 11.46,
-          "text": "キャリアへの迷いがあったタイミングで開",
+          "text": "経理一本のキャリアに迷ったタイミングだった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_009_part02",
+          "caption_id": "main_caption_009",
           "caption_no": 9,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -3909,12 +3567,6 @@
             "caption_start_sec": 984.16,
             "caption_end_sec": 987.52,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "経理一本でこの先どう生きていくのかキャリアへの迷いがあったタイミングで開",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -3930,7 +3582,7 @@
           "source_end_sec": 987.52,
           "caption_start_sec": 984.16,
           "caption_end_sec": 987.52,
-          "display_text": "経理一本でこの先どう生きていくのかキャリアへの迷いがあったタイミングで開",
+          "display_text": "経理一本のキャリアに迷ったタイミングだった",
           "full_reference_text": "経理一本でこの先どう生きていくのかキャリアへの迷いがあったタイミングで開発の話が来た。",
           "search_keys": [
             "キャリアへの迷い",
@@ -4004,33 +3656,10 @@
         {
           "type": "caption",
           "start": 2.5,
-          "end": 4.8,
-          "text": "会計基準やM&Aのような専門性が強いわけでもなく経理",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_064_part01",
-          "caption_no": 64,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_064",
-            "source": "main_caption_plan",
-            "caption_start_sec": 995.0,
-            "caption_end_sec": 1025.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "会計基準やM&Aのような専門性が強いわけでもなく経理一本でこの先どう生き",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 4.9,
           "end": 7.3,
-          "text": "一本でこの先どう生き",
+          "text": "経理一本でどう生きるかという不安があった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_064_part02",
+          "caption_id": "main_caption_064",
           "caption_no": 64,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -4039,12 +3668,6 @@
             "caption_start_sec": 995.0,
             "caption_end_sec": 1025.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "会計基準やM&Aのような専門性が強いわけでもなく経理一本でこの先どう生き",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -4060,7 +3683,7 @@
           "source_end_sec": 996.82,
           "caption_start_sec": 995.0,
           "caption_end_sec": 1025.0,
-          "display_text": "会計基準やM&Aのような専門性が強いわけでもなく経理一本でこの先どう生き",
+          "display_text": "経理一本でどう生きるかという不安があった",
           "full_reference_text": "会計基準やM&Aのような専門性が強いわけでもなく経理一本でこの先どう生きていくのかという不安があった。",
           "search_keys": [
             "会計基準",
@@ -4176,33 +3799,10 @@
         {
           "type": "caption",
           "start": 2.5,
-          "end": 4.8,
-          "text": "大手企業ならマネジメントや組織づくりの道もあるがスタート",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_065_part01",
-          "caption_no": 65,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_065",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1025.0,
-            "caption_end_sec": 1048.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "大手企業ならマネジメントや組織づくりの道もあるがスタートアップでは経理と",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 4.9,
           "end": 7.3,
-          "text": "アップでは経理と",
+          "text": "スタートアップで経理として伸びる難しさがあった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_065_part02",
+          "caption_id": "main_caption_065",
           "caption_no": 65,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -4211,12 +3811,6 @@
             "caption_start_sec": 1025.0,
             "caption_end_sec": 1048.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "大手企業ならマネジメントや組織づくりの道もあるがスタートアップでは経理と",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -4232,7 +3826,7 @@
           "source_end_sec": 1025.22,
           "caption_start_sec": 1025.0,
           "caption_end_sec": 1048.0,
-          "display_text": "大手企業ならマネジメントや組織づくりの道もあるがスタートアップでは経理と",
+          "display_text": "スタートアップで経理として伸びる難しさがあった",
           "full_reference_text": "大手企業ならマネジメントや組織づくりの道もあるがスタートアップでは経理としてどう伸びていくかが難しかった。",
           "search_keys": [
             "大手",
@@ -4348,33 +3942,10 @@
         {
           "type": "caption",
           "start": 1.78,
-          "end": 4.08,
-          "text": "村田さんはもともと人事企画の立場からLayerXのカルチャ",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_011_part01",
-          "caption_no": 11,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_011",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1054.28,
-            "caption_end_sec": 1057.28,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "村田さんはもともと人事企画の立場からLayerXのカルチャーをベンチマー",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 4.18,
           "end": 6.58,
-          "text": "ーをベンチマー",
+          "text": "LayerXのカルチャーをベンチマークしていた",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_011_part02",
+          "caption_id": "main_caption_011",
           "caption_no": 11,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -4383,12 +3954,6 @@
             "caption_start_sec": 1054.28,
             "caption_end_sec": 1057.28,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "村田さんはもともと人事企画の立場からLayerXのカルチャーをベンチマー",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -4404,7 +3969,7 @@
           "source_end_sec": 1057.28,
           "caption_start_sec": 1054.28,
           "caption_end_sec": 1057.28,
-          "display_text": "村田さんはもともと人事企画の立場からLayerXのカルチャーをベンチマー",
+          "display_text": "LayerXのカルチャーをベンチマークしていた",
           "full_reference_text": "村田さんはもともと人事企画の立場からLayerXのカルチャーをベンチマークしていた。",
           "search_keys": [
             "人事企画",
@@ -4478,33 +4043,10 @@
         {
           "type": "caption",
           "start": 9.78,
-          "end": 12.08,
-          "text": "最初はプロダクトに強い興味があったわけではなく採用体",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_012_part01",
-          "caption_no": 12,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_012",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1077.28,
-            "caption_end_sec": 1080.28,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "最初はプロダクトに強い興味があったわけではなく採用体験を見てみたい人事の",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.18,
           "end": 14.58,
-          "text": "験を見てみたい人事の",
+          "text": "入口は採用体験や人事の勉強だった",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_012_part02",
+          "caption_id": "main_caption_012",
           "caption_no": 12,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -4513,12 +4055,6 @@
             "caption_start_sec": 1077.28,
             "caption_end_sec": 1080.28,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "最初はプロダクトに強い興味があったわけではなく採用体験を見てみたい人事の",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -4534,7 +4070,7 @@
           "source_end_sec": 1080.28,
           "caption_start_sec": 1077.28,
           "caption_end_sec": 1080.28,
-          "display_text": "最初はプロダクトに強い興味があったわけではなく採用体験を見てみたい人事の",
+          "display_text": "入口は採用体験や人事の勉強だった",
           "full_reference_text": "最初はプロダクトに強い興味があったわけではなく採用体験を見てみたい人事の勉強として受けてみたいという入り口だった。",
           "search_keys": [
             "採用体験",
@@ -4649,33 +4185,10 @@
         {
           "type": "caption",
           "start": 7.78,
-          "end": 10.08,
-          "text": "本当は転職を考えていなかったが「この会社で勤怠を作るなら",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_014_part01",
-          "caption_no": 14,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_014",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1105.28,
-            "caption_end_sec": 1112.28,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "本当は転職を考えていなかったが「この会社で勤怠を作るなら面白そうだ」と思",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 10.18,
           "end": 12.58,
-          "text": "面白そうだ」と思",
+          "text": "勤怠を作るなら面白そうだと思ってLayerXに来た",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_014_part02",
+          "caption_id": "main_caption_014",
           "caption_no": 14,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -4684,12 +4197,6 @@
             "caption_start_sec": 1105.28,
             "caption_end_sec": 1112.28,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "本当は転職を考えていなかったが「この会社で勤怠を作るなら面白そうだ」と思",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -4705,7 +4212,7 @@
           "source_end_sec": 1115.28,
           "caption_start_sec": 1105.28,
           "caption_end_sec": 1112.28,
-          "display_text": "本当は転職を考えていなかったが「この会社で勤怠を作るなら面白そうだ」と思",
+          "display_text": "勤怠を作るなら面白そうだと思ってLayerXに来た",
           "full_reference_text": "本当は転職を考えていなかったが「この会社で勤怠を作るなら面白そうだ」と思ってLayerXに来た。",
           "search_keys": [
             "転職考えていなかった",
@@ -4779,33 +4286,10 @@
         {
           "type": "caption",
           "start": 3.5,
-          "end": 5.8,
-          "text": "LayerXがHR領域を作ろうとしていると聞き",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_068_part01",
-          "caption_no": 68,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_068",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1116.0,
-            "caption_end_sec": 1138.0,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "LayerXがHR領域を作ろうとしていると聞きLayerXのカルチャーの",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 5.9,
           "end": 8.3,
-          "text": "LayerXのカルチャーの",
+          "text": "LayerXのカルチャーでHRテックを作ることに興味を持った",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_068_part02",
+          "caption_id": "main_caption_068",
           "caption_no": 68,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -4814,12 +4298,6 @@
             "caption_start_sec": 1116.0,
             "caption_end_sec": 1138.0,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "LayerXがHR領域を作ろうとしていると聞きLayerXのカルチャーの",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -4835,7 +4313,7 @@
           "source_end_sec": 1123.28,
           "caption_start_sec": 1116.0,
           "caption_end_sec": 1138.0,
-          "display_text": "LayerXがHR領域を作ろうとしていると聞きLayerXのカルチャーの",
+          "display_text": "LayerXのカルチャーでHRテックを作ることに興味を持った",
           "full_reference_text": "LayerXがHR領域を作ろうとしていると聞きLayerXのカルチャーの中でHRテックを作ることに一気に興味を持った。",
           "search_keys": [
             "HR領域",
@@ -5108,33 +4586,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "人事企画では給与制度や評価制度のような定量的な話",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_070_part01",
-          "caption_no": 70,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_070",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1183.0,
-            "caption_end_sec": 1200.0,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "人事企画では給与制度や評価制度のような定量的な話だけではなくカルチャーを",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "だけではなくカルチャーを",
+          "text": "人事企画ではカルチャーを見ることも重要になる",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_070_part02",
+          "caption_id": "main_caption_070",
           "caption_no": 70,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -5143,12 +4598,6 @@
             "caption_start_sec": 1183.0,
             "caption_end_sec": 1200.0,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "人事企画では給与制度や評価制度のような定量的な話だけではなくカルチャーを",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -5164,7 +4613,7 @@
           "source_end_sec": 1183.28,
           "caption_start_sec": 1183.0,
           "caption_end_sec": 1200.0,
-          "display_text": "人事企画では給与制度や評価制度のような定量的な話だけではなくカルチャーを",
+          "display_text": "人事企画ではカルチャーを見ることも重要になる",
           "full_reference_text": "人事企画では給与制度や評価制度のような定量的な話だけではなくカルチャーを見ることも重要になる。",
           "search_keys": [
             "人事企画",
@@ -5240,7 +4689,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "経理・労務・人事から開発に関わること",
+          "text": "開発に関わることは少し違うキャリアへの一歩",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_071",
           "caption_no": 71,
@@ -5266,7 +4715,7 @@
           "source_end_sec": 1201.28,
           "caption_start_sec": 1200.0,
           "caption_end_sec": 1244.0,
-          "display_text": "経理・労務・人事から開発に関わること",
+          "display_text": "開発に関わることは少し違うキャリアへの一歩",
           "full_reference_text": "経理・労務・人事から開発に関わることは少し違うキャリアに踏み出すことだが必ずしも大きなキャリアチェンジとして構えていたわけではなかった。",
           "search_keys": [
             "違うキャリア",
@@ -5463,33 +4912,10 @@
         {
           "type": "caption",
           "start": 4.02,
-          "end": 6.32,
-          "text": "プロダクトマネージャーはコードを書く人ではなく",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_016_part01",
-          "caption_no": 16,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_016",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1251.52,
-            "caption_end_sec": 1254.56,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "プロダクトマネージャーはコードを書く人ではなくプロダクトの成長のため",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 6.42,
           "end": 8.82,
-          "text": "プロダクトの成長のため",
+          "text": "PDMはプロダクト成長のために何でもやる人",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_016_part02",
+          "caption_id": "main_caption_016",
           "caption_no": 16,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -5498,12 +4924,6 @@
             "caption_start_sec": 1251.52,
             "caption_end_sec": 1254.56,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "プロダクトマネージャーはコードを書く人ではなくプロダクトの成長のため",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -5519,7 +4939,7 @@
           "source_end_sec": 1254.56,
           "caption_start_sec": 1251.52,
           "caption_end_sec": 1254.56,
-          "display_text": "プロダクトマネージャーはコードを書く人ではなくプロダクトの成長のため",
+          "display_text": "PDMはプロダクト成長のために何でもやる人",
           "full_reference_text": "プロダクトマネージャーはコードを書く人ではなくプロダクトの成長のために何でもやる人だと知った。",
           "search_keys": [
             "プロダクトマネージャー",
@@ -5594,7 +5014,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "コードを書けと言われたら受けられなかった",
+          "text": "実務知識を活かせるなら挑戦できると思った",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_018",
           "caption_no": 18,
@@ -5620,7 +5040,7 @@
           "source_end_sec": 1279.16,
           "caption_start_sec": 1277.16,
           "caption_end_sec": 1280.16,
-          "display_text": "コードを書けと言われたら受けられなかった",
+          "display_text": "実務知識を活かせるなら挑戦できると思った",
           "full_reference_text": "コードを書けと言われたら受けられなかった。でも自分の実務知識を活かせるなら挑戦できると思った。",
           "search_keys": [
             "コードを書け",
@@ -5695,7 +5115,7 @@
           "type": "caption",
           "start": 9.5,
           "end": 14.3,
-          "text": "コードを書けなくても自分の知識を活かしていろいろなこと",
+          "text": "コードを書けなくても開発に関われると思えた",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_073",
           "caption_no": 73,
@@ -5721,7 +5141,7 @@
           "source_end_sec": 1293.16,
           "caption_start_sec": 1287.0,
           "caption_end_sec": 1310.0,
-          "display_text": "コードを書けなくても自分の知識を活かしていろいろなこと",
+          "display_text": "コードを書けなくても開発に関われると思えた",
           "full_reference_text": "コードを書けなくても自分の知識を活かしていろいろなことをやればいいなら開発に関わる可能性があると思えた。",
           "search_keys": [
             "コードを書けなくてもいい",
@@ -5795,33 +5215,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "家族には「経理系の仕事だから」と説明してあまりリス",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_019_part01",
-          "caption_no": 19,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_019",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1307.16,
-            "caption_end_sec": 1311.16,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "家族には「経理系の仕事だから」と説明してあまりリスクを取っていない感じを",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "クを取っていない感じを",
+          "text": "家族には経理系の仕事だと説明していた",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_019_part02",
+          "caption_id": "main_caption_019",
           "caption_no": 19,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -5830,12 +5227,6 @@
             "caption_start_sec": 1307.16,
             "caption_end_sec": 1311.16,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "家族には「経理系の仕事だから」と説明してあまりリスクを取っていない感じを",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -5851,7 +5242,7 @@
           "source_end_sec": 1311.16,
           "caption_start_sec": 1307.16,
           "caption_end_sec": 1311.16,
-          "display_text": "家族には「経理系の仕事だから」と説明してあまりリスクを取っていない感じを",
+          "display_text": "家族には経理系の仕事だと説明していた",
           "full_reference_text": "家族には「経理系の仕事だから」と説明してあまりリスクを取っていない感じを出していた。",
           "search_keys": [
             "家族",
@@ -5926,7 +5317,7 @@
           "type": "caption",
           "start": 9.66,
           "end": 14.46,
-          "text": "ドメイン知識を持ってプロダクト開発に関与すること",
+          "text": "共通点はドメイン知識で開発に関与すること",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_020",
           "caption_no": 20,
@@ -5952,7 +5343,7 @@
           "source_end_sec": 1321.16,
           "caption_start_sec": 1317.16,
           "caption_end_sec": 1321.16,
-          "display_text": "ドメイン知識を持ってプロダクト開発に関与すること",
+          "display_text": "共通点はドメイン知識で開発に関与すること",
           "full_reference_text": "ドメイン知識を持ってプロダクト開発に関与することが根元さんと村田さんに共通しているポイント。",
           "search_keys": [
             "共通点",
@@ -6067,33 +5458,10 @@
         {
           "type": "caption",
           "start": 7.42,
-          "end": 9.72,
-          "text": "労務を主務にしながら仕様検討にも入り",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_021_part01",
-          "caption_no": 21,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_021",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1344.92,
-            "caption_end_sec": 1347.92,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "労務を主務にしながら仕様検討にも入り開発にかなり深く関わっている。",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 9.82,
           "end": 12.22,
-          "text": "開発にかなり深く関わっている",
+          "text": "労務を主務にしながら仕様検討にも深く関わる",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_021_part02",
+          "caption_id": "main_caption_021",
           "caption_no": 21,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -6102,12 +5470,6 @@
             "caption_start_sec": 1344.92,
             "caption_end_sec": 1347.92,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "労務を主務にしながら仕様検討にも入り開発にかなり深く関わっている。",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -6123,7 +5485,7 @@
           "source_end_sec": 1347.92,
           "caption_start_sec": 1344.92,
           "caption_end_sec": 1347.92,
-          "display_text": "労務を主務にしながら仕様検討にも入り開発にかなり深く関わっている。",
+          "display_text": "労務を主務にしながら仕様検討にも深く関わる",
           "full_reference_text": "労務を主務にしながら仕様検討にも入り開発にかなり深く関わっている。",
           "search_keys": [
             "労務メイン",
@@ -6198,7 +5560,7 @@
           "type": "caption",
           "start": 4.42,
           "end": 9.22,
-          "text": "実務で感じてきた「なんで？」という",
+          "text": "実務のモヤモヤをプロダクトに落とし込める",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_022",
           "caption_no": 22,
@@ -6224,7 +5586,7 @@
           "source_end_sec": 1359.92,
           "caption_start_sec": 1356.92,
           "caption_end_sec": 1359.92,
-          "display_text": "実務で感じてきた「なんで？」という",
+          "display_text": "実務のモヤモヤをプロダクトに落とし込める",
           "full_reference_text": "実務で感じてきた「なんで？」というモヤモヤをプロダクトに落とし込めるのが面白い。",
           "search_keys": [
             "実務で感じてきた",
@@ -6299,7 +5661,7 @@
           "type": "caption",
           "start": 1.42,
           "end": 6.22,
-          "text": "文句を言うとすぐ次に楽しくなってくる",
+          "text": "違和感を出すことでプロダクトが良くなる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_023",
           "caption_no": 23,
@@ -6325,7 +5687,7 @@
           "source_end_sec": 1371.92,
           "caption_start_sec": 1368.92,
           "caption_end_sec": 1371.92,
-          "display_text": "文句を言うとすぐ次に楽しくなってくる",
+          "display_text": "違和感を出すことでプロダクトが良くなる",
           "full_reference_text": "文句を言うとすぐ次に楽しくなってくる。違和感を出すことでプロダクトが良くなっていく。",
           "search_keys": [
             "文句言う",
@@ -6399,33 +5761,10 @@
         {
           "type": "caption",
           "start": 5.42,
-          "end": 7.72,
-          "text": "LayerXにはフィードバックを出す側も受ける",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_024_part01",
-          "caption_no": 24,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_024",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1387.92,
-            "caption_end_sec": 1390.92,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "LayerXにはフィードバックを出す側も受ける側もそれを良いものとして歓",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 7.82,
           "end": 10.22,
-          "text": "側もそれを良いものとして歓",
+          "text": "フィードバックを良いものとして歓迎する文化がある",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_024_part02",
+          "caption_id": "main_caption_024",
           "caption_no": 24,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -6434,12 +5773,6 @@
             "caption_start_sec": 1387.92,
             "caption_end_sec": 1390.92,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "LayerXにはフィードバックを出す側も受ける側もそれを良いものとして歓",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -6455,7 +5788,7 @@
           "source_end_sec": 1390.92,
           "caption_start_sec": 1387.92,
           "caption_end_sec": 1390.92,
-          "display_text": "LayerXにはフィードバックを出す側も受ける側もそれを良いものとして歓",
+          "display_text": "フィードバックを良いものとして歓迎する文化がある",
           "full_reference_text": "LayerXにはフィードバックを出す側も受ける側もそれを良いものとして歓迎する文化がある。",
           "search_keys": [
             "フィードバック",
@@ -6529,33 +5862,10 @@
         {
           "type": "caption",
           "start": 7.86,
-          "end": 10.16,
-          "text": "エンジニアも自分から仕様を考えるので違和感を持ったら言う",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_025_part01",
-          "caption_no": 25,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_025",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1405.36,
-            "caption_end_sec": 1408.36,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "エンジニアも自分から仕様を考えるので違和感を持ったら言うだけでどんどん良",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 10.26,
           "end": 12.66,
-          "text": "だけでどんどん良",
+          "text": "違和感を言うだけでどんどん良いものになる",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_025_part02",
+          "caption_id": "main_caption_025",
           "caption_no": 25,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -6564,12 +5874,6 @@
             "caption_start_sec": 1405.36,
             "caption_end_sec": 1408.36,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "エンジニアも自分から仕様を考えるので違和感を持ったら言うだけでどんどん良",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -6585,7 +5889,7 @@
           "source_end_sec": 1408.32,
           "caption_start_sec": 1405.36,
           "caption_end_sec": 1408.36,
-          "display_text": "エンジニアも自分から仕様を考えるので違和感を持ったら言うだけでどんどん良",
+          "display_text": "違和感を言うだけでどんどん良いものになる",
           "full_reference_text": "エンジニアも自分から仕様を考えるので違和感を持ったら言うだけでどんどん良いものになっていく。",
           "search_keys": [
             "エンジニア",
@@ -6860,7 +6164,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "リリース前にはサポート記事やプレスリリースを書くこと",
+          "text": "PDMはフェーズによって仕事内容が変わる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_027",
           "caption_no": 27,
@@ -6886,7 +6190,7 @@
           "source_end_sec": 1474.6,
           "caption_start_sec": 1471.76,
           "caption_end_sec": 1474.76,
-          "display_text": "リリース前にはサポート記事やプレスリリースを書くこと",
+          "display_text": "PDMはフェーズによって仕事内容が変わる",
           "full_reference_text": "リリース前にはサポート記事やプレスリリースを書くこともありPDMは関わる人も仕事内容もフェーズによって変わる。",
           "search_keys": [
             "サポート記事",
@@ -7140,33 +6444,10 @@
         {
           "type": "caption",
           "start": 2.8,
-          "end": 5.1,
-          "text": "開発に関わって一番大変だったのは実務で当たり前",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_028_part01",
-          "caption_no": 28,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_028",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1535.3,
-            "caption_end_sec": 1538.62,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "開発に関わって一番大変だったのは実務で当たり前だと思っていたこと",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 5.2,
           "end": 7.6,
-          "text": "だと思っていたこと",
+          "text": "一番大変だったのは当たり前を言語化すること",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_028_part02",
+          "caption_id": "main_caption_028",
           "caption_no": 28,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -7175,12 +6456,6 @@
             "caption_start_sec": 1535.3,
             "caption_end_sec": 1538.62,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "開発に関わって一番大変だったのは実務で当たり前だと思っていたこと",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -7196,7 +6471,7 @@
           "source_end_sec": 1538.62,
           "caption_start_sec": 1535.3,
           "caption_end_sec": 1538.62,
-          "display_text": "開発に関わって一番大変だったのは実務で当たり前だと思っていたこと",
+          "display_text": "一番大変だったのは当たり前を言語化すること",
           "full_reference_text": "開発に関わって一番大変だったのは実務で当たり前だと思っていたことを言語化すること。",
           "search_keys": [
             "開発に関わる仕事",
@@ -7312,33 +6587,10 @@
         {
           "type": "caption",
           "start": 4.12,
-          "end": 6.42,
-          "text": "業務として当たり前のことにも法律上の理由会社のルール裏",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_031_part01",
-          "caption_no": 31,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_031",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1566.62,
-            "caption_end_sec": 1571.12,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "業務として当たり前のことにも法律上の理由会社のルール裏側の事情がある。",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 6.52,
           "end": 8.92,
-          "text": "側の事情がある",
+          "text": "当たり前の業務にも法律や会社ルールの背景がある",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_031_part02",
+          "caption_id": "main_caption_031",
           "caption_no": 31,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -7347,12 +6599,6 @@
             "caption_start_sec": 1566.62,
             "caption_end_sec": 1571.12,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "業務として当たり前のことにも法律上の理由会社のルール裏側の事情がある。",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -7368,7 +6614,7 @@
           "source_end_sec": 1571.12,
           "caption_start_sec": 1566.62,
           "caption_end_sec": 1571.12,
-          "display_text": "業務として当たり前のことにも法律上の理由会社のルール裏側の事情がある。",
+          "display_text": "当たり前の業務にも法律や会社ルールの背景がある",
           "full_reference_text": "業務として当たり前のことにも法律上の理由会社のルール裏側の事情がある。",
           "search_keys": [
             "業務として当たり前",
@@ -7485,7 +6731,7 @@
           "type": "caption",
           "start": 3.12,
           "end": 7.92,
-          "text": "ドメインエキスパートというと何でも知っていそうに見える",
+          "text": "何でも知っていそうに見える期待の高さが難しい",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_032",
           "caption_no": 32,
@@ -7511,7 +6757,7 @@
           "source_end_sec": 1601.22,
           "caption_start_sec": 1595.62,
           "caption_end_sec": 1601.22,
-          "display_text": "ドメインエキスパートというと何でも知っていそうに見える",
+          "display_text": "何でも知っていそうに見える期待の高さが難しい",
           "full_reference_text": "ドメインエキスパートというと何でも知っていそうに見える。その期待の高さが難しさでもある。",
           "search_keys": [
             "何でも知ってそう",
@@ -7586,7 +6832,7 @@
           "type": "caption",
           "start": 4.44,
           "end": 9.24,
-          "text": "LayerXのエンジニアはドメインのこと",
+          "text": "LayerXのエンジニアはドメインをものすごく調べている",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_034",
           "caption_no": 34,
@@ -7612,7 +6858,7 @@
           "source_end_sec": 1619.16,
           "caption_start_sec": 1611.94,
           "caption_end_sec": 1618.94,
-          "display_text": "LayerXのエンジニアはドメインのこと",
+          "display_text": "LayerXのエンジニアはドメインをものすごく調べている",
           "full_reference_text": "LayerXのエンジニアはドメインのことをものすごく調べていて正直自分より詳しいと思う場面もある。",
           "search_keys": [
             "エンジニア",
@@ -7687,33 +6933,10 @@
         {
           "type": "caption",
           "start": 7.68,
-          "end": 9.98,
-          "text": "専門家が一方的に教えるのではなくエンジニアと建設的に議論",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_035_part01",
-          "caption_no": 35,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_035",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1630.18,
-            "caption_end_sec": 1633.82,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "専門家が一方的に教えるのではなくエンジニアと建設的に議論しながらプロダク",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 10.08,
           "end": 12.48,
-          "text": "しながらプロダク",
+          "text": "専門家が一方的に教えるのではなく建設的に議論する",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_035_part02",
+          "caption_id": "main_caption_035",
           "caption_no": 35,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -7722,12 +6945,6 @@
             "caption_start_sec": 1630.18,
             "caption_end_sec": 1633.82,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "専門家が一方的に教えるのではなくエンジニアと建設的に議論しながらプロダク",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -7743,7 +6960,7 @@
           "source_end_sec": 1633.82,
           "caption_start_sec": 1630.18,
           "caption_end_sec": 1633.82,
-          "display_text": "専門家が一方的に教えるのではなくエンジニアと建設的に議論しながらプロダク",
+          "display_text": "専門家が一方的に教えるのではなく建設的に議論する",
           "full_reference_text": "専門家が一方的に教えるのではなくエンジニアと建設的に議論しながらプロダクトを作っている。",
           "search_keys": [
             "建設的な議論",
@@ -7817,33 +7034,10 @@
         {
           "type": "caption",
           "start": 1.26,
-          "end": 3.56,
-          "text": "意見を言った後に「なんでなんですか？」を絶対に逃がして",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_036_part01",
-          "caption_no": 36,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_036",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1638.76,
-            "caption_end_sec": 1641.88,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "意見を言った後に「なんでなんですか？」を絶対に逃がしてくれない",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 3.66,
           "end": 6.06,
-          "text": "くれない",
+          "text": "「なんで？」を逃がさないことが健全なプレッシャーになる",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_036_part02",
+          "caption_id": "main_caption_036",
           "caption_no": 36,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -7852,12 +7046,6 @@
             "caption_start_sec": 1638.76,
             "caption_end_sec": 1641.88,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "意見を言った後に「なんでなんですか？」を絶対に逃がしてくれない",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -7873,7 +7061,7 @@
           "source_end_sec": 1641.88,
           "caption_start_sec": 1638.76,
           "caption_end_sec": 1641.88,
-          "display_text": "意見を言った後に「なんでなんですか？」を絶対に逃がしてくれない",
+          "display_text": "「なんで？」を逃がさないことが健全なプレッシャーになる",
           "full_reference_text": "意見を言った後に「なんでなんですか？」を絶対に逃がしてくれない。それが健全なプレッシャーになっている。",
           "search_keys": [
             "なんでなんですか",
@@ -7947,33 +7135,10 @@
         {
           "type": "caption",
           "start": 1.1,
-          "end": 3.4,
-          "text": "自分がこれまで当たり前だと思っていたものが開発の議論を通",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_038_part01",
-          "caption_no": 38,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_038",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1653.6,
-            "caption_end_sec": 1656.6,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "自分がこれまで当たり前だと思っていたものが開発の議論を通じて磨かれていく",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 3.5,
           "end": 5.9,
-          "text": "じて磨かれていく",
+          "text": "当たり前が開発の議論を通じて磨かれていく",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_038_part02",
+          "caption_id": "main_caption_038",
           "caption_no": 38,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -7982,19 +7147,13 @@
             "caption_start_sec": 1653.6,
             "caption_end_sec": 1656.6,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "自分がこれまで当たり前だと思っていたものが開発の議論を通じて磨かれていく",
-            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "経理や労務のルールには何十年前の名残のようなものもある",
+          "text": "古い慣習を流さず一つひとつ調べることが大事",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_039",
           "caption_no": 39,
@@ -8020,7 +7179,7 @@
           "source_end_sec": 1654.76,
           "caption_start_sec": 1653.6,
           "caption_end_sec": 1656.6,
-          "display_text": "自分がこれまで当たり前だと思っていたものが開発の議論を通じて磨かれていく",
+          "display_text": "当たり前が開発の議論を通じて磨かれていく",
           "full_reference_text": "自分がこれまで当たり前だと思っていたものが開発の議論を通じて磨かれていく。",
           "search_keys": [
             "当たり前だと思ったもの",
@@ -8045,7 +7204,7 @@
           "source_end_sec": 1665.04,
           "caption_start_sec": 1663.72,
           "caption_end_sec": 1666.72,
-          "display_text": "経理や労務のルールには何十年前の名残のようなものもある",
+          "display_text": "古い慣習を流さず一つひとつ調べることが大事",
           "full_reference_text": "経理や労務のルールには何十年前の名残のようなものもある。慣習で流さず一つひとつ調べることが大事。",
           "search_keys": [
             "法律",
@@ -8260,7 +7419,7 @@
           "type": "caption",
           "start": 6.0,
           "end": 10.8,
-          "text": "労務領域ではミスしてはいけないという感覚が強い",
+          "text": "労務領域では自分の目で確かめたい感覚が強い",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_041",
           "caption_no": 41,
@@ -8286,7 +7445,7 @@
           "source_end_sec": 1734.5,
           "caption_start_sec": 1718.5,
           "caption_end_sec": 1725.5,
-          "display_text": "労務領域ではミスしてはいけないという感覚が強い",
+          "display_text": "労務領域では自分の目で確かめたい感覚が強い",
           "full_reference_text": "労務領域ではミスしてはいけないという感覚が強い。だからユーザーは自分の目で確かめたい。",
           "search_keys": [
             "労務経験者",
@@ -8401,33 +7560,10 @@
         {
           "type": "caption",
           "start": 0.35,
-          "end": 2.65,
-          "text": "全部自動でやってくれる機能は便利に見えるが使う側が心",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_042_part01",
-          "caption_no": 42,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_042",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1742.5,
-            "caption_end_sec": 1749.5,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "全部自動でやってくれる機能は便利に見えるが使う側が心配になれば結局自分で",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 2.75,
           "end": 5.15,
-          "text": "配になれば結局自分で",
+          "text": "不安が残ると結局ユーザーは自分で調べてしまう",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_042_part02",
+          "caption_id": "main_caption_042",
           "caption_no": 42,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -8436,19 +7572,13 @@
             "caption_start_sec": 1742.5,
             "caption_end_sec": 1749.5,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "全部自動でやってくれる機能は便利に見えるが使う側が心配になれば結局自分で",
-            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "自動化してもユーザーが不安なら使われない機能になる",
+          "text": "ユーザーが不安なら自動化しても使われない",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_043",
           "caption_no": 43,
@@ -8474,7 +7604,7 @@
           "source_end_sec": 1749.5,
           "caption_start_sec": 1742.5,
           "caption_end_sec": 1749.5,
-          "display_text": "全部自動でやってくれる機能は便利に見えるが使う側が心配になれば結局自分で",
+          "display_text": "不安が残ると結局ユーザーは自分で調べてしまう",
           "full_reference_text": "全部自動でやってくれる機能は便利に見えるが使う側が心配になれば結局自分で調べるようになる。",
           "search_keys": [
             "全部これ自動",
@@ -8499,7 +7629,7 @@
           "source_end_sec": 1755.5,
           "caption_start_sec": 1752.5,
           "caption_end_sec": 1755.5,
-          "display_text": "自動化してもユーザーが不安なら使われない機能になる",
+          "display_text": "ユーザーが不安なら自動化しても使われない",
           "full_reference_text": "自動化してもユーザーが不安なら使われない機能になる。これを避けるために実務家が開発に入る意味がある。",
           "search_keys": [
             "使われない機能",
@@ -8614,33 +7744,10 @@
         {
           "type": "caption",
           "start": 9.0,
-          "end": 11.3,
-          "text": "機能を作るときはその機能で何を実現したいのかユーザーにど",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_044_part01",
-          "caption_no": 44,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_044",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1781.5,
-            "caption_end_sec": 1784.5,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "機能を作るときはその機能で何を実現したいのかユーザーにどうなってほしいの",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 11.4,
           "end": 13.8,
-          "text": "うなってほしいの",
+          "text": "機能で何を実現したいのかを体験込みで伝える",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_044_part02",
+          "caption_id": "main_caption_044",
           "caption_no": 44,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -8649,12 +7756,6 @@
             "caption_start_sec": 1781.5,
             "caption_end_sec": 1784.5,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "機能を作るときはその機能で何を実現したいのかユーザーにどうなってほしいの",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -8670,7 +7771,7 @@
           "source_end_sec": 1784.5,
           "caption_start_sec": 1781.5,
           "caption_end_sec": 1784.5,
-          "display_text": "機能を作るときはその機能で何を実現したいのかユーザーにどうなってほしいの",
+          "display_text": "機能で何を実現したいのかを体験込みで伝える",
           "full_reference_text": "機能を作るときはその機能で何を実現したいのかユーザーにどうなってほしいのかを自分の体験込みで伝える。",
           "search_keys": [
             "この機能で何が実現したくて",
@@ -8744,33 +7845,10 @@
         {
           "type": "caption",
           "start": 3.0,
-          "end": 5.3,
-          "text": "開発では「あれもしたいこれもしたい」が増えがちだが全",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_045_part01",
-          "caption_no": 45,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_045",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1790.5,
-            "caption_end_sec": 1793.5,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "開発では「あれもしたいこれもしたい」が増えがちだが全部やるとスピードも落",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 5.4,
           "end": 7.8,
-          "text": "部やるとスピードも落",
+          "text": "全部やるとスピードも落ち画面も分かりにくくなる",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_045_part02",
+          "caption_id": "main_caption_045",
           "caption_no": 45,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -8779,12 +7857,6 @@
             "caption_start_sec": 1790.5,
             "caption_end_sec": 1793.5,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "開発では「あれもしたいこれもしたい」が増えがちだが全部やるとスピードも落",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -8800,7 +7872,7 @@
           "source_end_sec": 1791.5,
           "caption_start_sec": 1790.5,
           "caption_end_sec": 1793.5,
-          "display_text": "開発では「あれもしたいこれもしたい」が増えがちだが全部やるとスピードも落",
+          "display_text": "全部やるとスピードも落ち画面も分かりにくくなる",
           "full_reference_text": "開発では「あれもしたいこれもしたい」が増えがちだが全部やるとスピードも落ち画面も分かりにくくなる。",
           "search_keys": [
             "あれもしたい",
@@ -8875,33 +7947,10 @@
         {
           "type": "caption",
           "start": 1.26,
-          "end": 3.56,
-          "text": "大事なのはコアとして何をやりたいのかをはっきりさせそれ以",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_046_part01",
-          "caption_no": 46,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_046",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1803.76,
-            "caption_end_sec": 1806.76,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "大事なのはコアとして何をやりたいのかをはっきりさせそれ以外は落とす判断も",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 3.66,
           "end": 6.06,
-          "text": "外は落とす判断も",
+          "text": "コア以外は落とす判断も必要",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_046_part02",
+          "caption_id": "main_caption_046",
           "caption_no": 46,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -8910,12 +7959,6 @@
             "caption_start_sec": 1803.76,
             "caption_end_sec": 1806.76,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "大事なのはコアとして何をやりたいのかをはっきりさせそれ以外は落とす判断も",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -8931,7 +7974,7 @@
           "source_end_sec": 1806.28,
           "caption_start_sec": 1803.76,
           "caption_end_sec": 1806.76,
-          "display_text": "大事なのはコアとして何をやりたいのかをはっきりさせそれ以外は落とす判断も",
+          "display_text": "コア以外は落とす判断も必要",
           "full_reference_text": "大事なのはコアとして何をやりたいのかをはっきりさせそれ以外は落とす判断もすること。",
           "search_keys": [
             "コアとして",
@@ -9048,7 +8091,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "ルールを調べて機能を作るだけならエンジニアにもできる",
+          "text": "ルール調査だけでなくビジョンが必要になる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_047",
           "caption_no": 47,
@@ -9074,7 +8117,7 @@
           "source_end_sec": 1848.54,
           "caption_start_sec": 1845.9,
           "caption_end_sec": 1848.9,
-          "display_text": "ルールを調べて機能を作るだけならエンジニアにもできる",
+          "display_text": "ルール調査だけでなくビジョンが必要になる",
           "full_reference_text": "ルールを調べて機能を作るだけならエンジニアにもできる。だからこそ何を実現したいのかというビジョンが必要になる。",
           "search_keys": [
             "ルールを調べて",
@@ -9189,33 +8232,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "実務家のプライドを無視してルール優先だけで機",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_048_part01",
-          "caption_no": 48,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_048",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1875.46,
-            "caption_end_sec": 1879.46,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "実務家のプライドを無視してルール優先だけで機能を作っていないかを常に気に",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "能を作っていないかを常に気に",
+          "text": "実務家のプライドを無視していないかを気にしている",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_048_part02",
+          "caption_id": "main_caption_048",
           "caption_no": 48,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -9224,12 +8244,6 @@
             "caption_start_sec": 1875.46,
             "caption_end_sec": 1879.46,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "実務家のプライドを無視してルール優先だけで機能を作っていないかを常に気に",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -9245,7 +8259,7 @@
           "source_end_sec": 1879.46,
           "caption_start_sec": 1875.46,
           "caption_end_sec": 1879.46,
-          "display_text": "実務家のプライドを無視してルール優先だけで機能を作っていないかを常に気に",
+          "display_text": "実務家のプライドを無視していないかを気にしている",
           "full_reference_text": "実務家のプライドを無視してルール優先だけで機能を作っていないかを常に気にしている。",
           "search_keys": [
             "実務家たちのプライド",
@@ -9376,33 +8390,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "必要そうなものを足すだけではなく「これはもうな",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_049_part01",
-          "caption_no": 49,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_049",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1903.86,
-            "caption_end_sec": 1907.86,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "必要そうなものを足すだけではなく「これはもうなくていいです」と言えること",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "くていいです」と言えること",
+          "text": "足すだけでなく「なくていい」と言えることも価値",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_049_part02",
+          "caption_id": "main_caption_049",
           "caption_no": 49,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -9411,12 +8402,6 @@
             "caption_start_sec": 1903.86,
             "caption_end_sec": 1907.86,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "必要そうなものを足すだけではなく「これはもうなくていいです」と言えること",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -9432,7 +8417,7 @@
           "source_end_sec": 1907.86,
           "caption_start_sec": 1903.86,
           "caption_end_sec": 1907.86,
-          "display_text": "必要そうなものを足すだけではなく「これはもうなくていいです」と言えること",
+          "display_text": "足すだけでなく「なくていい」と言えることも価値",
           "full_reference_text": "必要そうなものを足すだけではなく「これはもうなくていいです」と言えることもドメインエキスパートの価値。",
           "search_keys": [
             "いらないもの",
@@ -9850,33 +8835,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "AI時代のバックオフィスでは調査そのものよりもAIが出した情",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_050_part01",
-          "caption_no": 50,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_050",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2042.18,
-            "caption_end_sec": 2046.14,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "AI時代のバックオフィスでは調査そのものよりもAIが出した情報を制度や実",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "報を制度や実",
+          "text": "AIの情報を制度や実務にどう落とし込むかが重要",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_050_part02",
+          "caption_id": "main_caption_050",
           "caption_no": 50,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -9885,12 +8847,6 @@
             "caption_start_sec": 2042.18,
             "caption_end_sec": 2046.14,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "AI時代のバックオフィスでは調査そのものよりもAIが出した情報を制度や実",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -9906,7 +8862,7 @@
           "source_end_sec": 2046.14,
           "caption_start_sec": 2042.18,
           "caption_end_sec": 2046.14,
-          "display_text": "AI時代のバックオフィスでは調査そのものよりもAIが出した情報を制度や実",
+          "display_text": "AIの情報を制度や実務にどう落とし込むかが重要",
           "full_reference_text": "AI時代のバックオフィスでは調査そのものよりもAIが出した情報を制度や実務にどう落とし込むかが重要になる。",
           "search_keys": [
             "AI",
@@ -10645,7 +9601,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "今から経理に戻っても伸びしろはあまりない",
+          "text": "PDMとしてまずは結果を出していきたい",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_074",
           "caption_no": 74,
@@ -10671,7 +9627,7 @@
           "source_end_sec": 2282.04,
           "caption_start_sec": 2280.0,
           "caption_end_sec": 2313.0,
-          "display_text": "今から経理に戻っても伸びしろはあまりない",
+          "display_text": "PDMとしてまずは結果を出していきたい",
           "full_reference_text": "今から経理に戻っても伸びしろはあまりない。だからまずはPDMとして結果を出していきたい。",
           "search_keys": [
             "経理に戻っても",
@@ -10827,33 +9783,10 @@
         {
           "type": "caption",
           "start": 0.5,
-          "end": 2.8,
-          "text": "今はドメインのアドバンテージがあるがそれがない領域でも一",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_075_part01",
-          "caption_no": 75,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_075",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2313.0,
-            "caption_end_sec": 2345.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "今はドメインのアドバンテージがあるがそれがない領域でも一定活躍できる",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 2.9,
           "end": 5.3,
-          "text": "定活躍できる",
+          "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_075_part02",
+          "caption_id": "main_caption_075",
           "caption_no": 75,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -10862,12 +9795,6 @@
             "caption_start_sec": 2313.0,
             "caption_end_sec": 2345.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "今はドメインのアドバンテージがあるがそれがない領域でも一定活躍できる",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -10883,7 +9810,7 @@
           "source_end_sec": 2314.04,
           "caption_start_sec": 2313.0,
           "caption_end_sec": 2345.0,
-          "display_text": "今はドメインのアドバンテージがあるがそれがない領域でも一定活躍できる",
+          "display_text": "ドメインがない領域でも活躍できるスキルを身につけたい",
           "full_reference_text": "今はドメインのアドバンテージがあるがそれがない領域でも一定活躍できるスキルを身につけたい。",
           "search_keys": [
             "ドメインのアドバンテージ",
@@ -11014,33 +9941,10 @@
         {
           "type": "caption",
           "start": 2.5,
-          "end": 4.8,
-          "text": "人事や労務の領域なら話せるがドメインの貯金がなくなっ",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_076_part01",
-          "caption_no": 76,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_076",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2345.0,
-            "caption_end_sec": 2381.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "人事や労務の領域なら話せるがドメインの貯金がなくなったとき自分は何ができ",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 4.9,
           "end": 7.3,
-          "text": "たとき自分は何ができ",
+          "text": "ドメインの貯金がなくなったときの怖さがある",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_076_part02",
+          "caption_id": "main_caption_076",
           "caption_no": 76,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -11049,12 +9953,6 @@
             "caption_start_sec": 2345.0,
             "caption_end_sec": 2381.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "人事や労務の領域なら話せるがドメインの貯金がなくなったとき自分は何ができ",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -11070,7 +9968,7 @@
           "source_end_sec": 2346.22,
           "caption_start_sec": 2345.0,
           "caption_end_sec": 2381.0,
-          "display_text": "人事や労務の領域なら話せるがドメインの貯金がなくなったとき自分は何ができ",
+          "display_text": "ドメインの貯金がなくなったときの怖さがある",
           "full_reference_text": "人事や労務の領域なら話せるがドメインの貯金がなくなったとき自分は何ができるのかという怖さがある。",
           "search_keys": [
             "貯金がなくなった時",
@@ -11185,33 +10083,10 @@
         {
           "type": "caption",
           "start": 8.5,
-          "end": 10.8,
-          "text": "バックオフィスには人間による手作業のうち誰がやってもアウ",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_077_part01",
-          "caption_no": 77,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_077",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2381.0,
-            "caption_end_sec": 2410.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "バックオフィスには人間による手作業のうち誰がやってもアウトプットが変わら",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 10.9,
           "end": 13.3,
-          "text": "トプットが変わら",
+          "text": "誰がやっても変わらない手作業が多い",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_077_part02",
+          "caption_id": "main_caption_077",
           "caption_no": 77,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -11220,12 +10095,6 @@
             "caption_start_sec": 2381.0,
             "caption_end_sec": 2410.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "バックオフィスには人間による手作業のうち誰がやってもアウトプットが変わら",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -11241,7 +10110,7 @@
           "source_end_sec": 2383.66,
           "caption_start_sec": 2381.0,
           "caption_end_sec": 2410.0,
-          "display_text": "バックオフィスには人間による手作業のうち誰がやってもアウトプットが変わら",
+          "display_text": "誰がやっても変わらない手作業が多い",
           "full_reference_text": "バックオフィスには人間による手作業のうち誰がやってもアウトプットが変わらない作業が多い。",
           "search_keys": [
             "バックオフィス",
@@ -11357,7 +10226,7 @@
           "type": "caption",
           "start": 7.5,
           "end": 12.3,
-          "text": "月次申告などの作業を減らすこと",
+          "text": "月次申告などの作業を減らしたい",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_078",
           "caption_no": 78,
@@ -11383,7 +10252,7 @@
           "source_end_sec": 2415.7,
           "caption_start_sec": 2410.0,
           "caption_end_sec": 2438.0,
-          "display_text": "月次申告などの作業を減らすこと",
+          "display_text": "月次申告などの作業を減らしたい",
           "full_reference_text": "月次申告などの作業を減らすことにバクラクのプロダクトで貢献できればいいと考えている。",
           "search_keys": [
             "月次申告",
@@ -11514,33 +10383,10 @@
         {
           "type": "caption",
           "start": 5.5,
-          "end": 7.8,
-          "text": "勤怠や給与のチェックではエビデンスや突合すべき情報が散ら",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_079_part01",
-          "caption_no": 79,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_079",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2438.0,
-            "caption_end_sec": 2492.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "勤怠や給与のチェックではエビデンスや突合すべき情報が散らばっているため",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 7.9,
           "end": 10.3,
-          "text": "ばっているため",
+          "text": "必要な情報を一つの画面で確認できるようにした",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_079_part02",
+          "caption_id": "main_caption_079",
           "caption_no": 79,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -11549,12 +10395,6 @@
             "caption_start_sec": 2438.0,
             "caption_end_sec": 2492.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "勤怠や給与のチェックではエビデンスや突合すべき情報が散らばっているため",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -11570,7 +10410,7 @@
           "source_end_sec": 2441.7,
           "caption_start_sec": 2438.0,
           "caption_end_sec": 2492.0,
-          "display_text": "勤怠や給与のチェックではエビデンスや突合すべき情報が散らばっているため",
+          "display_text": "必要な情報を一つの画面で確認できるようにした",
           "full_reference_text": "勤怠や給与のチェックではエビデンスや突合すべき情報が散らばっているため一つの画面で確認できるようにすることを意識した。",
           "search_keys": [
             "就業時間のチェック",
@@ -11728,7 +10568,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "作業量を減らし確認時間を短縮するため",
+          "text": "作業量を減らし確認時間を短縮する",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_080",
           "caption_no": 80,
@@ -11754,7 +10594,7 @@
           "source_end_sec": 2494.86,
           "caption_start_sec": 2492.0,
           "caption_end_sec": 2526.0,
-          "display_text": "作業量を減らし確認時間を短縮するため",
+          "display_text": "作業量を減らし確認時間を短縮する",
           "full_reference_text": "作業量を減らし確認時間を短縮するために実務で必要な情報をなるべく一つの機能の中に持ち込むことを意識した。",
           "search_keys": [
             "作業量",
@@ -11926,33 +10766,10 @@
         {
           "type": "caption",
           "start": 3.5,
-          "end": 5.8,
-          "text": "実務家としての自分の経験や話がプロダクトに活かされたと感",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_081_part01",
-          "caption_no": 81,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_081",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2526.0,
-            "caption_end_sec": 2545.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "実務家としての自分の経験や話がプロダクトに活かされたと感じられる瞬間が開",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 5.9,
           "end": 8.3,
-          "text": "じられる瞬間が開",
+          "text": "自分の経験がプロダクトに活かされる瞬間がやりがい",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_081_part02",
+          "caption_id": "main_caption_081",
           "caption_no": 81,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -11961,12 +10778,6 @@
             "caption_start_sec": 2526.0,
             "caption_end_sec": 2545.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "実務家としての自分の経験や話がプロダクトに活かされたと感じられる瞬間が開",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -11982,7 +10793,7 @@
           "source_end_sec": 2534.2,
           "caption_start_sec": 2526.0,
           "caption_end_sec": 2545.0,
-          "display_text": "実務家としての自分の経験や話がプロダクトに活かされたと感じられる瞬間が開",
+          "display_text": "自分の経験がプロダクトに活かされる瞬間がやりがい",
           "full_reference_text": "実務家としての自分の経験や話がプロダクトに活かされたと感じられる瞬間が開発に関わるやりがいになっている。",
           "search_keys": [
             "実務家",
@@ -12056,33 +10867,10 @@
         {
           "type": "caption",
           "start": 7.5,
-          "end": 9.8,
-          "text": "分析機能を作るとき今まで関わってきた経理の人たちの顔が浮",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_082_part01",
-          "caption_no": 82,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_082",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2545.0,
-            "caption_end_sec": 2600.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "分析機能を作るとき今まで関わってきた経理の人たちの顔が浮かぶ",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 9.9,
           "end": 12.3,
-          "text": "かぶ",
+          "text": "分析機能では経理の人たちの顔が浮かぶ",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_082_part02",
+          "caption_id": "main_caption_082",
           "caption_no": 82,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -12091,12 +10879,6 @@
             "caption_start_sec": 2545.0,
             "caption_end_sec": 2600.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "分析機能を作るとき今まで関わってきた経理の人たちの顔が浮かぶ",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -12112,7 +10894,7 @@
           "source_end_sec": 2550.2,
           "caption_start_sec": 2545.0,
           "caption_end_sec": 2600.0,
-          "display_text": "分析機能を作るとき今まで関わってきた経理の人たちの顔が浮かぶ",
+          "display_text": "分析機能では経理の人たちの顔が浮かぶ",
           "full_reference_text": "分析機能を作るとき今まで関わってきた経理の人たちの顔が浮かぶ。単に作業時間を短縮するだけではその先に進むのは難しい。",
           "search_keys": [
             "分析の機能",
@@ -12310,7 +11092,7 @@
           "type": "caption",
           "start": 2.5,
           "end": 7.3,
-          "text": "作業しかできなかった人がAIの力を借りて分析できる",
+          "text": "AIで作業者が分析できるようになる変化を支援したい",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_083",
           "caption_no": 83,
@@ -12336,7 +11118,7 @@
           "source_end_sec": 2600.16,
           "caption_start_sec": 2600.0,
           "caption_end_sec": 2638.0,
-          "display_text": "作業しかできなかった人がAIの力を借りて分析できる",
+          "display_text": "AIで作業者が分析できるようになる変化を支援したい",
           "full_reference_text": "作業しかできなかった人がAIの力を借りて分析できるようになり会社のコストについて提案できるようにする。その変化をプロダクトで支援したい。",
           "search_keys": [
             "作業しかできてなかった人",
@@ -12453,7 +11235,7 @@
           "type": "caption",
           "start": 9.85,
           "end": 14.65,
-          "text": "業務の自動運転は人が確認するだけで終わるものではない",
+          "text": "自動運転の先に新しい働き方がある",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_084",
           "caption_no": 84,
@@ -12479,7 +11261,7 @@
           "source_end_sec": 2644.66,
           "caption_start_sec": 2638.0,
           "caption_end_sec": 2680.0,
-          "display_text": "業務の自動運転は人が確認するだけで終わるものではない",
+          "display_text": "自動運転の先に新しい働き方がある",
           "full_reference_text": "業務の自動運転は人が確認するだけで終わるものではない。その先に新しい働き方がありそれをプロダクトが定義していく必要がある。",
           "search_keys": [
             "業務の自動運転",
@@ -12635,33 +11417,10 @@
         {
           "type": "caption",
           "start": 7.5,
-          "end": 9.8,
-          "text": "AIの力を借りれば専門家でなければできないと思われていた経",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_085_part01",
-          "caption_no": 85,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_085",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2680.0,
-            "caption_end_sec": 2730.0,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "AIの力を借りれば専門家でなければできないと思われていた経理や労務の経験",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 9.9,
           "end": 12.3,
-          "text": "理や労務の経験",
+          "text": "AIで専門家の経験を多くの人が得られるかもしれない",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_085_part02",
+          "caption_id": "main_caption_085",
           "caption_no": 85,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -12670,12 +11429,6 @@
             "caption_start_sec": 2680.0,
             "caption_end_sec": 2730.0,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "AIの力を借りれば専門家でなければできないと思われていた経理や労務の経験",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -12691,7 +11444,7 @@
           "source_end_sec": 2684.36,
           "caption_start_sec": 2680.0,
           "caption_end_sec": 2730.0,
-          "display_text": "AIの力を借りれば専門家でなければできないと思われていた経理や労務の経験",
+          "display_text": "AIで専門家の経験を多くの人が得られるかもしれない",
           "full_reference_text": "AIの力を借りれば専門家でなければできないと思われていた経理や労務の経験をより多くの人がキャリアの中で経験できるようになるかもしれない。",
           "search_keys": [
             "AIの力",
@@ -12864,33 +11617,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "バックオフィスにはその人しか分からない過去の処理や判",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_086_part01",
-          "caption_no": 86,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_086",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2730.0,
-            "caption_end_sec": 2764.0,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "バックオフィスにはその人しか分からない過去の処理や判断が多い",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "断が多い",
+          "text": "属人化は今後大きく変わっていく可能性がある",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_086_part02",
+          "caption_id": "main_caption_086",
           "caption_no": 86,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -12899,12 +11629,6 @@
             "caption_start_sec": 2730.0,
             "caption_end_sec": 2764.0,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "バックオフィスにはその人しか分からない過去の処理や判断が多い",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -12920,7 +11644,7 @@
           "source_end_sec": 2730.68,
           "caption_start_sec": 2730.0,
           "caption_end_sec": 2764.0,
-          "display_text": "バックオフィスにはその人しか分からない過去の処理や判断が多い",
+          "display_text": "属人化は今後大きく変わっていく可能性がある",
           "full_reference_text": "バックオフィスにはその人しか分からない過去の処理や判断が多い。そうした属人化は今後数年で大きく変わっていく可能性がある。",
           "search_keys": [
             "その人しかわからない",
@@ -13077,33 +11801,10 @@
         {
           "type": "caption",
           "start": 1.5,
-          "end": 3.8,
-          "text": "AIに取って代わられるかどうかではなく",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_087_part01",
-          "caption_no": 87,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_087",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2764.0,
-            "caption_end_sec": 2804.0,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "AIに取って代わられるかどうかではなくバックオフィスの働き方や時間の使い",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 3.9,
           "end": 6.3,
-          "text": "バックオフィスの働き方や時間の使い",
+          "text": "働き方や時間の使い方そのものが変わっていく",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_087_part02",
+          "caption_id": "main_caption_087",
           "caption_no": 87,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -13112,12 +11813,6 @@
             "caption_start_sec": 2764.0,
             "caption_end_sec": 2804.0,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "AIに取って代わられるかどうかではなくバックオフィスの働き方や時間の使い",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -13133,7 +11828,7 @@
           "source_end_sec": 2764.82,
           "caption_start_sec": 2764.0,
           "caption_end_sec": 2804.0,
-          "display_text": "AIに取って代わられるかどうかではなくバックオフィスの働き方や時間の使い",
+          "display_text": "働き方や時間の使い方そのものが変わっていく",
           "full_reference_text": "AIに取って代わられるかどうかではなくバックオフィスの働き方や時間の使い方そのものが変わっていく。",
           "search_keys": [
             "AIにとって変わられる",
@@ -13264,33 +11959,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "労務のような対人領域ではAIが答えても結局「本",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_088_part01",
-          "caption_no": 88,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_088",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2804.0,
-            "caption_end_sec": 2848.0,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "労務のような対人領域ではAIが答えても結局「本当に？」と人に聞きに来るこ",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "当に？」と人に聞きに来るこ",
+          "text": "対人領域では人に聞きに来ることがある",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_088_part02",
+          "caption_id": "main_caption_088",
           "caption_no": 88,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -13299,12 +11971,6 @@
             "caption_start_sec": 2804.0,
             "caption_end_sec": 2848.0,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "労務のような対人領域ではAIが答えても結局「本当に？」と人に聞きに来るこ",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -13320,7 +11986,7 @@
           "source_end_sec": 2804.86,
           "caption_start_sec": 2804.0,
           "caption_end_sec": 2848.0,
-          "display_text": "労務のような対人領域ではAIが答えても結局「本当に？」と人に聞きに来るこ",
+          "display_text": "対人領域では人に聞きに来ることがある",
           "full_reference_text": "労務のような対人領域ではAIが答えても結局「本当に？」と人に聞きに来ることがある。だから経理と労務では変化の仕方が違う。",
           "search_keys": [
             "本当にって言って聞きに来る",
@@ -13476,33 +12142,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "経理は労務より効率化が早い可能性があるが経理がAIでなく",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_089_part01",
-          "caption_no": 89,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_089",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2848.0,
-            "caption_end_sec": 2892.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "経理は労務より効率化が早い可能性があるが経理がAIでなくなる失業するとい",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "なる失業するとい",
+          "text": "経理の役割はなくなるのではなく変わっていく",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_089_part02",
+          "caption_id": "main_caption_089",
           "caption_no": 89,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -13511,12 +12154,6 @@
             "caption_start_sec": 2848.0,
             "caption_end_sec": 2892.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "経理は労務より効率化が早い可能性があるが経理がAIでなくなる失業するとい",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -13532,7 +12169,7 @@
           "source_end_sec": 2853.68,
           "caption_start_sec": 2848.0,
           "caption_end_sec": 2892.0,
-          "display_text": "経理は労務より効率化が早い可能性があるが経理がAIでなくなる失業するとい",
+          "display_text": "経理の役割はなくなるのではなく変わっていく",
           "full_reference_text": "経理は労務より効率化が早い可能性があるが経理がAIでなくなる失業するというのは極端すぎる。役割が変わると考えた方がよい。",
           "search_keys": [
             "経理",
@@ -13705,33 +12342,10 @@
         {
           "type": "caption",
           "start": 9.5,
-          "end": 11.8,
-          "text": "これからはずっと仕訳を打つのではなく人や現場に向き合う時",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_090_part01",
-          "caption_no": 90,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_090",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2892.0,
-            "caption_end_sec": 2910.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "これからはずっと仕訳を打つのではなく人や現場に向き合う時間が増えていく",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 11.9,
           "end": 14.3,
-          "text": "間が増えていく",
+          "text": "人や現場に向き合う時間が増えていく",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_090_part02",
+          "caption_id": "main_caption_090",
           "caption_no": 90,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -13740,12 +12354,6 @@
             "caption_start_sec": 2892.0,
             "caption_end_sec": 2910.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "これからはずっと仕訳を打つのではなく人や現場に向き合う時間が増えていく",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -13761,7 +12369,7 @@
           "source_end_sec": 2893.68,
           "caption_start_sec": 2892.0,
           "caption_end_sec": 2910.0,
-          "display_text": "これからはずっと仕訳を打つのではなく人や現場に向き合う時間が増えていく",
+          "display_text": "人や現場に向き合う時間が増えていく",
           "full_reference_text": "これからはずっと仕訳を打つのではなく人や現場に向き合う時間が増えていく。これは健全な方向だと思う。",
           "search_keys": [
             "仕訳を打つ",
@@ -13836,33 +12444,10 @@
         {
           "type": "caption",
           "start": 9.85,
-          "end": 12.15,
-          "text": "バックオフィスで働く人にとって",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_091_part01",
-          "caption_no": 91,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_091",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2910.0,
-            "caption_end_sec": 2944.0,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "バックオフィスで働く人にとってドメインエキスパートやプロダクトマネージャ",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.25,
           "end": 14.65,
-          "text": "ドメインエキスパートやプロダクトマネージャ",
+          "text": "バックオフィス経験者におすすめできるキャリア",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_091_part02",
+          "caption_id": "main_caption_091",
           "caption_no": 91,
           "speaker_person_id": "person_01",
           "metadata": {
@@ -13871,12 +12456,6 @@
             "caption_start_sec": 2910.0,
             "caption_end_sec": 2944.0,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "バックオフィスで働く人にとってドメインエキスパートやプロダクトマネージャ",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -13892,7 +12471,7 @@
           "source_end_sec": 2910.04,
           "caption_start_sec": 2910.0,
           "caption_end_sec": 2944.0,
-          "display_text": "バックオフィスで働く人にとってドメインエキスパートやプロダクトマネージャ",
+          "display_text": "バックオフィス経験者におすすめできるキャリア",
           "full_reference_text": "バックオフィスで働く人にとってドメインエキスパートやプロダクトマネージャーのようなキャリアはめちゃめちゃおすすめできる。",
           "search_keys": [
             "バックオフィスで働いている方",
@@ -14048,33 +12627,10 @@
         {
           "type": "caption",
           "start": 1.5,
-          "end": 3.8,
-          "text": "暗黙知や慣行でやっていたことがプロダクト",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_092_part01",
-          "caption_no": 92,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_092",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2944.0,
-            "caption_end_sec": 2958.0,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "暗黙知や慣行でやっていたことがプロダクト開発に関わることで言語化される",
-            "policy": "max_two_lines_per_caption"
-          }
-        },
-        {
-          "type": "caption",
-          "start": 3.9,
           "end": 6.3,
-          "text": "開発に関わることで言語化される",
+          "text": "暗黙知が言語化され視野が広がる",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_092_part02",
+          "caption_id": "main_caption_092",
           "caption_no": 92,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -14083,12 +12639,6 @@
             "caption_start_sec": 2944.0,
             "caption_end_sec": 2958.0,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "暗黙知や慣行でやっていたことがプロダクト開発に関わることで言語化される",
-            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -14104,7 +12654,7 @@
           "source_end_sec": 2944.04,
           "caption_start_sec": 2944.0,
           "caption_end_sec": 2958.0,
-          "display_text": "暗黙知や慣行でやっていたことがプロダクト開発に関わることで言語化される",
+          "display_text": "暗黙知が言語化され視野が広がる",
           "full_reference_text": "暗黙知や慣行でやっていたことがプロダクト開発に関わることで言語化される。その経験によって視野が広がる。",
           "search_keys": [
             "暗黙知",
@@ -14283,10 +12833,10 @@
   "caption_overlay_normalization": {
     "policy": "max_two_lines_per_caption",
     "split_long_caption_overlays": true,
-    "newly_split_original_overlay_count": 0,
-    "newly_added_overlay_count": 0,
-    "current_split_source_count": 52,
-    "current_split_part_overlay_count": 104,
+    "newly_split_original_overlay_count": 2,
+    "newly_added_overlay_count": 2,
+    "current_split_source_count": 2,
+    "current_split_part_overlay_count": 4,
     "note": "Long captions are split into sequential 1-2 line overlays instead of rendering 3+ lines or shrinking text."
   }
 }

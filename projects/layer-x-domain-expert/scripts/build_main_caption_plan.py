@@ -19,6 +19,88 @@ PEOPLE = {
     "person_03": {"name": "村田", "screen_position": "right", "role": "interviewee"},
 }
 
+DISPLAY_TEXT_OVERRIDES = {
+    1: "ドメインエキスパートは開発チームの中での役割",
+    3: "実務経験をプロダクト開発に持ち込む役割",
+    4: "バックオフィスの生産性に強い問題意識があった",
+    5: "決算期に終電で帰る状況は不健全だと思った",
+    6: "バクラクには「こうできたらいいのに」が少なかった",
+    7: "LayerXに惹かれた理由は開発に関われること",
+    8: "開発は自分とは関係ないものだと思っていた",
+    9: "経理一本のキャリアに迷ったタイミングだった",
+    11: "LayerXのカルチャーをベンチマークしていた",
+    12: "入口は採用体験や人事の勉強だった",
+    14: "勤怠を作るなら面白そうだと思ってLayerXに来た",
+    15: "開発に参画できる壁打ち相手として関われる",
+    16: "PDMはプロダクト成長のために何でもやる人",
+    18: "実務知識を活かせるなら挑戦できると思った",
+    19: "家族には経理系の仕事だと説明していた",
+    20: "共通点はドメイン知識で開発に関与すること",
+    21: "労務を主務にしながら仕様検討にも深く関わる",
+    22: "実務のモヤモヤをプロダクトに落とし込める",
+    23: "違和感を出すことでプロダクトが良くなる",
+    24: "フィードバックを良いものとして歓迎する文化がある",
+    25: "違和感を言うだけでどんどん良いものになる",
+    26: "PDMの仕事は日によって違う",
+    27: "PDMはフェーズによって仕事内容が変わる",
+    28: "一番大変だったのは当たり前を言語化すること",
+    31: "当たり前の業務にも法律や会社ルールの背景がある",
+    32: "何でも知っていそうに見える期待の高さが難しい",
+    34: "LayerXのエンジニアはドメインをものすごく調べている",
+    35: "専門家が一方的に教えるのではなく建設的に議論する",
+    36: "「なんで？」を逃がさないことが健全なプレッシャーになる",
+    38: "当たり前が開発の議論を通じて磨かれていく",
+    39: "古い慣習を流さず一つひとつ調べることが大事",
+    41: "労務領域では自分の目で確かめたい感覚が強い",
+    42: "不安が残ると結局ユーザーは自分で調べてしまう",
+    43: "ユーザーが不安なら自動化しても使われない",
+    44: "機能で何を実現したいのかを体験込みで伝える",
+    45: "全部やるとスピードも落ち画面も分かりにくくなる",
+    46: "コア以外は落とす判断も必要",
+    47: "ルール調査だけでなくビジョンが必要になる",
+    48: "実務家のプライドを無視していないかを気にしている",
+    49: "足すだけでなく「なくていい」と言えることも価値",
+    50: "AIの情報を制度や実務にどう落とし込むかが重要",
+    51: "ドメインエキスパートの役割とキャリアを聞いていく",
+    52: "LayerXでは開発チームの中でドメイン知識を活かす",
+    53: "LayerXでは開発チームに入り実務知識を活かす",
+    54: "根本さんは経理や労務の経験を積んできた",
+    55: "声をかけられたことが開発に関わるきっかけだった",
+    56: "コードを書けなくても大丈夫かという感覚から始まった",
+    57: "村田さんは社労士として外から助言する経験を積んだ",
+    58: "事業会社の中から人事や労務に関わりたいと思った",
+    59: "矢野さんはLayerXで初めて事業側の仕事に関わった",
+    60: "最初はヒアリングから始まった",
+    61: "最初は製品をどう伝えるかを中心に担当した",
+    62: "二人が開発に関わった背景が対談のテーマ",
+    64: "経理一本でどう生きるかという不安があった",
+    65: "スタートアップで経理として伸びる難しさがあった",
+    68: "LayerXのカルチャーでHRテックを作ることに興味を持った",
+    70: "人事企画ではカルチャーを見ることも重要になる",
+    71: "開発に関わることは少し違うキャリアへの一歩",
+    73: "コードを書けなくても開発に関われると思えた",
+    74: "PDMとしてまずは結果を出していきたい",
+    75: "ドメインがない領域でも活躍できるスキルを身につけたい",
+    76: "ドメインの貯金がなくなったときの怖さがある",
+    77: "誰がやっても変わらない手作業が多い",
+    78: "月次申告などの作業を減らしたい",
+    79: "必要な情報を一つの画面で確認できるようにした",
+    80: "作業量を減らし確認時間を短縮する",
+    81: "自分の経験がプロダクトに活かされる瞬間がやりがい",
+    82: "分析機能では経理の人たちの顔が浮かぶ",
+    83: "AIで作業者が分析できるようになる変化を支援したい",
+    84: "自動運転の先に新しい働き方がある",
+    85: "AIで専門家の経験を多くの人が得られるかもしれない",
+    86: "属人化は今後大きく変わっていく可能性がある",
+    87: "働き方や時間の使い方そのものが変わっていく",
+    88: "対人領域では人に聞きに来ることがある",
+    89: "経理の役割はなくなるのではなく変わっていく",
+    90: "人や現場に向き合う時間が増えていく",
+    91: "バックオフィス経験者におすすめできるキャリア",
+    92: "暗黙知が言語化され視野が広がる",
+    93: "AIの活用や向き合い方も変わる",
+}
+
 
 def now_iso() -> str:
     return datetime.now(JST).isoformat(timespec="seconds")
@@ -40,15 +122,61 @@ def clean_text(text: str) -> str:
     return re.sub(r"\s+", " ", text.replace("、", "")).strip()
 
 
-def compact_caption_text(text: str, max_chars: int = 36) -> str:
+def compact_caption_text(text: str, max_chars: int = 96) -> str:
     text = clean_text(text)
+    text = re.sub(r"^(ちなみに|ただ|でも|なので|だから|要は|そして|それで|この辺も|確かに)\s*", "", text)
     if len(text) <= max_chars:
-        return text
-    for marker in ("。", "という", "ため", "こと", "役割", "価値", "重要", "おすすめ", "できる"):
-        index = text.find(marker)
-        if 12 <= index + len(marker) <= max_chars:
-            return text[: index + len(marker)].strip("。")
-    return text[:max_chars].rstrip("。")
+        return text.rstrip("。")
+
+    sentence_end = text.find("。")
+    if 18 <= sentence_end + 1 <= max_chars:
+        return text[:sentence_end].strip("。")
+
+    markers = (
+        "という役割",
+        "という価値",
+        "ということ",
+        "という意味",
+        "だと思った",
+        "だと知った",
+        "と思った",
+        "と考えている",
+        "になっている",
+        "できる",
+        "必要がある",
+        "重要になる",
+        "おすすめできる",
+    )
+    candidates = []
+    for marker in markers:
+        start = 0
+        while True:
+            index = text.find(marker, start)
+            if index < 0:
+                break
+            cut = index + len(marker)
+            if 18 <= cut <= max_chars:
+                candidates.append(cut)
+            start = cut
+    if candidates:
+        return text[: max(candidates)].strip("。")
+
+    soft_breaks = ("こと", "ため", "役割", "価値", "重要", "おすすめ", "できる", "関わる", "活かす", "変わる", "増えていく")
+    candidates = []
+    for marker in soft_breaks:
+        start = 0
+        while True:
+            index = text.find(marker, start)
+            if index < 0:
+                break
+            cut = index + len(marker)
+            if 24 <= cut <= max_chars:
+                candidates.append(cut)
+            start = cut
+    if candidates:
+        return text[: max(candidates)].strip("。")
+
+    return text.rstrip("。")
 
 
 def normalize(text: str) -> str:
@@ -245,7 +373,7 @@ def build_plan() -> dict[str, Any]:
                 "source_end_sec": round(float(segment["end"]), 3),
                 "caption_start_sec": round(start, 3),
                 "caption_end_sec": round(max(end, start + 3.0), 3),
-                "display_text": compact_caption_text(item["display_text"]),
+                "display_text": clean_text(DISPLAY_TEXT_OVERRIDES.get(int(item["caption_no"]), compact_caption_text(item["display_text"]))),
                 "full_reference_text": clean_text(item["display_text"]),
                 "search_keys": item.get("search_keys", []),
                 "speaker_person_id": person_id,

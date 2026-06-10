@@ -77,6 +77,22 @@ PROTECTED_CAPTION_TERMS = [
     "働く人にとって",
     "ハードル",
     "僕より",
+    "労務",
+    "初めて",
+    "伝える",
+    "関わった",
+    "生産性",
+    "状況",
+    "理由",
+    "できたら",
+    "大丈夫",
+    "機能",
+    "専門家",
+    "人事企画",
+    "カルチャー",
+    "プロダクト",
+    "バックオフィス",
+    "ドメイン知識",
 ]
 
 
@@ -415,47 +431,23 @@ def render_md(rows: list[dict[str, Any]], chunks: list[dict[str, Any]], edit_pla
     lines = [
         "# Caption Review",
         "",
-        "このファイルは `output/reports/edit_plan.json` に実際に入っている字幕オーバーレイから生成しています。",
-        "画面上の改行は `<br>` で示しています。折り返しは現在のレンダー処理と同じ `wrap_caption_text` ロジックです。",
+        "字幕と音声タイムだけを確認するための一覧です。",
+        "改行位置は現在のレンダー処理と同じ `wrap_caption_text` ロジックで再現しています。",
         "",
         "## Summary",
         "",
         f"- Total displayed captions: {len(rows)}",
         f"- Chunks by continuous speaker: {len(chunks)}",
-        f"- Source edit plan: `output/reports/edit_plan.json`",
         "",
     ]
-    assignment = edit_plan.get("main_caption_assignment")
-    if isinstance(assignment, dict):
-        lines.extend(
-            [
-                "## Main Caption Assignment",
-                "",
-                f"- Main caption candidates: {assignment.get('total_candidates')}",
-                f"- Attached to timeline: {assignment.get('attached_count')}",
-                f"- Skipped: {assignment.get('skipped_count')}",
-                "",
-            ]
-        )
-        skipped = assignment.get("skipped") if isinstance(assignment.get("skipped"), list) else []
-        if skipped:
-            lines.extend(["| Caption ID | Reason | Event | Source Time |", "|---|---|---|---|"])
-            for item in skipped:
-                lines.append(
-                    f"| `{clean_cell(item.get('caption_id'))}` | {clean_cell(item.get('reason'))} | `{clean_cell(item.get('event_id', ''))}` | {fmt_time(float(item.get('caption_start_sec') or 0.0))} |"
-                )
-            lines.append("")
 
     for index, chunk in enumerate(chunks, start=1):
         lines.extend(
             [
                 f"## Chunk {index:03d}: {section_label(chunk['section'])} / {chunk['speaker_name']}",
                 "",
-                f"- Timeline: `{fmt_time(chunk['start'])}` - `{fmt_time(chunk['end'])}`",
-                f"- Speaker: `{chunk['speaker_id']}` / {chunk['speaker_position']} / {chunk['speaker_role']}",
-                "",
-                "| No | Timeline | Source | Event | Layout | Caption ID | Rendered Lines | Raw Text | Style |",
-                "|---:|---|---|---|---|---|---|---|---|",
+                "| No | Audio Time | Subtitle |",
+                "|---:|---|---|",
             ]
         )
         for row in chunk["rows"]:
@@ -468,14 +460,8 @@ def render_md(rows: list[dict[str, Any]], chunks: list[dict[str, Any]], edit_pla
                 + " | ".join(
                     [
                         str(row["order"]),
-                        f"{fmt_time(row['timeline_start'])} - {fmt_time(row['timeline_end'])}",
                         source,
-                        f"`{clean_cell(row['event_id'])}`",
-                        clean_cell(row["layout_type"]),
-                        f"`{clean_cell(row['caption_id'])}`",
                         rendered,
-                        clean_cell(row["text"]),
-                        f"`{clean_cell(row['style_id'])}`",
                     ]
                 )
                 + " |"

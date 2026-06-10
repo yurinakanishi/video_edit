@@ -35,7 +35,7 @@ def srt_to_seconds(value: str) -> float:
 
 
 def clean_text(text: str) -> str:
-    return re.sub(r"\s+", " ", text).strip()
+    return re.sub(r"\s+", " ", text.replace("、", "")).strip()
 
 
 def parse_srt(path: Path) -> list[dict[str, Any]]:
@@ -95,12 +95,28 @@ PROTECTED_CAPTION_TERMS = [
     "建設的な",
     "ものすごく",
     "ドメインの方",
-    "知らないことも知ってるんじゃないか",
     "何でも知ってそう",
     "知ってそうな感じ",
     "知ってるんじゃないか",
     "思われること",
     "ことの難しさ",
+    "開発に関わる仕事をする中で",
+    "今までやってきたんだな",
+    "磨かれて成長",
+    "いらないもの",
+    "前提になってきている",
+    "実現していきたい",
+    "研ぎ澄まされてきている",
+    "研ぎ澄まされてきているなという",
+    "探し出してきてくれる",
+    "探し出してきてくれるんですけど",
+    "広く見れる",
+    "ものすごくこれを言語化するのに",
+    "抵抗感っていう",
+    "ドメインの方めっちゃ調べてるんですよ",
+    "実現していきたいのか",
+    "こういう形で広く見れる",
+    "めちゃめちゃおすすめだと思います",
 ]
 
 
@@ -144,11 +160,6 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
         "ですね",
         "ます",
         "ました",
-        "する",
-        "いる",
-        "ある",
-        "なる",
-        "できる",
     )
     for phrase in break_after:
         start = 0
@@ -164,7 +175,7 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
     return sorted(index for index in candidates if 0 < index < len(text) and not inside_protected_span(index, spans))
 
 
-def split_caption_text(text: str, max_chars: int = 15) -> list[str]:
+def split_caption_text(text: str, max_chars: int = 24) -> list[str]:
     text = clean_text(text)
     if len(text) <= max_chars:
         return [text]

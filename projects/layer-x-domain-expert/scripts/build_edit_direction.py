@@ -60,7 +60,7 @@ def write_json(path: Path, payload: Any) -> None:
 
 
 def clean_text(text: str) -> str:
-    return re.sub(r"\s+", " ", text).strip()
+    return re.sub(r"\s+", " ", text.replace("、", "")).strip()
 
 
 def is_transcript_artifact(text: str) -> bool:

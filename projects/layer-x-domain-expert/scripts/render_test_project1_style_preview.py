@@ -33,6 +33,9 @@ TOP_STOPS = ["#5A51FE", "#5A51FD", "#5D60FE"]
 BOTTOM_STOPS = ["#5B59FD", "#656AFD", "#747FFC"]
 TITLE_STOPS = ["#4D15D7", "#5A2DEF", "#7863F3"]
 DIVIDER_COLOR = "0x5A2DEF"
+CAPTION_FONT_SIZE = 76
+CAPTION_MAX_TEXT_WIDTH = 1080
+TARGET_AUDIO_LUFS = -17.0
 
 MEDIA_PATHS = {
     "group_wide": PROJECT_ROOT / "source" / "video" / "three people.mp4",
@@ -234,12 +237,28 @@ PROTECTED_CAPTION_TERMS = [
     "建設的な",
     "ものすごく",
     "ドメインの方",
-    "知らないことも知ってるんじゃないか",
     "何でも知ってそう",
     "知ってそうな感じ",
     "知ってるんじゃないか",
     "思われること",
     "ことの難しさ",
+    "開発に関わる仕事をする中で",
+    "今までやってきたんだな",
+    "磨かれて成長",
+    "いらないもの",
+    "前提になってきている",
+    "実現していきたい",
+    "研ぎ澄まされてきている",
+    "研ぎ澄まされてきているなという",
+    "探し出してきてくれる",
+    "探し出してきてくれるんですけど",
+    "広く見れる",
+    "ものすごくこれを言語化するのに",
+    "抵抗感っていう",
+    "ドメインの方めっちゃ調べてるんですよ",
+    "実現していきたいのか",
+    "こういう形で広く見れる",
+    "めちゃめちゃおすすめだと思います",
 ]
 
 
@@ -283,11 +302,6 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
         "ですね",
         "ます",
         "ました",
-        "する",
-        "いる",
-        "ある",
-        "なる",
-        "できる",
     )
     for phrase in break_after:
         start = 0
@@ -303,8 +317,8 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
     return sorted(index for index in candidates if 0 < index < len(text) and not inside_protected_span(index, spans))
 
 
-def wrap_caption_text(text: str, max_chars: int = 15) -> list[str]:
-    text = " ".join(str(text).split())
+def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
+    text = " ".join(str(text).replace("、", "").split())
     if len(text) <= max_chars:
         return [text]
     spans = protected_spans(text)
@@ -335,10 +349,14 @@ def condensed_text_image(text: str, font: ImageFont.FreeTypeFont, fill: tuple[in
     probe = Image.new("RGBA", (10, 10), (0, 0, 0, 0))
     draw = ImageDraw.Draw(probe)
     bbox = draw.textbbox((0, 0), text, font=font)
-    width = max(1, bbox[2] - bbox[0] + 8)
-    height = max(1, bbox[3] - bbox[1] + 8)
+    width = max(1, bbox[2] - bbox[0] + 16)
+    height = max(1, bbox[3] - bbox[1] + 14)
     text_layer = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-    ImageDraw.Draw(text_layer).text((4 - bbox[0], 4 - bbox[1]), text, font=font, fill=fill)
+    text_draw = ImageDraw.Draw(text_layer)
+    base_x = 8 - bbox[0]
+    base_y = 7 - bbox[1]
+    for dx, dy in ((0, 0), (1, 0), (0, 1), (1, 1), (-1, 0), (2, 0), (0, 2), (2, 1), (1, 2)):
+        text_draw.text((base_x + dx, base_y + dy), text, font=font, fill=fill, stroke_width=1, stroke_fill=fill)
     target_width = max(1, round(width * scale_x))
     return text_layer.resize((target_width, height), Image.Resampling.LANCZOS)
 
@@ -386,16 +404,17 @@ def draw_logo(canvas: Image.Image, section: str, is_split: bool = False) -> None
     if bbox:
         logo = logo.crop(bbox)
     if section == "digest":
-        logo_w = 270
-        pos = (18, 18)
+        logo_w = 216
     elif is_split:
-        logo_w = 220
-        pos = (18, 18)
+        logo_w = 176
     else:
-        logo_w = 270
-        pos = (18, 18)
+        logo_w = 216
     logo_h = round(logo.height * logo_w / logo.width)
     logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
+    if section == "digest":
+        pos = (18, round((102 - logo_h) / 2))
+    else:
+        pos = (18, 18)
     canvas.alpha_composite(logo, pos)
 
 
@@ -408,7 +427,7 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
     if section == "digest":
         canvas.alpha_composite(gradient_image((WIDTH, 102), TOP_STOPS, 255), (0, 0))
         canvas.alpha_composite(gradient_image((WIDTH, 20), BOTTOM_STOPS, 255), (0, HEIGHT - 20))
-        draw.polygon([(0, 0), (380, 0), (350, 102), (0, 102)], fill=(255, 255, 255, 255))
+        draw.polygon([(0, 0), (305, 0), (280, 102), (0, 102)], fill=(255, 255, 255, 255))
 
     if section != "bridge":
         draw_logo(canvas, section, is_split)
@@ -470,10 +489,10 @@ def draw_white_intro_label(canvas: Image.Image, person_id: str, x: int, y: int, 
 
 def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float) -> None:
     lines = wrap_caption_text(text)
-    line_height = 106
-    gap = 6
+    line_height = 104
+    gap = 10
     stack_h = len(lines) * line_height + (len(lines) - 1) * gap
-    y_base = 662 - stack_h
+    y_base = 660 - stack_h
     y_positions = [y_base + index * (line_height + gap) for index in range(len(lines))]
     draw = ImageDraw.Draw(canvas)
     for index, line in enumerate(lines):
@@ -484,11 +503,12 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
         opacity = min(1.0, max(0.0, (now - line_start) / 0.12))
         if now > end:
             opacity *= max(0.0, 1.0 - (now - end) / 0.1)
-        font = fit_font(line, 1080, 94, 70, CAPTION_FONT_FILE)
+        font = ImageFont.truetype(str(CAPTION_FONT_FILE), CAPTION_FONT_SIZE)
         bbox = draw.textbbox((0, 0), line, font=font)
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
-        text_image = condensed_text_image(line, font, (255, 255, 255, round(255 * opacity)), 0.92)
+        scale_x = min(0.98, CAPTION_MAX_TEXT_WIDTH / max(1, text_w + 16))
+        text_image = condensed_text_image(line, font, (255, 255, 255, round(255 * opacity)), scale_x)
         text_w = text_image.width
         text_h = text_image.height
         box_w = min(1198, text_w + 66)
@@ -599,6 +619,20 @@ def source_skip_sec(event: dict[str, Any]) -> float:
     if str(event.get("event_id") or "") == "digest_001":
         return 0.45
     return 0.0
+
+
+def audio_filter_chain(media_id: str) -> str:
+    loudnorm = f"loudnorm=I={TARGET_AUDIO_LUFS}:TP=-1.5:LRA=11"
+    if media_id == "company_movie":
+        return loudnorm
+    return (
+        "highpass=f=80,"
+        "lowpass=f=12000,"
+        "afftdn=nf=-25,"
+        "acompressor=threshold=-28dB:ratio=3.2:attack=5:release=140:makeup=5,"
+        "dynaudnorm=f=150:g=9:p=0.95:m=8,"
+        f"{loudnorm}"
+    )
 
 
 def base_video_filter(event: dict[str, Any], media_id: str) -> str:
@@ -726,17 +760,18 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
     ]
     if text_path:
         inputs.extend(["-i", str(text_path)])
+    audio_filter = audio_filter_chain(str(aud.get("media_id") or ""))
     if text_path:
-        filter_complex = f"[0:v]{filter_base}[base];[base][2:v]overlay=0:0:format=auto[styled];[styled][3:v]overlay=0:0:format=auto[vout]"
+        filter_complex = f"[0:v]{filter_base}[base];[base][2:v]overlay=0:0:format=auto[styled];[styled][3:v]overlay=0:0:format=auto[vout];[1:a]{audio_filter}[aout]"
     else:
-        filter_complex = f"[0:v]{filter_base}[base];[base][2:v]overlay=0:0:format=auto[vout]"
+        filter_complex = f"[0:v]{filter_base}[base];[base][2:v]overlay=0:0:format=auto[vout];[1:a]{audio_filter}[aout]"
     command = inputs + [
         "-filter_complex",
         filter_complex,
         "-map",
         "[vout]",
         "-map",
-        "1:a:0?",
+        "[aout]",
         "-t",
         f"{dur:.3f}",
         "-r",
@@ -747,6 +782,8 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
         "veryfast",
         "-crf",
         "24",
+        "-pix_fmt",
+        "yuv420p",
         "-c:a",
         "aac",
         "-b:a",
@@ -754,6 +791,8 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
         "-ar",
         "48000",
         "-shortest",
+        "-movflags",
+        "+faststart",
         str(output),
     ]
     subprocess.run(command, cwd=WORKSPACE_ROOT, check=True)
@@ -796,6 +835,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
         filters.append(f"[styled][{text_index}:v]overlay=0:0:format=auto[vout]")
     else:
         filters.append(f"[base][{style_index}:v]overlay=0:0:format=auto[vout]")
+    filters.append(f"[{len(media_ids)}:a]{audio_filter_chain(str(aud.get('media_id') or ''))}[aout]")
     command.extend(
         [
             "-filter_complex",
@@ -803,7 +843,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
             "-map",
             "[vout]",
             "-map",
-            f"{len(media_ids)}:a:0?",
+            "[aout]",
             "-t",
             f"{dur:.3f}",
             "-r",
@@ -814,6 +854,8 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
             "veryfast",
             "-crf",
             "24",
+            "-pix_fmt",
+            "yuv420p",
             "-c:a",
             "aac",
             "-b:a",
@@ -821,6 +863,8 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
             "-ar",
             "48000",
             "-shortest",
+            "-movflags",
+            "+faststart",
             str(output),
         ]
     )
@@ -850,12 +894,16 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
             "veryfast",
             "-crf",
             "24",
+            "-pix_fmt",
+            "yuv420p",
             "-c:a",
             "aac",
             "-b:a",
             "128k",
             "-ar",
             "48000",
+            "-movflags",
+            "+faststart",
             str(output),
         ],
         cwd=WORKSPACE_ROOT,

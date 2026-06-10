@@ -1,32 +1,32 @@
 {
   "schema_version": "semantic_marks.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T15:59:13+09:00",
+  "generated_at": "2026-06-10T17:23:09+09:00",
   "status": "draft_from_transcript",
   "analysis_method": "project-local heuristic draft; requires editorial review before final render",
   "content_window_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\content_window.json",
   "highlight_candidates": [
     {
       "id": "hl_001",
-      "segment_id": "seg_000674",
-      "source_start": 2368.66,
-      "source_end": 2379.66,
+      "segment_id": "seg_000701",
+      "source_start": 2535.2,
+      "source_end": 2550.2,
       "speaker_id": null,
-      "score": 0.8625,
+      "score": 0.8566,
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
-      "digest_caption": "現場理解をプロダクトの価値へつなげる",
+      "digest_caption": "AI活用にもドメイン理解が効いてくる",
       "recommended_duration": 10.0,
       "topic_id": "topic_005"
     },
     {
       "id": "hl_002",
-      "segment_id": "seg_000701",
-      "source_start": 2535.2,
-      "source_end": 2550.2,
+      "segment_id": "seg_000674",
+      "source_start": 2368.66,
+      "source_end": 2379.66,
       "speaker_id": null,
-      "score": 0.8614,
+      "score": 0.8537,
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
-      "digest_caption": "AI活用にもドメイン理解が効いてくる",
+      "digest_caption": "現場理解をプロダクトの価値へつなげる",
       "recommended_duration": 10.0,
       "topic_id": "topic_005"
     },
@@ -36,7 +36,7 @@
       "source_start": 2716.68,
       "source_end": 2730.68,
       "speaker_id": null,
-      "score": 0.811,
+      "score": 0.8059,
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
       "digest_caption": "経験を循環させてドメイン理解を広げる",
       "recommended_duration": 10.0,
@@ -44,27 +44,27 @@
     },
     {
       "id": "hl_004",
-      "segment_id": "seg_000565",
-      "source_start": 1907.86,
-      "source_end": 1916.36,
-      "speaker_id": null,
-      "score": 0.8098,
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
-      "digest_caption": "たぶん皆さん経理とか労務のドメインを知っているから",
-      "recommended_duration": 8.5,
-      "topic_id": "topic_004"
-    },
-    {
-      "id": "hl_005",
       "segment_id": "seg_000658",
       "source_start": 2297.04,
       "source_end": 2307.04,
       "speaker_id": null,
-      "score": 0.807,
+      "score": 0.7979,
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
       "digest_caption": "ドメイン知識がプロダクトの強みになる",
       "recommended_duration": 10.0,
       "topic_id": "topic_005"
+    },
+    {
+      "id": "hl_005",
+      "segment_id": "seg_000565",
+      "source_start": 1907.86,
+      "source_end": 1916.36,
+      "speaker_id": null,
+      "score": 0.7954,
+      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
+      "digest_caption": "たぶん皆さん経理とか労務のドメインを知っているからこれなくて",
+      "recommended_duration": 8.5,
+      "topic_id": "topic_004"
     },
     {
       "id": "hl_006",
@@ -96,59 +96,59 @@
       "source_start": 2441.7,
       "source_end": 2465.2,
       "speaker_id": null,
-      "score": 0.7676,
+      "score": 0.7633,
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
-      "digest_caption": "就業時間のチェックの部分ですね",
+      "digest_caption": "就業時間のチェックの部分ですねやっぱり最後グッといろんなもの",
       "recommended_duration": 10.0,
       "topic_id": "topic_005"
     },
     {
       "id": "hl_009",
-      "segment_id": "seg_000342",
-      "source_start": 1070.28,
-      "source_end": 1077.28,
-      "speaker_id": null,
-      "score": 0.7341,
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
-      "digest_caption": "入社前はプロダクトに強い興味はなかった",
-      "recommended_duration": 7.0,
-      "topic_id": "topic_002"
-    },
-    {
-      "id": "hl_010",
       "segment_id": "seg_000721",
       "source_start": 2612.06,
       "source_end": 2620.06,
       "speaker_id": null,
-      "score": 0.7335,
+      "score": 0.7286,
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
       "digest_caption": "何もないところから専門性は育たない",
       "recommended_duration": 8.0,
       "topic_id": "topic_005"
     },
     {
+      "id": "hl_010",
+      "segment_id": "seg_000342",
+      "source_start": 1070.28,
+      "source_end": 1077.28,
+      "speaker_id": null,
+      "score": 0.7238,
+      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
+      "digest_caption": "入社前はプロダクトに強い興味はなかった",
+      "recommended_duration": 7.0,
+      "topic_id": "topic_002"
+    },
+    {
       "id": "hl_011",
+      "segment_id": "seg_000405",
+      "source_start": 1330.28,
+      "source_end": 1335.54,
+      "speaker_id": null,
+      "score": 0.7196,
+      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
+      "digest_caption": "ドメイン知識を開発に接続する",
+      "recommended_duration": 5.26,
+      "topic_id": "topic_002"
+    },
+    {
+      "id": "hl_012",
       "segment_id": "seg_000556",
       "source_start": 1869.46,
       "source_end": 1875.46,
       "speaker_id": null,
-      "score": 0.7202,
+      "score": 0.7147,
       "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
       "digest_caption": "実務家のプライドをプロダクトに活かす",
       "recommended_duration": 6.0,
       "topic_id": "topic_004"
-    },
-    {
-      "id": "hl_012",
-      "segment_id": "seg_000681",
-      "source_start": 2415.7,
-      "source_end": 2424.7,
-      "speaker_id": null,
-      "score": 0.72,
-      "reason": "Keyword density, segment length, and editorial phrase strength suggest this as a digest/main caption candidate.",
-      "digest_caption": "プロダクトごとの思いを理解して作る",
-      "recommended_duration": 9.0,
-      "topic_id": "topic_005"
     }
   ],
   "topics": [
@@ -157,14 +157,14 @@
       "start": 519.14,
       "end": 939.14,
       "title": "ドメインエキスパートの役割",
-      "summary": "LayerXのYouTubeチャンネルをご覧の皆さん、こんにちは バクラク事業部の矢野と申します 本日はですね、バクラク事業部で ドメインエキスパートという役割で働いている"
+      "summary": "LayerXのYouTubeチャンネルをご覧の皆さんこんにちは バクラク事業部の矢野と申します 本日はですねバクラク事業部で ドメインエキスパートという役割で働いている"
     },
     {
       "topic_id": "topic_002",
       "start": 939.14,
       "end": 1359.14,
       "title": "ドメインエキスパートの役割",
-      "summary": "全然経理とかじゃなくて開発 あ、そうですそうです もう経理だったら僕前職でいいと思ってたんですよ 前職は全然楽しかったんで でも開発って言われて え、なんでですかみたいな"
+      "summary": "全然経理とかじゃなくて開発 あそうですそうです もう経理だったら僕前職でいいと思ってたんですよ 前職は全然楽しかったんで でも開発って言われて えなんでですかみたいな"
     },
     {
       "topic_id": "topic_003",
@@ -185,14 +185,14 @@
       "start": 2199.14,
       "end": 2619.14,
       "title": "ドメインエキスパートの役割",
-      "summary": "そこはちょっと… 人間力? 大事だなとは思いますが、それが大前提として、AIが普及していくのは間違いないので、AIに逃げないみたいなところは"
+      "summary": "そこはちょっと… 人間力?"
     },
     {
       "topic_id": "topic_006",
       "start": 2619.14,
       "end": 2985.48,
       "title": "ドメインエキスパートの役割",
-      "summary": "まだできてないんですけど、そういう感じのことはやりたいなと思ってずっと作ってましたね。 いい話ですね。 僕らって業務の自動運転みたいなものを掲げてるじゃないですか"
+      "summary": "まだできてないんですけどそういう感じのことはやりたいなと思ってずっと作ってましたね。 いい話ですね。 僕らって業務の自動運転みたいなものを掲げてるじゃないですか"
     }
   ],
   "entity_explainers": [
@@ -211,23 +211,23 @@
   ],
   "punchline_subtitles": [
     {
-      "start": 2368.66,
-      "end": 2375.66,
-      "segment_id": "seg_000674",
-      "speaker_id": null,
-      "text": "現場理解をプロダクトの価値へつなげる",
-      "style": "strong_caption",
-      "priority": 0.8625,
-      "topic_id": "topic_005"
-    },
-    {
       "start": 2535.2,
       "end": 2542.2,
       "segment_id": "seg_000701",
       "speaker_id": null,
       "text": "AI活用にもドメイン理解が効いてくる",
       "style": "strong_caption",
-      "priority": 0.8614,
+      "priority": 0.8566,
+      "topic_id": "topic_005"
+    },
+    {
+      "start": 2368.66,
+      "end": 2375.66,
+      "segment_id": "seg_000674",
+      "speaker_id": null,
+      "text": "現場理解をプロダクトの価値へつなげる",
+      "style": "strong_caption",
+      "priority": 0.8537,
       "topic_id": "topic_005"
     },
     {
@@ -237,18 +237,8 @@
       "speaker_id": null,
       "text": "経験を循環させてドメイン理解を広げる",
       "style": "strong_caption",
-      "priority": 0.811,
+      "priority": 0.8059,
       "topic_id": "topic_006"
-    },
-    {
-      "start": 1907.86,
-      "end": 1914.86,
-      "segment_id": "seg_000565",
-      "speaker_id": null,
-      "text": "たぶん皆さん経理とか労務のドメインを知っているから",
-      "style": "strong_caption",
-      "priority": 0.8098,
-      "topic_id": "topic_004"
     },
     {
       "start": 2297.04,
@@ -257,8 +247,18 @@
       "speaker_id": null,
       "text": "ドメイン知識がプロダクトの強みになる",
       "style": "strong_caption",
-      "priority": 0.807,
+      "priority": 0.7979,
       "topic_id": "topic_005"
+    },
+    {
+      "start": 1907.86,
+      "end": 1914.86,
+      "segment_id": "seg_000565",
+      "speaker_id": null,
+      "text": "たぶん皆さん経理とか労務のドメインを知っているからこれなくて大丈夫か",
+      "style": "strong_caption",
+      "priority": 0.7954,
+      "topic_id": "topic_004"
     },
     {
       "start": 2637.06,
@@ -285,9 +285,19 @@
       "end": 2448.7,
       "segment_id": "seg_000684",
       "speaker_id": null,
-      "text": "就業時間のチェックの部分ですね",
+      "text": "就業時間のチェックの部分ですねやっぱり最後グッといろんなものが集まっ",
       "style": "strong_caption",
-      "priority": 0.7676,
+      "priority": 0.7633,
+      "topic_id": "topic_005"
+    },
+    {
+      "start": 2612.06,
+      "end": 2619.06,
+      "segment_id": "seg_000721",
+      "speaker_id": null,
+      "text": "何もないところから専門性は育たない",
+      "style": "strong_caption",
+      "priority": 0.7286,
       "topic_id": "topic_005"
     },
     {
@@ -297,38 +307,8 @@
       "speaker_id": null,
       "text": "入社前はプロダクトに強い興味はなかった",
       "style": "strong_caption",
-      "priority": 0.7341,
+      "priority": 0.7238,
       "topic_id": "topic_002"
-    },
-    {
-      "start": 2612.06,
-      "end": 2619.06,
-      "segment_id": "seg_000721",
-      "speaker_id": null,
-      "text": "何もないところから専門性は育たない",
-      "style": "strong_caption",
-      "priority": 0.7335,
-      "topic_id": "topic_005"
-    },
-    {
-      "start": 1869.46,
-      "end": 1875.46,
-      "segment_id": "seg_000556",
-      "speaker_id": null,
-      "text": "実務家のプライドをプロダクトに活かす",
-      "style": "strong_caption",
-      "priority": 0.7202,
-      "topic_id": "topic_004"
-    },
-    {
-      "start": 2415.7,
-      "end": 2422.7,
-      "segment_id": "seg_000681",
-      "speaker_id": null,
-      "text": "プロダクトごとの思いを理解して作る",
-      "style": "strong_caption",
-      "priority": 0.72,
-      "topic_id": "topic_005"
     },
     {
       "start": 1330.28,
@@ -341,13 +321,33 @@
       "topic_id": "topic_002"
     },
     {
+      "start": 1869.46,
+      "end": 1875.46,
+      "segment_id": "seg_000556",
+      "speaker_id": null,
+      "text": "実務家のプライドをプロダクトに活かす",
+      "style": "strong_caption",
+      "priority": 0.7147,
+      "topic_id": "topic_004"
+    },
+    {
+      "start": 2415.7,
+      "end": 2422.7,
+      "segment_id": "seg_000681",
+      "speaker_id": null,
+      "text": "プロダクトごとの思いを理解して作る",
+      "style": "strong_caption",
+      "priority": 0.7011,
+      "topic_id": "topic_005"
+    },
+    {
       "start": 2203.74,
       "end": 2210.74,
       "segment_id": "seg_000644",
       "speaker_id": null,
-      "text": "大事だなとは思いますが、それが大前提として",
+      "text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違い",
       "style": "strong_caption",
-      "priority": 0.6947,
+      "priority": 0.6917,
       "topic_id": "topic_005"
     },
     {
@@ -367,7 +367,7 @@
       "speaker_id": null,
       "text": "AI活用にもドメイン理解が効いてくる",
       "style": "strong_caption",
-      "priority": 0.6761,
+      "priority": 0.673,
       "topic_id": "topic_006"
     },
     {
@@ -385,20 +385,10 @@
       "end": 1704.5,
       "segment_id": "seg_000508",
       "speaker_id": null,
-      "text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中で",
+      "text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中でこれ",
       "style": "strong_caption",
-      "priority": 0.6597,
+      "priority": 0.6511,
       "topic_id": "topic_003"
-    },
-    {
-      "start": 1105.28,
-      "end": 1112.28,
-      "segment_id": "seg_000346",
-      "speaker_id": null,
-      "text": "今は労務で開発を考えたわけではなかったんですけれども",
-      "style": "strong_caption",
-      "priority": 0.6451,
-      "topic_id": "topic_002"
     },
     {
       "start": 2674.02,
@@ -411,6 +401,16 @@
       "topic_id": "topic_006"
     },
     {
+      "start": 1105.28,
+      "end": 1112.28,
+      "segment_id": "seg_000346",
+      "speaker_id": null,
+      "text": "今は労務で開発を考えたわけではなかったんですけれどもいわゆるレイヤー",
+      "style": "strong_caption",
+      "priority": 0.6405,
+      "topic_id": "topic_002"
+    },
+    {
       "start": 2104.74,
       "end": 2106.74,
       "segment_id": "seg_000615",
@@ -421,24 +421,24 @@
       "topic_id": "topic_004"
     },
     {
-      "start": 2131.74,
-      "end": 2138.74,
-      "segment_id": "seg_000623",
-      "speaker_id": null,
-      "text": "そうですね、結構こういう経理とか労務とか人事とかから",
-      "style": "strong_caption",
-      "priority": 0.5798,
-      "topic_id": "topic_004"
-    },
-    {
       "start": 2840.58,
       "end": 2846.54,
       "segment_id": "seg_000765",
       "speaker_id": null,
-      "text": "なので、まだそこまで労務配置が…",
+      "text": "なのでまだそこまで労務配置が… 労務と経理でもだいぶ違いそうですよね",
       "style": "strong_caption",
-      "priority": 0.5773,
+      "priority": 0.5718,
       "topic_id": "topic_006"
+    },
+    {
+      "start": 2131.74,
+      "end": 2138.74,
+      "segment_id": "seg_000623",
+      "speaker_id": null,
+      "text": "そうですね結構こういう経理とか労務とか人事とかから村田さんはメインは",
+      "style": "strong_caption",
+      "priority": 0.5651,
+      "topic_id": "topic_004"
     },
     {
       "start": 2165.74,
@@ -461,16 +461,6 @@
       "topic_id": "topic_005"
     },
     {
-      "start": 1201.28,
-      "end": 1208.28,
-      "segment_id": "seg_000371",
-      "speaker_id": null,
-      "text": "そうですよ、単純に今経理とか労務とか人事とかやってる中で",
-      "style": "strong_caption",
-      "priority": 0.5231,
-      "topic_id": "topic_002"
-    },
-    {
       "start": 2869.76,
       "end": 2876.04,
       "segment_id": "seg_000770",
@@ -479,6 +469,16 @@
       "style": "strong_caption",
       "priority": 0.5189,
       "topic_id": "topic_006"
+    },
+    {
+      "start": 1201.28,
+      "end": 1208.28,
+      "segment_id": "seg_000371",
+      "speaker_id": null,
+      "text": "そうですよ単純に今経理とか労務とか人事とかやってる中で",
+      "style": "strong_caption",
+      "priority": 0.518,
+      "topic_id": "topic_002"
     }
   ]
 }

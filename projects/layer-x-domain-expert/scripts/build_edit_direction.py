@@ -351,6 +351,14 @@ def load_digest_qa_selection() -> dict[str, Any] | None:
     return None
 
 
+def load_main_caption_plan() -> dict[str, Any]:
+    path = REPORTS / "main_caption_plan.json"
+    payload = read_json(path, {})
+    if isinstance(payload, dict) and payload.get("schema_version") == "main_caption_plan.v1":
+        return payload
+    return {"captions": []}
+
+
 def project_video_title() -> str:
     payload = read_json(REPORTS / "video_title.json", {})
     if isinstance(payload, dict):
@@ -367,6 +375,18 @@ def synced_source_start_for_person(person_id: str, master_time: float, offsets: 
     except (TypeError, ValueError):
         offset = 0.0
     return camera["media_id"], max(0.0, master_time + offset)
+
+
+def source_start_for_media(media_id: str, master_time: float, offsets: dict[str, Any]) -> float:
+    role_by_media = {"cam_person_01": "camera2", "cam_person_02": "camera3", "cam_person_03": "camera4"}
+    role = role_by_media.get(media_id)
+    if not role:
+        return master_time
+    try:
+        offset = float(offsets.get(role, 0.0))
+    except (TypeError, ValueError):
+        offset = 0.0
+    return max(0.0, master_time + offset)
 
 
 def digest_speaker_activity(highlight: dict[str, Any], activity_by_segment: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
@@ -597,6 +617,7 @@ def build_edit_plan(
     offsets = sync.get("offsets") if isinstance(sync.get("offsets"), dict) else {}
     activity_by_segment = load_speaker_activity()
     digest_qa = load_digest_qa_selection()
+    main_caption_plan = load_main_caption_plan()
     if digest_qa:
         digest_title = project_video_title()
         for index, clip in enumerate(digest_qa.get("clips", []), start=1):
@@ -1015,35 +1036,158 @@ def build_edit_plan(
         )
         cursor += cue_duration
 
-    for index, punchline in enumerate(semantic.get("punchline_subtitles", [])[:12], start=1):
-        source_start = float(punchline.get("start") or 0.0)
-        duration = 15.0
-        activity = activity_by_segment.get(str(punchline.get("segment_id") or ""))
-        selected_media, selected_source_start, layout = choose_layout_from_activity(punchline, activity, sync_map)
-        if selected_media in ("cam_person_01", "cam_person_02", "cam_person_03"):
-            role = MEDIA_TO_ROLE = {"cam_person_01": "camera2", "cam_person_02": "camera3", "cam_person_03": "camera4"}[selected_media]
-            selected_source_start = max(0.0, source_start + float(offsets.get(role, 0.0)))
-        else:
-            selected_source_start = source_start
+    main_captions = [
+        caption
+        for caption in main_caption_plan.get("captions", [])
+        if isinstance(caption, dict) and caption.get("display_text")
+    ]
+    main_captions.sort(key=lambda item: float(item.get("caption_start_sec") or 0.0))
+    content_range = content_window.get("usable_master_range") if isinstance(content_window.get("usable_master_range"), dict) else {}
+    full_main_start = max(722.5, float(content_range.get("start_sec") or 519.14))
+    full_main_end = float(content_range.get("end_sec") or 2985.485)
+    used_caption_ids: set[str] = set()
+
+    def captions_for_window(master_in: float, master_out: float) -> list[dict[str, Any]]:
+        result = []
+        for caption in main_captions:
+            caption_id = str(caption.get("caption_id") or "")
+            if caption_id in used_caption_ids:
+                continue
+            caption_start = float(caption.get("caption_start_sec") or 0.0)
+            if master_in <= caption_start < master_out:
+                result.append(caption)
+        return result[:1]
+
+    def safe_caption_person(caption: dict[str, Any] | None) -> tuple[str | None, float]:
+        if not caption:
+            return None, 0.0
+        person_id = str(caption.get("speaker_person_id") or "")
+        try:
+            confidence = float(caption.get("speaker_attribution_confidence") or 0.0)
+        except (TypeError, ValueError):
+            confidence = 0.0
+        if person_id in PERSON_CAMERA:
+            return person_id, confidence
+        return None, confidence
+
+    def full_main_layout(index: int, caption: dict[str, Any] | None, master_in: float) -> tuple[str, float, dict[str, Any]]:
+        person_id, confidence = safe_caption_person(caption)
+        if person_id and confidence >= 0.82:
+            media_id, media_start = synced_source_start_for_person(person_id, master_in, offsets)
+            return (
+                media_id,
+                media_start,
+                {
+                    "type": "single",
+                    "selected_media_id": media_id,
+                    "target_person_id": person_id,
+                    "crop_mode": "person_centered",
+                    "speaker_person_id": person_id,
+                    "speaker_attribution_confidence": confidence,
+                    "selection_reason": "High-confidence speaker attribution; show the speaking person close-up.",
+                },
+            )
+        if person_id and confidence >= 0.55:
+            if person_id == "person_01":
+                people = ["person_01", "person_02"]
+            else:
+                people = ["person_01", person_id]
+            media_ids = [PERSON_CAMERA[item]["media_id"] for item in people]
+            return (
+                "group_wide",
+                master_in,
+                {
+                    "type": "split_grid",
+                    "media_ids": media_ids,
+                    "grid_strategy": "two_person_vertical_split",
+                    "panel_order": people,
+                    "active_person_id": person_id,
+                    "speaker_person_id": person_id,
+                    "speaker_attribution_confidence": confidence,
+                    "selection_reason": "Medium-confidence speaker attribution; use a two-person split so the likely speaker remains visible with context.",
+                },
+            )
+        if index % 6 == 0:
+            people = ["person_01", "person_02", "person_03"]
+            return (
+                "group_wide",
+                master_in,
+                {
+                    "type": "split_grid",
+                    "media_ids": [PERSON_CAMERA[item]["media_id"] for item in people],
+                    "grid_strategy": "three_person_vertical_split",
+                    "panel_order": people,
+                    "selection_reason": "Periodic three-person split keeps full-cast visual rhythm while preserving speaker visibility.",
+                },
+            )
+        return (
+            "group_wide",
+            master_in,
+            {
+                "type": "wide_group",
+                "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                "safe_margin": 0.06,
+                "selection_reason": "Speaker attribution is uncertain; use the three-person wide shot so the active speaker remains visible.",
+            },
+        )
+
+    master_cursor = full_main_start
+    full_index = 1
+    while master_cursor < full_main_end - 0.05:
+        duration = min(15.0, full_main_end - master_cursor)
+        master_out = master_cursor + duration
+        window_captions = captions_for_window(master_cursor, master_out)
+        primary_caption = window_captions[0] if window_captions else None
+        selected_media, selected_source_start, layout = full_main_layout(full_index, primary_caption, master_cursor)
+        overlays = [
+            {"type": "topic_title", "position": "top_right", "topic_id": find_topic_id(topics, master_cursor), "style_id": "opening_digest_top_right_title"},
+        ]
+        caption_metadata = []
+        for caption in window_captions:
+            caption_id = str(caption.get("caption_id") or "")
+            used_caption_ids.add(caption_id)
+            local_start = max(0.4, min(duration - 1.0, float(caption.get("caption_start_sec") or master_cursor) - master_cursor))
+            local_end = min(duration - 0.3, local_start + 4.8)
+            overlays.append(
+                {
+                    "type": "caption",
+                    "start": round(local_start, 3),
+                    "end": round(max(local_end, local_start + 2.2), 3),
+                    "text": clean_text(str(caption.get("display_text") or "")),
+                    "style_id": "main_punchline_caption",
+                    "caption_id": caption_id,
+                    "caption_no": caption.get("caption_no"),
+                    "speaker_person_id": caption.get("speaker_person_id"),
+                }
+            )
+            caption_metadata.append(caption)
         timeline.append(
             {
-                "event_id": f"main_segment_{index:03d}",
+                "event_id": f"main_full_{full_index:03d}",
                 "timeline_start": round(cursor, 3),
                 "timeline_end": round(cursor + duration, 3),
                 "type": "source_clip",
                 "section": "main",
-                "source": {"media_id": selected_media, "in": round(selected_source_start, 3), "out": safe_source_out(media_duration(manifest, selected_media), selected_source_start, duration)},
-                "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
+                "source": {
+                    "media_id": selected_media,
+                    "in": round(selected_source_start, 3),
+                    "out": safe_source_out(media_duration(manifest, selected_media), selected_source_start, duration),
+                },
+                "reference_source": {
+                    "media_id": "group_wide",
+                    "in": round(master_cursor, 3),
+                    "out": safe_source_out(media_duration(manifest, "group_wide"), master_cursor, duration),
+                },
                 "layout": layout,
-                "audio": {"mode": "source", "source_media_id": "group_wide"},
-                "overlays": [
-                    {"type": "topic_title", "position": "top_right", "topic_id": punchline.get("topic_id"), "style_id": "opening_digest_top_right_title"},
-                    {"type": "caption", "start": 1.0, "end": min(8.0, duration - 1.0), "text": punchline.get("text"), "style_id": "main_punchline_caption"},
-                ],
-                "reason": "Draft main-section beat from transcript-derived punchline candidate.",
+                "audio": {"mode": "continuous_reference", "source_media_id": "group_wide"},
+                "overlays": overlays,
+                "main_caption_plan_items": caption_metadata,
+                "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility.",
             }
         )
         cursor += duration
+        master_cursor += duration
+        full_index += 1
 
     unresolved = [role for role in ("camera2", "camera3", "camera4") if role not in (sync.get("offsets") or {})]
     review_required = sync_review_items(sync_map)

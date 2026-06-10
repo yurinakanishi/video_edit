@@ -426,7 +426,7 @@ SPLIT_FACE_PROFILES = {
     # Original 1920x1080 ROI centers from the synced split-grid edit events.
     # These values keep faces close in size and on the same vertical band while
     # preserving enough shoulder room for the reference split composition.
-    "cam_person_01": {"scale_h": 760, "face_center_x": 811, "face_center_y": 392},
+    "cam_person_01": {"scale_h": 740, "face_center_x": 811, "face_center_y": 392, "target_face_y": 260},
     "cam_person_02": {"scale_h": 770, "face_center_x": 1058.5, "face_center_y": 333, "target_face_y": 225},
     "cam_person_03": {"scale_h": 730, "face_center_x": 1148.5, "face_center_y": 288.5},
 }

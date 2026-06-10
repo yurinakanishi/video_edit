@@ -55,7 +55,12 @@
       ],
       "manual_review_required": false,
       "recommended_next_methods": [],
-      "failed_audio_correlation": null
+      "failed_audio_correlation": null,
+      "multi_window_audio_correlation": {
+        "window_count": 7,
+        "min_correlation": 0.898717,
+        "max_correlation": 0.956502
+      }
     },
     {
       "media_id": "cam_person_02",
@@ -84,7 +89,12 @@
       ],
       "manual_review_required": false,
       "recommended_next_methods": [],
-      "failed_audio_correlation": null
+      "failed_audio_correlation": null,
+      "multi_window_audio_correlation": {
+        "window_count": 7,
+        "min_correlation": 0.665273,
+        "max_correlation": 0.867907
+      }
     },
     {
       "media_id": "cam_person_03",
@@ -94,8 +104,8 @@
       "offset_sec": -13.38,
       "app_offset_sec": 13.38,
       "rate": 1.0,
-      "method": "not_yet_determined",
-      "confidence": 0.75,
+      "method": "multi_window_audio_cross_correlation",
+      "confidence": 0.93,
       "audio_analysis": {
         "rms_dbfs": -29.69,
         "max_dbfs": -3.66,
@@ -110,15 +120,14 @@
           "confidence": 0.553411
         }
       ],
-      "manual_review_required": true,
-      "recommended_next_methods": [
-        "timecode_or_ltc_metadata",
-        "visual_clap_frame",
-        "mouth_movement_phrase_match",
-        "hand_gesture_anchor",
-        "manual_marker"
-      ],
-      "failed_audio_correlation": null
+      "manual_review_required": false,
+      "recommended_next_methods": [],
+      "failed_audio_correlation": null,
+      "multi_window_audio_correlation": {
+        "window_count": 7,
+        "min_correlation": 0.801613,
+        "max_correlation": 0.888669
+      }
     }
   ],
   "rules": {
@@ -133,5 +142,6 @@
       "transcript_rough_sync",
       "manual_anchors_with_drift_correction"
     ]
-  }
+  },
+  "multi_window_audio_analysis_source": "projects\\layer-x-domain-expert\\output\\reports\\audio_sync_multwindow_analysis.json"
 }

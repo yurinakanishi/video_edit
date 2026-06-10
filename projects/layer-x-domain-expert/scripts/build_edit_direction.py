@@ -353,6 +353,14 @@ def synced_source_start_for_person(person_id: str, master_time: float, offsets: 
     return camera["media_id"], max(0.0, master_time + offset)
 
 
+def digest_speaker_activity(highlight: dict[str, Any], activity_by_segment: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
+    segment_id = str(highlight.get("segment_id") or "")
+    activity = activity_by_segment.get(segment_id)
+    if activity and activity.get("active_person_id") in {"person_02", "person_03"}:
+        return activity
+    return None
+
+
 def sync_review_items(sync_map: dict[str, Any]) -> list[dict[str, Any]]:
     items = []
     for item in sync_map.get("media_sync", []):
@@ -572,11 +580,28 @@ def build_edit_plan(
     cursor = 0.0
     offsets = sync.get("offsets") if isinstance(sync.get("offsets"), dict) else {}
     activity_by_segment = load_speaker_activity()
-    digest_highlights = semantic.get("highlight_candidates", [])[:5]
+    middle_right_digest = [
+        highlight
+        for highlight in semantic.get("highlight_candidates", [])
+        if digest_speaker_activity(highlight, activity_by_segment)
+    ]
+    digest_highlights = middle_right_digest[:5]
+    if len(digest_highlights) < 5:
+        digest_highlights.extend(
+            highlight
+            for highlight in semantic.get("highlight_candidates", [])
+            if highlight not in digest_highlights and float(highlight.get("source_start") or 0.0) >= 620.0
+        )
+    digest_highlights = digest_highlights[:5]
     for index, highlight in enumerate(digest_highlights, start=1):
         source_start = float(highlight.get("source_start") or 0.0)
         source_end = float(highlight.get("source_end") or source_start + 6.0)
         duration = min(9.0, max(4.0, source_end - source_start))
+        activity = digest_speaker_activity(highlight, activity_by_segment)
+        target_person_id = str((activity or {}).get("active_person_id") or "person_02")
+        if target_person_id not in {"person_02", "person_03"}:
+            target_person_id = "person_02"
+        selected_media, selected_source_start = synced_source_start_for_person(target_person_id, source_start, offsets)
         timeline.append(
             {
                 "event_id": f"digest_{index:03d}",
@@ -584,9 +609,16 @@ def build_edit_plan(
                 "timeline_end": round(cursor + duration, 3),
                 "type": "source_clip",
                 "section": "digest",
-                "source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
+                "source": {"media_id": selected_media, "in": round(selected_source_start, 3), "out": safe_source_out(media_duration(manifest, selected_media), selected_source_start, duration)},
                 "reference_source": {"media_id": "group_wide", "in": round(source_start, 3), "out": safe_source_out(media_duration(manifest, "group_wide"), source_start, duration)},
-                "layout": {"type": "wide_group", "crop_mode": "speaker_aware_pending"},
+                "layout": {
+                    "type": "single",
+                    "crop_mode": "person_centered",
+                    "selected_media_id": selected_media,
+                    "target_person_id": target_person_id,
+                    "speaker_activity": activity,
+                    "selection_reason": "Opening digest excludes the left participant and uses the middle/right close-up when that participant is detected as speaking.",
+                },
                 "audio": {"mode": "source", "source_media_id": "group_wide", "fade_in": 0.08, "fade_out": 0.12},
                 "overlays": [
                     {

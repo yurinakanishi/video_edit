@@ -216,6 +216,7 @@ def ease_out_cubic(value: float) -> float:
 
 def title_text(event: dict[str, Any]) -> str:
     titles = topic_titles()
+    semantic = read_json(REPORTS / "semantic_marks.json") if (REPORTS / "semantic_marks.json").exists() else {}
     for overlay in event.get("overlays", []):
         if not isinstance(overlay, dict) or overlay.get("type") != "topic_title":
             continue
@@ -224,7 +225,19 @@ def title_text(event: dict[str, Any]) -> str:
         topic_id = overlay.get("topic_id")
         if topic_id and str(topic_id) in titles:
             return titles[str(topic_id)]
-    return "Domain Expert Digest" if str(event.get("section") or "") == "digest" else ""
+    section = str(event.get("section") or "")
+    if section == "digest":
+        return "Domain Expert Digest"
+    if section == "main":
+        ref = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
+        ref_time = float(ref.get("in") or 0.0)
+        for topic in semantic.get("topics", []):
+            if float(topic.get("start") or 0.0) <= ref_time < float(topic.get("end") or 0.0):
+                return str(topic.get("title") or "")
+        topics = semantic.get("topics") if isinstance(semantic.get("topics"), list) else []
+        if topics:
+            return str(topics[0].get("title") or "")
+    return ""
 
 
 def draw_logo(canvas: Image.Image, section: str) -> None:
@@ -232,11 +245,11 @@ def draw_logo(canvas: Image.Image, section: str) -> None:
         return
     logo = Image.open(LOGO_PATH).convert("RGBA")
     if section == "digest":
-        logo_w = 220
-        pos = (28, 27)
+        logo_w = 300
+        pos = (10, 20)
     else:
-        logo_w = 270
-        pos = (16, 12)
+        logo_w = 405
+        pos = (2, 2)
     logo_h = round(logo.height * logo_w / logo.width)
     logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
     canvas.alpha_composite(logo, pos)
@@ -249,29 +262,27 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
     if section == "digest":
         canvas.alpha_composite(gradient_image((WIDTH, 102), TOP_STOPS, 255), (0, 0))
         canvas.alpha_composite(gradient_image((WIDTH, 20), BOTTOM_STOPS, 255), (0, HEIGHT - 20))
-        draw.polygon([(0, 0), (286, 0), (269, 102), (0, 102)], fill=(255, 255, 255, 255))
-    elif section != "bridge":
-        canvas.alpha_composite(gradient_image((WIDTH, 102), TOP_STOPS, 86), (0, 0))
-        canvas.alpha_composite(gradient_image((WIDTH, 20), BOTTOM_STOPS, 86), (0, HEIGHT - 20))
+        draw.polygon([(0, 0), (380, 0), (350, 102), (0, 102)], fill=(255, 255, 255, 255))
 
     if section != "bridge":
         draw_logo(canvas, section)
         title = title_text(event).strip()
         if title:
-            font = fit_font(title, 520, 30, 24)
+            font = fit_font(title, 680, 45, 34)
             bbox = draw.textbbox((0, 0), title, font=font)
             text_w = bbox[2] - bbox[0]
             text_h = bbox[3] - bbox[1]
             pad_x = 18
-            box_h = 56
-            box_w = min(560, text_w + pad_x * 2 + 26)
+            box_h = 72
+            box_w = min(720, text_w + pad_x * 2 + 32)
             x1 = WIDTH - 22
             x0 = x1 - box_w
-            y0 = 20
+            y0 = 16
             y1 = y0 + box_h
-            paste_slanted_gradient(canvas, [(x0 + 18, y0), (x1, y0), (x1 - 18, y1), (x0, y1)], TITLE_STOPS, 244)
+            if section != "digest":
+                paste_slanted_gradient(canvas, [(x0 + 18, y0), (x1, y0), (x1 - 18, y1), (x0, y1)], TITLE_STOPS, 244)
             draw = ImageDraw.Draw(canvas)
-            draw.text((x0 + (box_w - text_w) / 2, y0 + (box_h - text_h) / 2 - 3), title, font=font, fill=(255, 255, 255, 255), stroke_width=1, stroke_fill=(0, 0, 0, 70))
+            draw.text((x0 + (box_w - text_w) / 2, y0 + (box_h - text_h) / 2 - 4), title, font=font, fill=(255, 255, 255, 255), stroke_width=2, stroke_fill=(0, 0, 0, 110))
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(output)
 
@@ -411,13 +422,48 @@ def split_divider_chain(media_count: int) -> str:
     return ""
 
 
-def split_crop_x(media_id: str, panel_width: int) -> int:
-    base = round((1280 - panel_width) / 2)
-    if media_id == "cam_person_01":
-        return max(0, base - 150)
-    if media_id == "cam_person_03":
-        return min(1280 - panel_width, base + 150)
-    return base
+SPLIT_FACE_PROFILES = {
+    # Original 1920x1080 ROI centers from the synced split-grid edit events.
+    # These values keep faces close in size and on the same vertical band while
+    # preserving enough shoulder room for the reference split composition.
+    "cam_person_01": {"scale_h": 760, "face_center_x": 811, "face_center_y": 392},
+    "cam_person_02": {"scale_h": 770, "face_center_x": 1058.5, "face_center_y": 333, "target_face_y": 225},
+    "cam_person_03": {"scale_h": 730, "face_center_x": 1148.5, "face_center_y": 288.5},
+}
+
+
+def even_width_for_height(height: int) -> int:
+    width = round(height * 16 / 9)
+    return width if width % 2 == 0 else width + 1
+
+
+def split_crop_profile(media_id: str, panel_width: int) -> tuple[int, int, int]:
+    profile = SPLIT_FACE_PROFILES.get(media_id, {"scale_h": 720, "face_center_x": 960, "face_center_y": 330})
+    scale_h = int(profile["scale_h"])
+    scale = scale_h / 1080
+    scaled_w = even_width_for_height(scale_h)
+    target_face_x = panel_width / 2
+    target_face_y = float(profile.get("target_face_y", 205))
+    crop_x = round(float(profile["face_center_x"]) * scale - target_face_x)
+    crop_y = round(float(profile["face_center_y"]) * scale - target_face_y)
+    crop_x = max(0, min(crop_x, max(0, scaled_w - panel_width)))
+    crop_y = max(0, min(crop_y, max(0, scale_h - 720)))
+    return scale_h, crop_x, crop_y
+
+
+def split_panel_filter(index: int, media_id: str, panel_width: int) -> str:
+    scale_h, crop_x, crop_y = split_crop_profile(media_id, panel_width)
+    if scale_h < 720:
+        y_pad = (720 - scale_h) // 2
+        return (
+            f"[{index}:v]scale=-2:{scale_h}:force_original_aspect_ratio=increase,"
+            f"crop={panel_width}:{scale_h}:{crop_x}:0,"
+            f"pad={panel_width}:720:0:{y_pad},setsar=1[v{index}]"
+        )
+    return (
+        f"[{index}:v]scale=-2:{scale_h}:force_original_aspect_ratio=increase,"
+        f"crop={panel_width}:720:{crop_x}:{crop_y},setsar=1[v{index}]"
+    )
 
 
 def overlay_assets(ffmpeg: str, event: dict[str, Any], segment_id: str) -> tuple[Path, Path | None]:
@@ -521,11 +567,11 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
     filters = []
     if len(media_ids) == 2:
         for index, media_id in enumerate(media_ids):
-            filters.append(f"[{index}:v]scale=1280:720:force_original_aspect_ratio=increase,crop=640:720:{split_crop_x(media_id, 640)}:0,setsar=1[v{index}]")
+            filters.append(split_panel_filter(index, media_id, 640))
         stack = "[v0][v1]hstack=inputs=2"
     elif len(media_ids) == 3:
         for index, media_id in enumerate(media_ids):
-            filters.append(f"[{index}:v]scale=1280:720:force_original_aspect_ratio=increase,crop=426:720:{split_crop_x(media_id, 426)}:0,setsar=1[v{index}]")
+            filters.append(split_panel_filter(index, media_id, 426))
         stack = "[v0][v1][v2]hstack=inputs=3,pad=1280:720:1:0"
     else:
         raise ValueError(f"Unsupported split media count: {len(media_ids)}")
@@ -631,9 +677,10 @@ def main() -> None:
         "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
         "notes": [
             "Digest uses opaque top/bottom bands and slanted white LayerX logo panel.",
-            "Main section uses translucent top/bottom bands so interview footage remains visible.",
+            "Main section removes the full-width top/bottom bands completely.",
             "Captions are rendered as animated RGBA overlays with horizontal reveal and quick fade.",
             "Split dividers use a bluer color and 3x the previous width.",
+            "Split crops align face scale and vertical head height across participants.",
         ],
     }
     write_json(REPORTS / "test_project1_style_preview_report.json", report)

@@ -1,0 +1,232 @@
+{
+  "schema_version": "audio_sync_multwindow_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "method": "multi-window broad audio envelope cross-correlation",
+  "windows_master_start_sec": [
+    620,
+    760,
+    1100,
+    1500,
+    1900,
+    2300,
+    2600
+  ],
+  "results": [
+    {
+      "master_start": 620,
+      "role": "camera2",
+      "expected_offset_sec": -3.332479,
+      "offset_sec": -3.332479,
+      "correlation": 0.949067,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 760,
+      "role": "camera2",
+      "expected_offset_sec": -3.332479,
+      "offset_sec": -3.332479,
+      "correlation": 0.956502,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1100,
+      "role": "camera2",
+      "expected_offset_sec": -3.332479,
+      "offset_sec": -3.332479,
+      "correlation": 0.909693,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1500,
+      "role": "camera2",
+      "expected_offset_sec": -3.332479,
+      "offset_sec": -3.332479,
+      "correlation": 0.898717,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1900,
+      "role": "camera2",
+      "expected_offset_sec": -3.332479,
+      "offset_sec": -3.332479,
+      "correlation": 0.955223,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 2300,
+      "role": "camera2",
+      "expected_offset_sec": -3.332479,
+      "offset_sec": -3.332479,
+      "correlation": 0.934,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 2600,
+      "role": "camera2",
+      "expected_offset_sec": -3.332479,
+      "offset_sec": -3.332479,
+      "correlation": 0.949395,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 620,
+      "role": "camera3",
+      "expected_offset_sec": 7.467854,
+      "offset_sec": 7.467854,
+      "correlation": 0.867907,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 760,
+      "role": "camera3",
+      "expected_offset_sec": 7.467854,
+      "offset_sec": 7.467854,
+      "correlation": 0.812915,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1100,
+      "role": "camera3",
+      "expected_offset_sec": 7.467854,
+      "offset_sec": 7.467854,
+      "correlation": 0.715388,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1500,
+      "role": "camera3",
+      "expected_offset_sec": 7.467854,
+      "offset_sec": 7.467854,
+      "correlation": 0.665273,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1900,
+      "role": "camera3",
+      "expected_offset_sec": 7.467854,
+      "offset_sec": 7.467854,
+      "correlation": 0.779774,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 2300,
+      "role": "camera3",
+      "expected_offset_sec": 7.467854,
+      "offset_sec": 7.467854,
+      "correlation": 0.755074,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 2600,
+      "role": "camera3",
+      "expected_offset_sec": 7.467854,
+      "offset_sec": 7.467854,
+      "correlation": 0.863937,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 620,
+      "role": "camera4",
+      "expected_offset_sec": 13.38,
+      "offset_sec": 13.38,
+      "correlation": 0.874584,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 760,
+      "role": "camera4",
+      "expected_offset_sec": 13.38,
+      "offset_sec": 13.38,
+      "correlation": 0.801613,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1100,
+      "role": "camera4",
+      "expected_offset_sec": 13.38,
+      "offset_sec": 13.38,
+      "correlation": 0.81013,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1500,
+      "role": "camera4",
+      "expected_offset_sec": 13.38,
+      "offset_sec": 13.38,
+      "correlation": 0.805092,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 1900,
+      "role": "camera4",
+      "expected_offset_sec": 13.38,
+      "offset_sec": 13.38,
+      "correlation": 0.888669,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 2300,
+      "role": "camera4",
+      "expected_offset_sec": 13.38,
+      "offset_sec": 13.38,
+      "correlation": 0.826704,
+      "window_duration_sec": 45
+    },
+    {
+      "master_start": 2600,
+      "role": "camera4",
+      "expected_offset_sec": 13.38,
+      "offset_sec": 13.38,
+      "correlation": 0.854329,
+      "window_duration_sec": 45
+    }
+  ],
+  "aggregate": {
+    "camera2": {
+      "window_count": 7,
+      "median_offset_sec": -3.332479,
+      "min_correlation": 0.898717,
+      "max_correlation": 0.956502,
+      "offsets_sec": [
+        -3.332479,
+        -3.332479,
+        -3.332479,
+        -3.332479,
+        -3.332479,
+        -3.332479,
+        -3.332479
+      ]
+    },
+    "camera3": {
+      "window_count": 7,
+      "median_offset_sec": 7.467854,
+      "min_correlation": 0.665273,
+      "max_correlation": 0.867907,
+      "offsets_sec": [
+        7.467854,
+        7.467854,
+        7.467854,
+        7.467854,
+        7.467854,
+        7.467854,
+        7.467854
+      ]
+    },
+    "camera4": {
+      "window_count": 7,
+      "median_offset_sec": 13.38,
+      "min_correlation": 0.801613,
+      "max_correlation": 0.888669,
+      "offsets_sec": [
+        13.38,
+        13.38,
+        13.38,
+        13.38,
+        13.38,
+        13.38,
+        13.38
+      ]
+    }
+  },
+  "decision": "confirm existing app offsets for camera2/camera3/camera4; camera4 is promoted from waveform-only provisional to multi-window confirmed"
+}

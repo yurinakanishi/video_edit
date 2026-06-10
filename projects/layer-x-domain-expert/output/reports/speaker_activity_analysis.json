@@ -1,7 +1,7 @@
 {
   "schema_version": "speaker_activity_analysis.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T08:12:19+09:00",
+  "generated_at": "2026-06-10T09:32:28+09:00",
   "method": "synced close-camera lower-face motion ranking",
   "limitations": [
     "No diarized speaker labels are available yet.",
@@ -10,40 +10,23 @@
   ],
   "segments": [
     {
-      "segment_id": "seg_000253",
-      "start": 766.06,
-      "end": 773.06,
-      "text": "まずヒアリングをするところから始まるみたいな感じで",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.767,
+      "segment_id": "seg_000674",
+      "start": 2368.66,
+      "end": 2375.66,
+      "text": "現場理解をプロダクトの価値へつなげる",
+      "active_person_id": "person_02",
+      "reaction_person_id": "person_01",
+      "confidence": 0.371,
       "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 762.728,
-          "source_end": 769.728,
-          "score": 16.38945,
-          "peak_score": 29.50459,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
         {
           "person_id": "person_02",
           "media_id": "cam_person_02",
           "role": "camera3",
-          "source_start": 773.528,
-          "source_end": 780.528,
-          "score": 9.73899,
-          "peak_score": 19.76393,
-          "samples": 17,
+          "source_start": 2376.128,
+          "source_end": 2383.128,
+          "score": 18.40591,
+          "peak_score": 25.05656,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -53,14 +36,31 @@
           ]
         },
         {
+          "person_id": "person_01",
+          "media_id": "cam_person_01",
+          "role": "camera2",
+          "source_start": 2365.328,
+          "source_end": 2372.328,
+          "score": 17.7948,
+          "peak_score": 22.6796,
+          "samples": 5,
+          "status": "sampled",
+          "roi": [
+            582,
+            277,
+            1040,
+            507
+          ]
+        },
+        {
           "person_id": "person_03",
           "media_id": "cam_person_03",
           "role": "camera4",
-          "source_start": 779.44,
-          "source_end": 786.44,
-          "score": 7.89848,
-          "peak_score": 11.31893,
-          "samples": 17,
+          "source_start": 2382.04,
+          "source_end": 2389.04,
+          "score": 11.70832,
+          "peak_score": 18.04977,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -73,23 +73,23 @@
       "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
     },
     {
-      "segment_id": "seg_000684",
-      "start": 2441.7,
-      "end": 2448.7,
-      "text": "休憩室のチェックの部分ですね",
+      "segment_id": "seg_000701",
+      "start": 2535.2,
+      "end": 2542.2,
+      "text": "AI活用にもドメイン理解が効いてくる",
       "active_person_id": "person_01",
       "reaction_person_id": "person_02",
-      "confidence": 0.391,
+      "confidence": 0.9,
       "activity_scores": [
         {
           "person_id": "person_01",
           "media_id": "cam_person_01",
           "role": "camera2",
-          "source_start": 2438.368,
-          "source_end": 2445.368,
-          "score": 6.5642,
-          "peak_score": 15.17361,
-          "samples": 17,
+          "source_start": 2531.868,
+          "source_end": 2538.868,
+          "score": 21.40758,
+          "peak_score": 53.86359,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -102,11 +102,11 @@
           "person_id": "person_02",
           "media_id": "cam_person_02",
           "role": "camera3",
-          "source_start": 2449.168,
-          "source_end": 2456.168,
-          "score": 6.15402,
-          "peak_score": 10.42946,
-          "samples": 17,
+          "source_start": 2542.668,
+          "source_end": 2549.668,
+          "score": 10.84513,
+          "peak_score": 22.06767,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -119,11 +119,11 @@
           "person_id": "person_03",
           "media_id": "cam_person_03",
           "role": "camera4",
-          "source_start": 2455.08,
-          "source_end": 2462.08,
-          "score": 6.054,
-          "peak_score": 12.34515,
-          "samples": 17,
+          "source_start": 2548.58,
+          "source_end": 2555.58,
+          "score": 9.50528,
+          "peak_score": 16.27809,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -139,10 +139,10 @@
       "segment_id": "seg_000658",
       "start": 2297.04,
       "end": 2304.04,
-      "text": "あとは、今は結構ドメインのアドバンテージがあるっていいですけど",
+      "text": "ドメイン知識がプロダクトの強みになる",
       "active_person_id": "person_02",
       "reaction_person_id": "person_03",
-      "confidence": 0.855,
+      "confidence": 0.9,
       "activity_scores": [
         {
           "person_id": "person_02",
@@ -150,9 +150,9 @@
           "role": "camera3",
           "source_start": 2304.508,
           "source_end": 2311.508,
-          "score": 13.56242,
-          "peak_score": 21.94531,
-          "samples": 17,
+          "score": 19.62628,
+          "peak_score": 24.78037,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -167,9 +167,9 @@
           "role": "camera4",
           "source_start": 2310.42,
           "source_end": 2317.42,
-          "score": 7.42901,
-          "peak_score": 15.51262,
-          "samples": 17,
+          "score": 9.03103,
+          "peak_score": 10.77323,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -184,9 +184,9 @@
           "role": "camera2",
           "source_start": 2293.708,
           "source_end": 2300.708,
-          "score": 5.58062,
-          "peak_score": 18.06743,
-          "samples": 17,
+          "score": 6.17806,
+          "peak_score": 11.31361,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -199,40 +199,23 @@
       "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
     },
     {
-      "segment_id": "seg_000701",
-      "start": 2535.2,
-      "end": 2542.2,
-      "text": "エモさん、結構入社してから割とAIを活用した機能とか",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.628,
+      "segment_id": "seg_000725",
+      "start": 2637.06,
+      "end": 2644.06,
+      "text": "手作業の業務をプロダクトで変えていく",
+      "active_person_id": "person_02",
+      "reaction_person_id": "person_01",
+      "confidence": 0.75,
       "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2531.868,
-          "source_end": 2538.868,
-          "score": 11.98877,
-          "peak_score": 40.85087,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
         {
           "person_id": "person_02",
           "media_id": "cam_person_02",
           "role": "camera3",
-          "source_start": 2542.668,
-          "source_end": 2549.668,
-          "score": 8.2376,
-          "peak_score": 15.92767,
-          "samples": 17,
+          "source_start": 2644.528,
+          "source_end": 2651.528,
+          "score": 24.33495,
+          "peak_score": 38.26652,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -242,43 +225,14 @@
           ]
         },
         {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2548.58,
-          "source_end": 2555.58,
-          "score": 6.8435,
-          "peak_score": 11.85225,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000674",
-      "start": 2368.66,
-      "end": 2375.66,
-      "text": "バックオフィスという事業のプロダクトを通じて",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.458,
-      "activity_scores": [
-        {
           "person_id": "person_01",
           "media_id": "cam_person_01",
           "role": "camera2",
-          "source_start": 2365.328,
-          "source_end": 2372.328,
-          "score": 11.9585,
-          "peak_score": 19.99988,
-          "samples": 17,
+          "source_start": 2633.728,
+          "source_end": 2640.728,
+          "score": 14.70813,
+          "peak_score": 24.41519,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -288,94 +242,14 @@
           ]
         },
         {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2376.128,
-          "source_end": 2383.128,
-          "score": 10.16306,
-          "peak_score": 16.54755,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
           "person_id": "person_03",
           "media_id": "cam_person_03",
           "role": "camera4",
-          "source_start": 2382.04,
-          "source_end": 2389.04,
-          "score": 8.26119,
-          "peak_score": 13.08192,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000742",
-      "start": 2716.68,
-      "end": 2723.68,
-      "text": "だから、こういうものをジョブローテーションの中に組み込んで",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.9,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2713.348,
-          "source_end": 2720.348,
-          "score": 17.28208,
-          "peak_score": 35.16854,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2724.148,
-          "source_end": 2731.148,
-          "score": 9.00682,
-          "peak_score": 14.68385,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2730.06,
-          "source_end": 2737.06,
-          "score": 8.38153,
-          "peak_score": 18.20098,
-          "samples": 17,
+          "source_start": 2650.44,
+          "source_end": 2657.44,
+          "score": 12.97914,
+          "peak_score": 31.17318,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -391,10 +265,10 @@
       "segment_id": "seg_000565",
       "start": 1907.86,
       "end": 1914.86,
-      "text": "たぶん皆さん経理とかロームのドメインを知っているから",
+      "text": "実務の専門性が開発の前提になる",
       "active_person_id": "person_02",
       "reaction_person_id": "person_03",
-      "confidence": 0.382,
+      "confidence": 0.388,
       "activity_scores": [
         {
           "person_id": "person_02",
@@ -402,9 +276,9 @@
           "role": "camera3",
           "source_start": 1915.328,
           "source_end": 1922.328,
-          "score": 14.52738,
-          "peak_score": 23.365,
-          "samples": 17,
+          "score": 17.39352,
+          "peak_score": 24.05492,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -419,9 +293,9 @@
           "role": "camera4",
           "source_start": 1921.24,
           "source_end": 1928.24,
-          "score": 13.80534,
-          "peak_score": 22.6408,
-          "samples": 17,
+          "score": 16.37001,
+          "peak_score": 29.83537,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -436,9 +310,9 @@
           "role": "camera2",
           "source_start": 1904.528,
           "source_end": 1911.528,
-          "score": 8.07654,
-          "peak_score": 16.80092,
-          "samples": 17,
+          "score": 13.67149,
+          "peak_score": 20.16851,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -451,103 +325,23 @@
       "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
     },
     {
-      "segment_id": "seg_000389",
-      "start": 1254.56,
-      "end": 1257.16,
-      "text": "プロダクトマネージャーってコードを書けないといけないと思ってたんです",
-      "active_person_id": "person_02",
-      "reaction_person_id": "person_01",
-      "confidence": 0.9,
+      "segment_id": "seg_000742",
+      "start": 2716.68,
+      "end": 2723.68,
+      "text": "経験を循環させてドメイン理解を広げる",
+      "active_person_id": "person_01",
+      "reaction_person_id": "person_02",
+      "confidence": 0.727,
       "activity_scores": [
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1262.028,
-          "source_end": 1264.628,
-          "score": 9.32452,
-          "peak_score": 14.59728,
-          "samples": 10,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
         {
           "person_id": "person_01",
           "media_id": "cam_person_01",
           "role": "camera2",
-          "source_start": 1251.228,
-          "source_end": 1253.828,
-          "score": 4.49831,
-          "peak_score": 8.62056,
-          "samples": 10,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1267.94,
-          "source_end": 1270.54,
-          "score": 3.93069,
-          "peak_score": 7.05221,
-          "samples": 10,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000759",
-      "start": 2792.86,
-      "end": 2799.86,
-      "text": "そういう単純な技能じゃないと思うんですけど",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.556,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2806.24,
-          "source_end": 2813.24,
-          "score": 10.20082,
-          "peak_score": 18.03584,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2789.528,
-          "source_end": 2796.528,
-          "score": 7.63065,
-          "peak_score": 14.96237,
-          "samples": 17,
+          "source_start": 2713.348,
+          "source_end": 2720.348,
+          "score": 21.66645,
+          "peak_score": 29.17264,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -560,11 +354,11 @@
           "person_id": "person_02",
           "media_id": "cam_person_02",
           "role": "camera3",
-          "source_start": 2800.328,
-          "source_end": 2807.328,
-          "score": 7.45683,
-          "peak_score": 12.19728,
-          "samples": 17,
+          "source_start": 2724.148,
+          "source_end": 2731.148,
+          "score": 13.39772,
+          "peak_score": 16.56069,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -572,28 +366,45 @@
             1230,
             458
           ]
+        },
+        {
+          "person_id": "person_03",
+          "media_id": "cam_person_03",
+          "role": "camera4",
+          "source_start": 2730.06,
+          "source_end": 2737.06,
+          "score": 8.86129,
+          "peak_score": 15.30466,
+          "samples": 5,
+          "status": "sampled",
+          "roi": [
+            890,
+            156,
+            1407,
+            421
+          ]
         }
       ],
       "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
     },
     {
-      "segment_id": "seg_000347",
-      "start": 1115.28,
-      "end": 1122.28,
-      "text": "どんなものができるんだろうと一気に興味を持ち込んで",
+      "segment_id": "seg_000342",
+      "start": 1070.28,
+      "end": 1077.28,
+      "text": "入社前はプロダクトに強い興味はなかった",
       "active_person_id": "person_03",
       "reaction_person_id": "person_02",
-      "confidence": 0.9,
+      "confidence": 0.559,
       "activity_scores": [
         {
           "person_id": "person_03",
           "media_id": "cam_person_03",
           "role": "camera4",
-          "source_start": 1128.66,
-          "source_end": 1135.66,
-          "score": 10.33273,
-          "peak_score": 29.60523,
-          "samples": 17,
+          "source_start": 1083.66,
+          "source_end": 1090.66,
+          "score": 10.84665,
+          "peak_score": 15.9154,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -606,11 +417,11 @@
           "person_id": "person_02",
           "media_id": "cam_person_02",
           "role": "camera3",
-          "source_start": 1122.748,
-          "source_end": 1129.748,
-          "score": 4.907,
-          "peak_score": 9.0989,
-          "samples": 17,
+          "source_start": 1077.748,
+          "source_end": 1084.748,
+          "score": 8.07864,
+          "peak_score": 9.76052,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -623,11 +434,11 @@
           "person_id": "person_01",
           "media_id": "cam_person_01",
           "role": "camera2",
-          "source_start": 1111.948,
-          "source_end": 1118.948,
-          "score": 3.13238,
-          "peak_score": 7.67501,
-          "samples": 17,
+          "source_start": 1066.948,
+          "source_end": 1073.948,
+          "score": 6.05246,
+          "peak_score": 11.17517,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -643,10 +454,10 @@
       "segment_id": "seg_000721",
       "start": 2612.06,
       "end": 2619.06,
-      "text": "それはいきなり何もなしだと難しいと思うんですけれども",
+      "text": "何もないところから専門性は育たない",
       "active_person_id": "person_02",
       "reaction_person_id": "person_03",
-      "confidence": 0.524,
+      "confidence": 0.364,
       "activity_scores": [
         {
           "person_id": "person_02",
@@ -654,9 +465,9 @@
           "role": "camera3",
           "source_start": 2619.528,
           "source_end": 2626.528,
-          "score": 10.55939,
-          "peak_score": 21.3922,
-          "samples": 17,
+          "score": 14.32008,
+          "peak_score": 21.82388,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -671,9 +482,9 @@
           "role": "camera4",
           "source_start": 2625.44,
           "source_end": 2632.44,
-          "score": 8.22169,
-          "peak_score": 17.03217,
-          "samples": 17,
+          "score": 14.00128,
+          "peak_score": 22.69762,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -688,519 +499,15 @@
           "role": "camera2",
           "source_start": 2608.728,
           "source_end": 2615.728,
-          "score": 6.52686,
-          "peak_score": 25.55689,
-          "samples": 17,
+          "score": 10.91931,
+          "peak_score": 29.27849,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
             277,
             1040,
             507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000345",
-      "start": 1088.28,
-      "end": 1095.28,
-      "text": "あの今をときめくのがですね、採用体験どんなものなのかとか",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.9,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1101.66,
-          "source_end": 1108.66,
-          "score": 9.97783,
-          "peak_score": 19.57131,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1084.948,
-          "source_end": 1091.948,
-          "score": 4.51517,
-          "peak_score": 15.1486,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1095.748,
-          "source_end": 1102.748,
-          "score": 4.45679,
-          "peak_score": 11.39698,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000470",
-      "start": 1538.62,
-      "end": 1545.62,
-      "text": "癖とか、慣れとか、そういうもので今までやってきたんだなっていうのが分",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_03",
-      "confidence": 0.603,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1535.288,
-          "source_end": 1542.288,
-          "score": 7.8434,
-          "peak_score": 25.62581,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1552.0,
-          "source_end": 1559.0,
-          "score": 5.54583,
-          "peak_score": 11.56826,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1546.088,
-          "source_end": 1553.088,
-          "score": 4.72893,
-          "peak_score": 9.96056,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000510",
-      "start": 1718.5,
-      "end": 1725.5,
-      "text": "それで言うと、もしかすると皆さんなんとなく分かりやすいんですけれども",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_02",
-      "confidence": 0.362,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1731.88,
-          "source_end": 1738.88,
-          "score": 9.44517,
-          "peak_score": 21.01131,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1725.968,
-          "source_end": 1732.968,
-          "score": 9.25721,
-          "peak_score": 17.85287,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1715.168,
-          "source_end": 1722.168,
-          "score": 3.18075,
-          "peak_score": 7.42134,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000237",
-      "start": 689.86,
-      "end": 696.86,
-      "text": "割と事業会社さんに外からアドバイスをさせていただくという立場で",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.568,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 703.24,
-          "source_end": 710.24,
-          "score": 10.37802,
-          "peak_score": 30.71853,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 686.528,
-          "source_end": 693.528,
-          "score": 7.64933,
-          "peak_score": 24.02724,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 697.328,
-          "source_end": 704.328,
-          "score": 6.50609,
-          "peak_score": 9.27412,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000644",
-      "start": 2203.74,
-      "end": 2210.74,
-      "text": "大事だなとは思いますが、それが大前提として",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_03",
-      "confidence": 0.64,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2200.408,
-          "source_end": 2207.408,
-          "score": 19.50133,
-          "peak_score": 33.63747,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2217.12,
-          "source_end": 2224.12,
-          "score": 13.2321,
-          "peak_score": 27.80808,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2211.208,
-          "source_end": 2218.208,
-          "score": 9.81863,
-          "peak_score": 25.48861,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000681",
-      "start": 2415.7,
-      "end": 2422.7,
-      "text": "この辺特に、それぞれのプロダクトに対して、こういう思いで作ったとか",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_03",
-      "confidence": 0.9,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2412.368,
-          "source_end": 2419.368,
-          "score": 11.16051,
-          "peak_score": 18.28046,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2429.08,
-          "source_end": 2436.08,
-          "score": 3.93373,
-          "peak_score": 14.3921,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2423.168,
-          "source_end": 2430.168,
-          "score": 3.83208,
-          "peak_score": 6.43581,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000725",
-      "start": 2637.06,
-      "end": 2644.06,
-      "text": "最終的にはそういった今僕らは手でやったりするようなバックオフィスの業",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.379,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2633.728,
-          "source_end": 2640.728,
-          "score": 11.22239,
-          "peak_score": 22.16274,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2644.528,
-          "source_end": 2651.528,
-          "score": 10.71141,
-          "peak_score": 26.65399,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2650.44,
-          "source_end": 2657.44,
-          "score": 7.09178,
-          "peak_score": 21.15078,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000457",
-      "start": 1484.96,
-      "end": 1490.56,
-      "text": "結構プロダクトのフェーズとかそういうものによっても全然違うし",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.433,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1481.628,
-          "source_end": 1487.228,
-          "score": 14.65563,
-          "peak_score": 26.41146,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1492.428,
-          "source_end": 1498.028,
-          "score": 12.90708,
-          "peak_score": 27.8993,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1498.34,
-          "source_end": 1503.94,
-          "score": 11.27947,
-          "peak_score": 29.23279,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
           ]
         }
       ],
@@ -1210,10 +517,10 @@
       "segment_id": "seg_000556",
       "start": 1869.46,
       "end": 1875.46,
-      "text": "いろんな方たちも、多分ドメインの専門家とか実務家たちのプライドって",
+      "text": "実務家のプライドをプロダクトに活かす",
       "active_person_id": "person_03",
       "reaction_person_id": "person_02",
-      "confidence": 0.789,
+      "confidence": 0.563,
       "activity_scores": [
         {
           "person_id": "person_03",
@@ -1221,9 +528,9 @@
           "role": "camera4",
           "source_start": 1882.84,
           "source_end": 1888.84,
-          "score": 11.28232,
-          "peak_score": 20.26181,
-          "samples": 17,
+          "score": 14.12103,
+          "peak_score": 25.0096,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -1238,9 +545,9 @@
           "role": "camera3",
           "source_start": 1876.928,
           "source_end": 1882.928,
-          "score": 6.56591,
-          "peak_score": 10.77718,
-          "samples": 17,
+          "score": 10.47572,
+          "peak_score": 12.15138,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -1255,9 +562,9 @@
           "role": "camera2",
           "source_start": 1866.128,
           "source_end": 1872.128,
-          "score": 2.65132,
-          "peak_score": 8.69251,
-          "samples": 17,
+          "score": 2.82541,
+          "peak_score": 4.44802,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -1270,13 +577,76 @@
       "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
     },
     {
+      "segment_id": "seg_000681",
+      "start": 2415.7,
+      "end": 2422.7,
+      "text": "プロダクトごとの思いを理解して作る",
+      "active_person_id": "person_01",
+      "reaction_person_id": "person_02",
+      "confidence": 0.9,
+      "activity_scores": [
+        {
+          "person_id": "person_01",
+          "media_id": "cam_person_01",
+          "role": "camera2",
+          "source_start": 2412.368,
+          "source_end": 2419.368,
+          "score": 12.6905,
+          "peak_score": 23.17718,
+          "samples": 5,
+          "status": "sampled",
+          "roi": [
+            582,
+            277,
+            1040,
+            507
+          ]
+        },
+        {
+          "person_id": "person_02",
+          "media_id": "cam_person_02",
+          "role": "camera3",
+          "source_start": 2423.168,
+          "source_end": 2430.168,
+          "score": 5.20062,
+          "peak_score": 6.45322,
+          "samples": 5,
+          "status": "sampled",
+          "roi": [
+            887,
+            208,
+            1230,
+            458
+          ]
+        },
+        {
+          "person_id": "person_03",
+          "media_id": "cam_person_03",
+          "role": "camera4",
+          "source_start": 2429.08,
+          "source_end": 2436.08,
+          "score": 4.3255,
+          "peak_score": 6.95405,
+          "samples": 5,
+          "status": "sampled",
+          "roi": [
+            890,
+            156,
+            1407,
+            421
+          ]
+        }
+      ],
+      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
+    },
+    {
       "segment_id": "seg_000405",
       "start": 1330.28,
       "end": 1335.54,
-      "text": "感じだと思うんですけど共通点 としてはプロダクト開発にドメイン",
+      "text": "ドメイン知識を開発に接続する",
       "active_person_id": "person_02",
       "reaction_person_id": "person_01",
-      "confidence": 0.57,
+      "confidence": 0.9,
       "activity_scores": [
         {
           "person_id": "person_02",
@@ -1284,9 +654,9 @@
           "role": "camera3",
           "source_start": 1337.748,
           "source_end": 1343.008,
-          "score": 9.97783,
-          "peak_score": 16.14299,
-          "samples": 17,
+          "score": 18.4317,
+          "peak_score": 24.11557,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
@@ -1301,9 +671,9 @@
           "role": "camera2",
           "source_start": 1326.948,
           "source_end": 1332.208,
-          "score": 7.33839,
-          "peak_score": 21.77565,
-          "samples": 17,
+          "score": 8.70661,
+          "peak_score": 12.45278,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -1318,9 +688,9 @@
           "role": "camera4",
           "source_start": 1343.66,
           "source_end": 1348.92,
-          "score": 5.4488,
-          "peak_score": 13.48099,
-          "samples": 17,
+          "score": 8.70379,
+          "peak_score": 16.39069,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -1333,23 +703,23 @@
       "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
     },
     {
-      "segment_id": "seg_000484",
-      "start": 1619.16,
-      "end": 1623.92,
-      "text": "本当におっしゃっていたけどもうすごい皆さんドメインの方めっちゃ調べて",
+      "segment_id": "seg_000644",
+      "start": 2203.74,
+      "end": 2210.74,
+      "text": "大事だなとは思いますが、それが大前提として",
       "active_person_id": "person_01",
       "reaction_person_id": "person_03",
-      "confidence": 0.466,
+      "confidence": 0.424,
       "activity_scores": [
         {
           "person_id": "person_01",
           "media_id": "cam_person_01",
           "role": "camera2",
-          "source_start": 1615.828,
-          "source_end": 1620.588,
-          "score": 9.33077,
-          "peak_score": 21.86588,
-          "samples": 17,
+          "source_start": 2200.408,
+          "source_end": 2207.408,
+          "score": 26.40459,
+          "peak_score": 39.16196,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             582,
@@ -1362,11 +732,11 @@
           "person_id": "person_03",
           "media_id": "cam_person_03",
           "role": "camera4",
-          "source_start": 1632.54,
-          "source_end": 1637.3,
-          "score": 7.84017,
-          "peak_score": 12.26298,
-          "samples": 17,
+          "source_start": 2217.12,
+          "source_end": 2224.12,
+          "score": 23.5363,
+          "peak_score": 49.83896,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             890,
@@ -1379,1151 +749,17 @@
           "person_id": "person_02",
           "media_id": "cam_person_02",
           "role": "camera3",
-          "source_start": 1626.628,
-          "source_end": 1631.388,
-          "score": 3.90076,
-          "peak_score": 6.52398,
-          "samples": 17,
+          "source_start": 2211.208,
+          "source_end": 2218.208,
+          "score": 6.01552,
+          "peak_score": 14.97949,
+          "samples": 5,
           "status": "sampled",
           "roi": [
             887,
             208,
             1230,
             458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000650",
-      "start": 2248.04,
-      "end": 2255.04,
-      "text": "確かに何かの職種というよりは",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.423,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2261.42,
-          "source_end": 2268.42,
-          "score": 12.42965,
-          "peak_score": 32.83187,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2244.708,
-          "source_end": 2251.708,
-          "score": 11.09833,
-          "peak_score": 21.00609,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2255.508,
-          "source_end": 2262.508,
-          "score": 6.5975,
-          "peak_score": 11.44289,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000802",
-      "start": 2966.04,
-      "end": 2973.04,
-      "text": "その後もちろん専門家としてすごく一個に尖っていくっていうのもいいキャ",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_03",
-      "confidence": 0.557,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2962.708,
-          "source_end": 2969.708,
-          "score": 9.21986,
-          "peak_score": 20.41433,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2979.42,
-          "source_end": 2986.42,
-          "score": 6.88375,
-          "peak_score": 13.20517,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2973.508,
-          "source_end": 2980.508,
-          "score": 3.59271,
-          "peak_score": 7.64559,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000539",
-      "start": 1816.18,
-      "end": 1818.58,
-      "text": "なんかうちの演じりだってそれ伝えると結構やってくれるじゃないですか",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_02",
-      "confidence": 0.362,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1829.56,
-          "source_end": 1831.96,
-          "score": 13.1911,
-          "peak_score": 25.15161,
-          "samples": 9,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1823.648,
-          "source_end": 1826.048,
-          "score": 12.93243,
-          "peak_score": 24.16866,
-          "samples": 9,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1812.848,
-          "source_end": 1815.248,
-          "score": 4.05946,
-          "peak_score": 13.37578,
-          "samples": 9,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000197",
-      "start": 586.58,
-      "end": 588.22,
-      "text": "バックグラウンドはドメインエキスパートで",
-      "active_person_id": "person_02",
-      "reaction_person_id": "person_03",
-      "confidence": 0.401,
-      "activity_scores": [
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 594.048,
-          "source_end": 595.688,
-          "score": 9.83959,
-          "peak_score": 14.48055,
-          "samples": 6,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 599.96,
-          "source_end": 601.6,
-          "score": 9.08287,
-          "peak_score": 16.90363,
-          "samples": 6,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 583.248,
-          "source_end": 584.888,
-          "score": 8.01085,
-          "peak_score": 12.27355,
-          "samples": 6,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000764",
-      "start": 2832.86,
-      "end": 2839.86,
-      "text": "よくある仕事なんですけど",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.9,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2846.24,
-          "source_end": 2853.24,
-          "score": 11.70214,
-          "peak_score": 23.2713,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2829.528,
-          "source_end": 2836.528,
-          "score": 5.70455,
-          "peak_score": 15.32172,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2840.328,
-          "source_end": 2847.328,
-          "score": 4.74335,
-          "peak_score": 7.54138,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000249",
-      "start": 740.94,
-      "end": 747.38,
-      "text": "経営企画、IRみたいなそういった仕事をして",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.487,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 737.608,
-          "source_end": 744.048,
-          "score": 10.86932,
-          "peak_score": 21.25451,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 748.408,
-          "source_end": 754.848,
-          "score": 8.88073,
-          "peak_score": 17.14087,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 754.32,
-          "source_end": 760.76,
-          "score": 5.43608,
-          "peak_score": 10.54868,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000397",
-      "start": 1285.16,
-      "end": 1292.16,
-      "text": "自分の知識を活かして、いろんなことをやればいいんだったら",
-      "active_person_id": "person_02",
-      "reaction_person_id": "person_03",
-      "confidence": 0.473,
-      "activity_scores": [
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1292.628,
-          "source_end": 1299.628,
-          "score": 10.26627,
-          "peak_score": 16.72765,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1298.54,
-          "source_end": 1305.54,
-          "score": 8.55053,
-          "peak_score": 21.65979,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1281.828,
-          "source_end": 1288.828,
-          "score": 6.41979,
-          "peak_score": 13.18567,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000341",
-      "start": 1061.28,
-      "end": 1068.28,
-      "text": "なので、すごく人事企画として、職種、自治企画だとするにあたって",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.9,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1074.66,
-          "source_end": 1081.66,
-          "score": 7.08938,
-          "peak_score": 13.53197,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1057.948,
-          "source_end": 1064.948,
-          "score": 3.64619,
-          "peak_score": 16.378,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1068.748,
-          "source_end": 1075.748,
-          "score": 2.25764,
-          "peak_score": 6.03411,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000574",
-      "start": 1949.2,
-      "end": 1951.2,
-      "text": "普通にルールを読むようなのをやると絶対やるって書いてある",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.604,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1962.58,
-          "source_end": 1964.58,
-          "score": 10.1995,
-          "peak_score": 15.65936,
-          "samples": 7,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1945.868,
-          "source_end": 1947.868,
-          "score": 7.20839,
-          "peak_score": 18.29256,
-          "samples": 7,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1956.668,
-          "source_end": 1958.668,
-          "score": 5.96769,
-          "peak_score": 9.54673,
-          "samples": 7,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000784",
-      "start": 2922.04,
-      "end": 2926.04,
-      "text": "こういうドミニキスパートとかプロダクトマネージャーみたいなキャリア",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.621,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2918.708,
-          "source_end": 2922.708,
-          "score": 12.89603,
-          "peak_score": 21.95373,
-          "samples": 15,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2929.508,
-          "source_end": 2933.508,
-          "score": 8.93482,
-          "peak_score": 15.5701,
-          "samples": 15,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2935.42,
-          "source_end": 2939.42,
-          "score": 7.41055,
-          "peak_score": 12.3482,
-          "samples": 15,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000476",
-      "start": 1571.12,
-      "end": 1578.12,
-      "text": "確かにこの辺も例えば業務として当たり前のことも意外と背景にこういう法",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_03",
-      "confidence": 0.407,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1567.788,
-          "source_end": 1574.788,
-          "score": 9.36747,
-          "peak_score": 27.6749,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1584.5,
-          "source_end": 1591.5,
-          "score": 8.57305,
-          "peak_score": 24.17469,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1578.588,
-          "source_end": 1585.588,
-          "score": 5.78959,
-          "peak_score": 9.77243,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000321",
-      "start": 1005.74,
-      "end": 1007.86,
-      "text": "スタートアップにいたらあんまりそういうのがなかったので",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_02",
-      "confidence": 0.51,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1019.12,
-          "source_end": 1021.24,
-          "score": 14.95943,
-          "peak_score": 32.05303,
-          "samples": 8,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1013.208,
-          "source_end": 1015.328,
-          "score": 11.85514,
-          "peak_score": 26.17904,
-          "samples": 8,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1002.408,
-          "source_end": 1004.528,
-          "score": 5.89682,
-          "peak_score": 9.0277,
-          "samples": 8,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000353",
-      "start": 1143.28,
-      "end": 1148.28,
-      "text": "ただ開発に参画できるというか",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_02",
-      "confidence": 0.9,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1156.66,
-          "source_end": 1161.66,
-          "score": 11.8258,
-          "peak_score": 20.71776,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1150.748,
-          "source_end": 1155.748,
-          "score": 4.94135,
-          "peak_score": 8.58794,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1139.948,
-          "source_end": 1144.948,
-          "score": 4.41448,
-          "peak_score": 17.33975,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000516",
-      "start": 1757.5,
-      "end": 1761.5,
-      "text": "これをとにかく避けるために、ドメインスパークの実務の経験者",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_01",
-      "confidence": 0.507,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 1770.88,
-          "source_end": 1774.88,
-          "score": 9.81002,
-          "peak_score": 28.78904,
-          "samples": 15,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 1754.168,
-          "source_end": 1758.168,
-          "score": 7.80893,
-          "peak_score": 25.5687,
-          "samples": 15,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 1764.968,
-          "source_end": 1768.968,
-          "score": 5.63614,
-          "peak_score": 10.63881,
-          "samples": 15,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000708",
-      "start": 2571.66,
-      "end": 2574.14,
-      "text": "余った時間で付加価値のあることをやりましょう",
-      "active_person_id": "person_03",
-      "reaction_person_id": "person_02",
-      "confidence": 0.591,
-      "activity_scores": [
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2585.04,
-          "source_end": 2587.52,
-          "score": 16.1899,
-          "peak_score": 35.54637,
-          "samples": 9,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2579.128,
-          "source_end": 2581.608,
-          "score": 11.61558,
-          "peak_score": 18.40541,
-          "samples": 9,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2568.328,
-          "source_end": 2570.808,
-          "score": 5.72446,
-          "peak_score": 10.27875,
-          "samples": 9,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000291",
-      "start": 922.26,
-      "end": 925.38,
-      "text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
-      "active_person_id": "person_02",
-      "reaction_person_id": "person_01",
-      "confidence": 0.83,
-      "activity_scores": [
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 929.728,
-          "source_end": 932.848,
-          "score": 15.85046,
-          "peak_score": 21.10823,
-          "samples": 12,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 918.928,
-          "source_end": 922.048,
-          "score": 8.87729,
-          "peak_score": 24.0133,
-          "samples": 12,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 935.64,
-          "source_end": 938.76,
-          "score": 6.85948,
-          "peak_score": 12.63855,
-          "samples": 12,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000622",
-      "start": 2122.74,
-      "end": 2129.74,
-      "text": "あとはそうですね、これはちょっと僕の興味なんですけど",
-      "active_person_id": "person_01",
-      "reaction_person_id": "person_02",
-      "confidence": 0.792,
-      "activity_scores": [
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 2119.408,
-          "source_end": 2126.408,
-          "score": 12.56943,
-          "peak_score": 45.83675,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
-          ]
-        },
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 2130.208,
-          "source_end": 2137.208,
-          "score": 7.29245,
-          "peak_score": 11.92907,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 2136.12,
-          "source_end": 2143.12,
-          "score": 6.71248,
-          "peak_score": 18.54839,
-          "samples": 17,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        }
-      ],
-      "selection_note": "Heuristic mouth-region motion from synced close cameras; use as edit guidance, not identity proof."
-    },
-    {
-      "segment_id": "seg_000311",
-      "start": 971.3,
-      "end": 975.0,
-      "text": "さっきの話とか会計基準にそんなに専門性があったりとか",
-      "active_person_id": "person_02",
-      "reaction_person_id": "person_03",
-      "confidence": 0.484,
-      "activity_scores": [
-        {
-          "person_id": "person_02",
-          "media_id": "cam_person_02",
-          "role": "camera3",
-          "source_start": 978.768,
-          "source_end": 982.468,
-          "score": 12.29314,
-          "peak_score": 18.52926,
-          "samples": 14,
-          "status": "sampled",
-          "roi": [
-            887,
-            208,
-            1230,
-            458
-          ]
-        },
-        {
-          "person_id": "person_03",
-          "media_id": "cam_person_03",
-          "role": "camera4",
-          "source_start": 984.68,
-          "source_end": 988.38,
-          "score": 10.07719,
-          "peak_score": 17.71419,
-          "samples": 14,
-          "status": "sampled",
-          "roi": [
-            890,
-            156,
-            1407,
-            421
-          ]
-        },
-        {
-          "person_id": "person_01",
-          "media_id": "cam_person_01",
-          "role": "camera2",
-          "source_start": 967.968,
-          "source_end": 971.668,
-          "score": 7.4974,
-          "peak_score": 20.36123,
-          "samples": 14,
-          "status": "sampled",
-          "roi": [
-            582,
-            277,
-            1040,
-            507
           ]
         }
       ],

@@ -272,11 +272,14 @@
       "uses_frame_overlay": true,
       "uses_animated_caption_overlay": true,
       "digest_frame": "opaque sample-11 bands and slanted logo panel",
-      "main_frame": "translucent sample-11 bands with gradient title box",
+      "main_frame": "no full-width top/bottom bands; only logo and persistent title box",
       "split_divider": {
         "color": "#58B9FF",
         "width_px_at_720p": 12
-      }
+      },
+      "digest_title": "text only, no purple background box",
+      "main_title_scale": "1.5x previous preview title size",
+      "logo_scale": "1.5x previous preview logo size, shifted further upper-left"
     }
   }
 }

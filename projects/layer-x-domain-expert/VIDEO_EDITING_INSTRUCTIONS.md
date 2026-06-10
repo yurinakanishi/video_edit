@@ -807,10 +807,10 @@ The LayerX preview renderer must follow the same system:
 - Use horizontal reveal, secondary-line stagger, and quick fade for captions.
 - Use purple/blue gradient caption boxes, bold white text, shadow, and the same lower caption placement family as `test-project-1`.
 - Use the sample-11 frame treatment for the Opening Digest: opaque top band, opaque bottom band, white slanted left logo panel, and LayerX logo.
-- In the main section, keep the same design language but make the full-width top and bottom band backgrounds translucent so the interview image is not blocked.
-- Keep the current upper-right title font size; add a gradient background box behind it.
+- In the main section, remove the full-width top and bottom band backgrounds completely so the interview image is unobstructed.
+- Make the upper-right title about 1.5x larger than the earlier preview and add a gradient background box behind it in the main section.
 - Make split dividers blue-leaning and about three times thicker than the previous preview divider.
-- Place split-panel faces horizontally centered within each panel where the source crop allows it.
+- In split layouts, align each participant's face size, horizontal face center, and vertical face/eye height across the 2-up or 3-up panels where the source crop allows it. Do not only line people up side by side; match face scale and head height to the reference divided layouts while preserving shoulder room.
 
 The project-local styled preview renderer is:
 
@@ -867,7 +867,7 @@ For all Opening Digest clips, keep these elements consistent with the sample:
 
 - Top blue-purple band with the white slanted LayerX logo panel
 - LayerX logo placement and size inside the left panel
-- Upper-right title banner using the same blue-purple family, white bold text, and slanted banner feel
+- Upper-right title text only. Do not draw the purple background box behind the digest title.
 - Continuous thin bottom blue-purple band
 - Large lower digest captions in rounded blue-purple boxes with white bold text
 - Horizontal reveal animation for caption entry, staggered reveal for second caption lines, and quick fade out
@@ -906,7 +906,7 @@ Keep these consistent with the digest/sample style:
 - Editorial caption placement and style
 - LayerX logo placement and scale
 - Upper-right title placement
-- Upper-right title blue-purple box background
+- Upper-right title blue-purple box background in the main section only
 - Caption colors, rounded boxes, reveal animation, and quick fade timing
 
 Remove these digest-only frame elements from the main section:
@@ -1076,11 +1076,14 @@ This interview has **three participants and four camera sources**. Cut based on 
 | Everyone talking at once / lively moment | `split_grid` (4-up allowed) |
 | 2-up when needed | `split_grid` (2 feeds) |
 
-**4-up rules**
+**Split layout rules**
 
 - A 4-up split is allowed when everyone is speaking together
-- Separate panels with a **thin light-green line** (`divider.color: #B7E6C1`)
+- Separate panels with a blue-leaning vertical divider, approximately three times thicker than the earlier preview divider
 - Do not stay in 4-up all the time; switch layouts based on conversation needs
+- For 2-up and 3-up layouts, make face sizes look comparable when framed by a square face box.
+- For 2-up and 3-up layouts, align face height and eye/head position across panels. Horizontal centering alone is not enough.
+- Preserve enough shoulder and torso context so the crop does not feel like an unnatural face-only zoom.
 
 **2-up divided layout rules**
 
@@ -1134,13 +1137,13 @@ Use these project-local sample images as visual references. They are design refe
 Carry these observations into `style_guide.json` component definitions and renderer layout logic:
 
 - Brand color: use a saturated LayerX blue-purple as the primary overlay color, approximately `#5F5AF5` to `#6258F7`.
-- Split dividers: use thin light-blue or light-green vertical rules, approximately `#8EC6FF` or `#B7E6C1`, with enough contrast against interview footage.
+- Split dividers: use light blue vertical rules, approximately `#58B9FF` or `#8EC6FF`, with enough contrast against interview footage. For this preview, use a visibly thicker rule than the early draft.
 - Logo: place the LayerX logo at the upper-left safe area when a branded topic or split layout is shown. Keep it clear of faces and topic bars.
 - Topic title: use a blue-purple upper-right banner with white bold Japanese text. The banner can have angled/slanted ends and subtle translucent geometric texture, but text readability is more important than decoration.
 - Name plates: use a large single-person introduction treatment only. Put role/title text above or near the plate in bold white with blue-purple outline or shadow, then place the display name in a solid blue-purple rectangle with very large white type. Do not show nameplates during split layouts.
 - Explainer card: use a white rectangular card at the lower third with black bold Japanese text, paired with a blue-purple label tab above or attached to the card. Keep the card below faces and above the bottom safe edge.
 - Biography card: use a large blue-purple panel on the side opposite the person. Use a centered section title, a thin horizontal separator line, and large white bullet text with generous line spacing.
-- Person framing: for `person_with_bio`, keep the person large on one side and crop around head/torso while preserving breathing room. For split layouts, keep each face centered within its panel and avoid cutting off microphones or name plates.
+- Person framing: for `person_with_bio`, keep the person large on one side and crop around head/torso while preserving breathing room. For split layouts, keep each face centered within its panel, align face size and vertical head/eye height between participants, and avoid cutting off microphones or shoulders.
 - Information density: the reference images allow dense Japanese text, but only in explicit explanation or biography cards. Strong captions should remain shorter and more readable than the bio/explainer text.
 
 #### Reference-Specific Application Rules

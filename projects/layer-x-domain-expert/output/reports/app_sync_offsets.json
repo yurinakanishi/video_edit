@@ -3,7 +3,7 @@
   "schema_version": "app_sync_offsets.v1",
   "generatedAt": "2026-06-10T07:22:11+09:00",
   "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_sync_clap_analysis.json",
-  "method": "clap_plus_waveform_cross_correlation",
+  "method": "clap_plus_multi_window_audio_cross_correlation",
   "referenceRole": "master",
   "offsets": {
     "master": 0.0,
@@ -165,5 +165,6 @@
         "correlation": 0.553411
       }
     }
-  }
+  },
+  "multiWindowAnalysis": "projects\\layer-x-domain-expert\\output\\reports\\audio_sync_multwindow_analysis.json"
 }

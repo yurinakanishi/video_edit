@@ -8,6 +8,8 @@
 - Main captions are not full subtitles. They are large emphasis captions for important statements only.
 - Remove Japanese comma punctuation `、` from display captions.
 - Preserve the existing company movie bridge in full.
+- After the company movie ends, cut any silent/waiting dead time so the left interviewer begins speaking immediately.
+- The post-company-movie first shot should use the left interviewer close-up (`person_01` / `cam_person_01`) aligned to the same master-audio speech start.
 
 ## People And Screen Positions
 

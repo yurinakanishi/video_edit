@@ -101,6 +101,59 @@ DISPLAY_TEXT_OVERRIDES = {
     93: "AIの活用や向き合い方も変わる",
 }
 
+EXCLUDED_CAPTION_NOS = {
+    1,  # ドメインエキスパートは開発チームの中での役割
+    51,  # ドメインエキスパートの役割とキャリアを聞いていく
+    52,  # LayerXでは開発チームの中でドメイン知識を活かす
+    53,  # LayerXでは開発チームに入り実務知識を活かす
+    54,  # 根本さんは経理や労務の経験を積んできた
+}
+
+SUPPLEMENTAL_TARGET_GAP_SEC = 30.0
+SUPPLEMENTAL_MIN_DISTANCE_SEC = 11.0
+SUPPLEMENTAL_SKIP_WINDOWS = [
+    (593.00, 623.52),  # Pre-introduction banter and setup checks.
+    (623.52, 722.50),  # Interviewee self-introduction profile-card sequence.
+]
+SUPPLEMENTAL_KEYWORDS = (
+    "AI",
+    "PDM",
+    "ドメイン",
+    "エキスパート",
+    "開発",
+    "実務",
+    "経理",
+    "労務",
+    "人事",
+    "プロダクト",
+    "キャリア",
+    "価値",
+    "重要",
+    "役割",
+    "ユーザー",
+    "機能",
+    "体験",
+    "自動",
+    "効率",
+    "専門",
+    "判断",
+    "制度",
+    "働き方",
+)
+SUPPLEMENTAL_NOISE_PATTERNS = (
+    "ありがとうございます",
+    "そうですね",
+    "確かに",
+    "大丈夫ですか",
+    "はい",
+    "えっと",
+    "なんか",
+    "ちょっと",
+    "みたいな",
+    "コーポレートっぽく",
+    "砕けた感じ",
+)
+
 
 def now_iso() -> str:
     return datetime.now(JST).isoformat(timespec="seconds")
@@ -341,6 +394,193 @@ def find_segment_for_item(item: dict[str, Any], segments: list[dict[str, Any]]) 
     return find_by_keywords(item, segments)
 
 
+def in_supplemental_skip_window(start: float) -> bool:
+    return any(window_start <= start < window_end for window_start, window_end in SUPPLEMENTAL_SKIP_WINDOWS)
+
+
+def supplemental_score(text: str) -> float:
+    cleaned = clean_text(text)
+    norm = normalize(cleaned)
+    if len(norm) < 13:
+        return -100.0
+    if any(norm == normalize(pattern) or norm.startswith(normalize(pattern)) and len(norm) < 24 for pattern in SUPPLEMENTAL_NOISE_PATTERNS):
+        return -80.0
+    score = 0.0
+    score += min(len(norm), 70) / 18.0
+    score += sum(2.0 for keyword in SUPPLEMENTAL_KEYWORDS if keyword in cleaned)
+    score += sum(1.0 for keyword in ("必要", "できる", "変わる", "思います", "感じ", "作る", "使う", "関わる") if keyword in cleaned)
+    if any(pattern in cleaned for pattern in ("どうですか", "ありますか", "でしょうか", "聞かれる")):
+        score += 1.2
+    if any(pattern in cleaned for pattern in ("笑", "緊張感", "ニックネーム", "呼び名", "これはもう", "コーポレートっぽく", "砕けた感じ")):
+        score -= 3.0
+    if len(norm) > 95:
+        score -= 1.5
+    return score
+
+
+def supplemental_display_text(text: str) -> str:
+    cleaned = clean_text(text)
+    cleaned = re.sub(r"^(ただ|でも|なので|だから|それで|あとは|要は|正直|多分|たぶん|やっぱり|何か|なんか)\s*", "", cleaned)
+    compacted = compact_caption_text(cleaned, max_chars=58)
+    if len(compacted) <= 58:
+        return compacted
+    candidates = []
+    for marker in ("こと", "ため", "役割", "価値", "重要", "必要", "できる", "変わる", "思います", "感じます"):
+        start = 0
+        while True:
+            index = compacted.find(marker, start)
+            if index < 0:
+                break
+            cut = index + len(marker)
+            if 24 <= cut <= 58:
+                candidates.append(cut)
+            start = cut
+    if candidates:
+        return compacted[: max(candidates)].strip("。")
+    return compacted[:58].strip("。")
+
+
+def best_supplemental_segment(
+    segments: list[dict[str, Any]],
+    start_after: float,
+    start_before: float,
+    existing_starts: list[float],
+) -> dict[str, Any] | None:
+    candidates = []
+    for segment in segments:
+        start = float(segment["start"])
+        if start < start_after or start >= start_before:
+            continue
+        if in_supplemental_skip_window(start):
+            continue
+        if any(abs(start - existing) < SUPPLEMENTAL_MIN_DISTANCE_SEC for existing in existing_starts):
+            continue
+        text = str(segment.get("text") or "")
+        score = supplemental_score(text)
+        if score <= 0:
+            continue
+        target = (start_after + start_before) / 2.0
+        distance_penalty = abs(start - target) / 8.0
+        candidates.append((score - distance_penalty, segment))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: (item[0], float(item[1]["start"])), reverse=True)
+    return candidates[0][1]
+
+
+def add_density_supplemental_captions(
+    selected: list[dict[str, Any]],
+    segments: list[dict[str, Any]],
+    activity: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not selected:
+        return selected
+    selected.sort(key=lambda item: (float(item["caption_start_sec"]), int(item.get("caption_no") or 9999)))
+    additions: list[dict[str, Any]] = []
+    existing_starts = [float(item["caption_start_sec"]) for item in selected]
+    supplemental_index = 1
+
+    def add_from_segment(segment: dict[str, Any]) -> None:
+        nonlocal supplemental_index
+        start = float(segment["start"])
+        end = float(segment["end"])
+        text = supplemental_display_text(str(segment.get("text") or ""))
+        if len(normalize(text)) < 10:
+            return
+        person_id, speaker_method, speaker_confidence = person_for_time(
+            start,
+            str(segment.get("text") or ""),
+            str(segment.get("segment_id") or ""),
+            activity,
+        )
+        person = PEOPLE[person_id]
+        additions.append(
+            {
+                "caption_id": f"main_caption_auto_{supplemental_index:03d}",
+                "caption_no": f"auto_{supplemental_index:03d}",
+                "source": "transcript_density_backfill",
+                "source_match_method": "density_gap_backfill",
+                "source_match_confidence": 0.66,
+                "source_segment_id": segment.get("segment_id"),
+                "source_start_sec": round(start, 3),
+                "source_end_sec": round(end, 3),
+                "caption_start_sec": round(start, 3),
+                "caption_end_sec": round(max(end, start + 3.0), 3),
+                "display_text": text,
+                "full_reference_text": clean_text(str(segment.get("text") or "")),
+                "search_keys": [],
+                "speaker_person_id": person_id,
+                "speaker_name": person["name"],
+                "speaker_screen_position": person["screen_position"],
+                "speaker_role": person["role"],
+                "speaker_attribution_method": speaker_method,
+                "speaker_attribution_confidence": round(speaker_confidence, 3),
+                "density_backfill": True,
+            }
+        )
+        existing_starts.append(start)
+        supplemental_index += 1
+
+    cursor_items = list(selected)
+    for previous, following in zip(cursor_items, cursor_items[1:]):
+        previous_start = float(previous["caption_start_sec"])
+        following_start = float(following["caption_start_sec"])
+        target_start = previous_start + SUPPLEMENTAL_TARGET_GAP_SEC
+        while following_start - target_start > 6.0:
+            segment = best_supplemental_segment(
+                segments,
+                max(previous_start + SUPPLEMENTAL_MIN_DISTANCE_SEC, target_start - 8.0),
+                min(following_start - SUPPLEMENTAL_MIN_DISTANCE_SEC, target_start + 12.0),
+                existing_starts,
+            )
+            if segment is None:
+                segment = best_supplemental_segment(
+                    segments,
+                    previous_start + SUPPLEMENTAL_MIN_DISTANCE_SEC,
+                    following_start - SUPPLEMENTAL_MIN_DISTANCE_SEC,
+                    existing_starts,
+                )
+            if segment is None:
+                break
+            add_from_segment(segment)
+            target_start = float(segment["start"]) + SUPPLEMENTAL_TARGET_GAP_SEC
+
+    for _ in range(5):
+        current = sorted(selected + additions, key=lambda item: (float(item["caption_start_sec"]), str(item.get("caption_no"))))
+        made_addition = False
+        for previous, following in zip(current, current[1:]):
+            previous_start = float(previous["caption_start_sec"])
+            following_start = float(following["caption_start_sec"])
+            if following_start - previous_start <= SUPPLEMENTAL_TARGET_GAP_SEC + 6.0:
+                continue
+            midpoint = (previous_start + following_start) / 2.0
+            segment = best_supplemental_segment(
+                segments,
+                max(previous_start + SUPPLEMENTAL_MIN_DISTANCE_SEC, midpoint - 14.0),
+                min(following_start - SUPPLEMENTAL_MIN_DISTANCE_SEC, midpoint + 14.0),
+                existing_starts,
+            )
+            if segment is None:
+                segment = best_supplemental_segment(
+                    segments,
+                    previous_start + SUPPLEMENTAL_MIN_DISTANCE_SEC,
+                    following_start - SUPPLEMENTAL_MIN_DISTANCE_SEC,
+                    existing_starts,
+                )
+            if segment is None:
+                continue
+            add_from_segment(segment)
+            made_addition = True
+            break
+        if not made_addition:
+            break
+
+    if additions:
+        selected = selected + additions
+        selected.sort(key=lambda item: (float(item["caption_start_sec"]), str(item.get("caption_no"))))
+    return selected
+
+
 def build_plan() -> dict[str, Any]:
     items = parse_captions_md()
     segments = transcript_segments()
@@ -348,6 +588,9 @@ def build_plan() -> dict[str, Any]:
     selected = []
     used_starts: list[float] = []
     for item in items:
+        caption_no = int(item["caption_no"])
+        if caption_no in EXCLUDED_CAPTION_NOS:
+            continue
         segment, method, confidence = find_segment_for_item(item, segments)
         if not segment:
             continue
@@ -355,7 +598,7 @@ def build_plan() -> dict[str, Any]:
         end = float(item.get("time_hint_end_sec", min(segment["end"], start + 7.0)))
         if any(abs(start - used) < 8.0 for used in used_starts):
             continue
-        mapped_person = person_for_caption_no(int(item["caption_no"]))
+        mapped_person = person_for_caption_no(caption_no)
         if mapped_person:
             person_id, speaker_method, speaker_confidence = mapped_person
         else:
@@ -373,7 +616,7 @@ def build_plan() -> dict[str, Any]:
                 "source_end_sec": round(float(segment["end"]), 3),
                 "caption_start_sec": round(start, 3),
                 "caption_end_sec": round(max(end, start + 3.0), 3),
-                "display_text": clean_text(DISPLAY_TEXT_OVERRIDES.get(int(item["caption_no"]), compact_caption_text(item["display_text"]))),
+                "display_text": clean_text(DISPLAY_TEXT_OVERRIDES.get(caption_no, compact_caption_text(item["display_text"]))),
                 "full_reference_text": clean_text(item["display_text"]),
                 "search_keys": item.get("search_keys", []),
                 "speaker_person_id": person_id,
@@ -385,7 +628,8 @@ def build_plan() -> dict[str, Any]:
             }
         )
         used_starts.append(start)
-    selected.sort(key=lambda item: (float(item["caption_start_sec"]), int(item["caption_no"])))
+    selected = add_density_supplemental_captions(selected, segments, activity)
+    selected.sort(key=lambda item: (float(item["caption_start_sec"]), str(item["caption_no"])))
     return {
         "schema_version": "main_caption_plan.v1",
         "project_id": "layer-x-domain-expert",

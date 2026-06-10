@@ -18,6 +18,19 @@ PERSON_CAMERA = {
     "person_03": {"media_id": "cam_person_03", "role": "camera4"},
 }
 
+CLOSING_OUTRO = {
+    "source_media_id": "cam_person_01",
+    "audio_media_id": "cam_person_01",
+    "source_start_sec": 3551.115,
+    "source_end_sec": 3592.115,
+    "reference_master_start_sec": 3554.447,
+    "caption_evidence": [
+        "2回目に渡ってドメインエキスパートというキャリアについて深掘りしていきました",
+        "それではありがとうございました",
+        "ありがとうございました",
+    ],
+}
+
 INTRODUCTION_CUES = [
     {
         "event_id": "intro_person_02_nemoto",
@@ -947,7 +960,13 @@ def build_edit_plan(
         )
         cursor += duration
 
-    append_wide_intro("main_intro_group_greeting", 519.14, 524.94, "Initial greeting must show all three participants.")
+    append_yano_intro(
+        "main_intro_group_greeting",
+        519.14,
+        524.94,
+        show_name=False,
+        reason="Immediately after the company movie, cut directly to the left interviewer speaking; remove the waiting/dead-air feel.",
+    )
     append_yano_intro("main_intro_yano_self", 524.94, 532.10, show_name=True, reason="Cut to Yano close-up exactly when he says he is Yano; keep his name visible throughout.")
     append_wide_intro("main_intro_wide_after_yano", 532.10, 535.54, "Briefly return to the three-person camera before introducing the two guests.")
     append_two_person_intro("main_intro_two_guests_named", 535.54, 546.54, "person_02", show_labels=True, reason="At '根本さんと…', cut to the two-person split and show both names.")
@@ -996,8 +1015,7 @@ def build_edit_plan(
         master_in = float(cue["master_in"])
         cue_duration = float(cue["duration"])
         if person_id in {"person_02", "person_03"}:
-            people = ["person_02", "person_03"]
-            media_ids = [PERSON_CAMERA[item]["media_id"] for item in people]
+            selected_media, source_start = synced_source_start_for_person(person_id, master_in, offsets)
             timeline.append(
                 {
                     "event_id": cue["event_id"],
@@ -1006,9 +1024,9 @@ def build_edit_plan(
                     "type": "source_clip",
                     "section": "main",
                     "source": {
-                        "media_id": "group_wide",
-                        "in": round(master_in, 3),
-                        "out": safe_source_out(media_duration(manifest, "group_wide"), master_in, cue_duration),
+                        "media_id": selected_media,
+                        "in": round(source_start, 3),
+                        "out": safe_source_out(media_duration(manifest, selected_media), source_start, cue_duration),
                     },
                     "reference_source": {
                         "media_id": "group_wide",
@@ -1016,28 +1034,27 @@ def build_edit_plan(
                         "out": safe_source_out(media_duration(manifest, "group_wide"), master_in, cue_duration),
                     },
                     "layout": {
-                        "type": "split_grid",
-                        "media_ids": media_ids,
-                        "grid_strategy": "two_person_intro_vertical_split",
-                        "panel_order": people,
-                        "active_person_id": person_id,
-                        "reaction_person_ids": [item for item in people if item != person_id],
-                        "introduction_nameplate": True,
-                        "selection_reason": "After the left-person self-introduction, identify the two interviewees together in a two-person split matching the new reference.",
+                        "type": "single",
+                        "selected_media_id": selected_media,
+                        "target_person_id": person_id,
+                        "crop_mode": "single_intro_reference_fullscreen",
+                        "introduction_nameplate": False,
+                        "selection_reason": "Self-introduction must show the speaking participant as a single close-up without split nameplates.",
                     },
                     "audio": {"mode": "continuous_reference", "source_media_id": "group_wide"},
                     "overlays": [
                         {"type": "topic_title", "position": "top_right", "topic_id": topics[0]["topic_id"] if topics else None, "style_id": "opening_digest_top_right_title"},
                         {
-                            "type": "split_person_labels",
-                            "person_ids": people,
-                            "people_source": "people_map",
-                            "style_id": "two_person_intro_white_names_reference",
-                            "start": 0.25,
-                            "end": cue_duration,
+                            "type": "intro_profile_card",
+                            "person_id": person_id,
+                            "profile_source": "output/reports/interviewee_profile_cards.json",
+                            "reference_image_id": "single_person_bio_card_lower_third",
+                            "style_id": "single_person_bio_card_lower_third_reference",
+                            "start": 0.35,
+                            "end": max(0.6, cue_duration - 0.35),
                         },
                     ],
-                    "caption_policy": "no_caption_while_nameplate_visible",
+                    "caption_policy": "no_caption_during_self_introduction",
                     "reason": cue["reason"],
                 }
             )
@@ -1240,6 +1257,54 @@ def build_edit_plan(
         master_cursor += duration
         full_index += 1
 
+    closing_duration = max(0.01, float(CLOSING_OUTRO["source_end_sec"]) - float(CLOSING_OUTRO["source_start_sec"]))
+    closing_media_ids = ["cam_person_01", "cam_person_02", "cam_person_03"]
+    timeline.append(
+        {
+            "event_id": "main_closing_thanks",
+            "timeline_start": round(cursor, 3),
+            "timeline_end": round(cursor + closing_duration, 3),
+            "type": "source_clip",
+            "section": "main",
+            "source": {
+                "media_id": CLOSING_OUTRO["source_media_id"],
+                "in": round(float(CLOSING_OUTRO["source_start_sec"]), 3),
+                "out": safe_source_out(media_duration(manifest, str(CLOSING_OUTRO["source_media_id"])), float(CLOSING_OUTRO["source_start_sec"]), closing_duration),
+            },
+            "reference_source": {
+                "media_id": CLOSING_OUTRO["source_media_id"],
+                "in": round(float(CLOSING_OUTRO["source_start_sec"]), 3),
+                "out": safe_source_out(media_duration(manifest, str(CLOSING_OUTRO["source_media_id"])), float(CLOSING_OUTRO["source_start_sec"]), closing_duration),
+            },
+            "sync_reference_master_sec": round(float(CLOSING_OUTRO["reference_master_start_sec"]), 3),
+            "layout": {
+                "type": "split_grid",
+                "media_ids": closing_media_ids,
+                "grid_strategy": "three_person_vertical_split",
+                "panel_order": ["person_01", "person_02", "person_03"],
+                "selection_reason": "The wide master recording ends mid-sentence, so the closing uses the synced individual cameras through the final thanks.",
+            },
+            "audio": {
+                "mode": "source",
+                "source_media_id": CLOSING_OUTRO["audio_media_id"],
+                "in": round(float(CLOSING_OUTRO["source_start_sec"]), 3),
+                "out": round(float(CLOSING_OUTRO["source_end_sec"]), 3),
+                "reason": "group_wide media ends before the closing thanks; use the clearest available closing camera audio.",
+            },
+            "overlays": [
+                {"type": "topic_title", "position": "top_right", "topic_id": find_topic_id(topics, full_main_end), "style_id": "opening_digest_top_right_title"}
+            ],
+            "main_caption_plan_items": [],
+            "closing_outro": {
+                "ends_at_thanks": True,
+                "source": "closing tail transcription from person-left camera",
+                "caption_evidence": CLOSING_OUTRO["caption_evidence"],
+            },
+            "reason": "Finish the full render at the natural closing thanks instead of ending at the truncated group_wide master tail.",
+        }
+    )
+    cursor += closing_duration
+
     def attach_main_caption_plan_items() -> dict[str, Any]:
         attached: list[dict[str, Any]] = []
         skipped: list[dict[str, Any]] = []
@@ -1299,11 +1364,11 @@ def build_edit_plan(
             if event is None:
                 skipped.append({"caption_id": caption_id, "reason": "no_matching_main_event", "caption_start_sec": caption_start})
                 continue
-            if event.get("caption_policy") == "no_caption_while_nameplate_visible":
+            if event.get("caption_policy") in {"no_caption_while_nameplate_visible", "no_caption_during_self_introduction"}:
                 skipped.append(
                     {
                         "caption_id": caption_id,
-                        "reason": "nameplate_visible",
+                        "reason": str(event.get("caption_policy")),
                         "event_id": event.get("event_id"),
                         "caption_start_sec": caption_start,
                     }

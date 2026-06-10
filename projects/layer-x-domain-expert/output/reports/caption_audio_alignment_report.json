@@ -3,8 +3,8 @@
     "schema_version": "caption_audio_alignment.v1",
     "method": "RMS energy speech bounds from group_wide master audio, applied after caption splitting",
     "audio_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\audio\\group_wide_mono_16k.wav",
-    "aligned_group_count": 119,
-    "changed_event_count": 82,
+    "aligned_group_count": 148,
+    "changed_event_count": 111,
     "changed_events": [
       "digest_qa_01_answer_02",
       "digest_qa_01_answer_03",
@@ -20,6 +20,7 @@
       "digest_qa_05_answer_04",
       "digest_qa_05_question_01",
       "main_full_003",
+      "main_full_004",
       "main_full_007",
       "main_full_008",
       "main_full_009",
@@ -36,8 +37,11 @@
       "main_full_026",
       "main_full_027",
       "main_full_029",
+      "main_full_030",
       "main_full_032",
       "main_full_033",
+      "main_full_034",
+      "main_full_035",
       "main_full_036",
       "main_full_038",
       "main_full_039",
@@ -47,8 +51,10 @@
       "main_full_044",
       "main_full_045",
       "main_full_046",
+      "main_full_048",
       "main_full_049",
       "main_full_051",
+      "main_full_053",
       "main_full_055",
       "main_full_057",
       "main_full_059",
@@ -56,40 +62,63 @@
       "main_full_061",
       "main_full_062",
       "main_full_063",
+      "main_full_066",
       "main_full_067",
       "main_full_069",
       "main_full_071",
       "main_full_072",
       "main_full_073",
+      "main_full_074",
       "main_full_075",
       "main_full_077",
       "main_full_079",
+      "main_full_082",
+      "main_full_083",
+      "main_full_084",
+      "main_full_086",
+      "main_full_087",
       "main_full_089",
+      "main_full_090",
+      "main_full_091",
+      "main_full_093",
+      "main_full_094",
+      "main_full_095",
+      "main_full_097",
+      "main_full_098",
+      "main_full_100",
+      "main_full_102",
+      "main_full_104",
       "main_full_105",
       "main_full_108",
       "main_full_110",
       "main_full_112",
       "main_full_114",
       "main_full_116",
+      "main_full_117",
       "main_full_119",
       "main_full_121",
       "main_full_123",
+      "main_full_124",
       "main_full_127",
       "main_full_129",
+      "main_full_130",
       "main_full_132",
+      "main_full_134",
       "main_full_135",
       "main_full_138",
+      "main_full_139",
       "main_full_140",
+      "main_full_141",
       "main_full_143",
+      "main_full_144",
       "main_full_146",
       "main_full_147",
       "main_full_149",
       "main_full_150",
-      "main_intro_two_guest_reaction",
       "main_intro_wide_context_001",
       "main_intro_yano_explains_002"
     ],
-    "overlap_adjustment_count": 12
+    "overlap_adjustment_count": 15
   },
   "groups": [
     {
@@ -1014,42 +1043,22 @@
     },
     {
       "event_id": "main_intro_wide_context_001",
-      "group_size": 1,
+      "group_size": 2,
       "source_window_sec": [
-        556.36,
-        557.86
+        568.04,
+        572.36
       ],
       "speech_window_sec": [
-        556.45,
-        557.18
+        568.05,
+        572.36
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 2,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.007445,
-        "peak": 0.019392,
-        "threshold": 0.013402,
-        "active_frame_count": 31
-      }
-    },
-    {
-      "event_id": "main_intro_wide_context_001",
-      "group_size": 1,
-      "source_window_sec": [
-        565.66,
-        568.04
-      ],
-      "speech_window_sec": [
-        565.66,
-        567.78
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.009127,
-        "peak": 0.049141,
-        "threshold": 0.016429,
-        "active_frame_count": 86
+        "floor": 0.009142,
+        "peak": 0.037992,
+        "threshold": 0.016456,
+        "active_frame_count": 155
       }
     },
     {
@@ -1073,26 +1082,6 @@
       }
     },
     {
-      "event_id": "main_intro_two_guest_reaction",
-      "group_size": 1,
-      "source_window_sec": [
-        588.22,
-        593.02
-      ],
-      "speech_window_sec": [
-        588.22,
-        592.93
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007947,
-        "peak": 0.030764,
-        "threshold": 0.014304,
-        "active_frame_count": 144
-      }
-    },
-    {
       "event_id": "main_full_003",
       "group_size": 1,
       "source_window_sec": [
@@ -1110,6 +1099,26 @@
         "peak": 0.03103,
         "threshold": 0.015384,
         "active_frame_count": 134
+      }
+    },
+    {
+      "event_id": "main_full_004",
+      "group_size": 3,
+      "source_window_sec": [
+        766.06,
+        784.38
+      ],
+      "speech_window_sec": [
+        766.2,
+        784.38
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008476,
+        "peak": 0.031691,
+        "threshold": 0.015257,
+        "active_frame_count": 636
       }
     },
     {
@@ -1433,6 +1442,26 @@
       }
     },
     {
+      "event_id": "main_full_030",
+      "group_size": 1,
+      "source_window_sec": [
+        1165.28,
+        1169.28
+      ],
+      "speech_window_sec": [
+        1165.63,
+        1169.28
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007902,
+        "peak": 0.040859,
+        "threshold": 0.014223,
+        "active_frame_count": 103
+      }
+    },
+    {
       "event_id": "main_full_032",
       "group_size": 1,
       "source_window_sec": [
@@ -1470,6 +1499,46 @@
         "peak": 0.021832,
         "threshold": 0.014049,
         "active_frame_count": 29
+      }
+    },
+    {
+      "event_id": "main_full_034",
+      "group_size": 2,
+      "source_window_sec": [
+        1221.28,
+        1225.28
+      ],
+      "speech_window_sec": [
+        1221.28,
+        1224.35
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.010013,
+        "peak": 0.032445,
+        "threshold": 0.018024,
+        "active_frame_count": 144
+      }
+    },
+    {
+      "event_id": "main_full_035",
+      "group_size": 1,
+      "source_window_sec": [
+        1236.28,
+        1240.28
+      ],
+      "speech_window_sec": [
+        1236.35,
+        1240.28
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009138,
+        "peak": 0.031866,
+        "threshold": 0.016448,
+        "active_frame_count": 147
       }
     },
     {
@@ -1673,6 +1742,26 @@
       }
     },
     {
+      "event_id": "main_full_048",
+      "group_size": 2,
+      "source_window_sec": [
+        1433.38,
+        1443.26
+      ],
+      "speech_window_sec": [
+        1433.38,
+        1441.95
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009652,
+        "peak": 0.071482,
+        "threshold": 0.017373,
+        "active_frame_count": 469
+      }
+    },
+    {
       "event_id": "main_full_049",
       "group_size": 1,
       "source_window_sec": [
@@ -1710,6 +1799,26 @@
         "peak": 0.033779,
         "threshold": 0.016302,
         "active_frame_count": 84
+      }
+    },
+    {
+      "event_id": "main_full_053",
+      "group_size": 2,
+      "source_window_sec": [
+        1500.72,
+        1508.76
+      ],
+      "speech_window_sec": [
+        1500.86,
+        1506.66
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007738,
+        "peak": 0.031331,
+        "threshold": 0.013928,
+        "active_frame_count": 280
       }
     },
     {
@@ -1873,6 +1982,26 @@
       }
     },
     {
+      "event_id": "main_full_066",
+      "group_size": 2,
+      "source_window_sec": [
+        1697.5,
+        1709.5
+      ],
+      "speech_window_sec": [
+        1697.5,
+        1708.87
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008018,
+        "peak": 0.033541,
+        "threshold": 0.014432,
+        "active_frame_count": 374
+      }
+    },
+    {
       "event_id": "main_full_067",
       "group_size": 1,
       "source_window_sec": [
@@ -1993,6 +2122,26 @@
       }
     },
     {
+      "event_id": "main_full_074",
+      "group_size": 1,
+      "source_window_sec": [
+        1827.14,
+        1831.62
+      ],
+      "speech_window_sec": [
+        1827.14,
+        1830.41
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007457,
+        "peak": 0.020582,
+        "threshold": 0.013422,
+        "active_frame_count": 73
+      }
+    },
+    {
       "event_id": "main_full_075",
       "group_size": 1,
       "source_window_sec": [
@@ -2053,6 +2202,106 @@
       }
     },
     {
+      "event_id": "main_full_082",
+      "group_size": 2,
+      "source_window_sec": [
+        1935.7,
+        1940.6
+      ],
+      "speech_window_sec": [
+        1935.74,
+        1940.56
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008628,
+        "peak": 0.02932,
+        "threshold": 0.01553,
+        "active_frame_count": 167
+      }
+    },
+    {
+      "event_id": "main_full_083",
+      "group_size": 1,
+      "source_window_sec": [
+        1955.94,
+        1959.16
+      ],
+      "speech_window_sec": [
+        1956.14,
+        1959.16
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008773,
+        "peak": 0.025006,
+        "threshold": 0.015791,
+        "active_frame_count": 94
+      }
+    },
+    {
+      "event_id": "main_full_084",
+      "group_size": 2,
+      "source_window_sec": [
+        1973.1,
+        1983.1
+      ],
+      "speech_window_sec": [
+        1973.49,
+        1982.63
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008537,
+        "peak": 0.033351,
+        "threshold": 0.015367,
+        "active_frame_count": 361
+      }
+    },
+    {
+      "event_id": "main_full_086",
+      "group_size": 1,
+      "source_window_sec": [
+        1995.1,
+        2000.1
+      ],
+      "speech_window_sec": [
+        1995.1,
+        2000.1
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007446,
+        "peak": 0.022966,
+        "threshold": 0.013403,
+        "active_frame_count": 131
+      }
+    },
+    {
+      "event_id": "main_full_087",
+      "group_size": 1,
+      "source_window_sec": [
+        2025.52,
+        2029.12
+      ],
+      "speech_window_sec": [
+        2025.93,
+        2029.12
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008147,
+        "peak": 0.023952,
+        "threshold": 0.014665,
+        "active_frame_count": 95
+      }
+    },
+    {
       "event_id": "main_full_089",
       "group_size": 2,
       "source_window_sec": [
@@ -2070,6 +2319,206 @@
         "peak": 0.020133,
         "threshold": 0.013144,
         "active_frame_count": 97
+      }
+    },
+    {
+      "event_id": "main_full_090",
+      "group_size": 1,
+      "source_window_sec": [
+        2065.76,
+        2068.82
+      ],
+      "speech_window_sec": [
+        2065.79,
+        2068.15
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007685,
+        "peak": 0.01648,
+        "threshold": 0.013833,
+        "active_frame_count": 46
+      }
+    },
+    {
+      "event_id": "main_full_091",
+      "group_size": 1,
+      "source_window_sec": [
+        2081.64,
+        2085.44
+      ],
+      "speech_window_sec": [
+        2081.66,
+        2084.56
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008003,
+        "peak": 0.02452,
+        "threshold": 0.014406,
+        "active_frame_count": 117
+      }
+    },
+    {
+      "event_id": "main_full_093",
+      "group_size": 1,
+      "source_window_sec": [
+        2104.74,
+        2106.74
+      ],
+      "speech_window_sec": [
+        2104.74,
+        2106.31
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009613,
+        "peak": 0.027478,
+        "threshold": 0.017303,
+        "active_frame_count": 43
+      }
+    },
+    {
+      "event_id": "main_full_094",
+      "group_size": 2,
+      "source_window_sec": [
+        2122.74,
+        2131.74
+      ],
+      "speech_window_sec": [
+        2123.03,
+        2131.32
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007816,
+        "peak": 0.023944,
+        "threshold": 0.014069,
+        "active_frame_count": 263
+      }
+    },
+    {
+      "event_id": "main_full_095",
+      "group_size": 2,
+      "source_window_sec": [
+        2139.74,
+        2149.74
+      ],
+      "speech_window_sec": [
+        2139.92,
+        2149.65
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007598,
+        "peak": 0.028754,
+        "threshold": 0.013676,
+        "active_frame_count": 265
+      }
+    },
+    {
+      "event_id": "main_full_097",
+      "group_size": 1,
+      "source_window_sec": [
+        2165.74,
+        2171.74
+      ],
+      "speech_window_sec": [
+        2165.74,
+        2169.91
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00832,
+        "peak": 0.02,
+        "threshold": 0.014977,
+        "active_frame_count": 100
+      }
+    },
+    {
+      "event_id": "main_full_098",
+      "group_size": 1,
+      "source_window_sec": [
+        2180.74,
+        2183.74
+      ],
+      "speech_window_sec": [
+        2180.92,
+        2183.36
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008958,
+        "peak": 0.018169,
+        "threshold": 0.016124,
+        "active_frame_count": 30
+      }
+    },
+    {
+      "event_id": "main_full_100",
+      "group_size": 3,
+      "source_window_sec": [
+        2203.74,
+        2222.74
+      ],
+      "speech_window_sec": [
+        2203.74,
+        2222.03
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009586,
+        "peak": 0.054879,
+        "threshold": 0.017255,
+        "active_frame_count": 787
+      }
+    },
+    {
+      "event_id": "main_full_102",
+      "group_size": 2,
+      "source_window_sec": [
+        2241.54,
+        2248.04
+      ],
+      "speech_window_sec": [
+        2242.04,
+        2247.41
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009274,
+        "peak": 0.025823,
+        "threshold": 0.016694,
+        "active_frame_count": 149
+      }
+    },
+    {
+      "event_id": "main_full_104",
+      "group_size": 2,
+      "source_window_sec": [
+        2267.04,
+        2276.04
+      ],
+      "speech_window_sec": [
+        2267.04,
+        2276.04
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009941,
+        "peak": 0.038575,
+        "threshold": 0.017894,
+        "active_frame_count": 337
       }
     },
     {
@@ -2193,6 +2642,26 @@
       }
     },
     {
+      "event_id": "main_full_117",
+      "group_size": 3,
+      "source_window_sec": [
+        2465.2,
+        2482.2
+      ],
+      "speech_window_sec": [
+        2465.78,
+        2481.8
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007855,
+        "peak": 0.018256,
+        "threshold": 0.01414,
+        "active_frame_count": 331
+      }
+    },
+    {
       "event_id": "main_full_119",
       "group_size": 1,
       "source_window_sec": [
@@ -2253,6 +2722,26 @@
       }
     },
     {
+      "event_id": "main_full_124",
+      "group_size": 1,
+      "source_window_sec": [
+        2576.1,
+        2578.86
+      ],
+      "speech_window_sec": [
+        2576.17,
+        2578.5
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00895,
+        "peak": 0.029882,
+        "threshold": 0.01611,
+        "active_frame_count": 83
+      }
+    },
+    {
       "event_id": "main_full_127",
       "group_size": 2,
       "source_window_sec": [
@@ -2270,6 +2759,26 @@
         "peak": 0.029029,
         "threshold": 0.015862,
         "active_frame_count": 124
+      }
+    },
+    {
+      "event_id": "main_full_127",
+      "group_size": 2,
+      "source_window_sec": [
+        2612.06,
+        2620.06
+      ],
+      "speech_window_sec": [
+        2612.06,
+        2620.06
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008532,
+        "peak": 0.028911,
+        "threshold": 0.015357,
+        "active_frame_count": 236
       }
     },
     {
@@ -2293,6 +2802,26 @@
       }
     },
     {
+      "event_id": "main_full_130",
+      "group_size": 2,
+      "source_window_sec": [
+        2667.9,
+        2674.02
+      ],
+      "speech_window_sec": [
+        2667.9,
+        2673.39
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008976,
+        "peak": 0.034669,
+        "threshold": 0.016157,
+        "active_frame_count": 263
+      }
+    },
+    {
       "event_id": "main_full_132",
       "group_size": 2,
       "source_window_sec": [
@@ -2310,6 +2839,26 @@
         "peak": 0.029225,
         "threshold": 0.016158,
         "active_frame_count": 173
+      }
+    },
+    {
+      "event_id": "main_full_134",
+      "group_size": 3,
+      "source_window_sec": [
+        2716.68,
+        2730.68
+      ],
+      "speech_window_sec": [
+        2716.68,
+        2729.05
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008219,
+        "peak": 0.034833,
+        "threshold": 0.014794,
+        "active_frame_count": 433
       }
     },
     {
@@ -2353,6 +2902,26 @@
       }
     },
     {
+      "event_id": "main_full_139",
+      "group_size": 3,
+      "source_window_sec": [
+        2792.86,
+        2804.86
+      ],
+      "speech_window_sec": [
+        2792.86,
+        2803.59
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00754,
+        "peak": 0.020361,
+        "threshold": 0.013572,
+        "active_frame_count": 314
+      }
+    },
+    {
       "event_id": "main_full_140",
       "group_size": 1,
       "source_window_sec": [
@@ -2373,6 +2942,26 @@
       }
     },
     {
+      "event_id": "main_full_141",
+      "group_size": 3,
+      "source_window_sec": [
+        2832.86,
+        2840.58
+      ],
+      "speech_window_sec": [
+        2833.0,
+        2840.58
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008463,
+        "peak": 0.025982,
+        "threshold": 0.015233,
+        "active_frame_count": 188
+      }
+    },
+    {
       "event_id": "main_full_143",
       "group_size": 1,
       "source_window_sec": [
@@ -2390,6 +2979,26 @@
         "peak": 0.02342,
         "threshold": 0.014946,
         "active_frame_count": 204
+      }
+    },
+    {
+      "event_id": "main_full_144",
+      "group_size": 1,
+      "source_window_sec": [
+        2878.32,
+        2881.32
+      ],
+      "speech_window_sec": [
+        2878.41,
+        2880.95
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008705,
+        "peak": 0.02346,
+        "threshold": 0.015669,
+        "active_frame_count": 85
       }
     },
     {
@@ -2616,6 +3225,42 @@
       "new": [
         12.11,
         13.7
+      ]
+    },
+    {
+      "event_id": "main_full_127",
+      "text": "それはいきなり何もなしだと難しいと思うんですけれどもちょ",
+      "old": [
+        0.0,
+        3.88
+      ],
+      "new": [
+        1.088,
+        4.968
+      ]
+    },
+    {
+      "event_id": "main_full_127",
+      "text": "変化を支援したい",
+      "old": [
+        1.088,
+        1.638
+      ],
+      "new": [
+        5.008,
+        5.558
+      ]
+    },
+    {
+      "event_id": "main_full_127",
+      "text": "っとAIのプロダクトの力で人を動かしていくんですよね",
+      "old": [
+        3.92,
+        7.56
+      ],
+      "new": [
+        5.598,
+        9.238
       ]
     }
   ]

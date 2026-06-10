@@ -68,6 +68,20 @@
       ]
     },
     {
+      "reference_image_id": "single_person_bio_card_lower_third",
+      "source_image": "reference\\single-person-bio-card-reference-layerx-cto.png",
+      "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-bio-card-lower-third-reference.json",
+      "layout_types": [
+        "single",
+        "intro_profile_card",
+        "lower_third_bio_card"
+      ],
+      "intended_sections": [
+        "participant_self_introduction",
+        "interviewee_profile_intro"
+      ]
+    },
+    {
       "reference_image_id": "single_person_fullscreen_intro_white_text",
       "source_image": "reference\\single-person-introduction-name-subtitle-reference.png",
       "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",

@@ -1,0 +1,39 @@
+{
+  "schema_version": "interviewee_profile_cards.v1",
+  "project_id": "layer-x-domain-expert",
+  "source_status": "temporary_placeholder_copy",
+  "reference_image_analysis": "output/reports/reference_image_analysis/single-person-bio-card-lower-third-reference.json",
+  "replaceable_fields": [
+    "display_name",
+    "name_suffix",
+    "department",
+    "role_title",
+    "body_lines"
+  ],
+  "profiles": {
+    "person_02": {
+      "person_id": "person_02",
+      "display_name": "根本",
+      "name_suffix": "",
+      "department": "バクラク事業部",
+      "role_title": "PDM / ドメインエキスパート",
+      "body_lines": [
+        "経理・労務領域の実務経験を活かし、バクラクのプロダクト開発に参画。",
+        "現場で培った業務理解をもとに、ユーザー課題の整理や仕様検討を支援。",
+        "ドメイン知識とプロダクト視点をつなぎ、開発チームとの議論を推進。"
+      ]
+    },
+    "person_03": {
+      "person_id": "person_03",
+      "display_name": "村田",
+      "name_suffix": "",
+      "department": "バクラク事業部",
+      "role_title": "ドメインエキスパート",
+      "body_lines": [
+        "社会保険労務士としての知見を背景に、労務領域のプロダクト開発に関与。",
+        "制度・実務・ユーザー体験を行き来しながら、機能の方向性や要件を整理。",
+        "専門知識を開発チームに接続し、使いやすい業務プロダクトづくりを支援。"
+      ]
+    }
+  }
+}

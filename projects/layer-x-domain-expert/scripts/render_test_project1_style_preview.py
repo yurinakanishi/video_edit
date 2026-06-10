@@ -121,6 +121,15 @@ def people_map() -> dict[str, dict[str, Any]]:
     }
 
 
+def intro_profile_cards() -> dict[str, dict[str, Any]]:
+    path = REPORTS / "interviewee_profile_cards.json"
+    if not path.exists():
+        return {}
+    payload = read_json(path)
+    profiles = payload.get("profiles") if isinstance(payload.get("profiles"), dict) else {}
+    return {str(key): value for key, value in profiles.items() if isinstance(value, dict)}
+
+
 def duration(event: dict[str, Any]) -> float:
     return max(0.01, float(event["timeline_end"]) - float(event["timeline_start"]))
 
@@ -135,6 +144,14 @@ def clip_source(event: dict[str, Any]) -> dict[str, Any]:
 def audio_source(event: dict[str, Any]) -> dict[str, Any]:
     source = event.get("source") if isinstance(event.get("source"), dict) else {}
     reference = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
+    audio = event.get("audio") if isinstance(event.get("audio"), dict) else {}
+    if str(audio.get("mode") or "") == "source":
+        media_id = str(audio.get("source_media_id") or source.get("media_id") or "")
+        audio_in = audio.get("in")
+        if audio_in is None:
+            audio_in = source.get("in")
+        duration_value = duration(event)
+        return {"media_id": media_id, "in": float(audio_in or 0.0), "out": float(audio_in or 0.0) + duration_value}
     if str(event.get("section") or "") == "bridge" or str(source.get("media_id") or "") == "company_movie":
         return source
     master_in = float(reference.get("in") or source.get("in") or 0.0)
@@ -824,11 +841,96 @@ def draw_split_person_labels(canvas: Image.Image, overlay: dict[str, Any], start
     draw_white_intro_label(canvas, person_ids[1], 710, 500, 520, name_size=56, role_size=28, opacity=opacity)
 
 
+def wrap_text_pixels(text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
+    draw = ImageDraw.Draw(Image.new("RGBA", (10, 10), (0, 0, 0, 0)))
+    lines: list[str] = []
+    for paragraph in str(text).splitlines():
+        paragraph = paragraph.strip()
+        if not paragraph:
+            continue
+        current = ""
+        for char in paragraph:
+            candidate = current + char
+            bbox = draw.textbbox((0, 0), candidate, font=font)
+            if current and bbox[2] - bbox[0] > max_width:
+                lines.append(current)
+                current = char
+            else:
+                current = candidate
+        if current:
+            lines.append(current)
+    return lines
+
+
+def draw_intro_profile_card(canvas: Image.Image, overlay: dict[str, Any], start: float, end: float, now: float) -> None:
+    if not (start <= now <= end):
+        return
+    person_id = str(overlay.get("person_id") or "")
+    profile = intro_profile_cards().get(person_id, {})
+    if not profile:
+        person = people_map().get(person_id, {})
+        profile = {
+            "display_name": person.get("display_name") or person_id,
+            "department": person.get("department") or "LayerX",
+            "role_title": person.get("role_title") or "",
+            "body_lines": person.get("bio_bullets") or [],
+        }
+    opacity = min(1.0, max(0.0, (now - start) / 0.22))
+    alpha = round(255 * opacity)
+    shadow_alpha = round(70 * opacity)
+    name = str(profile.get("display_name") or person_id)
+    suffix = str(profile.get("name_suffix") or "").strip()
+    department = str(profile.get("department") or "LayerX").strip()
+    role = str(profile.get("role_title") or "").strip()
+    name_text = name + (f" ({suffix})" if suffix else "")
+    title_text_value = " | ".join(part for part in (department, role) if part)
+    header_text = f"{name_text}｜{title_text_value}" if title_text_value else name_text
+    body_lines = [str(line).strip() for line in profile.get("body_lines", []) if str(line).strip()]
+
+    name_x, name_y, name_w, name_h = 16, 438, 820, 78
+    body_x, body_y, body_w, body_h = 28, 515, 1224, 180
+
+    layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    ImageDraw.Draw(shadow).rounded_rectangle((body_x, body_y + 5, body_x + body_w, body_y + body_h + 5), radius=5, fill=(0, 0, 0, shadow_alpha))
+    layer.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(7)))
+
+    body = Image.new("RGBA", (body_w, body_h), (255, 255, 255, round(248 * opacity)))
+    body_mask = rounded_mask((body_w, body_h), 5)
+    layer.paste(body, (body_x, body_y), body_mask)
+    paste_slanted_gradient(
+        layer,
+        [(name_x, name_y), (name_x + name_w, name_y), (name_x + name_w - 36, name_y + name_h), (name_x, name_y + name_h)],
+        CAPTION_STOPS,
+        round(248 * opacity),
+    )
+
+    draw = ImageDraw.Draw(layer)
+    header_font = fit_font(header_text, name_w - 52, 48, 34, FONT_FILE)
+    header_bbox = draw.textbbox((0, 0), header_text, font=header_font)
+    draw.text((name_x + 28, name_y + (name_h - (header_bbox[3] - header_bbox[1])) / 2 - 4), header_text, font=header_font, fill=(255, 255, 255, alpha))
+
+    body_font = ImageFont.truetype(str(FONT_FILE), 31)
+    text = "\n".join(body_lines)
+    wrapped = wrap_text_pixels(text, body_font, body_w - 58)
+    if len(wrapped) > 4:
+        wrapped = wrapped[:4]
+    line_gap = 9
+    line_h = 35
+    y = body_y + 22
+    for line in wrapped:
+        draw.text((body_x + 30, y), line, font=body_font, fill=(22, 33, 41, alpha))
+        y += line_h + line_gap
+
+    canvas.alpha_composite(layer)
+
+
 def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> bool:
     captions = [overlay for overlay in event.get("overlays", []) if isinstance(overlay, dict) and overlay.get("type") == "caption" and overlay.get("text")]
     nameplates = [overlay for overlay in event.get("overlays", []) if isinstance(overlay, dict) and overlay.get("type") == "lower_third_person" and overlay.get("person_id")]
     split_labels = [overlay for overlay in event.get("overlays", []) if isinstance(overlay, dict) and overlay.get("type") == "split_person_labels"]
-    if not captions and not nameplates and not split_labels:
+    profile_cards = [overlay for overlay in event.get("overlays", []) if isinstance(overlay, dict) and overlay.get("type") == "intro_profile_card"]
+    if not captions and not nameplates and not split_labels and not profile_cards:
         return False
     dur = duration(event)
     total_frames = math.ceil(dur * FPS)
@@ -866,6 +968,8 @@ def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> boo
                 draw_nameplate(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
             for overlay in split_labels:
                 draw_split_person_labels(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
+            for overlay in profile_cards:
+                draw_intro_profile_card(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
             process.stdin.write(canvas.tobytes())
     finally:
         process.stdin.close()
@@ -1072,7 +1176,11 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
         raise FileNotFoundError(f"Audio media not available for preview: {aud.get('media_id')}")
     media_ids = split_media_ids(event)
     dur = duration(event)
-    master_in = float((event.get("reference_source") or {}).get("in") or (event.get("source") or {}).get("in") or 0.0)
+    master_in = float(
+        event.get("sync_reference_master_sec")
+        if event.get("sync_reference_master_sec") is not None
+        else (event.get("reference_source") or {}).get("in") or (event.get("source") or {}).get("in") or 0.0
+    )
     offsets = app_offsets()
     style_path, text_path = overlay_assets(ffmpeg, event, segment_id)
     command = [ffmpeg, "-hide_banner", "-loglevel", "warning", "-y"]

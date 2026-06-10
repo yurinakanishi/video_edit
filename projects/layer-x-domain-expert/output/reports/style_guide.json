@@ -10,6 +10,7 @@
       "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\left-person-with-name-plate-sample.png",
       "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\middle-and-right-people-with-name-plate-divided-sample.png",
       "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\person-introduction-sample.png",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\single-person-bio-card-reference-layerx-cto.png",
       "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\three-people-divided-sample.png"
     ],
     "reference_image_analysis_manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\manifest.json",
@@ -19,6 +20,7 @@
       "single_person_nameplate": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\left-person-with-name-plate-sample.json",
       "two_person_nameplate_split": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\middle-and-right-people-with-name-plate-divided-sample.json",
       "person_introduction_bio_card": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\person-introduction-sample.json",
+      "single_person_bio_card_lower_third": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-bio-card-lower-third-reference.json",
       "single_person_fullscreen_intro_white_text": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
       "three_person_divided": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
       "two_person_split_intro_white_names": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json"
@@ -222,6 +224,22 @@
     "bio_card_reference_style": {
       "reference": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\person-introduction-sample.png",
       "bullets_source": "people_map"
+    },
+    "single_person_bio_card_lower_third_reference": {
+      "reference": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\reference\\single-person-bio-card-reference-layerx-cto.png",
+      "analysis": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-bio-card-lower-third-reference.json",
+      "text_source": "output/reports/interviewee_profile_cards.json",
+      "mode": "single_person_self_introduction_profile",
+      "layout": {
+        "nameBar": "purple gradient lower-third, left anchored, slanted right edge",
+        "bodyCard": "wide white biography card below name bar",
+        "placement": "lower third, face remains visible above card"
+      },
+      "text": {
+        "nameAndRole": "large white bold",
+        "profile": "dark bold multi-line paragraph",
+        "maxProfileLines": 4
+      }
     },
     "main_punchline_caption": {
       "inherits": "opening_digest_sample_caption",

@@ -1,0 +1,35 @@
+{
+  "schema_version": "company_movie_transition_check.v1",
+  "project_id": "layer-x-domain-expert",
+  "checked_at": "2026-06-10",
+  "company_movie_event": {
+    "event_id": "digest_to_main_company_movie",
+    "timeline_start_sec": 138.73,
+    "timeline_end_sec": 153.748,
+    "duration_sec": 15.018,
+    "source_media_id": "company_movie",
+    "source_in_sec": 0.0,
+    "source_out_sec": 15.018,
+    "cut_company_movie": false
+  },
+  "first_post_company_event": {
+    "event_id": "main_intro_group_greeting",
+    "timeline_start_sec": 153.748,
+    "timeline_end_sec": 159.548,
+    "duration_sec": 5.8,
+    "source_media_id": "cam_person_01",
+    "source_in_sec": 515.808,
+    "source_out_sec": 521.608,
+    "reference_audio_media_id": "group_wide",
+    "reference_audio_in_sec": 519.14,
+    "reference_audio_out_sec": 524.94,
+    "layout": "single",
+    "target_person_id": "person_01",
+    "target_role": "left_interviewer"
+  },
+  "transition": {
+    "gap_sec": 0.0,
+    "video_and_audio_cut_together": true,
+    "result": "company movie remains full length; immediately after it ends, the left interviewer close-up starts at the master speech start"
+  }
+}

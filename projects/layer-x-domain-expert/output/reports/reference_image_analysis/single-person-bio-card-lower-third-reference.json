@@ -1,0 +1,111 @@
+{
+  "schema_version": "reference_image_analysis.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-10T23:00:00+09:00",
+  "source_image": "reference/single-person-bio-card-reference-layerx-cto.png",
+  "image": {
+    "width": 1839,
+    "height": 1027,
+    "aspect_ratio": 1.790653,
+    "mode": "RGB"
+  },
+  "analysis_basis": "manual visual analysis of supplied reference still",
+  "reference_image_id": "single_person_bio_card_lower_third",
+  "layout_types": [
+    "single",
+    "intro_profile_card",
+    "lower_third_bio_card"
+  ],
+  "intended_sections": [
+    "participant_self_introduction",
+    "interviewee_profile_intro"
+  ],
+  "framing": {
+    "composition": "single-person medium close-up with a large lower-third biography card",
+    "subject_crop": "person centered slightly right of frame; head and shoulders remain visible above the card",
+    "face_position_norm": {
+      "x": 0.45,
+      "y": 0.31,
+      "width": 0.19,
+      "height": 0.26
+    },
+    "logo_position_norm": {
+      "x": 0.025,
+      "y": 0.025,
+      "width": 0.19
+    },
+    "topic_title_position_norm": {
+      "x": 0.61,
+      "y": 0.026,
+      "width": 0.39,
+      "height": 0.08
+    },
+    "profile_card": {
+      "name_bar_norm": {
+        "x": 0.012,
+        "y": 0.612,
+        "width": 0.635,
+        "height": 0.098
+      },
+      "body_card_norm": {
+        "x": 0.021,
+        "y": 0.713,
+        "width": 0.957,
+        "height": 0.263
+      },
+      "safe_margins_norm": {
+        "left": 0.012,
+        "right": 0.022,
+        "bottom": 0.024
+      }
+    }
+  },
+  "text_hierarchy": {
+    "name_line": {
+      "content_example": "中川佳希 (yyoshiki41) | バクラク事業 CTO",
+      "role": "primary identity and current title",
+      "font_weight": "bold",
+      "color": "#FFFFFF",
+      "size_relative_to_height": 0.06,
+      "placement": "inside purple bar, left aligned, vertically centered"
+    },
+    "body_text": {
+      "role": "career and profile summary",
+      "line_count": 4,
+      "font_weight": "bold",
+      "color": "#17232B",
+      "size_relative_to_height": 0.041,
+      "placement": "inside white card with generous left padding",
+      "paragraph_structure": "one dense paragraph wrapped across multiple lines"
+    }
+  },
+  "visual_style": {
+    "name_bar": {
+      "background": "LayerX purple gradient",
+      "shape": "wide rectangle with right slanted edge impression",
+      "opacity": 1.0,
+      "corner_radius": "small"
+    },
+    "body_card": {
+      "background": "#FFFFFF",
+      "shadow": "soft gray drop shadow",
+      "corner_radius": "small",
+      "padding": "large horizontal padding, moderate vertical padding"
+    },
+    "information_density": "high; name/title in purple header and 3-4 lines of profile text in white card",
+    "text_spacing": "tight but readable; body lines have consistent leading"
+  },
+  "render_directives": [
+    "Use on one-person close-up self-introduction shots only.",
+    "Do not use in split layouts.",
+    "Keep the card in the lower third so the face remains visible above it.",
+    "Use profile data from a structured JSON source so formal biographies can be replaced later.",
+    "Suppress normal punchline captions while this profile card is visible."
+  ],
+  "application_policy": {
+    "adapt_to_video_context": true,
+    "do_not_render_reference_image_directly": true,
+    "allow_crop_reframe": true,
+    "preserve_information_hierarchy": true
+  }
+}

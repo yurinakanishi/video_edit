@@ -1,0 +1,41 @@
+{
+  "same_root_caption_gap_count": 2,
+  "gaps": [
+    {
+      "root": "main_caption_015",
+      "gap_sec": 5.0,
+      "a": {
+        "event_id": "main_full_029",
+        "caption_id": "main_caption_015__unit_01",
+        "text": "開発に参画できる\n壁打ち相手として関われる",
+        "start": 607.088,
+        "end": 612.088
+      },
+      "b": {
+        "event_id": "main_full_029",
+        "caption_id": "main_caption_015__unit_02",
+        "text": "面白い状況だと思った",
+        "start": 617.088,
+        "end": 619.088
+      }
+    },
+    {
+      "root": "main_caption_047",
+      "gap_sec": 1.7,
+      "a": {
+        "event_id": "main_full_076",
+        "caption_id": "main_caption_047__unit_01",
+        "text": "ルールを調べるだけなら\nエンジニアにもできる",
+        "start": 1312.348,
+        "end": 1317.568
+      },
+      "b": {
+        "event_id": "main_full_076",
+        "caption_id": "main_caption_047__unit_02",
+        "text": "何を実現したいかという\nビジョンが必要になる",
+        "start": 1319.268,
+        "end": 1330.268
+      }
+    }
+  ]
+}

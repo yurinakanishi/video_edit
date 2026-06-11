@@ -1,6 +1,6 @@
 {
   "schema_version": "test_project1_style_preview_report.v1",
-  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_full_240p.mp4",
+  "output": "projects\\layer-x-domain-expert\\output\\videos\\full_preview_1080p.mp4",
   "segments": 166,
   "segment_cache": {
     "reused": 0,
@@ -9,7 +9,7 @@
     "invalidated_reasons": {}
   },
   "max_duration_sec": null,
-  "output_height": 240,
+  "output_height": 1080,
   "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
   "notes": [
     "Digest uses opaque top/bottom bands and slanted white LayerX logo panel.",

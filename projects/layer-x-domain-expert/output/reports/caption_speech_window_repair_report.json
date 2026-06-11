@@ -1,0 +1,243 @@
+{
+  "schema_version": "caption_speech_window_repair_report.v1",
+  "root_cause": "caption continuation overlays were removed to avoid camera cuts during visible captions, but some base captions still used the clipped per-event source window instead of caption_source_full_window_sec/caption_handoff_end_sec. Those captions disappeared before their matching utterance completed.",
+  "policy": "caption display windows now use the full speech-unit source window when metadata shows the utterance continues; camera/layout cut boundaries are moved outside the resulting visible caption window.",
+  "fixed_caption_count": 16,
+  "fixed_captions": [
+    {
+      "event_id": "main_full_023",
+      "caption_id": "main_caption_011__unit_02",
+      "text": "人事企画として\nベンチマークしていた",
+      "source_window_sec": [
+        1061.28,
+        1070.28
+      ],
+      "timeline_window_sec": [
+        525.088,
+        534.088
+      ],
+      "extended_from_source_end_sec": 1067.5
+    },
+    {
+      "event_id": "main_full_048",
+      "caption_id": "main_caption_auto_004__unit_02",
+      "text": "違和感も\n普通に言える",
+      "source_window_sec": [
+        1438.3,
+        1443.26
+      ],
+      "timeline_window_sec": [
+        902.108,
+        907.068
+      ],
+      "extended_from_source_end_sec": 1442.5
+    },
+    {
+      "event_id": "main_full_057",
+      "caption_id": "main_caption_031__unit_01",
+      "text": "当たり前の業務にも\n法律や理由の背景がある",
+      "source_window_sec": [
+        1571.12,
+        1581.62
+      ],
+      "timeline_window_sec": [
+        1034.928,
+        1045.428
+      ],
+      "extended_from_source_end_sec": 1577.5
+    },
+    {
+      "event_id": "main_full_059",
+      "caption_id": "main_caption_032__unit_03",
+      "text": "知らないことまで\n期待される難しさがある",
+      "source_window_sec": [
+        1604.1,
+        1611.94
+      ],
+      "timeline_window_sec": [
+        1067.908,
+        1075.748
+      ],
+      "extended_from_source_end_sec": 1607.5
+    },
+    {
+      "event_id": "main_full_076",
+      "caption_id": "main_caption_047__unit_02",
+      "text": "何を実現したいかという\nビジョンが必要になる",
+      "source_window_sec": [
+        1855.46,
+        1866.46
+      ],
+      "timeline_window_sec": [
+        1319.268,
+        1330.268
+      ],
+      "extended_from_source_end_sec": 1862.5
+    },
+    {
+      "event_id": "main_full_079",
+      "caption_id": "main_caption_049__unit_01",
+      "text": "いらないものを\nちゃんと言うことも価値",
+      "source_window_sec": [
+        1903.86,
+        1907.86
+      ],
+      "timeline_window_sec": [
+        1367.668,
+        1371.668
+      ],
+      "extended_from_source_end_sec": 1907.5
+    },
+    {
+      "event_id": "main_full_084",
+      "caption_id": "main_caption_auto_009__unit_02",
+      "text": "エンジニアの生産性も\n上がっている",
+      "source_window_sec": [
+        1977.0,
+        1983.1
+      ],
+      "timeline_window_sec": [
+        1440.808,
+        1446.908
+      ],
+      "extended_from_source_end_sec": 1982.5
+    },
+    {
+      "event_id": "main_full_099",
+      "caption_id": "main_caption_auto_016__unit_01",
+      "text": "AIが普及していくのは\n間違いない",
+      "source_window_sec": [
+        2203.74,
+        2212.0
+      ],
+      "timeline_window_sec": [
+        1667.548,
+        1675.808
+      ],
+      "extended_from_source_end_sec": 2207.5
+    },
+    {
+      "event_id": "main_full_099",
+      "caption_id": "main_caption_auto_016__unit_03",
+      "text": "キャリアを築く上で\n必要",
+      "source_window_sec": [
+        2217.0,
+        2222.74
+      ],
+      "timeline_window_sec": [
+        1680.808,
+        1685.728
+      ],
+      "extended_from_source_end_sec": 2222.5
+    },
+    {
+      "event_id": "main_full_103",
+      "caption_id": "main_caption_auto_018__unit_01",
+      "text": "PDMがだめなら\n経理に戻ればいい",
+      "source_window_sec": [
+        2267.04,
+        2272.5
+      ],
+      "timeline_window_sec": [
+        1730.848,
+        1736.308
+      ],
+      "extended_from_source_end_sec": 2267.5
+    },
+    {
+      "event_id": "main_full_105",
+      "caption_id": "main_caption_auto_038__unit_01",
+      "text": "今はドメインの\nアドバンテージがある",
+      "source_window_sec": [
+        2297.04,
+        2302.0
+      ],
+      "timeline_window_sec": [
+        1760.848,
+        1765.808
+      ],
+      "extended_from_source_end_sec": 2297.5
+    },
+    {
+      "event_id": "main_full_112",
+      "caption_id": "main_caption_078__unit_01",
+      "text": "月次申告などの作業を\n減らしたい",
+      "source_window_sec": [
+        2395.78,
+        2403.32
+      ],
+      "timeline_window_sec": [
+        1859.588,
+        1867.128
+      ],
+      "extended_from_source_end_sec": 2402.5
+    },
+    {
+      "event_id": "main_full_117",
+      "caption_id": "main_caption_080__unit_03",
+      "text": "やりたいことを",
+      "source_window_sec": [
+        2473.7,
+        2478.0
+      ],
+      "timeline_window_sec": [
+        1937.508,
+        1941.808
+      ],
+      "extended_from_source_end_sec": 2477.5
+    },
+    {
+      "event_id": "main_full_120",
+      "caption_id": "main_caption_auto_041__unit_02",
+      "text": "やりがいがある",
+      "source_window_sec": [
+        2518.6,
+        2523.2
+      ],
+      "timeline_window_sec": [
+        1982.408,
+        1987.008
+      ],
+      "extended_from_source_end_sec": 2522.5
+    },
+    {
+      "event_id": "main_full_133",
+      "caption_id": "main_caption_085__unit_01",
+      "text": "バックオフィス経験を\n多くの人が得られる",
+      "source_window_sec": [
+        2716.68,
+        2724.0
+      ],
+      "timeline_window_sec": [
+        2180.488,
+        2187.808
+      ],
+      "extended_from_source_end_sec": 2717.5
+    },
+    {
+      "event_id": "main_full_141",
+      "caption_id": "main_caption_088__unit_01",
+      "text": "不安があると\n結局人に聞きに来る",
+      "source_window_sec": [
+        2832.86,
+        2840.58
+      ],
+      "timeline_window_sec": [
+        2296.668,
+        2304.388
+      ],
+      "extended_from_source_end_sec": 2837.5
+    }
+  ],
+  "audits": {
+    "clipped_full_window_caption_count": 0,
+    "caption_cut_violations": 0,
+    "timeline_gaps_or_overlaps": 0,
+    "duration_mismatches": 0,
+    "validation_ready_for_preview": true
+  },
+  "notes": [
+    "The reported caption 「当たり前の業務にも/法律や理由の背景がある」 now spans source 1571.12-1581.62 instead of stopping at 1577.50.",
+    "Connected captions still keep omitted filler speech uncaptioned; the repair only extends captions when the same caption metadata says the utterance window continues."
+  ]
+}

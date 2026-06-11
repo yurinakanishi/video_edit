@@ -1,12 +1,12 @@
 {
   "schema_version": "caption_audio_timing_audit.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-11T22:15:29+09:00",
+  "generated_at": "2026-06-11T23:26:17+09:00",
   "policy": "Every rendered caption start/end must match audio_alignment.speech_window_sec. No fixed text-length display durations are allowed.",
   "max_delta_sec": 0.04,
   "max_source_end_early_sec": 0.08,
-  "checked_caption_count": 142,
-  "strict_audio_timing_count": 142,
+  "checked_caption_count": 130,
+  "strict_audio_timing_count": 130,
   "issue_count": 0,
   "ready": true,
   "issues": []

@@ -1,193 +1,381 @@
 {
   "schema_version": "caption_source_alignment_repair_report.v1",
   "project_id": "layer-x-domain-expert",
-  "moved_count": 17,
-  "retimed_count": 1,
+  "moved_count": 2,
+  "retimed_count": 27,
   "removed_count": 0,
   "moved": [
     {
-      "caption_id": "main_caption_064",
-      "text": "経理一本でどう生きるかという不安があった",
-      "from_event": "main_full_020",
-      "to_event": "main_full_019",
+      "caption_id": "main_caption_025",
+      "text": "違和感を言うだけでどんどん良いものになる",
+      "from_event": "main_full_046",
+      "to_event": "main_full_047",
       "source_window_sec": [
-        993.63,
-        996.75
+        1412.34,
+        1416.08
       ]
     },
     {
-      "caption_id": "main_caption_070",
-      "text": "人事企画ではカルチャーを見ることも重要になる",
-      "from_event": "main_full_032",
-      "to_event": "main_full_031",
+      "caption_id": "main_caption_auto_016__cont__main_full_101",
+      "text": "AIから逃げない姿勢はキャリアに必要",
+      "from_event": "main_full_101",
+      "to_event": "main_full_100",
       "source_window_sec": [
-        1181.37,
-        1183.28
-      ]
-    },
-    {
-      "caption_id": "main_caption_074",
-      "text": "PDMとしてまずは結果を出していきたい",
-      "from_event": "main_full_105",
-      "to_event": "main_full_104",
-      "source_window_sec": [
-        2276.25,
-        2282.04
-      ]
-    },
-    {
-      "caption_id": "main_caption_075",
-      "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
-      "from_event": "main_full_108",
-      "to_event": "main_full_106",
-      "source_window_sec": [
-        2310.04,
-        2314.04
-      ]
-    },
-    {
-      "caption_id": "main_caption_076",
-      "text": "ドメインの貯金がなくなった時の怖さがある",
-      "from_event": "main_full_110",
-      "to_event": "main_full_109",
-      "source_window_sec": [
-        2341.89,
-        2346.07
-      ]
-    },
-    {
-      "caption_id": "main_caption_077",
-      "text": "誰がやっても変わらない手作業が多い",
-      "from_event": "main_full_112",
-      "to_event": "main_full_111",
-      "source_window_sec": [
-        2380.2,
-        2383.66
-      ]
-    },
-    {
-      "caption_id": "main_caption_078",
-      "text": "月次申告などの作業を減らしたい",
-      "from_event": "main_full_114",
-      "to_event": "main_full_113",
-      "source_window_sec": [
-        2409.55,
-        2415.17
-      ]
-    },
-    {
-      "caption_id": "main_caption_082",
-      "text": "分析機能では経理の人たちの顔が浮かぶ",
-      "from_event": "main_full_123",
-      "to_event": "main_full_122",
-      "source_window_sec": [
-        2535.37,
-        2549.14
-      ]
-    },
-    {
-      "caption_id": "main_caption_083",
-      "text": "AIで作業者が分析できるようになる変化を支援したい",
-      "from_event": "main_full_127",
-      "to_event": "main_full_126",
-      "source_window_sec": [
-        2596.12,
-        2600.16
-      ]
-    },
-    {
-      "caption_id": "main_caption_085",
-      "text": "AIで専門家の経験を多くの人が得られる",
-      "from_event": "main_full_132",
-      "to_event": "main_full_131",
-      "source_window_sec": [
-        2679.33,
-        2684.36
-      ]
-    },
-    {
-      "caption_id": "main_caption_086",
-      "text": "属人化は今後大きく変わる可能性がある",
-      "from_event": "main_full_135",
-      "to_event": "main_full_134",
-      "source_window_sec": [
-        2716.68,
-        2729.05
-      ]
-    },
-    {
-      "caption_id": "main_caption_087",
-      "text": "働き方や時間の使い方そのものが変わっていく",
-      "from_event": "main_full_138",
-      "to_event": "main_full_137",
-      "source_window_sec": [
-        2763.64,
-        2764.77
-      ]
-    },
-    {
-      "caption_id": "main_caption_088",
-      "text": "対人領域では人に聞きに来ることがある",
-      "from_event": "main_full_140",
-      "to_event": "main_full_139",
-      "source_window_sec": [
-        2792.86,
-        2803.59
-      ]
-    },
-    {
-      "caption_id": "main_caption_089",
-      "text": "経理の役割はなくなるのではなく変わっていく",
-      "from_event": "main_full_143",
-      "to_event": "main_full_142",
-      "source_window_sec": [
-        2846.58,
-        2852.48
-      ]
-    },
-    {
-      "caption_id": "main_caption_090",
-      "text": "人や現場に向き合う時間が増えていく",
-      "from_event": "main_full_146",
-      "to_event": "main_full_145",
-      "source_window_sec": [
-        2890.82,
-        2893.36
-      ]
-    },
-    {
-      "caption_id": "main_caption_091",
-      "text": "バックオフィス経験者におすすめできるキャリア",
-      "from_event": "main_full_147",
-      "to_event": "main_full_146",
-      "source_window_sec": [
-        2906.72,
-        2909.81
-      ]
-    },
-    {
-      "caption_id": "main_caption_093",
-      "text": "AIの活用や向き合い方も変わる",
-      "from_event": "main_full_150",
-      "to_event": "main_full_149",
-      "source_window_sec": [
-        2956.04,
-        2957.63
+        2203.74,
+        2222.74
       ]
     }
   ],
   "retimed": [
     {
-      "event_id": "main_full_134",
-      "caption_id": "main_caption_auto_023",
-      "text": "バックオフィス経験を広く活かせると面白い",
+      "event_id": "digest_opening_murata_discomfort_01",
+      "caption_id": null,
+      "text": "違和感を言うと良いものになっていく",
       "old": {
-        "start": 7.895,
-        "end": 11.55
+        "start": 0.2,
+        "end": 3.74
       },
       "new": {
         "start": 0.0,
-        "end": 11.55
+        "end": 3.74
+      }
+    },
+    {
+      "event_id": "main_full_017",
+      "caption_id": "main_caption_008",
+      "text": "開発は自分とは関係ないものだった",
+      "old": {
+        "start": 2.88,
+        "end": 4.36
+      },
+      "new": {
+        "start": 2.62,
+        "end": 4.36
+      }
+    },
+    {
+      "event_id": "main_full_019",
+      "caption_id": "main_caption_065",
+      "text": "経理の伸ばし方が難しかった",
+      "old": {
+        "start": 1.15,
+        "end": 15.0
+      },
+      "new": {
+        "start": 0.72,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_029",
+      "caption_id": "main_caption_015",
+      "text": "開発に参画できる壁打ち相手として関われる",
+      "old": {
+        "start": 1.31,
+        "end": 12.78
+      },
+      "new": {
+        "start": 0.78,
+        "end": 12.78
+      }
+    },
+    {
+      "event_id": "main_full_044",
+      "caption_id": "main_caption_022",
+      "text": "実務のモヤモヤをプロダクトに落とし込める",
+      "old": {
+        "start": 1.67,
+        "end": 13.42
+      },
+      "new": {
+        "start": 1.42,
+        "end": 13.42
+      }
+    },
+    {
+      "event_id": "main_full_044",
+      "caption_id": "main_caption_023",
+      "text": "違和感を出すことでプロダクトが良くなる",
+      "old": {
+        "start": 13.46,
+        "end": 15.0
+      },
+      "new": {
+        "start": 4.42,
+        "end": 10.42
+      }
+    },
+    {
+      "event_id": "main_full_057",
+      "caption_id": "main_caption_031",
+      "text": "当たり前の業務にも法律や会社ルールの背景がある",
+      "old": {
+        "start": 9.23,
+        "end": 15.0
+      },
+      "new": {
+        "start": 8.62,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_060",
+      "caption_id": "main_caption_034",
+      "text": "エンジニアはドメインをものすごく調べている",
+      "old": {
+        "start": 12.27,
+        "end": 15.0
+      },
+      "new": {
+        "start": 11.66,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_061",
+      "caption_id": "main_caption_035",
+      "text": "専門家が一方的に教えるのではなく建設的に議論する",
+      "old": {
+        "start": 7.9,
+        "end": 15.0
+      },
+      "new": {
+        "start": 7.68,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_063",
+      "caption_id": "main_caption_038",
+      "text": "当たり前が開発の議論を通じて磨かれていく",
+      "old": {
+        "start": 3.86,
+        "end": 9.28
+      },
+      "new": {
+        "start": 2.26,
+        "end": 9.28
+      }
+    },
+    {
+      "event_id": "main_full_063",
+      "caption_id": "main_caption_039",
+      "text": "古い慣習を流さず一つひとつ調べることが大事",
+      "old": {
+        "start": 13.28,
+        "end": 15.0
+      },
+      "new": {
+        "start": 12.54,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_073",
+      "caption_id": "main_caption_046",
+      "text": "コア以外は落とす判断も必要",
+      "old": {
+        "start": 1.5,
+        "end": 9.44
+      },
+      "new": {
+        "start": 1.26,
+        "end": 9.44
+      }
+    },
+    {
+      "event_id": "main_full_078",
+      "caption_id": "main_caption_048",
+      "text": "実務家のプライドを無視していないかを気にしている",
+      "old": {
+        "start": 4.28,
+        "end": 9.64
+      },
+      "new": {
+        "start": 3.96,
+        "end": 9.64
+      }
+    },
+    {
+      "event_id": "main_full_084",
+      "caption_id": "main_caption_auto_009",
+      "text": "AIでエンジニアの生産性も上がっている",
+      "old": {
+        "start": 5.99,
+        "end": 15.0
+      },
+      "new": {
+        "start": 5.6,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_087",
+      "caption_id": "main_caption_auto_011",
+      "text": "そういう思いとかその道筋を考えていく",
+      "old": {
+        "start": 13.43,
+        "end": 15.0
+      },
+      "new": {
+        "start": 13.02,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_102",
+      "caption_id": "main_caption_auto_017",
+      "text": "その環境を選んでよかった",
+      "old": {
+        "start": 4.54,
+        "end": 10.54
+      },
+      "new": {
+        "start": 4.04,
+        "end": 10.54
+      }
+    },
+    {
+      "event_id": "main_full_105",
+      "caption_id": "main_caption_074",
+      "text": "PDMとしてまずは結果を出していきたい",
+      "old": {
+        "start": 7.22,
+        "end": 14.54
+      },
+      "new": {
+        "start": 6.54,
+        "end": 14.54
+      }
+    },
+    {
+      "event_id": "main_full_112",
+      "caption_id": "main_caption_078",
+      "text": "月次申告などの作業を減らしたい",
+      "old": {
+        "start": 9.44,
+        "end": 15.0
+      },
+      "new": {
+        "start": 8.28,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_113",
+      "caption_id": "main_caption_strong_003",
+      "text": "バクラクのプロダクトで貢献したい",
+      "old": {
+        "start": 1.03,
+        "end": 6.88
+      },
+      "new": {
+        "start": 0.82,
+        "end": 6.88
+      }
+    },
+    {
+      "event_id": "main_full_117",
+      "caption_id": "main_caption_080",
+      "text": "作業量を減らし確認時間を短縮する",
+      "old": {
+        "start": 3.28,
+        "end": 15.0
+      },
+      "new": {
+        "start": 2.7,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_120",
+      "caption_id": "main_caption_auto_041",
+      "text": "開発に関わるやりがいがある",
+      "old": {
+        "start": 8.05,
+        "end": 15.0
+      },
+      "new": {
+        "start": 6.7,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_126",
+      "caption_id": "main_caption_083",
+      "text": "AIで作業者が分析できるようになる変化を支援したい",
+      "old": {
+        "start": 10.88,
+        "end": 15.0
+      },
+      "new": {
+        "start": 7.08,
+        "end": 14.56
+      }
+    },
+    {
+      "event_id": "main_full_131",
+      "caption_id": "main_caption_strong_007",
+      "text": "経理や労務は専門性が高い",
+      "old": {
+        "start": 2.75,
+        "end": 6.82
+      },
+      "new": {
+        "start": 1.52,
+        "end": 6.82
+      }
+    },
+    {
+      "event_id": "main_full_136",
+      "caption_id": "main_caption_strong_009",
+      "text": "今後数年で大きく変わってくる",
+      "old": {
+        "start": 8.17,
+        "end": 10.14
+      },
+      "new": {
+        "start": 7.94,
+        "end": 10.14
+      }
+    },
+    {
+      "event_id": "main_full_141",
+      "caption_id": "main_caption_auto_025",
+      "text": "不安があると結局人に聞きに来る",
+      "old": {
+        "start": 14.55,
+        "end": 15.0
+      },
+      "new": {
+        "start": 10.36,
+        "end": 15.0
+      }
+    },
+    {
+      "event_id": "main_full_145",
+      "caption_id": "main_caption_090",
+      "text": "人や現場に向き合う時間が増えていく",
+      "old": {
+        "start": 6.52,
+        "end": 14.78
+      },
+      "new": {
+        "start": 6.18,
+        "end": 14.78
+      }
+    },
+    {
+      "event_id": "main_full_150",
+      "caption_id": "main_caption_strong_011",
+      "text": "専門家として尖るキャリアも良い",
+      "old": {
+        "start": 14.55,
+        "end": 15.0
+      },
+      "new": {
+        "start": 8.54,
+        "end": 15.0
       }
     }
   ],

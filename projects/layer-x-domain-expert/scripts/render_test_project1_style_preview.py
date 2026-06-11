@@ -877,6 +877,7 @@ def ease_out_cubic(value: float) -> float:
 def title_text(event: dict[str, Any]) -> str:
     titles = topic_titles()
     semantic = read_json(REPORTS / "semantic_marks.json") if (REPORTS / "semantic_marks.json").exists() else {}
+    video_title = read_json(REPORTS / "video_title.json") if (REPORTS / "video_title.json").exists() else {}
     for overlay in event.get("overlays", []):
         if not isinstance(overlay, dict) or overlay.get("type") != "topic_title":
             continue
@@ -887,7 +888,8 @@ def title_text(event: dict[str, Any]) -> str:
             return titles[str(topic_id)]
     section = str(event.get("section") or "")
     if section == "digest":
-        return "Domain Expert Digest"
+        display = video_title.get("display") if isinstance(video_title.get("display"), dict) else {}
+        return str(display.get("digest_top_right") or video_title.get("title") or "AI時代のドメインエキスパート論")
     if section == "main":
         ref = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
         ref_time = float(ref.get("in") or 0.0)

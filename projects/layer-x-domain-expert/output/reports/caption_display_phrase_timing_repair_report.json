@@ -1,0 +1,967 @@
+{
+  "schema_version": "caption_display_phrase_timing_repair.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T23:04:22+09:00",
+  "root_cause": [
+    "Some summarized captions kept the start time of their wider reference sentence.",
+    "Audio RMS alignment then snapped to the preceding sentence audio because the source window already included it.",
+    "The previous source-window audit only checked whether the caption window overlapped the rendered event, not whether the first spoken segment matched the displayed caption phrase."
+  ],
+  "repair_policy": "For each active digest/main caption, compare the displayed caption text against voice-attributed speech segments in and just after its source window. When a later segment has a clearly stronger text match than the first segment, move the caption source start to that later segment.",
+  "repair_count": 34,
+  "removed_stale_continuation_count": 20,
+  "repairs": [
+    {
+      "root_caption_id": "digest_caption_right_user_anxiety_01",
+      "display_text": "ユーザーが不安なら自動化しても使われない",
+      "old_source_window_sec": [
+        1752.5,
+        1757.5
+      ],
+      "new_source_window_sec": [
+        1755.5,
+        1757.5
+      ],
+      "first_segment": {
+        "segment_id": "seg_000513",
+        "start": 1749.5,
+        "end": 1752.5,
+        "score": 0.059,
+        "text": "全部これ自動でやってくれます、はいいんですけど"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000515",
+        "start": 1755.5,
+        "end": 1757.5,
+        "score": 0.376,
+        "text": "自分で使われない機能になる",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_005",
+      "display_text": "決算期は終電帰りが当たり前だった",
+      "old_source_window_sec": [
+        883.54,
+        895.98
+      ],
+      "new_source_window_sec": [
+        889.02,
+        895.98
+      ],
+      "first_segment": {
+        "segment_id": "seg_000280",
+        "start": 880.12,
+        "end": 883.54,
+        "score": 0.0,
+        "text": "すごい問題意識を感じることが多くて"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000283",
+        "start": 889.02,
+        "end": 890.68,
+        "score": 0.42,
+        "text": "それが当たり前みたいな",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_007",
+      "display_text": "開発と言われたことが転職のきっかけだった",
+      "old_source_window_sec": [
+        942.48,
+        949.28
+      ],
+      "new_source_window_sec": [
+        946.98,
+        949.28
+      ],
+      "first_segment": {
+        "segment_id": "seg_000299",
+        "start": 941.08,
+        "end": 942.48,
+        "score": 0.0,
+        "text": "あ、そうですそうです"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000302",
+        "start": 946.98,
+        "end": 949.28,
+        "score": 0.274,
+        "text": "でも開発って言われて",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_008",
+      "display_text": "開発は自分とは関係ないものだと思っていた",
+      "old_source_window_sec": [
+        963.24,
+        966.86
+      ],
+      "new_source_window_sec": [
+        965.12,
+        966.86
+      ],
+      "first_segment": {
+        "segment_id": "seg_000307",
+        "start": 960.0,
+        "end": 963.24,
+        "score": 0.105,
+        "text": "そういう選択肢として開発を探してたわけじゃないですか"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000309",
+        "start": 965.12,
+        "end": 966.86,
+        "score": 0.465,
+        "text": "自分と関係ないことだと思ってたんです",
+        "speaker_person_id": "person_01",
+        "speaker_name": "矢野"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_009",
+      "display_text": "経理一本のキャリアに迷ったタイミングだった",
+      "old_source_window_sec": [
+        987.52,
+        993.22
+      ],
+      "new_source_window_sec": [
+        990.3,
+        993.22
+      ],
+      "first_segment": {
+        "segment_id": "seg_000314",
+        "start": 984.16,
+        "end": 987.52,
+        "score": 0.0,
+        "text": "やっぱ僕らぐらいの年齢になると結構そういう専門性ないと"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000316",
+        "start": 990.3,
+        "end": 993.22,
+        "score": 0.364,
+        "text": "どうしようかなって思ってたタイミングではありました",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_016",
+      "display_text": "PDMはプロダクト成長のために何でもやる人",
+      "old_source_window_sec": [
+        1254.56,
+        1262.4
+      ],
+      "new_source_window_sec": [
+        1257.16,
+        1262.4
+      ],
+      "first_segment": {
+        "segment_id": "seg_000388",
+        "start": 1251.52,
+        "end": 1254.56,
+        "score": 0.0,
+        "text": "最初の本を読んでみたら"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000390",
+        "start": 1257.16,
+        "end": 1262.4,
+        "score": 0.938,
+        "text": "見てると結構プロダクトの成長のために何でもやる人です",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_018",
+      "display_text": "実務知識を活かせるなら挑戦できると思った",
+      "old_source_window_sec": [
+        1279.16,
+        1293.16
+      ],
+      "new_source_window_sec": [
+        1285.16,
+        1293.16
+      ],
+      "first_segment": {
+        "segment_id": "seg_000395",
+        "start": 1277.16,
+        "end": 1279.16,
+        "score": 0.0,
+        "text": "コードに対しての結構な抵抗感があるんですね。"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000397",
+        "start": 1285.16,
+        "end": 1293.16,
+        "score": 0.256,
+        "text": "自分の知識を活かして、いろんなことをやればいいんだったら、もともと結構フットワークは軽いだと思っていたので、",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_019",
+      "display_text": "家族には経理系の仕事だと説明していた",
+      "old_source_window_sec": [
+        1307.16,
+        1311.16
+      ],
+      "new_source_window_sec": [
+        1311.16,
+        1317.16
+      ],
+      "first_segment": {
+        "segment_id": "seg_000400",
+        "start": 1305.16,
+        "end": 1307.16,
+        "score": 0.0,
+        "text": "なるほどね、キャリアの問題でしたしね"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000402",
+        "start": 1311.16,
+        "end": 1317.16,
+        "score": 0.577,
+        "text": "家族には経理系の仕事だからとか言って、経理系では同じようなことやるんでしょみたいな",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_021",
+      "display_text": "仕様の検討にも深く関わっている",
+      "old_source_window_sec": [
+        1347.92,
+        1353.92
+      ],
+      "new_source_window_sec": [
+        1350.92,
+        1353.92
+      ],
+      "first_segment": {
+        "segment_id": "seg_000408",
+        "start": 1344.92,
+        "end": 1347.92,
+        "score": 0.0,
+        "text": "だいたい半々ぐらいじゃないですか"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000410",
+        "start": 1350.92,
+        "end": 1353.92,
+        "score": 0.445,
+        "text": "仕様の検討とかも入れていただいて",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_022",
+      "display_text": "実務のモヤモヤをプロダクトに落とし込める",
+      "old_source_window_sec": [
+        1362.92,
+        1380.92
+      ],
+      "new_source_window_sec": [
+        1368.92,
+        1380.92
+      ],
+      "first_segment": {
+        "segment_id": "seg_000413",
+        "start": 1359.92,
+        "end": 1362.92,
+        "score": 0.0,
+        "text": "やっぱり今まで絶対そうと思うんですけど"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000418",
+        "start": 1368.92,
+        "end": 1371.92,
+        "score": 0.287,
+        "text": "落とし込んでもらえるっていうんですね",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_025",
+      "display_text": "違和感を言うだけでどんどん良いものになる",
+      "old_source_window_sec": [
+        1408.32,
+        1416.08
+      ],
+      "new_source_window_sec": [
+        1412.34,
+        1416.08
+      ],
+      "first_segment": {
+        "segment_id": "seg_000430",
+        "start": 1405.36,
+        "end": 1408.32,
+        "score": 0.0,
+        "text": "PDMの人は仕様を考えるのももちろんなんですけど"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000432",
+        "start": 1412.34,
+        "end": 1416.08,
+        "score": 0.511,
+        "text": "とりあえず違和感を持ったら言うといいものになっていくっていうのが",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_026",
+      "display_text": "PDMの仕事は日によって違う",
+      "old_source_window_sec": [
+        1447.58,
+        1448.66
+      ],
+      "new_source_window_sec": [
+        1452.54,
+        1455.36
+      ],
+      "first_segment": {
+        "segment_id": "seg_000440",
+        "start": 1445.3,
+        "end": 1447.58,
+        "score": 0.0,
+        "text": "いい感じですね、確かに。"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000443",
+        "start": 1452.54,
+        "end": 1455.36,
+        "score": 0.22,
+        "text": "でも結構本当に日によるかなと思って",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_027",
+      "display_text": "PDMはフェーズによって仕事内容が変わる",
+      "old_source_window_sec": [
+        1471.76,
+        1474.6
+      ],
+      "new_source_window_sec": [
+        1478.4,
+        1480.96
+      ],
+      "first_segment": {
+        "segment_id": "seg_000451",
+        "start": 1470.4,
+        "end": 1471.76,
+        "score": 0.0,
+        "text": "っていう時もあれば"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000455",
+        "start": 1478.4,
+        "end": 1480.96,
+        "score": 0.268,
+        "text": "日によって結構やってることとか",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_028",
+      "display_text": "一番大変だったのは当たり前を言語化すること",
+      "old_source_window_sec": [
+        1528.36,
+        1538.62
+      ],
+      "new_source_window_sec": [
+        1535.3,
+        1538.62
+      ],
+      "first_segment": {
+        "segment_id": "seg_000465",
+        "start": 1524.56,
+        "end": 1528.36,
+        "score": 0.0,
+        "text": "ただ、実務の中で感じたモヤモヤとか"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000469",
+        "start": 1535.3,
+        "end": 1538.62,
+        "score": 0.582,
+        "text": "ものすごくこれを言語化するのに大変だった",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_036",
+      "display_text": "「なんで？」を逃がさないことが健全なプレッシャーになる",
+      "old_source_window_sec": [
+        1641.88,
+        1647.62
+      ],
+      "new_source_window_sec": [
+        1643.56,
+        1647.62
+      ],
+      "first_segment": {
+        "segment_id": "seg_000490",
+        "start": 1638.76,
+        "end": 1641.88,
+        "score": 0.0,
+        "text": "ただその代わり好きかって言った後に"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000492",
+        "start": 1643.56,
+        "end": 1647.62,
+        "score": 0.51,
+        "text": "そこのある意味健全なプレッシャーというのが来た",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_041",
+      "display_text": "労務領域では自分の目で確かめたい感覚が強い",
+      "old_source_window_sec": [
+        1734.5,
+        1749.5
+      ],
+      "new_source_window_sec": [
+        1742.5,
+        1749.5
+      ],
+      "first_segment": {
+        "segment_id": "seg_000510",
+        "start": 1718.5,
+        "end": 1734.5,
+        "score": 0.0,
+        "text": "それで言うと、もしかすると皆さんなんとなく分かりやすいんですけれども、開発される方ってめちゃめちゃロジックある、エンジニアの方だったり、先端というか先進というか。"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000512",
+        "start": 1742.5,
+        "end": 1749.5,
+        "score": 0.635,
+        "text": "自分の目で確かめたい、その感覚をちゃんと伝えるようにして",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_042",
+      "display_text": "不安が残ると結局ユーザーは自分で調べてしまう",
+      "old_source_window_sec": [
+        1749.5,
+        1755.5
+      ],
+      "new_source_window_sec": [
+        1752.5,
+        1755.5
+      ],
+      "first_segment": {
+        "segment_id": "seg_000512",
+        "start": 1742.5,
+        "end": 1749.5,
+        "score": 0.044,
+        "text": "自分の目で確かめたい、その感覚をちゃんと伝えるようにして"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000514",
+        "start": 1752.5,
+        "end": 1755.5,
+        "score": 0.286,
+        "text": "多分使ってる側は心配になって、自分で調べるようになる",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_044",
+      "display_text": "機能で何を実現したいのかを体験込みで伝える",
+      "old_source_window_sec": [
+        1781.5,
+        1790.5
+      ],
+      "new_source_window_sec": [
+        1787.5,
+        1790.5
+      ],
+      "first_segment": {
+        "segment_id": "seg_000523",
+        "start": 1779.5,
+        "end": 1781.5,
+        "score": 0.077,
+        "text": "何かをやる時に"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000526",
+        "start": 1787.5,
+        "end": 1790.5,
+        "score": 0.519,
+        "text": "自分の体験込みで伝えるっていうのは結構意識してる",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_045",
+      "display_text": "全部やるとスピードも落ち画面も分かりにくくなる",
+      "old_source_window_sec": [
+        1793.5,
+        1803.76
+      ],
+      "new_source_window_sec": [
+        1797.5,
+        1803.76
+      ],
+      "first_segment": {
+        "segment_id": "seg_000528",
+        "start": 1791.5,
+        "end": 1793.5,
+        "score": 0.069,
+        "text": "結構開発やってると"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000533",
+        "start": 1797.5,
+        "end": 1799.5,
+        "score": 0.393,
+        "text": "やっぱスピードも遅くなるし",
+        "speaker_person_id": "person_01",
+        "speaker_name": "矢野"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_048",
+      "display_text": "実務家のプライドを無視していないかを気にしている",
+      "old_source_window_sec": [
+        1869.46,
+        1887.14
+      ],
+      "new_source_window_sec": [
+        1881.46,
+        1887.14
+      ],
+      "first_segment": {
+        "segment_id": "seg_000555",
+        "start": 1866.46,
+        "end": 1869.46,
+        "score": 0.0,
+        "text": "確かに、そこ求められてる気がする"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000559",
+        "start": 1881.46,
+        "end": 1887.14,
+        "score": 0.708,
+        "text": "そのプライドを無視して機能をルール優先を作っていないかっていうのを常に気にされていて",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_050",
+      "display_text": "AIはリサーチがすごく優秀",
+      "old_source_window_sec": [
+        2046.14,
+        2053.82
+      ],
+      "new_source_window_sec": [
+        2051.54,
+        2053.82
+      ],
+      "first_segment": {
+        "segment_id": "seg_000594",
+        "start": 2042.18,
+        "end": 2046.14,
+        "score": 0.0,
+        "text": "そこをお話戻っちゃいますが"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000596",
+        "start": 2051.54,
+        "end": 2053.82,
+        "score": 0.477,
+        "text": "AIに行くとリサーチすごい優秀",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_064",
+      "display_text": "経理一本でどう生きるかという不安があった",
+      "old_source_window_sec": [
+        971.3,
+        990.3
+      ],
+      "new_source_window_sec": [
+        987.52,
+        990.3
+      ],
+      "first_segment": {
+        "segment_id": "seg_000310",
+        "start": 966.86,
+        "end": 971.3,
+        "score": 0.0,
+        "text": "ただキャリアへの迷いは結構正直なことだというか"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000315",
+        "start": 987.52,
+        "end": 990.3,
+        "score": 0.262,
+        "text": "なかなか経理一本だと厳しいじゃないですか",
+        "speaker_person_id": "person_01",
+        "speaker_name": "矢野"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_074",
+      "display_text": "PDMとしてまずは結果を出していきたい",
+      "old_source_window_sec": [
+        2282.04,
+        2297.04
+      ],
+      "new_source_window_sec": [
+        2289.04,
+        2297.04
+      ],
+      "first_segment": {
+        "segment_id": "seg_000655",
+        "start": 2276.04,
+        "end": 2282.04,
+        "score": 0.0,
+        "text": "正直そういう気は全くなくて、大げさに言うと結構退路を絶ってきてるぐらいの感じ。"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000657",
+        "start": 2289.04,
+        "end": 2297.04,
+        "score": 0.652,
+        "text": "なので、どうなるかわからないけど、一旦キャリアとしてはPDMとして結果を出していきたいと思うし、",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_076",
+      "display_text": "ドメインの貯金がなくなったときの怖さがある",
+      "old_source_window_sec": [
+        2308.04,
+        2324.04
+      ],
+      "new_source_window_sec": [
+        2314.04,
+        2324.04
+      ],
+      "first_segment": {
+        "segment_id": "seg_000659",
+        "start": 2307.04,
+        "end": 2308.04,
+        "score": 0.0,
+        "text": "怖いですね。"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000662",
+        "start": 2314.04,
+        "end": 2324.04,
+        "score": 0.335,
+        "text": "人事領域、労務領域ならまあまあやれる気がするけど、それが何もなく貯金がなくなった時、全然関係ないプロジェクトを作っているという話をして",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_077",
+      "display_text": "誰がやっても変わらない手作業が多い",
+      "old_source_window_sec": [
+        2383.66,
+        2395.78
+      ],
+      "new_source_window_sec": [
+        2389.66,
+        2395.78
+      ],
+      "first_segment": {
+        "segment_id": "seg_000675",
+        "start": 2379.66,
+        "end": 2383.66,
+        "score": 0.059,
+        "text": "ちょっと長くなってしまいそうな気がする。"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000677",
+        "start": 2389.66,
+        "end": 2395.78,
+        "score": 0.535,
+        "text": "やっぱり誰がやってもアウトプットは変わらない。作業の部分ってすごく多いと思うんですよね。",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_082",
+      "display_text": "分析機能では経理の人たちの顔が浮かぶ",
+      "old_source_window_sec": [
+        2559.62,
+        2571.66
+      ],
+      "new_source_window_sec": [
+        2561.98,
+        2571.66
+      ],
+      "first_segment": {
+        "segment_id": "seg_000703",
+        "start": 2555.2,
+        "end": 2559.62,
+        "score": 0.0,
+        "text": "これも抽象的な話になっちゃうんですけど"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000705",
+        "start": 2561.98,
+        "end": 2567.32,
+        "score": 0.404,
+        "text": "実は今まで関係していた経理の人が浮かぶんですよ",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_083",
+      "display_text": "AIで作業者が分析できるようになる変化を支援したい",
+      "old_source_window_sec": [
+        2600.16,
+        2612.06
+      ],
+      "new_source_window_sec": [
+        2604.58,
+        2612.06
+      ],
+      "first_segment": {
+        "segment_id": "seg_000717",
+        "start": 2596.06,
+        "end": 2600.16,
+        "score": 0.044,
+        "text": "僕はそこをプロダクトでアシストしていきたいというか"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000719",
+        "start": 2604.58,
+        "end": 2608.34,
+        "score": 0.615,
+        "text": "AIの力を借りて分析できるようになりましたとか",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_084",
+      "display_text": "自動運転の先に新しい働き方がある",
+      "old_source_window_sec": [
+        2644.66,
+        2658.0
+      ],
+      "new_source_window_sec": [
+        2653.94,
+        2658.0
+      ],
+      "first_segment": {
+        "segment_id": "seg_000725",
+        "start": 2637.06,
+        "end": 2644.66,
+        "score": 0.032,
+        "text": "最終的にはそういった今僕らは手でやったりするようなバックオフィスの業務をできるだけ自動化していって"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000728",
+        "start": 2653.94,
+        "end": 2658.0,
+        "score": 0.934,
+        "text": "その先に新しい働き方があって",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_090",
+      "display_text": "人や現場に向き合う時間が増えていく",
+      "old_source_window_sec": [
+        2881.32,
+        2897.28
+      ],
+      "new_source_window_sec": [
+        2888.68,
+        2897.28
+      ],
+      "first_segment": {
+        "segment_id": "seg_000772",
+        "start": 2878.32,
+        "end": 2881.32,
+        "score": 0.0,
+        "text": "さっきの話じゃないけど役割が変わる"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000775",
+        "start": 2888.68,
+        "end": 2890.82,
+        "score": 0.64,
+        "text": "現場に向き合うとか",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_091",
+      "display_text": "バックオフィス経験者にはめちゃめちゃおすすめ",
+      "old_source_window_sec": [
+        2918.04,
+        2942.04
+      ],
+      "new_source_window_sec": [
+        2942.04,
+        2944.04
+      ],
+      "first_segment": {
+        "segment_id": "seg_000782",
+        "start": 2914.04,
+        "end": 2918.04,
+        "score": 0.048,
+        "text": "あとはそうですが、お二人のこれまでの経験を踏まえて"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000790",
+        "start": 2942.04,
+        "end": 2944.04,
+        "score": 0.781,
+        "text": "めちゃめちゃおすすめですよ",
+        "speaker_person_id": "person_01",
+        "speaker_name": "矢野"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_092",
+      "display_text": "暗黙知が言語化され視野が広がる",
+      "old_source_window_sec": [
+        2950.04,
+        2958.04
+      ],
+      "new_source_window_sec": [
+        2956.04,
+        2958.04
+      ],
+      "first_segment": {
+        "segment_id": "seg_000793",
+        "start": 2948.04,
+        "end": 2950.04,
+        "score": 0.0,
+        "text": "自分が"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000797",
+        "start": 2956.04,
+        "end": 2958.04,
+        "score": 0.537,
+        "text": "すごく視野が広がるなあ",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_auto_033",
+      "display_text": "役所は「やらなくていい」とは答えない",
+      "old_source_window_sec": [
+        1955.94,
+        1961.66
+      ],
+      "new_source_window_sec": [
+        1959.16,
+        1961.66
+      ],
+      "first_segment": {
+        "segment_id": "seg_000575",
+        "start": 1951.2,
+        "end": 1955.94,
+        "score": 0.0,
+        "text": "基準とかそういうのが法律だったら完全にそうですけど"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000577",
+        "start": 1959.16,
+        "end": 1961.66,
+        "score": 0.751,
+        "text": "それはやらなくていいですと絶対答え返ってこない",
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_strong_001",
+      "display_text": "実務経験者が開発に入る意味がある",
+      "old_source_window_sec": [
+        1757.5,
+        1761.5
+      ],
+      "new_source_window_sec": [
+        1761.5,
+        1765.5
+      ],
+      "first_segment": {
+        "segment_id": "seg_000515",
+        "start": 1755.5,
+        "end": 1757.5,
+        "score": 0.0,
+        "text": "自分で使われない機能になる"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000517",
+        "start": 1761.5,
+        "end": 1765.5,
+        "score": 0.479,
+        "text": "開発にする意味があるんだなっていうのは最初の頃からずっと思っていて",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    },
+    {
+      "root_caption_id": "main_caption_strong_008",
+      "display_text": "労務や経理の経験は新しい働き方に必要",
+      "old_source_window_sec": [
+        2694.16,
+        2701.32
+      ],
+      "new_source_window_sec": [
+        2698.18,
+        2701.32
+      ],
+      "first_segment": {
+        "segment_id": "seg_000736",
+        "start": 2689.52,
+        "end": 2694.16,
+        "score": 0.0,
+        "text": "じゃあちょっと将来経営とかやってみたいなって人がちょっと新卒入って"
+      },
+      "matched_segment": {
+        "segment_id": "seg_000738",
+        "start": 2698.18,
+        "end": 2701.32,
+        "score": 0.432,
+        "text": "そういうのを新しい働き方でできるという",
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
+      }
+    }
+  ]
+}

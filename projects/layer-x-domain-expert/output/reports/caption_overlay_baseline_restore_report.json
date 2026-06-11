@@ -1,0 +1,116 @@
+{
+  "schema_version": "caption_overlay_baseline_restore.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T23:15:17+09:00",
+  "restored_count": 12,
+  "restored": [
+    {
+      "root_caption_id": "main_caption_005",
+      "text": "決算期は終電帰りが当たり前だった",
+      "target_event_id": "main_full_012",
+      "source_window_sec": [
+        889.02,
+        895.98
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_022",
+      "text": "実務のモヤモヤをプロダクトに落とし込める",
+      "target_event_id": "main_full_044",
+      "source_window_sec": [
+        1368.92,
+        1380.92
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_025",
+      "text": "違和感を言うだけでどんどん良いものになる",
+      "target_event_id": "main_full_046",
+      "source_window_sec": [
+        1412.34,
+        1416.08
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_028",
+      "text": "一番大変だったのは当たり前を言語化すること",
+      "target_event_id": "main_full_055",
+      "source_window_sec": [
+        1535.3,
+        1538.62
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_041",
+      "text": "労務領域では自分の目で確かめたい感覚が強い",
+      "target_event_id": "main_full_069",
+      "source_window_sec": [
+        1742.5,
+        1749.5
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_044",
+      "text": "機能で何を実現したいのかを体験込みで伝える",
+      "target_event_id": "main_full_072",
+      "source_window_sec": [
+        1787.5,
+        1790.5
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_048",
+      "text": "実務家のプライドを無視していないかを気にしている",
+      "target_event_id": "main_full_078",
+      "source_window_sec": [
+        1881.46,
+        1887.14
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_064",
+      "text": "経理一本でどう生きるかという不安があった",
+      "target_event_id": "main_full_018",
+      "source_window_sec": [
+        987.52,
+        990.3
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_073",
+      "text": "知識を活かして挑戦できる",
+      "target_event_id": "main_full_038",
+      "source_window_sec": [
+        1285.16,
+        1293.16
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_076",
+      "text": "ドメインの貯金がなくなったときの怖さがある",
+      "target_event_id": "main_full_107",
+      "source_window_sec": [
+        2314.04,
+        2324.04
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_077",
+      "text": "誰がやっても変わらない手作業が多い",
+      "target_event_id": "main_full_112",
+      "source_window_sec": [
+        2389.66,
+        2395.78
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_091",
+      "text": "バックオフィス経験者にはめちゃめちゃおすすめ",
+      "target_event_id": "main_full_148",
+      "source_window_sec": [
+        2942.04,
+        2944.04
+      ]
+    }
+  ]
+}

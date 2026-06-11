@@ -7,39 +7,39 @@
     "split_grid": "allowed only when multiple active participants are intentionally needed"
   },
   "summary": {
-    "digest_events": 5,
+    "digest_events": 4,
     "issue_count": 0,
     "ready": true
   },
   "issues": [],
   "events": [
     {
-      "event_id": "digest_opening_murata_discomfort_01",
+      "event_id": "digest_opening_nemoto_value_01",
       "timeline_start": 0.0,
-      "timeline_end": 3.74,
+      "timeline_end": 4.25,
       "source": {
         "media_id": "group_wide",
-        "in": 1412.34,
-        "out": 1416.08
+        "in": 1903.86,
+        "out": 1908.11
       },
       "layout_type": "single",
-      "primary_camera_person_id": "person_03",
+      "primary_camera_person_id": "person_02",
       "visible_people": [
-        "person_03"
+        "person_02"
       ],
       "caption_speaker_person_ids": [
-        "person_03"
+        "person_02"
       ],
       "speaker_focused": true,
       "caption_texts": [
-        "違和感を言うと良いものになっていく"
+        "いらないものをちゃんと言ってあげる"
       ],
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     },
     {
       "event_id": "digest_qa_02_question_context_01",
-      "timeline_start": 3.74,
-      "timeline_end": 12.47,
+      "timeline_start": 4.25,
+      "timeline_end": 12.98,
       "source": {
         "media_id": "group_wide",
         "in": 1595.62,
@@ -63,8 +63,8 @@
     },
     {
       "event_id": "digest_qa_03_answer_01",
-      "timeline_start": 12.47,
-      "timeline_end": 21.6,
+      "timeline_start": 12.98,
+      "timeline_end": 22.11,
       "source": {
         "media_id": "group_wide",
         "in": 1641.88,
@@ -88,8 +88,8 @@
     },
     {
       "event_id": "digest_qa_right_user_anxiety_01",
-      "timeline_start": 21.6,
-      "timeline_end": 27.0,
+      "timeline_start": 22.11,
+      "timeline_end": 27.51,
       "source": {
         "media_id": "group_wide",
         "in": 1752.35,
@@ -106,29 +106,6 @@
       "speaker_focused": true,
       "caption_texts": [
         "ユーザーが不安なら自動化しても使われない"
-      ],
-      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
-    },
-    {
-      "event_id": "digest_qa_middle_nemoto_value_01",
-      "timeline_start": 27.0,
-      "timeline_end": 31.25,
-      "source": {
-        "media_id": "group_wide",
-        "in": 1903.86,
-        "out": 1908.11
-      },
-      "layout_type": "single",
-      "primary_camera_person_id": "person_02",
-      "visible_people": [
-        "person_02"
-      ],
-      "caption_speaker_person_ids": [
-        "person_02"
-      ],
-      "speaker_focused": true,
-      "caption_texts": [
-        "いらないものをちゃんと言ってあげる"
       ],
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     }

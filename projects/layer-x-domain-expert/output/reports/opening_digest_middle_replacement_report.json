@@ -1,0 +1,39 @@
+{
+  "schema_version": "opening_digest_middle_replacement.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T23:22:30+09:00",
+  "removed_opening_event_id": "digest_opening_murata_discomfort_01",
+  "moved_middle_event_id": "digest_qa_middle_nemoto_value_01",
+  "new_opening_event_id": "digest_opening_nemoto_value_01",
+  "mode": "normalize_existing_opening",
+  "caption_text": [
+    "いらないものをちゃんと言ってあげる"
+  ],
+  "source": {
+    "media_id": "cam_person_02",
+    "in": 1911.328,
+    "out": 1915.578
+  },
+  "reference_source": {
+    "media_id": "group_wide",
+    "in": 1903.86,
+    "out": 1908.11
+  },
+  "layout": {
+    "type": "single",
+    "selected_media_id": "cam_person_02",
+    "target_person_id": "person_02",
+    "active_person_id": "person_02",
+    "crop_mode": "person_centered",
+    "selection_reason": "Digest opening now uses the middle participant's concise value statement.",
+    "reference_alignment": {
+      "reference_image_id": "annotation_sample_review_meeting",
+      "apply": [
+        "speaker_closeup",
+        "logo_title_style",
+        "caption_safe_lower_zone"
+      ]
+    },
+    "speaker_person_id": "person_02"
+  }
+}

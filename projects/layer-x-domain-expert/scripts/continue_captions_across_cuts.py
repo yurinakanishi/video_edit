@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REPORTS = PROJECT_ROOT / "output" / "reports"
 EDIT_PLAN = REPORTS / "edit_plan.json"
 REPORT = REPORTS / "caption_cut_continuation_report.json"
-MIN_OVERLAP_SEC = 0.08
+MIN_OVERLAP_SEC = 0.20
 NEXT_CAPTION_GAP_SEC = 0.04
 
 
@@ -181,7 +181,11 @@ def main() -> None:
         root_id = item["root_id"]
         section = item["section"]
         source_start, source_end = item["source_window"]
-        full_start = min(source_start, item["start_abs"])
+        # The continuation window must start at the caption source phrase, not
+        # at a display time that may have been padded inside a previous cut.
+        # Using padded display starts here causes captions to appear before the
+        # spoken phrase when a caption begins close to a cut boundary.
+        full_start = source_start
         full_end = source_end
         next_starts = [
             float(other["start_abs"])

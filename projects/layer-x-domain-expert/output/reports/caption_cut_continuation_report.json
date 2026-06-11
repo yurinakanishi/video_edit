@@ -1,29 +1,15 @@
 {
   "schema_version": "caption_cut_continuation_report.v1",
-  "removed_previous_continuations": 49,
-  "updated_original_overlays": 93,
-  "added_continuation_overlays": 49,
-  "continued_caption_count": 48,
+  "removed_previous_continuations": 37,
+  "updated_original_overlays": 92,
+  "added_continuation_overlays": 39,
+  "continued_caption_count": 38,
   "continued_captions": [
-    {
-      "root_id": "main_caption_005",
-      "text": "決算期は終電帰りが当たり前だった",
-      "source_window_sec": [
-        883.54,
-        895.98
-      ],
-      "handoff_window_end_sec": 895.98,
-      "segment_count": 2,
-      "events": [
-        "main_full_011",
-        "main_full_012"
-      ]
-    },
     {
       "root_id": "main_caption_007",
       "text": "開発と言われたことが転職のきっかけだった",
       "source_window_sec": [
-        942.48,
+        946.98,
         949.28
       ],
       "handoff_window_end_sec": 949.28,
@@ -34,24 +20,10 @@
       ]
     },
     {
-      "root_id": "main_caption_064",
-      "text": "経理一本でどう生きるかという不安があった",
-      "source_window_sec": [
-        971.3,
-        990.3
-      ],
-      "handoff_window_end_sec": 988.15,
-      "segment_count": 2,
-      "events": [
-        "main_full_017",
-        "main_full_018"
-      ]
-    },
-    {
       "root_id": "main_caption_009",
       "text": "経理一本のキャリアに迷ったタイミングだった",
       "source_window_sec": [
-        987.52,
+        990.3,
         993.22
       ],
       "handoff_window_end_sec": 993.22,
@@ -90,8 +62,8 @@
       ]
     },
     {
-      "root_id": "main_caption_073",
-      "text": "知識を活かして挑戦できる",
+      "root_id": "main_caption_018",
+      "text": "実務知識を活かせるなら挑戦できる",
       "source_window_sec": [
         1285.16,
         1293.16
@@ -121,7 +93,7 @@
       "root_id": "main_caption_021",
       "text": "仕様の検討にも深く関わっている",
       "source_window_sec": [
-        1347.92,
+        1350.92,
         1353.92
       ],
       "handoff_window_end_sec": 1353.92,
@@ -129,34 +101,6 @@
       "events": [
         "main_full_042",
         "main_full_043"
-      ]
-    },
-    {
-      "root_id": "main_caption_022",
-      "text": "実務のモヤモヤをプロダクトに落とし込める",
-      "source_window_sec": [
-        1362.92,
-        1380.92
-      ],
-      "handoff_window_end_sec": 1371.88,
-      "segment_count": 2,
-      "events": [
-        "main_full_043",
-        "main_full_044"
-      ]
-    },
-    {
-      "root_id": "main_caption_025",
-      "text": "違和感を言うだけでどんどん良いものになる",
-      "source_window_sec": [
-        1408.32,
-        1416.08
-      ],
-      "handoff_window_end_sec": 1416.08,
-      "segment_count": 2,
-      "events": [
-        "main_full_046",
-        "main_full_047"
       ]
     },
     {
@@ -171,20 +115,6 @@
       "events": [
         "main_full_048",
         "main_full_049"
-      ]
-    },
-    {
-      "root_id": "main_caption_028",
-      "text": "一番大変だったのは当たり前を言語化すること",
-      "source_window_sec": [
-        1528.36,
-        1538.62
-      ],
-      "handoff_window_end_sec": 1538.62,
-      "segment_count": 2,
-      "events": [
-        "main_full_054",
-        "main_full_055"
       ]
     },
     {
@@ -258,38 +188,24 @@
       ]
     },
     {
-      "root_id": "main_caption_041",
-      "text": "労務領域では自分の目で確かめたい感覚が強い",
+      "root_id": "main_caption_043",
+      "text": "ユーザーが不安なら自動化しても使われない",
       "source_window_sec": [
-        1734.5,
-        1749.5
+        1755.5,
+        1761.5
       ],
-      "handoff_window_end_sec": 1749.5,
+      "handoff_window_end_sec": 1761.5,
       "segment_count": 2,
       "events": [
-        "main_full_068",
-        "main_full_069"
-      ]
-    },
-    {
-      "root_id": "main_caption_044",
-      "text": "機能で何を実現したいのかを体験込みで伝える",
-      "source_window_sec": [
-        1781.5,
-        1790.5
-      ],
-      "handoff_window_end_sec": 1790.5,
-      "segment_count": 2,
-      "events": [
-        "main_full_071",
-        "main_full_072"
+        "main_full_069",
+        "main_full_070"
       ]
     },
     {
       "root_id": "main_caption_045",
       "text": "全部やるとスピードも落ち画面も分かりにくくなる",
       "source_window_sec": [
-        1793.5,
+        1797.5,
         1803.76
       ],
       "handoff_window_end_sec": 1803.76,
@@ -311,20 +227,6 @@
       "events": [
         "main_full_076",
         "main_full_077"
-      ]
-    },
-    {
-      "root_id": "main_caption_048",
-      "text": "現場のプライドを無視しない",
-      "source_window_sec": [
-        1869.46,
-        1887.14
-      ],
-      "handoff_window_end_sec": 1887.14,
-      "segment_count": 2,
-      "events": [
-        "main_full_077",
-        "main_full_078"
       ]
     },
     {
@@ -441,20 +343,6 @@
       ]
     },
     {
-      "root_id": "main_caption_074",
-      "text": "PDMとしてまずは結果を出していきたい",
-      "source_window_sec": [
-        2282.04,
-        2297.04
-      ],
-      "handoff_window_end_sec": 2297.04,
-      "segment_count": 2,
-      "events": [
-        "main_full_104",
-        "main_full_105"
-      ]
-    },
-    {
       "root_id": "main_caption_auto_038",
       "text": "ドメインがなくても活躍できる力を身につけたい",
       "source_window_sec": [
@@ -469,41 +357,13 @@
       ]
     },
     {
-      "root_id": "main_caption_076",
-      "text": "ドメインの貯金がなくなった時の怖さがある",
-      "source_window_sec": [
-        2308.04,
-        2324.04
-      ],
-      "handoff_window_end_sec": 2324.04,
-      "segment_count": 2,
-      "events": [
-        "main_full_106",
-        "main_full_107"
-      ]
-    },
-    {
-      "root_id": "main_caption_077",
-      "text": "誰がやっても変わらない手作業が多い",
-      "source_window_sec": [
-        2383.66,
-        2395.78
-      ],
-      "handoff_window_end_sec": 2395.78,
-      "segment_count": 2,
-      "events": [
-        "main_full_111",
-        "main_full_112"
-      ]
-    },
-    {
       "root_id": "main_caption_078",
       "text": "月次申告などの作業を減らしたい",
       "source_window_sec": [
         2395.78,
         2409.38
       ],
-      "handoff_window_end_sec": 2403.49,
+      "handoff_window_end_sec": 2403.28,
       "segment_count": 2,
       "events": [
         "main_full_112",
@@ -542,7 +402,7 @@
       "root_id": "main_caption_082",
       "text": "分析機能では経理の人たちの顔が浮かぶ",
       "source_window_sec": [
-        2559.62,
+        2561.98,
         2571.66
       ],
       "handoff_window_end_sec": 2571.66,
@@ -556,7 +416,7 @@
       "root_id": "main_caption_084",
       "text": "自動運転の先に新しい働き方がある",
       "source_window_sec": [
-        2644.66,
+        2653.94,
         2658.0
       ],
       "handoff_window_end_sec": 2658.0,
@@ -609,6 +469,20 @@
       ]
     },
     {
+      "root_id": "main_caption_088",
+      "text": "対人領域では人に聞きに来ることがある",
+      "source_window_sec": [
+        2832.86,
+        2846.54
+      ],
+      "handoff_window_end_sec": 2846.54,
+      "segment_count": 2,
+      "events": [
+        "main_full_141",
+        "main_full_142"
+      ]
+    },
+    {
       "root_id": "main_caption_auto_025",
       "text": "不安があると結局人に聞きに来る",
       "source_window_sec": [
@@ -623,38 +497,24 @@
       ]
     },
     {
-      "root_id": "main_caption_090",
-      "text": "人や現場に向き合う時間が増えていく",
-      "source_window_sec": [
-        2881.32,
-        2897.28
-      ],
-      "handoff_window_end_sec": 2897.28,
-      "segment_count": 2,
-      "events": [
-        "main_full_144",
-        "main_full_145"
-      ]
-    },
-    {
       "root_id": "main_caption_091",
       "text": "バックオフィス経験者にはめちゃめちゃおすすめ",
       "source_window_sec": [
-        2918.04,
-        2942.04
+        2942.04,
+        2944.04
       ],
-      "handoff_window_end_sec": 2942.04,
+      "handoff_window_end_sec": 2944.04,
       "segment_count": 2,
       "events": [
-        "main_full_147",
-        "main_full_148"
+        "main_full_148",
+        "main_full_149"
       ]
     },
     {
       "root_id": "main_caption_092",
       "text": "暗黙知が言語化され視野が広がる",
       "source_window_sec": [
-        2950.04,
+        2956.04,
         2958.04
       ],
       "handoff_window_end_sec": 2958.04,

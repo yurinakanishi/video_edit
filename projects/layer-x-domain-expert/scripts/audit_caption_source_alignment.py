@@ -11,7 +11,7 @@ EDIT_PLAN_PATH = REPORTS / "edit_plan.json"
 REPORT_PATH = REPORTS / "caption_source_alignment_audit.json"
 
 SOURCE_TOLERANCE_SEC = 0.12
-MIN_OVERLAP_SEC = 0.25
+MIN_OVERLAP_SEC = 0.20
 MAX_TIMING_DELTA_SEC = 0.45
 
 
@@ -28,10 +28,10 @@ def event_ref_window(event: dict[str, Any]) -> tuple[float, float] | None:
 
 def caption_source_window(overlay: dict[str, Any]) -> tuple[float, float] | None:
     alignment = overlay.get("audio_alignment") if isinstance(overlay.get("audio_alignment"), dict) else {}
-    speech_window = alignment.get("speech_window_sec")
-    if isinstance(speech_window, list) and len(speech_window) == 2:
+    aligned_source = alignment.get("source_window_sec")
+    if isinstance(aligned_source, list) and len(aligned_source) == 2:
         try:
-            return float(speech_window[0]), float(speech_window[1])
+            return float(aligned_source[0]), float(aligned_source[1])
         except (TypeError, ValueError):
             pass
     metadata = overlay.get("metadata") if isinstance(overlay.get("metadata"), dict) else {}
@@ -44,7 +44,14 @@ def caption_source_window(overlay: dict[str, Any]) -> tuple[float, float] | None
         end_f = float(end) if end is not None else start_f + max(0.8, float(overlay.get("end") or 0.0) - float(overlay.get("start") or 0.0))
         return start_f, max(start_f + 0.2, end_f)
     except (TypeError, ValueError):
-        return None
+        pass
+    speech_window = alignment.get("speech_window_sec")
+    if isinstance(speech_window, list) and len(speech_window) == 2:
+        try:
+            return float(speech_window[0]), float(speech_window[1])
+        except (TypeError, ValueError):
+            pass
+    return None
 
 
 def overlap(left: tuple[float, float], right: tuple[float, float]) -> float:

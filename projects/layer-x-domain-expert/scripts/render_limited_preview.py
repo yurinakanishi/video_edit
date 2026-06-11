@@ -164,6 +164,7 @@ def ffmpeg_text(value: str) -> str:
 
 def title_text(event: dict[str, Any]) -> str:
     titles = topic_titles()
+    video_title = read_json(REPORTS / "video_title.json") if (REPORTS / "video_title.json").exists() else {}
     for overlay in event.get("overlays", []):
         if not isinstance(overlay, dict) or overlay.get("type") != "topic_title":
             continue
@@ -174,7 +175,8 @@ def title_text(event: dict[str, Any]) -> str:
             return titles[str(topic_id)]
     section = str(event.get("section") or "")
     if section == "digest":
-        return "Domain Expert Digest"
+        display = video_title.get("display") if isinstance(video_title.get("display"), dict) else {}
+        return str(display.get("digest_top_right") or video_title.get("title") or "AI時代のドメインエキスパート論")
     return ""
 
 

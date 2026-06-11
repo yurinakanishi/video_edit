@@ -227,16 +227,25 @@ def assign_group_timings(
     speech_end = max(rms_speech_end, source_end)
     local_start = max(0.0, min(duration, speech_start - ref_in))
     local_end = max(local_start + 0.2, min(duration, speech_end - ref_in))
+    strict_local_start = local_start
     if local_start >= duration:
         local_start = max(0.0, duration - 0.45)
         local_end = duration
+        strict_local_start = local_start
     elif local_end > duration:
         local_end = duration
     min_total = min(duration, max(0.9, 0.8 * len(group)))
     if local_end - local_start < min_total:
-        center = (local_start + local_end) / 2.0
-        local_start = max(0.0, min(duration - min_total, center - min_total / 2.0))
-        local_end = min(duration, local_start + min_total)
+        # Do not satisfy minimum display duration by moving captions before the
+        # analyzed speech start. If a caption starts near a cut, the continuation
+        # pass keeps it visible in the next event; expanding backward makes the
+        # subtitle appear over the previous spoken phrase.
+        if strict_local_start + min_total <= duration:
+            local_start = strict_local_start
+            local_end = min(duration, local_start + min_total)
+        else:
+            local_start = strict_local_start
+            local_end = duration
     total = max(0.2, local_end - local_start)
     weights = [text_weight(item[1].get("text")) for item in group]
     weight_sum = sum(weights) or 1.0

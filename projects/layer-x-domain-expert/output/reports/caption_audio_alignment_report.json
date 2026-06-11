@@ -3,42 +3,38 @@
     "schema_version": "caption_audio_alignment.v1",
     "method": "RMS energy analysis from group_wide master audio; display ends preserve transcript/audio-analysis source phrase ends so captions do not disappear before speech finishes",
     "audio_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\audio\\group_wide_mono_16k.wav",
-    "aligned_group_count": 93,
-    "changed_event_count": 34,
+    "aligned_group_count": 92,
+    "changed_event_count": 30,
     "changed_events": [
       "digest_opening_murata_discomfort_01",
       "digest_qa_02_question_context_01",
       "digest_qa_03_answer_01",
-      "main_full_011",
+      "main_full_017",
       "main_full_018",
       "main_full_019",
       "main_full_029",
-      "main_full_038",
-      "main_full_043",
+      "main_full_044",
+      "main_full_047",
       "main_full_057",
       "main_full_060",
       "main_full_061",
       "main_full_063",
-      "main_full_068",
       "main_full_069",
-      "main_full_071",
       "main_full_073",
-      "main_full_077",
-      "main_full_083",
+      "main_full_078",
       "main_full_084",
       "main_full_087",
-      "main_full_089",
       "main_full_102",
-      "main_full_106",
+      "main_full_105",
       "main_full_112",
       "main_full_113",
       "main_full_117",
       "main_full_120",
-      "main_full_123",
       "main_full_126",
       "main_full_131",
       "main_full_136",
       "main_full_141",
+      "main_full_145",
       "main_full_150"
     ],
     "overlap_adjustment_count": 9
@@ -95,7 +91,7 @@
         1601.22,
         1604.1
       ],
-      "changed_overlays": 0,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007781,
@@ -135,7 +131,7 @@
         1643.56,
         1647.62
       ],
-      "changed_overlays": 0,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.011106,
@@ -155,7 +151,7 @@
         1647.62,
         1650.76
       ],
-      "changed_overlays": 0,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008302,
@@ -225,83 +221,63 @@
       }
     },
     {
-      "event_id": "main_full_011",
+      "event_id": "main_full_012",
       "group_size": 1,
       "source_window_sec": [
-        883.54,
+        889.02,
         895.98
       ],
       "speech_window_sec": [
-        883.54,
+        889.02,
         895.98
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009584,
-        "peak": 0.035012,
-        "threshold": 0.017252,
-        "active_frame_count": 452
+        "floor": 0.009403,
+        "peak": 0.035032,
+        "threshold": 0.016925,
+        "active_frame_count": 234
       }
     },
     {
       "event_id": "main_full_015",
       "group_size": 1,
       "source_window_sec": [
-        942.48,
+        946.98,
         949.28
       ],
       "speech_window_sec": [
-        942.48,
+        946.98,
         949.28
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008385,
-        "peak": 0.025632,
-        "threshold": 0.015092,
-        "active_frame_count": 207
+        "floor": 0.007924,
+        "peak": 0.024713,
+        "threshold": 0.014263,
+        "active_frame_count": 42
       }
     },
     {
       "event_id": "main_full_017",
       "group_size": 1,
       "source_window_sec": [
-        963.24,
+        965.12,
         966.86
       ],
       "speech_window_sec": [
-        963.24,
+        965.38,
         966.86
       ],
-      "changed_overlays": 0,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.010255,
-        "peak": 0.043435,
-        "threshold": 0.018459,
-        "active_frame_count": 135
-      }
-    },
-    {
-      "event_id": "main_full_017",
-      "group_size": 1,
-      "source_window_sec": [
-        971.3,
-        990.3
-      ],
-      "speech_window_sec": [
-        971.3,
-        990.3
-      ],
-      "changed_overlays": 0,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.0095,
-        "peak": 0.03239,
-        "threshold": 0.0171,
-        "active_frame_count": 642
+        "floor": 0.00939,
+        "peak": 0.031657,
+        "threshold": 0.016903,
+        "active_frame_count": 42
       }
     },
     {
@@ -309,19 +285,39 @@
       "group_size": 1,
       "source_window_sec": [
         987.52,
+        990.3
+      ],
+      "speech_window_sec": [
+        987.52,
+        990.3
+      ],
+      "changed_overlays": 0,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009473,
+        "peak": 0.032147,
+        "threshold": 0.017051,
+        "active_frame_count": 80
+      }
+    },
+    {
+      "event_id": "main_full_018",
+      "group_size": 1,
+      "source_window_sec": [
+        990.3,
         993.22
       ],
       "speech_window_sec": [
-        988.19,
+        990.3,
         993.22
       ],
       "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009854,
-        "peak": 0.035047,
-        "threshold": 0.017736,
-        "active_frame_count": 184
+        "floor": 0.0101,
+        "peak": 0.036172,
+        "threshold": 0.01818,
+        "active_frame_count": 110
       }
     },
     {
@@ -428,40 +424,20 @@
       "event_id": "main_full_036",
       "group_size": 1,
       "source_window_sec": [
-        1254.56,
+        1257.16,
         1262.4
       ],
       "speech_window_sec": [
-        1254.56,
+        1257.16,
         1262.4
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.010016,
-        "peak": 0.032874,
-        "threshold": 0.018028,
-        "active_frame_count": 266
-      }
-    },
-    {
-      "event_id": "main_full_038",
-      "group_size": 1,
-      "source_window_sec": [
-        1279.16,
-        1293.16
-      ],
-      "speech_window_sec": [
-        1279.16,
-        1293.16
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.010317,
-        "peak": 0.036239,
-        "threshold": 0.01857,
-        "active_frame_count": 542
+        "floor": 0.010175,
+        "peak": 0.031977,
+        "threshold": 0.018315,
+        "active_frame_count": 186
       }
     },
     {
@@ -508,40 +484,40 @@
       "event_id": "main_full_042",
       "group_size": 1,
       "source_window_sec": [
-        1347.92,
+        1350.92,
         1353.92
       ],
       "speech_window_sec": [
-        1347.92,
+        1350.92,
         1353.92
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.00969,
-        "peak": 0.03739,
-        "threshold": 0.017442,
-        "active_frame_count": 209
+        "floor": 0.008829,
+        "peak": 0.021109,
+        "threshold": 0.015893,
+        "active_frame_count": 51
       }
     },
     {
-      "event_id": "main_full_043",
+      "event_id": "main_full_044",
       "group_size": 1,
       "source_window_sec": [
-        1362.92,
+        1368.92,
         1380.92
       ],
       "speech_window_sec": [
-        1363.22,
+        1369.17,
         1380.92
       ],
       "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009205,
-        "peak": 0.040426,
-        "threshold": 0.016569,
-        "active_frame_count": 650
+        "floor": 0.009507,
+        "peak": 0.042486,
+        "threshold": 0.017112,
+        "active_frame_count": 420
       }
     },
     {
@@ -585,23 +561,23 @@
       }
     },
     {
-      "event_id": "main_full_046",
+      "event_id": "main_full_047",
       "group_size": 1,
       "source_window_sec": [
-        1408.32,
+        1412.34,
         1416.08
       ],
       "speech_window_sec": [
-        1408.32,
+        1412.54,
         1416.08
       ],
-      "changed_overlays": 0,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009096,
-        "peak": 0.023774,
-        "threshold": 0.016373,
-        "active_frame_count": 161
+        "floor": 0.0092,
+        "peak": 0.025566,
+        "threshold": 0.016559,
+        "active_frame_count": 77
       }
     },
     {
@@ -625,23 +601,23 @@
       }
     },
     {
-      "event_id": "main_full_054",
+      "event_id": "main_full_055",
       "group_size": 1,
       "source_window_sec": [
-        1528.36,
+        1535.3,
         1538.62
       ],
       "speech_window_sec": [
-        1528.36,
+        1535.3,
         1538.62
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008736,
-        "peak": 0.019454,
-        "threshold": 0.015724,
-        "active_frame_count": 162
+        "floor": 0.008838,
+        "peak": 0.021851,
+        "threshold": 0.015908,
+        "active_frame_count": 64
       }
     },
     {
@@ -728,20 +704,20 @@
       "event_id": "main_full_062",
       "group_size": 1,
       "source_window_sec": [
-        1641.88,
+        1643.56,
         1647.62
       ],
       "speech_window_sec": [
-        1641.88,
+        1643.56,
         1647.62
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.010289,
-        "peak": 0.054845,
-        "threshold": 0.018521,
-        "active_frame_count": 220
+        "floor": 0.011106,
+        "peak": 0.059112,
+        "threshold": 0.019991,
+        "active_frame_count": 172
       }
     },
     {
@@ -785,43 +761,43 @@
       }
     },
     {
-      "event_id": "main_full_068",
+      "event_id": "main_full_069",
       "group_size": 1,
       "source_window_sec": [
-        1734.5,
+        1742.5,
         1749.5
       ],
       "speech_window_sec": [
-        1734.74,
+        1742.5,
         1749.5
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008346,
-        "peak": 0.024949,
-        "threshold": 0.015024,
-        "active_frame_count": 449
+        "floor": 0.008252,
+        "peak": 0.021711,
+        "threshold": 0.014854,
+        "active_frame_count": 214
       }
     },
     {
       "event_id": "main_full_069",
       "group_size": 1,
       "source_window_sec": [
-        1749.5,
+        1752.5,
         1755.5
       ],
       "speech_window_sec": [
-        1749.5,
+        1752.5,
         1755.5
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009116,
-        "peak": 0.026562,
-        "threshold": 0.016409,
-        "active_frame_count": 178
+        "floor": 0.009937,
+        "peak": 0.027823,
+        "threshold": 0.017887,
+        "active_frame_count": 81
       }
     },
     {
@@ -848,60 +824,60 @@
       "event_id": "main_full_070",
       "group_size": 1,
       "source_window_sec": [
-        1757.5,
-        1761.5
+        1761.5,
+        1765.5
       ],
       "speech_window_sec": [
-        1757.5,
-        1761.5
+        1761.5,
+        1765.5
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.00852,
-        "peak": 0.023079,
-        "threshold": 0.015336,
-        "active_frame_count": 104
-      }
-    },
-    {
-      "event_id": "main_full_071",
-      "group_size": 1,
-      "source_window_sec": [
-        1781.5,
-        1790.5
-      ],
-      "speech_window_sec": [
-        1782.07,
-        1790.5
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008616,
-        "peak": 0.025719,
-        "threshold": 0.015509,
-        "active_frame_count": 256
+        "floor": 0.00905,
+        "peak": 0.021101,
+        "threshold": 0.016291,
+        "active_frame_count": 89
       }
     },
     {
       "event_id": "main_full_072",
       "group_size": 1,
       "source_window_sec": [
-        1793.5,
+        1787.5,
+        1790.5
+      ],
+      "speech_window_sec": [
+        1787.5,
+        1790.5
+      ],
+      "changed_overlays": 0,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007874,
+        "peak": 0.024449,
+        "threshold": 0.014172,
+        "active_frame_count": 99
+      }
+    },
+    {
+      "event_id": "main_full_072",
+      "group_size": 1,
+      "source_window_sec": [
+        1797.5,
         1803.76
       ],
       "speech_window_sec": [
-        1793.5,
+        1797.5,
         1803.76
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009854,
-        "peak": 0.032425,
-        "threshold": 0.017737,
-        "active_frame_count": 373
+        "floor": 0.010282,
+        "peak": 0.034486,
+        "threshold": 0.018507,
+        "active_frame_count": 195
       }
     },
     {
@@ -965,23 +941,23 @@
       }
     },
     {
-      "event_id": "main_full_077",
+      "event_id": "main_full_078",
       "group_size": 1,
       "source_window_sec": [
-        1869.46,
+        1881.46,
         1887.14
       ],
       "speech_window_sec": [
-        1869.65,
+        1881.78,
         1887.14
       ],
       "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008468,
-        "peak": 0.020407,
-        "threshold": 0.015242,
-        "active_frame_count": 396
+        "floor": 0.009204,
+        "peak": 0.021377,
+        "threshold": 0.016567,
+        "active_frame_count": 112
       }
     },
     {
@@ -1048,20 +1024,20 @@
       "event_id": "main_full_083",
       "group_size": 1,
       "source_window_sec": [
-        1955.94,
+        1959.16,
         1961.66
       ],
       "speech_window_sec": [
-        1956.14,
+        1959.16,
         1961.66
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009369,
-        "peak": 0.033466,
-        "threshold": 0.016864,
-        "active_frame_count": 198
+        "floor": 0.010684,
+        "peak": 0.039767,
+        "threshold": 0.019231,
+        "active_frame_count": 93
       }
     },
     {
@@ -1128,20 +1104,20 @@
       "event_id": "main_full_089",
       "group_size": 1,
       "source_window_sec": [
-        2046.14,
+        2051.54,
         2053.82
       ],
       "speech_window_sec": [
-        2046.85,
+        2051.54,
         2053.82
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008536,
-        "peak": 0.022026,
-        "threshold": 0.015365,
-        "active_frame_count": 168
+        "floor": 0.008657,
+        "peak": 0.021204,
+        "threshold": 0.015583,
+        "active_frame_count": 54
       }
     },
     {
@@ -1308,20 +1284,20 @@
       "event_id": "main_full_105",
       "group_size": 1,
       "source_window_sec": [
-        2282.04,
+        2289.04,
         2297.04
       ],
       "speech_window_sec": [
-        2282.04,
+        2289.72,
         2297.04
       ],
-      "changed_overlays": 0,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008579,
-        "peak": 0.028485,
-        "threshold": 0.015443,
-        "active_frame_count": 447
+        "floor": 0.008501,
+        "peak": 0.02644,
+        "threshold": 0.015303,
+        "active_frame_count": 230
       }
     },
     {
@@ -1345,43 +1321,43 @@
       }
     },
     {
-      "event_id": "main_full_106",
+      "event_id": "main_full_107",
       "group_size": 1,
       "source_window_sec": [
-        2308.04,
+        2314.04,
         2324.04
       ],
       "speech_window_sec": [
-        2308.73,
+        2314.04,
         2324.04
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009753,
-        "peak": 0.051012,
-        "threshold": 0.017555,
-        "active_frame_count": 675
+        "floor": 0.009628,
+        "peak": 0.048969,
+        "threshold": 0.01733,
+        "active_frame_count": 376
       }
     },
     {
-      "event_id": "main_full_111",
+      "event_id": "main_full_112",
       "group_size": 1,
       "source_window_sec": [
-        2383.66,
+        2389.66,
         2395.78
       ],
       "speech_window_sec": [
-        2383.66,
+        2389.66,
         2395.78
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008539,
-        "peak": 0.021262,
-        "threshold": 0.015369,
-        "active_frame_count": 194
+        "floor": 0.008455,
+        "peak": 0.018271,
+        "threshold": 0.015218,
+        "active_frame_count": 87
       }
     },
     {
@@ -1488,20 +1464,20 @@
       "event_id": "main_full_123",
       "group_size": 1,
       "source_window_sec": [
-        2559.62,
+        2561.98,
         2571.66
       ],
       "speech_window_sec": [
-        2559.82,
+        2561.98,
         2571.66
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008589,
-        "peak": 0.034159,
-        "threshold": 0.01546,
-        "active_frame_count": 367
+        "floor": 0.008708,
+        "peak": 0.035482,
+        "threshold": 0.015674,
+        "active_frame_count": 320
       }
     },
     {
@@ -1528,20 +1504,20 @@
       "event_id": "main_full_126",
       "group_size": 1,
       "source_window_sec": [
-        2600.16,
+        2604.58,
         2612.06
       ],
       "speech_window_sec": [
-        2600.16,
+        2604.58,
         2612.06
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008543,
-        "peak": 0.029541,
-        "threshold": 0.015378,
-        "active_frame_count": 392
+        "floor": 0.008511,
+        "peak": 0.02835,
+        "threshold": 0.015321,
+        "active_frame_count": 233
       }
     },
     {
@@ -1568,20 +1544,20 @@
       "event_id": "main_full_129",
       "group_size": 1,
       "source_window_sec": [
-        2644.66,
+        2653.94,
         2658.0
       ],
       "speech_window_sec": [
-        2644.66,
+        2653.94,
         2658.0
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008267,
-        "peak": 0.030869,
-        "threshold": 0.014881,
-        "active_frame_count": 397
+        "floor": 0.00825,
+        "peak": 0.028758,
+        "threshold": 0.014851,
+        "active_frame_count": 117
       }
     },
     {
@@ -1648,20 +1624,20 @@
       "event_id": "main_full_132",
       "group_size": 1,
       "source_window_sec": [
-        2694.16,
+        2698.18,
         2701.32
       ],
       "speech_window_sec": [
-        2694.16,
+        2698.18,
         2701.32
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008193,
-        "peak": 0.021755,
-        "threshold": 0.014747,
-        "active_frame_count": 150
+        "floor": 0.008165,
+        "peak": 0.019492,
+        "threshold": 0.014697,
+        "active_frame_count": 50
       }
     },
     {
@@ -1735,7 +1711,7 @@
         2832.86,
         2846.54
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008908,
@@ -1808,60 +1784,60 @@
       "event_id": "main_full_145",
       "group_size": 1,
       "source_window_sec": [
-        2881.32,
+        2888.68,
         2897.28
       ],
       "speech_window_sec": [
-        2881.32,
+        2889.02,
         2897.28
       ],
-      "changed_overlays": 0,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.009032,
-        "peak": 0.030931,
-        "threshold": 0.016258,
-        "active_frame_count": 505
+        "floor": 0.008826,
+        "peak": 0.026477,
+        "threshold": 0.015886,
+        "active_frame_count": 239
       }
     },
     {
-      "event_id": "main_full_147",
+      "event_id": "main_full_148",
       "group_size": 1,
       "source_window_sec": [
-        2918.04,
-        2942.04
+        2942.04,
+        2944.04
       ],
       "speech_window_sec": [
-        2918.04,
-        2942.04
+        2942.04,
+        2944.04
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.00794,
-        "peak": 0.036636,
-        "threshold": 0.014291,
-        "active_frame_count": 765
+        "floor": 0.012289,
+        "peak": 0.037796,
+        "threshold": 0.022121,
+        "active_frame_count": 66
       }
     },
     {
       "event_id": "main_full_149",
       "group_size": 1,
       "source_window_sec": [
-        2950.04,
+        2956.04,
         2958.04
       ],
       "speech_window_sec": [
-        2950.04,
+        2956.04,
         2958.04
       ],
       "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008477,
-        "peak": 0.023833,
-        "threshold": 0.015259,
-        "active_frame_count": 185
+        "floor": 0.009138,
+        "peak": 0.025029,
+        "threshold": 0.016448,
+        "active_frame_count": 37
       }
     },
     {
@@ -1875,7 +1851,7 @@
         2960.04,
         2980.62
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008737,
@@ -1943,26 +1919,26 @@
       ]
     },
     {
-      "event_id": "main_full_011",
-      "text": "決算期は終電帰りが当たり前だった",
+      "event_id": "main_full_018",
+      "text": "経理一本のキャリアに迷ったタイミングだった",
       "old": [
-        11.04,
+        12.8,
         15.0
       ],
       "new": [
-        11.08,
+        12.84,
         15.0
       ]
     },
     {
-      "event_id": "main_full_038",
-      "text": "知識を活かして挑戦できる",
+      "event_id": "main_full_044",
+      "text": "違和感を出すことでプロダクトが良くなる",
       "old": [
-        7.66,
-        15.0
+        4.42,
+        10.42
       ],
       "new": [
-        14.55,
+        13.46,
         15.0
       ]
     },
@@ -1980,13 +1956,13 @@
     },
     {
       "event_id": "main_full_126",
-      "text": "AIの力で分析できるようになる",
+      "text": "AIで作業者が分析できるようになる変化を支援したい",
       "old": [
         7.08,
-        10.84
+        14.56
       ],
       "new": [
-        14.55,
+        10.88,
         15.0
       ]
     },

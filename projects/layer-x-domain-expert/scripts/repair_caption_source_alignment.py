@@ -13,7 +13,7 @@ EDIT_PLAN_PATH = REPORTS / "edit_plan.json"
 REPORT_PATH = REPORTS / "caption_source_alignment_repair_report.json"
 
 SOURCE_TOLERANCE_SEC = 0.08
-MIN_OVERLAP_SEC = 0.25
+MIN_OVERLAP_SEC = 0.20
 
 
 def read_json(path: Path) -> Any:
@@ -43,10 +43,10 @@ def event_duration(event: dict[str, Any]) -> float:
 
 def caption_source_window(overlay: dict[str, Any]) -> tuple[float, float] | None:
     alignment = overlay.get("audio_alignment") if isinstance(overlay.get("audio_alignment"), dict) else {}
-    speech_window = alignment.get("speech_window_sec")
-    if isinstance(speech_window, list) and len(speech_window) == 2:
+    aligned_source = alignment.get("source_window_sec")
+    if isinstance(aligned_source, list) and len(aligned_source) == 2:
         try:
-            return float(speech_window[0]), float(speech_window[1])
+            return float(aligned_source[0]), float(aligned_source[1])
         except (TypeError, ValueError):
             pass
     metadata = overlay.get("metadata") if isinstance(overlay.get("metadata"), dict) else {}
@@ -60,7 +60,14 @@ def caption_source_window(overlay: dict[str, Any]) -> tuple[float, float] | None
         end_f = float(end) if end is not None else start_f + old_duration
         return start_f, max(start_f + 0.2, end_f)
     except (TypeError, ValueError):
-        return None
+        pass
+    speech_window = alignment.get("speech_window_sec")
+    if isinstance(speech_window, list) and len(speech_window) == 2:
+        try:
+            return float(speech_window[0]), float(speech_window[1])
+        except (TypeError, ValueError):
+            pass
+    return None
 
 
 def overlap(left: tuple[float, float], right: tuple[float, float]) -> float:
@@ -78,10 +85,17 @@ def caption_allowed_in_event(event: dict[str, Any]) -> bool:
     return True
 
 
-def find_best_event(events: list[dict[str, Any]], source_window: tuple[float, float]) -> dict[str, Any] | None:
+def find_best_event(
+    events: list[dict[str, Any]],
+    source_window: tuple[float, float],
+    *,
+    section: str | None,
+) -> dict[str, Any] | None:
     candidates = []
     source_mid = (source_window[0] + source_window[1]) / 2.0
     for event in events:
+        if section is not None and event.get("section") != section:
+            continue
         if not caption_allowed_in_event(event):
             continue
         ref = event_ref_window(event)
@@ -172,7 +186,7 @@ def main() -> None:
                     )
                 kept.append(overlay)
                 continue
-            target = find_best_event(events, source_window)
+            target = find_best_event(events, source_window, section=str(event.get("section") or "") or None)
             if target and target is not event:
                 pending_moves.append((event, target, copy.deepcopy(overlay), source_window))
                 moved.append(

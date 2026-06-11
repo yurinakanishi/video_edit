@@ -969,7 +969,7 @@ def build_edit_plan(
                         {
                             "type": "topic_title",
                             "position": "top_right",
-                            "text": "Domain Expert Digest",
+                            "text": digest_title,
                             "style_id": "opening_digest_top_right_title",
                         },
                         {

@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-06-11T13:47:07+09:00",
+  "selected_audio": {
+    "media_id": "cam_person_02",
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+    "sync_offset_sec": 7.467854,
+    "reason": "Best continuous source from audio_source_quality_audit.json; covers main interview and closing without mid-video audio switching."
+  },
+  "whisper": {
+    "backend": "faster-whisper",
+    "model": "large-v3",
+    "device": "cuda",
+    "compute_type": "float16",
+    "quality_settings": "large-v3, beam_size=10, best_of=10, temperature=0.0, VAD enabled"
+  },
+  "outputs": {
+    "source_json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\best_audio_large_v3\\cam_person_02_large_v3.json",
+    "source_srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\best_audio_large_v3\\cam_person_02_large_v3.srt",
+    "master_aligned_json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\transcript_best_audio_large_v3_master_aligned.json",
+    "master_aligned_srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\transcripts\\best_audio_large_v3\\cam_person_02_large_v3_master_aligned.srt"
+  },
+  "segment_count": 2849
+}

@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-11T13:24:53+09:00",
+  "generated_at": "2026-06-11T15:25:37+09:00",
   "policy": {
     "goal": "Condense captions that would become 3+ lines or awkward sequential parts into editorial 1-2 line units.",
     "font_measured": true,
     "max_visual_lines": 2
   },
-  "changed_overlay_count": 4,
+  "changed_overlay_count": 3,
   "changed_overlays": [
     {
       "event_id": "main_full_106",
@@ -45,18 +45,6 @@
         "バックオフィス経験を",
         "広く活かせると面白い"
       ]
-    },
-    {
-      "event_id": "main_full_136",
-      "section": "main",
-      "caption_id": "main_caption_auto_043",
-      "source_text": "過去の処理をどうしていたか確認する",
-      "replacement": "過去の処理を確認する",
-      "source_overlay_count": 1,
-      "replacement_line_count": 1,
-      "replacement_lines": [
-        "過去の処理を確認する"
-      ]
     }
   ],
   "changed_main_caption_plan_count": 8,
@@ -79,14 +67,14 @@
       "replacement": "AIでエンジニアの生産性も上がっている",
       "replacement_line_count": 2,
       "replacement_lines": [
-        "AIでエンジニアの生",
-        "産性も上がっている"
+        "AIでエンジニアの",
+        "生産性も上がっている"
       ]
     },
     {
       "caption_id": "main_caption_auto_017",
       "caption_no": "auto_017",
-      "before": "その環境を選んでよかったと思う",
+      "before": "その環境を選んでよかった",
       "replacement": "その環境を選んでよかったと思う",
       "replacement_line_count": 1,
       "replacement_lines": [
@@ -139,7 +127,7 @@
     {
       "caption_id": "main_caption_auto_043",
       "caption_no": "auto_043",
-      "before": "過去の処理をどうしていたか確認する",
+      "before": "過去の処理を確認する",
       "replacement": "過去の処理を確認する",
       "replacement_line_count": 1,
       "replacement_lines": [

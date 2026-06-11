@@ -701,7 +701,7 @@ def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
     return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line][:2]
 
 
-from caption_wrap_rules import wrap_caption_text  # noqa: E402
+from caption_wrap_rules import caption_single_line_font_size, wrap_caption_text  # noqa: E402
 
 
 def condensed_text_image(
@@ -866,7 +866,10 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
         opacity = min(1.0, max(0.0, (now - line_start) / 0.12))
         if now > end:
             opacity *= max(0.0, 1.0 - (now - end) / 0.1)
-        font = ImageFont.truetype(str(CAPTION_FONT_FILE), CAPTION_FONT_SIZE)
+        font_size = CAPTION_FONT_SIZE
+        if len(lines) == 1:
+            font_size = caption_single_line_font_size(line) or CAPTION_FONT_SIZE
+        font = ImageFont.truetype(str(CAPTION_FONT_FILE), font_size)
         bbox = draw.textbbox((0, 0), line, font=font)
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]

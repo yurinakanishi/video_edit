@@ -60,7 +60,10 @@ def audit_caption(event: dict[str, Any], overlay: dict[str, Any], review: Any) -
     if len(lines) > 2:
         issues.append({"reason": "more_than_two_lines", "lines": lines})
     for line in lines:
-        if not review.caption_line_fits(line):
+        line_fits = review.caption_line_fits(line)
+        if not line_fits and len(lines) == 1 and hasattr(review, "caption_single_line_font_size"):
+            line_fits = review.caption_single_line_font_size(line) is not None
+        if not line_fits:
             issues.append({"reason": "line_does_not_fit_caption_box", "line": line})
     spans = review.protected_spans(text)
     for index in line_break_indexes(lines):

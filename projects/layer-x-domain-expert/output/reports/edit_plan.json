@@ -632,36 +632,33 @@
         },
         {
           "type": "caption",
-          "start": 0.0,
-          "end": 2.8,
-          "text": "ドメインエキスパートって言うと",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 480,
-          "source_timecode": "00:26:35,620 --> 00:26:41,220",
-          "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_03"
-        },
-        {
-          "type": "caption",
           "start": 2.8,
           "end": 5.6,
-          "text": "何でも知ってそうな感じがあると思ってて",
+          "text": "何でも知ってそうに見える",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 480,
           "source_timecode": "00:26:35,620 --> 00:26:41,220",
           "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "display_text_polished": true,
+            "display_text_polished_from": "何でも知ってそうな感じがあると思ってて"
+          }
         },
         {
           "type": "caption",
           "start": 5.6,
           "end": 8.48,
-          "text": "この辺へのハードルの高さ",
+          "text": "期待の高さがハードルになる",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 481,
           "source_timecode": "00:26:41,220 --> 00:26:44,100",
           "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "display_text_polished": true,
+            "display_text_polished_from": "この辺へのハードルの高さ"
+          }
         }
       ],
       "digest_qa_source": {
@@ -738,12 +735,16 @@
           "type": "caption",
           "start": 0.0,
           "end": 4.76,
-          "text": "すごい皆さんドメインの方めっちゃ調べてるんですよ",
+          "text": "ドメインをめっちゃ調べている",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 484,
           "source_timecode": "00:26:59,160 --> 00:27:03,920",
           "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "display_text_polished": true,
+            "display_text_polished_from": "すごい皆さんドメインの方めっちゃ調べてるんですよ"
+          }
         },
         {
           "type": "caption",
@@ -846,21 +847,29 @@
           "type": "caption",
           "start": 1.68,
           "end": 5.74,
-          "text": "そこのある意味健全なプレッシャーというのが来た",
+          "text": "健全なプレッシャーがある",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 492,
           "source_timecode": "00:27:23,560 --> 00:27:27,620",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "display_text_polished": true,
+            "display_text_polished_from": "そこのある意味健全なプレッシャーというのが来た"
+          }
         },
         {
           "type": "caption",
           "start": 5.74,
           "end": 8.88,
-          "text": "ちゃんと伝えるには背景まで整理して",
+          "text": "ちゃんと伝えるには背景まで整理する",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 493,
           "source_timecode": "00:27:27,620 --> 00:27:30,760",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "display_text_polished": true,
+            "display_text_polished_from": "ちゃんと伝えるには背景まで整理して"
+          }
         }
       ],
       "digest_qa_source": {
@@ -937,11 +946,15 @@
           "type": "caption",
           "start": 0.0,
           "end": 3.36,
-          "text": "自分たちに求められることは結構研ぎ澄まされてきている",
+          "text": "求められることが研ぎ澄まされている",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 586,
           "source_timecode": "00:33:30,100 --> 00:33:36,820",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "display_text_polished": true,
+            "display_text_polished_from": "自分たちに求められることは結構研ぎ澄まされてきている"
+          }
         }
       ],
       "digest_qa_source": {
@@ -1018,11 +1031,15 @@
           "type": "caption",
           "start": 0.0,
           "end": 3.88,
-          "text": "仕様をゴリゴリ書いていくというよりは",
+          "text": "仕様を書くより目的を考える",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 587,
           "source_timecode": "00:33:36,820 --> 00:33:40,700",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "display_text_polished": true,
+            "display_text_polished_from": "仕様をゴリゴリ書いていくというよりは"
+          }
         }
       ],
       "digest_qa_source": {
@@ -1178,34 +1195,12 @@
         },
         {
           "type": "caption",
-          "start": 0.0,
-          "end": 2.0,
-          "text": "おすすめするんですよ",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 788,
-          "source_timecode": "00:48:58,040 --> 00:49:00,040",
-          "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_02"
-        },
-        {
-          "type": "caption",
           "start": 2.0,
           "end": 4.0,
           "text": "学ぶのめちゃめちゃおすすめ",
           "style_id": "opening_digest_sample_caption",
           "source_srt_index": 789,
           "source_timecode": "00:49:00,040 --> 00:49:02,040",
-          "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_02"
-        },
-        {
-          "type": "caption",
-          "start": 4.0,
-          "end": 6.0,
-          "text": "めちゃめちゃおすすめですよ",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 790,
-          "source_timecode": "00:49:02,040 --> 00:49:04,040",
           "editorial_note": "manual_digest_caption",
           "speaker_person_id": "person_02"
         }
@@ -2990,44 +2985,6 @@
           "position": "top_right",
           "topic_id": "topic_001",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "最初はヒアリングから始まった",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_060",
-          "caption_no": 60,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_060",
-            "source": "main_caption_plan",
-            "caption_start_sec": 802.0,
-            "caption_end_sec": 830.0,
-            "source_start_sec": 795.88,
-            "source_end_sec": 802.02,
-            "speaker_name": "矢野"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              795.88,
-              802.02
-            ],
-            "speech_window_sec": [
-              796.13,
-              802.02
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.006911,
-              "peak": 0.012231,
-              "threshold": 0.012439,
-              "active_frame_count": 29
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -3196,44 +3153,6 @@
           "position": "top_right",
           "topic_id": "topic_001",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "製品をどう伝えるかを中心に担当した",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_061",
-          "caption_no": 61,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_061",
-            "source": "main_caption_plan",
-            "caption_start_sec": 818.0,
-            "caption_end_sec": 840.0,
-            "source_start_sec": 813.14,
-            "source_end_sec": 820.14,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              813.14,
-              820.14
-            ],
-            "speech_window_sec": [
-              813.81,
-              820.14
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.007756,
-              "peak": 0.02124,
-              "threshold": 0.01396,
-              "active_frame_count": 171
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -3402,44 +3321,6 @@
           "position": "top_right",
           "topic_id": "topic_001",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 1.88,
-          "text": "二人が開発に関わった背景が対談のテーマ",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_062",
-          "caption_no": 62,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_062",
-            "source": "main_caption_plan",
-            "caption_start_sec": 844.0,
-            "caption_end_sec": 864.0,
-            "source_start_sec": 840.14,
-            "source_end_sec": 844.38,
-            "speaker_name": "矢野"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              840.14,
-              844.38
-            ],
-            "speech_window_sec": [
-              840.23,
-              844.38
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008894,
-              "peak": 0.04398,
-              "threshold": 0.01601,
-              "active_frame_count": 171
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -4709,7 +4590,7 @@
           "type": "caption",
           "start": 12.5,
           "end": 15.0,
-          "text": "開発は自分とは関係ないものだと思っていた",
+          "text": "開発は自分とは関係ないものだった",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_008",
           "caption_no": 8,
@@ -4721,7 +4602,9 @@
             "caption_end_sec": 963.24,
             "source_start_sec": 960.0,
             "source_end_sec": 963.24,
-            "speaker_name": "矢野"
+            "speaker_name": "矢野",
+            "display_text_polished": true,
+            "display_text_polished_from": "開発は自分とは関係ないものだと思っていた"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -6121,44 +6004,6 @@
           "position": "top_right",
           "topic_id": "topic_002",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 9.83,
-          "end": 12.54,
-          "text": "入口は採用体験や人事の勉強だった",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_012",
-          "caption_no": 12,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_012",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1077.28,
-            "caption_end_sec": 1080.28,
-            "source_start_sec": 1077.28,
-            "source_end_sec": 1080.28,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1077.28,
-              1080.28
-            ],
-            "speech_window_sec": [
-              1077.33,
-              1080.04
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008541,
-              "peak": 0.021179,
-              "threshold": 0.015373,
-              "active_frame_count": 47
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -6391,7 +6236,7 @@
           "type": "caption",
           "start": 8.16,
           "end": 15.0,
-          "text": "勤怠を作るなら面白そうだと思ってLayerXに来た",
+          "text": "勤怠づくりに興味を持ってLayerXに来た",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_014",
           "caption_no": 14,
@@ -6403,7 +6248,9 @@
             "caption_end_sec": 1112.28,
             "source_start_sec": 1105.28,
             "source_end_sec": 1115.28,
-            "speaker_name": "村田"
+            "speaker_name": "村田",
+            "display_text_polished": true,
+            "display_text_polished_from": "勤怠を作るなら面白そうだと思ってLayerXに来た"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -7631,44 +7478,6 @@
           "position": "top_right",
           "topic_id": "topic_002",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "開発に関わることは少し違うキャリアへの一歩",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_071",
-          "caption_no": 71,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_071",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1200.0,
-            "caption_end_sec": 1244.0,
-            "source_start_sec": 1199.28,
-            "source_end_sec": 1201.28,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1199.28,
-              1201.28
-            ],
-            "speech_window_sec": [
-              1199.43,
-              1200.9
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.007805,
-              "peak": 0.021832,
-              "threshold": 0.014049,
-              "active_frame_count": 29
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -8498,7 +8307,7 @@
           "type": "caption",
           "start": 0.0,
           "end": 1.66,
-          "text": "実務知識を活かせるなら挑戦できると思った",
+          "text": "実務知識を活かせるなら挑戦できる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_018",
           "caption_no": 18,
@@ -8510,7 +8319,9 @@
             "caption_end_sec": 1280.16,
             "source_start_sec": 1277.16,
             "source_end_sec": 1279.16,
-            "speaker_name": "根本"
+            "speaker_name": "根本",
+            "display_text_polished": true,
+            "display_text_polished_from": "実務知識を活かせるなら挑戦できると思った"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -8705,7 +8516,7 @@
           "type": "caption",
           "start": 0.0,
           "end": 0.9,
-          "text": "コードを書けなくても開発に関われると思えた",
+          "text": "コードを書けなくても開発に関われる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_073",
           "caption_no": 73,
@@ -8717,7 +8528,9 @@
             "caption_end_sec": 1310.0,
             "source_start_sec": 1285.16,
             "source_end_sec": 1293.16,
-            "speaker_name": "根本"
+            "speaker_name": "根本",
+            "display_text_polished": true,
+            "display_text_polished_from": "コードを書けなくても開発に関われると思えた"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -8886,44 +8699,6 @@
           "position": "top_right",
           "topic_id": "topic_002",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 3.66,
-          "text": "家族には経理系の仕事だと説明していた",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_019",
-          "caption_no": 19,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_019",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1307.16,
-            "caption_end_sec": 1311.16,
-            "source_start_sec": 1307.16,
-            "source_end_sec": 1311.16,
-            "speaker_name": "矢野"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1307.16,
-              1311.16
-            ],
-            "speech_window_sec": [
-              1307.16,
-              1311.16
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.010636,
-              "peak": 0.055057,
-              "threshold": 0.019144,
-              "active_frame_count": 157
-            }
-          }
         },
         {
           "type": "caption",
@@ -10655,44 +10430,6 @@
           "position": "top_right",
           "topic_id": "topic_003",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 4.825,
-          "end": 5.725,
-          "text": "PDMの仕事は日によって違う",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_026",
-          "caption_no": 26,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_026",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1447.58,
-            "caption_end_sec": 1450.58,
-            "source_start_sec": 1447.58,
-            "source_end_sec": 1448.66,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1447.58,
-              1448.66
-            ],
-            "speech_window_sec": [
-              1447.595,
-              1447.955
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.006951,
-              "peak": 0.011644,
-              "threshold": 0.012512,
-              "active_frame_count": 4
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -11044,44 +10781,6 @@
           "position": "top_right",
           "topic_id": "topic_003",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 2.1,
-          "text": "PDMはフェーズによって仕事内容が変わる",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_027",
-          "caption_no": 27,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_027",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1471.76,
-            "caption_end_sec": 1474.76,
-            "source_start_sec": 1471.76,
-            "source_end_sec": 1474.6,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1471.76,
-              1474.6
-            ],
-            "speech_window_sec": [
-              1471.78,
-              1474.6
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.009057,
-              "peak": 0.033779,
-              "threshold": 0.016302,
-              "active_frame_count": 84
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -11527,44 +11226,6 @@
           "position": "top_right",
           "topic_id": "topic_003",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 2.45,
-          "end": 6.9,
-          "text": "ドメインエキスパートの指揮官のようなやつとして期待している",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_auto_030",
-          "caption_no": "auto_030",
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_auto_030",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1519.76,
-            "caption_end_sec": 1524.56,
-            "source_start_sec": 1519.76,
-            "source_end_sec": 1524.56,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1519.76,
-              1524.56
-            ],
-            "speech_window_sec": [
-              1519.95,
-              1524.4
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.009236,
-              "peak": 0.039533,
-              "threshold": 0.016626,
-              "active_frame_count": 159
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -14408,6 +14069,27 @@
           "position": "top_right",
           "topic_id": "topic_003",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 4.0,
+          "text": "実務経験者が開発に入る意味がある",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_001",
+          "caption_no": "strong_001",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_001",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 1757.5,
+            "caption_end_sec": 1761.5,
+            "source_start_sec": 1757.5,
+            "source_end_sec": 1761.5,
+            "speaker_name": "村田",
+            "selection_reason": "実務者が開発に入る理由を端的に言っている強い発言。",
+            "full_reference_text": "これをとにかく避けるためにドメインエキスパートの実務の経験者"
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -15229,7 +14911,7 @@
           "type": "caption",
           "start": 9.64,
           "end": 12.91,
-          "text": "はっきりさせるっていうのは結構こだわってやらなきゃいけない",
+          "text": "はっきりさせることにこだわる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_007",
           "caption_no": "auto_007",
@@ -15241,7 +14923,9 @@
             "caption_end_sec": 1831.62,
             "source_start_sec": 1827.14,
             "source_end_sec": 1831.62,
-            "speaker_name": "村田"
+            "speaker_name": "村田",
+            "display_text_polished": true,
+            "display_text_polished_from": "はっきりさせるっていうのは結構こだわってやらなきゃいけない"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -15750,7 +15434,7 @@
           "type": "caption",
           "start": 12.96,
           "end": 15.0,
-          "text": "実務家のプライドを無視していないかを気にしている",
+          "text": "現場のプライドを無視しない",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_048",
           "caption_no": 48,
@@ -15762,7 +15446,9 @@
             "caption_end_sec": 1879.46,
             "source_start_sec": 1875.46,
             "source_end_sec": 1879.46,
-            "speaker_name": "村田"
+            "speaker_name": "村田",
+            "display_text_polished": true,
+            "display_text_polished_from": "実務家のプライドを無視していないかを気にしている"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -16269,6 +15955,27 @@
           "position": "top_right",
           "topic_id": "topic_004",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.36,
+          "end": 8.86,
+          "text": "必要に見えるものを足しすぎてしまう",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_002",
+          "caption_no": "strong_002",
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_002",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 1907.86,
+            "caption_end_sec": 1916.36,
+            "source_start_sec": 1907.86,
+            "source_end_sec": 1916.36,
+            "speaker_name": "根本",
+            "selection_reason": "機能を足しすぎるリスクを説明しており、後続の「なくていい」と言える価値につながる。",
+            "full_reference_text": "経理とか労務のドメインを知っているからこれなくて大丈夫かなとか必要なものをどんどんやっちゃう"
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -16797,7 +16504,7 @@
           "type": "caption",
           "start": 3.64,
           "end": 6.66,
-          "text": "それこそ労務だって役所とかに聞いたら",
+          "text": "役所は「やらなくていい」とは言えない",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_033",
           "caption_no": "auto_033",
@@ -16809,7 +16516,9 @@
             "caption_end_sec": 1959.16,
             "source_start_sec": 1955.94,
             "source_end_sec": 1959.16,
-            "speaker_name": "根本"
+            "speaker_name": "根本",
+            "display_text_polished": true,
+            "display_text_polished_from": "それこそ労務だって役所とかに聞いたら"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -17262,7 +16971,7 @@
           "type": "caption",
           "start": 0.0,
           "end": 2.6,
-          "text": "足元何か重要性が上がっていると思うかというと",
+          "text": "ドメインエキスパートの重要性が上がっている",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_010",
           "caption_no": "auto_010",
@@ -17274,7 +16983,9 @@
             "caption_end_sec": 2000.1,
             "source_start_sec": 1995.1,
             "source_end_sec": 2000.1,
-            "speaker_name": "村田"
+            "speaker_name": "村田",
+            "display_text_polished": true,
+            "display_text_polished_from": "足元何か重要性が上がっていると思うかというと"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -17439,7 +17150,7 @@
           "type": "caption",
           "start": 13.43,
           "end": 15.0,
-          "text": "そういう思いとかその道筋を考えていくっていう",
+          "text": "そういう思いとかその道筋を考えていく",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_011",
           "caption_no": "auto_011",
@@ -17451,7 +17162,9 @@
             "caption_end_sec": 2029.12,
             "source_start_sec": 2025.52,
             "source_end_sec": 2029.12,
-            "speaker_name": "村田"
+            "speaker_name": "村田",
+            "display_text_polished": true,
+            "display_text_polished_from": "そういう思いとかその道筋を考えていくっていう"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -17969,44 +17682,6 @@
           "position": "top_right",
           "topic_id": "topic_004",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 8.29,
-          "end": 10.65,
-          "text": "ちょっと使いづらい機能になってしまうので",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_auto_034",
-          "caption_no": "auto_034",
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_auto_034",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2065.76,
-            "caption_end_sec": 2068.82,
-            "source_start_sec": 2065.76,
-            "source_end_sec": 2068.82,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2065.76,
-              2068.82
-            ],
-            "speech_window_sec": [
-              2065.79,
-              2068.15
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.007685,
-              "peak": 0.01648,
-              "threshold": 0.013833,
-              "active_frame_count": 46
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -18161,7 +17836,7 @@
           "type": "caption",
           "start": 9.16,
           "end": 12.06,
-          "text": "実務家じゃできないなっていうのは感じますね",
+          "text": "実務経験があるから判断できる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_012",
           "caption_no": "auto_012",
@@ -18173,7 +17848,9 @@
             "caption_end_sec": 2085.44,
             "source_start_sec": 2081.64,
             "source_end_sec": 2085.44,
-            "speaker_name": "村田"
+            "speaker_name": "村田",
+            "display_text_polished": true,
+            "display_text_polished_from": "実務家じゃできないなっていうのは感じますね"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -18547,7 +18224,7 @@
           "type": "caption",
           "start": 2.24,
           "end": 3.81,
-          "text": "AIって一瞬でできると思うんですよね",
+          "text": "AIなら一瞬でできるように見える",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_035",
           "caption_no": "auto_035",
@@ -18559,7 +18236,9 @@
             "caption_end_sec": 2107.74,
             "source_start_sec": 2104.74,
             "source_end_sec": 2106.74,
-            "speaker_name": "矢野"
+            "speaker_name": "矢野",
+            "display_text_polished": true,
+            "display_text_polished_from": "AIって一瞬でできると思うんですよね"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -20058,7 +19737,7 @@
           "type": "caption",
           "start": 4.54,
           "end": 9.91,
-          "text": "その環境を選んでよかったと思う",
+          "text": "その環境を選んでよかった",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_017",
           "caption_no": "auto_017",
@@ -20073,7 +19752,9 @@
             "speaker_name": "村田",
             "caption_condensed": true,
             "condensed_from": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
-            "condense_policy": "editorial_two_line_unit"
+            "condense_policy": "editorial_two_line_unit",
+            "display_text_polished": true,
+            "display_text_polished_from": "その環境を選んでよかったと思う"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -21952,6 +21633,27 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.82,
+          "end": 6.88,
+          "text": "バクラクのプロダクトで貢献したい",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_003",
+          "caption_no": "strong_003",
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_003",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2403.32,
+            "caption_end_sec": 2409.38,
+            "source_start_sec": 2403.32,
+            "source_end_sec": 2409.38,
+            "speaker_name": "根本",
+            "selection_reason": "開発に関わる動機として強い。",
+            "full_reference_text": "バクラクのプロダクトで貢献できることがあればいいなみたいなのはずっと思っていますね。"
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -22313,44 +22015,6 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "必要な情報を一つの画面で確認できるようにした",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_079",
-          "caption_no": 79,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_079",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2438.0,
-            "caption_end_sec": 2492.0,
-            "source_start_sec": 2431.7,
-            "source_end_sec": 2441.7,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2431.7,
-              2441.7
-            ],
-            "speech_window_sec": [
-              2431.91,
-              2441.14
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008367,
-              "peak": 0.018625,
-              "threshold": 0.01506,
-              "active_frame_count": 135
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -23730,6 +23394,27 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 4.16,
+          "end": 11.36,
+          "text": "余った時間で付加価値のある仕事をする",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_004",
+          "caption_no": "strong_004",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_004",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2571.66,
+            "caption_end_sec": 2578.86,
+            "source_start_sec": 2571.66,
+            "source_end_sec": 2578.86,
+            "speaker_name": "村田",
+            "selection_reason": "AI・自動化によって生まれる時間の使い方を明確に言っている。",
+            "full_reference_text": "余った時間で付加価値のあることをやりましょう。実際付加価値のある仕事をやるって"
+          }
         }
       ],
       "main_caption_plan_items": [
@@ -24028,6 +23713,27 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 7.08,
+          "end": 10.84,
+          "text": "AIの力で分析できるようになる",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_005",
+          "caption_no": "strong_005",
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_005",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2604.58,
+            "caption_end_sec": 2608.34,
+            "source_start_sec": 2604.58,
+            "source_end_sec": 2608.34,
+            "speaker_name": "根本",
+            "selection_reason": "AIによる実務変化が具体的で強い。",
+            "full_reference_text": "AIの力を借りて分析できるようになりましたとか"
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -24681,6 +24387,27 @@
         },
         {
           "type": "caption",
+          "start": 0.5,
+          "end": 4.82,
+          "text": "新しい働き方を定義していく",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_006",
+          "caption_no": "strong_006",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_006",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2658.0,
+            "caption_end_sec": 2662.32,
+            "source_start_sec": 2658.0,
+            "source_end_sec": 2662.32,
+            "speaker_name": "村田",
+            "selection_reason": "AI時代の働き方のテーマとして強い。",
+            "full_reference_text": "その新しい働き方をある種の定義していきながら"
+          }
+        },
+        {
+          "type": "caption",
           "start": 10.4,
           "end": 15.0,
           "text": "AIに乗るだけで分析できるようになる",
@@ -24874,6 +24601,27 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 1.52,
+          "end": 6.82,
+          "text": "経理や労務は専門性が高い",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_007",
+          "caption_no": "strong_007",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_007",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2674.02,
+            "caption_end_sec": 2679.32,
+            "source_start_sec": 2674.02,
+            "source_end_sec": 2679.32,
+            "speaker_name": "村田",
+            "selection_reason": "バックオフィス領域の専門性を明確に言っている。",
+            "full_reference_text": "経理とか労務の領域ってすごい専門性が高くて"
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -25021,7 +24769,7 @@
           "type": "caption",
           "start": 0.0,
           "end": 1.6,
-          "text": "AIで専門家の経験を多くの人が得られるかもしれない",
+          "text": "AIで専門家の経験を多くの人が得られる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_085",
           "caption_no": 85,
@@ -25033,7 +24781,9 @@
             "caption_end_sec": 2730.0,
             "source_start_sec": 2679.32,
             "source_end_sec": 2684.36,
-            "speaker_name": "根本"
+            "speaker_name": "根本",
+            "display_text_polished": true,
+            "display_text_polished_from": "AIで専門家の経験を多くの人が得られるかもしれない"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -25053,6 +24803,27 @@
               "threshold": 0.016158,
               "active_frame_count": 173
             }
+          }
+        },
+        {
+          "type": "caption",
+          "start": 6.66,
+          "end": 13.82,
+          "text": "労務や経理の経験は新しい働き方に必要",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_008",
+          "caption_no": "strong_008",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_008",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2694.16,
+            "caption_end_sec": 2701.32,
+            "source_start_sec": 2694.16,
+            "source_end_sec": 2701.32,
+            "speaker_name": "村田",
+            "selection_reason": "経験と新しい働き方をつなげる強いまとめ。",
+            "full_reference_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ。そういうのを新しい働き方でできるという"
           }
         }
       ],
@@ -25781,6 +25552,27 @@
               "threshold": 0.01441,
               "active_frame_count": 152
             }
+          }
+        },
+        {
+          "type": "caption",
+          "start": 7.94,
+          "end": 10.14,
+          "text": "今後数年で大きく変わってくる",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_009",
+          "caption_no": "strong_009",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_009",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2755.44,
+            "caption_end_sec": 2757.64,
+            "source_start_sec": 2755.44,
+            "source_end_sec": 2757.64,
+            "speaker_name": "村田",
+            "selection_reason": "変化の大きさを端的に表す。",
+            "full_reference_text": "その辺は今後数年でだいぶ変わってくる"
           }
         }
       ],
@@ -26863,6 +26655,27 @@
               "threshold": 0.014946,
               "active_frame_count": 204
             }
+          }
+        },
+        {
+          "type": "caption",
+          "start": 1.18,
+          "end": 9.94,
+          "text": "経理は効率化が早く進みやすい",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_010",
+          "caption_no": "strong_010",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_010",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2853.68,
+            "caption_end_sec": 2862.44,
+            "source_start_sec": 2853.68,
+            "source_end_sec": 2862.44,
+            "speaker_name": "村田",
+            "selection_reason": "領域ごとのAI・効率化の差を説明している。",
+            "full_reference_text": "経理でいうと労務よりは効率化が早いんじゃないかなとは思いますね"
           }
         }
       ],
@@ -28183,6 +27996,27 @@
               "threshold": 0.016448,
               "active_frame_count": 37
             }
+          }
+        },
+        {
+          "type": "caption",
+          "start": 8.54,
+          "end": 15.0,
+          "text": "専門家として尖るキャリアも良い",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_strong_011",
+          "caption_no": "strong_011",
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_strong_011",
+            "source": "strong_caption_additions",
+            "caption_start_sec": 2966.04,
+            "caption_end_sec": 2973.7,
+            "source_start_sec": 2966.04,
+            "source_end_sec": 2973.7,
+            "speaker_name": "根本",
+            "selection_reason": "キャリア論の締めとして使える。",
+            "full_reference_text": "その後もちろん専門家としてすごく一個に尖っていくっていうのもいいキャリアだと思うんですけれども"
           }
         }
       ],

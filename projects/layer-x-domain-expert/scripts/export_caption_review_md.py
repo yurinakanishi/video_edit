@@ -491,6 +491,7 @@ from caption_wrap_rules import (  # noqa: E402
     best_caption_cut,
     caption_cut_candidates,
     caption_line_fits,
+    caption_single_line_font_size,
     caption_text_width,
     clean_caption_text,
     hard_bad_caption_break,

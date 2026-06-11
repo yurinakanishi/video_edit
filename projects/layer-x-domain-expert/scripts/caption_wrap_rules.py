@@ -9,6 +9,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicB.ttc")
 CAPTION_FONT_SIZE = 76
+CAPTION_MIN_SINGLE_LINE_FONT_SIZE = 58
 CAPTION_BOX_MAX_WIDTH = 1248
 CAPTION_HORIZONTAL_PADDING = 28
 CAPTION_MAX_TEXT_WIDTH = CAPTION_BOX_MAX_WIDTH - CAPTION_HORIZONTAL_PADDING
@@ -41,12 +42,19 @@ PROTECTED_CAPTION_TERMS = [
     "知ってそうな感じ",
     "こうできたらいいのに",
     "「こうできたらいいのに」",
+    "「やらなくていい」",
+    "やらなくていい",
     "実現していきたい",
     "研ぎ澄まされてきている",
     "探し出してきてくれる",
     "広く見れる",
     "健全なプレッシャー",
     "実務家のプライド",
+    "違和感",
+    "生産性",
+    "付加価値",
+    "ある意味",
+    "結構研ぎ澄まされて",
     "始まる",
     "自動化",
     "動化",
@@ -289,6 +297,13 @@ BAD_LINE_STARTS = (
 )
 
 SMALL_KANA = set("ゃゅょぁぃぅぇぉっャュョァィゥェォッ")
+BAD_KANJI_CUT_PAIRS = {
+    "違和",
+    "生産",
+    "価値",
+    "味健",
+    "構研",
+}
 
 
 def clean_caption_text(text: str) -> str:
@@ -331,6 +346,8 @@ def protected_spans(text: str) -> list[tuple[int, int]]:
         spans.append(match.span())
     for match in re.finditer(r"[A-Za-z0-9][A-Za-z0-9_+.#/-]*", text):
         spans.append(match.span())
+    for match in re.finditer(r"「[^」]+」", text):
+        spans.append(match.span())
     return _merge_spans([(start, end) for start, end in spans if end - start > 1])
 
 
@@ -347,6 +364,8 @@ def invalid_caption_cut(text: str, index: int, spans: list[tuple[int, int]] | No
     left = text[index - 1]
     right = text[index]
     if right in SMALL_KANA or right == "ー" or left == "ー":
+        return True
+    if left + right in BAD_KANJI_CUT_PAIRS:
         return True
     if _is_katakana(left) and _is_katakana(right):
         return True
@@ -381,9 +400,14 @@ def caption_cut_candidates(text: str, spans: list[tuple[int, int]]) -> list[int]
 
 @lru_cache(maxsize=8192)
 def caption_text_width(text: str) -> int:
+    return caption_text_width_at_size(text, CAPTION_FONT_SIZE)
+
+
+@lru_cache(maxsize=8192)
+def caption_text_width_at_size(text: str, font_size: int) -> int:
     probe = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
     draw = ImageDraw.Draw(probe)
-    font = ImageFont.truetype(str(CAPTION_FONT_FILE), CAPTION_FONT_SIZE)
+    font = ImageFont.truetype(str(CAPTION_FONT_FILE), font_size)
     bbox = draw.textbbox((0, 0), text, font=font)
     return bbox[2] - bbox[0]
 
@@ -391,6 +415,19 @@ def caption_text_width(text: str) -> int:
 def caption_line_fits(text: str) -> bool:
     text_width = caption_text_width(text)
     return text_width + CAPTION_HORIZONTAL_PADDING <= CAPTION_BOX_MAX_WIDTH and text_width <= CAPTION_MAX_TEXT_WIDTH
+
+
+def caption_line_fits_at_size(text: str, font_size: int) -> bool:
+    text_width = caption_text_width_at_size(text, font_size)
+    return text_width + CAPTION_HORIZONTAL_PADDING <= CAPTION_BOX_MAX_WIDTH and text_width <= CAPTION_MAX_TEXT_WIDTH
+
+
+def caption_single_line_font_size(text: str) -> int | None:
+    text = clean_caption_text(text)
+    for font_size in range(CAPTION_FONT_SIZE, CAPTION_MIN_SINGLE_LINE_FONT_SIZE - 1, -2):
+        if caption_line_fits_at_size(text, font_size):
+            return font_size
+    return None
 
 
 def bad_caption_break(line: str) -> bool:
@@ -499,10 +536,16 @@ CAPTION_WRAP_OVERRIDES = {
     "いてそういうのってお二人感じるところがあったりしますか?": ["そういうのってお二人", "感じるところがあったりしますか?"],
     "人や現場に向き合う時間が増えていく": ["人や現場に向き合う", "時間が増えていく"],
     "自分たちに求められることは結構研ぎ澄まされてきている": ["自分たちに求められることは結構", "研ぎ澄まされてきている"],
+    "そこのある意味健全なプレッシャーというのが来た": ["そこのある意味", "健全なプレッシャーというのが来た"],
+    "やりたいことや違和感を普通に言える": ["やりたいことや違和感を", "普通に言える"],
+    "AIでエンジニアの生産性も上がっている": ["AIでエンジニアの", "生産性も上がっている"],
+    "余った時間で付加価値のある仕事をする": ["余った時間で", "付加価値のある仕事をする"],
     "ドメインエキスパートの役割というか": ["ドメインエキスパートの", "役割というか"],
     "不安が残ると結局ユーザーは自分で調べてしまう": ["不安が残ると結局", "ユーザーは自分で調べてしまう"],
     "やっぱりちょっと一瞬でもいいのでこういう形で広く見れる": ["やっぱりちょっと一瞬でもいいので", "こういう形で広く見れる"],
     "足すだけでなく「なくていい」と言えることも価値": ["足すだけでなく", "「なくていい」と言えることも価値"],
+    "役所は「やらなくていい」とは言えない": ["役所は「やらなくていい」とは", "言えない"],
+    "労務や経理の経験は新しい働き方に必要": ["労務や経理の経験は", "新しい働き方に必要"],
     "ルール調査だけでなくビジョンが必要になる": ["ルール調査だけでなく", "ビジョンが必要になる"],
     "実務家のプライドを無視していないかを気にしている": ["実務家のプライドを", "無視していないかを気にしている"],
     "実務家のプライドを無視していないか": ["実務家のプライドを", "無視していないか"],
@@ -555,13 +598,18 @@ def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
     if text in CAPTION_WRAP_OVERRIDES:
         override = CAPTION_WRAP_OVERRIDES[text]
         if all(caption_line_fits(line) for line in override):
+            if len(override) == 2 and len(override[1]) <= 6 and caption_single_line_font_size(text) is not None:
+                return [text]
             return override
     if caption_line_fits(text):
         return [text]
     cut = _two_line_cut(text)
     if cut is None:
         return [text]
-    return [line for line in (text[:cut].strip(" 。！？"), text[cut:].strip(" 。！？")) if line]
+    lines = [line for line in (text[:cut].strip(" 。！？"), text[cut:].strip(" 。！？")) if line]
+    if len(lines) == 2 and len(lines[1]) <= 6 and caption_single_line_font_size(text) is not None:
+        return [text]
+    return lines
 
 
 def unit_fits(text: str) -> bool:

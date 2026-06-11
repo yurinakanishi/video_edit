@@ -1,17 +1,17 @@
 {
   "schema_version": "test_project1_style_preview_report.v1",
-  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_240p_20min.mp4",
-  "segments": 80,
+  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_240p_full.mp4",
+  "segments": 164,
   "segment_cache": {
     "reused": 0,
-    "rendered": 80,
-    "invalidated": 80,
+    "rendered": 164,
+    "invalidated": 164,
     "invalidated_reasons": {
-      "missing_or_empty_segment": 65,
-      "fingerprint_mismatch": 15
+      "missing_or_empty_segment": 161,
+      "fingerprint_mismatch": 3
     }
   },
-  "max_duration_sec": 1200.0,
+  "max_duration_sec": null,
   "output_height": 240,
   "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
   "notes": [

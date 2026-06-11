@@ -1299,20 +1299,24 @@ def single_person_crop_filter(event: dict[str, Any], media_id: str) -> str | Non
     crop_mode = str(layout.get("crop_mode") or "")
     if media_id not in {"cam_person_01", "cam_person_02", "cam_person_03"}:
         return None
-    if media_id == "cam_person_01" and layout.get("type") == "single":
-        # User direction: left-participant-only camera should stay pulled back,
-        # matching the other participants' looser single-camera framing.
-        return None
-    if crop_mode not in {"person_centered", "single_intro_reference_fullscreen"}:
+    if crop_mode not in {"person_centered", "single_intro_reference_fullscreen", "loose_full_frame"}:
         return None
     profile = SPLIT_FACE_PROFILES.get(media_id)
     if not profile:
         return None
-    scale_h = int(layout.get("single_scale_h") or profile.get("single_scale_h") or 900)
+    if crop_mode == "loose_full_frame":
+        # Keep the left participant's single camera looser than the guest
+        # close-ups while still allowing vertical face placement.
+        scale_h = int(layout.get("single_scale_h") or profile.get("loose_single_scale_h") or profile.get("single_scale_h") or 860)
+    else:
+        scale_h = int(layout.get("single_scale_h") or profile.get("single_scale_h") or 900)
     scale = scale_h / 1080
     scaled_w = even_width_for_height(scale_h)
     target_face_x = 640
-    target_face_y = float(layout.get("single_target_face_y") or profile.get("single_target_face_y") or 245)
+    if crop_mode == "loose_full_frame":
+        target_face_y = float(layout.get("single_target_face_y") or profile.get("loose_single_target_face_y") or profile.get("single_target_face_y") or 195)
+    else:
+        target_face_y = float(layout.get("single_target_face_y") or profile.get("single_target_face_y") or 185)
     face_center_x = float(layout.get("face_center_x") or profile["face_center_x"])
     face_center_y = float(layout.get("face_center_y") or profile["face_center_y"])
     crop_x = round(face_center_x * scale - target_face_x)
@@ -1365,9 +1369,9 @@ SPLIT_FACE_PROFILES = {
     # Original 1920x1080 ROI centers from the synced split-grid edit events.
     # These values keep faces close in size and on the same vertical band while
     # preserving enough shoulder room for the reference split composition.
-    "cam_person_01": {"scale_h": 740, "face_center_x": 811, "face_center_y": 392, "target_face_y": 260, "single_scale_h": 900, "single_target_face_y": 255},
-    "cam_person_02": {"scale_h": 770, "face_center_x": 1058.5, "face_center_y": 333, "target_face_y": 225, "single_scale_h": 900, "single_target_face_y": 245},
-    "cam_person_03": {"scale_h": 730, "face_center_x": 1148.5, "face_center_y": 288.5, "single_scale_h": 900, "single_target_face_y": 240},
+    "cam_person_01": {"scale_h": 740, "face_center_x": 811, "face_center_y": 392, "target_face_y": 260, "single_scale_h": 900, "single_target_face_y": 190, "loose_single_scale_h": 860, "loose_single_target_face_y": 195},
+    "cam_person_02": {"scale_h": 770, "face_center_x": 1058.5, "face_center_y": 333, "target_face_y": 225, "single_scale_h": 900, "single_target_face_y": 184},
+    "cam_person_03": {"scale_h": 730, "face_center_x": 1148.5, "face_center_y": 288.5, "single_scale_h": 900, "single_target_face_y": 180},
 }
 
 

@@ -1,13 +1,14 @@
 {
   "schema_version": "main_caption_plan.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T23:31:41+09:00",
+  "generated_at": "2026-06-11T10:27:31+09:00",
   "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\captions.md",
   "policy": {
     "main_only": true,
     "not_full_subtitles": true,
     "remove_japanese_commas": true,
-    "speaker_metadata_required": true
+    "speaker_metadata_required": true,
+    "speaker_attribution_primary_source": "voice_speaker_attribution.json"
   },
   "people": {
     "person_01": {
@@ -49,8 +50,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
     },
     {
       "caption_id": "main_caption_003",
@@ -74,8 +75,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
     },
     {
       "caption_id": "main_caption_055",
@@ -99,8 +100,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
     },
     {
       "caption_id": "main_caption_056",
@@ -120,12 +121,12 @@
         "コード書けないですけど",
         "大丈夫ですか"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
-      "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
     },
     {
       "caption_id": "main_caption_057",
@@ -149,8 +150,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
     },
     {
       "caption_id": "main_caption_058",
@@ -174,8 +175,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
     },
     {
       "caption_id": "main_caption_059",
@@ -200,8 +201,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
     },
     {
       "caption_id": "main_caption_auto_001",
@@ -214,8 +215,30 @@
       "source_end_sec": 784.38,
       "caption_start_sec": 766.06,
       "caption_end_sec": 784.38,
-      "display_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品を",
+      "display_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
       "full_reference_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします。",
+      "search_keys": [],
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97,
+      "density_backfill": true
+    },
+    {
+      "caption_id": "main_caption_auto_027",
+      "caption_no": "auto_027",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000255",
+      "source_start_sec": 786.18,
+      "source_end_sec": 795.88,
+      "caption_start_sec": 786.18,
+      "caption_end_sec": 795.88,
+      "display_text": "根元がすみませんさっき根元が中途半端だったんで",
+      "full_reference_text": "根元がすみませんさっき根元が中途半端だったんで",
       "search_keys": [],
       "speaker_person_id": "person_01",
       "speaker_name": "矢野",
@@ -268,12 +291,12 @@
         "お客様に伝えていく",
         "開発に関与"
       ],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.554
     },
     {
       "caption_id": "main_caption_062",
@@ -297,8 +320,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.828
     },
     {
       "caption_id": "main_caption_004",
@@ -322,8 +345,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.689
     },
     {
       "caption_id": "main_caption_005",
@@ -373,8 +396,30 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.68
+    },
+    {
+      "caption_id": "main_caption_auto_028",
+      "caption_no": "auto_028",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000291",
+      "source_start_sec": 922.26,
+      "source_end_sec": 925.38,
+      "caption_start_sec": 922.26,
+      "caption_end_sec": 925.38,
+      "display_text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
+      "full_reference_text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
+      "search_keys": [],
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.796,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_007",
@@ -397,8 +442,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.68
     },
     {
       "caption_id": "main_caption_008",
@@ -417,12 +462,12 @@
         "開発を探してない",
         "自分と関係ないこと"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
-      "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.86
     },
     {
       "caption_id": "main_caption_009",
@@ -446,8 +491,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.514
     },
     {
       "caption_id": "main_caption_064",
@@ -494,12 +539,12 @@
         "スタートアップ",
         "どう伸ばしていく"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.837
     },
     {
       "caption_id": "main_caption_011",
@@ -523,8 +568,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_012",
@@ -548,8 +593,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.898
     },
     {
       "caption_id": "main_caption_014",
@@ -573,8 +618,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.94
     },
     {
       "caption_id": "main_caption_068",
@@ -598,8 +643,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.766
     },
     {
       "caption_id": "main_caption_015",
@@ -623,8 +668,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.678
     },
     {
       "caption_id": "main_caption_auto_002",
@@ -644,8 +689,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74,
       "density_backfill": true
     },
     {
@@ -696,12 +741,12 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.687
     },
     {
-      "caption_id": "main_caption_auto_027",
-      "caption_no": "auto_027",
+      "caption_id": "main_caption_auto_029",
+      "caption_no": "auto_029",
       "source": "transcript_density_backfill",
       "source_match_method": "density_gap_backfill",
       "source_match_confidence": 0.66,
@@ -739,8 +784,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "question_text_heuristic",
-      "speaker_attribution_confidence": 0.72,
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74,
       "density_backfill": true
     },
     {
@@ -765,8 +810,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.587
     },
     {
       "caption_id": "main_caption_018",
@@ -815,8 +860,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.692
     },
     {
       "caption_id": "main_caption_019",
@@ -836,12 +881,12 @@
         "経理系の仕事",
         "リスクは取ってない感"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
-      "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.574
     },
     {
       "caption_id": "main_caption_020",
@@ -861,12 +906,12 @@
         "プロダクト開発",
         "ドメインの知識"
       ],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.583
     },
     {
       "caption_id": "main_caption_021",
@@ -886,12 +931,12 @@
         "仕様の検討",
         "半分ぐらい"
       ],
-      "speaker_person_id": "person_03",
-      "speaker_name": "村田",
-      "speaker_screen_position": "right",
-      "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74
     },
     {
       "caption_id": "main_caption_022",
@@ -915,8 +960,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_023",
@@ -940,8 +985,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_024",
@@ -961,12 +1006,12 @@
         "喜んでする",
         "受ける側"
       ],
-      "speaker_person_id": "person_03",
-      "speaker_name": "村田",
-      "speaker_screen_position": "right",
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.52
     },
     {
       "caption_id": "main_caption_025",
@@ -990,8 +1035,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.734
     },
     {
       "caption_id": "main_caption_auto_004",
@@ -1034,12 +1079,12 @@
         "エンジニアと議論",
         "お客さん"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.532
     },
     {
       "caption_id": "main_caption_027",
@@ -1063,8 +1108,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.725
     },
     {
       "caption_id": "main_caption_auto_005",
@@ -1084,8 +1129,30 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "question_text_heuristic",
-      "speaker_attribution_confidence": 0.72,
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74,
+      "density_backfill": true
+    },
+    {
+      "caption_id": "main_caption_auto_030",
+      "caption_no": "auto_030",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000464",
+      "source_start_sec": 1519.76,
+      "source_end_sec": 1524.56,
+      "caption_start_sec": 1519.76,
+      "caption_end_sec": 1524.56,
+      "display_text": "ドメインエキスパートの指揮官のようなやつとして期待している",
+      "full_reference_text": "ドメインエキスパートの指揮官のようなやつとして期待している",
+      "search_keys": [],
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.628,
       "density_backfill": true
     },
     {
@@ -1111,8 +1178,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.592
     },
     {
       "caption_id": "main_caption_031",
@@ -1137,8 +1204,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.694
     },
     {
       "caption_id": "main_caption_032",
@@ -1158,12 +1225,12 @@
         "ハードル",
         "難しさ"
       ],
-      "speaker_person_id": "person_03",
-      "speaker_name": "村田",
-      "speaker_screen_position": "right",
-      "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.597
     },
     {
       "caption_id": "main_caption_034",
@@ -1188,8 +1255,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_035",
@@ -1213,8 +1280,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_036",
@@ -1238,8 +1305,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_038",
@@ -1263,8 +1330,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.504
     },
     {
       "caption_id": "main_caption_039",
@@ -1293,6 +1360,28 @@
       "speaker_attribution_confidence": 0.78
     },
     {
+      "caption_id": "main_caption_auto_031",
+      "caption_no": "auto_031",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000506",
+      "source_start_sec": 1681.5,
+      "source_end_sec": 1688.5,
+      "caption_start_sec": 1681.5,
+      "caption_end_sec": 1688.5,
+      "display_text": "そのきっかけでちょっと市場に向けての体験の良いものを提供できたなみたいなこともあるので",
+      "full_reference_text": "そのきっかけでちょっと市場に向けての体験の良いものを提供できたなみたいなこともあるので。",
+      "search_keys": [],
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
+      "density_backfill": true
+    },
+    {
       "caption_id": "main_caption_auto_006",
       "caption_no": "auto_006",
       "source": "transcript_density_backfill",
@@ -1310,8 +1399,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
       "density_backfill": true
     },
     {
@@ -1336,8 +1425,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.822
     },
     {
       "caption_id": "main_caption_042",
@@ -1361,8 +1450,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_043",
@@ -1386,8 +1475,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.557
     },
     {
       "caption_id": "main_caption_044",
@@ -1433,12 +1522,12 @@
         "スピード",
         "画面"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.558
     },
     {
       "caption_id": "main_caption_046",
@@ -1463,8 +1552,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.641
     },
     {
       "caption_id": "main_caption_auto_007",
@@ -1480,12 +1569,12 @@
       "display_text": "はっきりさせるっていうのは結構こだわってやらなきゃいけない",
       "full_reference_text": "はっきりさせるっていうのは結構こだわってやらなきゃいけない",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.74,
       "density_backfill": true
     },
     {
@@ -1531,12 +1620,12 @@
         "ルール優先",
         "常に気に"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.704
     },
     {
       "caption_id": "main_caption_049",
@@ -1560,8 +1649,30 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.61
+    },
+    {
+      "caption_id": "main_caption_auto_032",
+      "caption_no": "auto_032",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000567",
+      "source_start_sec": 1922.1,
+      "source_end_sec": 1928.86,
+      "caption_start_sec": 1922.1,
+      "caption_end_sec": 1928.86,
+      "display_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか",
+      "full_reference_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか。",
+      "search_keys": [],
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_auto_008",
@@ -1577,17 +1688,17 @@
       "display_text": "そこをあえて何か別にやらなくていいですよってところを止めたりとか",
       "full_reference_text": "そこをあえて何か別にやらなくていいですよってところを止めたりとか",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.838,
       "density_backfill": true
     },
     {
-      "caption_id": "main_caption_auto_028",
-      "caption_no": "auto_028",
+      "caption_id": "main_caption_auto_033",
+      "caption_no": "auto_033",
       "source": "transcript_density_backfill",
       "source_match_method": "density_gap_backfill",
       "source_match_confidence": 0.66,
@@ -1599,12 +1710,12 @@
       "display_text": "それこそ労務だって役所とかに聞いたら",
       "full_reference_text": "それこそ労務だって役所とかに聞いたら",
       "search_keys": [],
-      "speaker_person_id": "person_03",
-      "speaker_name": "村田",
-      "speaker_screen_position": "right",
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "domain_keyword_heuristic",
-      "speaker_attribution_confidence": 0.62,
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
       "density_backfill": true
     },
     {
@@ -1625,8 +1736,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
       "density_backfill": true
     },
     {
@@ -1643,12 +1754,12 @@
       "display_text": "足元何か重要性が上がっていると思うかというと",
       "full_reference_text": "何か足元何か重要性が上がっていると思うかというと",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.538,
       "density_backfill": true
     },
     {
@@ -1665,12 +1776,12 @@
       "display_text": "そういう思いとかその道筋を考えていくっていう",
       "full_reference_text": "そういう思いとかその道筋を考えていくっていう",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.648,
       "density_backfill": true
     },
     {
@@ -1696,12 +1807,12 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.777
     },
     {
-      "caption_id": "main_caption_auto_029",
-      "caption_no": "auto_029",
+      "caption_id": "main_caption_auto_034",
+      "caption_no": "auto_034",
       "source": "transcript_density_backfill",
       "source_match_method": "density_gap_backfill",
       "source_match_confidence": 0.66,
@@ -1713,12 +1824,12 @@
       "display_text": "ちょっと使いづらい機能になってしまうので",
       "full_reference_text": "何かちょっと使いづらい機能になってしまうので",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.726,
       "density_backfill": true
     },
     {
@@ -1735,17 +1846,17 @@
       "display_text": "実務家じゃできないなっていうのは感じますね",
       "full_reference_text": "実務家じゃできないなっていうのは感じますね",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.82,
       "density_backfill": true
     },
     {
-      "caption_id": "main_caption_auto_030",
-      "caption_no": "auto_030",
+      "caption_id": "main_caption_auto_035",
+      "caption_no": "auto_035",
       "source": "transcript_density_backfill",
       "source_match_method": "density_gap_backfill",
       "source_match_confidence": 0.66,
@@ -1783,8 +1894,8 @@
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "question_text_heuristic",
-      "speaker_attribution_confidence": 0.72,
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74,
       "density_backfill": true
     },
     {
@@ -1801,12 +1912,12 @@
       "display_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある",
       "full_reference_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある。",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
       "density_backfill": true
     },
     {
@@ -1823,17 +1934,17 @@
       "display_text": "今バックオフィスもAIたちをすごく求められている中で",
       "full_reference_text": "やっぱり今バックオフィスもAIたちをすごく求められている中で",
       "search_keys": [],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "domain_keyword_heuristic",
-      "speaker_attribution_confidence": 0.62,
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
       "density_backfill": true
     },
     {
-      "caption_id": "main_caption_auto_031",
-      "caption_no": "auto_031",
+      "caption_id": "main_caption_auto_036",
+      "caption_no": "auto_036",
       "source": "transcript_density_backfill",
       "source_match_method": "density_gap_backfill",
       "source_match_confidence": 0.66,
@@ -1845,12 +1956,12 @@
       "display_text": "そういう話はAIにはとても勝てない",
       "full_reference_text": "そういう話はAIにはとても勝てない。",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.796,
       "density_backfill": true
     },
     {
@@ -1864,15 +1975,37 @@
       "source_end_sec": 2222.74,
       "caption_start_sec": 2203.74,
       "caption_end_sec": 2222.74,
-      "display_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフ",
+      "display_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
       "full_reference_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います。",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "speaker_activity_analysis",
-      "speaker_attribution_confidence": 0.424,
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.68,
+      "density_backfill": true
+    },
+    {
+      "caption_id": "main_caption_auto_037",
+      "caption_no": "auto_037",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000645",
+      "source_start_sec": 2222.74,
+      "source_end_sec": 2229.4,
+      "caption_start_sec": 2222.74,
+      "caption_end_sec": 2229.4,
+      "display_text": "それを人事のことや人のことだからみたいな形で 限定的に考えていると",
+      "full_reference_text": "それを人事のことや人のことだからみたいな形で 限定的に考えていると",
+      "search_keys": [],
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.94,
       "density_backfill": true
     },
     {
@@ -1889,12 +2022,12 @@
       "display_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
       "full_reference_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
       "density_backfill": true
     },
     {
@@ -1915,8 +2048,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "domain_keyword_heuristic",
-      "speaker_attribution_confidence": 0.62,
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.878,
       "density_backfill": true
     },
     {
@@ -1941,8 +2074,30 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.535
+    },
+    {
+      "caption_id": "main_caption_auto_038",
+      "caption_no": "auto_038",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000658",
+      "source_start_sec": 2297.04,
+      "source_end_sec": 2307.04,
+      "caption_start_sec": 2297.04,
+      "caption_end_sec": 2307.04,
+      "display_text": "今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できる",
+      "full_reference_text": "あとは今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できるようなスキルはあと数年で使いたいなとは思っています。",
+      "search_keys": [],
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.745,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_075",
@@ -1970,6 +2125,28 @@
       "speaker_attribution_confidence": 0.78
     },
     {
+      "caption_id": "main_caption_auto_039",
+      "caption_no": "auto_039",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000664",
+      "source_start_sec": 2330.04,
+      "source_end_sec": 2334.04,
+      "caption_start_sec": 2330.04,
+      "caption_end_sec": 2334.04,
+      "display_text": "そうなんですよ。それ実務なんで自分取り換えればそういう",
+      "full_reference_text": "そうなんですよ。それ実務なんで自分取り換えればそういう",
+      "search_keys": [],
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "fallback_wide_safe",
+      "speaker_attribution_confidence": 0.35,
+      "density_backfill": true
+    },
+    {
       "caption_id": "main_caption_076",
       "caption_no": 76,
       "source": "captions.md",
@@ -1993,6 +2170,28 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "captions_md_topic_speaker_map",
       "speaker_attribution_confidence": 0.78
+    },
+    {
+      "caption_id": "main_caption_auto_040",
+      "caption_no": "auto_040",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000674",
+      "source_start_sec": 2368.66,
+      "source_end_sec": 2379.66,
+      "caption_start_sec": 2368.66,
+      "caption_end_sec": 2379.66,
+      "display_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
+      "full_reference_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
+      "search_keys": [],
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_077",
@@ -2037,12 +2236,12 @@
         "仕事を減らす",
         "バクラクのプロダクト"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
+      "speaker_attribution_confidence": 0.94
     },
     {
       "caption_id": "main_caption_079",
@@ -2063,12 +2262,12 @@
         "突合",
         "一つの画面"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.715
     },
     {
       "caption_id": "main_caption_auto_019",
@@ -2081,15 +2280,15 @@
       "source_end_sec": 2482.2,
       "caption_start_sec": 2465.2,
       "caption_end_sec": 2482.2,
-      "display_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたい",
+      "display_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
       "full_reference_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね。",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.774,
       "density_backfill": true
     },
     {
@@ -2110,12 +2309,34 @@
         "時間を短縮",
         "一つの機能"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.706
+    },
+    {
+      "caption_id": "main_caption_auto_041",
+      "caption_no": "auto_041",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000698",
+      "source_start_sec": 2514.2,
+      "source_end_sec": 2523.2,
+      "caption_start_sec": 2514.2,
+      "caption_end_sec": 2523.2,
+      "display_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね",
+      "full_reference_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね。",
+      "search_keys": [],
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_081",
@@ -2135,12 +2356,12 @@
         "生かしていただけた",
         "やりがい"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.664
     },
     {
       "caption_id": "main_caption_082",
@@ -2160,12 +2381,12 @@
         "経理の人が浮かぶ",
         "作業時間を短縮"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
-      "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74
     },
     {
       "caption_id": "main_caption_auto_020",
@@ -2181,12 +2402,12 @@
       "display_text": "実際付加価値のある仕事をやるって",
       "full_reference_text": "実際付加価値のある仕事をやるって",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.512,
       "density_backfill": true
     },
     {
@@ -2212,8 +2433,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.549
     },
     {
       "caption_id": "main_caption_auto_021",
@@ -2233,8 +2454,8 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "speaker_activity_analysis",
-      "speaker_attribution_confidence": 0.364,
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.572,
       "density_backfill": true
     },
     {
@@ -2259,8 +2480,8 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_auto_022",
@@ -2276,12 +2497,12 @@
       "display_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
       "full_reference_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.527,
       "density_backfill": true
     },
     {
@@ -2303,12 +2524,34 @@
         "新しい働き方",
         "ジョブローテーション"
       ],
-      "speaker_person_id": "person_03",
-      "speaker_name": "村田",
-      "speaker_screen_position": "right",
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.589
+    },
+    {
+      "caption_id": "main_caption_auto_042",
+      "caption_no": "auto_042",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000737",
+      "source_start_sec": 2694.16,
+      "source_end_sec": 2698.18,
+      "caption_start_sec": 2694.16,
+      "caption_end_sec": 2698.18,
+      "display_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ",
+      "full_reference_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ",
+      "search_keys": [],
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.573,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_auto_023",
@@ -2321,15 +2564,15 @@
       "source_end_sec": 2730.68,
       "caption_start_sec": 2716.68,
       "caption_end_sec": 2730.68,
-      "display_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ",
+      "display_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
       "full_reference_text": "だからこういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ。",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "speaker_activity_analysis",
-      "speaker_attribution_confidence": 0.727,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.797,
       "density_backfill": true
     },
     {
@@ -2355,8 +2598,30 @@
       "speaker_name": "村田",
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.797
+    },
+    {
+      "caption_id": "main_caption_auto_043",
+      "caption_no": "auto_043",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000747",
+      "source_start_sec": 2744.64,
+      "source_end_sec": 2750.48,
+      "caption_start_sec": 2744.64,
+      "caption_end_sec": 2750.48,
+      "display_text": "過去の処理とかどういう風にやってたかを確認して",
+      "full_reference_text": "過去の処理とかどういう風にやってたかを確認して",
+      "search_keys": [],
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.502,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_087",
@@ -2394,15 +2659,15 @@
       "source_end_sec": 2804.86,
       "caption_start_sec": 2792.86,
       "caption_end_sec": 2804.86,
-      "display_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそうい",
+      "display_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
       "full_reference_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
       "search_keys": [],
       "speaker_person_id": "person_01",
       "speaker_name": "矢野",
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
-      "speaker_attribution_method": "question_text_heuristic",
-      "speaker_attribution_confidence": 0.72,
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74,
       "density_backfill": true
     },
     {
@@ -2423,12 +2688,12 @@
         "労務と経理",
         "違いそう"
       ],
-      "speaker_person_id": "person_03",
-      "speaker_name": "村田",
-      "speaker_screen_position": "right",
-      "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
+      "speaker_attribution_confidence": 0.74
     },
     {
       "caption_id": "main_caption_auto_025",
@@ -2444,12 +2709,12 @@
       "display_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ",
       "full_reference_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ。",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84,
       "density_backfill": true
     },
     {
@@ -2471,12 +2736,12 @@
         "失業",
         "役割が変わる"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.84
     },
     {
       "caption_id": "main_caption_auto_026",
@@ -2492,12 +2757,12 @@
       "display_text": "さっきの話じゃないけど役割が変わる",
       "full_reference_text": "さっきの話じゃないけど役割が変わる",
       "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "fallback_wide_safe",
-      "speaker_attribution_confidence": 0.35,
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.526,
       "density_backfill": true
     },
     {
@@ -2519,12 +2784,12 @@
         "現場に向き合う",
         "健全"
       ],
-      "speaker_person_id": "person_02",
-      "speaker_name": "根本",
-      "speaker_screen_position": "middle",
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.727
     },
     {
       "caption_id": "main_caption_091",
@@ -2544,12 +2809,34 @@
         "プロダクトマネージャー",
         "めちゃめちゃおすすめ"
       ],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.77
+    },
+    {
+      "caption_id": "main_caption_auto_044",
+      "caption_no": "auto_044",
+      "source": "transcript_density_backfill",
+      "source_match_method": "density_gap_backfill",
+      "source_match_confidence": 0.66,
+      "source_segment_id": "seg_000784",
+      "source_start_sec": 2922.04,
+      "source_end_sec": 2926.04,
+      "caption_start_sec": 2922.04,
+      "caption_end_sec": 2926.04,
+      "display_text": "こういうドメインエキスパートとかプロダクトマネージャーみたいなキャリア",
+      "full_reference_text": "こういうドメインエキスパートとかプロダクトマネージャーみたいなキャリア",
+      "search_keys": [],
+      "speaker_person_id": "person_03",
+      "speaker_name": "村田",
+      "speaker_screen_position": "right",
+      "speaker_role": "interviewee",
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.769,
+      "density_backfill": true
     },
     {
       "caption_id": "main_caption_092",
@@ -2596,12 +2883,12 @@
         "広く見れる",
         "おすすめ"
       ],
-      "speaker_person_id": "person_03",
-      "speaker_name": "村田",
-      "speaker_screen_position": "right",
+      "speaker_person_id": "person_02",
+      "speaker_name": "根本",
+      "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
+      "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
+      "speaker_attribution_confidence": 0.536
     }
   ]
 }

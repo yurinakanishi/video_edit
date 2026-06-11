@@ -1,0 +1,41 @@
+{
+  "schema_version": "audio_processing_report.v1",
+  "updated_at": "2026-06-11T10:38:41.5778896+09:00",
+  "request": "Reduce constant broadband environmental noise in the interview audio.",
+  "render_scripts_updated": [
+    "projects/layer-x-domain-expert/scripts/render_test_project1_style_preview.py",
+    "projects/layer-x-domain-expert/scripts/render_limited_preview.py"
+  ],
+  "interview_audio_media_ids": [
+    "group_wide",
+    "cam_person_01",
+    "cam_person_02",
+    "cam_person_03"
+  ],
+  "company_movie_policy": {
+    "segment_filter": "aresample=48000",
+    "reason": "Avoid over-processing the company movie; it still receives final master loudness processing after concatenation."
+  },
+  "interview_segment_filter_chain": [
+    "highpass=f=85",
+    "lowpass=f=10500",
+    "afftdn=nr=18:nf=-32:tn=1:rf=-44",
+    "anlmdn=s=0.00035:p=0.002:r=0.006:m=11",
+    "acompressor=threshold=-30dB:ratio=2.4:attack=6:release=130:makeup=3",
+    "dynaudnorm=f=180:g=7:p=0.90:m=8",
+    "aresample=48000"
+  ],
+  "final_master_filter_chain": [
+    "highpass=f=70",
+    "lowpass=f=12000",
+    "afftdn=nr=10:nf=-38:tn=1:rf=-48",
+    "acompressor=threshold=-26dB:ratio=2.2:attack=5:release=140:makeup=2",
+    "dynaudnorm=f=180:g=6:p=0.90:m=8",
+    "loudnorm=I=-17.0:TP=-1.5:LRA=11"
+  ],
+  "validation": {
+    "python_compile": "passed",
+    "ffmpeg_filter_smoke_test": "passed",
+    "rendered_video": false
+  }
+}

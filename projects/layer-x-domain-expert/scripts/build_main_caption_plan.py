@@ -310,7 +310,64 @@ def load_activity() -> dict[str, dict[str, Any]]:
     }
 
 
-def person_for_time(start: float, text: str, segment_id: str, activity: dict[str, dict[str, Any]]) -> tuple[str, str, float]:
+def load_voice_attribution() -> tuple[dict[str, dict[str, Any]], list[dict[str, Any]]]:
+    payload = read_json(REPORTS / "voice_speaker_attribution.json", {})
+    segments = [
+        item
+        for item in payload.get("segments", [])
+        if isinstance(item, dict) and item.get("speaker_person_id") in PEOPLE
+    ]
+    by_segment = {
+        str(item.get("segment_id")): item
+        for item in segments
+        if item.get("segment_id")
+    }
+    return by_segment, segments
+
+
+def voice_person_for_time(
+    start: float,
+    segment_id: str,
+    voice_by_segment: dict[str, dict[str, Any]],
+    voice_segments: list[dict[str, Any]],
+) -> tuple[str, str, float] | None:
+    item = voice_by_segment.get(segment_id)
+    if not item:
+        candidates = []
+        for candidate in voice_segments:
+            candidate_start = float(candidate.get("start") or 0.0)
+            candidate_end = float(candidate.get("end") or candidate_start)
+            if candidate_start <= start < candidate_end or abs(candidate_start - start) <= 0.55:
+                candidates.append((abs(candidate_start - start), candidate))
+        if candidates:
+            item = sorted(candidates, key=lambda pair: pair[0])[0][1]
+    if not item:
+        return None
+    person_id = str(item.get("speaker_person_id") or "")
+    if person_id not in PEOPLE:
+        return None
+    try:
+        confidence = float(item.get("confidence") or 0.0)
+    except (TypeError, ValueError):
+        confidence = 0.0
+    method = str(item.get("method") or "voice_quality")
+    trusted_method = method in {"forced_known_intro_window", "text_role_override_voice", "voice_and_text_agree"}
+    if confidence >= 0.5 or trusted_method:
+        return person_id, f"voice_speaker_attribution:{method}", confidence
+    return None
+
+
+def person_for_time(
+    start: float,
+    text: str,
+    segment_id: str,
+    activity: dict[str, dict[str, Any]],
+    voice_by_segment: dict[str, dict[str, Any]],
+    voice_segments: list[dict[str, Any]],
+) -> tuple[str, str, float]:
+    voice_item = voice_person_for_time(start, segment_id, voice_by_segment, voice_segments)
+    if voice_item:
+        return voice_item
     activity_item = activity.get(segment_id)
     if activity_item and activity_item.get("active_person_id") in PEOPLE:
         return str(activity_item["active_person_id"]), "speaker_activity_analysis", float(activity_item.get("confidence") or 0.5)
@@ -437,7 +494,10 @@ def supplemental_display_text(text: str) -> str:
             start = cut
     if candidates:
         return compacted[: max(candidates)].strip("。")
-    return compacted[:58].strip("。")
+    # Do not hard-truncate by character count; that creates broken captions
+    # such as a final single kanji. The renderer/normalizer will split long
+    # text into multiple timed captions at natural phrase boundaries.
+    return compacted.strip("。")
 
 
 def best_supplemental_segment(
@@ -472,6 +532,8 @@ def add_density_supplemental_captions(
     selected: list[dict[str, Any]],
     segments: list[dict[str, Any]],
     activity: dict[str, dict[str, Any]],
+    voice_by_segment: dict[str, dict[str, Any]],
+    voice_segments: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     if not selected:
         return selected
@@ -492,6 +554,8 @@ def add_density_supplemental_captions(
             str(segment.get("text") or ""),
             str(segment.get("segment_id") or ""),
             activity,
+            voice_by_segment,
+            voice_segments,
         )
         person = PEOPLE[person_id]
         additions.append(
@@ -545,13 +609,13 @@ def add_density_supplemental_captions(
             add_from_segment(segment)
             target_start = float(segment["start"]) + SUPPLEMENTAL_TARGET_GAP_SEC
 
-    for _ in range(5):
+    for _ in range(24):
         current = sorted(selected + additions, key=lambda item: (float(item["caption_start_sec"]), str(item.get("caption_no"))))
         made_addition = False
         for previous, following in zip(current, current[1:]):
             previous_start = float(previous["caption_start_sec"])
             following_start = float(following["caption_start_sec"])
-            if following_start - previous_start <= SUPPLEMENTAL_TARGET_GAP_SEC + 6.0:
+            if following_start - previous_start <= SUPPLEMENTAL_TARGET_GAP_SEC + 1.5:
                 continue
             midpoint = (previous_start + following_start) / 2.0
             segment = best_supplemental_segment(
@@ -585,6 +649,7 @@ def build_plan() -> dict[str, Any]:
     items = parse_captions_md()
     segments = transcript_segments()
     activity = load_activity()
+    voice_by_segment, voice_segments = load_voice_attribution()
     selected = []
     used_starts: list[float] = []
     for item in items:
@@ -598,11 +663,21 @@ def build_plan() -> dict[str, Any]:
         end = float(item.get("time_hint_end_sec", min(segment["end"], start + 7.0)))
         if any(abs(start - used) < 8.0 for used in used_starts):
             continue
+        voice_person = voice_person_for_time(start, str(segment.get("segment_id") or ""), voice_by_segment, voice_segments)
         mapped_person = person_for_caption_no(caption_no)
-        if mapped_person:
+        if voice_person:
+            person_id, speaker_method, speaker_confidence = voice_person
+        elif mapped_person:
             person_id, speaker_method, speaker_confidence = mapped_person
         else:
-            person_id, speaker_method, speaker_confidence = person_for_time(start, str(segment.get("text") or item["display_text"]), str(segment.get("segment_id") or ""), activity)
+            person_id, speaker_method, speaker_confidence = person_for_time(
+                start,
+                str(segment.get("text") or item["display_text"]),
+                str(segment.get("segment_id") or ""),
+                activity,
+                voice_by_segment,
+                voice_segments,
+            )
         person = PEOPLE[person_id]
         selected.append(
             {
@@ -628,7 +703,7 @@ def build_plan() -> dict[str, Any]:
             }
         )
         used_starts.append(start)
-    selected = add_density_supplemental_captions(selected, segments, activity)
+    selected = add_density_supplemental_captions(selected, segments, activity, voice_by_segment, voice_segments)
     selected.sort(key=lambda item: (float(item["caption_start_sec"]), str(item["caption_no"])))
     return {
         "schema_version": "main_caption_plan.v1",
@@ -640,6 +715,7 @@ def build_plan() -> dict[str, Any]:
             "not_full_subtitles": True,
             "remove_japanese_commas": True,
             "speaker_metadata_required": True,
+            "speaker_attribution_primary_source": "voice_speaker_attribution.json",
         },
         "people": PEOPLE,
         "captions": selected,

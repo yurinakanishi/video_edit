@@ -1,0 +1,11 @@
+{
+  "schema_version": "caption_line_break_audit.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-11T10:34:07+09:00",
+  "policy": "Reject hard mid-word line endings, suffix-fragment overlay starts, and rendered second lines beginning with particles/suffix fragments.",
+  "checked_caption_overlays": 215,
+  "severe_issue_count": 0,
+  "line_start_or_hard_break_issue_count": 0,
+  "severe_issues": [],
+  "line_start_or_hard_break_issues": []
+}

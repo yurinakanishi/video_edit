@@ -15,6 +15,8 @@ DIAGNOSTICS = PROJECT_ROOT / "output" / "diagnostics"
 FFMPEG_DEFAULT = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
 FONT_FILE = Path(r"C:\Windows\Fonts\YuGothB.ttc")
 LOGO_PATH = PROJECT_ROOT / "source" / "assets" / "LayerX_Logo_Horizontal_RGB_Color.png"
+TARGET_AUDIO_LUFS = -17.0
+INTERVIEW_AUDIO_MEDIA_IDS = {"group_wide", "cam_person_01", "cam_person_02", "cam_person_03"}
 
 
 MEDIA_PATHS = {
@@ -100,10 +102,45 @@ def clip_source(event: dict[str, Any]) -> dict[str, Any]:
 
 
 def audio_source(event: dict[str, Any]) -> dict[str, Any]:
-    reference = event.get("reference_source")
-    if isinstance(reference, dict):
-        return reference
-    return clip_source(event)
+    source = event.get("source") if isinstance(event.get("source"), dict) else {}
+    reference = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
+    audio = event.get("audio") if isinstance(event.get("audio"), dict) else {}
+    if str(audio.get("mode") or "") == "source":
+        media_id = str(audio.get("source_media_id") or source.get("media_id") or "")
+        audio_in = audio.get("in")
+        if audio_in is None:
+            audio_in = source.get("in")
+        return {"media_id": media_id, "in": float(audio_in or 0.0), "out": float(audio_in or 0.0) + duration(event)}
+    if str(event.get("section") or "") == "bridge" or str(source.get("media_id") or "") == "company_movie":
+        return source
+    master_in = float(reference.get("in") or source.get("in") or 0.0)
+    return {"media_id": "group_wide", "in": master_in, "out": master_in + duration(event)}
+
+
+def segment_audio_filter_chain(media_id: str) -> str:
+    if media_id not in INTERVIEW_AUDIO_MEDIA_IDS:
+        return "aresample=48000"
+    return (
+        "highpass=f=85,"
+        "lowpass=f=10500,"
+        "afftdn=nr=18:nf=-32:tn=1:rf=-44,"
+        "anlmdn=s=0.00035:p=0.002:r=0.006:m=11,"
+        "acompressor=threshold=-30dB:ratio=2.4:attack=6:release=130:makeup=3,"
+        "dynaudnorm=f=180:g=7:p=0.90:m=8,"
+        "aresample=48000"
+    )
+
+
+def final_audio_filter_chain() -> str:
+    loudnorm = f"loudnorm=I={TARGET_AUDIO_LUFS}:TP=-1.5:LRA=11"
+    return (
+        "highpass=f=70,"
+        "lowpass=f=12000,"
+        "afftdn=nr=10:nf=-38:tn=1:rf=-48,"
+        "acompressor=threshold=-26dB:ratio=2.2:attack=5:release=140:makeup=2,"
+        "dynaudnorm=f=180:g=6:p=0.90:m=8,"
+        f"{loudnorm}"
+    )
 
 
 def ffmpeg_text(value: str) -> str:
@@ -344,11 +381,12 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> None:
         "-filter_complex",
         f"[0:v]{base_video_filter(event)}{brand_base_chain(event)}[base];"
         f"[2:v]scale={logo_width(event)}:-1[logo];"
-        f"[base][logo]overlay={logo_position(event)[0]}:{logo_position(event)[1]}{overlay_chain(event)}[vout]",
+        f"[base][logo]overlay={logo_position(event)[0]}:{logo_position(event)[1]}{overlay_chain(event)}[vout];"
+        f"[1:a]{segment_audio_filter_chain(str(aud.get('media_id') or ''))}[aout]",
         "-map",
         "[vout]",
         "-map",
-        "1:a:0?",
+        "[aout]",
         "-r",
         "30",
         "-c:v",
@@ -400,6 +438,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> No
     filters.append(stack.replace("[base]", f"{split_divider_chain(event, len(media_ids))}[base]"))
     filters.append(f"[{logo_index}:v]scale={logo_width(event)}:-1[logo]")
     filters.append(f"[base][logo]overlay={logo_position(event)[0]}:{logo_position(event)[1]}{overlay_chain(event)}[vout]")
+    filters.append(f"[{len(media_ids)}:a]{segment_audio_filter_chain(str(aud.get('media_id') or ''))}[aout]")
     command.extend(
         [
             "-filter_complex",
@@ -407,7 +446,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> No
             "-map",
             "[vout]",
             "-map",
-            f"{len(media_ids)}:a:0?",
+            "[aout]",
             "-r",
             "30",
             "-c:v",
@@ -431,6 +470,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path) -> No
 
 def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
     list_path = DIAGNOSTICS / "limited_preview_concat.txt"
+    temp_output = output.with_name(f"{output.stem}_audio_unprocessed{output.suffix}")
     list_path.parent.mkdir(parents=True, exist_ok=True)
     list_path.write_text("".join(f"file '{path.as_posix()}'\n" for path in segments), encoding="utf-8")
     subprocess.run(
@@ -458,11 +498,43 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
             "128k",
             "-ar",
             "48000",
+            str(temp_output),
+        ],
+        cwd=WORKSPACE_ROOT,
+        check=True,
+    )
+    subprocess.run(
+        [
+            ffmpeg,
+            "-hide_banner",
+            "-loglevel",
+            "warning",
+            "-y",
+            "-i",
+            str(temp_output),
+            "-map",
+            "0:v:0",
+            "-map",
+            "0:a:0",
+            "-c:v",
+            "copy",
+            "-af",
+            final_audio_filter_chain(),
+            "-c:a",
+            "aac",
+            "-b:a",
+            "128k",
+            "-ar",
+            "48000",
             str(output),
         ],
         cwd=WORKSPACE_ROOT,
         check=True,
     )
+    try:
+        temp_output.unlink()
+    except OSError:
+        pass
 
 
 def main() -> None:

@@ -17,28 +17,31 @@ REPORTS = PROJECT_ROOT / "output" / "reports"
 VIDEOS = PROJECT_ROOT / "output" / "videos"
 OVERLAYS = PROJECT_ROOT / "output" / "overlays" / "test_project1_style"
 DIAGNOSTICS = PROJECT_ROOT / "output" / "diagnostics"
-FFMPEG_DEFAULT = Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe")
+FFMPEG_DEFAULT = Path(r"C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe")
 FONT_FILE = Path(r"C:\Windows\Fonts\YuGothB.ttc")
-CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicR.ttc")
+CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicB.ttc")
 LOGO_PATH = PROJECT_ROOT / "source" / "assets" / "LayerX_Logo_Horizontal_RGB_Color.png"
 
 WIDTH = 1280
 HEIGHT = 720
 FPS = 30
 
-PURPLE_DARK = "#4D15D7"
-PURPLE_MID = "#5A2DEF"
-PURPLE_LIGHT = "#7863F3"
-CAPTION_STOPS = ["#4015E8", "#6333F4", "#7B63F7"]
-TOP_STOPS = ["#5A51FE", "#5A51FD", "#5D60FE"]
-BOTTOM_STOPS = ["#5B59FD", "#656AFD", "#747FFC"]
-TITLE_STOPS = ["#4D15D7", "#5A2DEF", "#7863F3"]
-DIVIDER_COLOR = "0x5A2DEF"
+THEME_PURPLE = "#5A2DEF"
+THEME_PURPLE_FFMPEG = "0x5A2DEF"
+PURPLE_DARK = THEME_PURPLE
+PURPLE_MID = THEME_PURPLE
+PURPLE_LIGHT = THEME_PURPLE
+CAPTION_STOPS = [THEME_PURPLE, THEME_PURPLE, THEME_PURPLE]
+TOP_STOPS = [THEME_PURPLE, THEME_PURPLE, THEME_PURPLE]
+BOTTOM_STOPS = [THEME_PURPLE, THEME_PURPLE, THEME_PURPLE]
+TITLE_STOPS = [THEME_PURPLE, THEME_PURPLE, THEME_PURPLE]
+DIVIDER_COLOR = THEME_PURPLE_FFMPEG
 CAPTION_FONT_SIZE = 76
-CAPTION_BOX_MAX_WIDTH = 1224
-CAPTION_HORIZONTAL_PADDING = 44
+CAPTION_BOX_MAX_WIDTH = 1248
+CAPTION_HORIZONTAL_PADDING = 28
 CAPTION_MAX_TEXT_WIDTH = CAPTION_BOX_MAX_WIDTH - CAPTION_HORIZONTAL_PADDING
 TARGET_AUDIO_LUFS = -17.0
+INTERVIEW_AUDIO_MEDIA_IDS = {"group_wide", "cam_person_01", "cam_person_02", "cam_person_03"}
 
 MEDIA_PATHS = {
     "group_wide": PROJECT_ROOT / "source" / "video" / "three people.mp4",
@@ -72,14 +75,14 @@ def write_json(path: Path, payload: Any) -> None:
 
 
 def ffmpeg_path() -> str:
+    if FFMPEG_DEFAULT.exists():
+        return str(FFMPEG_DEFAULT)
     state_path = PROJECT_ROOT / "project_state.json"
     if state_path.exists():
         state = read_json(state_path)
         configured = str(((state.get("tools") or {}).get("ffmpeg")) or "").strip()
-        if configured and Path(configured).exists():
+        if configured and Path(configured).exists() and "chocolatey\\bin" not in configured.lower():
             return configured
-    if FFMPEG_DEFAULT.exists():
-        return str(FFMPEG_DEFAULT)
     return "ffmpeg"
 
 
@@ -343,6 +346,8 @@ PROTECTED_CAPTION_TERMS = [
     "向き合う",
     "得られる",
     "変わっていく",
+    "そのあたり",
+    "あたり",
 ]
 
 
@@ -513,12 +518,75 @@ def bad_caption_break(line: str) -> bool:
             "作",
             "画",
             "働",
+            "向",
+            "込",
+            "そ",
+            "ちょ",
+            "キャリア",
+            "経験",
+            "実現していきたいとかそ",
+            "重",
+            "動",
         )
     )
 
 
 def bad_caption_start(line: str) -> bool:
-    return line.startswith(("の", "に", "を", "が", "は", "と", "で", "も", "へ", "や", "って", "て", "する", "した", "った", "る", "れ", "ん", "け", "い", "ゃ", "ど", "さ", "しい", "り", "ード", "ドル", "ル", "事", "味", "メイン", "く", "くて", "なく", "ない", "ら", "構", "験", "業", "ム", "割", "に強い", "ないもの", "ことも", "して", "なく建設的", "が健全", "くの人", "なる", "う時間"))
+    return line.startswith(("の", "に", "を", "が", "は", "と", "で", "も", "へ", "や", "って", "て", "する", "した", "った", "る", "れ", "ん", "け", "けて", "い", "ゃ", "ど", "さ", "しい", "り", "たり", "ード", "ドル", "ル", "味", "メイン", "く", "くて", "なく", "ない", "ら", "構", "験", "業", "ム", "割", "に強い", "ないもの", "ことも", "して", "なく建設的", "が健全", "くの人", "なる", "う時間", "ういった", "的な意味", "あたり", "を込めて", "するって", "要", "かす"))
+
+
+def hard_bad_caption_break(line: str) -> bool:
+    return line.endswith(
+        (
+            "いけ",
+            "ちゃ",
+            "仕",
+            "け",
+            "しゃっ",
+            "ハー",
+            "ハード",
+            "怖",
+            "背",
+            "求めら",
+            "使い",
+            "当",
+            "とっ",
+            "高",
+            "詳",
+            "僕よ",
+            "なく「な",
+            "結",
+            "採用体",
+            "ベ",
+            "壁打",
+            "モヤ",
+            "ユーザ",
+            "多",
+            "変",
+            "向き合",
+            "関係",
+            "役",
+            "チー",
+            "経",
+            "画",
+            "働",
+            "向",
+            "込",
+            "そ",
+            "ちょ",
+            "実現していきたいとかそ",
+            "重",
+            "動",
+        )
+    )
+
+
+def natural_caption_boundary(left: str, right: str) -> bool:
+    left = left.strip(" 、。！？")
+    right = right.strip(" 、。！？")
+    if not left or not right:
+        return False
+    return not hard_bad_caption_break(left) and not bad_caption_start(right)
 
 
 def best_caption_cut(text: str, lines_left: int, spans: list[tuple[int, int]]) -> int:
@@ -558,7 +626,7 @@ def best_caption_cut(text: str, lines_left: int, spans: list[tuple[int, int]]) -
 
 
 CAPTION_WRAP_OVERRIDES = {
-    "ドメインエキスパートの役割というか": ["ドメインエキスパートの役割", "というか"],
+    "ドメインエキスパートの役割というか": ["ドメインエキスパートの", "役割というか"],
     "やっぱりちょっと一瞬でもいいのでこういう形で広く見れる": ["やっぱりちょっと一瞬でもいいので", "こういう形で広く見れる"],
     "足すだけでなく「なくていい」と言えることも価値": ["足すだけでなく", "「なくていい」と言えることも価値"],
     "ルール調査だけでなくビジョンが必要になる": ["ルール調査だけでなく", "ビジョンが必要になる"],
@@ -598,16 +666,26 @@ def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
         first = text[:index].strip(" 、。")
         second = text[index:].strip(" 、。")
         if first and second and caption_line_fits(first) and caption_line_fits(second):
+            if not natural_caption_boundary(first, second):
+                continue
             semantic_bonus = -8 if index in set(caption_cut_candidates(text, spans)) else 0
-            bad_break_penalty = 12 if bad_caption_break(first) else 0
-            bad_start_penalty = 16 if bad_caption_start(second) else 0
             balance = abs(caption_text_width(first) - caption_text_width(second)) / 100
-            two_line_candidates.append((balance + bad_break_penalty + bad_start_penalty + semantic_bonus, index))
+            two_line_candidates.append((balance + semantic_bonus, index))
     if two_line_candidates:
         _, cut = min(two_line_candidates)
         return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line]
 
-    cut = best_caption_cut(text, 2, spans)
+    semantic_candidates = set(caption_cut_candidates(text, spans))
+    semantic_line_candidates = []
+    for index in semantic_candidates:
+        first = text[:index].strip(" 、。")
+        second = text[index:].strip(" 、。")
+        if first and second and caption_line_fits(first) and natural_caption_boundary(first, second):
+            semantic_line_candidates.append((caption_text_width(second), abs(index - len(text) / 2), index))
+    if semantic_line_candidates:
+        _, _, cut = min(semantic_line_candidates)
+    else:
+        cut = best_caption_cut(text, 2, spans)
     return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line][:2]
 
 
@@ -676,18 +754,12 @@ def draw_logo(canvas: Image.Image, section: str, is_split: bool = False) -> None
     bbox = logo.getbbox()
     if bbox:
         logo = logo.crop(bbox)
-    if section == "digest":
-        logo_w = 216
-    elif is_split:
-        logo_w = 176
-    else:
-        logo_w = 216
+    # Keep the LayerX logo identical across digest, main, single, and split cuts.
+    # The digest opening is the visual reference requested for all sections.
+    logo_w = 216
     logo_h = round(logo.height * logo_w / logo.width)
     logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
-    if section == "digest":
-        pos = (18, round((102 - logo_h) / 2))
-    else:
-        pos = (18, 18)
+    pos = (18, round((102 - logo_h) / 2))
     canvas.alpha_composite(logo, pos)
 
 
@@ -707,10 +779,7 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
         title = title_text(event).strip()
         if title:
             font = fit_font(title, 680, 45, 34)
-            bbox = draw.textbbox((0, 0), title, font=font)
-            text_w = bbox[2] - bbox[0]
-            text_h = bbox[3] - bbox[1]
-            title_image = condensed_text_image(title, font, (255, 255, 255, 255), 0.96)
+            title_image = condensed_text_image(title, font, (255, 255, 255, 255), 0.92)
             text_w = title_image.width
             text_h = title_image.height
             pad_x = 18
@@ -723,7 +792,7 @@ def draw_style_overlay(event: dict[str, Any], output: Path) -> None:
             if section != "digest":
                 paste_slanted_gradient(canvas, [(x0 + 18, y0), (x1, y0), (x1 - 18, y1), (x0, y1)], TITLE_STOPS, 244)
             draw = ImageDraw.Draw(canvas)
-            canvas.alpha_composite(title_image, (round(x0 + (box_w - text_w) / 2), round(y0 + (box_h - text_h) / 2 - 4)))
+            canvas.alpha_composite(title_image, (round(x0 + (box_w - text_w) / 2), round(y0 + (box_h - text_h) / 2)))
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(output)
 
@@ -763,12 +832,15 @@ def draw_white_intro_label(canvas: Image.Image, person_id: str, x: int, y: int, 
     draw_shadow_text(draw, (x, y + role_size + 12), name, name_font, (255, 255, 255, alpha))
 
 
-def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float) -> None:
+def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float, *, section: str = "") -> None:
     lines = wrap_caption_text(text)
     line_height = 104
     gap = 10
     stack_h = len(lines) * line_height + (len(lines) - 1) * gap
-    y_base = 660 - stack_h
+    # Main interview captions were visually too high. Keep digest captions at
+    # the reference position, but lower main captions closer to the bottom.
+    caption_bottom_y = 690 if section == "main" else 660
+    y_base = caption_bottom_y - stack_h
     y_positions = [y_base + index * (line_height + gap) for index in range(len(lines))]
     draw = ImageDraw.Draw(canvas)
     for index, line in enumerate(lines):
@@ -789,7 +861,7 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
             font,
             (255, 255, 255, round(255 * opacity)),
             scale_x,
-            faux_bold_offsets=((0, 0), (1, 0), (0, 1)),
+            faux_bold_offsets=((0, 0), (1, 0)),
         )
         text_w = text_image.width
         text_h = text_image.height
@@ -887,8 +959,11 @@ def draw_intro_profile_card(canvas: Image.Image, overlay: dict[str, Any], start:
     header_text = f"{name_text}｜{title_text_value}" if title_text_value else name_text
     body_lines = [str(line).strip() for line in profile.get("body_lines", []) if str(line).strip()]
 
-    name_x, name_y, name_w, name_h = 16, 438, 820, 78
+    name_x, name_y, name_h = 16, 438, 78
     body_x, body_y, body_w, body_h = 28, 515, 1224, 180
+    header_slant = 36
+    header_pad_x = 36
+    header_max_w = body_x + body_w - name_x
 
     layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     shadow = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
@@ -898,17 +973,22 @@ def draw_intro_profile_card(canvas: Image.Image, overlay: dict[str, Any], start:
     body = Image.new("RGBA", (body_w, body_h), (255, 255, 255, round(248 * opacity)))
     body_mask = rounded_mask((body_w, body_h), 5)
     layer.paste(body, (body_x, body_y), body_mask)
+    draw = ImageDraw.Draw(layer)
+    header_font = fit_font(header_text, header_max_w - header_pad_x * 2 - header_slant, 48, 28, FONT_FILE)
+    header_bbox = draw.textbbox((0, 0), header_text, font=header_font)
+    header_text_w = header_bbox[2] - header_bbox[0]
+    header_text_h = header_bbox[3] - header_bbox[1]
+    name_w = min(header_max_w, max(620, header_text_w + header_pad_x * 2 + header_slant))
     paste_slanted_gradient(
         layer,
-        [(name_x, name_y), (name_x + name_w, name_y), (name_x + name_w - 36, name_y + name_h), (name_x, name_y + name_h)],
+        [(name_x, name_y), (name_x + name_w, name_y), (name_x + name_w - header_slant, name_y + name_h), (name_x, name_y + name_h)],
         CAPTION_STOPS,
         round(248 * opacity),
     )
-
-    draw = ImageDraw.Draw(layer)
-    header_font = fit_font(header_text, name_w - 52, 48, 34, FONT_FILE)
-    header_bbox = draw.textbbox((0, 0), header_text, font=header_font)
-    draw.text((name_x + 28, name_y + (name_h - (header_bbox[3] - header_bbox[1])) / 2 - 4), header_text, font=header_font, fill=(255, 255, 255, alpha))
+    header_visual_w = name_w - header_slant // 2
+    header_x = name_x + max(24, (header_visual_w - header_text_w) / 2 - header_bbox[0])
+    header_y = name_y + (name_h - header_text_h) / 2 - header_bbox[1]
+    draw.text((header_x, header_y), header_text, font=header_font, fill=(255, 255, 255, alpha))
 
     body_font = ImageFont.truetype(str(FONT_FILE), 31)
     text = "\n".join(body_lines)
@@ -917,9 +997,13 @@ def draw_intro_profile_card(canvas: Image.Image, overlay: dict[str, Any], start:
         wrapped = wrapped[:4]
     line_gap = 9
     line_h = 35
-    y = body_y + 22
+    block_h = len(wrapped) * line_h + max(0, len(wrapped) - 1) * line_gap
+    y = body_y + max(18, (body_h - block_h) / 2)
     for line in wrapped:
-        draw.text((body_x + 30, y), line, font=body_font, fill=(22, 33, 41, alpha))
+        line_bbox = draw.textbbox((0, 0), line, font=body_font)
+        line_w = line_bbox[2] - line_bbox[0]
+        line_x = body_x + (body_w - line_w) / 2 - line_bbox[0]
+        draw.text((line_x, y - line_bbox[1]), line, font=body_font, fill=(22, 33, 41, alpha))
         y += line_h + line_gap
 
     canvas.alpha_composite(layer)
@@ -940,6 +1024,7 @@ def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> boo
         "-hide_banner",
         "-loglevel",
         "warning",
+        "-nostdin",
         "-y",
         "-f",
         "rawvideo",
@@ -956,25 +1041,38 @@ def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> boo
         "qtrle",
         str(output),
     ]
-    process = subprocess.Popen(command, cwd=WORKSPACE_ROOT, stdin=subprocess.PIPE)
+    process = subprocess.Popen(command, cwd=WORKSPACE_ROOT, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     assert process.stdin is not None
+    write_error: OSError | None = None
     try:
         for frame_index in range(total_frames):
             now = frame_index / FPS
             canvas = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
             for overlay in captions:
-                draw_caption(canvas, str(overlay["text"]), now, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur))
+                draw_caption(canvas, str(overlay["text"]), now, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), section=str(event.get("section") or ""))
             for overlay in nameplates:
                 draw_nameplate(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
             for overlay in split_labels:
                 draw_split_person_labels(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
             for overlay in profile_cards:
                 draw_intro_profile_card(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
-            process.stdin.write(canvas.tobytes())
+            try:
+                process.stdin.write(canvas.tobytes())
+            except OSError as exc:
+                write_error = exc
+                break
     finally:
-        process.stdin.close()
-    if process.wait() != 0:
-        raise subprocess.CalledProcessError(process.returncode, command)
+        try:
+            process.stdin.close()
+        except OSError:
+            pass
+    stderr = b""
+    if process.stderr is not None:
+        stderr = process.stderr.read()
+    return_code = process.wait()
+    if write_error is not None or return_code != 0:
+        message = stderr.decode("utf-8", errors="replace").strip()
+        raise RuntimeError(f"text overlay render failed for {event.get('event_id')}: {write_error or return_code}; ffmpeg stderr: {message}")
     return True
 
 
@@ -991,18 +1089,53 @@ def source_skip_sec(event: dict[str, Any]) -> float:
 
 
 def segment_audio_filter_chain(media_id: str) -> str:
-    return "anull"
+    if media_id not in INTERVIEW_AUDIO_MEDIA_IDS:
+        return "aresample=48000"
+    return (
+        "highpass=f=85,"
+        "lowpass=f=10500,"
+        "afftdn=nr=18:nf=-32:tn=1:rf=-44,"
+        "anlmdn=s=0.00035:p=0.002:r=0.006:m=11,"
+        "acompressor=threshold=-30dB:ratio=2.4:attack=6:release=130:makeup=3,"
+        "dynaudnorm=f=180:g=7:p=0.90:m=8,"
+        "aresample=48000"
+    )
 
 
 def final_audio_filter_chain() -> str:
     loudnorm = f"loudnorm=I={TARGET_AUDIO_LUFS}:TP=-1.5:LRA=11"
     return (
-        "highpass=f=80,"
+        "highpass=f=70,"
         "lowpass=f=12000,"
-        "afftdn=nf=-25,"
-        "acompressor=threshold=-28dB:ratio=3.2:attack=5:release=140:makeup=5,"
-        "dynaudnorm=f=150:g=9:p=0.95:m=8,"
+        "afftdn=nr=10:nf=-38:tn=1:rf=-48,"
+        "acompressor=threshold=-26dB:ratio=2.2:attack=5:release=140:makeup=2,"
+        "dynaudnorm=f=180:g=6:p=0.90:m=8,"
         f"{loudnorm}"
+    )
+
+
+def single_person_crop_filter(event: dict[str, Any], media_id: str) -> str | None:
+    layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+    crop_mode = str(layout.get("crop_mode") or "")
+    if media_id not in {"cam_person_01", "cam_person_02", "cam_person_03"}:
+        return None
+    if crop_mode not in {"person_centered", "single_intro_reference_fullscreen"}:
+        return None
+    profile = SPLIT_FACE_PROFILES.get(media_id)
+    if not profile:
+        return None
+    scale_h = int(profile.get("single_scale_h") or 900)
+    scale = scale_h / 1080
+    scaled_w = even_width_for_height(scale_h)
+    target_face_x = 640
+    target_face_y = float(profile.get("single_target_face_y") or 245)
+    crop_x = round(float(profile["face_center_x"]) * scale - target_face_x)
+    crop_y = round(float(profile["face_center_y"]) * scale - target_face_y)
+    crop_x = max(0, min(crop_x, max(0, scaled_w - WIDTH)))
+    crop_y = max(0, min(crop_y, max(0, scale_h - HEIGHT)))
+    return (
+        f"scale=-2:{scale_h}:force_original_aspect_ratio=increase,"
+        f"crop={WIDTH}:{HEIGHT}:{crop_x}:{crop_y}{color_match_filter(media_id)},setsar=1,setpts=PTS-STARTPTS"
     )
 
 
@@ -1010,6 +1143,11 @@ def base_video_filter(event: dict[str, Any], media_id: str) -> str:
     section = str(event.get("section") or "")
     if section == "bridge":
         return "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,setpts=PTS-STARTPTS"
+    single_filter = single_person_crop_filter(event, media_id)
+    if single_filter:
+        if section == "digest":
+            return f"{single_filter}[scaled];color=c=black:s=1280x720:r=30:d={{dur}}[canvas];[canvas][scaled]overlay=0:69:format=auto"
+        return single_filter
     if section == "digest":
         return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1,setpts=PTS-STARTPTS[scaled];color=c=black:s=1280x720:r=30:d={{dur}}[canvas];[canvas][scaled]overlay=0:69:format=auto"
     return f"scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720{color_match_filter(media_id)},setsar=1,setpts=PTS-STARTPTS"
@@ -1041,9 +1179,9 @@ SPLIT_FACE_PROFILES = {
     # Original 1920x1080 ROI centers from the synced split-grid edit events.
     # These values keep faces close in size and on the same vertical band while
     # preserving enough shoulder room for the reference split composition.
-    "cam_person_01": {"scale_h": 740, "face_center_x": 811, "face_center_y": 392, "target_face_y": 260},
-    "cam_person_02": {"scale_h": 770, "face_center_x": 1058.5, "face_center_y": 333, "target_face_y": 225},
-    "cam_person_03": {"scale_h": 730, "face_center_x": 1148.5, "face_center_y": 288.5},
+    "cam_person_01": {"scale_h": 740, "face_center_x": 811, "face_center_y": 392, "target_face_y": 260, "single_scale_h": 900, "single_target_face_y": 255},
+    "cam_person_02": {"scale_h": 770, "face_center_x": 1058.5, "face_center_y": 333, "target_face_y": 225, "single_scale_h": 900, "single_target_face_y": 245},
+    "cam_person_03": {"scale_h": 730, "face_center_x": 1148.5, "face_center_y": 288.5, "single_scale_h": 900, "single_target_face_y": 240},
 }
 
 
@@ -1111,6 +1249,7 @@ def render_segment(ffmpeg: str, event: dict[str, Any], output: Path, segment_id:
         "-hide_banner",
         "-loglevel",
         "warning",
+        "-nostdin",
         "-y",
         "-ss",
         f"{float(src.get('in') or 0.0) + skip:.3f}",
@@ -1183,7 +1322,7 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
     )
     offsets = app_offsets()
     style_path, text_path = overlay_assets(ffmpeg, event, segment_id)
-    command = [ffmpeg, "-hide_banner", "-loglevel", "warning", "-y"]
+    command = [ffmpeg, "-hide_banner", "-loglevel", "warning", "-nostdin", "-y"]
     for media_id in media_ids:
         command.extend(["-ss", f"{synced_media_start(media_id, master_in, offsets):.3f}", "-t", f"{dur:.3f}", "-i", str(MEDIA_PATHS[media_id])])
     command.extend(["-ss", f"{float(aud.get('in') or master_in):.3f}", "-t", f"{dur:.3f}", "-i", str(audio_path)])
@@ -1257,6 +1396,7 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
             "-hide_banner",
             "-loglevel",
             "warning",
+            "-nostdin",
             "-y",
             "-f",
             "concat",
@@ -1291,6 +1431,7 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
             "-hide_banner",
             "-loglevel",
             "warning",
+            "-nostdin",
             "-y",
             "-i",
             str(temp_output),
@@ -1323,8 +1464,9 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Render LayerX preview with test-project-1 style overlays.")
-    parser.add_argument("--max-events", type=int, default=12)
+    parser.add_argument("--max-events", type=int, default=None)
     parser.add_argument("--output", type=Path, default=VIDEOS / "preview_test_project1_style.mp4")
+    parser.add_argument("--resume-existing", action="store_true", help="Reuse already rendered non-empty segment files.")
     args = parser.parse_args()
     plan = read_json(REPORTS / "edit_plan.json")
     if not (plan.get("validation") or {}).get("ready_for_preview"):
@@ -1334,14 +1476,16 @@ def main() -> None:
         events = events[: args.max_events]
     segment_dir = VIDEOS / "preview_test_project1_style_segments"
     segment_dir.mkdir(parents=True, exist_ok=True)
-    for old_segment in segment_dir.glob("*.mp4"):
-        old_segment.unlink()
+    if not args.resume_existing:
+        for old_segment in segment_dir.glob("*.mp4"):
+            old_segment.unlink()
     ffmpeg = ffmpeg_path()
     rendered = []
     for index, event in enumerate(events, start=1):
         segment_id = f"segment_{index:03d}_{event.get('event_id', 'event')}"
         segment_path = segment_dir / f"{segment_id}.mp4"
-        render_segment(ffmpeg, event, segment_path, segment_id)
+        if not (args.resume_existing and segment_path.exists() and segment_path.stat().st_size > 0):
+            render_segment(ffmpeg, event, segment_path, segment_id)
         rendered.append(segment_path)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     concat_segments(ffmpeg, rendered, args.output)

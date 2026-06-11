@@ -3,8 +3,8 @@
     "schema_version": "caption_audio_alignment.v1",
     "method": "RMS energy speech bounds from group_wide master audio, applied after caption splitting",
     "audio_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\audio\\group_wide_mono_16k.wav",
-    "aligned_group_count": 148,
-    "changed_event_count": 111,
+    "aligned_group_count": 161,
+    "changed_event_count": 121,
     "changed_events": [
       "digest_qa_01_answer_02",
       "digest_qa_01_answer_03",
@@ -21,12 +21,14 @@
       "digest_qa_05_question_01",
       "main_full_003",
       "main_full_004",
+      "main_full_005",
       "main_full_007",
       "main_full_008",
       "main_full_009",
       "main_full_010",
       "main_full_011",
       "main_full_013",
+      "main_full_014",
       "main_full_015",
       "main_full_016",
       "main_full_018",
@@ -55,6 +57,7 @@
       "main_full_049",
       "main_full_051",
       "main_full_053",
+      "main_full_054",
       "main_full_055",
       "main_full_057",
       "main_full_059",
@@ -62,6 +65,7 @@
       "main_full_061",
       "main_full_062",
       "main_full_063",
+      "main_full_065",
       "main_full_066",
       "main_full_067",
       "main_full_069",
@@ -72,6 +76,7 @@
       "main_full_075",
       "main_full_077",
       "main_full_079",
+      "main_full_081",
       "main_full_082",
       "main_full_083",
       "main_full_084",
@@ -86,16 +91,20 @@
       "main_full_097",
       "main_full_098",
       "main_full_100",
+      "main_full_101",
       "main_full_102",
       "main_full_104",
       "main_full_105",
+      "main_full_106",
       "main_full_108",
       "main_full_110",
+      "main_full_111",
       "main_full_112",
       "main_full_114",
       "main_full_116",
       "main_full_117",
       "main_full_119",
+      "main_full_120",
       "main_full_121",
       "main_full_123",
       "main_full_124",
@@ -105,6 +114,7 @@
       "main_full_132",
       "main_full_134",
       "main_full_135",
+      "main_full_136",
       "main_full_138",
       "main_full_139",
       "main_full_140",
@@ -118,7 +128,7 @@
       "main_intro_wide_context_001",
       "main_intro_yano_explains_002"
     ],
-    "overlap_adjustment_count": 15
+    "overlap_adjustment_count": 16
   },
   "groups": [
     {
@@ -323,7 +333,7 @@
     },
     {
       "event_id": "digest_qa_03_answer_01",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         1643.56,
         1647.62
@@ -332,11 +342,11 @@
         1643.56,
         1647.47
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.011106,
-        "peak": 0.059112,
+        "peak": 0.059111,
         "threshold": 0.019991,
         "active_frame_count": 172
       }
@@ -1023,7 +1033,7 @@
     },
     {
       "event_id": "digest_qa_05_answer_04",
-      "group_size": 3,
+      "group_size": 2,
       "source_window_sec": [
         2973.7,
         2980.62
@@ -1032,7 +1042,7 @@
         2973.8,
         2980.62
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 2,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008114,
@@ -1103,7 +1113,7 @@
     },
     {
       "event_id": "main_full_004",
-      "group_size": 3,
+      "group_size": 5,
       "source_window_sec": [
         766.06,
         784.38
@@ -1112,13 +1122,33 @@
         766.2,
         784.38
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 5,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008476,
         "peak": 0.031691,
         "threshold": 0.015257,
         "active_frame_count": 636
+      }
+    },
+    {
+      "event_id": "main_full_005",
+      "group_size": 1,
+      "source_window_sec": [
+        786.18,
+        795.88
+      ],
+      "speech_window_sec": [
+        787.57,
+        795.51
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007402,
+        "peak": 0.031303,
+        "threshold": 0.013324,
+        "active_frame_count": 196
       }
     },
     {
@@ -1239,6 +1269,26 @@
         "peak": 0.027505,
         "threshold": 0.014212,
         "active_frame_count": 80
+      }
+    },
+    {
+      "event_id": "main_full_014",
+      "group_size": 2,
+      "source_window_sec": [
+        922.26,
+        925.38
+      ],
+      "speech_window_sec": [
+        922.26,
+        925.06
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.010647,
+        "peak": 0.033857,
+        "threshold": 0.019165,
+        "active_frame_count": 100
       }
     },
     {
@@ -1822,6 +1872,26 @@
       }
     },
     {
+      "event_id": "main_full_054",
+      "group_size": 1,
+      "source_window_sec": [
+        1519.76,
+        1524.56
+      ],
+      "speech_window_sec": [
+        1519.95,
+        1524.4
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.009236,
+        "peak": 0.039533,
+        "threshold": 0.016626,
+        "active_frame_count": 159
+      }
+    },
+    {
       "event_id": "main_full_055",
       "group_size": 1,
       "source_window_sec": [
@@ -1979,6 +2049,26 @@
         "peak": 0.031171,
         "threshold": 0.015795,
         "active_frame_count": 38
+      }
+    },
+    {
+      "event_id": "main_full_065",
+      "group_size": 2,
+      "source_window_sec": [
+        1681.5,
+        1688.5
+      ],
+      "speech_window_sec": [
+        1682.11,
+        1688.5
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00887,
+        "peak": 0.024407,
+        "threshold": 0.015966,
+        "active_frame_count": 126
       }
     },
     {
@@ -2199,6 +2289,26 @@
         "peak": 0.024798,
         "threshold": 0.015032,
         "active_frame_count": 107
+      }
+    },
+    {
+      "event_id": "main_full_081",
+      "group_size": 2,
+      "source_window_sec": [
+        1922.1,
+        1928.86
+      ],
+      "speech_window_sec": [
+        1922.21,
+        1928.86
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008947,
+        "peak": 0.035838,
+        "threshold": 0.016104,
+        "active_frame_count": 300
       }
     },
     {
@@ -2482,6 +2592,26 @@
       }
     },
     {
+      "event_id": "main_full_101",
+      "group_size": 2,
+      "source_window_sec": [
+        2222.74,
+        2229.4
+      ],
+      "speech_window_sec": [
+        2222.76,
+        2229.02
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008428,
+        "peak": 0.020953,
+        "threshold": 0.01517,
+        "active_frame_count": 169
+      }
+    },
+    {
       "event_id": "main_full_102",
       "group_size": 2,
       "source_window_sec": [
@@ -2542,6 +2672,26 @@
       }
     },
     {
+      "event_id": "main_full_106",
+      "group_size": 2,
+      "source_window_sec": [
+        2297.04,
+        2307.04
+      ],
+      "speech_window_sec": [
+        2297.04,
+        2306.27
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00845,
+        "peak": 0.031825,
+        "threshold": 0.01521,
+        "active_frame_count": 312
+      }
+    },
+    {
       "event_id": "main_full_108",
       "group_size": 2,
       "source_window_sec": [
@@ -2562,6 +2712,26 @@
       }
     },
     {
+      "event_id": "main_full_108",
+      "group_size": 1,
+      "source_window_sec": [
+        2330.04,
+        2334.04
+      ],
+      "speech_window_sec": [
+        2330.04,
+        2334.04
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.01392,
+        "peak": 0.071147,
+        "threshold": 0.025056,
+        "active_frame_count": 165
+      }
+    },
+    {
       "event_id": "main_full_110",
       "group_size": 1,
       "source_window_sec": [
@@ -2579,6 +2749,26 @@
         "peak": 0.038234,
         "threshold": 0.019945,
         "active_frame_count": 127
+      }
+    },
+    {
+      "event_id": "main_full_111",
+      "group_size": 3,
+      "source_window_sec": [
+        2368.66,
+        2379.66
+      ],
+      "speech_window_sec": [
+        2368.89,
+        2378.32
+      ],
+      "changed_overlays": 3,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007569,
+        "peak": 0.021901,
+        "threshold": 0.013624,
+        "active_frame_count": 258
       }
     },
     {
@@ -2643,7 +2833,7 @@
     },
     {
       "event_id": "main_full_117",
-      "group_size": 3,
+      "group_size": 4,
       "source_window_sec": [
         2465.2,
         2482.2
@@ -2652,7 +2842,7 @@
         2465.78,
         2481.8
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 4,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007855,
@@ -2679,6 +2869,26 @@
         "peak": 0.020703,
         "threshold": 0.016652,
         "active_frame_count": 52
+      }
+    },
+    {
+      "event_id": "main_full_120",
+      "group_size": 2,
+      "source_window_sec": [
+        2514.2,
+        2523.2
+      ],
+      "speech_window_sec": [
+        2515.55,
+        2523.2
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007865,
+        "peak": 0.02271,
+        "threshold": 0.014158,
+        "active_frame_count": 223
       }
     },
     {
@@ -2763,7 +2973,7 @@
     },
     {
       "event_id": "main_full_127",
-      "group_size": 2,
+      "group_size": 3,
       "source_window_sec": [
         2612.06,
         2620.06
@@ -2772,7 +2982,7 @@
         2612.06,
         2620.06
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 3,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008532,
@@ -2842,8 +3052,28 @@
       }
     },
     {
+      "event_id": "main_full_132",
+      "group_size": 2,
+      "source_window_sec": [
+        2694.16,
+        2698.18
+      ],
+      "speech_window_sec": [
+        2694.16,
+        2697.85
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008267,
+        "peak": 0.025597,
+        "threshold": 0.01488,
+        "active_frame_count": 99
+      }
+    },
+    {
       "event_id": "main_full_134",
-      "group_size": 3,
+      "group_size": 4,
       "source_window_sec": [
         2716.68,
         2730.68
@@ -2852,7 +3082,7 @@
         2716.68,
         2729.05
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 4,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008219,
@@ -2882,6 +3112,26 @@
       }
     },
     {
+      "event_id": "main_full_136",
+      "group_size": 1,
+      "source_window_sec": [
+        2744.64,
+        2750.48
+      ],
+      "speech_window_sec": [
+        2744.64,
+        2750.48
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008005,
+        "peak": 0.030534,
+        "threshold": 0.01441,
+        "active_frame_count": 152
+      }
+    },
+    {
       "event_id": "main_full_138",
       "group_size": 1,
       "source_window_sec": [
@@ -2903,7 +3153,7 @@
     },
     {
       "event_id": "main_full_139",
-      "group_size": 3,
+      "group_size": 4,
       "source_window_sec": [
         2792.86,
         2804.86
@@ -2912,7 +3162,7 @@
         2792.86,
         2803.59
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 4,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.00754,
@@ -2943,7 +3193,7 @@
     },
     {
       "event_id": "main_full_141",
-      "group_size": 3,
+      "group_size": 2,
       "source_window_sec": [
         2832.86,
         2840.58
@@ -2952,7 +3202,7 @@
         2833.0,
         2840.58
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 2,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008463,
@@ -3039,6 +3289,26 @@
         "peak": 0.020329,
         "threshold": 0.014477,
         "active_frame_count": 64
+      }
+    },
+    {
+      "event_id": "main_full_147",
+      "group_size": 2,
+      "source_window_sec": [
+        2922.04,
+        2926.04
+      ],
+      "speech_window_sec": [
+        2922.04,
+        2926.04
+      ],
+      "changed_overlays": 2,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007535,
+        "peak": 0.022074,
+        "threshold": 0.013563,
+        "active_frame_count": 134
       }
     },
     {
@@ -3229,14 +3499,14 @@
     },
     {
       "event_id": "main_full_127",
-      "text": "それはいきなり何もなしだと難しいと思うんですけれどもちょ",
+      "text": "それはいきなり何もなしだと難しいと思",
       "old": [
         0.0,
-        3.88
+        2.48
       ],
       "new": [
         1.088,
-        4.968
+        3.568
       ]
     },
     {
@@ -3247,19 +3517,31 @@
         1.638
       ],
       "new": [
-        5.008,
-        5.558
+        3.608,
+        4.158
       ]
     },
     {
       "event_id": "main_full_127",
-      "text": "っとAIのプロダクトの力で人を動かしていくんですよね",
+      "text": "うんですけれどもちょっとAIの",
       "old": [
-        3.92,
+        2.52,
+        4.58
+      ],
+      "new": [
+        4.198,
+        6.258
+      ]
+    },
+    {
+      "event_id": "main_full_127",
+      "text": "プロダクトの力で人を動かしていくんですよね",
+      "old": [
+        4.62,
         7.56
       ],
       "new": [
-        5.598,
+        6.298,
         9.238
       ]
     }

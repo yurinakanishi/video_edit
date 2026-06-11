@@ -76,6 +76,9 @@ def split_text_units(review: Any, text: str) -> list[str]:
                 continue
             bad_break = review.bad_caption_break(prefix)
             bad_start = review.bad_caption_start(rest)
+            natural_boundary = getattr(review, "natural_caption_boundary", lambda left, right: not bad_break and not bad_start)
+            if not natural_boundary(prefix, rest):
+                continue
             bad_unit_penalty = 30 if bad_unit(prefix) or bad_unit(rest) else 0
             semantic_bonus = 12 if index in semantic_cuts else 0
             length_score = min(index, 40)
@@ -83,9 +86,19 @@ def split_text_units(review: Any, text: str) -> list[str]:
             candidates.append((length_score + semantic_bonus - penalty, index, prefix, rest))
 
         if not candidates:
-            cut = review.best_caption_cut(remaining, 2, spans)
-            prefix = remaining[:cut].strip(" 、。！？")
-            rest = remaining[cut:].strip(" 、。！？")
+            semantic_candidates = []
+            for index in semantic_cuts:
+                prefix = remaining[:index].strip(" 、。！？")
+                rest = remaining[index:].strip(" 、。！？")
+                natural_boundary = getattr(review, "natural_caption_boundary", lambda left, right: True)
+                if prefix and rest and unit_fits(review, prefix) and natural_boundary(prefix, rest):
+                    semantic_candidates.append((len(prefix), index, prefix, rest))
+            if semantic_candidates:
+                _, _, prefix, rest = max(semantic_candidates, key=lambda item: item[0])
+            else:
+                cut = review.best_caption_cut(remaining, 2, spans)
+                prefix = remaining[:cut].strip(" 、。！？")
+                rest = remaining[cut:].strip(" 、。！？")
         else:
             _, _, prefix, rest = max(candidates, key=lambda item: (item[0], item[1]))
 

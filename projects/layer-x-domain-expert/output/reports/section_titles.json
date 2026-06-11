@@ -1,0 +1,53 @@
+{
+  "schema_version": "section_titles.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-11T10:33:27+09:00",
+  "digest": {
+    "title": "AI時代のドメインエキスパート論",
+    "usage": "Opening digest top-right title. Keep constant throughout digest."
+  },
+  "main": [
+    {
+      "section_index": 1,
+      "title": "ドメインエキスパートとは",
+      "intent": "Opening explanation of the role and participant introductions.",
+      "topic_id": "topic_001",
+      "usage": "Main section top-right title. Change when the matching topic window begins."
+    },
+    {
+      "section_index": 2,
+      "title": "開発に関わるきっかけ",
+      "intent": "How accounting, HR, and labor-domain backgrounds connected to product development.",
+      "topic_id": "topic_002",
+      "usage": "Main section top-right title. Change when the matching topic window begins."
+    },
+    {
+      "section_index": 3,
+      "title": "当たり前を言語化する",
+      "intent": "The difficulty and value of explaining implicit domain knowledge to development teams.",
+      "topic_id": "topic_003",
+      "usage": "Main section top-right title. Change when the matching topic window begins."
+    },
+    {
+      "section_index": 4,
+      "title": "実務知識を価値に変える",
+      "intent": "How practitioners decide what to build, what not to build, and how to shape user experience.",
+      "topic_id": "topic_004",
+      "usage": "Main section top-right title. Change when the matching topic window begins."
+    },
+    {
+      "section_index": 5,
+      "title": "AI時代の専門性",
+      "intent": "What domain experts should do as AI becomes a default part of work.",
+      "topic_id": "topic_005",
+      "usage": "Main section top-right title. Change when the matching topic window begins."
+    },
+    {
+      "section_index": 6,
+      "title": "バックオフィスの未来",
+      "intent": "Future work styles, automation, and career recommendations for back-office professionals.",
+      "topic_id": "topic_006",
+      "usage": "Main section top-right title. Change when the matching topic window begins."
+    }
+  ]
+}

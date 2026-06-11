@@ -1,10 +1,46 @@
 {
   "schema_version": "semantic_marks.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-10T23:31:41+09:00",
+  "generated_at": "2026-06-11T10:33:26+09:00",
   "status": "draft_from_transcript",
   "analysis_method": "project-local heuristic draft; requires editorial review before final render",
   "content_window_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\content_window.json",
+  "section_title_policy": {
+    "digest_title": "AI時代のドメインエキスパート論",
+    "main_titles_source": "project_main_section_titles.v1",
+    "main_titles": [
+      {
+        "section_index": 1,
+        "title": "ドメインエキスパートとは",
+        "intent": "Opening explanation of the role and participant introductions."
+      },
+      {
+        "section_index": 2,
+        "title": "開発に関わるきっかけ",
+        "intent": "How accounting, HR, and labor-domain backgrounds connected to product development."
+      },
+      {
+        "section_index": 3,
+        "title": "当たり前を言語化する",
+        "intent": "The difficulty and value of explaining implicit domain knowledge to development teams."
+      },
+      {
+        "section_index": 4,
+        "title": "実務知識を価値に変える",
+        "intent": "How practitioners decide what to build, what not to build, and how to shape user experience."
+      },
+      {
+        "section_index": 5,
+        "title": "AI時代の専門性",
+        "intent": "What domain experts should do as AI becomes a default part of work."
+      },
+      {
+        "section_index": 6,
+        "title": "バックオフィスの未来",
+        "intent": "Future work styles, automation, and career recommendations for back-office professionals."
+      }
+    ]
+  },
   "highlight_candidates": [
     {
       "id": "hl_001",
@@ -156,42 +192,48 @@
       "topic_id": "topic_001",
       "start": 519.14,
       "end": 939.14,
-      "title": "ドメインエキスパートの役割",
+      "title": "ドメインエキスパートとは",
+      "title_source": "project_main_section_titles.v1",
       "summary": "LayerXのYouTubeチャンネルをご覧の皆さんこんにちは バクラク事業部の矢野と申します 本日はですねバクラク事業部で ドメインエキスパートという役割で働いている"
     },
     {
       "topic_id": "topic_002",
       "start": 939.14,
       "end": 1359.14,
-      "title": "ドメインエキスパートの役割",
+      "title": "開発に関わるきっかけ",
+      "title_source": "project_main_section_titles.v1",
       "summary": "全然経理とかじゃなくて開発 あそうですそうです もう経理だったら僕前職でいいと思ってたんですよ 前職は全然楽しかったんで でも開発って言われて えなんでですかみたいな"
     },
     {
       "topic_id": "topic_003",
       "start": 1359.14,
       "end": 1779.14,
-      "title": "ドメインエキスパートの役割",
+      "title": "当たり前を言語化する",
+      "title_source": "project_main_section_titles.v1",
       "summary": "やっぱり今まで絶対そうと思うんですけど 実務で感じてきたんですよ なんで?みたいな もやもやみたいなのが それをちゃんと持った上で 落とし込んでもらえるっていうんですね"
     },
     {
       "topic_id": "topic_004",
       "start": 1779.14,
       "end": 2199.14,
-      "title": "ドメインエキスパートの役割",
+      "title": "実務知識を価値に変える",
+      "title_source": "project_main_section_titles.v1",
       "summary": "何かをやる時に この機能で何が実現したくて ユーザーの人にどうなってほしいのかっていうのを 自分の体験込みで伝えるっていうのは結構意識してる はいはいはい 結構開発やってると"
     },
     {
       "topic_id": "topic_005",
       "start": 2199.14,
       "end": 2619.14,
-      "title": "ドメインエキスパートの役割",
+      "title": "AI時代の専門性",
+      "title_source": "project_main_section_titles.v1",
       "summary": "そこはちょっと… 人間力?"
     },
     {
       "topic_id": "topic_006",
       "start": 2619.14,
       "end": 2985.48,
-      "title": "ドメインエキスパートの役割",
+      "title": "バックオフィスの未来",
+      "title_source": "project_main_section_titles.v1",
       "summary": "まだできてないんですけどそういう感じのことはやりたいなと思ってずっと作ってましたね。 いい話ですね。 僕らって業務の自動運転みたいなものを掲げてるじゃないですか"
     }
   ],

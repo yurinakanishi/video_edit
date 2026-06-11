@@ -9,10 +9,10 @@ from PIL import Image, ImageDraw, ImageFont
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REPORTS = PROJECT_ROOT / "output" / "reports"
 OUTPUT = PROJECT_ROOT / "caption_review.md"
-CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicR.ttc")
+CAPTION_FONT_FILE = Path(r"C:\Windows\Fonts\BIZ-UDGothicB.ttc")
 CAPTION_FONT_SIZE = 76
-CAPTION_BOX_MAX_WIDTH = 1224
-CAPTION_HORIZONTAL_PADDING = 44
+CAPTION_BOX_MAX_WIDTH = 1248
+CAPTION_HORIZONTAL_PADDING = 28
 CAPTION_MAX_TEXT_WIDTH = CAPTION_BOX_MAX_WIDTH - CAPTION_HORIZONTAL_PADDING
 
 PROTECTED_CAPTION_TERMS = [
@@ -133,6 +133,8 @@ PROTECTED_CAPTION_TERMS = [
     "向き合う",
     "得られる",
     "変わっていく",
+    "そのあたり",
+    "あたり",
 ]
 
 
@@ -307,12 +309,75 @@ def bad_caption_break(line: str) -> bool:
             "作",
             "画",
             "働",
+            "向",
+            "込",
+            "そ",
+            "ちょ",
+            "キャリア",
+            "経験",
+            "実現していきたいとかそ",
+            "重",
+            "動",
         )
     )
 
 
 def bad_caption_start(line: str) -> bool:
-    return line.startswith(("の", "に", "を", "が", "は", "と", "で", "も", "へ", "や", "って", "て", "する", "した", "った", "る", "れ", "ん", "け", "い", "ゃ", "ど", "さ", "しい", "り", "ード", "ドル", "ル", "事", "味", "メイン", "く", "くて", "なく", "ない", "ら", "構", "験", "業", "ム", "割", "に強い", "ないもの", "ことも", "して", "なく建設的", "が健全", "くの人", "なる", "う時間"))
+    return line.startswith(("の", "に", "を", "が", "は", "と", "で", "も", "へ", "や", "って", "て", "する", "した", "った", "る", "れ", "ん", "け", "けて", "い", "ゃ", "ど", "さ", "しい", "り", "たり", "ード", "ドル", "ル", "味", "メイン", "く", "くて", "なく", "ない", "ら", "構", "験", "業", "ム", "割", "に強い", "ないもの", "ことも", "して", "なく建設的", "が健全", "くの人", "なる", "う時間", "ういった", "的な意味", "あたり", "を込めて", "するって", "要", "かす"))
+
+
+def hard_bad_caption_break(line: str) -> bool:
+    return line.endswith(
+        (
+            "いけ",
+            "ちゃ",
+            "仕",
+            "け",
+            "しゃっ",
+            "ハー",
+            "ハード",
+            "怖",
+            "背",
+            "求めら",
+            "使い",
+            "当",
+            "とっ",
+            "高",
+            "詳",
+            "僕よ",
+            "なく「な",
+            "結",
+            "採用体",
+            "ベ",
+            "壁打",
+            "モヤ",
+            "ユーザ",
+            "多",
+            "変",
+            "向き合",
+            "関係",
+            "役",
+            "チー",
+            "経",
+            "画",
+            "働",
+            "向",
+            "込",
+            "そ",
+            "ちょ",
+            "実現していきたいとかそ",
+            "重",
+            "動",
+        )
+    )
+
+
+def natural_caption_boundary(left: str, right: str) -> bool:
+    left = left.strip(" 、。！？")
+    right = right.strip(" 、。！？")
+    if not left or not right:
+        return False
+    return not hard_bad_caption_break(left) and not bad_caption_start(right)
 
 
 def best_caption_cut(text: str, lines_left: int, spans: list[tuple[int, int]]) -> int:
@@ -352,7 +417,7 @@ def best_caption_cut(text: str, lines_left: int, spans: list[tuple[int, int]]) -
 
 
 CAPTION_WRAP_OVERRIDES = {
-    "ドメインエキスパートの役割というか": ["ドメインエキスパートの役割", "というか"],
+    "ドメインエキスパートの役割というか": ["ドメインエキスパートの", "役割というか"],
     "やっぱりちょっと一瞬でもいいのでこういう形で広く見れる": ["やっぱりちょっと一瞬でもいいので", "こういう形で広く見れる"],
     "足すだけでなく「なくていい」と言えることも価値": ["足すだけでなく", "「なくていい」と言えることも価値"],
     "ルール調査だけでなくビジョンが必要になる": ["ルール調査だけでなく", "ビジョンが必要になる"],
@@ -393,16 +458,25 @@ def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
         first = text[:index].strip(" 、。")
         second = text[index:].strip(" 、。")
         if first and second and caption_line_fits(first) and caption_line_fits(second):
+            if not natural_caption_boundary(first, second):
+                continue
             semantic_bonus = -8 if index in semantic_candidates else 0
-            bad_break_penalty = 12 if bad_caption_break(first) else 0
-            bad_start_penalty = 16 if bad_caption_start(second) else 0
             balance = abs(caption_text_width(first) - caption_text_width(second)) / 100
-            two_line_candidates.append((balance + bad_break_penalty + bad_start_penalty + semantic_bonus, index))
+            two_line_candidates.append((balance + semantic_bonus, index))
     if two_line_candidates:
         _, cut = min(two_line_candidates)
         return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line]
 
-    cut = best_caption_cut(text, 2, spans)
+    semantic_line_candidates = []
+    for index in semantic_candidates:
+        first = text[:index].strip(" 、。")
+        second = text[index:].strip(" 、。")
+        if first and second and caption_line_fits(first) and natural_caption_boundary(first, second):
+            semantic_line_candidates.append((caption_text_width(second), abs(index - len(text) / 2), index))
+    if semantic_line_candidates:
+        _, _, cut = min(semantic_line_candidates)
+    else:
+        cut = best_caption_cut(text, 2, spans)
     return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line][:2]
 
 

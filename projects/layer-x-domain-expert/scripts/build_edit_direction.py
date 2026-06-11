@@ -22,10 +22,18 @@ CLOSING_OUTRO = {
     "source_media_id": "cam_person_01",
     "audio_media_id": "cam_person_01",
     "source_start_sec": 3551.115,
-    "source_end_sec": 3592.115,
+    "source_end_sec": 3583.115,
     "reference_master_start_sec": 3554.447,
+    "filler_cut_ranges": [
+        {
+            "source_in": 3570.065,
+            "source_out": 3570.815,
+            "reason": "Cut the left interviewer's filler/stumble around 'えー 概要欄にですね' so the closing reads naturally.",
+        }
+    ],
     "caption_evidence": [
         "2回目に渡ってドメインエキスパートというキャリアについて深掘りしていきました",
+        "概要欄に採用の情報も入れてあります",
         "それではありがとうございました",
         "ありがとうございました",
     ],
@@ -52,6 +60,39 @@ INTRODUCTION_CUES = [
         "master_in": 727.46,
         "duration": 14.0,
         "reason": "矢野さんの自己紹介開始に合わせて、単独カメラで大きなネームプレートを表示。",
+    },
+]
+
+MAIN_SECTION_TITLES = [
+    {
+        "section_index": 1,
+        "title": "ドメインエキスパートとは",
+        "intent": "Opening explanation of the role and participant introductions.",
+    },
+    {
+        "section_index": 2,
+        "title": "開発に関わるきっかけ",
+        "intent": "How accounting, HR, and labor-domain backgrounds connected to product development.",
+    },
+    {
+        "section_index": 3,
+        "title": "当たり前を言語化する",
+        "intent": "The difficulty and value of explaining implicit domain knowledge to development teams.",
+    },
+    {
+        "section_index": 4,
+        "title": "実務知識を価値に変える",
+        "intent": "How practitioners decide what to build, what not to build, and how to shape user experience.",
+    },
+    {
+        "section_index": 5,
+        "title": "AI時代の専門性",
+        "intent": "What domain experts should do as AI becomes a default part of work.",
+    },
+    {
+        "section_index": 6,
+        "title": "バックオフィスの未来",
+        "intent": "Future work styles, automation, and career recommendations for back-office professionals.",
     },
 ]
 
@@ -102,6 +143,107 @@ def load_speaker_activity() -> dict[str, dict[str, Any]]:
         if isinstance(item, dict) and item.get("segment_id"):
             result[str(item["segment_id"])] = item
     return result
+
+
+def load_voice_speaker_attribution() -> list[dict[str, Any]]:
+    payload = read_json(REPORTS / "voice_speaker_attribution.json", {})
+    return [
+        item
+        for item in payload.get("segments", [])
+        if isinstance(item, dict) and item.get("speaker_person_id") in PERSON_CAMERA
+    ]
+
+
+def voice_segments_for_window(
+    voice_segments: list[dict[str, Any]],
+    start: float,
+    end: float,
+    *,
+    min_overlap_sec: float = 0.22,
+    min_confidence: float = 0.42,
+) -> list[dict[str, Any]]:
+    result = []
+    for segment in voice_segments:
+        segment_start = float(segment.get("start") or 0.0)
+        segment_end = float(segment.get("end") or segment_start)
+        overlap = max(0.0, min(end, segment_end) - max(start, segment_start))
+        if overlap < min_overlap_sec:
+            continue
+        try:
+            confidence = float(segment.get("confidence") or 0.0)
+        except (TypeError, ValueError):
+            confidence = 0.0
+        if confidence < min_confidence and str(segment.get("method") or "") not in {"forced_known_intro_window", "text_role_override_voice", "voice_and_text_agree"}:
+            continue
+        result.append({**segment, "window_overlap_sec": round(overlap, 3)})
+    return result
+
+
+def summarize_voice_window(voice_segments: list[dict[str, Any]], start: float, end: float) -> dict[str, Any]:
+    window_segments = voice_segments_for_window(voice_segments, start, end)
+    weights: dict[str, float] = {}
+    overlaps: dict[str, float] = {}
+    confidence_weighted: dict[str, float] = {}
+    for segment in window_segments:
+        person_id = str(segment.get("speaker_person_id") or "")
+        if person_id not in PERSON_CAMERA:
+            continue
+        overlap = float(segment.get("window_overlap_sec") or 0.0)
+        confidence = float(segment.get("confidence") or 0.0)
+        weight = overlap * max(confidence, 0.2)
+        weights[person_id] = weights.get(person_id, 0.0) + weight
+        overlaps[person_id] = overlaps.get(person_id, 0.0) + overlap
+        confidence_weighted[person_id] = confidence_weighted.get(person_id, 0.0) + confidence * overlap
+
+    ranked = sorted(weights.items(), key=lambda item: item[1], reverse=True)
+    total_weight = sum(weights.values())
+    top_person = ranked[0][0] if ranked else None
+    dominance = (ranked[0][1] / total_weight) if ranked and total_weight > 0 else 0.0
+    top_confidence = (
+        confidence_weighted[top_person] / overlaps[top_person]
+        if top_person and overlaps.get(top_person, 0.0) > 0
+        else 0.0
+    )
+    significant = []
+    for person_id, weight in ranked:
+        share = weight / total_weight if total_weight > 0 else 0.0
+        if share >= 0.01 or overlaps.get(person_id, 0.0) >= 0.22:
+            significant.append(person_id)
+    if top_person and top_person not in significant:
+        significant.insert(0, top_person)
+    ordered_significant = [person_id for person_id in ("person_01", "person_02", "person_03") if person_id in significant]
+    evidence = [
+        {
+            "segment_id": segment.get("segment_id"),
+            "start": round(float(segment.get("start") or 0.0), 3),
+            "end": round(float(segment.get("end") or 0.0), 3),
+            "speaker_person_id": segment.get("speaker_person_id"),
+            "speaker_name": segment.get("speaker_name"),
+            "confidence": segment.get("confidence"),
+            "method": segment.get("method"),
+            "text": clean_text(str(segment.get("text") or ""))[:80],
+        }
+        for segment in window_segments[:8]
+    ]
+    return {
+        "source": str(REPORTS / "voice_speaker_attribution.json"),
+        "window_start_sec": round(start, 3),
+        "window_end_sec": round(end, 3),
+        "speaker_person_id": top_person,
+        "speaker_attribution_confidence": round(top_confidence, 3),
+        "dominance": round(dominance, 3),
+        "significant_speaker_person_ids": ordered_significant,
+        "speaker_weight_summary": [
+            {
+                "person_id": person_id,
+                "weighted_duration": round(weight, 3),
+                "overlap_sec": round(overlaps.get(person_id, 0.0), 3),
+                "share": round(weight / total_weight, 3) if total_weight > 0 else 0.0,
+            }
+            for person_id, weight in ranked
+        ],
+        "evidence_segments": evidence,
+    }
 
 
 def segment_in_content_window(segment: dict[str, Any], content_window: dict[str, Any]) -> bool:
@@ -190,14 +332,20 @@ def segment_id(segment: dict[str, Any], index: int) -> str:
 
 
 def topic_title(text: str, fallback_index: int) -> str:
-    if "ドメイン" in text or "専門" in text:
-        return "ドメインエキスパートの役割"
-    if "顧客" in text or "課題" in text:
-        return "顧客理解と課題発見"
+    if 1 <= fallback_index <= len(MAIN_SECTION_TITLES):
+        return MAIN_SECTION_TITLES[fallback_index - 1]["title"]
+    if "AI" in text:
+        return "AI時代の専門性"
+    if "キャリア" in text or "バックオフィス" in text:
+        return "バックオフィスの未来"
+    if "言語化" in text or "当たり前" in text:
+        return "当たり前を言語化する"
+    if "顧客" in text or "課題" in text or "ユーザー" in text:
+        return "実務知識を価値に変える"
     if "プロダクト" in text or "開発" in text:
-        return "プロダクトへの接続"
-    if "LayerX" in text or "事業" in text:
-        return "LayerXで生きる専門性"
+        return "開発に関わるきっかけ"
+    if "ドメイン" in text or "専門" in text:
+        return "ドメインエキスパートとは"
     return f"トピック {fallback_index}"
 
 
@@ -223,6 +371,7 @@ def build_topics(segments: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "start": round(cursor, 3),
                 "end": round(topic_end, 3),
                 "title": topic_title(text, topic_index),
+                "title_source": "project_main_section_titles.v1",
                 "summary": caption_text(text, max_chars=90) if text else "Transcript topic pending review.",
             }
         )
@@ -335,6 +484,11 @@ def build_semantic_marks(transcript: dict[str, Any], content_window: dict[str, A
         "status": "draft_from_transcript",
         "analysis_method": "project-local heuristic draft; requires editorial review before final render",
         "content_window_source": str(REPORTS / "content_window.json"),
+        "section_title_policy": {
+            "digest_title": project_video_title(),
+            "main_titles_source": "project_main_section_titles.v1",
+            "main_titles": MAIN_SECTION_TITLES,
+        },
         "highlight_candidates": highlights,
         "topics": topics,
         "entity_explainers": entity_terms,
@@ -629,6 +783,7 @@ def build_edit_plan(
     cursor = 0.0
     offsets = sync.get("offsets") if isinstance(sync.get("offsets"), dict) else {}
     activity_by_segment = load_speaker_activity()
+    voice_speaker_segments = load_voice_speaker_attribution()
     digest_qa = load_digest_qa_selection()
     main_caption_plan = load_main_caption_plan()
     if digest_qa:
@@ -969,11 +1124,11 @@ def build_edit_plan(
     )
     append_yano_intro("main_intro_yano_self", 524.94, 532.10, show_name=True, reason="Cut to Yano close-up exactly when he says he is Yano; keep his name visible throughout.")
     append_wide_intro("main_intro_wide_after_yano", 532.10, 535.54, "Briefly return to the three-person camera before introducing the two guests.")
-    append_two_person_intro("main_intro_two_guests_named", 535.54, 546.54, "person_02", show_labels=True, reason="At '根本さんと…', cut to the two-person split and show both names.")
+    append_wide_intro("main_intro_two_guests_named", 535.54, 546.54, "At '根本さんと…', keep all three visible because Yano is still the active speaker while introducing both guests.")
     append_yano_intro("main_intro_yano_explains_001", 546.54, 561.54, show_name=False, reason="Yano continues the setup; cut back to the speaking person.")
     append_wide_intro("main_intro_wide_context_001", 561.54, 576.54, "Wide context cut to keep pacing around 15 seconds.")
     append_yano_intro("main_intro_yano_explains_002", 576.54, 591.54, show_name=False, reason="Yano explains the domain expert role; show the speaker.")
-    append_two_person_intro("main_intro_two_guest_reaction", 591.54, 606.54, "person_02", show_labels=False, reason="Reaction cut to the introduced guests while keeping the 15-second rhythm.")
+    append_wide_intro("main_intro_two_guest_reaction", 591.54, 606.54, "Keep all three visible because Yano continues speaking through this setup beat.")
     append_yano_intro("main_intro_yano_prompt_selfintro", 606.54, 623.52, show_name=False, reason="Yano asks the guests to introduce themselves; show the speaker.")
 
     intro_ranges = [
@@ -1138,9 +1293,102 @@ def build_edit_plan(
             return person_id, confidence
         return None, confidence
 
-    def full_main_layout(index: int, caption: dict[str, Any] | None, master_in: float) -> tuple[str, float, dict[str, Any]]:
-        person_id, confidence = safe_caption_person(caption)
-        if person_id and confidence >= 0.82:
+    def full_main_layout(index: int, caption: dict[str, Any] | None, master_in: float, master_out: float) -> tuple[str, float, dict[str, Any]]:
+        speaker_window = summarize_voice_window(voice_speaker_segments, master_in, master_out)
+        significant_people = [
+            person_id
+            for person_id in speaker_window.get("significant_speaker_person_ids", [])
+            if person_id in PERSON_CAMERA
+        ]
+        person_id = str(speaker_window.get("speaker_person_id") or "")
+        try:
+            confidence = float(speaker_window.get("speaker_attribution_confidence") or 0.0)
+            dominance = float(speaker_window.get("dominance") or 0.0)
+        except (TypeError, ValueError):
+            confidence = 0.0
+            dominance = 0.0
+
+        caption_person_id, caption_confidence = safe_caption_person(caption)
+        if not significant_people and caption_person_id:
+            significant_people = [caption_person_id]
+            person_id = caption_person_id
+            confidence = caption_confidence
+            speaker_window["fallback_from_caption"] = True
+
+        if len(significant_people) >= 3:
+            people = ["person_01", "person_02", "person_03"]
+            return (
+                "group_wide",
+                master_in,
+                {
+                    "type": "split_grid" if index % 2 == 0 else "wide_group",
+                    "media_ids": [PERSON_CAMERA[item]["media_id"] for item in people],
+                    "grid_strategy": "three_person_vertical_split",
+                    "panel_order": people,
+                    "ensure_people_visible": people,
+                    "active_person_id": person_id if person_id in PERSON_CAMERA else None,
+                    "speaker_window_attribution": speaker_window,
+                    "selection_reason": "Voice attribution finds multiple speakers inside this cut window; keep every possible speaker visible.",
+                },
+            )
+
+        if len(significant_people) == 2:
+            people = ordered_people(significant_people[0], significant_people[1])
+            return (
+                "group_wide",
+                master_in,
+                {
+                    "type": "split_grid",
+                    "media_ids": [PERSON_CAMERA[item]["media_id"] for item in people],
+                    "grid_strategy": "two_person_vertical_split",
+                    "panel_order": people,
+                    "active_person_id": person_id if person_id in people else people[0],
+                    "speaker_person_id": person_id if person_id in people else people[0],
+                    "speaker_attribution_confidence": confidence,
+                    "speaker_window_attribution": speaker_window,
+                    "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
+                },
+            )
+
+        if person_id in PERSON_CAMERA and confidence >= 0.5 and dominance >= 0.58:
+            if index % 11 == 0:
+                people = ["person_01", "person_02", "person_03"]
+                return (
+                    "group_wide",
+                    master_in,
+                    {
+                        "type": "split_grid",
+                        "media_ids": [PERSON_CAMERA[item]["media_id"] for item in people],
+                        "grid_strategy": "three_person_vertical_split",
+                        "panel_order": people,
+                        "active_person_id": person_id,
+                        "speaker_person_id": person_id,
+                        "speaker_attribution_confidence": confidence,
+                        "speaker_window_attribution": speaker_window,
+                        "selection_reason": "Periodic three-person split keeps full-cast rhythm while the active speaker remains visible.",
+                    },
+                )
+            if index % 5 == 0:
+                if person_id == "person_01":
+                    people = ["person_01", "person_02"]
+                else:
+                    people = ["person_01", person_id]
+                media_ids = [PERSON_CAMERA[item]["media_id"] for item in people]
+                return (
+                    "group_wide",
+                    master_in,
+                    {
+                        "type": "split_grid",
+                        "media_ids": media_ids,
+                        "grid_strategy": "two_person_vertical_split",
+                        "panel_order": people,
+                        "active_person_id": person_id,
+                        "speaker_person_id": person_id,
+                        "speaker_attribution_confidence": confidence,
+                        "speaker_window_attribution": speaker_window,
+                        "selection_reason": "Periodic two-person split provides conversational context while keeping the speaker visible.",
+                    },
+                )
             media_id, media_start = synced_source_start_for_person(person_id, master_in, offsets)
             return (
                 media_id,
@@ -1152,27 +1400,8 @@ def build_edit_plan(
                     "crop_mode": "person_centered",
                     "speaker_person_id": person_id,
                     "speaker_attribution_confidence": confidence,
-                    "selection_reason": "High-confidence speaker attribution; show the speaking person close-up.",
-                },
-            )
-        if person_id and confidence >= 0.55:
-            if person_id == "person_01":
-                people = ["person_01", "person_02"]
-            else:
-                people = ["person_01", person_id]
-            media_ids = [PERSON_CAMERA[item]["media_id"] for item in people]
-            return (
-                "group_wide",
-                master_in,
-                {
-                    "type": "split_grid",
-                    "media_ids": media_ids,
-                    "grid_strategy": "two_person_vertical_split",
-                    "panel_order": people,
-                    "active_person_id": person_id,
-                    "speaker_person_id": person_id,
-                    "speaker_attribution_confidence": confidence,
-                    "selection_reason": "Medium-confidence speaker attribution; use a two-person split so the likely speaker remains visible with context.",
+                    "speaker_window_attribution": speaker_window,
+                    "selection_reason": "Speaker attribution is usable; prioritize a face-centered close-up of the speaking person.",
                 },
             )
         if index % 6 == 0:
@@ -1185,7 +1414,9 @@ def build_edit_plan(
                     "media_ids": [PERSON_CAMERA[item]["media_id"] for item in people],
                     "grid_strategy": "three_person_vertical_split",
                     "panel_order": people,
-                    "selection_reason": "Periodic three-person split keeps full-cast visual rhythm while preserving speaker visibility.",
+                    "ensure_people_visible": people,
+                    "speaker_window_attribution": speaker_window,
+                    "selection_reason": "Voice speaker attribution is not single-speaker reliable; use a three-person split to preserve speaker visibility.",
                 },
             )
         return (
@@ -1195,6 +1426,7 @@ def build_edit_plan(
                 "type": "wide_group",
                 "ensure_people_visible": ["person_01", "person_02", "person_03"],
                 "safe_margin": 0.06,
+                "speaker_window_attribution": speaker_window,
                 "selection_reason": "Speaker attribution is uncertain; use the three-person wide shot so the active speaker remains visible.",
             },
         )
@@ -1206,9 +1438,9 @@ def build_edit_plan(
         master_out = master_cursor + duration
         window_captions = captions_for_window(master_cursor, master_out)
         primary_caption = window_captions[0] if window_captions else None
-        selected_media, selected_source_start, layout = full_main_layout(full_index, primary_caption, master_cursor)
+        selected_media, selected_source_start, layout = full_main_layout(full_index, primary_caption, master_cursor, master_out)
         overlays = [
-            {"type": "topic_title", "position": "top_right", "topic_id": find_topic_id(topics, master_cursor), "style_id": "opening_digest_top_right_title"},
+            {"type": "topic_title", "position": "top_right", "topic_id": find_topic_id(topics, master_cursor + duration / 2.0), "style_id": "opening_digest_top_right_title"},
         ]
         caption_metadata = []
         for caption in window_captions:
@@ -1257,53 +1489,75 @@ def build_edit_plan(
         master_cursor += duration
         full_index += 1
 
-    closing_duration = max(0.01, float(CLOSING_OUTRO["source_end_sec"]) - float(CLOSING_OUTRO["source_start_sec"]))
     closing_media_ids = ["cam_person_01", "cam_person_02", "cam_person_03"]
-    timeline.append(
-        {
-            "event_id": "main_closing_thanks",
-            "timeline_start": round(cursor, 3),
-            "timeline_end": round(cursor + closing_duration, 3),
-            "type": "source_clip",
-            "section": "main",
-            "source": {
-                "media_id": CLOSING_OUTRO["source_media_id"],
-                "in": round(float(CLOSING_OUTRO["source_start_sec"]), 3),
-                "out": safe_source_out(media_duration(manifest, str(CLOSING_OUTRO["source_media_id"])), float(CLOSING_OUTRO["source_start_sec"]), closing_duration),
-            },
-            "reference_source": {
-                "media_id": CLOSING_OUTRO["source_media_id"],
-                "in": round(float(CLOSING_OUTRO["source_start_sec"]), 3),
-                "out": safe_source_out(media_duration(manifest, str(CLOSING_OUTRO["source_media_id"])), float(CLOSING_OUTRO["source_start_sec"]), closing_duration),
-            },
-            "sync_reference_master_sec": round(float(CLOSING_OUTRO["reference_master_start_sec"]), 3),
-            "layout": {
-                "type": "split_grid",
-                "media_ids": closing_media_ids,
-                "grid_strategy": "three_person_vertical_split",
-                "panel_order": ["person_01", "person_02", "person_03"],
-                "selection_reason": "The wide master recording ends mid-sentence, so the closing uses the synced individual cameras through the final thanks.",
-            },
-            "audio": {
-                "mode": "source",
-                "source_media_id": CLOSING_OUTRO["audio_media_id"],
-                "in": round(float(CLOSING_OUTRO["source_start_sec"]), 3),
-                "out": round(float(CLOSING_OUTRO["source_end_sec"]), 3),
-                "reason": "group_wide media ends before the closing thanks; use the clearest available closing camera audio.",
-            },
-            "overlays": [
-                {"type": "topic_title", "position": "top_right", "topic_id": find_topic_id(topics, full_main_end), "style_id": "opening_digest_top_right_title"}
-            ],
-            "main_caption_plan_items": [],
-            "closing_outro": {
-                "ends_at_thanks": True,
-                "source": "closing tail transcription from person-left camera",
-                "caption_evidence": CLOSING_OUTRO["caption_evidence"],
-            },
-            "reason": "Finish the full render at the natural closing thanks instead of ending at the truncated group_wide master tail.",
-        }
-    )
-    cursor += closing_duration
+    closing_cuts = sorted(CLOSING_OUTRO.get("filler_cut_ranges", []), key=lambda item: float(item.get("source_in") or 0.0))
+    closing_ranges: list[tuple[float, float, str]] = []
+    closing_cursor = float(CLOSING_OUTRO["source_start_sec"])
+    for cut in closing_cuts:
+        cut_in = max(closing_cursor, float(cut.get("source_in") or closing_cursor))
+        cut_out = min(float(CLOSING_OUTRO["source_end_sec"]), float(cut.get("source_out") or cut_in))
+        if cut_in - closing_cursor > 0.05:
+            closing_ranges.append((closing_cursor, cut_in, "closing_content"))
+        closing_cursor = max(closing_cursor, cut_out)
+    if float(CLOSING_OUTRO["source_end_sec"]) - closing_cursor > 0.05:
+        closing_ranges.append((closing_cursor, float(CLOSING_OUTRO["source_end_sec"]), "closing_content"))
+
+    def closing_master_time(source_in: float) -> float:
+        try:
+            camera2_offset = float(offsets.get("camera2", -3.332479))
+        except (TypeError, ValueError):
+            camera2_offset = -3.332479
+        return source_in - camera2_offset
+
+    for closing_index, (source_in, source_out, range_kind) in enumerate(closing_ranges, start=1):
+        closing_duration = max(0.01, source_out - source_in)
+        timeline.append(
+            {
+                "event_id": f"main_closing_thanks_{closing_index:02d}",
+                "timeline_start": round(cursor, 3),
+                "timeline_end": round(cursor + closing_duration, 3),
+                "type": "source_clip",
+                "section": "main",
+                "source": {
+                    "media_id": CLOSING_OUTRO["source_media_id"],
+                    "in": round(source_in, 3),
+                    "out": round(source_out, 3),
+                },
+                "reference_source": {
+                    "media_id": CLOSING_OUTRO["source_media_id"],
+                    "in": round(source_in, 3),
+                    "out": round(source_out, 3),
+                },
+                "sync_reference_master_sec": round(closing_master_time(source_in), 3),
+                "layout": {
+                    "type": "split_grid",
+                    "media_ids": closing_media_ids,
+                    "grid_strategy": "three_person_closing_wide_equivalent",
+                    "panel_order": ["person_01", "person_02", "person_03"],
+                    "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                    "selection_reason": "Keep the final 30 seconds on a three-person wide-equivalent view. The master wide camera is unavailable for the closing tail, so synced individual cameras are used together.",
+                },
+                "audio": {
+                    "mode": "source",
+                    "source_media_id": CLOSING_OUTRO["audio_media_id"],
+                    "in": round(source_in, 3),
+                    "out": round(source_out, 3),
+                    "reason": "Use one continuous left-camera audio source for the closing, with the filler/stumble cut removed.",
+                },
+                "overlays": [
+                    {"type": "topic_title", "position": "top_right", "topic_id": find_topic_id(topics, full_main_end), "style_id": "opening_digest_top_right_title"}
+                ],
+                "main_caption_plan_items": [],
+                "closing_outro": {
+                    "ends_at_thanks": closing_index == len(closing_ranges),
+                    "source": "closing tail transcription from person-left camera",
+                    "caption_evidence": CLOSING_OUTRO["caption_evidence"],
+                    "removed_filler_ranges": CLOSING_OUTRO.get("filler_cut_ranges", []),
+                },
+                "reason": "Finish the full render at the natural closing thanks; remove the filler around '概要欄にですね' and keep all three people visible.",
+            }
+        )
+        cursor += closing_duration
 
     def attach_main_caption_plan_items() -> dict[str, Any]:
         attached: list[dict[str, Any]] = []
@@ -1464,6 +1718,7 @@ def build_edit_plan(
         "sync_map_source": str(REPORTS / "sync_map.json"),
         "content_window_source": str(REPORTS / "content_window.json"),
         "speaker_activity_source": str(REPORTS / "speaker_activity_analysis.json"),
+        "voice_speaker_attribution_source": str(REPORTS / "voice_speaker_attribution.json"),
         "content_window": content_window.get("usable_master_range"),
         "digest_pacing": {
             "policy": "Keep only opening digest ranges that have captioned speech; cut non-captioned pauses and reconnect with short hard cuts.",
@@ -1493,9 +1748,27 @@ def main() -> None:
     content_window = load_content_window()
     semantic = build_semantic_marks(transcript, content_window)
     edit_plan = build_edit_plan(manifest, semantic, sync, sync_map, content_window)
+    section_titles = {
+        "schema_version": "section_titles.v1",
+        "project_id": "layer-x-domain-expert",
+        "generated_at": now_iso(),
+        "digest": {
+            "title": project_video_title(),
+            "usage": "Opening digest top-right title. Keep constant throughout digest.",
+        },
+        "main": [
+            {
+                **item,
+                "topic_id": f"topic_{int(item['section_index']):03d}",
+                "usage": "Main section top-right title. Change when the matching topic window begins.",
+            }
+            for item in MAIN_SECTION_TITLES
+        ],
+    }
     write_json(REPORTS / "semantic_marks.json", semantic)
+    write_json(REPORTS / "section_titles.json", section_titles)
     write_json(REPORTS / "edit_plan.json", edit_plan)
-    print(json.dumps({"semantic_marks": str(REPORTS / "semantic_marks.json"), "edit_plan": str(REPORTS / "edit_plan.json"), "edit_status": edit_plan["status"]}, ensure_ascii=False, indent=2))
+    print(json.dumps({"semantic_marks": str(REPORTS / "semantic_marks.json"), "section_titles": str(REPORTS / "section_titles.json"), "edit_plan": str(REPORTS / "edit_plan.json"), "edit_status": edit_plan["status"]}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

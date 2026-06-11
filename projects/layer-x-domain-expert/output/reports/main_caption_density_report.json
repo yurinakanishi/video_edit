@@ -1,27 +1,18 @@
 {
-  "schema_version": "main_caption_density_report.v2",
+  "schema_version": "main_caption_density_report.v3",
   "project_id": "layer-x-domain-expert",
   "source": "output/reports/edit_plan.json + output/reports/main_caption_plan.json",
   "main_timeline_start_sec": 153.748,
   "main_timeline_end_sec": 2661.093,
   "main_duration_sec": 2507.345,
-  "main_caption_plan_candidates": 106,
-  "attached_caption_candidates": 102,
+  "main_caption_plan_candidates": 119,
+  "attached_caption_candidates": 115,
   "skipped_caption_candidates": 4,
-  "render_caption_overlay_count_after_two_line_splitting": 134,
-  "unique_display_caption_ids": 102,
-  "average_start_gap_sec": 17.966,
-  "max_actionable_start_gap_sec": 45.0,
+  "render_caption_overlay_count_after_two_line_splitting": 155,
+  "unique_display_caption_ids": 115,
+  "average_start_gap_sec": 15.516,
+  "max_actionable_start_gap_sec": 36.33,
   "actionable_gaps_over_30_sec": [
-    {
-      "gap_sec": 34.397,
-      "from_caption_id": "main_caption_auto_001_part03",
-      "from_time": 412.711,
-      "to_caption_id": "main_caption_060",
-      "to_time": 447.108,
-      "from_text": "マーケティングみたいなうちの製品を",
-      "to_text": "最初はヒアリングから始まった"
-    },
     {
       "gap_sec": 30.01,
       "from_caption_id": "main_caption_005",
@@ -30,15 +21,6 @@
       "to_time": 545.108,
       "from_text": "決算期に終電で帰る状況は不健全だと思った",
       "to_text": "バクラクには「"
-    },
-    {
-      "gap_sec": 31.251,
-      "from_caption_id": "main_caption_006_part02",
-      "from_time": 545.837,
-      "to_caption_id": "main_caption_007",
-      "to_time": 577.088,
-      "from_text": "こうできたらいいのに」が少なかった",
-      "to_text": "LayerXに惹かれた理由は開発に関われること"
     },
     {
       "gap_sec": 31.95,
@@ -59,42 +41,6 @@
       "to_text": "当たり前の業務にも法律や会社ルールの背景がある"
     },
     {
-      "gap_sec": 33.54,
-      "from_caption_id": "main_caption_039",
-      "from_time": 1298.568,
-      "to_caption_id": "main_caption_auto_006_part01",
-      "to_time": 1332.108,
-      "from_text": "古い慣習を流さず一つひとつ調べることが大事",
-      "to_text": "特にいわゆるドメインエキスパート"
-    },
-    {
-      "gap_sec": 32.477,
-      "from_caption_id": "main_caption_049_part02",
-      "from_time": 1539.631,
-      "to_caption_id": "main_caption_auto_008_part01",
-      "to_time": 1572.108,
-      "from_text": "「なくていい」と言えることも価値",
-      "to_text": "そこをあえて何か別にやらなくていいですよって"
-    },
-    {
-      "gap_sec": 45.0,
-      "from_caption_id": "main_caption_074",
-      "from_time": 1917.108,
-      "to_caption_id": "main_caption_075_part01",
-      "to_time": 1962.108,
-      "from_text": "PDMとしてまずは結果を出していきたい",
-      "to_text": "ドメインがない領域でも"
-    },
-    {
-      "gap_sec": 30.7,
-      "from_caption_id": "main_caption_080",
-      "from_time": 2127.108,
-      "to_caption_id": "main_caption_081",
-      "to_time": 2157.808,
-      "from_text": "作業量を減らし確認時間を短縮する",
-      "to_text": "自分の経験がプロダクトに活かされる瞬間がやりがい"
-    },
-    {
       "gap_sec": 36.33,
       "from_caption_id": "main_caption_auto_020",
       "from_time": 2210.778,
@@ -102,15 +48,6 @@
       "to_time": 2247.108,
       "from_text": "実際付加価値のある仕事をやるって",
       "to_text": "AIで作業者が分析できるようになる"
-    },
-    {
-      "gap_sec": 45.0,
-      "from_caption_id": "main_caption_086",
-      "from_time": 2367.108,
-      "to_caption_id": "main_caption_087",
-      "to_time": 2412.108,
-      "from_text": "属人化は今後大きく変わっていく可能性がある",
-      "to_text": "働き方や時間の使い方そのものが変わっていく"
     }
   ],
   "intentional_no_caption_gaps": [
@@ -151,5 +88,5 @@
       "caption_start_sec": 709.0
     }
   ],
-  "finding": "Captions.md candidates are preserved and transcript density backfill now fills sparse talk sections. The remaining largest gap is the intentional no-caption self-introduction/profile-card stretch."
+  "finding": "Captions.md candidates are preserved and transcript density backfill fills sparse talk sections; the largest remaining gap is the intentional no-caption self-introduction/profile-card stretch."
 }

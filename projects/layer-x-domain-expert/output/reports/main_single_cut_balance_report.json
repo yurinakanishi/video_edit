@@ -1,0 +1,571 @@
+{
+  "schema_version": "main_single_cut_balance_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "source": "output/reports/edit_plan.json",
+  "all_main_layout_counts": {
+    "single_cam_person_01": 15,
+    "wide_group": 58,
+    "split_2": 16,
+    "single_cam_person_02": 28,
+    "single_cam_person_03": 24,
+    "split_3": 23
+  },
+  "main_full_layout_counts": {
+    "wide_group": 55,
+    "single_cam_person_01": 10,
+    "split_2": 14,
+    "split_3": 22,
+    "single_cam_person_02": 27,
+    "single_cam_person_03": 23
+  },
+  "single_closeups_by_person": {
+    "person_01": 15,
+    "person_02": 28,
+    "person_03": 24
+  },
+  "single_closeup_count_in_main_full": 60,
+  "single_closeup_crop_mode": "person_centered",
+  "render_crop_source": "render_test_project1_style_preview.py SPLIT_FACE_PROFILES / single_person_crop_filter",
+  "single_events": [
+    {
+      "event_id": "main_full_002",
+      "timeline_start": 372.108,
+      "timeline_end": 387.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_003",
+      "timeline_start": 387.108,
+      "timeline_end": 402.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.9,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_006",
+      "timeline_start": 432.108,
+      "timeline_end": 447.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_007",
+      "timeline_start": 447.108,
+      "timeline_end": 462.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_009",
+      "timeline_start": 477.108,
+      "timeline_end": 492.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_013",
+      "timeline_start": 537.108,
+      "timeline_end": 552.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_016",
+      "timeline_start": 582.108,
+      "timeline_end": 597.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_018",
+      "timeline_start": 612.108,
+      "timeline_end": 627.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_019",
+      "timeline_start": 627.108,
+      "timeline_end": 642.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_021",
+      "timeline_start": 657.108,
+      "timeline_end": 672.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_023",
+      "timeline_start": 687.108,
+      "timeline_end": 702.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_024",
+      "timeline_start": 702.108,
+      "timeline_end": 717.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_026",
+      "timeline_start": 732.108,
+      "timeline_end": 747.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_027",
+      "timeline_start": 747.108,
+      "timeline_end": 762.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_029",
+      "timeline_start": 777.108,
+      "timeline_end": 792.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_031",
+      "timeline_start": 807.108,
+      "timeline_end": 822.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_032",
+      "timeline_start": 822.108,
+      "timeline_end": 837.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_036",
+      "timeline_start": 882.108,
+      "timeline_end": 897.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_037",
+      "timeline_start": 897.108,
+      "timeline_end": 912.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_038",
+      "timeline_start": 912.108,
+      "timeline_end": 927.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_039",
+      "timeline_start": 927.108,
+      "timeline_end": 942.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_042",
+      "timeline_start": 972.108,
+      "timeline_end": 987.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_043",
+      "timeline_start": 987.108,
+      "timeline_end": 1002.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_046",
+      "timeline_start": 1032.108,
+      "timeline_end": 1047.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_049",
+      "timeline_start": 1077.108,
+      "timeline_end": 1092.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_052",
+      "timeline_start": 1122.108,
+      "timeline_end": 1137.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.72,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_057",
+      "timeline_start": 1197.108,
+      "timeline_end": 1212.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_059",
+      "timeline_start": 1227.108,
+      "timeline_end": 1242.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_061",
+      "timeline_start": 1257.108,
+      "timeline_end": 1272.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_062",
+      "timeline_start": 1272.108,
+      "timeline_end": 1287.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_063",
+      "timeline_start": 1287.108,
+      "timeline_end": 1302.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_067",
+      "timeline_start": 1347.108,
+      "timeline_end": 1362.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_069",
+      "timeline_start": 1377.108,
+      "timeline_end": 1392.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_071",
+      "timeline_start": 1407.108,
+      "timeline_end": 1422.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_072",
+      "timeline_start": 1422.108,
+      "timeline_end": 1437.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_073",
+      "timeline_start": 1437.108,
+      "timeline_end": 1452.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_079",
+      "timeline_start": 1527.108,
+      "timeline_end": 1542.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_083",
+      "timeline_start": 1587.108,
+      "timeline_end": 1602.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.62,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_094",
+      "timeline_start": 1752.108,
+      "timeline_end": 1767.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.72,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_097",
+      "timeline_start": 1797.108,
+      "timeline_end": 1812.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.62,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_101",
+      "timeline_start": 1857.108,
+      "timeline_end": 1872.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.62,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_103",
+      "timeline_start": 1887.108,
+      "timeline_end": 1902.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.62,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_104",
+      "timeline_start": 1902.108,
+      "timeline_end": 1917.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_107",
+      "timeline_start": 1947.108,
+      "timeline_end": 1962.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_109",
+      "timeline_start": 1977.108,
+      "timeline_end": 1992.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_111",
+      "timeline_start": 2007.108,
+      "timeline_end": 2022.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_113",
+      "timeline_start": 2037.108,
+      "timeline_end": 2052.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_118",
+      "timeline_start": 2112.108,
+      "timeline_end": 2127.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_122",
+      "timeline_start": 2172.108,
+      "timeline_end": 2187.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_126",
+      "timeline_start": 2232.108,
+      "timeline_end": 2247.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_128",
+      "timeline_start": 2262.108,
+      "timeline_end": 2277.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_131",
+      "timeline_start": 2307.108,
+      "timeline_end": 2322.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_133",
+      "timeline_start": 2337.108,
+      "timeline_end": 2352.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.727,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_134",
+      "timeline_start": 2352.108,
+      "timeline_end": 2367.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_137",
+      "timeline_start": 2397.108,
+      "timeline_end": 2412.108,
+      "source_media_id": "cam_person_03",
+      "target_person_id": "person_03",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_139",
+      "timeline_start": 2427.108,
+      "timeline_end": 2442.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.72,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_142",
+      "timeline_start": 2472.108,
+      "timeline_end": 2487.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_146",
+      "timeline_start": 2532.108,
+      "timeline_end": 2547.108,
+      "source_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_147",
+      "timeline_start": 2547.108,
+      "timeline_end": 2562.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.62,
+      "crop_mode": "person_centered"
+    },
+    {
+      "event_id": "main_full_149",
+      "timeline_start": 2577.108,
+      "timeline_end": 2592.108,
+      "source_media_id": "cam_person_02",
+      "target_person_id": "person_02",
+      "speaker_attribution_confidence": 0.78,
+      "crop_mode": "person_centered"
+    }
+  ]
+}

@@ -1,0 +1,1202 @@
+{
+  "schema_version": "main_caption_semantic_alignment_repair.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T17:43:37+09:00",
+  "root_cause": [
+    "Some captions inherited source windows from weak keyword/time-hint matching that landed on adjacent transcript text.",
+    "The previous source-alignment audit only checked partial overlap, so it missed captions whose true phrase was outside or across the event boundary."
+  ],
+  "single_source_of_truth": "edit_plan.json timeline[].overlays[type=caption]",
+  "repair_policy": "Only displayed captions embedded in edit_plan.json with search_keys were moved, and only when a nearby transcript window had a clearly better key match.",
+  "repair_count": 54,
+  "repairs": [
+    {
+      "caption_id": "main_caption_004",
+      "text": "バックオフィスの生産性に強い問題意識があった",
+      "old_event_id": "main_full_010",
+      "new_event_id": "main_full_011",
+      "old_source_window_sec": [
+        869.44,
+        873.24
+      ],
+      "new_source_window_sec": [
+        873.24,
+        883.54
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        0.74,
+        11.04
+      ],
+      "matched_text": "というよりは働いていく中で経理の生産性に対してすごい問題意識を感じることが多くて"
+    },
+    {
+      "caption_id": "main_caption_005",
+      "text": "決算期に終電で帰る状況は不健全だと思った",
+      "old_event_id": "main_full_011",
+      "new_event_id": "main_full_011",
+      "old_source_window_sec": [
+        880.12,
+        883.54
+      ],
+      "new_source_window_sec": [
+        883.54,
+        895.98
+      ],
+      "old_score": 2.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        11.04,
+        15.0
+      ],
+      "matched_text": "やっぱり決算になると毎日夜遅くまで持って終電で帰るみたいなそれが当たり前みたいな結構会社さんによってはそんな感じなんですよねそれすごい本当不健全だなと思うんです"
+    },
+    {
+      "caption_id": "main_caption_007",
+      "text": "LayerXに惹かれた理由は開発に関われること",
+      "old_event_id": "main_full_015",
+      "new_event_id": "main_full_015",
+      "old_source_window_sec": [
+        942.48,
+        944.78
+      ],
+      "new_source_window_sec": [
+        942.48,
+        949.28
+      ],
+      "old_score": 0.5,
+      "new_score": 1.5,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        9.98,
+        15.0
+      ],
+      "matched_text": "もう経理だったら僕前職でいいと思ってたんですよ前職は全然楽しかったんででも開発って言われて"
+    },
+    {
+      "caption_id": "main_caption_008",
+      "text": "開発は自分とは関係ないものだった",
+      "old_event_id": "main_full_016",
+      "new_event_id": "main_full_017",
+      "old_source_window_sec": [
+        960.0,
+        963.24
+      ],
+      "new_source_window_sec": [
+        963.24,
+        966.86
+      ],
+      "old_score": 1.0,
+      "new_score": 2.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        0.74,
+        4.36
+      ],
+      "matched_text": "全然開発を探してないです自分と関係ないことだと思ってたんです"
+    },
+    {
+      "caption_id": "main_caption_009",
+      "text": "経理一本のキャリアに迷ったタイミングだった",
+      "old_event_id": "main_full_018",
+      "new_event_id": "main_full_018",
+      "old_source_window_sec": [
+        984.16,
+        987.52
+      ],
+      "new_source_window_sec": [
+        987.52,
+        993.22
+      ],
+      "old_score": 1.0,
+      "new_score": 2.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        10.02,
+        15.0
+      ],
+      "matched_text": "なかなか経理一本だと厳しいじゃないですかどうしようかなって思ってたタイミングではありました"
+    },
+    {
+      "caption_id": "main_caption_011",
+      "text": "LayerXのカルチャーをベンチマークしていた",
+      "old_event_id": "main_full_023",
+      "new_event_id": "main_full_023",
+      "old_source_window_sec": [
+        1054.28,
+        1057.28
+      ],
+      "new_source_window_sec": [
+        1054.28,
+        1070.28
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        1.78,
+        15.0
+      ],
+      "matched_text": "カルチャーの部分でベンチマークをするすごく個人的にLayerXがすごい好きなんだと思うんですよなのですごく人事企画として職種人事企画だとするにあたってベンチマークしている会社さんだとずっと認識はしていて"
+    },
+    {
+      "caption_id": "main_caption_014",
+      "text": "勤怠づくりに興味を持ってLayerXに来た",
+      "old_event_id": "main_full_026",
+      "new_event_id": "main_full_027",
+      "old_source_window_sec": [
+        1105.28,
+        1115.28
+      ],
+      "new_source_window_sec": [
+        1115.28,
+        1126.28
+      ],
+      "old_score": 0.5,
+      "new_score": 1.5,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        2.78,
+        13.78
+      ],
+      "matched_text": "どんなものができるんだろうと一気に興味を持ち込んで全然本当に転職を考えていなかったのでじゃあ作りますと言ってレイヤーXに来た感じですねそこで勤怠を作ろうとしていた感じですね"
+    },
+    {
+      "caption_id": "main_caption_015",
+      "text": "開発に参画できる壁打ち相手として関われる",
+      "old_event_id": "main_full_029",
+      "new_event_id": "main_full_029",
+      "old_source_window_sec": [
+        1143.28,
+        1148.28
+      ],
+      "new_source_window_sec": [
+        1143.28,
+        1155.28
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        0.78,
+        12.78
+      ],
+      "matched_text": "ただ開発に参画できるというかまさか壁打ち相手としてさせていただくことがあると思うんですけどそのあたりもこっちでお貸しいただけますかみたいな誘い方をしていただいてこんな面白い状況があると私は思いました"
+    },
+    {
+      "caption_id": "main_caption_016",
+      "text": "PDMはプロダクト成長のために何でもやる人",
+      "old_event_id": "main_full_036",
+      "new_event_id": "main_full_036",
+      "old_source_window_sec": [
+        1251.52,
+        1254.56
+      ],
+      "new_source_window_sec": [
+        1254.56,
+        1262.4
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        7.06,
+        14.9
+      ],
+      "matched_text": "プロダクトマネージャーってコードを書けないといけないと思ってたんですよ見てると結構プロダクトの成長のために何でもやる人です"
+    },
+    {
+      "caption_id": "main_caption_018",
+      "text": "実務知識を活かせるなら挑戦できる",
+      "old_event_id": "main_full_038",
+      "new_event_id": "main_full_038",
+      "old_source_window_sec": [
+        1277.16,
+        1279.16
+      ],
+      "new_source_window_sec": [
+        1279.16,
+        1293.16
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        1.66,
+        15.0
+      ],
+      "matched_text": "コードを書けって言われたら多分そこで開発をする職種ですって言われたら多分受けられないんだと思います自分の知識を活かしていろんなことをやればいいんだったらもともと結構フットワークは軽いだと思っていたので"
+    },
+    {
+      "caption_id": "main_caption_020",
+      "text": "共通点はドメイン知識で開発に関与すること",
+      "old_event_id": "main_full_040",
+      "new_event_id": "main_full_041",
+      "old_source_window_sec": [
+        1317.16,
+        1321.16
+      ],
+      "new_source_window_sec": [
+        1330.28,
+        1340.04
+      ],
+      "old_score": 0.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        7.78,
+        15.0
+      ],
+      "matched_text": "感じだと思うんですけど共通点としてはプロダクト開発にドメインの知識を持って関与してるっていうところがお二人共通してるかな"
+    },
+    {
+      "caption_id": "main_caption_021",
+      "text": "労務を主務にしながら仕様検討にも深く関わる",
+      "old_event_id": "main_full_042",
+      "new_event_id": "main_full_042",
+      "old_source_window_sec": [
+        1344.92,
+        1347.92
+      ],
+      "new_source_window_sec": [
+        1347.92,
+        1353.92
+      ],
+      "old_score": 1.0,
+      "new_score": 2.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        10.42,
+        15.0
+      ],
+      "matched_text": "結構半分ぐらいかもしれないですね仕様の検討とかも入れていただいて"
+    },
+    {
+      "caption_id": "main_caption_022",
+      "text": "実務のモヤモヤをプロダクトに落とし込める",
+      "old_event_id": "main_full_043",
+      "new_event_id": "main_full_043",
+      "old_source_window_sec": [
+        1356.92,
+        1359.92
+      ],
+      "new_source_window_sec": [
+        1362.92,
+        1380.92
+      ],
+      "old_score": 0.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        10.42,
+        15.0
+      ],
+      "matched_text": "実務で感じてきたんですよなんで?みたいなもやもやみたいなのがそれをちゃんと持った上で落とし込んでもらえるっていうんですね文句言うとすぐ次に楽しくなってきちゃうねこっちからするとモヤモヤみたいなのが出てくるんで外に入れちゃう"
+    },
+    {
+      "caption_id": "main_caption_023",
+      "text": "違和感を出すことでプロダクトが良くなる",
+      "old_event_id": "main_full_044",
+      "new_event_id": "main_full_044",
+      "old_source_window_sec": [
+        1368.92,
+        1371.92
+      ],
+      "new_source_window_sec": [
+        1371.92,
+        1377.92
+      ],
+      "old_score": 1.0,
+      "new_score": 2.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        4.42,
+        10.42
+      ],
+      "matched_text": "文句言うとすぐ次に楽しくなってきちゃうねこっちからすると"
+    },
+    {
+      "caption_id": "main_caption_024",
+      "text": "フィードバックを良いものとして歓迎する文化がある",
+      "old_event_id": "main_full_045",
+      "new_event_id": "main_full_045",
+      "old_source_window_sec": [
+        1387.92,
+        1390.92
+      ],
+      "new_source_window_sec": [
+        1390.92,
+        1394.92
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_01",
+      "local_timing": [
+        8.42,
+        12.42
+      ],
+      "matched_text": "フィードバックを良しとするというか喜んでする側も受ける側も"
+    },
+    {
+      "caption_id": "main_caption_025",
+      "text": "違和感を言うだけでどんどん良いものになる",
+      "old_event_id": "main_full_046",
+      "new_event_id": "main_full_046",
+      "old_source_window_sec": [
+        1405.36,
+        1408.32
+      ],
+      "new_source_window_sec": [
+        1408.32,
+        1416.08
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        10.82,
+        15.0
+      ],
+      "matched_text": "エンジニアの方も自分から仕様を考えてくださるのでとりあえず違和感を持ったら言うといいものになっていくっていうのが"
+    },
+    {
+      "caption_id": "main_caption_028",
+      "text": "一番大変だったのは当たり前を言語化すること",
+      "old_event_id": "main_full_055",
+      "new_event_id": "main_full_054",
+      "old_source_window_sec": [
+        1535.3,
+        1538.62
+      ],
+      "new_source_window_sec": [
+        1528.36,
+        1538.62
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        10.86,
+        15.0
+      ],
+      "matched_text": "それが当たり前慣行になっているとかをエンジニアの方とかPDMの方になんでそうするんですかって聞かれた時にものすごくこれを言語化するのに大変だった"
+    },
+    {
+      "caption_id": "main_caption_031",
+      "text": "当たり前の業務にも法律や会社ルールの背景がある",
+      "old_event_id": "main_full_057",
+      "new_event_id": "main_full_057",
+      "old_source_window_sec": [
+        1566.62,
+        1571.12
+      ],
+      "new_source_window_sec": [
+        1571.12,
+        1588.62
+      ],
+      "old_score": 2.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        8.62,
+        15.0
+      ],
+      "matched_text": "確かにこの辺も例えば業務として当たり前のことも意外と背景にこういう法律とか理由があるからとか会社のルールがあるからとか結構そういう裏側の事情とかもあるじゃないですか"
+    },
+    {
+      "caption_id": "main_caption_032",
+      "text": "何でも知っていそうに見える期待の高さが難しい",
+      "old_event_id": "main_full_059",
+      "new_event_id": "main_full_059",
+      "old_source_window_sec": [
+        1595.62,
+        1601.22
+      ],
+      "new_source_window_sec": [
+        1595.62,
+        1611.94
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_01",
+      "local_timing": [
+        3.12,
+        15.0
+      ],
+      "matched_text": "結構なんかドメインエキスパートって言うと何でも知ってそうな感じがあると思っててこの辺へのハードルの高さというか要は自分が知らないことも知ってるんじゃないかと思われることの難しさとか抵抗感っていうのもありましたね"
+    },
+    {
+      "caption_id": "main_caption_034",
+      "text": "LayerXのエンジニアはドメインをものすごく調べている",
+      "old_event_id": "main_full_060",
+      "new_event_id": "main_full_060",
+      "old_source_window_sec": [
+        1611.94,
+        1619.16
+      ],
+      "new_source_window_sec": [
+        1619.16,
+        1627.72
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        11.66,
+        15.0
+      ],
+      "matched_text": "本当におっしゃっていたけどもうすごい皆さんドメインの方めっちゃ調べてるんですよ正直全然僕より詳しいという意味はあるんでしょうけどね"
+    },
+    {
+      "caption_id": "main_caption_035",
+      "text": "専門家が一方的に教えるのではなく建設的に議論する",
+      "old_event_id": "main_full_061",
+      "new_event_id": "main_full_061",
+      "old_source_window_sec": [
+        1630.18,
+        1633.82
+      ],
+      "new_source_window_sec": [
+        1630.18,
+        1638.76
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        7.68,
+        15.0
+      ],
+      "matched_text": "そんな本当に違うとかタイミングよく教えてくれますしそこが建設的な議論に何度もあってそこに対して怖いというのはないです"
+    },
+    {
+      "caption_id": "main_caption_036",
+      "text": "「なんで？」を逃がさないことが健全なプレッシャーになる",
+      "old_event_id": "main_full_062",
+      "new_event_id": "main_full_062",
+      "old_source_window_sec": [
+        1638.76,
+        1641.88
+      ],
+      "new_source_window_sec": [
+        1641.88,
+        1647.62
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        4.38,
+        10.12
+      ],
+      "matched_text": "なんでなんですかを絶対に逃がしてくれないそこのある意味健全なプレッシャーというのが来た"
+    },
+    {
+      "caption_id": "main_caption_038",
+      "text": "当たり前が開発の議論を通じて磨かれていく",
+      "old_event_id": "main_full_063",
+      "new_event_id": "main_full_063",
+      "old_source_window_sec": [
+        1653.6,
+        1654.76
+      ],
+      "new_source_window_sec": [
+        1654.76,
+        1661.78
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        2.26,
+        9.28
+      ],
+      "matched_text": "自分がこれまで当たり前だと思ったものがある種そういう過程で結構磨かれて成長されて"
+    },
+    {
+      "caption_id": "main_caption_039",
+      "text": "古い慣習を流さず一つひとつ調べることが大事",
+      "old_event_id": "main_full_063",
+      "new_event_id": "main_full_063",
+      "old_source_window_sec": [
+        1663.72,
+        1665.04
+      ],
+      "new_source_window_sec": [
+        1665.04,
+        1672.4
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_01",
+      "local_timing": [
+        12.54,
+        15.0
+      ],
+      "matched_text": "法律も何十年前の名残みたいなのが結構あるじゃないですかそれを慣習で流しちゃうというよりは"
+    },
+    {
+      "caption_id": "main_caption_041",
+      "text": "労務領域では自分の目で確かめたい感覚が強い",
+      "old_event_id": "main_full_067",
+      "new_event_id": "main_full_068",
+      "old_source_window_sec": [
+        1718.5,
+        1734.5
+      ],
+      "new_source_window_sec": [
+        1734.5,
+        1749.5
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_01",
+      "local_timing": [
+        7.0,
+        15.0
+      ],
+      "matched_text": "ただ労務経験者の方ってミスっちゃいけない領域があってやっぱり結構堅い方多いじゃないですか自分の目で確かめたいその感覚をちゃんと伝えるようにして"
+    },
+    {
+      "caption_id": "main_caption_042",
+      "text": "不安が残ると結局ユーザーは自分で調べてしまう",
+      "old_event_id": "main_full_069",
+      "new_event_id": "main_full_069",
+      "old_source_window_sec": [
+        1742.5,
+        1749.5
+      ],
+      "new_source_window_sec": [
+        1749.5,
+        1755.5
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        7.0,
+        13.0
+      ],
+      "matched_text": "全部これ自動でやってくれますはいいんですけど多分使ってる側は心配になって自分で調べるようになる"
+    },
+    {
+      "caption_id": "main_caption_043",
+      "text": "ユーザーが不安なら自動化しても使われない",
+      "old_event_id": "main_full_069",
+      "new_event_id": "main_full_069",
+      "old_source_window_sec": [
+        1752.5,
+        1755.5
+      ],
+      "new_source_window_sec": [
+        1755.5,
+        1761.5
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        13.0,
+        15.0
+      ],
+      "matched_text": "自分で使われない機能になるこれをとにかく避けるためにドメインエキスパートの実務の経験者"
+    },
+    {
+      "caption_id": "main_caption_044",
+      "text": "機能で何を実現したいのかを体験込みで伝える",
+      "old_event_id": "main_full_071",
+      "new_event_id": "main_full_071",
+      "old_source_window_sec": [
+        1781.5,
+        1784.5
+      ],
+      "new_source_window_sec": [
+        1781.5,
+        1790.5
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        9.0,
+        15.0
+      ],
+      "matched_text": "この機能で何が実現したくてユーザーの人にどうなってほしいのかっていうのを自分の体験込みで伝えるっていうのは結構意識してる"
+    },
+    {
+      "caption_id": "main_caption_045",
+      "text": "全部やるとスピードも落ち画面も分かりにくくなる",
+      "old_event_id": "main_full_072",
+      "new_event_id": "main_full_072",
+      "old_source_window_sec": [
+        1790.5,
+        1791.5
+      ],
+      "new_source_window_sec": [
+        1793.5,
+        1803.76
+      ],
+      "old_score": 0.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        6.0,
+        15.0
+      ],
+      "matched_text": "あれもしたいこれもしたいいっぱい出てくるじゃないですかそうですねそれ全部やってるとやっぱスピードも遅くなるし結局なんか画面見たけどこれどっから触ればいいかみたいなこととかにもなるんで"
+    },
+    {
+      "caption_id": "main_caption_046",
+      "text": "コア以外は落とす判断も必要",
+      "old_event_id": "main_full_073",
+      "new_event_id": "main_full_073",
+      "old_source_window_sec": [
+        1803.76,
+        1806.28
+      ],
+      "new_source_window_sec": [
+        1803.76,
+        1811.94
+      ],
+      "old_score": 3.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        1.26,
+        9.44
+      ],
+      "matched_text": "まずもうコアとしてはこれをやりたいですと逆に言うとそれ以外のところは多少ちょっと落としたりとかそういう意思決定も全然あり得るようなみたいな"
+    },
+    {
+      "caption_id": "main_caption_047",
+      "text": "ルール調査だけでなくビジョンが必要になる",
+      "old_event_id": "main_full_075",
+      "new_event_id": "main_full_076",
+      "old_source_window_sec": [
+        1845.9,
+        1848.54
+      ],
+      "new_source_window_sec": [
+        1848.54,
+        1866.46
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        1.04,
+        15.0
+      ],
+      "matched_text": "ルールを調べて機能を作るんだったらエンジニアの人はできると思うんですよいらないいらないじゃないですかだからそうじゃなくてこれからのこの機能でこういうことが実現したいんだっていうビジョン的なものを描く逆に言うとそれぐらいしかないんじゃないかっていうぐらい"
+    },
+    {
+      "caption_id": "main_caption_048",
+      "text": "現場のプライドを無視しない",
+      "old_event_id": "main_full_077",
+      "new_event_id": "main_full_077",
+      "old_source_window_sec": [
+        1875.46,
+        1879.46
+      ],
+      "new_source_window_sec": [
+        1869.46,
+        1887.14
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        6.96,
+        15.0
+      ],
+      "matched_text": "いろんな方たちも多分ドメインの専門家とか実務家たちのプライドって先ほども自分で確認したようにそこをちゃんとリスペクトしてくれていてだからこそそこにちょっと不安があるそのプライドを無視して機能をルール優先を作っていないかっていうのを常に気にされていて"
+    },
+    {
+      "caption_id": "main_caption_049",
+      "text": "足すだけでなく「なくていい」と言えることも価値",
+      "old_event_id": "main_full_079",
+      "new_event_id": "main_full_079",
+      "old_source_window_sec": [
+        1903.86,
+        1907.86
+      ],
+      "new_source_window_sec": [
+        1903.86,
+        1922.1
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        11.36,
+        15.0
+      ],
+      "matched_text": "結構何かいらないものをちゃんと言ってあげるっていうのもたぶん皆さん経理とか労務のドメインを知っているからこれなくて大丈夫かなとか必要なものをどんどんやっちゃうんですけどたぶんいらないって言えるのが結構僕らのことだとこれはもうなくていいですとか"
+    },
+    {
+      "caption_id": "main_caption_050",
+      "text": "AIの情報を制度や実務に落とし込むことが重要",
+      "old_event_id": "main_full_089",
+      "new_event_id": "main_full_089",
+      "old_source_window_sec": [
+        2042.18,
+        2046.14
+      ],
+      "new_source_window_sec": [
+        2046.14,
+        2053.82
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_01",
+      "local_timing": [
+        3.64,
+        11.32
+      ],
+      "matched_text": "手触りが実務家の実務の経験みたいなものですからAIに行くとリサーチすごい優秀"
+    },
+    {
+      "caption_id": "main_caption_064",
+      "text": "経理一本でどう生きるかという不安があった",
+      "old_event_id": "main_full_019",
+      "new_event_id": "main_full_017",
+      "old_source_window_sec": [
+        993.22,
+        996.82
+      ],
+      "new_source_window_sec": [
+        971.3,
+        990.3
+      ],
+      "old_score": 0.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        8.8,
+        15.0
+      ],
+      "matched_text": "さっきの話とか会計基準にそんなに専門性があったりとか例えばM&Aとかがんがんやれますみたいな感じもないんで専門性もないしこの後どうやって生きていくのかなみたいなやっぱ僕らぐらいの年齢になると結構そういう専門性ないとなかなか経理一本だと厳しいじゃないですか"
+    },
+    {
+      "caption_id": "main_caption_065",
+      "text": "スタートアップで経理として伸びる難しさがあった",
+      "old_event_id": "main_full_021",
+      "new_event_id": "main_full_019",
+      "old_source_window_sec": [
+        1022.48,
+        1025.22
+      ],
+      "new_source_window_sec": [
+        993.22,
+        1007.86
+      ],
+      "old_score": 0.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        0.72,
+        15.0
+      ],
+      "matched_text": "経理としてはどう伸ばしていくのかめちゃくちゃ難しいですよ大手だと結構マネジメントみたいなとかでそういう組織作るみたいなのがあるんですけどスタートアップにいたらあんまりそういうのがなかったので"
+    },
+    {
+      "caption_id": "main_caption_070",
+      "text": "人事企画ではカルチャーを見ることも重要になる",
+      "old_event_id": "main_full_031",
+      "new_event_id": "main_full_031",
+      "old_source_window_sec": [
+        1181.28,
+        1183.28
+      ],
+      "new_source_window_sec": [
+        1173.28,
+        1181.28
+      ],
+      "old_score": 1.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        0.78,
+        8.78
+      ],
+      "matched_text": "人事企画って給与制度とか評価制度のイメージだから結構定量的な話かと思って結構カルチャーとか見てるんですか"
+    },
+    {
+      "caption_id": "main_caption_074",
+      "text": "PDMとしてまずは結果を出していきたい",
+      "old_event_id": "main_full_104",
+      "new_event_id": "main_full_104",
+      "old_source_window_sec": [
+        2276.04,
+        2282.04
+      ],
+      "new_source_window_sec": [
+        2282.04,
+        2297.04
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        14.54,
+        15.34
+      ],
+      "matched_text": "正直今から経理に戻ってもあんまり伸びしろないって自分で思ってるんですねなのでどうなるかわからないけど一旦キャリアとしてはPDMとして結果を出していきたいと思うし"
+    },
+    {
+      "caption_id": "main_caption_075",
+      "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
+      "old_event_id": "main_full_106",
+      "new_event_id": "main_full_105",
+      "old_source_window_sec": [
+        2310.04,
+        2314.04
+      ],
+      "new_source_window_sec": [
+        2297.04,
+        2307.04
+      ],
+      "old_score": 0.0,
+      "new_score": 2.5,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        14.54,
+        15.34
+      ],
+      "matched_text": "あとは今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できるようなスキルはあと数年で使いたいなとは思っています"
+    },
+    {
+      "caption_id": "main_caption_076",
+      "text": "ドメインの貯金がなくなった時の怖さがある",
+      "old_event_id": "main_full_109",
+      "new_event_id": "main_full_106",
+      "old_source_window_sec": [
+        2341.86,
+        2346.22
+      ],
+      "new_source_window_sec": [
+        2308.04,
+        2324.04
+      ],
+      "old_score": 0.0,
+      "new_score": 2.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        10.54,
+        15.0
+      ],
+      "matched_text": "いや怖い本当に怖いですよね僕もPDMどうで使ってよってそれがすごい頭を寄る人事領域労務領域ならまあまあやれる気がするけどそれが何もなく貯金がなくなった時全然関係ないプロジェクトを作っているという話をして"
+    },
+    {
+      "caption_id": "main_caption_077",
+      "text": "誰がやっても変わらない手作業が多い",
+      "old_event_id": "main_full_111",
+      "new_event_id": "main_full_111",
+      "old_source_window_sec": [
+        2379.66,
+        2383.66
+      ],
+      "new_source_window_sec": [
+        2383.66,
+        2395.78
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        11.16,
+        15.0
+      ],
+      "matched_text": "やっぱりバックオフィスっていろいろ人間による手作業の話もしましたけどやっぱり誰がやってもアウトプットは変わらない作業の部分ってすごく多いと思うんですよね"
+    },
+    {
+      "caption_id": "main_caption_078",
+      "text": "月次申告などの作業を減らしたい",
+      "old_event_id": "main_full_113",
+      "new_event_id": "main_full_112",
+      "old_source_window_sec": [
+        2409.38,
+        2415.7
+      ],
+      "new_source_window_sec": [
+        2395.78,
+        2409.38
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        8.28,
+        15.0
+      ],
+      "matched_text": "月次申告とかそれぞれの仕事を減らすというようなところはバクラクのプロダクトで貢献できることがあればいいなみたいなのはずっと思っていますね"
+    },
+    {
+      "caption_id": "main_caption_080",
+      "text": "作業量を減らし確認時間を短縮する",
+      "old_event_id": "main_full_119",
+      "new_event_id": "main_full_117",
+      "old_source_window_sec": [
+        2491.94,
+        2494.86
+      ],
+      "new_source_window_sec": [
+        2465.2,
+        2482.2
+      ],
+      "old_score": 0.0,
+      "new_score": 2.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        2.7,
+        15.0
+      ],
+      "matched_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね"
+    },
+    {
+      "caption_id": "main_caption_082",
+      "text": "分析機能では経理の人たちの顔が浮かぶ",
+      "old_event_id": "main_full_122",
+      "new_event_id": "main_full_123",
+      "old_source_window_sec": [
+        2535.2,
+        2550.2
+      ],
+      "new_source_window_sec": [
+        2559.62,
+        2571.66
+      ],
+      "old_score": 0.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        7.12,
+        15.0
+      ],
+      "matched_text": "分析の機能を作った時に実は今まで関係していた経理の人が浮かぶんですよ作っている時に結構今作業時間を短縮して"
+    },
+    {
+      "caption_id": "main_caption_083",
+      "text": "AIで作業者が分析できるようになる変化を支援したい",
+      "old_event_id": "main_full_126",
+      "new_event_id": "main_full_126",
+      "old_source_window_sec": [
+        2596.06,
+        2600.16
+      ],
+      "new_source_window_sec": [
+        2600.16,
+        2612.06
+      ],
+      "old_score": 1.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        2.66,
+        14.56
+      ],
+      "matched_text": "今までは作業しかできてなかった人とかAIの力を借りて分析できるようになりましたとかちょっと会社のコスト無駄じゃないですか提案できるようになったとか"
+    },
+    {
+      "caption_id": "main_caption_084",
+      "text": "自動運転の先に新しい働き方がある",
+      "old_event_id": "main_full_129",
+      "new_event_id": "main_full_129",
+      "old_source_window_sec": [
+        2637.06,
+        2644.66
+      ],
+      "new_source_window_sec": [
+        2644.66,
+        2658.0
+      ],
+      "old_score": 2.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        2.16,
+        15.0
+      ],
+      "matched_text": "人を確認するだけっていう最終的なものを描いていると思うんですけど業務の自動運転って別にそこで完結しないというかその先に新しい働き方があって"
+    },
+    {
+      "caption_id": "main_caption_085",
+      "text": "AIで専門家の経験を多くの人が得られる",
+      "old_event_id": "main_full_131",
+      "new_event_id": "main_full_133",
+      "old_source_window_sec": [
+        2679.32,
+        2684.36
+      ],
+      "new_source_window_sec": [
+        2716.68,
+        2730.68
+      ],
+      "old_score": 1.0,
+      "new_score": 2.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        14.18,
+        15.0
+      ],
+      "matched_text": "だからこういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ"
+    },
+    {
+      "caption_id": "main_caption_087",
+      "text": "働き方や時間の使い方そのものが変わっていく",
+      "old_event_id": "main_full_137",
+      "new_event_id": "main_full_138",
+      "old_source_window_sec": [
+        2763.64,
+        2764.82
+      ],
+      "new_source_window_sec": [
+        2786.22,
+        2804.86
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_01",
+      "local_timing": [
+        8.72,
+        15.0
+      ],
+      "matched_text": "昔からAIにとって変わられる仕事みたいな話ってよくあるじゃないですかそういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?"
+    },
+    {
+      "caption_id": "main_caption_088",
+      "text": "対人領域では人に聞きに来ることがある",
+      "old_event_id": "main_full_139",
+      "new_event_id": "main_full_141",
+      "old_source_window_sec": [
+        2792.86,
+        2804.86
+      ],
+      "new_source_window_sec": [
+        2832.86,
+        2846.54
+      ],
+      "old_score": 0.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        10.36,
+        15.0
+      ],
+      "matched_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよなのでまだそこまで労務配置が…労務と経理でもだいぶ違いそうですよね"
+    },
+    {
+      "caption_id": "main_caption_089",
+      "text": "経理の役割はなくなるのではなく変わっていく",
+      "old_event_id": "main_full_142",
+      "new_event_id": "main_full_144",
+      "old_source_window_sec": [
+        2846.54,
+        2853.68
+      ],
+      "new_source_window_sec": [
+        2869.76,
+        2881.32
+      ],
+      "old_score": 1.0,
+      "new_score": 3.0,
+      "speaker_person_id": "person_02",
+      "local_timing": [
+        2.26,
+        13.82
+      ],
+      "matched_text": "ただ経理がAIによってなくなるとか失業しますみたいなそれはちょっと極端すぎるかなと思っていてさっきの話じゃないけど役割が変わる"
+    },
+    {
+      "caption_id": "main_caption_090",
+      "text": "人や現場に向き合う時間が増えていく",
+      "old_event_id": "main_full_145",
+      "new_event_id": "main_full_144",
+      "old_source_window_sec": [
+        2890.82,
+        2893.68
+      ],
+      "new_source_window_sec": [
+        2881.32,
+        2897.28
+      ],
+      "old_score": 2.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        13.82,
+        15.0
+      ],
+      "matched_text": "今はずっとパソコンの前で仕訳を打つってことは多分なくなってその分じゃあ例えば人に向き合うとか現場に向き合うとか向き合うものは結構変わってくるんじゃないかなと思いますけどただ健全な方向なんじゃないかなとは正直思いますけど"
+    },
+    {
+      "caption_id": "main_caption_091",
+      "text": "バックオフィス経験者におすすめできるキャリア",
+      "old_event_id": "main_full_146",
+      "new_event_id": "main_full_147",
+      "old_source_window_sec": [
+        2906.66,
+        2910.04
+      ],
+      "new_source_window_sec": [
+        2918.04,
+        2942.04
+      ],
+      "old_score": 0.5,
+      "new_score": 3.0,
+      "speaker_person_id": "person_01",
+      "local_timing": [
+        5.54,
+        15.0
+      ],
+      "matched_text": "もし今バックオフィスで働いている方に対してこういうドメインエキスパートとかプロダクトマネージャーみたいなキャリアそこに対してメッセージじゃないですけどお二人からおすすめしてくださいって言うわけじゃないんですけどおすすめするんですよ学ぶのめちゃめちゃおすすめ"
+    },
+    {
+      "caption_id": "main_caption_092",
+      "text": "暗黙知が言語化され視野が広がる",
+      "old_event_id": "main_full_149",
+      "new_event_id": "main_full_149",
+      "old_source_window_sec": [
+        2942.04,
+        2944.04
+      ],
+      "new_source_window_sec": [
+        2950.04,
+        2958.04
+      ],
+      "old_score": 0.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        7.54,
+        15.0
+      ],
+      "matched_text": "暗黙知とかなんとなく慣行でやっていたものがちゃんと言語化されるタイミングが来るとかすごく視野が広がるなあ"
+    },
+    {
+      "caption_id": "main_caption_093",
+      "text": "AIの活用や向き合い方も変わる",
+      "old_event_id": "main_full_149",
+      "new_event_id": "main_full_150",
+      "old_source_window_sec": [
+        2956.04,
+        2958.04
+      ],
+      "new_source_window_sec": [
+        2960.04,
+        2980.62
+      ],
+      "old_score": 0.0,
+      "new_score": 4.0,
+      "speaker_person_id": "person_03",
+      "local_timing": [
+        2.54,
+        15.0
+      ],
+      "matched_text": "さっきのAIの活用向き合い方が変わるとかっていうところもやっぱりこの経験を積むとだいぶイメージができるようになるだろうなってもあるのでその後もちろん専門家としてすごく一個に尖っていくっていうのもいいキャリアだと思うんですけれどもやっぱりちょっと一瞬でもいいのでこういう形で広く見れるっていうのはめちゃめちゃおすすめだと思います"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 - Opening digest should be shortened to about one minute by keeping only the strongest question/answer beats. Current target implementation is `61.0` seconds, recorded in `output/reports/digest_one_minute_shortening_report.json`.
 - The first digest question must start at the captioned phrase `開発に関わる仕事をする中で`. Cut the leading phrase `ちなみにお二人の中でこれまで` from both video and audio. Current first digest trim is recorded in `output/reports/first_digest_question_trim_report.json`; current digest duration is `61.0` seconds.
 - Use the full main interview, not a shortened excerpt. The main content window is `519.14` to `2985.485` seconds on the master camera.
-- Use `output/reports/captions.md` as the source for main-section emphasis captions.
+- Use `output/reports/edit_plan.json` `timeline[].overlays[type=caption]` as the single source of truth for all rendered emphasis captions.
 - Main captions are not full subtitles. They are large emphasis captions for important statements only.
 - In the main section, do not show interviewer questions or prompts from the left interviewer as emphasis captions. Keep main captions focused on the interviewees' answers and key statements. Digest question captions are allowed.
 - Remove Japanese comma punctuation `、` from display captions.
@@ -45,12 +45,12 @@
 
 ## Caption JSON
 
-- Build or update a project-local JSON derived from `captions.md`.
-- Each caption item should include:
-  - source caption number from `captions.md`
-  - master timeline start/end
+- Do not use a markdown caption source. The markdown caption file and its generation script have been removed.
+- Update caption timing, text, speaker, and visibility directly in `output/reports/edit_plan.json`.
+- Each rendered caption overlay should include:
+  - master timeline/source start/end metadata
   - display text
-  - search keys or evidence
+  - search keys or evidence when available
   - inferred `speaker_person_id`
   - speaker position/name metadata
   - confidence and selection method

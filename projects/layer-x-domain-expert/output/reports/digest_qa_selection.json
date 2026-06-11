@@ -1874,15 +1874,15 @@
   "one_minute_digest": {
     "schema_version": "digest_one_minute_shortening.v1",
     "target_duration_sec": 60,
-    "actual_duration_sec": 35.86,
+    "actual_duration_sec": 36.46,
     "selected_events": [
       {
         "event_id": "digest_qa_01_question_01",
         "source_event_id": "digest_qa_01_question_01",
         "local_start": 0.0,
-        "local_end": 5.94,
-        "duration_sec": 5.94,
-        "reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat. First digest question starts at the captioned phrase '開発'. First digest question starts at the captioned phrase '開発'.",
+        "local_end": 6.54,
+        "duration_sec": 6.54,
+        "reason": "Opening question keeps the full spoken ending; extended after user review found the tail was cut.",
         "captions": [
           "開発に関わる仕事をする中で",
           "これめっちゃ大変でしたとかありますか？"
@@ -2029,7 +2029,7 @@
       "digest_qa_05_answer_02"
     ]
   },
-  "updated_at": "2026-06-11T17:31:09+09:00",
+  "updated_at": "2026-06-11T17:35:58+09:00",
   "change_log": [
     {
       "updated_at": "2026-06-11T17:29:17+09:00",

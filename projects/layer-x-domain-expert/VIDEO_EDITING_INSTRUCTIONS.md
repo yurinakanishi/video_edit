@@ -1195,3 +1195,17 @@ Carry these observations into `style_guide.json` component definitions and rende
 - For `three-people-divided-sample.png`, use the three-column divided look when all participants or the group dynamic should be visible. Keep the topic banner in the upper-right and preserve the top-left logo.
 - For `middle-and-right-people-with-name-plate-divided-sample.png`, use the two-up divided look for important exchanges between two participants, but ignore the sample's per-panel nameplates for this project. If the interviewer is one of the two participants, keep the interviewer in the left panel; if the split is between the middle and right interviewees only, keep the middle participant left and the right participant right.
 - For `left-person-with-name-plate-sample.png`, use the single-person lower-third style only when a participant is being introduced or self-introducing. The role/title line and display name must both come from `people_map.json`; transcript-inferred names are allowed for preview but require human confirmation before final render.
+
+### Caption Single Source Of Truth
+
+For this project, rendered caption subtitles have exactly one active source of truth:
+
+- Canonical artifact: `output/reports/edit_plan.json`
+- Canonical path: `timeline[].overlays[type=caption]`
+
+`caption_review.md` is generated from `edit_plan.json` for human review only. Do not edit it as an input.
+
+There is no markdown caption source for this project. `main_caption_plan.json` is an intermediate analysis cache only; after manual edit decisions it must not override `edit_plan.json`.
+
+Any caption timing, speaker, line break, text, or visibility fix must update `edit_plan.json` first. After that, regenerate `caption_review.md` from `edit_plan.json`.
+

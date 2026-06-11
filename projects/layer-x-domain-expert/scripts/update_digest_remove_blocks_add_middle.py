@@ -79,7 +79,7 @@ def build_middle_event(template: dict, timeline_start: float) -> dict:
         "target_person_id": "person_02",
         "active_person_id": "person_02",
         "crop_mode": "person_centered",
-        "selection_reason": "User requested one digest statement from the middle participant; this line is a strong caption candidate from captions.md.",
+        "selection_reason": "User requested one digest statement from the middle participant; this line is a strong caption candidate from the JSON caption plan.",
         "reference_alignment": {
             "reference_image_id": "annotation_sample_review_meeting",
             "apply": ["speaker_closeup", "logo_title_style", "caption_safe_lower_zone"],

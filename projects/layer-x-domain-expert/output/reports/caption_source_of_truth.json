@@ -1,0 +1,13 @@
+{
+  "schema_version": "caption_source_of_truth.v1",
+  "project_id": "layer-x-domain-expert",
+  "canonical_caption_artifact": "output/reports/edit_plan.json",
+  "canonical_caption_path": "timeline[].overlays[type=caption]",
+  "rules": [
+    "The renderer reads captions only from edit_plan.json caption overlays.",
+    "caption_review.md is generated from edit_plan.json and is review-only.",
+    "No markdown caption source is allowed for this project.",
+    "main_caption_plan.json is an intermediate analysis cache; after manual edits, edit_plan.json is authoritative."
+  ],
+  "updated_at": "2026-06-11T17:51:21+09:00"
+}

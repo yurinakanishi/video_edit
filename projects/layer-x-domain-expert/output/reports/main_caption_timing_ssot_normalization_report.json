@@ -1,0 +1,1299 @@
+{
+  "schema_version": "main_caption_timing_ssot_normalization.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T17:46:17+09:00",
+  "policy": "Caption source windows can be longer than display windows; display starts at the repaired source start and uses a short text-length-based duration.",
+  "change_count": 86,
+  "changes": [
+    {
+      "caption_id": "main_caption_004",
+      "text": "バックオフィスの生産性に強い問題意識があった",
+      "old_event_id": "main_full_011",
+      "new_event_id": "main_full_011",
+      "source_start_sec": 873.24,
+      "old_local_timing": [
+        0.74,
+        11.04
+      ],
+      "new_local_timing": [
+        0.74,
+        4.14
+      ]
+    },
+    {
+      "caption_id": "main_caption_005",
+      "text": "決算期に終電で帰る状況は不健全だと思った",
+      "old_event_id": "main_full_011",
+      "new_event_id": "main_full_011",
+      "source_start_sec": 883.54,
+      "old_local_timing": [
+        11.04,
+        15.0
+      ],
+      "new_local_timing": [
+        11.04,
+        14.44
+      ]
+    },
+    {
+      "caption_id": "main_caption_007",
+      "text": "LayerXに惹かれた理由は開発に関われること",
+      "old_event_id": "main_full_015",
+      "new_event_id": "main_full_015",
+      "source_start_sec": 942.48,
+      "old_local_timing": [
+        9.98,
+        15.0
+      ],
+      "new_local_timing": [
+        9.98,
+        13.38
+      ]
+    },
+    {
+      "caption_id": "main_caption_008",
+      "text": "開発は自分とは関係ないものだった",
+      "old_event_id": "main_full_017",
+      "new_event_id": "main_full_017",
+      "source_start_sec": 963.24,
+      "old_local_timing": [
+        0.74,
+        4.36
+      ],
+      "new_local_timing": [
+        0.74,
+        3.54
+      ]
+    },
+    {
+      "caption_id": "main_caption_064",
+      "text": "経理一本でどう生きるかという不安があった",
+      "old_event_id": "main_full_017",
+      "new_event_id": "main_full_017",
+      "source_start_sec": 971.3,
+      "old_local_timing": [
+        8.8,
+        15.0
+      ],
+      "new_local_timing": [
+        8.8,
+        12.2
+      ]
+    },
+    {
+      "caption_id": "main_caption_009",
+      "text": "経理一本のキャリアに迷ったタイミングだった",
+      "old_event_id": "main_full_018",
+      "new_event_id": "main_full_018",
+      "source_start_sec": 987.52,
+      "old_local_timing": [
+        10.02,
+        15.0
+      ],
+      "new_local_timing": [
+        10.02,
+        13.42
+      ]
+    },
+    {
+      "caption_id": "main_caption_065",
+      "text": "スタートアップで経理として伸びる難しさがあった",
+      "old_event_id": "main_full_019",
+      "new_event_id": "main_full_019",
+      "source_start_sec": 993.22,
+      "old_local_timing": [
+        0.72,
+        15.0
+      ],
+      "new_local_timing": [
+        0.72,
+        4.12
+      ]
+    },
+    {
+      "caption_id": "main_caption_011",
+      "text": "LayerXのカルチャーをベンチマークしていた",
+      "old_event_id": "main_full_023",
+      "new_event_id": "main_full_023",
+      "source_start_sec": 1054.28,
+      "old_local_timing": [
+        1.78,
+        15.0
+      ],
+      "new_local_timing": [
+        1.78,
+        5.18
+      ]
+    },
+    {
+      "caption_id": "main_caption_014",
+      "text": "勤怠づくりに興味を持ってLayerXに来た",
+      "old_event_id": "main_full_027",
+      "new_event_id": "main_full_027",
+      "source_start_sec": 1115.28,
+      "old_local_timing": [
+        2.78,
+        13.78
+      ],
+      "new_local_timing": [
+        2.78,
+        6.18
+      ]
+    },
+    {
+      "caption_id": "main_caption_068",
+      "text": "LayerXのカルチャーでHRテックを作ることに興味を持った",
+      "old_event_id": "main_full_027",
+      "new_event_id": "main_full_027",
+      "source_start_sec": 1115.32,
+      "old_local_timing": [
+        2.82,
+        10.01
+      ],
+      "new_local_timing": [
+        2.82,
+        6.82
+      ]
+    },
+    {
+      "caption_id": "main_caption_015",
+      "text": "開発に参画できる壁打ち相手として関われる",
+      "old_event_id": "main_full_029",
+      "new_event_id": "main_full_029",
+      "source_start_sec": 1143.28,
+      "old_local_timing": [
+        0.78,
+        12.78
+      ],
+      "new_local_timing": [
+        0.78,
+        4.18
+      ]
+    },
+    {
+      "caption_id": "main_caption_070",
+      "text": "人事企画ではカルチャーを見ることも重要になる",
+      "old_event_id": "main_full_031",
+      "new_event_id": "main_full_031",
+      "source_start_sec": 1173.28,
+      "old_local_timing": [
+        0.78,
+        8.78
+      ],
+      "new_local_timing": [
+        0.78,
+        4.18
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_029",
+      "text": "大きなキャリアチェンジは考えていなかった",
+      "old_event_id": "main_full_034",
+      "new_event_id": "main_full_034",
+      "source_start_sec": 1221.28,
+      "old_local_timing": [
+        3.78,
+        6.85
+      ],
+      "new_local_timing": [
+        3.78,
+        7.18
+      ]
+    },
+    {
+      "caption_id": "main_caption_016",
+      "text": "PDMはプロダクト成長のために何でもやる人",
+      "old_event_id": "main_full_036",
+      "new_event_id": "main_full_036",
+      "source_start_sec": 1254.56,
+      "old_local_timing": [
+        7.06,
+        14.9
+      ],
+      "new_local_timing": [
+        7.06,
+        10.46
+      ]
+    },
+    {
+      "caption_id": "main_caption_018",
+      "text": "実務知識を活かせるなら挑戦できる",
+      "old_event_id": "main_full_038",
+      "new_event_id": "main_full_038",
+      "source_start_sec": 1279.16,
+      "old_local_timing": [
+        1.66,
+        15.0
+      ],
+      "new_local_timing": [
+        1.66,
+        4.46
+      ]
+    },
+    {
+      "caption_id": "main_caption_073",
+      "text": "コードを書けなくても開発に関われる",
+      "old_event_id": "main_full_039",
+      "new_event_id": "main_full_038",
+      "source_start_sec": 1285.16,
+      "old_local_timing": [
+        0.0,
+        0.9
+      ],
+      "new_local_timing": [
+        7.66,
+        10.46
+      ]
+    },
+    {
+      "caption_id": "main_caption_020",
+      "text": "共通点はドメイン知識で開発に関与すること",
+      "old_event_id": "main_full_041",
+      "new_event_id": "main_full_041",
+      "source_start_sec": 1330.28,
+      "old_local_timing": [
+        7.78,
+        15.0
+      ],
+      "new_local_timing": [
+        7.78,
+        11.18
+      ]
+    },
+    {
+      "caption_id": "main_caption_021",
+      "text": "労務を主務にしながら仕様検討にも深く関わる",
+      "old_event_id": "main_full_042",
+      "new_event_id": "main_full_042",
+      "source_start_sec": 1347.92,
+      "old_local_timing": [
+        10.42,
+        15.0
+      ],
+      "new_local_timing": [
+        10.42,
+        13.82
+      ]
+    },
+    {
+      "caption_id": "main_caption_022",
+      "text": "実務のモヤモヤをプロダクトに落とし込める",
+      "old_event_id": "main_full_043",
+      "new_event_id": "main_full_043",
+      "source_start_sec": 1362.92,
+      "old_local_timing": [
+        10.42,
+        15.0
+      ],
+      "new_local_timing": [
+        10.42,
+        13.82
+      ]
+    },
+    {
+      "caption_id": "main_caption_023",
+      "text": "違和感を出すことでプロダクトが良くなる",
+      "old_event_id": "main_full_044",
+      "new_event_id": "main_full_044",
+      "source_start_sec": 1371.92,
+      "old_local_timing": [
+        4.42,
+        10.42
+      ],
+      "new_local_timing": [
+        4.42,
+        7.82
+      ]
+    },
+    {
+      "caption_id": "main_caption_024",
+      "text": "フィードバックを良いものとして歓迎する文化がある",
+      "old_event_id": "main_full_045",
+      "new_event_id": "main_full_045",
+      "source_start_sec": 1390.92,
+      "old_local_timing": [
+        8.42,
+        12.42
+      ],
+      "new_local_timing": [
+        8.42,
+        11.82
+      ]
+    },
+    {
+      "caption_id": "main_caption_025",
+      "text": "違和感を言うだけでどんどん良いものになる",
+      "old_event_id": "main_full_046",
+      "new_event_id": "main_full_046",
+      "source_start_sec": 1408.32,
+      "old_local_timing": [
+        10.82,
+        15.0
+      ],
+      "new_local_timing": [
+        10.82,
+        14.22
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_004",
+      "text": "やりたいことや違和感を普通に言える",
+      "old_event_id": "main_full_048",
+      "new_event_id": "main_full_048",
+      "source_start_sec": 1433.38,
+      "old_local_timing": [
+        5.88,
+        14.45
+      ],
+      "new_local_timing": [
+        5.88,
+        8.68
+      ]
+    },
+    {
+      "caption_id": "main_caption_028",
+      "text": "一番大変だったのは当たり前を言語化すること",
+      "old_event_id": "main_full_054",
+      "new_event_id": "main_full_054",
+      "source_start_sec": 1528.36,
+      "old_local_timing": [
+        10.86,
+        15.0
+      ],
+      "new_local_timing": [
+        10.86,
+        14.26
+      ]
+    },
+    {
+      "caption_id": "main_caption_031",
+      "text": "当たり前の業務にも法律や会社ルールの背景がある",
+      "old_event_id": "main_full_057",
+      "new_event_id": "main_full_057",
+      "source_start_sec": 1571.12,
+      "old_local_timing": [
+        8.62,
+        15.0
+      ],
+      "new_local_timing": [
+        8.62,
+        12.02
+      ]
+    },
+    {
+      "caption_id": "main_caption_032",
+      "text": "何でも知っていそうに見える期待の高さが難しい",
+      "old_event_id": "main_full_059",
+      "new_event_id": "main_full_059",
+      "source_start_sec": 1595.62,
+      "old_local_timing": [
+        3.12,
+        15.0
+      ],
+      "new_local_timing": [
+        3.12,
+        6.52
+      ]
+    },
+    {
+      "caption_id": "main_caption_035",
+      "text": "専門家が一方的に教えるのではなく建設的に議論する",
+      "old_event_id": "main_full_061",
+      "new_event_id": "main_full_061",
+      "source_start_sec": 1630.18,
+      "old_local_timing": [
+        7.68,
+        15.0
+      ],
+      "new_local_timing": [
+        7.68,
+        11.08
+      ]
+    },
+    {
+      "caption_id": "main_caption_036",
+      "text": "「なんで？」を逃がさないことが健全なプレッシャーになる",
+      "old_event_id": "main_full_062",
+      "new_event_id": "main_full_062",
+      "source_start_sec": 1641.88,
+      "old_local_timing": [
+        4.38,
+        10.12
+      ],
+      "new_local_timing": [
+        4.38,
+        7.78
+      ]
+    },
+    {
+      "caption_id": "main_caption_038",
+      "text": "当たり前が開発の議論を通じて磨かれていく",
+      "old_event_id": "main_full_063",
+      "new_event_id": "main_full_063",
+      "source_start_sec": 1654.76,
+      "old_local_timing": [
+        2.26,
+        9.28
+      ],
+      "new_local_timing": [
+        2.26,
+        5.66
+      ]
+    },
+    {
+      "caption_id": "main_caption_041",
+      "text": "労務領域では自分の目で確かめたい感覚が強い",
+      "old_event_id": "main_full_068",
+      "new_event_id": "main_full_068",
+      "source_start_sec": 1734.5,
+      "old_local_timing": [
+        7.0,
+        15.0
+      ],
+      "new_local_timing": [
+        7.0,
+        10.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_042",
+      "text": "不安が残ると結局ユーザーは自分で調べてしまう",
+      "old_event_id": "main_full_069",
+      "new_event_id": "main_full_069",
+      "source_start_sec": 1749.5,
+      "old_local_timing": [
+        7.0,
+        13.0
+      ],
+      "new_local_timing": [
+        7.0,
+        10.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_001",
+      "text": "実務経験者が開発に入る意味がある",
+      "old_event_id": "main_full_070",
+      "new_event_id": "main_full_070",
+      "source_start_sec": 1757.5,
+      "old_local_timing": [
+        0.0,
+        3.58
+      ],
+      "new_local_timing": [
+        0.0,
+        2.8
+      ]
+    },
+    {
+      "caption_id": "main_caption_044",
+      "text": "機能で何を実現したいのかを体験込みで伝える",
+      "old_event_id": "main_full_071",
+      "new_event_id": "main_full_071",
+      "source_start_sec": 1781.5,
+      "old_local_timing": [
+        9.0,
+        15.0
+      ],
+      "new_local_timing": [
+        9.0,
+        12.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_045",
+      "text": "全部やるとスピードも落ち画面も分かりにくくなる",
+      "old_event_id": "main_full_072",
+      "new_event_id": "main_full_072",
+      "source_start_sec": 1793.5,
+      "old_local_timing": [
+        6.0,
+        15.0
+      ],
+      "new_local_timing": [
+        6.0,
+        9.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_046",
+      "text": "コア以外は落とす判断も必要",
+      "old_event_id": "main_full_073",
+      "new_event_id": "main_full_073",
+      "source_start_sec": 1803.76,
+      "old_local_timing": [
+        1.26,
+        9.44
+      ],
+      "new_local_timing": [
+        1.26,
+        4.06
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_007",
+      "text": "はっきりさせることにこだわる",
+      "old_event_id": "main_full_074",
+      "new_event_id": "main_full_074",
+      "source_start_sec": 1827.14,
+      "old_local_timing": [
+        9.64,
+        12.91
+      ],
+      "new_local_timing": [
+        9.64,
+        12.44
+      ]
+    },
+    {
+      "caption_id": "main_caption_047",
+      "text": "ルール調査だけでなくビジョンが必要になる",
+      "old_event_id": "main_full_076",
+      "new_event_id": "main_full_076",
+      "source_start_sec": 1848.54,
+      "old_local_timing": [
+        1.04,
+        15.0
+      ],
+      "new_local_timing": [
+        1.04,
+        4.44
+      ]
+    },
+    {
+      "caption_id": "main_caption_048",
+      "text": "現場のプライドを無視しない",
+      "old_event_id": "main_full_077",
+      "new_event_id": "main_full_077",
+      "source_start_sec": 1869.46,
+      "old_local_timing": [
+        6.96,
+        15.0
+      ],
+      "new_local_timing": [
+        6.96,
+        9.76
+      ]
+    },
+    {
+      "caption_id": "main_caption_049",
+      "text": "足すだけでなく「なくていい」と言えることも価値",
+      "old_event_id": "main_full_079",
+      "new_event_id": "main_full_079",
+      "source_start_sec": 1903.86,
+      "old_local_timing": [
+        11.36,
+        15.0
+      ],
+      "new_local_timing": [
+        11.36,
+        14.76
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_002",
+      "text": "必要に見えるものを足しすぎてしまう",
+      "old_event_id": "main_full_080",
+      "new_event_id": "main_full_080",
+      "source_start_sec": 1907.9,
+      "old_local_timing": [
+        0.4,
+        8.35
+      ],
+      "new_local_timing": [
+        0.4,
+        3.2
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_008",
+      "text": "やらなくていいと止めることもある",
+      "old_event_id": "main_full_082",
+      "new_event_id": "main_full_081",
+      "source_start_sec": 1935.74,
+      "old_local_timing": [
+        0.0,
+        3.06
+      ],
+      "new_local_timing": [
+        13.24,
+        15.0
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_033",
+      "text": "役所は「やらなくていい」とは言えない",
+      "old_event_id": "main_full_083",
+      "new_event_id": "main_full_083",
+      "source_start_sec": 1956.14,
+      "old_local_timing": [
+        3.64,
+        6.66
+      ],
+      "new_local_timing": [
+        3.64,
+        6.44
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_009",
+      "text": "AIでエンジニアの生産性も上がっている",
+      "old_event_id": "main_full_084",
+      "new_event_id": "main_full_084",
+      "source_start_sec": 1973.49,
+      "old_local_timing": [
+        5.99,
+        15.0
+      ],
+      "new_local_timing": [
+        5.99,
+        9.39
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_010",
+      "text": "ドメインエキスパートの重要性が上がっている",
+      "old_event_id": "main_full_086",
+      "new_event_id": "main_full_085",
+      "source_start_sec": 1995.1,
+      "old_local_timing": [
+        0.0,
+        2.6
+      ],
+      "new_local_timing": [
+        12.6,
+        15.0
+      ]
+    },
+    {
+      "caption_id": "main_caption_050",
+      "text": "AIの情報を制度や実務に落とし込むことが重要",
+      "old_event_id": "main_full_089",
+      "new_event_id": "main_full_089",
+      "source_start_sec": 2046.14,
+      "old_local_timing": [
+        3.64,
+        11.32
+      ],
+      "new_local_timing": [
+        3.64,
+        7.04
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_012",
+      "text": "実務経験があるから判断できる",
+      "old_event_id": "main_full_091",
+      "new_event_id": "main_full_091",
+      "source_start_sec": 2081.66,
+      "old_local_timing": [
+        9.16,
+        12.06
+      ],
+      "new_local_timing": [
+        9.16,
+        11.96
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_035",
+      "text": "AIなら一瞬でできるように見える",
+      "old_event_id": "main_full_093",
+      "new_event_id": "main_full_093",
+      "source_start_sec": 2104.74,
+      "old_local_timing": [
+        2.24,
+        3.81
+      ],
+      "new_local_timing": [
+        2.24,
+        5.04
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_014",
+      "text": "開発に関わる中で今後のキャリアを考える",
+      "old_event_id": "main_full_095",
+      "new_event_id": "main_full_095",
+      "source_start_sec": 2139.92,
+      "old_local_timing": [
+        7.42,
+        15.0
+      ],
+      "new_local_timing": [
+        7.42,
+        10.82
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_015",
+      "text": "バックオフィスにもAIが求められている",
+      "old_event_id": "main_full_097",
+      "new_event_id": "main_full_097",
+      "source_start_sec": 2165.74,
+      "old_local_timing": [
+        3.24,
+        7.41
+      ],
+      "new_local_timing": [
+        3.24,
+        6.64
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_036",
+      "text": "そういう話はAIにはとても勝てない",
+      "old_event_id": "main_full_098",
+      "new_event_id": "main_full_098",
+      "source_start_sec": 2180.92,
+      "old_local_timing": [
+        3.42,
+        5.86
+      ],
+      "new_local_timing": [
+        3.42,
+        6.22
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_016",
+      "text": "AIから逃げない姿勢はキャリアに必要",
+      "old_event_id": "main_full_100",
+      "new_event_id": "main_full_099",
+      "source_start_sec": 2203.74,
+      "old_local_timing": [
+        0.0,
+        14.53
+      ],
+      "new_local_timing": [
+        11.24,
+        14.04
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_017",
+      "text": "その環境を選んでよかった",
+      "old_event_id": "main_full_102",
+      "new_event_id": "main_full_102",
+      "source_start_sec": 2242.04,
+      "old_local_timing": [
+        4.54,
+        9.91
+      ],
+      "new_local_timing": [
+        4.54,
+        7.34
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_018",
+      "text": "PDMが合わなければ経理に戻ればいいと言われた",
+      "old_event_id": "main_full_104",
+      "new_event_id": "main_full_104",
+      "source_start_sec": 2267.04,
+      "old_local_timing": [
+        0.0,
+        8.54
+      ],
+      "new_local_timing": [
+        0.0,
+        3.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_074",
+      "text": "PDMとしてまずは結果を出していきたい",
+      "old_event_id": "main_full_104",
+      "new_event_id": "main_full_105",
+      "source_start_sec": 2282.04,
+      "old_local_timing": [
+        14.54,
+        15.34
+      ],
+      "new_local_timing": [
+        0.0,
+        3.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_075",
+      "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
+      "old_event_id": "main_full_105",
+      "new_event_id": "main_full_106",
+      "source_start_sec": 2297.04,
+      "old_local_timing": [
+        14.54,
+        15.34
+      ],
+      "new_local_timing": [
+        0.0,
+        3.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_038",
+      "text": "ドメインがなくても活躍できる力を身につけたい",
+      "old_event_id": "main_full_106",
+      "new_event_id": "main_full_106",
+      "source_start_sec": 2297.04,
+      "old_local_timing": [
+        0.0,
+        8.77
+      ],
+      "new_local_timing": [
+        0.0,
+        3.4
+      ]
+    },
+    {
+      "caption_id": "main_caption_076",
+      "text": "ドメインの貯金がなくなった時の怖さがある",
+      "old_event_id": "main_full_106",
+      "new_event_id": "main_full_106",
+      "source_start_sec": 2308.04,
+      "old_local_timing": [
+        10.54,
+        15.0
+      ],
+      "new_local_timing": [
+        10.54,
+        13.94
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_039",
+      "text": "実務経験は入れ替えがきく",
+      "old_event_id": "main_full_108",
+      "new_event_id": "main_full_108",
+      "source_start_sec": 2330.04,
+      "old_local_timing": [
+        2.54,
+        6.54
+      ],
+      "new_local_timing": [
+        2.54,
+        5.34
+      ]
+    },
+    {
+      "caption_id": "main_caption_077",
+      "text": "誰がやっても変わらない手作業が多い",
+      "old_event_id": "main_full_111",
+      "new_event_id": "main_full_111",
+      "source_start_sec": 2383.66,
+      "old_local_timing": [
+        11.16,
+        15.0
+      ],
+      "new_local_timing": [
+        11.16,
+        13.96
+      ]
+    },
+    {
+      "caption_id": "main_caption_078",
+      "text": "月次申告などの作業を減らしたい",
+      "old_event_id": "main_full_112",
+      "new_event_id": "main_full_112",
+      "source_start_sec": 2395.78,
+      "old_local_timing": [
+        8.28,
+        15.0
+      ],
+      "new_local_timing": [
+        8.28,
+        11.08
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_003",
+      "text": "バクラクのプロダクトで貢献したい",
+      "old_event_id": "main_full_113",
+      "new_event_id": "main_full_113",
+      "source_start_sec": 2403.53,
+      "old_local_timing": [
+        1.03,
+        6.18
+      ],
+      "new_local_timing": [
+        1.03,
+        3.83
+      ]
+    },
+    {
+      "caption_id": "main_caption_080",
+      "text": "作業量を減らし確認時間を短縮する",
+      "old_event_id": "main_full_117",
+      "new_event_id": "main_full_117",
+      "source_start_sec": 2465.2,
+      "old_local_timing": [
+        2.7,
+        15.0
+      ],
+      "new_local_timing": [
+        2.7,
+        5.5
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_019",
+      "text": "作業量とチェック時間を短縮する機能を作れた",
+      "old_event_id": "main_full_117",
+      "new_event_id": "main_full_117",
+      "source_start_sec": 2465.78,
+      "old_local_timing": [
+        3.28,
+        15.0
+      ],
+      "new_local_timing": [
+        3.28,
+        6.68
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_041",
+      "text": "開発に関わるやりがいがある",
+      "old_event_id": "main_full_120",
+      "new_event_id": "main_full_120",
+      "source_start_sec": 2515.55,
+      "old_local_timing": [
+        8.05,
+        15.0
+      ],
+      "new_local_timing": [
+        8.05,
+        10.85
+      ]
+    },
+    {
+      "caption_id": "main_caption_081",
+      "text": "自分の経験がプロダクトに活かされる瞬間がやりがい",
+      "old_event_id": "main_full_121",
+      "new_event_id": "main_full_121",
+      "source_start_sec": 2523.2,
+      "old_local_timing": [
+        0.7,
+        10.76
+      ],
+      "new_local_timing": [
+        0.7,
+        4.1
+      ]
+    },
+    {
+      "caption_id": "main_caption_082",
+      "text": "分析機能では経理の人たちの顔が浮かぶ",
+      "old_event_id": "main_full_123",
+      "new_event_id": "main_full_123",
+      "source_start_sec": 2559.62,
+      "old_local_timing": [
+        7.12,
+        15.0
+      ],
+      "new_local_timing": [
+        7.12,
+        9.92
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_004",
+      "text": "余った時間で付加価値のある仕事をする",
+      "old_event_id": "main_full_124",
+      "new_event_id": "main_full_124",
+      "source_start_sec": 2571.79,
+      "old_local_timing": [
+        4.29,
+        11.28
+      ],
+      "new_local_timing": [
+        4.29,
+        7.09
+      ]
+    },
+    {
+      "caption_id": "main_caption_083",
+      "text": "AIで作業者が分析できるようになる変化を支援したい",
+      "old_event_id": "main_full_126",
+      "new_event_id": "main_full_126",
+      "source_start_sec": 2600.16,
+      "old_local_timing": [
+        2.66,
+        14.56
+      ],
+      "new_local_timing": [
+        2.66,
+        6.06
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_005",
+      "text": "AIの力で分析できるようになる",
+      "old_event_id": "main_full_126",
+      "new_event_id": "main_full_126",
+      "source_start_sec": 2604.58,
+      "old_local_timing": [
+        7.08,
+        10.84
+      ],
+      "new_local_timing": [
+        7.08,
+        9.88
+      ]
+    },
+    {
+      "caption_id": "main_caption_084",
+      "text": "自動運転の先に新しい働き方がある",
+      "old_event_id": "main_full_129",
+      "new_event_id": "main_full_129",
+      "source_start_sec": 2644.66,
+      "old_local_timing": [
+        2.16,
+        15.0
+      ],
+      "new_local_timing": [
+        2.16,
+        4.96
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_006",
+      "text": "新しい働き方を定義していく",
+      "old_event_id": "main_full_130",
+      "new_event_id": "main_full_130",
+      "source_start_sec": 2658.0,
+      "old_local_timing": [
+        0.5,
+        4.56
+      ],
+      "new_local_timing": [
+        0.5,
+        3.3
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_022",
+      "text": "AIに乗るだけで分析できるようになる",
+      "old_event_id": "main_full_130",
+      "new_event_id": "main_full_130",
+      "source_start_sec": 2667.9,
+      "old_local_timing": [
+        10.4,
+        15.0
+      ],
+      "new_local_timing": [
+        10.4,
+        13.2
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_007",
+      "text": "経理や労務は専門性が高い",
+      "old_event_id": "main_full_131",
+      "new_event_id": "main_full_131",
+      "source_start_sec": 2675.25,
+      "old_local_timing": [
+        2.75,
+        6.8
+      ],
+      "new_local_timing": [
+        2.75,
+        5.55
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_008",
+      "text": "労務や経理の経験は新しい働き方に必要",
+      "old_event_id": "main_full_132",
+      "new_event_id": "main_full_132",
+      "source_start_sec": 2694.16,
+      "old_local_timing": [
+        6.66,
+        13.65
+      ],
+      "new_local_timing": [
+        6.66,
+        9.46
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_023",
+      "text": "バックオフィス経験を広く活かせると面白い",
+      "old_event_id": "main_full_134",
+      "new_event_id": "main_full_133",
+      "source_start_sec": 2716.68,
+      "old_local_timing": [
+        0.0,
+        11.55
+      ],
+      "new_local_timing": [
+        14.18,
+        15.0
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_043",
+      "text": "過去の処理を確認する",
+      "old_event_id": "main_full_136",
+      "new_event_id": "main_full_135",
+      "source_start_sec": 2744.64,
+      "old_local_timing": [
+        0.0,
+        2.98
+      ],
+      "new_local_timing": [
+        12.14,
+        14.94
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_009",
+      "text": "今後数年で大きく変わってくる",
+      "old_event_id": "main_full_136",
+      "new_event_id": "main_full_136",
+      "source_start_sec": 2755.67,
+      "old_local_timing": [
+        8.17,
+        10.14
+      ],
+      "new_local_timing": [
+        8.17,
+        10.97
+      ]
+    },
+    {
+      "caption_id": "main_caption_087",
+      "text": "働き方や時間の使い方そのものが変わっていく",
+      "old_event_id": "main_full_138",
+      "new_event_id": "main_full_138",
+      "source_start_sec": 2786.22,
+      "old_local_timing": [
+        8.72,
+        15.0
+      ],
+      "new_local_timing": [
+        8.72,
+        12.12
+      ]
+    },
+    {
+      "caption_id": "main_caption_088",
+      "text": "対人領域では人に聞きに来ることがある",
+      "old_event_id": "main_full_141",
+      "new_event_id": "main_full_141",
+      "source_start_sec": 2832.86,
+      "old_local_timing": [
+        10.36,
+        15.0
+      ],
+      "new_local_timing": [
+        10.36,
+        13.16
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_025",
+      "text": "不安があると結局人に聞きに来る",
+      "old_event_id": "main_full_141",
+      "new_event_id": "main_full_141",
+      "source_start_sec": 2833.0,
+      "old_local_timing": [
+        10.5,
+        15.0
+      ],
+      "new_local_timing": [
+        10.5,
+        13.3
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_010",
+      "text": "経理は効率化が早く進みやすい",
+      "old_event_id": "main_full_143",
+      "new_event_id": "main_full_143",
+      "source_start_sec": 2853.78,
+      "old_local_timing": [
+        1.28,
+        9.59
+      ],
+      "new_local_timing": [
+        1.28,
+        4.08
+      ]
+    },
+    {
+      "caption_id": "main_caption_089",
+      "text": "経理の役割はなくなるのではなく変わっていく",
+      "old_event_id": "main_full_144",
+      "new_event_id": "main_full_144",
+      "source_start_sec": 2869.76,
+      "old_local_timing": [
+        2.26,
+        13.82
+      ],
+      "new_local_timing": [
+        2.26,
+        5.66
+      ]
+    },
+    {
+      "caption_id": "main_caption_091",
+      "text": "バックオフィス経験者におすすめできるキャリア",
+      "old_event_id": "main_full_147",
+      "new_event_id": "main_full_147",
+      "source_start_sec": 2918.04,
+      "old_local_timing": [
+        5.54,
+        15.0
+      ],
+      "new_local_timing": [
+        5.54,
+        8.94
+      ]
+    },
+    {
+      "caption_id": "main_caption_092",
+      "text": "暗黙知が言語化され視野が広がる",
+      "old_event_id": "main_full_149",
+      "new_event_id": "main_full_149",
+      "source_start_sec": 2950.04,
+      "old_local_timing": [
+        7.54,
+        15.0
+      ],
+      "new_local_timing": [
+        7.54,
+        10.34
+      ]
+    },
+    {
+      "caption_id": "main_caption_093",
+      "text": "AIの活用や向き合い方も変わる",
+      "old_event_id": "main_full_150",
+      "new_event_id": "main_full_150",
+      "source_start_sec": 2960.04,
+      "old_local_timing": [
+        2.54,
+        15.0
+      ],
+      "new_local_timing": [
+        2.54,
+        5.34
+      ]
+    },
+    {
+      "caption_id": "main_caption_strong_011",
+      "text": "専門家として尖るキャリアも良い",
+      "old_event_id": "main_full_150",
+      "new_event_id": "main_full_150",
+      "source_start_sec": 2966.54,
+      "old_local_timing": [
+        9.04,
+        15.0
+      ],
+      "new_local_timing": [
+        9.04,
+        11.84
+      ]
+    }
+  ]
+}

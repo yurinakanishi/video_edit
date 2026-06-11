@@ -1,0 +1,32 @@
+{
+  "schema_version": "first_digest_question_tail_extend_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T17:35:58+09:00",
+  "tail_extension_sec": 0.6,
+  "reason": "The rendered question cut before 'めっちゃ大変でしたとかありますか？' finished.",
+  "edit_plan": {
+    "event_id": "digest_qa_01_question_01",
+    "old_timeline_end": 5.94,
+    "new_timeline_end": 6.54,
+    "old_source_out": 1508.76,
+    "new_source_out": 1509.36,
+    "audio_out": 1516.828,
+    "shifted_event_count": 164,
+    "first_shifted_events": [
+      "digest_qa_02_question_context_01",
+      "digest_qa_02_answer_02",
+      "digest_qa_03_answer_01",
+      "digest_qa_middle_nemoto_value_01",
+      "digest_to_main_company_movie",
+      "main_intro_group_greeting",
+      "main_intro_yano_self",
+      "main_intro_wide_after_yano"
+    ]
+  },
+  "digest_selection": {
+    "updated": true,
+    "changed_selected_events": [
+      "digest_qa_01_question_01"
+    ]
+  }
+}

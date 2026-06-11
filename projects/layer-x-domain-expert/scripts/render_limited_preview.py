@@ -280,7 +280,7 @@ def caption_filter_list(event: dict[str, Any]) -> list[str]:
             f"fontfile='{font}':"
             f"text='{ffmpeg_text(text)}':"
             "x=(w-text_w)/2:"
-            "y=h-128:"
+            "y=h-104:"
             "fontsize=38:"
             "fontcolor=white:"
             "borderw=2:"

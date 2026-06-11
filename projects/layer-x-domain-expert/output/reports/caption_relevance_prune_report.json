@@ -1,0 +1,105 @@
+{
+  "edit_plan": {
+    "removed": [],
+    "rewritten": [
+      {
+        "event_id": "digest_qa_01_answer_02",
+        "section": "digest",
+        "overlay_id": null,
+        "start": 0.0,
+        "end": 1.88,
+        "before": "なんでそうするんですかって聞かれた時に",
+        "after": "なんでそうするんですかと聞かれた時に"
+      },
+      {
+        "event_id": "digest_qa_02_question_context_01",
+        "section": "digest",
+        "overlay_id": null,
+        "start": 5.6,
+        "end": 8.48,
+        "before": "この辺へのハードルの高さというか",
+        "after": "この辺へのハードルの高さ"
+      },
+      {
+        "event_id": "digest_qa_02_answer_02",
+        "section": "digest",
+        "overlay_id": null,
+        "start": 4.76,
+        "end": 8.56,
+        "before": "正直全然僕より詳しいということもある",
+        "after": "正直僕より詳しいこともある"
+      },
+      {
+        "event_id": "digest_qa_04_answer_02_short03",
+        "section": "digest",
+        "overlay_id": null,
+        "start": 0.0,
+        "end": 2.8,
+        "before": "どういうことを実現していきたいのかとか",
+        "after": "どういうことを実現したいのか"
+      }
+    ],
+    "digest_events_trimmed": [],
+    "removed_count": 0,
+    "rewritten_count": 4,
+    "digest_trim_count": 0
+  },
+  "digest_qa_selection": {
+    "status": "updated",
+    "removed_count": 0,
+    "rewritten_count": 8,
+    "removed": [],
+    "rewritten": [
+      {
+        "clip_id": "digest_qa_01",
+        "caption_id": null,
+        "before": "なんでそうするんですかって聞かれた時に",
+        "after": "なんでそうするんですかと聞かれた時に"
+      },
+      {
+        "clip_id": "digest_qa_01",
+        "caption_id": null,
+        "before": "なんでそうするんですかって聞かれた時に",
+        "after": "なんでそうするんですかと聞かれた時に"
+      },
+      {
+        "clip_id": "digest_qa_02",
+        "caption_id": null,
+        "before": "この辺へのハードルの高さというか",
+        "after": "この辺へのハードルの高さ"
+      },
+      {
+        "clip_id": "digest_qa_02",
+        "caption_id": null,
+        "before": "正直全然僕より詳しいということもある",
+        "after": "正直僕より詳しいこともある"
+      },
+      {
+        "clip_id": "digest_qa_02",
+        "caption_id": null,
+        "before": "この辺へのハードルの高さというか",
+        "after": "この辺へのハードルの高さ"
+      },
+      {
+        "clip_id": "digest_qa_02",
+        "caption_id": null,
+        "before": "正直全然僕より詳しいということもある",
+        "after": "正直僕より詳しいこともある"
+      },
+      {
+        "clip_id": "digest_qa_04",
+        "caption_id": null,
+        "before": "どういうことを実現していきたいのかとか",
+        "after": "どういうことを実現したいのか"
+      },
+      {
+        "clip_id": "digest_qa_04",
+        "caption_id": null,
+        "before": "どういうことを実現していきたいのかとか",
+        "after": "どういうことを実現したいのか"
+      }
+    ]
+  },
+  "before_event_count": 176,
+  "after_event_count": 176
+}

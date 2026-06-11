@@ -1,0 +1,156 @@
+{
+  "schema_version": "digest_one_minute_shortening.v1",
+  "target_duration_sec": 60,
+  "original_digest_duration_sec": 141.241,
+  "shortened_digest_duration_sec": 61.0,
+  "removed_digest_duration_sec": 80.241,
+  "kept": [
+    {
+      "event_id": "digest_qa_01_question_01",
+      "source_event_id": "digest_qa_01_question_01",
+      "local_start": 2.1,
+      "local_end": 8.04,
+      "duration_sec": 5.94,
+      "reason": "Opening question trimmed so video/audio begin at the captioned phrase.",
+      "captions": [
+        "開発に関わる仕事をする中で",
+        "これめっちゃ大変でしたとかありますか？"
+      ]
+    },
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "source_event_id": "digest_qa_01_answer_02",
+      "local_start": 0.0,
+      "local_end": 9.6,
+      "duration_sec": 9.6,
+      "reason": "Core answer: verbalizing implicit work habits was hard.",
+      "captions": [
+        "なんでそうするんですかって聞かれた時に",
+        "ものすごくこれを言語化するのに大変だった",
+        "癖とか慣れとかそういうもので今までやってきた"
+      ]
+    },
+    {
+      "event_id": "digest_qa_01_answer_03",
+      "source_event_id": "digest_qa_01_answer_03",
+      "local_start": 0.0,
+      "local_end": 3.5,
+      "duration_sec": 3.5,
+      "reason": "Punchline: verbalizing the previous default.",
+      "captions": [
+        "今までの当たり前を言語化する"
+      ]
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "source_event_id": "digest_qa_02_question_context_01",
+      "local_start": 0.0,
+      "local_end": 8.48,
+      "duration_sec": 8.48,
+      "reason": "Sets up the domain expert knowledge hurdle.",
+      "captions": [
+        "ドメインエキスパートって言うと",
+        "何でも知ってそうな感じがあると思ってて",
+        "この辺へのハードルの高さというか"
+      ]
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "source_event_id": "digest_qa_02_answer_02",
+      "local_start": 0.0,
+      "local_end": 8.56,
+      "duration_sec": 8.56,
+      "reason": "Shows that engineers also research the domain deeply.",
+      "captions": [
+        "すごい皆さんドメインの方めっちゃ調べてるんですよ",
+        "正直全然僕より詳しいということもある"
+      ]
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "source_event_id": "digest_qa_03_answer_01",
+      "local_start": 0.0,
+      "local_end": 8.88,
+      "duration_sec": 8.88,
+      "reason": "Keeps the strongest why-question pressure section and removes the trailing explanation.",
+      "captions": [
+        "なんでなんですかを絶対に逃がしてくれない",
+        "そこのある意味健全なプレッシャーというのが来た",
+        "ちゃんと伝えるには背景まで整理して"
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "source_event_id": "digest_qa_04_answer_02",
+      "local_start": 0.0,
+      "local_end": 3.36,
+      "duration_sec": 3.36,
+      "reason": "AI-era role shift: sharpened expectations, not just writing specs, but defining what to realize.",
+      "captions": [
+        "自分たちに求められることは結構研ぎ澄まされてきている"
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_answer_02_short02",
+      "source_event_id": "digest_qa_04_answer_02",
+      "local_start": 6.72,
+      "local_end": 10.6,
+      "duration_sec": 3.88,
+      "reason": "AI-era role shift: sharpened expectations, not just writing specs, but defining what to realize.",
+      "captions": [
+        "仕様をゴリゴリ書いていくというよりは"
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_answer_02_short03",
+      "source_event_id": "digest_qa_04_answer_02",
+      "local_start": 12.62,
+      "local_end": 15.42,
+      "duration_sec": 2.8,
+      "reason": "AI-era role shift: sharpened expectations, not just writing specs, but defining what to realize.",
+      "captions": [
+        "どういうことを実現していきたいのかとか"
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "source_event_id": "digest_qa_05_answer_02",
+      "local_start": 0.0,
+      "local_end": 6.0,
+      "duration_sec": 6.0,
+      "reason": "Closing takeaway: the career path is recommended.",
+      "captions": [
+        "おすすめするんですよ",
+        "学ぶのめちゃめちゃおすすめ",
+        "めちゃめちゃおすすめですよ"
+      ]
+    }
+  ],
+  "removed": [
+    {
+      "event_id": "digest_qa_04_question_01",
+      "duration_sec": 12.0,
+      "reason": "Dropped from one-minute digest to keep only the strongest beats."
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "duration_sec": 17.28,
+      "reason": "Dropped from one-minute digest to keep only the strongest beats."
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "duration_sec": 20.0,
+      "reason": "Dropped from one-minute digest to keep only the strongest beats."
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "duration_sec": 0.001,
+      "reason": "Dropped from one-minute digest to keep only the strongest beats."
+    },
+    {
+      "event_id": "digest_qa_05_answer_04",
+      "duration_sec": 6.92,
+      "reason": "Dropped from one-minute digest to keep only the strongest beats."
+    }
+  ]
+}

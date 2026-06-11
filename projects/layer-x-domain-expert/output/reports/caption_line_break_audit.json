@@ -1,9 +1,9 @@
 {
   "schema_version": "caption_line_break_audit.v2",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-11T12:25:22+09:00",
+  "generated_at": "2026-06-11T12:56:16+09:00",
   "policy": "Rendered caption lines must be one or two lines, fit the caption box, and must not break inside protected terms, katakana words, latin tokens, or suffix fragments.",
-  "checked_caption_overlays": 210,
+  "checked_caption_overlays": 146,
   "issue_count": 0,
   "issues": []
 }

@@ -852,9 +852,9 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
     line_height = 104
     gap = 10
     stack_h = len(lines) * line_height + (len(lines) - 1) * gap
-    # Main interview captions were visually too high. Keep digest captions at
-    # the reference position, but lower main captions closer to the bottom.
-    caption_bottom_y = 690 if section == "main" else 660
+    # Keep both digest and main captions lower on the 720p canvas while
+    # preserving enough bottom margin so the purple boxes never clip.
+    caption_bottom_y = 704 if section == "main" else 684
     y_base = caption_bottom_y - stack_h
     y_positions = [y_base + index * (line_height + gap) for index in range(len(lines))]
     draw = ImageDraw.Draw(canvas)

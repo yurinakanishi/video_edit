@@ -2,7 +2,8 @@
 
 ## Current Request
 
-- Keep the current digest section unchanged.
+- Opening digest should be shortened to about one minute by keeping only the strongest question/answer beats. Current target implementation is `61.0` seconds, recorded in `output/reports/digest_one_minute_shortening_report.json`.
+- The first digest question must start at the captioned phrase `開発に関わる仕事をする中で`. Cut the leading phrase `ちなみにお二人の中でこれまで` from both video and audio. Current first digest trim is recorded in `output/reports/first_digest_question_trim_report.json`; current digest duration is `61.0` seconds.
 - Use the full main interview, not a shortened excerpt. The main content window is `519.14` to `2985.485` seconds on the master camera.
 - Use `output/reports/captions.md` as the source for main-section emphasis captions.
 - Main captions are not full subtitles. They are large emphasis captions for important statements only.
@@ -53,6 +54,10 @@
   - speaker position/name metadata
   - confidence and selection method
 - Caption text must not contain `、`.
+- Remove non-editorial caption fragments before rendering. This includes short reactions, greetings, setup phrases, dangling clauses, and captions that do not express the core question or answer (for example `めっちゃ大事です`).
+- Display captions may be editorially condensed from the transcript when needed. Prefer short declarative wording that preserves the meaning and fits in one or two natural lines instead of verbatim filler such as `という`, `感覚があって`, or other trailing hedges.
+- Caption vertical placement should sit one step lower than the previous preview in both digest and main sections. Current 720p render anchors: digest caption bottom `y=684`, main caption bottom `y=704`.
+- Run `projects/layer-x-domain-expert/scripts/prune_irrelevant_caption_overlays.py` after caption/timeline regeneration so removed filler captions do not return. If `normalize_caption_overlays_two_lines.py` is run, run the prune script again after normalization because normalization can rebuild split caption parts from their source text.
 - Caption wrapping must use `projects/layer-x-domain-expert/scripts/caption_wrap_rules.py` for both render and `caption_review.md`.
 - Do not force long captions into two visual lines by cutting at arbitrary character positions. Split them into sequential 1-2 line caption overlays at natural phrase boundaries.
 - After caption or timeline changes, run `normalize_caption_overlays_two_lines.py`, `export_caption_review_md.py`, and `audit_caption_line_breaks.py`. Treat any line-break audit issue as a blocker before preview rendering.

@@ -8,7 +8,9 @@
     "not_full_subtitles": true,
     "remove_japanese_commas": true,
     "speaker_metadata_required": true,
-    "speaker_attribution_primary_source": "voice_speaker_attribution.json"
+    "speaker_attribution_primary_source": "voice_speaker_attribution.json",
+    "exclude_main_interviewer_questions": true,
+    "condense_long_captions_to_two_line_units": true
   },
   "people": {
     "person_01": {
@@ -39,7 +41,7 @@
       "source_end_sec": 572.36,
       "caption_start_sec": 568.04,
       "caption_end_sec": 572.36,
-      "display_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
+      "display_text": "それぞれの立場から開発に関与している",
       "full_reference_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している。",
       "search_keys": [
         "チームがあるわけではなく",
@@ -51,7 +53,9 @@
       "speaker_screen_position": "left",
       "speaker_role": "interviewer",
       "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
-      "speaker_attribution_confidence": 0.97
+      "speaker_attribution_confidence": 0.97,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している。"
     },
     {
       "caption_id": "main_caption_003",
@@ -100,31 +104,6 @@
       "speaker_name": "根本",
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
-      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
-      "speaker_attribution_confidence": 0.97
-    },
-    {
-      "caption_id": "main_caption_056",
-      "caption_no": 56,
-      "source": "captions.md",
-      "source_match_method": "captions_md_time_hint",
-      "source_match_confidence": 0.9,
-      "source_segment_id": "seg_000232",
-      "source_start_sec": 673.06,
-      "source_end_sec": 675.06,
-      "caption_start_sec": 674.0,
-      "caption_end_sec": 686.0,
-      "display_text": "コードを書けなくても大丈夫かという感覚から始まった",
-      "full_reference_text": "当時はプロダクトマネージャーという言葉もよく知らず「コードを書けないですけど大丈夫ですか」という感覚から始まった。",
-      "search_keys": [
-        "プロダクトマネージャー",
-        "コード書けないですけど",
-        "大丈夫ですか"
-      ],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
       "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
       "speaker_attribution_confidence": 0.97
     },
@@ -672,28 +651,6 @@
       "speaker_attribution_confidence": 0.678
     },
     {
-      "caption_id": "main_caption_auto_002",
-      "caption_no": "auto_002",
-      "source": "transcript_density_backfill",
-      "source_match_method": "density_gap_backfill",
-      "source_match_confidence": 0.66,
-      "source_segment_id": "seg_000358",
-      "source_start_sec": 1165.28,
-      "source_end_sec": 1169.28,
-      "caption_start_sec": 1165.28,
-      "caption_end_sec": 1169.28,
-      "display_text": "カルチャー力というかもしかしてこの後お話出てくるんでしょうか",
-      "full_reference_text": "カルチャー力というかもしかしてこの後お話出てくるんでしょうか",
-      "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74,
-      "density_backfill": true
-    },
-    {
       "caption_id": "main_caption_070",
       "caption_no": 70,
       "source": "captions.md",
@@ -755,7 +712,7 @@
       "source_end_sec": 1225.28,
       "caption_start_sec": 1221.28,
       "caption_end_sec": 1225.28,
-      "display_text": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった",
+      "display_text": "大きなキャリアチェンジは考えていなかった",
       "full_reference_text": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった",
       "search_keys": [],
       "speaker_person_id": "person_01",
@@ -764,29 +721,9 @@
       "speaker_role": "interviewer",
       "speaker_attribution_method": "fallback_wide_safe",
       "speaker_attribution_confidence": 0.35,
-      "density_backfill": true
-    },
-    {
-      "caption_id": "main_caption_auto_003",
-      "caption_no": "auto_003",
-      "source": "transcript_density_backfill",
-      "source_match_method": "density_gap_backfill",
-      "source_match_confidence": 0.66,
-      "source_segment_id": "seg_000382",
-      "source_start_sec": 1236.28,
-      "source_end_sec": 1240.28,
-      "caption_start_sec": 1236.28,
-      "caption_end_sec": 1240.28,
-      "display_text": "僕は最初開発って言われた時によくわかんないじゃないですか",
-      "full_reference_text": "僕は最初開発って言われた時によくわかんないじゃないですか",
-      "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった"
     },
     {
       "caption_id": "main_caption_016",
@@ -1049,7 +986,7 @@
       "source_end_sec": 1443.26,
       "caption_start_sec": 1433.38,
       "caption_end_sec": 1443.26,
-      "display_text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
+      "display_text": "やりたいことや違和感を普通に言える",
       "full_reference_text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね。",
       "search_keys": [],
       "speaker_person_id": "person_01",
@@ -1058,7 +995,9 @@
       "speaker_role": "interviewer",
       "speaker_attribution_method": "fallback_wide_safe",
       "speaker_attribution_confidence": 0.35,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね。"
     },
     {
       "caption_id": "main_caption_026",
@@ -1110,28 +1049,6 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.725
-    },
-    {
-      "caption_id": "main_caption_auto_005",
-      "caption_no": "auto_005",
-      "source": "transcript_density_backfill",
-      "source_match_method": "density_gap_backfill",
-      "source_match_confidence": 0.66,
-      "source_segment_id": "seg_000460",
-      "source_start_sec": 1500.72,
-      "source_end_sec": 1508.76,
-      "caption_start_sec": 1500.72,
-      "caption_end_sec": 1508.76,
-      "display_text": "お二人の中でこれまで開発に関わる仕事をする中で これめっちゃ大変でしたとか",
-      "full_reference_text": "ちなみにお二人の中でこれまで開発に関わる仕事をする中で これめっちゃ大変でしたとか",
-      "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74,
-      "density_backfill": true
     },
     {
       "caption_id": "main_caption_auto_030",
@@ -1653,28 +1570,6 @@
       "speaker_attribution_confidence": 0.61
     },
     {
-      "caption_id": "main_caption_auto_032",
-      "caption_no": "auto_032",
-      "source": "transcript_density_backfill",
-      "source_match_method": "density_gap_backfill",
-      "source_match_confidence": 0.66,
-      "source_segment_id": "seg_000567",
-      "source_start_sec": 1922.1,
-      "source_end_sec": 1928.86,
-      "caption_start_sec": 1922.1,
-      "caption_end_sec": 1928.86,
-      "display_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか",
-      "full_reference_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか。",
-      "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74,
-      "density_backfill": true
-    },
-    {
       "caption_id": "main_caption_auto_008",
       "caption_no": "auto_008",
       "source": "transcript_density_backfill",
@@ -1729,7 +1624,7 @@
       "source_end_sec": 1983.1,
       "caption_start_sec": 1973.1,
       "caption_end_sec": 1983.1,
-      "display_text": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率生産性も上がってるみたいな話もあると思うんですけど",
+      "display_text": "AIでエンジニアの生産性も上がっている",
       "full_reference_text": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率生産性も上がってるみたいな話もあると思うんですけど",
       "search_keys": [],
       "speaker_person_id": "person_01",
@@ -1738,7 +1633,9 @@
       "speaker_role": "interviewer",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.84,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率生産性も上がってるみたいな話もあると思うんですけど"
     },
     {
       "caption_id": "main_caption_auto_010",
@@ -1877,28 +1774,6 @@
       "density_backfill": true
     },
     {
-      "caption_id": "main_caption_auto_013",
-      "caption_no": "auto_013",
-      "source": "transcript_density_backfill",
-      "source_match_method": "density_gap_backfill",
-      "source_match_confidence": 0.66,
-      "source_segment_id": "seg_000622",
-      "source_start_sec": 2122.74,
-      "source_end_sec": 2131.74,
-      "caption_start_sec": 2122.74,
-      "caption_end_sec": 2131.74,
-      "display_text": "そうですねこれはちょっと僕の興味なんですけどお二人の今後のキャリアはどう考えていますかって",
-      "full_reference_text": "あとはそうですねこれはちょっと僕の興味なんですけどお二人の今後のキャリアはどう考えていますかって。",
-      "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74,
-      "density_backfill": true
-    },
-    {
       "caption_id": "main_caption_auto_014",
       "caption_no": "auto_014",
       "source": "transcript_density_backfill",
@@ -1909,7 +1784,7 @@
       "source_end_sec": 2149.74,
       "caption_start_sec": 2139.74,
       "caption_end_sec": 2149.74,
-      "display_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある",
+      "display_text": "開発に関わる中で今後のキャリアを考える",
       "full_reference_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある。",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -1918,7 +1793,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.84,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある。"
     },
     {
       "caption_id": "main_caption_auto_015",
@@ -1975,7 +1852,7 @@
       "source_end_sec": 2222.74,
       "caption_start_sec": 2203.74,
       "caption_end_sec": 2222.74,
-      "display_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
+      "display_text": "AIから逃げない姿勢はキャリアに必要",
       "full_reference_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います。",
       "search_keys": [],
       "speaker_person_id": "person_02",
@@ -1984,7 +1861,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
       "speaker_attribution_confidence": 0.68,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います。"
     },
     {
       "caption_id": "main_caption_auto_037",
@@ -2019,7 +1898,7 @@
       "source_end_sec": 2248.04,
       "caption_start_sec": 2241.54,
       "caption_end_sec": 2248.04,
-      "display_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
+      "display_text": "その環境を選んでよかったと思う",
       "full_reference_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -2028,7 +1907,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.84,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います"
     },
     {
       "caption_id": "main_caption_auto_018",
@@ -2041,7 +1922,7 @@
       "source_end_sec": 2276.04,
       "caption_start_sec": 2267.04,
       "caption_end_sec": 2276.04,
-      "display_text": "よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
+      "display_text": "PDMが合わなければ経理に戻ればいいと言われた",
       "full_reference_text": "正直よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ。",
       "search_keys": [],
       "speaker_person_id": "person_02",
@@ -2050,7 +1931,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_and_text_agree",
       "speaker_attribution_confidence": 0.878,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "正直よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ。"
     },
     {
       "caption_id": "main_caption_074",
@@ -2088,7 +1971,7 @@
       "source_end_sec": 2307.04,
       "caption_start_sec": 2297.04,
       "caption_end_sec": 2307.04,
-      "display_text": "今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できる",
+      "display_text": "ドメインがなくても活躍できる力を身につけたい",
       "full_reference_text": "あとは今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できるようなスキルはあと数年で使いたいなとは思っています。",
       "search_keys": [],
       "speaker_person_id": "person_02",
@@ -2097,7 +1980,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.745,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "あとは今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できるようなスキルはあと数年で使いたいなとは思っています。"
     },
     {
       "caption_id": "main_caption_075",
@@ -2135,7 +2020,7 @@
       "source_end_sec": 2334.04,
       "caption_start_sec": 2330.04,
       "caption_end_sec": 2334.04,
-      "display_text": "そうなんですよ。それ実務なんで自分取り換えればそういう",
+      "display_text": "実務経験は入れ替えがきく",
       "full_reference_text": "そうなんですよ。それ実務なんで自分取り換えればそういう",
       "search_keys": [],
       "speaker_person_id": "person_01",
@@ -2144,7 +2029,9 @@
       "speaker_role": "interviewer",
       "speaker_attribution_method": "fallback_wide_safe",
       "speaker_attribution_confidence": 0.35,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "そうなんですよ。それ実務なんで自分取り換えればそういう"
     },
     {
       "caption_id": "main_caption_076",
@@ -2157,7 +2044,7 @@
       "source_end_sec": 2346.22,
       "caption_start_sec": 2345.0,
       "caption_end_sec": 2381.0,
-      "display_text": "ドメインの貯金がなくなったときの怖さがある",
+      "display_text": "ドメインの貯金がなくなった時の怖さがある",
       "full_reference_text": "人事や労務の領域なら話せるがドメインの貯金がなくなったとき自分は何ができるのかという怖さがある。",
       "search_keys": [
         "貯金がなくなった時",
@@ -2169,29 +2056,9 @@
       "speaker_screen_position": "middle",
       "speaker_role": "interviewee",
       "speaker_attribution_method": "captions_md_topic_speaker_map",
-      "speaker_attribution_confidence": 0.78
-    },
-    {
-      "caption_id": "main_caption_auto_040",
-      "caption_no": "auto_040",
-      "source": "transcript_density_backfill",
-      "source_match_method": "density_gap_backfill",
-      "source_match_confidence": 0.66,
-      "source_segment_id": "seg_000674",
-      "source_start_sec": 2368.66,
-      "source_end_sec": 2379.66,
-      "caption_start_sec": 2368.66,
-      "caption_end_sec": 2379.66,
-      "display_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
-      "full_reference_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
-      "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74,
-      "density_backfill": true
+      "speaker_attribution_confidence": 0.78,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "人事や労務の領域なら話せるがドメインの貯金がなくなったとき自分は何ができるのかという怖さがある。"
     },
     {
       "caption_id": "main_caption_077",
@@ -2280,7 +2147,7 @@
       "source_end_sec": 2482.2,
       "caption_start_sec": 2465.2,
       "caption_end_sec": 2482.2,
-      "display_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
+      "display_text": "作業量とチェック時間を短縮する機能を作れた",
       "full_reference_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね。",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -2289,7 +2156,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.774,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね。"
     },
     {
       "caption_id": "main_caption_080",
@@ -2327,7 +2196,7 @@
       "source_end_sec": 2523.2,
       "caption_start_sec": 2514.2,
       "caption_end_sec": 2523.2,
-      "display_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね",
+      "display_text": "開発に関わるやりがいがある",
       "full_reference_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね。",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -2336,7 +2205,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.84,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね。"
     },
     {
       "caption_id": "main_caption_081",
@@ -2494,7 +2365,7 @@
       "source_end_sec": 2674.02,
       "caption_start_sec": 2667.9,
       "caption_end_sec": 2674.02,
-      "display_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
+      "display_text": "AIに乗るだけで分析できるようになる",
       "full_reference_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -2503,7 +2374,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.527,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか"
     },
     {
       "caption_id": "main_caption_085",
@@ -2564,7 +2437,7 @@
       "source_end_sec": 2730.68,
       "caption_start_sec": 2716.68,
       "caption_end_sec": 2730.68,
-      "display_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
+      "display_text": "バックオフィス経験を広く活かせると面白い",
       "full_reference_text": "だからこういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ。",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -2573,7 +2446,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.797,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "だからこういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ。"
     },
     {
       "caption_id": "main_caption_086",
@@ -2586,7 +2461,7 @@
       "source_end_sec": 2730.68,
       "caption_start_sec": 2730.0,
       "caption_end_sec": 2764.0,
-      "display_text": "属人化は今後大きく変わっていく可能性がある",
+      "display_text": "属人化は今後大きく変わる可能性がある",
       "full_reference_text": "バックオフィスにはその人しか分からない過去の処理や判断が多い。そうした属人化は今後数年で大きく変わっていく可能性がある。",
       "search_keys": [
         "その人しかわからない",
@@ -2599,7 +2474,9 @@
       "speaker_screen_position": "right",
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
-      "speaker_attribution_confidence": 0.797
+      "speaker_attribution_confidence": 0.797,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "バックオフィスにはその人しか分からない過去の処理や判断が多い。そうした属人化は今後数年で大きく変わっていく可能性がある。"
     },
     {
       "caption_id": "main_caption_auto_043",
@@ -2612,7 +2489,7 @@
       "source_end_sec": 2750.48,
       "caption_start_sec": 2744.64,
       "caption_end_sec": 2750.48,
-      "display_text": "過去の処理とかどういう風にやってたかを確認して",
+      "display_text": "過去の処理を確認する",
       "full_reference_text": "過去の処理とかどういう風にやってたかを確認して",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -2621,7 +2498,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.502,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "過去の処理とかどういう風にやってたかを確認して"
     },
     {
       "caption_id": "main_caption_087",
@@ -2649,53 +2528,6 @@
       "speaker_attribution_confidence": 0.78
     },
     {
-      "caption_id": "main_caption_auto_024",
-      "caption_no": "auto_024",
-      "source": "transcript_density_backfill",
-      "source_match_method": "density_gap_backfill",
-      "source_match_confidence": 0.66,
-      "source_segment_id": "seg_000759",
-      "source_start_sec": 2792.86,
-      "source_end_sec": 2804.86,
-      "caption_start_sec": 2792.86,
-      "caption_end_sec": 2804.86,
-      "display_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
-      "full_reference_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
-      "search_keys": [],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74,
-      "density_backfill": true
-    },
-    {
-      "caption_id": "main_caption_088",
-      "caption_no": 88,
-      "source": "captions.md",
-      "source_match_method": "captions_md_time_hint",
-      "source_match_confidence": 0.9,
-      "source_segment_id": "seg_000759",
-      "source_start_sec": 2792.86,
-      "source_end_sec": 2804.86,
-      "caption_start_sec": 2804.0,
-      "caption_end_sec": 2848.0,
-      "display_text": "対人領域では人に聞きに来ることがある",
-      "full_reference_text": "労務のような対人領域ではAIが答えても結局「本当に？」と人に聞きに来ることがある。だから経理と労務では変化の仕方が違う。",
-      "search_keys": [
-        "本当にって言って聞きに来る",
-        "労務と経理",
-        "違いそう"
-      ],
-      "speaker_person_id": "person_01",
-      "speaker_name": "矢野",
-      "speaker_screen_position": "left",
-      "speaker_role": "interviewer",
-      "speaker_attribution_method": "voice_speaker_attribution:text_role_override_voice",
-      "speaker_attribution_confidence": 0.74
-    },
-    {
       "caption_id": "main_caption_auto_025",
       "caption_no": "auto_025",
       "source": "transcript_density_backfill",
@@ -2706,7 +2538,7 @@
       "source_end_sec": 2840.58,
       "caption_start_sec": 2832.86,
       "caption_end_sec": 2840.58,
-      "display_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ",
+      "display_text": "不安があると結局人に聞きに来る",
       "full_reference_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ。",
       "search_keys": [],
       "speaker_person_id": "person_03",
@@ -2715,7 +2547,9 @@
       "speaker_role": "interviewee",
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.84,
-      "density_backfill": true
+      "density_backfill": true,
+      "display_text_condensed": true,
+      "display_text_condensed_from": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ。"
     },
     {
       "caption_id": "main_caption_089",
@@ -2890,5 +2724,6 @@
       "speaker_attribution_method": "voice_speaker_attribution:voice_quality_nearest_anchor",
       "speaker_attribution_confidence": 0.536
     }
-  ]
+  ],
+  "updated_at": "2026-06-11T13:24:53+09:00"
 }

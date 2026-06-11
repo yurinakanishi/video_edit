@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-06-11T13:24:53+09:00",
+  "policy": {
+    "goal": "Condense captions that would become 3+ lines or awkward sequential parts into editorial 1-2 line units.",
+    "font_measured": true,
+    "max_visual_lines": 2
+  },
+  "changed_overlay_count": 4,
+  "changed_overlays": [
+    {
+      "event_id": "main_full_106",
+      "section": "main",
+      "caption_id": "main_caption_auto_038",
+      "source_text": "ドメインがなくても活躍できる力を身につけたい",
+      "replacement": "ドメインがなくても活躍できる力を身につけたい",
+      "source_overlay_count": 1,
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "ドメインがなくても",
+        "活躍できる力を身につけたい"
+      ]
+    },
+    {
+      "event_id": "main_full_130",
+      "section": "main",
+      "caption_id": "main_caption_auto_022",
+      "source_text": "AIに乗るだけで分析できるようになる",
+      "replacement": "AIに乗るだけで分析できるようになる",
+      "source_overlay_count": 1,
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "AIに乗るだけで",
+        "分析できるようになる"
+      ]
+    },
+    {
+      "event_id": "main_full_134",
+      "section": "main",
+      "caption_id": "main_caption_auto_023",
+      "source_text": "バックオフィス経験を広く活かせると面白い",
+      "replacement": "バックオフィス経験を広く活かせると面白い",
+      "source_overlay_count": 1,
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "バックオフィス経験を",
+        "広く活かせると面白い"
+      ]
+    },
+    {
+      "event_id": "main_full_136",
+      "section": "main",
+      "caption_id": "main_caption_auto_043",
+      "source_text": "過去の処理をどうしていたか確認する",
+      "replacement": "過去の処理を確認する",
+      "source_overlay_count": 1,
+      "replacement_line_count": 1,
+      "replacement_lines": [
+        "過去の処理を確認する"
+      ]
+    }
+  ],
+  "changed_main_caption_plan_count": 8,
+  "changed_main_caption_plan_items": [
+    {
+      "caption_id": "main_caption_auto_029",
+      "caption_no": "auto_029",
+      "before": "大きなキャリアチェンジは考えていなかった",
+      "replacement": "大きなキャリアチェンジは考えていなかった",
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "大きなキャリアチェンジは",
+        "考えていなかった"
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_009",
+      "caption_no": "auto_009",
+      "before": "AIでエンジニアの生産性も上がっている",
+      "replacement": "AIでエンジニアの生産性も上がっている",
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "AIでエンジニアの生",
+        "産性も上がっている"
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_017",
+      "caption_no": "auto_017",
+      "before": "その環境を選んでよかったと思う",
+      "replacement": "その環境を選んでよかったと思う",
+      "replacement_line_count": 1,
+      "replacement_lines": [
+        "その環境を選んでよかったと思う"
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_038",
+      "caption_no": "auto_038",
+      "before": "ドメインがなくても活躍できる力を身につけたい",
+      "replacement": "ドメインがなくても活躍できる力を身につけたい",
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "ドメインがなくても",
+        "活躍できる力を身につけたい"
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_039",
+      "caption_no": "auto_039",
+      "before": "実務経験は入れ替えがきく",
+      "replacement": "実務経験は入れ替えがきく",
+      "replacement_line_count": 1,
+      "replacement_lines": [
+        "実務経験は入れ替えがきく"
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_022",
+      "caption_no": "auto_022",
+      "before": "AIに乗るだけで分析できるようになる",
+      "replacement": "AIに乗るだけで分析できるようになる",
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "AIに乗るだけで",
+        "分析できるようになる"
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_023",
+      "caption_no": "auto_023",
+      "before": "バックオフィス経験を広く活かせると面白い",
+      "replacement": "バックオフィス経験を広く活かせると面白い",
+      "replacement_line_count": 2,
+      "replacement_lines": [
+        "バックオフィス経験を",
+        "広く活かせると面白い"
+      ]
+    },
+    {
+      "caption_id": "main_caption_auto_043",
+      "caption_no": "auto_043",
+      "before": "過去の処理をどうしていたか確認する",
+      "replacement": "過去の処理を確認する",
+      "replacement_line_count": 1,
+      "replacement_lines": [
+        "過去の処理を確認する"
+      ]
+    }
+  ]
+}

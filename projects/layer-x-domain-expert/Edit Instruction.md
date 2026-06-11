@@ -7,6 +7,7 @@
 - Use the full main interview, not a shortened excerpt. The main content window is `519.14` to `2985.485` seconds on the master camera.
 - Use `output/reports/captions.md` as the source for main-section emphasis captions.
 - Main captions are not full subtitles. They are large emphasis captions for important statements only.
+- In the main section, do not show interviewer questions or prompts from the left interviewer as emphasis captions. Keep main captions focused on the interviewees' answers and key statements. Digest question captions are allowed.
 - Remove Japanese comma punctuation `、` from display captions.
 - Preserve the existing company movie bridge in full.
 - After the company movie ends, cut any silent/waiting dead time so the left interviewer begins speaking immediately.
@@ -54,13 +55,15 @@
   - speaker position/name metadata
   - confidence and selection method
 - Caption text must not contain `、`.
+- Main-section caption JSON must exclude left-interviewer question prompts such as `どう考えていますか`, `ありますか`, `でしょうか`, and similar setup questions. If a question was split into multiple caption parts, remove the whole split group.
 - Remove non-editorial caption fragments before rendering. This includes short reactions, greetings, setup phrases, dangling clauses, and captions that do not express the core question or answer (for example `めっちゃ大事です`).
 - Display captions may be editorially condensed from the transcript when needed. Prefer short declarative wording that preserves the meaning and fits in one or two natural lines instead of verbatim filler such as `という`, `感覚があって`, or other trailing hedges.
+- If a transcript phrase would become three or more visual lines, or would require sequential caption parts to avoid overflow, rewrite it as a concise editorial caption that preserves the core meaning in one or two lines. For example, use `バックオフィスの仕事は前提ミスが許されない通説がある` instead of verbatim multi-line wording such as `結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか`.
 - Caption vertical placement should sit one step lower than the previous preview in both digest and main sections. Current 720p render anchors: digest caption bottom `y=684`, main caption bottom `y=704`.
 - Run `projects/layer-x-domain-expert/scripts/prune_irrelevant_caption_overlays.py` after caption/timeline regeneration so removed filler captions do not return. If `normalize_caption_overlays_two_lines.py` is run, run the prune script again after normalization because normalization can rebuild split caption parts from their source text.
 - Caption wrapping must use `projects/layer-x-domain-expert/scripts/caption_wrap_rules.py` for both render and `caption_review.md`.
 - Do not force long captions into two visual lines by cutting at arbitrary character positions. Split them into sequential 1-2 line caption overlays at natural phrase boundaries.
-- After caption or timeline changes, run `normalize_caption_overlays_two_lines.py`, `export_caption_review_md.py`, and `audit_caption_line_breaks.py`. Treat any line-break audit issue as a blocker before preview rendering.
+- After caption or timeline changes, run `normalize_caption_overlays_two_lines.py`, `condense_caption_overlays_to_two_line_units.py`, `export_caption_review_md.py`, and `audit_caption_line_breaks.py`. Treat any line-break audit issue as a blocker before preview rendering.
 
 ## Render Target
 

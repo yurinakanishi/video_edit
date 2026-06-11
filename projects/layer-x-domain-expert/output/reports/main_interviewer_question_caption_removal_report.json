@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-06-11T13:19:56+09:00",
+  "policy": {
+    "scope": "main section only",
+    "digest_questions_allowed": true,
+    "interviewer_person_id": "person_01",
+    "interviewer_name": "矢野",
+    "question_markers": [
+      "?",
+      "？",
+      "ですか",
+      "ますか",
+      "でしょうか",
+      "じゃないですか",
+      "ありますか",
+      "あったりされますか",
+      "感じるところがあったりしますか",
+      "どう考え",
+      "お二人"
+    ],
+    "remove_whole_split_group": true
+  },
+  "question_group_ids": [],
+  "question_seeds": [],
+  "removed_overlay_count": 0,
+  "removed_overlays": [],
+  "removed_main_caption_plan_count": 0,
+  "removed_main_caption_plan_items": []
+}

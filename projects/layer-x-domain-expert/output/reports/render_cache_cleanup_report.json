@@ -1,0 +1,47 @@
+{
+  "schema_version": "render_cache_cleanup_report.v1",
+  "updated_at": "2026-06-11T19:27:14+09:00",
+  "root_cause_review": [
+    {
+      "issue": "Previous --resume-existing logic reused any existing segment mp4 without checking whether edit_plan/captions/audio/style inputs changed.",
+      "status": "fixed"
+    },
+    {
+      "issue": "Initial fingerprint was too narrow and did not include all render dependencies such as source media, script/style inputs, logo/font assets, profile reports, people map, semantic marks, and sync offsets.",
+      "status": "fixed"
+    },
+    {
+      "issue": "Cache manifests were adjacent sidecars, which made cache state harder to inspect and clean.",
+      "status": "fixed"
+    },
+    {
+      "issue": "Existing segment cache had no manifests and was therefore unsafe to reuse.",
+      "status": "cleaned"
+    }
+  ],
+  "implementation_changes": [
+    "render_test_project1_style_preview.py now uses RENDER_CACHE_VERSION test_project1_style_preview.v3.clean_segment_cache.",
+    "Each reusable segment must have a matching fingerprint manifest in output/videos/preview_test_project1_style_segments/_manifests/.",
+    "Fingerprint payload includes the event JSON, render script signature, source media signatures, logo/font assets, people/profile/semantic report signatures, sync offsets, and core style constants.",
+    "Invalid or missing cache entries are deleted before re-rendering so stale mp4 files cannot be concatenated after a failed or partial reuse decision.",
+    "audit_render_segment_cache.py reports reusable, invalid, missing, orphan segment, and orphan manifest counts before rendering."
+  ],
+  "current_cache_audit_summary": {
+    "event_count": 165,
+    "reusable_count": 1,
+    "invalid_count": 164,
+    "status_counts": {
+      "reusable": 1,
+      "missing_or_empty_segment": 164
+    },
+    "orphan_segment_count": 0,
+    "orphan_manifest_count": 0,
+    "ready_for_resume_reuse": false
+  },
+  "current_state": "Cache is clean. One smoke-tested segment has a current manifest; the remaining segments are absent and will be rendered fresh next time.",
+  "render_performed": "Only a one-segment smoke render was performed and its temporary output files were removed. No full preview render was produced.",
+  "documentation_updated": [
+    "projects/layer-x-domain-expert/Edit Instruction.md",
+    "projects/layer-x-domain-expert/VIDEO_EDITING_INSTRUCTIONS.md"
+  ]
+}

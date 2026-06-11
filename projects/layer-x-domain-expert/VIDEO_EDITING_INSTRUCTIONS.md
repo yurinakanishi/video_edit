@@ -819,6 +819,20 @@ The project-local styled preview renderer is:
 projects/layer-x-domain-expert/scripts/render_test_project1_style_preview.py
 ```
 
+Segment cache reuse is allowed only through renderer-managed fingerprint manifests under:
+
+```text
+projects/layer-x-domain-expert/output/videos/preview_test_project1_style_segments/_manifests/
+```
+
+Before using `--resume-existing`, run:
+
+```text
+python projects/layer-x-domain-expert/scripts/audit_render_segment_cache.py
+```
+
+Any segment without a current fingerprint manifest, or whose manifest does not match the current `edit_plan.json`, render script/style inputs, source media signatures, overlay assets, profile/people reports, and sync offsets, must be regenerated. Do not rely on segment filenames or modification times as proof that a cached render is current.
+
 `render_limited_preview.py` may remain as a fast diagnostic renderer, but style review should use the test-project-1 styled renderer above.
 
 ### Deliverables
@@ -933,7 +947,7 @@ Do not assume the introduction begins at a fixed timestamp. Determine the partic
 Do not cut out the introduction. The main-section intro must preserve the production greeting and setup in order, but it should be cut visually according to speaker and introduction cues:
 
 - `519.140-524.940`: show all three participants in the wide camera for the opening greeting
-- `524.940-532.100`: cut to Yano close-up when he says he is Yano; keep his name text visible for the entire close-up
+- `524.940-532.100`: cut to Yano's looser single-camera view when he says he is Yano; keep his name text visible for the entire single-person shot
 - `532.100-535.540`: briefly return to the three-person wide camera
 - `535.540`: when he says "根本さんと…", cut to the two-person split of Nemoto and Murata
 - After that, keep switching shots roughly every 15 seconds, and whenever practical, cut to the person who is speaking
@@ -942,7 +956,7 @@ Do not cut out the introduction. The main-section intro must preserve the produc
 
 Near the start of the main section, first use a brief **wide shot that includes all three participants** (`layout.type: wide_group`) to establish the room.
 
-After the wide establishing shot, render participant name text only in introduction cuts where the target person is being introduced or self-introducing. The first Yano name text must be on a **single-person close-up**. The two-interviewee introduction is an explicit exception: it uses a two-person split with one white role/name label under each person.
+After the wide establishing shot, render participant name text only in introduction cuts where the target person is being introduced or self-introducing. When Yano/the left interviewer is shown alone, use the looser single-camera framing rather than an aggressive close-up. The two-interviewee introduction is an explicit exception: it uses a two-person split with one white role/name label under each person.
 
 Examples:
 

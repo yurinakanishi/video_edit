@@ -1,0 +1,183 @@
+{
+  "schema_version": "render_caption_audio_mismatch_investigation.v1",
+  "generated_at": "2026-06-11T19:12:28",
+  "rendered_file": "projects\\layer-x-domain-expert\\output\\videos\\full_preview_360p_test_project1_style.mp4",
+  "edit_plan": "projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
+  "finding": "The rendered 360p preview reused stale pre-rendered segments because --resume-existing accepted any existing mp4 without checking whether the event/caption/audio JSON changed.",
+  "root_cause": "Segment cache invalidation was missing. Segment filenames only used index and event_id, so edited captions/timing could leave old burned-in subtitle/audio segments in the final concat.",
+  "stale_segment_count": 18,
+  "stale_segments": [
+    {
+      "index": 2,
+      "event_id": "digest_qa_02_question_context_01",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_002_digest_qa_02_question_context_01.mp4",
+      "segment_mtime": "2026-06-11T17:53:03.531436",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 8.48,
+      "actual_duration_sec": 8.48
+    },
+    {
+      "index": 3,
+      "event_id": "digest_qa_02_answer_02",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_003_digest_qa_02_answer_02.mp4",
+      "segment_mtime": "2026-06-11T17:53:23.083561",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 8.56,
+      "actual_duration_sec": 8.56
+    },
+    {
+      "index": 4,
+      "event_id": "digest_qa_03_answer_01",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_004_digest_qa_03_answer_01.mp4",
+      "segment_mtime": "2026-06-11T17:53:47.408154",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 8.88,
+      "actual_duration_sec": 8.867
+    },
+    {
+      "index": 5,
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_005_digest_qa_middle_nemoto_value_01.mp4",
+      "segment_mtime": "2026-06-11T17:54:01.690584",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 4.0,
+      "actual_duration_sec": 4.0
+    },
+    {
+      "index": 6,
+      "event_id": "digest_to_main_company_movie",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_006_digest_to_main_company_movie.mp4",
+      "segment_mtime": "2026-06-11T17:54:03.654833",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 15.018,
+      "actual_duration_sec": 15.018
+    },
+    {
+      "index": 7,
+      "event_id": "main_intro_group_greeting",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_007_main_intro_group_greeting.mp4",
+      "segment_mtime": "2026-06-11T17:54:04.798839",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 2.94,
+      "actual_duration_sec": 2.94
+    },
+    {
+      "index": 8,
+      "event_id": "main_intro_yano_self",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_008_main_intro_yano_self.mp4",
+      "segment_mtime": "2026-06-11T17:54:08.337173",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 7.16,
+      "actual_duration_sec": 7.16
+    },
+    {
+      "index": 9,
+      "event_id": "main_intro_wide_after_yano",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_009_main_intro_wide_after_yano.mp4",
+      "segment_mtime": "2026-06-11T17:54:09.555562",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 3.44,
+      "actual_duration_sec": 3.44
+    },
+    {
+      "index": 10,
+      "event_id": "main_intro_two_guests_named",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_010_main_intro_two_guests_named.mp4",
+      "segment_mtime": "2026-06-11T17:54:11.503606",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 11.0,
+      "actual_duration_sec": 11.0
+    },
+    {
+      "index": 11,
+      "event_id": "main_intro_yano_explains_001",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_011_main_intro_yano_explains_001.mp4",
+      "segment_mtime": "2026-06-11T17:54:14.043252",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 15.0,
+      "actual_duration_sec": 15.0
+    },
+    {
+      "index": 12,
+      "event_id": "main_intro_wide_context_001",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_012_main_intro_wide_context_001.mp4",
+      "segment_mtime": "2026-06-11T17:54:16.773256",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 15.0,
+      "actual_duration_sec": 15.0
+    },
+    {
+      "index": 13,
+      "event_id": "main_intro_yano_explains_002",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_013_main_intro_yano_explains_002.mp4",
+      "segment_mtime": "2026-06-11T17:54:19.767553",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 15.0,
+      "actual_duration_sec": 15.0
+    },
+    {
+      "index": 14,
+      "event_id": "main_intro_two_guest_reaction",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_014_main_intro_two_guest_reaction.mp4",
+      "segment_mtime": "2026-06-11T17:54:22.677191",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 15.0,
+      "actual_duration_sec": 15.0
+    },
+    {
+      "index": 15,
+      "event_id": "main_intro_yano_prompt_selfintro",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_015_main_intro_yano_prompt_selfintro.mp4",
+      "segment_mtime": "2026-06-11T17:54:26.115209",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 16.98,
+      "actual_duration_sec": 16.98
+    },
+    {
+      "index": 16,
+      "event_id": "intro_person_02_nemoto",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_016_intro_person_02_nemoto.mp4",
+      "segment_mtime": "2026-06-11T17:56:02.456956",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 47.54,
+      "actual_duration_sec": 47.54
+    },
+    {
+      "index": 17,
+      "event_id": "intro_between_nemoto_murata",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_017_intro_between_nemoto_murata.mp4",
+      "segment_mtime": "2026-06-11T17:56:03.663399",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 4.0,
+      "actual_duration_sec": 4.0
+    },
+    {
+      "index": 18,
+      "event_id": "intro_person_03_murata",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_018_intro_person_03_murata.mp4",
+      "segment_mtime": "2026-06-11T17:57:37.725477",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 47.44,
+      "actual_duration_sec": 47.44
+    },
+    {
+      "index": 19,
+      "event_id": "main_yano_profile_intro",
+      "segment": "projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_019_main_yano_profile_intro.mp4",
+      "segment_mtime": "2026-06-11T17:59:31.896960",
+      "edit_plan_mtime": "2026-06-11T18:20:15.597844",
+      "expected_duration_sec": 56.92,
+      "actual_duration_sec": 56.92
+    }
+  ],
+  "duration_mismatch_count": 0,
+  "duration_mismatches": [],
+  "caption_json_local_vs_source_issue_count": 0,
+  "caption_json_local_vs_source_issues": [],
+  "conclusion": [
+    "edit_plan caption local timing is internally consistent with source timing.",
+    "segment durations match the current plan, so this is not a global duration drift issue.",
+    "the preview file itself is not reliable because stale segment mp4s were reused after edit_plan changes.",
+    "render_test_project1_style_preview.py has been updated to require a per-segment fingerprint manifest before reusing cached segments."
+  ]
+}

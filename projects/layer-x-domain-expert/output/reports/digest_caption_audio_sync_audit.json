@@ -1,0 +1,204 @@
+{
+  "schema_version": "digest_caption_audio_sync_audit.v1",
+  "generated_at": "2026-06-11T20:32:38+09:00",
+  "method": [
+    "Compare each digest caption's local display window with its keyword-derived speech_window_sec.",
+    "Cross-correlate group_wide master audio against the render audio source cam_person_02 at the expected app sync offset.",
+    "Check whether existing rendered digest segments are reusable under the new fingerprint cache policy."
+  ],
+  "digest_event_count": 5,
+  "caption_issue_count": 0,
+  "audio_sync_issue_count": 0,
+  "stale_or_unfingerprinted_digest_segment_count": 5,
+  "stale_or_unfingerprinted_digest_segments": [
+    {
+      "index": 1,
+      "event_id": "digest_qa_01_question_01",
+      "status": "missing_or_empty_segment",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_001_digest_qa_01_question_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_001_digest_qa_01_question_01.json"
+    },
+    {
+      "index": 2,
+      "event_id": "digest_qa_02_question_context_01",
+      "status": "missing_or_empty_segment",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_002_digest_qa_02_question_context_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_002_digest_qa_02_question_context_01.json"
+    },
+    {
+      "index": 3,
+      "event_id": "digest_qa_03_answer_01",
+      "status": "missing_or_empty_segment",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_003_digest_qa_03_answer_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_003_digest_qa_03_answer_01.json"
+    },
+    {
+      "index": 4,
+      "event_id": "digest_qa_right_user_anxiety_01",
+      "status": "missing_or_empty_segment",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_004_digest_qa_right_user_anxiety_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_004_digest_qa_right_user_anxiety_01.json"
+    },
+    {
+      "index": 5,
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "status": "missing_or_empty_segment",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_005_digest_qa_middle_nemoto_value_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_005_digest_qa_middle_nemoto_value_01.json"
+    }
+  ],
+  "ready_in_edit_plan": true,
+  "rendered_preview_reliable": false,
+  "events": [
+    {
+      "event_id": "digest_qa_01_question_01",
+      "timeline": [
+        0.0,
+        4.89
+      ],
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1503.87,
+        "out": 1508.76
+      },
+      "render_audio_expected_source": {
+        "media_id": "cam_person_02",
+        "source_window_sec": [
+          1511.338,
+          1516.228
+        ],
+        "sync_offset_sec": 7.467854
+      },
+      "caption_issue_count": 0,
+      "caption_issues": [],
+      "audio_sync_residual": {
+        "status": "ok",
+        "lag_sec": -0.0016,
+        "lag_ms": -1.6,
+        "correlation": 0.4128,
+        "overlap_samples": 91014
+      },
+      "audio_sync_ok": true
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "timeline": [
+        4.89,
+        13.62
+      ],
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1595.62,
+        "out": 1604.35
+      },
+      "render_audio_expected_source": {
+        "media_id": "cam_person_02",
+        "source_window_sec": [
+          1603.088,
+          1611.818
+        ],
+        "sync_offset_sec": 7.467854
+      },
+      "caption_issue_count": 0,
+      "caption_issues": [],
+      "audio_sync_residual": {
+        "status": "ok",
+        "lag_sec": 0.0022,
+        "lag_ms": 2.2,
+        "correlation": -0.3535,
+        "overlap_samples": 152444
+      },
+      "audio_sync_ok": true
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "timeline": [
+        13.62,
+        22.75
+      ],
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1641.88,
+        "out": 1651.01
+      },
+      "render_audio_expected_source": {
+        "media_id": "cam_person_02",
+        "source_window_sec": [
+          1649.348,
+          1658.478
+        ],
+        "sync_offset_sec": 7.467854
+      },
+      "caption_issue_count": 0,
+      "caption_issues": [],
+      "audio_sync_residual": {
+        "status": "ok",
+        "lag_sec": -0.0004,
+        "lag_ms": -0.4,
+        "correlation": -0.3105,
+        "overlap_samples": 158873
+      },
+      "audio_sync_ok": true
+    },
+    {
+      "event_id": "digest_qa_right_user_anxiety_01",
+      "timeline": [
+        22.75,
+        28.15
+      ],
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1752.35,
+        "out": 1757.75
+      },
+      "render_audio_expected_source": {
+        "media_id": "cam_person_02",
+        "source_window_sec": [
+          1759.818,
+          1765.218
+        ],
+        "sync_offset_sec": 7.467854
+      },
+      "caption_issue_count": 0,
+      "caption_issues": [],
+      "audio_sync_residual": {
+        "status": "ok",
+        "lag_sec": -0.0006,
+        "lag_ms": -0.6,
+        "correlation": -0.4042,
+        "overlap_samples": 99191
+      },
+      "audio_sync_ok": true
+    },
+    {
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "timeline": [
+        28.15,
+        32.4
+      ],
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1903.86,
+        "out": 1908.11
+      },
+      "render_audio_expected_source": {
+        "media_id": "cam_person_02",
+        "source_window_sec": [
+          1911.328,
+          1915.578
+        ],
+        "sync_offset_sec": 7.467854
+      },
+      "caption_issue_count": 0,
+      "caption_issues": [],
+      "audio_sync_residual": {
+        "status": "ok",
+        "lag_sec": -0.0006,
+        "lag_ms": -0.6,
+        "correlation": -0.1849,
+        "overlap_samples": 80791
+      },
+      "audio_sync_ok": true
+    }
+  ]
+}

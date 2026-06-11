@@ -1,0 +1,120 @@
+{
+  "schema_version": "left_single_camera_loose_report.v1",
+  "updated_at": "2026-06-11T19:13:59+09:00",
+  "reason_not_fixed_before": "The active edit_plan still contained close-up crop modes for left-only single-camera events, so renders followed those JSON instructions. This was separate from the stale segment cache issue.",
+  "changed_event_count": 7,
+  "changed_events": [
+    {
+      "index": 8,
+      "event_id": "main_intro_yano_self",
+      "timeline_start": 53.818,
+      "timeline_end": 60.978,
+      "before": {
+        "crop_mode": "single_intro_reference_fullscreen",
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference."
+      },
+      "after": {
+        "crop_mode": "loose_full_frame",
+        "selection_reason": "User review: when the left participant is shown alone, use the looser full-frame camera view instead of a close-up, matching the other participants' pullback feel."
+      }
+    },
+    {
+      "index": 11,
+      "event_id": "main_intro_yano_explains_001",
+      "timeline_start": 75.418,
+      "timeline_end": 90.418,
+      "before": {
+        "crop_mode": "single_intro_reference_fullscreen",
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference."
+      },
+      "after": {
+        "crop_mode": "loose_full_frame",
+        "selection_reason": "User review: when the left participant is shown alone, use the looser full-frame camera view instead of a close-up, matching the other participants' pullback feel."
+      }
+    },
+    {
+      "index": 13,
+      "event_id": "main_intro_yano_explains_002",
+      "timeline_start": 105.418,
+      "timeline_end": 120.418,
+      "before": {
+        "crop_mode": "single_intro_reference_fullscreen",
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference."
+      },
+      "after": {
+        "crop_mode": "loose_full_frame",
+        "selection_reason": "User review: when the left participant is shown alone, use the looser full-frame camera view instead of a close-up, matching the other participants' pullback feel."
+      }
+    },
+    {
+      "index": 15,
+      "event_id": "main_intro_yano_prompt_selfintro",
+      "timeline_start": 135.418,
+      "timeline_end": 152.398,
+      "before": {
+        "crop_mode": "single_intro_reference_fullscreen",
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference."
+      },
+      "after": {
+        "crop_mode": "loose_full_frame",
+        "selection_reason": "User review: when the left participant is shown alone, use the looser full-frame camera view instead of a close-up, matching the other participants' pullback feel."
+      }
+    },
+    {
+      "index": 19,
+      "event_id": "main_yano_profile_intro",
+      "timeline_start": 251.378,
+      "timeline_end": 308.298,
+      "before": {
+        "crop_mode": "single_intro_reference_fullscreen",
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "selection_reason": "Yano self-introduction should match the other two profile-card introductions: one-person close-up with a profile card."
+      },
+      "after": {
+        "crop_mode": "loose_full_frame",
+        "selection_reason": "User review: when the left participant is shown alone, use the looser full-frame camera view instead of a close-up, matching the other participants' pullback feel."
+      }
+    },
+    {
+      "index": 60,
+      "event_id": "main_full_048",
+      "timeline_start": 899.658,
+      "timeline_end": 914.658,
+      "before": {
+        "crop_mode": "person_centered",
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "selection_reason": "Speaker attribution is usable; prioritize a face-centered close-up of the speaking person."
+      },
+      "after": {
+        "crop_mode": "loose_full_frame",
+        "selection_reason": "User review: when the left participant is shown alone, use the looser full-frame camera view instead of a close-up, matching the other participants' pullback feel."
+      }
+    },
+    {
+      "index": 134,
+      "event_id": "main_full_122",
+      "timeline_start": 2009.658,
+      "timeline_end": 2024.658,
+      "before": {
+        "crop_mode": "person_centered",
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "selection_reason": "Speaker attribution is usable; prioritize a face-centered close-up of the speaking person."
+      },
+      "after": {
+        "crop_mode": "loose_full_frame",
+        "selection_reason": "User review: when the left participant is shown alone, use the looser full-frame camera view instead of a close-up, matching the other participants' pullback feel."
+      }
+    }
+  ]
+}

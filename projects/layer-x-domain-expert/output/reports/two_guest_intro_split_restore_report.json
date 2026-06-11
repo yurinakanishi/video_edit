@@ -1,0 +1,93 @@
+{
+  "schema_version": "two_guest_intro_split_restore_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T20:22:19+09:00",
+  "event_id": "main_intro_two_guests_named",
+  "before": {
+    "layout": {
+      "type": "wide_group",
+      "ensure_people_visible": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "safe_margin": 0.06
+    },
+    "overlays": [
+      {
+        "type": "topic_title",
+        "position": "top_right",
+        "topic_id": "topic_001",
+        "style_id": "opening_digest_top_right_title"
+      }
+    ],
+    "reason": "At '根本さんと…', keep all three visible because Yano is still the active speaker while introducing both guests."
+  },
+  "after": {
+    "layout": {
+      "type": "split_grid",
+      "media_ids": [
+        "cam_person_02",
+        "cam_person_03"
+      ],
+      "grid_strategy": "two_person_vertical_split",
+      "panel_order": [
+        "person_02",
+        "person_03"
+      ],
+      "ensure_people_visible": [
+        "person_02",
+        "person_03"
+      ],
+      "introduced_person_ids": [
+        "person_02",
+        "person_03"
+      ],
+      "intro_target_split_exception": true,
+      "speaker_visibility_exception": {
+        "enabled": true,
+        "speaker_person_id": "person_01",
+        "reason": "During this introduction sentence, the interviewer is speaking but the edit must show the two guests being introduced."
+      },
+      "selection_reason": "At '根本さんと村田さんにお越しいただきました', restore the two-interviewee split: Nemoto left, Murata right, with white per-panel intro labels.",
+      "reference_alignment": {
+        "reference_image_id": "two_person_split_intro_white_names",
+        "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+        "apply": [
+          "stable_panel_order",
+          "matched_face_scale",
+          "per_panel_white_name_labels",
+          "no_purple_name_boxes"
+        ]
+      }
+    },
+    "overlays": [
+      {
+        "type": "topic_title",
+        "position": "top_right",
+        "topic_id": "topic_001",
+        "style_id": "opening_digest_top_right_title"
+      },
+      {
+        "type": "split_person_labels",
+        "start": 0.0,
+        "end": 11.0,
+        "person_ids": [
+          "person_02",
+          "person_03"
+        ],
+        "reference_image_id": "two_person_split_intro_white_names",
+        "reference_alignment": {
+          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
+          "apply": [
+            "white_lower_text_per_panel",
+            "role_above_name",
+            "soft_shadow_only"
+          ]
+        },
+        "editorial_note": "Restored per-panel white introduction text for the two interviewees."
+      }
+    ],
+    "reason": "At '根本さんと村田さんにお越しいただきました', use the right-two-person split with white labels. This is an explicit introduction exception to the normal speaker-visible rule."
+  }
+}

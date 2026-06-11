@@ -1,0 +1,186 @@
+{
+  "schema_version": "digest_caption_keyword_timing_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T18:07:31+09:00",
+  "root_cause": "Digest captions were editorial summaries but used whole SRT segment starts, so summary captions appeared during spoken prefixes.",
+  "source_of_truth": "edit_plan.json timeline[].overlays[type=caption]",
+  "change_count": 8,
+  "changes": [
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "text": "何でも知ってそうに見える",
+      "matched_phrase": "何でも知ってそう",
+      "source_text": "結構なんかドメインエキスパートって言うと何でも知ってそうな感じがあると思ってて",
+      "old_local_timing": [
+        3.818,
+        5.6
+      ],
+      "new_local_timing": [
+        4.236,
+        5.686
+      ],
+      "old_source_time": [
+        1599.438,
+        1601.22
+      ],
+      "new_source_time": [
+        1599.856,
+        1601.306
+      ]
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "text": "期待の高さがハードルになる",
+      "matched_phrase": "ハードル",
+      "source_text": "この辺へのハードルの高さというか",
+      "old_local_timing": [
+        6.807,
+        8.48
+      ],
+      "new_local_timing": [
+        6.5,
+        8.48
+      ],
+      "old_source_time": [
+        1602.427,
+        1604.1
+      ],
+      "new_source_time": [
+        1602.12,
+        1604.1
+      ]
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "text": "ドメインをめっちゃ調べている",
+      "matched_phrase": "ドメインの方めっちゃ調べ",
+      "source_text": "本当におっしゃっていたけどもうすごい皆さんドメインの方めっちゃ調べてるんですよ",
+      "old_local_timing": [
+        2.666,
+        4.76
+      ],
+      "new_local_timing": [
+        2.563,
+        4.76
+      ],
+      "old_source_time": [
+        1621.826,
+        1623.92
+      ],
+      "new_source_time": [
+        1621.723,
+        1623.92
+      ]
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "text": "正直僕より詳しいこともある",
+      "matched_phrase": "正直全然僕より詳しい",
+      "source_text": "正直全然僕より詳しいという意味はあるんでしょうけどね",
+      "old_local_timing": [
+        6.425,
+        8.56
+      ],
+      "new_local_timing": [
+        4.76,
+        8.56
+      ],
+      "old_source_time": [
+        1625.585,
+        1627.72
+      ],
+      "new_source_time": [
+        1623.92,
+        1627.72
+      ]
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "text": "「なんで？」を絶対に逃がしてくれない",
+      "matched_phrase": "なんでなんですかを絶対に逃がしてくれない",
+      "source_text": "なんでなんですかを絶対に逃がしてくれない",
+      "old_local_timing": [
+        0.476,
+        1.68
+      ],
+      "new_local_timing": [
+        0.0,
+        1.68
+      ],
+      "old_source_time": [
+        1642.356,
+        1643.56
+      ],
+      "new_source_time": [
+        1641.88,
+        1643.56
+      ]
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "text": "健全なプレッシャーがある",
+      "matched_phrase": "健全なプレッシャー",
+      "source_text": "そこのある意味健全なプレッシャーというのが来た",
+      "old_local_timing": [
+        3.507,
+        5.74
+      ],
+      "new_local_timing": [
+        2.916,
+        5.74
+      ],
+      "old_source_time": [
+        1645.387,
+        1647.62
+      ],
+      "new_source_time": [
+        1644.796,
+        1647.62
+      ]
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "text": "ちゃんと伝えるには背景まで整理する",
+      "matched_phrase": "ちゃんと伝えるには背景まで整理",
+      "source_text": "ちゃんと伝えるには背景まで整理して",
+      "old_local_timing": [
+        6.868,
+        8.88
+      ],
+      "new_local_timing": [
+        5.74,
+        8.88
+      ],
+      "old_source_time": [
+        1648.748,
+        1650.76
+      ],
+      "new_source_time": [
+        1647.62,
+        1650.76
+      ]
+    },
+    {
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "text": "足すだけでなく「なくていい」と言えることも価値",
+      "matched_phrase": "いらないもの",
+      "source_text": "結構何かいらないものをちゃんと言ってあげるっていうのも",
+      "old_local_timing": [
+        0.863,
+        4.0
+      ],
+      "new_local_timing": [
+        0.593,
+        4.0
+      ],
+      "old_source_time": [
+        1904.723,
+        1907.86
+      ],
+      "new_source_time": [
+        1904.453,
+        1907.86
+      ]
+    }
+  ]
+}

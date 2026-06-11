@@ -1,0 +1,10 @@
+{
+  "schema_version": "main_caption_keyword_timing_audit.v1",
+  "project_id": "layer-x-domain-expert",
+  "source_of_truth": "edit_plan.json timeline[].overlays[type=caption]",
+  "checked_caption_count": 69,
+  "unknown_anchor_count": 23,
+  "issue_count": 0,
+  "max_early_sec": 0.75,
+  "issues": []
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "iranai_caption_text_update_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T18:13:56+09:00",
+  "old_text": "足すだけでなく「なくていい」と言えることも価値",
+  "new_text": "いらないものをちゃんと言ってあげる",
+  "changed_count": 2,
+  "changes": [
+    {
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "section": "digest",
+      "caption_id": null,
+      "old_text": "足すだけでなく「なくていい」と言えることも価値",
+      "new_text": "いらないものをちゃんと言ってあげる",
+      "local_timing": [
+        0.593,
+        4.0
+      ]
+    },
+    {
+      "event_id": "main_full_079",
+      "section": "main",
+      "caption_id": "main_caption_049",
+      "old_text": "足すだけでなく「なくていい」と言えることも価値",
+      "new_text": "いらないものをちゃんと言ってあげる",
+      "local_timing": [
+        11.36,
+        14.76
+      ]
+    }
+  ]
+}

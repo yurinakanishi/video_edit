@@ -71,3 +71,5 @@
 - Output should remain browser-compatible H.264 `yuv420p`.
 - Interview audio should use per-segment denoise plus final loudness mastering: highpass, lowpass, `afftdn`, `anlmdn`, compression, dynamic normalization, and final `loudnorm`.
 - The company movie may keep its own embedded audio; this is the only intentional non-interview audio exception.
+- Segment render cache must be fingerprint-validated before reuse. The fingerprint must include `edit_plan.json` event content, render script/style dependencies, source media signatures, overlay assets, profile/people reports, and sync offsets.
+- Use `projects/layer-x-domain-expert/scripts/audit_render_segment_cache.py` before any `--resume-existing` preview render. Missing, stale, or fingerprint-mismatched segments are not reusable and must be regenerated.

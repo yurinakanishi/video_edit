@@ -1,0 +1,33 @@
+{
+  "schema_version": "right_digest_replacement_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T20:17:23+09:00",
+  "removed_event": {
+    "event_id": "digest_qa_02_answer_02",
+    "captions": [
+      "ドメインをめっちゃ調べている",
+      "正直僕より詳しいこともある"
+    ],
+    "duration_sec": 8.81
+  },
+  "added_event": {
+    "event_id": "digest_qa_right_user_anxiety_01",
+    "captions": [
+      "ユーザーが不安なら自動化しても使われない"
+    ],
+    "duration_sec": 5.4,
+    "speaker_person_id": "person_03",
+    "speaker_name": "村田",
+    "source": {
+      "media_id": "cam_person_03",
+      "in": 1765.73,
+      "out": 1771.13
+    },
+    "reference_source": {
+      "media_id": "group_wide",
+      "in": 1752.35,
+      "out": 1757.75
+    }
+  },
+  "digest_duration_sec": 33.45
+}

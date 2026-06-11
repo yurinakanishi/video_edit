@@ -75,6 +75,16 @@ def event_reference_range(event: dict[str, Any]) -> tuple[float, float] | None:
     return start, end
 
 
+def allows_intro_target_exception(event: dict[str, Any], speaker_person_id: str) -> bool:
+    layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
+    if not layout.get("intro_target_split_exception"):
+        return False
+    exception = layout.get("speaker_visibility_exception")
+    if not isinstance(exception, dict) or not exception.get("enabled"):
+        return False
+    return str(exception.get("speaker_person_id") or "") == speaker_person_id
+
+
 def overlapping_voice_segments(segments: list[dict[str, Any]], start: float, end: float) -> list[dict[str, Any]]:
     result = []
     for segment in segments:
@@ -128,6 +138,8 @@ def main() -> None:
         for segment in segments:
             person_id = str(segment.get("speaker_person_id") or "")
             if person_id not in visible:
+                if allows_intro_target_exception(event, person_id):
+                    continue
                 missing.append(
                     {
                         "segment_id": segment.get("segment_id"),

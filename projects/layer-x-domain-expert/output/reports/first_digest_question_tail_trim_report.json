@@ -1,0 +1,57 @@
+{
+  "schema_version": "first_digest_question_tail_trim.v1",
+  "updated_at": "2026-06-11T18:20:15+09:00",
+  "event_id": "digest_qa_01_question_01",
+  "trim_sec": 0.0,
+  "already_trimmed": true,
+  "old_duration_sec": 5.94,
+  "new_duration_sec": 5.94,
+  "old_source": {
+    "media_id": "group_wide",
+    "in": 1502.82,
+    "out": 1508.76
+  },
+  "new_source": {
+    "media_id": "group_wide",
+    "in": 1502.82,
+    "out": 1508.76
+  },
+  "old_reference_source": {
+    "media_id": "group_wide",
+    "in": 1502.82,
+    "out": 1508.76
+  },
+  "new_reference_source": {
+    "media_id": "group_wide",
+    "in": 1502.82,
+    "out": 1508.76
+  },
+  "old_audio": {
+    "mode": "single_interview_source",
+    "source_media_id": "cam_person_02",
+    "in": 1510.288,
+    "out": 1516.228,
+    "timing_reference_media_id": "group_wide",
+    "timing_reference_in": 1502.82,
+    "timing_reference_out": 1508.76,
+    "reason": "Trimmed at the left interviewer's speech stop so the digest question hard-cuts without dead air."
+  },
+  "new_audio": {
+    "mode": "single_interview_source",
+    "source_media_id": "cam_person_02",
+    "in": 1510.288,
+    "out": 1516.228,
+    "timing_reference_media_id": "group_wide",
+    "timing_reference_in": 1502.82,
+    "timing_reference_out": 1508.76,
+    "reason": "Trimmed at the left interviewer's speech stop so the digest question hard-cuts without dead air."
+  },
+  "overlay_changes": [],
+  "digest_duration_sec": 35.86,
+  "digest_sidecar": {
+    "updated": true,
+    "changed_selected_events": [
+      "digest_qa_01_question_01"
+    ]
+  }
+}

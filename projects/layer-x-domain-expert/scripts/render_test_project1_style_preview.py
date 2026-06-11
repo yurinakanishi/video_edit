@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 from functools import lru_cache
 import json
 import math
@@ -30,6 +31,7 @@ LOGO_PATH = PROJECT_ROOT / "source" / "assets" / "LayerX_Logo_Horizontal_RGB_Col
 WIDTH = 1280
 HEIGHT = 720
 FPS = 30
+RENDER_CACHE_VERSION = "test_project1_style_preview.v3.clean_segment_cache"
 
 THEME_PURPLE = "#5A2DEF"
 THEME_PURPLE_FFMPEG = "0x5A2DEF"
@@ -45,6 +47,9 @@ CAPTION_FONT_SIZE = 76
 CAPTION_BOX_MAX_WIDTH = 1248
 CAPTION_HORIZONTAL_PADDING = 28
 CAPTION_MAX_TEXT_WIDTH = CAPTION_BOX_MAX_WIDTH - CAPTION_HORIZONTAL_PADDING
+CAPTION_VISUAL_HOLD_SEC = 0.25
+CAPTION_FADE_SEC = 0.10
+CAPTION_MIN_GAP_SEC = 0.08
 TARGET_AUDIO_LUFS = -17.0
 INTERVIEW_AUDIO_MEDIA_IDS = {"group_wide", "cam_person_01", "cam_person_02", "cam_person_03"}
 INTERVIEW_MAIN_AUDIO_MEDIA_ID = "cam_person_02"
@@ -78,6 +83,139 @@ def read_json(path: Path) -> Any:
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def stable_json(payload: Any) -> str:
+    return json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def file_signature(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {"path": str(path), "exists": False}
+    stat = path.stat()
+    return {
+        "path": str(path),
+        "exists": True,
+        "size": stat.st_size,
+        "mtime_ns": stat.st_mtime_ns,
+    }
+
+
+def cache_manifest_dir(segment_dir: Path) -> Path:
+    return segment_dir / "_manifests"
+
+
+def segment_manifest_path(segment_path: Path) -> Path:
+    return cache_manifest_dir(segment_path.parent) / f"{segment_path.stem}.json"
+
+
+def render_dependency_payload() -> dict[str, Any]:
+    report_dependencies = [
+        REPORTS / "app_sync_offsets.json",
+        REPORTS / "people_map.json",
+        REPORTS / "interviewee_profile_cards.json",
+        REPORTS / "semantic_marks.json",
+    ]
+    return {
+        "script": file_signature(Path(__file__)),
+        "source_media": {media_id: file_signature(path) for media_id, path in sorted(MEDIA_PATHS.items())},
+        "assets": {
+            "font_file": file_signature(FONT_FILE),
+            "caption_font_file": file_signature(CAPTION_FONT_FILE),
+            "logo_path": file_signature(LOGO_PATH),
+        },
+        "reports": {path.name: file_signature(path) for path in report_dependencies},
+        "style": {
+            "width": WIDTH,
+            "height": HEIGHT,
+            "fps": FPS,
+            "theme_purple": THEME_PURPLE,
+            "caption_font_size": CAPTION_FONT_SIZE,
+            "caption_box_max_width": CAPTION_BOX_MAX_WIDTH,
+            "caption_horizontal_padding": CAPTION_HORIZONTAL_PADDING,
+            "caption_visual_hold_sec": CAPTION_VISUAL_HOLD_SEC,
+            "caption_fade_sec": CAPTION_FADE_SEC,
+            "caption_min_gap_sec": CAPTION_MIN_GAP_SEC,
+            "caption_stops": CAPTION_STOPS,
+            "top_stops": TOP_STOPS,
+            "bottom_stops": BOTTOM_STOPS,
+            "title_stops": TITLE_STOPS,
+            "divider_color": DIVIDER_COLOR,
+            "target_audio_lufs": TARGET_AUDIO_LUFS,
+            "interview_main_audio_media_id": INTERVIEW_MAIN_AUDIO_MEDIA_ID,
+        },
+        "sync_offsets": app_offsets(),
+        "split_face_profiles": globals().get("SPLIT_FACE_PROFILES"),
+    }
+
+
+def segment_fingerprint(event: dict[str, Any]) -> str:
+    payload = {
+        "cache_version": RENDER_CACHE_VERSION,
+        "event": event,
+        "render_dependencies": render_dependency_payload(),
+    }
+    return hashlib.sha256(stable_json(payload).encode("utf-8")).hexdigest()
+
+
+def segment_cache_status(segment_path: Path, event: dict[str, Any]) -> tuple[bool, str]:
+    if not segment_path.exists() or segment_path.stat().st_size <= 0:
+        return False, "missing_or_empty_segment"
+    manifest_path = segment_manifest_path(segment_path)
+    if not manifest_path.exists():
+        return False, "missing_manifest"
+    try:
+        manifest = read_json(manifest_path)
+    except (OSError, json.JSONDecodeError):
+        return False, "unreadable_manifest"
+    if manifest.get("cache_version") != RENDER_CACHE_VERSION:
+        return False, "cache_version_changed"
+    if manifest.get("fingerprint") != segment_fingerprint(event):
+        return False, "fingerprint_mismatch"
+    return True, "reusable"
+
+
+def reusable_segment(segment_path: Path, event: dict[str, Any]) -> bool:
+    reusable, _reason = segment_cache_status(segment_path, event)
+    return reusable
+
+
+def remove_segment_artifacts(segment_path: Path) -> None:
+    for path in (segment_path, segment_manifest_path(segment_path)):
+        try:
+            if path.exists():
+                path.unlink()
+        except OSError:
+            pass
+
+
+def clear_segment_cache(segment_dir: Path) -> None:
+    for old_segment in segment_dir.glob("*.mp4"):
+        remove_segment_artifacts(old_segment)
+    manifest_dir = cache_manifest_dir(segment_dir)
+    if manifest_dir.exists():
+        for old_manifest in manifest_dir.glob("*.json"):
+            try:
+                old_manifest.unlink()
+            except OSError:
+                pass
+
+
+def write_segment_manifest(segment_path: Path, event: dict[str, Any], segment_id: str) -> None:
+    write_json(
+        segment_manifest_path(segment_path),
+        {
+            "schema_version": "render_segment_cache_manifest.v1",
+            "cache_version": RENDER_CACHE_VERSION,
+            "segment_id": segment_id,
+            "event_id": event.get("event_id"),
+            "fingerprint": segment_fingerprint(event),
+            "dependencies": render_dependency_payload(),
+            "timeline_start": event.get("timeline_start"),
+            "timeline_end": event.get("timeline_end"),
+            "segment": file_signature(segment_path),
+        },
+    )
 
 
 def ffmpeg_path() -> str:
@@ -845,7 +983,7 @@ def draw_white_intro_label(canvas: Image.Image, person_id: str, x: int, y: int, 
     draw_shadow_text(draw, (x, y + role_size + 12), name, name_font, (255, 255, 255, alpha))
 
 
-def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float, *, section: str = "") -> None:
+def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: float, *, section: str = "", continuation: bool = False) -> None:
     lines = wrap_caption_text(text)
     line_height = 104
     gap = 10
@@ -858,12 +996,16 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
     draw = ImageDraw.Draw(canvas)
     for index, line in enumerate(lines):
         line_start = start + index * 0.12
-        if now < line_start or now > end + 0.1:
+        if now < line_start or now > end + CAPTION_FADE_SEC:
             continue
-        reveal = ease_out_cubic((now - line_start) / 0.583)
-        opacity = min(1.0, max(0.0, (now - line_start) / 0.12))
+        if continuation and now >= start:
+            reveal = 1.0
+            opacity = 1.0
+        else:
+            reveal = ease_out_cubic((now - line_start) / 0.583)
+            opacity = min(1.0, max(0.0, (now - line_start) / 0.12))
         if now > end:
-            opacity *= max(0.0, 1.0 - (now - end) / 0.1)
+            opacity *= max(0.0, 1.0 - (now - end) / CAPTION_FADE_SEC)
         font_size = CAPTION_FONT_SIZE
         if len(lines) == 1:
             font_size = caption_single_line_font_size(line) or CAPTION_FONT_SIZE
@@ -894,6 +1036,25 @@ def draw_caption(canvas: Image.Image, text: str, now: float, start: float, end: 
         mask = Image.new("L", (WIDTH, HEIGHT), 0)
         ImageDraw.Draw(mask).rectangle((0, 0, visible_w, HEIGHT), fill=255)
         canvas.alpha_composite(Image.composite(line_layer, Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0)), mask))
+
+
+def caption_render_end(captions: list[dict[str, Any]], index: int, duration_sec: float) -> float:
+    overlay = captions[index]
+    start = float(overlay.get("start") or 0.0)
+    end = float(overlay.get("end") or duration_sec)
+    metadata = overlay.get("metadata") if isinstance(overlay.get("metadata"), dict) else {}
+    alignment = overlay.get("audio_alignment") if isinstance(overlay.get("audio_alignment"), dict) else {}
+    strict_audio_timing = bool(metadata.get("audio_strict_timing") or alignment.get("display_timing_source") == "audio_analysis")
+    hold = 0.0 if strict_audio_timing or metadata.get("digest_caption_hold_sync_fixed") else CAPTION_VISUAL_HOLD_SEC
+    target_end = min(duration_sec, end + hold)
+    future_starts = [
+        float(other.get("start") or 0.0)
+        for other in captions
+        if isinstance(other, dict) and float(other.get("start") or 0.0) > start
+    ]
+    if future_starts:
+        target_end = min(target_end, min(future_starts) - CAPTION_MIN_GAP_SEC)
+    return max(end, round(target_end, 3))
 
 
 def draw_nameplate(canvas: Image.Image, overlay: dict[str, Any], start: float, end: float, now: float) -> None:
@@ -1063,8 +1224,16 @@ def render_text_overlay(ffmpeg: str, event: dict[str, Any], output: Path) -> boo
         for frame_index in range(total_frames):
             now = frame_index / FPS
             canvas = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
-            for overlay in captions:
-                draw_caption(canvas, str(overlay["text"]), now, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), section=str(event.get("section") or ""))
+            for caption_index, overlay in enumerate(captions):
+                draw_caption(
+                    canvas,
+                    str(overlay["text"]),
+                    now,
+                    float(overlay.get("start") or 0.0),
+                    caption_render_end(captions, caption_index, dur),
+                    section=str(event.get("section") or ""),
+                    continuation=bool((overlay.get("metadata") if isinstance(overlay.get("metadata"), dict) else {}).get("caption_cut_continuation")),
+                )
             for overlay in nameplates:
                 draw_nameplate(canvas, overlay, float(overlay.get("start") or 0.0), float(overlay.get("end") or dur), now)
             for overlay in split_labels:
@@ -1127,6 +1296,10 @@ def single_person_crop_filter(event: dict[str, Any], media_id: str) -> str | Non
     layout = event.get("layout") if isinstance(event.get("layout"), dict) else {}
     crop_mode = str(layout.get("crop_mode") or "")
     if media_id not in {"cam_person_01", "cam_person_02", "cam_person_03"}:
+        return None
+    if media_id == "cam_person_01" and layout.get("type") == "single":
+        # User direction: left-participant-only camera should stay pulled back,
+        # matching the other participants' looser single-camera framing.
         return None
     if crop_mode not in {"person_centered", "single_intro_reference_fullscreen"}:
         return None
@@ -1396,11 +1569,25 @@ def render_split_segment(ffmpeg: str, event: dict[str, Any], output: Path, segme
     subprocess.run(command, cwd=WORKSPACE_ROOT, check=True)
 
 
-def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
+def concat_segments(ffmpeg: str, segments: list[Path], output: Path, output_height: int | None = None) -> None:
     list_path = DIAGNOSTICS / "test_project1_style_preview_concat.txt"
     temp_output = output.with_name(f"{output.stem}_audio_unprocessed{output.suffix}")
     list_path.parent.mkdir(parents=True, exist_ok=True)
     list_path.write_text("".join(f"file '{path.as_posix()}'\n" for path in segments), encoding="utf-8")
+    video_args = ["-c:v", "copy"]
+    if output_height:
+        video_args = [
+            "-vf",
+            f"scale=-2:{output_height}",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "veryfast",
+            "-crf",
+            "25",
+            "-pix_fmt",
+            "yuv420p",
+        ]
     subprocess.run(
         [
             ffmpeg,
@@ -1450,8 +1637,7 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
             "0:v:0",
             "-map",
             "0:a:0",
-            "-c:v",
-            "copy",
+            *video_args,
             "-af",
             final_audio_filter_chain(),
             "-c:a",
@@ -1473,7 +1659,30 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
         pass
 
 
-def trim_preview(ffmpeg: str, source: Path, output: Path, duration_sec: float) -> None:
+def trim_preview(ffmpeg: str, source: Path, output: Path, duration_sec: float, output_height: int | None = None) -> None:
+    video_args = [
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "24",
+        "-pix_fmt",
+        "yuv420p",
+    ]
+    if output_height:
+        video_args = [
+            "-vf",
+            f"scale=-2:{output_height}",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "veryfast",
+            "-crf",
+            "25",
+            "-pix_fmt",
+            "yuv420p",
+        ]
     subprocess.run(
         [
             ffmpeg,
@@ -1490,14 +1699,7 @@ def trim_preview(ffmpeg: str, source: Path, output: Path, duration_sec: float) -
             "0:v:0",
             "-map",
             "0:a:0",
-            "-c:v",
-            "libx264",
-            "-preset",
-            "veryfast",
-            "-crf",
-            "24",
-            "-pix_fmt",
-            "yuv420p",
+            *video_args,
             "-c:a",
             "aac",
             "-b:a",
@@ -1518,6 +1720,7 @@ def main() -> None:
     parser.add_argument("--max-events", type=int, default=None)
     parser.add_argument("--max-duration-sec", type=float, default=None, help="Render from the beginning and trim output to this timeline duration.")
     parser.add_argument("--output", type=Path, default=VIDEOS / "preview_test_project1_style.mp4")
+    parser.add_argument("--output-height", type=int, default=None, help="Downscale final preview output to this height, e.g. 360.")
     parser.add_argument("--resume-existing", action="store_true", help="Reuse already rendered non-empty segment files.")
     args = parser.parse_args()
     plan = read_json(REPORTS / "edit_plan.json")
@@ -1535,23 +1738,32 @@ def main() -> None:
     segment_dir = VIDEOS / "preview_test_project1_style_segments"
     segment_dir.mkdir(parents=True, exist_ok=True)
     if not args.resume_existing:
-        for old_segment in segment_dir.glob("*.mp4"):
-            old_segment.unlink()
+        clear_segment_cache(segment_dir)
     ffmpeg = ffmpeg_path()
     rendered = []
+    cache_stats = {"reused": 0, "rendered": 0, "invalidated": 0, "invalidated_reasons": {}}
     for index, event in enumerate(events, start=1):
         segment_id = f"segment_{index:03d}_{event.get('event_id', 'event')}"
         segment_path = segment_dir / f"{segment_id}.mp4"
-        if not (args.resume_existing and segment_path.exists() and segment_path.stat().st_size > 0):
+        can_reuse, cache_reason = segment_cache_status(segment_path, event) if args.resume_existing else (False, "resume_disabled")
+        if can_reuse:
+            cache_stats["reused"] += 1
+        else:
+            if args.resume_existing:
+                cache_stats["invalidated"] += 1
+                cache_stats["invalidated_reasons"][cache_reason] = cache_stats["invalidated_reasons"].get(cache_reason, 0) + 1
+                remove_segment_artifacts(segment_path)
             render_segment(ffmpeg, event, segment_path, segment_id)
+            write_segment_manifest(segment_path, event, segment_id)
+            cache_stats["rendered"] += 1
         rendered.append(segment_path)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     concat_output = args.output
     if args.max_duration_sec is not None:
         concat_output = args.output.with_name(f"{args.output.stem}_untrimmed{args.output.suffix}")
-    concat_segments(ffmpeg, rendered, concat_output)
+    concat_segments(ffmpeg, rendered, concat_output, None if args.max_duration_sec is not None else args.output_height)
     if args.max_duration_sec is not None:
-        trim_preview(ffmpeg, concat_output, args.output, args.max_duration_sec)
+        trim_preview(ffmpeg, concat_output, args.output, args.max_duration_sec, args.output_height)
         try:
             concat_output.unlink()
         except OSError:
@@ -1560,7 +1772,9 @@ def main() -> None:
         "schema_version": "test_project1_style_preview_report.v1",
         "output": str(args.output),
         "segments": len(rendered),
+        "segment_cache": cache_stats,
         "max_duration_sec": args.max_duration_sec,
+        "output_height": args.output_height,
         "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
         "notes": [
             "Digest uses opaque top/bottom bands and slanted white LayerX logo panel.",

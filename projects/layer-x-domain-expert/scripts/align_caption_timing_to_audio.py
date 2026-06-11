@@ -215,7 +215,16 @@ def assign_group_timings(
     duration = event_duration(event)
     source_start = min(item[2][0] for item in group)
     source_end = max(item[2][1] for item in group)
-    speech_start, speech_end, diagnostics = speech_bounds(audio, source_start, source_end)
+    rms_speech_start, rms_speech_end, diagnostics = speech_bounds(audio, source_start, source_end)
+    # RMS is useful for rejecting silence and finding the first spoken frame, but
+    # it often drops soft sentence endings. Caption display must not disappear
+    # before the transcript/audio-analysis source phrase has finished.
+    speech_start = rms_speech_start
+    if rms_speech_start - source_start > 0.18:
+        speech_start = rms_speech_start
+    else:
+        speech_start = source_start
+    speech_end = max(rms_speech_end, source_end)
     local_start = max(0.0, min(duration, speech_start - ref_in))
     local_end = max(local_start + 0.2, min(duration, speech_end - ref_in))
     if local_start >= duration:
@@ -245,13 +254,29 @@ def assign_group_timings(
         next_end = min(duration, max(next_start + min_part_duration, next_end))
         overlay["start"] = round(next_start, 3)
         overlay["end"] = round(next_end, 3)
+        display_window = [round(ref_in + next_start, 3), round(ref_in + next_end, 3)]
         overlay["audio_alignment"] = {
-            "method": "master_audio_rms_speech_bounds",
+            "method": "master_audio_rms_speech_bounds_preserve_source_phrase_end",
             "source_audio_media_id": "group_wide",
             "source_window_sec": [round(source_start, 3), round(source_end, 3)],
-            "speech_window_sec": [round(speech_start, 3), round(speech_end, 3)],
-            "diagnostics": diagnostics,
+            "rms_speech_window_sec": [round(rms_speech_start, 3), round(rms_speech_end, 3)],
+            "group_speech_window_sec": [round(speech_start, 3), round(speech_end, 3)],
+            "speech_window_sec": display_window,
+            "diagnostics": {
+                **diagnostics,
+                "allocation_basis": "RMS start detection with transcript/audio-analysis source phrase end preserved; multi-caption groups are distributed by text length.",
+                "rms_speech_window_sec": [round(rms_speech_start, 3), round(rms_speech_end, 3)],
+                "group_speech_window_sec": [round(speech_start, 3), round(speech_end, 3)],
+                "display_end_policy": "never_end_before_source_phrase_end",
+            },
         }
+        metadata = overlay.setdefault("metadata", {})
+        if isinstance(metadata, dict):
+            metadata["caption_start_sec"] = display_window[0]
+            metadata["caption_end_sec"] = display_window[1]
+            metadata["caption_source_of_truth"] = "edit_plan.json"
+            metadata["audio_strict_timing"] = True
+            metadata["display_timing_from_audio_analysis"] = True
         new = (overlay["start"], overlay["end"])
         if old != new:
             changed += 1
@@ -272,19 +297,13 @@ def align_plan(plan: dict[str, Any], audio: np.ndarray) -> dict[str, Any]:
     changed_events = set()
     overlap_adjustments = []
     for event in events:
-        if event.get("section") == "digest":
-            report_groups.append(
-                {
-                    "event_id": event.get("event_id"),
-                    "status": "skipped_digest_manual_timing",
-                    "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase.",
-                }
-            )
-            continue
         overlays = event.get("overlays") if isinstance(event.get("overlays"), list) else []
         groups: dict[tuple[Any, ...], list[tuple[int, dict[str, Any], tuple[float, float]]]] = {}
         for index, overlay in enumerate(overlays):
             if not isinstance(overlay, dict) or overlay.get("type") != "caption":
+                continue
+            metadata = overlay.get("metadata") if isinstance(overlay.get("metadata"), dict) else {}
+            if metadata.get("caption_cut_continuation"):
                 continue
             source_window = overlay_source_window(event, overlay)
             if source_window is None:
@@ -300,7 +319,13 @@ def align_plan(plan: dict[str, Any], audio: np.ndarray) -> dict[str, Any]:
 
         event_duration_value = event_duration(event)
         caption_overlays = sorted(
-            [overlay for overlay in overlays if isinstance(overlay, dict) and overlay.get("type") == "caption"],
+            [
+                overlay
+                for overlay in overlays
+                if isinstance(overlay, dict)
+                and overlay.get("type") == "caption"
+                and not (isinstance(overlay.get("metadata"), dict) and overlay["metadata"].get("caption_cut_continuation"))
+            ],
             key=lambda overlay: (float(overlay.get("start") or 0.0), float(overlay.get("end") or 0.0)),
         )
         cursor = 0.0
@@ -314,6 +339,17 @@ def align_plan(plan: dict[str, Any], audio: np.ndarray) -> dict[str, Any]:
                 end = min(event_duration_value, max(start + 0.45, start + original_duration))
                 overlay["start"] = round(start, 3)
                 overlay["end"] = round(end, 3)
+                ref_in = event_reference_in(event)
+                alignment = overlay.get("audio_alignment")
+                if isinstance(alignment, dict):
+                    alignment["speech_window_sec"] = [round(ref_in + start, 3), round(ref_in + end, 3)]
+                    alignment.setdefault("diagnostics", {})["overlap_adjusted_after_audio_allocation"] = True
+                metadata = overlay.setdefault("metadata", {})
+                if isinstance(metadata, dict):
+                    metadata["caption_start_sec"] = round(ref_in + start, 3)
+                    metadata["caption_end_sec"] = round(ref_in + end, 3)
+                    metadata["audio_strict_timing"] = True
+                    metadata["display_timing_from_audio_analysis"] = True
                 changed_events.add(str(event.get("event_id")))
                 overlap_adjustments.append(
                     {
@@ -327,7 +363,7 @@ def align_plan(plan: dict[str, Any], audio: np.ndarray) -> dict[str, Any]:
 
     plan["caption_audio_alignment"] = {
         "schema_version": "caption_audio_alignment.v1",
-        "method": "RMS energy speech bounds from group_wide master audio, applied after caption splitting",
+        "method": "RMS energy analysis from group_wide master audio; display ends preserve transcript/audio-analysis source phrase ends so captions do not disappear before speech finishes",
         "audio_source": str(MASTER_WAV),
         "aligned_group_count": len(report_groups),
         "changed_event_count": len(changed_events),

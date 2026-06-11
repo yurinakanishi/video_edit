@@ -33,24 +33,28 @@ def duration(event: dict[str, Any]) -> float:
     return max(0.01, float(event["timeline_end"]) - float(event["timeline_start"]))
 
 
-def caption_source_start(overlay: dict[str, Any], event: dict[str, Any]) -> float | None:
+def caption_source_window(overlay: dict[str, Any], event: dict[str, Any]) -> tuple[float, float] | None:
     alignment = overlay.get("audio_alignment") if isinstance(overlay.get("audio_alignment"), dict) else {}
     speech = alignment.get("speech_window_sec")
     if isinstance(speech, list) and len(speech) == 2:
         try:
-            return float(speech[0])
+            return float(speech[0]), float(speech[1])
         except (TypeError, ValueError):
             pass
     metadata = overlay.get("metadata") if isinstance(overlay.get("metadata"), dict) else {}
-    for key in ("source_start_sec", "caption_start_sec"):
-        if metadata.get(key) is not None:
+    for start_key, end_key in (("source_start_sec", "source_end_sec"), ("caption_start_sec", "caption_end_sec")):
+        if metadata.get(start_key) is not None:
             try:
-                return float(metadata[key])
+                start = float(metadata[start_key])
+                end = float(metadata[end_key]) if metadata.get(end_key) is not None else start + max(0.8, float(overlay.get("end") or 0.0) - float(overlay.get("start") or 0.0))
+                return start, max(start + 0.2, end)
             except (TypeError, ValueError):
                 pass
     ref = ref_window(event)
     if ref:
-        return ref[0] + float(overlay.get("start") or 0.0)
+        start = ref[0] + float(overlay.get("start") or 0.0)
+        end = ref[0] + float(overlay.get("end") or overlay.get("start") or 0.0)
+        return start, max(start + 0.2, end)
     return None
 
 
@@ -111,34 +115,17 @@ def main() -> None:
                 entries.append((event, overlay))
 
     for old_event, overlay in entries:
-        source_start = caption_source_start(overlay, old_event)
-        if source_start is None:
+        source_window = caption_source_window(overlay, old_event)
+        if source_window is None:
             continue
+        source_start, source_end = source_window
         target_event = find_event_for_source_start(events, source_start, old_event)
         target_ref = ref_window(target_event)
         if not target_ref:
             continue
         target_duration = duration(target_event)
         local_start = max(0.0, min(target_duration, source_start - target_ref[0]))
-        wanted_duration = display_duration(str(overlay.get("text") or ""))
-        local_end = min(target_duration, local_start + wanted_duration)
-        if local_end - local_start < 1.2:
-            # If this would flash too briefly at the very end of a cut, keep it
-            # visible from the beginning of the next cut only when the next cut
-            # begins within 0.7s of the source start.
-            next_events = [
-                event
-                for event in events
-                if event.get("section") == "main"
-                and ref_window(event)
-                and 0.0 <= (ref_window(event)[0] - source_start) <= 0.7
-            ]
-            if next_events:
-                target_event = next_events[0]
-                target_ref = ref_window(target_event)
-                target_duration = duration(target_event)
-                local_start = 0.0
-                local_end = min(target_duration, wanted_duration)
+        local_end = min(target_duration, max(local_start + 0.2, source_end - target_ref[0]))
         old_timing = [overlay.get("start"), overlay.get("end")]
         old_event_id = old_event.get("event_id")
         if old_event is not target_event:
@@ -153,7 +140,10 @@ def main() -> None:
             metadata["caption_end_sec"] = round(target_ref[0] + local_end, 3)
             metadata["caption_source_of_truth"] = "edit_plan.json"
             metadata["display_timing_normalized"] = True
+            metadata["audio_strict_timing"] = True
+            metadata["display_timing_from_audio_analysis"] = True
         if isinstance(overlay.get("audio_alignment"), dict):
+            overlay["audio_alignment"]["speech_window_sec"] = [round(target_ref[0] + local_start, 3), round(target_ref[0] + local_end, 3)]
             overlay["audio_alignment"].setdefault("diagnostics", {})["display_timing_normalized"] = True
         target_event["overlays"].sort(key=lambda item: (0 if item.get("type") == "topic_title" else 1, float(item.get("start") or 0.0)))
         if old_event_id != target_event.get("event_id") or old_timing != [overlay["start"], overlay["end"]]:
@@ -183,7 +173,7 @@ def main() -> None:
         "schema_version": "main_caption_timing_ssot_normalization.v1",
         "project_id": "layer-x-domain-expert",
         "updated_at": updated_at,
-        "policy": "Caption source windows can be longer than display windows; display starts at the repaired source start and uses a short text-length-based duration.",
+        "policy": "Caption display windows follow edit_plan audio_alignment.speech_window_sec instead of fixed text-length durations.",
         "change_count": len(changes),
         "changes": changes,
     }

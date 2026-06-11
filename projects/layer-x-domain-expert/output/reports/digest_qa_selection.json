@@ -1874,72 +1874,76 @@
   "one_minute_digest": {
     "schema_version": "digest_one_minute_shortening.v1",
     "target_duration_sec": 60,
-    "actual_duration_sec": 36.46,
+    "actual_duration_sec": 32.4,
     "selected_events": [
       {
         "event_id": "digest_qa_01_question_01",
         "source_event_id": "digest_qa_01_question_01",
         "local_start": 0.0,
-        "local_end": 6.54,
-        "duration_sec": 6.54,
-        "reason": "Opening question keeps the full spoken ending; extended after user review found the tail was cut.",
+        "local_end": 4.89,
+        "duration_sec": 4.89,
+        "reason": "Opening digest now starts exactly at the spoken phrase '開発に関わる仕事をする中で'.",
         "captions": [
           "開発に関わる仕事をする中で",
           "これめっちゃ大変でしたとかありますか？"
         ],
-        "speaker_person_id": "person_01"
+        "speaker_person_id": "person_01",
+        "speaker_name": null
       },
       {
         "event_id": "digest_qa_02_question_context_01",
         "source_event_id": "digest_qa_02_question_context_01",
         "local_start": 0.0,
-        "local_end": 8.48,
-        "duration_sec": 8.48,
+        "local_end": 8.73,
+        "duration_sec": 8.73,
         "reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
         "captions": [
           "何でも知ってそうに見える",
           "期待の高さがハードルになる"
         ],
-        "speaker_person_id": "person_01"
-      },
-      {
-        "event_id": "digest_qa_02_answer_02",
-        "source_event_id": "digest_qa_02_answer_02",
-        "local_start": 0.0,
-        "local_end": 8.56,
-        "duration_sec": 8.56,
-        "reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-        "captions": [
-          "ドメインをめっちゃ調べている",
-          "正直僕より詳しいこともある"
-        ],
-        "speaker_person_id": "person_03"
+        "speaker_person_id": "person_01",
+        "speaker_name": null
       },
       {
         "event_id": "digest_qa_03_answer_01",
         "source_event_id": "digest_qa_03_answer_01",
         "local_start": 0.0,
-        "local_end": 8.88,
-        "duration_sec": 8.88,
+        "local_end": 9.13,
+        "duration_sec": 9.13,
         "reason": "指定テーマのキーワードが連続し、回答が短く強いのでダイジェスト向き。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
         "captions": [
           "「なんで？」を絶対に逃がしてくれない",
           "健全なプレッシャーがある",
           "ちゃんと伝えるには背景まで整理する"
         ],
-        "speaker_person_id": "person_03"
+        "speaker_person_id": "person_03",
+        "speaker_name": null
+      },
+      {
+        "event_id": "digest_qa_right_user_anxiety_01",
+        "source_event_id": "digest_qa_02_answer_02",
+        "local_start": 0.0,
+        "local_end": 5.4,
+        "duration_sec": 5.4,
+        "reason": "Right-participant digest replacement: use a stronger product-value statement instead of the generic domain-research line.",
+        "captions": [
+          "ユーザーが不安なら自動化しても使われない"
+        ],
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
       },
       {
         "event_id": "digest_qa_middle_nemoto_value_01",
         "source_event_id": "digest_qa_middle_nemoto_value_01",
         "local_start": 0.0,
-        "local_end": 4.0,
-        "duration_sec": 4.0,
+        "local_end": 4.25,
+        "duration_sec": 4.25,
         "reason": "Replacement digest beat from the middle participant, selected from main_caption_049.",
         "captions": [
-          "足すだけでなく「なくていい」と言えることも価値"
+          "いらないものをちゃんと言ってあげる"
         ],
-        "speaker_person_id": "person_02"
+        "speaker_person_id": "person_02",
+        "speaker_name": "根本"
       }
     ],
     "removed_events": [
@@ -2018,6 +2022,15 @@
         "captions": [
           "学ぶのめちゃめちゃおすすめ"
         ]
+      },
+      {
+        "event_id": "digest_qa_02_answer_02",
+        "duration_sec": 8.81,
+        "reason": "Replaced by user request because the right-participant digest beat was weak.",
+        "captions": [
+          "ドメインをめっちゃ調べている",
+          "正直僕より詳しいこともある"
+        ]
       }
     ],
     "removed_event_ids_by_user_request": [
@@ -2027,9 +2040,12 @@
       "digest_qa_04_answer_02_short02",
       "digest_qa_04_answer_02_short03",
       "digest_qa_05_answer_02"
+    ],
+    "replaced_event_ids_by_user_request": [
+      "digest_qa_02_answer_02"
     ]
   },
-  "updated_at": "2026-06-11T17:35:58+09:00",
+  "updated_at": "2026-06-11T20:25:58+09:00",
   "change_log": [
     {
       "updated_at": "2026-06-11T17:29:17+09:00",
@@ -2043,6 +2059,18 @@
         "digest_qa_05_answer_02"
       ],
       "added_event_id": "digest_qa_middle_nemoto_value_01"
+    },
+    {
+      "updated_at": "2026-06-11T20:17:23+09:00",
+      "change": "Replaced weak right-participant digest beat.",
+      "removed_event_id": "digest_qa_02_answer_02",
+      "added_event_id": "digest_qa_right_user_anxiety_01",
+      "added_caption": "ユーザーが不安なら自動化しても使われない"
+    },
+    {
+      "updated_at": "2026-06-11T20:25:58+09:00",
+      "change": "Fixed first digest video/audio/caption to start at the spoken '開発に関わる' phrase.",
+      "event_id": "digest_qa_01_question_01"
     }
   ]
 }

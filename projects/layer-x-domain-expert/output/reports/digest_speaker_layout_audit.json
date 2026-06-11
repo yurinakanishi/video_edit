@@ -7,7 +7,7 @@
     "split_grid": "allowed only when multiple active participants are intentionally needed"
   },
   "summary": {
-    "digest_events": 10,
+    "digest_events": 5,
     "issue_count": 0,
     "ready": true
   },
@@ -40,62 +40,13 @@
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     },
     {
-      "event_id": "digest_qa_01_answer_02",
-      "timeline_start": 5.94,
-      "timeline_end": 22.14,
-      "source": {
-        "media_id": "group_wide",
-        "in": 1533.42,
-        "out": 1549.62
-      },
-      "layout_type": "single",
-      "primary_camera_person_id": "person_03",
-      "visible_people": [
-        "person_03"
-      ],
-      "caption_speaker_person_ids": [
-        "person_03"
-      ],
-      "speaker_focused": true,
-      "caption_texts": [
-        "なんでそうするんですかと聞かれた時に",
-        "ものすごくこれを言語化するのに大変だった",
-        "癖とか慣れとかそういうもので",
-        "今までやってきたんだなと分かる"
-      ],
-      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
-    },
-    {
-      "event_id": "digest_qa_01_answer_03",
-      "timeline_start": 22.14,
-      "timeline_end": 25.64,
-      "source": {
-        "media_id": "group_wide",
-        "in": 1553.12,
-        "out": 1556.62
-      },
-      "layout_type": "single",
-      "primary_camera_person_id": "person_03",
-      "visible_people": [
-        "person_03"
-      ],
-      "caption_speaker_person_ids": [
-        "person_03"
-      ],
-      "speaker_focused": true,
-      "caption_texts": [
-        "今までの当たり前を言語化する"
-      ],
-      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
-    },
-    {
       "event_id": "digest_qa_02_question_context_01",
-      "timeline_start": 25.64,
-      "timeline_end": 34.12,
+      "timeline_start": 5.94,
+      "timeline_end": 14.67,
       "source": {
         "media_id": "group_wide",
         "in": 1595.62,
-        "out": 1604.1
+        "out": 1604.35
       },
       "layout_type": "split_grid",
       "primary_camera_person_id": "person_01",
@@ -114,40 +65,13 @@
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     },
     {
-      "event_id": "digest_qa_02_answer_02",
-      "timeline_start": 34.12,
-      "timeline_end": 42.68,
-      "source": {
-        "media_id": "group_wide",
-        "in": 1619.16,
-        "out": 1627.72
-      },
-      "layout_type": "split_grid",
-      "primary_camera_person_id": "person_03",
-      "visible_people": [
-        "person_01",
-        "person_02",
-        "person_03"
-      ],
-      "caption_speaker_person_ids": [
-        "person_03",
-        "person_02"
-      ],
-      "speaker_focused": true,
-      "caption_texts": [
-        "ドメインをめっちゃ調べている",
-        "正直僕より詳しいこともある"
-      ],
-      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
-    },
-    {
       "event_id": "digest_qa_03_answer_01",
-      "timeline_start": 42.68,
-      "timeline_end": 51.56,
+      "timeline_start": 14.67,
+      "timeline_end": 23.8,
       "source": {
         "media_id": "group_wide",
         "in": 1641.88,
-        "out": 1650.76
+        "out": 1651.01
       },
       "layout_type": "single",
       "primary_camera_person_id": "person_03",
@@ -166,36 +90,13 @@
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     },
     {
-      "event_id": "digest_qa_04_answer_02",
-      "timeline_start": 51.56,
-      "timeline_end": 58.28,
+      "event_id": "digest_qa_right_user_anxiety_01",
+      "timeline_start": 23.8,
+      "timeline_end": 29.2,
       "source": {
         "media_id": "group_wide",
-        "in": 2010.1,
-        "out": 2016.82
-      },
-      "layout_type": "single",
-      "primary_camera_person_id": "person_01",
-      "visible_people": [
-        "person_01"
-      ],
-      "caption_speaker_person_ids": [
-        "person_01"
-      ],
-      "speaker_focused": true,
-      "caption_texts": [
-        "自分たちに求められることが研ぎ澄まされる"
-      ],
-      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
-    },
-    {
-      "event_id": "digest_qa_04_answer_02_short02",
-      "timeline_start": 58.28,
-      "timeline_end": 62.16,
-      "source": {
-        "media_id": "group_wide",
-        "in": 2016.82,
-        "out": 2020.7
+        "in": 1752.35,
+        "out": 1757.75
       },
       "layout_type": "single",
       "primary_camera_person_id": "person_03",
@@ -207,53 +108,30 @@
       ],
       "speaker_focused": true,
       "caption_texts": [
-        "仕様を書くより目的を考える"
+        "ユーザーが不安なら自動化しても使われない"
       ],
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     },
     {
-      "event_id": "digest_qa_04_answer_02_short03",
-      "timeline_start": 62.16,
-      "timeline_end": 64.96,
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "timeline_start": 29.2,
+      "timeline_end": 33.45,
       "source": {
         "media_id": "group_wide",
-        "in": 2022.72,
-        "out": 2025.52
+        "in": 1903.86,
+        "out": 1908.11
       },
       "layout_type": "single",
-      "primary_camera_person_id": "person_03",
+      "primary_camera_person_id": "person_02",
       "visible_people": [
-        "person_03"
+        "person_02"
       ],
       "caption_speaker_person_ids": [
-        "person_03"
+        "person_02"
       ],
       "speaker_focused": true,
       "caption_texts": [
-        "どういうことを実現したいのか"
-      ],
-      "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
-    },
-    {
-      "event_id": "digest_qa_05_answer_02",
-      "timeline_start": 64.96,
-      "timeline_end": 70.96,
-      "source": {
-        "media_id": "group_wide",
-        "in": 2938.04,
-        "out": 2944.04
-      },
-      "layout_type": "single",
-      "primary_camera_person_id": "person_01",
-      "visible_people": [
-        "person_01"
-      ],
-      "caption_speaker_person_ids": [
-        "person_01"
-      ],
-      "speaker_focused": true,
-      "caption_texts": [
-        "学ぶのめちゃめちゃおすすめ"
+        "いらないものをちゃんと言ってあげる"
       ],
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     }

@@ -1,0 +1,1341 @@
+{
+  "schema_version": "render_segment_cache_audit.v1",
+  "generated_at": "2026-06-11T20:26:49+09:00",
+  "cache_version": "test_project1_style_preview.v3.clean_segment_cache",
+  "edit_plan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
+  "segment_dir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments",
+  "manifest_dir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests",
+  "event_count": 165,
+  "reusable_count": 0,
+  "invalid_count": 165,
+  "status_counts": {
+    "missing_or_empty_segment": 165
+  },
+  "orphan_segment_count": 0,
+  "orphan_segments": [],
+  "orphan_manifest_count": 0,
+  "orphan_manifests": [],
+  "ready_for_resume_reuse": false,
+  "items": [
+    {
+      "index": 1,
+      "event_id": "digest_qa_01_question_01",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_001_digest_qa_01_question_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_001_digest_qa_01_question_01.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 2,
+      "event_id": "digest_qa_02_question_context_01",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_002_digest_qa_02_question_context_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_002_digest_qa_02_question_context_01.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 3,
+      "event_id": "digest_qa_03_answer_01",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_003_digest_qa_03_answer_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_003_digest_qa_03_answer_01.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 4,
+      "event_id": "digest_qa_right_user_anxiety_01",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_004_digest_qa_right_user_anxiety_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_004_digest_qa_right_user_anxiety_01.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 5,
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_005_digest_qa_middle_nemoto_value_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_005_digest_qa_middle_nemoto_value_01.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 6,
+      "event_id": "digest_to_main_company_movie",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_006_digest_to_main_company_movie.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_006_digest_to_main_company_movie.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 7,
+      "event_id": "main_intro_group_greeting",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_007_main_intro_group_greeting.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_007_main_intro_group_greeting.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 8,
+      "event_id": "main_intro_yano_self",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_008_main_intro_yano_self.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_008_main_intro_yano_self.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 9,
+      "event_id": "main_intro_wide_after_yano",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_009_main_intro_wide_after_yano.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_009_main_intro_wide_after_yano.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 10,
+      "event_id": "main_intro_two_guests_named",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_010_main_intro_two_guests_named.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_010_main_intro_two_guests_named.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 11,
+      "event_id": "main_intro_yano_explains_001",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_011_main_intro_yano_explains_001.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_011_main_intro_yano_explains_001.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 12,
+      "event_id": "main_intro_wide_context_001",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_012_main_intro_wide_context_001.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_012_main_intro_wide_context_001.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 13,
+      "event_id": "main_intro_yano_explains_002",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_013_main_intro_yano_explains_002.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_013_main_intro_yano_explains_002.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 14,
+      "event_id": "main_intro_two_guest_reaction",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_014_main_intro_two_guest_reaction.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_014_main_intro_two_guest_reaction.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 15,
+      "event_id": "main_intro_yano_prompt_selfintro",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_015_main_intro_yano_prompt_selfintro.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_015_main_intro_yano_prompt_selfintro.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 16,
+      "event_id": "intro_person_02_nemoto",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_016_intro_person_02_nemoto.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_016_intro_person_02_nemoto.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 17,
+      "event_id": "intro_between_nemoto_murata",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_017_intro_between_nemoto_murata.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_017_intro_between_nemoto_murata.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 18,
+      "event_id": "intro_person_03_murata",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_018_intro_person_03_murata.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_018_intro_person_03_murata.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 19,
+      "event_id": "main_yano_profile_intro",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_019_main_yano_profile_intro.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_019_main_yano_profile_intro.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 20,
+      "event_id": "main_full_008",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_020_main_full_008.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_020_main_full_008.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 21,
+      "event_id": "main_full_009",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_021_main_full_009.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_021_main_full_009.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 22,
+      "event_id": "main_full_010",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_022_main_full_010.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_022_main_full_010.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 23,
+      "event_id": "main_full_011",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_023_main_full_011.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_023_main_full_011.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 24,
+      "event_id": "main_full_012",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_024_main_full_012.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_024_main_full_012.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 25,
+      "event_id": "main_full_013",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_025_main_full_013.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_025_main_full_013.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 26,
+      "event_id": "main_full_014",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_026_main_full_014.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_026_main_full_014.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 27,
+      "event_id": "main_full_015",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_027_main_full_015.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_027_main_full_015.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 28,
+      "event_id": "main_full_016",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_028_main_full_016.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_028_main_full_016.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 29,
+      "event_id": "main_full_017",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_029_main_full_017.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_029_main_full_017.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 30,
+      "event_id": "main_full_018",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_030_main_full_018.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_030_main_full_018.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 31,
+      "event_id": "main_full_019",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_031_main_full_019.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_031_main_full_019.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 32,
+      "event_id": "main_full_020",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_032_main_full_020.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_032_main_full_020.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 33,
+      "event_id": "main_full_021",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_033_main_full_021.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_033_main_full_021.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 34,
+      "event_id": "main_full_022",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_034_main_full_022.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_034_main_full_022.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 35,
+      "event_id": "main_full_023",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_035_main_full_023.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_035_main_full_023.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 36,
+      "event_id": "main_full_024",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_036_main_full_024.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_036_main_full_024.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 37,
+      "event_id": "main_full_025",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_037_main_full_025.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_037_main_full_025.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 38,
+      "event_id": "main_full_026",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_038_main_full_026.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_038_main_full_026.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 39,
+      "event_id": "main_full_027",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_039_main_full_027.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_039_main_full_027.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 40,
+      "event_id": "main_full_028",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_040_main_full_028.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_040_main_full_028.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 41,
+      "event_id": "main_full_029",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_041_main_full_029.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_041_main_full_029.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 42,
+      "event_id": "main_full_030",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_042_main_full_030.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_042_main_full_030.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 43,
+      "event_id": "main_full_031",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_043_main_full_031.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_043_main_full_031.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 44,
+      "event_id": "main_full_032",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_044_main_full_032.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_044_main_full_032.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 45,
+      "event_id": "main_full_033",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_045_main_full_033.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_045_main_full_033.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 46,
+      "event_id": "main_full_034",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_046_main_full_034.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_046_main_full_034.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 47,
+      "event_id": "main_full_035",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_047_main_full_035.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_047_main_full_035.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 48,
+      "event_id": "main_full_036",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_048_main_full_036.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_048_main_full_036.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 49,
+      "event_id": "main_full_037",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_049_main_full_037.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_049_main_full_037.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 50,
+      "event_id": "main_full_038",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_050_main_full_038.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_050_main_full_038.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 51,
+      "event_id": "main_full_039",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_051_main_full_039.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_051_main_full_039.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 52,
+      "event_id": "main_full_040",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_052_main_full_040.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_052_main_full_040.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 53,
+      "event_id": "main_full_041",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_053_main_full_041.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_053_main_full_041.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 54,
+      "event_id": "main_full_042",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_054_main_full_042.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_054_main_full_042.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 55,
+      "event_id": "main_full_043",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_055_main_full_043.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_055_main_full_043.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 56,
+      "event_id": "main_full_044",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_056_main_full_044.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_056_main_full_044.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 57,
+      "event_id": "main_full_045",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_057_main_full_045.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_057_main_full_045.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 58,
+      "event_id": "main_full_046",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_058_main_full_046.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_058_main_full_046.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 59,
+      "event_id": "main_full_047",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_059_main_full_047.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_059_main_full_047.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 60,
+      "event_id": "main_full_048",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_060_main_full_048.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_060_main_full_048.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 61,
+      "event_id": "main_full_049",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_061_main_full_049.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_061_main_full_049.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 62,
+      "event_id": "main_full_050",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_062_main_full_050.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_062_main_full_050.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 63,
+      "event_id": "main_full_051",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_063_main_full_051.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_063_main_full_051.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 64,
+      "event_id": "main_full_052",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_064_main_full_052.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_064_main_full_052.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 65,
+      "event_id": "main_full_053",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_065_main_full_053.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_065_main_full_053.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 66,
+      "event_id": "main_full_054",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_066_main_full_054.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_066_main_full_054.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 67,
+      "event_id": "main_full_055",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_067_main_full_055.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_067_main_full_055.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 68,
+      "event_id": "main_full_056",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_068_main_full_056.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_068_main_full_056.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 69,
+      "event_id": "main_full_057",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_069_main_full_057.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_069_main_full_057.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 70,
+      "event_id": "main_full_058",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_070_main_full_058.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_070_main_full_058.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 71,
+      "event_id": "main_full_059",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_071_main_full_059.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_071_main_full_059.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 72,
+      "event_id": "main_full_060",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_072_main_full_060.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_072_main_full_060.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 73,
+      "event_id": "main_full_061",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_073_main_full_061.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_073_main_full_061.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 74,
+      "event_id": "main_full_062",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_074_main_full_062.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_074_main_full_062.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 75,
+      "event_id": "main_full_063",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_075_main_full_063.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_075_main_full_063.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 76,
+      "event_id": "main_full_064",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_076_main_full_064.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_076_main_full_064.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 77,
+      "event_id": "main_full_065",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_077_main_full_065.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_077_main_full_065.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 78,
+      "event_id": "main_full_066",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_078_main_full_066.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_078_main_full_066.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 79,
+      "event_id": "main_full_067",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_079_main_full_067.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_079_main_full_067.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 80,
+      "event_id": "main_full_068",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_080_main_full_068.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_080_main_full_068.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 81,
+      "event_id": "main_full_069",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_081_main_full_069.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_081_main_full_069.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 82,
+      "event_id": "main_full_070",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_082_main_full_070.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_082_main_full_070.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 83,
+      "event_id": "main_full_071",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_083_main_full_071.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_083_main_full_071.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 84,
+      "event_id": "main_full_072",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_084_main_full_072.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_084_main_full_072.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 85,
+      "event_id": "main_full_073",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_085_main_full_073.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_085_main_full_073.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 86,
+      "event_id": "main_full_074",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_086_main_full_074.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_086_main_full_074.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 87,
+      "event_id": "main_full_075",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_087_main_full_075.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_087_main_full_075.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 88,
+      "event_id": "main_full_076",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_088_main_full_076.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_088_main_full_076.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 89,
+      "event_id": "main_full_077",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_089_main_full_077.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_089_main_full_077.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 90,
+      "event_id": "main_full_078",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_090_main_full_078.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_090_main_full_078.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 91,
+      "event_id": "main_full_079",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_091_main_full_079.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_091_main_full_079.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 92,
+      "event_id": "main_full_080",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_092_main_full_080.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_092_main_full_080.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 93,
+      "event_id": "main_full_081",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_093_main_full_081.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_093_main_full_081.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 94,
+      "event_id": "main_full_082",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_094_main_full_082.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_094_main_full_082.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 95,
+      "event_id": "main_full_083",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_095_main_full_083.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_095_main_full_083.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 96,
+      "event_id": "main_full_084",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_096_main_full_084.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_096_main_full_084.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 97,
+      "event_id": "main_full_085",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_097_main_full_085.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_097_main_full_085.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 98,
+      "event_id": "main_full_086",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_098_main_full_086.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_098_main_full_086.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 99,
+      "event_id": "main_full_087",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_099_main_full_087.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_099_main_full_087.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 100,
+      "event_id": "main_full_088",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_100_main_full_088.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_100_main_full_088.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 101,
+      "event_id": "main_full_089",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_101_main_full_089.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_101_main_full_089.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 102,
+      "event_id": "main_full_090",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_102_main_full_090.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_102_main_full_090.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 103,
+      "event_id": "main_full_091",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_103_main_full_091.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_103_main_full_091.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 104,
+      "event_id": "main_full_092",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_104_main_full_092.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_104_main_full_092.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 105,
+      "event_id": "main_full_093",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_105_main_full_093.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_105_main_full_093.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 106,
+      "event_id": "main_full_094",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_106_main_full_094.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_106_main_full_094.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 107,
+      "event_id": "main_full_095",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_107_main_full_095.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_107_main_full_095.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 108,
+      "event_id": "main_full_096",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_108_main_full_096.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_108_main_full_096.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 109,
+      "event_id": "main_full_097",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_109_main_full_097.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_109_main_full_097.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 110,
+      "event_id": "main_full_098",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_110_main_full_098.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_110_main_full_098.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 111,
+      "event_id": "main_full_099",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_111_main_full_099.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_111_main_full_099.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 112,
+      "event_id": "main_full_100",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_112_main_full_100.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_112_main_full_100.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 113,
+      "event_id": "main_full_101",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_113_main_full_101.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_113_main_full_101.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 114,
+      "event_id": "main_full_102",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_114_main_full_102.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_114_main_full_102.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 115,
+      "event_id": "main_full_103",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_115_main_full_103.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_115_main_full_103.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 116,
+      "event_id": "main_full_104",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_116_main_full_104.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_116_main_full_104.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 117,
+      "event_id": "main_full_105",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_117_main_full_105.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_117_main_full_105.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 118,
+      "event_id": "main_full_106",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_118_main_full_106.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_118_main_full_106.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 119,
+      "event_id": "main_full_107",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_119_main_full_107.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_119_main_full_107.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 120,
+      "event_id": "main_full_108",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_120_main_full_108.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_120_main_full_108.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 121,
+      "event_id": "main_full_109",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_121_main_full_109.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_121_main_full_109.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 122,
+      "event_id": "main_full_110",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_122_main_full_110.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_122_main_full_110.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 123,
+      "event_id": "main_full_111",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_123_main_full_111.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_123_main_full_111.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 124,
+      "event_id": "main_full_112",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_124_main_full_112.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_124_main_full_112.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 125,
+      "event_id": "main_full_113",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_125_main_full_113.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_125_main_full_113.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 126,
+      "event_id": "main_full_114",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_126_main_full_114.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_126_main_full_114.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 127,
+      "event_id": "main_full_115",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_127_main_full_115.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_127_main_full_115.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 128,
+      "event_id": "main_full_116",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_128_main_full_116.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_128_main_full_116.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 129,
+      "event_id": "main_full_117",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_129_main_full_117.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_129_main_full_117.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 130,
+      "event_id": "main_full_118",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_130_main_full_118.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_130_main_full_118.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 131,
+      "event_id": "main_full_119",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_131_main_full_119.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_131_main_full_119.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 132,
+      "event_id": "main_full_120",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_132_main_full_120.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_132_main_full_120.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 133,
+      "event_id": "main_full_121",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_133_main_full_121.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_133_main_full_121.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 134,
+      "event_id": "main_full_122",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_134_main_full_122.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_134_main_full_122.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 135,
+      "event_id": "main_full_123",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_135_main_full_123.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_135_main_full_123.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 136,
+      "event_id": "main_full_124",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_136_main_full_124.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_136_main_full_124.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 137,
+      "event_id": "main_full_125",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_137_main_full_125.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_137_main_full_125.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 138,
+      "event_id": "main_full_126",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_138_main_full_126.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_138_main_full_126.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 139,
+      "event_id": "main_full_127",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_139_main_full_127.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_139_main_full_127.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 140,
+      "event_id": "main_full_128",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_140_main_full_128.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_140_main_full_128.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 141,
+      "event_id": "main_full_129",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_141_main_full_129.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_141_main_full_129.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 142,
+      "event_id": "main_full_130",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_142_main_full_130.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_142_main_full_130.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 143,
+      "event_id": "main_full_131",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_143_main_full_131.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_143_main_full_131.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 144,
+      "event_id": "main_full_132",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_144_main_full_132.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_144_main_full_132.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 145,
+      "event_id": "main_full_133",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_145_main_full_133.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_145_main_full_133.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 146,
+      "event_id": "main_full_134",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_146_main_full_134.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_146_main_full_134.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 147,
+      "event_id": "main_full_135",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_147_main_full_135.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_147_main_full_135.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 148,
+      "event_id": "main_full_136",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_148_main_full_136.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_148_main_full_136.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 149,
+      "event_id": "main_full_137",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_149_main_full_137.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_149_main_full_137.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 150,
+      "event_id": "main_full_138",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_150_main_full_138.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_150_main_full_138.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 151,
+      "event_id": "main_full_139",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_151_main_full_139.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_151_main_full_139.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 152,
+      "event_id": "main_full_140",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_152_main_full_140.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_152_main_full_140.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 153,
+      "event_id": "main_full_141",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_153_main_full_141.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_153_main_full_141.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 154,
+      "event_id": "main_full_142",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_154_main_full_142.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_154_main_full_142.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 155,
+      "event_id": "main_full_143",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_155_main_full_143.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_155_main_full_143.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 156,
+      "event_id": "main_full_144",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_156_main_full_144.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_156_main_full_144.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 157,
+      "event_id": "main_full_145",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_157_main_full_145.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_157_main_full_145.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 158,
+      "event_id": "main_full_146",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_158_main_full_146.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_158_main_full_146.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 159,
+      "event_id": "main_full_147",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_159_main_full_147.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_159_main_full_147.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 160,
+      "event_id": "main_full_148",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_160_main_full_148.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_160_main_full_148.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 161,
+      "event_id": "main_full_149",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_161_main_full_149.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_161_main_full_149.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 162,
+      "event_id": "main_full_150",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_162_main_full_150.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_162_main_full_150.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 163,
+      "event_id": "main_full_151",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_163_main_full_151.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_163_main_full_151.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 164,
+      "event_id": "main_closing_thanks_01",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_164_main_closing_thanks_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_164_main_closing_thanks_01.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    },
+    {
+      "index": 165,
+      "event_id": "main_closing_thanks_02",
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_165_main_closing_thanks_02.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_165_main_closing_thanks_02.json",
+      "reusable": false,
+      "status": "missing_or_empty_segment"
+    }
+  ]
+}

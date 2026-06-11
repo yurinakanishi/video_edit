@@ -1,0 +1,64 @@
+{
+  "schema_version": "main_caption_keyword_timing_repair.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T18:12:00+09:00",
+  "source_of_truth": "edit_plan.json timeline[].overlays[type=caption]",
+  "input_audit": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\main_caption_keyword_timing_audit.json",
+  "change_count": 3,
+  "changes": [
+    {
+      "event_id": "main_full_133",
+      "new_event_id": "main_full_134",
+      "caption_id": "main_caption_085",
+      "text": "AIで専門家の経験を多くの人が得られる",
+      "matched_fragment": "ジョブローテーション",
+      "old_local_timing": [
+        14.2,
+        15.0
+      ],
+      "new_local_timing": [
+        0.669,
+        4.069
+      ],
+      "old_source_start": 2716.7,
+      "new_source_start": 2718.169,
+      "early_by_sec": 1.469
+    },
+    {
+      "event_id": "main_full_133",
+      "new_event_id": "main_full_134",
+      "caption_id": "main_caption_auto_023",
+      "text": "バックオフィス経験を広く活かせると面白い",
+      "matched_fragment": "バックオフィス",
+      "old_local_timing": [
+        14.2,
+        15.0
+      ],
+      "new_local_timing": [
+        5.137,
+        8.537
+      ],
+      "old_source_start": 2716.7,
+      "new_source_start": 2722.637,
+      "early_by_sec": 5.937
+    },
+    {
+      "event_id": "main_full_144",
+      "new_event_id": "main_full_145",
+      "caption_id": "main_caption_090",
+      "text": "人や現場に向き合う時間が増えていく",
+      "matched_fragment": "仕訳を打つ",
+      "old_local_timing": [
+        14.2,
+        15.0
+      ],
+      "new_local_timing": [
+        0.577,
+        3.377
+      ],
+      "old_source_start": 2881.7,
+      "new_source_start": 2883.077,
+      "early_by_sec": 1.377
+    }
+  ]
+}

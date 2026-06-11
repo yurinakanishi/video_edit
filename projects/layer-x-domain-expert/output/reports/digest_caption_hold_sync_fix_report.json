@@ -1,0 +1,83 @@
+{
+  "schema_version": "digest_caption_hold_sync_fix.v1",
+  "updated_at": "2026-06-11T20:06:04+09:00",
+  "hold_after_speech_sec": 0.25,
+  "min_gap_before_next_caption_sec": 0.08,
+  "max_tail_extension_sec": 0.25,
+  "no_tail_extend_events": [
+    "digest_qa_01_question_01"
+  ],
+  "changed_count": 11,
+  "changes": [
+    {
+      "event_id": "digest_qa_01_question_01",
+      "text": "開発に関わる仕事をする中で",
+      "old_end": 3.0,
+      "new_end": 3.25,
+      "spoken_end_local": 3.0
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "text": "何でも知ってそうに見える",
+      "old_end": 5.686,
+      "new_end": 5.936,
+      "spoken_end_local": 5.686
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "text": "期待の高さがハードルになる",
+      "old_end": 8.48,
+      "new_end": 8.73,
+      "spoken_end_local": 8.48
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "event_tail_extended_sec": 0.25,
+      "reason": "last digest caption needed visible hold through speech ending"
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "text": "正直僕より詳しいこともある",
+      "old_end": 8.56,
+      "new_end": 8.81,
+      "spoken_end_local": 8.56
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "event_tail_extended_sec": 0.25,
+      "reason": "last digest caption needed visible hold through speech ending"
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "text": "「なんで？」を絶対に逃がしてくれない",
+      "old_end": 1.68,
+      "new_end": 1.93,
+      "spoken_end_local": 1.68
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "text": "ちゃんと伝えるには背景まで整理する",
+      "old_end": 8.88,
+      "new_end": 9.13,
+      "spoken_end_local": 8.88
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "event_tail_extended_sec": 0.25,
+      "reason": "last digest caption needed visible hold through speech ending"
+    },
+    {
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "text": "いらないものをちゃんと言ってあげる",
+      "old_end": 4.0,
+      "new_end": 4.25,
+      "spoken_end_local": 4.0
+    },
+    {
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "event_tail_extended_sec": 0.25,
+      "reason": "last digest caption needed visible hold through speech ending"
+    }
+  ],
+  "digest_duration_sec": 36.86
+}

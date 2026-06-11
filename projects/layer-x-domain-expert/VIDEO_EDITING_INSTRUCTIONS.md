@@ -911,7 +911,7 @@ Keep these consistent with the digest/sample style:
 - Upper-right title blue-purple box background in the main section only
 - Caption colors, rounded boxes, reveal animation, and quick fade timing
 - Color matching: the three close-up cameras (`cam_person_01`, `cam_person_02`, `cam_person_03`) must be corrected to match the less saturated, more neutral look of the three-person wide camera. Do not leave close-up shots with noticeably denser saturation or contrast than the group camera.
-- Audio source policy: use one continuous interview audio source throughout the digest and main interview. For this project, that source is `group_wide`. Do not switch to close-camera audio when the video angle changes. The company movie bridge may use its own embedded audio, then the main interview returns to the same continuous `group_wide` source.
+- Audio source policy: use one continuous interview audio source throughout digest, main interview, and closing. For this project, the final interview audio source is `cam_person_02`, based on `output/reports/audio_source_quality_audit.json`. `group_wide` remains the transcript and sync reference source, but it must not be used as final interview audio because it ends before the separate closing thanks take. Do not switch audio sources when the video angle changes. The company movie bridge may use its own embedded audio.
 
 Remove these digest-only frame elements from the main section:
 

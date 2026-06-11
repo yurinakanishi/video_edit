@@ -1,0 +1,676 @@
+{
+  "schema_version": "audio_source_quality_audit.v1",
+  "project_id": "layer-x-domain-expert",
+  "sample_rate_hz": 16000,
+  "policy": {
+    "single_audio_source_for_interview": true,
+    "no_mid_video_audio_source_switching": true,
+    "reason": "Avoid audible noise-floor/timbre changes when the video angle changes or when the closing begins."
+  },
+  "content_window_master_sec": {
+    "start": 519.14,
+    "end": 2985.485
+  },
+  "sync_offsets": {
+    "master": 0.0,
+    "camera2": -3.332479,
+    "camera3": 7.467854,
+    "camera4": 13.38
+  },
+  "media": [
+    {
+      "media_id": "group_wide",
+      "role": "three_person_wide",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\three people.mp4",
+      "duration_sec": 2985.485,
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "2985.485000"
+        }
+      ],
+      "sync_role": "master",
+      "sync_offset_sec": 0.0,
+      "master_timeline_coverage_sec": {
+        "start_sec": -0.0,
+        "end_sec": 2985.485
+      },
+      "coverage": {
+        "covers_main_interview": true,
+        "covers_closing_thanks": false,
+        "closing_verified_by_synced_window": false,
+        "covers_main_and_closing": false,
+        "note": "Best reference transcript source, but file ends at the master content window and does not include the separate closing take."
+      },
+      "last_active": {
+        "status": "ok",
+        "threshold_dbfs": -32.83,
+        "last_active_sec": 2985.3,
+        "seconds_from_end": 0.185,
+        "active_frame_count": 9348,
+        "floor_dbfs_p20": -37.93,
+        "peak_dbfs_p95": -26.22
+      },
+      "windows": [
+        {
+          "label": "intro",
+          "basis": "master_synced",
+          "master_start_sec": 519.14,
+          "master_end_sec": 560.0,
+          "source_start_sec": 519.14,
+          "source_end_sec": 560.0,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -31.61,
+            "peak_dbfs": -11.53,
+            "noise_floor_dbfs_p20": -38.21,
+            "median_rms_dbfs_p50": -34.45,
+            "speech_rms_dbfs_p95": -26.28,
+            "snr_estimate_db_p95_minus_p20": 11.93,
+            "speech_activity_ratio": 0.41,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "digest_question",
+          "basis": "master_synced",
+          "master_start_sec": 1500.72,
+          "master_end_sec": 1508.76,
+          "source_start_sec": 1500.72,
+          "source_end_sec": 1508.76,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -32.93,
+            "peak_dbfs": -17.06,
+            "noise_floor_dbfs_p20": -38.9,
+            "median_rms_dbfs_p50": -36.1,
+            "speech_rms_dbfs_p95": -27.59,
+            "snr_estimate_db_p95_minus_p20": 11.31,
+            "speech_activity_ratio": 0.353,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "mid_interview",
+          "basis": "master_synced",
+          "master_start_sec": 1983.1,
+          "master_end_sec": 2045.0,
+          "source_start_sec": 1983.1,
+          "source_end_sec": 2045.0,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -31.97,
+            "peak_dbfs": -6.63,
+            "noise_floor_dbfs_p20": -38.54,
+            "median_rms_dbfs_p50": -35.83,
+            "speech_rms_dbfs_p95": -26.84,
+            "snr_estimate_db_p95_minus_p20": 11.7,
+            "speech_activity_ratio": 0.337,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "late_interview",
+          "basis": "master_synced",
+          "master_start_sec": 2926.04,
+          "master_end_sec": 2985.48,
+          "source_start_sec": 2926.04,
+          "source_end_sec": 2985.48,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -32.69,
+            "peak_dbfs": -5.22,
+            "noise_floor_dbfs_p20": -38.34,
+            "median_rms_dbfs_p50": -35.75,
+            "speech_rms_dbfs_p95": -28.22,
+            "snr_estimate_db_p95_minus_p20": 10.12,
+            "speech_activity_ratio": 0.238,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "last_60_sec",
+          "basis": "native_tail",
+          "source_start_sec": 2925.485,
+          "source_end_sec": 2985.485,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -32.71,
+            "peak_dbfs": -5.22,
+            "noise_floor_dbfs_p20": -38.38,
+            "median_rms_dbfs_p50": -35.73,
+            "speech_rms_dbfs_p95": -28.19,
+            "snr_estimate_db_p95_minus_p20": 10.19,
+            "speech_activity_ratio": 0.239,
+            "clipping_ratio": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "media_id": "cam_person_01",
+      "role": "left_interviewer_camera",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-left.mp4",
+      "duration_sec": 3615.115,
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "3615.115000"
+        }
+      ],
+      "sync_role": "camera2",
+      "sync_offset_sec": -3.332479,
+      "master_timeline_coverage_sec": {
+        "start_sec": 3.332,
+        "end_sec": 3618.447
+      },
+      "coverage": {
+        "covers_main_interview": true,
+        "covers_closing_thanks": true,
+        "closing_verified_by_synced_window": true,
+        "covers_main_and_closing": true,
+        "note": "Only source currently used for the closing take; covers both synced main interview and final thanks as one file."
+      },
+      "last_active": {
+        "status": "ok",
+        "threshold_dbfs": -28.88,
+        "last_active_sec": 3614.6,
+        "seconds_from_end": 0.515,
+        "active_frame_count": 13674,
+        "floor_dbfs_p20": -33.98,
+        "peak_dbfs_p95": -21.57
+      },
+      "windows": [
+        {
+          "label": "intro",
+          "basis": "master_synced",
+          "master_start_sec": 519.14,
+          "master_end_sec": 560.0,
+          "source_start_sec": 515.808,
+          "source_end_sec": 556.668,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -27.05,
+            "peak_dbfs": -5.86,
+            "noise_floor_dbfs_p20": -34.31,
+            "median_rms_dbfs_p50": -29.76,
+            "speech_rms_dbfs_p95": -21.97,
+            "snr_estimate_db_p95_minus_p20": 12.34,
+            "speech_activity_ratio": 0.453,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "digest_question",
+          "basis": "master_synced",
+          "master_start_sec": 1500.72,
+          "master_end_sec": 1508.76,
+          "source_start_sec": 1497.388,
+          "source_end_sec": 1505.428,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -28.86,
+            "peak_dbfs": -10.87,
+            "noise_floor_dbfs_p20": -34.79,
+            "median_rms_dbfs_p50": -31.17,
+            "speech_rms_dbfs_p95": -23.83,
+            "snr_estimate_db_p95_minus_p20": 10.96,
+            "speech_activity_ratio": 0.406,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "mid_interview",
+          "basis": "master_synced",
+          "master_start_sec": 1983.1,
+          "master_end_sec": 2045.0,
+          "source_start_sec": 1979.768,
+          "source_end_sec": 2041.668,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -27.16,
+            "peak_dbfs": -3.37,
+            "noise_floor_dbfs_p20": -34.61,
+            "median_rms_dbfs_p50": -31.23,
+            "speech_rms_dbfs_p95": -21.62,
+            "snr_estimate_db_p95_minus_p20": 12.98,
+            "speech_activity_ratio": 0.386,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "late_interview",
+          "basis": "master_synced",
+          "master_start_sec": 2926.04,
+          "master_end_sec": 2985.48,
+          "source_start_sec": 2922.708,
+          "source_end_sec": 2982.148,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -27.91,
+            "peak_dbfs": -3.5,
+            "noise_floor_dbfs_p20": -34.17,
+            "median_rms_dbfs_p50": -30.96,
+            "speech_rms_dbfs_p95": -23.17,
+            "snr_estimate_db_p95_minus_p20": 11.0,
+            "speech_activity_ratio": 0.311,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_01",
+          "basis": "synced_closing_from_cam_person_01",
+          "source_start_sec": 3551.115,
+          "source_end_sec": 3570.065,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -27.82,
+            "peak_dbfs": -8.3,
+            "noise_floor_dbfs_p20": -33.59,
+            "median_rms_dbfs_p50": -29.59,
+            "speech_rms_dbfs_p95": -23.17,
+            "snr_estimate_db_p95_minus_p20": 10.42,
+            "speech_activity_ratio": 0.398,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_02",
+          "basis": "synced_closing_from_cam_person_01",
+          "source_start_sec": 3570.815,
+          "source_end_sec": 3583.115,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -28.6,
+            "peak_dbfs": -9.64,
+            "noise_floor_dbfs_p20": -35.2,
+            "median_rms_dbfs_p50": -31.79,
+            "speech_rms_dbfs_p95": -22.87,
+            "snr_estimate_db_p95_minus_p20": 12.33,
+            "speech_activity_ratio": 0.428,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "last_60_sec",
+          "basis": "native_tail",
+          "source_start_sec": 3555.115,
+          "source_end_sec": 3615.115,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -28.24,
+            "peak_dbfs": -3.26,
+            "noise_floor_dbfs_p20": -34.79,
+            "median_rms_dbfs_p50": -31.74,
+            "speech_rms_dbfs_p95": -23.14,
+            "snr_estimate_db_p95_minus_p20": 11.65,
+            "speech_activity_ratio": 0.373,
+            "clipping_ratio": 0.0
+          }
+        }
+      ],
+      "_avg_noise": -34.494285714285716,
+      "_avg_snr": 11.668571428571429,
+      "_clip": 0.0
+    },
+    {
+      "media_id": "cam_person_02",
+      "role": "middle_interviewee_camera",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-middle.mp4",
+      "duration_sec": 3630.133,
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "3630.130000"
+        }
+      ],
+      "sync_role": "camera3",
+      "sync_offset_sec": 7.467854,
+      "master_timeline_coverage_sec": {
+        "start_sec": -7.468,
+        "end_sec": 3622.665
+      },
+      "coverage": {
+        "covers_main_interview": true,
+        "covers_closing_thanks": true,
+        "closing_verified_by_synced_window": true,
+        "covers_main_and_closing": true,
+        "note": "Closing take is verified by syncing from the current cam_person_01 closing edit range."
+      },
+      "last_active": {
+        "status": "ok",
+        "threshold_dbfs": -36.1,
+        "last_active_sec": 3630.0,
+        "seconds_from_end": 0.133,
+        "active_frame_count": 17723,
+        "floor_dbfs_p20": -56.01,
+        "peak_dbfs_p95": -19.02
+      },
+      "windows": [
+        {
+          "label": "intro",
+          "basis": "master_synced",
+          "master_start_sec": 519.14,
+          "master_end_sec": 560.0,
+          "source_start_sec": 526.608,
+          "source_end_sec": 567.468,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -31.75,
+            "peak_dbfs": -4.48,
+            "noise_floor_dbfs_p20": -55.98,
+            "median_rms_dbfs_p50": -38.08,
+            "speech_rms_dbfs_p95": -25.46,
+            "snr_estimate_db_p95_minus_p20": 30.52,
+            "speech_activity_ratio": 0.577,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "digest_question",
+          "basis": "master_synced",
+          "master_start_sec": 1500.72,
+          "master_end_sec": 1508.76,
+          "source_start_sec": 1508.188,
+          "source_end_sec": 1516.228,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -33.89,
+            "peak_dbfs": -14.12,
+            "noise_floor_dbfs_p20": -57.53,
+            "median_rms_dbfs_p50": -41.19,
+            "speech_rms_dbfs_p95": -26.9,
+            "snr_estimate_db_p95_minus_p20": 30.64,
+            "speech_activity_ratio": 0.541,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "mid_interview",
+          "basis": "master_synced",
+          "master_start_sec": 1983.1,
+          "master_end_sec": 2045.0,
+          "source_start_sec": 1990.568,
+          "source_end_sec": 2052.468,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -28.86,
+            "peak_dbfs": -0.55,
+            "noise_floor_dbfs_p20": -56.24,
+            "median_rms_dbfs_p50": -40.54,
+            "speech_rms_dbfs_p95": -23.62,
+            "snr_estimate_db_p95_minus_p20": 32.61,
+            "speech_activity_ratio": 0.472,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "late_interview",
+          "basis": "master_synced",
+          "master_start_sec": 2926.04,
+          "master_end_sec": 2985.48,
+          "source_start_sec": 2933.508,
+          "source_end_sec": 2992.948,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -24.18,
+            "peak_dbfs": -0.89,
+            "noise_floor_dbfs_p20": -49.56,
+            "median_rms_dbfs_p50": -33.1,
+            "speech_rms_dbfs_p95": -17.29,
+            "snr_estimate_db_p95_minus_p20": 32.27,
+            "speech_activity_ratio": 0.502,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_01",
+          "basis": "synced_closing_from_cam_person_01",
+          "source_start_sec": 3561.915333,
+          "source_end_sec": 3580.865333,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -33.18,
+            "peak_dbfs": -13.4,
+            "noise_floor_dbfs_p20": -50.12,
+            "median_rms_dbfs_p50": -37.95,
+            "speech_rms_dbfs_p95": -27.33,
+            "snr_estimate_db_p95_minus_p20": 22.79,
+            "speech_activity_ratio": 0.638,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_02",
+          "basis": "synced_closing_from_cam_person_01",
+          "source_start_sec": 3581.615333,
+          "source_end_sec": 3593.915333,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -33.82,
+            "peak_dbfs": -13.32,
+            "noise_floor_dbfs_p20": -60.13,
+            "median_rms_dbfs_p50": -43.11,
+            "speech_rms_dbfs_p95": -26.56,
+            "snr_estimate_db_p95_minus_p20": 33.56,
+            "speech_activity_ratio": 0.487,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "last_60_sec",
+          "basis": "native_tail",
+          "source_start_sec": 3570.133,
+          "source_end_sec": 3630.133,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -29.61,
+            "peak_dbfs": -1.04,
+            "noise_floor_dbfs_p20": -59.7,
+            "median_rms_dbfs_p50": -46.11,
+            "speech_rms_dbfs_p95": -25.95,
+            "snr_estimate_db_p95_minus_p20": 33.75,
+            "speech_activity_ratio": 0.399,
+            "clipping_ratio": 0.0
+          }
+        }
+      ],
+      "_avg_noise": -55.60857142857143,
+      "_avg_snr": 30.87714285714286,
+      "_clip": 0.0
+    },
+    {
+      "media_id": "cam_person_03",
+      "role": "right_interviewee_camera",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\source\\video\\person-right.mp4",
+      "duration_sec": 3639.135,
+      "audio_streams": [
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "start_time": "0.000000",
+          "duration": "3639.135000"
+        }
+      ],
+      "sync_role": "camera4",
+      "sync_offset_sec": 13.38,
+      "master_timeline_coverage_sec": {
+        "start_sec": -13.38,
+        "end_sec": 3625.755
+      },
+      "coverage": {
+        "covers_main_interview": true,
+        "covers_closing_thanks": true,
+        "closing_verified_by_synced_window": true,
+        "covers_main_and_closing": true,
+        "note": "Closing take is verified by syncing from the current cam_person_01 closing edit range."
+      },
+      "last_active": {
+        "status": "ok",
+        "threshold_dbfs": -37.03,
+        "last_active_sec": 3637.3,
+        "seconds_from_end": 1.835,
+        "active_frame_count": 18805,
+        "floor_dbfs_p20": -51.34,
+        "peak_dbfs_p95": -19.95
+      },
+      "windows": [
+        {
+          "label": "intro",
+          "basis": "master_synced",
+          "master_start_sec": 519.14,
+          "master_end_sec": 560.0,
+          "source_start_sec": 532.52,
+          "source_end_sec": 573.38,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -25.34,
+            "peak_dbfs": -4.13,
+            "noise_floor_dbfs_p20": -49.97,
+            "median_rms_dbfs_p50": -31.04,
+            "speech_rms_dbfs_p95": -19.01,
+            "snr_estimate_db_p95_minus_p20": 30.96,
+            "speech_activity_ratio": 0.581,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "digest_question",
+          "basis": "master_synced",
+          "master_start_sec": 1500.72,
+          "master_end_sec": 1508.76,
+          "source_start_sec": 1514.1,
+          "source_end_sec": 1522.14,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -26.8,
+            "peak_dbfs": -7.42,
+            "noise_floor_dbfs_p20": -52.26,
+            "median_rms_dbfs_p50": -33.56,
+            "speech_rms_dbfs_p95": -20.22,
+            "snr_estimate_db_p95_minus_p20": 32.05,
+            "speech_activity_ratio": 0.547,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "mid_interview",
+          "basis": "master_synced",
+          "master_start_sec": 1983.1,
+          "master_end_sec": 2045.0,
+          "source_start_sec": 1996.48,
+          "source_end_sec": 2058.38,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -25.35,
+            "peak_dbfs": -0.8,
+            "noise_floor_dbfs_p20": -50.02,
+            "median_rms_dbfs_p50": -32.79,
+            "speech_rms_dbfs_p95": -19.08,
+            "snr_estimate_db_p95_minus_p20": 30.94,
+            "speech_activity_ratio": 0.561,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "late_interview",
+          "basis": "master_synced",
+          "master_start_sec": 2926.04,
+          "master_end_sec": 2985.48,
+          "source_start_sec": 2939.42,
+          "source_end_sec": 2998.86,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -28.64,
+            "peak_dbfs": -1.24,
+            "noise_floor_dbfs_p20": -49.36,
+            "median_rms_dbfs_p50": -37.4,
+            "speech_rms_dbfs_p95": -22.31,
+            "snr_estimate_db_p95_minus_p20": 27.05,
+            "speech_activity_ratio": 0.531,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_01",
+          "basis": "synced_closing_from_cam_person_01",
+          "source_start_sec": 3567.827479,
+          "source_end_sec": 3586.7774790000003,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -25.67,
+            "peak_dbfs": -4.43,
+            "noise_floor_dbfs_p20": -43.05,
+            "median_rms_dbfs_p50": -30.28,
+            "speech_rms_dbfs_p95": -19.86,
+            "snr_estimate_db_p95_minus_p20": 23.18,
+            "speech_activity_ratio": 0.675,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_02",
+          "basis": "synced_closing_from_cam_person_01",
+          "source_start_sec": 3587.5274790000003,
+          "source_end_sec": 3599.827479,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -26.09,
+            "peak_dbfs": -4.83,
+            "noise_floor_dbfs_p20": -52.26,
+            "median_rms_dbfs_p50": -33.52,
+            "speech_rms_dbfs_p95": -19.04,
+            "snr_estimate_db_p95_minus_p20": 33.22,
+            "speech_activity_ratio": 0.523,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "last_60_sec",
+          "basis": "native_tail",
+          "source_start_sec": 3579.135,
+          "source_end_sec": 3639.135,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -28.17,
+            "peak_dbfs": -1.41,
+            "noise_floor_dbfs_p20": -53.09,
+            "median_rms_dbfs_p50": -40.14,
+            "speech_rms_dbfs_p95": -21.96,
+            "snr_estimate_db_p95_minus_p20": 31.13,
+            "speech_activity_ratio": 0.451,
+            "clipping_ratio": 0.0
+          }
+        }
+      ],
+      "_avg_noise": -50.00142857142857,
+      "_avg_snr": 29.79,
+      "_clip": 0.0
+    }
+  ],
+  "recommendation": {
+    "main_audio_media_id": "cam_person_02",
+    "confidence": 0.86,
+    "reason": "Choose one continuous source that covers the full main interview and the synced closing-thanks take; avoid mid-video audio switching.",
+    "do_not_patch_missing_tail_from_other_source": true,
+    "fallback_policy": "If this source is judged too noisy in review, apply stronger denoise/mastering to this same source instead of switching sources mid-video."
+  }
+}

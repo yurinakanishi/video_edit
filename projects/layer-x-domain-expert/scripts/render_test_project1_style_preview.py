@@ -42,6 +42,7 @@ CAPTION_HORIZONTAL_PADDING = 28
 CAPTION_MAX_TEXT_WIDTH = CAPTION_BOX_MAX_WIDTH - CAPTION_HORIZONTAL_PADDING
 TARGET_AUDIO_LUFS = -17.0
 INTERVIEW_AUDIO_MEDIA_IDS = {"group_wide", "cam_person_01", "cam_person_02", "cam_person_03"}
+INTERVIEW_MAIN_AUDIO_MEDIA_ID = "cam_person_02"
 
 MEDIA_PATHS = {
     "group_wide": PROJECT_ROOT / "source" / "video" / "three people.mp4",
@@ -147,18 +148,24 @@ def clip_source(event: dict[str, Any]) -> dict[str, Any]:
 def audio_source(event: dict[str, Any]) -> dict[str, Any]:
     source = event.get("source") if isinstance(event.get("source"), dict) else {}
     reference = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else {}
-    audio = event.get("audio") if isinstance(event.get("audio"), dict) else {}
-    if str(audio.get("mode") or "") == "source":
-        media_id = str(audio.get("source_media_id") or source.get("media_id") or "")
-        audio_in = audio.get("in")
-        if audio_in is None:
-            audio_in = source.get("in")
-        duration_value = duration(event)
-        return {"media_id": media_id, "in": float(audio_in or 0.0), "out": float(audio_in or 0.0) + duration_value}
     if str(event.get("section") or "") == "bridge" or str(source.get("media_id") or "") == "company_movie":
         return source
-    master_in = float(reference.get("in") or source.get("in") or 0.0)
-    return {"media_id": "group_wide", "in": master_in, "out": master_in + duration(event)}
+    clock_source = reference if reference else source
+    clock_media_id = str(clock_source.get("media_id") or source.get("media_id") or "group_wide")
+    clock_in = float(clock_source.get("in") or source.get("in") or 0.0)
+    offsets = app_offsets()
+    source_role = MEDIA_TO_ROLE.get(clock_media_id, "master")
+    target_role = MEDIA_TO_ROLE.get(INTERVIEW_MAIN_AUDIO_MEDIA_ID, "master")
+    source_clock = clock_in - offsets.get(source_role, 0.0)
+    audio_in = max(0.0, source_clock + offsets.get(target_role, 0.0))
+    duration_value = duration(event)
+    return {
+        "media_id": INTERVIEW_MAIN_AUDIO_MEDIA_ID,
+        "in": audio_in,
+        "out": audio_in + duration_value,
+        "policy": "single_interview_audio_source",
+        "reference_media_id": clock_media_id,
+    }
 
 
 def hex_to_rgb(value: str) -> tuple[int, int, int]:
@@ -1109,7 +1116,7 @@ def final_audio_filter_chain() -> str:
         "lowpass=f=12000,"
         "afftdn=nr=10:nf=-38:tn=1:rf=-48,"
         "acompressor=threshold=-26dB:ratio=2.2:attack=5:release=140:makeup=2,"
-        "dynaudnorm=f=180:g=6:p=0.90:m=8,"
+        "dynaudnorm=f=180:g=7:p=0.90:m=8,"
         f"{loudnorm}"
     )
 
@@ -1501,7 +1508,7 @@ def main() -> None:
             "Split dividers use the theme purple color and a thinner rule.",
             "Split crops align face scale and vertical head height across participants.",
             "White overlay text is rendered without black stroke outlines.",
-            "Interview audio uses one continuous group_wide reference source across all video cuts.",
+            f"Interview audio uses one continuous {INTERVIEW_MAIN_AUDIO_MEDIA_ID} source across all interview video cuts, including the closing.",
         ],
     }
     write_json(REPORTS / "test_project1_style_preview_report.json", report)

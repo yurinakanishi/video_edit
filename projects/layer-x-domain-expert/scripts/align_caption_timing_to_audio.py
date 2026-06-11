@@ -272,6 +272,15 @@ def align_plan(plan: dict[str, Any], audio: np.ndarray) -> dict[str, Any]:
     changed_events = set()
     overlap_adjustments = []
     for event in events:
+        if event.get("section") == "digest":
+            report_groups.append(
+                {
+                    "event_id": event.get("event_id"),
+                    "status": "skipped_digest_manual_timing",
+                    "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase.",
+                }
+            )
+            continue
         overlays = event.get("overlays") if isinstance(event.get("overlays"), list) else []
         groups: dict[tuple[Any, ...], list[tuple[int, dict[str, Any], tuple[float, float]]]] = {}
         for index, overlay in enumerate(overlays):

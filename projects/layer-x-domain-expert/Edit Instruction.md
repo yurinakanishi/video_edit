@@ -11,6 +11,9 @@
 - After the company movie ends, cut any silent/waiting dead time so the left interviewer begins speaking immediately.
 - The post-company-movie first shot should use the left interviewer close-up (`person_01` / `cam_person_01`) aligned to the same master-audio speech start.
 - Apply noise reduction to the interview audio to reduce the constant broadband "ザー" environmental noise while keeping the company movie from being over-processed.
+- Do not switch interview audio sources mid-video. Use one continuous interview audio source from digest through main and closing.
+- Current selected interview audio source: `cam_person_02`, based on `output/reports/audio_source_quality_audit.json`.
+- `group_wide` remains the transcript/reference clock source, but it must not be used as final interview audio because it ends before the separate final thanks take.
 
 ## People And Screen Positions
 
@@ -53,3 +56,4 @@
 - Render a full-length 720p / 30fps preview.
 - Output should remain browser-compatible H.264 `yuv420p`.
 - Interview audio should use per-segment denoise plus final loudness mastering: highpass, lowpass, `afftdn`, `anlmdn`, compression, dynamic normalization, and final `loudnorm`.
+- The company movie may keep its own embedded audio; this is the only intentional non-interview audio exception.

@@ -2,6 +2,13 @@
   "schema_version": "audio_processing_report.v1",
   "updated_at": "2026-06-11T10:38:41.5778896+09:00",
   "request": "Reduce constant broadband environmental noise in the interview audio.",
+  "selected_interview_main_audio_media_id": "cam_person_02",
+  "selection_source": "projects/layer-x-domain-expert/output/reports/audio_source_quality_audit.json",
+  "single_audio_source_policy": {
+    "enabled": true,
+    "do_not_switch_audio_mid_video": true,
+    "company_movie_exception": "company movie keeps its own embedded audio"
+  },
   "render_scripts_updated": [
     "projects/layer-x-domain-expert/scripts/render_test_project1_style_preview.py",
     "projects/layer-x-domain-expert/scripts/render_limited_preview.py"
@@ -30,7 +37,7 @@
     "lowpass=f=12000",
     "afftdn=nr=10:nf=-38:tn=1:rf=-48",
     "acompressor=threshold=-26dB:ratio=2.2:attack=5:release=140:makeup=2",
-    "dynaudnorm=f=180:g=6:p=0.90:m=8",
+    "dynaudnorm=f=180:g=7:p=0.90:m=8",
     "loudnorm=I=-17.0:TP=-1.5:LRA=11"
   ],
   "validation": {

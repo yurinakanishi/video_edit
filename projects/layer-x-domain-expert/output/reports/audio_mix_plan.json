@@ -1,0 +1,1460 @@
+{
+  "schema_version": "audio_mix_plan.v1",
+  "project_id": "layer-x-domain-expert",
+  "policy": {
+    "schema_version": "audio_policy.v1",
+    "interview_main_audio_media_id": "cam_person_02",
+    "single_audio_source_for_interview": true,
+    "no_mid_video_audio_source_switching": true,
+    "company_movie_audio_policy": "company_movie_keeps_own_embedded_audio",
+    "quality_audit_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_source_quality_audit.json",
+    "reason": "group_wide is the best transcript/reference source but does not include the separate final thanks take; cam_person_02 covers the synced main interview and closing with the best measured noise floor/SNR among continuous sources."
+  },
+  "sync_offsets": {
+    "master": 0.0,
+    "camera2": -3.332479,
+    "camera3": 7.467854,
+    "camera4": 13.38
+  },
+  "quality_recommendation": {
+    "main_audio_media_id": "cam_person_02",
+    "confidence": 0.86,
+    "reason": "Choose one continuous source that covers the full main interview and the synced closing-thanks take; avoid mid-video audio switching.",
+    "do_not_patch_missing_tail_from_other_source": true,
+    "fallback_policy": "If this source is judged too noisy in review, apply stronger denoise/mastering to this same source instead of switching sources mid-video."
+  },
+  "changed_event_count": 178,
+  "skipped_event_count": 1,
+  "changed_events": [
+    {
+      "event_id": "digest_qa_01_question_01",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1508.188,
+      "audio_out": 1516.228,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1540.888,
+      "audio_out": 1550.488,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_01_answer_03",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1560.588,
+      "audio_out": 1564.088,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1603.088,
+      "audio_out": 1611.568,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1626.628,
+      "audio_out": 1635.188,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_03_answer_01",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1649.348,
+      "audio_out": 1671.188,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_04_question_01",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1990.568,
+      "audio_out": 2002.568,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2017.568,
+      "audio_out": 2036.588,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_04_answer_03",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2059.008,
+      "audio_out": 2076.288,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_05_question_01",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2925.508,
+      "audio_out": 2945.508,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2945.508,
+      "audio_out": 2951.508,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_05_answer_03",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2951.508,
+      "audio_out": 2965.508,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "digest_qa_05_answer_04",
+      "section": "digest",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2981.168,
+      "audio_out": 2988.088,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_group_greeting",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 526.608,
+      "audio_out": 532.408,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_yano_self",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 532.408,
+      "audio_out": 539.568,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_wide_after_yano",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 539.568,
+      "audio_out": 543.008,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_two_guests_named",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 543.008,
+      "audio_out": 554.008,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_yano_explains_001",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 554.008,
+      "audio_out": 569.008,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_wide_context_001",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 569.008,
+      "audio_out": 584.008,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_yano_explains_002",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 584.008,
+      "audio_out": 599.008,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_two_guest_reaction",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 599.008,
+      "audio_out": 614.008,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_intro_yano_prompt_selfintro",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 614.008,
+      "audio_out": 630.988,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "intro_person_02_nemoto",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 630.988,
+      "audio_out": 678.528,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "intro_between_nemoto_murata",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 678.528,
+      "audio_out": 682.528,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "intro_person_03_murata",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 682.528,
+      "audio_out": 729.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_001",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 729.968,
+      "audio_out": 744.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_002",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 744.968,
+      "audio_out": 759.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_003",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 759.968,
+      "audio_out": 774.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_004",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 774.968,
+      "audio_out": 789.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_005",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 789.968,
+      "audio_out": 804.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_006",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 804.968,
+      "audio_out": 819.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_007",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 819.968,
+      "audio_out": 834.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_008",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 834.968,
+      "audio_out": 849.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_009",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 849.968,
+      "audio_out": 864.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_010",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 864.968,
+      "audio_out": 879.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_011",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 879.968,
+      "audio_out": 894.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_012",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 894.968,
+      "audio_out": 909.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_013",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 909.968,
+      "audio_out": 924.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_014",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 924.968,
+      "audio_out": 939.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_015",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 939.968,
+      "audio_out": 954.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_016",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 954.968,
+      "audio_out": 969.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_017",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 969.968,
+      "audio_out": 984.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_018",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 984.968,
+      "audio_out": 999.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_019",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 999.968,
+      "audio_out": 1014.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_020",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1014.968,
+      "audio_out": 1029.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_021",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1029.968,
+      "audio_out": 1044.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_022",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1044.968,
+      "audio_out": 1059.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_023",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1059.968,
+      "audio_out": 1074.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_024",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1074.968,
+      "audio_out": 1089.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_025",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1089.968,
+      "audio_out": 1104.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_026",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1104.968,
+      "audio_out": 1119.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_027",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1119.968,
+      "audio_out": 1134.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_028",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1134.968,
+      "audio_out": 1149.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_029",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1149.968,
+      "audio_out": 1164.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_030",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1164.968,
+      "audio_out": 1179.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_031",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1179.968,
+      "audio_out": 1194.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_032",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1194.968,
+      "audio_out": 1209.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_033",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1209.968,
+      "audio_out": 1224.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_034",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1224.968,
+      "audio_out": 1239.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_035",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1239.968,
+      "audio_out": 1254.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_036",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1254.968,
+      "audio_out": 1269.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_037",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1269.968,
+      "audio_out": 1284.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_038",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1284.968,
+      "audio_out": 1299.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_039",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1299.968,
+      "audio_out": 1314.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_040",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1314.968,
+      "audio_out": 1329.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_041",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1329.968,
+      "audio_out": 1344.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_042",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1344.968,
+      "audio_out": 1359.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_043",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1359.968,
+      "audio_out": 1374.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_044",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1374.968,
+      "audio_out": 1389.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_045",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1389.968,
+      "audio_out": 1404.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_046",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1404.968,
+      "audio_out": 1419.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_047",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1419.968,
+      "audio_out": 1434.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_048",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1434.968,
+      "audio_out": 1449.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_049",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1449.968,
+      "audio_out": 1464.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_050",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1464.968,
+      "audio_out": 1479.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_051",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1479.968,
+      "audio_out": 1494.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_052",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1494.968,
+      "audio_out": 1509.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_053",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1509.968,
+      "audio_out": 1524.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_054",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1524.968,
+      "audio_out": 1539.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_055",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1539.968,
+      "audio_out": 1554.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_056",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1554.968,
+      "audio_out": 1569.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_057",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1569.968,
+      "audio_out": 1584.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_058",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1584.968,
+      "audio_out": 1599.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_059",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1599.968,
+      "audio_out": 1614.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_060",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1614.968,
+      "audio_out": 1629.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_061",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1629.968,
+      "audio_out": 1644.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_062",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1644.968,
+      "audio_out": 1659.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_063",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1659.968,
+      "audio_out": 1674.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_064",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1674.968,
+      "audio_out": 1689.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_065",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1689.968,
+      "audio_out": 1704.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_066",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1704.968,
+      "audio_out": 1719.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_067",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1719.968,
+      "audio_out": 1734.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_068",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1734.968,
+      "audio_out": 1749.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_069",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1749.968,
+      "audio_out": 1764.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_070",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1764.968,
+      "audio_out": 1779.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_071",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1779.968,
+      "audio_out": 1794.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_072",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1794.968,
+      "audio_out": 1809.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_073",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1809.968,
+      "audio_out": 1824.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_074",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1824.968,
+      "audio_out": 1839.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_075",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1839.968,
+      "audio_out": 1854.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_076",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1854.968,
+      "audio_out": 1869.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_077",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1869.968,
+      "audio_out": 1884.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_078",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1884.968,
+      "audio_out": 1899.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_079",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1899.968,
+      "audio_out": 1914.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_080",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1914.968,
+      "audio_out": 1929.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_081",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1929.968,
+      "audio_out": 1944.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_082",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1944.968,
+      "audio_out": 1959.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_083",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1959.968,
+      "audio_out": 1974.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_084",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1974.968,
+      "audio_out": 1989.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_085",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 1989.968,
+      "audio_out": 2004.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_086",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2004.968,
+      "audio_out": 2019.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_087",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2019.968,
+      "audio_out": 2034.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_088",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2034.968,
+      "audio_out": 2049.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_089",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2049.968,
+      "audio_out": 2064.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_090",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2064.968,
+      "audio_out": 2079.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_091",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2079.968,
+      "audio_out": 2094.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_092",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2094.968,
+      "audio_out": 2109.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_093",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2109.968,
+      "audio_out": 2124.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_094",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2124.968,
+      "audio_out": 2139.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_095",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2139.968,
+      "audio_out": 2154.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_096",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2154.968,
+      "audio_out": 2169.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_097",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2169.968,
+      "audio_out": 2184.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_098",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2184.968,
+      "audio_out": 2199.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_099",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2199.968,
+      "audio_out": 2214.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_100",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2214.968,
+      "audio_out": 2229.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_101",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2229.968,
+      "audio_out": 2244.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_102",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2244.968,
+      "audio_out": 2259.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_103",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2259.968,
+      "audio_out": 2274.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_104",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2274.968,
+      "audio_out": 2289.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_105",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2289.968,
+      "audio_out": 2304.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_106",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2304.968,
+      "audio_out": 2319.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_107",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2319.968,
+      "audio_out": 2334.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_108",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2334.968,
+      "audio_out": 2349.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_109",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2349.968,
+      "audio_out": 2364.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_110",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2364.968,
+      "audio_out": 2379.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_111",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2379.968,
+      "audio_out": 2394.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_112",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2394.968,
+      "audio_out": 2409.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_113",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2409.968,
+      "audio_out": 2424.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_114",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2424.968,
+      "audio_out": 2439.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_115",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2439.968,
+      "audio_out": 2454.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_116",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2454.968,
+      "audio_out": 2469.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_117",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2469.968,
+      "audio_out": 2484.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_118",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2484.968,
+      "audio_out": 2499.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_119",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2499.968,
+      "audio_out": 2514.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_120",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2514.968,
+      "audio_out": 2529.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_121",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2529.968,
+      "audio_out": 2544.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_122",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2544.968,
+      "audio_out": 2559.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_123",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2559.968,
+      "audio_out": 2574.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_124",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2574.968,
+      "audio_out": 2589.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_125",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2589.968,
+      "audio_out": 2604.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_126",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2604.968,
+      "audio_out": 2619.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_127",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2619.968,
+      "audio_out": 2634.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_128",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2634.968,
+      "audio_out": 2649.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_129",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2649.968,
+      "audio_out": 2664.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_130",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2664.968,
+      "audio_out": 2679.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_131",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2679.968,
+      "audio_out": 2694.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_132",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2694.968,
+      "audio_out": 2709.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_133",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2709.968,
+      "audio_out": 2724.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_134",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2724.968,
+      "audio_out": 2739.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_135",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2739.968,
+      "audio_out": 2754.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_136",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2754.968,
+      "audio_out": 2769.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_137",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2769.968,
+      "audio_out": 2784.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_138",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2784.968,
+      "audio_out": 2799.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_139",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2799.968,
+      "audio_out": 2814.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_140",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2814.968,
+      "audio_out": 2829.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_141",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2829.968,
+      "audio_out": 2844.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_142",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2844.968,
+      "audio_out": 2859.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_143",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2859.968,
+      "audio_out": 2874.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_144",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2874.968,
+      "audio_out": 2889.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_145",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2889.968,
+      "audio_out": 2904.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_146",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2904.968,
+      "audio_out": 2919.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_147",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2919.968,
+      "audio_out": 2934.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_148",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2934.968,
+      "audio_out": 2949.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_149",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2949.968,
+      "audio_out": 2964.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_150",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2964.968,
+      "audio_out": 2979.968,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_full_151",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 2979.968,
+      "audio_out": 2992.953,
+      "timing_reference_media_id": "group_wide"
+    },
+    {
+      "event_id": "main_closing_thanks_01",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 3561.915,
+      "audio_out": 3580.865,
+      "timing_reference_media_id": "cam_person_01"
+    },
+    {
+      "event_id": "main_closing_thanks_02",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 3581.615,
+      "audio_out": 3593.915,
+      "timing_reference_media_id": "cam_person_01"
+    }
+  ],
+  "skipped_events": [
+    {
+      "event_id": "digest_to_main_company_movie",
+      "reason": "company_movie_keeps_own_audio"
+    }
+  ]
+}

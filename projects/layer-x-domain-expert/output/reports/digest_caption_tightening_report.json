@@ -4,59 +4,59 @@
     "gap_cut_threshold_sec": 0.35,
     "edge_pad_sec": 0.03,
     "original_digest_duration_sec": 155.24,
-    "kept_digest_duration_sec": 138.73,
-    "removed_digest_duration_sec": 16.51,
+    "kept_digest_duration_sec": 155.24,
+    "removed_digest_duration_sec": 0.0,
     "input_digest_event_count": 13,
-    "output_digest_event_count": 26
+    "output_digest_event_count": 13
   },
   "events": [
     {
       "event_id": "digest_qa_01_question_01",
       "status": "tightened",
       "original_duration_sec": 8.04,
-      "kept_duration_sec": 5.86,
-      "removed_duration_sec": 2.18,
+      "kept_duration_sec": 8.04,
+      "removed_duration_sec": 0.0,
       "cluster_count": 1
     },
     {
       "event_id": "digest_qa_01_answer_02",
       "status": "tightened",
       "original_duration_sec": 9.6,
-      "kept_duration_sec": 9.22,
-      "removed_duration_sec": 0.38,
-      "cluster_count": 2
+      "kept_duration_sec": 9.6,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_01_answer_03",
       "status": "tightened",
       "original_duration_sec": 3.5,
-      "kept_duration_sec": 3.16,
-      "removed_duration_sec": 0.34,
+      "kept_duration_sec": 3.5,
+      "removed_duration_sec": 0.0,
       "cluster_count": 1
     },
     {
       "event_id": "digest_qa_02_question_context_01",
       "status": "tightened",
       "original_duration_sec": 8.48,
-      "kept_duration_sec": 7.66,
-      "removed_duration_sec": 0.82,
-      "cluster_count": 2
+      "kept_duration_sec": 8.48,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_02_answer_02",
       "status": "tightened",
       "original_duration_sec": 8.56,
-      "kept_duration_sec": 7.21,
-      "removed_duration_sec": 1.35,
-      "cluster_count": 2
+      "kept_duration_sec": 8.56,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_03_answer_01",
       "status": "tightened",
       "original_duration_sec": 21.84,
-      "kept_duration_sec": 19.97,
-      "removed_duration_sec": 1.87,
-      "cluster_count": 3
+      "kept_duration_sec": 21.84,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_04_question_01",
@@ -70,48 +70,48 @@
       "event_id": "digest_qa_04_answer_02",
       "status": "tightened",
       "original_duration_sec": 19.02,
-      "kept_duration_sec": 17.41,
-      "removed_duration_sec": 1.61,
-      "cluster_count": 2
+      "kept_duration_sec": 19.02,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_04_answer_03",
       "status": "tightened",
       "original_duration_sec": 17.28,
-      "kept_duration_sec": 13.99,
-      "removed_duration_sec": 3.29,
-      "cluster_count": 5
+      "kept_duration_sec": 17.28,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_05_question_01",
       "status": "tightened",
       "original_duration_sec": 20.0,
-      "kept_duration_sec": 18.53,
-      "removed_duration_sec": 1.47,
-      "cluster_count": 3
+      "kept_duration_sec": 20.0,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_05_answer_02",
       "status": "tightened",
       "original_duration_sec": 6.0,
-      "kept_duration_sec": 5.37,
-      "removed_duration_sec": 0.63,
+      "kept_duration_sec": 6.0,
+      "removed_duration_sec": 0.0,
       "cluster_count": 1
     },
     {
       "event_id": "digest_qa_05_answer_03",
       "status": "tightened",
       "original_duration_sec": 14.0,
-      "kept_duration_sec": 11.5,
-      "removed_duration_sec": 2.5,
-      "cluster_count": 2
+      "kept_duration_sec": 14.0,
+      "removed_duration_sec": 0.0,
+      "cluster_count": 1
     },
     {
       "event_id": "digest_qa_05_answer_04",
       "status": "tightened",
       "original_duration_sec": 6.92,
-      "kept_duration_sec": 6.85,
-      "removed_duration_sec": 0.07,
+      "kept_duration_sec": 6.92,
+      "removed_duration_sec": 0.0,
       "cluster_count": 1
     }
   ]

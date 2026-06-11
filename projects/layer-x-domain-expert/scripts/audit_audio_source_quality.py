@@ -46,10 +46,12 @@ MASTER_WINDOWS = [
     {"label": "late_interview", "start": 2926.04, "end": 2985.48},
 ]
 
-CLOSING_REFERENCE_MEDIA_ID = "cam_person_01"
+CLOSING_REFERENCE_MEDIA_ID = "cam_person_02"
 CLOSING_REFERENCE_WINDOWS = [
-    {"label": "closing_thanks_01", "start": 3551.115, "end": 3570.065},
-    {"label": "closing_thanks_02", "start": 3570.815, "end": 3583.115},
+    {"label": "closing_thanks_01", "start": 3561.915, "end": 3580.865},
+    {"label": "closing_thanks_02", "start": 3581.615, "end": 3586.350},
+    {"label": "closing_thanks_03_left_speaker_camera", "start": 3591.150, "end": 3601.150},
+    {"label": "closing_thanks_04_final_response", "start": 3606.700, "end": 3608.050},
 ]
 
 

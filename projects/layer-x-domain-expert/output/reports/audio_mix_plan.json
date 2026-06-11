@@ -23,31 +23,15 @@
     "do_not_patch_missing_tail_from_other_source": true,
     "fallback_policy": "If this source is judged too noisy in review, apply stronger denoise/mastering to this same source instead of switching sources mid-video."
   },
-  "changed_event_count": 178,
+  "changed_event_count": 165,
   "skipped_event_count": 1,
   "changed_events": [
     {
-      "event_id": "digest_qa_01_question_01",
+      "event_id": "digest_opening_nemoto_value_01",
       "section": "digest",
       "audio_media_id": "cam_person_02",
-      "audio_in": 1508.188,
-      "audio_out": 1516.228,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_01_answer_02",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 1540.888,
-      "audio_out": 1550.488,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_01_answer_03",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 1560.588,
-      "audio_out": 1564.088,
+      "audio_in": 1911.328,
+      "audio_out": 1915.578,
       "timing_reference_media_id": "group_wide"
     },
     {
@@ -55,15 +39,7 @@
       "section": "digest",
       "audio_media_id": "cam_person_02",
       "audio_in": 1603.088,
-      "audio_out": 1611.568,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_02_answer_02",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 1626.628,
-      "audio_out": 1635.188,
+      "audio_out": 1611.818,
       "timing_reference_media_id": "group_wide"
     },
     {
@@ -71,70 +47,22 @@
       "section": "digest",
       "audio_media_id": "cam_person_02",
       "audio_in": 1649.348,
-      "audio_out": 1671.188,
+      "audio_out": 1658.478,
       "timing_reference_media_id": "group_wide"
     },
     {
-      "event_id": "digest_qa_04_question_01",
+      "event_id": "digest_qa_right_user_anxiety_01",
       "section": "digest",
       "audio_media_id": "cam_person_02",
-      "audio_in": 1990.568,
-      "audio_out": 2002.568,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_04_answer_02",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 2017.568,
-      "audio_out": 2036.588,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_04_answer_03",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 2059.008,
-      "audio_out": 2076.288,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_05_question_01",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 2925.508,
-      "audio_out": 2945.508,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_05_answer_02",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 2945.508,
-      "audio_out": 2951.508,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_05_answer_03",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 2951.508,
-      "audio_out": 2965.508,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "digest_qa_05_answer_04",
-      "section": "digest",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 2981.168,
-      "audio_out": 2988.088,
+      "audio_in": 1759.818,
+      "audio_out": 1765.218,
       "timing_reference_media_id": "group_wide"
     },
     {
       "event_id": "main_intro_group_greeting",
       "section": "main",
       "audio_media_id": "cam_person_02",
-      "audio_in": 526.608,
+      "audio_in": 529.468,
       "audio_out": 532.408,
       "timing_reference_media_id": "group_wide"
     },
@@ -227,66 +155,18 @@
       "timing_reference_media_id": "group_wide"
     },
     {
-      "event_id": "main_full_001",
+      "event_id": "main_yano_profile_intro",
       "section": "main",
       "audio_media_id": "cam_person_02",
-      "audio_in": 729.968,
-      "audio_out": 744.968,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "main_full_002",
-      "section": "main",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 744.968,
-      "audio_out": 759.968,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "main_full_003",
-      "section": "main",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 759.968,
-      "audio_out": 774.968,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "main_full_004",
-      "section": "main",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 774.968,
-      "audio_out": 789.968,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "main_full_005",
-      "section": "main",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 789.968,
-      "audio_out": 804.968,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "main_full_006",
-      "section": "main",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 804.968,
-      "audio_out": 819.968,
-      "timing_reference_media_id": "group_wide"
-    },
-    {
-      "event_id": "main_full_007",
-      "section": "main",
-      "audio_media_id": "cam_person_02",
-      "audio_in": 819.968,
-      "audio_out": 834.968,
+      "audio_in": 734.928,
+      "audio_out": 791.848,
       "timing_reference_media_id": "group_wide"
     },
     {
       "event_id": "main_full_008",
       "section": "main",
       "audio_media_id": "cam_person_02",
-      "audio_in": 834.968,
+      "audio_in": 843.608,
       "audio_out": 849.968,
       "timing_reference_media_id": "group_wide"
     },
@@ -1440,15 +1320,31 @@
       "audio_media_id": "cam_person_02",
       "audio_in": 3561.915,
       "audio_out": 3580.865,
-      "timing_reference_media_id": "cam_person_01"
+      "timing_reference_media_id": "cam_person_02"
     },
     {
       "event_id": "main_closing_thanks_02",
       "section": "main",
       "audio_media_id": "cam_person_02",
       "audio_in": 3581.615,
-      "audio_out": 3593.915,
-      "timing_reference_media_id": "cam_person_01"
+      "audio_out": 3586.35,
+      "timing_reference_media_id": "cam_person_02"
+    },
+    {
+      "event_id": "main_closing_thanks_03",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 3591.15,
+      "audio_out": 3601.15,
+      "timing_reference_media_id": "cam_person_02"
+    },
+    {
+      "event_id": "main_closing_thanks_04",
+      "section": "main",
+      "audio_media_id": "cam_person_02",
+      "audio_in": 3606.7,
+      "audio_out": 3608.05,
+      "timing_reference_media_id": "cam_person_02"
     }
   ],
   "skipped_events": [

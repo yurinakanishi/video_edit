@@ -1,0 +1,18 @@
+{
+  "schema_version": "tail_preview_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_tail_last30_240p.mp4",
+  "duration_sec": 30.0,
+  "output_height": 240,
+  "timeline_start_sec": 2454.328,
+  "timeline_end_sec": 2484.328,
+  "rendered_from_timeline_sec": 2449.293,
+  "trim_start_sec": 5.035,
+  "event_ids": [
+    "main_closing_thanks_01",
+    "main_closing_thanks_02",
+    "main_closing_thanks_03",
+    "main_closing_thanks_04"
+  ],
+  "segment_count": 4
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "final_thanks_timing_investigation.v1",
+  "source_media_id": "cam_person_02",
+  "source_window_sec": {
+    "in": 3588.0,
+    "out": 3612.0
+  },
+  "method": "targeted 24-second faster-whisper large-v3 check plus ffmpeg silencedetect",
+  "root_cause": "The previous closing edit ended at source 3597.550s, before the closing thanks at 3599.020-3600.940s and the final response at 3606.940-3607.260s.",
+  "segments": [
+    {
+      "start_source_sec": 3591.02,
+      "end_source_sec": 3595.38,
+      "text": "概要欄に採用の情報についての要請がありますので"
+    },
+    {
+      "start_source_sec": 3596.12,
+      "end_source_sec": 3599.02,
+      "text": "ご興味がありましたらぜひ行っていただけると嬉しいです"
+    },
+    {
+      "start_source_sec": 3599.02,
+      "end_source_sec": 3600.06,
+      "text": "それではありがとうございました"
+    },
+    {
+      "start_source_sec": 3600.62,
+      "end_source_sec": 3600.94,
+      "text": "ありがとうございました"
+    },
+    {
+      "start_source_sec": 3606.94,
+      "end_source_sec": 3607.26,
+      "text": "ありがとうございました"
+    }
+  ],
+  "corrective_edit": {
+    "keep_ranges_on_cam_person_02_audio": [
+      [
+        3561.915,
+        3580.865
+      ],
+      [
+        3581.615,
+        3586.35
+      ],
+      [
+        3591.15,
+        3601.15
+      ],
+      [
+        3606.7,
+        3608.05
+      ]
+    ],
+    "cut_ranges_on_cam_person_02_audio": [
+      [
+        3580.865,
+        3581.615
+      ],
+      [
+        3586.35,
+        3591.15
+      ],
+      [
+        3601.15,
+        3606.7
+      ]
+    ],
+    "post_stumble_visual_media_id": "cam_person_01",
+    "audio_policy": "single continuous cam_person_02 source; no audio source switching"
+  }
+}

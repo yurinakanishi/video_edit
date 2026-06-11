@@ -312,7 +312,7 @@
         "timing_reference_media_id": "group_wide",
         "timing_reference_in": 1903.86,
         "timing_reference_out": 1908.11,
-        "reason": "Extended minimally so digest caption remains visible through the spoken phrase ending."
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
         {
@@ -460,7 +460,7 @@
         "timing_reference_media_id": "group_wide",
         "timing_reference_in": 1595.62,
         "timing_reference_out": 1604.35,
-        "reason": "Extended minimally so digest caption remains visible through the spoken phrase ending."
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
         {
@@ -680,7 +680,7 @@
         "timing_reference_media_id": "group_wide",
         "timing_reference_in": 1641.88,
         "timing_reference_out": 1651.01,
-        "reason": "Extended minimally so digest caption remains visible through the spoken phrase ending."
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
         {
@@ -951,7 +951,7 @@
         "timing_reference_media_id": "group_wide",
         "timing_reference_in": 1752.35,
         "timing_reference_out": 1757.75,
-        "reason": "Use the same continuous interview audio source; source time follows app sync offset for cam_person_02."
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "layout": {
         "type": "single",
@@ -1158,7 +1158,7 @@
         "timing_reference_media_id": "group_wide",
         "timing_reference_in": 522.0,
         "timing_reference_out": 524.94,
-        "reason": "Trim the post-company pre-speech silence before 'LayerXのYouTubeチャンネル...' while keeping the single interview audio source."
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
         {
@@ -1867,7 +1867,7 @@
         "timing_reference_media_id": "group_wide",
         "timing_reference_in": 727.46,
         "timing_reference_out": 784.38,
-        "reason": "Use the existing single continuous interview audio source; timing follows the Yano self-introduction master window."
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
         {
@@ -2021,7 +2021,7 @@
         "timing_reference_media_id": "group_wide",
         "timing_reference_in": 836.14,
         "timing_reference_out": 842.5,
-        "reason": "Trimmed out the awkward dead-air/restart section; keep continuous main audio source aligned to the restart phrase."
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
         {
@@ -33459,14 +33459,14 @@
       "type": "source_clip",
       "section": "main",
       "source": {
-        "media_id": "cam_person_01",
-        "in": 3551.115,
-        "out": 3570.065
+        "media_id": "cam_person_02",
+        "in": 3561.915,
+        "out": 3580.865
       },
       "reference_source": {
-        "media_id": "cam_person_01",
-        "in": 3551.115,
-        "out": 3570.065
+        "media_id": "cam_person_02",
+        "in": 3561.915,
+        "out": 3580.865
       },
       "sync_reference_master_sec": 3554.447,
       "layout": {
@@ -33487,27 +33487,16 @@
           "person_02",
           "person_03"
         ],
-        "selection_reason": "Keep the final 30 seconds on a three-person wide-equivalent view. The master wide camera is unavailable for the closing tail, so synced individual cameras are used together.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
-        }
+        "selection_reason": "The true group-wide camera ends before the closing tail, so use the synced three-person split before the left-speaker closing cut."
       },
       "audio": {
         "mode": "single_interview_source",
         "source_media_id": "cam_person_02",
         "in": 3561.915,
         "out": 3580.865,
-        "timing_reference_media_id": "cam_person_01",
-        "timing_reference_in": 3551.115,
-        "timing_reference_out": 3570.065,
+        "timing_reference_media_id": "cam_person_02",
+        "timing_reference_in": 3561.915,
+        "timing_reference_out": 3580.865,
         "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
@@ -33521,7 +33510,7 @@
       "main_caption_plan_items": [],
       "closing_outro": {
         "ends_at_thanks": false,
-        "source": "closing tail transcription from person-left camera",
+        "source": "closing tail transcription from synced continuous interview audio",
         "caption_evidence": [
           "2回目に渡ってドメインエキスパートというキャリアについて深掘りしていきました",
           "概要欄に採用の情報も入れてあります",
@@ -33530,30 +33519,40 @@
         ],
         "removed_filler_ranges": [
           {
-            "source_in": 3570.065,
-            "source_out": 3570.815,
-            "reason": "Cut the left interviewer's filler/stumble around 'えー 概要欄にですね' so the closing reads naturally."
+            "source_in": 3580.865,
+            "source_out": 3581.615,
+            "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+          },
+          {
+            "source_in": 3586.35,
+            "source_out": 3591.15,
+            "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+          },
+          {
+            "source_in": 3601.15,
+            "source_out": 3606.7,
+            "reason": "Cut the silent gap after the first closing thanks while keeping the final 'ありがとうございました' response."
           }
         ]
       },
-      "reason": "Finish the full render at the natural closing thanks; remove the filler around '概要欄にですね' and keep all three people visible.",
+      "reason": "Finish the full render at the natural closing thanks; remove closing stumbles while keeping all three participants visible before the final left-speaker closing cut.",
       "duration": 18.95
     },
     {
       "event_id": "main_closing_thanks_02",
       "timeline_start": 2468.243,
-      "timeline_end": 2480.543,
+      "timeline_end": 2472.978,
       "type": "source_clip",
       "section": "main",
       "source": {
-        "media_id": "cam_person_01",
-        "in": 3570.815,
-        "out": 3583.115
+        "media_id": "cam_person_02",
+        "in": 3581.615,
+        "out": 3586.35
       },
       "reference_source": {
-        "media_id": "cam_person_01",
-        "in": 3570.815,
-        "out": 3583.115
+        "media_id": "cam_person_02",
+        "in": 3581.615,
+        "out": 3586.35
       },
       "sync_reference_master_sec": 3574.147,
       "layout": {
@@ -33574,27 +33573,164 @@
           "person_02",
           "person_03"
         ],
-        "selection_reason": "Keep the final 30 seconds on a three-person wide-equivalent view. The master wide camera is unavailable for the closing tail, so synced individual cameras are used together.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
-        }
+        "selection_reason": "The true group-wide camera ends before the closing tail, so use the synced three-person split before the left-speaker closing cut."
       },
       "audio": {
         "mode": "single_interview_source",
         "source_media_id": "cam_person_02",
         "in": 3581.615,
-        "out": 3593.915,
-        "timing_reference_media_id": "cam_person_01",
-        "timing_reference_in": 3570.815,
-        "timing_reference_out": 3583.115,
+        "out": 3586.35,
+        "timing_reference_media_id": "cam_person_02",
+        "timing_reference_in": 3581.615,
+        "timing_reference_out": 3586.35,
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_006",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "main_caption_plan_items": [],
+      "closing_outro": {
+        "ends_at_thanks": false,
+        "source": "closing tail transcription from synced continuous interview audio",
+        "caption_evidence": [
+          "2回目に渡ってドメインエキスパートというキャリアについて深掘りしていきました",
+          "概要欄に採用の情報も入れてあります",
+          "それではありがとうございました",
+          "ありがとうございました"
+        ],
+        "removed_filler_ranges": [
+          {
+            "source_in": 3580.865,
+            "source_out": 3581.615,
+            "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+          },
+          {
+            "source_in": 3586.35,
+            "source_out": 3591.15,
+            "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+          },
+          {
+            "source_in": 3601.15,
+            "source_out": 3606.7,
+            "reason": "Cut the silent gap after the first closing thanks while keeping the final 'ありがとうございました' response."
+          }
+        ]
+      },
+      "reason": "Finish the full render at the natural closing thanks; remove closing stumbles while keeping all three participants visible before the final left-speaker closing cut.",
+      "duration": 4.735
+    },
+    {
+      "event_id": "main_closing_thanks_03",
+      "timeline_start": 2472.978,
+      "timeline_end": 2482.978,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 3580.35,
+        "out": 3590.35
+      },
+      "reference_source": {
+        "media_id": "cam_person_02",
+        "in": 3591.15,
+        "out": 3601.15
+      },
+      "sync_reference_master_sec": 3583.682,
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "loose_full_frame",
+        "speaker_person_id": "person_01",
+        "selection_reason": "After the closing stumble cut, switch to the left speaker camera so the speaking interviewer is clearly visible."
+      },
+      "audio": {
+        "mode": "single_interview_source",
+        "source_media_id": "cam_person_02",
+        "in": 3591.15,
+        "out": 3601.15,
+        "timing_reference_media_id": "cam_person_02",
+        "timing_reference_in": 3591.15,
+        "timing_reference_out": 3601.15,
+        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+      },
+      "overlays": [
+        {
+          "type": "topic_title",
+          "position": "top_right",
+          "topic_id": "topic_006",
+          "style_id": "opening_digest_top_right_title"
+        }
+      ],
+      "main_caption_plan_items": [],
+      "closing_outro": {
+        "ends_at_thanks": false,
+        "source": "closing tail transcription from synced continuous interview audio",
+        "caption_evidence": [
+          "2回目に渡ってドメインエキスパートというキャリアについて深掘りしていきました",
+          "概要欄に採用の情報も入れてあります",
+          "それではありがとうございました",
+          "ありがとうございました"
+        ],
+        "removed_filler_ranges": [
+          {
+            "source_in": 3580.865,
+            "source_out": 3581.615,
+            "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+          },
+          {
+            "source_in": 3586.35,
+            "source_out": 3591.15,
+            "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+          },
+          {
+            "source_in": 3601.15,
+            "source_out": 3606.7,
+            "reason": "Cut the silent gap after the first closing thanks while keeping the final 'ありがとうございました' response."
+          }
+        ]
+      },
+      "reason": "Finish the full render at the natural closing thanks; after the stumble cut, show the left speaking interviewer camera and remove only the silent gap before the final thanks.",
+      "duration": 10.0
+    },
+    {
+      "event_id": "main_closing_thanks_04",
+      "timeline_start": 2482.978,
+      "timeline_end": 2484.328,
+      "type": "source_clip",
+      "section": "main",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 3595.9,
+        "out": 3597.25
+      },
+      "reference_source": {
+        "media_id": "cam_person_02",
+        "in": 3606.7,
+        "out": 3608.05
+      },
+      "sync_reference_master_sec": 3599.232,
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "loose_full_frame",
+        "speaker_person_id": "person_01",
+        "selection_reason": "After the closing stumble cut, switch to the left speaker camera so the speaking interviewer is clearly visible."
+      },
+      "audio": {
+        "mode": "single_interview_source",
+        "source_media_id": "cam_person_02",
+        "in": 3606.7,
+        "out": 3608.05,
+        "timing_reference_media_id": "cam_person_02",
+        "timing_reference_in": 3606.7,
+        "timing_reference_out": 3608.05,
         "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
       },
       "overlays": [
@@ -33608,7 +33744,7 @@
       "main_caption_plan_items": [],
       "closing_outro": {
         "ends_at_thanks": true,
-        "source": "closing tail transcription from person-left camera",
+        "source": "closing tail transcription from synced continuous interview audio",
         "caption_evidence": [
           "2回目に渡ってドメインエキスパートというキャリアについて深掘りしていきました",
           "概要欄に採用の情報も入れてあります",
@@ -33617,14 +33753,24 @@
         ],
         "removed_filler_ranges": [
           {
-            "source_in": 3570.065,
-            "source_out": 3570.815,
-            "reason": "Cut the left interviewer's filler/stumble around 'えー 概要欄にですね' so the closing reads naturally."
+            "source_in": 3580.865,
+            "source_out": 3581.615,
+            "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+          },
+          {
+            "source_in": 3586.35,
+            "source_out": 3591.15,
+            "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+          },
+          {
+            "source_in": 3601.15,
+            "source_out": 3606.7,
+            "reason": "Cut the silent gap after the first closing thanks while keeping the final 'ありがとうございました' response."
           }
         ]
       },
-      "reason": "Finish the full render at the natural closing thanks; remove the filler around '概要欄にですね' and keep all three people visible.",
-      "duration": 12.3
+      "reason": "Finish the full render at the natural closing thanks; after the stumble cut, show the left speaking interviewer camera and remove only the silent gap before the final thanks.",
+      "duration": 1.35
     }
   ],
   "validation": {
@@ -33770,7 +33916,7 @@
       "source": "manual full-caption semantic review against voice_speaker_attribution.json"
     }
   },
-  "updated_at": "2026-06-11T23:22:30+09:00",
+  "updated_at": "2026-06-12T01:11:49+09:00",
   "revision_notes": [
     {
       "updated_at": "2026-06-11T07:27:35.684200+00:00",
@@ -33996,6 +34142,75 @@
       "script": "replace_opening_digest_with_middle_speaker.py",
       "summary": "Replaced or normalized the first digest beat so it uses the middle participant Nemoto caption.",
       "mode": "normalize_existing_opening"
+    },
+    {
+      "updated_at": "2026-06-12T00:44:59+09:00",
+      "reason": "Cut the closing stumble around the previous 41:15 render mark, keep the final thanks, and use the middle camera full frame for the closing instead of a three-way split.",
+      "changed_event_ids": [
+        "main_closing_thanks_01",
+        "main_closing_thanks_02",
+        "main_closing_thanks_03"
+      ],
+      "removed_source_ranges": [
+        {
+          "source_in": 3580.865,
+          "source_out": 3581.615,
+          "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+        },
+        {
+          "source_in": 3586.35,
+          "source_out": 3591.15,
+          "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+        }
+      ]
+    },
+    {
+      "updated_at": "2026-06-12T01:01:25+09:00",
+      "reason": "Cut the closing stumble around the previous 41:15 render mark, keep the complete final thanks, and use the synced three-person split because no true wide closing camera is available.",
+      "changed_event_ids": [
+        "main_closing_thanks_01",
+        "main_closing_thanks_02",
+        "main_closing_thanks_03"
+      ],
+      "removed_source_ranges": [
+        {
+          "source_in": 3580.865,
+          "source_out": 3581.615,
+          "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+        },
+        {
+          "source_in": 3586.35,
+          "source_out": 3591.15,
+          "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+        }
+      ]
+    },
+    {
+      "updated_at": "2026-06-12T01:11:49+09:00",
+      "reason": "Cut the closing stumble around the previous 41:15 render mark, keep the complete final thanks, and switch to the left speaker camera after the stumble cut.",
+      "changed_event_ids": [
+        "main_closing_thanks_01",
+        "main_closing_thanks_02",
+        "main_closing_thanks_03",
+        "main_closing_thanks_04"
+      ],
+      "removed_source_ranges": [
+        {
+          "source_in": 3580.865,
+          "source_out": 3581.615,
+          "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+        },
+        {
+          "source_in": 3586.35,
+          "source_out": 3591.15,
+          "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+        },
+        {
+          "source_in": 3601.15,
+          "source_out": 3606.7,
+          "reason": "Cut the silent gap after the first closing thanks while keeping the final 'ありがとうございました' response."
+        }
+      ]
     }
   ],
   "caption_source_of_truth": {

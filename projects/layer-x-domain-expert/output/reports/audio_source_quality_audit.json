@@ -90,7 +90,7 @@
             "noise_floor_dbfs_p20": -38.9,
             "median_rms_dbfs_p50": -36.1,
             "speech_rms_dbfs_p95": -27.59,
-            "snr_estimate_db_p95_minus_p20": 11.31,
+            "snr_estimate_db_p95_minus_p20": 11.32,
             "speech_activity_ratio": 0.353,
             "clipping_ratio": 0.0
           }
@@ -269,9 +269,9 @@
         },
         {
           "label": "closing_thanks_01",
-          "basis": "synced_closing_from_cam_person_01",
-          "source_start_sec": 3551.115,
-          "source_end_sec": 3570.065,
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3551.114667,
+          "source_end_sec": 3570.0646669999996,
           "metrics": {
             "status": "ok",
             "rms_dbfs": -27.82,
@@ -286,18 +286,52 @@
         },
         {
           "label": "closing_thanks_02",
-          "basis": "synced_closing_from_cam_person_01",
-          "source_start_sec": 3570.815,
-          "source_end_sec": 3583.115,
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3570.8146669999996,
+          "source_end_sec": 3575.5496669999998,
           "metrics": {
             "status": "ok",
-            "rms_dbfs": -28.6,
-            "peak_dbfs": -9.64,
-            "noise_floor_dbfs_p20": -35.2,
-            "median_rms_dbfs_p50": -31.79,
-            "speech_rms_dbfs_p95": -22.87,
-            "snr_estimate_db_p95_minus_p20": 12.33,
-            "speech_activity_ratio": 0.428,
+            "rms_dbfs": -30.29,
+            "peak_dbfs": -11.53,
+            "noise_floor_dbfs_p20": -35.27,
+            "median_rms_dbfs_p50": -32.99,
+            "speech_rms_dbfs_p95": -26.07,
+            "snr_estimate_db_p95_minus_p20": 9.21,
+            "speech_activity_ratio": 0.351,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_03_left_speaker_camera",
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3580.349667,
+          "source_end_sec": 3590.349667,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -28.3,
+            "peak_dbfs": -9.87,
+            "noise_floor_dbfs_p20": -33.28,
+            "median_rms_dbfs_p50": -30.39,
+            "speech_rms_dbfs_p95": -23.82,
+            "snr_estimate_db_p95_minus_p20": 9.45,
+            "speech_activity_ratio": 0.276,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_04_final_response",
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3595.8996669999997,
+          "source_end_sec": 3597.249667,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -23.87,
+            "peak_dbfs": -3.84,
+            "noise_floor_dbfs_p20": -30.26,
+            "median_rms_dbfs_p50": -24.64,
+            "speech_rms_dbfs_p95": -20.51,
+            "snr_estimate_db_p95_minus_p20": 9.75,
+            "speech_activity_ratio": 0.509,
             "clipping_ratio": 0.0
           }
         },
@@ -319,8 +353,8 @@
           }
         }
       ],
-      "_avg_noise": -34.494285714285716,
-      "_avg_snr": 11.668571428571429,
+      "_avg_noise": -33.89666666666667,
+      "_avg_snr": 10.862222222222222,
       "_clip": 0.0
     },
     {
@@ -440,9 +474,9 @@
         },
         {
           "label": "closing_thanks_01",
-          "basis": "synced_closing_from_cam_person_01",
-          "source_start_sec": 3561.915333,
-          "source_end_sec": 3580.865333,
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3561.915,
+          "source_end_sec": 3580.865,
           "metrics": {
             "status": "ok",
             "rms_dbfs": -33.18,
@@ -457,18 +491,52 @@
         },
         {
           "label": "closing_thanks_02",
-          "basis": "synced_closing_from_cam_person_01",
-          "source_start_sec": 3581.615333,
-          "source_end_sec": 3593.915333,
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3581.615,
+          "source_end_sec": 3586.35,
           "metrics": {
             "status": "ok",
-            "rms_dbfs": -33.82,
-            "peak_dbfs": -13.32,
-            "noise_floor_dbfs_p20": -60.13,
-            "median_rms_dbfs_p50": -43.11,
-            "speech_rms_dbfs_p95": -26.56,
-            "snr_estimate_db_p95_minus_p20": 33.56,
-            "speech_activity_ratio": 0.487,
+            "rms_dbfs": -36.5,
+            "peak_dbfs": -15.12,
+            "noise_floor_dbfs_p20": -60.1,
+            "median_rms_dbfs_p50": -47.31,
+            "speech_rms_dbfs_p95": -30.7,
+            "snr_estimate_db_p95_minus_p20": 29.4,
+            "speech_activity_ratio": 0.463,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_03_left_speaker_camera",
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3591.15,
+          "source_end_sec": 3601.15,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -30.41,
+            "peak_dbfs": -1.39,
+            "noise_floor_dbfs_p20": -49.88,
+            "median_rms_dbfs_p50": -39.58,
+            "speech_rms_dbfs_p95": -25.82,
+            "snr_estimate_db_p95_minus_p20": 24.06,
+            "speech_activity_ratio": 0.569,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_04_final_response",
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3606.7,
+          "source_end_sec": 3608.05,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -39.35,
+            "peak_dbfs": -22.88,
+            "noise_floor_dbfs_p20": -46.26,
+            "median_rms_dbfs_p50": -42.64,
+            "speech_rms_dbfs_p95": -34.0,
+            "snr_estimate_db_p95_minus_p20": 12.27,
+            "speech_activity_ratio": 0.415,
             "clipping_ratio": 0.0
           }
         },
@@ -490,8 +558,8 @@
           }
         }
       ],
-      "_avg_noise": -55.60857142857143,
-      "_avg_snr": 30.87714285714286,
+      "_avg_noise": -53.93,
+      "_avg_snr": 27.59,
       "_clip": 0.0
     },
     {
@@ -611,9 +679,9 @@
         },
         {
           "label": "closing_thanks_01",
-          "basis": "synced_closing_from_cam_person_01",
-          "source_start_sec": 3567.827479,
-          "source_end_sec": 3586.7774790000003,
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3567.827146,
+          "source_end_sec": 3586.777146,
           "metrics": {
             "status": "ok",
             "rms_dbfs": -25.67,
@@ -628,18 +696,52 @@
         },
         {
           "label": "closing_thanks_02",
-          "basis": "synced_closing_from_cam_person_01",
-          "source_start_sec": 3587.5274790000003,
-          "source_end_sec": 3599.827479,
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3587.527146,
+          "source_end_sec": 3592.262146,
           "metrics": {
             "status": "ok",
-            "rms_dbfs": -26.09,
-            "peak_dbfs": -4.83,
-            "noise_floor_dbfs_p20": -52.26,
-            "median_rms_dbfs_p50": -33.52,
-            "speech_rms_dbfs_p95": -19.04,
-            "snr_estimate_db_p95_minus_p20": 33.22,
-            "speech_activity_ratio": 0.523,
+            "rms_dbfs": -28.6,
+            "peak_dbfs": -7.05,
+            "noise_floor_dbfs_p20": -52.64,
+            "median_rms_dbfs_p50": -36.37,
+            "speech_rms_dbfs_p95": -22.12,
+            "snr_estimate_db_p95_minus_p20": 30.52,
+            "speech_activity_ratio": 0.559,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_03_left_speaker_camera",
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3597.062146,
+          "source_end_sec": 3607.062146,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -25.81,
+            "peak_dbfs": -5.22,
+            "noise_floor_dbfs_p20": -40.85,
+            "median_rms_dbfs_p50": -30.64,
+            "speech_rms_dbfs_p95": -19.18,
+            "snr_estimate_db_p95_minus_p20": 21.67,
+            "speech_activity_ratio": 0.669,
+            "clipping_ratio": 0.0
+          }
+        },
+        {
+          "label": "closing_thanks_04_final_response",
+          "basis": "synced_closing_from_cam_person_02",
+          "source_start_sec": 3612.612146,
+          "source_end_sec": 3613.9621460000003,
+          "metrics": {
+            "status": "ok",
+            "rms_dbfs": -34.46,
+            "peak_dbfs": -15.83,
+            "noise_floor_dbfs_p20": -45.75,
+            "median_rms_dbfs_p50": -37.48,
+            "speech_rms_dbfs_p95": -27.05,
+            "snr_estimate_db_p95_minus_p20": 18.7,
+            "speech_activity_ratio": 0.66,
             "clipping_ratio": 0.0
           }
         },
@@ -661,8 +763,8 @@
           }
         }
       ],
-      "_avg_noise": -50.00142857142857,
-      "_avg_snr": 29.79,
+      "_avg_noise": -48.55444444444444,
+      "_avg_snr": 27.355555555555554,
       "_clip": 0.0
     }
   ],

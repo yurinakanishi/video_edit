@@ -1,0 +1,132 @@
+{
+  "schema_version": "closing_tail_fix.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-12T01:11:49+09:00",
+  "source_media_id": "cam_person_02",
+  "old_event_ids": [
+    "main_closing_thanks_01",
+    "main_closing_thanks_02",
+    "main_closing_thanks_03"
+  ],
+  "new_events": [
+    {
+      "event_id": "main_closing_thanks_01",
+      "timeline_start": 2449.293,
+      "timeline_end": 2468.243,
+      "source": {
+        "media_id": "cam_person_02",
+        "in": 3561.915,
+        "out": 3580.865
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_01",
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "three_person_closing_wide_equivalent",
+        "panel_order": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "selection_reason": "The true group-wide camera ends before the closing tail, so use the synced three-person split before the left-speaker closing cut."
+      }
+    },
+    {
+      "event_id": "main_closing_thanks_02",
+      "timeline_start": 2468.243,
+      "timeline_end": 2472.978,
+      "source": {
+        "media_id": "cam_person_02",
+        "in": 3581.615,
+        "out": 3586.35
+      },
+      "layout": {
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_01",
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "grid_strategy": "three_person_closing_wide_equivalent",
+        "panel_order": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "selection_reason": "The true group-wide camera ends before the closing tail, so use the synced three-person split before the left-speaker closing cut."
+      }
+    },
+    {
+      "event_id": "main_closing_thanks_03",
+      "timeline_start": 2472.978,
+      "timeline_end": 2482.978,
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 3580.35,
+        "out": 3590.35
+      },
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "loose_full_frame",
+        "speaker_person_id": "person_01",
+        "selection_reason": "After the closing stumble cut, switch to the left speaker camera so the speaking interviewer is clearly visible."
+      }
+    },
+    {
+      "event_id": "main_closing_thanks_04",
+      "timeline_start": 2482.978,
+      "timeline_end": 2484.328,
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 3595.9,
+        "out": 3597.25
+      },
+      "layout": {
+        "type": "single",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "crop_mode": "loose_full_frame",
+        "speaker_person_id": "person_01",
+        "selection_reason": "After the closing stumble cut, switch to the left speaker camera so the speaking interviewer is clearly visible."
+      }
+    }
+  ],
+  "removed_source_ranges": [
+    {
+      "source_in": 3580.865,
+      "source_out": 3581.615,
+      "reason": "Cut the filler/stumble around the closing lead-in before the outro information."
+    },
+    {
+      "source_in": 3586.35,
+      "source_out": 3591.15,
+      "reason": "Cut the stumble near the previous full-render 41:15 mark while preserving the final thanks."
+    },
+    {
+      "source_in": 3601.15,
+      "source_out": 3606.7,
+      "reason": "Cut the silent gap after the first closing thanks while keeping the final 'ありがとうございました' response."
+    }
+  ],
+  "final_timeline_end": 2484.328,
+  "notes": [
+    "The true group_wide camera ends before the closing tail.",
+    "The previous final source range ended at 3597.550, but short-window transcription found closing thanks at 3599.020-3600.940 and another 'ありがとうございました' at 3606.940-3607.260.",
+    "The post-stumble closing ranges now use cam_person_01 video synced to cam_person_02 audio, so the left speaking interviewer is visible while one continuous audio source is preserved."
+  ]
+}

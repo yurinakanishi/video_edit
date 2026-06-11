@@ -19,16 +19,27 @@ PERSON_CAMERA = {
 }
 
 CLOSING_OUTRO = {
-    "source_media_id": "cam_person_01",
-    "audio_media_id": "cam_person_01",
-    "source_start_sec": 3551.115,
-    "source_end_sec": 3583.115,
+    "source_media_id": "cam_person_02",
+    "audio_media_id": "cam_person_02",
+    "post_stumble_visual_media_id": "cam_person_01",
+    "source_start_sec": 3561.915,
+    "source_end_sec": 3608.050,
     "reference_master_start_sec": 3554.447,
     "filler_cut_ranges": [
         {
-            "source_in": 3570.065,
-            "source_out": 3570.815,
+            "source_in": 3580.865,
+            "source_out": 3581.615,
             "reason": "Cut the left interviewer's filler/stumble around 'えー 概要欄にですね' so the closing reads naturally.",
+        },
+        {
+            "source_in": 3586.350,
+            "source_out": 3591.150,
+            "reason": "Cut the closing stumble near the previous full-render 41:15 mark, while keeping the final thanks.",
+        },
+        {
+            "source_in": 3601.150,
+            "source_out": 3606.700,
+            "reason": "Cut the silent gap after the first closing thanks while keeping the final 'ありがとうございました' response.",
         }
     ],
     "caption_evidence": [
@@ -1489,7 +1500,6 @@ def build_edit_plan(
         master_cursor += duration
         full_index += 1
 
-    closing_media_ids = ["cam_person_01", "cam_person_02", "cam_person_03"]
     closing_cuts = sorted(CLOSING_OUTRO.get("filler_cut_ranges", []), key=lambda item: float(item.get("source_in") or 0.0))
     closing_ranges: list[tuple[float, float, str]] = []
     closing_cursor = float(CLOSING_OUTRO["source_start_sec"])
@@ -1503,14 +1513,51 @@ def build_edit_plan(
         closing_ranges.append((closing_cursor, float(CLOSING_OUTRO["source_end_sec"]), "closing_content"))
 
     def closing_master_time(source_in: float) -> float:
+        role_by_media = {"cam_person_01": "camera2", "cam_person_02": "camera3", "cam_person_03": "camera4"}
+        source_role = role_by_media.get(str(CLOSING_OUTRO.get("source_media_id") or ""), "master")
         try:
-            camera2_offset = float(offsets.get("camera2", -3.332479))
+            source_offset = float(offsets.get(source_role, 0.0))
         except (TypeError, ValueError):
-            camera2_offset = -3.332479
-        return source_in - camera2_offset
+            source_offset = 0.0
+        return source_in - source_offset
+
+    def closing_source_time(master_time: float, media_id: str) -> float:
+        role_by_media = {"cam_person_01": "camera2", "cam_person_02": "camera3", "cam_person_03": "camera4"}
+        media_role = role_by_media.get(media_id, "master")
+        try:
+            media_offset = float(offsets.get(media_role, 0.0))
+        except (TypeError, ValueError):
+            media_offset = 0.0
+        return master_time + media_offset
 
     for closing_index, (source_in, source_out, range_kind) in enumerate(closing_ranges, start=1):
         closing_duration = max(0.01, source_out - source_in)
+        use_left_speaker_camera = closing_index >= 3
+        reference_media_id = str(CLOSING_OUTRO["source_media_id"])
+        visual_media_id = str(CLOSING_OUTRO.get("post_stumble_visual_media_id") or reference_media_id) if use_left_speaker_camera else reference_media_id
+        master_in = closing_master_time(source_in)
+        visual_in = closing_source_time(master_in, visual_media_id)
+        visual_out = visual_in + closing_duration
+        if use_left_speaker_camera:
+            closing_layout = {
+                "type": "single",
+                "selected_media_id": visual_media_id,
+                "target_person_id": "person_01",
+                "crop_mode": "loose_full_frame",
+                "speaker_person_id": "person_01",
+                "selection_reason": "After the closing stumble cut, switch to the left speaker camera so the speaking interviewer is clearly visible.",
+            }
+            closing_reason = "Finish the full render at the natural closing thanks; after the stumble cut, show the left speaking interviewer camera and remove only the silent gap before the final thanks."
+        else:
+            closing_layout = {
+                "type": "split_grid",
+                "media_ids": ["cam_person_01", "cam_person_02", "cam_person_03"],
+                "grid_strategy": "three_person_closing_wide_equivalent",
+                "panel_order": ["person_01", "person_02", "person_03"],
+                "ensure_people_visible": ["person_01", "person_02", "person_03"],
+                "selection_reason": "The true group-wide camera ends before the closing tail, so use the synced three-person split before the left-speaker closing cut.",
+            }
+            closing_reason = "Finish the full render at the natural closing thanks; remove closing stumbles while keeping all three participants visible before the final left-speaker closing cut."
         timeline.append(
             {
                 "event_id": f"main_closing_thanks_{closing_index:02d}",
@@ -1519,30 +1566,23 @@ def build_edit_plan(
                 "type": "source_clip",
                 "section": "main",
                 "source": {
-                    "media_id": CLOSING_OUTRO["source_media_id"],
-                    "in": round(source_in, 3),
-                    "out": round(source_out, 3),
+                    "media_id": visual_media_id,
+                    "in": round(visual_in, 3),
+                    "out": round(visual_out, 3),
                 },
                 "reference_source": {
-                    "media_id": CLOSING_OUTRO["source_media_id"],
+                    "media_id": reference_media_id,
                     "in": round(source_in, 3),
                     "out": round(source_out, 3),
                 },
-                "sync_reference_master_sec": round(closing_master_time(source_in), 3),
-                "layout": {
-                    "type": "split_grid",
-                    "media_ids": closing_media_ids,
-                    "grid_strategy": "three_person_closing_wide_equivalent",
-                    "panel_order": ["person_01", "person_02", "person_03"],
-                    "ensure_people_visible": ["person_01", "person_02", "person_03"],
-                    "selection_reason": "Keep the final 30 seconds on a three-person wide-equivalent view. The master wide camera is unavailable for the closing tail, so synced individual cameras are used together.",
-                },
+                "sync_reference_master_sec": round(master_in, 3),
+                "layout": closing_layout,
                 "audio": {
                     "mode": "source",
                     "source_media_id": CLOSING_OUTRO["audio_media_id"],
                     "in": round(source_in, 3),
                     "out": round(source_out, 3),
-                    "reason": "Use one continuous left-camera audio source for the closing, with the filler/stumble cut removed.",
+                    "reason": "Use the same continuous interview audio source for the closing, with filler/stumble ranges removed.",
                 },
                 "overlays": [
                     {"type": "topic_title", "position": "top_right", "topic_id": find_topic_id(topics, full_main_end), "style_id": "opening_digest_top_right_title"}
@@ -1554,7 +1594,7 @@ def build_edit_plan(
                     "caption_evidence": CLOSING_OUTRO["caption_evidence"],
                     "removed_filler_ranges": CLOSING_OUTRO.get("filler_cut_ranges", []),
                 },
-                "reason": "Finish the full render at the natural closing thanks; remove the filler around '概要欄にですね' and keep all three people visible.",
+                "reason": closing_reason,
             }
         )
         cursor += closing_duration

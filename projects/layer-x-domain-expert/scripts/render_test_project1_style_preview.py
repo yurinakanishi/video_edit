@@ -823,10 +823,8 @@ def person_label(person_id: str) -> str:
 def person_intro_lines(person_id: str) -> tuple[str, str]:
     person = people_map().get(person_id, {})
     department = str(person.get("department") or "").strip()
-    role = str(person.get("role_title") or "").strip()
     name = str(person.get("display_name") or person_id).strip()
-    descriptor = " ".join(part for part in (department, role) if part)
-    return descriptor or "LayerX", name
+    return department or "LayerX", name
 
 
 def draw_shadow_text(draw: ImageDraw.ImageDraw, position: tuple[float, float], text: str, font: ImageFont.FreeTypeFont, fill: tuple[int, int, int, int]) -> None:

@@ -1,7 +1,7 @@
 {
   "schema_version": "test_project1_style_preview_report.v1",
   "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_first_10min_test_project1_style.mp4",
-  "segments": 45,
+  "segments": 42,
   "max_duration_sec": 600.0,
   "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
   "notes": [
@@ -11,6 +11,7 @@
     "Split dividers use the theme purple color and a thinner rule.",
     "Split crops align face scale and vertical head height across participants.",
     "White overlay text is rendered without black stroke outlines.",
-    "Interview audio uses one continuous cam_person_02 source across all interview video cuts, including the closing."
+    "Interview audio uses one continuous cam_person_02 source across all interview video cuts, including the closing.",
+    "Per-segment audio is only resampled; cleanup and loudness normalization are applied once after concatenation to avoid cut-boundary tone changes."
   ]
 }

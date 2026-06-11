@@ -1,0 +1,78 @@
+{
+  "schema_version": "digest_remove_blocks_add_middle_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T17:29:17+09:00",
+  "user_request": [
+    "Remove the digest block from 癖とか慣れとか through 今までの当たり前を言語化する.",
+    "Remove the digest block from 自分たちに求められる through 学ぶのめちゃめちゃおすすめ.",
+    "Add one middle-participant statement to the digest."
+  ],
+  "removed_events": [
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "timeline_start": 5.94,
+      "timeline_end": 22.14,
+      "captions": [
+        "なんでそうするんですかと聞かれた時に",
+        "ものすごくこれを言語化するのに大変だった",
+        "癖とか慣れとかそういうもので",
+        "今までやってきたんだなと分かる"
+      ]
+    },
+    {
+      "event_id": "digest_qa_01_answer_03",
+      "timeline_start": 22.14,
+      "timeline_end": 25.64,
+      "captions": [
+        "今までの当たり前を言語化する"
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "timeline_start": 51.56,
+      "timeline_end": 58.28,
+      "captions": [
+        "自分たちに求められることが研ぎ澄まされる"
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_answer_02_short02",
+      "timeline_start": 58.28,
+      "timeline_end": 62.16,
+      "captions": [
+        "仕様を書くより目的を考える"
+      ]
+    },
+    {
+      "event_id": "digest_qa_04_answer_02_short03",
+      "timeline_start": 62.16,
+      "timeline_end": 64.96,
+      "captions": [
+        "どういうことを実現したいのか"
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "timeline_start": 64.96,
+      "timeline_end": 70.96,
+      "captions": [
+        "学ぶのめちゃめちゃおすすめ"
+      ]
+    }
+  ],
+  "added_event": {
+    "event_id": "digest_qa_middle_nemoto_value_01",
+    "timeline_start": 31.86,
+    "timeline_end": 35.86,
+    "source": {
+      "media_id": "cam_person_02",
+      "in": 1903.86,
+      "out": 1907.86
+    },
+    "caption": [
+      "足すだけでなく「なくていい」と言えることも価値"
+    ],
+    "speaker_person_id": "person_02"
+  },
+  "new_digest_duration_sec": 35.86
+}

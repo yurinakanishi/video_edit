@@ -1,0 +1,22 @@
+{
+  "schema_version": "digest_metadata_cleanup_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "updated_at": "2026-06-11T17:31:09+09:00",
+  "active_digest_event_ids": [
+    "digest_qa_01_question_01",
+    "digest_qa_02_question_context_01",
+    "digest_qa_02_answer_02",
+    "digest_qa_03_answer_01",
+    "digest_qa_middle_nemoto_value_01"
+  ],
+  "active_digest_duration_sec": 35.86,
+  "removed_event_ids_by_user_request": [
+    "digest_qa_01_answer_02",
+    "digest_qa_01_answer_03",
+    "digest_qa_04_answer_02",
+    "digest_qa_04_answer_02_short02",
+    "digest_qa_04_answer_02_short03",
+    "digest_qa_05_answer_02"
+  ],
+  "selection_removed_event_ids": []
+}

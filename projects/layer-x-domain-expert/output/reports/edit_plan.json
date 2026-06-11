@@ -21,100 +21,34 @@
     "end_exclusive": true
   },
   "digest_pacing": {
-    "policy": "Opening digest shortened to about one minute by retaining only the strongest question/answer beats.",
+    "policy": "Opening digest keeps only the active selected question/answer beats after manual removals.",
     "gap_cut_threshold_sec": 0.35,
     "edge_pad_sec": 0.03,
     "parts": [
       {
         "part_id": "digest_qa_01_question_01",
-        "original_duration_sec": 8.04,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 8.04,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_01_answer_02",
-        "original_duration_sec": 9.6,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 9.6,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_01_answer_03",
-        "original_duration_sec": 3.5,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 3.5,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
+        "kept_duration_sec": 5.94,
+        "policy": "active_digest_event"
       },
       {
         "part_id": "digest_qa_02_question_context_01",
-        "original_duration_sec": 8.48,
-        "caption_cluster_count": 1,
         "kept_duration_sec": 8.48,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
+        "policy": "active_digest_event"
       },
       {
         "part_id": "digest_qa_02_answer_02",
-        "original_duration_sec": 8.56,
-        "caption_cluster_count": 1,
         "kept_duration_sec": 8.56,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
+        "policy": "active_digest_event"
       },
       {
         "part_id": "digest_qa_03_answer_01",
-        "original_duration_sec": 21.84,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 21.84,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
+        "kept_duration_sec": 8.88,
+        "policy": "active_digest_event"
       },
       {
-        "part_id": "digest_qa_04_question_01",
-        "original_duration_sec": 12.0,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 12.0,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_04_answer_02",
-        "original_duration_sec": 19.02,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 19.02,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_04_answer_03",
-        "original_duration_sec": 17.28,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 17.28,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_05_question_01",
-        "original_duration_sec": 20.0,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 20.0,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_05_answer_02",
-        "original_duration_sec": 6.0,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 6.0,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_05_answer_03",
-        "original_duration_sec": 14.0,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 14.0,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
-      },
-      {
-        "part_id": "digest_qa_05_answer_04",
-        "original_duration_sec": 6.92,
-        "caption_cluster_count": 1,
-        "kept_duration_sec": 6.92,
-        "policy": "opening digest keeps only captioned speech clusters; non-captioned gaps are cut."
+        "part_id": "digest_qa_middle_nemoto_value_01",
+        "kept_duration_sec": 4.0,
+        "policy": "active_digest_event"
       }
     ],
     "post_audio_tightening": {
@@ -131,46 +65,23 @@
     "one_minute_shortening": {
       "schema_version": "digest_one_minute_shortening.v1",
       "original_digest_duration_sec": 141.241,
-      "shortened_digest_duration_sec": 61.0,
+      "shortened_digest_duration_sec": 35.86,
       "removed_digest_duration_sec": 80.241,
-      "kept_event_count": 10,
+      "kept_event_count": 5,
       "removed_event_count": 5,
       "selection": [
         {
           "event_id": "digest_qa_01_question_01",
           "source_event_id": "digest_qa_01_question_01",
           "local_start": 0.0,
-          "local_end": 8.04,
-          "duration_sec": 8.04,
-          "reason": "Opening question: the digest needs the first concrete prompt.",
+          "local_end": 5.94,
+          "duration_sec": 5.94,
+          "reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat. First digest question starts at the captioned phrase '開発'. First digest question starts at the captioned phrase '開発'.",
           "captions": [
             "開発に関わる仕事をする中で",
             "これめっちゃ大変でしたとかありますか？"
-          ]
-        },
-        {
-          "event_id": "digest_qa_01_answer_02",
-          "source_event_id": "digest_qa_01_answer_02",
-          "local_start": 0.0,
-          "local_end": 9.6,
-          "duration_sec": 9.6,
-          "reason": "Core answer: verbalizing implicit work habits was hard.",
-          "captions": [
-            "なんでそうするんですかって聞かれた時に",
-            "ものすごくこれを言語化するのに大変だった",
-            "癖とか慣れとかそういうもので今までやってきた"
-          ]
-        },
-        {
-          "event_id": "digest_qa_01_answer_03",
-          "source_event_id": "digest_qa_01_answer_03",
-          "local_start": 0.0,
-          "local_end": 3.5,
-          "duration_sec": 3.5,
-          "reason": "Punchline: verbalizing the previous default.",
-          "captions": [
-            "今までの当たり前を言語化する"
-          ]
+          ],
+          "speaker_person_id": "person_01"
         },
         {
           "event_id": "digest_qa_02_question_context_01",
@@ -178,12 +89,12 @@
           "local_start": 0.0,
           "local_end": 8.48,
           "duration_sec": 8.48,
-          "reason": "Sets up the domain expert knowledge hurdle.",
+          "reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
           "captions": [
-            "ドメインエキスパートって言うと",
-            "何でも知ってそうな感じがあると思ってて",
-            "この辺へのハードルの高さというか"
-          ]
+            "何でも知ってそうに見える",
+            "期待の高さがハードルになる"
+          ],
+          "speaker_person_id": "person_01"
         },
         {
           "event_id": "digest_qa_02_answer_02",
@@ -191,11 +102,12 @@
           "local_start": 0.0,
           "local_end": 8.56,
           "duration_sec": 8.56,
-          "reason": "Shows that engineers also research the domain deeply.",
+          "reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
           "captions": [
-            "すごい皆さんドメインの方めっちゃ調べてるんですよ",
-            "正直全然僕より詳しいということもある"
-          ]
+            "ドメインをめっちゃ調べている",
+            "正直僕より詳しいこともある"
+          ],
+          "speaker_person_id": "person_03"
         },
         {
           "event_id": "digest_qa_03_answer_01",
@@ -203,62 +115,37 @@
           "local_start": 0.0,
           "local_end": 8.88,
           "duration_sec": 8.88,
-          "reason": "Keeps the strongest why-question pressure section and removes the trailing explanation.",
+          "reason": "指定テーマのキーワードが連続し、回答が短く強いのでダイジェスト向き。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
           "captions": [
-            "なんでなんですかを絶対に逃がしてくれない",
-            "そこのある意味健全なプレッシャーというのが来た",
-            "ちゃんと伝えるには背景まで整理して"
-          ]
+            "「なんで？」を絶対に逃がしてくれない",
+            "健全なプレッシャーがある",
+            "ちゃんと伝えるには背景まで整理する"
+          ],
+          "speaker_person_id": "person_03"
         },
         {
-          "event_id": "digest_qa_04_answer_02",
-          "source_event_id": "digest_qa_04_answer_02",
+          "event_id": "digest_qa_middle_nemoto_value_01",
+          "source_event_id": "digest_qa_middle_nemoto_value_01",
           "local_start": 0.0,
-          "local_end": 3.36,
-          "duration_sec": 3.36,
-          "reason": "AI-era role shift: sharpened expectations, not just writing specs, but defining what to realize.",
+          "local_end": 4.0,
+          "duration_sec": 4.0,
+          "reason": "Replacement digest beat from the middle participant, selected from main_caption_049.",
           "captions": [
-            "自分たちに求められることは結構研ぎ澄まされてきている"
-          ]
-        },
-        {
-          "event_id": "digest_qa_04_answer_02_short02",
-          "source_event_id": "digest_qa_04_answer_02",
-          "local_start": 6.72,
-          "local_end": 10.6,
-          "duration_sec": 3.88,
-          "reason": "AI-era role shift: sharpened expectations, not just writing specs, but defining what to realize.",
-          "captions": [
-            "仕様をゴリゴリ書いていくというよりは"
-          ]
-        },
-        {
-          "event_id": "digest_qa_04_answer_02_short03",
-          "source_event_id": "digest_qa_04_answer_02",
-          "local_start": 12.62,
-          "local_end": 15.42,
-          "duration_sec": 2.8,
-          "reason": "AI-era role shift: sharpened expectations, not just writing specs, but defining what to realize.",
-          "captions": [
-            "どういうことを実現していきたいのかとか"
-          ]
-        },
-        {
-          "event_id": "digest_qa_05_answer_02",
-          "source_event_id": "digest_qa_05_answer_02",
-          "local_start": 0.0,
-          "local_end": 6.0,
-          "duration_sec": 6.0,
-          "reason": "Closing takeaway: the career path is recommended.",
-          "captions": [
-            "おすすめするんですよ",
-            "学ぶのめちゃめちゃおすすめ",
-            "めちゃめちゃおすすめですよ"
-          ]
+            "足すだけでなく「なくていい」と言えることも価値"
+          ],
+          "speaker_person_id": "person_02"
         }
+      ],
+      "removed_event_ids_by_user_request": [
+        "digest_qa_01_answer_02",
+        "digest_qa_01_answer_03",
+        "digest_qa_04_answer_02",
+        "digest_qa_04_answer_02_short02",
+        "digest_qa_04_answer_02_short03",
+        "digest_qa_05_answer_02"
       ]
     },
-    "shortened_digest_duration_sec": 61.0
+    "shortened_digest_duration_sec": 35.86
   },
   "main_caption_assignment": {
     "source": "main_caption_plan.json",
@@ -396,185 +283,9 @@
       "duration": 5.94
     },
     {
-      "event_id": "digest_qa_01_answer_02",
-      "timeline_start": 5.94,
-      "timeline_end": 22.14,
-      "type": "source_clip",
-      "section": "digest",
-      "source": {
-        "media_id": "cam_person_03",
-        "in": 1546.8,
-        "out": 1563.0
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 1533.42,
-        "out": 1549.62
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
-        "reference_alignment": {
-          "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
-          "apply": [
-            "wide_group_context",
-            "logo_title_style",
-            "caption_safe_lower_zone"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 1540.888,
-        "out": 1550.488,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 1533.42,
-        "timing_reference_out": 1543.02,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 1.88,
-          "text": "なんでそうするんですかと聞かれた時に",
-          "speaker_person_id": "person_03"
-        },
-        {
-          "type": "caption",
-          "start": 1.88,
-          "end": 5.2,
-          "text": "ものすごくこれを言語化するのに大変だった",
-          "speaker_person_id": "person_03"
-        },
-        {
-          "type": "caption",
-          "start": 5.2,
-          "end": 10.5,
-          "text": "癖とか慣れとかそういうもので",
-          "speaker_person_id": "person_03"
-        },
-        {
-          "type": "caption",
-          "start": 10.5,
-          "end": 16.2,
-          "text": "今までやってきたんだなと分かる",
-          "speaker_person_id": "person_03"
-        }
-      ],
-      "digest_qa_source": {
-        "question": "開発に関わって、一番大変だったことは何ですか？",
-        "clip_title": "当たり前を言語化する難しさ",
-        "part_kind": "answer",
-        "start_timecode": "00:25:33,420",
-        "end_timecode": "00:25:43,020",
-        "answer_summary": "実務で当たり前や慣行として処理していたことを、エンジニアやPDMに説明できる言葉へ変換するのが大変だった。労務同士なら流せる話でも、背景や意味を整理する必要があった。",
-        "evidence_excerpt": "「なんでそうするんですかって聞かれた時に」「ものすごくこれを言語化するのに大変だった」「今までの当たり前を言語化する」",
-        "caption_only_cut": true,
-        "cluster_index": 1,
-        "cluster_count": 1,
-        "post_audio_tightened": true,
-        "one_minute_digest": true,
-        "selected_local_range": [
-          0.0,
-          9.6
-        ]
-      },
-      "reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 9.6,
-      "sync_reference_master_sec": 1533.42
-    },
-    {
-      "event_id": "digest_qa_01_answer_03",
-      "timeline_start": 22.14,
-      "timeline_end": 25.64,
-      "type": "source_clip",
-      "section": "digest",
-      "source": {
-        "media_id": "cam_person_03",
-        "in": 1566.5,
-        "out": 1570.0
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 1553.12,
-        "out": 1556.62
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
-        "reference_alignment": {
-          "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
-          "apply": [
-            "wide_group_context",
-            "logo_title_style",
-            "caption_safe_lower_zone"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 1560.588,
-        "out": 1564.088,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 1553.12,
-        "timing_reference_out": 1556.62,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "text": "AI時代のドメインエキスパート論",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 3.5,
-          "text": "今までの当たり前を言語化する",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 471,
-          "source_timecode": "00:25:49,620 --> 00:25:56,620",
-          "editorial_note": "Cut after the core phrase; middle explanatory sentence omitted.",
-          "speaker_person_id": "person_03"
-        }
-      ],
-      "digest_qa_source": {
-        "question": "開発に関わって、一番大変だったことは何ですか？",
-        "clip_title": "当たり前を言語化する難しさ",
-        "part_kind": "answer",
-        "start_timecode": "00:25:53,120",
-        "end_timecode": "00:25:56,620",
-        "answer_summary": "実務で当たり前や慣行として処理していたことを、エンジニアやPDMに説明できる言葉へ変換するのが大変だった。労務同士なら流せる話でも、背景や意味を整理する必要があった。",
-        "evidence_excerpt": "「なんでそうするんですかって聞かれた時に」「ものすごくこれを言語化するのに大変だった」「今までの当たり前を言語化する」",
-        "caption_only_cut": true,
-        "cluster_index": 1,
-        "cluster_count": 1,
-        "post_audio_tightened": true,
-        "one_minute_digest": true,
-        "selected_local_range": [
-          0.0,
-          3.5
-        ]
-      },
-      "reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 3.5
-    },
-    {
       "event_id": "digest_qa_02_question_context_01",
-      "timeline_start": 25.64,
-      "timeline_end": 34.12,
+      "timeline_start": 5.94,
+      "timeline_end": 14.42,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -683,8 +394,8 @@
     },
     {
       "event_id": "digest_qa_02_answer_02",
-      "timeline_start": 34.12,
-      "timeline_end": 42.68,
+      "timeline_start": 14.42,
+      "timeline_end": 22.98,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -790,8 +501,8 @@
     },
     {
       "event_id": "digest_qa_03_answer_01",
-      "timeline_start": 42.68,
-      "timeline_end": 51.56,
+      "timeline_start": 22.98,
+      "timeline_end": 31.86,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -903,28 +614,28 @@
       "duration": 8.88
     },
     {
-      "event_id": "digest_qa_04_answer_02",
-      "timeline_start": 51.56,
-      "timeline_end": 58.28,
+      "event_id": "digest_qa_middle_nemoto_value_01",
+      "timeline_start": 31.86,
+      "timeline_end": 35.86,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_01",
-        "in": 2006.768,
-        "out": 2013.488
+        "media_id": "cam_person_02",
+        "in": 1911.328,
+        "out": 1915.328
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 2010.1,
-        "out": 2016.82
+        "in": 1903.86,
+        "out": 1907.86
       },
       "layout": {
         "type": "single",
-        "selected_media_id": "cam_person_01",
-        "target_person_id": "person_01",
-        "active_person_id": "person_01",
+        "selected_media_id": "cam_person_02",
+        "target_person_id": "person_02",
+        "active_person_id": "person_02",
         "crop_mode": "person_centered",
-        "selection_reason": "User review says this digest line should use the left participant, so the speaker separation override is applied here.",
+        "selection_reason": "User requested one digest statement from the middle participant; this line is a strong caption candidate from captions.md.",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
           "apply": [
@@ -932,104 +643,17 @@
             "logo_title_style",
             "caption_safe_lower_zone"
           ]
-        },
-        "face_center_x": 864.0,
-        "face_center_y": 473.5,
-        "single_scale_h": 1080,
-        "single_target_face_y": 255,
-        "crop_analysis": {
-          "method": "opencv_haar_face_detection_median_of_event_frames",
-          "sample_count": 3,
-          "detected_count": 3,
-          "old_static_profile_output_x_at_900h": 640.0,
-          "new_output_x_at_1080h": 640.0,
-          "target_output_x": 640,
-          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
         "mode": "single_interview_source",
         "source_media_id": "cam_person_02",
-        "in": 2017.568,
-        "out": 2020.928,
+        "in": 1911.328,
+        "out": 1915.328,
         "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 2010.1,
-        "timing_reference_out": 2013.46,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 6.72,
-          "text": "自分たちに求められることが研ぎ澄まされる",
-          "speaker_person_id": "person_01",
-          "review_note": "Text changed per user review; left-person speaker override applied."
-        }
-      ],
-      "digest_qa_source": {
-        "question": "AI時代に、ドメインエキスパートの価値は何ですか？",
-        "clip_title": "AI時代の実務家の手触り",
-        "part_kind": "answer",
-        "start_timecode": "00:33:30,100",
-        "end_timecode": "00:33:49,120",
-        "answer_summary": "AI利用が前提になるほど、ドメインエキスパートには仕様を書く以上に「なぜやるのか」「何を実現したいのか」を考える役割が求められる。AIのリサーチ力は強いが、実務家の手触りやユーザーが触った印象を伝える価値は残る。",
-        "evidence_excerpt": "「AIを使うのが前提」「求められることは研ぎ澄まされて」「仕様をゴリゴリ」「なんでこれをやるのか」「手触り」「使いづらい機能」",
-        "caption_only_cut": true,
-        "cluster_index": 1,
-        "cluster_count": 1,
-        "post_audio_tightened": true,
-        "one_minute_digest": true,
-        "selected_local_range": [
-          0.0,
-          3.36
-        ]
-      },
-      "reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 3.36,
-      "sync_reference_master_sec": 2010.1
-    },
-    {
-      "event_id": "digest_qa_04_answer_02_short02",
-      "timeline_start": 58.28,
-      "timeline_end": 62.16,
-      "type": "source_clip",
-      "section": "digest",
-      "source": {
-        "media_id": "cam_person_03",
-        "in": 2030.2,
-        "out": 2034.08
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 2016.82,
-        "out": 2020.7
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
-        "reference_alignment": {
-          "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
-          "apply": [
-            "wide_group_context",
-            "logo_title_style",
-            "caption_safe_lower_zone"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 2024.288,
-        "out": 2028.168,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 2016.82,
-        "timing_reference_out": 2020.7,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+        "timing_reference_in": 1903.86,
+        "timing_reference_out": 1907.86,
+        "reason": "Use one continuous interview audio source; source time follows sync_map app_offset for cam_person_02."
       },
       "overlays": [
         {
@@ -1041,221 +665,35 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 3.88,
-          "text": "仕様を書くより目的を考える",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 587,
-          "source_timecode": "00:33:36,820 --> 00:33:40,700",
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "display_text_polished": true,
-            "display_text_polished_from": "仕様をゴリゴリ書いていくというよりは"
-          }
-        }
-      ],
-      "digest_qa_source": {
-        "question": "AI時代に、ドメインエキスパートの価値は何ですか？",
-        "clip_title": "AI時代の実務家の手触り",
-        "part_kind": "answer",
-        "start_timecode": "00:33:30,100",
-        "end_timecode": "00:33:49,120",
-        "answer_summary": "AI利用が前提になるほど、ドメインエキスパートには仕様を書く以上に「なぜやるのか」「何を実現したいのか」を考える役割が求められる。AIのリサーチ力は強いが、実務家の手触りやユーザーが触った印象を伝える価値は残る。",
-        "evidence_excerpt": "「AIを使うのが前提」「求められることは研ぎ澄まされて」「仕様をゴリゴリ」「なんでこれをやるのか」「手触り」「使いづらい機能」",
-        "caption_only_cut": true,
-        "cluster_index": 1,
-        "cluster_count": 1,
-        "post_audio_tightened": true,
-        "one_minute_digest": true,
-        "selected_local_range": [
-          6.72,
-          10.6
-        ]
-      },
-      "reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 3.88
-    },
-    {
-      "event_id": "digest_qa_04_answer_02_short03",
-      "timeline_start": 62.16,
-      "timeline_end": 64.96,
-      "type": "source_clip",
-      "section": "digest",
-      "source": {
-        "media_id": "cam_person_03",
-        "in": 2036.1,
-        "out": 2038.9
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 2022.72,
-        "out": 2025.52
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
-        "reference_alignment": {
-          "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
-          "apply": [
-            "wide_group_context",
-            "logo_title_style",
-            "caption_safe_lower_zone"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 2030.188,
-        "out": 2032.988,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 2022.72,
-        "timing_reference_out": 2025.52,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "text": "AI時代のドメインエキスパート論",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 2.8,
-          "text": "どういうことを実現したいのか",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 589,
-          "source_timecode": "00:33:42,720 --> 00:33:45,520",
-          "speaker_person_id": "person_03"
-        }
-      ],
-      "digest_qa_source": {
-        "question": "AI時代に、ドメインエキスパートの価値は何ですか？",
-        "clip_title": "AI時代の実務家の手触り",
-        "part_kind": "answer",
-        "start_timecode": "00:33:30,100",
-        "end_timecode": "00:33:49,120",
-        "answer_summary": "AI利用が前提になるほど、ドメインエキスパートには仕様を書く以上に「なぜやるのか」「何を実現したいのか」を考える役割が求められる。AIのリサーチ力は強いが、実務家の手触りやユーザーが触った印象を伝える価値は残る。",
-        "evidence_excerpt": "「AIを使うのが前提」「求められることは研ぎ澄まされて」「仕様をゴリゴリ」「なんでこれをやるのか」「手触り」「使いづらい機能」",
-        "caption_only_cut": true,
-        "cluster_index": 1,
-        "cluster_count": 1,
-        "post_audio_tightened": true,
-        "one_minute_digest": true,
-        "selected_local_range": [
-          12.62,
-          15.42
-        ]
-      },
-      "reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 2.8
-    },
-    {
-      "event_id": "digest_qa_05_answer_02",
-      "timeline_start": 64.96,
-      "timeline_end": 70.96,
-      "type": "source_clip",
-      "section": "digest",
-      "source": {
-        "media_id": "cam_person_01",
-        "in": 2934.708,
-        "out": 2940.708
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 2938.04,
-        "out": 2944.04
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_01",
-        "target_person_id": "person_01",
-        "active_person_id": "person_01",
-        "crop_mode": "person_centered",
-        "selection_reason": "Voice attribution for '学ぶの、めちゃめちゃおすすめ' points to the left participant; use the matching close-up.",
-        "reference_alignment": {
-          "reference_image_id": "annotation_sample_review_meeting",
-          "apply": [
-            "speaker_closeup",
-            "logo_title_style",
-            "caption_safe_lower_zone"
-          ]
-        },
-        "face_center_x": 825.5,
-        "face_center_y": 463.5,
-        "single_scale_h": 1080,
-        "single_target_face_y": 255,
-        "crop_analysis": {
-          "method": "opencv_haar_face_detection_median_of_event_frames",
-          "sample_count": 3,
-          "detected_count": 3,
-          "old_static_profile_output_x_at_900h": 639.917,
-          "new_output_x_at_1080h": 639.5,
-          "target_output_x": 640,
-          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 2945.508,
-        "out": 2951.508,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 2938.04,
-        "timing_reference_out": 2944.04,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "text": "AI時代のドメインエキスパート論",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 2.0,
           "end": 4.0,
-          "text": "学ぶのめちゃめちゃおすすめ",
+          "text": "足すだけでなく「なくていい」と言えることも価値",
           "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 789,
-          "source_timecode": "00:49:00,040 --> 00:49:02,040",
-          "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_01",
-          "review_note": "Camera changed to the left participant to match the spoken audio and mouth movement."
+          "source_segment_id": "seg_000564",
+          "source_timecode": "00:31:43,860 --> 00:31:47,860",
+          "editorial_note": "Added as the replacement middle-participant digest beat after removing requested digest blocks.",
+          "speaker_person_id": "person_02",
+          "speaker_name": "根本",
+          "force_single_line": true
         }
       ],
       "digest_qa_source": {
-        "question": "バックオフィス経験者に、PDMや開発関与のキャリアはおすすめですか？",
-        "clip_title": "バックオフィス経験は開発で広がる",
+        "question": "Replacement middle-participant digest beat",
+        "clip_title": "なくていいと言える価値",
         "part_kind": "answer",
-        "start_timecode": "00:48:58,040",
-        "end_timecode": "00:49:04,040",
-        "answer_summary": "バックオフィス経験者にとって、ドメインエキスパートやPDM的なキャリアは強くおすすめできる。暗黙知や慣行が言語化され、視野が広がり、AIとの向き合い方も変わる。",
-        "evidence_excerpt": "「バックオフィスで働いている方」「ドメインエキスパートとかプロダクトマネージャー」「めちゃめちゃおすすめ」「暗黙知」「視野が広がる」「AIの活用、向き合い方」",
+        "start_timecode": "00:31:43,860",
+        "end_timecode": "00:31:47,860",
+        "answer_summary": "必要そうなものを足すだけではなく、なくていいと言えることもドメインエキスパートの価値として伝える。",
+        "evidence_excerpt": "「必要そうなものを足すだけではなく」「これはもうなくていいです」",
         "caption_only_cut": true,
-        "cluster_index": 1,
-        "cluster_count": 1,
-        "post_audio_tightened": true,
-        "one_minute_digest": true,
-        "selected_local_range": [
-          0.0,
-          6.0
-        ]
+        "added_by_user_request": true
       },
-      "reason": "質問から推奨理由までが明確で、ショート動画やチャプターに使いやすい結論がある。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 6.0,
-      "sync_reference_master_sec": 2938.04
+      "reason": "Replacement digest beat from the middle participant, selected from main_caption_049.",
+      "duration": 4.0
     },
     {
       "event_id": "digest_to_main_company_movie",
-      "timeline_start": 70.96,
-      "timeline_end": 85.978,
+      "timeline_start": 35.86,
+      "timeline_end": 50.878,
       "type": "source_clip",
       "section": "bridge",
       "source": {
@@ -1287,18 +725,18 @@
     },
     {
       "event_id": "main_intro_group_greeting",
-      "timeline_start": 85.978,
-      "timeline_end": 91.778,
+      "timeline_start": 50.878,
+      "timeline_end": 53.818,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
-        "in": 519.14,
+        "in": 522.0,
         "out": 524.94
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 519.14,
+        "in": 522.0,
         "out": 524.94
       },
       "layout": {
@@ -1324,12 +762,12 @@
       "audio": {
         "mode": "single_interview_source",
         "source_media_id": "cam_person_02",
-        "in": 526.608,
+        "in": 529.468,
         "out": 532.408,
         "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 519.14,
+        "timing_reference_in": 522.0,
         "timing_reference_out": 524.94,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+        "reason": "Trim the post-company pre-speech silence before 'LayerXのYouTubeチャンネル...' while keeping the single interview audio source."
       },
       "overlays": [
         {
@@ -1342,17 +780,23 @@
       "caption_policy": "editorial_captions_allowed",
       "reason": "Immediately after the company movie, cut directly to the left interviewer speaking; remove the waiting/dead-air feel.",
       "main_caption_plan_items": [],
-      "sync_reference_master_sec": 519.14,
+      "sync_reference_master_sec": 522.0,
       "post_company_wait_cut": {
         "policy": "company_movie_preserved; main starts at first production greeting",
         "start_marker_text": "LayerXのYouTubeチャンネルをご覧の皆さん、こんにちは",
         "removed_before_master_sec": 519.14
+      },
+      "intro_pre_speech_trim": {
+        "old_master_start_sec": 519.14,
+        "new_master_start_sec": 522.0,
+        "removed_sec": 2.86,
+        "reason": "Rendered preview showed the first audible 'LayerXのYouTube...' phrase starting around 89s, about 3s after the company movie ended."
       }
     },
     {
       "event_id": "main_intro_yano_self",
-      "timeline_start": 91.778,
-      "timeline_end": 98.938,
+      "timeline_start": 53.818,
+      "timeline_end": 60.978,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1428,8 +872,8 @@
     },
     {
       "event_id": "main_intro_wide_after_yano",
-      "timeline_start": 98.938,
-      "timeline_end": 102.378,
+      "timeline_start": 60.978,
+      "timeline_end": 64.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1474,8 +918,8 @@
     },
     {
       "event_id": "main_intro_two_guests_named",
-      "timeline_start": 102.378,
-      "timeline_end": 113.378,
+      "timeline_start": 64.418,
+      "timeline_end": 75.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1520,8 +964,8 @@
     },
     {
       "event_id": "main_intro_yano_explains_001",
-      "timeline_start": 113.378,
-      "timeline_end": 128.378,
+      "timeline_start": 75.418,
+      "timeline_end": 90.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1588,8 +1032,8 @@
     },
     {
       "event_id": "main_intro_wide_context_001",
-      "timeline_start": 128.378,
-      "timeline_end": 143.378,
+      "timeline_start": 90.418,
+      "timeline_end": 105.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1634,8 +1078,8 @@
     },
     {
       "event_id": "main_intro_yano_explains_002",
-      "timeline_start": 143.378,
-      "timeline_end": 158.378,
+      "timeline_start": 105.418,
+      "timeline_end": 120.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1702,8 +1146,8 @@
     },
     {
       "event_id": "main_intro_two_guest_reaction",
-      "timeline_start": 158.378,
-      "timeline_end": 173.378,
+      "timeline_start": 120.418,
+      "timeline_end": 135.418,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1748,8 +1192,8 @@
     },
     {
       "event_id": "main_intro_yano_prompt_selfintro",
-      "timeline_start": 173.378,
-      "timeline_end": 190.358,
+      "timeline_start": 135.418,
+      "timeline_end": 152.398,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1816,8 +1260,8 @@
     },
     {
       "event_id": "intro_person_02_nemoto",
-      "timeline_start": 190.358,
-      "timeline_end": 237.898,
+      "timeline_start": 152.398,
+      "timeline_end": 199.938,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1880,8 +1324,8 @@
     },
     {
       "event_id": "intro_between_nemoto_murata",
-      "timeline_start": 237.898,
-      "timeline_end": 241.898,
+      "timeline_start": 199.938,
+      "timeline_end": 203.938,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1926,8 +1370,8 @@
     },
     {
       "event_id": "intro_person_03_murata",
-      "timeline_start": 241.898,
-      "timeline_end": 289.338,
+      "timeline_start": 203.938,
+      "timeline_end": 251.378,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1990,8 +1434,8 @@
     },
     {
       "event_id": "main_yano_profile_intro",
-      "timeline_start": 289.338,
-      "timeline_end": 346.258,
+      "timeline_start": 251.378,
+      "timeline_end": 308.298,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2068,8 +1512,8 @@
     },
     {
       "event_id": "main_full_008",
-      "timeline_start": 346.258,
-      "timeline_end": 352.618,
+      "timeline_start": 308.298,
+      "timeline_end": 314.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2245,8 +1689,8 @@
     },
     {
       "event_id": "main_full_009",
-      "timeline_start": 352.618,
-      "timeline_end": 367.618,
+      "timeline_start": 314.658,
+      "timeline_end": 329.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2413,8 +1857,8 @@
     },
     {
       "event_id": "main_full_010",
-      "timeline_start": 367.618,
-      "timeline_end": 382.618,
+      "timeline_start": 329.658,
+      "timeline_end": 344.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2631,8 +2075,8 @@
     },
     {
       "event_id": "main_full_011",
-      "timeline_start": 382.618,
-      "timeline_end": 397.618,
+      "timeline_start": 344.658,
+      "timeline_end": 359.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2838,8 +2282,8 @@
     },
     {
       "event_id": "main_full_012",
-      "timeline_start": 397.618,
-      "timeline_end": 412.618,
+      "timeline_start": 359.658,
+      "timeline_end": 374.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2954,8 +2398,8 @@
     },
     {
       "event_id": "main_full_013",
-      "timeline_start": 412.618,
-      "timeline_end": 427.618,
+      "timeline_start": 374.658,
+      "timeline_end": 389.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3122,8 +2566,8 @@
     },
     {
       "event_id": "main_full_014",
-      "timeline_start": 427.618,
-      "timeline_end": 442.618,
+      "timeline_start": 389.658,
+      "timeline_end": 404.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3261,8 +2705,8 @@
     },
     {
       "event_id": "main_full_015",
-      "timeline_start": 442.618,
-      "timeline_end": 457.618,
+      "timeline_start": 404.658,
+      "timeline_end": 419.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3497,8 +2941,8 @@
     },
     {
       "event_id": "main_full_016",
-      "timeline_start": 457.618,
-      "timeline_end": 472.618,
+      "timeline_start": 419.658,
+      "timeline_end": 434.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3716,8 +3160,8 @@
     },
     {
       "event_id": "main_full_017",
-      "timeline_start": 472.618,
-      "timeline_end": 487.618,
+      "timeline_start": 434.658,
+      "timeline_end": 449.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3858,8 +3302,8 @@
     },
     {
       "event_id": "main_full_018",
-      "timeline_start": 487.618,
-      "timeline_end": 502.618,
+      "timeline_start": 449.658,
+      "timeline_end": 464.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4064,8 +3508,8 @@
     },
     {
       "event_id": "main_full_019",
-      "timeline_start": 502.618,
-      "timeline_end": 517.618,
+      "timeline_start": 464.658,
+      "timeline_end": 479.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4255,8 +3699,8 @@
     },
     {
       "event_id": "main_full_020",
-      "timeline_start": 517.618,
-      "timeline_end": 532.618,
+      "timeline_start": 479.658,
+      "timeline_end": 494.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4456,8 +3900,8 @@
     },
     {
       "event_id": "main_full_021",
-      "timeline_start": 532.618,
-      "timeline_end": 547.618,
+      "timeline_start": 494.658,
+      "timeline_end": 509.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4637,8 +4081,8 @@
     },
     {
       "event_id": "main_full_022",
-      "timeline_start": 547.618,
-      "timeline_end": 562.618,
+      "timeline_start": 509.658,
+      "timeline_end": 524.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4769,8 +4213,8 @@
     },
     {
       "event_id": "main_full_023",
-      "timeline_start": 562.618,
-      "timeline_end": 577.618,
+      "timeline_start": 524.658,
+      "timeline_end": 539.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4965,8 +4409,8 @@
     },
     {
       "event_id": "main_full_024",
-      "timeline_start": 577.618,
-      "timeline_end": 592.618,
+      "timeline_start": 539.658,
+      "timeline_end": 554.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5107,8 +4551,8 @@
     },
     {
       "event_id": "main_full_025",
-      "timeline_start": 592.618,
-      "timeline_end": 607.618,
+      "timeline_start": 554.658,
+      "timeline_end": 569.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5212,8 +4656,8 @@
     },
     {
       "event_id": "main_full_026",
-      "timeline_start": 607.618,
-      "timeline_end": 622.618,
+      "timeline_start": 569.658,
+      "timeline_end": 584.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5374,8 +4818,8 @@
     },
     {
       "event_id": "main_full_027",
-      "timeline_start": 622.618,
-      "timeline_end": 637.618,
+      "timeline_start": 584.658,
+      "timeline_end": 599.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5570,8 +5014,8 @@
     },
     {
       "event_id": "main_full_028",
-      "timeline_start": 637.618,
-      "timeline_end": 652.618,
+      "timeline_start": 599.658,
+      "timeline_end": 614.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5702,8 +5146,8 @@
     },
     {
       "event_id": "main_full_029",
-      "timeline_start": 652.618,
-      "timeline_end": 667.618,
+      "timeline_start": 614.658,
+      "timeline_end": 629.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5908,8 +5352,8 @@
     },
     {
       "event_id": "main_full_030",
-      "timeline_start": 667.618,
-      "timeline_end": 682.618,
+      "timeline_start": 629.658,
+      "timeline_end": 644.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6063,8 +5507,8 @@
     },
     {
       "event_id": "main_full_031",
-      "timeline_start": 682.618,
-      "timeline_end": 697.618,
+      "timeline_start": 644.658,
+      "timeline_end": 659.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6245,8 +5689,8 @@
     },
     {
       "event_id": "main_full_032",
-      "timeline_start": 697.618,
-      "timeline_end": 712.618,
+      "timeline_start": 659.658,
+      "timeline_end": 674.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6424,8 +5868,8 @@
     },
     {
       "event_id": "main_full_033",
-      "timeline_start": 712.618,
-      "timeline_end": 727.618,
+      "timeline_start": 674.658,
+      "timeline_end": 689.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6592,8 +6036,8 @@
     },
     {
       "event_id": "main_full_034",
-      "timeline_start": 727.618,
-      "timeline_end": 742.618,
+      "timeline_start": 689.658,
+      "timeline_end": 704.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6778,8 +6222,8 @@
     },
     {
       "event_id": "main_full_035",
-      "timeline_start": 742.618,
-      "timeline_end": 757.618,
+      "timeline_start": 704.658,
+      "timeline_end": 719.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6954,8 +6398,8 @@
     },
     {
       "event_id": "main_full_036",
-      "timeline_start": 757.618,
-      "timeline_end": 772.618,
+      "timeline_start": 719.658,
+      "timeline_end": 734.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7172,8 +6616,8 @@
     },
     {
       "event_id": "main_full_037",
-      "timeline_start": 772.618,
-      "timeline_end": 787.618,
+      "timeline_start": 734.658,
+      "timeline_end": 749.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7294,8 +6738,8 @@
     },
     {
       "event_id": "main_full_038",
-      "timeline_start": 787.618,
-      "timeline_end": 802.618,
+      "timeline_start": 749.658,
+      "timeline_end": 764.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7456,8 +6900,8 @@
     },
     {
       "event_id": "main_full_039",
-      "timeline_start": 802.618,
-      "timeline_end": 817.618,
+      "timeline_start": 764.658,
+      "timeline_end": 779.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7665,8 +7109,8 @@
     },
     {
       "event_id": "main_full_040",
-      "timeline_start": 817.618,
-      "timeline_end": 832.618,
+      "timeline_start": 779.658,
+      "timeline_end": 794.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7876,8 +7320,8 @@
     },
     {
       "event_id": "main_full_041",
-      "timeline_start": 832.618,
-      "timeline_end": 847.618,
+      "timeline_start": 794.658,
+      "timeline_end": 809.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7988,8 +7432,8 @@
     },
     {
       "event_id": "main_full_042",
-      "timeline_start": 847.618,
-      "timeline_end": 862.618,
+      "timeline_start": 809.658,
+      "timeline_end": 824.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8206,8 +7650,8 @@
     },
     {
       "event_id": "main_full_043",
-      "timeline_start": 862.618,
-      "timeline_end": 877.618,
+      "timeline_start": 824.658,
+      "timeline_end": 839.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8422,8 +7866,8 @@
     },
     {
       "event_id": "main_full_044",
-      "timeline_start": 877.618,
-      "timeline_end": 892.618,
+      "timeline_start": 839.658,
+      "timeline_end": 854.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8640,8 +8084,8 @@
     },
     {
       "event_id": "main_full_045",
-      "timeline_start": 892.618,
-      "timeline_end": 907.618,
+      "timeline_start": 854.658,
+      "timeline_end": 869.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8857,8 +8301,8 @@
     },
     {
       "event_id": "main_full_046",
-      "timeline_start": 907.618,
-      "timeline_end": 922.618,
+      "timeline_start": 869.658,
+      "timeline_end": 884.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9063,8 +8507,8 @@
     },
     {
       "event_id": "main_full_047",
-      "timeline_start": 922.618,
-      "timeline_end": 937.618,
+      "timeline_start": 884.658,
+      "timeline_end": 899.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9215,8 +8659,8 @@
     },
     {
       "event_id": "main_full_048",
-      "timeline_start": 937.618,
-      "timeline_end": 952.618,
+      "timeline_start": 899.658,
+      "timeline_end": 914.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9378,8 +8822,8 @@
     },
     {
       "event_id": "main_full_049",
-      "timeline_start": 952.618,
-      "timeline_end": 967.618,
+      "timeline_start": 914.658,
+      "timeline_end": 929.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9558,8 +9002,8 @@
     },
     {
       "event_id": "main_full_050",
-      "timeline_start": 967.618,
-      "timeline_end": 982.618,
+      "timeline_start": 929.658,
+      "timeline_end": 944.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9730,8 +9174,8 @@
     },
     {
       "event_id": "main_full_051",
-      "timeline_start": 982.618,
-      "timeline_end": 997.618,
+      "timeline_start": 944.658,
+      "timeline_end": 959.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9908,8 +9352,8 @@
     },
     {
       "event_id": "main_full_052",
-      "timeline_start": 997.618,
-      "timeline_end": 1012.618,
+      "timeline_start": 959.658,
+      "timeline_end": 974.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10040,8 +9484,8 @@
     },
     {
       "event_id": "main_full_053",
-      "timeline_start": 1012.618,
-      "timeline_end": 1027.618,
+      "timeline_start": 974.658,
+      "timeline_end": 989.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10185,8 +9629,8 @@
     },
     {
       "event_id": "main_full_054",
-      "timeline_start": 1027.618,
-      "timeline_end": 1042.618,
+      "timeline_start": 989.658,
+      "timeline_end": 1004.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10350,8 +9794,8 @@
     },
     {
       "event_id": "main_full_055",
-      "timeline_start": 1042.618,
-      "timeline_end": 1057.618,
+      "timeline_start": 1004.658,
+      "timeline_end": 1019.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10547,8 +9991,8 @@
     },
     {
       "event_id": "main_full_056",
-      "timeline_start": 1057.618,
-      "timeline_end": 1072.618,
+      "timeline_start": 1019.658,
+      "timeline_end": 1034.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10669,8 +10113,8 @@
     },
     {
       "event_id": "main_full_057",
-      "timeline_start": 1072.618,
-      "timeline_end": 1087.618,
+      "timeline_start": 1034.658,
+      "timeline_end": 1049.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10866,8 +10310,8 @@
     },
     {
       "event_id": "main_full_058",
-      "timeline_start": 1087.618,
-      "timeline_end": 1102.618,
+      "timeline_start": 1049.658,
+      "timeline_end": 1064.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11000,8 +10444,8 @@
     },
     {
       "event_id": "main_full_059",
-      "timeline_start": 1102.618,
-      "timeline_end": 1117.618,
+      "timeline_start": 1064.658,
+      "timeline_end": 1079.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11197,8 +10641,8 @@
     },
     {
       "event_id": "main_full_060",
-      "timeline_start": 1117.618,
-      "timeline_end": 1132.618,
+      "timeline_start": 1079.658,
+      "timeline_end": 1094.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11384,8 +10828,8 @@
     },
     {
       "event_id": "main_full_061",
-      "timeline_start": 1132.618,
-      "timeline_end": 1147.618,
+      "timeline_start": 1094.658,
+      "timeline_end": 1109.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11600,8 +11044,8 @@
     },
     {
       "event_id": "main_full_062",
-      "timeline_start": 1147.618,
-      "timeline_end": 1162.618,
+      "timeline_start": 1109.658,
+      "timeline_end": 1124.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11806,8 +11250,8 @@
     },
     {
       "event_id": "main_full_063",
-      "timeline_start": 1162.618,
-      "timeline_end": 1177.618,
+      "timeline_start": 1124.658,
+      "timeline_end": 1139.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12096,8 +11540,8 @@
     },
     {
       "event_id": "main_full_064",
-      "timeline_start": 1177.618,
-      "timeline_end": 1192.618,
+      "timeline_start": 1139.658,
+      "timeline_end": 1154.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12260,8 +11704,8 @@
     },
     {
       "event_id": "main_full_065",
-      "timeline_start": 1192.618,
-      "timeline_end": 1207.618,
+      "timeline_start": 1154.658,
+      "timeline_end": 1169.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12395,8 +11839,8 @@
     },
     {
       "event_id": "main_full_066",
-      "timeline_start": 1207.618,
-      "timeline_end": 1222.618,
+      "timeline_start": 1169.658,
+      "timeline_end": 1184.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12530,8 +11974,8 @@
     },
     {
       "event_id": "main_full_067",
-      "timeline_start": 1222.618,
-      "timeline_end": 1237.618,
+      "timeline_start": 1184.658,
+      "timeline_end": 1199.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12690,8 +12134,8 @@
     },
     {
       "event_id": "main_full_068",
-      "timeline_start": 1237.618,
-      "timeline_end": 1252.618,
+      "timeline_start": 1199.658,
+      "timeline_end": 1214.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12802,8 +12246,8 @@
     },
     {
       "event_id": "main_full_069",
-      "timeline_start": 1252.618,
-      "timeline_end": 1267.618,
+      "timeline_start": 1214.658,
+      "timeline_end": 1229.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13045,8 +12489,8 @@
     },
     {
       "event_id": "main_full_070",
-      "timeline_start": 1267.618,
-      "timeline_end": 1282.618,
+      "timeline_start": 1229.658,
+      "timeline_end": 1244.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13210,8 +12654,8 @@
     },
     {
       "event_id": "main_full_071",
-      "timeline_start": 1282.618,
-      "timeline_end": 1297.618,
+      "timeline_start": 1244.658,
+      "timeline_end": 1259.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13416,8 +12860,8 @@
     },
     {
       "event_id": "main_full_072",
-      "timeline_start": 1297.618,
-      "timeline_end": 1312.618,
+      "timeline_start": 1259.658,
+      "timeline_end": 1274.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13665,8 +13109,8 @@
     },
     {
       "event_id": "main_full_073",
-      "timeline_start": 1312.618,
-      "timeline_end": 1327.618,
+      "timeline_start": 1274.658,
+      "timeline_end": 1289.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13872,8 +13316,8 @@
     },
     {
       "event_id": "main_full_074",
-      "timeline_start": 1327.618,
-      "timeline_end": 1342.618,
+      "timeline_start": 1289.658,
+      "timeline_end": 1304.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14089,8 +13533,8 @@
     },
     {
       "event_id": "main_full_075",
-      "timeline_start": 1342.618,
-      "timeline_end": 1357.618,
+      "timeline_start": 1304.658,
+      "timeline_end": 1319.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14275,8 +13719,8 @@
     },
     {
       "event_id": "main_full_076",
-      "timeline_start": 1357.618,
-      "timeline_end": 1372.618,
+      "timeline_start": 1319.658,
+      "timeline_end": 1334.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14417,8 +13861,8 @@
     },
     {
       "event_id": "main_full_077",
-      "timeline_start": 1372.618,
-      "timeline_end": 1387.618,
+      "timeline_start": 1334.658,
+      "timeline_end": 1349.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14615,8 +14059,8 @@
     },
     {
       "event_id": "main_full_078",
-      "timeline_start": 1387.618,
-      "timeline_end": 1402.618,
+      "timeline_start": 1349.658,
+      "timeline_end": 1364.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14747,8 +14191,8 @@
     },
     {
       "event_id": "main_full_079",
-      "timeline_start": 1402.618,
-      "timeline_end": 1417.618,
+      "timeline_start": 1364.658,
+      "timeline_end": 1379.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14943,8 +14387,8 @@
     },
     {
       "event_id": "main_full_080",
-      "timeline_start": 1417.618,
-      "timeline_end": 1432.618,
+      "timeline_start": 1379.658,
+      "timeline_end": 1394.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15115,8 +14559,8 @@
     },
     {
       "event_id": "main_full_081",
-      "timeline_start": 1432.618,
-      "timeline_end": 1447.618,
+      "timeline_start": 1394.658,
+      "timeline_end": 1409.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15261,8 +14705,8 @@
     },
     {
       "event_id": "main_full_082",
-      "timeline_start": 1447.618,
-      "timeline_end": 1462.618,
+      "timeline_start": 1409.658,
+      "timeline_end": 1424.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15496,8 +14940,8 @@
     },
     {
       "event_id": "main_full_083",
-      "timeline_start": 1462.618,
-      "timeline_end": 1477.618,
+      "timeline_start": 1424.658,
+      "timeline_end": 1439.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15701,8 +15145,8 @@
     },
     {
       "event_id": "main_full_084",
-      "timeline_start": 1477.618,
-      "timeline_end": 1492.618,
+      "timeline_start": 1439.658,
+      "timeline_end": 1454.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15877,8 +15321,8 @@
     },
     {
       "event_id": "main_full_085",
-      "timeline_start": 1492.618,
-      "timeline_end": 1507.618,
+      "timeline_start": 1454.658,
+      "timeline_end": 1469.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15999,8 +15443,8 @@
     },
     {
       "event_id": "main_full_086",
-      "timeline_start": 1507.618,
-      "timeline_end": 1522.618,
+      "timeline_start": 1469.658,
+      "timeline_end": 1484.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16168,8 +15612,8 @@
     },
     {
       "event_id": "main_full_087",
-      "timeline_start": 1522.618,
-      "timeline_end": 1537.618,
+      "timeline_start": 1484.658,
+      "timeline_end": 1499.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16347,8 +15791,8 @@
     },
     {
       "event_id": "main_full_088",
-      "timeline_start": 1537.618,
-      "timeline_end": 1552.618,
+      "timeline_start": 1499.658,
+      "timeline_end": 1514.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16479,8 +15923,8 @@
     },
     {
       "event_id": "main_full_089",
-      "timeline_start": 1552.618,
-      "timeline_end": 1567.618,
+      "timeline_start": 1514.658,
+      "timeline_end": 1529.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16686,8 +16130,8 @@
     },
     {
       "event_id": "main_full_090",
-      "timeline_start": 1567.618,
-      "timeline_end": 1582.618,
+      "timeline_start": 1529.658,
+      "timeline_end": 1544.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16844,8 +16288,8 @@
     },
     {
       "event_id": "main_full_091",
-      "timeline_start": 1582.618,
-      "timeline_end": 1597.618,
+      "timeline_start": 1544.658,
+      "timeline_end": 1559.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17033,8 +16477,8 @@
     },
     {
       "event_id": "main_full_092",
-      "timeline_start": 1597.618,
-      "timeline_end": 1612.618,
+      "timeline_start": 1559.658,
+      "timeline_end": 1574.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17195,8 +16639,8 @@
     },
     {
       "event_id": "main_full_093",
-      "timeline_start": 1612.618,
-      "timeline_end": 1627.618,
+      "timeline_start": 1574.658,
+      "timeline_end": 1589.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17421,8 +16865,8 @@
     },
     {
       "event_id": "main_full_094",
-      "timeline_start": 1627.618,
-      "timeline_end": 1642.618,
+      "timeline_start": 1589.658,
+      "timeline_end": 1604.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17576,8 +17020,8 @@
     },
     {
       "event_id": "main_full_095",
-      "timeline_start": 1642.618,
-      "timeline_end": 1657.618,
+      "timeline_start": 1604.658,
+      "timeline_end": 1619.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17752,8 +17196,8 @@
     },
     {
       "event_id": "main_full_096",
-      "timeline_start": 1657.618,
-      "timeline_end": 1672.618,
+      "timeline_start": 1619.658,
+      "timeline_end": 1634.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17906,8 +17350,8 @@
     },
     {
       "event_id": "main_full_097",
-      "timeline_start": 1672.618,
-      "timeline_end": 1687.618,
+      "timeline_start": 1634.658,
+      "timeline_end": 1649.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18119,8 +17563,8 @@
     },
     {
       "event_id": "main_full_098",
-      "timeline_start": 1687.618,
-      "timeline_end": 1702.618,
+      "timeline_start": 1649.658,
+      "timeline_end": 1664.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18306,8 +17750,8 @@
     },
     {
       "event_id": "main_full_099",
-      "timeline_start": 1702.618,
-      "timeline_end": 1717.618,
+      "timeline_start": 1664.658,
+      "timeline_end": 1679.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18448,8 +17892,8 @@
     },
     {
       "event_id": "main_full_100",
-      "timeline_start": 1717.618,
-      "timeline_end": 1732.618,
+      "timeline_start": 1679.658,
+      "timeline_end": 1694.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18600,8 +18044,8 @@
     },
     {
       "event_id": "main_full_101",
-      "timeline_start": 1732.618,
-      "timeline_end": 1747.618,
+      "timeline_start": 1694.658,
+      "timeline_end": 1709.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18755,8 +18199,8 @@
     },
     {
       "event_id": "main_full_102",
-      "timeline_start": 1747.618,
-      "timeline_end": 1762.618,
+      "timeline_start": 1709.658,
+      "timeline_end": 1724.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18937,8 +18381,8 @@
     },
     {
       "event_id": "main_full_103",
-      "timeline_start": 1762.618,
-      "timeline_end": 1777.618,
+      "timeline_start": 1724.658,
+      "timeline_end": 1739.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19070,8 +18514,8 @@
     },
     {
       "event_id": "main_full_104",
-      "timeline_start": 1777.618,
-      "timeline_end": 1792.618,
+      "timeline_start": 1739.658,
+      "timeline_end": 1754.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19289,8 +18733,8 @@
     },
     {
       "event_id": "main_full_105",
-      "timeline_start": 1792.618,
-      "timeline_end": 1807.618,
+      "timeline_start": 1754.658,
+      "timeline_end": 1769.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19430,8 +18874,8 @@
     },
     {
       "event_id": "main_full_106",
-      "timeline_start": 1807.618,
-      "timeline_end": 1822.618,
+      "timeline_start": 1769.658,
+      "timeline_end": 1784.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19687,8 +19131,8 @@
     },
     {
       "event_id": "main_full_107",
-      "timeline_start": 1822.618,
-      "timeline_end": 1837.618,
+      "timeline_start": 1784.658,
+      "timeline_end": 1799.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19799,8 +19243,8 @@
     },
     {
       "event_id": "main_full_108",
-      "timeline_start": 1837.618,
-      "timeline_end": 1852.618,
+      "timeline_start": 1799.658,
+      "timeline_end": 1814.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20020,8 +19464,8 @@
     },
     {
       "event_id": "main_full_109",
-      "timeline_start": 1852.618,
-      "timeline_end": 1867.618,
+      "timeline_start": 1814.658,
+      "timeline_end": 1829.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20195,8 +19639,8 @@
     },
     {
       "event_id": "main_full_110",
-      "timeline_start": 1867.618,
-      "timeline_end": 1882.618,
+      "timeline_start": 1829.658,
+      "timeline_end": 1844.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20373,8 +19817,8 @@
     },
     {
       "event_id": "main_full_111",
-      "timeline_start": 1882.618,
-      "timeline_end": 1897.618,
+      "timeline_start": 1844.658,
+      "timeline_end": 1859.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20568,8 +20012,8 @@
     },
     {
       "event_id": "main_full_112",
-      "timeline_start": 1897.618,
-      "timeline_end": 1912.618,
+      "timeline_start": 1859.658,
+      "timeline_end": 1874.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20700,8 +20144,8 @@
     },
     {
       "event_id": "main_full_113",
-      "timeline_start": 1912.618,
-      "timeline_end": 1927.618,
+      "timeline_start": 1874.658,
+      "timeline_end": 1889.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20905,8 +20349,8 @@
     },
     {
       "event_id": "main_full_114",
-      "timeline_start": 1927.618,
-      "timeline_end": 1942.618,
+      "timeline_start": 1889.658,
+      "timeline_end": 1904.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21037,8 +20481,8 @@
     },
     {
       "event_id": "main_full_115",
-      "timeline_start": 1942.618,
-      "timeline_end": 1957.618,
+      "timeline_start": 1904.658,
+      "timeline_end": 1919.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21142,8 +20586,8 @@
     },
     {
       "event_id": "main_full_116",
-      "timeline_start": 1957.618,
-      "timeline_end": 1972.618,
+      "timeline_start": 1919.658,
+      "timeline_end": 1934.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21255,8 +20699,8 @@
     },
     {
       "event_id": "main_full_117",
-      "timeline_start": 1972.618,
-      "timeline_end": 1987.618,
+      "timeline_start": 1934.658,
+      "timeline_end": 1949.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21415,8 +20859,8 @@
     },
     {
       "event_id": "main_full_118",
-      "timeline_start": 1987.618,
-      "timeline_end": 2002.618,
+      "timeline_start": 1949.658,
+      "timeline_end": 1964.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21511,8 +20955,8 @@
     },
     {
       "event_id": "main_full_119",
-      "timeline_start": 2002.618,
-      "timeline_end": 2017.618,
+      "timeline_start": 1964.658,
+      "timeline_end": 1979.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21728,8 +21172,8 @@
     },
     {
       "event_id": "main_full_120",
-      "timeline_start": 2017.618,
-      "timeline_end": 2032.618,
+      "timeline_start": 1979.658,
+      "timeline_end": 1994.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21934,8 +21378,8 @@
     },
     {
       "event_id": "main_full_121",
-      "timeline_start": 2032.618,
-      "timeline_end": 2047.618,
+      "timeline_start": 1994.658,
+      "timeline_end": 2009.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22130,8 +21574,8 @@
     },
     {
       "event_id": "main_full_122",
-      "timeline_start": 2047.618,
-      "timeline_end": 2062.618,
+      "timeline_start": 2009.658,
+      "timeline_end": 2024.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22288,8 +21732,8 @@
     },
     {
       "event_id": "main_full_123",
-      "timeline_start": 2062.618,
-      "timeline_end": 2077.618,
+      "timeline_start": 2024.658,
+      "timeline_end": 2039.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22447,8 +21891,8 @@
     },
     {
       "event_id": "main_full_124",
-      "timeline_start": 2077.618,
-      "timeline_end": 2092.618,
+      "timeline_start": 2039.658,
+      "timeline_end": 2054.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22694,8 +22138,8 @@
     },
     {
       "event_id": "main_full_125",
-      "timeline_start": 2092.618,
-      "timeline_end": 2107.618,
+      "timeline_start": 2054.658,
+      "timeline_end": 2069.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22827,8 +22271,8 @@
     },
     {
       "event_id": "main_full_126",
-      "timeline_start": 2107.618,
-      "timeline_end": 2122.618,
+      "timeline_start": 2069.658,
+      "timeline_end": 2084.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23058,8 +22502,8 @@
     },
     {
       "event_id": "main_full_127",
-      "timeline_start": 2122.618,
-      "timeline_end": 2137.618,
+      "timeline_start": 2084.658,
+      "timeline_end": 2099.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23229,8 +22673,8 @@
     },
     {
       "event_id": "main_full_128",
-      "timeline_start": 2137.618,
-      "timeline_end": 2152.618,
+      "timeline_start": 2099.658,
+      "timeline_end": 2114.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23351,8 +22795,8 @@
     },
     {
       "event_id": "main_full_129",
-      "timeline_start": 2152.618,
-      "timeline_end": 2167.618,
+      "timeline_start": 2114.658,
+      "timeline_end": 2129.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23548,8 +22992,8 @@
     },
     {
       "event_id": "main_full_130",
-      "timeline_start": 2167.618,
-      "timeline_end": 2182.618,
+      "timeline_start": 2129.658,
+      "timeline_end": 2144.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23774,8 +23218,8 @@
     },
     {
       "event_id": "main_full_131",
-      "timeline_start": 2182.618,
-      "timeline_end": 2197.618,
+      "timeline_start": 2144.658,
+      "timeline_end": 2159.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23997,8 +23441,8 @@
     },
     {
       "event_id": "main_full_132",
-      "timeline_start": 2197.618,
-      "timeline_end": 2212.618,
+      "timeline_start": 2159.658,
+      "timeline_end": 2174.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24228,8 +23672,8 @@
     },
     {
       "event_id": "main_full_133",
-      "timeline_start": 2212.618,
-      "timeline_end": 2227.618,
+      "timeline_start": 2174.658,
+      "timeline_end": 2189.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24344,8 +23788,8 @@
     },
     {
       "event_id": "main_full_134",
-      "timeline_start": 2227.618,
-      "timeline_end": 2242.618,
+      "timeline_start": 2189.658,
+      "timeline_end": 2204.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24515,8 +23959,8 @@
     },
     {
       "event_id": "main_full_135",
-      "timeline_start": 2242.618,
-      "timeline_end": 2257.618,
+      "timeline_start": 2204.658,
+      "timeline_end": 2219.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24684,8 +24128,8 @@
     },
     {
       "event_id": "main_full_136",
-      "timeline_start": 2257.618,
-      "timeline_end": 2272.618,
+      "timeline_start": 2219.658,
+      "timeline_end": 2234.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24940,8 +24384,8 @@
     },
     {
       "event_id": "main_full_137",
-      "timeline_start": 2272.618,
-      "timeline_end": 2287.618,
+      "timeline_start": 2234.658,
+      "timeline_end": 2249.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25085,8 +24529,8 @@
     },
     {
       "event_id": "main_full_138",
-      "timeline_start": 2287.618,
-      "timeline_end": 2302.618,
+      "timeline_start": 2249.658,
+      "timeline_end": 2264.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25233,8 +24677,8 @@
     },
     {
       "event_id": "main_full_139",
-      "timeline_start": 2302.618,
-      "timeline_end": 2317.618,
+      "timeline_start": 2264.658,
+      "timeline_end": 2279.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25427,8 +24871,8 @@
     },
     {
       "event_id": "main_full_140",
-      "timeline_start": 2317.618,
-      "timeline_end": 2332.618,
+      "timeline_start": 2279.658,
+      "timeline_end": 2294.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25575,8 +25019,8 @@
     },
     {
       "event_id": "main_full_141",
-      "timeline_start": 2332.618,
-      "timeline_end": 2347.618,
+      "timeline_start": 2294.658,
+      "timeline_end": 2309.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25745,8 +25189,8 @@
     },
     {
       "event_id": "main_full_142",
-      "timeline_start": 2347.618,
-      "timeline_end": 2362.618,
+      "timeline_start": 2309.658,
+      "timeline_end": 2324.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25900,8 +25344,8 @@
     },
     {
       "event_id": "main_full_143",
-      "timeline_start": 2362.618,
-      "timeline_end": 2377.618,
+      "timeline_start": 2324.658,
+      "timeline_end": 2339.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26099,8 +25543,8 @@
     },
     {
       "event_id": "main_full_144",
-      "timeline_start": 2377.618,
-      "timeline_end": 2392.618,
+      "timeline_start": 2339.658,
+      "timeline_end": 2354.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26264,8 +25708,8 @@
     },
     {
       "event_id": "main_full_145",
-      "timeline_start": 2392.618,
-      "timeline_end": 2407.618,
+      "timeline_start": 2354.658,
+      "timeline_end": 2369.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26455,8 +25899,8 @@
     },
     {
       "event_id": "main_full_146",
-      "timeline_start": 2407.618,
-      "timeline_end": 2422.618,
+      "timeline_start": 2369.658,
+      "timeline_end": 2384.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26663,8 +26107,8 @@
     },
     {
       "event_id": "main_full_147",
-      "timeline_start": 2422.618,
-      "timeline_end": 2437.618,
+      "timeline_start": 2384.658,
+      "timeline_end": 2399.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26854,8 +26298,8 @@
     },
     {
       "event_id": "main_full_148",
-      "timeline_start": 2437.618,
-      "timeline_end": 2452.618,
+      "timeline_start": 2399.658,
+      "timeline_end": 2414.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26986,8 +26430,8 @@
     },
     {
       "event_id": "main_full_149",
-      "timeline_start": 2452.618,
-      "timeline_end": 2467.618,
+      "timeline_start": 2414.658,
+      "timeline_end": 2429.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27273,8 +26717,8 @@
     },
     {
       "event_id": "main_full_150",
-      "timeline_start": 2467.618,
-      "timeline_end": 2482.618,
+      "timeline_start": 2429.658,
+      "timeline_end": 2444.658,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27492,8 +26936,8 @@
     },
     {
       "event_id": "main_full_151",
-      "timeline_start": 2482.618,
-      "timeline_end": 2495.603,
+      "timeline_start": 2444.658,
+      "timeline_end": 2457.643,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27598,8 +27042,8 @@
     },
     {
       "event_id": "main_closing_thanks_01",
-      "timeline_start": 2495.603,
-      "timeline_end": 2514.553,
+      "timeline_start": 2457.643,
+      "timeline_end": 2476.593,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27684,8 +27128,8 @@
     },
     {
       "event_id": "main_closing_thanks_02",
-      "timeline_start": 2514.553,
-      "timeline_end": 2526.853,
+      "timeline_start": 2476.593,
+      "timeline_end": 2488.893,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27858,7 +27302,7 @@
       "report": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\first_digest_question_trim_report.json"
     }
   },
-  "updated_at": "2026-06-11T07:54:24.673194+00:00",
+  "updated_at": "2026-06-11T17:33:13+09:00",
   "revision_notes": [
     {
       "updated_at": "2026-06-11T07:27:35.684200+00:00",
@@ -27918,6 +27362,24 @@
     {
       "script": "manual_remove_duplicate_misaligned_caption",
       "summary": "Removed duplicate caption main_caption_086 that was generated from the same source speech as main_caption_auto_023 but displayed at the end of the clip."
+    },
+    {
+      "updated_at": "2026-06-11T08:22:33.170910+00:00",
+      "script": "trim_intro_pre_layerx_silence.py",
+      "summary": "Trimmed 2.860s of silence before the LayerX YouTube greeting after the company movie."
+    },
+    {
+      "updated_at": "2026-06-11T17:29:17+09:00",
+      "change": "Removed requested opening digest blocks and added one middle-participant digest statement.",
+      "removed_event_ids": [
+        "digest_qa_01_answer_02",
+        "digest_qa_01_answer_03",
+        "digest_qa_04_answer_02",
+        "digest_qa_04_answer_02_short02",
+        "digest_qa_04_answer_02_short03",
+        "digest_qa_05_answer_02"
+      ],
+      "added_event_id": "digest_qa_middle_nemoto_value_01"
     }
   ]
 }

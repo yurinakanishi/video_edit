@@ -1,0 +1,54 @@
+{
+  "schema_version": "trim_intro_pre_layerx_silence_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "trimmed_sec": 2.86,
+  "old_first_main": {
+    "timeline_start": 85.978,
+    "timeline_end": 91.778,
+    "source": {
+      "media_id": "group_wide",
+      "in": 519.14,
+      "out": 524.94
+    },
+    "reference_source": {
+      "media_id": "group_wide",
+      "in": 519.14,
+      "out": 524.94
+    },
+    "audio": {
+      "mode": "single_interview_source",
+      "source_media_id": "cam_person_02",
+      "in": 526.608,
+      "out": 532.408,
+      "timing_reference_media_id": "group_wide",
+      "timing_reference_in": 519.14,
+      "timing_reference_out": 524.94,
+      "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+    }
+  },
+  "new_first_main": {
+    "timeline_start": 85.978,
+    "timeline_end": 88.918,
+    "source": {
+      "media_id": "group_wide",
+      "in": 522.0,
+      "out": 524.94
+    },
+    "reference_source": {
+      "media_id": "group_wide",
+      "in": 522.0,
+      "out": 524.94
+    },
+    "audio": {
+      "mode": "single_interview_source",
+      "source_media_id": "cam_person_02",
+      "in": 529.468,
+      "out": 532.408,
+      "timing_reference_media_id": "group_wide",
+      "timing_reference_in": 522.0,
+      "timing_reference_out": 524.94,
+      "reason": "Trim the post-company pre-speech silence before 'LayerXのYouTubeチャンネル...' while keeping the single interview audio source."
+    }
+  },
+  "shifted_event_count": 158
+}

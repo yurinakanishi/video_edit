@@ -6,10 +6,15 @@ import json
 import math
 import subprocess
 from pathlib import Path
+import sys
 from typing import Any
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE_ROOT = PROJECT_ROOT.parents[1]
@@ -694,6 +699,9 @@ def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
     else:
         cut = best_caption_cut(text, 2, spans)
     return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line][:2]
+
+
+from caption_wrap_rules import wrap_caption_text  # noqa: E402
 
 
 def condensed_text_image(

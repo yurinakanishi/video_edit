@@ -1034,6 +1034,8 @@ Do **not** display the full transcript as subtitles in either the Opening Digest
 | Gaps | Allowed when there is no strong line worth emphasizing; gaps longer than 30 seconds are fine |
 | Length | Prefer short, strong, readable catchphrases. If a line is slightly longer, one caption swap within the same speech segment is acceptable |
 | Caption swap | Replace the on-screen caption once with the next caption phrase for the same speech segment. Do not chain multiple swaps to approximate full subtitles |
+| Line wrapping | Use `projects/layer-x-domain-expert/scripts/caption_wrap_rules.py` for both rendering and `caption_review.md`. Never split inside protected terms, katakana words, latin tokens, suffix fragments, or natural phrase units. |
+| Validation | After caption or timeline changes, run `normalize_caption_overlays_two_lines.py`, `export_caption_review_md.py`, and `audit_caption_line_breaks.py`; treat any line-break issue as a blocker. |
 
 Bad example:
 
@@ -1118,14 +1120,17 @@ This interview has **three participants and four camera sources**. Cut based on 
 - Do not stay in 4-up all the time; switch layouts based on conversation needs
 - For 2-up and 3-up layouts, make face sizes look comparable when framed by a square face box.
 - For 2-up and 3-up layouts, align face height and eye/head position across panels. Horizontal centering alone is not enough.
+- Do not cut directly from one 2-up layout to a different 2-up layout. Insert a single close-up, wide group shot, or 3-up split between two-person split segments so the only visible change is not the participant pair.
 - Preserve enough shoulder and torso context so the crop does not feel like an unnatural face-only zoom.
 
 **2-up divided layout rules**
 
 - The left-side participant is the interviewer. Whenever a 2-up / two-person divided layout includes this interviewer, place the interviewer in the left panel.
 - The middle and right participants are interviewees. When the 2-up layout includes only these two interviewees, place the middle participant in the left panel and the right participant in the right panel.
+- For 2-up and 3-up layouts, always preserve the physical left-to-right seating order: `person_01`, then `person_02`, then `person_03`. A 2-up subset must keep that same order.
 - Do not swap panel order just because the active speaker changes. Use visual emphasis, captions, or camera selection to indicate the current speaker while preserving the role/order rule.
 - Encode the selected panel order in `edit_plan.json`, for example `layout.panel_order: ["interviewer", "interviewee_middle"]` or person IDs from `people_map.json`.
+- After timeline generation, run `projects/layer-x-domain-expert/scripts/enforce_split_layout_rules.py` and treat nonzero consecutive 2-up or panel-order audit counts as blockers.
 
 **Cut-selection rules**
 

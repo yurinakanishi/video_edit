@@ -34,8 +34,11 @@
 - Prefer a single close-up when the active speaker is reliable.
 - Use the three-person wide camera when speaker attribution is uncertain.
 - Use two-person split views for exchanges between interviewer and interviewee, or when reaction coverage is useful.
+- Do not cut directly from one two-person split to another two-person split. After any two-person split, insert a single close-up, three-person wide shot, or three-person split before using another two-person split.
+- Preserve the real seating order in all split layouts: `person_01` / left person, then `person_02` / middle person, then `person_03` / right person. For two-person splits, keep the same left-to-right subset order and never reverse it to follow the active speaker.
 - Use three-person split views periodically to keep visual rhythm and ensure everyone remains represented.
 - Change camera/layout approximately every 15 seconds across the full main section.
+- Run `projects/layer-x-domain-expert/scripts/enforce_split_layout_rules.py` after timeline changes. It normalizes split panel order, removes consecutive two-person splits, and converts any main event with a missing trusted voice-attributed speaker to a three-person split.
 - Generate `output/reports/main_speaker_layout_audit.json` before rendering and treat any missing-speaker violation as a blocker.
 
 ## Caption JSON
@@ -50,6 +53,9 @@
   - speaker position/name metadata
   - confidence and selection method
 - Caption text must not contain `、`.
+- Caption wrapping must use `projects/layer-x-domain-expert/scripts/caption_wrap_rules.py` for both render and `caption_review.md`.
+- Do not force long captions into two visual lines by cutting at arbitrary character positions. Split them into sequential 1-2 line caption overlays at natural phrase boundaries.
+- After caption or timeline changes, run `normalize_caption_overlays_two_lines.py`, `export_caption_review_md.py`, and `audit_caption_line_breaks.py`. Treat any line-break audit issue as a blocker before preview rendering.
 
 ## Render Target
 

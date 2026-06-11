@@ -56,6 +56,8 @@ UNIT_SPLIT_OVERRIDES = {
 
 def split_text_units(review: Any, text: str) -> list[str]:
     remaining = clean_text(text)
+    if hasattr(review, "split_caption_units"):
+        return review.split_caption_units(remaining)
     if remaining in UNIT_SPLIT_OVERRIDES:
         return UNIT_SPLIT_OVERRIDES[remaining]
     units: list[str] = []
@@ -148,24 +150,69 @@ def split_overlay(review: Any, overlay: dict[str, Any]) -> list[dict[str, Any]]:
     return result
 
 
+def caption_part_group_key(overlay: dict[str, Any]) -> tuple[str, str] | None:
+    caption_part = overlay.get("caption_part") if isinstance(overlay.get("caption_part"), dict) else None
+    if not caption_part or not caption_part.get("original_text"):
+        return None
+    caption_id = str(overlay.get("caption_id") or overlay.get("source_srt_index") or "caption")
+    base_caption_id = caption_id.rsplit("_part", 1)[0]
+    return base_caption_id, clean_text(str(caption_part.get("original_text") or ""))
+
+
+def rebuild_split_part_group(review: Any, group: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    first = deepcopy(group[0])
+    caption_part = first.get("caption_part") if isinstance(first.get("caption_part"), dict) else {}
+    original_text = clean_text(str(caption_part.get("original_text") or first.get("text") or ""))
+    if not original_text:
+        return group
+    start = min(float(item.get("start") or 0.0) for item in group)
+    end = max(float(item.get("end") or start) for item in group)
+    first["start"] = round(start, 3)
+    first["end"] = round(max(end, start + 0.01), 3)
+    first["text"] = original_text
+    first.pop("caption_part", None)
+    caption_id = str(first.get("caption_id") or "")
+    if "_part" in caption_id:
+        first["caption_id"] = caption_id.rsplit("_part", 1)[0]
+    return split_overlay(review, first)
+
+
 def normalize_plan(plan: dict[str, Any], review: Any) -> dict[str, Any]:
     events = plan["timeline"]["events"] if isinstance(plan.get("timeline"), dict) else plan.get("timeline", [])
     split_count = 0
     added_count = 0
+    rebuilt_group_count = 0
     for event in events:
         overlays = event.get("overlays")
         if not isinstance(overlays, list):
             continue
         normalized = []
-        for overlay in overlays:
+        index = 0
+        while index < len(overlays):
+            overlay = overlays[index]
             if isinstance(overlay, dict) and overlay.get("type") == "caption" and overlay.get("text"):
-                split = split_overlay(review, overlay)
+                group_key = caption_part_group_key(overlay)
+                if group_key:
+                    group = [overlay]
+                    index += 1
+                    while index < len(overlays):
+                        next_overlay = overlays[index]
+                        if not isinstance(next_overlay, dict) or caption_part_group_key(next_overlay) != group_key:
+                            break
+                        group.append(next_overlay)
+                        index += 1
+                    split = rebuild_split_part_group(review, group)
+                    rebuilt_group_count += 1
+                else:
+                    split = split_overlay(review, overlay)
+                    index += 1
                 if len(split) > 1:
                     split_count += 1
                     added_count += len(split) - 1
                 normalized.extend(split)
             else:
                 normalized.append(overlay)
+                index += 1
         event["overlays"] = normalized
 
     existing_split_parts = 0
@@ -186,6 +233,7 @@ def normalize_plan(plan: dict[str, Any], review: Any) -> dict[str, Any]:
         "split_long_caption_overlays": True,
         "newly_split_original_overlay_count": split_count,
         "newly_added_overlay_count": added_count,
+        "rebuilt_existing_split_group_count": rebuilt_group_count,
         "current_split_source_count": len(split_source_keys),
         "current_split_part_overlay_count": existing_split_parts,
         "note": "Long captions are split into sequential 1-2 line overlays instead of rendering 3+ lines or shrinking text.",

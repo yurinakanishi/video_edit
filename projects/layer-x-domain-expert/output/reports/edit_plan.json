@@ -1925,8 +1925,8 @@
         {
           "type": "caption",
           "start": 6.51,
-          "end": 8.984,
-          "text": "ドメインエキスパートチームがあるわけではなく労務やPDM",
+          "end": 8.565,
+          "text": "ドメインエキスパートチームがあるわけではなく労務や",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_002_part01",
           "caption_no": 2,
@@ -1940,12 +1940,6 @@
             "source_end_sec": 572.36,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -1964,13 +1958,19 @@
               "threshold": 0.016456,
               "active_frame_count": 155
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 9.024,
+          "start": 8.665,
           "end": 10.82,
-          "text": "などそれぞれの立場から開発に関与している",
+          "text": "PDMなどそれぞれの立場から開発に関与している",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_002_part02",
           "caption_no": 2,
@@ -1984,12 +1984,6 @@
             "source_end_sec": 572.36,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -2008,6 +2002,12 @@
               "threshold": 0.016456,
               "active_frame_count": 155
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -2948,8 +2948,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 3.052,
-          "text": "まずヒアリングをするところから始まるみたいな感じで結果",
+          "end": 2.4,
+          "text": "まずヒアリングをするところから始まるみたいな感じで結果的に",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_001_part01",
           "caption_no": "auto_001",
@@ -2963,12 +2963,6 @@
             "source_end_sec": 784.38,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 5,
-            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -2987,13 +2981,19 @@
               "threshold": 0.015257,
               "active_frame_count": 636
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 6,
+            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 3.092,
-          "end": 6.716,
-          "text": "的に最初は今でいうプロダクトマーケティングみたいなうちの製品をど",
+          "start": 2.5,
+          "end": 4.9,
+          "text": "最初は今でいうプロダクトマーケティングみたいな",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_001_part02",
           "caption_no": "auto_001",
@@ -3007,12 +3007,6 @@
             "source_end_sec": 784.38,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 5,
-            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -3031,13 +3025,19 @@
               "threshold": 0.015257,
               "active_frame_count": 636
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 6,
+            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 6.756,
-          "end": 10.38,
-          "text": "うやってお客様に伝えていくのかみたいなところを中心にやっていって",
+          "start": 5.0,
+          "end": 7.4,
+          "text": "うちの製品をどうやって",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_001_part03",
           "caption_no": "auto_001",
@@ -3051,12 +3051,6 @@
             "source_end_sec": 784.38,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 3,
-            "part_count": 5,
-            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -3075,13 +3069,19 @@
               "threshold": 0.015257,
               "active_frame_count": 636
             }
+          },
+          "caption_part": {
+            "part_index": 3,
+            "part_count": 6,
+            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 10.42,
-          "end": 13.586,
-          "text": "2年半くらい前から開発に関与しているという感じでございま",
+          "start": 7.5,
+          "end": 9.9,
+          "text": "お客様に伝えていくのかみたいなところを中心にやっていって",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_001_part04",
           "caption_no": "auto_001",
@@ -3095,12 +3095,6 @@
             "source_end_sec": 784.38,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 4,
-            "part_count": 5,
-            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -3119,13 +3113,19 @@
               "threshold": 0.015257,
               "active_frame_count": 636
             }
+          },
+          "caption_part": {
+            "part_index": 4,
+            "part_count": 6,
+            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 13.626,
-          "end": 15.0,
-          "text": "す。よろしくお願いします",
+          "start": 10.0,
+          "end": 12.4,
+          "text": "2年半くらい前から開発に関与しているという感じでございます",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_001_part05",
           "caption_no": "auto_001",
@@ -3139,11 +3139,49 @@
             "source_end_sec": 784.38,
             "speaker_name": "矢野"
           },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              766.06,
+              784.38
+            ],
+            "speech_window_sec": [
+              766.2,
+              784.38
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008476,
+              "peak": 0.031691,
+              "threshold": 0.015257,
+              "active_frame_count": 636
+            }
+          },
           "caption_part": {
             "part_index": 5,
-            "part_count": 5,
+            "part_count": 6,
             "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
             "policy": "max_two_lines_per_caption"
+          }
+        },
+        {
+          "type": "caption",
+          "start": 12.5,
+          "end": 15.0,
+          "text": "よろしくお願いします",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_auto_001_part06",
+          "caption_no": "auto_001",
+          "speaker_person_id": "person_01",
+          "metadata": {
+            "main_caption_id": "main_caption_auto_001",
+            "source": "main_caption_plan",
+            "caption_start_sec": 766.06,
+            "caption_end_sec": 784.38,
+            "source_start_sec": 766.06,
+            "source_end_sec": 784.38,
+            "speaker_name": "矢野"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -3163,6 +3201,12 @@
               "threshold": 0.015257,
               "active_frame_count": 636
             }
+          },
+          "caption_part": {
+            "part_index": 6,
+            "part_count": 6,
+            "original_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -3537,17 +3581,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.547,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 812.5,
@@ -3616,17 +3664,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -3940,16 +3984,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_01",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.8,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 842.5,
@@ -4028,17 +4076,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -4808,8 +4852,8 @@
         {
           "type": "caption",
           "start": 8.0,
-          "end": 8.689,
-          "text": "バクラクには「",
+          "end": 9.15,
+          "text": "バクラクには",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_006_part01",
           "caption_no": 6,
@@ -4823,12 +4867,6 @@
             "source_end_sec": 913.0,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "バクラクには「こうできたらいいのに」が少なかった",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -4847,13 +4885,19 @@
               "threshold": 0.014212,
               "active_frame_count": 80
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "バクラクには「こうできたらいいのに」が少なかった",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 8.729,
+          "start": 9.25,
           "end": 10.5,
-          "text": "こうできたらいいのに」が少なかった",
+          "text": "「こうできたらいいのに」が少なかった",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_006_part02",
           "caption_no": 6,
@@ -4867,12 +4911,6 @@
             "source_end_sec": 913.0,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "バクラクには「こうできたらいいのに」が少なかった",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -4891,6 +4929,12 @@
               "threshold": 0.014212,
               "active_frame_count": 80
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "バクラクには「こうできたらいいのに」が少なかった",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -5038,7 +5082,7 @@
         {
           "type": "caption",
           "start": 4.76,
-          "end": 6.332,
+          "end": 6.06,
           "text": "こういうとここうできたらいいのになとか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_028_part01",
@@ -5052,12 +5096,6 @@
             "source_start_sec": 922.26,
             "source_end_sec": 925.38,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -5077,11 +5115,17 @@
               "threshold": 0.019165,
               "active_frame_count": 100
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 6.372,
+          "start": 6.16,
           "end": 7.56,
           "text": "結構いっぱいあったんですけど",
           "style_id": "main_punchline_caption",
@@ -5097,12 +5141,6 @@
             "source_end_sec": 925.38,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -5121,6 +5159,12 @@
               "threshold": 0.019165,
               "active_frame_count": 100
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "こういうとここうできたらいいのになとか結構いっぱいあったんですけど",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -5765,16 +5809,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
-          "cam_person_02"
+          "cam_person_02",
+          "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
-          "person_02"
+          "person_02",
+          "person_03"
         ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.522,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 977.5,
@@ -5853,17 +5901,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -6664,17 +6708,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.887,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1052.5,
@@ -6743,17 +6791,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -7502,16 +7546,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.94,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1127.5,
@@ -7580,17 +7628,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -7840,16 +7884,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.85,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1157.5,
@@ -7918,17 +7966,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -8383,16 +8427,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.827,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1202.5,
@@ -8471,17 +8519,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -8690,8 +8734,8 @@
         {
           "type": "caption",
           "start": 3.78,
-          "end": 6.088,
-          "text": "思いっきりキャリアチェンジみたいなのが頭の中にあった",
+          "end": 5.215,
+          "text": "思いっきりキャリアチェンジ",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_029_part01",
           "caption_no": "auto_029",
@@ -8705,12 +8749,6 @@
             "source_end_sec": 1225.28,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -8729,13 +8767,19 @@
               "threshold": 0.018024,
               "active_frame_count": 144
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 6.128,
+          "start": 5.315,
           "end": 6.85,
-          "text": "わけでもなかった",
+          "text": "みたいなのが頭の中にあったわけでもなかった",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_029_part02",
           "caption_no": "auto_029",
@@ -8749,12 +8793,6 @@
             "source_end_sec": 1225.28,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -8773,6 +8811,12 @@
               "threshold": 0.018024,
               "active_frame_count": 144
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "思いっきりキャリアチェンジみたいなのが頭の中にあったわけでもなかった",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -9992,16 +10036,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.572,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1322.5,
@@ -10050,17 +10098,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -11179,16 +11223,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.742,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1412.5,
@@ -11277,17 +11325,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -11396,7 +11440,7 @@
         {
           "type": "caption",
           "start": 5.88,
-          "end": 10.941,
+          "end": 10.065,
           "text": "もうこれやりたいですとかちょっと違和感ありますとか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_004_part01",
@@ -11410,12 +11454,6 @@
             "source_start_sec": 1433.38,
             "source_end_sec": 1443.26,
             "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -11435,11 +11473,17 @@
               "threshold": 0.017373,
               "active_frame_count": 469
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 10.981,
+          "start": 10.165,
           "end": 14.45,
           "text": "そういうのを結構普通に言いますよね",
           "style_id": "main_punchline_caption",
@@ -11455,12 +11499,6 @@
             "source_end_sec": 1443.26,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -11479,6 +11517,12 @@
               "threshold": 0.017373,
               "active_frame_count": 469
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -11918,16 +11962,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
-          "cam_person_02"
+          "cam_person_02",
+          "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
-          "person_02"
+          "person_02",
+          "person_03"
         ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.531,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1472.5,
@@ -12016,17 +12064,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -12266,16 +12310,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_01",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.74,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1502.5,
@@ -12334,17 +12382,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -12367,8 +12411,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 2.849,
-          "text": "お二人の中でこれまで開発に関わる仕事をする中で これ",
+          "end": 1.98,
+          "text": "お二人の中でこれまで開発に関わる仕事をする中で",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_005_part01",
           "caption_no": "auto_005",
@@ -12382,12 +12426,6 @@
             "source_end_sec": 1508.76,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "お二人の中でこれまで開発に関わる仕事をする中で これめっちゃ大変でしたとか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -12406,13 +12444,19 @@
               "threshold": 0.013928,
               "active_frame_count": 280
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "お二人の中でこれまで開発に関わる仕事をする中で これめっちゃ大変でしたとか",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 2.889,
+          "start": 2.08,
           "end": 4.16,
-          "text": "めっちゃ大変でしたとか",
+          "text": "これめっちゃ大変でしたとか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_005_part02",
           "caption_no": "auto_005",
@@ -12426,12 +12470,6 @@
             "source_end_sec": 1508.76,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "お二人の中でこれまで開発に関わる仕事をする中で これめっちゃ大変でしたとか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -12450,6 +12488,12 @@
               "threshold": 0.013928,
               "active_frame_count": 280
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "お二人の中でこれまで開発に関わる仕事をする中で これめっちゃ大変でしたとか",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -12702,16 +12746,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.766,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1532.5,
@@ -12780,17 +12828,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -13021,16 +13065,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.793,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1562.5,
@@ -13099,17 +13147,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -13735,17 +13779,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.716,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1622.5,
@@ -13834,17 +13882,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -14158,16 +14202,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.653,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1652.5,
@@ -14266,17 +14314,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -14703,8 +14747,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 4.146,
-          "text": "そのきっかけでちょっと市場に向けての体験の良いものを提供でき",
+          "end": 2.9,
+          "text": "そのきっかけでちょっと市場に向けての体験の良いものを",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_031_part01",
           "caption_no": "auto_031",
@@ -14718,12 +14762,6 @@
             "source_end_sec": 1688.5,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "そのきっかけでちょっと市場に向けての体験の良いものを提供できたなみたいなこともあるので",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -14742,13 +14780,19 @@
               "threshold": 0.015966,
               "active_frame_count": 126
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "そのきっかけでちょっと市場に向けての体験の良いものを提供できたなみたいなこともあるので",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 4.186,
+          "start": 3.0,
           "end": 6.0,
-          "text": "たなみたいなこともあるので",
+          "text": "提供できたなみたいなこともあるので",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_031_part02",
           "caption_no": "auto_031",
@@ -14762,12 +14806,6 @@
             "source_end_sec": 1688.5,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "そのきっかけでちょっと市場に向けての体験の良いものを提供できたなみたいなこともあるので",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -14786,6 +14824,12 @@
               "threshold": 0.015966,
               "active_frame_count": 126
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "そのきっかけでちょっと市場に向けての体験の良いものを提供できたなみたいなこともあるので",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -14835,16 +14879,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_01",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.84,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1697.5,
@@ -14893,17 +14941,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -14926,8 +14970,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 7.893,
-          "text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する",
+          "end": 5.585,
+          "text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中で",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_006_part01",
           "caption_no": "auto_006",
@@ -14941,12 +14985,6 @@
             "source_end_sec": 1709.5,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中でこれ気をつけてますとか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -14965,13 +15003,19 @@
               "threshold": 0.014432,
               "active_frame_count": 374
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中でこれ気をつけてますとか",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 7.933,
+          "start": 5.685,
           "end": 11.37,
-          "text": "中でこれ気をつけてますとか",
+          "text": "これ気をつけてますとか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_006_part02",
           "caption_no": "auto_006",
@@ -14985,12 +15029,6 @@
             "source_end_sec": 1709.5,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中でこれ気をつけてますとか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -15009,6 +15047,12 @@
               "threshold": 0.014432,
               "active_frame_count": 374
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "特にいわゆるドメインエキスパートみたいな立場で開発に関与する中でこれ気をつけてますとか",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -15697,17 +15741,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.526,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1772.5,
@@ -15786,17 +15834,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -16761,16 +16805,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
-          "cam_person_02"
+          "cam_person_02",
+          "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
-          "person_02"
+          "person_02",
+          "person_03"
         ],
-        "active_person_id": "person_01",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.603,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1847.5,
@@ -16849,17 +16897,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -17014,54 +17058,10 @@
         {
           "type": "caption",
           "start": 12.96,
-          "end": 14.428,
-          "text": "実務家のプライドを無視していないか",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_048_part01",
-          "caption_no": 48,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_048",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1875.46,
-            "caption_end_sec": 1879.46,
-            "source_start_sec": 1875.46,
-            "source_end_sec": 1879.46,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "実務家のプライドを無視していないかを気にしている",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1875.46,
-              1879.46
-            ],
-            "speech_window_sec": [
-              1875.46,
-              1879.18
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008603,
-              "peak": 0.019489,
-              "threshold": 0.015486,
-              "active_frame_count": 96
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 14.468,
           "end": 15.0,
-          "text": "気にしている",
+          "text": "実務家のプライドを無視していないかを気にしている",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_048_part02",
+          "caption_id": "main_caption_048",
           "caption_no": 48,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -17072,12 +17072,6 @@
             "source_start_sec": 1875.46,
             "source_end_sec": 1879.46,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "実務家のプライドを無視していないかを気にしている",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -17149,16 +17143,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.795,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1877.5,
@@ -17227,17 +17225,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -17392,54 +17386,10 @@
         {
           "type": "caption",
           "start": 11.44,
-          "end": 12.483,
-          "text": "足すだけでなく",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_049_part01",
-          "caption_no": 49,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_049",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1903.86,
-            "caption_end_sec": 1907.86,
-            "source_start_sec": 1903.86,
-            "source_end_sec": 1907.86,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "足すだけでなく「なくていい」と言えることも価値",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1903.86,
-              1907.86
-            ],
-            "speech_window_sec": [
-              1903.94,
-              1907.62
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008351,
-              "peak": 0.024798,
-              "threshold": 0.015032,
-              "active_frame_count": 107
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 12.523,
           "end": 15.0,
-          "text": "「なくていい」と言えることも価値",
+          "text": "足すだけでなく「なくていい」と言えることも価値",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_049_part02",
+          "caption_id": "main_caption_049",
           "caption_no": 49,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -17450,12 +17400,6 @@
             "source_start_sec": 1903.86,
             "source_end_sec": 1907.86,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "足すだけでなく「なくていい」と言えることも価値",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -17527,16 +17471,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
-          "cam_person_02"
+          "cam_person_02",
+          "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
-          "person_02"
+          "person_02",
+          "person_03"
         ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.782,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1907.5,
@@ -17605,17 +17553,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -17761,8 +17705,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 2.396,
-          "text": "結構やっぱりバックオフィスの仕事って",
+          "end": 3.08,
+          "text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんって",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_032_part01",
           "caption_no": "auto_032",
@@ -17776,12 +17720,6 @@
             "source_end_sec": 1928.86,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -17800,13 +17738,19 @@
               "threshold": 0.016104,
               "active_frame_count": 300
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 2.436,
+          "start": 3.18,
           "end": 6.36,
-          "text": "前提ミスが許されませんっていう通説としてあるじゃないですか",
+          "text": "いう通説としてあるじゃないですか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_032_part02",
           "caption_no": "auto_032",
@@ -17820,12 +17764,6 @@
             "source_end_sec": 1928.86,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -17844,6 +17782,12 @@
               "threshold": 0.016104,
               "active_frame_count": 300
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "結構やっぱりバックオフィスの仕事って前提ミスが許されませんっていう通説としてあるじゃないですか",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -18046,54 +17990,10 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 0.725,
-          "text": "そこをあえて何か",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_auto_008_part01",
-          "caption_no": "auto_008",
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_auto_008",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1935.7,
-            "caption_end_sec": 1940.6,
-            "source_start_sec": 1935.7,
-            "source_end_sec": 1940.6,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "そこをあえて何か別にやらなくていいですよってところを止めたりとか",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1935.7,
-              1940.6
-            ],
-            "speech_window_sec": [
-              1935.74,
-              1940.56
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008628,
-              "peak": 0.02932,
-              "threshold": 0.01553,
-              "active_frame_count": 167
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 0.765,
           "end": 3.06,
-          "text": "別にやらなくていいですよってところを止めたりとか",
+          "text": "そこをあえて何か別にやらなくていいですよってところを止めたりとか",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_auto_008_part02",
+          "caption_id": "main_caption_auto_008",
           "caption_no": "auto_008",
           "speaker_person_id": "person_03",
           "metadata": {
@@ -18104,12 +18004,6 @@
             "source_start_sec": 1935.7,
             "source_end_sec": 1940.6,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "そこをあえて何か別にやらなくていいですよってところを止めたりとか",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -18381,16 +18275,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
-          "cam_person_02"
+          "cam_person_02",
+          "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
-          "person_02"
+          "person_02",
+          "person_03"
         ],
-        "active_person_id": "person_01",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.84,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 1967.5,
@@ -18439,17 +18337,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -18472,8 +18366,8 @@
         {
           "type": "caption",
           "start": 5.99,
-          "end": 10.71,
-          "text": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率",
+          "end": 8.893,
+          "text": "いわゆるAIが普及してきて",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_009_part01",
           "caption_no": "auto_009",
@@ -18487,12 +18381,6 @@
             "source_end_sec": 1983.1,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率生産性も上がってるみたいな話もあると思うんですけど",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -18511,13 +18399,19 @@
               "threshold": 0.015367,
               "active_frame_count": 361
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 3,
+            "original_text": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率生産性も上がってるみたいな話もあると思うんですけど",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 10.75,
-          "end": 15.0,
-          "text": "生産性も上がってるみたいな話もあると思うんですけど",
+          "start": 8.993,
+          "end": 11.897,
+          "text": "エンジニアの人たちもすごい効率生産性も上がってるみたいな",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_009_part02",
           "caption_no": "auto_009",
@@ -18531,11 +18425,49 @@
             "source_end_sec": 1983.1,
             "speaker_name": "矢野"
           },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              1973.1,
+              1983.1
+            ],
+            "speech_window_sec": [
+              1973.49,
+              1982.63
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008537,
+              "peak": 0.033351,
+              "threshold": 0.015367,
+              "active_frame_count": 361
+            }
+          },
           "caption_part": {
             "part_index": 2,
-            "part_count": 2,
+            "part_count": 3,
             "original_text": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率生産性も上がってるみたいな話もあると思うんですけど",
             "policy": "max_two_lines_per_caption"
+          }
+        },
+        {
+          "type": "caption",
+          "start": 11.997,
+          "end": 15.0,
+          "text": "話もあると思うんですけど",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_auto_009_part03",
+          "caption_no": "auto_009",
+          "speaker_person_id": "person_01",
+          "metadata": {
+            "main_caption_id": "main_caption_auto_009",
+            "source": "main_caption_plan",
+            "caption_start_sec": 1973.1,
+            "caption_end_sec": 1983.1,
+            "source_start_sec": 1973.1,
+            "source_end_sec": 1983.1,
+            "speaker_name": "矢野"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -18555,6 +18487,12 @@
               "threshold": 0.015367,
               "active_frame_count": 361
             }
+          },
+          "caption_part": {
+            "part_index": 3,
+            "part_count": 3,
+            "original_text": "いわゆるAIが普及してきてエンジニアの人たちもすごい効率生産性も上がってるみたいな話もあると思うんですけど",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -19202,16 +19140,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.779,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2042.5,
@@ -19290,17 +19232,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -19323,54 +19261,10 @@
         {
           "type": "caption",
           "start": 1.09,
-          "end": 1.694,
-          "text": "AIの情報を",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_050_part01",
-          "caption_no": 50,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_050",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2042.18,
-            "caption_end_sec": 2046.14,
-            "source_start_sec": 2042.18,
-            "source_end_sec": 2046.14,
-            "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "AIの情報を制度や実務にどう落とし込むかが重要",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2042.18,
-              2046.14
-            ],
-            "speech_window_sec": [
-              2043.59,
-              2046.06
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.007302,
-              "peak": 0.020133,
-              "threshold": 0.013144,
-              "active_frame_count": 97
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 1.734,
           "end": 3.56,
-          "text": "制度や実務にどう落とし込むかが重要",
+          "text": "AIの情報を制度や実務にどう落とし込むかが重要",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_050_part02",
+          "caption_id": "main_caption_050",
           "caption_no": 50,
           "speaker_person_id": "person_03",
           "metadata": {
@@ -19381,12 +19275,6 @@
             "source_start_sec": 2042.18,
             "source_end_sec": 2046.14,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "AIの情報を制度や実務にどう落とし込むかが重要",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -20339,8 +20227,8 @@
         {
           "type": "caption",
           "start": 5.53,
-          "end": 9.543,
-          "text": "そうですねこれはちょっと僕の興味なんですけど",
+          "end": 9.575,
+          "text": "そうですねこれはちょっと僕の興味なんですけどお二人の今後の",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_013_part01",
           "caption_no": "auto_013",
@@ -20354,12 +20242,6 @@
             "source_end_sec": 2131.74,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "そうですねこれはちょっと僕の興味なんですけどお二人の今後のキャリアはどう考えていますかって",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -20378,13 +20260,19 @@
               "threshold": 0.014069,
               "active_frame_count": 263
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "そうですねこれはちょっと僕の興味なんですけどお二人の今後のキャリアはどう考えていますかって",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 9.583,
+          "start": 9.675,
           "end": 13.82,
-          "text": "お二人の今後のキャリアはどう考えていますかって",
+          "text": "キャリアはどう考えていますかって",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_013_part02",
           "caption_no": "auto_013",
@@ -20398,12 +20286,6 @@
             "source_end_sec": 2131.74,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "そうですねこれはちょっと僕の興味なんですけどお二人の今後のキャリアはどう考えていますかって",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -20422,6 +20304,12 @@
               "threshold": 0.014069,
               "active_frame_count": 263
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "そうですねこれはちょっと僕の興味なんですけどお二人の今後のキャリアはどう考えていますかって",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -20471,16 +20359,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.84,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2132.5,
@@ -20529,17 +20421,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -20562,7 +20450,7 @@
         {
           "type": "caption",
           "start": 7.42,
-          "end": 12.253,
+          "end": 11.11,
           "text": "開発とかそういうものにも関与する中で今後のキャリアって",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_014_part01",
@@ -20576,12 +20464,6 @@
             "source_start_sec": 2139.74,
             "source_end_sec": 2149.74,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -20601,11 +20483,17 @@
               "threshold": 0.013676,
               "active_frame_count": 265
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 12.293,
+          "start": 11.21,
           "end": 15.0,
           "text": "結構僕らも聞かれることってある",
           "style_id": "main_punchline_caption",
@@ -20621,12 +20509,6 @@
             "source_end_sec": 2149.74,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -20645,6 +20527,12 @@
               "threshold": 0.013676,
               "active_frame_count": 265
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "開発とかそういうものにも関与する中で今後のキャリアって結構僕らも聞かれることってある",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -21377,9 +21265,9 @@
       "type": "source_clip",
       "section": "main",
       "source": {
-        "media_id": "group_wide",
-        "in": 2207.5,
-        "out": 2222.5
+        "media_id": "cam_person_02",
+        "in": 2214.968,
+        "out": 2229.968
       },
       "reference_source": {
         "media_id": "group_wide",
@@ -21387,19 +21275,11 @@
         "out": 2222.5
       },
       "layout": {
-        "type": "split_grid",
-        "media_ids": [
-          "cam_person_01",
-          "cam_person_02"
-        ],
-        "grid_strategy": "two_person_vertical_split",
-        "panel_order": [
-          "person_01",
-          "person_02"
-        ],
-        "active_person_id": "person_02",
+        "type": "single",
+        "selected_media_id": "cam_person_02",
+        "target_person_id": "person_02",
+        "crop_mode": "person_centered",
         "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.68,
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2207.5,
@@ -21431,17 +21311,18 @@
             }
           ]
         },
-        "selection_reason": "Periodic two-person split provides conversational context while keeping the speaker visible.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted from a consecutive two-person split to a speaker close-up to avoid 2up-to-2up cut changes.",
+        "previous_layout": {
+          "type": "split_grid",
+          "media_ids": [
+            "cam_person_01",
+            "cam_person_02"
+          ],
+          "panel_order": [
+            "person_01",
+            "person_02"
+          ],
+          "grid_strategy": "two_person_vertical_split"
         }
       },
       "audio": {
@@ -21464,8 +21345,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 5.562,
-          "text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間",
+          "end": 3.532,
+          "text": "大事だなとは思いますがそれが大前提として",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_016_part01",
           "caption_no": "auto_016",
@@ -21479,12 +21360,6 @@
             "source_end_sec": 2222.74,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 3,
-            "original_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -21503,13 +21378,19 @@
               "threshold": 0.017255,
               "active_frame_count": 787
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 4,
+            "original_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 5.602,
-          "end": 10.639,
-          "text": "違いないのでAIに逃げないみたいなところはバックオフィスで",
+          "start": 3.632,
+          "end": 7.165,
+          "text": "AIが普及していくのは間違いないので",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_016_part02",
           "caption_no": "auto_016",
@@ -21523,12 +21404,6 @@
             "source_end_sec": 2222.74,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 3,
-            "original_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -21547,13 +21422,19 @@
               "threshold": 0.017255,
               "active_frame_count": 787
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 4,
+            "original_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 10.679,
-          "end": 14.53,
-          "text": "キャリアを築く上では絶対に必要だなと思います",
+          "start": 7.265,
+          "end": 10.797,
+          "text": "AIに逃げないみたいなところはバックオフィスで",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_016_part03",
           "caption_no": "auto_016",
@@ -21567,11 +21448,49 @@
             "source_end_sec": 2222.74,
             "speaker_name": "根本"
           },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2203.74,
+              2222.74
+            ],
+            "speech_window_sec": [
+              2203.74,
+              2222.03
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.009586,
+              "peak": 0.054879,
+              "threshold": 0.017255,
+              "active_frame_count": 787
+            }
+          },
           "caption_part": {
             "part_index": 3,
-            "part_count": 3,
+            "part_count": 4,
             "original_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
             "policy": "max_two_lines_per_caption"
+          }
+        },
+        {
+          "type": "caption",
+          "start": 10.897,
+          "end": 14.53,
+          "text": "キャリアを築く上では絶対に必要だなと思います",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_auto_016_part04",
+          "caption_no": "auto_016",
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_auto_016",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2203.74,
+            "caption_end_sec": 2222.74,
+            "source_start_sec": 2203.74,
+            "source_end_sec": 2222.74,
+            "speaker_name": "根本"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -21591,6 +21510,12 @@
               "threshold": 0.017255,
               "active_frame_count": 787
             }
+          },
+          "caption_part": {
+            "part_index": 4,
+            "part_count": 4,
+            "original_text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないみたいなところはバックオフィスでキャリアを築く上では絶対に必要だなと思います",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -21751,8 +21676,8 @@
         {
           "type": "caption",
           "start": 0.26,
-          "end": 4.915,
-          "text": "それを人事のことや人のことだからみたいな形で 限定",
+          "end": 3.29,
+          "text": "それを人事のことや人のことだからみたいな形で",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_037_part01",
           "caption_no": "auto_037",
@@ -21766,12 +21691,6 @@
             "source_end_sec": 2229.4,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "それを人事のことや人のことだからみたいな形で 限定的に考えていると",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -21790,13 +21709,19 @@
               "threshold": 0.01517,
               "active_frame_count": 169
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "それを人事のことや人のことだからみたいな形で 限定的に考えていると",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 4.955,
+          "start": 3.39,
           "end": 6.52,
-          "text": "的に考えていると",
+          "text": "限定的に考えていると",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_037_part02",
           "caption_no": "auto_037",
@@ -21810,12 +21735,6 @@
             "source_end_sec": 2229.4,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "それを人事のことや人のことだからみたいな形で 限定的に考えていると",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -21834,6 +21753,12 @@
               "threshold": 0.01517,
               "active_frame_count": 169
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "それを人事のことや人のことだからみたいな形で 限定的に考えていると",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -21978,8 +21903,8 @@
         {
           "type": "caption",
           "start": 4.54,
-          "end": 6.97,
-          "text": "その環境に自分を受けているというのは 今のところ",
+          "end": 7.125,
+          "text": "その環境に自分を受けているというのは 今のところキャリア",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_017_part01",
           "caption_no": "auto_017",
@@ -21993,12 +21918,6 @@
             "source_end_sec": 2248.04,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -22017,13 +21936,19 @@
               "threshold": 0.016694,
               "active_frame_count": 149
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 7.01,
+          "start": 7.225,
           "end": 9.91,
-          "text": "キャリア的な意味で間違いなく選んでいないなとは思います",
+          "text": "的な意味で間違いなく選んでいないなとは思います",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_017_part02",
           "caption_no": "auto_017",
@@ -22037,12 +21962,6 @@
             "source_end_sec": 2248.04,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -22061,6 +21980,12 @@
               "threshold": 0.016694,
               "active_frame_count": 149
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "その環境に自分を受けているというのは 今のところキャリア的な意味で間違いなく選んでいないなとは思います",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -22328,8 +22253,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 5.411,
-          "text": "よく言われるのが入った時にPDMにダメだったらまた経理に戻れ",
+          "end": 4.17,
+          "text": "よく言われるのが入った時にPDMにダメだったらまた",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_018_part01",
           "caption_no": "auto_018",
@@ -22343,12 +22268,6 @@
             "source_end_sec": 2276.04,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -22367,13 +22286,19 @@
               "threshold": 0.017894,
               "active_frame_count": 337
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 5.451,
+          "start": 4.27,
           "end": 8.54,
-          "text": "ばいいですよって言われてたんですよ",
+          "text": "経理に戻ればいいですよって言われてたんですよ",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_018_part02",
           "caption_no": "auto_018",
@@ -22387,12 +22312,6 @@
             "source_end_sec": 2276.04,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -22411,6 +22330,12 @@
               "threshold": 0.017894,
               "active_frame_count": 337
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -22762,8 +22687,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 5.342,
-          "text": "今は結構ドメインのアドバンテージがあるっていいですけど",
+          "end": 4.285,
+          "text": "今は結構ドメインのアドバンテージがあるって",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_038_part01",
           "caption_no": "auto_038",
@@ -22777,12 +22702,6 @@
             "source_end_sec": 2307.04,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できる",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -22801,13 +22720,19 @@
               "threshold": 0.01521,
               "active_frame_count": 312
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できる",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 5.382,
+          "start": 4.385,
           "end": 8.77,
-          "text": "それがないところでも一定活躍できる",
+          "text": "いいですけどそれがないところでも一定活躍できる",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_038_part02",
           "caption_no": "auto_038",
@@ -22821,12 +22746,6 @@
             "source_end_sec": 2307.04,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できる",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -22845,6 +22764,12 @@
               "threshold": 0.01521,
               "active_frame_count": 312
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できる",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -23005,17 +22930,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.509,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2327.5,
@@ -23084,17 +23013,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -23117,54 +23042,10 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 0.637,
-          "text": "ドメインがない領域でも",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_075_part01",
-          "caption_no": 75,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_075",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2313.0,
-            "caption_end_sec": 2345.0,
-            "source_start_sec": 2310.04,
-            "source_end_sec": 2314.04,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "ドメインがない領域でも活躍できるスキルを身につけたい",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2310.04,
-              2314.04
-            ],
-            "speech_window_sec": [
-              2310.04,
-              2314.04
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.010134,
-              "peak": 0.059118,
-              "threshold": 0.018241,
-              "active_frame_count": 193
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 0.677,
           "end": 1.6,
-          "text": "活躍できるスキルを身につけたい",
+          "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_075_part02",
+          "caption_id": "main_caption_075",
           "caption_no": 75,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -23175,12 +23056,6 @@
             "source_start_sec": 2310.04,
             "source_end_sec": 2314.04,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "ドメインがない領域でも活躍できるスキルを身につけたい",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -23753,8 +23628,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 2.615,
-          "text": "バックオフィスという事業のプロダクトを通じてこういう",
+          "end": 1.84,
+          "text": "バックオフィスという事業の",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_040_part01",
           "caption_no": "auto_040",
@@ -23768,12 +23643,6 @@
             "source_end_sec": 2379.66,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 3,
-            "original_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -23792,13 +23661,19 @@
               "threshold": 0.013624,
               "active_frame_count": 258
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 3,
+            "original_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 2.655,
-          "end": 4.044,
-          "text": "世の中で実現していきたいとか",
+          "start": 1.94,
+          "end": 3.78,
+          "text": "プロダクトを通じてこういう世の中で実現していきたいとか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_040_part02",
           "caption_no": "auto_040",
@@ -23812,12 +23687,6 @@
             "source_end_sec": 2379.66,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 3,
-            "original_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -23836,11 +23705,17 @@
               "threshold": 0.013624,
               "active_frame_count": 258
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 3,
+            "original_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 4.084,
+          "start": 3.88,
           "end": 5.82,
           "text": "そういった話があったりされますか?",
           "style_id": "main_punchline_caption",
@@ -23856,12 +23731,6 @@
             "source_end_sec": 2379.66,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 3,
-            "part_count": 3,
-            "original_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -23880,6 +23749,12 @@
               "threshold": 0.013624,
               "active_frame_count": 258
             }
+          },
+          "caption_part": {
+            "part_index": 3,
+            "part_count": 3,
+            "original_text": "バックオフィスという事業のプロダクトを通じてこういう世の中で実現していきたいとかそういった話があったりされますか?",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -24716,8 +24591,8 @@
         {
           "type": "caption",
           "start": 3.28,
-          "end": 5.797,
-          "text": "もちろんエンジニアさんはプロだったんですけれども",
+          "end": 5.524,
+          "text": "もちろんエンジニアさんはプロ",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_019_part01",
           "caption_no": "auto_019",
@@ -24731,12 +24606,6 @@
             "source_end_sec": 2482.2,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 4,
-            "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -24755,13 +24624,19 @@
               "threshold": 0.01414,
               "active_frame_count": 331
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 5,
+            "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 5.837,
-          "end": 9.207,
-          "text": "そのあたりは思いを込めて作業量をチェック時間をすごく短縮するやり",
+          "start": 5.624,
+          "end": 7.868,
+          "text": "だったんですけれどもそのあたりは思いを込めて作業量をチェック",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_019_part02",
           "caption_no": "auto_019",
@@ -24775,12 +24650,6 @@
             "source_end_sec": 2482.2,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 4,
-            "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -24799,13 +24668,19 @@
               "threshold": 0.01414,
               "active_frame_count": 331
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 5,
+            "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 9.247,
-          "end": 11.977,
-          "text": "たいことをなるべく一つの機能の中に持ち込んであげるみ",
+          "start": 7.968,
+          "end": 10.212,
+          "text": "時間をすごく短縮するやりたいことをなるべく一つの機能の中に",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_019_part03",
           "caption_no": "auto_019",
@@ -24819,12 +24694,6 @@
             "source_end_sec": 2482.2,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 3,
-            "part_count": 4,
-            "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -24843,13 +24712,19 @@
               "threshold": 0.01414,
               "active_frame_count": 331
             }
+          },
+          "caption_part": {
+            "part_index": 3,
+            "part_count": 5,
+            "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 12.017,
-          "end": 15.0,
-          "text": "たいなのは意識して作れた機能なんじゃないかなと思いますね",
+          "start": 10.312,
+          "end": 12.556,
+          "text": "持ち込んであげるみたいなのは意識して作れた",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_019_part04",
           "caption_no": "auto_019",
@@ -24863,11 +24738,49 @@
             "source_end_sec": 2482.2,
             "speaker_name": "村田"
           },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2465.2,
+              2482.2
+            ],
+            "speech_window_sec": [
+              2465.78,
+              2481.8
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.007855,
+              "peak": 0.018256,
+              "threshold": 0.01414,
+              "active_frame_count": 331
+            }
+          },
           "caption_part": {
             "part_index": 4,
-            "part_count": 4,
+            "part_count": 5,
             "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
             "policy": "max_two_lines_per_caption"
+          }
+        },
+        {
+          "type": "caption",
+          "start": 12.656,
+          "end": 15.0,
+          "text": "機能なんじゃないかなと思いますね",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_auto_019_part05",
+          "caption_no": "auto_019",
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_auto_019",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2465.2,
+            "caption_end_sec": 2482.2,
+            "source_start_sec": 2465.2,
+            "source_end_sec": 2482.2,
+            "speaker_name": "村田"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -24887,6 +24800,12 @@
               "threshold": 0.01414,
               "active_frame_count": 331
             }
+          },
+          "caption_part": {
+            "part_index": 5,
+            "part_count": 5,
+            "original_text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮するやりたいことをなるべく一つの機能の中に持ち込んであげるみたいなのは意識して作れた機能なんじゃないかなと思いますね",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -25370,8 +25289,8 @@
         {
           "type": "caption",
           "start": 8.05,
-          "end": 12.749,
-          "text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感",
+          "end": 11.425,
+          "text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じの",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_041_part01",
           "caption_no": "auto_041",
@@ -25385,12 +25304,6 @@
             "source_end_sec": 2523.2,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -25409,13 +25322,19 @@
               "threshold": 0.014158,
               "active_frame_count": 223
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 12.789,
+          "start": 11.525,
           "end": 15.0,
-          "text": "じのシーンもあったりしますね",
+          "text": "シーンもあったりしますね",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_041_part02",
           "caption_no": "auto_041",
@@ -25429,12 +25348,6 @@
             "source_end_sec": 2523.2,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -25453,6 +25366,12 @@
               "threshold": 0.014158,
               "active_frame_count": 223
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "そういう時に結構何だろう開発に関わっているやりがいみたいな感じのシーンもあったりしますね",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -25502,16 +25421,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.664,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2522.5,
@@ -25580,17 +25503,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -26510,17 +26429,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.572,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2612.5,
@@ -26579,17 +26502,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -26612,54 +26531,10 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 1.048,
-          "text": "AIで作業者が分析できるようになる",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_083_part01",
-          "caption_no": 83,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_083",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2600.0,
-            "caption_end_sec": 2638.0,
-            "source_start_sec": 2596.06,
-            "source_end_sec": 2600.16,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "AIで作業者が分析できるようになる変化を支援したい",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2596.06,
-              2600.16
-            ],
-            "speech_window_sec": [
-              2596.12,
-              2600.16
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008812,
-              "peak": 0.029029,
-              "threshold": 0.015862,
-              "active_frame_count": 124
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 3.608,
           "end": 4.158,
-          "text": "変化を支援したい",
+          "text": "AIで作業者が分析できるようになる変化を支援したい",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_083_part02",
+          "caption_id": "main_caption_083",
           "caption_no": 83,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -26670,12 +26545,6 @@
             "source_start_sec": 2596.06,
             "source_end_sec": 2600.16,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "AIで作業者が分析できるようになる変化を支援したい",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -26700,8 +26569,8 @@
         {
           "type": "caption",
           "start": 1.088,
-          "end": 3.568,
-          "text": "それはいきなり何もなしだと難しいと思",
+          "end": 5.063,
+          "text": "それはいきなり何もなしだと難しいと思うんですけれどもちょっと",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_021_part01",
           "caption_no": "auto_021",
@@ -26715,12 +26584,6 @@
             "source_end_sec": 2620.06,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 3,
-            "original_text": "それはいきなり何もなしだと難しいと思うんですけれどもちょっとAIのプロダクトの力で人を動かしていくんですよね",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -26739,13 +26602,19 @@
               "threshold": 0.015357,
               "active_frame_count": 236
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "それはいきなり何もなしだと難しいと思うんですけれどもちょっとAIのプロダクトの力で人を動かしていくんですよね",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 4.198,
-          "end": 6.258,
-          "text": "うんですけれどもちょっとAIの",
+          "start": 5.163,
+          "end": 9.238,
+          "text": "AIのプロダクトの力で人を動かしていくんですよね",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_021_part02",
           "caption_no": "auto_021",
@@ -26759,74 +26628,30 @@
             "source_end_sec": 2620.06,
             "speaker_name": "根本"
           },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2612.06,
+              2620.06
+            ],
+            "speech_window_sec": [
+              2612.06,
+              2620.06
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008532,
+              "peak": 0.028911,
+              "threshold": 0.015357,
+              "active_frame_count": 236
+            }
+          },
           "caption_part": {
             "part_index": 2,
-            "part_count": 3,
+            "part_count": 2,
             "original_text": "それはいきなり何もなしだと難しいと思うんですけれどもちょっとAIのプロダクトの力で人を動かしていくんですよね",
             "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2612.06,
-              2620.06
-            ],
-            "speech_window_sec": [
-              2612.06,
-              2620.06
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008532,
-              "peak": 0.028911,
-              "threshold": 0.015357,
-              "active_frame_count": 236
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 6.298,
-          "end": 9.238,
-          "text": "プロダクトの力で人を動かしていくんですよね",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_auto_021_part03",
-          "caption_no": "auto_021",
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_auto_021",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2612.06,
-            "caption_end_sec": 2620.06,
-            "source_start_sec": 2612.06,
-            "source_end_sec": 2620.06,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 3,
-            "part_count": 3,
-            "original_text": "それはいきなり何もなしだと難しいと思うんですけれどもちょっとAIのプロダクトの力で人を動かしていくんですよね",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2612.06,
-              2620.06
-            ],
-            "speech_window_sec": [
-              2612.06,
-              2620.06
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008532,
-              "peak": 0.028911,
-              "threshold": 0.015357,
-              "active_frame_count": 236
-            }
           }
         }
       ],
@@ -27322,8 +27147,8 @@
         {
           "type": "caption",
           "start": 10.4,
-          "end": 12.94,
-          "text": "ある種それに乗っかってればいつの間にかそういう",
+          "end": 12.6,
+          "text": "ある種それに乗っかってればいつの間にか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_022_part01",
           "caption_no": "auto_022",
@@ -27337,12 +27162,6 @@
             "source_end_sec": 2674.02,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -27361,13 +27180,19 @@
               "threshold": 0.016157,
               "active_frame_count": 263
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 12.98,
+          "start": 12.7,
           "end": 15.0,
-          "text": "分析とかができるようになってたりとか",
+          "text": "そういう分析とかができるようになってたりとか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_022_part02",
           "caption_no": "auto_022",
@@ -27381,12 +27206,6 @@
             "source_end_sec": 2674.02,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -27405,6 +27224,12 @@
               "threshold": 0.016157,
               "active_frame_count": 263
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "ある種それに乗っかってればいつの間にかそういう分析とかができるようになってたりとか",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -27453,17 +27278,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.52,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2672.5,
@@ -27532,17 +27361,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -27707,54 +27532,10 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 0.6,
-          "text": "AIで専門家の経験を",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_085_part01",
-          "caption_no": 85,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_085",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2680.0,
-            "caption_end_sec": 2730.0,
-            "source_start_sec": 2679.32,
-            "source_end_sec": 2684.36,
-            "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "AIで専門家の経験を多くの人が得られるかもしれない",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2679.32,
-              2684.36
-            ],
-            "speech_window_sec": [
-              2679.33,
-              2684.36
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008977,
-              "peak": 0.029225,
-              "threshold": 0.016158,
-              "active_frame_count": 173
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 0.64,
           "end": 1.6,
-          "text": "多くの人が得られるかもしれない",
+          "text": "AIで専門家の経験を多くの人が得られるかもしれない",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_085_part02",
+          "caption_id": "main_caption_085",
           "caption_no": 85,
           "speaker_person_id": "person_02",
           "metadata": {
@@ -27765,12 +27546,6 @@
             "source_start_sec": 2679.32,
             "source_end_sec": 2684.36,
             "speaker_name": "根本"
-          },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "AIで専門家の経験を多くの人が得られるかもしれない",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -27795,8 +27570,8 @@
         {
           "type": "caption",
           "start": 6.66,
-          "end": 8.834,
-          "text": "1年2年労務とか経理とか経験するって",
+          "end": 8.405,
+          "text": "1年2年労務とか経理とか経験するって結構必要だと思うんです",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_042_part01",
           "caption_no": "auto_042",
@@ -27810,12 +27585,6 @@
             "source_end_sec": 2698.18,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -27834,13 +27603,19 @@
               "threshold": 0.01488,
               "active_frame_count": 99
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 8.874,
+          "start": 8.505,
           "end": 10.35,
-          "text": "結構必要だと思うんですよ",
+          "text": "よ",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_042_part02",
           "caption_no": "auto_042",
@@ -27854,12 +27629,6 @@
             "source_end_sec": 2698.18,
             "speaker_name": "根本"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -27878,6 +27647,12 @@
               "threshold": 0.01488,
               "active_frame_count": 99
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -28144,8 +27919,8 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 3.387,
-          "text": "こういうものをジョブローテーションの中に組み込んでみん",
+          "end": 2.788,
+          "text": "こういうものを",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_023_part01",
           "caption_no": "auto_023",
@@ -28159,12 +27934,6 @@
             "source_end_sec": 2730.68,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 4,
-            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -28183,13 +27952,19 @@
               "threshold": 0.014794,
               "active_frame_count": 433
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 4,
+            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 3.427,
-          "end": 6.56,
-          "text": "なが経理とか労務とかバックオフィスの仕事を経験した",
+          "start": 2.888,
+          "end": 5.675,
+          "text": "ジョブローテーションの中に組み込んでみんなが経理とか労務とか",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_023_part02",
           "caption_no": "auto_023",
@@ -28203,12 +27978,6 @@
             "source_end_sec": 2730.68,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 4,
-            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -28227,13 +27996,19 @@
               "threshold": 0.014794,
               "active_frame_count": 433
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 4,
+            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 6.6,
-          "end": 7.956,
-          "text": "上でそれぞれ活躍するみ",
+          "start": 5.775,
+          "end": 8.563,
+          "text": "バックオフィスの仕事を経験した上でそれぞれ活躍するみたいな",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_023_part03",
           "caption_no": "auto_023",
@@ -28247,12 +28022,6 @@
             "source_end_sec": 2730.68,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 3,
-            "part_count": 4,
-            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -28271,13 +28040,19 @@
               "threshold": 0.014794,
               "active_frame_count": 433
             }
+          },
+          "caption_part": {
+            "part_index": 3,
+            "part_count": 4,
+            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 7.996,
+          "start": 8.663,
           "end": 11.55,
-          "text": "たいなそういうのができるとそれはそれで面白そうなんですよ",
+          "text": "そういうのができるとそれはそれで面白そうなんですよ",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_023_part04",
           "caption_no": "auto_023",
@@ -28291,12 +28066,6 @@
             "source_end_sec": 2730.68,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 4,
-            "part_count": 4,
-            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -28315,6 +28084,12 @@
               "threshold": 0.014794,
               "active_frame_count": 433
             }
+          },
+          "caption_part": {
+            "part_index": 4,
+            "part_count": 4,
+            "original_text": "こういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経験した上でそれぞれ活躍するみたいなそういうのができるとそれはそれで面白そうなんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -28571,16 +28346,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.665,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2747.5,
@@ -28669,17 +28448,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -29066,16 +28841,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_01",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.74,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2792.5,
@@ -29134,17 +28913,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -29167,7 +28942,7 @@
         {
           "type": "caption",
           "start": 0.36,
-          "end": 3.102,
+          "end": 3.837,
           "text": "そういう単純な技能じゃないと思うんですけど",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_024_part01",
@@ -29182,12 +28957,6 @@
             "source_end_sec": 2804.86,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 4,
-            "original_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -29206,13 +28975,19 @@
               "threshold": 0.013572,
               "active_frame_count": 314
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 3,
+            "original_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 3.142,
-          "end": 6.679,
-          "text": "少なくとも働き方というか時間の使い方は変わってくるのか",
+          "start": 3.937,
+          "end": 7.413,
+          "text": "少なくとも働き方というか時間の使い方は変わってくるのかなと思って",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_024_part02",
           "caption_no": "auto_024",
@@ -29226,12 +29001,6 @@
             "source_end_sec": 2804.86,
             "speaker_name": "矢野"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 4,
-            "original_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -29250,13 +29019,19 @@
               "threshold": 0.013572,
               "active_frame_count": 314
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 3,
+            "original_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 6.719,
-          "end": 8.533,
-          "text": "なと思っていてそういうのって",
+          "start": 7.513,
+          "end": 11.09,
+          "text": "いてそういうのってお二人感じるところがあったりしますか?",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_024_part03",
           "caption_no": "auto_024",
@@ -29270,74 +29045,30 @@
             "source_end_sec": 2804.86,
             "speaker_name": "矢野"
           },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2792.86,
+              2804.86
+            ],
+            "speech_window_sec": [
+              2792.86,
+              2803.59
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.00754,
+              "peak": 0.020361,
+              "threshold": 0.013572,
+              "active_frame_count": 314
+            }
+          },
           "caption_part": {
             "part_index": 3,
-            "part_count": 4,
+            "part_count": 3,
             "original_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
             "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2792.86,
-              2804.86
-            ],
-            "speech_window_sec": [
-              2792.86,
-              2803.59
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.00754,
-              "peak": 0.020361,
-              "threshold": 0.013572,
-              "active_frame_count": 314
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 8.573,
-          "end": 11.09,
-          "text": "お二人感じるところがあったりしますか?",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_auto_024_part04",
-          "caption_no": "auto_024",
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_auto_024",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2792.86,
-            "caption_end_sec": 2804.86,
-            "source_start_sec": 2792.86,
-            "source_end_sec": 2804.86,
-            "speaker_name": "矢野"
-          },
-          "caption_part": {
-            "part_index": 4,
-            "part_count": 4,
-            "original_text": "そういう単純な技能じゃないと思うんですけど少なくとも働き方というか時間の使い方は変わってくるのかなと思っていてそういうのってお二人感じるところがあったりしますか?",
-            "policy": "max_two_lines_per_caption"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2792.86,
-              2804.86
-            ],
-            "speech_window_sec": [
-              2792.86,
-              2803.59
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.00754,
-              "peak": 0.020361,
-              "threshold": 0.013572,
-              "active_frame_count": 314
-            }
           }
         }
       ],
@@ -29658,7 +29389,7 @@
         {
           "type": "caption",
           "start": 10.5,
-          "end": 12.751,
+          "end": 12.65,
           "text": "よくある仕事なんですけどこれやっても結局本当にって言って",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_025_part01",
@@ -29672,12 +29403,6 @@
             "source_start_sec": 2832.86,
             "source_end_sec": 2840.58,
             "speaker_name": "村田"
-          },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ",
-            "policy": "max_two_lines_per_caption"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
@@ -29697,11 +29422,17 @@
               "threshold": 0.015233,
               "active_frame_count": 188
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 12.791,
+          "start": 12.75,
           "end": 15.0,
           "text": "聞きに来るみたいなのがめちゃめちゃあったりするんですよ",
           "style_id": "main_punchline_caption",
@@ -29717,12 +29448,6 @@
             "source_end_sec": 2840.58,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -29741,6 +29466,12 @@
               "threshold": 0.015233,
               "active_frame_count": 188
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るみたいなのがめちゃめちゃあったりするんですよ",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -30092,17 +29823,21 @@
       "layout": {
         "type": "split_grid",
         "media_ids": [
+          "cam_person_01",
           "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
+          "person_01",
           "person_02",
           "person_03"
         ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.647,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2867.5,
@@ -30181,17 +29916,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -30438,16 +30169,20 @@
         "type": "split_grid",
         "media_ids": [
           "cam_person_01",
+          "cam_person_02",
           "cam_person_03"
         ],
-        "grid_strategy": "two_person_vertical_split",
+        "grid_strategy": "three_person_vertical_split",
         "panel_order": [
           "person_01",
+          "person_02",
           "person_03"
         ],
-        "active_person_id": "person_03",
-        "speaker_person_id": "person_03",
-        "speaker_attribution_confidence": 0.672,
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
         "speaker_window_attribution": {
           "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
           "window_start_sec": 2897.5,
@@ -30516,17 +30251,13 @@
             }
           ]
         },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
+        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+        "previous_layout": {
+          "type": "single",
+          "media_ids": null,
+          "panel_order": null,
+          "grid_strategy": null,
+          "clock_media_id": "group_wide"
         }
       },
       "audio": {
@@ -30795,8 +30526,8 @@
         {
           "type": "caption",
           "start": 9.54,
-          "end": 12.586,
-          "text": "こういうドメインエキスパートとかプロダクトマネージャー",
+          "end": 11.44,
+          "text": "こういうドメインエキスパートとかプロダクトマネージャーみたいな",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_044_part01",
           "caption_no": "auto_044",
@@ -30810,12 +30541,6 @@
             "source_end_sec": 2926.04,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 1,
-            "part_count": 2,
-            "original_text": "こういうドメインエキスパートとかプロダクトマネージャーみたいなキャリア",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -30834,13 +30559,19 @@
               "threshold": 0.013563,
               "active_frame_count": 134
             }
+          },
+          "caption_part": {
+            "part_index": 1,
+            "part_count": 2,
+            "original_text": "こういうドメインエキスパートとかプロダクトマネージャーみたいなキャリア",
+            "policy": "max_two_lines_per_caption"
           }
         },
         {
           "type": "caption",
-          "start": 12.626,
+          "start": 11.54,
           "end": 13.54,
-          "text": "みたいなキャリア",
+          "text": "キャリア",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_044_part02",
           "caption_no": "auto_044",
@@ -30854,12 +30585,6 @@
             "source_end_sec": 2926.04,
             "speaker_name": "村田"
           },
-          "caption_part": {
-            "part_index": 2,
-            "part_count": 2,
-            "original_text": "こういうドメインエキスパートとかプロダクトマネージャーみたいなキャリア",
-            "policy": "max_two_lines_per_caption"
-          },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
@@ -30878,6 +30603,12 @@
               "threshold": 0.013563,
               "active_frame_count": 134
             }
+          },
+          "caption_part": {
+            "part_index": 2,
+            "part_count": 2,
+            "original_text": "こういうドメインエキスパートとかプロダクトマネージャーみたいなキャリア",
+            "policy": "max_two_lines_per_caption"
           }
         }
       ],
@@ -31815,10 +31546,11 @@
   "caption_overlay_normalization": {
     "policy": "max_two_lines_per_caption",
     "split_long_caption_overlays": true,
-    "newly_split_original_overlay_count": 36,
-    "newly_added_overlay_count": 48,
-    "current_split_source_count": 36,
-    "current_split_part_overlay_count": 84,
+    "newly_split_original_overlay_count": 29,
+    "newly_added_overlay_count": 43,
+    "rebuilt_existing_split_group_count": 28,
+    "current_split_source_count": 29,
+    "current_split_part_overlay_count": 72,
     "note": "Long captions are split into sequential 1-2 line overlays instead of rendering 3+ lines or shrinking text."
   },
   "caption_audio_alignment": {
@@ -31947,5 +31679,18 @@
     "company_movie_audio_policy": "company_movie_keeps_own_embedded_audio",
     "quality_audit_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\audio_source_quality_audit.json",
     "reason": "group_wide is the best transcript/reference source but does not include the separate final thanks take; cam_person_02 covers the synced main interview and closing with the best measured noise floor/SNR among continuous sources."
+  },
+  "layout_policy": {
+    "split_layout_rules": {
+      "schema_version": "split_layout_rules.v1",
+      "no_consecutive_two_person_splits": true,
+      "panel_order": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "rule": "After a two-person split, insert a speaker close-up, wide group, or three-person split before using another two-person split.",
+      "voice_visibility_guard": "If trusted voice attribution finds a speaker outside the selected layout, use a three-person split for that event."
+    }
   }
 }

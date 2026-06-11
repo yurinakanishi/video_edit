@@ -1,10 +1,15 @@
 import json
 from functools import lru_cache
 from pathlib import Path
+import sys
 from typing import Any
 
 from PIL import Image, ImageDraw, ImageFont
 
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REPORTS = PROJECT_ROOT / "output" / "reports"
@@ -478,6 +483,25 @@ def wrap_caption_text(text: str, max_chars: int = 13) -> list[str]:
     else:
         cut = best_caption_cut(text, 2, spans)
     return [line for line in (text[:cut].strip(" 、。"), text[cut:].strip(" 、。")) if line][:2]
+
+
+from caption_wrap_rules import (  # noqa: E402
+    bad_caption_break,
+    bad_caption_start,
+    best_caption_cut,
+    caption_cut_candidates,
+    caption_line_fits,
+    caption_text_width,
+    clean_caption_text,
+    hard_bad_caption_break,
+    inside_protected_span,
+    invalid_caption_cut,
+    natural_caption_boundary,
+    protected_spans,
+    split_caption_units,
+    unit_fits,
+    wrap_caption_text,
+)
 
 
 def fmt_time(seconds: float) -> str:

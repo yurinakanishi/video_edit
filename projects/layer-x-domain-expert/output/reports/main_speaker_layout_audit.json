@@ -1,7 +1,7 @@
 {
   "schema_version": "main_speaker_layout_audit.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-11T11:43:55+09:00",
+  "generated_at": "2026-06-11T12:07:23+09:00",
   "edit_plan_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
   "voice_speaker_attribution_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
   "policy": "Every trusted voice-attributed utterance overlapping a main-section event must have its speaker visible in the selected layout.",
@@ -269,6 +269,7 @@
       "reference_end": 827.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -300,6 +301,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -437,7 +439,8 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
-        "person_02"
+        "person_02",
+        "person_03"
       ],
       "voice_speakers_in_window": [
         "person_02",
@@ -511,6 +514,7 @@
       "reference_end": 1067.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -582,6 +586,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -612,6 +617,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -659,6 +665,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -783,6 +790,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -879,6 +887,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -939,7 +948,8 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
-        "person_02"
+        "person_02",
+        "person_03"
       ],
       "voice_speakers_in_window": [
         "person_02",
@@ -969,6 +979,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -999,6 +1010,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -1029,6 +1041,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -1092,6 +1105,7 @@
       "reference_end": 1637.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -1123,6 +1137,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -1170,6 +1185,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -1239,6 +1255,7 @@
       "reference_end": 1787.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -1319,7 +1336,8 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
-        "person_02"
+        "person_02",
+        "person_03"
       ],
       "voice_speakers_in_window": [
         "person_02",
@@ -1349,6 +1367,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -1379,7 +1398,8 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
-        "person_02"
+        "person_02",
+        "person_03"
       ],
       "voice_speakers_in_window": [
         "person_02",
@@ -1443,7 +1463,8 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
-        "person_02"
+        "person_02",
+        "person_03"
       ],
       "voice_speakers_in_window": [
         "person_02",
@@ -1514,6 +1535,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -1603,6 +1625,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -1675,9 +1698,8 @@
       "event_id": "main_full_100",
       "reference_start": 2207.5,
       "reference_end": 2222.5,
-      "layout_type": "split_grid",
+      "layout_type": "single",
       "visible_people": [
-        "person_01",
         "person_02"
       ],
       "voice_speakers_in_window": [
@@ -1795,6 +1817,7 @@
       "reference_end": 2342.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -1984,6 +2007,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -2077,6 +2101,7 @@
       "reference_end": 2627.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -2139,6 +2164,7 @@
       "reference_end": 2687.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -2211,6 +2237,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -2254,6 +2281,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [
@@ -2324,6 +2352,7 @@
       "reference_end": 2882.5,
       "layout_type": "split_grid",
       "visible_people": [
+        "person_01",
         "person_02",
         "person_03"
       ],
@@ -2355,6 +2384,7 @@
       "layout_type": "split_grid",
       "visible_people": [
         "person_01",
+        "person_02",
         "person_03"
       ],
       "voice_speakers_in_window": [

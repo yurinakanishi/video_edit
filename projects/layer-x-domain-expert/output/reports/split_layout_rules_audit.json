@@ -1,0 +1,462 @@
+{
+  "schema_version": "split_layout_rules_audit.v1",
+  "project_id": "layer-x-domain-expert",
+  "policy": {
+    "schema_version": "split_layout_rules.v1",
+    "no_consecutive_two_person_splits": true,
+    "panel_order": [
+      "person_01",
+      "person_02",
+      "person_03"
+    ],
+    "rule": "After a two-person split, insert a speaker close-up, wide group, or three-person split before using another two-person split.",
+    "voice_visibility_guard": "If trusted voice attribution finds a speaker outside the selected layout, use a three-person split for that event."
+  },
+  "order_fix_count": 0,
+  "order_fixes": [],
+  "conversion_count": 0,
+  "conversions": [],
+  "voice_visibility_repair_count": 31,
+  "voice_visibility_repairs": [
+    {
+      "event_id": "main_full_007",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_02"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_009",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_018",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_02"
+      ]
+    },
+    {
+      "event_id": "main_full_023",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_02"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_028",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_030",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_033",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_041",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_047",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_051",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_02"
+      ]
+    },
+    {
+      "event_id": "main_full_053",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_055",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_057",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_061",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_02"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_063",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_066",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_071",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_02"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_076",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_02"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_02"
+      ]
+    },
+    {
+      "event_id": "main_full_078",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_080",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_02"
+      ]
+    },
+    {
+      "event_id": "main_full_084",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_02"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_02"
+      ]
+    },
+    {
+      "event_id": "main_full_089",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_095",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_108",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_121",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_127",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_131",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_136",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_139",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_144",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_03"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_02",
+        "person_03"
+      ]
+    },
+    {
+      "event_id": "main_full_146",
+      "converted_to": "three_person_split",
+      "previous_layout_type": "single",
+      "previous_panel_order": null,
+      "reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
+      "missing_speaker_person_ids": [
+        "person_01"
+      ],
+      "trusted_speaker_person_ids": [
+        "person_01",
+        "person_03"
+      ]
+    }
+  ],
+  "post_audit": {
+    "consecutive_two_up_violation_count": 0,
+    "consecutive_two_up_violations": [],
+    "panel_order_violation_count": 0,
+    "panel_order_violations": []
+  }
+}

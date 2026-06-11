@@ -1874,21 +1874,20 @@
   "one_minute_digest": {
     "schema_version": "digest_one_minute_shortening.v1",
     "target_duration_sec": 60,
-    "actual_duration_sec": 32.4,
+    "actual_duration_sec": 31.25,
     "selected_events": [
       {
-        "event_id": "digest_qa_01_question_01",
-        "source_event_id": "digest_qa_01_question_01",
+        "event_id": "digest_opening_murata_discomfort_01",
+        "source_event_id": "digest_opening_murata_discomfort_01",
         "local_start": 0.0,
-        "local_end": 4.89,
-        "duration_sec": 4.89,
-        "reason": "Opening digest now starts exactly at the spoken phrase '開発に関わる仕事をする中で'.",
+        "local_end": 3.74,
+        "duration_sec": 3.74,
+        "reason": "Opening interviewer question removed by user request; replaced with Murata's concise answer beat.",
         "captions": [
-          "開発に関わる仕事をする中で",
-          "これめっちゃ大変でしたとかありますか？"
+          "違和感を言うと良いものになっていく"
         ],
-        "speaker_person_id": "person_01",
-        "speaker_name": null
+        "speaker_person_id": "person_03",
+        "speaker_name": "村田"
       },
       {
         "event_id": "digest_qa_02_question_context_01",
@@ -2031,6 +2030,15 @@
           "ドメインをめっちゃ調べている",
           "正直僕より詳しいこともある"
         ]
+      },
+      {
+        "event_id": "digest_qa_01_question_01",
+        "duration_sec": null,
+        "reason": "Removed by user request from the opening digest.",
+        "captions": [
+          "開発に関わる仕事をする中で",
+          "これめっちゃ大変でしたとかありますか？"
+        ]
       }
     ],
     "removed_event_ids_by_user_request": [
@@ -2071,6 +2079,53 @@
       "updated_at": "2026-06-11T20:25:58+09:00",
       "change": "Fixed first digest video/audio/caption to start at the spoken '開発に関わる' phrase.",
       "event_id": "digest_qa_01_question_01"
+    },
+    {
+      "generated_at": "2026-06-11T21:10:39+09:00",
+      "change": "Removed opening digest interviewer question and replaced it with a Murata answer beat.",
+      "removed_event_id": "digest_qa_01_question_01",
+      "added_event_id": "digest_opening_murata_discomfort_01",
+      "removed_captions": [
+        "開発に関わる仕事をする中で",
+        "これめっちゃ大変でしたとかありますか？"
+      ],
+      "added_caption": "違和感を言うと良いものになっていく"
+    },
+    {
+      "generated_at": "2026-06-11T21:12:34+09:00",
+      "change": "Removed opening digest interviewer question and replaced it with a Murata answer beat.",
+      "removed_event_id": "digest_qa_01_question_01",
+      "added_event_id": "digest_opening_murata_discomfort_01",
+      "removed_captions": [
+        "開発に関わる仕事をする中で",
+        "これめっちゃ大変でしたとかありますか？"
+      ],
+      "added_caption": "違和感を言うと良いものになっていく"
+    },
+    {
+      "generated_at": "2026-06-11T21:13:59+09:00",
+      "change": "Removed opening digest interviewer question and replaced it with a Murata answer beat.",
+      "removed_event_id": "digest_qa_01_question_01",
+      "added_event_id": "digest_opening_murata_discomfort_01",
+      "removed_captions": [
+        "開発に関わる仕事をする中で",
+        "これめっちゃ大変でしたとかありますか？"
+      ],
+      "added_caption": "違和感を言うと良いものになっていく"
+    },
+    {
+      "generated_at": "2026-06-11T21:14:27+09:00",
+      "change": "Removed opening digest interviewer question and replaced it with a Murata answer beat.",
+      "removed_event_id": "digest_qa_01_question_01",
+      "added_event_id": "digest_opening_murata_discomfort_01",
+      "removed_captions": [
+        "開発に関わる仕事をする中で",
+        "これめっちゃ大変でしたとかありますか？"
+      ],
+      "added_caption": "違和感を言うと良いものになっていく"
     }
+  ],
+  "removed_event_ids_by_user_request": [
+    "digest_qa_01_question_01"
   ]
 }

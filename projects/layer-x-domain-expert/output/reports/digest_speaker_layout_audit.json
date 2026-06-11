@@ -14,35 +14,32 @@
   "issues": [],
   "events": [
     {
-      "event_id": "digest_qa_01_question_01",
+      "event_id": "digest_opening_murata_discomfort_01",
       "timeline_start": 0.0,
-      "timeline_end": 5.94,
+      "timeline_end": 3.74,
       "source": {
         "media_id": "group_wide",
-        "in": 1502.82,
-        "out": 1508.76
+        "in": 1412.34,
+        "out": 1416.08
       },
-      "layout_type": "wide_group",
-      "primary_camera_person_id": "person_01",
+      "layout_type": "single",
+      "primary_camera_person_id": "person_03",
       "visible_people": [
-        "person_01",
-        "person_02",
         "person_03"
       ],
       "caption_speaker_person_ids": [
-        "person_01"
+        "person_03"
       ],
       "speaker_focused": true,
       "caption_texts": [
-        "開発に関わる仕事をする中で",
-        "これめっちゃ大変でしたとかありますか？"
+        "違和感を言うと良いものになっていく"
       ],
       "decision_basis": "caption speaker IDs are assigned from SRT context and digest selection metadata; layout must make that speaker the primary camera target."
     },
     {
       "event_id": "digest_qa_02_question_context_01",
-      "timeline_start": 5.94,
-      "timeline_end": 14.67,
+      "timeline_start": 3.74,
+      "timeline_end": 12.47,
       "source": {
         "media_id": "group_wide",
         "in": 1595.62,
@@ -66,8 +63,8 @@
     },
     {
       "event_id": "digest_qa_03_answer_01",
-      "timeline_start": 14.67,
-      "timeline_end": 23.8,
+      "timeline_start": 12.47,
+      "timeline_end": 21.6,
       "source": {
         "media_id": "group_wide",
         "in": 1641.88,
@@ -91,8 +88,8 @@
     },
     {
       "event_id": "digest_qa_right_user_anxiety_01",
-      "timeline_start": 23.8,
-      "timeline_end": 29.2,
+      "timeline_start": 21.6,
+      "timeline_end": 27.0,
       "source": {
         "media_id": "group_wide",
         "in": 1752.35,
@@ -114,8 +111,8 @@
     },
     {
       "event_id": "digest_qa_middle_nemoto_value_01",
-      "timeline_start": 29.2,
-      "timeline_end": 33.45,
+      "timeline_start": 27.0,
+      "timeline_end": 31.25,
       "source": {
         "media_id": "group_wide",
         "in": 1903.86,

@@ -1,6 +1,6 @@
 {
   "schema_version": "digest_caption_audio_sync_audit.v1",
-  "generated_at": "2026-06-11T20:32:38+09:00",
+  "generated_at": "2026-06-11T22:13:13+09:00",
   "method": [
     "Compare each digest caption's local display window with its keyword-derived speech_window_sec.",
     "Cross-correlate group_wide master audio against the render audio source cam_person_02 at the expected app sync offset.",
@@ -13,36 +13,36 @@
   "stale_or_unfingerprinted_digest_segments": [
     {
       "index": 1,
-      "event_id": "digest_qa_01_question_01",
+      "event_id": "digest_opening_murata_discomfort_01",
       "status": "missing_or_empty_segment",
-      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_001_digest_qa_01_question_01.mp4",
-      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_001_digest_qa_01_question_01.json"
+      "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_001_digest_opening_murata_discomfort_01.mp4",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_001_digest_opening_murata_discomfort_01.json"
     },
     {
       "index": 2,
       "event_id": "digest_qa_02_question_context_01",
-      "status": "missing_or_empty_segment",
+      "status": "fingerprint_mismatch",
       "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_002_digest_qa_02_question_context_01.mp4",
       "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_002_digest_qa_02_question_context_01.json"
     },
     {
       "index": 3,
       "event_id": "digest_qa_03_answer_01",
-      "status": "missing_or_empty_segment",
+      "status": "fingerprint_mismatch",
       "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_003_digest_qa_03_answer_01.mp4",
       "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_003_digest_qa_03_answer_01.json"
     },
     {
       "index": 4,
       "event_id": "digest_qa_right_user_anxiety_01",
-      "status": "missing_or_empty_segment",
+      "status": "fingerprint_mismatch",
       "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_004_digest_qa_right_user_anxiety_01.mp4",
       "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_004_digest_qa_right_user_anxiety_01.json"
     },
     {
       "index": 5,
       "event_id": "digest_qa_middle_nemoto_value_01",
-      "status": "missing_or_empty_segment",
+      "status": "fingerprint_mismatch",
       "segment": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\segment_005_digest_qa_middle_nemoto_value_01.mp4",
       "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\videos\\preview_test_project1_style_segments\\_manifests\\segment_005_digest_qa_middle_nemoto_value_01.json"
     }
@@ -51,21 +51,21 @@
   "rendered_preview_reliable": false,
   "events": [
     {
-      "event_id": "digest_qa_01_question_01",
+      "event_id": "digest_opening_murata_discomfort_01",
       "timeline": [
         0.0,
-        4.89
+        3.74
       ],
       "reference_source": {
         "media_id": "group_wide",
-        "in": 1503.87,
-        "out": 1508.76
+        "in": 1412.34,
+        "out": 1416.08
       },
       "render_audio_expected_source": {
         "media_id": "cam_person_02",
         "source_window_sec": [
-          1511.338,
-          1516.228
+          1419.808,
+          1423.548
         ],
         "sync_offset_sec": 7.467854
       },
@@ -73,18 +73,18 @@
       "caption_issues": [],
       "audio_sync_residual": {
         "status": "ok",
-        "lag_sec": -0.0016,
-        "lag_ms": -1.6,
-        "correlation": 0.4128,
-        "overlap_samples": 91014
+        "lag_sec": -0.0007,
+        "lag_ms": -0.7,
+        "correlation": -0.4385,
+        "overlap_samples": 72629
       },
       "audio_sync_ok": true
     },
     {
       "event_id": "digest_qa_02_question_context_01",
       "timeline": [
-        4.89,
-        13.62
+        3.74,
+        12.47
       ],
       "reference_source": {
         "media_id": "group_wide",
@@ -113,8 +113,8 @@
     {
       "event_id": "digest_qa_03_answer_01",
       "timeline": [
-        13.62,
-        22.75
+        12.47,
+        21.6
       ],
       "reference_source": {
         "media_id": "group_wide",
@@ -143,8 +143,8 @@
     {
       "event_id": "digest_qa_right_user_anxiety_01",
       "timeline": [
-        22.75,
-        28.15
+        21.6,
+        27.0
       ],
       "reference_source": {
         "media_id": "group_wide",
@@ -173,8 +173,8 @@
     {
       "event_id": "digest_qa_middle_nemoto_value_01",
       "timeline": [
-        28.15,
-        32.4
+        27.0,
+        31.25
       ],
       "reference_source": {
         "media_id": "group_wide",

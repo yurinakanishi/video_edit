@@ -1,13 +1,13 @@
 {
   "schema_version": "caption_cut_continuation_report.v1",
-  "removed_previous_continuations": 0,
-  "updated_original_overlays": 99,
-  "added_continuation_overlays": 51,
+  "removed_previous_continuations": 49,
+  "updated_original_overlays": 93,
+  "added_continuation_overlays": 49,
   "continued_caption_count": 48,
   "continued_captions": [
     {
       "root_id": "main_caption_005",
-      "text": "決算期に終電で帰る状況は不健全だと思った",
+      "text": "決算期は終電帰りが当たり前だった",
       "source_window_sec": [
         883.54,
         895.98
@@ -21,7 +21,7 @@
     },
     {
       "root_id": "main_caption_007",
-      "text": "LayerXに惹かれた理由は開発に関われること",
+      "text": "開発と言われたことが転職のきっかけだった",
       "source_window_sec": [
         942.48,
         949.28
@@ -63,7 +63,7 @@
     },
     {
       "root_id": "main_caption_065",
-      "text": "スタートアップで経理として伸びる難しさがあった",
+      "text": "経理の伸ばし方が難しかった",
       "source_window_sec": [
         993.22,
         1007.86
@@ -91,7 +91,7 @@
     },
     {
       "root_id": "main_caption_073",
-      "text": "コードを書けなくても開発に関われる",
+      "text": "知識を活かして挑戦できる",
       "source_window_sec": [
         1285.16,
         1293.16
@@ -119,7 +119,7 @@
     },
     {
       "root_id": "main_caption_021",
-      "text": "労務を主務にしながら仕様検討にも深く関わる",
+      "text": "仕様の検討にも深く関わっている",
       "source_window_sec": [
         1347.92,
         1353.92
@@ -217,7 +217,7 @@
     },
     {
       "root_id": "main_caption_034",
-      "text": "LayerXのエンジニアはドメインをものすごく調べている",
+      "text": "エンジニアはドメインをものすごく調べている",
       "source_window_sec": [
         1619.16,
         1627.72
@@ -511,6 +511,20 @@
       ]
     },
     {
+      "root_id": "main_caption_080",
+      "text": "作業量を減らし確認時間を短縮する",
+      "source_window_sec": [
+        2465.2,
+        2482.2
+      ],
+      "handoff_window_end_sec": 2482.2,
+      "segment_count": 2,
+      "events": [
+        "main_full_117",
+        "main_full_118"
+      ]
+    },
+    {
       "root_id": "main_caption_auto_041",
       "text": "開発に関わるやりがいがある",
       "source_window_sec": [
@@ -595,20 +609,6 @@
       ]
     },
     {
-      "root_id": "main_caption_087",
-      "text": "働き方や時間の使い方そのものが変わっていく",
-      "source_window_sec": [
-        2786.22,
-        2804.86
-      ],
-      "handoff_window_end_sec": 2804.86,
-      "segment_count": 2,
-      "events": [
-        "main_full_138",
-        "main_full_139"
-      ]
-    },
-    {
       "root_id": "main_caption_auto_025",
       "text": "不安があると結局人に聞きに来る",
       "source_window_sec": [
@@ -638,7 +638,7 @@
     },
     {
       "root_id": "main_caption_091",
-      "text": "バックオフィス経験者におすすめできるキャリア",
+      "text": "バックオフィス経験者にはめちゃめちゃおすすめ",
       "source_window_sec": [
         2918.04,
         2942.04

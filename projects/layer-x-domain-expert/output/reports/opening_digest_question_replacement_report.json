@@ -1,0 +1,27 @@
+{
+  "schema_version": "opening_digest_question_replacement_report.v1",
+  "generated_at": "2026-06-11T21:14:27+09:00",
+  "removed_event": {
+    "event_id": "digest_qa_01_question_01",
+    "duration_sec": 4.89,
+    "captions": [
+      "開発に関わる仕事をする中で",
+      "これめっちゃ大変でしたとかありますか？"
+    ]
+  },
+  "added_event": {
+    "event_id": "digest_opening_murata_discomfort_01",
+    "duration_sec": 3.74,
+    "caption": "違和感を言うと良いものになっていく",
+    "reference_source": {
+      "media_id": "group_wide",
+      "in": 1412.34,
+      "out": 1416.08
+    },
+    "source": {
+      "media_id": "cam_person_03",
+      "in": 1425.72,
+      "out": 1429.46
+    }
+  }
+}

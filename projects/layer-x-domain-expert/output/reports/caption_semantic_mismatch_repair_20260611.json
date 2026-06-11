@@ -1,0 +1,260 @@
+{
+  "schema_version": "caption_semantic_mismatch_repair_20260611.v1",
+  "generated_at": "2026-06-11T22:14:29+09:00",
+  "repaired_count": 18,
+  "removed_count": 0,
+  "embedded_repaired_count": 11,
+  "embedded_removed_count": 4,
+  "repaired": [
+    {
+      "event_id": "main_full_011",
+      "caption_id": "main_caption_004",
+      "root_id": "main_caption_004",
+      "old_text": "経理の生産性に問題意識があった",
+      "new_text": "経理の生産性に問題意識があった",
+      "reason": "Source speech says 経理の生産性, not generic バックオフィス."
+    },
+    {
+      "event_id": "main_full_011",
+      "caption_id": "main_caption_005",
+      "root_id": "main_caption_005",
+      "old_text": "決算期は終電帰りが当たり前だった",
+      "new_text": "決算期は終電帰りが当たり前だった",
+      "reason": "Keep the caption on the concrete source statement and avoid combining it with another speaker's evaluation."
+    },
+    {
+      "event_id": "main_full_012",
+      "caption_id": "main_caption_005__cont__main_full_012",
+      "root_id": "main_caption_005",
+      "old_text": "決算期は終電帰りが当たり前だった",
+      "new_text": "決算期は終電帰りが当たり前だった",
+      "reason": "Keep the caption on the concrete source statement and avoid combining it with another speaker's evaluation."
+    },
+    {
+      "event_id": "main_full_015",
+      "caption_id": "main_caption_007",
+      "root_id": "main_caption_007",
+      "old_text": "開発と言われたことが転職のきっかけだった",
+      "new_text": "開発と言われたことが転職のきっかけだった",
+      "reason": "Source speech is about being told '開発' after enjoying the previous job."
+    },
+    {
+      "event_id": "main_full_016",
+      "caption_id": "main_caption_007__cont__main_full_016",
+      "root_id": "main_caption_007",
+      "old_text": "開発と言われたことが転職のきっかけだった",
+      "new_text": "開発と言われたことが転職のきっかけだった",
+      "reason": "Source speech is about being told '開発' after enjoying the previous job."
+    },
+    {
+      "event_id": "main_full_019",
+      "caption_id": "main_caption_065",
+      "root_id": "main_caption_065",
+      "old_text": "経理の伸ばし方が難しかった",
+      "new_text": "経理の伸ばし方が難しかった",
+      "reason": "Source speech says 経理としてどう伸ばしていくのか and めちゃくちゃ難しい; previous startup phrasing was too broad."
+    },
+    {
+      "event_id": "main_full_020",
+      "caption_id": "main_caption_065__cont__main_full_020",
+      "root_id": "main_caption_065",
+      "old_text": "経理の伸ばし方が難しかった",
+      "new_text": "経理の伸ばし方が難しかった",
+      "reason": "Source speech says 経理としてどう伸ばしていくのか and めちゃくちゃ難しい; previous startup phrasing was too broad."
+    },
+    {
+      "event_id": "main_full_027",
+      "caption_id": "main_caption_014",
+      "root_id": "main_caption_014",
+      "old_text": "何が作れるのかに興味を持ってLayerXに来た",
+      "new_text": "何が作れるのかに興味を持ってLayerXに来た",
+      "reason": "Source speech says どんなものができるんだろうと興味を持った."
+    },
+    {
+      "event_id": "main_full_038",
+      "caption_id": "main_caption_073",
+      "root_id": "main_caption_073",
+      "old_text": "知識を活かして挑戦できる",
+      "new_text": "知識を活かして挑戦できる",
+      "reason": "Source speech says 自分の知識を活かしていろんなことをやればいい; previous code wording was outside this source window."
+    },
+    {
+      "event_id": "main_full_039",
+      "caption_id": "main_caption_073__cont__main_full_039",
+      "root_id": "main_caption_073",
+      "old_text": "知識を活かして挑戦できる",
+      "new_text": "知識を活かして挑戦できる",
+      "reason": "Source speech says 自分の知識を活かしていろんなことをやればいい; previous code wording was outside this source window."
+    },
+    {
+      "event_id": "main_full_042",
+      "caption_id": "main_caption_021",
+      "root_id": "main_caption_021",
+      "old_text": "仕様の検討にも深く関わっている",
+      "new_text": "仕様の検討にも深く関わっている",
+      "reason": "Source speech supports 仕様検討に関わる; 労務を主務 is contextual but not in the caption source window."
+    },
+    {
+      "event_id": "main_full_043",
+      "caption_id": "main_caption_021__cont__main_full_043",
+      "root_id": "main_caption_021",
+      "old_text": "仕様の検討にも深く関わっている",
+      "new_text": "仕様の検討にも深く関わっている",
+      "reason": "Source speech supports 仕様検討に関わる; 労務を主務 is contextual but not in the caption source window."
+    },
+    {
+      "event_id": "main_full_060",
+      "caption_id": "main_caption_034",
+      "root_id": "main_caption_034",
+      "old_text": "エンジニアはドメインをものすごく調べている",
+      "new_text": "エンジニアはドメインをものすごく調べている",
+      "reason": "Source speech says 皆さんドメインの方めっちゃ調べてる; avoid over-specific LayerX wording."
+    },
+    {
+      "event_id": "main_full_061",
+      "caption_id": "main_caption_034__cont__main_full_061",
+      "root_id": "main_caption_034",
+      "old_text": "エンジニアはドメインをものすごく調べている",
+      "new_text": "エンジニアはドメインをものすごく調べている",
+      "reason": "Source speech says 皆さんドメインの方めっちゃ調べてる; avoid over-specific LayerX wording."
+    },
+    {
+      "event_id": "main_full_083",
+      "caption_id": "main_caption_auto_033",
+      "root_id": "main_caption_auto_033",
+      "old_text": "役所は「やらなくていい」とは答えない",
+      "new_text": "役所は「やらなくていい」とは答えない",
+      "reason": "Previous source window stopped before the actual '答え返ってこない' phrase."
+    },
+    {
+      "event_id": "main_full_089",
+      "caption_id": "main_caption_050",
+      "root_id": "main_caption_050",
+      "old_text": "AIはリサーチがすごく優秀",
+      "new_text": "AIはリサーチがすごく優秀",
+      "reason": "Source speech directly says AIのリサーチがすごい優秀; previous text over-interpreted the point."
+    },
+    {
+      "event_id": "main_full_147",
+      "caption_id": "main_caption_091",
+      "root_id": "main_caption_091",
+      "old_text": "バックオフィス経験者にはめちゃめちゃおすすめ",
+      "new_text": "バックオフィス経験者にはめちゃめちゃおすすめ",
+      "reason": "Source answer lands on おすすめ and めちゃめちゃおすすめ; make the caption answer-oriented, not question-title-like."
+    },
+    {
+      "event_id": "main_full_148",
+      "caption_id": "main_caption_091__cont__main_full_148",
+      "root_id": "main_caption_091",
+      "old_text": "バックオフィス経験者にはめちゃめちゃおすすめ",
+      "new_text": "バックオフィス経験者にはめちゃめちゃおすすめ",
+      "reason": "Source answer lands on おすすめ and めちゃめちゃおすすめ; make the caption answer-oriented, not question-title-like."
+    }
+  ],
+  "removed": [],
+  "embedded_repaired": [
+    {
+      "event_id": "main_full_011",
+      "caption_id": "main_caption_005",
+      "old_display_text": "決算期に終電で帰る状況は不健全だと思った",
+      "new_display_text": "決算期は終電帰りが当たり前だった",
+      "reason": "Keep the caption on the concrete source statement and avoid combining it with another speaker's evaluation."
+    },
+    {
+      "event_id": "main_full_011",
+      "caption_id": "main_caption_004",
+      "old_display_text": "バックオフィスの生産性に強い問題意識があった",
+      "new_display_text": "経理の生産性に問題意識があった",
+      "reason": "Source speech says 経理の生産性, not generic バックオフィス."
+    },
+    {
+      "event_id": "main_full_015",
+      "caption_id": "main_caption_007",
+      "old_display_text": "LayerXに惹かれた理由は開発に関われること",
+      "new_display_text": "開発と言われたことが転職のきっかけだった",
+      "reason": "Source speech is about being told '開発' after enjoying the previous job."
+    },
+    {
+      "event_id": "main_full_019",
+      "caption_id": "main_caption_065",
+      "old_display_text": "スタートアップで経理として伸びる難しさがあった",
+      "new_display_text": "経理の伸ばし方が難しかった",
+      "reason": "Source speech says 経理としてどう伸ばしていくのか and めちゃくちゃ難しい; previous startup phrasing was too broad."
+    },
+    {
+      "event_id": "main_full_027",
+      "caption_id": "main_caption_014",
+      "old_display_text": "勤怠を作るなら面白そうだと思ってLayerXに来た",
+      "new_display_text": "何が作れるのかに興味を持ってLayerXに来た",
+      "reason": "Source speech says どんなものができるんだろうと興味を持った."
+    },
+    {
+      "event_id": "main_full_038",
+      "caption_id": "main_caption_073",
+      "old_display_text": "コードを書けなくても開発に関われると思えた",
+      "new_display_text": "知識を活かして挑戦できる",
+      "reason": "Source speech says 自分の知識を活かしていろんなことをやればいい; previous code wording was outside this source window."
+    },
+    {
+      "event_id": "main_full_042",
+      "caption_id": "main_caption_021",
+      "old_display_text": "労務を主務にしながら仕様検討にも深く関わる",
+      "new_display_text": "仕様の検討にも深く関わっている",
+      "reason": "Source speech supports 仕様検討に関わる; 労務を主務 is contextual but not in the caption source window."
+    },
+    {
+      "event_id": "main_full_060",
+      "caption_id": "main_caption_034",
+      "old_display_text": "LayerXのエンジニアはドメインをものすごく調べている",
+      "new_display_text": "エンジニアはドメインをものすごく調べている",
+      "reason": "Source speech says 皆さんドメインの方めっちゃ調べてる; avoid over-specific LayerX wording."
+    },
+    {
+      "event_id": "main_full_083",
+      "caption_id": "main_caption_auto_033",
+      "old_display_text": "それこそ労務だって役所とかに聞いたら",
+      "new_display_text": "役所は「やらなくていい」とは答えない",
+      "reason": "Previous source window stopped before the actual '答え返ってこない' phrase."
+    },
+    {
+      "event_id": "main_full_089",
+      "caption_id": "main_caption_050",
+      "old_display_text": "AIの情報を制度や実務にどう落とし込むかが重要",
+      "new_display_text": "AIはリサーチがすごく優秀",
+      "reason": "Source speech directly says AIのリサーチがすごい優秀; previous text over-interpreted the point."
+    },
+    {
+      "event_id": "main_full_147",
+      "caption_id": "main_caption_091",
+      "old_display_text": "バックオフィス経験者におすすめできるキャリア",
+      "new_display_text": "バックオフィス経験者にはめちゃめちゃおすすめ",
+      "reason": "Source answer lands on おすすめ and めちゃめちゃおすすめ; make the caption answer-oriented, not question-title-like."
+    }
+  ],
+  "embedded_removed": [
+    {
+      "event_id": "main_full_027",
+      "caption_id": "main_caption_068",
+      "display_text": "LayerXのカルチャーでHRテックを作ることに興味を持った",
+      "reason": "Duplicate/over-interpreted HR-tech caption over the same source as main_caption_014."
+    },
+    {
+      "event_id": "main_full_031",
+      "caption_id": "main_caption_070",
+      "display_text": "人事企画ではカルチャーを見ることも重要になる",
+      "reason": "Interviewer question-derived caption; main captions should emphasize answers."
+    },
+    {
+      "event_id": "main_full_108",
+      "caption_id": "main_caption_auto_039",
+      "display_text": "そうなんですよ。それ実務なんで自分取り換えればそういう",
+      "reason": "Source speech is incomplete/unclear and the caption over-interprets it."
+    },
+    {
+      "event_id": "main_full_138",
+      "caption_id": "main_caption_087",
+      "display_text": "働き方や時間の使い方そのものが変わっていく",
+      "reason": "Interviewer question-derived caption; remove from displayed main captions."
+    }
+  ]
+}

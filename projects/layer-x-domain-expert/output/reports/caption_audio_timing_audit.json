@@ -1,34 +1,13 @@
 {
   "schema_version": "caption_audio_timing_audit.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-11T21:03:13+09:00",
+  "generated_at": "2026-06-11T22:15:29+09:00",
   "policy": "Every rendered caption start/end must match audio_alignment.speech_window_sec. No fixed text-length display durations are allowed.",
   "max_delta_sec": 0.04,
   "max_source_end_early_sec": 0.08,
-  "checked_caption_count": 152,
-  "strict_audio_timing_count": 152,
-  "issue_count": 2,
-  "ready": false,
-  "issues": [
-    {
-      "caption_root_id": "main_caption_075",
-      "section": "main",
-      "caption_id": "main_caption_075__cont__main_full_105",
-      "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
-      "reason": "caption_visibility_gap_across_cut",
-      "gap_sec": 9.62,
-      "left_end_sec": 2297.46,
-      "right_start_sec": 2307.08
-    },
-    {
-      "caption_root_id": "main_caption_auto_023",
-      "section": "main",
-      "caption_id": "main_caption_auto_023__cont__main_full_133",
-      "text": "バックオフィス経験を広く活かせると面白い",
-      "reason": "caption_visibility_gap_across_cut",
-      "gap_sec": 13.26,
-      "left_end_sec": 2717.46,
-      "right_start_sec": 2730.72
-    }
-  ]
+  "checked_caption_count": 142,
+  "strict_audio_timing_count": 142,
+  "issue_count": 0,
+  "ready": true,
+  "issues": []
 }

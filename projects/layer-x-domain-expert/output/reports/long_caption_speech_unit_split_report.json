@@ -1,0 +1,1685 @@
+{
+  "schema_version": "long_caption_speech_unit_split_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-12T02:42:58+09:00",
+  "root_cause": "Several punchline captions used a short editorial summary while their source/audio window still covered a longer multi-clause speech block. The continuation logic then kept that same short caption visible across the whole block, so the on-screen text stopped matching the spoken content.",
+  "policy": {
+    "single_source_of_truth": "edit_plan.json",
+    "long_caption_detection": {
+      "long_source_sec": 9.0,
+      "long_display_sec": 7.8,
+      "short_text_chars": 34
+    },
+    "repair": "Replace each long summary overlay with 1-3 speech-unit overlays whose source windows and text match the actual voice-attributed transcript segment."
+  },
+  "repair_count": 24,
+  "repairs": [
+    {
+      "root_caption_id": "main_caption_004",
+      "old_text": "経理の生産性に問題意識があった",
+      "old_source_window_sec": [
+        873.24,
+        883.54
+      ],
+      "old_source_duration_sec": 10.3,
+      "old_events": [
+        "main_full_011"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 2,
+      "new_units": [
+        {
+          "source_window_sec": [
+            873.24,
+            880.12
+          ],
+          "duration_sec": 6.88,
+          "text": "というよりは働いていく中で経理の生産性に対して",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            880.12,
+            883.54
+          ],
+          "duration_sec": 3.42,
+          "text": "すごい問題意識を感じることが多くて",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_011",
+          "caption_id": "main_caption_004__unit_01",
+          "timeline_start": 337.048,
+          "timeline_end": 343.928,
+          "source_window_sec": [
+            873.24,
+            880.12
+          ],
+          "text": "というよりは働いていく中で経理の生産性に対して",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_011",
+          "caption_id": "main_caption_004__unit_02",
+          "timeline_start": 343.928,
+          "timeline_end": 347.348,
+          "source_window_sec": [
+            880.12,
+            883.54
+          ],
+          "text": "すごい問題意識を感じることが多くて",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_011",
+      "old_text": "LayerXのカルチャーをベンチマークしていた",
+      "old_source_window_sec": [
+        1054.28,
+        1070.28
+      ],
+      "old_source_duration_sec": 16.0,
+      "old_events": [
+        "main_full_023",
+        "main_full_024"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 3,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1054.28,
+            1057.28
+          ],
+          "duration_sec": 3.0,
+          "text": "カルチャーの部分でベンチマークをする",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1057.28,
+            1061.28
+          ],
+          "duration_sec": 4.0,
+          "text": "すごく個人的にLayerXが\nすごい好きなんだと思うんですよ",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1061.28,
+            1070.28
+          ],
+          "duration_sec": 9.0,
+          "text": "なのですごく人事企画として職種人事企画だとするにあたってベンチマークしている会社さんだとずっと認識はして",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_023",
+          "caption_id": "main_caption_011__unit_01",
+          "timeline_start": 518.088,
+          "timeline_end": 521.088,
+          "source_window_sec": [
+            1054.28,
+            1057.28
+          ],
+          "text": "カルチャーの部分でベンチマークをする",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_023",
+          "caption_id": "main_caption_011__unit_02",
+          "timeline_start": 521.088,
+          "timeline_end": 525.088,
+          "source_window_sec": [
+            1057.28,
+            1061.28
+          ],
+          "text": "すごく個人的にLayerXが\nすごい好きなんだと思うんですよ",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_023",
+          "caption_id": "main_caption_011__unit_03",
+          "timeline_start": 525.088,
+          "timeline_end": 531.308,
+          "source_window_sec": [
+            1061.28,
+            1070.28
+          ],
+          "text": "なのですごく人事企画として職種人事企画だとするにあたってベンチマークしている会社さんだとずっと認識はして",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_024",
+          "caption_id": "main_caption_011__unit_03__cont__main_full_024",
+          "timeline_start": 531.308,
+          "timeline_end": 534.088,
+          "source_window_sec": [
+            1061.28,
+            1070.28
+          ],
+          "text": "なのですごく人事企画として職種人事企画だとするにあたってベンチマークしている会社さんだとずっと認識はして",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_014",
+      "old_text": "何が作れるのかに興味を持ってLayerXに来た",
+      "old_source_window_sec": [
+        1115.28,
+        1126.28
+      ],
+      "old_source_duration_sec": 11.0,
+      "old_events": [
+        "main_full_027"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 2,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1115.28,
+            1123.28
+          ],
+          "duration_sec": 8.0,
+          "text": "どんなものができるんだろうと一気に興味を持ち込んで全然本当に転職を考えていなかったのでじゃあ作りますと言",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1123.28,
+            1126.28
+          ],
+          "duration_sec": 3.0,
+          "text": "そこで勤怠を作ろうとしていた感じ",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_027",
+          "caption_id": "main_caption_014__unit_01",
+          "timeline_start": 579.088,
+          "timeline_end": 587.088,
+          "source_window_sec": [
+            1115.28,
+            1123.28
+          ],
+          "text": "どんなものができるんだろうと一気に興味を持ち込んで全然本当に転職を考えていなかったのでじゃあ作りますと言",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_027",
+          "caption_id": "main_caption_014__unit_02",
+          "timeline_start": 587.088,
+          "timeline_end": 590.088,
+          "source_window_sec": [
+            1123.28,
+            1126.28
+          ],
+          "text": "そこで勤怠を作ろうとしていた感じ",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_015",
+      "old_text": "開発に参画できる壁打ち相手として関われる",
+      "old_source_window_sec": [
+        1143.28,
+        1155.28
+      ],
+      "old_source_duration_sec": 12.0,
+      "old_events": [
+        "main_full_029"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 3,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1143.28,
+            1148.28
+          ],
+          "duration_sec": 5.0,
+          "text": "ただ開発に参画できるというかまさか壁打ち相手とし\nてさせていただくことがあると思うん",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1148.28,
+            1153.28
+          ],
+          "duration_sec": 5.0,
+          "text": "そのあたりもこっちでお貸し\nいただけますか誘い方をしていただいて",
+          "speaker_person_id": "person_01",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1153.28,
+            1155.28
+          ],
+          "duration_sec": 2.0,
+          "text": "こんな面白い状況があると私は思いました",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_029",
+          "caption_id": "main_caption_015__unit_01",
+          "timeline_start": 607.088,
+          "timeline_end": 612.088,
+          "source_window_sec": [
+            1143.28,
+            1148.28
+          ],
+          "text": "ただ開発に参画できるというかまさか壁打ち相手とし\nてさせていただくことがあると思うん",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_029",
+          "caption_id": "main_caption_015__unit_02",
+          "timeline_start": 612.088,
+          "timeline_end": 617.088,
+          "source_window_sec": [
+            1148.28,
+            1153.28
+          ],
+          "text": "そのあたりもこっちでお貸し\nいただけますか誘い方をしていただいて",
+          "speaker_person_id": "person_01"
+        },
+        {
+          "event_id": "main_full_029",
+          "caption_id": "main_caption_015__unit_03",
+          "timeline_start": 617.088,
+          "timeline_end": 619.088,
+          "source_window_sec": [
+            1153.28,
+            1155.28
+          ],
+          "text": "こんな面白い状況があると私は思いました",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_022",
+      "old_text": "実務のモヤモヤをプロダクトに落とし込める",
+      "old_source_window_sec": [
+        1368.92,
+        1380.92
+      ],
+      "old_source_duration_sec": 12.0,
+      "old_events": [
+        "main_full_044"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 3,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1368.92,
+            1371.92
+          ],
+          "duration_sec": 3.0,
+          "text": "落とし込んでもらえるというん",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1371.92,
+            1377.92
+          ],
+          "duration_sec": 6.0,
+          "text": "文句言うとすぐ次に楽しくなってきちゃうねこっちからすると",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1377.92,
+            1380.92
+          ],
+          "duration_sec": 3.0,
+          "text": "モヤモヤのが出てくるんで外に入れちゃう",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_044",
+          "caption_id": "main_caption_022__unit_01",
+          "timeline_start": 832.728,
+          "timeline_end": 835.728,
+          "source_window_sec": [
+            1368.92,
+            1371.92
+          ],
+          "text": "落とし込んでもらえるというん",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_044",
+          "caption_id": "main_caption_022__unit_02",
+          "timeline_start": 835.728,
+          "timeline_end": 841.728,
+          "source_window_sec": [
+            1371.92,
+            1377.92
+          ],
+          "text": "文句言うとすぐ次に楽しくなってきちゃうねこっちからすると",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_044",
+          "caption_id": "main_caption_022__unit_03",
+          "timeline_start": 841.728,
+          "timeline_end": 844.728,
+          "source_window_sec": [
+            1377.92,
+            1380.92
+          ],
+          "text": "モヤモヤのが出てくるんで外に入れちゃう",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_031",
+      "old_text": "当たり前の業務にも法律や会社ルールの背景がある",
+      "old_source_window_sec": [
+        1571.12,
+        1588.62
+      ],
+      "old_source_duration_sec": 17.5,
+      "old_events": [
+        "main_full_057",
+        "main_full_058"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 2,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1571.12,
+            1581.62
+          ],
+          "duration_sec": 10.5,
+          "text": "この辺も例えば業務として当たり前のことも意外と背景にこういう法律とか理由があるからとか",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1581.62,
+            1588.62
+          ],
+          "duration_sec": 7.0,
+          "text": "会社のルールがあるから\nとか結構そういう裏側の事情とかもある",
+          "speaker_person_id": "person_01",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_057",
+          "caption_id": "main_caption_031__unit_01",
+          "timeline_start": 1034.928,
+          "timeline_end": 1041.308,
+          "source_window_sec": [
+            1571.12,
+            1581.62
+          ],
+          "text": "この辺も例えば業務として当たり前のことも意外と背景にこういう法律とか理由があるからとか",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_058",
+          "caption_id": "main_caption_031__unit_01__cont__main_full_058",
+          "timeline_start": 1041.308,
+          "timeline_end": 1045.428,
+          "source_window_sec": [
+            1571.12,
+            1581.62
+          ],
+          "text": "この辺も例えば業務として当たり前のことも意外と背景にこういう法律とか理由があるからとか",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_058",
+          "caption_id": "main_caption_031__unit_02",
+          "timeline_start": 1045.428,
+          "timeline_end": 1052.428,
+          "source_window_sec": [
+            1581.62,
+            1588.62
+          ],
+          "text": "会社のルールがあるから\nとか結構そういう裏側の事情とかもある",
+          "speaker_person_id": "person_01"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_032",
+      "old_text": "何でも知っていそうに見える期待の高さが難しい",
+      "old_source_window_sec": [
+        1595.62,
+        1611.94
+      ],
+      "old_source_duration_sec": 16.32,
+      "old_events": [
+        "main_full_059",
+        "main_full_060"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 3,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1595.62,
+            1601.22
+          ],
+          "duration_sec": 5.6,
+          "text": "なんかドメインエキスパートって言うと\n何でも知ってそうな感じがある",
+          "speaker_person_id": "person_01",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1601.22,
+            1604.1
+          ],
+          "duration_sec": 2.88,
+          "text": "この辺へのハードルの高さというか",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1604.1,
+            1611.94
+          ],
+          "duration_sec": 7.84,
+          "text": "要は自分が知らないことも知ってるんじゃないかと思われることの難しさとか抵抗感というのもありましたね",
+          "speaker_person_id": "person_01",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_059",
+          "caption_id": "main_caption_032__unit_01",
+          "timeline_start": 1059.428,
+          "timeline_end": 1065.028,
+          "source_window_sec": [
+            1595.62,
+            1601.22
+          ],
+          "text": "なんかドメインエキスパートって言うと\n何でも知ってそうな感じがある",
+          "speaker_person_id": "person_01"
+        },
+        {
+          "event_id": "main_full_059",
+          "caption_id": "main_caption_032__unit_02",
+          "timeline_start": 1065.028,
+          "timeline_end": 1067.908,
+          "source_window_sec": [
+            1601.22,
+            1604.1
+          ],
+          "text": "この辺へのハードルの高さというか",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_059",
+          "caption_id": "main_caption_032__unit_03",
+          "timeline_start": 1067.908,
+          "timeline_end": 1071.308,
+          "source_window_sec": [
+            1604.1,
+            1611.94
+          ],
+          "text": "要は自分が知らないことも知ってるんじゃないかと思われることの難しさとか抵抗感というのもありましたね",
+          "speaker_person_id": "person_01"
+        },
+        {
+          "event_id": "main_full_060",
+          "caption_id": "main_caption_032__unit_03__cont__main_full_060",
+          "timeline_start": 1071.308,
+          "timeline_end": 1075.748,
+          "source_window_sec": [
+            1604.1,
+            1611.94
+          ],
+          "text": "要は自分が知らないことも知ってるんじゃないかと思われることの難しさとか抵抗感というのもありましたね",
+          "speaker_person_id": "person_01"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_047",
+      "old_text": "ルール調査だけでなくビジョンが必要になる",
+      "old_source_window_sec": [
+        1848.54,
+        1866.46
+      ],
+      "old_source_duration_sec": 17.92,
+      "old_events": [
+        "main_full_076",
+        "main_full_077"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 2,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1848.54,
+            1853.76
+          ],
+          "duration_sec": 5.22,
+          "text": "ルールを調べるだけなら\nエンジニアにもできる",
+          "speaker_person_id": "person_02",
+          "reason": "User-reported mismatch around 22:00; the first half is about rule research only."
+        },
+        {
+          "source_window_sec": [
+            1855.46,
+            1866.46
+          ],
+          "duration_sec": 11.0,
+          "text": "何を実現したいかという\nビジョンが必要になる",
+          "speaker_person_id": "person_01",
+          "reason": "User-reported mismatch around 22:00; the latter half is the vision point."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_076",
+          "caption_id": "main_caption_047__unit_01",
+          "timeline_start": 1312.348,
+          "timeline_end": 1317.568,
+          "source_window_sec": [
+            1848.54,
+            1853.76
+          ],
+          "text": "ルールを調べるだけなら\nエンジニアにもできる",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_076",
+          "caption_id": "main_caption_047__unit_02",
+          "timeline_start": 1319.268,
+          "timeline_end": 1326.308,
+          "source_window_sec": [
+            1855.46,
+            1866.46
+          ],
+          "text": "何を実現したいかという\nビジョンが必要になる",
+          "speaker_person_id": "person_01"
+        },
+        {
+          "event_id": "main_full_077",
+          "caption_id": "main_caption_047__unit_02__cont__main_full_077",
+          "timeline_start": 1326.308,
+          "timeline_end": 1330.268,
+          "source_window_sec": [
+            1855.46,
+            1866.46
+          ],
+          "text": "何を実現したいかという\nビジョンが必要になる",
+          "speaker_person_id": "person_01"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_049",
+      "old_text": "いらないものをちゃんと言ってあげる",
+      "old_source_window_sec": [
+        1903.86,
+        1922.1
+      ],
+      "old_source_duration_sec": 18.24,
+      "old_events": [
+        "main_full_079",
+        "main_full_080"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 3,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1903.86,
+            1907.86
+          ],
+          "duration_sec": 4.0,
+          "text": "何かいらないものをちゃんと言ってあげるというのも",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1907.86,
+            1916.36
+          ],
+          "duration_sec": 8.5,
+          "text": "たぶん皆さん経理とか労務のドメインを知っているからこれなくて大丈夫かなとか必要なものをどんどんやっちゃう",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            1916.36,
+            1922.1
+          ],
+          "duration_sec": 5.74,
+          "text": "たぶんいらないって言えるのが\n結構僕らのことだとこれはもうなくていいですとか",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_079",
+          "caption_id": "main_caption_049__unit_01",
+          "timeline_start": 1367.668,
+          "timeline_end": 1371.308,
+          "source_window_sec": [
+            1903.86,
+            1907.86
+          ],
+          "text": "何かいらないものをちゃんと言ってあげるというのも",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_080",
+          "caption_id": "main_caption_049__unit_01__cont__main_full_080",
+          "timeline_start": 1371.308,
+          "timeline_end": 1371.668,
+          "source_window_sec": [
+            1903.86,
+            1907.86
+          ],
+          "text": "何かいらないものをちゃんと言ってあげるというのも",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_080",
+          "caption_id": "main_caption_049__unit_02",
+          "timeline_start": 1371.668,
+          "timeline_end": 1380.168,
+          "source_window_sec": [
+            1907.86,
+            1916.36
+          ],
+          "text": "たぶん皆さん経理とか労務のドメインを知っているからこれなくて大丈夫かなとか必要なものをどんどんやっちゃう",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_080",
+          "caption_id": "main_caption_049__unit_03",
+          "timeline_start": 1380.168,
+          "timeline_end": 1385.908,
+          "source_window_sec": [
+            1916.36,
+            1922.1
+          ],
+          "text": "たぶんいらないって言えるのが\n結構僕らのことだとこれはもうなくていいですとか",
+          "speaker_person_id": "person_02"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_065",
+      "old_text": "経理の伸ばし方が難しかった",
+      "old_source_window_sec": [
+        993.22,
+        1007.86
+      ],
+      "old_source_duration_sec": 14.64,
+      "old_events": [
+        "main_full_019",
+        "main_full_020"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 3,
+      "new_units": [
+        {
+          "source_window_sec": [
+            993.22,
+            996.82
+          ],
+          "duration_sec": 3.6,
+          "text": "経理としてはどう伸ばしていくのか",
+          "speaker_person_id": "person_01",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            996.82,
+            998.58
+          ],
+          "duration_sec": 1.76,
+          "text": "めちゃくちゃ難しいですよ",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            998.58,
+            1002.62
+          ],
+          "duration_sec": 4.04,
+          "text": "大手だと結構マネジメントとかで",
+          "speaker_person_id": "person_01",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_019",
+          "caption_id": "main_caption_065__unit_01",
+          "timeline_start": 457.028,
+          "timeline_end": 460.628,
+          "source_window_sec": [
+            993.22,
+            996.82
+          ],
+          "text": "経理としてはどう伸ばしていくのか",
+          "speaker_person_id": "person_01"
+        },
+        {
+          "event_id": "main_full_019",
+          "caption_id": "main_caption_065__unit_02",
+          "timeline_start": 460.628,
+          "timeline_end": 462.388,
+          "source_window_sec": [
+            996.82,
+            998.58
+          ],
+          "text": "めちゃくちゃ難しいですよ",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_019",
+          "caption_id": "main_caption_065__unit_03",
+          "timeline_start": 462.388,
+          "timeline_end": 466.428,
+          "source_window_sec": [
+            998.58,
+            1002.62
+          ],
+          "text": "大手だと結構マネジメントとかで",
+          "speaker_person_id": "person_01"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_076",
+      "old_text": "ドメインの貯金がなくなったときの怖さがある",
+      "old_source_window_sec": [
+        2314.04,
+        2324.04
+      ],
+      "old_source_duration_sec": 10.0,
+      "old_events": [
+        "main_full_107"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2314.04,
+            2324.04
+          ],
+          "duration_sec": 10.0,
+          "text": "人事領域労務領域ならまあまあやれる気がするけどそれが何もなく貯金がなくなった時全然関係ないプロジェクトを",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_107",
+          "caption_id": "main_caption_076__unit_01",
+          "timeline_start": 1777.848,
+          "timeline_end": 1787.848,
+          "source_window_sec": [
+            2314.04,
+            2324.04
+          ],
+          "text": "人事領域労務領域ならまあまあやれる気がするけどそれが何もなく貯金がなくなった時全然関係ないプロジェクトを",
+          "speaker_person_id": "person_02"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_078",
+      "old_text": "月次申告などの作業を減らしたい",
+      "old_source_window_sec": [
+        2395.78,
+        2409.38
+      ],
+      "old_source_duration_sec": 13.6,
+      "old_events": [
+        "main_full_112",
+        "main_full_113"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 2,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2395.78,
+            2403.32
+          ],
+          "duration_sec": 7.54,
+          "text": "月次申告とかそれぞれの仕事を減らすというようなところは",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            2403.32,
+            2409.38
+          ],
+          "duration_sec": 6.06,
+          "text": "バクラクのプロダクトで貢献できることが\nあればいいなのはずっと思っていますね",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_112",
+          "caption_id": "main_caption_078__unit_01",
+          "timeline_start": 1859.588,
+          "timeline_end": 1866.308,
+          "source_window_sec": [
+            2395.78,
+            2403.32
+          ],
+          "text": "月次申告とかそれぞれの仕事を減らすというようなところは",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_113",
+          "caption_id": "main_caption_078__unit_01__cont__main_full_113",
+          "timeline_start": 1866.308,
+          "timeline_end": 1867.128,
+          "source_window_sec": [
+            2395.78,
+            2403.32
+          ],
+          "text": "月次申告とかそれぞれの仕事を減らすというようなところは",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_113",
+          "caption_id": "main_caption_078__unit_02",
+          "timeline_start": 1867.128,
+          "timeline_end": 1873.188,
+          "source_window_sec": [
+            2403.32,
+            2409.38
+          ],
+          "text": "バクラクのプロダクトで貢献できることが\nあればいいなのはずっと思っていますね",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_080",
+      "old_text": "作業量を減らし確認時間を短縮する",
+      "old_source_window_sec": [
+        2465.2,
+        2482.2
+      ],
+      "old_source_duration_sec": 17.0,
+      "old_events": [
+        "main_full_117",
+        "main_full_118"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2465.2,
+            2482.2
+          ],
+          "duration_sec": 17.0,
+          "text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_117",
+          "caption_id": "main_caption_080__unit_01",
+          "timeline_start": 1929.008,
+          "timeline_end": 1941.308,
+          "source_window_sec": [
+            2465.2,
+            2482.2
+          ],
+          "text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_118",
+          "caption_id": "main_caption_080__unit_01__cont__main_full_118",
+          "timeline_start": 1941.308,
+          "timeline_end": 1946.008,
+          "source_window_sec": [
+            2465.2,
+            2482.2
+          ],
+          "text": "もちろんエンジニアさんはプロだったんですけれどもそのあたりは思いを込めて作業量をチェック時間をすごく短縮",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_081",
+      "old_text": "自分の経験がプロダクトに活かされる瞬間がやりがい",
+      "old_source_window_sec": [
+        2523.2,
+        2534.2
+      ],
+      "old_source_duration_sec": 11.0,
+      "old_events": [
+        "main_full_121"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2523.2,
+            2534.2
+          ],
+          "duration_sec": 11.0,
+          "text": "感じますあれは本当に実務家の自分のいろんな話を生かしていただけたなという感じ",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_121",
+          "caption_id": "main_caption_081__unit_01",
+          "timeline_start": 1987.008,
+          "timeline_end": 1998.008,
+          "source_window_sec": [
+            2523.2,
+            2534.2
+          ],
+          "text": "感じますあれは本当に実務家の自分のいろんな話を生かしていただけたなという感じ",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_085",
+      "old_text": "AIで専門家の経験を多くの人が得られる",
+      "old_source_window_sec": [
+        2716.68,
+        2730.68
+      ],
+      "old_source_duration_sec": 14.0,
+      "old_events": [
+        "main_full_133",
+        "main_full_134"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2716.68,
+            2730.68
+          ],
+          "duration_sec": 14.0,
+          "text": "だからこういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_133",
+          "caption_id": "main_caption_085__unit_01",
+          "timeline_start": 2180.488,
+          "timeline_end": 2181.308,
+          "source_window_sec": [
+            2716.68,
+            2730.68
+          ],
+          "text": "だからこういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_134",
+          "caption_id": "main_caption_085__unit_01__cont__main_full_134",
+          "timeline_start": 2181.308,
+          "timeline_end": 2194.488,
+          "source_window_sec": [
+            2716.68,
+            2730.68
+          ],
+          "text": "だからこういうものをジョブローテーションの中に組み込んでみんなが経理とか労務とかバックオフィスの仕事を経",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_088",
+      "old_text": "対人領域では人に聞きに来ることがある",
+      "old_source_window_sec": [
+        2832.86,
+        2846.54
+      ],
+      "old_source_duration_sec": 13.68,
+      "old_events": [
+        "main_full_141",
+        "main_full_142"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 2,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2832.86,
+            2840.58
+          ],
+          "duration_sec": 7.72,
+          "text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るのがめちゃめちゃあったりするんですよ",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            2840.58,
+            2846.54
+          ],
+          "duration_sec": 5.96,
+          "text": "なのでまだそこまで労務配置が\n…労務と経理でもだいぶ違いそう",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_141",
+          "caption_id": "main_caption_088__unit_01",
+          "timeline_start": 2296.668,
+          "timeline_end": 2301.308,
+          "source_window_sec": [
+            2832.86,
+            2840.58
+          ],
+          "text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るのがめちゃめちゃあったりするんですよ",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_142",
+          "caption_id": "main_caption_088__unit_01__cont__main_full_142",
+          "timeline_start": 2301.308,
+          "timeline_end": 2304.388,
+          "source_window_sec": [
+            2832.86,
+            2840.58
+          ],
+          "text": "よくある仕事なんですけどこれやっても結局本当にって言って聞きに来るのがめちゃめちゃあったりするんですよ",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_142",
+          "caption_id": "main_caption_088__unit_02",
+          "timeline_start": 2304.388,
+          "timeline_end": 2310.348,
+          "source_window_sec": [
+            2840.58,
+            2846.54
+          ],
+          "text": "なのでまだそこまで労務配置が\n…労務と経理でもだいぶ違いそう",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_089",
+      "old_text": "経理の役割はなくなるのではなく変わっていく",
+      "old_source_window_sec": [
+        2869.76,
+        2881.32
+      ],
+      "old_source_duration_sec": 11.56,
+      "old_events": [
+        "main_full_144"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 2,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2869.76,
+            2876.04
+          ],
+          "duration_sec": 6.28,
+          "text": "ただ経理がAIによってなくなるとか失業します",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            2876.04,
+            2881.32
+          ],
+          "duration_sec": 5.28,
+          "text": "それはちょっと極端すぎるかなと思っていてさっきの話じゃないけど役割が変わる",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_144",
+          "caption_id": "main_caption_089__unit_01",
+          "timeline_start": 2333.568,
+          "timeline_end": 2339.848,
+          "source_window_sec": [
+            2869.76,
+            2876.04
+          ],
+          "text": "ただ経理がAIによってなくなるとか失業します",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_144",
+          "caption_id": "main_caption_089__unit_02",
+          "timeline_start": 2339.848,
+          "timeline_end": 2345.128,
+          "source_window_sec": [
+            2876.04,
+            2881.32
+          ],
+          "text": "それはちょっと極端すぎるかなと思っていてさっきの話じゃないけど役割が変わる",
+          "speaker_person_id": "person_02"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_093",
+      "old_text": "AIの活用や向き合い方も変わる",
+      "old_source_window_sec": [
+        2960.04,
+        2980.62
+      ],
+      "old_source_duration_sec": 20.58,
+      "old_events": [
+        "main_full_150"
+      ],
+      "removed_overlay_count": 1,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 3,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2960.04,
+            2966.04
+          ],
+          "duration_sec": 6.0,
+          "text": "さっきのAIの活用向き合い方が変わるとかというところもやっぱりこの経験を積むとだいぶイメージができるよう",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            2966.04,
+            2973.7
+          ],
+          "duration_sec": 7.66,
+          "text": "その後もちろん専門家としてすごく一個に尖っていくというのもいいキャリアだと思うん",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        },
+        {
+          "source_window_sec": [
+            2973.7,
+            2980.62
+          ],
+          "duration_sec": 6.92,
+          "text": "一瞬でもいいのでこういう形で広く見れると\nいうのはめちゃめちゃおすすめだ",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_150",
+          "caption_id": "main_caption_093__unit_01",
+          "timeline_start": 2423.848,
+          "timeline_end": 2429.848,
+          "source_window_sec": [
+            2960.04,
+            2966.04
+          ],
+          "text": "さっきのAIの活用向き合い方が変わるとかというところもやっぱりこの経験を積むとだいぶイメージができるよう",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_150",
+          "caption_id": "main_caption_093__unit_02",
+          "timeline_start": 2429.848,
+          "timeline_end": 2436.308,
+          "source_window_sec": [
+            2966.04,
+            2973.7
+          ],
+          "text": "その後もちろん専門家としてすごく一個に尖っていくというのもいいキャリアだと思うん",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_151",
+          "caption_id": "main_caption_093__unit_02__cont__main_full_151",
+          "timeline_start": 2436.308,
+          "timeline_end": 2437.508,
+          "source_window_sec": [
+            2966.04,
+            2973.7
+          ],
+          "text": "その後もちろん専門家としてすごく一個に尖っていくというのもいいキャリアだと思うん",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_151",
+          "caption_id": "main_caption_093__unit_03",
+          "timeline_start": 2437.508,
+          "timeline_end": 2444.428,
+          "source_window_sec": [
+            2973.7,
+            2980.62
+          ],
+          "text": "一瞬でもいいのでこういう形で広く見れると\nいうのはめちゃめちゃおすすめだ",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_auto_004",
+      "old_text": "やりたいことや違和感を普通に言える",
+      "old_source_window_sec": [
+        1433.38,
+        1443.26
+      ],
+      "old_source_duration_sec": 9.88,
+      "old_events": [
+        "main_full_048",
+        "main_full_049"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1433.38,
+            1443.26
+          ],
+          "duration_sec": 9.88,
+          "text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_048",
+          "caption_id": "main_caption_auto_004__unit_01",
+          "timeline_start": 897.188,
+          "timeline_end": 906.308,
+          "source_window_sec": [
+            1433.38,
+            1443.26
+          ],
+          "text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_049",
+          "caption_id": "main_caption_auto_004__unit_01__cont__main_full_049",
+          "timeline_start": 906.308,
+          "timeline_end": 907.068,
+          "source_window_sec": [
+            1433.38,
+            1443.26
+          ],
+          "text": "もうこれやりたいですとかちょっと違和感ありますとかそういうのを結構普通に言いますよね",
+          "speaker_person_id": "person_02"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_auto_009",
+      "old_text": "AIでエンジニアの生産性も上がっている",
+      "old_source_window_sec": [
+        1973.1,
+        1983.1
+      ],
+      "old_source_duration_sec": 10.0,
+      "old_events": [
+        "main_full_084",
+        "main_full_085"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            1973.1,
+            1983.1
+          ],
+          "duration_sec": 10.0,
+          "text": "AIが普及してきてエンジニアの人たちもすごい効率生産性も上がってる話もあると思うん",
+          "speaker_person_id": "person_01",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_084",
+          "caption_id": "main_caption_auto_009__unit_01",
+          "timeline_start": 1436.908,
+          "timeline_end": 1446.308,
+          "source_window_sec": [
+            1973.1,
+            1983.1
+          ],
+          "text": "AIが普及してきてエンジニアの人たちもすごい効率生産性も上がってる話もあると思うん",
+          "speaker_person_id": "person_01"
+        },
+        {
+          "event_id": "main_full_085",
+          "caption_id": "main_caption_auto_009__unit_01__cont__main_full_085",
+          "timeline_start": 1446.308,
+          "timeline_end": 1446.908,
+          "source_window_sec": [
+            1973.1,
+            1983.1
+          ],
+          "text": "AIが普及してきてエンジニアの人たちもすごい効率生産性も上がってる話もあると思うん",
+          "speaker_person_id": "person_01"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_auto_016",
+      "old_text": "AIから逃げない姿勢はキャリアに必要",
+      "old_source_window_sec": [
+        2203.74,
+        2222.74
+      ],
+      "old_source_duration_sec": 19.0,
+      "old_events": [
+        "main_full_099",
+        "main_full_100",
+        "main_full_101"
+      ],
+      "removed_overlay_count": 3,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2203.74,
+            2222.74
+          ],
+          "duration_sec": 19.0,
+          "text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないところはバック",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_099",
+          "caption_id": "main_caption_auto_016__unit_01",
+          "timeline_start": 1667.548,
+          "timeline_end": 1671.308,
+          "source_window_sec": [
+            2203.74,
+            2222.74
+          ],
+          "text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないところはバック",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_100",
+          "caption_id": "main_caption_auto_016__unit_01__cont__main_full_100",
+          "timeline_start": 1671.308,
+          "timeline_end": 1686.308,
+          "source_window_sec": [
+            2203.74,
+            2222.74
+          ],
+          "text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないところはバック",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_101",
+          "caption_id": "main_caption_auto_016__unit_01__cont__main_full_101",
+          "timeline_start": 1686.308,
+          "timeline_end": 1686.548,
+          "source_window_sec": [
+            2203.74,
+            2222.74
+          ],
+          "text": "大事だなとは思いますがそれが大前提としてAIが普及していくのは間違いないのでAIに逃げないところはバック",
+          "speaker_person_id": "person_02"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_auto_018",
+      "old_text": "PDMが合わなければ経理に戻ればいいと言われた",
+      "old_source_window_sec": [
+        2267.04,
+        2276.04
+      ],
+      "old_source_duration_sec": 9.0,
+      "old_events": [
+        "main_full_103",
+        "main_full_104"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2267.04,
+            2276.04
+          ],
+          "duration_sec": 9.0,
+          "text": "正直よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_103",
+          "caption_id": "main_caption_auto_018__unit_01",
+          "timeline_start": 1730.848,
+          "timeline_end": 1731.308,
+          "source_window_sec": [
+            2267.04,
+            2276.04
+          ],
+          "text": "正直よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_104",
+          "caption_id": "main_caption_auto_018__unit_01__cont__main_full_104",
+          "timeline_start": 1731.308,
+          "timeline_end": 1739.848,
+          "source_window_sec": [
+            2267.04,
+            2276.04
+          ],
+          "text": "正直よく言われるのが入った時にPDMにダメだったらまた経理に戻ればいいですよって言われてたんですよ",
+          "speaker_person_id": "person_02"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_auto_038",
+      "old_text": "ドメインがなくても活躍できる力を身につけたい",
+      "old_source_window_sec": [
+        2297.04,
+        2307.04
+      ],
+      "old_source_duration_sec": 10.0,
+      "old_events": [
+        "main_full_105",
+        "main_full_106"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2297.04,
+            2307.04
+          ],
+          "duration_sec": 10.0,
+          "text": "あとは今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できるようなスキ",
+          "speaker_person_id": "person_02",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_105",
+          "caption_id": "main_caption_auto_038__unit_01",
+          "timeline_start": 1760.848,
+          "timeline_end": 1761.308,
+          "source_window_sec": [
+            2297.04,
+            2307.04
+          ],
+          "text": "あとは今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できるようなスキ",
+          "speaker_person_id": "person_02"
+        },
+        {
+          "event_id": "main_full_106",
+          "caption_id": "main_caption_auto_038__unit_01__cont__main_full_106",
+          "timeline_start": 1761.308,
+          "timeline_end": 1770.848,
+          "source_window_sec": [
+            2297.04,
+            2307.04
+          ],
+          "text": "あとは今は結構ドメインのアドバンテージがあるっていいですけどそれがないところでも一定活躍できるようなスキ",
+          "speaker_person_id": "person_02"
+        }
+      ]
+    },
+    {
+      "root_caption_id": "main_caption_auto_041",
+      "old_text": "開発に関わるやりがいがある",
+      "old_source_window_sec": [
+        2514.2,
+        2523.2
+      ],
+      "old_source_duration_sec": 9.0,
+      "old_events": [
+        "main_full_120",
+        "main_full_121"
+      ],
+      "removed_overlay_count": 2,
+      "removed_plan_item_count": 1,
+      "new_unit_count": 1,
+      "new_units": [
+        {
+          "source_window_sec": [
+            2514.2,
+            2523.2
+          ],
+          "duration_sec": 9.0,
+          "text": "そういう時に結構何だろう開発に関わっているやりが\nい感じのシーンもあったりしますね",
+          "speaker_person_id": "person_03",
+          "reason": "Split long summarized caption into a speech-matched unit."
+        }
+      ],
+      "added_overlays": [
+        {
+          "event_id": "main_full_120",
+          "caption_id": "main_caption_auto_041__unit_01",
+          "timeline_start": 1978.008,
+          "timeline_end": 1986.308,
+          "source_window_sec": [
+            2514.2,
+            2523.2
+          ],
+          "text": "そういう時に結構何だろう開発に関わっているやりが\nい感じのシーンもあったりしますね",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "event_id": "main_full_121",
+          "caption_id": "main_caption_auto_041__unit_01__cont__main_full_121",
+          "timeline_start": 1986.308,
+          "timeline_end": 1987.008,
+          "source_window_sec": [
+            2514.2,
+            2523.2
+          ],
+          "text": "そういう時に結構何だろう開発に関わっているやりが\nい感じのシーンもあったりしますね",
+          "speaker_person_id": "person_03"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "single_crop_95_application_audit.v1",
+  "policy": {
+    "single_scale_h": 758,
+    "visible_height_ratio": 0.95,
+    "applies_to_crop_modes": [
+      "loose_full_frame",
+      "person_centered",
+      "single_intro_reference_fullscreen"
+    ]
+  },
+  "counts": [
+    {
+      "person_id": "person_01",
+      "media_id": "cam_person_01",
+      "crop_mode": "loose_full_frame",
+      "status": "applies_95",
+      "count": 9
+    },
+    {
+      "person_id": "person_02",
+      "media_id": "cam_person_02",
+      "crop_mode": "person_centered",
+      "status": "applies_95",
+      "count": 6
+    },
+    {
+      "person_id": "person_02",
+      "media_id": "cam_person_02",
+      "crop_mode": "single_intro_reference_fullscreen",
+      "status": "applies_95",
+      "count": 1
+    },
+    {
+      "person_id": "person_03",
+      "media_id": "cam_person_03",
+      "crop_mode": "person_centered",
+      "status": "applies_95",
+      "count": 24
+    },
+    {
+      "person_id": "person_03",
+      "media_id": "cam_person_03",
+      "crop_mode": "single_intro_reference_fullscreen",
+      "status": "applies_95",
+      "count": 1
+    }
+  ],
+  "non_applicable_person_single_events": []
+}

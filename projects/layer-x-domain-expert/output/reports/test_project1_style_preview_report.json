@@ -1,15 +1,12 @@
 {
   "schema_version": "test_project1_style_preview_report.v1",
-  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_240p_full.mp4",
-  "segments": 164,
+  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_full_240p.mp4",
+  "segments": 166,
   "segment_cache": {
     "reused": 0,
-    "rendered": 164,
-    "invalidated": 164,
-    "invalidated_reasons": {
-      "missing_or_empty_segment": 161,
-      "fingerprint_mismatch": 3
-    }
+    "rendered": 166,
+    "invalidated": 0,
+    "invalidated_reasons": {}
   },
   "max_duration_sec": null,
   "output_height": 240,

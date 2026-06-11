@@ -1,0 +1,48 @@
+{
+  "schema_version": "overlapping_duplicate_caption_removal_report.v1",
+  "generated_at": "2026-06-12T02:49:54+09:00",
+  "removed_root_reasons": {
+    "main_caption_023": "Overlaps the new split units for main_caption_022 in the same source window.",
+    "main_caption_strong_003": "Duplicate of the polished main_caption_078 unit.",
+    "main_caption_083": "Longer duplicate of main_caption_strong_005.",
+    "main_caption_auto_025": "Duplicate of the polished main_caption_088 unit."
+  },
+  "removed_overlay_count": 5,
+  "removed_overlays": [
+    {
+      "event_id": "main_full_044",
+      "root_caption_id": "main_caption_023",
+      "caption_id": "main_caption_023",
+      "text": "違和感を出すことでプロダクトが良くなる",
+      "reason": "Overlaps the new split units for main_caption_022 in the same source window."
+    },
+    {
+      "event_id": "main_full_113",
+      "root_caption_id": "main_caption_strong_003",
+      "caption_id": "main_caption_strong_003",
+      "text": "バクラクのプロダクトで貢献したい",
+      "reason": "Duplicate of the polished main_caption_078 unit."
+    },
+    {
+      "event_id": "main_full_126",
+      "root_caption_id": "main_caption_083",
+      "caption_id": "main_caption_083",
+      "text": "AIで作業者が分析できるようになる変化を支援したい",
+      "reason": "Longer duplicate of main_caption_strong_005."
+    },
+    {
+      "event_id": "main_full_141",
+      "root_caption_id": "main_caption_auto_025",
+      "caption_id": "main_caption_auto_025",
+      "text": "不安があると結局人に聞きに来る",
+      "reason": "Duplicate of the polished main_caption_088 unit."
+    },
+    {
+      "event_id": "main_full_142",
+      "root_caption_id": "main_caption_auto_025",
+      "caption_id": "main_caption_auto_025__cont__main_full_142",
+      "text": "不安があると結局人に聞きに来る",
+      "reason": "Duplicate of the polished main_caption_088 unit."
+    }
+  ]
+}

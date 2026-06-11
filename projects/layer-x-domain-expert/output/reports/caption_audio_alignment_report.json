@@ -3,119 +3,23 @@
     "schema_version": "caption_audio_alignment.v1",
     "method": "RMS energy speech bounds from group_wide master audio, applied after caption splitting",
     "audio_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\audio\\group_wide_mono_16k.wav",
-    "aligned_group_count": 128,
-    "changed_event_count": 108,
+    "aligned_group_count": 103,
+    "changed_event_count": 12,
     "changed_events": [
-      "main_full_003",
-      "main_full_004",
-      "main_full_005",
-      "main_full_007",
-      "main_full_008",
-      "main_full_009",
-      "main_full_010",
-      "main_full_011",
-      "main_full_013",
-      "main_full_014",
-      "main_full_015",
-      "main_full_016",
-      "main_full_018",
-      "main_full_020",
-      "main_full_021",
-      "main_full_023",
-      "main_full_024",
-      "main_full_026",
-      "main_full_027",
-      "main_full_029",
-      "main_full_030",
-      "main_full_032",
-      "main_full_033",
-      "main_full_034",
-      "main_full_035",
-      "main_full_036",
-      "main_full_038",
-      "main_full_039",
-      "main_full_040",
-      "main_full_042",
-      "main_full_043",
-      "main_full_044",
-      "main_full_045",
-      "main_full_046",
-      "main_full_048",
-      "main_full_049",
-      "main_full_051",
-      "main_full_053",
-      "main_full_054",
-      "main_full_055",
-      "main_full_057",
-      "main_full_059",
-      "main_full_060",
-      "main_full_061",
-      "main_full_062",
-      "main_full_063",
-      "main_full_065",
-      "main_full_066",
-      "main_full_067",
-      "main_full_069",
-      "main_full_071",
-      "main_full_072",
-      "main_full_073",
-      "main_full_074",
-      "main_full_075",
-      "main_full_077",
-      "main_full_079",
-      "main_full_081",
-      "main_full_082",
-      "main_full_083",
+      "main_full_070",
+      "main_full_080",
       "main_full_084",
-      "main_full_086",
-      "main_full_087",
-      "main_full_089",
-      "main_full_090",
-      "main_full_091",
-      "main_full_093",
-      "main_full_094",
-      "main_full_095",
-      "main_full_097",
-      "main_full_098",
-      "main_full_100",
-      "main_full_101",
-      "main_full_102",
-      "main_full_104",
-      "main_full_105",
-      "main_full_106",
-      "main_full_108",
-      "main_full_110",
-      "main_full_111",
-      "main_full_112",
-      "main_full_114",
-      "main_full_116",
-      "main_full_117",
-      "main_full_119",
-      "main_full_120",
-      "main_full_121",
-      "main_full_123",
+      "main_full_113",
       "main_full_124",
-      "main_full_127",
-      "main_full_129",
       "main_full_130",
+      "main_full_131",
       "main_full_132",
       "main_full_134",
-      "main_full_135",
       "main_full_136",
-      "main_full_138",
-      "main_full_139",
-      "main_full_140",
-      "main_full_141",
       "main_full_143",
-      "main_full_144",
-      "main_full_146",
-      "main_full_147",
-      "main_full_149",
-      "main_full_150",
-      "main_intro_wide_context_001",
-      "main_intro_yano_explains_002"
+      "main_full_150"
     ],
-    "overlap_adjustment_count": 4
+    "overlap_adjustment_count": 2
   },
   "groups": [
     {
@@ -149,22 +53,17 @@
       "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
     },
     {
-      "event_id": "digest_qa_04_question_01",
-      "status": "skipped_digest_manual_timing",
-      "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
-    },
-    {
       "event_id": "digest_qa_04_answer_02",
       "status": "skipped_digest_manual_timing",
       "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
     },
     {
-      "event_id": "digest_qa_04_answer_03",
+      "event_id": "digest_qa_04_answer_02_short02",
       "status": "skipped_digest_manual_timing",
       "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
     },
     {
-      "event_id": "digest_qa_05_question_01",
+      "event_id": "digest_qa_04_answer_02_short03",
       "status": "skipped_digest_manual_timing",
       "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
     },
@@ -172,176 +71,6 @@
       "event_id": "digest_qa_05_answer_02",
       "status": "skipped_digest_manual_timing",
       "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
-    },
-    {
-      "event_id": "digest_qa_05_answer_03",
-      "status": "skipped_digest_manual_timing",
-      "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
-    },
-    {
-      "event_id": "digest_qa_05_answer_04",
-      "status": "skipped_digest_manual_timing",
-      "reason": "Digest captions are manually selected editorial excerpts; RMS speech-bound snapping can cut quiet sentence endings and make captions appear before the spoken phrase."
-    },
-    {
-      "event_id": "main_intro_wide_context_001",
-      "group_size": 2,
-      "source_window_sec": [
-        568.04,
-        572.36
-      ],
-      "speech_window_sec": [
-        568.05,
-        572.36
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.009142,
-        "peak": 0.037992,
-        "threshold": 0.016456,
-        "active_frame_count": 155
-      }
-    },
-    {
-      "event_id": "main_intro_yano_explains_002",
-      "group_size": 1,
-      "source_window_sec": [
-        578.52,
-        582.42
-      ],
-      "speech_window_sec": [
-        578.52,
-        582.42
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008291,
-        "peak": 0.061053,
-        "threshold": 0.014923,
-        "active_frame_count": 159
-      }
-    },
-    {
-      "event_id": "main_full_003",
-      "group_size": 1,
-      "source_window_sec": [
-        737.56,
-        740.94
-      ],
-      "speech_window_sec": [
-        737.62,
-        740.53
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008547,
-        "peak": 0.03103,
-        "threshold": 0.015384,
-        "active_frame_count": 134
-      }
-    },
-    {
-      "event_id": "main_full_004",
-      "group_size": 5,
-      "source_window_sec": [
-        766.06,
-        784.38
-      ],
-      "speech_window_sec": [
-        766.2,
-        784.38
-      ],
-      "changed_overlays": 5,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008476,
-        "peak": 0.031691,
-        "threshold": 0.015257,
-        "active_frame_count": 636
-      }
-    },
-    {
-      "event_id": "main_full_005",
-      "group_size": 1,
-      "source_window_sec": [
-        786.18,
-        795.88
-      ],
-      "speech_window_sec": [
-        787.57,
-        795.51
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007402,
-        "peak": 0.031303,
-        "threshold": 0.013324,
-        "active_frame_count": 196
-      }
-    },
-    {
-      "event_id": "main_full_007",
-      "group_size": 1,
-      "source_window_sec": [
-        795.88,
-        802.02
-      ],
-      "speech_window_sec": [
-        796.13,
-        802.02
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.006911,
-        "peak": 0.012231,
-        "threshold": 0.012439,
-        "active_frame_count": 29
-      }
-    },
-    {
-      "event_id": "main_full_008",
-      "group_size": 1,
-      "source_window_sec": [
-        813.14,
-        820.14
-      ],
-      "speech_window_sec": [
-        813.81,
-        820.14
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007756,
-        "peak": 0.02124,
-        "threshold": 0.01396,
-        "active_frame_count": 171
-      }
-    },
-    {
-      "event_id": "main_full_009",
-      "group_size": 1,
-      "source_window_sec": [
-        840.14,
-        844.38
-      ],
-      "speech_window_sec": [
-        840.23,
-        844.38
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008894,
-        "peak": 0.04398,
-        "threshold": 0.01601,
-        "active_frame_count": 171
-      }
     },
     {
       "event_id": "main_full_010",
@@ -354,7 +83,7 @@
         869.44,
         873.08
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008665,
@@ -374,53 +103,13 @@
         880.49,
         883.08
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008534,
         "peak": 0.027724,
         "threshold": 0.015361,
         "active_frame_count": 85
-      }
-    },
-    {
-      "event_id": "main_full_013",
-      "group_size": 2,
-      "source_window_sec": [
-        909.9,
-        913.0
-      ],
-      "speech_window_sec": [
-        910.5,
-        913.0
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007895,
-        "peak": 0.027505,
-        "threshold": 0.014212,
-        "active_frame_count": 80
-      }
-    },
-    {
-      "event_id": "main_full_014",
-      "group_size": 2,
-      "source_window_sec": [
-        922.26,
-        925.38
-      ],
-      "speech_window_sec": [
-        922.26,
-        925.06
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.010647,
-        "peak": 0.033857,
-        "threshold": 0.019165,
-        "active_frame_count": 100
       }
     },
     {
@@ -434,7 +123,7 @@
         942.48,
         944.78
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.010497,
@@ -454,7 +143,7 @@
         960.0,
         963.24
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008601,
@@ -474,7 +163,7 @@
         984.23,
         987.33
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009015,
@@ -484,7 +173,7 @@
       }
     },
     {
-      "event_id": "main_full_020",
+      "event_id": "main_full_019",
       "group_size": 1,
       "source_window_sec": [
         993.22,
@@ -494,7 +183,7 @@
         993.63,
         996.75
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008035,
@@ -514,7 +203,7 @@
         1022.48,
         1024.79
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008211,
@@ -534,33 +223,13 @@
         1054.45,
         1057.28
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008457,
         "peak": 0.019827,
         "threshold": 0.015223,
         "active_frame_count": 62
-      }
-    },
-    {
-      "event_id": "main_full_024",
-      "group_size": 1,
-      "source_window_sec": [
-        1077.28,
-        1080.28
-      ],
-      "speech_window_sec": [
-        1077.33,
-        1080.04
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008541,
-        "peak": 0.021179,
-        "threshold": 0.015373,
-        "active_frame_count": 47
       }
     },
     {
@@ -574,7 +243,7 @@
         1105.66,
         1115.08
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008297,
@@ -594,7 +263,7 @@
         1115.32,
         1122.51
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008292,
@@ -614,7 +283,7 @@
         1143.81,
         1148.04
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008878,
@@ -624,27 +293,7 @@
       }
     },
     {
-      "event_id": "main_full_030",
-      "group_size": 1,
-      "source_window_sec": [
-        1165.28,
-        1169.28
-      ],
-      "speech_window_sec": [
-        1165.63,
-        1169.28
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007902,
-        "peak": 0.040859,
-        "threshold": 0.014223,
-        "active_frame_count": 103
-      }
-    },
-    {
-      "event_id": "main_full_032",
+      "event_id": "main_full_031",
       "group_size": 1,
       "source_window_sec": [
         1181.28,
@@ -654,7 +303,7 @@
         1181.37,
         1183.28
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008242,
@@ -664,28 +313,8 @@
       }
     },
     {
-      "event_id": "main_full_033",
-      "group_size": 1,
-      "source_window_sec": [
-        1199.28,
-        1201.28
-      ],
-      "speech_window_sec": [
-        1199.43,
-        1200.9
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007805,
-        "peak": 0.021832,
-        "threshold": 0.014049,
-        "active_frame_count": 29
-      }
-    },
-    {
       "event_id": "main_full_034",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         1221.28,
         1225.28
@@ -694,33 +323,13 @@
         1221.28,
         1224.35
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.010013,
         "peak": 0.032445,
         "threshold": 0.018024,
         "active_frame_count": 144
-      }
-    },
-    {
-      "event_id": "main_full_035",
-      "group_size": 1,
-      "source_window_sec": [
-        1236.28,
-        1240.28
-      ],
-      "speech_window_sec": [
-        1236.35,
-        1240.28
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.009138,
-        "peak": 0.031866,
-        "threshold": 0.016448,
-        "active_frame_count": 147
       }
     },
     {
@@ -734,7 +343,7 @@
         1251.52,
         1254.48
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008813,
@@ -754,7 +363,7 @@
         1277.16,
         1279.16
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.012777,
@@ -774,33 +383,13 @@
         1285.16,
         1293.16
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009835,
         "peak": 0.035658,
         "threshold": 0.017703,
         "active_frame_count": 297
-      }
-    },
-    {
-      "event_id": "main_full_040",
-      "group_size": 1,
-      "source_window_sec": [
-        1307.16,
-        1311.16
-      ],
-      "speech_window_sec": [
-        1307.16,
-        1311.16
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.010636,
-        "peak": 0.055057,
-        "threshold": 0.019144,
-        "active_frame_count": 157
       }
     },
     {
@@ -814,7 +403,7 @@
         1317.27,
         1321.16
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007755,
@@ -834,7 +423,7 @@
         1344.92,
         1347.92
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009183,
@@ -854,7 +443,7 @@
         1357.06,
         1359.92
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007786,
@@ -874,7 +463,7 @@
         1369.17,
         1371.92
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008895,
@@ -894,7 +483,7 @@
         1388.92,
         1390.92
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007425,
@@ -914,7 +503,7 @@
         1405.78,
         1408.32
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.00803,
@@ -925,7 +514,7 @@
     },
     {
       "event_id": "main_full_048",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         1433.38,
         1443.26
@@ -934,93 +523,13 @@
         1433.38,
         1441.95
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009652,
         "peak": 0.071482,
         "threshold": 0.017373,
         "active_frame_count": 469
-      }
-    },
-    {
-      "event_id": "main_full_049",
-      "group_size": 1,
-      "source_window_sec": [
-        1447.58,
-        1448.66
-      ],
-      "speech_window_sec": [
-        1447.595,
-        1447.955
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.006951,
-        "peak": 0.011644,
-        "threshold": 0.012512,
-        "active_frame_count": 4
-      }
-    },
-    {
-      "event_id": "main_full_051",
-      "group_size": 1,
-      "source_window_sec": [
-        1471.76,
-        1474.6
-      ],
-      "speech_window_sec": [
-        1471.78,
-        1474.6
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.009057,
-        "peak": 0.033779,
-        "threshold": 0.016302,
-        "active_frame_count": 84
-      }
-    },
-    {
-      "event_id": "main_full_053",
-      "group_size": 2,
-      "source_window_sec": [
-        1500.72,
-        1508.76
-      ],
-      "speech_window_sec": [
-        1500.86,
-        1506.66
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007738,
-        "peak": 0.031331,
-        "threshold": 0.013928,
-        "active_frame_count": 280
-      }
-    },
-    {
-      "event_id": "main_full_054",
-      "group_size": 1,
-      "source_window_sec": [
-        1519.76,
-        1524.56
-      ],
-      "speech_window_sec": [
-        1519.95,
-        1524.4
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.009236,
-        "peak": 0.039533,
-        "threshold": 0.016626,
-        "active_frame_count": 159
       }
     },
     {
@@ -1034,7 +543,7 @@
         1535.3,
         1538.22
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008838,
@@ -1054,7 +563,7 @@
         1566.75,
         1569.91
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007888,
@@ -1074,7 +583,7 @@
         1595.69,
         1600.93
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008639,
@@ -1094,7 +603,7 @@
         1612.0,
         1618.68
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008773,
@@ -1114,7 +623,7 @@
         1630.4,
         1633.65
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008907,
@@ -1134,7 +643,7 @@
         1638.76,
         1641.88
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008139,
@@ -1154,7 +663,7 @@
         1653.67,
         1654.43
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009059,
@@ -1174,53 +683,13 @@
         1663.96,
         1664.94
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008775,
         "peak": 0.031171,
         "threshold": 0.015795,
         "active_frame_count": 38
-      }
-    },
-    {
-      "event_id": "main_full_065",
-      "group_size": 2,
-      "source_window_sec": [
-        1681.5,
-        1688.5
-      ],
-      "speech_window_sec": [
-        1682.11,
-        1688.5
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.00887,
-        "peak": 0.024407,
-        "threshold": 0.015966,
-        "active_frame_count": 126
-      }
-    },
-    {
-      "event_id": "main_full_066",
-      "group_size": 2,
-      "source_window_sec": [
-        1697.5,
-        1709.5
-      ],
-      "speech_window_sec": [
-        1697.5,
-        1708.87
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008018,
-        "peak": 0.033541,
-        "threshold": 0.014432,
-        "active_frame_count": 374
       }
     },
     {
@@ -1234,7 +703,7 @@
         1720.22,
         1734.5
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007916,
@@ -1254,7 +723,7 @@
         1742.54,
         1749.25
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008252,
@@ -1274,13 +743,33 @@
         1752.5,
         1755.5
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009937,
         "peak": 0.027823,
         "threshold": 0.017887,
         "active_frame_count": 81
+      }
+    },
+    {
+      "event_id": "main_full_070",
+      "group_size": 1,
+      "source_window_sec": [
+        1757.5,
+        1761.5
+      ],
+      "speech_window_sec": [
+        1757.5,
+        1761.08
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00852,
+        "peak": 0.023079,
+        "threshold": 0.015336,
+        "active_frame_count": 104
       }
     },
     {
@@ -1294,7 +783,7 @@
         1782.07,
         1784.43
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008828,
@@ -1314,7 +803,7 @@
         1790.64,
         1791.5
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007994,
@@ -1334,7 +823,7 @@
         1804.0,
         1806.06
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009067,
@@ -1354,7 +843,7 @@
         1827.14,
         1830.41
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007457,
@@ -1374,7 +863,7 @@
         1845.9,
         1848.33
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009201,
@@ -1385,7 +874,7 @@
     },
     {
       "event_id": "main_full_077",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         1875.46,
         1879.46
@@ -1394,7 +883,7 @@
         1875.46,
         1879.18
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008603,
@@ -1405,7 +894,7 @@
     },
     {
       "event_id": "main_full_079",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         1903.86,
         1907.86
@@ -1414,7 +903,7 @@
         1903.94,
         1907.62
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008351,
@@ -1424,28 +913,28 @@
       }
     },
     {
-      "event_id": "main_full_081",
-      "group_size": 2,
+      "event_id": "main_full_080",
+      "group_size": 1,
       "source_window_sec": [
-        1922.1,
-        1928.86
+        1907.86,
+        1916.36
       ],
       "speech_window_sec": [
-        1922.21,
-        1928.86
+        1907.9,
+        1915.85
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008947,
-        "peak": 0.035838,
-        "threshold": 0.016104,
-        "active_frame_count": 300
+        "floor": 0.009392,
+        "peak": 0.033567,
+        "threshold": 0.016906,
+        "active_frame_count": 314
       }
     },
     {
       "event_id": "main_full_082",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         1935.7,
         1940.6
@@ -1454,7 +943,7 @@
         1935.74,
         1940.56
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008628,
@@ -1474,7 +963,7 @@
         1956.14,
         1959.16
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008773,
@@ -1485,7 +974,7 @@
     },
     {
       "event_id": "main_full_084",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         1973.1,
         1983.1
@@ -1494,7 +983,7 @@
         1973.49,
         1982.63
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008537,
@@ -1514,7 +1003,7 @@
         1995.1,
         2000.1
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007446,
@@ -1534,7 +1023,7 @@
         2025.93,
         2029.12
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008147,
@@ -1545,7 +1034,7 @@
     },
     {
       "event_id": "main_full_089",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2042.18,
         2046.14
@@ -1554,33 +1043,13 @@
         2043.59,
         2046.06
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007302,
         "peak": 0.020133,
         "threshold": 0.013144,
         "active_frame_count": 97
-      }
-    },
-    {
-      "event_id": "main_full_090",
-      "group_size": 1,
-      "source_window_sec": [
-        2065.76,
-        2068.82
-      ],
-      "speech_window_sec": [
-        2065.79,
-        2068.15
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007685,
-        "peak": 0.01648,
-        "threshold": 0.013833,
-        "active_frame_count": 46
       }
     },
     {
@@ -1594,7 +1063,7 @@
         2081.66,
         2084.56
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008003,
@@ -1614,7 +1083,7 @@
         2104.74,
         2106.31
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009613,
@@ -1624,28 +1093,8 @@
       }
     },
     {
-      "event_id": "main_full_094",
-      "group_size": 2,
-      "source_window_sec": [
-        2122.74,
-        2131.74
-      ],
-      "speech_window_sec": [
-        2123.03,
-        2131.32
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007816,
-        "peak": 0.023944,
-        "threshold": 0.014069,
-        "active_frame_count": 263
-      }
-    },
-    {
       "event_id": "main_full_095",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2139.74,
         2149.74
@@ -1654,7 +1103,7 @@
         2139.92,
         2149.65
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007598,
@@ -1674,7 +1123,7 @@
         2165.74,
         2169.91
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.00832,
@@ -1694,7 +1143,7 @@
         2180.92,
         2183.36
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008958,
@@ -1705,7 +1154,7 @@
     },
     {
       "event_id": "main_full_100",
-      "group_size": 3,
+      "group_size": 1,
       "source_window_sec": [
         2203.74,
         2222.74
@@ -1714,7 +1163,7 @@
         2203.74,
         2222.03
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009586,
@@ -1724,28 +1173,8 @@
       }
     },
     {
-      "event_id": "main_full_101",
-      "group_size": 2,
-      "source_window_sec": [
-        2222.74,
-        2229.4
-      ],
-      "speech_window_sec": [
-        2222.76,
-        2229.02
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008428,
-        "peak": 0.020953,
-        "threshold": 0.01517,
-        "active_frame_count": 169
-      }
-    },
-    {
       "event_id": "main_full_102",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2241.54,
         2248.04
@@ -1754,7 +1183,7 @@
         2242.04,
         2247.41
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009274,
@@ -1765,7 +1194,7 @@
     },
     {
       "event_id": "main_full_104",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2267.04,
         2276.04
@@ -1774,7 +1203,7 @@
         2267.04,
         2276.04
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009941,
@@ -1784,7 +1213,7 @@
       }
     },
     {
-      "event_id": "main_full_105",
+      "event_id": "main_full_104",
       "group_size": 1,
       "source_window_sec": [
         2276.04,
@@ -1794,7 +1223,7 @@
         2276.25,
         2282.04
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008657,
@@ -1805,7 +1234,7 @@
     },
     {
       "event_id": "main_full_106",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2297.04,
         2307.04
@@ -1814,7 +1243,7 @@
         2297.04,
         2306.27
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.00845,
@@ -1824,8 +1253,8 @@
       }
     },
     {
-      "event_id": "main_full_108",
-      "group_size": 2,
+      "event_id": "main_full_106",
+      "group_size": 1,
       "source_window_sec": [
         2310.04,
         2314.04
@@ -1834,7 +1263,7 @@
         2310.04,
         2314.04
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.010134,
@@ -1854,7 +1283,7 @@
         2330.04,
         2334.04
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.01392,
@@ -1864,7 +1293,7 @@
       }
     },
     {
-      "event_id": "main_full_110",
+      "event_id": "main_full_109",
       "group_size": 1,
       "source_window_sec": [
         2341.86,
@@ -1874,7 +1303,7 @@
         2341.89,
         2346.07
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.01108,
@@ -1885,26 +1314,6 @@
     },
     {
       "event_id": "main_full_111",
-      "group_size": 3,
-      "source_window_sec": [
-        2368.66,
-        2379.66
-      ],
-      "speech_window_sec": [
-        2368.89,
-        2378.32
-      ],
-      "changed_overlays": 3,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007569,
-        "peak": 0.021901,
-        "threshold": 0.013624,
-        "active_frame_count": 258
-      }
-    },
-    {
-      "event_id": "main_full_112",
       "group_size": 1,
       "source_window_sec": [
         2379.66,
@@ -1914,7 +1323,7 @@
         2380.2,
         2383.66
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008669,
@@ -1924,7 +1333,27 @@
       }
     },
     {
-      "event_id": "main_full_114",
+      "event_id": "main_full_113",
+      "group_size": 1,
+      "source_window_sec": [
+        2403.32,
+        2409.38
+      ],
+      "speech_window_sec": [
+        2403.53,
+        2408.68
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.007958,
+        "peak": 0.01538,
+        "threshold": 0.014325,
+        "active_frame_count": 54
+      }
+    },
+    {
+      "event_id": "main_full_113",
       "group_size": 1,
       "source_window_sec": [
         2409.38,
@@ -1934,7 +1363,7 @@
         2409.55,
         2415.17
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007842,
@@ -1944,28 +1373,8 @@
       }
     },
     {
-      "event_id": "main_full_116",
-      "group_size": 1,
-      "source_window_sec": [
-        2431.7,
-        2441.7
-      ],
-      "speech_window_sec": [
-        2431.91,
-        2441.14
-      ],
-      "changed_overlays": 1,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008367,
-        "peak": 0.018625,
-        "threshold": 0.01506,
-        "active_frame_count": 135
-      }
-    },
-    {
       "event_id": "main_full_117",
-      "group_size": 4,
+      "group_size": 1,
       "source_window_sec": [
         2465.2,
         2482.2
@@ -1974,7 +1383,7 @@
         2465.78,
         2481.8
       ],
-      "changed_overlays": 4,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007855,
@@ -1994,7 +1403,7 @@
         2491.98,
         2494.17
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009251,
@@ -2005,7 +1414,7 @@
     },
     {
       "event_id": "main_full_120",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2514.2,
         2523.2
@@ -2014,7 +1423,7 @@
         2515.55,
         2523.2
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007865,
@@ -2034,7 +1443,7 @@
         2523.2,
         2533.26
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007877,
@@ -2044,7 +1453,7 @@
       }
     },
     {
-      "event_id": "main_full_123",
+      "event_id": "main_full_122",
       "group_size": 1,
       "source_window_sec": [
         2535.2,
@@ -2054,7 +1463,7 @@
         2535.37,
         2549.14
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.007879,
@@ -2067,25 +1476,25 @@
       "event_id": "main_full_124",
       "group_size": 1,
       "source_window_sec": [
-        2576.1,
+        2571.66,
         2578.86
       ],
       "speech_window_sec": [
-        2576.17,
-        2578.5
+        2571.79,
+        2578.78
       ],
       "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.00895,
-        "peak": 0.029882,
-        "threshold": 0.01611,
-        "active_frame_count": 83
+        "floor": 0.008593,
+        "peak": 0.029872,
+        "threshold": 0.015468,
+        "active_frame_count": 224
       }
     },
     {
-      "event_id": "main_full_127",
-      "group_size": 2,
+      "event_id": "main_full_126",
+      "group_size": 1,
       "source_window_sec": [
         2596.06,
         2600.16
@@ -2094,7 +1503,7 @@
         2596.12,
         2600.16
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008812,
@@ -2104,23 +1513,23 @@
       }
     },
     {
-      "event_id": "main_full_127",
-      "group_size": 3,
+      "event_id": "main_full_126",
+      "group_size": 1,
       "source_window_sec": [
-        2612.06,
-        2620.06
+        2604.58,
+        2608.34
       ],
       "speech_window_sec": [
-        2612.06,
-        2620.06
+        2604.58,
+        2608.34
       ],
-      "changed_overlays": 3,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008532,
-        "peak": 0.028911,
-        "threshold": 0.015357,
-        "active_frame_count": 236
+        "floor": 0.009077,
+        "peak": 0.032326,
+        "threshold": 0.016339,
+        "active_frame_count": 112
       }
     },
     {
@@ -2134,7 +1543,7 @@
         2637.54,
         2644.66
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008738,
@@ -2145,7 +1554,27 @@
     },
     {
       "event_id": "main_full_130",
-      "group_size": 2,
+      "group_size": 1,
+      "source_window_sec": [
+        2658.0,
+        2662.32
+      ],
+      "speech_window_sec": [
+        2658.0,
+        2662.06
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008879,
+        "peak": 0.034188,
+        "threshold": 0.015982,
+        "active_frame_count": 159
+      }
+    },
+    {
+      "event_id": "main_full_130",
+      "group_size": 1,
       "source_window_sec": [
         2667.9,
         2674.02
@@ -2154,7 +1583,7 @@
         2667.9,
         2673.39
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008976,
@@ -2164,8 +1593,28 @@
       }
     },
     {
-      "event_id": "main_full_132",
-      "group_size": 2,
+      "event_id": "main_full_131",
+      "group_size": 1,
+      "source_window_sec": [
+        2674.02,
+        2679.32
+      ],
+      "speech_window_sec": [
+        2675.25,
+        2679.3
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.00812,
+        "peak": 0.02334,
+        "threshold": 0.014616,
+        "active_frame_count": 118
+      }
+    },
+    {
+      "event_id": "main_full_131",
+      "group_size": 1,
       "source_window_sec": [
         2679.32,
         2684.36
@@ -2174,7 +1623,7 @@
         2679.33,
         2684.36
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008977,
@@ -2185,46 +1634,26 @@
     },
     {
       "event_id": "main_full_132",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2694.16,
-        2698.18
+        2701.32
       ],
       "speech_window_sec": [
         2694.16,
-        2697.85
+        2701.15
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008267,
-        "peak": 0.025597,
-        "threshold": 0.01488,
-        "active_frame_count": 99
+        "floor": 0.008193,
+        "peak": 0.021755,
+        "threshold": 0.014747,
+        "active_frame_count": 150
       }
     },
     {
       "event_id": "main_full_134",
-      "group_size": 4,
-      "source_window_sec": [
-        2716.68,
-        2730.68
-      ],
-      "speech_window_sec": [
-        2716.68,
-        2729.05
-      ],
-      "changed_overlays": 4,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.008219,
-        "peak": 0.034833,
-        "threshold": 0.014794,
-        "active_frame_count": 433
-      }
-    },
-    {
-      "event_id": "main_full_135",
       "group_size": 1,
       "source_window_sec": [
         2716.68,
@@ -2234,7 +1663,27 @@
         2716.68,
         2729.05
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008219,
+        "peak": 0.034833,
+        "threshold": 0.014794,
+        "active_frame_count": 433
+      }
+    },
+    {
+      "event_id": "main_full_134",
+      "group_size": 1,
+      "source_window_sec": [
+        2716.68,
+        2730.68
+      ],
+      "speech_window_sec": [
+        2716.68,
+        2729.05
+      ],
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008219,
@@ -2254,7 +1703,7 @@
         2744.64,
         2750.48
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008005,
@@ -2264,7 +1713,27 @@
       }
     },
     {
-      "event_id": "main_full_138",
+      "event_id": "main_full_136",
+      "group_size": 1,
+      "source_window_sec": [
+        2755.44,
+        2757.64
+      ],
+      "speech_window_sec": [
+        2755.67,
+        2757.64
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008341,
+        "peak": 0.021299,
+        "threshold": 0.015014,
+        "active_frame_count": 80
+      }
+    },
+    {
+      "event_id": "main_full_137",
       "group_size": 1,
       "source_window_sec": [
         2763.64,
@@ -2274,7 +1743,7 @@
         2763.64,
         2764.77
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.014639,
@@ -2285,26 +1754,6 @@
     },
     {
       "event_id": "main_full_139",
-      "group_size": 4,
-      "source_window_sec": [
-        2792.86,
-        2804.86
-      ],
-      "speech_window_sec": [
-        2792.86,
-        2803.59
-      ],
-      "changed_overlays": 4,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.00754,
-        "peak": 0.020361,
-        "threshold": 0.013572,
-        "active_frame_count": 314
-      }
-    },
-    {
-      "event_id": "main_full_140",
       "group_size": 1,
       "source_window_sec": [
         2792.86,
@@ -2314,7 +1763,7 @@
         2792.86,
         2803.59
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.00754,
@@ -2325,7 +1774,7 @@
     },
     {
       "event_id": "main_full_141",
-      "group_size": 2,
+      "group_size": 1,
       "source_window_sec": [
         2832.86,
         2840.58
@@ -2334,7 +1783,7 @@
         2833.0,
         2840.58
       ],
-      "changed_overlays": 2,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008463,
@@ -2344,7 +1793,7 @@
       }
     },
     {
-      "event_id": "main_full_143",
+      "event_id": "main_full_142",
       "group_size": 1,
       "source_window_sec": [
         2846.54,
@@ -2354,7 +1803,7 @@
         2846.58,
         2852.48
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008303,
@@ -2364,27 +1813,27 @@
       }
     },
     {
-      "event_id": "main_full_144",
+      "event_id": "main_full_143",
       "group_size": 1,
       "source_window_sec": [
-        2878.32,
-        2881.32
+        2853.68,
+        2862.44
       ],
       "speech_window_sec": [
-        2878.41,
-        2880.95
+        2853.78,
+        2862.09
       ],
       "changed_overlays": 1,
       "diagnostics": {
         "status": "snapped",
-        "floor": 0.008705,
-        "peak": 0.02346,
-        "threshold": 0.015669,
-        "active_frame_count": 85
+        "floor": 0.008647,
+        "peak": 0.030135,
+        "threshold": 0.015565,
+        "active_frame_count": 354
       }
     },
     {
-      "event_id": "main_full_146",
+      "event_id": "main_full_145",
       "group_size": 1,
       "source_window_sec": [
         2890.82,
@@ -2394,7 +1843,7 @@
         2890.82,
         2893.36
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008969,
@@ -2404,7 +1853,7 @@
       }
     },
     {
-      "event_id": "main_full_147",
+      "event_id": "main_full_146",
       "group_size": 1,
       "source_window_sec": [
         2906.66,
@@ -2414,33 +1863,13 @@
         2906.72,
         2909.81
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.008043,
         "peak": 0.020329,
         "threshold": 0.014477,
         "active_frame_count": 64
-      }
-    },
-    {
-      "event_id": "main_full_147",
-      "group_size": 2,
-      "source_window_sec": [
-        2922.04,
-        2926.04
-      ],
-      "speech_window_sec": [
-        2922.04,
-        2926.04
-      ],
-      "changed_overlays": 2,
-      "diagnostics": {
-        "status": "snapped",
-        "floor": 0.007535,
-        "peak": 0.022074,
-        "threshold": 0.013563,
-        "active_frame_count": 134
       }
     },
     {
@@ -2454,7 +1883,7 @@
         2942.1,
         2943.36
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.012289,
@@ -2464,7 +1893,7 @@
       }
     },
     {
-      "event_id": "main_full_150",
+      "event_id": "main_full_149",
       "group_size": 1,
       "source_window_sec": [
         2956.04,
@@ -2474,7 +1903,7 @@
         2956.04,
         2957.63
       ],
-      "changed_overlays": 1,
+      "changed_overlays": 0,
       "diagnostics": {
         "status": "snapped",
         "floor": 0.009138,
@@ -2482,55 +1911,51 @@
         "threshold": 0.016448,
         "active_frame_count": 37
       }
+    },
+    {
+      "event_id": "main_full_150",
+      "group_size": 1,
+      "source_window_sec": [
+        2966.04,
+        2973.7
+      ],
+      "speech_window_sec": [
+        2966.54,
+        2973.57
+      ],
+      "changed_overlays": 1,
+      "diagnostics": {
+        "status": "snapped",
+        "floor": 0.008525,
+        "peak": 0.0237,
+        "threshold": 0.015345,
+        "active_frame_count": 167
+      }
     }
   ],
   "overlap_adjustments": [
     {
-      "event_id": "main_full_127",
-      "text": "それはいきなり何もなしだと難しいと思",
+      "event_id": "main_full_131",
+      "text": "AIで専門家の経験を多くの人が得られる",
+      "old": [
+        6.83,
+        11.86
+      ],
+      "new": [
+        6.84,
+        11.87
+      ]
+    },
+    {
+      "event_id": "main_full_134",
+      "text": "属人化は今後大きく変わる可能性がある",
       "old": [
         0.0,
-        2.48
+        11.55
       ],
       "new": [
-        1.088,
-        3.568
-      ]
-    },
-    {
-      "event_id": "main_full_127",
-      "text": "変化を支援したい",
-      "old": [
-        1.088,
-        1.638
-      ],
-      "new": [
-        3.608,
-        4.158
-      ]
-    },
-    {
-      "event_id": "main_full_127",
-      "text": "うんですけれどもちょっとAIの",
-      "old": [
-        2.52,
-        4.58
-      ],
-      "new": [
-        4.198,
-        6.258
-      ]
-    },
-    {
-      "event_id": "main_full_127",
-      "text": "プロダクトの力で人を動かしていくんですよね",
-      "old": [
-        4.62,
-        7.56
-      ],
-      "new": [
-        6.298,
-        9.238
+        11.59,
+        15.0
       ]
     }
   ]

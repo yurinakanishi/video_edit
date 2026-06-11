@@ -971,9 +971,8 @@ def draw_intro_profile_card(canvas: Image.Image, overlay: dict[str, Any], start:
     name = str(profile.get("display_name") or person_id)
     suffix = str(profile.get("name_suffix") or "").strip()
     department = str(profile.get("department") or "LayerX").strip()
-    role = str(profile.get("role_title") or "").strip()
     name_text = name + (f" ({suffix})" if suffix else "")
-    title_text_value = " | ".join(part for part in (department, role) if part)
+    title_text_value = department
     header_text = f"{name_text}｜{title_text_value}" if title_text_value else name_text
     body_lines = [str(line).strip() for line in profile.get("body_lines", []) if str(line).strip()]
 
@@ -1107,17 +1106,11 @@ def source_skip_sec(event: dict[str, Any]) -> float:
 
 
 def segment_audio_filter_chain(media_id: str) -> str:
-    if media_id not in INTERVIEW_AUDIO_MEDIA_IDS:
-        return "aresample=48000"
-    return (
-        "highpass=f=85,"
-        "lowpass=f=10500,"
-        "afftdn=nr=18:nf=-32:tn=1:rf=-44,"
-        "anlmdn=s=0.00035:p=0.002:r=0.006:m=11,"
-        "acompressor=threshold=-30dB:ratio=2.4:attack=6:release=130:makeup=3,"
-        "dynaudnorm=f=180:g=7:p=0.90:m=8,"
-        "aresample=48000"
-    )
+    # Keep per-cut audio neutral. Noise reduction, compression, and dynamic
+    # normalization are stateful; applying them on every rendered segment makes
+    # the room tone and loudness reset at edit points. The joined timeline gets
+    # the actual cleanup in final_audio_filter_chain().
+    return "aresample=48000"
 
 
 def final_audio_filter_chain() -> str:
@@ -1142,13 +1135,15 @@ def single_person_crop_filter(event: dict[str, Any], media_id: str) -> str | Non
     profile = SPLIT_FACE_PROFILES.get(media_id)
     if not profile:
         return None
-    scale_h = int(profile.get("single_scale_h") or 900)
+    scale_h = int(layout.get("single_scale_h") or profile.get("single_scale_h") or 900)
     scale = scale_h / 1080
     scaled_w = even_width_for_height(scale_h)
     target_face_x = 640
-    target_face_y = float(profile.get("single_target_face_y") or 245)
-    crop_x = round(float(profile["face_center_x"]) * scale - target_face_x)
-    crop_y = round(float(profile["face_center_y"]) * scale - target_face_y)
+    target_face_y = float(layout.get("single_target_face_y") or profile.get("single_target_face_y") or 245)
+    face_center_x = float(layout.get("face_center_x") or profile["face_center_x"])
+    face_center_y = float(layout.get("face_center_y") or profile["face_center_y"])
+    crop_x = round(face_center_x * scale - target_face_x)
+    crop_y = round(face_center_y * scale - target_face_y)
     crop_x = max(0, min(crop_x, max(0, scaled_w - WIDTH)))
     crop_y = max(0, min(crop_y, max(0, scale_h - HEIGHT)))
     return (
@@ -1480,9 +1475,50 @@ def concat_segments(ffmpeg: str, segments: list[Path], output: Path) -> None:
         pass
 
 
+def trim_preview(ffmpeg: str, source: Path, output: Path, duration_sec: float) -> None:
+    subprocess.run(
+        [
+            ffmpeg,
+            "-hide_banner",
+            "-loglevel",
+            "warning",
+            "-nostdin",
+            "-y",
+            "-i",
+            str(source),
+            "-t",
+            f"{duration_sec:.3f}",
+            "-map",
+            "0:v:0",
+            "-map",
+            "0:a:0",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "veryfast",
+            "-crf",
+            "24",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-b:a",
+            "128k",
+            "-ar",
+            "48000",
+            "-movflags",
+            "+faststart",
+            str(output),
+        ],
+        cwd=WORKSPACE_ROOT,
+        check=True,
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Render LayerX preview with test-project-1 style overlays.")
     parser.add_argument("--max-events", type=int, default=None)
+    parser.add_argument("--max-duration-sec", type=float, default=None, help="Render from the beginning and trim output to this timeline duration.")
     parser.add_argument("--output", type=Path, default=VIDEOS / "preview_test_project1_style.mp4")
     parser.add_argument("--resume-existing", action="store_true", help="Reuse already rendered non-empty segment files.")
     args = parser.parse_args()
@@ -1490,6 +1526,12 @@ def main() -> None:
     if not (plan.get("validation") or {}).get("ready_for_preview"):
         raise SystemExit("edit_plan.json is not marked ready_for_preview")
     events = [event for event in plan.get("timeline", []) if isinstance(event, dict)]
+    if args.max_duration_sec is not None:
+        events = [
+            event
+            for event in events
+            if float(event.get("timeline_start") or 0.0) < args.max_duration_sec
+        ]
     if args.max_events:
         events = events[: args.max_events]
     segment_dir = VIDEOS / "preview_test_project1_style_segments"
@@ -1506,11 +1548,21 @@ def main() -> None:
             render_segment(ffmpeg, event, segment_path, segment_id)
         rendered.append(segment_path)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    concat_segments(ffmpeg, rendered, args.output)
+    concat_output = args.output
+    if args.max_duration_sec is not None:
+        concat_output = args.output.with_name(f"{args.output.stem}_untrimmed{args.output.suffix}")
+    concat_segments(ffmpeg, rendered, concat_output)
+    if args.max_duration_sec is not None:
+        trim_preview(ffmpeg, concat_output, args.output, args.max_duration_sec)
+        try:
+            concat_output.unlink()
+        except OSError:
+            pass
     report = {
         "schema_version": "test_project1_style_preview_report.v1",
         "output": str(args.output),
         "segments": len(rendered),
+        "max_duration_sec": args.max_duration_sec,
         "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
         "notes": [
             "Digest uses opaque top/bottom bands and slanted white LayerX logo panel.",
@@ -1520,6 +1572,7 @@ def main() -> None:
             "Split crops align face scale and vertical head height across participants.",
             "White overlay text is rendered without black stroke outlines.",
             f"Interview audio uses one continuous {INTERVIEW_MAIN_AUDIO_MEDIA_ID} source across all interview video cuts, including the closing.",
+            "Per-segment audio is only resampled; cleanup and loudness normalization are applied once after concatenation to avoid cut-boundary tone changes.",
         ],
     }
     write_json(REPORTS / "test_project1_style_preview_report.json", report)

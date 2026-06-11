@@ -1,12 +1,12 @@
 {
   "schema_version": "main_speaker_layout_audit.v1",
   "project_id": "layer-x-domain-expert",
-  "generated_at": "2026-06-11T12:07:23+09:00",
+  "generated_at": "2026-06-11T16:56:41+09:00",
   "edit_plan_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
   "voice_speaker_attribution_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
   "policy": "Every trusted voice-attributed utterance overlapping a main-section event must have its speaker visible in the selected layout.",
-  "checked_main_events": 163,
-  "checked_voice_segments": 703,
+  "checked_main_events": 157,
+  "checked_voice_segments": 684,
   "violation_count": 0,
   "ready_for_render": true,
   "violations": [],
@@ -15,9 +15,11 @@
       "event_id": "main_intro_group_greeting",
       "reference_start": 519.14,
       "reference_end": 524.94,
-      "layout_type": "single",
+      "layout_type": "wide_group",
       "visible_people": [
-        "person_01"
+        "person_01",
+        "person_02",
+        "person_03"
       ],
       "voice_speakers_in_window": [
         "person_01"
@@ -178,110 +180,21 @@
       "missing_count": 0
     },
     {
-      "event_id": "main_full_001",
-      "reference_start": 722.5,
-      "reference_end": 737.5,
-      "layout_type": "split_grid",
-      "visible_people": [
-        "person_01",
-        "person_03"
-      ],
-      "voice_speakers_in_window": [
-        "person_03",
-        "person_01"
-      ],
-      "missing_count": 0
-    },
-    {
-      "event_id": "main_full_002",
-      "reference_start": 737.5,
-      "reference_end": 752.5,
+      "event_id": "main_yano_profile_intro",
+      "reference_start": 727.46,
+      "reference_end": 784.38,
       "layout_type": "single",
       "visible_people": [
         "person_01"
       ],
       "voice_speakers_in_window": [
         "person_01"
-      ],
-      "missing_count": 0
-    },
-    {
-      "event_id": "main_full_003",
-      "reference_start": 752.5,
-      "reference_end": 767.5,
-      "layout_type": "single",
-      "visible_people": [
-        "person_01"
-      ],
-      "voice_speakers_in_window": [
-        "person_01"
-      ],
-      "missing_count": 0
-    },
-    {
-      "event_id": "main_full_004",
-      "reference_start": 767.5,
-      "reference_end": 782.5,
-      "layout_type": "single",
-      "visible_people": [
-        "person_01"
-      ],
-      "voice_speakers_in_window": [
-        "person_01"
-      ],
-      "missing_count": 0
-    },
-    {
-      "event_id": "main_full_005",
-      "reference_start": 782.5,
-      "reference_end": 797.5,
-      "layout_type": "wide_group",
-      "visible_people": [
-        "person_01",
-        "person_02",
-        "person_03"
-      ],
-      "voice_speakers_in_window": [
-        "person_01",
-        "person_02",
-        "person_03"
-      ],
-      "missing_count": 0
-    },
-    {
-      "event_id": "main_full_006",
-      "reference_start": 797.5,
-      "reference_end": 812.5,
-      "layout_type": "split_grid",
-      "visible_people": [
-        "person_02",
-        "person_03"
-      ],
-      "voice_speakers_in_window": [
-        "person_03",
-        "person_02"
-      ],
-      "missing_count": 0
-    },
-    {
-      "event_id": "main_full_007",
-      "reference_start": 812.5,
-      "reference_end": 827.5,
-      "layout_type": "split_grid",
-      "visible_people": [
-        "person_01",
-        "person_02",
-        "person_03"
-      ],
-      "voice_speakers_in_window": [
-        "person_02",
-        "person_03"
       ],
       "missing_count": 0
     },
     {
       "event_id": "main_full_008",
-      "reference_start": 827.5,
+      "reference_start": 836.14,
       "reference_end": 842.5,
       "layout_type": "split_grid",
       "visible_people": [
@@ -289,7 +202,6 @@
         "person_03"
       ],
       "voice_speakers_in_window": [
-        "person_03",
         "person_01"
       ],
       "missing_count": 0

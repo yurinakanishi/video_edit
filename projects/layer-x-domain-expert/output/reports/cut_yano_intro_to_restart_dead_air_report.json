@@ -1,0 +1,118 @@
+{
+  "schema_version": "cut_yano_intro_to_restart_dead_air_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "requested_full_render_range_sec": [
+    342.0,
+    393.0
+  ],
+  "semantic_cut_timeline_sec": [
+    346.258,
+    399.898
+  ],
+  "cut_duration_sec": 53.64,
+  "removed_events": [
+    {
+      "event_id": "main_full_005",
+      "timeline_start": 346.258,
+      "timeline_end": 361.258,
+      "source": {
+        "media_id": "group_wide",
+        "in": 782.5,
+        "out": 797.5
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 782.5,
+        "out": 797.5
+      }
+    },
+    {
+      "event_id": "main_full_006",
+      "timeline_start": 361.258,
+      "timeline_end": 376.258,
+      "source": {
+        "media_id": "group_wide",
+        "in": 797.5,
+        "out": 812.5
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 797.5,
+        "out": 812.5
+      }
+    },
+    {
+      "event_id": "main_full_007",
+      "timeline_start": 376.258,
+      "timeline_end": 391.258,
+      "source": {
+        "media_id": "group_wide",
+        "in": 812.5,
+        "out": 827.5
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 812.5,
+        "out": 827.5
+      }
+    }
+  ],
+  "adjusted_events": [
+    {
+      "event_id": "main_full_008",
+      "old": {
+        "timeline_start": 391.258,
+        "timeline_end": 406.258,
+        "source": {
+          "media_id": "group_wide",
+          "in": 827.5,
+          "out": 842.5
+        },
+        "reference_source": {
+          "media_id": "group_wide",
+          "in": 827.5,
+          "out": 842.5
+        },
+        "audio": {
+          "mode": "single_interview_source",
+          "source_media_id": "cam_person_02",
+          "in": 834.968,
+          "out": 849.968,
+          "timing_reference_media_id": "group_wide",
+          "timing_reference_in": 827.5,
+          "timing_reference_out": 842.5,
+          "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+        }
+      },
+      "new": {
+        "timeline_start": 346.258,
+        "timeline_end": 352.618,
+        "source": {
+          "media_id": "group_wide",
+          "in": 836.14,
+          "out": 842.5
+        },
+        "reference_source": {
+          "media_id": "group_wide",
+          "in": 836.14,
+          "out": 842.5
+        },
+        "audio": {
+          "mode": "single_interview_source",
+          "source_media_id": "cam_person_02",
+          "in": 843.608,
+          "out": 849.968,
+          "timing_reference_media_id": "group_wide",
+          "timing_reference_in": 836.14,
+          "timing_reference_out": 842.5,
+          "reason": "Trimmed out the awkward dead-air/restart section; keep continuous main audio source aligned to the restart phrase."
+        }
+      }
+    }
+  ],
+  "kept_before": "Yano self-introduction profile card block remains complete.",
+  "resume_at": {
+    "master_sec": 836.14,
+    "text": "ではですね最初ちょっとお二人に聞きたいのが"
+  }
+}

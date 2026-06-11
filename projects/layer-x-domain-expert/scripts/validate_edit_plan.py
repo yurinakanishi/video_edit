@@ -37,6 +37,39 @@ def intervals_overlap(left: tuple[float, float], right: tuple[float, float]) -> 
     return left[0] < right[1] and right[0] < left[1]
 
 
+def event_reference_window(event: dict[str, Any]) -> tuple[float, float] | None:
+    source = event.get("reference_source") if isinstance(event.get("reference_source"), dict) else event.get("source")
+    if not isinstance(source, dict) or source.get("in") is None or source.get("out") is None:
+        return None
+    return float(source["in"]), float(source["out"])
+
+
+def caption_source_window(overlay: dict[str, Any]) -> tuple[float, float] | None:
+    alignment = overlay.get("audio_alignment") if isinstance(overlay.get("audio_alignment"), dict) else {}
+    speech_window = alignment.get("speech_window_sec")
+    if isinstance(speech_window, list) and len(speech_window) == 2:
+        try:
+            return float(speech_window[0]), float(speech_window[1])
+        except (TypeError, ValueError):
+            pass
+    metadata = overlay.get("metadata") if isinstance(overlay.get("metadata"), dict) else {}
+    start = metadata.get("source_start_sec", metadata.get("caption_start_sec"))
+    end = metadata.get("source_end_sec", metadata.get("caption_end_sec"))
+    if start is None:
+        return None
+    try:
+        start_f = float(start)
+        fallback_duration = max(0.8, float(overlay.get("end") or 0.0) - float(overlay.get("start") or 0.0))
+        end_f = float(end) if end is not None else start_f + fallback_duration
+        return start_f, max(start_f + 0.2, end_f)
+    except (TypeError, ValueError):
+        return None
+
+
+def interval_overlap_seconds(left: tuple[float, float], right: tuple[float, float]) -> float:
+    return max(0.0, min(left[1], right[1]) - max(left[0], right[0]))
+
+
 def existing_reference_path(value: Any) -> bool:
     if not value:
         return True
@@ -147,6 +180,18 @@ def main() -> None:
                 errors.append(f"{event_id}: overlay has invalid interval {interval[0]:.3f}-{interval[1]:.3f}")
             if interval and overlay.get("type") == "caption":
                 caption_intervals.append(interval)
+                reference_window = event_reference_window(event)
+                source_window = caption_source_window(overlay)
+                if reference_window and source_window:
+                    source_mid = (source_window[0] + source_window[1]) / 2.0
+                    source_present = (
+                        interval_overlap_seconds(source_window, reference_window) >= 0.25
+                        or reference_window[0] - 0.12 <= source_mid <= reference_window[1] + 0.12
+                    )
+                    if not source_present:
+                        errors.append(
+                            f"{event_id}: caption source window {source_window[0]:.3f}-{source_window[1]:.3f} is outside event reference window {reference_window[0]:.3f}-{reference_window[1]:.3f}"
+                        )
             if interval and overlay.get("type") == "entity_explainer":
                 explainer_intervals.append(interval)
             if interval and overlay.get("type") in {"lower_third_person", "lower_third_people"}:

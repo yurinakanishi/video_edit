@@ -1,0 +1,549 @@
+{
+  "schema_version": "person_left_closeup_centering_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "generated_at": "2026-06-11T07:46:01.278395+00:00",
+  "cascade": "C:\\Users\\yurin\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\cv2\\data\\haarcascade_frontalface_default.xml",
+  "updated_events": 9,
+  "events": [
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 2006.768,
+        "out": 2013.488
+      },
+      "median_face_center": {
+        "x": 864.0,
+        "y": 473.5
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 640.0,
+      "new_output_x_at_1080h": 640.0,
+      "detections": [
+        {
+          "time_sec": 2007.518,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\digest_qa_04_answer_02_0_2007.518.png",
+          "face": {
+            "box": [
+              718,
+              332,
+              283,
+              283
+            ],
+            "center_x": 859.5,
+            "center_y": 473.5
+          }
+        },
+        {
+          "time_sec": 2010.128,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\digest_qa_04_answer_02_1_2010.128.png",
+          "face": {
+            "box": [
+              738,
+              337,
+              280,
+              280
+            ],
+            "center_x": 878.0,
+            "center_y": 477.0
+          }
+        },
+        {
+          "time_sec": 2012.738,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\digest_qa_04_answer_02_2_2012.738.png",
+          "face": {
+            "box": [
+              800,
+              247,
+              128,
+              128
+            ],
+            "center_x": 864.0,
+            "center_y": 311.0
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 2934.708,
+        "out": 2940.708
+      },
+      "median_face_center": {
+        "x": 825.5,
+        "y": 463.5
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 639.917,
+      "new_output_x_at_1080h": 639.5,
+      "detections": [
+        {
+          "time_sec": 2935.458,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\digest_qa_05_answer_02_0_2935.458.png",
+          "face": {
+            "box": [
+              458,
+              858,
+              88,
+              88
+            ],
+            "center_x": 502.0,
+            "center_y": 902.0
+          }
+        },
+        {
+          "time_sec": 2937.708,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\digest_qa_05_answer_02_1_2937.708.png",
+          "face": {
+            "box": [
+              686,
+              324,
+              279,
+              279
+            ],
+            "center_x": 825.5,
+            "center_y": 463.5
+          }
+        },
+        {
+          "time_sec": 2939.958,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\digest_qa_05_answer_02_2_2939.958.png",
+          "face": {
+            "box": [
+              699,
+              281,
+              257,
+              257
+            ],
+            "center_x": 827.5,
+            "center_y": 409.5
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "main_intro_yano_self",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 521.608,
+        "out": 528.768
+      },
+      "median_face_center": {
+        "x": 657.0,
+        "y": 391.0
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 547.5,
+      "new_output_x_at_1080h": 640.0,
+      "detections": [
+        {
+          "time_sec": 522.358,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_self_0_522.358.png",
+          "face": {
+            "box": [
+              545,
+              444,
+              344,
+              344
+            ],
+            "center_x": 717.0,
+            "center_y": 616.0
+          }
+        },
+        {
+          "time_sec": 525.188,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_self_1_525.188.png",
+          "face": {
+            "box": [
+              491,
+              228,
+              322,
+              322
+            ],
+            "center_x": 652.0,
+            "center_y": 389.0
+          }
+        },
+        {
+          "time_sec": 528.018,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_self_2_528.018.png",
+          "face": {
+            "box": [
+              497,
+              231,
+              320,
+              320
+            ],
+            "center_x": 657.0,
+            "center_y": 391.0
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "main_intro_yano_explains_001",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 543.208,
+        "out": 558.208
+      },
+      "median_face_center": {
+        "x": 706.0,
+        "y": 398.5
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 588.333,
+      "new_output_x_at_1080h": 640.0,
+      "detections": [
+        {
+          "time_sec": 543.958,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_explains_001_0_543.958.png",
+          "face": {
+            "box": [
+              539,
+              219,
+              334,
+              334
+            ],
+            "center_x": 706.0,
+            "center_y": 386.0
+          }
+        },
+        {
+          "time_sec": 550.708,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_explains_001_1_550.708.png",
+          "face": {
+            "box": [
+              585,
+              300,
+              339,
+              339
+            ],
+            "center_x": 754.5,
+            "center_y": 469.5
+          }
+        },
+        {
+          "time_sec": 557.458,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_explains_001_2_557.458.png",
+          "face": {
+            "box": [
+              491,
+              236,
+              325,
+              325
+            ],
+            "center_x": 653.5,
+            "center_y": 398.5
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "main_intro_yano_explains_002",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 573.208,
+        "out": 588.208
+      },
+      "median_face_center": {
+        "x": 663.0,
+        "y": 454.0
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 552.5,
+      "new_output_x_at_1080h": 640.0,
+      "detections": [
+        {
+          "time_sec": 573.958,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_explains_002_0_573.958.png",
+          "face": {
+            "box": [
+              519,
+              293,
+              288,
+              288
+            ],
+            "center_x": 663.0,
+            "center_y": 437.0
+          }
+        },
+        {
+          "time_sec": 580.708,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_explains_002_1_580.708.png",
+          "face": {
+            "box": [
+              484,
+              306,
+              296,
+              296
+            ],
+            "center_x": 632.0,
+            "center_y": 454.0
+          }
+        },
+        {
+          "time_sec": 587.458,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_explains_002_2_587.458.png",
+          "face": {
+            "box": [
+              587,
+              308,
+              331,
+              331
+            ],
+            "center_x": 752.5,
+            "center_y": 473.5
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "main_intro_yano_prompt_selfintro",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 603.208,
+        "out": 620.188
+      },
+      "median_face_center": {
+        "x": 872.0,
+        "y": 495.0
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 639.667,
+      "new_output_x_at_1080h": 640.0,
+      "detections": [
+        {
+          "time_sec": 603.958,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_prompt_selfintro_0_603.958.png",
+          "face": {
+            "box": [
+              747,
+              365,
+              330,
+              330
+            ],
+            "center_x": 912.0,
+            "center_y": 530.0
+          }
+        },
+        {
+          "time_sec": 611.698,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_prompt_selfintro_1_611.698.png",
+          "face": {
+            "box": [
+              694,
+              317,
+              356,
+              356
+            ],
+            "center_x": 872.0,
+            "center_y": 495.0
+          }
+        },
+        {
+          "time_sec": 619.438,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_intro_yano_prompt_selfintro_2_619.438.png",
+          "face": {
+            "box": [
+              601,
+              333,
+              302,
+              302
+            ],
+            "center_x": 752.0,
+            "center_y": 484.0
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "main_yano_profile_intro",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 724.128,
+        "out": 781.048
+      },
+      "median_face_center": {
+        "x": 855.0,
+        "y": 500.0
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 640.5,
+      "new_output_x_at_1080h": 640.0,
+      "detections": [
+        {
+          "time_sec": 724.878,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_yano_profile_intro_0_724.878.png",
+          "face": {
+            "box": [
+              694,
+              339,
+              322,
+              322
+            ],
+            "center_x": 855.0,
+            "center_y": 500.0
+          }
+        },
+        {
+          "time_sec": 752.588,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_yano_profile_intro_1_752.588.png",
+          "face": {
+            "box": [
+              728,
+              271,
+              281,
+              281
+            ],
+            "center_x": 868.5,
+            "center_y": 411.5
+          }
+        },
+        {
+          "time_sec": 780.298,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_yano_profile_intro_2_780.298.png",
+          "face": {
+            "box": [
+              633,
+              386,
+              327,
+              327
+            ],
+            "center_x": 796.5,
+            "center_y": 549.5
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "main_full_048",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 1424.168,
+        "out": 1439.168
+      },
+      "median_face_center": {
+        "x": 898.0,
+        "y": 399.0
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 640.333,
+      "new_output_x_at_1080h": 640.0,
+      "detections": [
+        {
+          "time_sec": 1424.918,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_full_048_0_1424.918.png",
+          "face": {
+            "box": [
+              743,
+              240,
+              318,
+              318
+            ],
+            "center_x": 902.0,
+            "center_y": 399.0
+          }
+        },
+        {
+          "time_sec": 1431.668,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_full_048_1_1431.668.png",
+          "face": {
+            "box": [
+              753,
+              271,
+              136,
+              136
+            ],
+            "center_x": 821.0,
+            "center_y": 339.0
+          }
+        },
+        {
+          "time_sec": 1438.418,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_full_048_2_1438.418.png",
+          "face": {
+            "box": [
+              748,
+              290,
+              300,
+              300
+            ],
+            "center_x": 898.0,
+            "center_y": 440.0
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "main_full_122",
+      "status": "updated",
+      "source": {
+        "media_id": "cam_person_01",
+        "in": 2534.168,
+        "out": 2549.168
+      },
+      "median_face_center": {
+        "x": 884.5,
+        "y": 452.5
+      },
+      "single_scale_h": 1080,
+      "old_output_x_at_900h": 640.083,
+      "new_output_x_at_1080h": 640.5,
+      "detections": [
+        {
+          "time_sec": 2534.918,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_full_122_0_2534.918.png",
+          "face": {
+            "box": [
+              781,
+              292,
+              321,
+              321
+            ],
+            "center_x": 941.5,
+            "center_y": 452.5
+          }
+        },
+        {
+          "time_sec": 2541.668,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_full_122_1_2541.668.png",
+          "face": {
+            "box": [
+              698,
+              296,
+              323,
+              323
+            ],
+            "center_x": 859.5,
+            "center_y": 457.5
+          }
+        },
+        {
+          "time_sec": 2548.418,
+          "frame": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\diagnostics\\person_left_closeup_centering\\main_full_122_2_2548.418.png",
+          "face": {
+            "box": [
+              737,
+              262,
+              295,
+              295
+            ],
+            "center_x": 884.5,
+            "center_y": 409.5
+          }
+        }
+      ]
+    }
+  ]
+}

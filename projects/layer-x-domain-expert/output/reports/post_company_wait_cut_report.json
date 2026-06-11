@@ -1,0 +1,77 @@
+{
+  "schema_version": "post_company_wait_cut_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "company_movie_preserved": true,
+  "timeline_gap_after_company_sec": 0.0,
+  "main_start_master_sec": 519.14,
+  "main_start_marker": {
+    "start_sec": 519.14,
+    "anchor_segment_id": "seg_000177",
+    "anchor_text": "LayerXのYouTubeチャンネルをご覧の皆さん、こんにちは",
+    "detected_from": "first speech segment after final 本番 / 5,4,3 countdown marker"
+  },
+  "old_first_main": {
+    "first_main_event_id": "main_intro_group_greeting",
+    "source": {
+      "media_id": "cam_person_01",
+      "in": 515.808,
+      "out": 521.608
+    },
+    "reference_source": {
+      "media_id": "group_wide",
+      "in": 519.14,
+      "out": 524.94
+    },
+    "layout": {
+      "type": "single",
+      "selected_media_id": "cam_person_01",
+      "target_person_id": "person_01",
+      "crop_mode": "single_intro_reference_fullscreen",
+      "introduction_nameplate": false,
+      "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference.",
+      "reference_alignment": {
+        "reference_image_id": "single_person_fullscreen_intro_white_text",
+        "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+        "apply": [
+          "medium_closeup",
+          "eyes_upper_third",
+          "lower_left_white_role_name"
+        ]
+      }
+    },
+    "timeline_gap_after_company_sec": 0.0
+  },
+  "new_first_main": {
+    "event_id": "main_intro_group_greeting",
+    "source": {
+      "media_id": "group_wide",
+      "in": 519.14,
+      "out": 524.94
+    },
+    "reference_source": {
+      "media_id": "group_wide",
+      "in": 519.14,
+      "out": 524.94
+    },
+    "layout": {
+      "type": "wide_group",
+      "ensure_people_visible": [
+        "person_01",
+        "person_02",
+        "person_03"
+      ],
+      "active_person_id": "person_01",
+      "safe_margin": 0.06,
+      "selection_reason": "Post-company-movie wait is removed by starting the main interview at the first production greeting and showing the three-person wide shot.",
+      "reference_alignment": {
+        "reference_image_id": "annotation_sample_review_meeting",
+        "apply": [
+          "wide_group_context",
+          "speaker_visible",
+          "logo_title_style",
+          "caption_safe_lower_zone"
+        ]
+      }
+    }
+  }
+}

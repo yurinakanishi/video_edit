@@ -1,0 +1,15 @@
+{
+  "schema_version": "audio_cut_boundary_policy_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "problem_found": "Previous render path applied denoise/compression/dynaudnorm inside every segment, causing filter state and loudness to reset at video cuts.",
+  "fix_applied": "segment_audio_filter_chain now only resamples to 48 kHz; final_audio_filter_chain performs denoise/compression/dynaudnorm/loudnorm once on the concatenated timeline.",
+  "segment_audio_filter_policy": "aresample_only",
+  "stateful_filters_in_segment_audio": [],
+  "stateful_filters_in_final_audio": [
+    "afftdn",
+    "acompressor",
+    "dynaudnorm",
+    "loudnorm"
+  ],
+  "ready": true
+}

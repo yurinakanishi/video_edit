@@ -398,18 +398,18 @@
     {
       "event_id": "digest_qa_01_answer_02",
       "timeline_start": 5.94,
-      "timeline_end": 15.54,
+      "timeline_end": 22.14,
       "type": "source_clip",
       "section": "digest",
       "source": {
         "media_id": "cam_person_03",
         "in": 1546.8,
-        "out": 1556.4
+        "out": 1563.0
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 1533.42,
-        "out": 1543.02
+        "out": 1549.62
       },
       "layout": {
         "type": "single",
@@ -439,20 +439,10 @@
       },
       "overlays": [
         {
-          "type": "topic_title",
-          "position": "top_right",
-          "text": "AI時代のドメインエキスパート論",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
           "type": "caption",
           "start": 0.0,
           "end": 1.88,
           "text": "なんでそうするんですかと聞かれた時に",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 468,
-          "source_timecode": "00:25:33,420 --> 00:25:35,300",
-          "editorial_note": "manual_digest_caption",
           "speaker_person_id": "person_03"
         },
         {
@@ -460,21 +450,20 @@
           "start": 1.88,
           "end": 5.2,
           "text": "ものすごくこれを言語化するのに大変だった",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 469,
-          "source_timecode": "00:25:35,300 --> 00:25:38,620",
-          "editorial_note": "manual_digest_caption",
           "speaker_person_id": "person_03"
         },
         {
           "type": "caption",
           "start": 5.2,
-          "end": 9.6,
-          "text": "癖とか慣れとかそういうもので今までやってきた",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 470,
-          "source_timecode": "00:25:38,620 --> 00:25:49,620",
-          "editorial_note": "manual_digest_caption",
+          "end": 10.5,
+          "text": "癖とか慣れとかそういうもので",
+          "speaker_person_id": "person_03"
+        },
+        {
+          "type": "caption",
+          "start": 10.5,
+          "end": 16.2,
+          "text": "今までやってきたんだなと分かる",
           "speaker_person_id": "person_03"
         }
       ],
@@ -497,12 +486,13 @@
         ]
       },
       "reason": "質問開始から、回答の中心である「当たり前を言語化する」までがSRT上でまとまっている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 9.6
+      "duration": 9.6,
+      "sync_reference_master_sec": 1533.42
     },
     {
       "event_id": "digest_qa_01_answer_03",
-      "timeline_start": 15.54,
-      "timeline_end": 19.04,
+      "timeline_start": 22.14,
+      "timeline_end": 25.64,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -583,14 +573,14 @@
     },
     {
       "event_id": "digest_qa_02_question_context_01",
-      "timeline_start": 19.04,
-      "timeline_end": 27.52,
+      "timeline_start": 25.64,
+      "timeline_end": 34.12,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_03",
-        "in": 1609.0,
-        "out": 1617.48
+        "media_id": "group_wide",
+        "in": 1595.62,
+        "out": 1604.1
       },
       "reference_source": {
         "media_id": "group_wide",
@@ -598,16 +588,22 @@
         "out": 1604.1
       },
       "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_01",
+          "cam_person_03"
+        ],
+        "active_person_id": "person_01",
+        "panel_order": [
+          "person_01",
+          "person_03"
+        ],
+        "selection_reason": "User review requested a two-person split for the domain-expert expectation line; left speaker remains visible.",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
           "apply": [
-            "wide_group_context",
+            "split_layout",
+            "speaker_visible",
             "logo_title_style",
             "caption_safe_lower_zone"
           ]
@@ -639,11 +635,12 @@
           "source_srt_index": 480,
           "source_timecode": "00:26:35,620 --> 00:26:41,220",
           "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_03",
+          "speaker_person_id": "person_01",
           "metadata": {
             "display_text_polished": true,
             "display_text_polished_from": "何でも知ってそうな感じがあると思ってて"
-          }
+          },
+          "review_note": "Voice attribution and user review place this line on the left participant."
         },
         {
           "type": "caption",
@@ -654,11 +651,12 @@
           "source_srt_index": 481,
           "source_timecode": "00:26:41,220 --> 00:26:44,100",
           "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_03",
+          "speaker_person_id": "person_01",
           "metadata": {
             "display_text_polished": true,
             "display_text_polished_from": "この辺へのハードルの高さ"
-          }
+          },
+          "review_note": "Voice attribution and user review place this line on the left participant."
         }
       ],
       "digest_qa_source": {
@@ -680,12 +678,13 @@
         ]
       },
       "reason": "ハードルの高さと、建設的な議論で怖さはないという回答が同じ流れで説明されている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 8.48
+      "duration": 8.48,
+      "sync_reference_master_sec": 1595.62
     },
     {
       "event_id": "digest_qa_02_answer_02",
-      "timeline_start": 27.52,
-      "timeline_end": 36.08,
+      "timeline_start": 34.12,
+      "timeline_end": 42.68,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -699,16 +698,24 @@
         "out": 1627.72
       },
       "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
-        "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
+        "type": "split_grid",
+        "media_ids": [
+          "cam_person_01",
+          "cam_person_02",
+          "cam_person_03"
+        ],
+        "active_person_id": "person_03",
+        "panel_order": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "selection_reason": "This short answer contains a right-person line followed by a middle-person line, so use the ordered three-person split instead of cutting away from a speaker.",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
           "apply": [
-            "wide_group_context",
+            "split_layout",
+            "speaker_visible",
             "logo_title_style",
             "caption_safe_lower_zone"
           ]
@@ -755,7 +762,9 @@
           "source_srt_index": 485,
           "source_timecode": "00:27:03,920 --> 00:27:07,720",
           "editorial_note": "Digest wording normalized from SRT phrase '意味はあるんでしょうけどね'.",
-          "speaker_person_id": "person_03"
+          "speaker_person_id": "person_02",
+          "force_single_line": true,
+          "review_note": "Keep as one line; voice attribution points to the middle participant for this phrase."
         }
       ],
       "digest_qa_source": {
@@ -781,8 +790,8 @@
     },
     {
       "event_id": "digest_qa_03_answer_01",
-      "timeline_start": 36.08,
-      "timeline_end": 44.96,
+      "timeline_start": 42.68,
+      "timeline_end": 51.56,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -895,34 +904,47 @@
     },
     {
       "event_id": "digest_qa_04_answer_02",
-      "timeline_start": 44.96,
-      "timeline_end": 48.32,
+      "timeline_start": 51.56,
+      "timeline_end": 58.28,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_03",
-        "in": 2023.48,
-        "out": 2026.84
+        "media_id": "cam_person_01",
+        "in": 2006.768,
+        "out": 2013.488
       },
       "reference_source": {
         "media_id": "group_wide",
         "in": 2010.1,
-        "out": 2013.46
+        "out": 2016.82
       },
       "layout": {
         "type": "single",
-        "selected_media_id": "cam_person_03",
-        "target_person_id": "person_03",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "active_person_id": "person_01",
         "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
+        "selection_reason": "User review says this digest line should use the left participant, so the speaker separation override is applied here.",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
           "apply": [
-            "wide_group_context",
+            "speaker_closeup",
             "logo_title_style",
             "caption_safe_lower_zone"
           ]
+        },
+        "face_center_x": 864.0,
+        "face_center_y": 473.5,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 640.0,
+          "new_output_x_at_1080h": 640.0,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -937,24 +959,12 @@
       },
       "overlays": [
         {
-          "type": "topic_title",
-          "position": "top_right",
-          "text": "AI時代のドメインエキスパート論",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
           "type": "caption",
           "start": 0.0,
-          "end": 3.36,
-          "text": "求められることが研ぎ澄まされている",
-          "style_id": "opening_digest_sample_caption",
-          "source_srt_index": 586,
-          "source_timecode": "00:33:30,100 --> 00:33:36,820",
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "display_text_polished": true,
-            "display_text_polished_from": "自分たちに求められることは結構研ぎ澄まされてきている"
-          }
+          "end": 6.72,
+          "text": "自分たちに求められることが研ぎ澄まされる",
+          "speaker_person_id": "person_01",
+          "review_note": "Text changed per user review; left-person speaker override applied."
         }
       ],
       "digest_qa_source": {
@@ -976,12 +986,13 @@
         ]
       },
       "reason": "AI時代の役割変化、仕様ではなく目的を考える価値、AIリサーチとの差分まで一続きで語られている。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 3.36
+      "duration": 3.36,
+      "sync_reference_master_sec": 2010.1
     },
     {
       "event_id": "digest_qa_04_answer_02_short02",
-      "timeline_start": 48.32,
-      "timeline_end": 52.2,
+      "timeline_start": 58.28,
+      "timeline_end": 62.16,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -1065,8 +1076,8 @@
     },
     {
       "event_id": "digest_qa_04_answer_02_short03",
-      "timeline_start": 52.2,
-      "timeline_end": 55.0,
+      "timeline_start": 62.16,
+      "timeline_end": 64.96,
       "type": "source_clip",
       "section": "digest",
       "source": {
@@ -1146,14 +1157,14 @@
     },
     {
       "event_id": "digest_qa_05_answer_02",
-      "timeline_start": 55.0,
-      "timeline_end": 61.0,
+      "timeline_start": 64.96,
+      "timeline_end": 70.96,
       "type": "source_clip",
       "section": "digest",
       "source": {
-        "media_id": "cam_person_02",
-        "in": 2945.508,
-        "out": 2951.508
+        "media_id": "cam_person_01",
+        "in": 2934.708,
+        "out": 2940.708
       },
       "reference_source": {
         "media_id": "group_wide",
@@ -1162,18 +1173,31 @@
       },
       "layout": {
         "type": "single",
-        "selected_media_id": "cam_person_02",
-        "target_person_id": "person_02",
+        "selected_media_id": "cam_person_01",
+        "target_person_id": "person_01",
+        "active_person_id": "person_01",
         "crop_mode": "person_centered",
-        "selection_reason": "Digest answer cut uses the active speaker close-up.",
+        "selection_reason": "Voice attribution for '学ぶの、めちゃめちゃおすすめ' points to the left participant; use the matching close-up.",
         "reference_alignment": {
           "reference_image_id": "annotation_sample_review_meeting",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\annotation-sample2.json",
           "apply": [
-            "wide_group_context",
+            "speaker_closeup",
             "logo_title_style",
             "caption_safe_lower_zone"
           ]
+        },
+        "face_center_x": 825.5,
+        "face_center_y": 463.5,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 639.917,
+          "new_output_x_at_1080h": 639.5,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -1202,7 +1226,8 @@
           "source_srt_index": 789,
           "source_timecode": "00:49:00,040 --> 00:49:02,040",
           "editorial_note": "manual_digest_caption",
-          "speaker_person_id": "person_02"
+          "speaker_person_id": "person_01",
+          "review_note": "Camera changed to the left participant to match the spoken audio and mouth movement."
         }
       ],
       "digest_qa_source": {
@@ -1224,12 +1249,13 @@
         ]
       },
       "reason": "質問から推奨理由までが明確で、ショート動画やチャプターに使いやすい結論がある。 Opening digest is tightened to captioned speech only. Shortened opening digest: keep only the core captioned beat.",
-      "duration": 6.0
+      "duration": 6.0,
+      "sync_reference_master_sec": 2938.04
     },
     {
       "event_id": "digest_to_main_company_movie",
-      "timeline_start": 61.0,
-      "timeline_end": 76.018,
+      "timeline_start": 70.96,
+      "timeline_end": 85.978,
       "type": "source_clip",
       "section": "bridge",
       "source": {
@@ -1261,14 +1287,14 @@
     },
     {
       "event_id": "main_intro_group_greeting",
-      "timeline_start": 76.018,
-      "timeline_end": 81.818,
+      "timeline_start": 85.978,
+      "timeline_end": 91.778,
       "type": "source_clip",
       "section": "main",
       "source": {
-        "media_id": "cam_person_01",
-        "in": 515.808,
-        "out": 521.608
+        "media_id": "group_wide",
+        "in": 519.14,
+        "out": 524.94
       },
       "reference_source": {
         "media_id": "group_wide",
@@ -1276,19 +1302,22 @@
         "out": 524.94
       },
       "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_01",
-        "target_person_id": "person_01",
-        "crop_mode": "single_intro_reference_fullscreen",
-        "introduction_nameplate": false,
-        "selection_reason": "Show the speaking left participant close-up, matching the one-person introduction reference.",
+        "type": "wide_group",
+        "ensure_people_visible": [
+          "person_01",
+          "person_02",
+          "person_03"
+        ],
+        "active_person_id": "person_01",
+        "safe_margin": 0.06,
+        "selection_reason": "Post-company-movie wait is removed by starting the main interview at the first production greeting and showing the three-person wide shot.",
         "reference_alignment": {
-          "reference_image_id": "single_person_fullscreen_intro_white_text",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
+          "reference_image_id": "annotation_sample_review_meeting",
           "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_left_white_role_name"
+            "wide_group_context",
+            "speaker_visible",
+            "logo_title_style",
+            "caption_safe_lower_zone"
           ]
         }
       },
@@ -1312,12 +1341,18 @@
       ],
       "caption_policy": "editorial_captions_allowed",
       "reason": "Immediately after the company movie, cut directly to the left interviewer speaking; remove the waiting/dead-air feel.",
-      "main_caption_plan_items": []
+      "main_caption_plan_items": [],
+      "sync_reference_master_sec": 519.14,
+      "post_company_wait_cut": {
+        "policy": "company_movie_preserved; main starts at first production greeting",
+        "start_marker_text": "LayerXのYouTubeチャンネルをご覧の皆さん、こんにちは",
+        "removed_before_master_sec": 519.14
+      }
     },
     {
       "event_id": "main_intro_yano_self",
-      "timeline_start": 81.818,
-      "timeline_end": 88.978,
+      "timeline_start": 91.778,
+      "timeline_end": 98.938,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1345,6 +1380,19 @@
             "eyes_upper_third",
             "lower_left_white_role_name"
           ]
+        },
+        "face_center_x": 657.0,
+        "face_center_y": 391.0,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 547.5,
+          "new_output_x_at_1080h": 640.0,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -1380,8 +1428,8 @@
     },
     {
       "event_id": "main_intro_wide_after_yano",
-      "timeline_start": 88.978,
-      "timeline_end": 92.418,
+      "timeline_start": 98.938,
+      "timeline_end": 102.378,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1426,8 +1474,8 @@
     },
     {
       "event_id": "main_intro_two_guests_named",
-      "timeline_start": 92.418,
-      "timeline_end": 103.418,
+      "timeline_start": 102.378,
+      "timeline_end": 113.378,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1472,8 +1520,8 @@
     },
     {
       "event_id": "main_intro_yano_explains_001",
-      "timeline_start": 103.418,
-      "timeline_end": 118.418,
+      "timeline_start": 113.378,
+      "timeline_end": 128.378,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1501,6 +1549,19 @@
             "eyes_upper_third",
             "lower_left_white_role_name"
           ]
+        },
+        "face_center_x": 706.0,
+        "face_center_y": 398.5,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 588.333,
+          "new_output_x_at_1080h": 640.0,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -1527,8 +1588,8 @@
     },
     {
       "event_id": "main_intro_wide_context_001",
-      "timeline_start": 118.418,
-      "timeline_end": 133.418,
+      "timeline_start": 128.378,
+      "timeline_end": 143.378,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1566,82 +1627,15 @@
           "position": "top_right",
           "topic_id": "topic_001",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 6.51,
-          "end": 10.82,
-          "text": "それぞれの立場から開発に関与している",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_002",
-          "caption_no": 2,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_002",
-            "source": "main_caption_plan",
-            "caption_start_sec": 568.04,
-            "caption_end_sec": 572.36,
-            "source_start_sec": 568.04,
-            "source_end_sec": 572.36,
-            "speaker_name": "矢野",
-            "caption_condensed": true,
-            "condensed_from": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
-            "condense_policy": "editorial_two_line_unit"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              568.04,
-              572.36
-            ],
-            "speech_window_sec": [
-              568.05,
-              572.36
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.009142,
-              "peak": 0.037992,
-              "threshold": 0.016456,
-              "active_frame_count": 155
-            }
-          }
         }
       ],
       "reason": "Wide context cut to keep pacing around 15 seconds.",
-      "main_caption_plan_items": [
-        {
-          "caption_id": "main_caption_002",
-          "caption_no": 2,
-          "source": "captions.md",
-          "source_match_method": "keyword_match",
-          "source_match_confidence": 0.667,
-          "source_segment_id": "seg_000192",
-          "source_start_sec": 568.04,
-          "source_end_sec": 572.36,
-          "caption_start_sec": 568.04,
-          "caption_end_sec": 572.36,
-          "display_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
-          "full_reference_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している。",
-          "search_keys": [
-            "チームがあるわけではなく",
-            "労務をやりながら",
-            "PDMとして"
-          ],
-          "speaker_person_id": "person_01",
-          "speaker_name": "矢野",
-          "speaker_screen_position": "left",
-          "speaker_role": "interviewer",
-          "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
-          "speaker_attribution_confidence": 0.97
-        }
-      ]
+      "main_caption_plan_items": []
     },
     {
       "event_id": "main_intro_yano_explains_002",
-      "timeline_start": 133.418,
-      "timeline_end": 148.418,
+      "timeline_start": 143.378,
+      "timeline_end": 158.378,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1669,6 +1663,19 @@
             "eyes_upper_third",
             "lower_left_white_role_name"
           ]
+        },
+        "face_center_x": 663.0,
+        "face_center_y": 454.0,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 552.5,
+          "new_output_x_at_1080h": 640.0,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -1687,80 +1694,16 @@
           "position": "top_right",
           "topic_id": "topic_001",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 1.98,
-          "end": 5.88,
-          "text": "実務経験をプロダクト開発に持ち込む役割",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_003",
-          "caption_no": 3,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_003",
-            "source": "main_caption_plan",
-            "caption_start_sec": 578.52,
-            "caption_end_sec": 582.42,
-            "source_start_sec": 578.52,
-            "source_end_sec": 582.42,
-            "speaker_name": "矢野"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              578.52,
-              582.42
-            ],
-            "speech_window_sec": [
-              578.52,
-              582.42
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008291,
-              "peak": 0.061053,
-              "threshold": 0.014923,
-              "active_frame_count": 159
-            }
-          }
         }
       ],
       "caption_policy": "editorial_captions_allowed",
       "reason": "Yano explains the domain expert role; show the speaker.",
-      "main_caption_plan_items": [
-        {
-          "caption_id": "main_caption_003",
-          "caption_no": 3,
-          "source": "captions.md",
-          "source_match_method": "keyword_match",
-          "source_match_confidence": 1.0,
-          "source_segment_id": "seg_000195",
-          "source_start_sec": 578.52,
-          "source_end_sec": 582.42,
-          "caption_start_sec": 578.52,
-          "caption_end_sec": 582.42,
-          "display_text": "実務経験をプロダクト開発に持ち込む役割",
-          "full_reference_text": "ドメインエキスパートとは専門知識を持っているだけではなく実務の経験をプロダクト開発に持ち込む役割。",
-          "search_keys": [
-            "ドメインエキスパート",
-            "プロダクトを作る中で",
-            "バックグラウンド"
-          ],
-          "speaker_person_id": "person_01",
-          "speaker_name": "矢野",
-          "speaker_screen_position": "left",
-          "speaker_role": "interviewer",
-          "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
-          "speaker_attribution_confidence": 0.97
-        }
-      ]
+      "main_caption_plan_items": []
     },
     {
       "event_id": "main_intro_two_guest_reaction",
-      "timeline_start": 148.418,
-      "timeline_end": 163.418,
+      "timeline_start": 158.378,
+      "timeline_end": 173.378,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1805,8 +1748,8 @@
     },
     {
       "event_id": "main_intro_yano_prompt_selfintro",
-      "timeline_start": 163.418,
-      "timeline_end": 180.398,
+      "timeline_start": 173.378,
+      "timeline_end": 190.358,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1834,6 +1777,19 @@
             "eyes_upper_third",
             "lower_left_white_role_name"
           ]
+        },
+        "face_center_x": 872.0,
+        "face_center_y": 495.0,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 639.667,
+          "new_output_x_at_1080h": 640.0,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -1860,8 +1816,8 @@
     },
     {
       "event_id": "intro_person_02_nemoto",
-      "timeline_start": 180.398,
-      "timeline_end": 227.938,
+      "timeline_start": 190.358,
+      "timeline_end": 237.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1924,8 +1880,8 @@
     },
     {
       "event_id": "intro_between_nemoto_murata",
-      "timeline_start": 227.938,
-      "timeline_end": 231.938,
+      "timeline_start": 237.898,
+      "timeline_end": 241.898,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -1970,8 +1926,8 @@
     },
     {
       "event_id": "intro_person_03_murata",
-      "timeline_start": 231.938,
-      "timeline_end": 279.378,
+      "timeline_start": 241.898,
+      "timeline_end": 289.338,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -2033,1003 +1989,97 @@
       "main_caption_plan_items": []
     },
     {
-      "event_id": "main_full_001",
-      "timeline_start": 279.378,
-      "timeline_end": 294.378,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "group_wide",
-        "in": 722.5,
-        "out": 737.5
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 722.5,
-        "out": 737.5
-      },
-      "layout": {
-        "type": "split_grid",
-        "media_ids": [
-          "cam_person_01",
-          "cam_person_03"
-        ],
-        "grid_strategy": "two_person_vertical_split",
-        "panel_order": [
-          "person_01",
-          "person_03"
-        ],
-        "active_person_id": "person_01",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.918,
-        "speaker_window_attribution": {
-          "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
-          "window_start_sec": 722.5,
-          "window_end_sec": 737.5,
-          "speaker_person_id": "person_01",
-          "speaker_attribution_confidence": 0.918,
-          "dominance": 0.897,
-          "significant_speaker_person_ids": [
-            "person_01",
-            "person_03"
-          ],
-          "speaker_weight_summary": [
-            {
-              "person_id": "person_01",
-              "weighted_duration": 11.914,
-              "overlap_sec": 12.98,
-              "share": 0.897
-            },
-            {
-              "person_id": "person_03",
-              "weighted_duration": 1.368,
-              "overlap_sec": 2.02,
-              "share": 0.103
-            }
-          ],
-          "evidence_segments": [
-            {
-              "segment_id": "seg_000243",
-              "start": 722.5,
-              "end": 724.52,
-              "speaker_person_id": "person_03",
-              "speaker_name": "村田",
-              "confidence": 0.677,
-              "method": "voice_quality_nearest_anchor",
-              "text": "どういうふうに働いているかというのは"
-            },
-            {
-              "segment_id": "seg_000244",
-              "start": 724.52,
-              "end": 727.46,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.74,
-              "method": "text_role_override_voice",
-              "text": "またいろいろと伺えたいなと思っています"
-            },
-            {
-              "segment_id": "seg_000245",
-              "start": 727.46,
-              "end": 731.54,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "最後に簡単に私の自己紹介をさせていただきます"
-            },
-            {
-              "segment_id": "seg_000246",
-              "start": 731.54,
-              "end": 734.36,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "改めましてLayerXの矢野と申します"
-            },
-            {
-              "segment_id": "seg_000247",
-              "start": 734.36,
-              "end": 737.56,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "もともと新卒で監査法人に入って"
-            }
-          ]
-        },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 729.968,
-        "out": 744.968,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 722.5,
-        "timing_reference_out": 737.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_001",
-          "style_id": "opening_digest_top_right_title"
-        }
-      ],
-      "main_caption_plan_items": [],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
-    },
-    {
-      "event_id": "main_full_002",
-      "timeline_start": 294.378,
-      "timeline_end": 309.378,
+      "event_id": "main_yano_profile_intro",
+      "timeline_start": 289.338,
+      "timeline_end": 346.258,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "cam_person_01",
-        "in": 734.168,
-        "out": 749.168
+        "in": 724.128,
+        "out": 781.048
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 737.5,
-        "out": 752.5
+        "in": 727.46,
+        "out": 784.38
       },
       "layout": {
         "type": "single",
         "selected_media_id": "cam_person_01",
         "target_person_id": "person_01",
-        "crop_mode": "person_centered",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.97,
-        "speaker_window_attribution": {
-          "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
-          "window_start_sec": 737.5,
-          "window_end_sec": 752.5,
-          "speaker_person_id": "person_01",
-          "speaker_attribution_confidence": 0.97,
-          "dominance": 1.0,
-          "significant_speaker_person_ids": [
-            "person_01"
-          ],
-          "speaker_weight_summary": [
-            {
-              "person_id": "person_01",
-              "weighted_duration": 14.492,
-              "overlap_sec": 14.94,
-              "share": 1.0
-            }
-          ],
-          "evidence_segments": [
-            {
-              "segment_id": "seg_000248",
-              "start": 737.56,
-              "end": 740.94,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "そこから事業会社で経営デザインとか"
-            },
-            {
-              "segment_id": "seg_000249",
-              "start": 740.94,
-              "end": 747.38,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "経営企画IRみたいなそういった仕事をしてそこまでいわゆるバックオフィスの仕事を中心になったんですけど"
-            },
-            {
-              "segment_id": "seg_000250",
-              "start": 747.38,
-              "end": 753.5,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "LayerXに入って初めていわゆる事業側というかビジネス側の仕事をしてました。"
-            }
-          ]
-        },
-        "selection_reason": "Speaker attribution is usable; prioritize a face-centered close-up of the speaking person.",
+        "crop_mode": "single_intro_reference_fullscreen",
+        "introduction_nameplate": false,
+        "selection_reason": "Yano self-introduction should match the other two profile-card introductions: one-person close-up with a profile card.",
         "reference_alignment": {
           "reference_image_id": "single_person_fullscreen_intro_white_text",
           "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
           "apply": [
             "medium_closeup",
             "eyes_upper_third",
-            "lower_left_white_role_name"
+            "single_person_bio_card_lower_third"
           ]
+        },
+        "face_center_x": 855.0,
+        "face_center_y": 500.0,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 640.5,
+          "new_output_x_at_1080h": 640.0,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
         "mode": "single_interview_source",
         "source_media_id": "cam_person_02",
-        "in": 744.968,
-        "out": 759.968,
+        "in": 734.928,
+        "out": 791.848,
         "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 737.5,
-        "timing_reference_out": 752.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+        "timing_reference_in": 727.46,
+        "timing_reference_out": 784.38,
+        "reason": "Use the existing single continuous interview audio source; timing follows the Yano self-introduction master window."
       },
       "overlays": [
         {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_001",
-          "style_id": "opening_digest_top_right_title"
+          "type": "intro_profile_card",
+          "person_id": "person_01",
+          "profile_source": "output/reports/interviewee_profile_cards.json",
+          "reference_image_id": "single_person_bio_card_lower_third",
+          "style_id": "single_person_bio_card_lower_third_reference",
+          "start": 0.35,
+          "end": 56.57
         }
       ],
       "main_caption_plan_items": [],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
-    },
-    {
-      "event_id": "main_full_003",
-      "timeline_start": 309.378,
-      "timeline_end": 324.378,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "cam_person_01",
-        "in": 749.168,
-        "out": 764.168
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 752.5,
-        "out": 767.5
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_01",
-        "target_person_id": "person_01",
-        "crop_mode": "person_centered",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.97,
-        "speaker_window_attribution": {
-          "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
-          "window_start_sec": 752.5,
-          "window_end_sec": 767.5,
-          "speaker_person_id": "person_01",
-          "speaker_attribution_confidence": 0.97,
-          "dominance": 1.0,
-          "significant_speaker_person_ids": [
-            "person_01"
-          ],
-          "speaker_weight_summary": [
-            {
-              "person_id": "person_01",
-              "weighted_duration": 14.55,
-              "overlap_sec": 15.0,
-              "share": 1.0
-            }
-          ],
-          "evidence_segments": [
-            {
-              "segment_id": "seg_000250",
-              "start": 747.38,
-              "end": 753.5,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "LayerXに入って初めていわゆる事業側というかビジネス側の仕事をしてました。"
-            },
-            {
-              "segment_id": "seg_000251",
-              "start": 753.5,
-              "end": 757.82,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "実は僕はドメインエキスパートという職種で入社したんですけど"
-            },
-            {
-              "segment_id": "seg_000252",
-              "start": 757.82,
-              "end": 766.06,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "なんですけど当時4年前くらいだったのでドメインエキスパート何をやるか会社でまだ決まってないみたいな。"
-            },
-            {
-              "segment_id": "seg_000253",
-              "start": 766.06,
-              "end": 784.38,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなとこ"
-            }
-          ]
-        },
-        "selection_reason": "Speaker attribution is usable; prioritize a face-centered close-up of the speaking person.",
-        "reference_alignment": {
-          "reference_image_id": "single_person_fullscreen_intro_white_text",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
-          "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_left_white_role_name"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 759.968,
-        "out": 774.968,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 752.5,
-        "timing_reference_out": 767.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_001",
-          "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "矢野さんはLayerXで初めて事業側の仕事に関わった",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_059",
-          "caption_no": 59,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_059",
-            "source": "main_caption_plan",
-            "caption_start_sec": 740.0,
-            "caption_end_sec": 802.0,
-            "source_start_sec": 737.56,
-            "source_end_sec": 740.94,
-            "speaker_name": "矢野"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              737.56,
-              740.94
-            ],
-            "speech_window_sec": [
-              737.62,
-              740.53
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008547,
-              "peak": 0.03103,
-              "threshold": 0.015384,
-              "active_frame_count": 134
-            }
-          }
-        }
-      ],
-      "main_caption_plan_items": [
-        {
-          "caption_id": "main_caption_059",
-          "caption_no": 59,
-          "source": "captions.md",
-          "source_match_method": "captions_md_time_hint",
-          "source_match_confidence": 0.9,
-          "source_segment_id": "seg_000248",
-          "source_start_sec": 737.56,
-          "source_end_sec": 740.94,
-          "caption_start_sec": 740.0,
-          "caption_end_sec": 802.0,
-          "display_text": "矢野さんはLayerXで初めて事業側の仕事に関わった",
-          "full_reference_text": "矢野さんは監査法人から事業会社の経営企画やIRを経てLayerXで初めて事業側・ビジネス側の仕事に関わった。",
-          "search_keys": [
-            "監査法人",
-            "経営企画",
-            "IR",
-            "事業側"
-          ],
-          "speaker_person_id": "person_01",
-          "speaker_name": "矢野",
-          "speaker_screen_position": "left",
-          "speaker_role": "interviewer",
-          "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
-          "speaker_attribution_confidence": 0.97
-        }
-      ],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
-    },
-    {
-      "event_id": "main_full_004",
-      "timeline_start": 324.378,
-      "timeline_end": 339.378,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "cam_person_01",
-        "in": 764.168,
-        "out": 779.168
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 767.5,
-        "out": 782.5
-      },
-      "layout": {
-        "type": "single",
-        "selected_media_id": "cam_person_01",
-        "target_person_id": "person_01",
-        "crop_mode": "person_centered",
-        "speaker_person_id": "person_01",
-        "speaker_attribution_confidence": 0.97,
-        "speaker_window_attribution": {
-          "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
-          "window_start_sec": 767.5,
-          "window_end_sec": 782.5,
-          "speaker_person_id": "person_01",
-          "speaker_attribution_confidence": 0.97,
-          "dominance": 1.0,
-          "significant_speaker_person_ids": [
-            "person_01"
-          ],
-          "speaker_weight_summary": [
-            {
-              "person_id": "person_01",
-              "weighted_duration": 14.55,
-              "overlap_sec": 15.0,
-              "share": 1.0
-            }
-          ],
-          "evidence_segments": [
-            {
-              "segment_id": "seg_000253",
-              "start": 766.06,
-              "end": 784.38,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなとこ"
-            }
-          ]
-        },
-        "selection_reason": "Speaker attribution is usable; prioritize a face-centered close-up of the speaking person.",
-        "reference_alignment": {
-          "reference_image_id": "single_person_fullscreen_intro_white_text",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\single-person-introduction-name-subtitle-reference.json",
-          "apply": [
-            "medium_closeup",
-            "eyes_upper_third",
-            "lower_left_white_role_name"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 774.968,
-        "out": 789.968,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 767.5,
-        "timing_reference_out": 782.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_001",
-          "style_id": "opening_digest_top_right_title"
-        }
-      ],
-      "main_caption_plan_items": [
-        {
-          "caption_id": "main_caption_auto_001",
-          "caption_no": "auto_001",
-          "source": "transcript_density_backfill",
-          "source_match_method": "density_gap_backfill",
-          "source_match_confidence": 0.66,
-          "source_segment_id": "seg_000253",
-          "source_start_sec": 766.06,
-          "source_end_sec": 784.38,
-          "caption_start_sec": 766.06,
-          "caption_end_sec": 784.38,
-          "display_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします",
-          "full_reference_text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなところを中心にやっていって2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします。",
-          "search_keys": [],
-          "speaker_person_id": "person_01",
-          "speaker_name": "矢野",
-          "speaker_screen_position": "left",
-          "speaker_role": "interviewer",
-          "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
-          "speaker_attribution_confidence": 0.97,
-          "density_backfill": true
-        }
-      ],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
-    },
-    {
-      "event_id": "main_full_005",
-      "timeline_start": 339.378,
-      "timeline_end": 354.378,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "group_wide",
-        "in": 782.5,
-        "out": 797.5
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 782.5,
-        "out": 797.5
-      },
-      "layout": {
-        "type": "wide_group",
-        "media_ids": [
-          "cam_person_01",
-          "cam_person_02",
-          "cam_person_03"
-        ],
-        "grid_strategy": "three_person_vertical_split",
-        "panel_order": [
-          "person_01",
-          "person_02",
-          "person_03"
-        ],
-        "ensure_people_visible": [
-          "person_01",
-          "person_02",
-          "person_03"
-        ],
-        "active_person_id": "person_02",
-        "speaker_window_attribution": {
-          "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
-          "window_start_sec": 782.5,
-          "window_end_sec": 797.5,
-          "speaker_person_id": "person_02",
-          "speaker_attribution_confidence": 0.433,
-          "dominance": 0.49,
-          "significant_speaker_person_ids": [
-            "person_01",
-            "person_02",
-            "person_03"
-          ],
-          "speaker_weight_summary": [
-            {
-              "person_id": "person_02",
-              "weighted_duration": 4.2,
-              "overlap_sec": 9.7,
-              "share": 0.49
-            },
-            {
-              "person_id": "person_01",
-              "weighted_duration": 3.57,
-              "overlap_sec": 3.68,
-              "share": 0.416
-            },
-            {
-              "person_id": "person_03",
-              "weighted_duration": 0.804,
-              "overlap_sec": 1.62,
-              "share": 0.094
-            }
-          ],
-          "evidence_segments": [
-            {
-              "segment_id": "seg_000253",
-              "start": 766.06,
-              "end": 784.38,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "まずヒアリングをするところから始まるみたいな感じで結果的に最初は今でいうプロダクトマーケティングみたいなうちの製品をどうやってお客様に伝えていくのかみたいなとこ"
-            },
-            {
-              "segment_id": "seg_000254",
-              "start": 784.38,
-              "end": 786.18,
-              "speaker_person_id": "person_01",
-              "speaker_name": "矢野",
-              "confidence": 0.97,
-              "method": "forced_known_intro_window",
-              "text": "はい"
-            },
-            {
-              "segment_id": "seg_000255",
-              "start": 786.18,
-              "end": 795.88,
-              "speaker_person_id": "person_02",
-              "speaker_name": "根本",
-              "confidence": 0.433,
-              "method": "voice_quality_nearest_anchor",
-              "text": "根元がすみませんさっき根元が中途半端だったんで"
-            },
-            {
-              "segment_id": "seg_000256",
-              "start": 795.88,
-              "end": 802.02,
-              "speaker_person_id": "person_03",
-              "speaker_name": "村田",
-              "confidence": 0.496,
-              "method": "voice_quality_nearest_anchor",
-              "text": "面白い"
-            }
-          ]
-        },
-        "selection_reason": "Voice attribution finds multiple speakers inside this cut window; keep every possible speaker visible."
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 789.968,
-        "out": 804.968,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 782.5,
-        "timing_reference_out": 797.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_001",
-          "style_id": "opening_digest_top_right_title"
-        }
-      ],
-      "main_caption_plan_items": [
-        {
-          "caption_id": "main_caption_auto_027",
-          "caption_no": "auto_027",
-          "source": "transcript_density_backfill",
-          "source_match_method": "density_gap_backfill",
-          "source_match_confidence": 0.66,
-          "source_segment_id": "seg_000255",
-          "source_start_sec": 786.18,
-          "source_end_sec": 795.88,
-          "caption_start_sec": 786.18,
-          "caption_end_sec": 795.88,
-          "display_text": "根元がすみませんさっき根元が中途半端だったんで",
-          "full_reference_text": "根元がすみませんさっき根元が中途半端だったんで",
-          "search_keys": [],
-          "speaker_person_id": "person_01",
-          "speaker_name": "矢野",
-          "speaker_screen_position": "left",
-          "speaker_role": "interviewer",
-          "speaker_attribution_method": "intro_time_window",
-          "speaker_attribution_confidence": 0.9,
-          "density_backfill": true
-        }
-      ],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
-    },
-    {
-      "event_id": "main_full_006",
-      "timeline_start": 354.378,
-      "timeline_end": 369.378,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "group_wide",
-        "in": 797.5,
-        "out": 812.5
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 797.5,
-        "out": 812.5
-      },
-      "layout": {
-        "type": "split_grid",
-        "media_ids": [
-          "cam_person_02",
-          "cam_person_03"
-        ],
-        "grid_strategy": "two_person_vertical_split",
-        "panel_order": [
-          "person_02",
-          "person_03"
-        ],
-        "active_person_id": "person_02",
-        "speaker_person_id": "person_02",
-        "speaker_attribution_confidence": 0.454,
-        "speaker_window_attribution": {
-          "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
-          "window_start_sec": 797.5,
-          "window_end_sec": 812.5,
-          "speaker_person_id": "person_02",
-          "speaker_attribution_confidence": 0.454,
-          "dominance": 0.537,
-          "significant_speaker_person_ids": [
-            "person_02",
-            "person_03"
-          ],
-          "speaker_weight_summary": [
-            {
-              "person_id": "person_02",
-              "weighted_duration": 3.404,
-              "overlap_sec": 7.5,
-              "share": 0.537
-            },
-            {
-              "person_id": "person_03",
-              "weighted_duration": 2.937,
-              "overlap_sec": 5.6,
-              "share": 0.463
-            }
-          ],
-          "evidence_segments": [
-            {
-              "segment_id": "seg_000256",
-              "start": 795.88,
-              "end": 802.02,
-              "speaker_person_id": "person_03",
-              "speaker_name": "村田",
-              "confidence": 0.496,
-              "method": "voice_quality_nearest_anchor",
-              "text": "面白い"
-            },
-            {
-              "segment_id": "seg_000257",
-              "start": 802.02,
-              "end": 803.1,
-              "speaker_person_id": "person_03",
-              "speaker_name": "村田",
-              "confidence": 0.644,
-              "method": "voice_quality_nearest_anchor",
-              "text": "面白い"
-            },
-            {
-              "segment_id": "seg_000259",
-              "start": 805.0,
-              "end": 809.2,
-              "speaker_person_id": "person_02",
-              "speaker_name": "根本",
-              "confidence": 0.46,
-              "method": "voice_quality_nearest_anchor",
-              "text": "いい感じです"
-            },
-            {
-              "segment_id": "seg_000260",
-              "start": 809.2,
-              "end": 813.14,
-              "speaker_person_id": "person_02",
-              "speaker_name": "根本",
-              "confidence": 0.446,
-              "method": "voice_quality_nearest_anchor",
-              "text": "なんでLayerXとか"
-            }
-          ]
-        },
-        "selection_reason": "Voice attribution finds two speakers in this window; use a two-person split that includes both speakers.",
-        "reference_alignment": {
-          "reference_image_id": "two_person_split_intro_white_names",
-          "analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\two-person-split-introduction-name-subtitle-reference.json",
-          "fallback_reference_image_id": "three_person_divided",
-          "fallback_analysis_path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\reference_image_analysis\\three-people-divided-sample.json",
-          "apply": [
-            "stable_panel_order",
-            "matched_face_scale",
-            "per_panel_white_name_labels"
-          ]
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 804.968,
-        "out": 819.968,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 797.5,
-        "timing_reference_out": 812.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_001",
-          "style_id": "opening_digest_top_right_title"
-        }
-      ],
-      "main_caption_plan_items": [],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
-    },
-    {
-      "event_id": "main_full_007",
-      "timeline_start": 369.378,
-      "timeline_end": 384.378,
-      "type": "source_clip",
-      "section": "main",
-      "source": {
-        "media_id": "group_wide",
-        "in": 812.5,
-        "out": 827.5
-      },
-      "reference_source": {
-        "media_id": "group_wide",
-        "in": 812.5,
-        "out": 827.5
-      },
-      "layout": {
-        "type": "split_grid",
-        "media_ids": [
-          "cam_person_01",
-          "cam_person_02",
-          "cam_person_03"
-        ],
-        "grid_strategy": "three_person_vertical_split",
-        "panel_order": [
-          "person_01",
-          "person_02",
-          "person_03"
-        ],
-        "ensure_people_visible": [
-          "person_01",
-          "person_02",
-          "person_03"
-        ],
-        "speaker_window_attribution": {
-          "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\voice_speaker_attribution.json",
-          "window_start_sec": 812.5,
-          "window_end_sec": 827.5,
-          "speaker_person_id": "person_03",
-          "speaker_attribution_confidence": 0.547,
-          "dominance": 0.965,
-          "significant_speaker_person_ids": [
-            "person_02",
-            "person_03"
-          ],
-          "speaker_weight_summary": [
-            {
-              "person_id": "person_03",
-              "weighted_duration": 7.851,
-              "overlap_sec": 14.36,
-              "share": 0.965
-            },
-            {
-              "person_id": "person_02",
-              "weighted_duration": 0.285,
-              "overlap_sec": 0.64,
-              "share": 0.035
-            }
-          ],
-          "evidence_segments": [
-            {
-              "segment_id": "seg_000260",
-              "start": 809.2,
-              "end": 813.14,
-              "speaker_person_id": "person_02",
-              "speaker_name": "根本",
-              "confidence": 0.446,
-              "method": "voice_quality_nearest_anchor",
-              "text": "なんでLayerXとか"
-            },
-            {
-              "segment_id": "seg_000261",
-              "start": 813.14,
-              "end": 820.14,
-              "speaker_person_id": "person_03",
-              "speaker_name": "村田",
-              "confidence": 0.554,
-              "method": "voice_quality_nearest_anchor",
-              "text": "なんでPDMだったのかな?"
-            },
-            {
-              "segment_id": "seg_000262",
-              "start": 820.14,
-              "end": 824.14,
-              "speaker_person_id": "person_03",
-              "speaker_name": "村田",
-              "confidence": 0.496,
-              "method": "voice_quality_nearest_anchor",
-              "text": "PDMじゃないよ"
-            },
-            {
-              "segment_id": "seg_000263",
-              "start": 824.14,
-              "end": 828.14,
-              "speaker_person_id": "person_03",
-              "speaker_name": "村田",
-              "confidence": 0.592,
-              "method": "voice_quality_nearest_anchor",
-              "text": "なんで開発をやってるのか"
-            }
-          ]
-        },
-        "selection_reason": "Converted to a three-person split because trusted voice attribution found speakers outside the selected layout.",
-        "previous_layout": {
-          "type": "single",
-          "media_ids": null,
-          "panel_order": null,
-          "grid_strategy": null,
-          "clock_media_id": "group_wide"
-        }
-      },
-      "audio": {
-        "mode": "single_interview_source",
-        "source_media_id": "cam_person_02",
-        "in": 819.968,
-        "out": 834.968,
-        "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 812.5,
-        "timing_reference_out": 827.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
-      },
-      "overlays": [
-        {
-          "type": "topic_title",
-          "position": "top_right",
-          "topic_id": "topic_001",
-          "style_id": "opening_digest_top_right_title"
-        }
-      ],
-      "main_caption_plan_items": [
-        {
-          "caption_id": "main_caption_060",
-          "caption_no": 60,
-          "source": "captions.md",
-          "source_match_method": "captions_md_time_hint",
-          "source_match_confidence": 0.9,
-          "source_segment_id": "seg_000256",
-          "source_start_sec": 795.88,
-          "source_end_sec": 802.02,
-          "caption_start_sec": 802.0,
-          "caption_end_sec": 830.0,
-          "display_text": "最初はヒアリングから始まった",
-          "full_reference_text": "矢野さんが入社した当時はドメインエキスパートが何をやるのかもまだ決まっておらずまずはヒアリングから始まった。",
-          "search_keys": [
-            "ドメインエキスパート何をやるか",
-            "決まってない",
-            "ヒアリング"
-          ],
-          "speaker_person_id": "person_01",
-          "speaker_name": "矢野",
-          "speaker_screen_position": "left",
-          "speaker_role": "interviewer",
-          "speaker_attribution_method": "captions_md_topic_speaker_map",
-          "speaker_attribution_confidence": 0.78
-        }
-      ],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
+      "reason": "矢野さんの自己紹介開始に合わせて、単独カメラでプロフィールカードを表示。",
+      "caption_policy": "no_caption_during_self_introduction",
+      "yano_profile_intro_window": {
+        "source": "voice_speaker_attribution",
+        "start_text": "最後に簡単に私の自己紹介をさせていただきます",
+        "end_text": "2年半くらい前から開発に関与しているという感じでございます。よろしくお願いします。",
+        "master_start_sec": 727.46,
+        "master_end_sec": 784.38
+      }
     },
     {
       "event_id": "main_full_008",
-      "timeline_start": 384.378,
-      "timeline_end": 399.378,
+      "timeline_start": 346.258,
+      "timeline_end": 352.618,
       "type": "source_clip",
       "section": "main",
       "source": {
         "media_id": "group_wide",
-        "in": 827.5,
+        "in": 836.14,
         "out": 842.5
       },
       "reference_source": {
         "media_id": "group_wide",
-        "in": 827.5,
+        "in": 836.14,
         "out": 842.5
       },
       "layout": {
@@ -3140,12 +2190,12 @@
       "audio": {
         "mode": "single_interview_source",
         "source_media_id": "cam_person_02",
-        "in": 834.968,
+        "in": 843.608,
         "out": 849.968,
         "timing_reference_media_id": "group_wide",
-        "timing_reference_in": 827.5,
+        "timing_reference_in": 836.14,
         "timing_reference_out": 842.5,
-        "reason": "Use one continuous interview audio source through digest, main interview, and closing; do not switch audio source mid-video."
+        "reason": "Trimmed out the awkward dead-air/restart section; keep continuous main audio source aligned to the restart phrase."
       },
       "overlays": [
         {
@@ -3182,12 +2232,21 @@
           "speaker_attribution_confidence": 0.554
         }
       ],
-      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility."
+      "reason": "Full-length main interview chunk; camera/layout changes approximately every 15 seconds while preserving active speaker visibility.",
+      "dead_air_trim": {
+        "cut_reason": "Remove post-self-introduction awkward talk including 'いやいやむずい' before the real restart.",
+        "removed_timeline_sec": [
+          346.258,
+          399.898
+        ],
+        "kept_restart_master_sec": 836.14,
+        "kept_restart_text": "ではですね最初ちょっとお二人に聞きたいのが"
+      }
     },
     {
       "event_id": "main_full_009",
-      "timeline_start": 399.378,
-      "timeline_end": 414.378,
+      "timeline_start": 352.618,
+      "timeline_end": 367.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3354,8 +2413,8 @@
     },
     {
       "event_id": "main_full_010",
-      "timeline_start": 414.378,
-      "timeline_end": 429.378,
+      "timeline_start": 367.618,
+      "timeline_end": 382.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3572,8 +2631,8 @@
     },
     {
       "event_id": "main_full_011",
-      "timeline_start": 429.378,
-      "timeline_end": 444.378,
+      "timeline_start": 382.618,
+      "timeline_end": 397.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3779,8 +2838,8 @@
     },
     {
       "event_id": "main_full_012",
-      "timeline_start": 444.378,
-      "timeline_end": 459.378,
+      "timeline_start": 397.618,
+      "timeline_end": 412.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -3895,8 +2954,8 @@
     },
     {
       "event_id": "main_full_013",
-      "timeline_start": 459.378,
-      "timeline_end": 474.378,
+      "timeline_start": 412.618,
+      "timeline_end": 427.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4063,8 +3122,8 @@
     },
     {
       "event_id": "main_full_014",
-      "timeline_start": 474.378,
-      "timeline_end": 489.378,
+      "timeline_start": 427.618,
+      "timeline_end": 442.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4202,8 +3261,8 @@
     },
     {
       "event_id": "main_full_015",
-      "timeline_start": 489.378,
-      "timeline_end": 504.378,
+      "timeline_start": 442.618,
+      "timeline_end": 457.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4438,8 +3497,8 @@
     },
     {
       "event_id": "main_full_016",
-      "timeline_start": 504.378,
-      "timeline_end": 519.378,
+      "timeline_start": 457.618,
+      "timeline_end": 472.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4657,8 +3716,8 @@
     },
     {
       "event_id": "main_full_017",
-      "timeline_start": 519.378,
-      "timeline_end": 534.378,
+      "timeline_start": 472.618,
+      "timeline_end": 487.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -4799,8 +3858,8 @@
     },
     {
       "event_id": "main_full_018",
-      "timeline_start": 534.378,
-      "timeline_end": 549.378,
+      "timeline_start": 487.618,
+      "timeline_end": 502.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5005,8 +4064,8 @@
     },
     {
       "event_id": "main_full_019",
-      "timeline_start": 549.378,
-      "timeline_end": 564.378,
+      "timeline_start": 502.618,
+      "timeline_end": 517.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5140,6 +4199,55 @@
           "position": "top_right",
           "topic_id": "topic_002",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 1.13,
+          "end": 4.25,
+          "text": "経理一本でどう生きるかという不安があった",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_064",
+          "caption_no": 64,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_064",
+            "source": "main_caption_plan",
+            "caption_start_sec": 995.0,
+            "caption_end_sec": 1025.0,
+            "source_start_sec": 993.22,
+            "source_end_sec": 996.82,
+            "speaker_name": "根本"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              993.22,
+              996.82
+            ],
+            "speech_window_sec": [
+              993.63,
+              996.75
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008035,
+              "peak": 0.034257,
+              "threshold": 0.014464,
+              "active_frame_count": 109
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              993.63,
+              996.75
+            ],
+            "event_reference_window_sec": [
+              992.5,
+              1007.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -5147,8 +4255,8 @@
     },
     {
       "event_id": "main_full_020",
-      "timeline_start": 564.378,
-      "timeline_end": 579.378,
+      "timeline_start": 517.618,
+      "timeline_end": 532.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5314,44 +4422,6 @@
           "position": "top_right",
           "topic_id": "topic_002",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "経理一本でどう生きるかという不安があった",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_064",
-          "caption_no": 64,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_064",
-            "source": "main_caption_plan",
-            "caption_start_sec": 995.0,
-            "caption_end_sec": 1025.0,
-            "source_start_sec": 993.22,
-            "source_end_sec": 996.82,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              993.22,
-              996.82
-            ],
-            "speech_window_sec": [
-              993.63,
-              996.75
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008035,
-              "peak": 0.034257,
-              "threshold": 0.014464,
-              "active_frame_count": 109
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -5386,8 +4456,8 @@
     },
     {
       "event_id": "main_full_021",
-      "timeline_start": 579.378,
-      "timeline_end": 594.378,
+      "timeline_start": 532.618,
+      "timeline_end": 547.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5567,8 +4637,8 @@
     },
     {
       "event_id": "main_full_022",
-      "timeline_start": 594.378,
-      "timeline_end": 609.378,
+      "timeline_start": 547.618,
+      "timeline_end": 562.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5699,8 +4769,8 @@
     },
     {
       "event_id": "main_full_023",
-      "timeline_start": 609.378,
-      "timeline_end": 624.378,
+      "timeline_start": 562.618,
+      "timeline_end": 577.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -5895,8 +4965,8 @@
     },
     {
       "event_id": "main_full_024",
-      "timeline_start": 624.378,
-      "timeline_end": 639.378,
+      "timeline_start": 577.618,
+      "timeline_end": 592.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6037,8 +5107,8 @@
     },
     {
       "event_id": "main_full_025",
-      "timeline_start": 639.378,
-      "timeline_end": 654.378,
+      "timeline_start": 592.618,
+      "timeline_end": 607.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6142,8 +5212,8 @@
     },
     {
       "event_id": "main_full_026",
-      "timeline_start": 654.378,
-      "timeline_end": 669.378,
+      "timeline_start": 607.618,
+      "timeline_end": 622.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6304,8 +5374,8 @@
     },
     {
       "event_id": "main_full_027",
-      "timeline_start": 669.378,
-      "timeline_end": 684.378,
+      "timeline_start": 622.618,
+      "timeline_end": 637.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6500,8 +5570,8 @@
     },
     {
       "event_id": "main_full_028",
-      "timeline_start": 684.378,
-      "timeline_end": 699.378,
+      "timeline_start": 637.618,
+      "timeline_end": 652.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6632,8 +5702,8 @@
     },
     {
       "event_id": "main_full_029",
-      "timeline_start": 699.378,
-      "timeline_end": 714.378,
+      "timeline_start": 652.618,
+      "timeline_end": 667.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6838,8 +5908,8 @@
     },
     {
       "event_id": "main_full_030",
-      "timeline_start": 714.378,
-      "timeline_end": 729.378,
+      "timeline_start": 667.618,
+      "timeline_end": 682.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -6993,8 +6063,8 @@
     },
     {
       "event_id": "main_full_031",
-      "timeline_start": 729.378,
-      "timeline_end": 744.378,
+      "timeline_start": 682.618,
+      "timeline_end": 697.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7119,6 +6189,55 @@
           "position": "top_right",
           "topic_id": "topic_002",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 8.87,
+          "end": 10.78,
+          "text": "人事企画ではカルチャーを見ることも重要になる",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_070",
+          "caption_no": 70,
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_070",
+            "source": "main_caption_plan",
+            "caption_start_sec": 1183.0,
+            "caption_end_sec": 1200.0,
+            "source_start_sec": 1181.28,
+            "source_end_sec": 1183.28,
+            "speaker_name": "村田"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              1181.28,
+              1183.28
+            ],
+            "speech_window_sec": [
+              1181.37,
+              1183.28
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008242,
+              "peak": 0.027534,
+              "threshold": 0.014835,
+              "active_frame_count": 55
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              1181.37,
+              1183.28
+            ],
+            "event_reference_window_sec": [
+              1172.5,
+              1187.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -7126,8 +6245,8 @@
     },
     {
       "event_id": "main_full_032",
-      "timeline_start": 744.378,
-      "timeline_end": 759.378,
+      "timeline_start": 697.618,
+      "timeline_end": 712.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7271,44 +6390,6 @@
           "position": "top_right",
           "topic_id": "topic_002",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "人事企画ではカルチャーを見ることも重要になる",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_070",
-          "caption_no": 70,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_070",
-            "source": "main_caption_plan",
-            "caption_start_sec": 1183.0,
-            "caption_end_sec": 1200.0,
-            "source_start_sec": 1181.28,
-            "source_end_sec": 1183.28,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              1181.28,
-              1183.28
-            ],
-            "speech_window_sec": [
-              1181.37,
-              1183.28
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008242,
-              "peak": 0.027534,
-              "threshold": 0.014835,
-              "active_frame_count": 55
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -7343,8 +6424,8 @@
     },
     {
       "event_id": "main_full_033",
-      "timeline_start": 759.378,
-      "timeline_end": 774.378,
+      "timeline_start": 712.618,
+      "timeline_end": 727.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7511,8 +6592,8 @@
     },
     {
       "event_id": "main_full_034",
-      "timeline_start": 774.378,
-      "timeline_end": 789.378,
+      "timeline_start": 727.618,
+      "timeline_end": 742.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7697,8 +6778,8 @@
     },
     {
       "event_id": "main_full_035",
-      "timeline_start": 789.378,
-      "timeline_end": 804.378,
+      "timeline_start": 742.618,
+      "timeline_end": 757.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -7873,8 +6954,8 @@
     },
     {
       "event_id": "main_full_036",
-      "timeline_start": 804.378,
-      "timeline_end": 819.378,
+      "timeline_start": 757.618,
+      "timeline_end": 772.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8091,8 +7172,8 @@
     },
     {
       "event_id": "main_full_037",
-      "timeline_start": 819.378,
-      "timeline_end": 834.378,
+      "timeline_start": 772.618,
+      "timeline_end": 787.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8213,8 +7294,8 @@
     },
     {
       "event_id": "main_full_038",
-      "timeline_start": 834.378,
-      "timeline_end": 849.378,
+      "timeline_start": 787.618,
+      "timeline_end": 802.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8375,8 +7456,8 @@
     },
     {
       "event_id": "main_full_039",
-      "timeline_start": 849.378,
-      "timeline_end": 864.378,
+      "timeline_start": 802.618,
+      "timeline_end": 817.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8584,8 +7665,8 @@
     },
     {
       "event_id": "main_full_040",
-      "timeline_start": 864.378,
-      "timeline_end": 879.378,
+      "timeline_start": 817.618,
+      "timeline_end": 832.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8795,8 +7876,8 @@
     },
     {
       "event_id": "main_full_041",
-      "timeline_start": 879.378,
-      "timeline_end": 894.378,
+      "timeline_start": 832.618,
+      "timeline_end": 847.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -8907,8 +7988,8 @@
     },
     {
       "event_id": "main_full_042",
-      "timeline_start": 894.378,
-      "timeline_end": 909.378,
+      "timeline_start": 847.618,
+      "timeline_end": 862.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9125,8 +8206,8 @@
     },
     {
       "event_id": "main_full_043",
-      "timeline_start": 909.378,
-      "timeline_end": 924.378,
+      "timeline_start": 862.618,
+      "timeline_end": 877.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9341,8 +8422,8 @@
     },
     {
       "event_id": "main_full_044",
-      "timeline_start": 924.378,
-      "timeline_end": 939.378,
+      "timeline_start": 877.618,
+      "timeline_end": 892.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9559,8 +8640,8 @@
     },
     {
       "event_id": "main_full_045",
-      "timeline_start": 939.378,
-      "timeline_end": 954.378,
+      "timeline_start": 892.618,
+      "timeline_end": 907.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9776,8 +8857,8 @@
     },
     {
       "event_id": "main_full_046",
-      "timeline_start": 954.378,
-      "timeline_end": 969.378,
+      "timeline_start": 907.618,
+      "timeline_end": 922.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -9982,8 +9063,8 @@
     },
     {
       "event_id": "main_full_047",
-      "timeline_start": 969.378,
-      "timeline_end": 984.378,
+      "timeline_start": 922.618,
+      "timeline_end": 937.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10134,8 +9215,8 @@
     },
     {
       "event_id": "main_full_048",
-      "timeline_start": 984.378,
-      "timeline_end": 999.378,
+      "timeline_start": 937.618,
+      "timeline_end": 952.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10195,6 +9276,19 @@
             "eyes_upper_third",
             "lower_left_white_role_name"
           ]
+        },
+        "face_center_x": 898.0,
+        "face_center_y": 399.0,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 640.333,
+          "new_output_x_at_1080h": 640.0,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -10284,8 +9378,8 @@
     },
     {
       "event_id": "main_full_049",
-      "timeline_start": 999.378,
-      "timeline_end": 1014.378,
+      "timeline_start": 952.618,
+      "timeline_end": 967.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10464,8 +9558,8 @@
     },
     {
       "event_id": "main_full_050",
-      "timeline_start": 1014.378,
-      "timeline_end": 1029.378,
+      "timeline_start": 967.618,
+      "timeline_end": 982.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10636,8 +9730,8 @@
     },
     {
       "event_id": "main_full_051",
-      "timeline_start": 1029.378,
-      "timeline_end": 1044.378,
+      "timeline_start": 982.618,
+      "timeline_end": 997.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10814,8 +9908,8 @@
     },
     {
       "event_id": "main_full_052",
-      "timeline_start": 1044.378,
-      "timeline_end": 1059.378,
+      "timeline_start": 997.618,
+      "timeline_end": 1012.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -10946,8 +10040,8 @@
     },
     {
       "event_id": "main_full_053",
-      "timeline_start": 1059.378,
-      "timeline_end": 1074.378,
+      "timeline_start": 1012.618,
+      "timeline_end": 1027.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11091,8 +10185,8 @@
     },
     {
       "event_id": "main_full_054",
-      "timeline_start": 1074.378,
-      "timeline_end": 1089.378,
+      "timeline_start": 1027.618,
+      "timeline_end": 1042.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11256,8 +10350,8 @@
     },
     {
       "event_id": "main_full_055",
-      "timeline_start": 1089.378,
-      "timeline_end": 1104.378,
+      "timeline_start": 1042.618,
+      "timeline_end": 1057.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11453,8 +10547,8 @@
     },
     {
       "event_id": "main_full_056",
-      "timeline_start": 1104.378,
-      "timeline_end": 1119.378,
+      "timeline_start": 1057.618,
+      "timeline_end": 1072.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11575,8 +10669,8 @@
     },
     {
       "event_id": "main_full_057",
-      "timeline_start": 1119.378,
-      "timeline_end": 1134.378,
+      "timeline_start": 1072.618,
+      "timeline_end": 1087.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11772,8 +10866,8 @@
     },
     {
       "event_id": "main_full_058",
-      "timeline_start": 1134.378,
-      "timeline_end": 1149.378,
+      "timeline_start": 1087.618,
+      "timeline_end": 1102.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -11906,8 +11000,8 @@
     },
     {
       "event_id": "main_full_059",
-      "timeline_start": 1149.378,
-      "timeline_end": 1164.378,
+      "timeline_start": 1102.618,
+      "timeline_end": 1117.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12103,8 +11197,8 @@
     },
     {
       "event_id": "main_full_060",
-      "timeline_start": 1164.378,
-      "timeline_end": 1179.378,
+      "timeline_start": 1117.618,
+      "timeline_end": 1132.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12290,8 +11384,8 @@
     },
     {
       "event_id": "main_full_061",
-      "timeline_start": 1179.378,
-      "timeline_end": 1194.378,
+      "timeline_start": 1132.618,
+      "timeline_end": 1147.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12506,8 +11600,8 @@
     },
     {
       "event_id": "main_full_062",
-      "timeline_start": 1194.378,
-      "timeline_end": 1209.378,
+      "timeline_start": 1147.618,
+      "timeline_end": 1162.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -12712,8 +11806,8 @@
     },
     {
       "event_id": "main_full_063",
-      "timeline_start": 1209.378,
-      "timeline_end": 1224.378,
+      "timeline_start": 1162.618,
+      "timeline_end": 1177.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13002,8 +12096,8 @@
     },
     {
       "event_id": "main_full_064",
-      "timeline_start": 1224.378,
-      "timeline_end": 1239.378,
+      "timeline_start": 1177.618,
+      "timeline_end": 1192.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13166,8 +12260,8 @@
     },
     {
       "event_id": "main_full_065",
-      "timeline_start": 1239.378,
-      "timeline_end": 1254.378,
+      "timeline_start": 1192.618,
+      "timeline_end": 1207.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13301,8 +12395,8 @@
     },
     {
       "event_id": "main_full_066",
-      "timeline_start": 1254.378,
-      "timeline_end": 1269.378,
+      "timeline_start": 1207.618,
+      "timeline_end": 1222.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13436,8 +12530,8 @@
     },
     {
       "event_id": "main_full_067",
-      "timeline_start": 1269.378,
-      "timeline_end": 1284.378,
+      "timeline_start": 1222.618,
+      "timeline_end": 1237.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13596,8 +12690,8 @@
     },
     {
       "event_id": "main_full_068",
-      "timeline_start": 1284.378,
-      "timeline_end": 1299.378,
+      "timeline_start": 1237.618,
+      "timeline_end": 1252.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13708,8 +12802,8 @@
     },
     {
       "event_id": "main_full_069",
-      "timeline_start": 1299.378,
-      "timeline_end": 1314.378,
+      "timeline_start": 1252.618,
+      "timeline_end": 1267.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -13951,8 +13045,8 @@
     },
     {
       "event_id": "main_full_070",
-      "timeline_start": 1314.378,
-      "timeline_end": 1329.378,
+      "timeline_start": 1267.618,
+      "timeline_end": 1282.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14073,7 +13167,7 @@
         {
           "type": "caption",
           "start": 0.0,
-          "end": 4.0,
+          "end": 3.58,
           "text": "実務経験者が開発に入る意味がある",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_001",
@@ -14089,6 +13183,25 @@
             "speaker_name": "村田",
             "selection_reason": "実務者が開発に入る理由を端的に言っている強い発言。",
             "full_reference_text": "これをとにかく避けるためにドメインエキスパートの実務の経験者"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              1757.5,
+              1761.5
+            ],
+            "speech_window_sec": [
+              1757.5,
+              1761.08
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.00852,
+              "peak": 0.023079,
+              "threshold": 0.015336,
+              "active_frame_count": 104
+            }
           }
         }
       ],
@@ -14097,8 +13210,8 @@
     },
     {
       "event_id": "main_full_071",
-      "timeline_start": 1329.378,
-      "timeline_end": 1344.378,
+      "timeline_start": 1282.618,
+      "timeline_end": 1297.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14303,8 +13416,8 @@
     },
     {
       "event_id": "main_full_072",
-      "timeline_start": 1344.378,
-      "timeline_end": 1359.378,
+      "timeline_start": 1297.618,
+      "timeline_end": 1312.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14552,8 +13665,8 @@
     },
     {
       "event_id": "main_full_073",
-      "timeline_start": 1359.378,
-      "timeline_end": 1374.378,
+      "timeline_start": 1312.618,
+      "timeline_end": 1327.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14759,8 +13872,8 @@
     },
     {
       "event_id": "main_full_074",
-      "timeline_start": 1374.378,
-      "timeline_end": 1389.378,
+      "timeline_start": 1327.618,
+      "timeline_end": 1342.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -14976,8 +14089,8 @@
     },
     {
       "event_id": "main_full_075",
-      "timeline_start": 1389.378,
-      "timeline_end": 1404.378,
+      "timeline_start": 1342.618,
+      "timeline_end": 1357.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15162,8 +14275,8 @@
     },
     {
       "event_id": "main_full_076",
-      "timeline_start": 1404.378,
-      "timeline_end": 1419.378,
+      "timeline_start": 1357.618,
+      "timeline_end": 1372.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15304,8 +14417,8 @@
     },
     {
       "event_id": "main_full_077",
-      "timeline_start": 1419.378,
-      "timeline_end": 1434.378,
+      "timeline_start": 1372.618,
+      "timeline_end": 1387.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15502,8 +14615,8 @@
     },
     {
       "event_id": "main_full_078",
-      "timeline_start": 1434.378,
-      "timeline_end": 1449.378,
+      "timeline_start": 1387.618,
+      "timeline_end": 1402.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15634,8 +14747,8 @@
     },
     {
       "event_id": "main_full_079",
-      "timeline_start": 1449.378,
-      "timeline_end": 1464.378,
+      "timeline_start": 1402.618,
+      "timeline_end": 1417.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15830,8 +14943,8 @@
     },
     {
       "event_id": "main_full_080",
-      "timeline_start": 1464.378,
-      "timeline_end": 1479.378,
+      "timeline_start": 1417.618,
+      "timeline_end": 1432.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -15958,8 +15071,8 @@
         },
         {
           "type": "caption",
-          "start": 0.36,
-          "end": 8.86,
+          "start": 0.4,
+          "end": 8.35,
           "text": "必要に見えるものを足しすぎてしまう",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_002",
@@ -15975,6 +15088,25 @@
             "speaker_name": "根本",
             "selection_reason": "機能を足しすぎるリスクを説明しており、後続の「なくていい」と言える価値につながる。",
             "full_reference_text": "経理とか労務のドメインを知っているからこれなくて大丈夫かなとか必要なものをどんどんやっちゃう"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              1907.86,
+              1916.36
+            ],
+            "speech_window_sec": [
+              1907.9,
+              1915.85
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.009392,
+              "peak": 0.033567,
+              "threshold": 0.016906,
+              "active_frame_count": 314
+            }
           }
         }
       ],
@@ -15983,8 +15115,8 @@
     },
     {
       "event_id": "main_full_081",
-      "timeline_start": 1479.378,
-      "timeline_end": 1494.378,
+      "timeline_start": 1432.618,
+      "timeline_end": 1447.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16129,8 +15261,8 @@
     },
     {
       "event_id": "main_full_082",
-      "timeline_start": 1494.378,
-      "timeline_end": 1509.378,
+      "timeline_start": 1447.618,
+      "timeline_end": 1462.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16364,8 +15496,8 @@
     },
     {
       "event_id": "main_full_083",
-      "timeline_start": 1509.378,
-      "timeline_end": 1524.378,
+      "timeline_start": 1462.618,
+      "timeline_end": 1477.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16569,8 +15701,8 @@
     },
     {
       "event_id": "main_full_084",
-      "timeline_start": 1524.378,
-      "timeline_end": 1539.378,
+      "timeline_start": 1477.618,
+      "timeline_end": 1492.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16678,7 +15810,7 @@
         {
           "type": "caption",
           "start": 5.99,
-          "end": 7.589,
+          "end": 15.0,
           "text": "AIでエンジニアの生産性も上がっている",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_auto_009",
@@ -16745,8 +15877,8 @@
     },
     {
       "event_id": "main_full_085",
-      "timeline_start": 1539.378,
-      "timeline_end": 1554.378,
+      "timeline_start": 1492.618,
+      "timeline_end": 1507.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -16867,8 +15999,8 @@
     },
     {
       "event_id": "main_full_086",
-      "timeline_start": 1554.378,
-      "timeline_end": 1569.378,
+      "timeline_start": 1507.618,
+      "timeline_end": 1522.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17036,8 +16168,8 @@
     },
     {
       "event_id": "main_full_087",
-      "timeline_start": 1569.378,
-      "timeline_end": 1584.378,
+      "timeline_start": 1522.618,
+      "timeline_end": 1537.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17215,8 +16347,8 @@
     },
     {
       "event_id": "main_full_088",
-      "timeline_start": 1584.378,
-      "timeline_end": 1599.378,
+      "timeline_start": 1537.618,
+      "timeline_end": 1552.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17347,8 +16479,8 @@
     },
     {
       "event_id": "main_full_089",
-      "timeline_start": 1599.378,
-      "timeline_end": 1614.378,
+      "timeline_start": 1552.618,
+      "timeline_end": 1567.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17554,8 +16686,8 @@
     },
     {
       "event_id": "main_full_090",
-      "timeline_start": 1614.378,
-      "timeline_end": 1629.378,
+      "timeline_start": 1567.618,
+      "timeline_end": 1582.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17712,8 +16844,8 @@
     },
     {
       "event_id": "main_full_091",
-      "timeline_start": 1629.378,
-      "timeline_end": 1644.378,
+      "timeline_start": 1582.618,
+      "timeline_end": 1597.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -17901,8 +17033,8 @@
     },
     {
       "event_id": "main_full_092",
-      "timeline_start": 1644.378,
-      "timeline_end": 1659.378,
+      "timeline_start": 1597.618,
+      "timeline_end": 1612.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18063,8 +17195,8 @@
     },
     {
       "event_id": "main_full_093",
-      "timeline_start": 1659.378,
-      "timeline_end": 1674.378,
+      "timeline_start": 1612.618,
+      "timeline_end": 1627.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18289,8 +17421,8 @@
     },
     {
       "event_id": "main_full_094",
-      "timeline_start": 1674.378,
-      "timeline_end": 1689.378,
+      "timeline_start": 1627.618,
+      "timeline_end": 1642.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18444,8 +17576,8 @@
     },
     {
       "event_id": "main_full_095",
-      "timeline_start": 1689.378,
-      "timeline_end": 1704.378,
+      "timeline_start": 1642.618,
+      "timeline_end": 1657.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18620,8 +17752,8 @@
     },
     {
       "event_id": "main_full_096",
-      "timeline_start": 1704.378,
-      "timeline_end": 1719.378,
+      "timeline_start": 1657.618,
+      "timeline_end": 1672.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18774,8 +17906,8 @@
     },
     {
       "event_id": "main_full_097",
-      "timeline_start": 1719.378,
-      "timeline_end": 1734.378,
+      "timeline_start": 1672.618,
+      "timeline_end": 1687.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -18987,8 +18119,8 @@
     },
     {
       "event_id": "main_full_098",
-      "timeline_start": 1734.378,
-      "timeline_end": 1749.378,
+      "timeline_start": 1687.618,
+      "timeline_end": 1702.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19174,8 +18306,8 @@
     },
     {
       "event_id": "main_full_099",
-      "timeline_start": 1749.378,
-      "timeline_end": 1764.378,
+      "timeline_start": 1702.618,
+      "timeline_end": 1717.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19316,8 +18448,8 @@
     },
     {
       "event_id": "main_full_100",
-      "timeline_start": 1764.378,
-      "timeline_end": 1779.378,
+      "timeline_start": 1717.618,
+      "timeline_end": 1732.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19468,8 +18600,8 @@
     },
     {
       "event_id": "main_full_101",
-      "timeline_start": 1779.378,
-      "timeline_end": 1794.378,
+      "timeline_start": 1732.618,
+      "timeline_end": 1747.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19623,8 +18755,8 @@
     },
     {
       "event_id": "main_full_102",
-      "timeline_start": 1794.378,
-      "timeline_end": 1809.378,
+      "timeline_start": 1747.618,
+      "timeline_end": 1762.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19805,8 +18937,8 @@
     },
     {
       "event_id": "main_full_103",
-      "timeline_start": 1809.378,
-      "timeline_end": 1824.378,
+      "timeline_start": 1762.618,
+      "timeline_end": 1777.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -19938,8 +19070,8 @@
     },
     {
       "event_id": "main_full_104",
-      "timeline_start": 1824.378,
-      "timeline_end": 1839.378,
+      "timeline_start": 1777.618,
+      "timeline_end": 1792.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20078,6 +19210,55 @@
               "active_frame_count": 337
             }
           }
+        },
+        {
+          "type": "caption",
+          "start": 8.75,
+          "end": 14.54,
+          "text": "PDMとしてまずは結果を出していきたい",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_074",
+          "caption_no": 74,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_074",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2280.0,
+            "caption_end_sec": 2313.0,
+            "source_start_sec": 2276.04,
+            "source_end_sec": 2282.04,
+            "speaker_name": "根本"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2276.04,
+              2282.04
+            ],
+            "speech_window_sec": [
+              2276.25,
+              2282.04
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008657,
+              "peak": 0.033499,
+              "threshold": 0.015583,
+              "active_frame_count": 201
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2276.25,
+              2282.04
+            ],
+            "event_reference_window_sec": [
+              2267.5,
+              2282.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [
@@ -20108,8 +19289,8 @@
     },
     {
       "event_id": "main_full_105",
-      "timeline_start": 1839.378,
-      "timeline_end": 1854.378,
+      "timeline_start": 1792.618,
+      "timeline_end": 1807.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20216,44 +19397,6 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "PDMとしてまずは結果を出していきたい",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_074",
-          "caption_no": 74,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_074",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2280.0,
-            "caption_end_sec": 2313.0,
-            "source_start_sec": 2276.04,
-            "source_end_sec": 2282.04,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2276.04,
-              2282.04
-            ],
-            "speech_window_sec": [
-              2276.25,
-              2282.04
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008657,
-              "peak": 0.033499,
-              "threshold": 0.015583,
-              "active_frame_count": 201
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -20287,8 +19430,8 @@
     },
     {
       "event_id": "main_full_106",
-      "timeline_start": 1854.378,
-      "timeline_end": 1869.378,
+      "timeline_start": 1807.618,
+      "timeline_end": 1822.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20465,6 +19608,55 @@
               "active_frame_count": 312
             }
           }
+        },
+        {
+          "type": "caption",
+          "start": 12.54,
+          "end": 15.0,
+          "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_075",
+          "caption_no": 75,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_075",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2313.0,
+            "caption_end_sec": 2345.0,
+            "source_start_sec": 2310.04,
+            "source_end_sec": 2314.04,
+            "speaker_name": "根本"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2310.04,
+              2314.04
+            ],
+            "speech_window_sec": [
+              2310.04,
+              2314.04
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.010134,
+              "peak": 0.059118,
+              "threshold": 0.018241,
+              "active_frame_count": 193
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2310.04,
+              2314.04
+            ],
+            "event_reference_window_sec": [
+              2297.5,
+              2312.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [
@@ -20495,8 +19687,8 @@
     },
     {
       "event_id": "main_full_107",
-      "timeline_start": 1869.378,
-      "timeline_end": 1884.378,
+      "timeline_start": 1822.618,
+      "timeline_end": 1837.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20607,8 +19799,8 @@
     },
     {
       "event_id": "main_full_108",
-      "timeline_start": 1884.378,
-      "timeline_end": 1899.378,
+      "timeline_start": 1837.618,
+      "timeline_end": 1852.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20735,44 +19927,6 @@
         },
         {
           "type": "caption",
-          "start": 0.0,
-          "end": 1.6,
-          "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_075",
-          "caption_no": 75,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_075",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2313.0,
-            "caption_end_sec": 2345.0,
-            "source_start_sec": 2310.04,
-            "source_end_sec": 2314.04,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2310.04,
-              2314.04
-            ],
-            "speech_window_sec": [
-              2310.04,
-              2314.04
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.010134,
-              "peak": 0.059118,
-              "threshold": 0.018241,
-              "active_frame_count": 193
-            }
-          }
-        },
-        {
-          "type": "caption",
           "start": 2.54,
           "end": 6.54,
           "text": "実務経験は入れ替えがきく",
@@ -20866,8 +20020,8 @@
     },
     {
       "event_id": "main_full_109",
-      "timeline_start": 1899.378,
-      "timeline_end": 1914.378,
+      "timeline_start": 1852.618,
+      "timeline_end": 1867.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -20982,6 +20136,58 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 3.57,
+          "text": "ドメインの貯金がなくなった時の怖さがある",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_076",
+          "caption_no": 76,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_076",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2345.0,
+            "caption_end_sec": 2381.0,
+            "source_start_sec": 2341.86,
+            "source_end_sec": 2346.22,
+            "speaker_name": "根本",
+            "caption_condensed": true,
+            "condensed_from": "ドメインの貯金がなくなったときの怖さがある",
+            "condense_policy": "editorial_two_line_unit"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2341.86,
+              2346.22
+            ],
+            "speech_window_sec": [
+              2341.89,
+              2346.07
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.01108,
+              "peak": 0.038234,
+              "threshold": 0.019945,
+              "active_frame_count": 127
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2341.89,
+              2346.07
+            ],
+            "event_reference_window_sec": [
+              2342.5,
+              2357.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -20989,8 +20195,8 @@
     },
     {
       "event_id": "main_full_110",
-      "timeline_start": 1914.378,
-      "timeline_end": 1929.378,
+      "timeline_start": 1867.618,
+      "timeline_end": 1882.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21134,47 +20340,6 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "ドメインの貯金がなくなった時の怖さがある",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_076",
-          "caption_no": 76,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_076",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2345.0,
-            "caption_end_sec": 2381.0,
-            "source_start_sec": 2341.86,
-            "source_end_sec": 2346.22,
-            "speaker_name": "根本",
-            "caption_condensed": true,
-            "condensed_from": "ドメインの貯金がなくなったときの怖さがある",
-            "condense_policy": "editorial_two_line_unit"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2341.86,
-              2346.22
-            ],
-            "speech_window_sec": [
-              2341.89,
-              2346.07
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.01108,
-              "peak": 0.038234,
-              "threshold": 0.019945,
-              "active_frame_count": 127
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -21208,8 +20373,8 @@
     },
     {
       "event_id": "main_full_111",
-      "timeline_start": 1929.378,
-      "timeline_end": 1944.378,
+      "timeline_start": 1882.618,
+      "timeline_end": 1897.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21324,6 +20489,55 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 7.7,
+          "end": 11.16,
+          "text": "誰がやっても変わらない手作業が多い",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_077",
+          "caption_no": 77,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_077",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2381.0,
+            "caption_end_sec": 2410.0,
+            "source_start_sec": 2379.66,
+            "source_end_sec": 2383.66,
+            "speaker_name": "根本"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2379.66,
+              2383.66
+            ],
+            "speech_window_sec": [
+              2380.2,
+              2383.66
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008669,
+              "peak": 0.079623,
+              "threshold": 0.015604,
+              "active_frame_count": 162
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2380.2,
+              2383.66
+            ],
+            "event_reference_window_sec": [
+              2372.5,
+              2387.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [
@@ -21354,8 +20568,8 @@
     },
     {
       "event_id": "main_full_112",
-      "timeline_start": 1944.378,
-      "timeline_end": 1959.378,
+      "timeline_start": 1897.618,
+      "timeline_end": 1912.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21453,44 +20667,6 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "誰がやっても変わらない手作業が多い",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_077",
-          "caption_no": 77,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_077",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2381.0,
-            "caption_end_sec": 2410.0,
-            "source_start_sec": 2379.66,
-            "source_end_sec": 2383.66,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2379.66,
-              2383.66
-            ],
-            "speech_window_sec": [
-              2380.2,
-              2383.66
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008669,
-              "peak": 0.079623,
-              "threshold": 0.015604,
-              "active_frame_count": 162
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -21524,8 +20700,8 @@
     },
     {
       "event_id": "main_full_113",
-      "timeline_start": 1959.378,
-      "timeline_end": 1974.378,
+      "timeline_start": 1912.618,
+      "timeline_end": 1927.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21636,8 +20812,8 @@
         },
         {
           "type": "caption",
-          "start": 0.82,
-          "end": 6.88,
+          "start": 1.03,
+          "end": 6.18,
           "text": "バクラクのプロダクトで貢献したい",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_003",
@@ -21653,6 +20829,74 @@
             "speaker_name": "根本",
             "selection_reason": "開発に関わる動機として強い。",
             "full_reference_text": "バクラクのプロダクトで貢献できることがあればいいなみたいなのはずっと思っていますね。"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2403.32,
+              2409.38
+            ],
+            "speech_window_sec": [
+              2403.53,
+              2408.68
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.007958,
+              "peak": 0.01538,
+              "threshold": 0.014325,
+              "active_frame_count": 54
+            }
+          }
+        },
+        {
+          "type": "caption",
+          "start": 7.05,
+          "end": 12.67,
+          "text": "月次申告などの作業を減らしたい",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_078",
+          "caption_no": 78,
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_078",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2410.0,
+            "caption_end_sec": 2438.0,
+            "source_start_sec": 2409.38,
+            "source_end_sec": 2415.7,
+            "speaker_name": "村田"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2409.38,
+              2415.7
+            ],
+            "speech_window_sec": [
+              2409.55,
+              2415.17
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.007842,
+              "peak": 0.022644,
+              "threshold": 0.014115,
+              "active_frame_count": 144
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2409.55,
+              2415.17
+            ],
+            "event_reference_window_sec": [
+              2402.5,
+              2417.5
+            ]
           }
         }
       ],
@@ -21661,8 +20905,8 @@
     },
     {
       "event_id": "main_full_114",
-      "timeline_start": 1974.378,
-      "timeline_end": 1989.378,
+      "timeline_start": 1927.618,
+      "timeline_end": 1942.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21760,44 +21004,6 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "月次申告などの作業を減らしたい",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_078",
-          "caption_no": 78,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_078",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2410.0,
-            "caption_end_sec": 2438.0,
-            "source_start_sec": 2409.38,
-            "source_end_sec": 2415.7,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2409.38,
-              2415.7
-            ],
-            "speech_window_sec": [
-              2409.55,
-              2415.17
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.007842,
-              "peak": 0.022644,
-              "threshold": 0.014115,
-              "active_frame_count": 144
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -21831,8 +21037,8 @@
     },
     {
       "event_id": "main_full_115",
-      "timeline_start": 1989.378,
-      "timeline_end": 2004.378,
+      "timeline_start": 1942.618,
+      "timeline_end": 1957.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -21936,8 +21142,8 @@
     },
     {
       "event_id": "main_full_116",
-      "timeline_start": 2004.378,
-      "timeline_end": 2019.378,
+      "timeline_start": 1957.618,
+      "timeline_end": 1972.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22049,8 +21255,8 @@
     },
     {
       "event_id": "main_full_117",
-      "timeline_start": 2019.378,
-      "timeline_end": 2034.378,
+      "timeline_start": 1972.618,
+      "timeline_end": 1987.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22209,8 +21415,8 @@
     },
     {
       "event_id": "main_full_118",
-      "timeline_start": 2034.378,
-      "timeline_end": 2049.378,
+      "timeline_start": 1987.618,
+      "timeline_end": 2002.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22305,8 +21511,8 @@
     },
     {
       "event_id": "main_full_119",
-      "timeline_start": 2049.378,
-      "timeline_end": 2064.378,
+      "timeline_start": 2002.618,
+      "timeline_end": 2017.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22522,8 +21728,8 @@
     },
     {
       "event_id": "main_full_120",
-      "timeline_start": 2064.378,
-      "timeline_end": 2079.378,
+      "timeline_start": 2017.618,
+      "timeline_end": 2032.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22728,8 +21934,8 @@
     },
     {
       "event_id": "main_full_121",
-      "timeline_start": 2079.378,
-      "timeline_end": 2094.378,
+      "timeline_start": 2032.618,
+      "timeline_end": 2047.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22924,8 +22130,8 @@
     },
     {
       "event_id": "main_full_122",
-      "timeline_start": 2094.378,
-      "timeline_end": 2109.378,
+      "timeline_start": 2047.618,
+      "timeline_end": 2062.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -22995,6 +22201,19 @@
             "eyes_upper_third",
             "lower_left_white_role_name"
           ]
+        },
+        "face_center_x": 884.5,
+        "face_center_y": 452.5,
+        "single_scale_h": 1080,
+        "single_target_face_y": 255,
+        "crop_analysis": {
+          "method": "opencv_haar_face_detection_median_of_event_frames",
+          "sample_count": 3,
+          "detected_count": 3,
+          "old_static_profile_output_x_at_900h": 640.083,
+          "new_output_x_at_1080h": 640.5,
+          "target_output_x": 640,
+          "note": "When source face_x is below 640, exact centering is physically limited without padding; 1080h crop minimizes the residual."
         }
       },
       "audio": {
@@ -23013,6 +22232,55 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.0,
+          "end": 11.64,
+          "text": "分析機能では経理の人たちの顔が浮かぶ",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_082",
+          "caption_no": 82,
+          "speaker_person_id": "person_01",
+          "metadata": {
+            "main_caption_id": "main_caption_082",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2545.0,
+            "caption_end_sec": 2600.0,
+            "source_start_sec": 2535.2,
+            "source_end_sec": 2550.2,
+            "speaker_name": "矢野"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2535.2,
+              2550.2
+            ],
+            "speech_window_sec": [
+              2535.37,
+              2549.14
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.007879,
+              "peak": 0.028085,
+              "threshold": 0.014183,
+              "active_frame_count": 415
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2535.37,
+              2549.14
+            ],
+            "event_reference_window_sec": [
+              2537.5,
+              2552.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -23020,8 +22288,8 @@
     },
     {
       "event_id": "main_full_123",
-      "timeline_start": 2109.378,
-      "timeline_end": 2124.378,
+      "timeline_start": 2062.618,
+      "timeline_end": 2077.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23146,44 +22414,6 @@
           "position": "top_right",
           "topic_id": "topic_005",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "分析機能では経理の人たちの顔が浮かぶ",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_082",
-          "caption_no": 82,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_082",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2545.0,
-            "caption_end_sec": 2600.0,
-            "source_start_sec": 2535.2,
-            "source_end_sec": 2550.2,
-            "speaker_name": "矢野"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2535.2,
-              2550.2
-            ],
-            "speech_window_sec": [
-              2535.37,
-              2549.14
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.007879,
-              "peak": 0.028085,
-              "threshold": 0.014183,
-              "active_frame_count": 415
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -23217,8 +22447,8 @@
     },
     {
       "event_id": "main_full_124",
-      "timeline_start": 2124.378,
-      "timeline_end": 2139.378,
+      "timeline_start": 2077.618,
+      "timeline_end": 2092.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23397,8 +22627,8 @@
         },
         {
           "type": "caption",
-          "start": 4.16,
-          "end": 11.36,
+          "start": 4.29,
+          "end": 11.28,
           "text": "余った時間で付加価値のある仕事をする",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_004",
@@ -23414,6 +22644,25 @@
             "speaker_name": "村田",
             "selection_reason": "AI・自動化によって生まれる時間の使い方を明確に言っている。",
             "full_reference_text": "余った時間で付加価値のあることをやりましょう。実際付加価値のある仕事をやるって"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2571.66,
+              2578.86
+            ],
+            "speech_window_sec": [
+              2571.79,
+              2578.78
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008593,
+              "peak": 0.029872,
+              "threshold": 0.015468,
+              "active_frame_count": 224
+            }
           }
         }
       ],
@@ -23445,8 +22694,8 @@
     },
     {
       "event_id": "main_full_125",
-      "timeline_start": 2139.378,
-      "timeline_end": 2154.378,
+      "timeline_start": 2092.618,
+      "timeline_end": 2107.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23578,8 +22827,8 @@
     },
     {
       "event_id": "main_full_126",
-      "timeline_start": 2154.378,
-      "timeline_end": 2169.378,
+      "timeline_start": 2107.618,
+      "timeline_end": 2122.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23716,6 +22965,55 @@
         },
         {
           "type": "caption",
+          "start": 0.0,
+          "end": 2.66,
+          "text": "AIで作業者が分析できるようになる変化を支援したい",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_083",
+          "caption_no": 83,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_083",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2600.0,
+            "caption_end_sec": 2638.0,
+            "source_start_sec": 2596.06,
+            "source_end_sec": 2600.16,
+            "speaker_name": "根本"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2596.06,
+              2600.16
+            ],
+            "speech_window_sec": [
+              2596.12,
+              2600.16
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008812,
+              "peak": 0.029029,
+              "threshold": 0.015862,
+              "active_frame_count": 124
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2596.12,
+              2600.16
+            ],
+            "event_reference_window_sec": [
+              2597.5,
+              2612.5
+            ]
+          }
+        },
+        {
+          "type": "caption",
           "start": 7.08,
           "end": 10.84,
           "text": "AIの力で分析できるようになる",
@@ -23733,6 +23031,25 @@
             "speaker_name": "根本",
             "selection_reason": "AIによる実務変化が具体的で強い。",
             "full_reference_text": "AIの力を借りて分析できるようになりましたとか"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2604.58,
+              2608.34
+            ],
+            "speech_window_sec": [
+              2604.58,
+              2608.34
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.009077,
+              "peak": 0.032326,
+              "threshold": 0.016339,
+              "active_frame_count": 112
+            }
           }
         }
       ],
@@ -23741,8 +23058,8 @@
     },
     {
       "event_id": "main_full_127",
-      "timeline_start": 2169.378,
-      "timeline_end": 2184.378,
+      "timeline_start": 2122.618,
+      "timeline_end": 2137.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -23856,44 +23173,6 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 4.158,
-          "text": "AIで作業者が分析できるようになる変化を支援したい",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_083",
-          "caption_no": 83,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_083",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2600.0,
-            "caption_end_sec": 2638.0,
-            "source_start_sec": 2596.06,
-            "source_end_sec": 2600.16,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2596.06,
-              2600.16
-            ],
-            "speech_window_sec": [
-              2596.12,
-              2600.16
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008812,
-              "peak": 0.029029,
-              "threshold": 0.015862,
-              "active_frame_count": 124
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -23950,8 +23229,8 @@
     },
     {
       "event_id": "main_full_128",
-      "timeline_start": 2184.378,
-      "timeline_end": 2199.378,
+      "timeline_start": 2137.618,
+      "timeline_end": 2152.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24072,8 +23351,8 @@
     },
     {
       "event_id": "main_full_129",
-      "timeline_start": 2199.378,
-      "timeline_end": 2214.378,
+      "timeline_start": 2152.618,
+      "timeline_end": 2167.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24269,8 +23548,8 @@
     },
     {
       "event_id": "main_full_130",
-      "timeline_start": 2214.378,
-      "timeline_end": 2229.378,
+      "timeline_start": 2167.618,
+      "timeline_end": 2182.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24388,7 +23667,7 @@
         {
           "type": "caption",
           "start": 0.5,
-          "end": 4.82,
+          "end": 4.56,
           "text": "新しい働き方を定義していく",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_006",
@@ -24404,6 +23683,25 @@
             "speaker_name": "村田",
             "selection_reason": "AI時代の働き方のテーマとして強い。",
             "full_reference_text": "その新しい働き方をある種の定義していきながら"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2658.0,
+              2662.32
+            ],
+            "speech_window_sec": [
+              2658.0,
+              2662.06
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008879,
+              "peak": 0.034188,
+              "threshold": 0.015982,
+              "active_frame_count": 159
+            }
           }
         },
         {
@@ -24476,8 +23774,8 @@
     },
     {
       "event_id": "main_full_131",
-      "timeline_start": 2229.378,
-      "timeline_end": 2244.378,
+      "timeline_start": 2182.618,
+      "timeline_end": 2197.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24604,8 +23902,8 @@
         },
         {
           "type": "caption",
-          "start": 1.52,
-          "end": 6.82,
+          "start": 2.75,
+          "end": 6.8,
           "text": "経理や労務は専門性が高い",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_007",
@@ -24621,6 +23919,76 @@
             "speaker_name": "村田",
             "selection_reason": "バックオフィス領域の専門性を明確に言っている。",
             "full_reference_text": "経理とか労務の領域ってすごい専門性が高くて"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2674.02,
+              2679.32
+            ],
+            "speech_window_sec": [
+              2675.25,
+              2679.3
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.00812,
+              "peak": 0.02334,
+              "threshold": 0.014616,
+              "active_frame_count": 118
+            }
+          }
+        },
+        {
+          "type": "caption",
+          "start": 6.84,
+          "end": 11.87,
+          "text": "AIで専門家の経験を多くの人が得られる",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_085",
+          "caption_no": 85,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_085",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2680.0,
+            "caption_end_sec": 2730.0,
+            "source_start_sec": 2679.32,
+            "source_end_sec": 2684.36,
+            "speaker_name": "根本",
+            "display_text_polished": true,
+            "display_text_polished_from": "AIで専門家の経験を多くの人が得られるかもしれない"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2679.32,
+              2684.36
+            ],
+            "speech_window_sec": [
+              2679.33,
+              2684.36
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008977,
+              "peak": 0.029225,
+              "threshold": 0.016158,
+              "active_frame_count": 173
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2679.33,
+              2684.36
+            ],
+            "event_reference_window_sec": [
+              2672.5,
+              2687.5
+            ]
           }
         }
       ],
@@ -24629,8 +23997,8 @@
     },
     {
       "event_id": "main_full_132",
-      "timeline_start": 2244.378,
-      "timeline_end": 2259.378,
+      "timeline_start": 2197.618,
+      "timeline_end": 2212.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24767,48 +24135,8 @@
         },
         {
           "type": "caption",
-          "start": 0.0,
-          "end": 1.6,
-          "text": "AIで専門家の経験を多くの人が得られる",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_085",
-          "caption_no": 85,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_085",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2680.0,
-            "caption_end_sec": 2730.0,
-            "source_start_sec": 2679.32,
-            "source_end_sec": 2684.36,
-            "speaker_name": "根本",
-            "display_text_polished": true,
-            "display_text_polished_from": "AIで専門家の経験を多くの人が得られるかもしれない"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2679.32,
-              2684.36
-            ],
-            "speech_window_sec": [
-              2679.33,
-              2684.36
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008977,
-              "peak": 0.029225,
-              "threshold": 0.016158,
-              "active_frame_count": 173
-            }
-          }
-        },
-        {
-          "type": "caption",
           "start": 6.66,
-          "end": 13.82,
+          "end": 13.65,
           "text": "労務や経理の経験は新しい働き方に必要",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_008",
@@ -24824,6 +24152,25 @@
             "speaker_name": "村田",
             "selection_reason": "経験と新しい働き方をつなげる強いまとめ。",
             "full_reference_text": "1年2年労務とか経理とか経験するって結構必要だと思うんですよ。そういうのを新しい働き方でできるという"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2694.16,
+              2701.32
+            ],
+            "speech_window_sec": [
+              2694.16,
+              2701.15
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008193,
+              "peak": 0.021755,
+              "threshold": 0.014747,
+              "active_frame_count": 150
+            }
           }
         }
       ],
@@ -24881,8 +24228,8 @@
     },
     {
       "event_id": "main_full_133",
-      "timeline_start": 2259.378,
-      "timeline_end": 2274.378,
+      "timeline_start": 2212.618,
+      "timeline_end": 2227.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -24997,8 +24344,8 @@
     },
     {
       "event_id": "main_full_134",
-      "timeline_start": 2274.378,
-      "timeline_end": 2289.378,
+      "timeline_start": 2227.618,
+      "timeline_end": 2242.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25089,7 +24436,7 @@
         },
         {
           "type": "caption",
-          "start": 7.895,
+          "start": 0.0,
           "end": 11.55,
           "text": "バックオフィス経験を広く活かせると面白い",
           "style_id": "main_punchline_caption",
@@ -25126,6 +24473,17 @@
               "threshold": 0.014794,
               "active_frame_count": 433
             }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2716.68,
+              2729.05
+            ],
+            "event_reference_window_sec": [
+              2717.5,
+              2732.5
+            ]
           }
         }
       ],
@@ -25157,8 +24515,8 @@
     },
     {
       "event_id": "main_full_135",
-      "timeline_start": 2289.378,
-      "timeline_end": 2304.378,
+      "timeline_start": 2242.618,
+      "timeline_end": 2257.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25292,47 +24650,6 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "属人化は今後大きく変わる可能性がある",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_086",
-          "caption_no": 86,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_086",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2730.0,
-            "caption_end_sec": 2764.0,
-            "source_start_sec": 2716.68,
-            "source_end_sec": 2730.68,
-            "speaker_name": "村田",
-            "caption_condensed": true,
-            "condensed_from": "属人化は今後大きく変わっていく可能性がある",
-            "condense_policy": "editorial_two_line_unit"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2716.68,
-              2730.68
-            ],
-            "speech_window_sec": [
-              2716.68,
-              2729.05
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008219,
-              "peak": 0.034833,
-              "threshold": 0.014794,
-              "active_frame_count": 433
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -25367,8 +24684,8 @@
     },
     {
       "event_id": "main_full_136",
-      "timeline_start": 2304.378,
-      "timeline_end": 2319.378,
+      "timeline_start": 2257.618,
+      "timeline_end": 2272.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25556,7 +24873,7 @@
         },
         {
           "type": "caption",
-          "start": 7.94,
+          "start": 8.17,
           "end": 10.14,
           "text": "今後数年で大きく変わってくる",
           "style_id": "main_punchline_caption",
@@ -25573,6 +24890,25 @@
             "speaker_name": "村田",
             "selection_reason": "変化の大きさを端的に表す。",
             "full_reference_text": "その辺は今後数年でだいぶ変わってくる"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2755.44,
+              2757.64
+            ],
+            "speech_window_sec": [
+              2755.67,
+              2757.64
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008341,
+              "peak": 0.021299,
+              "threshold": 0.015014,
+              "active_frame_count": 80
+            }
           }
         }
       ],
@@ -25604,8 +24940,8 @@
     },
     {
       "event_id": "main_full_137",
-      "timeline_start": 2319.378,
-      "timeline_end": 2334.378,
+      "timeline_start": 2272.618,
+      "timeline_end": 2287.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25693,6 +25029,55 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 1.14,
+          "end": 2.27,
+          "text": "働き方や時間の使い方そのものが変わっていく",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_087",
+          "caption_no": 87,
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_087",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2764.0,
+            "caption_end_sec": 2804.0,
+            "source_start_sec": 2763.64,
+            "source_end_sec": 2764.82,
+            "speaker_name": "村田"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2763.64,
+              2764.82
+            ],
+            "speech_window_sec": [
+              2763.64,
+              2764.77
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.014639,
+              "peak": 0.08975,
+              "threshold": 0.026351,
+              "active_frame_count": 55
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2763.64,
+              2764.77
+            ],
+            "event_reference_window_sec": [
+              2762.5,
+              2777.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -25700,8 +25085,8 @@
     },
     {
       "event_id": "main_full_138",
-      "timeline_start": 2334.378,
-      "timeline_end": 2349.378,
+      "timeline_start": 2287.618,
+      "timeline_end": 2302.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -25815,44 +25200,6 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "働き方や時間の使い方そのものが変わっていく",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_087",
-          "caption_no": 87,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_087",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2764.0,
-            "caption_end_sec": 2804.0,
-            "source_start_sec": 2763.64,
-            "source_end_sec": 2764.82,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2763.64,
-              2764.82
-            ],
-            "speech_window_sec": [
-              2763.64,
-              2764.77
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.014639,
-              "peak": 0.08975,
-              "threshold": 0.026351,
-              "active_frame_count": 55
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -25886,8 +25233,8 @@
     },
     {
       "event_id": "main_full_139",
-      "timeline_start": 2349.378,
-      "timeline_end": 2364.378,
+      "timeline_start": 2302.618,
+      "timeline_end": 2317.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26001,6 +25348,55 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 0.36,
+          "end": 11.09,
+          "text": "対人領域では人に聞きに来ることがある",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_088",
+          "caption_no": 88,
+          "speaker_person_id": "person_01",
+          "metadata": {
+            "main_caption_id": "main_caption_088",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2804.0,
+            "caption_end_sec": 2848.0,
+            "source_start_sec": 2792.86,
+            "source_end_sec": 2804.86,
+            "speaker_name": "矢野"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2792.86,
+              2804.86
+            ],
+            "speech_window_sec": [
+              2792.86,
+              2803.59
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.00754,
+              "peak": 0.020361,
+              "threshold": 0.013572,
+              "active_frame_count": 314
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2792.86,
+              2803.59
+            ],
+            "event_reference_window_sec": [
+              2792.5,
+              2807.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [
@@ -26031,8 +25427,8 @@
     },
     {
       "event_id": "main_full_140",
-      "timeline_start": 2364.378,
-      "timeline_end": 2379.378,
+      "timeline_start": 2317.618,
+      "timeline_end": 2332.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26146,44 +25542,6 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "対人領域では人に聞きに来ることがある",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_088",
-          "caption_no": 88,
-          "speaker_person_id": "person_01",
-          "metadata": {
-            "main_caption_id": "main_caption_088",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2804.0,
-            "caption_end_sec": 2848.0,
-            "source_start_sec": 2792.86,
-            "source_end_sec": 2804.86,
-            "speaker_name": "矢野"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2792.86,
-              2804.86
-            ],
-            "speech_window_sec": [
-              2792.86,
-              2803.59
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.00754,
-              "peak": 0.020361,
-              "threshold": 0.013572,
-              "active_frame_count": 314
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -26217,8 +25575,8 @@
     },
     {
       "event_id": "main_full_141",
-      "timeline_start": 2379.378,
-      "timeline_end": 2394.378,
+      "timeline_start": 2332.618,
+      "timeline_end": 2347.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26387,8 +25745,8 @@
     },
     {
       "event_id": "main_full_142",
-      "timeline_start": 2394.378,
-      "timeline_end": 2409.378,
+      "timeline_start": 2347.618,
+      "timeline_end": 2362.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26486,6 +25844,55 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 9.08,
+          "end": 14.98,
+          "text": "経理の役割はなくなるのではなく変わっていく",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_089",
+          "caption_no": 89,
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_089",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2848.0,
+            "caption_end_sec": 2892.0,
+            "source_start_sec": 2846.54,
+            "source_end_sec": 2853.68,
+            "speaker_name": "村田"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2846.54,
+              2853.68
+            ],
+            "speech_window_sec": [
+              2846.58,
+              2852.48
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008303,
+              "peak": 0.02342,
+              "threshold": 0.014946,
+              "active_frame_count": 204
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2846.58,
+              2852.48
+            ],
+            "event_reference_window_sec": [
+              2837.5,
+              2852.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -26493,8 +25900,8 @@
     },
     {
       "event_id": "main_full_143",
-      "timeline_start": 2409.378,
-      "timeline_end": 2424.378,
+      "timeline_start": 2362.618,
+      "timeline_end": 2377.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26621,46 +26028,8 @@
         },
         {
           "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "経理の役割はなくなるのではなく変わっていく",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_089",
-          "caption_no": 89,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_089",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2848.0,
-            "caption_end_sec": 2892.0,
-            "source_start_sec": 2846.54,
-            "source_end_sec": 2853.68,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2846.54,
-              2853.68
-            ],
-            "speech_window_sec": [
-              2846.58,
-              2852.48
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008303,
-              "peak": 0.02342,
-              "threshold": 0.014946,
-              "active_frame_count": 204
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 1.18,
-          "end": 9.94,
+          "start": 1.28,
+          "end": 9.59,
           "text": "経理は効率化が早く進みやすい",
           "style_id": "main_punchline_caption",
           "caption_id": "main_caption_strong_010",
@@ -26676,6 +26045,25 @@
             "speaker_name": "村田",
             "selection_reason": "領域ごとのAI・効率化の差を説明している。",
             "full_reference_text": "経理でいうと労務よりは効率化が早いんじゃないかなとは思いますね"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2853.68,
+              2862.44
+            ],
+            "speech_window_sec": [
+              2853.78,
+              2862.09
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008647,
+              "peak": 0.030135,
+              "threshold": 0.015565,
+              "active_frame_count": 354
+            }
           }
         }
       ],
@@ -26711,8 +26099,8 @@
     },
     {
       "event_id": "main_full_144",
-      "timeline_start": 2424.378,
-      "timeline_end": 2439.378,
+      "timeline_start": 2377.618,
+      "timeline_end": 2392.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -26876,8 +26264,8 @@
     },
     {
       "event_id": "main_full_145",
-      "timeline_start": 2439.378,
-      "timeline_end": 2454.378,
+      "timeline_start": 2392.618,
+      "timeline_end": 2407.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27011,6 +26399,55 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
+        },
+        {
+          "type": "caption",
+          "start": 8.32,
+          "end": 10.86,
+          "text": "人や現場に向き合う時間が増えていく",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_090",
+          "caption_no": 90,
+          "speaker_person_id": "person_03",
+          "metadata": {
+            "main_caption_id": "main_caption_090",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2892.0,
+            "caption_end_sec": 2910.0,
+            "source_start_sec": 2890.82,
+            "source_end_sec": 2893.68,
+            "speaker_name": "村田"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2890.82,
+              2893.68
+            ],
+            "speech_window_sec": [
+              2890.82,
+              2893.36
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008969,
+              "peak": 0.023476,
+              "threshold": 0.016144,
+              "active_frame_count": 76
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2890.82,
+              2893.36
+            ],
+            "event_reference_window_sec": [
+              2882.5,
+              2897.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [],
@@ -27018,8 +26455,8 @@
     },
     {
       "event_id": "main_full_146",
-      "timeline_start": 2454.378,
-      "timeline_end": 2469.378,
+      "timeline_start": 2407.618,
+      "timeline_end": 2422.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27146,40 +26583,51 @@
         },
         {
           "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "人や現場に向き合う時間が増えていく",
+          "start": 9.22,
+          "end": 12.31,
+          "text": "バックオフィス経験者におすすめできるキャリア",
           "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_090",
-          "caption_no": 90,
+          "caption_id": "main_caption_091",
+          "caption_no": 91,
           "speaker_person_id": "person_03",
           "metadata": {
-            "main_caption_id": "main_caption_090",
+            "main_caption_id": "main_caption_091",
             "source": "main_caption_plan",
-            "caption_start_sec": 2892.0,
-            "caption_end_sec": 2910.0,
-            "source_start_sec": 2890.82,
-            "source_end_sec": 2893.68,
+            "caption_start_sec": 2910.0,
+            "caption_end_sec": 2944.0,
+            "source_start_sec": 2906.66,
+            "source_end_sec": 2910.04,
             "speaker_name": "村田"
           },
           "audio_alignment": {
             "method": "master_audio_rms_speech_bounds",
             "source_audio_media_id": "group_wide",
             "source_window_sec": [
-              2890.82,
-              2893.68
+              2906.66,
+              2910.04
             ],
             "speech_window_sec": [
-              2890.82,
-              2893.36
+              2906.72,
+              2909.81
             ],
             "diagnostics": {
               "status": "snapped",
-              "floor": 0.008969,
-              "peak": 0.023476,
-              "threshold": 0.016144,
-              "active_frame_count": 76
+              "floor": 0.008043,
+              "peak": 0.020329,
+              "threshold": 0.014477,
+              "active_frame_count": 64
             }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2906.72,
+              2909.81
+            ],
+            "event_reference_window_sec": [
+              2897.5,
+              2912.5
+            ]
           }
         }
       ],
@@ -27215,8 +26663,8 @@
     },
     {
       "event_id": "main_full_147",
-      "timeline_start": 2469.378,
-      "timeline_end": 2484.378,
+      "timeline_start": 2422.618,
+      "timeline_end": 2437.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27351,44 +26799,6 @@
           "position": "top_right",
           "topic_id": "topic_006",
           "style_id": "opening_digest_top_right_title"
-        },
-        {
-          "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "バックオフィス経験者におすすめできるキャリア",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_091",
-          "caption_no": 91,
-          "speaker_person_id": "person_03",
-          "metadata": {
-            "main_caption_id": "main_caption_091",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2910.0,
-            "caption_end_sec": 2944.0,
-            "source_start_sec": 2906.66,
-            "source_end_sec": 2910.04,
-            "speaker_name": "村田"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2906.66,
-              2910.04
-            ],
-            "speech_window_sec": [
-              2906.72,
-              2909.81
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.008043,
-              "peak": 0.020329,
-              "threshold": 0.014477,
-              "active_frame_count": 64
-            }
-          }
         }
       ],
       "main_caption_plan_items": [
@@ -27444,8 +26854,8 @@
     },
     {
       "event_id": "main_full_148",
-      "timeline_start": 2484.378,
-      "timeline_end": 2499.378,
+      "timeline_start": 2437.618,
+      "timeline_end": 2452.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27576,8 +26986,8 @@
     },
     {
       "event_id": "main_full_149",
-      "timeline_start": 2499.378,
-      "timeline_end": 2514.378,
+      "timeline_start": 2452.618,
+      "timeline_end": 2467.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27780,6 +27190,55 @@
               "active_frame_count": 66
             }
           }
+        },
+        {
+          "type": "caption",
+          "start": 13.54,
+          "end": 15.0,
+          "text": "AIの活用や向き合い方も変わる",
+          "style_id": "main_punchline_caption",
+          "caption_id": "main_caption_093",
+          "caption_no": 93,
+          "speaker_person_id": "person_02",
+          "metadata": {
+            "main_caption_id": "main_caption_093",
+            "source": "main_caption_plan",
+            "caption_start_sec": 2958.0,
+            "caption_end_sec": 2980.0,
+            "source_start_sec": 2956.04,
+            "source_end_sec": 2958.04,
+            "speaker_name": "根本"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2956.04,
+              2958.04
+            ],
+            "speech_window_sec": [
+              2956.04,
+              2957.63
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.009138,
+              "peak": 0.025029,
+              "threshold": 0.016448,
+              "active_frame_count": 37
+            }
+          },
+          "source_alignment_repaired": {
+            "method": "move_caption_to_event_containing_source_window",
+            "source_window_sec": [
+              2956.04,
+              2957.63
+            ],
+            "event_reference_window_sec": [
+              2942.5,
+              2957.5
+            ]
+          }
         }
       ],
       "main_caption_plan_items": [
@@ -27814,8 +27273,8 @@
     },
     {
       "event_id": "main_full_150",
-      "timeline_start": 2514.378,
-      "timeline_end": 2529.378,
+      "timeline_start": 2467.618,
+      "timeline_end": 2482.618,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -27962,45 +27421,7 @@
         },
         {
           "type": "caption",
-          "start": 0.0,
-          "end": 0.9,
-          "text": "AIの活用や向き合い方も変わる",
-          "style_id": "main_punchline_caption",
-          "caption_id": "main_caption_093",
-          "caption_no": 93,
-          "speaker_person_id": "person_02",
-          "metadata": {
-            "main_caption_id": "main_caption_093",
-            "source": "main_caption_plan",
-            "caption_start_sec": 2958.0,
-            "caption_end_sec": 2980.0,
-            "source_start_sec": 2956.04,
-            "source_end_sec": 2958.04,
-            "speaker_name": "根本"
-          },
-          "audio_alignment": {
-            "method": "master_audio_rms_speech_bounds",
-            "source_audio_media_id": "group_wide",
-            "source_window_sec": [
-              2956.04,
-              2958.04
-            ],
-            "speech_window_sec": [
-              2956.04,
-              2957.63
-            ],
-            "diagnostics": {
-              "status": "snapped",
-              "floor": 0.009138,
-              "peak": 0.025029,
-              "threshold": 0.016448,
-              "active_frame_count": 37
-            }
-          }
-        },
-        {
-          "type": "caption",
-          "start": 8.54,
+          "start": 9.04,
           "end": 15.0,
           "text": "専門家として尖るキャリアも良い",
           "style_id": "main_punchline_caption",
@@ -28017,6 +27438,25 @@
             "speaker_name": "根本",
             "selection_reason": "キャリア論の締めとして使える。",
             "full_reference_text": "その後もちろん専門家としてすごく一個に尖っていくっていうのもいいキャリアだと思うんですけれども"
+          },
+          "audio_alignment": {
+            "method": "master_audio_rms_speech_bounds",
+            "source_audio_media_id": "group_wide",
+            "source_window_sec": [
+              2966.04,
+              2973.7
+            ],
+            "speech_window_sec": [
+              2966.54,
+              2973.57
+            ],
+            "diagnostics": {
+              "status": "snapped",
+              "floor": 0.008525,
+              "peak": 0.0237,
+              "threshold": 0.015345,
+              "active_frame_count": 167
+            }
           }
         }
       ],
@@ -28052,8 +27492,8 @@
     },
     {
       "event_id": "main_full_151",
-      "timeline_start": 2529.378,
-      "timeline_end": 2542.363,
+      "timeline_start": 2482.618,
+      "timeline_end": 2495.603,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -28158,8 +27598,8 @@
     },
     {
       "event_id": "main_closing_thanks_01",
-      "timeline_start": 2542.363,
-      "timeline_end": 2561.313,
+      "timeline_start": 2495.603,
+      "timeline_end": 2514.553,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -28244,8 +27684,8 @@
     },
     {
       "event_id": "main_closing_thanks_02",
-      "timeline_start": 2561.313,
-      "timeline_end": 2573.613,
+      "timeline_start": 2514.553,
+      "timeline_end": 2526.853,
       "type": "source_clip",
       "section": "main",
       "source": {
@@ -28357,119 +27797,23 @@
     "schema_version": "caption_audio_alignment.v1",
     "method": "RMS energy speech bounds from group_wide master audio, applied after caption splitting",
     "audio_source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\audio\\group_wide_mono_16k.wav",
-    "aligned_group_count": 128,
-    "changed_event_count": 108,
+    "aligned_group_count": 103,
+    "changed_event_count": 12,
     "changed_events": [
-      "main_full_003",
-      "main_full_004",
-      "main_full_005",
-      "main_full_007",
-      "main_full_008",
-      "main_full_009",
-      "main_full_010",
-      "main_full_011",
-      "main_full_013",
-      "main_full_014",
-      "main_full_015",
-      "main_full_016",
-      "main_full_018",
-      "main_full_020",
-      "main_full_021",
-      "main_full_023",
-      "main_full_024",
-      "main_full_026",
-      "main_full_027",
-      "main_full_029",
-      "main_full_030",
-      "main_full_032",
-      "main_full_033",
-      "main_full_034",
-      "main_full_035",
-      "main_full_036",
-      "main_full_038",
-      "main_full_039",
-      "main_full_040",
-      "main_full_042",
-      "main_full_043",
-      "main_full_044",
-      "main_full_045",
-      "main_full_046",
-      "main_full_048",
-      "main_full_049",
-      "main_full_051",
-      "main_full_053",
-      "main_full_054",
-      "main_full_055",
-      "main_full_057",
-      "main_full_059",
-      "main_full_060",
-      "main_full_061",
-      "main_full_062",
-      "main_full_063",
-      "main_full_065",
-      "main_full_066",
-      "main_full_067",
-      "main_full_069",
-      "main_full_071",
-      "main_full_072",
-      "main_full_073",
-      "main_full_074",
-      "main_full_075",
-      "main_full_077",
-      "main_full_079",
-      "main_full_081",
-      "main_full_082",
-      "main_full_083",
+      "main_full_070",
+      "main_full_080",
       "main_full_084",
-      "main_full_086",
-      "main_full_087",
-      "main_full_089",
-      "main_full_090",
-      "main_full_091",
-      "main_full_093",
-      "main_full_094",
-      "main_full_095",
-      "main_full_097",
-      "main_full_098",
-      "main_full_100",
-      "main_full_101",
-      "main_full_102",
-      "main_full_104",
-      "main_full_105",
-      "main_full_106",
-      "main_full_108",
-      "main_full_110",
-      "main_full_111",
-      "main_full_112",
-      "main_full_114",
-      "main_full_116",
-      "main_full_117",
-      "main_full_119",
-      "main_full_120",
-      "main_full_121",
-      "main_full_123",
+      "main_full_113",
       "main_full_124",
-      "main_full_127",
-      "main_full_129",
       "main_full_130",
+      "main_full_131",
       "main_full_132",
       "main_full_134",
-      "main_full_135",
       "main_full_136",
-      "main_full_138",
-      "main_full_139",
-      "main_full_140",
-      "main_full_141",
       "main_full_143",
-      "main_full_144",
-      "main_full_146",
-      "main_full_147",
-      "main_full_149",
-      "main_full_150",
-      "main_intro_wide_context_001",
-      "main_intro_yano_explains_002"
+      "main_full_150"
     ],
-    "overlap_adjustment_count": 4
+    "overlap_adjustment_count": 2
   },
   "audio_policy": {
     "schema_version": "audio_policy.v1",
@@ -28513,5 +27857,67 @@
       "actual_digest_duration_sec": 61.0,
       "report": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\first_digest_question_trim_report.json"
     }
-  }
+  },
+  "updated_at": "2026-06-11T07:54:24.673194+00:00",
+  "revision_notes": [
+    {
+      "updated_at": "2026-06-11T07:27:35.684200+00:00",
+      "script": "apply_digest_feedback_20260611.py",
+      "summary": "Applied user feedback for digest clipping, speaker-matched cameras, one-line caption, and requested caption text."
+    },
+    {
+      "updated_at": "2026-06-11T07:28:45.710453+00:00",
+      "script": "apply_digest_feedback_20260611.py",
+      "summary": "Applied user feedback for digest clipping, speaker-matched cameras, one-line caption, and requested caption text."
+    },
+    {
+      "updated_at": "2026-06-11T07:33:11.719421+00:00",
+      "script": "cut_post_company_wait.py",
+      "summary": "Ensured the first main event after the company movie starts at the production greeting with a three-person wide shot."
+    },
+    {
+      "updated_at": "2026-06-11T07:36:54.131230+00:00",
+      "script": "analyze_and_center_left_closeups.py",
+      "summary": "Analyzed and centered 11 left-person single close-up events using event-level face detection."
+    },
+    {
+      "updated_at": "2026-06-11T07:38:44.061499+00:00",
+      "script": "remove_requested_captions_20260611.py",
+      "summary": "Removed two user-requested main caption overlays from the render plan."
+    },
+    {
+      "updated_at": "2026-06-11T07:40:04.689161+00:00",
+      "script": "remove_requested_captions_20260611.py",
+      "summary": "Removed two user-requested main caption overlays from the render plan."
+    },
+    {
+      "updated_at": "2026-06-11T07:40:51.684376+00:00",
+      "script": "remove_requested_captions_20260611.py",
+      "summary": "Removed two user-requested main caption overlays from the render plan."
+    },
+    {
+      "updated_at": "2026-06-11T07:45:32.199216+00:00",
+      "script": "apply_yano_profile_card_intro.py",
+      "summary": "Replaced the 4:50 Yano self-introduction block with a single left-camera close-up and matching intro profile card."
+    },
+    {
+      "updated_at": "2026-06-11T07:46:01.278395+00:00",
+      "script": "analyze_and_center_left_closeups.py",
+      "summary": "Analyzed and centered 9 left-person single close-up events using event-level face detection."
+    },
+    {
+      "updated_at": "2026-06-11T07:50:25.491564+00:00",
+      "script": "cut_yano_intro_to_restart_dead_air.py",
+      "summary": "Removed the awkward dead-air/restart section after Yano's self-introduction, including the 'むずい' exchange."
+    },
+    {
+      "updated_at": "2026-06-11T07:54:24.673194+00:00",
+      "script": "repair_caption_source_alignment.py",
+      "summary": "Repaired caption source alignment: moved 17, retimed 1, removed 0."
+    },
+    {
+      "script": "manual_remove_duplicate_misaligned_caption",
+      "summary": "Removed duplicate caption main_caption_086 that was generated from the same source speech as main_caption_auto_023 but displayed at the end of the clip."
+    }
+  ]
 }

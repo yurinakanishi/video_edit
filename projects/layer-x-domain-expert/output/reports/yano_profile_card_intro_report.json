@@ -1,0 +1,40 @@
+{
+  "schema_version": "yano_profile_card_intro_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "profile_added": {
+    "person_id": "person_01",
+    "display_name": "矢野",
+    "name_suffix": "",
+    "department": "バクラク事業部",
+    "role_title": "聞き手 / ドメインエキスパート",
+    "body_lines": [
+      "監査法人を経て、事業会社で経営企画・IRなどを経験。",
+      "LayerXでは事業側・ビジネス側の仕事に携わり、プロダクトづくりに関与。",
+      "ドメインエキスパートとして、顧客理解や開発チームとの橋渡しを担う。"
+    ]
+  },
+  "replaced_event_ids": [
+    "main_full_001",
+    "main_full_002",
+    "main_full_003",
+    "main_full_004"
+  ],
+  "new_event_id": "main_yano_profile_intro",
+  "old_duration_sec": 60.0,
+  "new_duration_sec": 56.92,
+  "timeline_shift_after_sec": -3.08,
+  "master_window_sec": [
+    727.46,
+    784.38
+  ],
+  "source": {
+    "media_id": "cam_person_01",
+    "in": 724.128,
+    "out": 781.048
+  },
+  "reference_source": {
+    "media_id": "group_wide",
+    "in": 727.46,
+    "out": 784.38
+  }
+}

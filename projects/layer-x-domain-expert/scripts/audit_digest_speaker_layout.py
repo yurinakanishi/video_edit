@@ -98,6 +98,7 @@ def main() -> None:
         visible = visible_people(layout)
         layout_type = str(layout.get("type") or "")
         speaker_focused = bool(speakers) and primary in speakers
+        missing_visible_speakers = [speaker for speaker in speakers if speaker not in visible]
         single_speaker = len(speakers) == 1
         if speakers and not speaker_focused:
             issues.append(
@@ -106,6 +107,18 @@ def main() -> None:
                     "severity": "needs_fix",
                     "reason": "primary_camera_not_on_caption_speaker",
                     "speaker_person_ids": speakers,
+                    "primary_camera_person_id": primary,
+                    "visible_people": visible,
+                }
+            )
+        if missing_visible_speakers:
+            issues.append(
+                {
+                    "event_id": event.get("event_id"),
+                    "severity": "needs_fix",
+                    "reason": "caption_speaker_not_visible",
+                    "speaker_person_ids": speakers,
+                    "missing_visible_speaker_person_ids": missing_visible_speakers,
                     "primary_camera_person_id": primary,
                     "visible_people": visible,
                 }

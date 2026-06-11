@@ -1,7 +1,8 @@
 {
   "schema_version": "test_project1_style_preview_report.v1",
-  "output": "projects\\layer-x-domain-expert\\output\\videos\\audio_single_source_smoke.mp4",
-  "segments": 2,
+  "output": "projects\\layer-x-domain-expert\\output\\videos\\preview_first_10min_test_project1_style.mp4",
+  "segments": 45,
+  "max_duration_sec": 600.0,
   "style_reference": "projects/test-project-1 styled preview: sample-11 frame overlay + sample-1 catchphrase subtitle style",
   "notes": [
     "Digest uses opaque top/bottom bands and slanted white LayerX logo panel.",

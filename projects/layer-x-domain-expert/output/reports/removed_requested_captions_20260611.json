@@ -1,0 +1,38 @@
+{
+  "schema_version": "removed_requested_captions_20260611.v1",
+  "project_id": "layer-x-domain-expert",
+  "remove_texts": [
+    "それぞれの立場から開発に関与している",
+    "実務経験をプロダクト開発に持ち込む役割"
+  ],
+  "removed_from_edit_plan": [
+    {
+      "source_file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
+      "event_id": "main_intro_wide_context_001",
+      "caption_id": "main_caption_002",
+      "display_text": "ドメインエキスパートチームがあるわけではなく労務やPDMなどそれぞれの立場から開発に関与している",
+      "action": "main_caption_plan_item_removed"
+    },
+    {
+      "source_file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
+      "event_id": "main_intro_yano_explains_002",
+      "caption_id": "main_caption_003",
+      "display_text": "実務経験をプロダクト開発に持ち込む役割",
+      "action": "main_caption_plan_item_removed"
+    }
+  ],
+  "disabled_in_main_caption_plan": [
+    {
+      "source_file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\main_caption_plan.json",
+      "caption_id": "main_caption_002",
+      "display_text": "それぞれの立場から開発に関与している",
+      "action": "main_caption_plan_item_removed"
+    },
+    {
+      "source_file": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\main_caption_plan.json",
+      "caption_id": "main_caption_003",
+      "display_text": "実務経験をプロダクト開発に持ち込む役割",
+      "action": "main_caption_plan_item_removed"
+    }
+  ]
+}

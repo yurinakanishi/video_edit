@@ -1,0 +1,34 @@
+{
+  "schema_version": "removed_yano_business_side_caption.v1",
+  "project_id": "layer-x-domain-expert",
+  "removed_text": "矢野さんはLayerXで初めて事業側の仕事に関わった",
+  "removed_count": 1,
+  "removed_items": [
+    {
+      "caption_id": "main_caption_059",
+      "caption_no": 59,
+      "source": "captions.md",
+      "source_match_method": "captions_md_time_hint",
+      "source_match_confidence": 0.9,
+      "source_segment_id": "seg_000248",
+      "source_start_sec": 737.56,
+      "source_end_sec": 740.94,
+      "caption_start_sec": 740.0,
+      "caption_end_sec": 802.0,
+      "display_text": "矢野さんはLayerXで初めて事業側の仕事に関わった",
+      "full_reference_text": "矢野さんは監査法人から事業会社の経営企画やIRを経てLayerXで初めて事業側・ビジネス側の仕事に関わった。",
+      "search_keys": [
+        "監査法人",
+        "経営企画",
+        "IR",
+        "事業側"
+      ],
+      "speaker_person_id": "person_01",
+      "speaker_name": "矢野",
+      "speaker_screen_position": "left",
+      "speaker_role": "interviewer",
+      "speaker_attribution_method": "voice_speaker_attribution:forced_known_intro_window",
+      "speaker_attribution_confidence": 0.97
+    }
+  ]
+}

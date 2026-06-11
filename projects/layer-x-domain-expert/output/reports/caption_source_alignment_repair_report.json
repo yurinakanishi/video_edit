@@ -1,0 +1,195 @@
+{
+  "schema_version": "caption_source_alignment_repair_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "moved_count": 17,
+  "retimed_count": 1,
+  "removed_count": 0,
+  "moved": [
+    {
+      "caption_id": "main_caption_064",
+      "text": "経理一本でどう生きるかという不安があった",
+      "from_event": "main_full_020",
+      "to_event": "main_full_019",
+      "source_window_sec": [
+        993.63,
+        996.75
+      ]
+    },
+    {
+      "caption_id": "main_caption_070",
+      "text": "人事企画ではカルチャーを見ることも重要になる",
+      "from_event": "main_full_032",
+      "to_event": "main_full_031",
+      "source_window_sec": [
+        1181.37,
+        1183.28
+      ]
+    },
+    {
+      "caption_id": "main_caption_074",
+      "text": "PDMとしてまずは結果を出していきたい",
+      "from_event": "main_full_105",
+      "to_event": "main_full_104",
+      "source_window_sec": [
+        2276.25,
+        2282.04
+      ]
+    },
+    {
+      "caption_id": "main_caption_075",
+      "text": "ドメインがない領域でも活躍できるスキルを身につけたい",
+      "from_event": "main_full_108",
+      "to_event": "main_full_106",
+      "source_window_sec": [
+        2310.04,
+        2314.04
+      ]
+    },
+    {
+      "caption_id": "main_caption_076",
+      "text": "ドメインの貯金がなくなった時の怖さがある",
+      "from_event": "main_full_110",
+      "to_event": "main_full_109",
+      "source_window_sec": [
+        2341.89,
+        2346.07
+      ]
+    },
+    {
+      "caption_id": "main_caption_077",
+      "text": "誰がやっても変わらない手作業が多い",
+      "from_event": "main_full_112",
+      "to_event": "main_full_111",
+      "source_window_sec": [
+        2380.2,
+        2383.66
+      ]
+    },
+    {
+      "caption_id": "main_caption_078",
+      "text": "月次申告などの作業を減らしたい",
+      "from_event": "main_full_114",
+      "to_event": "main_full_113",
+      "source_window_sec": [
+        2409.55,
+        2415.17
+      ]
+    },
+    {
+      "caption_id": "main_caption_082",
+      "text": "分析機能では経理の人たちの顔が浮かぶ",
+      "from_event": "main_full_123",
+      "to_event": "main_full_122",
+      "source_window_sec": [
+        2535.37,
+        2549.14
+      ]
+    },
+    {
+      "caption_id": "main_caption_083",
+      "text": "AIで作業者が分析できるようになる変化を支援したい",
+      "from_event": "main_full_127",
+      "to_event": "main_full_126",
+      "source_window_sec": [
+        2596.12,
+        2600.16
+      ]
+    },
+    {
+      "caption_id": "main_caption_085",
+      "text": "AIで専門家の経験を多くの人が得られる",
+      "from_event": "main_full_132",
+      "to_event": "main_full_131",
+      "source_window_sec": [
+        2679.33,
+        2684.36
+      ]
+    },
+    {
+      "caption_id": "main_caption_086",
+      "text": "属人化は今後大きく変わる可能性がある",
+      "from_event": "main_full_135",
+      "to_event": "main_full_134",
+      "source_window_sec": [
+        2716.68,
+        2729.05
+      ]
+    },
+    {
+      "caption_id": "main_caption_087",
+      "text": "働き方や時間の使い方そのものが変わっていく",
+      "from_event": "main_full_138",
+      "to_event": "main_full_137",
+      "source_window_sec": [
+        2763.64,
+        2764.77
+      ]
+    },
+    {
+      "caption_id": "main_caption_088",
+      "text": "対人領域では人に聞きに来ることがある",
+      "from_event": "main_full_140",
+      "to_event": "main_full_139",
+      "source_window_sec": [
+        2792.86,
+        2803.59
+      ]
+    },
+    {
+      "caption_id": "main_caption_089",
+      "text": "経理の役割はなくなるのではなく変わっていく",
+      "from_event": "main_full_143",
+      "to_event": "main_full_142",
+      "source_window_sec": [
+        2846.58,
+        2852.48
+      ]
+    },
+    {
+      "caption_id": "main_caption_090",
+      "text": "人や現場に向き合う時間が増えていく",
+      "from_event": "main_full_146",
+      "to_event": "main_full_145",
+      "source_window_sec": [
+        2890.82,
+        2893.36
+      ]
+    },
+    {
+      "caption_id": "main_caption_091",
+      "text": "バックオフィス経験者におすすめできるキャリア",
+      "from_event": "main_full_147",
+      "to_event": "main_full_146",
+      "source_window_sec": [
+        2906.72,
+        2909.81
+      ]
+    },
+    {
+      "caption_id": "main_caption_093",
+      "text": "AIの活用や向き合い方も変わる",
+      "from_event": "main_full_150",
+      "to_event": "main_full_149",
+      "source_window_sec": [
+        2956.04,
+        2957.63
+      ]
+    }
+  ],
+  "retimed": [
+    {
+      "event_id": "main_full_134",
+      "caption_id": "main_caption_auto_023",
+      "text": "バックオフィス経験を広く活かせると面白い",
+      "old": {
+        "start": 7.895,
+        "end": 11.55
+      },
+      "new": {
+        "start": 0.0,
+        "end": 11.55
+      }
+    }
+  ],
+  "removed": []
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "digest_feedback_20260611_report.v1",
+  "project_id": "layer-x-domain-expert",
+  "edit_plan": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\layer-x-domain-expert\\output\\reports\\edit_plan.json",
+  "changes": [
+    {
+      "event_id": "digest_qa_01_answer_02",
+      "fix": "extended_audio_and_video_source_range",
+      "source": {
+        "media_id": "cam_person_03",
+        "in": 1546.8,
+        "out": 1563.0
+      },
+      "reference_source": {
+        "media_id": "group_wide",
+        "in": 1533.42,
+        "out": 1549.62
+      }
+    },
+    {
+      "event_id": "digest_qa_02_question_context_01",
+      "fix": "set_two_person_split_for_domain_expectation"
+    },
+    {
+      "event_id": "digest_qa_02_answer_02",
+      "fix": "force_single_line_and_three_split_for_boku_yori_kuwashii_caption"
+    },
+    {
+      "event_id": "digest_qa_04_answer_02",
+      "fix": "left_speaker_override_and_caption_text_update"
+    },
+    {
+      "event_id": "digest_qa_05_answer_02",
+      "fix": "changed_learning_recommendation_to_left_speaker_camera"
+    }
+  ]
+}

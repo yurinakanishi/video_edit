@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import re
 import subprocess
@@ -10,12 +11,20 @@ from pathlib import Path
 from typing import Any
 
 from video_edit_core.paths import OUTPUT_REPORTS, SCRIPTS, resolve_project_path
+from video_edit_core.render.segment_cache import (
+    SegmentCache,
+    file_signature,
+    ms,
+    segment_ranges,
+    write_concat_list,
+)
 from video_edit_core.timeline.validation import configured_timeline_path, load_timeline, validate_timeline
 from video_edit_core.app_config import load_app_config, nested, optional_path, video_encoder_crf, video_encoder_preset
 
 
 APP_CONFIG = load_app_config()
 FFMPEG = optional_path(APP_CONFIG, "tools", "ffmpeg", default=Path(r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"))
+SEGMENT_CACHE_VERSION = "ffmpeg-timeline-preview-segments/v1"
 FILTERGRAPH_DIR = OUTPUT_REPORTS / "filtergraphs"
 COMMAND_DIR = OUTPUT_REPORTS / "renderer_commands"
 RENDER_LOG_DIR = OUTPUT_REPORTS / "render_logs"
@@ -589,6 +598,295 @@ def add_proxy_filter(filters: list[str], video_label: str, width: int, height: i
     return "vproxy"
 
 
+def clip_timeline_range(clip: dict[str, Any]) -> tuple[float, float]:
+    return as_float(clip.get("timelineStart")), as_float(clip.get("timelineEnd"))
+
+
+def overlaps_range(start: float, end: float, range_start: float, range_end: float) -> bool:
+    return start < range_end - 0.001 and end > range_start + 0.001
+
+
+def trim_clip_to_range(clip: dict[str, Any], range_start: float, range_end: float) -> dict[str, Any] | None:
+    start, end = clip_timeline_range(clip)
+    if not overlaps_range(start, end, range_start, range_end):
+        return None
+    overlap_start = max(start, range_start)
+    overlap_end = min(end, range_end)
+    if overlap_end <= overlap_start + 0.001:
+        return None
+
+    trimmed = copy.deepcopy(clip)
+    trim_left = overlap_start - start
+    trimmed["timelineStart"] = round(overlap_start - range_start, 6)
+    trimmed["timelineEnd"] = round(overlap_end - range_start, 6)
+    if "sourceIn" in trimmed and "sourceOut" in trimmed:
+        source_in = as_float(trimmed.get("sourceIn"))
+        new_source_in = source_in + trim_left
+        trimmed["sourceIn"] = round(new_source_in, 6)
+        trimmed["sourceOut"] = round(new_source_in + (overlap_end - overlap_start), 6)
+    return trimmed
+
+
+def timeline_slice_for_range(timeline: dict[str, Any], range_start: float, range_end: float, *, proxy: bool) -> dict[str, Any]:
+    sliced = copy.deepcopy(timeline)
+    segment_duration = round(range_end - range_start, 6)
+    sliced["id"] = f"{timeline.get('id', 'timeline')}.range_{ms(range_start):08d}_{ms(range_end):08d}"
+    sliced["duration"] = segment_duration
+
+    clips: list[dict[str, Any]] = []
+    included_clip_ids: set[str] = set()
+    included_source_ids: set[str] = set()
+    for clip in timeline.get("clips", []):
+        if not isinstance(clip, dict):
+            continue
+        trimmed = trim_clip_to_range(clip, range_start, range_end)
+        if trimmed is None:
+            continue
+        clips.append(trimmed)
+        included_clip_ids.add(str(trimmed.get("id") or ""))
+        source_id = trimmed.get("sourceId")
+        if isinstance(source_id, str):
+            included_source_ids.add(source_id)
+        metadata = trimmed.get("metadata") if isinstance(trimmed.get("metadata"), dict) else {}
+        for key in ("precomposedOverlaySourceId", "overlayManifestSourceId"):
+            metadata_source_id = metadata.get(key)
+            if isinstance(metadata_source_id, str):
+                included_source_ids.add(metadata_source_id)
+    sliced["clips"] = clips
+    sliced["sources"] = [
+        copy.deepcopy(source)
+        for source in timeline.get("sources", [])
+        if isinstance(source, dict) and str(source.get("id") or "") in included_source_ids
+    ]
+
+    transitions: list[dict[str, Any]] = []
+    for transition in timeline.get("transitions", []):
+        if not isinstance(transition, dict):
+            continue
+        at = as_float(transition.get("at"))
+        if not (range_start <= at <= range_end):
+            continue
+        from_clip = transition.get("fromClipId")
+        to_clip = transition.get("toClipId")
+        if from_clip is not None and str(from_clip) not in included_clip_ids:
+            continue
+        if to_clip is not None and str(to_clip) not in included_clip_ids:
+            continue
+        item = copy.deepcopy(transition)
+        item["at"] = round(at - range_start, 6)
+        transitions.append(item)
+    sliced["transitions"] = transitions
+
+    render = copy.deepcopy(timeline.get("render")) if isinstance(timeline.get("render"), dict) else {}
+    preview = render.get("preview") if isinstance(render.get("preview"), dict) else {}
+    preview["enabled"] = True
+    preview["rangeStart"] = 0.0
+    preview["rangeEnd"] = segment_duration
+    preview["proxy"] = proxy
+    render["preview"] = preview
+    sliced["render"] = render
+    return sliced
+
+
+def source_signatures_for_timeline(timeline: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    sources = source_by_id(timeline)
+    source_ids: set[str] = set()
+    for clip in timeline.get("clips", []):
+        if not isinstance(clip, dict):
+            continue
+        source_id = clip.get("sourceId")
+        if isinstance(source_id, str):
+            source_ids.add(source_id)
+        metadata = clip.get("metadata") if isinstance(clip.get("metadata"), dict) else {}
+        for key in ("precomposedOverlaySourceId", "overlayManifestSourceId"):
+            metadata_source_id = metadata.get(key)
+            if isinstance(metadata_source_id, str):
+                source_ids.add(metadata_source_id)
+    signatures: dict[str, dict[str, Any]] = {}
+    for source_id in sorted(source_ids):
+        source = sources.get(source_id)
+        if not source:
+            continue
+        signatures[source_id] = file_signature(resolve_existing_path(str(source.get("path") or "")))
+    return signatures
+
+
+def segment_cache_payload(
+    range_timeline: dict[str, Any],
+    config: dict[str, Any],
+    *,
+    proxy: bool,
+    proxy_size: tuple[int, int] | None,
+    segment: dict[str, Any],
+) -> dict[str, Any]:
+    target = first_target(range_timeline)
+    target_signature = {
+        key: target.get(key)
+        for key in ("id", "format", "width", "height", "fps", "profile", "videoCodec", "audioCodec")
+    }
+    return {
+        "cacheVersion": SEGMENT_CACHE_VERSION,
+        "segment": {key: segment.get(key) for key in ("id", "start", "end", "duration")},
+        "timeline": range_timeline,
+        "sourceSignatures": source_signatures_for_timeline(range_timeline),
+        "target": target_signature,
+        "proxy": proxy,
+        "proxySize": {"width": proxy_size[0], "height": proxy_size[1]} if proxy_size else None,
+        "renderConfig": config.get("render") if isinstance(config.get("render"), dict) else {},
+        "toolConfig": config.get("tools") if isinstance(config.get("tools"), dict) else {},
+    }
+
+
+def preview_output_path_for_args(timeline: dict[str, Any], output_override: Path | None, render_range: tuple[float, float] | None, proxy: bool) -> Path:
+    target = first_target(timeline)
+    target_output_path = Path(str(target.get("path") or "timeline_output.mp4"))
+    return output_override or preview_output_path(target_output_path, render_range, proxy)
+
+
+def segment_cache_dir(output_path: Path) -> Path:
+    return output_path.parent / f"{output_path.stem}_segment_cache"
+
+
+def run_logged(command: list[str], log_path: Path) -> int:
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with log_path.open("w", encoding="utf-8", errors="replace") as log_file:
+        completed = subprocess.run(command, stdout=log_file, stderr=subprocess.STDOUT)
+    return int(completed.returncode)
+
+
+def execute_segment_cached_preview(
+    timeline: dict[str, Any],
+    config: dict[str, Any],
+    args: argparse.Namespace,
+    *,
+    render_range: tuple[float, float],
+    proxy: bool,
+) -> dict[str, Any]:
+    proxy_size = (args.proxy_width, args.proxy_height) if proxy else None
+    output_path = preview_output_path_for_args(timeline, args.output, render_range, proxy)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    cache = SegmentCache(segment_cache_dir(output_path), cache_version=SEGMENT_CACHE_VERSION)
+    cache.segment_dir.mkdir(parents=True, exist_ok=True)
+    ranges = segment_ranges(render_range[0], render_range[1], args.segment_duration)
+    if not ranges:
+        raise ValueError("preview segment cache requires a non-empty render range")
+
+    cache_stats: dict[str, Any] = {"reused": 0, "rendered": 0, "invalidated": 0, "invalidatedReasons": {}}
+    segment_reports: list[dict[str, Any]] = []
+    rendered_paths: list[Path] = []
+    return_code = 0
+    failed = False
+
+    for segment in ranges:
+        segment_id = str(segment["id"])
+        segment_path = cache.segment_path(segment_id, output_path.suffix)
+        range_timeline = timeline_slice_for_range(timeline, float(segment["start"]), float(segment["end"]), proxy=proxy)
+        payload = segment_cache_payload(range_timeline, config, proxy=proxy, proxy_size=proxy_size, segment=segment)
+        status = cache.status(segment_id, segment_path, payload)
+        item: dict[str, Any] = {
+            "id": segment_id,
+            "range": {"start": segment["start"], "end": segment["end"]},
+            "path": str(segment_path),
+            "cacheStatus": status.reason,
+            "reused": status.reusable,
+        }
+        if status.reusable:
+            cache_stats["reused"] += 1
+            rendered_paths.append(segment_path)
+            segment_reports.append(item)
+            continue
+
+        cache_stats["invalidated"] += 1
+        cache_stats["invalidatedReasons"][status.reason] = cache_stats["invalidatedReasons"].get(status.reason, 0) + 1
+        cache.remove(segment_id, segment_path)
+        command, segment_report = build_ffmpeg_command(
+            range_timeline,
+            config,
+            output_override=segment_path,
+            render_range=None,
+            proxy=proxy,
+            proxy_size=proxy_size,
+            with_remotion_overlays=False,
+            with_blender_overlays=False,
+        )
+        log_path = RENDER_LOG_DIR / f"{safe_stem(segment_path.stem)}.ffmpeg.log"
+        code = run_logged(command, log_path)
+        item["renderLog"] = str(log_path)
+        item["commandReport"] = segment_report.get("commandReport")
+        item["returnCode"] = code
+        if code:
+            return_code = code
+            failed = True
+            segment_reports.append(item)
+            break
+        cache.write_manifest(
+            segment_id,
+            segment_path,
+            payload,
+            {
+                "range": {"start": segment["start"], "end": segment["end"]},
+                "commandReport": segment_report.get("commandReport"),
+                "renderLog": str(log_path),
+            },
+        )
+        cache_stats["rendered"] += 1
+        rendered_paths.append(segment_path)
+        segment_reports.append(item)
+
+    concat_log = None
+    concat_command: list[str] = []
+    if not failed:
+        concat_list = cache.segment_dir / f"{safe_stem(output_path.stem)}.concat.txt"
+        write_concat_list(concat_list, rendered_paths)
+        concat_log = RENDER_LOG_DIR / f"{safe_stem(output_path.stem)}.concat.ffmpeg.log"
+        concat_command = [
+            str(FFMPEG),
+            "-hide_banner",
+            "-y",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            str(concat_list),
+            "-c",
+            "copy",
+            str(output_path),
+        ]
+        return_code = run_logged(concat_command, concat_log)
+        failed = return_code != 0
+
+    report = {
+        "createdAt": now_iso(),
+        "adapter": "ffmpeg",
+        "mode": "segment-cached-preview",
+        "timelineSchemaVersion": timeline.get("schemaVersion"),
+        "timelineId": timeline.get("id"),
+        "outputPath": str(output_path),
+        "preview": {
+            "range": {"start": render_range[0], "end": render_range[1]},
+            "proxy": proxy,
+            "proxySize": {"width": proxy_size[0], "height": proxy_size[1]} if proxy_size else None,
+        },
+        "segmentCache": {
+            "cacheVersion": SEGMENT_CACHE_VERSION,
+            "segmentDir": str(cache.segment_dir),
+            "manifestDir": str(cache.manifest_dir),
+            "segmentDuration": args.segment_duration,
+            "stats": cache_stats,
+            "segments": segment_reports,
+        },
+        "concatCommand": concat_command,
+        "renderLog": str(concat_log) if concat_log else None,
+        "executed": True,
+        "returnCode": return_code,
+    }
+    command_report = write_command_report(report, output_path.stem)
+    report["commandReport"] = str(command_report)
+    command_report.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    return report
+
+
 def preview_output_path(base_output: Path, render_range: tuple[float, float] | None, proxy: bool) -> Path:
     suffixes: list[str] = []
     if render_range is not None:
@@ -1053,6 +1351,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--proxy", action="store_true", help="Export a low-resolution proxy command.")
     parser.add_argument("--proxy-width", type=int, default=960, help="Proxy output width when --proxy or preview proxy is enabled.")
     parser.add_argument("--proxy-height", type=int, default=540, help="Proxy output height when --proxy or preview proxy is enabled.")
+    parser.add_argument("--no-segment-cache", action="store_true", help="Disable segment-cache execution for preview renders.")
+    parser.add_argument("--segment-duration", type=float, default=10.0, help="Seconds per cached preview segment when --preview --execute is used.")
     parser.add_argument("--with-remotion-overlays", action="store_true", help="Composite a validated Remotion PNG-sequence overlay artifact into the FFmpeg render.")
     parser.add_argument("--remotion-report", type=Path, default=None, help="Remotion command report containing overlayArtifact metadata. Defaults to render.remotionOverlayReportPath or the target-derived report path.")
     parser.add_argument("--with-blender-overlays", action="store_true", help="Composite a validated Blender PNG-sequence overlay artifact into the FFmpeg render.")
@@ -1088,6 +1388,30 @@ def main() -> None:
     timeline = load_timeline(timeline_path)
     render_range = resolve_render_range(timeline, args)
     proxy = resolve_proxy(timeline, args)
+    use_segment_cache = (
+        args.execute
+        and args.preview
+        and render_range is not None
+        and not args.no_segment_cache
+        and not args.with_remotion_overlays
+        and not args.with_blender_overlays
+    )
+    if use_segment_cache:
+        report = execute_segment_cached_preview(timeline, APP_CONFIG, args, render_range=render_range, proxy=proxy)
+        print(
+            json.dumps(
+                {
+                    key: report.get(key)
+                    for key in ["adapter", "mode", "outputPath", "commandReport", "renderLog", "executed", "returnCode"]
+                    if key in report
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        if report.get("returnCode"):
+            raise SystemExit(int(report["returnCode"]))
+        return
     command, report = build_ffmpeg_command(
         timeline,
         APP_CONFIG,

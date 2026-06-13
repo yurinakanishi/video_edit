@@ -1,22 +1,22 @@
 {
   "version": 1,
-  "projectId": "new-folder-2",
-  "updatedAt": "2026-05-30T07:40:37.7584230Z",
+  "projectId": "engineer-type-demo-interview",
+  "updatedAt": "2026-06-13T08:08:01.801729Z",
   "assets": {
-    "mediaDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source",
+    "mediaDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
     "materialPaths": [
-      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video",
-      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio"
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio"
     ],
-    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\media_manifest.json",
     "mediaManifest": {
       "version": 1,
       "generatedAt": "2026-05-29T02:17:57.566164+09:00",
-      "sourceDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source",
+      "sourceDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
       "items": [
         {
           "id": "st7-7550",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\ST7_7550.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
           "name": "ST7_7550.MP4",
           "kind": "video",
           "role": "master",
@@ -37,7 +37,7 @@
         },
         {
           "id": "0h4a7189",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7189.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
           "name": "0H4A7189.MP4",
           "kind": "video",
           "role": "camera2",
@@ -58,7 +58,7 @@
         },
         {
           "id": "0h4a7190",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7190.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
           "name": "0H4A7190.MP4",
           "kind": "video",
           "role": "camera3",
@@ -79,7 +79,7 @@
         },
         {
           "id": "0h4a7192",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7192.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
           "name": "0H4A7192.MP4",
           "kind": "video",
           "role": "camera4",
@@ -100,7 +100,7 @@
         },
         {
           "id": "0h4a7193",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7193.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
           "name": "0H4A7193.MP4",
           "kind": "video",
           "role": "camera5",
@@ -121,7 +121,7 @@
         },
         {
           "id": "140101-003",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio\\140101-003.WAV",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
           "name": "140101-003.WAV",
           "kind": "audio",
           "role": "external",
@@ -145,7 +145,7 @@
       "files": [
         {
           "id": "st7-7550",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\ST7_7550.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
           "name": "ST7_7550.MP4",
           "kind": "video",
           "role": "master",
@@ -166,7 +166,7 @@
         },
         {
           "id": "0h4a7189",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7189.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
           "name": "0H4A7189.MP4",
           "kind": "video",
           "role": "camera2",
@@ -187,7 +187,7 @@
         },
         {
           "id": "0h4a7190",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7190.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
           "name": "0H4A7190.MP4",
           "kind": "video",
           "role": "camera3",
@@ -208,7 +208,7 @@
         },
         {
           "id": "0h4a7192",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7192.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
           "name": "0H4A7192.MP4",
           "kind": "video",
           "role": "camera4",
@@ -229,7 +229,7 @@
         },
         {
           "id": "0h4a7193",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7193.MP4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
           "name": "0H4A7193.MP4",
           "kind": "video",
           "role": "camera5",
@@ -250,7 +250,7 @@
         },
         {
           "id": "140101-003",
-          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio\\140101-003.WAV",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
           "name": "140101-003.WAV",
           "kind": "audio",
           "role": "external",
@@ -267,17 +267,17 @@
         }
       ],
       "sourcePaths": [
-        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video",
-        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio"
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio"
       ]
     },
-    "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\ST7_7550.MP4",
-    "rightCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7189.MP4",
-    "leftCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7190.MP4",
-    "externalAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio\\140101-003.WAV",
-    "logoPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\images\\right_logo_pre_fb05.png",
+    "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+    "rightCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+    "leftCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+    "externalAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
+    "logoPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\images\\right_logo_pre_fb05.png",
     "referenceImages": [],
-    "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\images\\right_logo_pre_fb05.png"
+    "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\images\\right_logo_pre_fb05.png"
   },
   "analysis": {
     "transcribeModel": "large-v3",
@@ -301,7 +301,7 @@
   },
   "render": {
     "script": "render_app_interview.py",
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.mp4",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260529_214344.mp4",
     "previewStart": 0,
     "previewDuration": 2968.4655,
     "subtitleMode": "full",
@@ -330,13 +330,13 @@
     "cropPercent": 0,
     "globalVideoZoom": 1.2,
     "speed": "normal",
-    "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\manual_camera_plan.json",
-    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.mp4",
-    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.mp4",
-    "subtitlePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
-    "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\20260529_141836_role_aware_full.ass",
+    "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\manual_camera_plan.json",
+    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260529_214344.mp4",
+    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260529_214344.mp4",
+    "subtitlePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
+    "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\20260529_141836_role_aware_full.ass",
     "subtitleBurnMode": "png-precomposed-when-long",
-    "lastRenderReportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\longest_video_render_report.json",
+    "lastRenderReportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\longest_video_render_report.json",
     "renderScript": "render_app_interview.py",
     "audioDenoiseStrength": 16,
     "audioCleanupFilter": "highpass + afftdn nr=16 + lowpass + dynaudnorm + compressor + loudnorm + limiter",
@@ -365,7 +365,7 @@
     "titleX": 18,
     "titleY": 18,
     "chapterTitlesEnabled": true,
-    "chapterTitlesPath": "projects/new-folder-2/output/reports/chapter_titles_from_full_transcript.json"
+    "chapterTitlesPath": "projects/engineer-type-demo-interview/output/reports/chapter_titles_from_full_transcript.json"
   },
   "glossary": {
     "enabled": true,
@@ -379,7 +379,7 @@
     "enabled": false
   },
   "subtitleSpeakers": {
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\full_transcript_speaker_roles_audio_lr.json",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\full_transcript_speaker_roles_audio_lr.json",
     "mouthMotionDiagnostics": false,
     "interviewerPatterns": [
       "[？?]$",
@@ -389,10 +389,10 @@
     ]
   },
   "subtitleReview": {
-    "correctionsPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\subtitle_corrections_additional_contextual_20260529.json",
-    "correctionsOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\subtitle_corrections_additional_contextual_applied_20260529.json"
+    "correctionsPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\subtitle_corrections_additional_contextual_20260529.json",
+    "correctionsOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\subtitle_corrections_additional_contextual_applied_20260529.json"
   },
   "subtitles": {
-    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt"
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt"
   }
 }

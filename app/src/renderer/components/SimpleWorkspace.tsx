@@ -1,9 +1,23 @@
-import { FileAudio, FileText, FolderOpen, Images, Play, Radio, RefreshCw, Send, Upload, Video } from "lucide-react";
-import type { DragEvent } from "react";
+import {
+	Clock,
+	FileAudio,
+	FileText,
+	FolderOpen,
+	Images,
+	Play,
+	Radio,
+	RefreshCw,
+	Send,
+	Upload,
+	Video,
+} from "lucide-react";
+import type { DragEvent, KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import {
 	EDIT_REQUEST_CHANGE_EVENT,
 	OUTPUT_PREVIEW_ENTRY_OPEN_EVENT,
+	REVIEW_PREVIEW_REFRESH_EVENT,
+	REVIEW_STATE_CHANGE_EVENT,
 	SIMPLE_AUDIO_DROP_EVENT,
 	SIMPLE_AUDIO_PICK_EVENT,
 	SIMPLE_FINAL_RENDER_EVENT,
@@ -29,6 +43,25 @@ type DropTargetOptions = {
 
 function dispatchSimpleAction(eventName: string, detail?: Record<string, unknown>) {
 	document.dispatchEvent(new CustomEvent(eventName, { detail }));
+}
+
+function dispatchReviewChange(detail: Record<string, unknown>) {
+	document.dispatchEvent(new CustomEvent(REVIEW_STATE_CHANGE_EVENT, { detail }));
+}
+
+function formatTimecode(value: number) {
+	const seconds = Math.max(0, Number(value) || 0);
+	const hours = Math.floor(seconds / 3600);
+	const minutes = Math.floor((seconds % 3600) / 60);
+	const rest = seconds % 60;
+	const body = `${String(minutes).padStart(2, "0")}:${String(Math.floor(rest)).padStart(2, "0")}.${String(
+		Math.floor((rest % 1) * 1000),
+	).padStart(3, "0")}`;
+	return hours ? `${hours}:${body}` : body;
+}
+
+function clamp(value: number, min: number, max: number) {
+	return Math.min(max, Math.max(min, value));
 }
 
 function isFileDragEvent(event: DragEvent<HTMLElement>) {
@@ -85,6 +118,323 @@ function countByKind(mediaManifest: any | null, kind: string) {
 	return Array.isArray(mediaManifest?.files)
 		? mediaManifest.files.filter((item: any) => String(item?.kind || "") === kind).length
 		: 0;
+}
+
+function ReviewPlayer() {
+	const project = useAppStore((store) => store.project);
+	const outputPath = useAppStore((store) => store.outputPath);
+	const editRequest = useAppStore((store) => store.editRequest);
+	const review = useAppStore((store) => store.review);
+	const videoUrl = useAppStore((store) => store.reviewPreviewUrl);
+	const metadata = useAppStore((store) => store.reviewPreviewMetadata);
+	const timeline = useAppStore((store) => store.reviewTimeline);
+	const thumbnailStrip = useAppStore((store) => store.reviewThumbnailStrip);
+	const waveform = useAppStore((store) => store.reviewWaveform);
+	const loading = useAppStore((store) => store.reviewPreviewLoading);
+	const error = useAppStore((store) => store.reviewPreviewError);
+	const videoRef = useRef<HTMLVideoElement | null>(null);
+	const timelineRef = useRef<HTMLDivElement | null>(null);
+	const scrollRef = useRef<HTMLDivElement | null>(null);
+	const dragStartRef = useRef<number | null>(null);
+	const lastTimeUpdateRef = useRef(0);
+	const lastLoadKeyRef = useRef("");
+	const duration = Math.max(
+		0,
+		Number(timeline?.duration || metadata?.duration || metadata?.metadata?.duration || 0) || 0,
+	);
+	const zoom = Math.max(1, Number(review.zoom || 1));
+	const timelineWidth = Math.max(900, Math.ceil(duration * 1.4 * zoom));
+	const selectedRange = review.selectedRange;
+	const currentTime = clamp(Number(review.currentTime || 0), 0, duration || Number.MAX_SAFE_INTEGER);
+	const thumbs = Array.isArray(thumbnailStrip?.items) ? thumbnailStrip.items : [];
+	const peaks = Array.isArray(waveform?.peaks) ? waveform.peaks : [];
+	const tickMarks = Array.from({ length: 9 }, (_, index) => {
+		const ratio = index / 8;
+		return {
+			id: `tick-${index}`,
+			ratio,
+			time: duration * ratio,
+		};
+	});
+	const peakBars = peaks.map((peak: number, index: number) => ({
+		id: `peak-${index}-${Number(peak).toFixed(4)}`,
+		peak,
+	}));
+
+	useEffect(() => {
+		if (!project) {
+			return;
+		}
+		const candidate =
+			review.previewVideoPath || editRequest.lastPreviewPath || editRequest.requestedPreviewPath || outputPath;
+		const key = `${project.id}|${candidate || ""}`;
+		if (key === lastLoadKeyRef.current) {
+			return;
+		}
+		lastLoadKeyRef.current = key;
+		dispatchSimpleAction(REVIEW_PREVIEW_REFRESH_EVENT, { previewPath: candidate || "" });
+	}, [project, review.previewVideoPath, editRequest.lastPreviewPath, editRequest.requestedPreviewPath, outputPath]);
+
+	useEffect(() => {
+		const video = videoRef.current;
+		if (!video || !Number.isFinite(currentTime)) {
+			return;
+		}
+		if (Math.abs(video.currentTime - currentTime) > 0.35) {
+			video.currentTime = currentTime;
+		}
+	}, [currentTime]);
+
+	useEffect(() => {
+		const scrollElement = scrollRef.current;
+		if (!scrollElement) {
+			return;
+		}
+		if (Math.abs(scrollElement.scrollLeft - Number(review.scrollStart || 0)) > 2) {
+			scrollElement.scrollLeft = Number(review.scrollStart || 0);
+		}
+	}, [review.scrollStart]);
+
+	function timeFromClientX(clientX: number) {
+		const element = timelineRef.current;
+		const scroller = scrollRef.current;
+		if (!element || !scroller || duration <= 0) {
+			return 0;
+		}
+		const rect = element.getBoundingClientRect();
+		const x = clamp(clientX - rect.left + scroller.scrollLeft, 0, timelineWidth);
+		return clamp((x / timelineWidth) * duration, 0, duration);
+	}
+
+	useEffect(() => {
+		function handleMove(event: MouseEvent) {
+			if (dragStartRef.current === null) {
+				return;
+			}
+			const pointerTime = timeFromClientX(event.clientX);
+			const start = Math.min(dragStartRef.current, pointerTime);
+			const end = Math.max(dragStartRef.current, pointerTime);
+			dispatchReviewChange({
+				currentTime: pointerTime,
+				selectedRange: end - start >= 0.05 ? { start, end } : null,
+			});
+		}
+		function handleUp(event: MouseEvent) {
+			if (dragStartRef.current === null) {
+				return;
+			}
+			const pointerTime = timeFromClientX(event.clientX);
+			const start = Math.min(dragStartRef.current, pointerTime);
+			const end = Math.max(dragStartRef.current, pointerTime);
+			dragStartRef.current = null;
+			dispatchReviewChange({
+				currentTime: pointerTime,
+				selectedRange: end - start >= 0.25 ? { start, end } : null,
+			});
+		}
+		window.addEventListener("mousemove", handleMove);
+		window.addEventListener("mouseup", handleUp);
+		return () => {
+			window.removeEventListener("mousemove", handleMove);
+			window.removeEventListener("mouseup", handleUp);
+		};
+	});
+
+	function handleTimelineMouseDown(event: ReactMouseEvent<HTMLDivElement>) {
+		if (event.button !== 0 || duration <= 0) {
+			return;
+		}
+		const pointerTime = timeFromClientX(event.clientX);
+		dragStartRef.current = pointerTime;
+		dispatchReviewChange({ currentTime: pointerTime, selectedRange: null });
+	}
+
+	function handleTimelineKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
+		if (duration <= 0) {
+			return;
+		}
+		const step = event.shiftKey ? 5 : 1;
+		if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+			event.preventDefault();
+			const direction = event.key === "ArrowRight" ? 1 : -1;
+			dispatchReviewChange({ currentTime: clamp(currentTime + direction * step, 0, duration) });
+		}
+		if (event.key === "Escape") {
+			event.preventDefault();
+			dispatchReviewChange({ selectedRange: null });
+		}
+	}
+
+	function handleVideoTimeUpdate() {
+		const now = Date.now();
+		if (now - lastTimeUpdateRef.current < 250) {
+			return;
+		}
+		lastTimeUpdateRef.current = now;
+		dispatchReviewChange({ currentTime: videoRef.current?.currentTime || 0 });
+	}
+
+	const playheadLeft = duration > 0 ? `${(currentTime / duration) * 100}%` : "0%";
+	const selectedLeft = selectedRange && duration > 0 ? `${(selectedRange.start / duration) * 100}%` : "0%";
+	const selectedWidth =
+		selectedRange && duration > 0 ? `${((selectedRange.end - selectedRange.start) / duration) * 100}%` : "0%";
+
+	return (
+		<Card className="overflow-hidden" data-testid="review-panel">
+			<CardHeader className="flex-row items-start justify-between gap-3 space-y-0">
+				<div>
+					<CardTitle className="flex items-center gap-2">
+						<Play className="size-5 text-primary" aria-hidden="true" />
+						レビュー
+					</CardTitle>
+					<CardDescription>
+						{review.previewVideoPath ? shortPath(review.previewVideoPath) : "Latest preview"}
+					</CardDescription>
+				</div>
+				<div className="flex flex-wrap justify-end gap-2">
+					<Button
+						type="button"
+						variant="outline"
+						size="sm"
+						disabled={!project || loading}
+						onClick={() => dispatchSimpleAction(REVIEW_PREVIEW_REFRESH_EVENT)}
+					>
+						<RefreshCw className="size-4" aria-hidden="true" />
+						更新
+					</Button>
+					<Button
+						type="button"
+						variant="outline"
+						size="sm"
+						disabled={!review.previewVideoPath}
+						onClick={() => dispatchSimpleAction(OUTPUT_PREVIEW_ENTRY_OPEN_EVENT, { path: review.previewVideoPath })}
+					>
+						<FolderOpen className="size-4" aria-hidden="true" />
+						表示
+					</Button>
+				</div>
+			</CardHeader>
+			<CardContent className="grid gap-4">
+				<div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_220px]">
+					<div className="overflow-hidden rounded-md border border-border bg-slate-950">
+						{videoUrl ? (
+							<video
+								ref={videoRef}
+								src={videoUrl}
+								controls
+								data-testid="review-video"
+								className="aspect-video w-full bg-black"
+								onTimeUpdate={handleVideoTimeUpdate}
+								onLoadedMetadata={() => {
+									if (videoRef.current && review.currentTime) {
+										videoRef.current.currentTime = review.currentTime;
+									}
+								}}
+							>
+								<track kind="captions" src="data:text/vtt,WEBVTT%0A" srcLang="en" label="captions" />
+							</video>
+						) : (
+							<div className="grid aspect-video place-items-center px-4 text-sm text-slate-200">
+								{loading ? "プレビューを読み込んでいます" : error || "まだレビュー可能なプレビュー動画がありません"}
+							</div>
+						)}
+					</div>
+					<div className="grid content-start gap-2 rounded-md border border-border bg-muted/35 p-3 text-sm">
+						<div className="flex items-center gap-2 font-semibold text-foreground">
+							<Clock className="size-4 text-primary" aria-hidden="true" />
+							{formatTimecode(currentTime)}
+						</div>
+						<div className="text-xs text-muted-foreground">
+							Duration {duration ? formatTimecode(duration) : "--:--"}
+						</div>
+						<div className="grid gap-1 text-xs">
+							<span className="font-semibold text-muted-foreground">選択範囲</span>
+							<strong className="text-foreground">
+								{selectedRange
+									? `${formatTimecode(selectedRange.start)} - ${formatTimecode(selectedRange.end)}`
+									: "未選択"}
+							</strong>
+						</div>
+						<label className="grid gap-1 text-xs font-semibold text-muted-foreground">
+							Zoom
+							<input
+								type="range"
+								min="1"
+								max="12"
+								step="0.5"
+								value={zoom}
+								onChange={(event) => dispatchReviewChange({ zoom: Number(event.currentTarget.value) })}
+							/>
+						</label>
+					</div>
+				</div>
+				<div
+					ref={scrollRef}
+					data-testid="review-timeline-scroller"
+					className="overflow-x-auto rounded-md border border-border bg-background"
+					onScroll={(event) => dispatchReviewChange({ scrollStart: event.currentTarget.scrollLeft })}
+				>
+					<div
+						ref={timelineRef}
+						data-testid="review-timeline"
+						className="relative h-40 cursor-crosshair select-none"
+						style={{ width: `${timelineWidth}px` }}
+						role="slider"
+						tabIndex={0}
+						aria-label="Review timeline"
+						aria-valuemin={0}
+						aria-valuemax={Math.max(0, Math.round(duration))}
+						aria-valuenow={Number(currentTime.toFixed(3))}
+						onMouseDown={handleTimelineMouseDown}
+						onKeyDown={handleTimelineKeyDown}
+					>
+						<div className="absolute inset-x-0 top-0 flex h-7 border-b border-border bg-muted/50 text-[11px] font-semibold text-muted-foreground">
+							{tickMarks.map((tick) => (
+								<span key={tick.id} className="absolute top-1" style={{ left: `${tick.ratio * 100}%` }}>
+									{formatTimecode(tick.time)}
+								</span>
+							))}
+						</div>
+						<div className="absolute inset-x-0 top-7 flex h-20 overflow-hidden bg-slate-900">
+							{thumbs.length ? (
+								thumbs.map((thumb: any) => (
+									<img
+										key={thumb.path || thumb.index}
+										src={thumb.url}
+										alt=""
+										className="h-full min-w-24 border-r border-slate-700 object-cover"
+										style={{ width: `${100 / thumbs.length}%` }}
+									/>
+								))
+							) : (
+								<div className="grid size-full place-items-center text-xs text-slate-300">thumbnail strip</div>
+							)}
+						</div>
+						<div className="absolute inset-x-0 bottom-0 flex h-12 items-end gap-px border-t border-border bg-card px-1">
+							{peaks.length ? (
+								peakBars.map((bar) => (
+									<span
+										key={bar.id}
+										className="min-w-px flex-1 rounded-t bg-primary/65"
+										style={{ height: `${Math.max(8, Math.min(100, Number(bar.peak) * 100))}%` }}
+									/>
+								))
+							) : (
+								<div className="grid size-full place-items-center text-xs text-muted-foreground">waveform</div>
+							)}
+						</div>
+						{selectedRange ? (
+							<div
+								className="absolute top-7 bottom-0 border-x border-primary bg-primary/20"
+								style={{ left: selectedLeft, width: selectedWidth }}
+							/>
+						) : null}
+						<div className="absolute top-0 bottom-0 w-0.5 bg-destructive" style={{ left: playheadLeft }} />
+					</div>
+				</div>
+			</CardContent>
+		</Card>
+	);
 }
 
 function MaterialSummary() {
@@ -311,10 +661,20 @@ function InstructionHistory() {
 		<div className="grid max-h-56 gap-2 overflow-auto rounded-md border border-border bg-muted/35 p-2">
 			{history.slice(-6).map((item) => (
 				<div key={item.id} className="grid gap-1 rounded-md border border-border bg-card p-3">
-					<Badge variant={item.mode === "final" ? "default" : "secondary"} className="w-fit">
-						{item.mode === "final" ? "Final" : "Preview"}
-					</Badge>
+					<div className="flex flex-wrap gap-1">
+						<Badge variant={item.mode === "final" ? "default" : "secondary"} className="w-fit">
+							{item.mode === "final" ? "Final" : "Preview"}
+						</Badge>
+						<Badge variant={item.scope === "range" ? "default" : "secondary"} className="w-fit">
+							{item.scope === "range" ? "Range" : "Global"}
+						</Badge>
+					</div>
 					<p className="text-sm leading-relaxed text-foreground">{item.text}</p>
+					{item.selection ? (
+						<p className="text-xs font-medium text-muted-foreground">
+							{formatTimecode(item.selection.start)} - {formatTimecode(item.selection.end)}
+						</p>
+					) : null}
 				</div>
 			))}
 		</div>
@@ -329,8 +689,12 @@ function InstructionCard() {
 	const mediaManifest = useAppStore((store) => store.mediaManifest);
 	const draft = useAppStore((store) => store.editRequest.instructionDraft);
 	const history = useAppStore((store) => store.editRequest.instructionHistory);
+	const selectedRange = useAppStore((store) => store.review.selectedRange);
 	const hasInstruction = Boolean(draft.trim() || history.length);
-	const canSend = Boolean(project && mediaManifest?.files?.length && hasInstruction && !appLocked && !codexTurnRunning);
+	const canSend = Boolean(
+		project && mediaManifest?.files?.length && hasInstruction && !appLocked && !codexTurnRunning && !directRunRunning,
+	);
+	const canSendRange = Boolean(canSend && selectedRange);
 
 	return (
 		<Card className="min-h-[420px]">
@@ -339,14 +703,18 @@ function InstructionCard() {
 					<Send className="size-5 text-primary" aria-hidden="true" />
 					編集指示
 				</CardTitle>
-				<CardDescription>Natural language</CardDescription>
+				<CardDescription>
+					{selectedRange
+						? `${formatTimecode(selectedRange.start)} - ${formatTimecode(selectedRange.end)}`
+						: "動画全体または選択範囲"}
+				</CardDescription>
 			</CardHeader>
 			<CardContent className="grid gap-4">
 				<Textarea
 					className="min-h-52 resize-y text-sm leading-relaxed"
 					value={draft}
 					disabled={appLocked || codexTurnRunning}
-					placeholder="例: 会話のテンポをよくして、重要な発言に字幕を入れ、冒頭30秒のプレビューを作成してください。"
+					placeholder="例: この部分の間を詰めてください。話者の表情が見えるカットにしてください。字幕を短くしてください。"
 					onChange={(event) =>
 						dispatchSimpleAction(EDIT_REQUEST_CHANGE_EVENT, { instructionDraft: event.currentTarget.value })
 					}
@@ -354,17 +722,26 @@ function InstructionCard() {
 				<div className="flex flex-wrap gap-2">
 					<Button
 						type="button"
-						disabled={!canSend || directRunRunning}
-						onClick={() => dispatchSimpleAction(SIMPLE_PREVIEW_REQUEST_EVENT)}
+						disabled={!canSendRange}
+						onClick={() => dispatchSimpleAction(SIMPLE_PREVIEW_REQUEST_EVENT, { instructionScope: "range" })}
 					>
 						<Play className="size-4" aria-hidden="true" />
-						プレビューを作成
+						この範囲に指示
 					</Button>
 					<Button
 						type="button"
 						variant="outline"
-						disabled={!canSend || directRunRunning}
-						onClick={() => dispatchSimpleAction(SIMPLE_FINAL_RENDER_EVENT)}
+						disabled={!canSend}
+						onClick={() => dispatchSimpleAction(SIMPLE_PREVIEW_REQUEST_EVENT, { instructionScope: "global" })}
+					>
+						<Send className="size-4" aria-hidden="true" />
+						動画全体に指示
+					</Button>
+					<Button
+						type="button"
+						variant="ghost"
+						disabled={!canSend}
+						onClick={() => dispatchSimpleAction(SIMPLE_FINAL_RENDER_EVENT, { instructionScope: "global" })}
 					>
 						<Video className="size-4" aria-hidden="true" />
 						フルレンダリング
@@ -438,13 +815,14 @@ function OutputLinks() {
 export function SimpleWorkspace() {
 	return (
 		<main className="grid min-w-0 gap-4 p-4 md:p-6">
-			<OutputPreview />
-			<div className="grid items-start gap-4 xl:grid-cols-[minmax(280px,0.9fr)_minmax(240px,0.62fr)_minmax(360px,1.35fr)]">
+			<ReviewPlayer />
+			<div className="grid items-start gap-4 xl:grid-cols-[minmax(420px,1.25fr)_minmax(280px,0.8fr)_minmax(240px,0.62fr)]">
+				<InstructionCard />
 				<MaterialsCard />
 				<AudioCard />
-				<InstructionCard />
 			</div>
 			<OutputLinks />
+			<OutputPreview />
 			<Card className="overflow-hidden">
 				<CardHeader>
 					<CardTitle>進行状況</CardTitle>

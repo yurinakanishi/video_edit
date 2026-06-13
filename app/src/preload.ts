@@ -32,6 +32,7 @@ contextBridge.exposeInMainWorld("editApp", {
 	loadProjectState: (payload) => ipcRenderer.invoke("project-state:load", payload),
 	saveProjectState: (payload) => ipcRenderer.invoke("project-state:save", payload),
 	patchProjectState: (payload) => ipcRenderer.invoke("project-state:patch", payload),
+	loadReviewPreview: (payload) => ipcRenderer.invoke("review:load-preview", payload),
 	getSyncReport: (appConfig) => ipcRenderer.invoke("report:sync", appConfig),
 	loadGlossaryCandidates: (appConfig) => ipcRenderer.invoke("glossary:load-candidates", appConfig),
 	loadTextOverlayCandidates: (payload) => ipcRenderer.invoke("text-overlay:load-candidates", payload),

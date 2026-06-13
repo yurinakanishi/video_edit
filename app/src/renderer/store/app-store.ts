@@ -71,6 +71,8 @@ export type EditInstructionHistoryItem = {
 	text: string;
 	targetPath: string;
 	createdAt: string;
+	scope?: "range" | "global";
+	selection?: ReviewRange | null;
 };
 
 export type EditRequestState = {
@@ -80,6 +82,20 @@ export type EditRequestState = {
 	requestedFinalPath: string;
 	lastPreviewPath: string;
 	lastFinalPath: string;
+};
+
+export type ReviewRange = {
+	start: number;
+	end: number;
+};
+
+export type ReviewState = {
+	previewVideoPath: string;
+	currentTime: number;
+	selectedRange: ReviewRange | null;
+	zoom: number;
+	scrollStart: number;
+	reviewTimelinePath: string;
 };
 
 export type WorkflowSettings = {
@@ -205,6 +221,14 @@ export type AppState = AppRunFlags &
 		subtitleSpeakerSettings: SubtitleSpeakerSettings;
 		toolPaths: ToolPaths;
 		editRequest: EditRequestState;
+		review: ReviewState;
+		reviewTimeline: any | null;
+		reviewThumbnailStrip: any | null;
+		reviewWaveform: any | null;
+		reviewPreviewUrl: string;
+		reviewPreviewMetadata: any | null;
+		reviewPreviewLoading: boolean;
+		reviewPreviewError: string;
 		projectStatePath: string;
 		projectStateRevision: number;
 		projectStateApplying: boolean;
@@ -287,6 +311,7 @@ export type AppActions = {
 	setSubtitleSpeakerSettings: (settings: Partial<SubtitleSpeakerSettings>) => void;
 	setToolPaths: (paths: Partial<ToolPaths>) => void;
 	setEditRequest: (request: Partial<EditRequestState>) => void;
+	setReview: (review: Partial<ReviewState>) => void;
 	setFiles: (files: Partial<AppFiles>) => void;
 	setAnalysisResults: (results: AnalysisResult[]) => void;
 	setMaterialAnalysisStatus: (status: Record<string, MaterialAnalysisStatus>) => void;
@@ -443,6 +468,15 @@ const defaultEditRequest = (): EditRequestState => ({
 	lastFinalPath: "",
 });
 
+export const defaultReview = (): ReviewState => ({
+	previewVideoPath: "",
+	currentTime: 0,
+	selectedRange: null,
+	zoom: 1,
+	scrollStart: 0,
+	reviewTimelinePath: "",
+});
+
 export function normalizeWorkflowSection(section: string | undefined | null): WorkflowSection {
 	return ["assets", "edit", "style", "workflow", "run"].includes(String(section))
 		? (section as WorkflowSection)
@@ -471,6 +505,14 @@ export const useAppStore = create<AppStore>((set) => ({
 	subtitleSpeakerSettings: defaultSubtitleSpeakerSettings(),
 	toolPaths: defaultToolPaths(),
 	editRequest: defaultEditRequest(),
+	review: defaultReview(),
+	reviewTimeline: null,
+	reviewThumbnailStrip: null,
+	reviewWaveform: null,
+	reviewPreviewUrl: "",
+	reviewPreviewMetadata: null,
+	reviewPreviewLoading: false,
+	reviewPreviewError: "",
 	projectStatePath: "",
 	projectStateRevision: 0,
 	projectStateApplying: false,
@@ -578,6 +620,7 @@ export const useAppStore = create<AppStore>((set) => ({
 				instructionHistory: request.instructionHistory || current.editRequest.instructionHistory,
 			},
 		})),
+	setReview: (review) => set((current) => ({ review: { ...current.review, ...review } })),
 	setFiles: (files) => set((current) => ({ files: { ...current.files, ...files } })),
 	setAnalysisResults: (analysisResults) => set({ analysisResults }),
 	setMaterialAnalysisStatus: (materialAnalysisStatus) => set({ materialAnalysisStatus }),

@@ -96,6 +96,7 @@ export const WORKFLOW_ACTIONS = [
 	["replace-audio", "Replace video audio"],
 	["generate-thumbnail", "Generate thumbnail image"],
 	["generate-thumbnail-candidates", "Generate thumbnail candidates"],
+	["generate-review-assets", "Generate review timeline assets"],
 	["review-subtitles", "Review subtitle quality"],
 	["apply-subtitle-corrections", "Apply subtitle corrections"],
 	["classify-subtitle-speakers", "Classify subtitle speakers"],

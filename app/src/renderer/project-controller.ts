@@ -65,6 +65,19 @@ export function createProjectController({
 		});
 	}
 
+	function normalizeProjectRoot(value: string) {
+		return String(value || "")
+			.replace(/[\\/]+/g, "/")
+			.replace(/\/+$/g, "")
+			.toLowerCase();
+	}
+
+	function isProjectUnderActiveProjectsRoot(project: ProjectInfo | null) {
+		const projectsRoot = normalizeProjectRoot(state.env?.projectsRoot || "");
+		const projectRoot = normalizeProjectRoot(project?.root || "");
+		return Boolean(projectRoot && (!projectsRoot || projectRoot.startsWith(`${projectsRoot}/`)));
+	}
+
 	function setDefaultProjectOutput(preserveExisting = true) {
 		if (!state.project) {
 			return;
@@ -94,7 +107,32 @@ export function createProjectController({
 				lastPreviewPath: "",
 				lastFinalPath: "",
 			};
+			state.review = {
+				previewVideoPath: "",
+				currentTime: 0,
+				selectedRange: null,
+				zoom: 1,
+				scrollStart: 0,
+				reviewTimelinePath: "",
+			};
+			state.reviewTimeline = null;
+			state.reviewThumbnailStrip = null;
+			state.reviewWaveform = null;
+			state.reviewPreviewUrl = "";
+			state.reviewPreviewMetadata = null;
+			state.reviewPreviewLoading = false;
+			state.reviewPreviewError = "";
 			getAppState().setEditRequest(state.editRequest);
+			getAppState().setReview(state.review);
+			getAppState().patchState({
+				reviewTimeline: null,
+				reviewThumbnailStrip: null,
+				reviewWaveform: null,
+				reviewPreviewUrl: "",
+				reviewPreviewMetadata: null,
+				reviewPreviewLoading: false,
+				reviewPreviewError: "",
+			});
 			void editApp.resetCodexThread().catch((error) => log("codex thread reset failed", { message: error.message }));
 		}
 		getAppState().setProject(project, {
@@ -171,9 +209,10 @@ export function createProjectController({
 			state.projectList = entries;
 			patchAppState({ projectList: state.projectList });
 			renderProjectDialogList();
-			const currentProject = state.project
-				? entries.find((candidate) => candidate?.project?.id === state.project?.id)?.project || state.project
-				: null;
+			const currentProject =
+				state.project && isProjectUnderActiveProjectsRoot(state.project)
+					? entries.find((candidate) => candidate?.project?.id === state.project?.id)?.project || state.project
+					: null;
 			const latestProject =
 				entries.find((candidate) => candidate?.project?.id && candidate.hasManifest)?.project ||
 				entries.find((candidate) => candidate?.project?.id)?.project ||
@@ -183,10 +222,23 @@ export function createProjectController({
 					Boolean(project?.id) && projects.findIndex((item) => item?.id === project?.id) === index,
 			);
 			if (!candidates.length) {
+				if (state.project) {
+					setProject(null);
+				}
 				return false;
 			}
 			for (const project of candidates) {
-				const loaded = await editApp.loadProject({ project });
+				let loaded: Awaited<ReturnType<typeof editApp.loadProject>> | null = null;
+				try {
+					loaded = await editApp.loadProject({ project });
+				} catch (error) {
+					log("project restore candidate skipped", {
+						id: project.id,
+						root: project.root,
+						message: (error as Error).message,
+					});
+					continue;
+				}
 				if (!loaded?.project) {
 					continue;
 				}
@@ -198,9 +250,15 @@ export function createProjectController({
 				});
 				return true;
 			}
+			if (state.project) {
+				setProject(null);
+			}
 			return false;
 		} catch (error) {
 			log("project restore failed", { message: error.message });
+			if (state.project) {
+				setProject(null);
+			}
 			return false;
 		}
 	}

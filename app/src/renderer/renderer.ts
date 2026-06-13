@@ -12,7 +12,7 @@ import { log } from "./log.js";
 import { createMaterialAnalysisController } from "./material-analysis.js";
 import { createMaterialManifestController } from "./material-manifest.js";
 import { createMaterialSourceController } from "./material-sources.js";
-import { setInputVideoPathValue, setOutputPathValue } from "./media-state.js";
+import { outputPathValue, setInputVideoPathValue, setOutputPathValue } from "./media-state.js";
 import { loadOutputPreview, outputPreviewTarget, renderOutputPreview } from "./preview.js";
 import { createProjectController } from "./project-controller.js";
 import { createProjectStateController } from "./project-state.js";
@@ -573,6 +573,128 @@ function handleEditRequestChange(event: Event) {
 	saveState();
 }
 
+function normalizeReviewSelection(value: any) {
+	if (!value || typeof value !== "object") {
+		return null;
+	}
+	const start = Number(value.start);
+	const end = Number(value.end);
+	if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+		return null;
+	}
+	return { start, end };
+}
+
+function handleReviewStateChange(event: Event) {
+	const detail = (event as CustomEvent).detail || {};
+	const patch: Record<string, any> = {};
+	if ("previewVideoPath" in detail) {
+		patch.previewVideoPath = String(detail.previewVideoPath || "");
+	}
+	if ("currentTime" in detail) {
+		patch.currentTime = Math.max(0, Number(detail.currentTime) || 0);
+	}
+	if ("selectedRange" in detail) {
+		patch.selectedRange = normalizeReviewSelection(detail.selectedRange);
+	}
+	if ("zoom" in detail) {
+		patch.zoom = Math.max(1, Math.min(24, Number(detail.zoom) || 1));
+	}
+	if ("scrollStart" in detail) {
+		patch.scrollStart = Math.max(0, Number(detail.scrollStart) || 0);
+	}
+	if ("reviewTimelinePath" in detail) {
+		patch.reviewTimelinePath = String(detail.reviewTimelinePath || "");
+	}
+	state.review = {
+		previewVideoPath: "",
+		currentTime: 0,
+		selectedRange: null,
+		zoom: 1,
+		scrollStart: 0,
+		reviewTimelinePath: "",
+		...(state.review || {}),
+		...patch,
+	};
+	getAppState().setReview(state.review);
+	refreshPrompt();
+	schedulePersistCurrentProjectState();
+	saveState();
+}
+
+function reviewPreviewCandidate() {
+	return (
+		state.review?.previewVideoPath ||
+		state.editRequest?.lastPreviewPath ||
+		state.editRequest?.requestedPreviewPath ||
+		outputPathValue() ||
+		""
+	);
+}
+
+async function loadReviewPreview(previewPath = "") {
+	if (!state.project) {
+		return null;
+	}
+	state.reviewPreviewLoading = true;
+	state.reviewPreviewError = "";
+	patchAppState({ reviewPreviewLoading: true, reviewPreviewError: "" });
+	try {
+		const result = await editApp.loadReviewPreview({
+			project: state.project,
+			previewPath: previewPath || reviewPreviewCandidate(),
+		});
+		if (!result?.ok) {
+			state.reviewPreviewUrl = "";
+			state.reviewTimeline = null;
+			state.reviewThumbnailStrip = null;
+			state.reviewWaveform = null;
+			state.reviewPreviewMetadata = null;
+			state.reviewPreviewError = String(result?.reason || "preview unavailable");
+			patchAppState({
+				reviewPreviewUrl: "",
+				reviewTimeline: null,
+				reviewThumbnailStrip: null,
+				reviewWaveform: null,
+				reviewPreviewMetadata: null,
+				reviewPreviewError: state.reviewPreviewError,
+			});
+			return result;
+		}
+		state.review = {
+			...(state.review || {}),
+			previewVideoPath: String(result.previewVideoPath || ""),
+			reviewTimelinePath: String(result.reviewTimelinePath || ""),
+		};
+		state.reviewPreviewUrl = String(result.videoUrl || "");
+		state.reviewTimeline = result.reviewTimeline || null;
+		state.reviewThumbnailStrip = result.thumbnailStrip || null;
+		state.reviewWaveform = result.waveform || null;
+		state.reviewPreviewMetadata = result.metadata || null;
+		state.reviewPreviewError = "";
+		getAppState().setReview(state.review);
+		patchAppState({
+			reviewPreviewUrl: state.reviewPreviewUrl,
+			reviewTimeline: state.reviewTimeline,
+			reviewThumbnailStrip: state.reviewThumbnailStrip,
+			reviewWaveform: state.reviewWaveform,
+			reviewPreviewMetadata: state.reviewPreviewMetadata,
+			reviewPreviewError: "",
+		});
+		schedulePersistCurrentProjectState();
+		saveState();
+		return result;
+	} catch (error) {
+		state.reviewPreviewError = (error as Error).message;
+		patchAppState({ reviewPreviewError: state.reviewPreviewError });
+		log("review preview load failed", { message: state.reviewPreviewError });
+		return null;
+	} finally {
+		state.reviewPreviewLoading = false;
+		patchAppState({ reviewPreviewLoading: false });
+	}
+}
+
 function resetAnalysisForMaterialChange(path = materialSourceLabel()) {
 	setAnalysisResults([]);
 	setMaterialAnalysisStatusMap({});
@@ -598,6 +720,7 @@ function bindEvents() {
 		closeConfirmDialog,
 		createProjectFromDialog,
 		handleEditRequestChange,
+		handleReviewStateChange,
 		ingestSimpleMaterials,
 		pickSimpleMaterialDirectory,
 		pickSimpleMaterialFiles,
@@ -605,6 +728,7 @@ function bindEvents() {
 		pickSimpleAudioFiles,
 		runSimpleTranscription,
 		sendSimpleEditRequest,
+		loadReviewPreview,
 		loadOutputPreview,
 		openProject,
 		outputPreviewTarget,
@@ -678,6 +802,9 @@ async function init() {
 	if (state.mediaManifest) {
 		await refreshAnalysisTitleFromAnalysis(state.mediaManifest);
 		await refreshMaterialAnalysisStatus();
+	}
+	if (state.project) {
+		void loadReviewPreview();
 	}
 	(window as unknown as Record<string, any>).__videoEditRendererReady = true;
 }

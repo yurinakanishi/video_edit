@@ -73,12 +73,29 @@ export const state: any = {
 			text: string;
 			targetPath: string;
 			createdAt: string;
+			scope?: "range" | "global";
+			selection?: { start: number; end: number } | null;
 		}>,
 		requestedPreviewPath: "",
 		requestedFinalPath: "",
 		lastPreviewPath: "",
 		lastFinalPath: "",
 	},
+	review: {
+		previewVideoPath: "",
+		currentTime: 0,
+		selectedRange: null as { start: number; end: number } | null,
+		zoom: 1,
+		scrollStart: 0,
+		reviewTimelinePath: "",
+	},
+	reviewTimeline: null,
+	reviewThumbnailStrip: null,
+	reviewWaveform: null,
+	reviewPreviewUrl: "",
+	reviewPreviewMetadata: null,
+	reviewPreviewLoading: false,
+	reviewPreviewError: "",
 	files: {
 		masterVideo: "",
 		rightCloseVideo: "",

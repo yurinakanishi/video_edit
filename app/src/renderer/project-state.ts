@@ -89,6 +89,7 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 				analysisResults: state.analysisResults,
 				ingestProgress: state.ingestProgress,
 				editRequest: state.editRequest,
+				review: state.review,
 				glossaryTerms: state.glossaryTerms,
 				language: state.language,
 				activeSection: state.activeSection,
@@ -178,6 +179,10 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 			if (saved.editRequest && typeof saved.editRequest === "object") {
 				state.editRequest = normalizeEditRequest(saved.editRequest);
 				getAppState().setEditRequest(state.editRequest);
+			}
+			if (saved.review && typeof saved.review === "object") {
+				state.review = normalizeReview(saved.review);
+				getAppState().setReview(state.review);
 			}
 			if (Array.isArray(saved.glossaryTerms)) {
 				state.glossaryTerms = saved.glossaryTerms;
@@ -294,6 +299,7 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 			updatedAt: new Date().toISOString(),
 			...buildAppConfig(),
 			editRequest: state.editRequest,
+			review: state.review,
 			ui: {
 				activeSection: state.activeSection,
 				codexModel: state.codexModel,
@@ -312,6 +318,8 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 						text: String(item?.text || ""),
 						targetPath: String(item?.targetPath || ""),
 						createdAt: String(item?.createdAt || ""),
+						scope: item?.scope === "range" ? "range" : item?.scope === "global" ? "global" : undefined,
+						selection: normalizeSelection(item?.selection),
 					}))
 					.filter((item: any) => item.text)
 			: [];
@@ -322,6 +330,34 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 			requestedFinalPath: String(value?.requestedFinalPath || ""),
 			lastPreviewPath: String(value?.lastPreviewPath || ""),
 			lastFinalPath: String(value?.lastFinalPath || ""),
+		};
+	}
+
+	function normalizeNumber(value: any, fallback: number) {
+		const number = Number(value);
+		return Number.isFinite(number) ? number : fallback;
+	}
+
+	function normalizeSelection(value: any) {
+		if (!value || typeof value !== "object") {
+			return null;
+		}
+		const start = normalizeNumber(value.start, Number.NaN);
+		const end = normalizeNumber(value.end, Number.NaN);
+		if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+			return null;
+		}
+		return { start, end };
+	}
+
+	function normalizeReview(value: any) {
+		return {
+			previewVideoPath: String(value?.previewVideoPath || ""),
+			currentTime: Math.max(0, normalizeNumber(value?.currentTime, 0)),
+			selectedRange: normalizeSelection(value?.selectedRange),
+			zoom: Math.max(1, Math.min(24, normalizeNumber(value?.zoom, 1))),
+			scrollStart: Math.max(0, normalizeNumber(value?.scrollStart, 0)),
+			reviewTimelinePath: String(value?.reviewTimelinePath || ""),
 		};
 	}
 
@@ -424,6 +460,10 @@ export function createProjectStateController(deps: ProjectStateControllerDeps) {
 			if (payload.editRequest && typeof payload.editRequest === "object") {
 				state.editRequest = normalizeEditRequest(payload.editRequest);
 				getAppState().setEditRequest(state.editRequest);
+			}
+			if (payload.review && typeof payload.review === "object") {
+				state.review = normalizeReview(payload.review);
+				getAppState().setReview(state.review);
 			}
 			if (Array.isArray(payload.glossary?.terms)) {
 				state.glossaryTerms = payload.glossary.terms;

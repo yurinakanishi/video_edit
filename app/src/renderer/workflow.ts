@@ -662,9 +662,26 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		return history
 			.map((item, index) => {
 				const label = item.mode === "final" ? "final" : "preview";
-				return `- ${index + 1}. [${label}] ${item.text}\n  target: ${item.targetPath || "(not set)"}`;
+				const scope = item.scope === "range" ? "range" : item.scope === "global" ? "global" : "unspecified";
+				const selection = item.selection
+					? `\n  selection: ${Number(item.selection.start).toFixed(3)}-${Number(item.selection.end).toFixed(3)} sec`
+					: "";
+				return `- ${index + 1}. [${label}/${scope}] ${item.text}\n  target: ${item.targetPath || "(not set)"}${selection}`;
 			})
 			.join("\n");
+	}
+
+	function normalizedReviewSelection() {
+		const selection = state.review?.selectedRange;
+		if (!selection || typeof selection !== "object") {
+			return null;
+		}
+		const start = Number(selection.start);
+		const end = Number(selection.end);
+		if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+			return null;
+		}
+		return { start, end };
 	}
 
 	function mediaManifestSummaryLines() {
@@ -697,6 +714,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			currentInstruction?: string;
 			previousPreviewPath?: string;
 			previousFinalPath?: string;
+			instructionScope?: "range" | "global";
+			selection?: { start: number; end: number } | null;
+			currentTime?: number;
 		} = {},
 	) {
 		const history = context.history || state.editRequest?.instructionHistory || [];
@@ -707,6 +727,20 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		const transcriptPath = transcriptManifestOutputPath();
 		const previousPreview = context.previousPreviewPath ?? state.editRequest?.lastPreviewPath ?? "";
 		const previousFinal = context.previousFinalPath ?? state.editRequest?.lastFinalPath ?? "";
+		const instructionScope = context.instructionScope === "range" ? "range" : "global";
+		const selection = instructionScope === "range" ? context.selection || normalizedReviewSelection() : null;
+		const currentTime = Number(context.currentTime ?? state.review?.currentTime ?? 0) || 0;
+		const reviewTargetLines = [
+			"Review target:",
+			`- Scope: ${instructionScope}`,
+			...(selection
+				? [
+						`- Selected range: ${selection.start.toFixed(3)} sec - ${selection.end.toFixed(3)} sec (${(selection.end - selection.start).toFixed(3)} sec)`,
+						`- Current review time: ${currentTime.toFixed(3)} sec`,
+					]
+				: []),
+			`- Review preview video: ${state.review?.previewVideoPath || previousPreview || "(none)"}`,
+		];
 		const lines = [
 			`You are working in ${workspaceRootForPrompt()}.`,
 			`Create the requested ${modeLabel} for the active video-edit project.`,
@@ -714,6 +748,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"Use the repository's existing video-edit pipeline and keep generated artifacts inside the active project's output directory.",
 			"Do not ask the operator to use hidden UI controls. Interpret the natural language instructions below and update project-local state, timelines, scripts, or render commands as needed.",
 			"Prefer timeline JSON plus validation before rendering. If rendering is blocked, report the missing input or validation issue clearly.",
+			"The operator is not manually editing clips. A selected timeline range is only a review target for the Codex instruction, not a clip/track edit made by the user.",
 			"",
 			"Active project:",
 			`- Name: ${state.project?.name || "(none)"}`,
@@ -731,6 +766,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			"",
 			"Current operator instruction:",
 			currentInstruction || "(continue from the instruction history and current project state)",
+			"",
+			...reviewTargetLines,
 			"",
 			"Requested output:",
 			`- Mode: ${mode}`,
@@ -769,6 +806,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		}
 		if (action === "generate-thumbnail-candidates") {
 			return t("option.generateThumbnailCandidates");
+		}
+		if (action === "generate-review-assets") {
+			return "Generate review assets";
 		}
 		if (action === "generate-proxies") {
 			return selectedLabel("workflowAction") || "Generate proxies";
@@ -866,6 +906,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		}
 		if (action === "generate-thumbnail-candidates") {
 			return thumbnailCandidatesOutputPath();
+		}
+		if (action === "generate-review-assets") {
+			return activeOutputRoot() ? joinPath(activeOutputRoot(), "app", "review_timeline.json") : "";
 		}
 		if (action === "review-subtitles") {
 			return subtitleReviewOutputPath();
@@ -1518,6 +1561,10 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 				...(state.editRequest || {}),
 				instructionHistory: [...(state.editRequest?.instructionHistory || [])],
 			},
+			review: {
+				...(state.review || {}),
+				selectedRange: state.review?.selectedRange ? { ...state.review.selectedRange } : null,
+			},
 			tools: {
 				python: pythonExe(),
 				ffmpeg: ffmpegExe(),
@@ -1640,7 +1687,7 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		}
 	}
 
-	async function sendSimpleEditRequest(mode: "preview" | "final") {
+	async function sendSimpleEditRequest(mode: "preview" | "final", options: any = {}) {
 		if (!(await prepareProjectForRun())) {
 			setStatus(t("status.projectError"), "idle");
 			return;
@@ -1654,6 +1701,13 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		const history = state.editRequest?.instructionHistory || [];
 		const previousPreviewPath = state.editRequest?.lastPreviewPath || "";
 		const previousFinalPath = state.editRequest?.lastFinalPath || "";
+		const requestedScope = options?.instructionScope === "range" ? "range" : "global";
+		const selection = requestedScope === "range" ? normalizedReviewSelection() : null;
+		if (requestedScope === "range" && !selection) {
+			setStatus("タイムラインで修正対象の範囲を選択してください", "idle");
+			log("codex request blocked", { reason: "range selection is empty" });
+			return;
+		}
 		if (!draft && !history.length) {
 			setStatus("自然言語の編集指示を入力してください", "idle");
 			log("codex request blocked", { reason: "instruction is empty" });
@@ -1667,9 +1721,17 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 		}
 		setOutputPathValue(targetPath);
 		getAppState().setWorkflowSettings({ workflowAction: "render-selected" });
+		const rangeSettings =
+			mode === "preview" && selection
+				? {
+						previewStart: String(Math.max(0, selection.start)),
+						previewDuration: String(Math.max(0.1, selection.end - selection.start)),
+					}
+				: {};
 		getAppState().setRenderSettings({
 			renderProfile: mode === "preview" ? "preview" : "final",
 			rangeMode: mode === "preview" ? "range" : "full",
+			...rangeSettings,
 		});
 		const nextHistory = draft
 			? [
@@ -1680,6 +1742,8 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 						text: draft,
 						targetPath,
 						createdAt: new Date().toISOString(),
+						scope: requestedScope,
+						selection,
 					},
 				]
 			: history;
@@ -1688,6 +1752,9 @@ export function createWorkflowController(deps: WorkflowControllerDeps) {
 			currentInstruction: draft || history.at(-1)?.text || "",
 			previousPreviewPath,
 			previousFinalPath,
+			instructionScope: requestedScope,
+			selection,
+			currentTime: Number(state.review?.currentTime || 0),
 		});
 		setEditRequestState({
 			instructionDraft: "",

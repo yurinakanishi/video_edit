@@ -11,6 +11,8 @@ import {
 	PROJECT_DIALOG_CLOSE_EVENT,
 	PROJECT_DIALOG_CREATE_EVENT,
 	PROJECT_DIALOG_OPEN_PROJECT_EVENT,
+	REVIEW_PREVIEW_REFRESH_EVENT,
+	REVIEW_STATE_CHANGE_EVENT,
 	SIMPLE_AUDIO_DROP_EVENT,
 	SIMPLE_AUDIO_PICK_EVENT,
 	SIMPLE_FINAL_RENDER_EVENT,
@@ -30,13 +32,15 @@ type RendererEventBindings = {
 	readonly closeConfirmDialog: (confirmed: boolean) => void;
 	readonly createProjectFromDialog: () => Promise<void>;
 	readonly handleEditRequestChange: (event: Event) => void;
+	readonly handleReviewStateChange: (event: Event) => void;
 	readonly ingestSimpleMaterials: (paths: string[]) => Promise<boolean>;
 	readonly pickSimpleMaterialDirectory: () => Promise<void>;
 	readonly pickSimpleMaterialFiles: () => Promise<void>;
 	readonly addSimpleAudioFiles: (paths: string[]) => Promise<boolean>;
 	readonly pickSimpleAudioFiles: () => Promise<void>;
 	readonly runSimpleTranscription: () => Promise<boolean>;
-	readonly sendSimpleEditRequest: (mode: "preview" | "final") => Promise<void>;
+	readonly sendSimpleEditRequest: (mode: "preview" | "final", options?: any) => Promise<void>;
+	readonly loadReviewPreview: (previewPath?: string) => Promise<any>;
 	readonly loadOutputPreview: (kind: string) => Promise<any>;
 	readonly openProject: (entry: ProjectListEntry) => Promise<void>;
 	readonly outputPreviewTarget: () => string;
@@ -117,9 +121,20 @@ export function bindRendererEvents(bindings: RendererEventBindings) {
 	document.addEventListener(SIMPLE_AUDIO_DROP_EVENT, handleSimpleAudioDrop);
 	document.addEventListener(SIMPLE_AUDIO_PICK_EVENT, () => void bindings.pickSimpleAudioFiles());
 	document.addEventListener(SIMPLE_TRANSCRIBE_EVENT, () => void bindings.runSimpleTranscription());
-	document.addEventListener(SIMPLE_PREVIEW_REQUEST_EVENT, () => void bindings.sendSimpleEditRequest("preview"));
-	document.addEventListener(SIMPLE_FINAL_RENDER_EVENT, () => void bindings.sendSimpleEditRequest("final"));
+	document.addEventListener(
+		SIMPLE_PREVIEW_REQUEST_EVENT,
+		(event) => void bindings.sendSimpleEditRequest("preview", (event as CustomEvent).detail || {}),
+	);
+	document.addEventListener(
+		SIMPLE_FINAL_RENDER_EVENT,
+		(event) => void bindings.sendSimpleEditRequest("final", (event as CustomEvent).detail || {}),
+	);
 	document.addEventListener(EDIT_REQUEST_CHANGE_EVENT, bindings.handleEditRequestChange);
+	document.addEventListener(REVIEW_STATE_CHANGE_EVENT, bindings.handleReviewStateChange);
+	document.addEventListener(
+		REVIEW_PREVIEW_REFRESH_EVENT,
+		(event) => void bindings.loadReviewPreview(String((event as CustomEvent).detail?.previewPath || "")),
+	);
 	document.addEventListener(MATERIAL_CANCEL_ANALYSIS_EVENT, () => void bindings.cancelMaterialAnalysis());
 	document.addEventListener(LANGUAGE_CHANGE_EVENT, handleLanguageChange);
 	document.addEventListener(PROJECT_DIALOG_CLOSE_EVENT, () => bindings.setProjectDialogOpen(false));

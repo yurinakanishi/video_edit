@@ -30,6 +30,7 @@ export type EditAppApi = {
 	loadProjectState: (payload: any) => Promise<any>;
 	saveProjectState: (payload: any) => Promise<any>;
 	patchProjectState: (payload: any) => Promise<any>;
+	loadReviewPreview: (payload: any) => Promise<any>;
 	getSyncReport: (appConfig?: any) => Promise<any>;
 	loadGlossaryCandidates: (appConfig: any) => Promise<any>;
 	loadTextOverlayCandidates: (payload: any) => Promise<any>;

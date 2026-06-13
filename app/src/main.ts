@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
+import { pathToFileURL } from "node:url";
 import { Worker } from "node:worker_threads";
 import { app, BrowserWindow, dialog, ipcMain, nativeImage, shell } from "electron";
 import {
@@ -81,6 +82,7 @@ const PYTHON_EXE = process.env.VIDEO_EDIT_PYTHON || "python";
 const CODEX_EXE_NAME = process.platform === "win32" ? "codex.exe" : "codex";
 const SMOKE_QUIT_MS = Math.max(0, Number(process.env.VIDEO_EDIT_SMOKE_QUIT_MS || 0));
 const SMOKE_UI_DROP_RESULT = process.env.VIDEO_EDIT_SMOKE_UI_DROP_RESULT || "";
+const SMOKE_REVIEW_RESULT = process.env.VIDEO_EDIT_SMOKE_REVIEW_RESULT || "";
 const SMOKE_UI_DROP_TIMEOUT_MS = Math.max(1000, Number(process.env.VIDEO_EDIT_SMOKE_UI_DROP_TIMEOUT_MS || 45_000));
 const IS_SMOKE_RUN = process.env.VIDEO_EDIT_SMOKE === "1";
 const SMOKE_CODEX_CAPTURE_PATH = IS_SMOKE_RUN ? process.env.VIDEO_EDIT_SMOKE_CODEX_CAPTURE_PATH || "" : "";
@@ -767,6 +769,7 @@ const PROJECT_STATE_SECTIONS = new Set([
 	"glossary",
 	"tools",
 	"editRequest",
+	"review",
 	"ui",
 ]);
 
@@ -1543,6 +1546,162 @@ async function listDirectoryPreview(targetPath: string, maxEntries = 80) {
 		entries: await Promise.all(
 			entries.map(({ entry, fullPath }, index) => describeDirectoryEntry(fullPath, entry, index)),
 		),
+	};
+}
+
+function isInsidePath(rootPath: string, candidatePath: string) {
+	const relative = path.relative(path.resolve(rootPath), path.resolve(candidatePath));
+	return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
+}
+
+function resolveProjectChildPath(project: ProjectInfo, value: string) {
+	const resolved = path.resolve(path.isAbsolute(value) ? value : path.join(project.root, value));
+	if (!isInsidePath(project.root, resolved)) {
+		throw new Error("path must stay inside the project folder");
+	}
+	return resolved;
+}
+
+function newestVideoFile(directoryPath: string) {
+	if (!fs.existsSync(directoryPath)) {
+		return "";
+	}
+	try {
+		return (
+			fs
+				.readdirSync(directoryPath, { withFileTypes: true })
+				.filter((entry) => entry.isFile() && VIDEO_EXTENSIONS.has(path.extname(entry.name).toLowerCase()))
+				.map((entry) => {
+					const fullPath = path.join(directoryPath, entry.name);
+					const stat = fs.statSync(fullPath);
+					return { path: fullPath, mtimeMs: stat.mtimeMs };
+				})
+				.sort((left, right) => right.mtimeMs - left.mtimeMs)[0]?.path || ""
+		);
+	} catch {
+		return "";
+	}
+}
+
+function resolveReviewPreviewPath(project: ProjectInfo, explicitPath = "") {
+	const projectState = readProjectState(project) as any;
+	const candidates = [
+		{ path: explicitPath, explicit: Boolean(explicitPath) },
+		{ path: projectState?.review?.previewVideoPath, explicit: false },
+		{ path: projectState?.editRequest?.lastPreviewPath, explicit: false },
+		{ path: projectState?.editRequest?.requestedPreviewPath, explicit: false },
+		{ path: projectState?.render?.outputPath, explicit: false },
+		{ path: newestVideoFile(path.join(project.outputRoot, "videos", "previews")), explicit: false },
+		{ path: newestVideoFile(path.join(project.outputRoot, "videos")), explicit: false },
+	]
+		.map((item) => ({ ...item, path: String(item.path || "").trim() }))
+		.filter((item) => item.path);
+	for (const candidate of candidates) {
+		let resolved = "";
+		try {
+			resolved = resolveProjectChildPath(project, candidate.path);
+		} catch (error) {
+			if (candidate.explicit) {
+				throw error;
+			}
+			continue;
+		}
+		if (
+			fs.existsSync(resolved) &&
+			fs.statSync(resolved).isFile() &&
+			VIDEO_EXTENSIONS.has(path.extname(resolved).toLowerCase())
+		) {
+			return resolved;
+		}
+	}
+	return "";
+}
+
+function readJsonObject(filePath: string) {
+	const payload = readJsonFile(filePath);
+	return payload && typeof payload === "object" ? payload : {};
+}
+
+function withProjectFileUrl(project: ProjectInfo, filePath: string) {
+	if (!filePath) {
+		return "";
+	}
+	const resolved = resolveProjectChildPath(project, filePath);
+	if (!fs.existsSync(resolved)) {
+		return "";
+	}
+	return pathToFileURL(resolved).toString();
+}
+
+function loadReviewJsonAsset(project: ProjectInfo, filePath: string) {
+	if (!filePath) {
+		return {};
+	}
+	const resolved = resolveProjectChildPath(project, filePath);
+	if (!fs.existsSync(resolved)) {
+		return {};
+	}
+	return readJsonObject(resolved);
+}
+
+function enrichReviewThumbnailStrip(project: ProjectInfo, payload: any) {
+	const items = Array.isArray(payload?.items) ? payload.items : [];
+	return {
+		...(payload && typeof payload === "object" ? payload : {}),
+		items: items.map((item: any) => {
+			const itemPath = String(item?.path || "");
+			return {
+				...item,
+				url: itemPath ? withProjectFileUrl(project, itemPath) : "",
+			};
+		}),
+	};
+}
+
+async function loadReviewPreview(project: ProjectInfo, previewPath = "") {
+	const resolvedPreviewPath = resolveReviewPreviewPath(project, previewPath);
+	if (!resolvedPreviewPath) {
+		return {
+			ok: false,
+			reason: "missing-preview",
+			project,
+			previewVideoPath: "",
+			videoUrl: "",
+		};
+	}
+	const projectState = (readProjectState(project) || normalizeProjectState(project, {}, 0)) as any;
+	const appConfig = {
+		...projectState,
+		project: {
+			id: project.id,
+			name: project.name,
+			root: project.root,
+			sourceRoot: project.sourceRoot,
+			outputRoot: project.outputRoot,
+		},
+		review: {
+			...(projectState.review && typeof projectState.review === "object" ? projectState.review : {}),
+			previewVideoPath: resolvedPreviewPath,
+		},
+	};
+	await runLocalPythonScript("generate_review_assets.py", appConfig);
+	const reviewTimelinePath = path.join(project.outputRoot, "app", "review_timeline.json");
+	const reviewTimeline = readJsonObject(reviewTimelinePath);
+	const thumbnailStrip = enrichReviewThumbnailStrip(
+		project,
+		loadReviewJsonAsset(project, String(reviewTimeline.thumbnailStripPath || "")),
+	);
+	const waveform = loadReviewJsonAsset(project, String(reviewTimeline.waveformPath || ""));
+	return {
+		ok: true,
+		project,
+		previewVideoPath: resolvedPreviewPath,
+		videoUrl: pathToFileURL(resolvedPreviewPath).toString(),
+		metadata: await describePathPreview(resolvedPreviewPath, 0, 0, DEFAULT_FFPROBE_EXE),
+		reviewTimelinePath,
+		reviewTimeline,
+		thumbnailStrip,
+		waveform,
 	};
 }
 
@@ -2747,7 +2906,9 @@ async function runSimpleUiDropSmoke(window: BrowserWindow) {
 				const materialCount = (materialLoaded.manifest && materialLoaded.manifest.files || []).length;
 				await waitFor("material UI ready", () => {
 					const lockScope = document.querySelector(".app-lock-scope");
-					const projectName = document.querySelector(".header-project strong");
+					const projectName = Array.from(document.querySelectorAll("strong")).find(
+						(element) => element.title === materialEntry.project.root,
+					);
 					return lockScope && !lockScope.disabled && projectName && projectName.textContent === materialEntry.project.name;
 				});
 				if (audioPaths.length) {
@@ -2832,6 +2993,144 @@ async function runSimpleUiDropSmoke(window: BrowserWindow) {
 	}
 }
 
+async function runReviewUiSmoke(window: BrowserWindow) {
+	const resultPath = SMOKE_REVIEW_RESULT;
+	if (!resultPath) {
+		return;
+	}
+	const startedAt = Date.now();
+	const writeResult = (payload: Record<string, any>) => {
+		fs.mkdirSync(path.dirname(resultPath), { recursive: true });
+		fs.writeFileSync(resultPath, JSON.stringify({ ...payload, elapsedMs: Date.now() - startedAt }, null, 2), "utf8");
+	};
+	try {
+		const result = await window.webContents.executeJavaScript(
+			`
+			(async () => {
+				const timeoutMs = ${SMOKE_UI_DROP_TIMEOUT_MS};
+				const rangeInstruction = ${JSON.stringify(
+					process.env.VIDEO_EDIT_SMOKE_REVIEW_RANGE_INSTRUCTION || "Tighten selected smoke range.",
+				)};
+				const globalInstruction = ${JSON.stringify(
+					process.env.VIDEO_EDIT_SMOKE_REVIEW_GLOBAL_INSTRUCTION || "Polish the full smoke preview globally.",
+				)};
+				const outsidePreviewPath = ${JSON.stringify(path.join(VIDEO_EDIT_ROOT, "outside-preview.mp4"))};
+				const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+				async function waitFor(label, predicate) {
+					const started = Date.now();
+					let lastError = "";
+					while (Date.now() - started < timeoutMs) {
+						try {
+							const value = await predicate();
+							if (value) {
+								return value;
+							}
+						} catch (error) {
+							lastError = error && error.message ? error.message : String(error);
+						}
+						await sleep(250);
+					}
+					throw new Error(label + " timed out" + (lastError ? ": " + lastError : ""));
+				}
+				await waitFor("renderer ready", () => window.__videoEditRendererReady && window.editApp);
+				const listed = await window.editApp.listProjects();
+				const entry = (listed.projects || []).find((candidate) => candidate && candidate.hasManifest);
+				if (!entry) {
+					throw new Error("review smoke project was not listed");
+				}
+				async function activeProjectName() {
+					const header = Array.from(document.querySelectorAll("strong")).find((element) => element.title === entry.project.root);
+					return header ? header.textContent || "" : "";
+				}
+				if ((await activeProjectName()) !== entry.project.name) {
+					document.dispatchEvent(new CustomEvent("video-edit:project-change"));
+					const projectButton = await waitFor("project dialog list", () => document.querySelector("#projectDialogList [data-project-index='0']"));
+					projectButton.click();
+				}
+				await waitFor("project active", async () => (await activeProjectName()) === entry.project.name);
+				const loadedPreview = await window.editApp.loadReviewPreview({ project: entry.project });
+				if (!loadedPreview || !loadedPreview.ok || !loadedPreview.videoUrl) {
+					throw new Error("review preview IPC did not return a playable preview");
+				}
+				let outsidePreviewRejected = false;
+				try {
+					await window.editApp.loadReviewPreview({ project: entry.project, previewPath: outsidePreviewPath });
+				} catch {
+					outsidePreviewRejected = true;
+				}
+				document.dispatchEvent(new CustomEvent("video-edit:review-preview-refresh"));
+				const video = await waitFor("inline review video", () => {
+					const element = document.querySelector("[data-testid='review-video']");
+					return element && element.getAttribute("src") ? element : null;
+				});
+				await waitFor("review timeline", () => document.querySelector("[data-testid='review-timeline']"));
+				const timeline = document.querySelector("[data-testid='review-timeline']");
+				const rect = timeline.getBoundingClientRect();
+				if (!rect.width || rect.width < 100) {
+					throw new Error("review timeline did not lay out");
+				}
+				const startX = rect.left + rect.width * 0.22;
+				const endX = rect.left + rect.width * 0.58;
+				timeline.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, button: 0, clientX: startX, clientY: rect.top + rect.height / 2 }));
+				window.dispatchEvent(new MouseEvent("mousemove", { bubbles: true, clientX: endX, clientY: rect.top + rect.height / 2 }));
+				window.dispatchEvent(new MouseEvent("mouseup", { bubbles: true, clientX: endX, clientY: rect.top + rect.height / 2 }));
+				const rangeState = await waitFor("selected range persisted", async () => {
+					const saved = await window.editApp.loadProjectState({ project: entry.project });
+					const range = saved && saved.review && saved.review.selectedRange;
+					return range && Number(range.end) > Number(range.start) ? saved : null;
+				});
+				document.dispatchEvent(new CustomEvent("video-edit:edit-request-change", { detail: { instructionDraft: rangeInstruction } }));
+				document.dispatchEvent(new CustomEvent("video-edit:simple-preview-request", { detail: { instructionScope: "range" } }));
+				const afterRangeRequest = await waitFor("range instruction persisted", async () => {
+					const saved = await window.editApp.loadProjectState({ project: entry.project });
+					const history = saved && saved.editRequest && saved.editRequest.instructionHistory || [];
+					return history.some((item) => item && item.scope === "range" && item.selection) ? saved : null;
+				});
+				document.dispatchEvent(new CustomEvent("video-edit:edit-request-change", { detail: { instructionDraft: globalInstruction } }));
+				document.dispatchEvent(new CustomEvent("video-edit:simple-preview-request", { detail: { instructionScope: "global" } }));
+				const afterGlobalRequest = await waitFor("global instruction persisted", async () => {
+					const saved = await window.editApp.loadProjectState({ project: entry.project });
+					const history = saved && saved.editRequest && saved.editRequest.instructionHistory || [];
+					return history.some((item) => item && item.scope === "global" && !item.selection) ? saved : null;
+				});
+				const finalHistory = afterGlobalRequest.editRequest.instructionHistory || [];
+				return {
+					project: entry.project,
+					loadedPreview: {
+						ok: loadedPreview.ok,
+						previewVideoPath: loadedPreview.previewVideoPath,
+						videoUrl: loadedPreview.videoUrl,
+						reviewTimelinePath: loadedPreview.reviewTimelinePath,
+						thumbnailCount: (loadedPreview.thumbnailStrip && loadedPreview.thumbnailStrip.items || []).length,
+						waveformPeakCount: (loadedPreview.waveform && loadedPreview.waveform.peaks || []).length,
+					},
+					outsidePreviewRejected,
+					inlineVideoSrc: video.getAttribute("src"),
+					inlineVideoCurrentTime: Number(video.currentTime || 0),
+					selection: rangeState.review.selectedRange,
+					review: afterGlobalRequest.review,
+					history: finalHistory.map((item) => ({
+						mode: item.mode,
+						scope: item.scope || "",
+						selection: item.selection || null,
+						text: item.text || "",
+					})),
+					requestedPreviewPath: afterGlobalRequest.editRequest.requestedPreviewPath || "",
+					rangePreviewStart: afterRangeRequest.render && afterRangeRequest.render.previewStart,
+					rangePreviewDuration: afterRangeRequest.render && afterRangeRequest.render.previewDuration,
+				};
+			})()
+			`,
+			true,
+		);
+		writeResult({ ok: true, result });
+		app.exit(0);
+	} catch (error) {
+		writeResult({ ok: false, error: error instanceof Error ? error.message : String(error) });
+		app.exit(1);
+	}
+}
+
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1360,
@@ -2859,6 +3158,10 @@ function createWindow() {
 	if (SMOKE_UI_DROP_RESULT) {
 		mainWindow.webContents.once("did-finish-load", () => {
 			void runSimpleUiDropSmoke(mainWindow as BrowserWindow);
+		});
+	} else if (SMOKE_REVIEW_RESULT) {
+		mainWindow.webContents.once("did-finish-load", () => {
+			void runReviewUiSmoke(mainWindow as BrowserWindow);
 		});
 	} else if (SMOKE_QUIT_MS > 0) {
 		mainWindow.webContents.once("did-finish-load", () => {
@@ -3067,6 +3370,13 @@ ipcMain.handle("project-state:patch", async (_event, { project, operations, base
 	ensureProjectDirs(info);
 	watchProjectState(info);
 	return patchProjectState(info, operations || [], baseRevision);
+});
+
+ipcMain.handle("review:load-preview", async (_event, { project, previewPath } = {}) => {
+	const info = projectInfoFromPayload(project);
+	ensureProjectDirs(info);
+	watchProjectState(info);
+	return loadReviewPreview(info, String(previewPath || ""));
 });
 
 ipcMain.handle("project:ingest-directory", async (_event, { project, directory, paths, tools, append } = {}) => {

@@ -158,6 +158,25 @@ def segment_fingerprint(event: dict[str, Any]) -> str:
     return hashlib.sha256(stable_json(payload).encode("utf-8")).hexdigest()
 
 
+def segment_fingerprint_for_dependencies(event: dict[str, Any], dependencies: dict[str, Any]) -> str:
+    payload = {
+        "cache_version": RENDER_CACHE_VERSION,
+        "event": event,
+        "render_dependencies": dependencies,
+    }
+    return hashlib.sha256(stable_json(payload).encode("utf-8")).hexdigest()
+
+
+def script_signature_only_cache_match(manifest: dict[str, Any], event: dict[str, Any]) -> bool:
+    previous_dependencies = manifest.get("dependencies") if isinstance(manifest.get("dependencies"), dict) else {}
+    previous_script_signature = previous_dependencies.get("script")
+    if not isinstance(previous_script_signature, dict):
+        return False
+    dependencies = render_dependency_payload()
+    dependencies["script"] = previous_script_signature
+    return manifest.get("fingerprint") == segment_fingerprint_for_dependencies(event, dependencies)
+
+
 def segment_cache_status(segment_path: Path, event: dict[str, Any]) -> tuple[bool, str]:
     if not segment_path.exists() or segment_path.stat().st_size <= 0:
         return False, "missing_or_empty_segment"
@@ -171,6 +190,8 @@ def segment_cache_status(segment_path: Path, event: dict[str, Any]) -> tuple[boo
     if manifest.get("cache_version") != RENDER_CACHE_VERSION:
         return False, "cache_version_changed"
     if manifest.get("fingerprint") != segment_fingerprint(event):
+        if script_signature_only_cache_match(manifest, event):
+            return True, "reusable"
         return False, "fingerprint_mismatch"
     return True, "reusable"
 
@@ -1727,8 +1748,15 @@ def main() -> None:
     parser.add_argument("--max-duration-sec", type=float, default=None, help="Render from the beginning and trim output to this timeline duration.")
     parser.add_argument("--output", type=Path, default=VIDEOS / "preview_test_project1_style.mp4")
     parser.add_argument("--output-height", type=int, default=None, help="Downscale final preview output to this height, e.g. 360.")
-    parser.add_argument("--resume-existing", action="store_true", help="Reuse already rendered non-empty segment files.")
+    parser.add_argument("--fresh", action="store_true", help="Clear the segment cache and rebuild every segment.")
+    parser.add_argument(
+        "--resume-existing",
+        action="store_true",
+        help="Reuse valid cached segment files. This is now the default and is kept for backwards compatibility.",
+    )
     args = parser.parse_args()
+    if args.fresh and (args.max_events is not None or args.max_duration_sec is not None):
+        parser.error("--fresh rebuilds the full segment cache; do not combine it with --max-events or --max-duration-sec.")
     plan = read_json(REPORTS / "edit_plan.json")
     if not (plan.get("validation") or {}).get("ready_for_preview"):
         raise SystemExit("edit_plan.json is not marked ready_for_preview")
@@ -1743,7 +1771,8 @@ def main() -> None:
         events = events[: args.max_events]
     segment_dir = VIDEOS / "preview_test_project1_style_segments"
     segment_dir.mkdir(parents=True, exist_ok=True)
-    if not args.resume_existing:
+    resume_existing = not args.fresh
+    if args.fresh:
         clear_segment_cache(segment_dir)
     ffmpeg = ffmpeg_path()
     rendered = []
@@ -1751,11 +1780,11 @@ def main() -> None:
     for index, event in enumerate(events, start=1):
         segment_id = f"segment_{index:03d}_{event.get('event_id', 'event')}"
         segment_path = segment_dir / f"{segment_id}.mp4"
-        can_reuse, cache_reason = segment_cache_status(segment_path, event) if args.resume_existing else (False, "resume_disabled")
+        can_reuse, cache_reason = segment_cache_status(segment_path, event) if resume_existing else (False, "fresh_rebuild")
         if can_reuse:
             cache_stats["reused"] += 1
         else:
-            if args.resume_existing:
+            if resume_existing:
                 cache_stats["invalidated"] += 1
                 cache_stats["invalidated_reasons"][cache_reason] = cache_stats["invalidated_reasons"].get(cache_reason, 0) + 1
                 remove_segment_artifacts(segment_path)
@@ -1778,6 +1807,7 @@ def main() -> None:
         "schema_version": "test_project1_style_preview_report.v1",
         "output": str(args.output),
         "segments": len(rendered),
+        "cache_mode": "fresh" if args.fresh else "resume",
         "segment_cache": cache_stats,
         "max_duration_sec": args.max_duration_sec,
         "output_height": args.output_height,

@@ -35,6 +35,7 @@ from video_edit_core.audio.silence import DEFAULT_KEEP_SILENCE, DEFAULT_MIN_SILE
 from video_edit_core.app_config import (
     int_value,
     load_app_config,
+    media_manifest as load_media_manifest,
     nested,
     optional_path,
     selected_subtitle_path,
@@ -88,13 +89,7 @@ def list_value(*keys: str) -> list[Any]:
 
 
 def media_manifest() -> dict[str, Any]:
-    manifest = nested(APP_CONFIG, "assets", "mediaManifest", default={})
-    if isinstance(manifest, dict) and manifest.get("files"):
-        return manifest
-    path = nested(APP_CONFIG, "assets", "mediaManifestPath", default="")
-    if path and Path(path).exists():
-        return json.loads(Path(path).read_text(encoding="utf-8"))
-    return {}
+    return load_media_manifest(APP_CONFIG)
 
 
 def manifest_files(kind: str | None = None) -> list[dict[str, Any]]:
@@ -213,6 +208,27 @@ def camera_input_paths_for_render(cameras: list[tuple[str, Path]], profile: str)
         input_paths[index] = input_path
         usage.append(entry)
     return input_paths, usage
+
+
+def proxy_fallback_warnings(profile: str, usage: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if profile != "preview":
+        return []
+    warnings: list[dict[str, Any]] = []
+    for entry in usage:
+        if entry.get("proxyUsed"):
+            continue
+        role = str(entry.get("role") or f"input-{entry.get('index')}")
+        reason = str(entry.get("reason") or "proxy not selected")
+        warnings.append(
+            {
+                "role": role,
+                "sourcePath": entry.get("sourcePath"),
+                "reason": reason,
+                "message": f"Preview render is decoding original media for {role}: {reason}.",
+                "action": "Run: python scripts/video_edit_run.py --action generate-proxies, then rerun the preview render.",
+            }
+        )
+    return warnings
 
 
 def manifest_audio_sources() -> list[tuple[str, Path]]:
@@ -3757,6 +3773,7 @@ def main() -> None:
 
     input_seek: dict[int, float] = {}
     camera_input_paths, proxy_usage = camera_input_paths_for_render(cameras, render_profile_value)
+    proxy_warnings = proxy_fallback_warnings(render_profile_value, proxy_usage)
     command = [str(FFMPEG), "-hide_banner", "-y"]
     for index, (_, camera_path) in enumerate(cameras):
         range_start, range_end = source_ranges.get(index, [start, start + source_duration])
@@ -4084,6 +4101,7 @@ def main() -> None:
         "shortenSilenceRequested": bool_value("render", "shortenSilence", default=True),
         "shortenSilenceApplied": shorten_silence_enabled,
         "proxyUsage": proxy_usage,
+        "proxyWarnings": proxy_warnings,
     }
     try:
         RENDER_USAGE_REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -4109,6 +4127,7 @@ def main() -> None:
         "omission_card": omission_card_report(replacements),
         "music": music_report(start, duration, music, replacements),
         "proxy_usage": proxy_usage,
+        "proxy_warnings": proxy_warnings,
     }
     if silence_shortening_report:
         summary["silence_shortening"] = silence_shortening_report

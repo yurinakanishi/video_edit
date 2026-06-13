@@ -48,6 +48,62 @@ def nested(config: dict[str, Any], *keys: str, default: Any = None) -> Any:
     return value
 
 
+def _load_json_object(path: Path) -> dict[str, Any]:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _manifest_item_key(item: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        str(item.get("id") or ""),
+        str(item.get("role") or ""),
+        str(item.get("path") or ""),
+    )
+
+
+def _merge_manifest_proxy_metadata(inline_manifest: dict[str, Any], file_manifest: dict[str, Any]) -> dict[str, Any]:
+    inline_files = inline_manifest.get("files")
+    file_files = file_manifest.get("files")
+    if not isinstance(inline_files, list) or not isinstance(file_files, list):
+        return inline_manifest
+
+    proxy_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for item in file_files:
+        if not isinstance(item, dict) or not isinstance(item.get("proxy"), dict):
+            continue
+        proxy_by_key[_manifest_item_key(item)] = item["proxy"]
+
+    if not proxy_by_key:
+        return inline_manifest
+
+    merged = dict(inline_manifest)
+    merged_files: list[Any] = []
+    for item in inline_files:
+        if not isinstance(item, dict):
+            merged_files.append(item)
+            continue
+        item_id = str(item.get("id") or "")
+        item_role = str(item.get("role") or "")
+        item_path = str(item.get("path") or "")
+        proxy = proxy_by_key.get(_manifest_item_key(item))
+        if proxy is None:
+            for key, candidate in proxy_by_key.items():
+                same_id = bool(key[0] and key[0] == item_id)
+                same_role_path = key[1] == item_role and key[2] == item_path
+                if same_id or same_role_path:
+                    proxy = candidate
+                    break
+        merged_item = dict(item)
+        if proxy is not None:
+            merged_item["proxy"] = proxy
+        merged_files.append(merged_item)
+    merged["files"] = merged_files
+    return merged
+
+
 SUBTITLE_EXTENSIONS = {".srt", ".ass", ".vtt"}
 TRANSCRIBE_CAMERA_ROLES = {"master", "camera2", "camera3", "camera4", "camera5", "camera6"}
 
@@ -85,16 +141,16 @@ def _append_unique(paths: list[Path], seen: set[str], path: Path | None) -> None
 def media_manifest(config: dict[str, Any] | None = None) -> dict[str, Any]:
     app_config = config if isinstance(config, dict) else load_app_config()
     manifest = nested(app_config, "assets", "mediaManifest", default={})
-    if isinstance(manifest, dict) and manifest.get("files"):
-        return manifest
     manifest_path = nested(app_config, "assets", "mediaManifestPath", default="")
+    file_manifest: dict[str, Any] = {}
     if manifest_path:
         path = Path(str(manifest_path))
         if path.exists():
-            try:
-                return json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError):
-                return {}
+            file_manifest = _load_json_object(path)
+    if isinstance(manifest, dict) and manifest.get("files"):
+        return _merge_manifest_proxy_metadata(manifest, file_manifest) if file_manifest else manifest
+    if file_manifest:
+        return file_manifest
     return {}
 
 

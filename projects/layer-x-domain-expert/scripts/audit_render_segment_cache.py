@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from datetime import datetime, timedelta, timezone
@@ -33,7 +34,14 @@ def write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Audit the LayerX segment render cache.")
+    parser.add_argument("--no-write", action="store_true", help="Print the audit summary without updating the saved report JSON.")
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     plan = read_json(EDIT_PLAN_PATH)
     events = [event for event in plan.get("timeline", []) if isinstance(event, dict)]
     statuses: dict[str, int] = {}
@@ -92,11 +100,13 @@ def main() -> None:
         "ready_for_resume_reuse": statuses.get("reusable", 0) == len(events),
         "items": items,
     }
-    write_json(REPORT_PATH, report)
+    if not args.no_write:
+        write_json(REPORT_PATH, report)
     print(
         json.dumps(
             {
                 "report": str(REPORT_PATH),
+                "written": not args.no_write,
                 "event_count": report["event_count"],
                 "reusable_count": report["reusable_count"],
                 "invalid_count": report["invalid_count"],

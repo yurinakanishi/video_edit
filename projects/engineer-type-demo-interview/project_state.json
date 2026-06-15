@@ -301,7 +301,7 @@
   },
   "render": {
     "script": "render_app_interview.py",
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260529_214344.mp4",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\preview_240p.mp4",
     "previewStart": 85.5,
     "previewDuration": 2862.9655,
     "subtitleMode": "full",
@@ -468,6 +468,21 @@
       "endSeconds": 20.0,
       "sourceDurationSeconds": 2968.4655,
       "reason": "Review was made against the derived file with the first 85.5s and last 20s removed."
+    },
+    "renderProfile": "preview",
+    "rangeMode": "range",
+    "outputHeight": 240,
+    "subtitleOverlayFormat": "png",
+    "previewPreset": {
+      "name": "fast-240p-proxy",
+      "usesRenderProfile": "preview",
+      "outputHeight": 240,
+      "proxyProfile": "h264-960p-ultrafast-crf28",
+      "notes": [
+        "Preview profile uses generated media proxies when available.",
+        "Preview profile skips silence shortening inside render_multicam.py.",
+        "Full transcript PNG overlays are generated through the cached generator."
+      ]
     }
   },
   "style": {
@@ -515,5 +530,8 @@
   },
   "subtitles": {
     "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt"
+  },
+  "proxy": {
+    "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\proxy"
   }
 }

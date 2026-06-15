@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
@@ -34,6 +35,7 @@ WORK = WORKSPACE_ROOT
 OUT_DIR = OUTPUT_OVERLAYS / "full_transcript_png_overlays"
 LAYOUT_PATH = OUT_DIR / "layout.json"
 PNG_MANIFEST_PATH = OUT_DIR / "manifest.json"
+PNG_CACHE_PATH = OUT_DIR / "png_cache.json"
 MAX_IMAGE_WIDTH = 1760
 CAPTION_PAD_X = 18
 CAPTION_STROKE = 0
@@ -698,10 +700,50 @@ def layout_timed_caption_chunks(source_index: int, start_raw: str, end_raw: str,
 
 def reset_output_dir() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for pattern in ("full_*.png", "manifest.json", "layout.json"):
+    for pattern in ("full_*.png", "manifest.json", "layout.json", "png_cache.json"):
         for path in OUT_DIR.glob(pattern):
             if path.is_file():
                 path.unlink()
+
+
+def stable_json(payload: object) -> str:
+    return json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def png_fingerprint(item: dict[str, object], box_fill: tuple[int, ...]) -> str:
+    payload = {
+        "schema": "full-transcript-png-cache/v1",
+        "item": {
+            "lines": item.get("lines"),
+            "font_size": item.get("font_size"),
+            "speaker_role": item.get("speaker_role"),
+        },
+        "style": {
+            "stroke": CAPTION_STROKE,
+            "pad_x": CAPTION_PAD_X,
+            "pad_y": 10,
+            "line_gap": 6,
+            "tracking": TRACKING,
+            "font_path": str(FONT_PATH),
+            "box_fill": list(box_fill),
+        },
+    }
+    return hashlib.sha256(stable_json(payload).encode("utf-8")).hexdigest()
+
+
+def load_png_cache() -> dict[str, dict[str, object]]:
+    try:
+        payload = json.loads(PNG_CACHE_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    entries = payload.get("entries") if isinstance(payload, dict) else None
+    return entries if isinstance(entries, dict) else {}
+
+
+def cleanup_stale_pngs(used_files: set[Path]) -> None:
+    for path in OUT_DIR.glob("full_*.png"):
+        if path not in used_files and path.is_file():
+            path.unlink()
 
 
 def parse_args() -> argparse.Namespace:
@@ -717,12 +759,15 @@ def parse_args() -> argparse.Namespace:
         default=default_format,
         help="html writes layout.json only; png/both also rasterize per-caption PNG assets.",
     )
+    parser.add_argument("--fresh", action="store_true", help="Delete existing subtitle PNG cache before rendering.")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    reset_output_dir()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    if args.fresh:
+        reset_output_dir()
     if SRT is None:
         raise SystemExit("No subtitle file found. Run transcription or select a subtitle file before generating full overlays.")
     captions = parse_srt(SRT)
@@ -735,6 +780,11 @@ def main() -> None:
     write_png = args.format in {"png", "both"}
     layout_items = []
     png_manifest = []
+    cache_entries = load_png_cache() if write_png else {}
+    next_cache_entries: dict[str, dict[str, object]] = {}
+    used_pngs: set[Path] = set()
+    cache_reused = 0
+    cache_rendered = 0
     for index, caption in enumerate(captions, start=1):
         role = roles.get(str(caption.source_index), "onscreen")
         box_fill = interviewer_fill if role == "interviewer" else onscreen_fill
@@ -747,18 +797,36 @@ def main() -> None:
         }
         layout_items.append(item)
         if write_png:
-            image = render_simple_caption(
-                caption.lines,
-                caption.font_size,
-                stroke=CAPTION_STROKE,
-                pad_x=CAPTION_PAD_X,
-                pad_y=10,
-                line_gap=6,
-                box_fill=box_fill,
-            )
             filename = f"full_{index:03d}.png"
-            image.save(OUT_DIR / filename)
-            png_manifest.append({**item, "file": str((OUT_DIR / filename).relative_to(WORK)), "width": image.width, "height": image.height})
+            path = OUT_DIR / filename
+            fingerprint = png_fingerprint(item, box_fill)
+            cached = cache_entries.get(filename)
+            if (
+                isinstance(cached, dict)
+                and cached.get("fingerprint") == fingerprint
+                and path.exists()
+                and path.stat().st_size > 0
+            ):
+                image_width = int(cached.get("width") or item["width"])
+                image_height = int(cached.get("height") or item["height"])
+                cache_reused += 1
+            else:
+                image = render_simple_caption(
+                    caption.lines,
+                    caption.font_size,
+                    stroke=CAPTION_STROKE,
+                    pad_x=CAPTION_PAD_X,
+                    pad_y=10,
+                    line_gap=6,
+                    box_fill=box_fill,
+                )
+                image.save(path)
+                image_width = image.width
+                image_height = image.height
+                cache_rendered += 1
+            used_pngs.add(path)
+            next_cache_entries[filename] = {"fingerprint": fingerprint, "width": image_width, "height": image_height}
+            png_manifest.append({**item, "file": str(path.relative_to(WORK)), "width": image_width, "height": image_height})
     layout = {
         "schemaVersion": "video-edit-subtitle-layout/v1",
         "kind": "full-subtitle",
@@ -788,7 +856,14 @@ def main() -> None:
     }
     LAYOUT_PATH.write_text(json.dumps(layout, ensure_ascii=False, indent=2), encoding="utf-8")
     if write_png:
+        cleanup_stale_pngs(used_pngs)
         PNG_MANIFEST_PATH.write_text(json.dumps(png_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        PNG_CACHE_PATH.write_text(
+            json.dumps({"schemaVersion": "full-transcript-png-cache/v1", "entries": next_cache_entries}, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+    else:
+        PNG_MANIFEST_PATH.unlink(missing_ok=True)
     print(
         json.dumps(
             {
@@ -797,6 +872,7 @@ def main() -> None:
                 "format": args.format,
                 "captionCount": len(layout_items),
                 "pngCount": len(png_manifest),
+                "pngCache": {"reused": cache_reused, "rendered": cache_rendered, "path": str(PNG_CACHE_PATH) if write_png else ""},
             },
             ensure_ascii=False,
             indent=2,

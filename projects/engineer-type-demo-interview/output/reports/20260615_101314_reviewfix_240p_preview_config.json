@@ -455,14 +455,7 @@
         "label": "subtitle-only filler: 確かに確かに"
       }
     ],
-    "extraOverlayManifests": [
-      {
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\review_extra_text_overlay_manifest.json",
-        "x_expr": "70",
-        "y_expr": "310",
-        "sourceOffsetSeconds": 0
-      }
-    ],
+    "extraOverlayManifests": [],
     "renderProfile": "preview",
     "outputHeight": 240
   },

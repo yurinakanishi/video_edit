@@ -5,14 +5,10 @@ import re
 from pathlib import Path
 from typing import Any
 
-from PIL import Image, ImageDraw, ImageFont
-
-
 PROJECT = Path(__file__).resolve().parents[1]
 ROOT = PROJECT.parents[1]
 TRANSCRIPTS = PROJECT / "output" / "transcripts" / "manifest_sources"
 REPORTS = PROJECT / "output" / "reports"
-OVERLAYS = PROJECT / "output" / "overlays" / "review_fixes"
 STATE = PROJECT / "project_state.json"
 
 SUBTITLE_SOURCE_OFFSET = 8.7
@@ -21,6 +17,7 @@ NEW_TEXT = "個々のカスタマイズ"
 SUBTITLE_TEXT_REPLACEMENTS = [
     (OLD_TEXT, NEW_TEXT),
     ("なんかえ?", "なんか、え？"),
+    ("コードを書く業数", "コードを書く行数"),
     ("?", "？"),
 ]
 REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS = 85.5
@@ -102,7 +99,7 @@ def apply_chapter_titles() -> None:
     # points. This prevents the upper-left title from switching just before the
     # intended line appears.
     strong_product_end = subtitle_time_to_reviewed_time(340.140)  # "こういう人だよっていうふうに言語化するとなると"
-    fde_workers_end = subtitle_time_to_reviewed_time(484.200)  # after the cuttable "確かに" prefix before FDE trend discussion
+    fde_workers_end = subtitle_time_to_reviewed_time(484.200)  # after the subtitle-only "確かに" prefix before FDE trend discussion
     fde_boom_end = subtitle_time_to_reviewed_time(684.600)  # "続いてなんですけど"
     fde_product_start = subtitle_time_to_reviewed_time(720.240)  # "なのでFDEを支える要素..."
     japan_start = 904.000
@@ -143,53 +140,6 @@ def apply_chapter_titles() -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def font_path() -> Path:
-    for candidate in (
-        Path(r"C:\Windows\Fonts\YuGothB.ttc"),
-        Path(r"C:\Windows\Fonts\meiryob.ttc"),
-        Path(r"C:\Windows\Fonts\meiryo.ttc"),
-    ):
-        if candidate.exists():
-            return candidate
-    raise RuntimeError("Japanese font not found")
-
-
-def generate_extra_text_overlay() -> Path:
-    OVERLAYS.mkdir(parents=True, exist_ok=True)
-    output = OVERLAYS / "fde_needed_product.png"
-    font = ImageFont.truetype(str(font_path()), 43)
-    text = "FDEが必要なプロダクトか"
-    pad_x = 22
-    pad_y = 12
-    stripe = 7
-    probe = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(probe)
-    bbox = draw.textbbox((0, 0), text, font=font)
-    width = bbox[2] - bbox[0] + pad_x * 2
-    height = bbox[3] - bbox[1] + pad_y * 2 + stripe
-    image = Image.new("RGBA", (width, height), (255, 255, 255, 235))
-    draw = ImageDraw.Draw(image)
-    accent = (31, 135, 116, 245)
-    draw.rectangle((0, height - stripe, width, height), fill=accent)
-    draw.text((pad_x - bbox[0], pad_y - bbox[1]), text, font=font, fill=accent)
-    image.save(output)
-    return output
-
-
-def write_extra_overlay_manifest(overlay: Path) -> Path:
-    manifest = REPORTS / "review_extra_text_overlay_manifest.json"
-    payload = [
-        {
-            "start": timestamp(subtitle_time_to_source_time(724.380)),
-            "end": timestamp(subtitle_time_to_source_time(728.960)),
-            "text": "FDEが必要なプロダクトか",
-            "file": str(overlay),
-        }
-    ]
-    manifest.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    return manifest
-
-
 def review_cut_ranges() -> list[dict[str, Any]]:
     def review_range(start: float, end: float, label: str) -> tuple[float, float, str]:
         return reviewed_time_to_source_time(start), reviewed_time_to_source_time(end), label
@@ -201,14 +151,17 @@ def review_cut_ranges() -> list[dict[str, Any]]:
         srt_range(299.400, 302.000, "subtitle-only filler: 確かに"),
         srt_range(402.020, 403.940, "subtitle-only filler: なるほど確かに"),
         srt_range(421.120, 423.060, "subtitle-only filler: 確かに"),
-        srt_range(483.180, 484.200, "review cut: 6:29 確かに prefix"),
         srt_range(553.720, 556.100, "review cut: 7:40 確かにありがとうございます"),
-        review_range(626.000, 627.000, "review cut: 10:26-10:27"),
-        review_range(679.000, 780.000, "review cut: 11:19-13:00"),
-        review_range(805.000, 904.000, "review cut: 13:25-15:04, including 確かに確かに"),
-        srt_range(970.880, 974.860, "subtitle-only filler: 確かに確かに"),
+        # The review note asks to cut 10:26-10:27, but that maps to the
+        # "そうですね" -> "なのでFDEを支える要素..." handoff and creates an
+        # audible jump. Keep the handoff intact instead of cutting mid-dialogue.
+        srt_range(
+            771.980,
+            929.320,
+            "review cut: after ポイントとしてあるかなと思いますね including 外部要素ですか before 先ほどの話に付属して考えると",
+        ),
+        review_range(876.000, 908.000, "review cut: 14:36-15:08 確かに確かに"),
         srt_range(1269.760, 1271.040, "subtitle-only filler: 確かに"),
-        srt_range(1314.640, 1317.400, "subtitle-only filler: 確かに"),
         srt_range(1458.680, 1462.100, "review cut: 22:47 確かにな"),
         srt_range(1511.920, 1513.080, "review cut: 23:39 確かにな"),
         review_range(1419.000, 1452.000, "review cut: 23:39-24:12"),
@@ -273,20 +226,13 @@ def apply_reviewed_video_source_trim(state: dict[str, Any]) -> None:
     }
 
 
-def update_project_state(extra_manifest: Path) -> None:
+def update_project_state() -> None:
     backup_once(STATE)
     state = json.loads(STATE.read_text(encoding="utf-8"))
     render = state.setdefault("render", {})
     apply_reviewed_video_source_trim(state)
     render["cutRanges"] = review_cut_ranges()
-    render["extraOverlayManifests"] = [
-        {
-            "path": str(extra_manifest),
-            "x_expr": "70",
-            "y_expr": "310",
-            "sourceOffsetSeconds": 0,
-        }
-    ]
+    render["extraOverlayManifests"] = []
     style = state.setdefault("style", {})
     style["chapterTitlesEnabled"] = True
     style["chapterTitlesPath"] = str(REPORTS / "chapter_titles_from_full_transcript.json")
@@ -296,9 +242,7 @@ def update_project_state(extra_manifest: Path) -> None:
 def main() -> None:
     apply_subtitle_wording()
     apply_chapter_titles()
-    overlay = generate_extra_text_overlay()
-    manifest = write_extra_overlay_manifest(overlay)
-    update_project_state(manifest)
+    update_project_state()
     (REPORTS / "review_cut_ranges.json").write_text(json.dumps(review_cut_ranges(), ensure_ascii=False, indent=2), encoding="utf-8")
     state = json.loads(STATE.read_text(encoding="utf-8"))
     reviewed_trim = state.get("render", {}).get("reviewedVideoSourceTrim", {})
@@ -308,7 +252,6 @@ def main() -> None:
                 "subtitleCorrections": [f"{before} -> {after}" for before, after in SUBTITLE_TEXT_REPLACEMENTS],
                 "reviewedVideoSourceTrim": reviewed_trim,
                 "chapterTitles": str(REPORTS / "chapter_titles_from_full_transcript.json"),
-                "extraOverlay": str(manifest),
                 "cutRanges": str(REPORTS / "review_cut_ranges.json"),
                 "projectState": str(STATE),
             },

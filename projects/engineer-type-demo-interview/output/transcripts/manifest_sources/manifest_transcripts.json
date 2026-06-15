@@ -5,31 +5,31 @@
   "conditionOnPreviousText": false,
   "normalizeAudio": true,
   "filterLowConfidence": true,
-  "manifestFingerprint": "b2a74eb83ee7bc0e9ea6f05b4063ce7fce2bb9f230c80deae04f8ff9e1fb3ee3",
+  "manifestFingerprint": "de388b5a2582df65b969538c13f92ac290a2389bc4821faff2b3fe97893d3b96",
   "backend": {
     "backend": "faster-whisper",
     "device": "cuda",
     "compute_type": "float16"
   },
-  "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources",
-  "primarySrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
+  "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources",
+  "primarySrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
   "transcripts": [
     {
       "role": "external",
       "kind": "audio",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
-      "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\audio_preprocessed\\external_140101-003_16k_mono_norm_ce558104f8.wav",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
+      "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\audio_preprocessed\\external_140101-003_16k_mono_norm_ce558104f8.wav",
       "label": "external_140101-003",
-      "json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.json",
-      "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
+      "json": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.json",
+      "srt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
       "segmentCount": 822,
       "filteredSegmentCount": 0,
       "textLength": 17290,
       "primary": true,
-      "originalSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\primary.srt",
-      "originalJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.json"
+      "originalSrt": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\primary.srt",
+      "originalJson": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.json"
     }
   ],
   "errors": [],
-  "subtitleCorrectionsReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\subtitle_corrections_additional_contextual_applied_20260529.json"
+  "subtitleCorrectionsReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\subtitle_corrections_additional_contextual_applied_20260529.json"
 }

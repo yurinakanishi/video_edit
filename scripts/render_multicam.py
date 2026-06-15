@@ -583,6 +583,7 @@ def configured_omission_range_specs(start: float, source_duration: float) -> lis
                     {
                         "start": range_start,
                         "end": range_end,
+                        "kind": "omission_card",
                         "title": str(item.get("title") or title),
                         "subtitle": str(item.get("subtitle") or subtitle),
                     }
@@ -594,7 +595,7 @@ def configured_omission_range_specs(start: float, source_duration: float) -> lis
     for line in ranges_text.splitlines():
         spec = parse_omission_range_line(line)
         if spec:
-            specs.append(spec)
+            specs.append({**spec, "kind": "omission_card"})
 
     local_specs: list[dict[str, Any]] = []
     for spec in specs:
@@ -617,6 +618,43 @@ def configured_omission_range_specs(start: float, source_duration: float) -> lis
     return filtered
 
 
+def configured_cut_range_specs(start: float, source_duration: float) -> list[dict[str, Any]]:
+    raw_specs = nested(APP_CONFIG, "render", "cutRanges", default=[])
+    ranges: list[tuple[float, float]] = []
+    if isinstance(raw_specs, list):
+        for item in raw_specs:
+            if not isinstance(item, dict):
+                continue
+            try:
+                range_start = float(item.get("start", 0.0))
+                range_end = float(item.get("end", 0.0))
+            except (TypeError, ValueError):
+                continue
+            if range_end > range_start:
+                ranges.append((range_start, range_end))
+
+    for line in text_config("render", "cutRangesText").splitlines():
+        match = re.match(r"^\s*([0-9:.]+)\s*[-–]\s*([0-9:.]+)", line)
+        if not match:
+            continue
+        range_start = parse_time_value(match.group(1))
+        range_end = parse_time_value(match.group(2))
+        if range_start is None or range_end is None or range_end <= range_start:
+            continue
+        ranges.append((range_start, range_end))
+
+    return [
+        {
+            "kind": "cut",
+            "source_start": local_start,
+            "source_end": local_end,
+            "start": start + local_start,
+            "end": start + local_end,
+        }
+        for local_start, local_end in normalize_ranges(ranges, start, source_duration)
+    ]
+
+
 def omission_card_output_path(index: int, count: int) -> Path:
     configured = text_config("omissionCard", "outputPath")
     base = Path(configured) if configured else DEFAULT_OMISSION_CARD
@@ -626,34 +664,59 @@ def omission_card_output_path(index: int, count: int) -> Path:
 
 
 def build_omission_replacements(start: float, source_duration: float) -> tuple[list[dict[str, Any]], float]:
-    if not bool_value("omissionCard", "enabled", default=False):
-        return [], source_duration
-    specs = configured_omission_range_specs(start, source_duration)
+    specs: list[dict[str, Any]] = []
+    if bool_value("omissionCard", "enabled", default=False):
+        specs.extend(configured_omission_range_specs(start, source_duration))
+    specs.extend(configured_cut_range_specs(start, source_duration))
     if not specs:
         return [], source_duration
     card_duration = max(0.5, min(float_config("omissionCard", "duration", default=5.0), 30.0))
+
+    specs.sort(key=lambda item: (float(item["source_start"]), float(item["source_end"])))
+    filtered_specs: list[dict[str, Any]] = []
+    last_end = -1.0
+    for spec in specs:
+        source_start = float(spec["source_start"])
+        source_end = float(spec["source_end"])
+        if source_start < last_end - 0.05:
+            continue
+        filtered_specs.append(spec)
+        last_end = source_end
+    card_count = sum(1 for spec in filtered_specs if spec.get("kind") == "omission_card")
+    card_index = 0
+
     replacements: list[dict[str, Any]] = []
     source_cursor = 0.0
     output_cursor = 0.0
-    for index, spec in enumerate(specs):
+    for spec in filtered_specs:
         source_start = float(spec["source_start"])
         source_end = float(spec["source_end"])
         output_cursor += max(0.0, source_start - source_cursor)
         output_start = output_cursor
-        output_end = output_start + card_duration
-        replacements.append(
-            {
-                "source_start": source_start,
-                "source_end": source_end,
-                "output_start": output_start,
-                "output_end": output_end,
-                "duration": card_duration,
-                "title": str(spec.get("title") or default_omission_card_text()[0]),
-                "subtitle": str(spec.get("subtitle") or default_omission_card_text()[1]),
-                "path": omission_card_output_path(index, len(specs)),
-                "input_index": None,
-            }
-        )
+        kind = str(spec.get("kind") or "cut")
+        replacement: dict[str, Any] = {
+            "kind": kind,
+            "source_start": source_start,
+            "source_end": source_end,
+            "output_start": output_start,
+            "output_end": output_start,
+            "duration": 0.0,
+            "input_index": None,
+        }
+        if kind == "omission_card":
+            output_end = output_start + card_duration
+            replacement.update(
+                {
+                    "output_end": output_end,
+                    "duration": card_duration,
+                    "title": str(spec.get("title") or default_omission_card_text()[0]),
+                    "subtitle": str(spec.get("subtitle") or default_omission_card_text()[1]),
+                    "path": omission_card_output_path(card_index, card_count),
+                }
+            )
+            card_index += 1
+        output_end = float(replacement["output_end"])
+        replacements.append(replacement)
         source_cursor = source_end
         output_cursor = output_end
     output_duration = output_cursor + max(0.0, source_duration - source_cursor)
@@ -662,6 +725,8 @@ def build_omission_replacements(start: float, source_duration: float) -> tuple[l
 
 def ensure_omission_cards(replacements: list[dict[str, Any]]) -> None:
     for replacement in replacements:
+        if replacement.get("kind") != "omission_card" or float(replacement.get("duration") or 0.0) <= 0.0:
+            continue
         output = Path(replacement["path"])
         output.parent.mkdir(parents=True, exist_ok=True)
         run(
@@ -678,7 +743,15 @@ def ensure_omission_cards(replacements: list[dict[str, Any]]) -> None:
         )
 
 
-def output_local_to_source_local(t: float, replacements: list[dict[str, Any]]) -> float | None:
+def output_local_to_source_local(
+    t: float,
+    replacements: list[dict[str, Any]],
+    *,
+    boundary: str = "after",
+) -> float | None:
+    # Zero-duration cuts collapse source_start/source_end to one output boundary.
+    # Segment starts need the post-cut source time; segment ends need pre-cut.
+    prefer_before = boundary == "before"
     source_cursor = 0.0
     output_cursor = 0.0
     for replacement in replacements:
@@ -686,6 +759,8 @@ def output_local_to_source_local(t: float, replacements: list[dict[str, Any]]) -
         source_end = float(replacement["source_end"])
         output_start = float(replacement["output_start"])
         output_end = float(replacement["output_end"])
+        if prefer_before and abs(t - output_start) <= 0.0001:
+            return source_start
         if t < output_start - 0.0001:
             return source_cursor + (t - output_cursor)
         if t < output_end - 0.0001:
@@ -719,8 +794,28 @@ def format_overlay_time(total_seconds: float) -> str:
     return f"{hours}:{minutes:02d}:{secs:06.3f}"
 
 
-def overlaps_omission(source_start: float, source_end: float, replacements: list[dict[str, Any]]) -> bool:
-    return any(source_start < float(item["source_end"]) and source_end > float(item["source_start"]) for item in replacements)
+def source_segments_after_replacements(
+    source_start: float,
+    source_end: float,
+    replacements: list[dict[str, Any]],
+) -> list[tuple[float, float]]:
+    segments: list[tuple[float, float]] = []
+    cursor = source_start
+    for replacement in replacements:
+        cut_start = float(replacement["source_start"])
+        cut_end = float(replacement["source_end"])
+        if cut_end <= cursor + 0.0001:
+            continue
+        if cut_start >= source_end - 0.0001:
+            break
+        if cut_start > cursor + 0.0001:
+            segments.append((cursor, min(cut_start, source_end)))
+        cursor = max(cursor, cut_end)
+        if cursor >= source_end - 0.0001:
+            break
+    if cursor < source_end - 0.0001:
+        segments.append((cursor, source_end))
+    return [(start, end) for start, end in segments if end > start + 0.0001]
 
 
 def transform_overlay_items(
@@ -741,20 +836,21 @@ def transform_overlay_items(
             continue
         item_start = max(0.0, min(source_duration, item_start))
         item_end = max(0.0, min(source_duration, item_end))
-        if item_end <= item_start or overlaps_omission(item_start, item_end, replacements):
+        if item_end <= item_start:
             continue
-        output_start = source_local_to_output_local(item_start, replacements)
-        output_end = source_local_to_output_local(item_end, replacements)
-        if output_start is None or output_end is None:
-            continue
-        output_start = max(0.0, min(output_duration, output_start))
-        output_end = max(0.0, min(output_duration, output_end))
-        if output_end <= output_start:
-            continue
-        next_item = dict(item)
-        next_item["start"] = format_overlay_time(start + output_start)
-        next_item["end"] = format_overlay_time(start + output_end)
-        transformed.append(next_item)
+        for segment_start, segment_end in source_segments_after_replacements(item_start, item_end, replacements):
+            output_start = source_local_to_output_local(segment_start, replacements)
+            output_end = source_local_to_output_local(segment_end, replacements)
+            if output_start is None or output_end is None:
+                continue
+            output_start = max(0.0, min(output_duration, output_start))
+            output_end = max(0.0, min(output_duration, output_end))
+            if output_end <= output_start + 0.0001:
+                continue
+            next_item = dict(item)
+            next_item["start"] = format_overlay_time(start + output_start)
+            next_item["end"] = format_overlay_time(start + output_end)
+            transformed.append(next_item)
     return transformed
 
 
@@ -3327,13 +3423,15 @@ def still_report(still_inserts: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def omission_card_report(replacements: list[dict[str, Any]]) -> dict[str, Any]:
     return {
-        "enabled": bool_value("omissionCard", "enabled", default=False),
+        "enabled": bool_value("omissionCard", "enabled", default=False) or bool(replacements),
         "items": [
             {
+                "kind": str(item.get("kind") or "cut"),
                 "source_start": round(float(item["source_start"]), 3),
                 "source_end": round(float(item["source_end"]), 3),
                 "output_start": round(float(item["output_start"]), 3),
                 "output_end": round(float(item["output_end"]), 3),
+                "duration": round(float(item.get("duration") or 0.0), 3),
                 "title": str(item.get("title") or ""),
                 "subtitle": str(item.get("subtitle") or ""),
                 "image": str(item.get("path") or ""),
@@ -3445,6 +3543,37 @@ def glossary_manifest() -> tuple[Path, dict[str, object]]:
         "x_expr": "W-w-40",
         "y_expr": "H-h-180",
     }
+
+
+def extra_overlay_manifests() -> list[tuple[Path, dict[str, object], float]]:
+    raw_manifests = nested(APP_CONFIG, "render", "extraOverlayManifests", default=[])
+    if not isinstance(raw_manifests, list):
+        return []
+    manifests: list[tuple[Path, dict[str, object], float]] = []
+    for item in raw_manifests:
+        if not isinstance(item, dict) or not item.get("path"):
+            continue
+        manifest = resolve_project_path(str(item["path"]))
+        try:
+            source_offset = float(item.get("sourceOffsetSeconds", 0.0) or 0.0)
+        except (TypeError, ValueError):
+            source_offset = 0.0
+        config: dict[str, object] = {
+            "bottom_margin": int(item.get("bottomMargin", item.get("bottom_margin", 16)) or 16),
+            "slide_px": int(item.get("slidePx", item.get("slide_px", 0)) or 0),
+            "pop": bool(item.get("pop", False)),
+            "animate": bool(item.get("animate", False)),
+        }
+        if item.get("x_expr") is not None:
+            config["x_expr"] = str(item.get("x_expr"))
+        if item.get("xExpr") is not None:
+            config["x_expr"] = str(item.get("xExpr"))
+        if item.get("y_expr") is not None:
+            config["y_expr"] = str(item.get("y_expr"))
+        if item.get("yExpr") is not None:
+            config["y_expr"] = str(item.get("yExpr"))
+        manifests.append((manifest, config, source_offset))
+    return manifests
 
 
 def chapter_title_manifest() -> tuple[Path, dict[str, object]] | None:
@@ -3680,6 +3809,17 @@ def main() -> None:
                 duration,
             )
         )
+    for manifest, extra_config, extra_source_offset in extra_overlay_manifests():
+        overlay_inputs.extend(
+            (item, extra_config)
+            for item in transform_overlay_items(
+                read_overlay_items(manifest, start, source_duration, extra_source_offset),
+                replacements,
+                start,
+                source_duration,
+                duration,
+            )
+        )
     planning_subtitle_items = subtitle_items or subtitle_planning_items()
     still_inserts = plan_still_inserts(parse_still_images(), subtitle_items, start, duration)
     timeline_segments = build_segments(duration, camera_indexes, planning_subtitle_items, start)
@@ -3753,8 +3893,16 @@ def main() -> None:
             continue
         role = str(segment["role"])
         input_index = int(segment["input_index"])
-        source_start_local = output_local_to_source_local(float(segment["start"]), replacements) if replacements else float(segment["start"])
-        source_end_local = output_local_to_source_local(float(segment["end"]), replacements) if replacements else float(segment["end"])
+        source_start_local = (
+            output_local_to_source_local(float(segment["start"]), replacements, boundary="after")
+            if replacements
+            else float(segment["start"])
+        )
+        source_end_local = (
+            output_local_to_source_local(float(segment["end"]), replacements, boundary="before")
+            if replacements
+            else float(segment["end"])
+        )
         if source_start_local is None or source_end_local is None:
             continue
         source_start = max(0.0, sync_offsets.get(role, 0.0) + start + source_start_local)
@@ -3795,6 +3943,8 @@ def main() -> None:
 
     next_input_index = len(cameras) + len(still_inserts)
     for replacement in replacements:
+        if replacement.get("kind") != "omission_card" or float(replacement.get("duration") or 0.0) <= 0.0:
+            continue
         replacement["input_index"] = next_input_index
         command.extend(["-loop", "1", "-framerate", render_fps, "-t", f"{float(replacement['duration']):.6f}", "-i", str(replacement["path"])])
         next_input_index += 1
@@ -3848,8 +3998,16 @@ def main() -> None:
         else:
             role = str(segment["role"])
             input_index = int(segment["input_index"])
-            source_start_local = output_local_to_source_local(seg_start, replacements) if replacements else seg_start
-            source_end_local = output_local_to_source_local(seg_end, replacements) if replacements else seg_end
+            source_start_local = (
+                output_local_to_source_local(seg_start, replacements, boundary="after")
+                if replacements
+                else seg_start
+            )
+            source_end_local = (
+                output_local_to_source_local(seg_end, replacements, boundary="before")
+                if replacements
+                else seg_end
+            )
             if source_start_local is None or source_end_local is None:
                 continue
             source_start = max(0.0, sync_offsets.get(role, 0.0) + start + source_start_local)
@@ -3994,6 +4152,11 @@ def main() -> None:
         filters.append(f"[{current}][p{index}]overlay=x='{x_expr}':y='{y_expr}':enable='between(t,{start_t:.3f},{end_t:.3f})'[{next_label}]")
         current = next_label
 
+    output_height = int_value(APP_CONFIG, "render", "outputHeight", default=0)
+    if output_height > 0 and output_height != 1080:
+        filters.append(f"[{current}]scale=-2:{output_height},setsar=1[vscaled]")
+        current = "vscaled"
+
     def audio_local_time(source_local: float) -> float:
         if audio_role.startswith("external"):
             return max(0.0, source_local)
@@ -4008,7 +4171,8 @@ def main() -> None:
             source_end = float(replacement["source_end"])
             if source_start - source_cursor > 0.02:
                 audio_parts.append({"type": "source", "start": source_cursor, "end": source_start})
-            audio_parts.append({"type": "card", "duration": float(replacement["duration"])})
+            if replacement.get("kind") == "omission_card" and float(replacement.get("duration") or 0.0) > 0.0:
+                audio_parts.append({"type": "card", "duration": float(replacement["duration"])})
             source_cursor = source_end
         if source_duration - source_cursor > 0.02:
             audio_parts.append({"type": "source", "start": source_cursor, "end": source_duration})

@@ -1,474 +1,321 @@
 {
   "enabled": true,
   "changed": true,
-  "inputSegments": 62,
-  "outputSegments": 111,
+  "inputSegments": 54,
+  "outputSegments": 94,
   "onscreenSpeechRanges": [
     {
-      "start": 46.06,
-      "end": 47.68
+      "start": 26.1,
+      "end": 192.96
     },
     {
-      "start": 50.98,
-      "end": 76.56
+      "start": 198.36,
+      "end": 205.88
     },
     {
-      "start": 80.2,
-      "end": 83.56
+      "start": 235.72,
+      "end": 241.2
     },
     {
-      "start": 111.1,
-      "end": 277.96
+      "start": 250.78,
+      "end": 277.18
     },
     {
-      "start": 283.36,
-      "end": 290.88
+      "start": 283.54,
+      "end": 305.9
     },
     {
-      "start": 323.32,
-      "end": 328.8
+      "start": 310.56,
+      "end": 323.08
     },
     {
-      "start": 338.38,
-      "end": 364.78
+      "start": 340.1,
+      "end": 383.2
     },
     {
-      "start": 371.14,
-      "end": 393.5
+      "start": 394.82,
+      "end": 396.18
     },
     {
-      "start": 400.08,
-      "end": 412.6
+      "start": 397.82,
+      "end": 407.18
     },
     {
-      "start": 431.56,
-      "end": 474.66
+      "start": 427.36,
+      "end": 452.72
     },
     {
-      "start": 487.3,
-      "end": 488.66
+      "start": 480.86,
+      "end": 573.36
     },
     {
-      "start": 490.3,
-      "end": 499.66
+      "start": 576.6,
+      "end": 578.52
     },
     {
-      "start": 519.84,
-      "end": 545.2
+      "start": 615.38,
+      "end": 667.6
     },
     {
-      "start": 575.72,
-      "end": 668.22
+      "start": 692.08,
+      "end": 693.32
     },
     {
-      "start": 671.46,
-      "end": 673.38
+      "start": 744.48,
+      "end": 778.8
     },
     {
-      "start": 710.24,
-      "end": 763.46
+      "start": 780.58,
+      "end": 794.46
     },
     {
-      "start": 777.04,
-      "end": 778.58
+      "start": 798.96,
+      "end": 822.98
     },
     {
-      "start": 780.98,
-      "end": 815.94
+      "start": 861.24,
+      "end": 869.94
     },
     {
-      "start": 824.84,
-      "end": 855.98
+      "start": 874.4,
+      "end": 884.34
     },
     {
-      "start": 861.9,
-      "end": 864.98
+      "start": 888.66,
+      "end": 965.38
     },
     {
-      "start": 888.94,
-      "end": 893.46
+      "start": 976.92,
+      "end": 999.6
     },
     {
-      "start": 920.44,
-      "end": 935.84
+      "start": 1007.8,
+      "end": 1008.98
     },
     {
-      "start": 940.8,
-      "end": 962.36
+      "start": 1020.82,
+      "end": 1145.3
     },
     {
-      "start": 1040.34,
-      "end": 1074.66
+      "start": 1149.9,
+      "end": 1200.08
     },
     {
-      "start": 1076.44,
-      "end": 1090.32
+      "start": 1210.86,
+      "end": 1401.36
     },
     {
-      "start": 1094.82,
-      "end": 1118.84
+      "start": 1415.78,
+      "end": 1461.28
     },
     {
-      "start": 1157.1,
-      "end": 1165.8
+      "start": 1465.18,
+      "end": 1674.18
     },
     {
-      "start": 1170.26,
-      "end": 1180.2
+      "start": 1705.92,
+      "end": 1772.94
     },
     {
-      "start": 1184.52,
-      "end": 1261.24
+      "start": 1787.18,
+      "end": 1807.6
     },
     {
-      "start": 1274.06,
-      "end": 1296.74
+      "start": 1817.8,
+      "end": 1820.88
     },
     {
-      "start": 1304.94,
-      "end": 1306.12
+      "start": 1836.86,
+      "end": 1840.64
     },
     {
-      "start": 1320.72,
-      "end": 1445.2
+      "start": 1852.38,
+      "end": 1858.88
     },
     {
-      "start": 1453.22,
-      "end": 1503.4
+      "start": 1865.36,
+      "end": 1869.54
     },
     {
-      "start": 1547.96,
-      "end": 1738.46
+      "start": 1919.58,
+      "end": 2141.76
     },
     {
-      "start": 1754.38,
-      "end": 1799.88
+      "start": 2158.22,
+      "end": 2172.34
     },
     {
-      "start": 1805.76,
-      "end": 2014.76
+      "start": 2186.7,
+      "end": 2221.34
     },
     {
-      "start": 2048.06,
-      "end": 2115.08
+      "start": 2226.74,
+      "end": 2303.54
     },
     {
-      "start": 2129.32,
-      "end": 2149.74
+      "start": 2308.58,
+      "end": 2422.74
     },
     {
-      "start": 2159.94,
-      "end": 2163.02
-    },
-    {
-      "start": 2179.0,
-      "end": 2182.78
-    },
-    {
-      "start": 2196.22,
-      "end": 2202.72
-    },
-    {
-      "start": 2209.2,
-      "end": 2213.38
-    },
-    {
-      "start": 2255.92,
-      "end": 2256.64
-    },
-    {
-      "start": 2374.42,
-      "end": 2596.6
-    },
-    {
-      "start": 2613.06,
-      "end": 2632.48
-    },
-    {
-      "start": 2635.82,
-      "end": 2640.0
-    },
-    {
-      "start": 2687.1,
-      "end": 2721.74
-    },
-    {
-      "start": 2727.14,
-      "end": 2803.94
-    },
-    {
-      "start": 2811.42,
-      "end": 2925.58
-    },
-    {
-      "start": 2935.2,
-      "end": 2940.38
-    },
-    {
-      "start": 2955.82,
-      "end": 2963.18
+      "start": 2432.36,
+      "end": 2437.54
     }
   ],
   "replacedCloseupGaps": [
     {
-      "role": "camera2",
-      "start": 32.01,
-      "end": 46.06
+      "role": "camera4",
+      "start": 192.96,
+      "end": 195.97
     },
     {
       "role": "camera2",
-      "start": 47.68,
-      "end": 50.98
+      "start": 195.97,
+      "end": 198.36
+    },
+    {
+      "role": "camera2",
+      "start": 205.88,
+      "end": 227.81
     },
     {
       "role": "camera4",
-      "start": 76.56,
-      "end": 80.2
+      "start": 227.81,
+      "end": 235.72
     },
     {
       "role": "camera4",
-      "start": 83.56,
-      "end": 93.93
+      "start": 241.2,
+      "end": 250.78
     },
     {
       "role": "camera2",
-      "start": 93.93,
-      "end": 111.1
-    },
-    {
-      "role": "camera2",
-      "start": 290.88,
-      "end": 317.95
+      "start": 305.9,
+      "end": 310.56
     },
     {
       "role": "camera4",
-      "start": 317.95,
-      "end": 323.32
-    },
-    {
-      "role": "camera4",
-      "start": 328.8,
-      "end": 338.38
+      "start": 323.08,
+      "end": 340.1
     },
     {
       "role": "camera2",
-      "start": 364.78,
-      "end": 371.14
+      "start": 383.2,
+      "end": 391.97
     },
     {
       "role": "camera4",
       "start": 423.93,
-      "end": 431.56
+      "end": 427.36
     },
     {
       "role": "camera2",
-      "start": 474.66,
-      "end": 486.01
+      "start": 452.72,
+      "end": 480.86
     },
     {
       "role": "camera4",
-      "start": 486.01,
-      "end": 487.3
+      "start": 573.36,
+      "end": 576.6
     },
     {
       "role": "camera4",
-      "start": 488.66,
-      "end": 490.3
+      "start": 578.52,
+      "end": 615.38
     },
     {
       "role": "camera4",
-      "start": 499.66,
-      "end": 514.03
+      "start": 675.278,
+      "end": 692.08
     },
     {
       "role": "camera4",
-      "start": 551.158,
-      "end": 575.72
+      "start": 693.32,
+      "end": 744.48
     },
     {
       "role": "camera4",
-      "start": 675.218,
-      "end": 710.24
+      "start": 822.98,
+      "end": 861.24
     },
     {
       "role": "camera4",
-      "start": 763.46,
-      "end": 777.04
+      "start": 869.94,
+      "end": 874.4
     },
     {
       "role": "camera4",
-      "start": 815.94,
-      "end": 824.84
-    },
-    {
-      "role": "camera4",
-      "start": 855.98,
-      "end": 861.9
-    },
-    {
-      "role": "camera4",
-      "start": 864.98,
-      "end": 888.94
-    },
-    {
-      "role": "camera4",
-      "start": 893.46,
-      "end": 899.338
-    },
-    {
-      "role": "camera4",
-      "start": 935.84,
-      "end": 940.8
+      "start": 884.34,
+      "end": 888.66
     },
     {
       "role": "camera3",
-      "start": 962.36,
-      "end": 993.6
+      "start": 965.38,
+      "end": 976.92
     },
     {
       "role": "camera4",
-      "start": 993.6,
-      "end": 1017.6
-    },
-    {
-      "role": "camera3",
-      "start": 1074.66,
-      "end": 1076.44
+      "start": 999.6,
+      "end": 1007.8
     },
     {
       "role": "camera4",
-      "start": 1090.32,
-      "end": 1094.82
-    },
-    {
-      "role": "camera4",
-      "start": 1118.84,
-      "end": 1121.73
+      "start": 1008.98,
+      "end": 1017.5
     },
     {
       "role": "camera3",
-      "start": 1121.73,
-      "end": 1125.2
+      "start": 1200.08,
+      "end": 1210.86
     },
     {
       "role": "camera5",
-      "start": 1165.8,
-      "end": 1170.26
+      "start": 1410.238,
+      "end": 1415.78
     },
     {
       "role": "camera5",
-      "start": 1180.2,
-      "end": 1181.3
-    },
-    {
-      "role": "camera3",
-      "start": 1181.3,
-      "end": 1184.52
-    },
-    {
-      "role": "camera3",
-      "start": 1296.74,
-      "end": 1304.94
-    },
-    {
-      "role": "camera3",
-      "start": 1306.12,
-      "end": 1316.078
+      "start": 1461.28,
+      "end": 1465.18
     },
     {
       "role": "camera5",
-      "start": 1316.078,
-      "end": 1320.72
+      "start": 1678.178,
+      "end": 1705.92
     },
     {
       "role": "camera5",
-      "start": 1445.2,
-      "end": 1453.22
+      "start": 1807.6,
+      "end": 1817.8
     },
     {
       "role": "camera5",
-      "start": 1503.4,
-      "end": 1512.318
+      "start": 1820.88,
+      "end": 1836.86
     },
     {
       "role": "camera5",
-      "start": 1544.178,
-      "end": 1547.96
+      "start": 1840.64,
+      "end": 1852.38
     },
     {
       "role": "camera5",
-      "start": 1738.46,
-      "end": 1754.38
+      "start": 1858.88,
+      "end": 1865.36
     },
     {
       "role": "camera5",
-      "start": 1802.198,
-      "end": 1805.76
+      "start": 1869.54,
+      "end": 1904.318
     },
     {
       "role": "camera5",
-      "start": 2014.76,
-      "end": 2026.318
+      "start": 2141.76,
+      "end": 2156.318
     },
     {
       "role": "camera5",
-      "start": 2115.08,
-      "end": 2129.32
-    },
-    {
-      "role": "camera5",
-      "start": 2149.74,
-      "end": 2156.178
-    },
-    {
-      "role": "camera5",
-      "start": 2194.318,
-      "end": 2196.22
-    },
-    {
-      "role": "camera5",
-      "start": 2202.72,
-      "end": 2209.2
-    },
-    {
-      "role": "camera5",
-      "start": 2213.38,
-      "end": 2255.92
-    },
-    {
-      "role": "camera5",
-      "start": 2256.64,
-      "end": 2296.258
-    },
-    {
-      "role": "camera5",
-      "start": 2328.078,
-      "end": 2374.42
-    },
-    {
-      "role": "camera5",
-      "start": 2596.6,
-      "end": 2613.06
-    },
-    {
-      "role": "camera5",
-      "start": 2632.48,
-      "end": 2635.82
-    },
-    {
-      "role": "camera5",
-      "start": 2640.0,
-      "end": 2687.1
-    },
-    {
-      "role": "camera5",
-      "start": 2721.74,
-      "end": 2727.14
-    },
-    {
-      "role": "camera5",
-      "start": 2803.94,
-      "end": 2810.298
+      "start": 2221.34,
+      "end": 2226.74
     }
   ]
 }

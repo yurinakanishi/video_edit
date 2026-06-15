@@ -3,62 +3,202 @@
   "items": [
     {
       "role": "master",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
       "duration": 2968.465,
       "syncOffset": 0.0,
       "sourceLocalCoverage": [
         0.0,
-        2968.465
+        2445.625
       ]
     },
     {
       "role": "camera2",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
       "duration": 568.568,
       "syncOffset": 17.2,
       "sourceLocalCoverage": [
         0.0,
-        551.368
+        466.368
       ]
     },
     {
       "role": "camera3",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
       "duration": 384.718,
       "syncOffset": -931.57,
       "sourceLocalCoverage": [
-        931.57,
-        1316.288
+        846.57,
+        1231.288
       ]
     },
     {
       "role": "camera4",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
       "duration": 1124.89,
       "syncOffset": 2.95,
       "sourceLocalCoverage": [
         0.0,
-        1121.94
+        1036.94
       ]
     },
     {
       "role": "camera5",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
       "duration": 1799.164,
       "syncOffset": -1125.41,
       "sourceLocalCoverage": [
-        1125.41,
-        2924.574
+        1040.41,
+        2445.625
       ]
     }
   ],
   "adjustments": [
     {
-      "start": 2924.574,
-      "end": 2924.604,
-      "fromRole": "camera5",
+      "start": 480.86,
+      "end": 485.91,
+      "fromRole": "camera2",
       "toRole": "master",
       "reason": "outside source coverage"
+    },
+    {
+      "start": 861.24,
+      "end": 869.94,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 874.4,
+      "end": 884.34,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 888.66,
+      "end": 899.398,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 931.6,
+      "end": 961.44,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 993.54,
+      "end": 999.6,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1007.8,
+      "end": 1008.98,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1055.48,
+      "end": 1083.48,
+      "fromRole": "camera3",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1083.48,
+      "end": 1121.75,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1121.75,
+      "end": 1125.4,
+      "fromRole": "camera3",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1181.24,
+      "end": 1200.08,
+      "fromRole": "camera3",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1210.86,
+      "end": 1219.3,
+      "fromRole": "camera3",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1291.44,
+      "end": 1316.238,
+      "fromRole": "camera3",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 2075.785,
+      "end": 2141.76,
+      "fromRole": "camera5",
+      "toRole": "camera5",
+      "reason": "no covered fallback source"
+    },
+    {
+      "start": 2141.76,
+      "end": 2194.318,
+      "fromRole": "master",
+      "toRole": "master",
+      "reason": "no covered fallback source"
+    },
+    {
+      "start": 2194.318,
+      "end": 2221.34,
+      "fromRole": "camera5",
+      "toRole": "camera5",
+      "reason": "no covered fallback source"
+    },
+    {
+      "start": 2221.34,
+      "end": 2226.74,
+      "fromRole": "master",
+      "toRole": "master",
+      "reason": "no covered fallback source"
+    },
+    {
+      "start": 2226.74,
+      "end": 2296.198,
+      "fromRole": "camera5",
+      "toRole": "camera5",
+      "reason": "no covered fallback source"
+    },
+    {
+      "start": 2296.198,
+      "end": 2328.198,
+      "fromRole": "master",
+      "toRole": "master",
+      "reason": "no covered fallback source"
+    },
+    {
+      "start": 2328.198,
+      "end": 2418.318,
+      "fromRole": "camera5",
+      "toRole": "camera5",
+      "reason": "no covered fallback source"
+    },
+    {
+      "start": 2418.318,
+      "end": 2445.625,
+      "fromRole": "master",
+      "toRole": "master",
+      "reason": "no covered fallback source"
     }
   ],
   "changed": true

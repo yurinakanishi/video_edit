@@ -1,10 +1,10 @@
 {
-  "syncPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\app_sync_offsets.json",
+  "syncPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\app_sync_offsets.json",
   "fallbackBelowScore": 0.65,
   "items": [
     {
       "role": "master",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
       "offsetSeconds": 0.0,
       "source": "waveform",
       "waveformScore": 1.0,
@@ -12,7 +12,7 @@
     },
     {
       "role": "camera2",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
       "offsetSeconds": 17.2,
       "source": "waveform",
       "waveformScore": 0.870958,
@@ -20,7 +20,7 @@
     },
     {
       "role": "camera3",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
       "offsetSeconds": -931.57,
       "source": "waveform",
       "waveformScore": 0.711559,
@@ -28,7 +28,7 @@
     },
     {
       "role": "camera4",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
       "offsetSeconds": 2.95,
       "source": "waveform",
       "waveformScore": 0.965862,
@@ -36,7 +36,7 @@
     },
     {
       "role": "camera5",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
       "offsetSeconds": -1125.41,
       "source": "waveform",
       "waveformScore": 0.972227,
@@ -44,7 +44,7 @@
     },
     {
       "role": "external",
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
       "offsetSeconds": 8.7,
       "source": "waveform",
       "waveformScore": 0.977558,

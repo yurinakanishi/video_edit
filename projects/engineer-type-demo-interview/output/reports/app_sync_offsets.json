@@ -1,10 +1,10 @@
 {
   "timelineRole": "master",
-  "manifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+  "manifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\media_manifest.json",
   "sourceCount": 6,
   "offsets": {
     "master": {
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\ST7_7550.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
       "kind": "video",
       "offsetSeconds": 0.0,
       "score": 1.0,
@@ -31,7 +31,7 @@
       "note": "timeline reference"
     },
     "camera2": {
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7189.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
       "kind": "video",
       "offsetSeconds": 17.2,
       "score": 0.870958,
@@ -82,7 +82,7 @@
       }
     },
     "camera3": {
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7190.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
       "kind": "video",
       "offsetSeconds": -931.57,
       "score": 0.711559,
@@ -133,7 +133,7 @@
       }
     },
     "camera4": {
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7192.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
       "kind": "video",
       "offsetSeconds": 2.95,
       "score": 0.965862,
@@ -184,7 +184,7 @@
       }
     },
     "camera5": {
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\0H4A7193.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
       "kind": "video",
       "offsetSeconds": -1125.41,
       "score": 0.972227,
@@ -235,7 +235,7 @@
       }
     },
     "external": {
-      "path": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
       "kind": "audio",
       "offsetSeconds": 8.7,
       "score": 0.977558,

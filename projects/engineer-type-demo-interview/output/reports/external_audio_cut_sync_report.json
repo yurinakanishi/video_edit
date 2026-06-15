@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "externalAudio": "C:\\Users\\yurin\\Downloads\\New folder (2)\\140101-003.WAV",
+  "externalAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
   "audioRole": "external",
   "thresholds": {
     "minScore": 0.45,
@@ -14,291 +14,193 @@
     {
       "role": "master",
       "start": 0.0,
-      "end": 46.06,
-      "duration": 46.06,
+      "end": 31.87,
+      "duration": 31.87,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera2",
-      "start": 46.06,
-      "end": 47.68,
-      "duration": 1.62,
+      "start": 31.87,
+      "end": 56.03,
+      "duration": 24.16,
       "action": "fallback",
       "probes": [
         {
           "passed": true,
-          "score": 0.4529,
-          "shiftSeconds": -0.625,
-          "cameraStart": 63.31,
-          "externalStart": 54.81,
-          "matchedExternalStart": 54.185,
-          "outputTime": 46.87,
-          "cameraCenter": 64.07,
-          "externalCenter": 55.57
-        }
-      ],
-      "reason": "local waveform shift exceeds threshold",
-      "maxAbsShiftSeconds": 0.625
-    },
-    {
-      "role": "master",
-      "start": 47.68,
-      "end": 50.98,
-      "duration": 3.3,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera2",
-      "start": 50.98,
-      "end": 55.97,
-      "duration": 4.99,
-      "action": "fallback",
-      "probes": [
+          "score": 0.4928,
+          "shiftSeconds": 0.225,
+          "cameraStart": 140.043,
+          "externalStart": 131.543,
+          "matchedExternalStart": 131.768,
+          "outputTime": 39.843,
+          "cameraCenter": 142.043,
+          "externalCenter": 133.543
+        },
         {
           "passed": true,
-          "score": 0.1341,
-          "shiftSeconds": 0.475,
-          "cameraStart": 68.675,
-          "externalStart": 60.175,
-          "matchedExternalStart": 60.65,
-          "outputTime": 53.475,
-          "cameraCenter": 70.675,
-          "externalCenter": 62.175
+          "score": 0.1388,
+          "shiftSeconds": -0.725,
+          "cameraStart": 148.257,
+          "externalStart": 139.757,
+          "matchedExternalStart": 139.032,
+          "outputTime": 48.057,
+          "cameraCenter": 150.257,
+          "externalCenter": 141.757
         }
       ],
       "reason": "waveform score below threshold",
-      "minScore": 0.1341
+      "minScore": 0.1388
     },
     {
       "role": "camera4",
-      "start": 55.97,
-      "end": 76.56,
-      "duration": 20.59,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.953,
-          "shiftSeconds": -0.025,
-          "cameraStart": 63.715,
-          "externalStart": 69.465,
-          "matchedExternalStart": 69.44,
-          "outputTime": 62.765,
-          "cameraCenter": 65.715,
-          "externalCenter": 71.465
-        },
-        {
-          "passed": true,
-          "score": 0.9008,
-          "shiftSeconds": -0.025,
-          "cameraStart": 70.715,
-          "externalStart": 76.465,
-          "matchedExternalStart": 76.44,
-          "outputTime": 69.765,
-          "cameraCenter": 72.715,
-          "externalCenter": 78.465
-        }
-      ],
-      "minScore": 0.9008,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "master",
-      "start": 76.56,
-      "end": 80.2,
-      "duration": 3.64,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 80.2,
-      "end": 83.56,
-      "duration": 3.36,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9357,
-          "shiftSeconds": -0.025,
-          "cameraStart": 83.2,
-          "externalStart": 88.95,
-          "matchedExternalStart": 88.925,
-          "outputTime": 81.88,
-          "cameraCenter": 84.83,
-          "externalCenter": 90.58
-        }
-      ],
-      "minScore": 0.9357,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "master",
-      "start": 83.56,
-      "end": 111.1,
-      "duration": 27.54,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera2",
-      "start": 111.1,
-      "end": 121.79,
-      "duration": 10.69,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.1067,
-          "shiftSeconds": 0.15,
-          "cameraStart": 131.645,
-          "externalStart": 123.145,
-          "matchedExternalStart": 123.295,
-          "outputTime": 116.445,
-          "cameraCenter": 133.645,
-          "externalCenter": 125.145
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": 0.1067
-    },
-    {
-      "role": "master",
-      "start": 121.79,
-      "end": 165.79,
-      "duration": 44.0,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 165.79,
-      "end": 195.83,
-      "duration": 30.04,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9182,
-          "shiftSeconds": -0.025,
-          "cameraStart": 176.653,
-          "externalStart": 182.403,
-          "matchedExternalStart": 182.378,
-          "outputTime": 175.703,
-          "cameraCenter": 178.653,
-          "externalCenter": 184.403
-        },
-        {
-          "passed": true,
-          "score": 0.9554,
-          "shiftSeconds": -0.025,
-          "cameraStart": 186.867,
-          "externalStart": 192.617,
-          "matchedExternalStart": 192.592,
-          "outputTime": 185.917,
-          "cameraCenter": 188.867,
-          "externalCenter": 194.617
-        }
-      ],
-      "minScore": 0.9182,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "camera2",
-      "start": 195.83,
-      "end": 228.01,
-      "duration": 32.18,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.0929,
-          "shiftSeconds": 0.05,
-          "cameraStart": 221.649,
-          "externalStart": 213.149,
-          "matchedExternalStart": 213.199,
-          "outputTime": 206.449,
-          "cameraCenter": 223.649,
-          "externalCenter": 215.149
-        },
-        {
-          "passed": true,
-          "score": 0.4974,
-          "shiftSeconds": -0.75,
-          "cameraStart": 232.591,
-          "externalStart": 224.091,
-          "matchedExternalStart": 223.341,
-          "outputTime": 217.391,
-          "cameraCenter": 234.591,
-          "externalCenter": 226.091
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": 0.0929
-    },
-    {
-      "role": "camera4",
-      "start": 228.01,
-      "end": 252.03,
-      "duration": 24.02,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9426,
-          "shiftSeconds": -0.025,
-          "cameraStart": 236.887,
-          "externalStart": 242.637,
-          "matchedExternalStart": 242.612,
-          "outputTime": 235.937,
-          "cameraCenter": 238.887,
-          "externalCenter": 244.637
-        },
-        {
-          "passed": true,
-          "score": 0.944,
-          "shiftSeconds": -0.025,
-          "cameraStart": 245.053,
-          "externalStart": 250.803,
-          "matchedExternalStart": 250.778,
-          "outputTime": 244.103,
-          "cameraCenter": 247.053,
-          "externalCenter": 252.803
-        }
-      ],
-      "minScore": 0.9426,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "master",
-      "start": 252.03,
-      "end": 289.93,
+      "start": 56.03,
+      "end": 93.93,
       "duration": 37.9,
       "action": "keep",
-      "reason": "fallback camera"
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.8599,
+          "shiftSeconds": -0.025,
+          "cameraStart": 154.487,
+          "externalStart": 160.237,
+          "matchedExternalStart": 160.212,
+          "outputTime": 68.537,
+          "cameraCenter": 156.487,
+          "externalCenter": 162.237
+        },
+        {
+          "passed": true,
+          "score": 0.9404,
+          "shiftSeconds": -0.025,
+          "cameraStart": 167.373,
+          "externalStart": 173.123,
+          "matchedExternalStart": 173.098,
+          "outputTime": 81.423,
+          "cameraCenter": 169.373,
+          "externalCenter": 175.123
+        }
+      ],
+      "minScore": 0.8599,
+      "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "camera2",
-      "start": 289.93,
-      "end": 290.88,
-      "duration": 0.95,
+      "start": 93.93,
+      "end": 122.03,
+      "duration": 28.1,
       "action": "fallback",
-      "reason": "segment too short for reliable waveform sync"
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.1567,
+          "shiftSeconds": 0.025,
+          "cameraStart": 203.403,
+          "externalStart": 194.903,
+          "matchedExternalStart": 194.928,
+          "outputTime": 103.203,
+          "cameraCenter": 205.403,
+          "externalCenter": 196.903
+        },
+        {
+          "passed": true,
+          "score": 0.496,
+          "shiftSeconds": 0.275,
+          "cameraStart": 212.957,
+          "externalStart": 204.457,
+          "matchedExternalStart": 204.732,
+          "outputTime": 112.757,
+          "cameraCenter": 214.957,
+          "externalCenter": 206.457
+        }
+      ],
+      "reason": "waveform score below threshold",
+      "minScore": 0.1567
     },
     {
       "role": "master",
-      "start": 290.88,
-      "end": 323.32,
-      "duration": 32.44,
+      "start": 122.03,
+      "end": 165.89,
+      "duration": 43.86,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera4",
-      "start": 323.32,
-      "end": 328.8,
+      "start": 165.89,
+      "end": 192.96,
+      "duration": 27.07,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.9392,
+          "shiftSeconds": -0.025,
+          "cameraStart": 260.773,
+          "externalStart": 266.523,
+          "matchedExternalStart": 266.498,
+          "outputTime": 174.823,
+          "cameraCenter": 262.773,
+          "externalCenter": 268.523
+        },
+        {
+          "passed": true,
+          "score": 0.9321,
+          "shiftSeconds": -0.025,
+          "cameraStart": 269.977,
+          "externalStart": 275.727,
+          "matchedExternalStart": 275.702,
+          "outputTime": 184.027,
+          "cameraCenter": 271.977,
+          "externalCenter": 277.727
+        }
+      ],
+      "minScore": 0.9321,
+      "maxAbsShiftSeconds": 0.025
+    },
+    {
+      "role": "master",
+      "start": 192.96,
+      "end": 198.36,
+      "duration": 5.4,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera2",
+      "start": 198.36,
+      "end": 205.88,
+      "duration": 7.52,
+      "action": "fallback",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.3093,
+          "shiftSeconds": 0.35,
+          "cameraStart": 302.32,
+          "externalStart": 293.82,
+          "matchedExternalStart": 294.17,
+          "outputTime": 202.12,
+          "cameraCenter": 304.32,
+          "externalCenter": 295.82
+        }
+      ],
+      "reason": "waveform score below threshold",
+      "minScore": 0.3093
+    },
+    {
+      "role": "master",
+      "start": 205.88,
+      "end": 235.72,
+      "duration": 29.84,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera4",
+      "start": 235.72,
+      "end": 241.2,
       "duration": 5.48,
       "action": "keep",
       "probes": [
@@ -309,7 +211,7 @@
           "cameraStart": 327.01,
           "externalStart": 332.76,
           "matchedExternalStart": 332.735,
-          "outputTime": 326.06,
+          "outputTime": 238.46,
           "cameraCenter": 329.01,
           "externalCenter": 334.76
         }
@@ -319,1261 +221,961 @@
     },
     {
       "role": "master",
-      "start": 328.8,
-      "end": 338.38,
+      "start": 241.2,
+      "end": 250.78,
       "duration": 9.58,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera4",
-      "start": 338.38,
-      "end": 361.79,
-      "duration": 23.41,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.8999,
-          "shiftSeconds": -0.025,
-          "cameraStart": 347.055,
-          "externalStart": 352.805,
-          "matchedExternalStart": 352.78,
-          "outputTime": 346.105,
-          "cameraCenter": 349.055,
-          "externalCenter": 354.805
-        },
-        {
-          "passed": true,
-          "score": 0.9186,
-          "shiftSeconds": -0.025,
-          "cameraStart": 355.015,
-          "externalStart": 360.765,
-          "matchedExternalStart": 360.74,
-          "outputTime": 354.065,
-          "cameraCenter": 357.015,
-          "externalCenter": 362.765
-        }
-      ],
-      "minScore": 0.8999,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "camera2",
-      "start": 361.79,
-      "end": 364.78,
-      "duration": 2.99,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": -0.0134,
-          "shiftSeconds": -0.525,
-          "cameraStart": 379.04,
-          "externalStart": 370.54,
-          "matchedExternalStart": 370.015,
-          "outputTime": 363.285,
-          "cameraCenter": 380.485,
-          "externalCenter": 371.985
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": -0.0134
-    },
-    {
-      "role": "master",
-      "start": 364.78,
-      "end": 371.14,
-      "duration": 6.36,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera2",
-      "start": 371.14,
-      "end": 392.03,
-      "duration": 20.89,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.2092,
-          "shiftSeconds": -0.75,
-          "cameraStart": 393.234,
-          "externalStart": 384.734,
-          "matchedExternalStart": 383.984,
-          "outputTime": 378.034,
-          "cameraCenter": 395.234,
-          "externalCenter": 386.734
-        },
-        {
-          "passed": true,
-          "score": 0.2742,
-          "shiftSeconds": -0.175,
-          "cameraStart": 400.336,
-          "externalStart": 391.836,
-          "matchedExternalStart": 391.661,
-          "outputTime": 385.136,
-          "cameraCenter": 402.336,
-          "externalCenter": 393.836
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": 0.2092
-    },
-    {
-      "role": "master",
-      "start": 392.03,
-      "end": 431.56,
-      "duration": 39.53,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 431.56,
-      "end": 447.79,
-      "duration": 16.23,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.8916,
-          "shiftSeconds": -0.025,
-          "cameraStart": 437.866,
-          "externalStart": 443.616,
-          "matchedExternalStart": 443.591,
-          "outputTime": 436.916,
-          "cameraCenter": 439.866,
-          "externalCenter": 445.616
-        },
-        {
-          "passed": true,
-          "score": 0.9358,
-          "shiftSeconds": -0.025,
-          "cameraStart": 443.384,
-          "externalStart": 449.134,
-          "matchedExternalStart": 449.109,
-          "outputTime": 442.434,
-          "cameraCenter": 445.384,
-          "externalCenter": 451.134
-        }
-      ],
-      "minScore": 0.8916,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "camera2",
-      "start": 447.79,
-      "end": 474.66,
-      "duration": 26.87,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.2837,
-          "shiftSeconds": -0.3,
-          "cameraStart": 471.857,
-          "externalStart": 463.357,
-          "matchedExternalStart": 463.057,
-          "outputTime": 456.657,
-          "cameraCenter": 473.857,
-          "externalCenter": 465.357
-        },
-        {
-          "passed": true,
-          "score": 0.1259,
-          "shiftSeconds": 0.5,
-          "cameraStart": 480.993,
-          "externalStart": 472.493,
-          "matchedExternalStart": 472.993,
-          "outputTime": 465.793,
-          "cameraCenter": 482.993,
-          "externalCenter": 474.493
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": 0.1259
-    },
-    {
-      "role": "master",
-      "start": 474.66,
-      "end": 487.3,
-      "duration": 12.64,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 487.3,
-      "end": 488.66,
-      "duration": 1.36,
+      "start": 250.78,
+      "end": 251.81,
+      "duration": 1.03,
       "action": "fallback",
       "reason": "segment too short for reliable waveform sync"
     },
     {
       "role": "master",
-      "start": 488.66,
-      "end": 490.3,
-      "duration": 1.64,
+      "start": 251.81,
+      "end": 289.91,
+      "duration": 38.1,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
+      "role": "camera2",
+      "start": 289.91,
+      "end": 305.9,
+      "duration": 15.99,
+      "action": "fallback",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.2585,
+          "shiftSeconds": -0.175,
+          "cameraStart": 397.987,
+          "externalStart": 389.487,
+          "matchedExternalStart": 389.312,
+          "outputTime": 295.187,
+          "cameraCenter": 399.987,
+          "externalCenter": 391.487
+        },
+        {
+          "passed": true,
+          "score": 0.1987,
+          "shiftSeconds": -0.725,
+          "cameraStart": 403.423,
+          "externalStart": 394.923,
+          "matchedExternalStart": 394.198,
+          "outputTime": 300.623,
+          "cameraCenter": 405.423,
+          "externalCenter": 396.923
+        }
+      ],
+      "reason": "waveform score below threshold",
+      "minScore": 0.1987
+    },
+    {
+      "role": "master",
+      "start": 305.9,
+      "end": 310.56,
+      "duration": 4.66,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera2",
+      "start": 310.56,
+      "end": 318.01,
+      "duration": 7.45,
+      "action": "fallback",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.2529,
+          "shiftSeconds": -0.75,
+          "cameraStart": 419.005,
+          "externalStart": 410.505,
+          "matchedExternalStart": 409.755,
+          "outputTime": 314.285,
+          "cameraCenter": 421.005,
+          "externalCenter": 412.505
+        }
+      ],
+      "reason": "waveform score below threshold",
+      "minScore": 0.2529
+    },
+    {
       "role": "camera4",
-      "start": 490.3,
-      "end": 499.66,
-      "duration": 9.36,
+      "start": 318.01,
+      "end": 323.08,
+      "duration": 5.07,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9412,
+          "score": 0.9601,
           "shiftSeconds": -0.025,
-          "cameraStart": 495.93,
-          "externalStart": 501.68,
-          "matchedExternalStart": 501.655,
-          "outputTime": 494.98,
-          "cameraCenter": 497.93,
-          "externalCenter": 503.68
+          "cameraStart": 411.015,
+          "externalStart": 416.765,
+          "matchedExternalStart": 416.74,
+          "outputTime": 320.545,
+          "cameraCenter": 413.015,
+          "externalCenter": 418.765
         }
       ],
-      "minScore": 0.9412,
+      "minScore": 0.9601,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
-      "start": 499.66,
-      "end": 575.72,
-      "duration": 76.06,
+      "start": 323.08,
+      "end": 340.1,
+      "duration": 17.02,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera4",
-      "start": 575.72,
-      "end": 637.398,
-      "duration": 61.678,
+      "start": 340.1,
+      "end": 362.03,
+      "duration": 21.93,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9291,
+          "score": 0.8564,
           "shiftSeconds": -0.025,
-          "cameraStart": 597.024,
-          "externalStart": 602.774,
-          "matchedExternalStart": 602.749,
-          "outputTime": 596.074,
-          "cameraCenter": 599.024,
-          "externalCenter": 604.774
+          "cameraStart": 439.747,
+          "externalStart": 445.497,
+          "matchedExternalStart": 445.472,
+          "outputTime": 347.337,
+          "cameraCenter": 441.747,
+          "externalCenter": 447.497
         },
         {
           "passed": true,
-          "score": 0.908,
+          "score": 0.907,
           "shiftSeconds": -0.025,
-          "cameraStart": 617.994,
-          "externalStart": 623.744,
-          "matchedExternalStart": 623.719,
-          "outputTime": 617.044,
-          "cameraCenter": 619.994,
-          "externalCenter": 625.744
+          "cameraStart": 447.203,
+          "externalStart": 452.953,
+          "matchedExternalStart": 452.928,
+          "outputTime": 354.793,
+          "cameraCenter": 449.203,
+          "externalCenter": 454.953
         }
       ],
-      "minScore": 0.908,
+      "minScore": 0.8564,
+      "maxAbsShiftSeconds": 0.025
+    },
+    {
+      "role": "camera2",
+      "start": 362.03,
+      "end": 383.2,
+      "duration": 21.17,
+      "action": "fallback",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.3424,
+          "shiftSeconds": -0.75,
+          "cameraStart": 475.676,
+          "externalStart": 467.176,
+          "matchedExternalStart": 466.426,
+          "outputTime": 369.016,
+          "cameraCenter": 477.676,
+          "externalCenter": 469.176
+        },
+        {
+          "passed": true,
+          "score": 0.3324,
+          "shiftSeconds": 0.225,
+          "cameraStart": 482.874,
+          "externalStart": 474.374,
+          "matchedExternalStart": 474.599,
+          "outputTime": 376.214,
+          "cameraCenter": 484.874,
+          "externalCenter": 476.374
+        }
+      ],
+      "reason": "waveform score below threshold",
+      "minScore": 0.3324
+    },
+    {
+      "role": "master",
+      "start": 383.2,
+      "end": 427.36,
+      "duration": 44.16,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera4",
+      "start": 427.36,
+      "end": 448.03,
+      "duration": 20.67,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.8947,
+          "shiftSeconds": -0.025,
+          "cameraStart": 527.611,
+          "externalStart": 533.361,
+          "matchedExternalStart": 533.336,
+          "outputTime": 434.181,
+          "cameraCenter": 529.611,
+          "externalCenter": 535.361
+        },
+        {
+          "passed": true,
+          "score": 0.8863,
+          "shiftSeconds": -0.025,
+          "cameraStart": 534.639,
+          "externalStart": 540.389,
+          "matchedExternalStart": 540.364,
+          "outputTime": 441.209,
+          "cameraCenter": 536.639,
+          "externalCenter": 542.389
+        }
+      ],
+      "minScore": 0.8863,
+      "maxAbsShiftSeconds": 0.025
+    },
+    {
+      "role": "camera2",
+      "start": 448.03,
+      "end": 452.72,
+      "duration": 4.69,
+      "action": "fallback",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.2422,
+          "shiftSeconds": 0.3,
+          "cameraStart": 558.055,
+          "externalStart": 549.555,
+          "matchedExternalStart": 549.855,
+          "outputTime": 450.375,
+          "cameraCenter": 560.055,
+          "externalCenter": 551.555
+        }
+      ],
+      "reason": "waveform score below threshold",
+      "minScore": 0.2422
+    },
+    {
+      "role": "master",
+      "start": 452.72,
+      "end": 485.91,
+      "duration": 33.19,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera4",
+      "start": 485.91,
+      "end": 513.79,
+      "duration": 27.88,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.9327,
+          "shiftSeconds": -0.025,
+          "cameraStart": 590.92,
+          "externalStart": 596.67,
+          "matchedExternalStart": 596.645,
+          "outputTime": 495.11,
+          "cameraCenter": 592.92,
+          "externalCenter": 598.67
+        },
+        {
+          "passed": true,
+          "score": 0.9155,
+          "shiftSeconds": -0.025,
+          "cameraStart": 600.4,
+          "externalStart": 606.15,
+          "matchedExternalStart": 606.125,
+          "outputTime": 504.59,
+          "cameraCenter": 602.4,
+          "externalCenter": 608.15
+        }
+      ],
+      "minScore": 0.9155,
+      "maxAbsShiftSeconds": 0.025
+    },
+    {
+      "role": "master",
+      "start": 513.79,
+      "end": 551.318,
+      "duration": 37.528,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera4",
+      "start": 551.318,
+      "end": 573.36,
+      "duration": 22.042,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.956,
+          "shiftSeconds": -0.025,
+          "cameraStart": 654.402,
+          "externalStart": 660.152,
+          "matchedExternalStart": 660.127,
+          "outputTime": 558.592,
+          "cameraCenter": 656.402,
+          "externalCenter": 662.152
+        },
+        {
+          "passed": true,
+          "score": 0.9045,
+          "shiftSeconds": 0.0,
+          "cameraStart": 661.896,
+          "externalStart": 667.646,
+          "matchedExternalStart": 667.646,
+          "outputTime": 566.086,
+          "cameraCenter": 663.896,
+          "externalCenter": 669.646
+        }
+      ],
+      "minScore": 0.9045,
+      "maxAbsShiftSeconds": 0.025
+    },
+    {
+      "role": "master",
+      "start": 573.36,
+      "end": 576.6,
+      "duration": 3.24,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera4",
+      "start": 576.6,
+      "end": 578.52,
+      "duration": 1.92,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.9532,
+          "shiftSeconds": -0.025,
+          "cameraStart": 674.46,
+          "externalStart": 680.21,
+          "matchedExternalStart": 680.185,
+          "outputTime": 577.56,
+          "cameraCenter": 675.37,
+          "externalCenter": 681.12
+        }
+      ],
+      "minScore": 0.9532,
+      "maxAbsShiftSeconds": 0.025
+    },
+    {
+      "role": "master",
+      "start": 578.52,
+      "end": 615.38,
+      "duration": 36.86,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera4",
+      "start": 615.38,
+      "end": 637.398,
+      "duration": 22.018,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.8654,
+          "shiftSeconds": -0.025,
+          "cameraStart": 719.456,
+          "externalStart": 725.206,
+          "matchedExternalStart": 725.181,
+          "outputTime": 622.646,
+          "cameraCenter": 721.456,
+          "externalCenter": 727.206
+        },
+        {
+          "passed": true,
+          "score": 0.8878,
+          "shiftSeconds": 0.0,
+          "cameraStart": 726.942,
+          "externalStart": 732.692,
+          "matchedExternalStart": 732.692,
+          "outputTime": 630.132,
+          "cameraCenter": 728.942,
+          "externalCenter": 734.692
+        }
+      ],
+      "minScore": 0.8654,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
       "start": 637.398,
-      "end": 710.24,
-      "duration": 72.842,
+      "end": 692.08,
+      "duration": 54.682,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera4",
-      "start": 710.24,
-      "end": 763.46,
-      "duration": 53.22,
+      "start": 692.08,
+      "end": 693.32,
+      "duration": 1.24,
+      "action": "fallback",
+      "reason": "segment too short for reliable waveform sync"
+    },
+    {
+      "role": "master",
+      "start": 693.32,
+      "end": 744.48,
+      "duration": 51.16,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera4",
+      "start": 744.48,
+      "end": 777.198,
+      "duration": 32.718,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9253,
+          "score": 0.9404,
           "shiftSeconds": 0.0,
-          "cameraStart": 728.753,
-          "externalStart": 734.503,
-          "matchedExternalStart": 734.503,
-          "outputTime": 727.803,
-          "cameraCenter": 730.753,
-          "externalCenter": 736.503
+          "cameraStart": 1052.087,
+          "externalStart": 1057.837,
+          "matchedExternalStart": 1057.837,
+          "outputTime": 755.277,
+          "cameraCenter": 1054.087,
+          "externalCenter": 1059.837
         },
         {
           "passed": true,
-          "score": 0.9137,
+          "score": 0.9688,
           "shiftSeconds": 0.0,
-          "cameraStart": 746.847,
-          "externalStart": 752.597,
-          "matchedExternalStart": 752.597,
-          "outputTime": 745.897,
-          "cameraCenter": 748.847,
-          "externalCenter": 754.597
+          "cameraStart": 1063.211,
+          "externalStart": 1068.961,
+          "matchedExternalStart": 1068.961,
+          "outputTime": 766.401,
+          "cameraCenter": 1065.211,
+          "externalCenter": 1070.961
         }
       ],
-      "minScore": 0.9137,
+      "minScore": 0.9404,
       "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 763.46,
-      "end": 777.04,
-      "duration": 13.58,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 777.04,
-      "end": 777.198,
-      "duration": 0.158,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync"
     },
     {
       "role": "master",
       "start": 777.198,
-      "end": 809.378,
-      "duration": 32.18,
+      "end": 809.178,
+      "duration": 31.98,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera4",
-      "start": 809.378,
-      "end": 815.94,
-      "duration": 6.562,
+      "start": 809.178,
+      "end": 822.98,
+      "duration": 13.802,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9465,
+          "score": 0.9641,
           "shiftSeconds": 0.0,
-          "cameraStart": 813.609,
-          "externalStart": 819.359,
-          "matchedExternalStart": 819.359,
-          "outputTime": 812.659,
-          "cameraCenter": 815.609,
-          "externalCenter": 821.359
-        }
-      ],
-      "minScore": 0.9465,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 815.94,
-      "end": 824.84,
-      "duration": 8.9,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 824.84,
-      "end": 855.98,
-      "duration": 31.14,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9225,
-          "shiftSeconds": 0.0,
-          "cameraStart": 836.066,
-          "externalStart": 841.816,
-          "matchedExternalStart": 841.816,
-          "outputTime": 835.116,
-          "cameraCenter": 838.066,
-          "externalCenter": 843.816
+          "cameraStart": 1110.543,
+          "externalStart": 1116.293,
+          "matchedExternalStart": 1116.293,
+          "outputTime": 813.733,
+          "cameraCenter": 1112.543,
+          "externalCenter": 1118.293
         },
         {
           "passed": true,
-          "score": 0.9057,
+          "score": 0.9448,
           "shiftSeconds": 0.0,
-          "cameraStart": 846.654,
-          "externalStart": 852.404,
-          "matchedExternalStart": 852.404,
-          "outputTime": 845.704,
-          "cameraCenter": 848.654,
-          "externalCenter": 854.404
+          "cameraStart": 1115.235,
+          "externalStart": 1120.985,
+          "matchedExternalStart": 1120.985,
+          "outputTime": 818.425,
+          "cameraCenter": 1117.235,
+          "externalCenter": 1122.985
         }
       ],
-      "minScore": 0.9057,
+      "minScore": 0.9448,
       "maxAbsShiftSeconds": 0.0
     },
     {
       "role": "master",
-      "start": 855.98,
-      "end": 861.9,
-      "duration": 5.92,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 861.9,
-      "end": 864.98,
-      "duration": 3.08,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9471,
-          "shiftSeconds": 0.0,
-          "cameraStart": 864.9,
-          "externalStart": 870.65,
-          "matchedExternalStart": 870.65,
-          "outputTime": 863.44,
-          "cameraCenter": 866.39,
-          "externalCenter": 872.14
-        }
-      ],
-      "minScore": 0.9471,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 864.98,
-      "end": 888.94,
-      "duration": 23.96,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 888.94,
-      "end": 893.46,
-      "duration": 4.52,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9512,
-          "shiftSeconds": 0.0,
-          "cameraStart": 892.15,
-          "externalStart": 897.9,
-          "matchedExternalStart": 897.9,
-          "outputTime": 891.2,
-          "cameraCenter": 894.15,
-          "externalCenter": 899.9
-        }
-      ],
-      "minScore": 0.9512,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 893.46,
-      "end": 931.36,
-      "duration": 37.9,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 931.36,
-      "end": 935.84,
-      "duration": 4.48,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9268,
-          "shiftSeconds": 0.0,
-          "cameraStart": 934.55,
-          "externalStart": 940.3,
-          "matchedExternalStart": 940.3,
-          "outputTime": 933.6,
-          "cameraCenter": 936.55,
-          "externalCenter": 942.3
-        }
-      ],
-      "minScore": 0.9268,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 935.84,
-      "end": 940.8,
-      "duration": 4.96,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 940.8,
-      "end": 961.6,
-      "duration": 20.8,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9303,
-          "shiftSeconds": 0.0,
-          "cameraStart": 948.614,
-          "externalStart": 954.364,
-          "matchedExternalStart": 954.364,
-          "outputTime": 947.664,
-          "cameraCenter": 950.614,
-          "externalCenter": 956.364
-        },
-        {
-          "passed": true,
-          "score": 0.9499,
-          "shiftSeconds": 0.0,
-          "cameraStart": 955.686,
-          "externalStart": 961.436,
-          "matchedExternalStart": 961.436,
-          "outputTime": 954.736,
-          "cameraCenter": 957.686,
-          "externalCenter": 963.436
-        }
-      ],
-      "minScore": 0.9303,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "camera3",
-      "start": 961.6,
-      "end": 962.36,
-      "duration": 0.76,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync"
-    },
-    {
-      "role": "master",
-      "start": 962.36,
-      "end": 1055.6,
-      "duration": 93.24,
+      "start": 822.98,
+      "end": 961.44,
+      "duration": 138.46,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera3",
-      "start": 1055.6,
-      "end": 1074.66,
-      "duration": 19.06,
+      "start": 961.44,
+      "end": 965.38,
+      "duration": 3.94,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.5322,
+          "shiftSeconds": 0.075,
+          "cameraStart": 325.78,
+          "externalStart": 1266.05,
+          "matchedExternalStart": 1266.125,
+          "outputTime": 963.41,
+          "cameraCenter": 327.7,
+          "externalCenter": 1267.97
+        }
+      ],
+      "minScore": 0.5322,
+      "maxAbsShiftSeconds": 0.075
+    },
+    {
+      "role": "master",
+      "start": 965.38,
+      "end": 976.92,
+      "duration": 11.54,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera3",
+      "start": 976.92,
+      "end": 993.54,
+      "duration": 16.62,
       "action": "fallback",
       "probes": [
         {
           "passed": true,
-          "score": 0.4895,
-          "shiftSeconds": 0.75,
-          "cameraStart": 128.32,
-          "externalStart": 1068.59,
-          "matchedExternalStart": 1069.34,
-          "outputTime": 1061.89,
-          "cameraCenter": 130.32,
-          "externalCenter": 1070.59
+          "score": 0.4743,
+          "shiftSeconds": -0.025,
+          "cameraStart": 345.975,
+          "externalStart": 1286.245,
+          "matchedExternalStart": 1286.22,
+          "outputTime": 982.405,
+          "cameraCenter": 347.975,
+          "externalCenter": 1288.245
         },
         {
           "passed": true,
-          "score": 0.1508,
-          "shiftSeconds": 0.75,
-          "cameraStart": 134.8,
-          "externalStart": 1075.07,
-          "matchedExternalStart": 1075.82,
-          "outputTime": 1068.37,
-          "cameraCenter": 136.8,
-          "externalCenter": 1077.07
+          "score": 0.1581,
+          "shiftSeconds": -0.625,
+          "cameraStart": 351.625,
+          "externalStart": 1291.895,
+          "matchedExternalStart": 1291.27,
+          "outputTime": 988.055,
+          "cameraCenter": 353.625,
+          "externalCenter": 1293.895
         }
       ],
       "reason": "waveform score below threshold",
-      "minScore": 0.1508
+      "minScore": 0.1581
     },
     {
       "role": "master",
-      "start": 1074.66,
-      "end": 1076.44,
-      "duration": 1.78,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera3",
-      "start": 1076.44,
-      "end": 1083.6,
-      "duration": 7.16,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.2688,
-          "shiftSeconds": 0.525,
-          "cameraStart": 146.45,
-          "externalStart": 1086.72,
-          "matchedExternalStart": 1087.245,
-          "outputTime": 1080.02,
-          "cameraCenter": 148.45,
-          "externalCenter": 1088.72
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": 0.2688
-    },
-    {
-      "role": "camera4",
-      "start": 1083.6,
-      "end": 1090.32,
-      "duration": 6.72,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9554,
-          "shiftSeconds": 0.0,
-          "cameraStart": 1087.91,
-          "externalStart": 1093.66,
-          "matchedExternalStart": 1093.66,
-          "outputTime": 1086.96,
-          "cameraCenter": 1089.91,
-          "externalCenter": 1095.66
-        }
-      ],
-      "minScore": 0.9554,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 1090.32,
-      "end": 1094.82,
-      "duration": 4.5,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera4",
-      "start": 1094.82,
-      "end": 1118.84,
-      "duration": 24.02,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9381,
-          "shiftSeconds": 0.0,
-          "cameraStart": 1103.697,
-          "externalStart": 1109.447,
-          "matchedExternalStart": 1109.447,
-          "outputTime": 1102.747,
-          "cameraCenter": 1105.697,
-          "externalCenter": 1111.447
-        },
-        {
-          "passed": true,
-          "score": 0.9776,
-          "shiftSeconds": 0.0,
-          "cameraStart": 1111.863,
-          "externalStart": 1117.613,
-          "matchedExternalStart": 1117.613,
-          "outputTime": 1110.913,
-          "cameraCenter": 1113.863,
-          "externalCenter": 1119.613
-        }
-      ],
-      "minScore": 0.9381,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 1118.84,
+      "start": 993.54,
       "end": 1157.44,
-      "duration": 38.6,
+      "duration": 163.9,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
       "start": 1157.44,
-      "end": 1165.8,
-      "duration": 8.36,
+      "end": 1181.24,
+      "duration": 23.8,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9502,
-          "shiftSeconds": -0.075,
-          "cameraStart": 34.21,
-          "externalStart": 1168.32,
-          "matchedExternalStart": 1168.245,
-          "outputTime": 1161.62,
-          "cameraCenter": 36.21,
-          "externalCenter": 1170.32
-        }
-      ],
-      "minScore": 0.9502,
-      "maxAbsShiftSeconds": 0.075
-    },
-    {
-      "role": "master",
-      "start": 1165.8,
-      "end": 1170.26,
-      "duration": 4.46,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 1170.26,
-      "end": 1180.2,
-      "duration": 9.94,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9589,
-          "shiftSeconds": -0.075,
-          "cameraStart": 47.82,
-          "externalStart": 1181.93,
-          "matchedExternalStart": 1181.855,
-          "outputTime": 1175.23,
-          "cameraCenter": 49.82,
-          "externalCenter": 1183.93
-        }
-      ],
-      "minScore": 0.9589,
-      "maxAbsShiftSeconds": 0.075
-    },
-    {
-      "role": "master",
-      "start": 1180.2,
-      "end": 1184.52,
-      "duration": 4.32,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera3",
-      "start": 1184.52,
-      "end": 1219.28,
-      "duration": 34.76,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.2335,
-          "shiftSeconds": -0.1,
-          "cameraStart": 262.421,
-          "externalStart": 1202.691,
-          "matchedExternalStart": 1202.591,
-          "outputTime": 1195.991,
-          "cameraCenter": 264.421,
-          "externalCenter": 1204.691
+          "score": 0.9688,
+          "shiftSeconds": -0.05,
+          "cameraStart": 341.204,
+          "externalStart": 1475.314,
+          "matchedExternalStart": 1475.264,
+          "outputTime": 1165.294,
+          "cameraCenter": 343.204,
+          "externalCenter": 1477.314
         },
         {
           "passed": true,
-          "score": 0.2754,
-          "shiftSeconds": -0.475,
-          "cameraStart": 274.239,
-          "externalStart": 1214.509,
-          "matchedExternalStart": 1214.034,
-          "outputTime": 1207.809,
-          "cameraCenter": 276.239,
-          "externalCenter": 1216.509
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": 0.2335
-    },
-    {
-      "role": "camera5",
-      "start": 1219.28,
-      "end": 1247.26,
-      "duration": 27.98,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9293,
+          "score": 0.9087,
           "shiftSeconds": -0.05,
-          "cameraStart": 101.103,
-          "externalStart": 1235.213,
-          "matchedExternalStart": 1235.163,
-          "outputTime": 1228.513,
-          "cameraCenter": 103.103,
-          "externalCenter": 1237.213
-        },
-        {
-          "passed": true,
-          "score": 0.9455,
-          "shiftSeconds": -0.075,
-          "cameraStart": 110.617,
-          "externalStart": 1244.727,
-          "matchedExternalStart": 1244.652,
-          "outputTime": 1238.027,
-          "cameraCenter": 112.617,
-          "externalCenter": 1246.727
+          "cameraStart": 349.296,
+          "externalStart": 1483.406,
+          "matchedExternalStart": 1483.356,
+          "outputTime": 1173.386,
+          "cameraCenter": 351.296,
+          "externalCenter": 1485.406
         }
       ],
-      "minScore": 0.9293,
-      "maxAbsShiftSeconds": 0.075
-    },
-    {
-      "role": "master",
-      "start": 1247.26,
-      "end": 1291.44,
-      "duration": 44.18,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera3",
-      "start": 1291.44,
-      "end": 1296.74,
-      "duration": 5.3,
-      "action": "fallback",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.2591,
-          "shiftSeconds": -0.325,
-          "cameraStart": 360.52,
-          "externalStart": 1300.79,
-          "matchedExternalStart": 1300.465,
-          "outputTime": 1294.09,
-          "cameraCenter": 362.52,
-          "externalCenter": 1302.79
-        }
-      ],
-      "reason": "waveform score below threshold",
-      "minScore": 0.2591
-    },
-    {
-      "role": "master",
-      "start": 1296.74,
-      "end": 1304.94,
-      "duration": 8.2,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera3",
-      "start": 1304.94,
-      "end": 1306.12,
-      "duration": 1.18,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync"
-    },
-    {
-      "role": "master",
-      "start": 1306.12,
-      "end": 1320.72,
-      "duration": 14.6,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 1320.72,
-      "end": 1372.298,
-      "duration": 51.578,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9471,
-          "shiftSeconds": -0.075,
-          "cameraStart": 210.331,
-          "externalStart": 1344.441,
-          "matchedExternalStart": 1344.366,
-          "outputTime": 1337.741,
-          "cameraCenter": 212.331,
-          "externalCenter": 1346.441
-        },
-        {
-          "passed": true,
-          "score": 0.9163,
-          "shiftSeconds": -0.05,
-          "cameraStart": 227.867,
-          "externalStart": 1361.977,
-          "matchedExternalStart": 1361.927,
-          "outputTime": 1355.277,
-          "cameraCenter": 229.867,
-          "externalCenter": 1363.977
-        }
-      ],
-      "minScore": 0.9163,
-      "maxAbsShiftSeconds": 0.075
-    },
-    {
-      "role": "master",
-      "start": 1372.298,
-      "end": 1410.078,
-      "duration": 37.78,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 1410.078,
-      "end": 1445.2,
-      "duration": 35.122,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9027,
-          "shiftSeconds": -0.05,
-          "cameraStart": 294.258,
-          "externalStart": 1428.368,
-          "matchedExternalStart": 1428.318,
-          "outputTime": 1421.668,
-          "cameraCenter": 296.258,
-          "externalCenter": 1430.368
-        },
-        {
-          "passed": true,
-          "score": 0.9127,
-          "shiftSeconds": -0.05,
-          "cameraStart": 306.2,
-          "externalStart": 1440.31,
-          "matchedExternalStart": 1440.26,
-          "outputTime": 1433.61,
-          "cameraCenter": 308.2,
-          "externalCenter": 1442.31
-        }
-      ],
-      "minScore": 0.9027,
+      "minScore": 0.9087,
       "maxAbsShiftSeconds": 0.05
     },
     {
       "role": "master",
-      "start": 1445.2,
-      "end": 1453.22,
-      "duration": 8.02,
+      "start": 1181.24,
+      "end": 1219.3,
+      "duration": 38.06,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 1453.22,
-      "end": 1503.4,
-      "duration": 50.18,
+      "start": 1219.3,
+      "end": 1247.44,
+      "duration": 28.14,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9455,
+          "score": 0.922,
           "shiftSeconds": -0.05,
-          "cameraStart": 342.369,
-          "externalStart": 1476.479,
-          "matchedExternalStart": 1476.429,
-          "outputTime": 1469.779,
-          "cameraCenter": 344.369,
-          "externalCenter": 1478.479
+          "cameraStart": 438.276,
+          "externalStart": 1572.386,
+          "matchedExternalStart": 1572.336,
+          "outputTime": 1228.586,
+          "cameraCenter": 440.276,
+          "externalCenter": 1574.386
         },
         {
           "passed": true,
-          "score": 0.9225,
+          "score": 0.9383,
           "shiftSeconds": -0.05,
-          "cameraStart": 359.431,
-          "externalStart": 1493.541,
-          "matchedExternalStart": 1493.491,
-          "outputTime": 1486.841,
-          "cameraCenter": 361.431,
-          "externalCenter": 1495.541
+          "cameraStart": 447.844,
+          "externalStart": 1581.954,
+          "matchedExternalStart": 1581.904,
+          "outputTime": 1238.154,
+          "cameraCenter": 449.844,
+          "externalCenter": 1583.954
         }
       ],
-      "minScore": 0.9225,
+      "minScore": 0.922,
       "maxAbsShiftSeconds": 0.05
     },
     {
       "role": "master",
-      "start": 1503.4,
-      "end": 1547.96,
-      "duration": 44.56,
+      "start": 1247.44,
+      "end": 1316.238,
+      "duration": 68.798,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 1547.96,
-      "end": 1634.318,
-      "duration": 86.358,
+      "start": 1316.238,
+      "end": 1372.098,
+      "duration": 55.86,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9471,
+          "score": 0.9617,
           "shiftSeconds": -0.05,
-          "cameraStart": 449.048,
-          "externalStart": 1583.158,
-          "matchedExternalStart": 1583.108,
-          "outputTime": 1576.458,
-          "cameraCenter": 451.048,
-          "externalCenter": 1585.158
+          "cameraStart": 544.362,
+          "externalStart": 1678.472,
+          "matchedExternalStart": 1678.422,
+          "outputTime": 1334.672,
+          "cameraCenter": 546.362,
+          "externalCenter": 1680.472
         },
         {
           "passed": true,
-          "score": 0.9431,
+          "score": 0.9469,
           "shiftSeconds": -0.05,
-          "cameraStart": 478.41,
-          "externalStart": 1612.52,
-          "matchedExternalStart": 1612.47,
-          "outputTime": 1605.82,
-          "cameraCenter": 480.41,
-          "externalCenter": 1614.52
+          "cameraStart": 563.354,
+          "externalStart": 1697.464,
+          "matchedExternalStart": 1697.414,
+          "outputTime": 1353.664,
+          "cameraCenter": 565.354,
+          "externalCenter": 1699.464
         }
       ],
-      "minScore": 0.9431,
+      "minScore": 0.9469,
       "maxAbsShiftSeconds": 0.05
     },
     {
       "role": "master",
-      "start": 1634.318,
-      "end": 1678.118,
-      "duration": 43.8,
+      "start": 1372.098,
+      "end": 1415.78,
+      "duration": 43.682,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 1678.118,
-      "end": 1738.46,
-      "duration": 60.342,
+      "start": 1415.78,
+      "end": 1461.28,
+      "duration": 45.5,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9351,
+          "score": 0.8656,
           "shiftSeconds": -0.05,
-          "cameraStart": 570.621,
-          "externalStart": 1704.731,
-          "matchedExternalStart": 1704.681,
-          "outputTime": 1698.031,
-          "cameraCenter": 572.621,
-          "externalCenter": 1706.731
+          "cameraStart": 641.985,
+          "externalStart": 1776.095,
+          "matchedExternalStart": 1776.045,
+          "outputTime": 1430.795,
+          "cameraCenter": 643.985,
+          "externalCenter": 1778.095
         },
         {
           "passed": true,
-          "score": 0.9627,
+          "score": 0.9238,
           "shiftSeconds": -0.05,
-          "cameraStart": 591.137,
-          "externalStart": 1725.247,
-          "matchedExternalStart": 1725.197,
-          "outputTime": 1718.547,
-          "cameraCenter": 593.137,
-          "externalCenter": 1727.247
+          "cameraStart": 657.455,
+          "externalStart": 1791.565,
+          "matchedExternalStart": 1791.515,
+          "outputTime": 1446.265,
+          "cameraCenter": 659.455,
+          "externalCenter": 1793.565
         }
       ],
-      "minScore": 0.9351,
+      "minScore": 0.8656,
       "maxAbsShiftSeconds": 0.05
     },
     {
       "role": "master",
-      "start": 1738.46,
-      "end": 1754.38,
-      "duration": 15.92,
+      "start": 1461.28,
+      "end": 1465.18,
+      "duration": 3.9,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 1754.38,
-      "end": 1764.318,
-      "duration": 9.938,
+      "start": 1465.18,
+      "end": 1512.318,
+      "duration": 47.138,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.8214,
+          "score": 0.9388,
           "shiftSeconds": -0.05,
-          "cameraStart": 631.939,
-          "externalStart": 1766.049,
-          "matchedExternalStart": 1765.999,
-          "outputTime": 1759.349,
-          "cameraCenter": 633.939,
-          "externalCenter": 1768.049
-        }
-      ],
-      "minScore": 0.8214,
-      "maxAbsShiftSeconds": 0.05
-    },
-    {
-      "role": "master",
-      "start": 1764.318,
-      "end": 1805.76,
-      "duration": 41.442,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 1805.76,
-      "end": 1904.318,
-      "duration": 98.558,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9223,
-          "shiftSeconds": -0.05,
-          "cameraStart": 710.874,
-          "externalStart": 1844.984,
-          "matchedExternalStart": 1844.934,
-          "outputTime": 1838.284,
-          "cameraCenter": 712.874,
-          "externalCenter": 1846.984
+          "cameraStart": 693.906,
+          "externalStart": 1828.016,
+          "matchedExternalStart": 1827.966,
+          "outputTime": 1480.736,
+          "cameraCenter": 695.906,
+          "externalCenter": 1830.016
         },
         {
           "passed": true,
-          "score": 0.938,
+          "score": 0.8986,
           "shiftSeconds": -0.05,
-          "cameraStart": 744.384,
-          "externalStart": 1878.494,
-          "matchedExternalStart": 1878.444,
-          "outputTime": 1871.794,
-          "cameraCenter": 746.384,
-          "externalCenter": 1880.494
+          "cameraStart": 709.932,
+          "externalStart": 1844.042,
+          "matchedExternalStart": 1843.992,
+          "outputTime": 1496.762,
+          "cameraCenter": 711.932,
+          "externalCenter": 1846.042
         }
       ],
-      "minScore": 0.9223,
+      "minScore": 0.8986,
       "maxAbsShiftSeconds": 0.05
     },
     {
       "role": "master",
-      "start": 1904.318,
-      "end": 1936.318,
+      "start": 1512.318,
+      "end": 1544.318,
       "duration": 32.0,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 1936.318,
-      "end": 2014.76,
-      "duration": 78.442,
+      "start": 1544.318,
+      "end": 1634.218,
+      "duration": 89.9,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9349,
+          "score": 0.9148,
           "shiftSeconds": -0.05,
-          "cameraStart": 834.794,
-          "externalStart": 1968.904,
-          "matchedExternalStart": 1968.854,
-          "outputTime": 1962.204,
-          "cameraCenter": 836.794,
-          "externalCenter": 1970.904
+          "cameraStart": 787.155,
+          "externalStart": 1921.265,
+          "matchedExternalStart": 1921.215,
+          "outputTime": 1573.985,
+          "cameraCenter": 789.155,
+          "externalCenter": 1923.265
         },
         {
           "passed": true,
-          "score": 0.9346,
+          "score": 0.9179,
           "shiftSeconds": -0.05,
-          "cameraStart": 861.464,
-          "externalStart": 1995.574,
-          "matchedExternalStart": 1995.524,
-          "outputTime": 1988.874,
-          "cameraCenter": 863.464,
-          "externalCenter": 1997.574
+          "cameraStart": 817.721,
+          "externalStart": 1951.831,
+          "matchedExternalStart": 1951.781,
+          "outputTime": 1604.551,
+          "cameraCenter": 819.721,
+          "externalCenter": 1953.831
         }
       ],
-      "minScore": 0.9346,
+      "minScore": 0.9148,
       "maxAbsShiftSeconds": 0.05
     },
     {
       "role": "master",
-      "start": 2014.76,
-      "end": 2070.218,
-      "duration": 55.458,
+      "start": 1634.218,
+      "end": 1705.92,
+      "duration": 71.702,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2070.218,
-      "end": 2115.08,
-      "duration": 44.862,
+      "start": 1705.92,
+      "end": 1764.078,
+      "duration": 58.158,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9553,
-          "shiftSeconds": -0.05,
-          "cameraStart": 957.612,
-          "externalStart": 2091.722,
-          "matchedExternalStart": 2091.672,
-          "outputTime": 2085.022,
-          "cameraCenter": 959.612,
-          "externalCenter": 2093.722
+          "score": 0.9441,
+          "shiftSeconds": -0.025,
+          "cameraStart": 939.842,
+          "externalStart": 2073.952,
+          "matchedExternalStart": 2073.927,
+          "outputTime": 1725.112,
+          "cameraCenter": 941.842,
+          "externalCenter": 2075.952
         },
         {
           "passed": true,
-          "score": 0.948,
-          "shiftSeconds": -0.025,
-          "cameraStart": 972.866,
-          "externalStart": 2106.976,
-          "matchedExternalStart": 2106.951,
-          "outputTime": 2100.276,
-          "cameraCenter": 974.866,
-          "externalCenter": 2108.976
+          "score": 0.9513,
+          "shiftSeconds": -0.05,
+          "cameraStart": 959.616,
+          "externalStart": 2093.726,
+          "matchedExternalStart": 2093.676,
+          "outputTime": 1744.886,
+          "cameraCenter": 961.616,
+          "externalCenter": 2095.726
         }
       ],
-      "minScore": 0.948,
+      "minScore": 0.9441,
       "maxAbsShiftSeconds": 0.05
     },
     {
       "role": "master",
-      "start": 2115.08,
-      "end": 2129.32,
-      "duration": 14.24,
+      "start": 1764.078,
+      "end": 1802.078,
+      "duration": 38.0,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2129.32,
-      "end": 2149.74,
-      "duration": 20.42,
+      "start": 1802.078,
+      "end": 1807.6,
+      "duration": 5.522,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.91,
+          "score": 0.9551,
           "shiftSeconds": -0.025,
-          "cameraStart": 1008.649,
-          "externalStart": 2142.759,
-          "matchedExternalStart": 2142.734,
-          "outputTime": 2136.059,
-          "cameraCenter": 1010.649,
-          "externalCenter": 2144.759
-        },
-        {
-          "passed": true,
-          "score": 0.7984,
-          "shiftSeconds": -0.025,
-          "cameraStart": 1015.591,
-          "externalStart": 2149.701,
-          "matchedExternalStart": 2149.676,
-          "outputTime": 2143.001,
-          "cameraCenter": 1017.591,
-          "externalCenter": 2151.701
+          "cameraStart": 1019.569,
+          "externalStart": 2153.679,
+          "matchedExternalStart": 2153.654,
+          "outputTime": 1804.839,
+          "cameraCenter": 1021.569,
+          "externalCenter": 2155.679
         }
       ],
-      "minScore": 0.7984,
+      "minScore": 0.9551,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
-      "start": 2149.74,
-      "end": 2196.22,
-      "duration": 46.48,
+      "start": 1807.6,
+      "end": 1817.8,
+      "duration": 10.2,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2196.22,
-      "end": 2202.72,
+      "start": 1817.8,
+      "end": 1820.88,
+      "duration": 3.08,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.9055,
+          "shiftSeconds": -0.05,
+          "cameraStart": 1034.58,
+          "externalStart": 2168.69,
+          "matchedExternalStart": 2168.64,
+          "outputTime": 1819.34,
+          "cameraCenter": 1036.07,
+          "externalCenter": 2170.18
+        }
+      ],
+      "minScore": 0.9055,
+      "maxAbsShiftSeconds": 0.05
+    },
+    {
+      "role": "master",
+      "start": 1820.88,
+      "end": 1836.86,
+      "duration": 15.98,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera5",
+      "start": 1836.86,
+      "end": 1840.64,
+      "duration": 3.78,
+      "action": "keep",
+      "probes": [
+        {
+          "passed": true,
+          "score": 0.9267,
+          "shiftSeconds": -0.025,
+          "cameraStart": 1053.64,
+          "externalStart": 2187.75,
+          "matchedExternalStart": 2187.725,
+          "outputTime": 1838.75,
+          "cameraCenter": 1055.48,
+          "externalCenter": 2189.59
+        }
+      ],
+      "minScore": 0.9267,
+      "maxAbsShiftSeconds": 0.025
+    },
+    {
+      "role": "master",
+      "start": 1840.64,
+      "end": 1852.38,
+      "duration": 11.74,
+      "action": "keep",
+      "reason": "fallback camera"
+    },
+    {
+      "role": "camera5",
+      "start": 1852.38,
+      "end": 1858.88,
       "duration": 6.5,
       "action": "keep",
       "probes": [
@@ -1584,7 +1186,7 @@
           "cameraStart": 1072.06,
           "externalStart": 2206.17,
           "matchedExternalStart": 2206.145,
-          "outputTime": 2199.47,
+          "outputTime": 1855.63,
           "cameraCenter": 1074.06,
           "externalCenter": 2208.17
         }
@@ -1594,16 +1196,16 @@
     },
     {
       "role": "master",
-      "start": 2202.72,
-      "end": 2209.2,
+      "start": 1858.88,
+      "end": 1865.36,
       "duration": 6.48,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2209.2,
-      "end": 2213.38,
+      "start": 1865.36,
+      "end": 1869.54,
       "duration": 4.18,
       "action": "keep",
       "probes": [
@@ -1614,7 +1216,7 @@
           "cameraStart": 1083.88,
           "externalStart": 2217.99,
           "matchedExternalStart": 2217.94,
-          "outputTime": 2211.29,
+          "outputTime": 1867.45,
           "cameraCenter": 1085.88,
           "externalCenter": 2219.99
         }
@@ -1624,336 +1226,214 @@
     },
     {
       "role": "master",
-      "start": 2213.38,
-      "end": 2255.92,
-      "duration": 42.54,
+      "start": 1869.54,
+      "end": 1936.178,
+      "duration": 66.638,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2255.92,
-      "end": 2256.64,
-      "duration": 0.72,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync"
-    },
-    {
-      "role": "master",
-      "start": 2256.64,
-      "end": 2374.42,
-      "duration": 117.78,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 2374.42,
-      "end": 2418.318,
-      "duration": 43.898,
+      "start": 1936.178,
+      "end": 2026.318,
+      "duration": 90.14,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9308,
+          "score": 0.9103,
           "shiftSeconds": -0.025,
-          "cameraStart": 1261.496,
-          "externalStart": 2395.606,
-          "matchedExternalStart": 2395.581,
-          "outputTime": 2388.906,
-          "cameraCenter": 1263.496,
-          "externalCenter": 2397.606
+          "cameraStart": 1293.354,
+          "externalStart": 2427.464,
+          "matchedExternalStart": 2427.439,
+          "outputTime": 1965.924,
+          "cameraCenter": 1295.354,
+          "externalCenter": 2429.464
         },
         {
           "passed": true,
-          "score": 0.9134,
+          "score": 0.9386,
           "shiftSeconds": -0.025,
-          "cameraStart": 1276.422,
-          "externalStart": 2410.532,
-          "matchedExternalStart": 2410.507,
-          "outputTime": 2403.832,
-          "cameraCenter": 1278.422,
-          "externalCenter": 2412.532
+          "cameraStart": 1324.002,
+          "externalStart": 2458.112,
+          "matchedExternalStart": 2458.087,
+          "outputTime": 1996.572,
+          "cameraCenter": 1326.002,
+          "externalCenter": 2460.112
         }
       ],
-      "minScore": 0.9134,
+      "minScore": 0.9103,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
-      "start": 2418.318,
-      "end": 2462.258,
-      "duration": 43.94,
+      "start": 2026.318,
+      "end": 2070.238,
+      "duration": 43.92,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2462.258,
-      "end": 2548.178,
-      "duration": 85.92,
+      "start": 2070.238,
+      "end": 2141.76,
+      "duration": 71.522,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9665,
+          "score": 0.9274,
           "shiftSeconds": -0.025,
-          "cameraStart": 1363.202,
-          "externalStart": 2497.312,
-          "matchedExternalStart": 2497.287,
-          "outputTime": 2490.612,
-          "cameraCenter": 1365.202,
-          "externalCenter": 2499.312
+          "cameraStart": 1421.27,
+          "externalStart": 2555.38,
+          "matchedExternalStart": 2555.355,
+          "outputTime": 2093.84,
+          "cameraCenter": 1423.27,
+          "externalCenter": 2557.38
         },
         {
           "passed": true,
-          "score": 0.95,
+          "score": 0.9391,
           "shiftSeconds": -0.025,
-          "cameraStart": 1392.414,
-          "externalStart": 2526.524,
-          "matchedExternalStart": 2526.499,
-          "outputTime": 2519.824,
-          "cameraCenter": 1394.414,
-          "externalCenter": 2528.524
+          "cameraStart": 1445.588,
+          "externalStart": 2579.698,
+          "matchedExternalStart": 2579.673,
+          "outputTime": 2118.158,
+          "cameraCenter": 1447.588,
+          "externalCenter": 2581.698
         }
       ],
-      "minScore": 0.95,
+      "minScore": 0.9274,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
-      "start": 2548.178,
-      "end": 2586.098,
-      "duration": 37.92,
+      "start": 2141.76,
+      "end": 2194.318,
+      "duration": 52.558,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2586.098,
-      "end": 2596.6,
-      "duration": 10.502,
+      "start": 2194.318,
+      "end": 2221.34,
+      "duration": 27.022,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9254,
+          "score": 0.9456,
           "shiftSeconds": -0.025,
-          "cameraStart": 1463.939,
-          "externalStart": 2598.049,
-          "matchedExternalStart": 2598.024,
-          "outputTime": 2591.349,
-          "cameraCenter": 1465.939,
-          "externalCenter": 2600.049
-        }
-      ],
-      "minScore": 0.9254,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "master",
-      "start": 2596.6,
-      "end": 2613.06,
-      "duration": 16.46,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 2613.06,
-      "end": 2632.48,
-      "duration": 19.42,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9553,
-          "shiftSeconds": -0.025,
-          "cameraStart": 1492.059,
-          "externalStart": 2626.169,
-          "matchedExternalStart": 2626.144,
-          "outputTime": 2619.469,
-          "cameraCenter": 1494.059,
-          "externalCenter": 2628.169
+          "cameraStart": 1576.225,
+          "externalStart": 2710.335,
+          "matchedExternalStart": 2710.31,
+          "outputTime": 2203.235,
+          "cameraCenter": 1578.225,
+          "externalCenter": 2712.335
         },
         {
           "passed": true,
-          "score": 0.9431,
+          "score": 0.8525,
           "shiftSeconds": -0.025,
-          "cameraStart": 1498.661,
-          "externalStart": 2632.771,
-          "matchedExternalStart": 2632.746,
-          "outputTime": 2626.071,
-          "cameraCenter": 1500.661,
-          "externalCenter": 2634.771
+          "cameraStart": 1585.413,
+          "externalStart": 2719.523,
+          "matchedExternalStart": 2719.498,
+          "outputTime": 2212.423,
+          "cameraCenter": 1587.413,
+          "externalCenter": 2721.523
         }
       ],
-      "minScore": 0.9431,
+      "minScore": 0.8525,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
-      "start": 2632.48,
-      "end": 2635.82,
-      "duration": 3.34,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 2635.82,
-      "end": 2640.0,
-      "duration": 4.18,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.7913,
-          "shiftSeconds": 0.0,
-          "cameraStart": 1510.5,
-          "externalStart": 2644.61,
-          "matchedExternalStart": 2644.61,
-          "outputTime": 2637.91,
-          "cameraCenter": 1512.5,
-          "externalCenter": 2646.61
-        }
-      ],
-      "minScore": 0.7913,
-      "maxAbsShiftSeconds": 0.0
-    },
-    {
-      "role": "master",
-      "start": 2640.0,
-      "end": 2687.1,
-      "duration": 47.1,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 2687.1,
-      "end": 2688.238,
-      "duration": 1.138,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync"
-    },
-    {
-      "role": "master",
-      "start": 2688.238,
-      "end": 2720.158,
-      "duration": 31.92,
-      "action": "keep",
-      "reason": "fallback camera"
-    },
-    {
-      "role": "camera5",
-      "start": 2720.158,
-      "end": 2721.74,
-      "duration": 1.582,
-      "action": "keep",
-      "probes": [
-        {
-          "passed": true,
-          "score": 0.9239,
-          "shiftSeconds": -0.025,
-          "cameraStart": 1594.798,
-          "externalStart": 2728.908,
-          "matchedExternalStart": 2728.883,
-          "outputTime": 2720.949,
-          "cameraCenter": 1595.539,
-          "externalCenter": 2729.649
-        }
-      ],
-      "minScore": 0.9239,
-      "maxAbsShiftSeconds": 0.025
-    },
-    {
-      "role": "master",
-      "start": 2721.74,
-      "end": 2727.14,
+      "start": 2221.34,
+      "end": 2226.74,
       "duration": 5.4,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2727.14,
-      "end": 2803.94,
-      "duration": 76.8,
+      "start": 2226.74,
+      "end": 2296.198,
+      "duration": 69.458,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.8849,
+          "score": 0.9016,
           "shiftSeconds": -0.025,
-          "cameraStart": 1625.074,
-          "externalStart": 2759.184,
-          "matchedExternalStart": 2759.159,
-          "outputTime": 2752.484,
-          "cameraCenter": 1627.074,
-          "externalCenter": 2761.184
+          "cameraStart": 1622.651,
+          "externalStart": 2756.761,
+          "matchedExternalStart": 2756.736,
+          "outputTime": 2249.661,
+          "cameraCenter": 1624.651,
+          "externalCenter": 2758.761
         },
         {
           "passed": true,
-          "score": 0.9285,
+          "score": 0.9282,
           "shiftSeconds": -0.025,
-          "cameraStart": 1651.186,
-          "externalStart": 2785.296,
-          "matchedExternalStart": 2785.271,
-          "outputTime": 2778.596,
-          "cameraCenter": 1653.186,
-          "externalCenter": 2787.296
+          "cameraStart": 1646.267,
+          "externalStart": 2780.377,
+          "matchedExternalStart": 2780.352,
+          "outputTime": 2273.277,
+          "cameraCenter": 1648.267,
+          "externalCenter": 2782.377
         }
       ],
-      "minScore": 0.8849,
+      "minScore": 0.9016,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
-      "start": 2803.94,
-      "end": 2854.218,
-      "duration": 50.278,
+      "start": 2296.198,
+      "end": 2328.198,
+      "duration": 32.0,
       "action": "keep",
       "reason": "fallback camera"
     },
     {
       "role": "camera5",
-      "start": 2854.218,
-      "end": 2924.574,
-      "duration": 70.356,
+      "start": 2328.198,
+      "end": 2418.318,
+      "duration": 90.12,
       "action": "keep",
       "probes": [
         {
           "passed": true,
-          "score": 0.9162,
+          "score": 0.9079,
           "shiftSeconds": -0.025,
-          "cameraStart": 1750.025,
-          "externalStart": 2884.135,
-          "matchedExternalStart": 2884.11,
-          "outputTime": 2877.435,
-          "cameraCenter": 1752.025,
-          "externalCenter": 2886.135
+          "cameraStart": 1733.368,
+          "externalStart": 2867.478,
+          "matchedExternalStart": 2867.453,
+          "outputTime": 2357.938,
+          "cameraCenter": 1735.368,
+          "externalCenter": 2869.478
         },
         {
           "passed": true,
-          "score": 0.9321,
-          "shiftSeconds": 0.0,
-          "cameraStart": 1773.947,
-          "externalStart": 2908.057,
-          "matchedExternalStart": 2908.057,
-          "outputTime": 2901.357,
-          "cameraCenter": 1775.947,
-          "externalCenter": 2910.057
+          "score": 0.941,
+          "shiftSeconds": -0.025,
+          "cameraStart": 1764.008,
+          "externalStart": 2898.118,
+          "matchedExternalStart": 2898.093,
+          "outputTime": 2388.578,
+          "cameraCenter": 1766.008,
+          "externalCenter": 2900.118
         }
       ],
-      "minScore": 0.9162,
+      "minScore": 0.9079,
       "maxAbsShiftSeconds": 0.025
     },
     {
       "role": "master",
-      "start": 2924.604,
-      "end": 2968.465,
-      "duration": 43.861,
+      "start": 2418.318,
+      "end": 2445.625,
+      "duration": 27.307,
       "action": "keep",
       "reason": "fallback camera"
     }
@@ -1961,175 +1441,100 @@
   "adjustments": [
     {
       "role": "camera2",
-      "start": 46.06,
-      "end": 47.68,
-      "duration": 1.62,
-      "action": "fallback",
-      "reason": "local waveform shift exceeds threshold",
-      "maxAbsShiftSeconds": 0.625,
-      "toRole": "master"
-    },
-    {
-      "role": "camera2",
-      "start": 50.98,
-      "end": 55.97,
-      "duration": 4.99,
+      "start": 31.87,
+      "end": 56.03,
+      "duration": 24.16,
       "action": "fallback",
       "reason": "waveform score below threshold",
-      "minScore": 0.1341,
+      "minScore": 0.1388,
       "toRole": "master"
     },
     {
       "role": "camera2",
-      "start": 111.1,
-      "end": 121.79,
-      "duration": 10.69,
+      "start": 93.93,
+      "end": 122.03,
+      "duration": 28.1,
       "action": "fallback",
       "reason": "waveform score below threshold",
-      "minScore": 0.1067,
+      "minScore": 0.1567,
       "toRole": "master"
     },
     {
       "role": "camera2",
-      "start": 195.83,
-      "end": 228.01,
-      "duration": 32.18,
+      "start": 198.36,
+      "end": 205.88,
+      "duration": 7.52,
       "action": "fallback",
       "reason": "waveform score below threshold",
-      "minScore": 0.0929,
-      "toRole": "master"
-    },
-    {
-      "role": "camera2",
-      "start": 289.93,
-      "end": 290.88,
-      "duration": 0.95,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync",
-      "toRole": "master"
-    },
-    {
-      "role": "camera2",
-      "start": 361.79,
-      "end": 364.78,
-      "duration": 2.99,
-      "action": "fallback",
-      "reason": "waveform score below threshold",
-      "minScore": -0.0134,
-      "toRole": "master"
-    },
-    {
-      "role": "camera2",
-      "start": 371.14,
-      "end": 392.03,
-      "duration": 20.89,
-      "action": "fallback",
-      "reason": "waveform score below threshold",
-      "minScore": 0.2092,
-      "toRole": "master"
-    },
-    {
-      "role": "camera2",
-      "start": 447.79,
-      "end": 474.66,
-      "duration": 26.87,
-      "action": "fallback",
-      "reason": "waveform score below threshold",
-      "minScore": 0.1259,
+      "minScore": 0.3093,
       "toRole": "master"
     },
     {
       "role": "camera4",
-      "start": 487.3,
-      "end": 488.66,
-      "duration": 1.36,
+      "start": 250.78,
+      "end": 251.81,
+      "duration": 1.03,
       "action": "fallback",
       "reason": "segment too short for reliable waveform sync",
+      "toRole": "master"
+    },
+    {
+      "role": "camera2",
+      "start": 289.91,
+      "end": 305.9,
+      "duration": 15.99,
+      "action": "fallback",
+      "reason": "waveform score below threshold",
+      "minScore": 0.1987,
+      "toRole": "master"
+    },
+    {
+      "role": "camera2",
+      "start": 310.56,
+      "end": 318.01,
+      "duration": 7.45,
+      "action": "fallback",
+      "reason": "waveform score below threshold",
+      "minScore": 0.2529,
+      "toRole": "master"
+    },
+    {
+      "role": "camera2",
+      "start": 362.03,
+      "end": 383.2,
+      "duration": 21.17,
+      "action": "fallback",
+      "reason": "waveform score below threshold",
+      "minScore": 0.3324,
+      "toRole": "master"
+    },
+    {
+      "role": "camera2",
+      "start": 448.03,
+      "end": 452.72,
+      "duration": 4.69,
+      "action": "fallback",
+      "reason": "waveform score below threshold",
+      "minScore": 0.2422,
       "toRole": "master"
     },
     {
       "role": "camera4",
-      "start": 777.04,
-      "end": 777.198,
-      "duration": 0.158,
+      "start": 692.08,
+      "end": 693.32,
+      "duration": 1.24,
       "action": "fallback",
       "reason": "segment too short for reliable waveform sync",
       "toRole": "master"
     },
     {
       "role": "camera3",
-      "start": 961.6,
-      "end": 962.36,
-      "duration": 0.76,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync",
-      "toRole": "master"
-    },
-    {
-      "role": "camera3",
-      "start": 1055.6,
-      "end": 1074.66,
-      "duration": 19.06,
+      "start": 976.92,
+      "end": 993.54,
+      "duration": 16.62,
       "action": "fallback",
       "reason": "waveform score below threshold",
-      "minScore": 0.1508,
-      "toRole": "master"
-    },
-    {
-      "role": "camera3",
-      "start": 1076.44,
-      "end": 1083.6,
-      "duration": 7.16,
-      "action": "fallback",
-      "reason": "waveform score below threshold",
-      "minScore": 0.2688,
-      "toRole": "master"
-    },
-    {
-      "role": "camera3",
-      "start": 1184.52,
-      "end": 1219.28,
-      "duration": 34.76,
-      "action": "fallback",
-      "reason": "waveform score below threshold",
-      "minScore": 0.2335,
-      "toRole": "master"
-    },
-    {
-      "role": "camera3",
-      "start": 1291.44,
-      "end": 1296.74,
-      "duration": 5.3,
-      "action": "fallback",
-      "reason": "waveform score below threshold",
-      "minScore": 0.2591,
-      "toRole": "master"
-    },
-    {
-      "role": "camera3",
-      "start": 1304.94,
-      "end": 1306.12,
-      "duration": 1.18,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync",
-      "toRole": "master"
-    },
-    {
-      "role": "camera5",
-      "start": 2255.92,
-      "end": 2256.64,
-      "duration": 0.72,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync",
-      "toRole": "master"
-    },
-    {
-      "role": "camera5",
-      "start": 2687.1,
-      "end": 2688.238,
-      "duration": 1.138,
-      "action": "fallback",
-      "reason": "segment too short for reliable waveform sync",
+      "minScore": 0.1581,
       "toRole": "master"
     }
   ],

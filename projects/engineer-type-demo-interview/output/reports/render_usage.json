@@ -1,0 +1,61 @@
+{
+  "renderProfile": "final",
+  "rangeMode": "range",
+  "start": 85.0,
+  "sourceDuration": 2863.4655,
+  "outputDuration": 2445.6254999999996,
+  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260615_210749_reviewfix_start85_end20_lipsyncfix_240p.mp4",
+  "renderOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260615_210749_reviewfix_start85_end20_lipsyncfix_240p_uncut.mp4",
+  "filterScript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\filtergraphs\\20260615_210749_reviewfix_start85_end20_lipsyncfix_240p.ffgraph",
+  "encoder": {
+    "name": "h264_nvenc",
+    "preset": "p4",
+    "cq": 19
+  },
+  "audioBitrate": "192k",
+  "shortenSilenceRequested": true,
+  "shortenSilenceApplied": true,
+  "proxyUsage": [
+    {
+      "index": 0,
+      "role": "master",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+      "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+      "proxyUsed": false,
+      "reason": "final profile uses original source"
+    },
+    {
+      "index": 1,
+      "role": "camera2",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+      "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+      "proxyUsed": false,
+      "reason": "final profile uses original source"
+    },
+    {
+      "index": 2,
+      "role": "camera3",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+      "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+      "proxyUsed": false,
+      "reason": "final profile uses original source"
+    },
+    {
+      "index": 3,
+      "role": "camera4",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
+      "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
+      "proxyUsed": false,
+      "reason": "final profile uses original source"
+    },
+    {
+      "index": 4,
+      "role": "camera5",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
+      "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
+      "proxyUsed": false,
+      "reason": "final profile uses original source"
+    }
+  ],
+  "proxyWarnings": []
+}

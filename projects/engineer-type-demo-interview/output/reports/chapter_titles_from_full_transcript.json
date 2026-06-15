@@ -1,90 +1,84 @@
 {
-  "sourceSubtitle": "projects/new-folder-2/output/transcripts/manifest_sources/external_140101-003.srt",
-  "method": "Full transcript was read in chronological blocks and manually divided by topic shifts.",
+  "sourceSubtitle": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
+  "method": "review_result.md corrections applied; stored times include subtitle sync offset for chapter overlay rendering.",
   "chapters": [
     {
-      "start": "00:00",
-      "end": "04:00",
-      "title": "強いプロダクトとは",
-      "topic": "FDEの前提として、強いプロダクトの条件を問い直す導入。"
+      "start": "0:01:33.700",
+      "end": "0:05:38.700",
+      "title": "強いプロダクト",
+      "topic": "強いプロダクトの条件とFDEの前提を整理する導入。"
     },
     {
-      "start": "04:00",
-      "end": "08:00",
-      "title": "FDEは届け方の設計",
-      "topic": "FDEは万能な職種名ではなく、複雑なプロダクトを顧客に届ける方法の一つ。"
+      "start": "0:05:38.700",
+      "end": "0:08:03.700",
+      "title": "既にFDE的に働く人",
+      "topic": "既存職種の中にあるFDE的な働き方を整理する。"
     },
     {
-      "start": "08:00",
-      "end": "12:00",
+      "start": "0:08:03.700",
+      "end": "0:11:25.700",
       "title": "FDEブームの正体",
-      "topic": "FDE流行の背景、採用マーケティング、PDM廃止論への違和感。"
+      "topic": "FDE流行の背景と採用マーケティングの文脈。"
     },
     {
-      "start": "12:00",
-      "end": "16:00",
+      "start": "0:12:01.700",
+      "end": "0:16:37.700",
       "title": "FDE向きプロダクト",
-      "topic": "セミオーダー、カスタマイズ、エンタープライズ単価が成立条件になる話。"
+      "topic": "FDEが必要になるプロダクト条件とカスタマイズ性。"
     },
     {
-      "start": "16:00",
-      "end": "20:00",
+      "start": "0:16:37.700",
+      "end": "0:18:50.700",
       "title": "日本企業でワークするか",
-      "topic": "日本のSA文化、エンタープライズ顧客、受託的な期待との相性。"
+      "topic": "日本企業・SI文化・受託文化との相性。"
     },
     {
-      "start": "20:00",
-      "end": "24:00",
-      "title": "PDM廃止という採用マーケ",
-      "topic": "AI不安と職種名変更、PDM廃止・FDE化を採用市場の文脈で見る話。"
+      "start": "0:18:50.700",
+      "end": "0:23:59.700",
+      "title": "PDM vs FDE論争",
+      "topic": "PDM廃止論とFDE化の論点整理。"
     },
     {
-      "start": "24:00",
-      "end": "28:00",
+      "start": "0:23:59.700",
+      "end": "0:29:33.700",
       "title": "日本の職種設計",
-      "topic": "アメリカ型ジョブディスクリプションと日本の雇用慣行の違い。"
+      "topic": "ジョブディスクリプションと職種設計の違い。"
     },
     {
-      "start": "28:00",
-      "end": "32:00",
+      "start": "0:29:33.700",
+      "end": "0:33:33.700",
       "title": "職種分化と再統合",
-      "topic": "プロダクト成長で職種が分かれ、AI時代に再統合を考える流れ。"
+      "topic": "AI時代の職種分化と再統合。"
     },
     {
-      "start": "32:00",
-      "end": "36:00",
+      "start": "0:33:33.700",
+      "end": "0:37:33.700",
       "title": "PMの本質は統合",
-      "topic": "プロダクトマネージャーのコア価値は、役割や意思決定を統合すること。"
+      "topic": "プロダクトマネージャーのコア価値を整理する。"
     },
     {
-      "start": "36:00",
-      "end": "40:00",
+      "start": "0:37:33.700",
+      "end": "0:41:33.700",
       "title": "FDE導入の条件",
-      "topic": "すべてのSaaS企業がFDEを入れるべきではなく、事業条件を選ぶ話。"
+      "topic": "FDEを導入すべき事業条件を整理する。"
     },
     {
-      "start": "40:00",
-      "end": "44:00",
+      "start": "0:41:33.700",
+      "end": "0:45:33.700",
       "title": "仕事の対価を考える",
-      "topic": "自分の仕事が何に対価をもらっているのか、収益との接続を考える話。"
+      "topic": "仕事の価値と対価を収益から捉え直す。"
     },
     {
-      "start": "44:00",
-      "end": "48:00",
+      "start": "0:45:33.700",
+      "end": "0:49:33.700",
       "title": "FDEに向く人",
-      "topic": "領域拡張に前向きで、仕事の境界を固定しない人が向いている。"
+      "topic": "FDEに向く人のマインドセット。"
     },
     {
-      "start": "48:00",
-      "end": "52:00",
-      "title": "エンジニアの認知の型",
-      "topic": "エンジニア経験が、事業やプロダクト理解の思考体系として効く話。"
-    },
-    {
-      "start": "52:00",
-      "end": "52:58",
+      "start": "0:49:33.700",
+      "end": "0:54:31.700",
       "title": "AI時代の人の価値",
-      "topic": "スキルセットの横展開だけでなく、人としての器や垂直的成長を見る話。"
+      "topic": "AI時代に残るエンジニア経験と人の価値。"
     }
   ]
 }

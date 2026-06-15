@@ -1,25 +1,25 @@
 {
   "schemaVersion": "video-edit-timeline/v1",
-  "id": "timeline_new-folder-2",
-  "createdAt": "2026-05-30T07:55:41Z",
+  "id": "timeline_engineer-type-demo-interview",
+  "createdAt": "2026-06-15T17:01:35Z",
   "project": {
-    "id": "new-folder-2",
-    "name": "new-folder-2",
-    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2",
-    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source",
-    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output"
+    "id": "engineer-type-demo-interview",
+    "name": "engineer-type-demo-interview",
+    "root": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview",
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output"
   },
   "timebase": {
     "unit": "seconds",
     "fps": "30000/1001"
   },
-  "duration": 2968.4655,
+  "duration": 2862.9655,
   "sources": [
     {
       "id": "src_master",
       "kind": "video",
       "role": "master",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\ST7_7550.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
       "metadata": {
         "name": "ST7_7550.MP4",
         "manifestId": "st7-7550",
@@ -38,7 +38,7 @@
       "id": "src_camera2",
       "kind": "video",
       "role": "camera2",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7189.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
       "metadata": {
         "name": "0H4A7189.MP4",
         "manifestId": "0h4a7189",
@@ -57,7 +57,7 @@
       "id": "src_camera3",
       "kind": "video",
       "role": "camera3",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7190.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
       "metadata": {
         "name": "0H4A7190.MP4",
         "manifestId": "0h4a7190",
@@ -76,7 +76,7 @@
       "id": "src_camera4",
       "kind": "video",
       "role": "camera4",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7192.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
       "metadata": {
         "name": "0H4A7192.MP4",
         "manifestId": "0h4a7192",
@@ -95,7 +95,7 @@
       "id": "src_camera5",
       "kind": "video",
       "role": "camera5",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\video\\0H4A7193.MP4",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
       "metadata": {
         "name": "0H4A7193.MP4",
         "manifestId": "0h4a7193",
@@ -114,7 +114,7 @@
       "id": "src_external",
       "kind": "audio",
       "role": "external",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\audio\\140101-003.WAV",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
       "metadata": {
         "name": "140101-003.WAV",
         "manifestId": "140101-003",
@@ -130,19 +130,19 @@
       "id": "src_logo",
       "kind": "image",
       "role": "logo",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\source\\images\\right_logo_pre_fb05.png"
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\images\\right_logo_pre_fb05.png"
     },
     {
       "id": "src_subtitle",
       "kind": "subtitle",
       "role": "subtitle",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt"
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt"
     },
     {
       "id": "src_subtitle-full-layout",
       "kind": "data",
       "role": "subtitle-full-layout",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\full_transcript_png_overlays\\layout.json"
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\overlays\\full_transcript_png_overlays\\layout.json"
     }
   ],
   "tracks": [
@@ -185,8 +185,8 @@
       "sourceId": "src_master",
       "timelineStart": 0.0,
       "timelineEnd": 32.0,
-      "sourceIn": 0.0,
-      "sourceOut": 32.0,
+      "sourceIn": 85.5,
+      "sourceOut": 117.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -207,7 +207,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -226,8 +226,8 @@
       "sourceId": "src_camera2",
       "timelineStart": 32.0,
       "timelineEnd": 56.0,
-      "sourceIn": 49.2,
-      "sourceOut": 73.2,
+      "sourceIn": 134.7,
+      "sourceOut": 158.7,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -248,7 +248,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera2",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -267,8 +267,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 56.0,
       "timelineEnd": 94.0,
-      "sourceIn": 58.95,
-      "sourceOut": 96.95,
+      "sourceIn": 144.45,
+      "sourceOut": 182.45,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -289,9 +289,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -309,8 +308,8 @@
       "sourceId": "src_camera2",
       "timelineStart": 94.0,
       "timelineEnd": 122.0,
-      "sourceIn": 111.2,
-      "sourceOut": 139.2,
+      "sourceIn": 196.7,
+      "sourceOut": 224.7,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -331,7 +330,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera2",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -350,8 +349,8 @@
       "sourceId": "src_master",
       "timelineStart": 122.0,
       "timelineEnd": 166.0,
-      "sourceIn": 122.0,
-      "sourceOut": 166.0,
+      "sourceIn": 207.5,
+      "sourceOut": 251.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -372,7 +371,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -391,8 +390,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 166.0,
       "timelineEnd": 196.0,
-      "sourceIn": 168.95,
-      "sourceOut": 198.95,
+      "sourceIn": 254.45,
+      "sourceOut": 284.45,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -413,9 +412,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -433,8 +431,8 @@
       "sourceId": "src_camera2",
       "timelineStart": 196.0,
       "timelineEnd": 228.0,
-      "sourceIn": 213.2,
-      "sourceOut": 245.2,
+      "sourceIn": 298.7,
+      "sourceOut": 330.7,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -455,7 +453,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera2",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -474,8 +472,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 228.0,
       "timelineEnd": 252.0,
-      "sourceIn": 230.95,
-      "sourceOut": 254.95,
+      "sourceIn": 316.45,
+      "sourceOut": 340.45,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -496,9 +494,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -516,8 +513,8 @@
       "sourceId": "src_master",
       "timelineStart": 252.0,
       "timelineEnd": 290.0,
-      "sourceIn": 252.0,
-      "sourceOut": 290.0,
+      "sourceIn": 337.5,
+      "sourceOut": 375.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -538,7 +535,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -557,8 +554,8 @@
       "sourceId": "src_camera2",
       "timelineStart": 290.0,
       "timelineEnd": 318.0,
-      "sourceIn": 307.2,
-      "sourceOut": 335.2,
+      "sourceIn": 392.7,
+      "sourceOut": 420.7,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -579,7 +576,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera2",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -598,8 +595,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 318.0,
       "timelineEnd": 362.0,
-      "sourceIn": 320.95,
-      "sourceOut": 364.95,
+      "sourceIn": 406.45,
+      "sourceOut": 450.45,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -620,9 +617,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -640,8 +636,8 @@
       "sourceId": "src_camera2",
       "timelineStart": 362.0,
       "timelineEnd": 392.0,
-      "sourceIn": 379.2,
-      "sourceOut": 409.2,
+      "sourceIn": 464.7,
+      "sourceOut": 494.7,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -662,7 +658,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera2",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -681,8 +677,8 @@
       "sourceId": "src_master",
       "timelineStart": 392.0,
       "timelineEnd": 424.0,
-      "sourceIn": 392.0,
-      "sourceOut": 424.0,
+      "sourceIn": 477.5,
+      "sourceOut": 509.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -703,7 +699,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -722,8 +718,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 424.0,
       "timelineEnd": 448.0,
-      "sourceIn": 426.95,
-      "sourceOut": 450.95,
+      "sourceIn": 512.45,
+      "sourceOut": 536.45,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -744,9 +740,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -761,11 +756,11 @@
       "id": "clip_video_0015",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera2",
+      "sourceId": "src_master",
       "timelineStart": 448.0,
       "timelineEnd": 486.0,
-      "sourceIn": 465.2,
-      "sourceOut": 503.2,
+      "sourceIn": 533.5,
+      "sourceOut": 571.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -786,14 +781,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera2",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera2",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -805,8 +800,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 486.0,
       "timelineEnd": 514.0,
-      "sourceIn": 488.95,
-      "sourceOut": 516.95,
+      "sourceIn": 574.45,
+      "sourceOut": 602.45,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -827,9 +822,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -847,8 +841,8 @@
       "sourceId": "src_master",
       "timelineStart": 514.0,
       "timelineEnd": 551.368,
-      "sourceIn": 514.0,
-      "sourceOut": 551.368,
+      "sourceIn": 599.5,
+      "sourceOut": 636.868,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -869,7 +863,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -888,8 +882,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 551.368,
       "timelineEnd": 637.368,
-      "sourceIn": 554.318,
-      "sourceOut": 640.318,
+      "sourceIn": 639.818,
+      "sourceOut": 725.818,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -910,9 +904,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -930,8 +923,8 @@
       "sourceId": "src_master",
       "timelineStart": 637.368,
       "timelineEnd": 675.368,
-      "sourceIn": 637.368,
-      "sourceOut": 675.368,
+      "sourceIn": 722.868,
+      "sourceOut": 760.868,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -952,7 +945,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -971,8 +964,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 675.368,
       "timelineEnd": 777.368,
-      "sourceIn": 678.318,
-      "sourceOut": 780.318,
+      "sourceIn": 763.818,
+      "sourceOut": 865.818,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -993,9 +986,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1013,8 +1005,8 @@
       "sourceId": "src_master",
       "timelineStart": 777.368,
       "timelineEnd": 809.368,
-      "sourceIn": 777.368,
-      "sourceOut": 809.368,
+      "sourceIn": 862.868,
+      "sourceOut": 894.868,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1035,7 +1027,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1054,8 +1046,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 809.368,
       "timelineEnd": 899.368,
-      "sourceIn": 812.318,
-      "sourceOut": 902.318,
+      "sourceIn": 897.818,
+      "sourceOut": 987.818,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1076,9 +1068,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1096,8 +1087,8 @@
       "sourceId": "src_master",
       "timelineStart": 899.368,
       "timelineEnd": 931.57,
-      "sourceIn": 899.368,
-      "sourceOut": 931.57,
+      "sourceIn": 984.868,
+      "sourceOut": 1017.07,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1118,7 +1109,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1137,8 +1128,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 931.57,
       "timelineEnd": 961.57,
-      "sourceIn": 934.52,
-      "sourceOut": 964.52,
+      "sourceIn": 1020.02,
+      "sourceOut": 1050.02,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1159,9 +1150,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1179,8 +1169,8 @@
       "sourceId": "src_camera3",
       "timelineStart": 961.57,
       "timelineEnd": 993.57,
-      "sourceIn": 30.0,
-      "sourceOut": 62.0,
+      "sourceIn": 115.5,
+      "sourceOut": 147.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1201,7 +1191,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera3",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1220,8 +1210,8 @@
       "sourceId": "src_camera4",
       "timelineStart": 993.57,
       "timelineEnd": 1017.57,
-      "sourceIn": 996.52,
-      "sourceOut": 1020.52,
+      "sourceIn": 1082.02,
+      "sourceOut": 1106.02,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1242,9 +1232,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1262,8 +1251,8 @@
       "sourceId": "src_master",
       "timelineStart": 1017.57,
       "timelineEnd": 1055.57,
-      "sourceIn": 1017.57,
-      "sourceOut": 1055.57,
+      "sourceIn": 1103.07,
+      "sourceOut": 1141.07,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1284,7 +1273,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1303,8 +1292,8 @@
       "sourceId": "src_camera3",
       "timelineStart": 1055.57,
       "timelineEnd": 1083.57,
-      "sourceIn": 124.0,
-      "sourceOut": 152.0,
+      "sourceIn": 209.5,
+      "sourceOut": 237.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1325,7 +1314,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera3",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1341,11 +1330,11 @@
       "id": "clip_video_0029",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera4",
+      "sourceId": "src_master",
       "timelineStart": 1083.57,
       "timelineEnd": 1121.94,
-      "sourceIn": 1086.52,
-      "sourceOut": 1124.89,
+      "sourceIn": 1169.07,
+      "sourceOut": 1207.44,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1366,15 +1355,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera4",
-            "filter": "colorchannelmixer=rr=1.07323:gg=1.08640:bb=1.08126,eq=brightness=0.0391:contrast=0.8653:saturation=0.8400",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera4",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1386,8 +1374,8 @@
       "sourceId": "src_camera3",
       "timelineStart": 1121.94,
       "timelineEnd": 1125.41,
-      "sourceIn": 190.37,
-      "sourceOut": 193.84,
+      "sourceIn": 275.87,
+      "sourceOut": 279.34,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1408,7 +1396,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera3",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1427,8 +1415,8 @@
       "sourceId": "src_master",
       "timelineStart": 1125.41,
       "timelineEnd": 1157.41,
-      "sourceIn": 1125.41,
-      "sourceOut": 1157.41,
+      "sourceIn": 1210.91,
+      "sourceOut": 1242.91,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1449,7 +1437,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1468,8 +1456,8 @@
       "sourceId": "src_camera5",
       "timelineStart": 1157.41,
       "timelineEnd": 1181.41,
-      "sourceIn": 32.0,
-      "sourceOut": 56.0,
+      "sourceIn": 117.5,
+      "sourceOut": 141.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1490,9 +1478,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1511,8 +1498,8 @@
       "sourceId": "src_camera3",
       "timelineStart": 1181.41,
       "timelineEnd": 1219.41,
-      "sourceIn": 249.84,
-      "sourceOut": 287.84,
+      "sourceIn": 335.34,
+      "sourceOut": 373.34,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1533,7 +1520,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera3",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1552,8 +1539,8 @@
       "sourceId": "src_camera5",
       "timelineStart": 1219.41,
       "timelineEnd": 1247.41,
-      "sourceIn": 94.0,
-      "sourceOut": 122.0,
+      "sourceIn": 179.5,
+      "sourceOut": 207.5,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1574,9 +1561,8 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1594,9 +1580,9 @@
       "kind": "video",
       "sourceId": "src_master",
       "timelineStart": 1247.41,
-      "timelineEnd": 1291.41,
-      "sourceIn": 1247.41,
-      "sourceOut": 1291.41,
+      "timelineEnd": 1316.288,
+      "sourceIn": 1332.91,
+      "sourceOut": 1401.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1617,7 +1603,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1633,11 +1619,11 @@
       "id": "clip_video_0036",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera3",
-      "timelineStart": 1291.41,
-      "timelineEnd": 1316.288,
-      "sourceIn": 359.84,
-      "sourceOut": 384.718,
+      "sourceId": "src_camera5",
+      "timelineStart": 1316.288,
+      "timelineEnd": 1372.288,
+      "sourceIn": 276.378,
+      "sourceOut": 332.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1658,14 +1644,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera3",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera3",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1674,11 +1661,11 @@
       "id": "clip_video_0037",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 1316.288,
-      "timelineEnd": 1372.288,
-      "sourceIn": 190.878,
-      "sourceOut": 246.878,
+      "sourceId": "src_master",
+      "timelineStart": 1372.288,
+      "timelineEnd": 1410.288,
+      "sourceIn": 1457.788,
+      "sourceOut": 1495.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1699,16 +1686,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1717,11 +1702,11 @@
       "id": "clip_video_0038",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 1372.288,
-      "timelineEnd": 1410.288,
-      "sourceIn": 1372.288,
-      "sourceOut": 1410.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 1410.288,
+      "timelineEnd": 1512.288,
+      "sourceIn": 370.378,
+      "sourceOut": 472.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1742,14 +1727,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1758,11 +1744,11 @@
       "id": "clip_video_0039",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 1410.288,
-      "timelineEnd": 1512.288,
-      "sourceIn": 284.878,
-      "sourceOut": 386.878,
+      "sourceId": "src_master",
+      "timelineStart": 1512.288,
+      "timelineEnd": 1544.288,
+      "sourceIn": 1597.788,
+      "sourceOut": 1629.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1783,16 +1769,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1801,11 +1785,11 @@
       "id": "clip_video_0040",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 1512.288,
-      "timelineEnd": 1544.288,
-      "sourceIn": 1512.288,
-      "sourceOut": 1544.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 1544.288,
+      "timelineEnd": 1634.288,
+      "sourceIn": 504.378,
+      "sourceOut": 594.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1826,14 +1810,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1842,11 +1827,11 @@
       "id": "clip_video_0041",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 1544.288,
-      "timelineEnd": 1634.288,
-      "sourceIn": 418.878,
-      "sourceOut": 508.878,
+      "sourceId": "src_master",
+      "timelineStart": 1634.288,
+      "timelineEnd": 1678.288,
+      "sourceIn": 1719.788,
+      "sourceOut": 1763.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1867,16 +1852,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1885,11 +1868,11 @@
       "id": "clip_video_0042",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 1634.288,
-      "timelineEnd": 1678.288,
-      "sourceIn": 1634.288,
-      "sourceOut": 1678.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 1678.288,
+      "timelineEnd": 1764.288,
+      "sourceIn": 638.378,
+      "sourceOut": 724.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1910,14 +1893,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1926,11 +1910,11 @@
       "id": "clip_video_0043",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 1678.288,
-      "timelineEnd": 1764.288,
-      "sourceIn": 552.878,
-      "sourceOut": 638.878,
+      "sourceId": "src_master",
+      "timelineStart": 1764.288,
+      "timelineEnd": 1802.288,
+      "sourceIn": 1849.788,
+      "sourceOut": 1887.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1951,16 +1935,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -1969,11 +1951,11 @@
       "id": "clip_video_0044",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 1764.288,
-      "timelineEnd": 1802.288,
-      "sourceIn": 1764.288,
-      "sourceOut": 1802.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 1802.288,
+      "timelineEnd": 1904.288,
+      "sourceIn": 762.378,
+      "sourceOut": 864.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -1994,14 +1976,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2010,11 +1993,11 @@
       "id": "clip_video_0045",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 1802.288,
-      "timelineEnd": 1904.288,
-      "sourceIn": 676.878,
-      "sourceOut": 778.878,
+      "sourceId": "src_master",
+      "timelineStart": 1904.288,
+      "timelineEnd": 1936.288,
+      "sourceIn": 1989.788,
+      "sourceOut": 2021.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2035,16 +2018,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2053,11 +2034,11 @@
       "id": "clip_video_0046",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 1904.288,
-      "timelineEnd": 1936.288,
-      "sourceIn": 1904.288,
-      "sourceOut": 1936.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 1936.288,
+      "timelineEnd": 2026.288,
+      "sourceIn": 896.378,
+      "sourceOut": 986.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2078,14 +2059,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2094,11 +2076,11 @@
       "id": "clip_video_0047",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 1936.288,
-      "timelineEnd": 2026.288,
-      "sourceIn": 810.878,
-      "sourceOut": 900.878,
+      "sourceId": "src_master",
+      "timelineStart": 2026.288,
+      "timelineEnd": 2070.288,
+      "sourceIn": 2111.788,
+      "sourceOut": 2155.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2119,16 +2101,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2137,11 +2117,11 @@
       "id": "clip_video_0048",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 2026.288,
-      "timelineEnd": 2070.288,
-      "sourceIn": 2026.288,
-      "sourceOut": 2070.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 2070.288,
+      "timelineEnd": 2156.288,
+      "sourceIn": 1030.378,
+      "sourceOut": 1116.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2162,14 +2142,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2178,11 +2159,11 @@
       "id": "clip_video_0049",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 2070.288,
-      "timelineEnd": 2156.288,
-      "sourceIn": 944.878,
-      "sourceOut": 1030.878,
+      "sourceId": "src_master",
+      "timelineStart": 2156.288,
+      "timelineEnd": 2194.288,
+      "sourceIn": 2241.788,
+      "sourceOut": 2279.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2203,16 +2184,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2221,11 +2200,11 @@
       "id": "clip_video_0050",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 2156.288,
-      "timelineEnd": 2194.288,
-      "sourceIn": 2156.288,
-      "sourceOut": 2194.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 2194.288,
+      "timelineEnd": 2296.288,
+      "sourceIn": 1154.378,
+      "sourceOut": 1256.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2246,14 +2225,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2262,11 +2242,11 @@
       "id": "clip_video_0051",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 2194.288,
-      "timelineEnd": 2296.288,
-      "sourceIn": 1068.878,
-      "sourceOut": 1170.878,
+      "sourceId": "src_master",
+      "timelineStart": 2296.288,
+      "timelineEnd": 2328.288,
+      "sourceIn": 2381.788,
+      "sourceOut": 2413.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2287,16 +2267,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2305,11 +2283,11 @@
       "id": "clip_video_0052",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 2296.288,
-      "timelineEnd": 2328.288,
-      "sourceIn": 2296.288,
-      "sourceOut": 2328.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 2328.288,
+      "timelineEnd": 2418.288,
+      "sourceIn": 1288.378,
+      "sourceOut": 1378.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2330,14 +2308,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2346,11 +2325,11 @@
       "id": "clip_video_0053",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 2328.288,
-      "timelineEnd": 2418.288,
-      "sourceIn": 1202.878,
-      "sourceOut": 1292.878,
+      "sourceId": "src_master",
+      "timelineStart": 2418.288,
+      "timelineEnd": 2462.288,
+      "sourceIn": 2503.788,
+      "sourceOut": 2547.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2371,16 +2350,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2389,11 +2366,11 @@
       "id": "clip_video_0054",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 2418.288,
-      "timelineEnd": 2462.288,
-      "sourceIn": 2418.288,
-      "sourceOut": 2462.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 2462.288,
+      "timelineEnd": 2548.288,
+      "sourceIn": 1422.378,
+      "sourceOut": 1508.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2414,14 +2391,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2430,11 +2408,11 @@
       "id": "clip_video_0055",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 2462.288,
-      "timelineEnd": 2548.288,
-      "sourceIn": 1336.878,
-      "sourceOut": 1422.878,
+      "sourceId": "src_master",
+      "timelineStart": 2548.288,
+      "timelineEnd": 2586.288,
+      "sourceIn": 2633.788,
+      "sourceOut": 2671.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2455,16 +2433,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2473,11 +2449,11 @@
       "id": "clip_video_0056",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 2548.288,
-      "timelineEnd": 2586.288,
-      "sourceIn": 2548.288,
-      "sourceOut": 2586.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 2586.288,
+      "timelineEnd": 2688.288,
+      "sourceIn": 1546.378,
+      "sourceOut": 1648.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2498,14 +2474,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2514,11 +2491,11 @@
       "id": "clip_video_0057",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 2586.288,
-      "timelineEnd": 2688.288,
-      "sourceIn": 1460.878,
-      "sourceOut": 1562.878,
+      "sourceId": "src_master",
+      "timelineStart": 2688.288,
+      "timelineEnd": 2720.288,
+      "sourceIn": 2773.788,
+      "sourceOut": 2805.788,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2539,16 +2516,14 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "camera5",
+        "role": "master",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2557,11 +2532,11 @@
       "id": "clip_video_0058",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 2688.288,
-      "timelineEnd": 2720.288,
-      "sourceIn": 2688.288,
-      "sourceOut": 2720.288,
+      "sourceId": "src_camera5",
+      "timelineStart": 2720.288,
+      "timelineEnd": 2810.288,
+      "sourceIn": 1680.378,
+      "sourceOut": 1770.378,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2582,14 +2557,15 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
+            "role": "camera5",
+            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
       ],
       "metadata": {
-        "role": "master",
+        "role": "camera5",
         "decisionSource": "camera plan",
         "crop": {}
       }
@@ -2598,54 +2574,11 @@
       "id": "clip_video_0059",
       "trackId": "video.main",
       "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 2720.288,
-      "timelineEnd": 2810.288,
-      "sourceIn": 1594.878,
-      "sourceOut": 1684.878,
-      "fit": {
-        "mode": "cover",
-        "width": 1920,
-        "height": 1080,
-        "scale": 1.2
-      },
-      "effects": [
-        {
-          "type": "scaleCrop",
-          "params": {
-            "scale": 1.2,
-            "crop": {
-              "centerX": 0.5,
-              "centerY": 0.5
-            }
-          }
-        },
-        {
-          "type": "colorCorrection",
-          "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
-            "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
-          }
-        }
-      ],
-      "metadata": {
-        "role": "camera5",
-        "decisionSource": "camera plan",
-        "crop": {}
-      }
-    },
-    {
-      "id": "clip_video_0060",
-      "trackId": "video.main",
-      "kind": "video",
       "sourceId": "src_master",
       "timelineStart": 2810.288,
-      "timelineEnd": 2854.288,
-      "sourceIn": 2810.288,
-      "sourceOut": 2854.288,
+      "timelineEnd": 2862.9655,
+      "sourceIn": 2895.788,
+      "sourceOut": 2948.4655,
       "fit": {
         "mode": "cover",
         "width": 1920,
@@ -2666,91 +2599,7 @@
         {
           "type": "colorCorrection",
           "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "master",
-            "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
-          }
-        }
-      ],
-      "metadata": {
-        "role": "master",
-        "decisionSource": "camera plan",
-        "crop": {}
-      }
-    },
-    {
-      "id": "clip_video_0061",
-      "trackId": "video.main",
-      "kind": "video",
-      "sourceId": "src_camera5",
-      "timelineStart": 2854.288,
-      "timelineEnd": 2924.574,
-      "sourceIn": 1728.878,
-      "sourceOut": 1799.164,
-      "fit": {
-        "mode": "cover",
-        "width": 1920,
-        "height": 1080,
-        "scale": 1.2
-      },
-      "effects": [
-        {
-          "type": "scaleCrop",
-          "params": {
-            "scale": 1.2,
-            "crop": {
-              "centerX": 0.5,
-              "centerY": 0.5
-            }
-          }
-        },
-        {
-          "type": "colorCorrection",
-          "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
-            "role": "camera5",
-            "filter": "colorchannelmixer=rr=1.00590:gg=1.07669:bb=1.15990,eq=brightness=0.0321:contrast=0.8607:saturation=0.8400",
-            "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
-            "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
-          }
-        }
-      ],
-      "metadata": {
-        "role": "camera5",
-        "decisionSource": "camera plan",
-        "crop": {}
-      }
-    },
-    {
-      "id": "clip_video_0062",
-      "trackId": "video.main",
-      "kind": "video",
-      "sourceId": "src_master",
-      "timelineStart": 2924.574,
-      "timelineEnd": 2968.465,
-      "sourceIn": 2924.574,
-      "sourceOut": 2968.465,
-      "fit": {
-        "mode": "cover",
-        "width": 1920,
-        "height": 1080,
-        "scale": 1.2
-      },
-      "effects": [
-        {
-          "type": "scaleCrop",
-          "params": {
-            "scale": 1.2,
-            "crop": {
-              "centerX": 0.5,
-              "centerY": 0.5
-            }
-          }
-        },
-        {
-          "type": "colorCorrection",
-          "params": {
-            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+            "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "master",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2768,9 +2617,9 @@
       "kind": "audio",
       "sourceId": "src_external",
       "timelineStart": 0.0,
-      "timelineEnd": 2968.4655,
-      "sourceIn": 8.7,
-      "sourceOut": 2977.1655,
+      "timelineEnd": 2862.9655,
+      "sourceIn": 94.2,
+      "sourceOut": 2957.1655,
       "audioSyncOffset": 8.7,
       "effects": [
         {
@@ -2793,7 +2642,7 @@
       "kind": "image",
       "sourceId": "src_logo",
       "timelineStart": 0.0,
-      "timelineEnd": 2968.4655,
+      "timelineEnd": 2862.9655,
       "position": {
         "x": "W-w-40",
         "y": 40,
@@ -2811,7 +2660,7 @@
       "kind": "subtitle",
       "sourceId": "src_subtitle",
       "timelineStart": 0.0,
-      "timelineEnd": 2968.4655,
+      "timelineEnd": 2862.9655,
       "style": {
         "mode": "full",
         "fontSize": 80,
@@ -2822,7 +2671,7 @@
       "effects": [],
       "metadata": {
         "timebase": "auto",
-        "overlayManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\overlays\\full_transcript_png_overlays\\layout.json",
+        "overlayManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\overlays\\full_transcript_png_overlays\\layout.json",
         "overlayManifestFormat": "html-subtitle-layout",
         "overlayManifestSourceId": "src_subtitle-full-layout"
       }
@@ -3104,7 +2953,7 @@
     {
       "id": "transition_0035",
       "type": "cut",
-      "at": 1291.41,
+      "at": 1316.288,
       "fromClipId": "clip_video_0035",
       "toClipId": "clip_video_0036",
       "duration": 0.0
@@ -3112,7 +2961,7 @@
     {
       "id": "transition_0036",
       "type": "cut",
-      "at": 1316.288,
+      "at": 1372.288,
       "fromClipId": "clip_video_0036",
       "toClipId": "clip_video_0037",
       "duration": 0.0
@@ -3120,7 +2969,7 @@
     {
       "id": "transition_0037",
       "type": "cut",
-      "at": 1372.288,
+      "at": 1410.288,
       "fromClipId": "clip_video_0037",
       "toClipId": "clip_video_0038",
       "duration": 0.0
@@ -3128,7 +2977,7 @@
     {
       "id": "transition_0038",
       "type": "cut",
-      "at": 1410.288,
+      "at": 1512.288,
       "fromClipId": "clip_video_0038",
       "toClipId": "clip_video_0039",
       "duration": 0.0
@@ -3136,7 +2985,7 @@
     {
       "id": "transition_0039",
       "type": "cut",
-      "at": 1512.288,
+      "at": 1544.288,
       "fromClipId": "clip_video_0039",
       "toClipId": "clip_video_0040",
       "duration": 0.0
@@ -3144,7 +2993,7 @@
     {
       "id": "transition_0040",
       "type": "cut",
-      "at": 1544.288,
+      "at": 1634.288,
       "fromClipId": "clip_video_0040",
       "toClipId": "clip_video_0041",
       "duration": 0.0
@@ -3152,7 +3001,7 @@
     {
       "id": "transition_0041",
       "type": "cut",
-      "at": 1634.288,
+      "at": 1678.288,
       "fromClipId": "clip_video_0041",
       "toClipId": "clip_video_0042",
       "duration": 0.0
@@ -3160,7 +3009,7 @@
     {
       "id": "transition_0042",
       "type": "cut",
-      "at": 1678.288,
+      "at": 1764.288,
       "fromClipId": "clip_video_0042",
       "toClipId": "clip_video_0043",
       "duration": 0.0
@@ -3168,7 +3017,7 @@
     {
       "id": "transition_0043",
       "type": "cut",
-      "at": 1764.288,
+      "at": 1802.288,
       "fromClipId": "clip_video_0043",
       "toClipId": "clip_video_0044",
       "duration": 0.0
@@ -3176,7 +3025,7 @@
     {
       "id": "transition_0044",
       "type": "cut",
-      "at": 1802.288,
+      "at": 1904.288,
       "fromClipId": "clip_video_0044",
       "toClipId": "clip_video_0045",
       "duration": 0.0
@@ -3184,7 +3033,7 @@
     {
       "id": "transition_0045",
       "type": "cut",
-      "at": 1904.288,
+      "at": 1936.288,
       "fromClipId": "clip_video_0045",
       "toClipId": "clip_video_0046",
       "duration": 0.0
@@ -3192,7 +3041,7 @@
     {
       "id": "transition_0046",
       "type": "cut",
-      "at": 1936.288,
+      "at": 2026.288,
       "fromClipId": "clip_video_0046",
       "toClipId": "clip_video_0047",
       "duration": 0.0
@@ -3200,7 +3049,7 @@
     {
       "id": "transition_0047",
       "type": "cut",
-      "at": 2026.288,
+      "at": 2070.288,
       "fromClipId": "clip_video_0047",
       "toClipId": "clip_video_0048",
       "duration": 0.0
@@ -3208,7 +3057,7 @@
     {
       "id": "transition_0048",
       "type": "cut",
-      "at": 2070.288,
+      "at": 2156.288,
       "fromClipId": "clip_video_0048",
       "toClipId": "clip_video_0049",
       "duration": 0.0
@@ -3216,7 +3065,7 @@
     {
       "id": "transition_0049",
       "type": "cut",
-      "at": 2156.288,
+      "at": 2194.288,
       "fromClipId": "clip_video_0049",
       "toClipId": "clip_video_0050",
       "duration": 0.0
@@ -3224,7 +3073,7 @@
     {
       "id": "transition_0050",
       "type": "cut",
-      "at": 2194.288,
+      "at": 2296.288,
       "fromClipId": "clip_video_0050",
       "toClipId": "clip_video_0051",
       "duration": 0.0
@@ -3232,7 +3081,7 @@
     {
       "id": "transition_0051",
       "type": "cut",
-      "at": 2296.288,
+      "at": 2328.288,
       "fromClipId": "clip_video_0051",
       "toClipId": "clip_video_0052",
       "duration": 0.0
@@ -3240,7 +3089,7 @@
     {
       "id": "transition_0052",
       "type": "cut",
-      "at": 2328.288,
+      "at": 2418.288,
       "fromClipId": "clip_video_0052",
       "toClipId": "clip_video_0053",
       "duration": 0.0
@@ -3248,7 +3097,7 @@
     {
       "id": "transition_0053",
       "type": "cut",
-      "at": 2418.288,
+      "at": 2462.288,
       "fromClipId": "clip_video_0053",
       "toClipId": "clip_video_0054",
       "duration": 0.0
@@ -3256,7 +3105,7 @@
     {
       "id": "transition_0054",
       "type": "cut",
-      "at": 2462.288,
+      "at": 2548.288,
       "fromClipId": "clip_video_0054",
       "toClipId": "clip_video_0055",
       "duration": 0.0
@@ -3264,7 +3113,7 @@
     {
       "id": "transition_0055",
       "type": "cut",
-      "at": 2548.288,
+      "at": 2586.288,
       "fromClipId": "clip_video_0055",
       "toClipId": "clip_video_0056",
       "duration": 0.0
@@ -3272,7 +3121,7 @@
     {
       "id": "transition_0056",
       "type": "cut",
-      "at": 2586.288,
+      "at": 2688.288,
       "fromClipId": "clip_video_0056",
       "toClipId": "clip_video_0057",
       "duration": 0.0
@@ -3280,7 +3129,7 @@
     {
       "id": "transition_0057",
       "type": "cut",
-      "at": 2688.288,
+      "at": 2720.288,
       "fromClipId": "clip_video_0057",
       "toClipId": "clip_video_0058",
       "duration": 0.0
@@ -3288,33 +3137,9 @@
     {
       "id": "transition_0058",
       "type": "cut",
-      "at": 2720.288,
+      "at": 2810.288,
       "fromClipId": "clip_video_0058",
       "toClipId": "clip_video_0059",
-      "duration": 0.0
-    },
-    {
-      "id": "transition_0059",
-      "type": "cut",
-      "at": 2810.288,
-      "fromClipId": "clip_video_0059",
-      "toClipId": "clip_video_0060",
-      "duration": 0.0
-    },
-    {
-      "id": "transition_0060",
-      "type": "cut",
-      "at": 2854.288,
-      "fromClipId": "clip_video_0060",
-      "toClipId": "clip_video_0061",
-      "duration": 0.0
-    },
-    {
-      "id": "transition_0061",
-      "type": "cut",
-      "at": 2924.574,
-      "fromClipId": "clip_video_0061",
-      "toClipId": "clip_video_0062",
       "duration": 0.0
     }
   ],
@@ -3322,89 +3147,89 @@
     "targets": [
       {
         "id": "final",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\videos\\20260529_214344.mp4",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_020058_reviewfix_240p_full_preview.mp4",
         "format": "mp4",
         "width": 1920,
         "height": 1080,
         "fps": "30000/1001",
-        "profile": "final",
+        "profile": "preview",
         "videoCodec": "h264_nvenc",
         "audioCodec": "aac"
       }
     ],
     "preview": {
-      "enabled": false,
+      "enabled": true,
       "rangeStart": 0.0,
-      "rangeEnd": 2968.4655,
-      "proxy": false
+      "rangeEnd": 2862.9655,
+      "proxy": true
     }
   },
   "analysis": {
-    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\media_manifest.json",
     "reports": [
       {
         "kind": "media-manifest",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\media_manifest.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\media_manifest.json",
         "exists": true
       },
       {
         "kind": "sync-offsets",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\app_sync_offsets.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\app_sync_offsets.json",
         "exists": true
       },
       {
         "kind": "transcript-manifest",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\transcripts\\manifest_sources\\manifest_transcripts.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\manifest_transcripts.json",
         "exists": true
       },
       {
         "kind": "camera-plan",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_cut_plan.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_cut_plan.json",
         "exists": true
       },
       {
         "kind": "manual-camera-plan",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\manual_camera_plan.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\manual_camera_plan.json",
         "exists": true
       },
       {
         "kind": "source-coverage",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\source_coverage_usage.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\source_coverage_usage.json",
         "exists": true
       },
       {
         "kind": "external-audio-cut-sync",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\external_audio_cut_sync_report.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\external_audio_cut_sync_report.json",
         "exists": true
       },
       {
         "kind": "natural-dialogue-cuts",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\natural_dialogue_cuts.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\natural_dialogue_cuts.json",
         "exists": true
       },
       {
         "kind": "camera-color-match",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\camera_color_match.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
         "exists": true
       },
       {
         "kind": "person-edit-plans",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\person_edit_plans",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\person_edit_plans",
         "exists": false
       },
       {
         "kind": "person-crop",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\person_crop_usage.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\person_crop_usage.json",
         "exists": true
       },
       {
         "kind": "face-center-crop",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\face_center_crop_usage.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\face_center_crop_usage.json",
         "exists": true
       },
       {
         "kind": "face-center-plan",
-        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\face_center_crop_plan.json",
+        "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\face_center_crop_plan.json",
         "exists": false
       }
     ]
@@ -3430,8 +3255,8 @@
     ],
     "planning": {
       "cameraPlanSource": "render.cameraPlanPath",
-      "renderStart": 0.0,
-      "syncOffsetSource": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\new-folder-2\\output\\reports\\app_sync_offsets.json",
+      "renderStart": 85.5,
+      "syncOffsetSource": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\app_sync_offsets.json",
       "note": "Timeline stores edit intent only. Renderer adapters generate FFmpeg/Remotion/Blender commands."
     }
   }

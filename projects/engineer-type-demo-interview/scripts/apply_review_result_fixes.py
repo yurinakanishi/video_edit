@@ -18,6 +18,8 @@ SUBTITLE_TEXT_REPLACEMENTS = [
     (OLD_TEXT, NEW_TEXT),
     ("なんかえ?", "なんか、え？"),
     ("コードを書く業数", "コードを書く行数"),
+    ("ひねられたこの形", "決められたこの形"),
+    ("改めて揃え直す", "改めて捉え直す"),
     ("?", "？"),
 ]
 REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS = 85.5
@@ -164,16 +166,20 @@ def review_cut_ranges() -> list[dict[str, Any]]:
         srt_range(1269.760, 1271.040, "subtitle-only filler: 確かに"),
         srt_range(1458.680, 1462.100, "review cut: 22:47 確かにな"),
         srt_range(1511.920, 1513.080, "review cut: 23:39 確かにな"),
-        review_range(1419.000, 1452.000, "review cut: 23:39-24:12"),
+        srt_range(
+            1513.080,
+            1545.380,
+            "review cut: from そこをちょっと考えてみたい before そもそもFDEとPDMは共存する",
+        ),
         srt_range(1746.980, 1748.480, "subtitle-only filler: 確かに"),
         srt_range(1808.400, 1810.380, "subtitle-only filler: 確かに"),
         srt_range(2023.280, 2024.840, "subtitle-only filler: 確かに確かに"),
         review_range(2137.000, 2248.000, "review cut: 35:37-37:28"),
         srt_range(2191.300, 2193.000, "subtitle-only filler: 確かに"),
-        (
-            reviewed_time_to_source_time(2542.000),
-            subtitle_time_to_source_time(2681.260),
-            "review cut: 42:22 to actual FDEに向いている人 start",
+        srt_range(
+            2634.880,
+            2681.260,
+            "review cut: after そこは改めて捉え直す before FDEに向いている人",
         ),
         srt_range(2812.460, 2814.900, "review cut: 45:17 確かに確かに"),
     ]

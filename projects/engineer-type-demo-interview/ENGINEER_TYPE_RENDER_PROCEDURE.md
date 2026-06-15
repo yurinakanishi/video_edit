@@ -25,8 +25,8 @@ Keep these settings unless the user explicitly asks to change them.
 - Use `render.videoEncoder = "h264_nvenc"`, `render.nvencPreset = "p4"`, and `render.cq = 19`.
 - Keep `render.shortenSilence = true`, `render.minSilence = 3.0`, and `render.keepSilence = 2.0`.
 - Keep `render.colorMatchCameras = true`.
-- Keep the reviewed-video source trim in project state: `render.previewStart = 85.0` and `render.previewDuration = master duration - 85.0 - 20.0`.
-  The review was made against a derived file with the first `1:25` and final `0:20` removed.
+- Keep the reviewed-video source trim in project state: `render.previewStart = 85.5` and `render.previewDuration = master duration - 85.5 - 20.0`.
+  The review was made against a derived file with the first `1:25.5` and final `0:20` removed.
 - Keep the shared post-match output look in `render.outputLookFilter`; do not replace it with a master-only extra filter.
 - Keep the current camera5 color correction unless the user requests another color pass:
   `colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200`
@@ -174,7 +174,7 @@ Expected:
 - fps: `30000/1001`
 - codec: H.264, usually `h264_nvenc`
 - audio: AAC stereo, 48kHz
-- duration: based on the reviewed-video source range: master duration minus the first `85s` and final `20s`, then any configured review cut ranges and silence shortening
+- duration: based on the reviewed-video source range: master duration minus the first `85.5s` and final `20s`, then any configured review cut ranges and silence shortening
 
 Check silence-shortening report:
 

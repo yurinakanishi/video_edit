@@ -18,7 +18,12 @@ STATE = PROJECT / "project_state.json"
 SUBTITLE_SOURCE_OFFSET = 8.7
 OLD_TEXT = "ここのカスタマイズ"
 NEW_TEXT = "個々のカスタマイズ"
-REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS = 85.0
+SUBTITLE_TEXT_REPLACEMENTS = [
+    (OLD_TEXT, NEW_TEXT),
+    ("なんかえ?", "なんか、え？"),
+    ("?", "？"),
+]
+REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS = 85.5
 REVIEWED_VIDEO_SOURCE_END_CUT_SECONDS = 20.0
 
 
@@ -26,8 +31,16 @@ def reviewed_time_to_source_time(reviewed_seconds: float) -> float:
     return REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS + reviewed_seconds
 
 
+def source_time_to_reviewed_time(source_seconds: float) -> float:
+    return source_seconds - REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS
+
+
 def subtitle_time_to_source_time(subtitle_seconds: float) -> float:
     return subtitle_seconds - SUBTITLE_SOURCE_OFFSET
+
+
+def subtitle_time_to_reviewed_time(subtitle_seconds: float) -> float:
+    return source_time_to_reviewed_time(subtitle_time_to_source_time(subtitle_seconds))
 
 
 def timestamp(total_seconds: float) -> str:
@@ -46,7 +59,9 @@ def backup_once(path: Path) -> None:
 
 def replace_text_recursive(value: Any) -> Any:
     if isinstance(value, str):
-        return value.replace(OLD_TEXT, NEW_TEXT)
+        for before, after in SUBTITLE_TEXT_REPLACEMENTS:
+            value = value.replace(before, after)
+        return value
     if isinstance(value, list):
         return [replace_text_recursive(item) for item in value]
     if isinstance(value, dict):
@@ -61,7 +76,10 @@ def apply_subtitle_wording() -> None:
     ):
         backup_once(path)
     srt = TRANSCRIPTS / "external_140101-003.reviewed.srt"
-    srt.write_text(srt.read_text(encoding="utf-8").replace(OLD_TEXT, NEW_TEXT), encoding="utf-8")
+    srt_text = srt.read_text(encoding="utf-8")
+    for before, after in SUBTITLE_TEXT_REPLACEMENTS:
+        srt_text = srt_text.replace(before, after)
+    srt.write_text(srt_text, encoding="utf-8")
 
     reviewed_json = TRANSCRIPTS / "external_140101-003.reviewed.json"
     payload = json.loads(reviewed_json.read_text(encoding="utf-8"))
@@ -73,18 +91,31 @@ def apply_chapter_titles() -> None:
     path = REPORTS / "chapter_titles_from_full_transcript.json"
     backup_once(path)
 
-    # Review timestamps are based on the reviewed video, which already removed
-    # the first 1:25 and final 0:20 from the source render. The renderer stores
-    # overlay times as source timeline positions, then subtracts the external
-    # subtitle sync offset while loading overlays.
+    # Review timestamps are based on the reviewed video: the pre-latest-commit
+    # render with only the first 1:25.5 and final 0:20 removed. They are not final
+    # output timestamps after the review cuts below. Store the equivalent source
+    # timeline positions, then let render_multicam apply the current cutRanges.
+    #
+    # The review notes use rounded minute/second positions. Keep the chapter
+    # boundaries tied to the actual subtitle/content anchors near those notes,
+    # then let render_multicam apply the review cuts to these source-timeline
+    # points. This prevents the upper-left title from switching just before the
+    # intended line appears.
+    strong_product_end = subtitle_time_to_reviewed_time(340.140)  # "こういう人だよっていうふうに言語化するとなると"
+    fde_workers_end = subtitle_time_to_reviewed_time(484.200)  # after the cuttable "確かに" prefix before FDE trend discussion
+    fde_boom_end = subtitle_time_to_reviewed_time(684.600)  # "続いてなんですけど"
+    fde_product_start = subtitle_time_to_reviewed_time(720.240)  # "なのでFDEを支える要素..."
+    japan_start = 904.000
+    pdm_start = subtitle_time_to_reviewed_time(1129.360)  # "ちょっと事前の想定ではPDMとFDE..."
+    pdm_end = subtitle_time_to_reviewed_time(1436.880)  # before the next topic after the PDM/FDE discussion
     rows = [
-        (0.0, 245.0, "強いプロダクト", "強いプロダクトの条件とFDEの前提を整理する導入。"),
-        (245.0, 390.0, "既にFDE的に働く人", "既存職種の中にあるFDE的な働き方を整理する。"),
-        (390.0, 592.0, "FDEブームの正体", "FDE流行の背景と採用マーケティングの文脈。"),
-        (628.0, 904.0, "FDE向きプロダクト", "FDEが必要になるプロダクト条件とカスタマイズ性。"),
-        (904.0, 1037.0, "日本企業でワークするか", "日本企業・SI文化・受託文化との相性。"),
-        (1037.0, 1346.0, "PDM vs FDE論争", "PDM廃止論とFDE化の論点整理。"),
-        (1346.0, 1680.0, "日本の職種設計", "ジョブディスクリプションと職種設計の違い。"),
+        (0.0, strong_product_end, "強いプロダクト", "強いプロダクトの条件とFDEの前提を整理する導入。"),
+        (strong_product_end, fde_workers_end, "既にFDE的に働く人", "既存職種の中にあるFDE的な働き方を整理する。"),
+        (fde_workers_end, fde_boom_end, "FDEブームの正体", "FDE流行の背景と採用マーケティングの文脈。"),
+        (fde_product_start, japan_start, "FDE向きプロダクト", "FDEが必要になるプロダクト条件とカスタマイズ性。"),
+        (japan_start, pdm_start, "日本企業でワークするか", "日本企業・SI文化・受託文化との相性。"),
+        (pdm_start, pdm_end, "PDM vs FDE論争", "PDM廃止論とFDE化の論点整理。"),
+        (pdm_end, 1680.0, "日本の職種設計", "ジョブディスクリプションと職種設計の違い。"),
         (1680.0, 1920.0, "職種分化と再統合", "AI時代の職種分化と再統合。"),
         (1920.0, 2160.0, "PMの本質は統合", "プロダクトマネージャーのコア価値を整理する。"),
         (2160.0, 2400.0, "FDE導入の条件", "FDEを導入すべき事業条件を整理する。"),
@@ -94,7 +125,11 @@ def apply_chapter_titles() -> None:
     ]
     payload = {
         "sourceSubtitle": str(TRANSCRIPTS / "external_140101-003.reviewed.srt"),
-        "method": "review_result.md corrections applied; stored times include subtitle sync offset for chapter overlay rendering.",
+        "method": (
+            "review_result.md corrections applied from the review baseline "
+            "(pre-latest-commit render with first 85.5s and final 20s removed); "
+            "stored times include subtitle sync offset for chapter overlay rendering."
+        ),
         "chapters": [
             {
                 "start": timestamp(reviewed_time_to_source_time(start) + SUBTITLE_SOURCE_OFFSET),
@@ -145,8 +180,8 @@ def write_extra_overlay_manifest(overlay: Path) -> Path:
     manifest = REPORTS / "review_extra_text_overlay_manifest.json"
     payload = [
         {
-            "start": timestamp(reviewed_time_to_source_time(633.0)),
-            "end": timestamp(reviewed_time_to_source_time(639.0)),
+            "start": timestamp(subtitle_time_to_source_time(724.380)),
+            "end": timestamp(subtitle_time_to_source_time(728.960)),
             "text": "FDEが必要なプロダクトか",
             "file": str(overlay),
         }
@@ -234,7 +269,7 @@ def apply_reviewed_video_source_trim(state: dict[str, Any]) -> None:
         "startSeconds": REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS,
         "endSeconds": REVIEWED_VIDEO_SOURCE_END_CUT_SECONDS,
         "sourceDurationSeconds": round(master_duration, 6),
-        "reason": "Review was made against the derived file with the first 1m25s and last 20s removed.",
+        "reason": "Review was made against the derived file with the first 85.5s and last 20s removed.",
     }
 
 
@@ -270,7 +305,7 @@ def main() -> None:
     print(
         json.dumps(
             {
-                "subtitleCorrection": f"{OLD_TEXT} -> {NEW_TEXT}",
+                "subtitleCorrections": [f"{before} -> {after}" for before, after in SUBTITLE_TEXT_REPLACEMENTS],
                 "reviewedVideoSourceTrim": reviewed_trim,
                 "chapterTitles": str(REPORTS / "chapter_titles_from_full_transcript.json"),
                 "extraOverlay": str(manifest),

@@ -14,6 +14,10 @@ PUNCTUATION_REVIEW = REPORTS / "subtitle_punctuation_review.md"
 
 SUBTITLE_SOURCE_OFFSET = 8.7
 CHAPTER_TITLE_BOUNDARY_DELAY_SECONDS = 0.8
+CLOSEUP_COLOR_FILTER = (
+    "colorchannelmixer=rr=1.05133:gg=1.07804:bb=1.08616,"
+    "eq=brightness=0.0326:contrast=0.8660:saturation=0.8400"
+)
 OLD_TEXT = "ここのカスタマイズ"
 NEW_TEXT = "個々のカスタマイズ"
 SUBTITLE_TEXT_REPLACEMENTS = [
@@ -698,6 +702,13 @@ def update_project_state() -> None:
     render["naturalDialogueCuts"] = False
     render["closeupsOnlyWhenOnscreenSpeaker"] = False
     render["cameraCutAlignment"] = "subtitle-midpoints"
+    # Lock the close-up files to one correction. Auto sampling drifts between the
+    # split camera files and made the later close-ups visibly warmer.
+    render["colorMatchCameras"] = False
+    render["cameraExtraFilters"] = {
+        "camera4": CLOSEUP_COLOR_FILTER,
+        "camera5": CLOSEUP_COLOR_FILTER,
+    }
     style = state.setdefault("style", {})
     style["chapterTitlesEnabled"] = True
     style["chapterTitlesPath"] = str(REPORTS / "chapter_titles_from_full_transcript.json")

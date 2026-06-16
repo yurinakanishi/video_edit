@@ -301,7 +301,7 @@
   },
   "render": {
     "script": "render_app_interview.py",
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_185610.mp4",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_205159.mp4",
     "previewStart": 85.5,
     "previewDuration": 2862.9655,
     "subtitleMode": "full",
@@ -314,11 +314,12 @@
     "silenceNoise": "-30dB",
     "audioDenoise": true,
     "audioMastering": true,
-    "colorMatchCameras": true,
+    "colorMatchCameras": false,
     "colorMatchTemperature": true,
     "colorMatchTemperatureStrength": 0.65,
     "cameraExtraFilters": {
-      "camera5": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200"
+      "camera4": "colorchannelmixer=rr=1.05133:gg=1.07804:bb=1.08616,eq=brightness=0.0326:contrast=0.8660:saturation=0.8400",
+      "camera5": "colorchannelmixer=rr=1.05133:gg=1.07804:bb=1.08616,eq=brightness=0.0326:contrast=0.8660:saturation=0.8400"
     },
     "colorMatchSourceCoverageFallbacks": false,
     "sourceCoverageFallbackColorTargetRoles": [
@@ -342,8 +343,8 @@
     "globalVideoZoom": 1.2,
     "speed": "normal",
     "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\manual_camera_plan.json",
-    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_185610.mp4",
-    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_185610.mp4",
+    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_205159.mp4",
+    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_205159.mp4",
     "subtitlePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
     "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\20260529_141836_role_aware_full.ass",
     "subtitleBurnMode": "png-precomposed-when-long",

@@ -8,7 +8,7 @@
       "syncOffset": 0.0,
       "sourceLocalCoverage": [
         0.0,
-        2460.065
+        2455.445
       ]
     },
     {
@@ -48,7 +48,7 @@
       "syncOffset": -1125.41,
       "sourceLocalCoverage": [
         1039.91,
-        2460.065
+        2455.445
       ]
     }
   ],
@@ -61,120 +61,134 @@
       "reason": "outside source coverage"
     },
     {
-      "start": 873.42,
-      "end": 882.12,
+      "start": 869.06,
+      "end": 877.76,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 886.58,
-      "end": 896.52,
+      "start": 882.22,
+      "end": 892.16,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 931.38,
-      "end": 961.56,
+      "start": 896.48,
+      "end": 899.398,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 993.6,
-      "end": 1011.78,
+      "start": 931.54,
+      "end": 961.36,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1055.52,
-      "end": 1083.54,
+      "start": 993.48,
+      "end": 1007.42,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1015.62,
+      "end": 1016.8,
+      "fromRole": "camera4",
+      "toRole": "master",
+      "reason": "outside source coverage"
+    },
+    {
+      "start": 1055.5,
+      "end": 1083.58,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1083.54,
-      "end": 1121.79,
+      "start": 1083.58,
+      "end": 1121.91,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1121.79,
-      "end": 1125.42,
+      "start": 1121.91,
+      "end": 1125.44,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
       "start": 1181.44,
-      "end": 1215.02,
+      "end": 1210.66,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1291.42,
-      "end": 1316.078,
+      "start": 1291.44,
+      "end": 1316.318,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 2105.985,
-      "end": 2156.218,
+      "start": 2096.745,
+      "end": 2152.4,
       "fromRole": "camera5",
       "toRole": "camera5",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2156.218,
-      "end": 2201.14,
+      "start": 2152.4,
+      "end": 2196.52,
       "fromRole": "master",
       "toRole": "master",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2201.14,
-      "end": 2235.78,
+      "start": 2196.52,
+      "end": 2231.16,
       "fromRole": "camera5",
       "toRole": "camera5",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2235.78,
-      "end": 2241.18,
+      "start": 2231.16,
+      "end": 2236.56,
       "fromRole": "master",
       "toRole": "master",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2241.18,
-      "end": 2296.258,
+      "start": 2236.56,
+      "end": 2296.178,
       "fromRole": "camera5",
       "toRole": "camera5",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2296.258,
-      "end": 2328.098,
+      "start": 2296.178,
+      "end": 2328.178,
       "fromRole": "master",
       "toRole": "master",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2328.098,
-      "end": 2418.118,
+      "start": 2328.178,
+      "end": 2418.318,
       "fromRole": "camera5",
       "toRole": "camera5",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2418.118,
-      "end": 2460.065,
+      "start": 2418.318,
+      "end": 2455.445,
       "fromRole": "master",
       "toRole": "master",
       "reason": "no covered fallback source"

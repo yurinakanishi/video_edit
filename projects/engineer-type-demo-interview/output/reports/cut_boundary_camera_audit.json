@@ -1,0 +1,3913 @@
+{
+  "thresholds": {
+    "nearWindowSeconds": 1.5,
+    "alignToleranceSeconds": 0.06,
+    "shortSegmentSeconds": 1.5
+  },
+  "renderStart": 85.5,
+  "sourceDuration": 2862.9655,
+  "outputDuration": 2455.4455,
+  "cutCount": 16,
+  "cameraSegmentCount": 73,
+  "transitionCount": 62,
+  "cutBoundaries": [
+    {
+      "sourceStart": 290.7,
+      "sourceEnd": 293.3,
+      "outputTime": 205.2,
+      "outputTimeText": "03:25.20"
+    },
+    {
+      "sourceStart": 393.32,
+      "sourceEnd": 395.24,
+      "outputTime": 305.21999999999997,
+      "outputTimeText": "05:05.22"
+    },
+    {
+      "sourceStart": 412.42,
+      "sourceEnd": 414.36,
+      "outputTime": 322.4,
+      "outputTimeText": "05:22.40"
+    },
+    {
+      "sourceStart": 545.02,
+      "sourceEnd": 547.4,
+      "outputTime": 453.05999999999995,
+      "outputTimeText": "07:33.06"
+    },
+    {
+      "sourceStart": 763.28,
+      "sourceEnd": 920.62,
+      "outputTime": 668.9399999999999,
+      "outputTimeText": "11:08.94"
+    },
+    {
+      "sourceStart": 962.18,
+      "sourceEnd": 998.54,
+      "outputTime": 710.4999999999999,
+      "outputTimeText": "11:50.50"
+    },
+    {
+      "sourceStart": 1261.06,
+      "sourceEnd": 1262.34,
+      "outputTime": 973.0199999999999,
+      "outputTimeText": "16:13.02"
+    },
+    {
+      "sourceStart": 1449.98,
+      "sourceEnd": 1453.3999999999999,
+      "outputTime": 1160.6599999999999,
+      "outputTimeText": "19:20.66"
+    },
+    {
+      "sourceStart": 1503.22,
+      "sourceEnd": 1536.68,
+      "outputTime": 1210.48,
+      "outputTimeText": "20:10.48"
+    },
+    {
+      "sourceStart": 1738.28,
+      "sourceEnd": 1739.78,
+      "outputTime": 1412.08,
+      "outputTimeText": "23:32.08"
+    },
+    {
+      "sourceStart": 1799.7,
+      "sourceEnd": 1801.68,
+      "outputTime": 1472.0,
+      "outputTimeText": "24:32.00"
+    },
+    {
+      "sourceStart": 2014.9199999999998,
+      "sourceEnd": 2016.1399999999999,
+      "outputTime": 1685.2399999999998,
+      "outputTimeText": "28:05.24"
+    },
+    {
+      "sourceStart": 2182.6000000000004,
+      "sourceEnd": 2184.3,
+      "outputTime": 1851.7000000000003,
+      "outputTimeText": "30:51.70"
+    },
+    {
+      "sourceStart": 2220.86,
+      "sourceEnd": 2332.46,
+      "outputTime": 1888.2600000000002,
+      "outputTimeText": "31:28.26"
+    },
+    {
+      "sourceStart": 2626.1800000000003,
+      "sourceEnd": 2672.5600000000004,
+      "outputTime": 2181.9800000000005,
+      "outputTimeText": "36:21.98"
+    },
+    {
+      "sourceStart": 2803.76,
+      "sourceEnd": 2806.2000000000003,
+      "outputTime": 2313.1800000000003,
+      "outputTimeText": "38:33.18"
+    }
+  ],
+  "shortCameraSegmentsNearCuts": [],
+  "cameraTransitionsNearCutsButNotAligned": [],
+  "clusteredCameraTransitionsNearCuts": [],
+  "rendererReports": {
+    "naturalDialogue": {
+      "enabled": true,
+      "audio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
+      "items": [
+        {
+          "plannedAudioTime": 126.2,
+          "chosenAudioTime": 126.23,
+          "shiftSeconds": 0.03,
+          "rms": 0.00422704,
+          "searchStart": 125.95,
+          "searchEnd": 126.28,
+          "boundary": 0,
+          "fromRole": "master",
+          "toRole": "camera2",
+          "planned": 32.0,
+          "chosen": 32.03,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 150.2,
+          "chosenAudioTime": 149.99,
+          "shiftSeconds": -0.21,
+          "rms": 0.00102903,
+          "searchStart": 149.95,
+          "searchEnd": 150.28,
+          "boundary": 1,
+          "fromRole": "camera2",
+          "toRole": "camera4",
+          "planned": 56.0,
+          "chosen": 55.79,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 188.2,
+          "chosenAudioTime": 188.09,
+          "shiftSeconds": -0.11,
+          "rms": 0.00197534,
+          "searchStart": 187.95,
+          "searchEnd": 188.28,
+          "boundary": 2,
+          "fromRole": "camera4",
+          "toRole": "camera2",
+          "planned": 94.0,
+          "chosen": 93.89,
+          "outputShiftSeconds": -0.11
+        },
+        {
+          "plannedAudioTime": 216.2,
+          "chosenAudioTime": 216.17,
+          "shiftSeconds": -0.03,
+          "rms": 0.00514089,
+          "searchStart": 215.95,
+          "searchEnd": 216.28,
+          "boundary": 3,
+          "fromRole": "camera2",
+          "toRole": "master",
+          "planned": 122.0,
+          "chosen": 121.97,
+          "outputShiftSeconds": -0.03
+        },
+        {
+          "plannedAudioTime": 260.2,
+          "chosenAudioTime": 260.03,
+          "shiftSeconds": -0.17,
+          "rms": 0.0059342,
+          "searchStart": 259.95,
+          "searchEnd": 260.28,
+          "boundary": 4,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 166.0,
+          "chosen": 165.83,
+          "outputShiftSeconds": -0.17
+        },
+        {
+          "plannedAudioTime": 290.2,
+          "chosenAudioTime": 290.15,
+          "shiftSeconds": -0.05,
+          "rms": 0.00600637,
+          "searchStart": 289.95,
+          "searchEnd": 290.28,
+          "boundary": 5,
+          "fromRole": "camera4",
+          "toRole": "camera2",
+          "planned": 196.0,
+          "chosen": 195.95,
+          "outputShiftSeconds": -0.05
+        },
+        {
+          "plannedAudioTime": 324.8,
+          "chosenAudioTime": 324.59,
+          "shiftSeconds": -0.21,
+          "rms": 0.01706152,
+          "searchStart": 324.55,
+          "searchEnd": 324.88,
+          "boundary": 6,
+          "fromRole": "camera2",
+          "toRole": "camera4",
+          "planned": 228.0,
+          "chosen": 227.79,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 348.8,
+          "chosenAudioTime": 348.59,
+          "shiftSeconds": -0.21,
+          "rms": 0.0087523,
+          "searchStart": 348.55,
+          "searchEnd": 348.88,
+          "boundary": 7,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 252.0,
+          "chosen": 251.79,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 386.8,
+          "chosenAudioTime": 386.81,
+          "shiftSeconds": 0.01,
+          "rms": 0.00154895,
+          "searchStart": 386.55,
+          "searchEnd": 386.88,
+          "boundary": 8,
+          "fromRole": "master",
+          "toRole": "camera2",
+          "planned": 290.0,
+          "chosen": 290.01,
+          "outputShiftSeconds": 0.01
+        },
+        {
+          "plannedAudioTime": 416.72,
+          "chosenAudioTime": 416.63,
+          "shiftSeconds": -0.09,
+          "rms": 0.00158069,
+          "searchStart": 416.47,
+          "searchEnd": 416.8,
+          "boundary": 9,
+          "fromRole": "camera2",
+          "toRole": "camera4",
+          "planned": 318.0,
+          "chosen": 317.91,
+          "outputShiftSeconds": -0.09
+        },
+        {
+          "plannedAudioTime": 462.66,
+          "chosenAudioTime": 462.67,
+          "shiftSeconds": 0.01,
+          "rms": 0.00098496,
+          "searchStart": 462.41,
+          "searchEnd": 462.74,
+          "boundary": 10,
+          "fromRole": "camera4",
+          "toRole": "camera2",
+          "planned": 362.0,
+          "chosen": 362.01,
+          "outputShiftSeconds": 0.01
+        },
+        {
+          "plannedAudioTime": 492.66,
+          "chosenAudioTime": 492.45,
+          "shiftSeconds": -0.21,
+          "rms": 0.02435059,
+          "searchStart": 492.41,
+          "searchEnd": 492.74,
+          "boundary": 11,
+          "fromRole": "camera2",
+          "toRole": "master",
+          "planned": 392.0,
+          "chosen": 391.79,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 524.66,
+          "chosenAudioTime": 524.59,
+          "shiftSeconds": -0.07,
+          "rms": 0.0199841,
+          "searchStart": 524.41,
+          "searchEnd": 524.74,
+          "boundary": 12,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 424.0,
+          "chosen": 423.93,
+          "outputShiftSeconds": -0.07
+        },
+        {
+          "plannedAudioTime": 548.66,
+          "chosenAudioTime": 548.59,
+          "shiftSeconds": -0.07,
+          "rms": 0.00433364,
+          "searchStart": 548.41,
+          "searchEnd": 548.74,
+          "boundary": 13,
+          "fromRole": "camera4",
+          "toRole": "camera2",
+          "planned": 448.0,
+          "chosen": 447.93,
+          "outputShiftSeconds": -0.07
+        },
+        {
+          "plannedAudioTime": 589.04,
+          "chosenAudioTime": 588.85,
+          "shiftSeconds": -0.19,
+          "rms": 0.0081782,
+          "searchStart": 588.79,
+          "searchEnd": 589.12,
+          "boundary": 14,
+          "fromRole": "camera2",
+          "toRole": "camera4",
+          "planned": 486.0,
+          "chosen": 485.81,
+          "outputShiftSeconds": -0.19
+        },
+        {
+          "plannedAudioTime": 617.04,
+          "chosenAudioTime": 617.03,
+          "shiftSeconds": -0.01,
+          "rms": 0.00403499,
+          "searchStart": 616.79,
+          "searchEnd": 617.12,
+          "boundary": 15,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 514.0,
+          "chosen": 513.99,
+          "outputShiftSeconds": -0.01
+        },
+        {
+          "plannedAudioTime": 654.408,
+          "chosenAudioTime": 654.258,
+          "shiftSeconds": -0.15,
+          "rms": 0.00402591,
+          "searchStart": 654.158,
+          "searchEnd": 654.488,
+          "boundary": 16,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 551.368,
+          "chosen": 551.218,
+          "outputShiftSeconds": -0.15
+        },
+        {
+          "plannedAudioTime": 740.408,
+          "chosenAudioTime": 740.358,
+          "shiftSeconds": -0.05,
+          "rms": 0.00583639,
+          "searchStart": 740.158,
+          "searchEnd": 740.488,
+          "boundary": 17,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 637.368,
+          "chosen": 637.318,
+          "outputShiftSeconds": -0.05
+        },
+        {
+          "plannedAudioTime": 935.748,
+          "chosenAudioTime": 935.758,
+          "shiftSeconds": 0.01,
+          "rms": 0.00765412,
+          "searchStart": 935.498,
+          "searchEnd": 935.828,
+          "boundary": 18,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 675.368,
+          "chosen": 675.378,
+          "outputShiftSeconds": 0.01
+        },
+        {
+          "plannedAudioTime": 1074.108,
+          "chosenAudioTime": 1074.038,
+          "shiftSeconds": -0.07,
+          "rms": 0.0016931,
+          "searchStart": 1073.858,
+          "searchEnd": 1074.188,
+          "boundary": 19,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 777.368,
+          "chosen": 777.298,
+          "outputShiftSeconds": -0.07
+        },
+        {
+          "plannedAudioTime": 1106.108,
+          "chosenAudioTime": 1105.918,
+          "shiftSeconds": -0.19,
+          "rms": 0.00185879,
+          "searchStart": 1105.858,
+          "searchEnd": 1106.188,
+          "boundary": 20,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 809.368,
+          "chosen": 809.178,
+          "outputShiftSeconds": -0.19
+        },
+        {
+          "plannedAudioTime": 1196.108,
+          "chosenAudioTime": 1196.138,
+          "shiftSeconds": 0.03,
+          "rms": 0.00113985,
+          "searchStart": 1195.858,
+          "searchEnd": 1196.188,
+          "boundary": 21,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 899.368,
+          "chosen": 899.398,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 1228.31,
+          "chosenAudioTime": 1228.28,
+          "shiftSeconds": -0.03,
+          "rms": 0.00518804,
+          "searchStart": 1228.06,
+          "searchEnd": 1228.39,
+          "boundary": 22,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 931.57,
+          "chosen": 931.54,
+          "outputShiftSeconds": -0.03
+        },
+        {
+          "plannedAudioTime": 1258.31,
+          "chosenAudioTime": 1258.1,
+          "shiftSeconds": -0.21,
+          "rms": 0.00353077,
+          "searchStart": 1258.06,
+          "searchEnd": 1258.39,
+          "boundary": 23,
+          "fromRole": "camera4",
+          "toRole": "camera3",
+          "planned": 961.57,
+          "chosen": 961.36,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 1291.59,
+          "chosenAudioTime": 1291.5,
+          "shiftSeconds": -0.09,
+          "rms": 0.00400739,
+          "searchStart": 1291.34,
+          "searchEnd": 1291.67,
+          "boundary": 24,
+          "fromRole": "camera3",
+          "toRole": "camera4",
+          "planned": 993.57,
+          "chosen": 993.48,
+          "outputShiftSeconds": -0.09
+        },
+        {
+          "plannedAudioTime": 1315.59,
+          "chosenAudioTime": 1315.56,
+          "shiftSeconds": -0.03,
+          "rms": 0.00100427,
+          "searchStart": 1315.34,
+          "searchEnd": 1315.67,
+          "boundary": 25,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 1017.57,
+          "chosen": 1017.54,
+          "outputShiftSeconds": -0.03
+        },
+        {
+          "plannedAudioTime": 1353.59,
+          "chosenAudioTime": 1353.52,
+          "shiftSeconds": -0.07,
+          "rms": 0.00672372,
+          "searchStart": 1353.34,
+          "searchEnd": 1353.67,
+          "boundary": 26,
+          "fromRole": "master",
+          "toRole": "camera3",
+          "planned": 1055.57,
+          "chosen": 1055.5,
+          "outputShiftSeconds": -0.07
+        },
+        {
+          "plannedAudioTime": 1381.59,
+          "chosenAudioTime": 1381.6,
+          "shiftSeconds": 0.01,
+          "rms": 0.00131365,
+          "searchStart": 1381.34,
+          "searchEnd": 1381.67,
+          "boundary": 27,
+          "fromRole": "camera3",
+          "toRole": "camera4",
+          "planned": 1083.57,
+          "chosen": 1083.58,
+          "outputShiftSeconds": 0.01
+        },
+        {
+          "plannedAudioTime": 1419.96,
+          "chosenAudioTime": 1419.93,
+          "shiftSeconds": -0.03,
+          "rms": 0.00193446,
+          "searchStart": 1419.71,
+          "searchEnd": 1420.04,
+          "boundary": 28,
+          "fromRole": "camera4",
+          "toRole": "camera3",
+          "planned": 1121.94,
+          "chosen": 1121.91,
+          "outputShiftSeconds": -0.03
+        },
+        {
+          "plannedAudioTime": 1423.43,
+          "chosenAudioTime": 1423.46,
+          "shiftSeconds": 0.03,
+          "rms": 0.01494015,
+          "searchStart": 1423.18,
+          "searchEnd": 1423.51,
+          "boundary": 29,
+          "fromRole": "camera3",
+          "toRole": "master",
+          "planned": 1125.41,
+          "chosen": 1125.44,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 1455.43,
+          "chosenAudioTime": 1455.34,
+          "shiftSeconds": -0.09,
+          "rms": 0.0022987,
+          "searchStart": 1455.18,
+          "searchEnd": 1455.51,
+          "boundary": 30,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1157.41,
+          "chosen": 1157.32,
+          "outputShiftSeconds": -0.09
+        },
+        {
+          "plannedAudioTime": 1482.85,
+          "chosenAudioTime": 1482.88,
+          "shiftSeconds": 0.03,
+          "rms": 0.00750523,
+          "searchStart": 1482.6,
+          "searchEnd": 1482.93,
+          "boundary": 31,
+          "fromRole": "camera5",
+          "toRole": "camera3",
+          "planned": 1181.41,
+          "chosen": 1181.44,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 1554.31,
+          "chosenAudioTime": 1554.26,
+          "shiftSeconds": -0.05,
+          "rms": 0.00968232,
+          "searchStart": 1554.06,
+          "searchEnd": 1554.39,
+          "boundary": 32,
+          "fromRole": "camera3",
+          "toRole": "camera5",
+          "planned": 1219.41,
+          "chosen": 1219.36,
+          "outputShiftSeconds": -0.05
+        },
+        {
+          "plannedAudioTime": 1582.31,
+          "chosenAudioTime": 1582.32,
+          "shiftSeconds": 0.01,
+          "rms": 0.00310109,
+          "searchStart": 1582.06,
+          "searchEnd": 1582.39,
+          "boundary": 33,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1247.41,
+          "chosen": 1247.42,
+          "outputShiftSeconds": 0.01
+        },
+        {
+          "plannedAudioTime": 1626.31,
+          "chosenAudioTime": 1626.34,
+          "shiftSeconds": 0.03,
+          "rms": 0.00317139,
+          "searchStart": 1626.06,
+          "searchEnd": 1626.39,
+          "boundary": 34,
+          "fromRole": "master",
+          "toRole": "camera3",
+          "planned": 1291.41,
+          "chosen": 1291.44,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 1651.188,
+          "chosenAudioTime": 1651.218,
+          "shiftSeconds": 0.03,
+          "rms": 0.00331971,
+          "searchStart": 1650.938,
+          "searchEnd": 1651.268,
+          "boundary": 35,
+          "fromRole": "camera3",
+          "toRole": "camera5",
+          "planned": 1316.288,
+          "chosen": 1316.318,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 1707.188,
+          "chosenAudioTime": 1707.098,
+          "shiftSeconds": -0.09,
+          "rms": 0.00337543,
+          "searchStart": 1706.938,
+          "searchEnd": 1707.268,
+          "boundary": 36,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1372.288,
+          "chosen": 1372.198,
+          "outputShiftSeconds": -0.09
+        },
+        {
+          "plannedAudioTime": 1745.188,
+          "chosenAudioTime": 1745.138,
+          "shiftSeconds": -0.05,
+          "rms": 0.00179217,
+          "searchStart": 1744.938,
+          "searchEnd": 1745.268,
+          "boundary": 37,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1410.288,
+          "chosen": 1410.238,
+          "outputShiftSeconds": -0.05
+        },
+        {
+          "plannedAudioTime": 1850.668,
+          "chosenAudioTime": 1850.498,
+          "shiftSeconds": -0.17,
+          "rms": 0.00825073,
+          "searchStart": 1850.418,
+          "searchEnd": 1850.748,
+          "boundary": 38,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1512.288,
+          "chosen": 1512.118,
+          "outputShiftSeconds": -0.17
+        },
+        {
+          "plannedAudioTime": 1882.668,
+          "chosenAudioTime": 1882.538,
+          "shiftSeconds": -0.13,
+          "rms": 0.01169661,
+          "searchStart": 1882.418,
+          "searchEnd": 1882.748,
+          "boundary": 39,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1544.288,
+          "chosen": 1544.158,
+          "outputShiftSeconds": -0.13
+        },
+        {
+          "plannedAudioTime": 1972.668,
+          "chosenAudioTime": 1972.698,
+          "shiftSeconds": 0.03,
+          "rms": 0.00809858,
+          "searchStart": 1972.418,
+          "searchEnd": 1972.748,
+          "boundary": 40,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1634.288,
+          "chosen": 1634.318,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 2016.668,
+          "chosenAudioTime": 2016.698,
+          "shiftSeconds": 0.03,
+          "rms": 0.00133609,
+          "searchStart": 2016.418,
+          "searchEnd": 2016.748,
+          "boundary": 41,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1678.288,
+          "chosen": 1678.318,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 2103.888,
+          "chosenAudioTime": 2103.878,
+          "shiftSeconds": -0.01,
+          "rms": 0.00572956,
+          "searchStart": 2103.638,
+          "searchEnd": 2103.968,
+          "boundary": 42,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1764.288,
+          "chosen": 1764.278,
+          "outputShiftSeconds": -0.01
+        },
+        {
+          "plannedAudioTime": 2141.888,
+          "chosenAudioTime": 2141.898,
+          "shiftSeconds": 0.01,
+          "rms": 0.00130181,
+          "searchStart": 2141.638,
+          "searchEnd": 2141.968,
+          "boundary": 43,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1802.288,
+          "chosen": 1802.298,
+          "outputShiftSeconds": 0.01
+        },
+        {
+          "plannedAudioTime": 2357.188,
+          "chosenAudioTime": 2357.218,
+          "shiftSeconds": 0.03,
+          "rms": 0.00098606,
+          "searchStart": 2356.938,
+          "searchEnd": 2357.268,
+          "boundary": 44,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1904.288,
+          "chosen": 1904.318,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 2389.188,
+          "chosenAudioTime": 2389.218,
+          "shiftSeconds": 0.03,
+          "rms": 0.00199092,
+          "searchStart": 2388.938,
+          "searchEnd": 2389.268,
+          "boundary": 45,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1936.288,
+          "chosen": 1936.318,
+          "outputShiftSeconds": 0.03
+        },
+        {
+          "plannedAudioTime": 2479.188,
+          "chosenAudioTime": 2479.158,
+          "shiftSeconds": -0.03,
+          "rms": 0.00326908,
+          "searchStart": 2478.938,
+          "searchEnd": 2479.268,
+          "boundary": 46,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2026.288,
+          "chosen": 2026.258,
+          "outputShiftSeconds": -0.03
+        },
+        {
+          "plannedAudioTime": 2523.188,
+          "chosenAudioTime": 2522.978,
+          "shiftSeconds": -0.21,
+          "rms": 0.00361303,
+          "searchStart": 2522.938,
+          "searchEnd": 2523.268,
+          "boundary": 47,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 2070.288,
+          "chosen": 2070.078,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 2609.188,
+          "chosenAudioTime": 2608.978,
+          "shiftSeconds": -0.21,
+          "rms": 0.00935454,
+          "searchStart": 2608.938,
+          "searchEnd": 2609.268,
+          "boundary": 48,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2156.288,
+          "chosen": 2156.078,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 2693.568,
+          "chosenAudioTime": 2693.358,
+          "shiftSeconds": -0.21,
+          "rms": 0.00377549,
+          "searchStart": 2693.318,
+          "searchEnd": 2693.648,
+          "boundary": 49,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 2194.288,
+          "chosen": 2194.078,
+          "outputShiftSeconds": -0.21
+        },
+        {
+          "plannedAudioTime": 2795.568,
+          "chosenAudioTime": 2795.458,
+          "shiftSeconds": -0.11,
+          "rms": 0.00737535,
+          "searchStart": 2795.318,
+          "searchEnd": 2795.648,
+          "boundary": 50,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2296.288,
+          "chosen": 2296.178,
+          "outputShiftSeconds": -0.11
+        },
+        {
+          "plannedAudioTime": 2830.008,
+          "chosenAudioTime": 2829.898,
+          "shiftSeconds": -0.11,
+          "rms": 0.00742415,
+          "searchStart": 2829.758,
+          "searchEnd": 2830.088,
+          "boundary": 51,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 2328.288,
+          "chosen": 2328.178,
+          "outputShiftSeconds": -0.11
+        },
+        {
+          "plannedAudioTime": 2920.008,
+          "chosenAudioTime": 2920.038,
+          "shiftSeconds": 0.03,
+          "rms": 0.01403621,
+          "searchStart": 2919.758,
+          "searchEnd": 2920.088,
+          "boundary": 52,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2418.288,
+          "chosen": 2418.318,
+          "outputShiftSeconds": 0.03
+        }
+      ]
+    },
+    "onscreenCloseup": {
+      "enabled": true,
+      "changed": true,
+      "inputSegments": 54,
+      "outputSegments": 99,
+      "onscreenSpeechRanges": [
+        {
+          "start": 25.6,
+          "end": 192.46
+        },
+        {
+          "start": 197.86,
+          "end": 205.38
+        },
+        {
+          "start": 235.22,
+          "end": 240.7
+        },
+        {
+          "start": 250.28,
+          "end": 276.68
+        },
+        {
+          "start": 283.04,
+          "end": 305.4
+        },
+        {
+          "start": 310.06,
+          "end": 322.58
+        },
+        {
+          "start": 339.6,
+          "end": 382.7
+        },
+        {
+          "start": 395.34,
+          "end": 396.7
+        },
+        {
+          "start": 398.34,
+          "end": 407.7
+        },
+        {
+          "start": 427.88,
+          "end": 453.24
+        },
+        {
+          "start": 481.38,
+          "end": 573.88
+        },
+        {
+          "start": 577.12,
+          "end": 579.04
+        },
+        {
+          "start": 615.9,
+          "end": 684.16
+        },
+        {
+          "start": 689.12,
+          "end": 710.68
+        },
+        {
+          "start": 752.3,
+          "end": 786.62
+        },
+        {
+          "start": 788.4,
+          "end": 802.28
+        },
+        {
+          "start": 806.78,
+          "end": 830.8
+        },
+        {
+          "start": 869.06,
+          "end": 877.76
+        },
+        {
+          "start": 882.22,
+          "end": 892.16
+        },
+        {
+          "start": 896.48,
+          "end": 973.2
+        },
+        {
+          "start": 985.02,
+          "end": 1007.42
+        },
+        {
+          "start": 1015.62,
+          "end": 1016.8
+        },
+        {
+          "start": 1031.4,
+          "end": 1155.88
+        },
+        {
+          "start": 1160.48,
+          "end": 1210.66
+        },
+        {
+          "start": 1221.76,
+          "end": 1412.26
+        },
+        {
+          "start": 1426.68,
+          "end": 1472.18
+        },
+        {
+          "start": 1476.08,
+          "end": 1685.08
+        },
+        {
+          "start": 1717.16,
+          "end": 1784.18
+        },
+        {
+          "start": 1798.42,
+          "end": 1818.84
+        },
+        {
+          "start": 1829.04,
+          "end": 1832.12
+        },
+        {
+          "start": 1848.1,
+          "end": 1851.88
+        },
+        {
+          "start": 1863.62,
+          "end": 1870.12
+        },
+        {
+          "start": 1876.6,
+          "end": 1880.78
+        },
+        {
+          "start": 1930.22,
+          "end": 2152.4
+        },
+        {
+          "start": 2168.86,
+          "end": 2182.16
+        },
+        {
+          "start": 2196.52,
+          "end": 2231.16
+        },
+        {
+          "start": 2236.56,
+          "end": 2313.36
+        },
+        {
+          "start": 2318.4,
+          "end": 2432.56
+        },
+        {
+          "start": 2442.18,
+          "end": 2447.36
+        }
+      ],
+      "replacedCloseupGaps": [
+        {
+          "role": "camera4",
+          "start": 192.46,
+          "end": 195.95
+        },
+        {
+          "role": "camera2",
+          "start": 195.95,
+          "end": 197.86
+        },
+        {
+          "role": "camera2",
+          "start": 205.38,
+          "end": 227.79
+        },
+        {
+          "role": "camera4",
+          "start": 227.79,
+          "end": 235.22
+        },
+        {
+          "role": "camera4",
+          "start": 240.7,
+          "end": 250.28
+        },
+        {
+          "role": "camera2",
+          "start": 305.4,
+          "end": 310.06
+        },
+        {
+          "role": "camera4",
+          "start": 322.58,
+          "end": 339.6
+        },
+        {
+          "role": "camera2",
+          "start": 382.7,
+          "end": 391.79
+        },
+        {
+          "role": "camera4",
+          "start": 423.93,
+          "end": 427.88
+        },
+        {
+          "role": "camera2",
+          "start": 453.24,
+          "end": 481.38
+        },
+        {
+          "role": "camera4",
+          "start": 573.88,
+          "end": 577.12
+        },
+        {
+          "role": "camera4",
+          "start": 579.04,
+          "end": 615.9
+        },
+        {
+          "role": "camera4",
+          "start": 684.16,
+          "end": 689.12
+        },
+        {
+          "role": "camera4",
+          "start": 710.68,
+          "end": 752.3
+        },
+        {
+          "role": "camera4",
+          "start": 830.8,
+          "end": 869.06
+        },
+        {
+          "role": "camera4",
+          "start": 877.76,
+          "end": 882.22
+        },
+        {
+          "role": "camera4",
+          "start": 892.16,
+          "end": 896.48
+        },
+        {
+          "role": "camera3",
+          "start": 973.2,
+          "end": 985.02
+        },
+        {
+          "role": "camera4",
+          "start": 1007.42,
+          "end": 1015.62
+        },
+        {
+          "role": "camera4",
+          "start": 1016.8,
+          "end": 1017.54
+        },
+        {
+          "role": "camera5",
+          "start": 1157.32,
+          "end": 1160.48
+        },
+        {
+          "role": "camera3",
+          "start": 1210.66,
+          "end": 1219.36
+        },
+        {
+          "role": "camera5",
+          "start": 1219.36,
+          "end": 1221.76
+        },
+        {
+          "role": "camera5",
+          "start": 1412.26,
+          "end": 1426.68
+        },
+        {
+          "role": "camera5",
+          "start": 1472.18,
+          "end": 1476.08
+        },
+        {
+          "role": "camera5",
+          "start": 1685.08,
+          "end": 1717.16
+        },
+        {
+          "role": "camera5",
+          "start": 1818.84,
+          "end": 1829.04
+        },
+        {
+          "role": "camera5",
+          "start": 1832.12,
+          "end": 1848.1
+        },
+        {
+          "role": "camera5",
+          "start": 1851.88,
+          "end": 1863.62
+        },
+        {
+          "role": "camera5",
+          "start": 1870.12,
+          "end": 1876.6
+        },
+        {
+          "role": "camera5",
+          "start": 1880.78,
+          "end": 1904.318
+        },
+        {
+          "role": "camera5",
+          "start": 2152.4,
+          "end": 2156.078
+        },
+        {
+          "role": "camera5",
+          "start": 2194.078,
+          "end": 2196.52
+        },
+        {
+          "role": "camera5",
+          "start": 2231.16,
+          "end": 2236.56
+        }
+      ]
+    },
+    "sourceCoverage": {
+      "enabled": true,
+      "items": [
+        {
+          "role": "master",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+          "duration": 2968.465,
+          "syncOffset": 0.0,
+          "sourceLocalCoverage": [
+            0.0,
+            2455.445
+          ]
+        },
+        {
+          "role": "camera2",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+          "duration": 568.568,
+          "syncOffset": 17.2,
+          "sourceLocalCoverage": [
+            0.0,
+            465.868
+          ]
+        },
+        {
+          "role": "camera3",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+          "duration": 384.718,
+          "syncOffset": -931.57,
+          "sourceLocalCoverage": [
+            846.07,
+            1230.788
+          ]
+        },
+        {
+          "role": "camera4",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
+          "duration": 1124.89,
+          "syncOffset": 2.95,
+          "sourceLocalCoverage": [
+            0.0,
+            1036.44
+          ]
+        },
+        {
+          "role": "camera5",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
+          "duration": 1799.164,
+          "syncOffset": -1125.41,
+          "sourceLocalCoverage": [
+            1039.91,
+            2455.445
+          ]
+        }
+      ],
+      "adjustments": [
+        {
+          "start": 481.38,
+          "end": 485.81,
+          "fromRole": "camera2",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 869.06,
+          "end": 877.76,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 882.22,
+          "end": 892.16,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 896.48,
+          "end": 899.398,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 931.54,
+          "end": 961.36,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 993.48,
+          "end": 1007.42,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 1015.62,
+          "end": 1016.8,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 1055.5,
+          "end": 1083.58,
+          "fromRole": "camera3",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 1083.58,
+          "end": 1121.91,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 1121.91,
+          "end": 1125.44,
+          "fromRole": "camera3",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 1181.44,
+          "end": 1210.66,
+          "fromRole": "camera3",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 1291.44,
+          "end": 1316.318,
+          "fromRole": "camera3",
+          "toRole": "master",
+          "reason": "outside source coverage"
+        },
+        {
+          "start": 2096.745,
+          "end": 2152.4,
+          "fromRole": "camera5",
+          "toRole": "camera5",
+          "reason": "no covered fallback source"
+        },
+        {
+          "start": 2152.4,
+          "end": 2196.52,
+          "fromRole": "master",
+          "toRole": "master",
+          "reason": "no covered fallback source"
+        },
+        {
+          "start": 2196.52,
+          "end": 2231.16,
+          "fromRole": "camera5",
+          "toRole": "camera5",
+          "reason": "no covered fallback source"
+        },
+        {
+          "start": 2231.16,
+          "end": 2236.56,
+          "fromRole": "master",
+          "toRole": "master",
+          "reason": "no covered fallback source"
+        },
+        {
+          "start": 2236.56,
+          "end": 2296.178,
+          "fromRole": "camera5",
+          "toRole": "camera5",
+          "reason": "no covered fallback source"
+        },
+        {
+          "start": 2296.178,
+          "end": 2328.178,
+          "fromRole": "master",
+          "toRole": "master",
+          "reason": "no covered fallback source"
+        },
+        {
+          "start": 2328.178,
+          "end": 2418.318,
+          "fromRole": "camera5",
+          "toRole": "camera5",
+          "reason": "no covered fallback source"
+        },
+        {
+          "start": 2418.318,
+          "end": 2455.445,
+          "fromRole": "master",
+          "toRole": "master",
+          "reason": "no covered fallback source"
+        }
+      ],
+      "changed": true
+    },
+    "externalAudioSync": {
+      "enabled": true,
+      "externalAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
+      "audioRole": "external",
+      "thresholds": {
+        "minScore": 0.45,
+        "maxShiftSeconds": 0.22,
+        "minSegmentSeconds": 1.5,
+        "probeDurationSeconds": 4.0,
+        "searchRadiusSeconds": 0.75,
+        "maxProbes": 2
+      },
+      "items": [
+        {
+          "role": "master",
+          "start": 0.0,
+          "end": 32.03,
+          "duration": 32.03,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera2",
+          "start": 32.03,
+          "end": 55.79,
+          "duration": 23.76,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.4132,
+              "shiftSeconds": 0.2,
+              "cameraStart": 140.571,
+              "externalStart": 132.071,
+              "matchedExternalStart": 132.271,
+              "outputTime": 39.871,
+              "cameraCenter": 142.571,
+              "externalCenter": 134.071
+            },
+            {
+              "passed": true,
+              "score": 0.0627,
+              "shiftSeconds": -0.725,
+              "cameraStart": 148.649,
+              "externalStart": 140.149,
+              "matchedExternalStart": 139.424,
+              "outputTime": 47.949,
+              "cameraCenter": 150.649,
+              "externalCenter": 142.149
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.0627
+        },
+        {
+          "role": "camera4",
+          "start": 55.79,
+          "end": 93.89,
+          "duration": 38.1,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8606,
+              "shiftSeconds": -0.025,
+              "cameraStart": 154.813,
+              "externalStart": 160.563,
+              "matchedExternalStart": 160.538,
+              "outputTime": 68.363,
+              "cameraCenter": 156.813,
+              "externalCenter": 162.563
+            },
+            {
+              "passed": true,
+              "score": 0.9352,
+              "shiftSeconds": -0.025,
+              "cameraStart": 167.767,
+              "externalStart": 173.517,
+              "matchedExternalStart": 173.492,
+              "outputTime": 81.317,
+              "cameraCenter": 169.767,
+              "externalCenter": 175.517
+            }
+          ],
+          "minScore": 0.8606,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "camera2",
+          "start": 93.89,
+          "end": 121.97,
+          "duration": 28.08,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.1464,
+              "shiftSeconds": -0.425,
+              "cameraStart": 203.856,
+              "externalStart": 195.356,
+              "matchedExternalStart": 194.931,
+              "outputTime": 103.156,
+              "cameraCenter": 205.856,
+              "externalCenter": 197.356
+            },
+            {
+              "passed": true,
+              "score": 0.528,
+              "shiftSeconds": 0.275,
+              "cameraStart": 213.404,
+              "externalStart": 204.904,
+              "matchedExternalStart": 205.179,
+              "outputTime": 112.704,
+              "cameraCenter": 215.404,
+              "externalCenter": 206.904
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.1464
+        },
+        {
+          "role": "master",
+          "start": 121.97,
+          "end": 165.83,
+          "duration": 43.86,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 165.83,
+          "end": 192.46,
+          "duration": 26.63,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9483,
+              "shiftSeconds": -0.025,
+              "cameraStart": 261.068,
+              "externalStart": 266.818,
+              "matchedExternalStart": 266.793,
+              "outputTime": 174.618,
+              "cameraCenter": 263.068,
+              "externalCenter": 268.818
+            },
+            {
+              "passed": true,
+              "score": 0.9375,
+              "shiftSeconds": -0.025,
+              "cameraStart": 270.122,
+              "externalStart": 275.872,
+              "matchedExternalStart": 275.847,
+              "outputTime": 183.672,
+              "cameraCenter": 272.122,
+              "externalCenter": 277.872
+            }
+          ],
+          "minScore": 0.9375,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 192.46,
+          "end": 197.86,
+          "duration": 5.4,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera2",
+          "start": 197.86,
+          "end": 205.38,
+          "duration": 7.52,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.3093,
+              "shiftSeconds": 0.35,
+              "cameraStart": 302.32,
+              "externalStart": 293.82,
+              "matchedExternalStart": 294.17,
+              "outputTime": 201.62,
+              "cameraCenter": 304.32,
+              "externalCenter": 295.82
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.3093
+        },
+        {
+          "role": "master",
+          "start": 205.38,
+          "end": 235.22,
+          "duration": 29.84,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 235.22,
+          "end": 240.7,
+          "duration": 5.48,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9545,
+              "shiftSeconds": -0.025,
+              "cameraStart": 327.01,
+              "externalStart": 332.76,
+              "matchedExternalStart": 332.735,
+              "outputTime": 237.96,
+              "cameraCenter": 329.01,
+              "externalCenter": 334.76
+            }
+          ],
+          "minScore": 0.9545,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 240.7,
+          "end": 250.28,
+          "duration": 9.58,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 250.28,
+          "end": 251.79,
+          "duration": 1.51,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9815,
+              "shiftSeconds": -0.025,
+              "cameraStart": 341.38,
+              "externalStart": 347.13,
+              "matchedExternalStart": 347.105,
+              "outputTime": 251.035,
+              "cameraCenter": 342.085,
+              "externalCenter": 347.835
+            }
+          ],
+          "minScore": 0.9815,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 251.79,
+          "end": 290.01,
+          "duration": 38.22,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera2",
+          "start": 290.01,
+          "end": 305.4,
+          "duration": 15.39,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.3628,
+              "shiftSeconds": -0.175,
+              "cameraStart": 398.389,
+              "externalStart": 389.889,
+              "matchedExternalStart": 389.714,
+              "outputTime": 295.089,
+              "cameraCenter": 400.389,
+              "externalCenter": 391.889
+            },
+            {
+              "passed": true,
+              "score": 0.1655,
+              "shiftSeconds": -0.725,
+              "cameraStart": 403.621,
+              "externalStart": 395.121,
+              "matchedExternalStart": 394.396,
+              "outputTime": 300.321,
+              "cameraCenter": 405.621,
+              "externalCenter": 397.121
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.1655
+        },
+        {
+          "role": "master",
+          "start": 305.4,
+          "end": 310.06,
+          "duration": 4.66,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera2",
+          "start": 310.06,
+          "end": 317.91,
+          "duration": 7.85,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.2132,
+              "shiftSeconds": -0.575,
+              "cameraStart": 419.205,
+              "externalStart": 410.705,
+              "matchedExternalStart": 410.13,
+              "outputTime": 313.985,
+              "cameraCenter": 421.205,
+              "externalCenter": 412.705
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.2132
+        },
+        {
+          "role": "camera4",
+          "start": 317.91,
+          "end": 322.58,
+          "duration": 4.67,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9609,
+              "shiftSeconds": -0.025,
+              "cameraStart": 411.215,
+              "externalStart": 416.965,
+              "matchedExternalStart": 416.94,
+              "outputTime": 320.245,
+              "cameraCenter": 413.215,
+              "externalCenter": 418.965
+            }
+          ],
+          "minScore": 0.9609,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 322.58,
+          "end": 339.6,
+          "duration": 17.02,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 339.6,
+          "end": 362.01,
+          "duration": 22.41,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8807,
+              "shiftSeconds": -0.025,
+              "cameraStart": 439.905,
+              "externalStart": 445.655,
+              "matchedExternalStart": 445.63,
+              "outputTime": 346.995,
+              "cameraCenter": 441.905,
+              "externalCenter": 447.655
+            },
+            {
+              "passed": true,
+              "score": 0.9042,
+              "shiftSeconds": -0.025,
+              "cameraStart": 447.525,
+              "externalStart": 453.275,
+              "matchedExternalStart": 453.25,
+              "outputTime": 354.615,
+              "cameraCenter": 449.525,
+              "externalCenter": 455.275
+            }
+          ],
+          "minScore": 0.8807,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "camera2",
+          "start": 362.01,
+          "end": 382.7,
+          "duration": 20.69,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.2571,
+              "shiftSeconds": -0.75,
+              "cameraStart": 475.998,
+              "externalStart": 467.498,
+              "matchedExternalStart": 466.748,
+              "outputTime": 368.838,
+              "cameraCenter": 477.998,
+              "externalCenter": 469.498
+            },
+            {
+              "passed": true,
+              "score": 0.4021,
+              "shiftSeconds": 0.1,
+              "cameraStart": 483.032,
+              "externalStart": 474.532,
+              "matchedExternalStart": 474.632,
+              "outputTime": 375.872,
+              "cameraCenter": 485.032,
+              "externalCenter": 476.532
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.2571
+        },
+        {
+          "role": "master",
+          "start": 382.7,
+          "end": 427.88,
+          "duration": 45.18,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 427.88,
+          "end": 447.93,
+          "duration": 20.05,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8827,
+              "shiftSeconds": -0.025,
+              "cameraStart": 527.407,
+              "externalStart": 533.157,
+              "matchedExternalStart": 533.132,
+              "outputTime": 434.496,
+              "cameraCenter": 529.407,
+              "externalCenter": 535.157
+            },
+            {
+              "passed": true,
+              "score": 0.8783,
+              "shiftSeconds": -0.025,
+              "cameraStart": 534.223,
+              "externalStart": 539.973,
+              "matchedExternalStart": 539.948,
+              "outputTime": 441.313,
+              "cameraCenter": 536.223,
+              "externalCenter": 541.973
+            }
+          ],
+          "minScore": 0.8783,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "camera2",
+          "start": 447.93,
+          "end": 453.24,
+          "duration": 5.31,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.1974,
+              "shiftSeconds": 0.5,
+              "cameraStart": 557.745,
+              "externalStart": 549.245,
+              "matchedExternalStart": 549.745,
+              "outputTime": 450.585,
+              "cameraCenter": 559.745,
+              "externalCenter": 551.245
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.1974
+        },
+        {
+          "role": "master",
+          "start": 453.24,
+          "end": 485.81,
+          "duration": 32.57,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 485.81,
+          "end": 513.99,
+          "duration": 28.18,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9482,
+              "shiftSeconds": -0.025,
+              "cameraStart": 590.399,
+              "externalStart": 596.149,
+              "matchedExternalStart": 596.124,
+              "outputTime": 495.109,
+              "cameraCenter": 592.399,
+              "externalCenter": 598.149
+            },
+            {
+              "passed": true,
+              "score": 0.9402,
+              "shiftSeconds": -0.025,
+              "cameraStart": 599.981,
+              "externalStart": 605.731,
+              "matchedExternalStart": 605.706,
+              "outputTime": 504.691,
+              "cameraCenter": 601.981,
+              "externalCenter": 607.731
+            }
+          ],
+          "minScore": 0.9402,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 513.99,
+          "end": 551.218,
+          "duration": 37.228,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 551.218,
+          "end": 573.88,
+          "duration": 22.662,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9489,
+              "shiftSeconds": -0.025,
+              "cameraStart": 653.986,
+              "externalStart": 659.736,
+              "matchedExternalStart": 659.711,
+              "outputTime": 558.696,
+              "cameraCenter": 655.986,
+              "externalCenter": 661.736
+            },
+            {
+              "passed": true,
+              "score": 0.9028,
+              "shiftSeconds": -0.025,
+              "cameraStart": 661.692,
+              "externalStart": 667.442,
+              "matchedExternalStart": 667.417,
+              "outputTime": 566.402,
+              "cameraCenter": 663.692,
+              "externalCenter": 669.442
+            }
+          ],
+          "minScore": 0.9028,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 573.88,
+          "end": 577.12,
+          "duration": 3.24,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 577.12,
+          "end": 579.04,
+          "duration": 1.92,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9532,
+              "shiftSeconds": -0.025,
+              "cameraStart": 674.46,
+              "externalStart": 680.21,
+              "matchedExternalStart": 680.185,
+              "outputTime": 578.08,
+              "cameraCenter": 675.37,
+              "externalCenter": 681.12
+            }
+          ],
+          "minScore": 0.9532,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 579.04,
+          "end": 615.9,
+          "duration": 36.86,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 615.9,
+          "end": 637.318,
+          "duration": 21.418,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8119,
+              "shiftSeconds": -0.025,
+              "cameraStart": 718.258,
+              "externalStart": 724.008,
+              "matchedExternalStart": 723.983,
+              "outputTime": 622.968,
+              "cameraCenter": 720.258,
+              "externalCenter": 726.008
+            },
+            {
+              "passed": true,
+              "score": 0.8354,
+              "shiftSeconds": 0.0,
+              "cameraStart": 725.54,
+              "externalStart": 731.29,
+              "matchedExternalStart": 731.29,
+              "outputTime": 630.25,
+              "cameraCenter": 727.54,
+              "externalCenter": 733.29
+            }
+          ],
+          "minScore": 0.8119,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 637.318,
+          "end": 675.378,
+          "duration": 38.06,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 675.378,
+          "end": 684.16,
+          "duration": 8.782,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.956,
+              "shiftSeconds": 0.0,
+              "cameraStart": 932.399,
+              "externalStart": 938.149,
+              "matchedExternalStart": 938.149,
+              "outputTime": 679.769,
+              "cameraCenter": 934.399,
+              "externalCenter": 940.149
+            }
+          ],
+          "minScore": 0.956,
+          "maxAbsShiftSeconds": 0.0
+        },
+        {
+          "role": "master",
+          "start": 684.16,
+          "end": 689.12,
+          "duration": 4.96,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 689.12,
+          "end": 710.68,
+          "duration": 21.56,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9317,
+              "shiftSeconds": 0.0,
+              "cameraStart": 948.865,
+              "externalStart": 954.615,
+              "matchedExternalStart": 954.615,
+              "outputTime": 696.235,
+              "cameraCenter": 950.865,
+              "externalCenter": 956.615
+            },
+            {
+              "passed": true,
+              "score": 0.9577,
+              "shiftSeconds": 0.0,
+              "cameraStart": 956.195,
+              "externalStart": 961.945,
+              "matchedExternalStart": 961.945,
+              "outputTime": 703.565,
+              "cameraCenter": 958.195,
+              "externalCenter": 963.945
+            }
+          ],
+          "minScore": 0.9317,
+          "maxAbsShiftSeconds": 0.0
+        },
+        {
+          "role": "master",
+          "start": 710.68,
+          "end": 752.3,
+          "duration": 41.62,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 752.3,
+          "end": 777.298,
+          "duration": 24.998,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9266,
+              "shiftSeconds": 0.0,
+              "cameraStart": 1049.539,
+              "externalStart": 1055.289,
+              "matchedExternalStart": 1055.289,
+              "outputTime": 760.549,
+              "cameraCenter": 1051.539,
+              "externalCenter": 1057.289
+            },
+            {
+              "passed": true,
+              "score": 0.939,
+              "shiftSeconds": 0.0,
+              "cameraStart": 1058.039,
+              "externalStart": 1063.789,
+              "matchedExternalStart": 1063.789,
+              "outputTime": 769.049,
+              "cameraCenter": 1060.039,
+              "externalCenter": 1065.789
+            }
+          ],
+          "minScore": 0.9266,
+          "maxAbsShiftSeconds": 0.0
+        },
+        {
+          "role": "master",
+          "start": 777.298,
+          "end": 809.178,
+          "duration": 31.88,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera4",
+          "start": 809.178,
+          "end": 830.8,
+          "duration": 21.622,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9531,
+              "shiftSeconds": 0.0,
+              "cameraStart": 1105.303,
+              "externalStart": 1111.053,
+              "matchedExternalStart": 1111.053,
+              "outputTime": 816.313,
+              "cameraCenter": 1107.303,
+              "externalCenter": 1113.053
+            },
+            {
+              "passed": true,
+              "score": 0.9603,
+              "shiftSeconds": 0.0,
+              "cameraStart": 1112.655,
+              "externalStart": 1118.405,
+              "matchedExternalStart": 1118.405,
+              "outputTime": 823.665,
+              "cameraCenter": 1114.655,
+              "externalCenter": 1120.405
+            }
+          ],
+          "minScore": 0.9531,
+          "maxAbsShiftSeconds": 0.0
+        },
+        {
+          "role": "master",
+          "start": 830.8,
+          "end": 961.36,
+          "duration": 130.56,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera3",
+          "start": 961.36,
+          "end": 973.2,
+          "duration": 11.84,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.0162,
+              "shiftSeconds": -0.05,
+              "cameraStart": 321.75,
+              "externalStart": 1262.02,
+              "matchedExternalStart": 1261.97,
+              "outputTime": 967.28,
+              "cameraCenter": 323.75,
+              "externalCenter": 1264.02
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.0162
+        },
+        {
+          "role": "master",
+          "start": 973.2,
+          "end": 985.02,
+          "duration": 11.82,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera3",
+          "start": 985.02,
+          "end": 993.48,
+          "duration": 8.46,
+          "action": "fallback",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.3631,
+              "shiftSeconds": -0.625,
+              "cameraStart": 345.0,
+              "externalStart": 1285.27,
+              "matchedExternalStart": 1284.645,
+              "outputTime": 989.25,
+              "cameraCenter": 347.0,
+              "externalCenter": 1287.27
+            }
+          ],
+          "reason": "waveform score below threshold",
+          "minScore": 0.3631
+        },
+        {
+          "role": "master",
+          "start": 993.48,
+          "end": 1160.48,
+          "duration": 167.0,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1160.48,
+          "end": 1181.44,
+          "duration": 20.96,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8596,
+              "shiftSeconds": -0.05,
+              "cameraStart": 332.727,
+              "externalStart": 1466.837,
+              "matchedExternalStart": 1466.787,
+              "outputTime": 1167.397,
+              "cameraCenter": 334.727,
+              "externalCenter": 1468.837
+            },
+            {
+              "passed": true,
+              "score": 0.9516,
+              "shiftSeconds": -0.05,
+              "cameraStart": 339.853,
+              "externalStart": 1473.963,
+              "matchedExternalStart": 1473.913,
+              "outputTime": 1174.523,
+              "cameraCenter": 341.853,
+              "externalCenter": 1475.963
+            }
+          ],
+          "minScore": 0.8596,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1181.44,
+          "end": 1221.76,
+          "duration": 40.32,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1221.76,
+          "end": 1247.42,
+          "duration": 25.66,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8186,
+              "shiftSeconds": -0.05,
+              "cameraStart": 429.018,
+              "externalStart": 1563.128,
+              "matchedExternalStart": 1563.078,
+              "outputTime": 1230.228,
+              "cameraCenter": 431.018,
+              "externalCenter": 1565.128
+            },
+            {
+              "passed": true,
+              "score": 0.9234,
+              "shiftSeconds": -0.05,
+              "cameraStart": 437.742,
+              "externalStart": 1571.852,
+              "matchedExternalStart": 1571.802,
+              "outputTime": 1238.952,
+              "cameraCenter": 439.742,
+              "externalCenter": 1573.852
+            }
+          ],
+          "minScore": 0.8186,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1247.42,
+          "end": 1316.318,
+          "duration": 68.898,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1316.318,
+          "end": 1372.198,
+          "duration": 55.88,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9625,
+              "shiftSeconds": -0.05,
+              "cameraStart": 533.548,
+              "externalStart": 1667.658,
+              "matchedExternalStart": 1667.608,
+              "outputTime": 1334.758,
+              "cameraCenter": 535.548,
+              "externalCenter": 1669.658
+            },
+            {
+              "passed": true,
+              "score": 0.9173,
+              "shiftSeconds": -0.05,
+              "cameraStart": 552.548,
+              "externalStart": 1686.658,
+              "matchedExternalStart": 1686.608,
+              "outputTime": 1353.758,
+              "cameraCenter": 554.548,
+              "externalCenter": 1688.658
+            }
+          ],
+          "minScore": 0.9173,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1372.198,
+          "end": 1410.238,
+          "duration": 38.04,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1410.238,
+          "end": 1412.26,
+          "duration": 2.022,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9786,
+              "shiftSeconds": -0.05,
+              "cameraStart": 611.078,
+              "externalStart": 1745.188,
+              "matchedExternalStart": 1745.138,
+              "outputTime": 1411.249,
+              "cameraCenter": 612.039,
+              "externalCenter": 1746.149
+            }
+          ],
+          "minScore": 0.9786,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1412.26,
+          "end": 1426.68,
+          "duration": 14.42,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1426.68,
+          "end": 1472.18,
+          "duration": 45.5,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8656,
+              "shiftSeconds": -0.05,
+              "cameraStart": 641.985,
+              "externalStart": 1776.095,
+              "matchedExternalStart": 1776.045,
+              "outputTime": 1441.695,
+              "cameraCenter": 643.985,
+              "externalCenter": 1778.095
+            },
+            {
+              "passed": true,
+              "score": 0.9238,
+              "shiftSeconds": -0.05,
+              "cameraStart": 657.455,
+              "externalStart": 1791.565,
+              "matchedExternalStart": 1791.515,
+              "outputTime": 1457.165,
+              "cameraCenter": 659.455,
+              "externalCenter": 1793.565
+            }
+          ],
+          "minScore": 0.8656,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1472.18,
+          "end": 1476.08,
+          "duration": 3.9,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1476.08,
+          "end": 1512.118,
+          "duration": 36.038,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9131,
+              "shiftSeconds": -0.05,
+              "cameraStart": 690.243,
+              "externalStart": 1824.353,
+              "matchedExternalStart": 1824.303,
+              "outputTime": 1487.973,
+              "cameraCenter": 692.243,
+              "externalCenter": 1826.353
+            },
+            {
+              "passed": true,
+              "score": 0.791,
+              "shiftSeconds": -0.05,
+              "cameraStart": 702.495,
+              "externalStart": 1836.605,
+              "matchedExternalStart": 1836.555,
+              "outputTime": 1500.225,
+              "cameraCenter": 704.495,
+              "externalCenter": 1838.605
+            }
+          ],
+          "minScore": 0.791,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1512.118,
+          "end": 1544.158,
+          "duration": 32.04,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1544.158,
+          "end": 1634.318,
+          "duration": 90.16,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9418,
+              "shiftSeconds": -0.05,
+              "cameraStart": 776.181,
+              "externalStart": 1910.291,
+              "matchedExternalStart": 1910.241,
+              "outputTime": 1573.911,
+              "cameraCenter": 778.181,
+              "externalCenter": 1912.291
+            },
+            {
+              "passed": true,
+              "score": 0.93,
+              "shiftSeconds": -0.05,
+              "cameraStart": 806.835,
+              "externalStart": 1940.945,
+              "matchedExternalStart": 1940.895,
+              "outputTime": 1604.565,
+              "cameraCenter": 808.835,
+              "externalCenter": 1942.945
+            }
+          ],
+          "minScore": 0.93,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1634.318,
+          "end": 1678.318,
+          "duration": 44.0,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1678.318,
+          "end": 1685.08,
+          "duration": 6.762,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9063,
+              "shiftSeconds": -0.05,
+              "cameraStart": 883.969,
+              "externalStart": 2018.079,
+              "matchedExternalStart": 2018.029,
+              "outputTime": 1681.699,
+              "cameraCenter": 885.969,
+              "externalCenter": 2020.079
+            }
+          ],
+          "minScore": 0.9063,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1685.08,
+          "end": 1717.16,
+          "duration": 32.08,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1717.16,
+          "end": 1764.278,
+          "duration": 47.118,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9139,
+              "shiftSeconds": -0.05,
+              "cameraStart": 936.199,
+              "externalStart": 2070.309,
+              "matchedExternalStart": 2070.259,
+              "outputTime": 1732.709,
+              "cameraCenter": 938.199,
+              "externalCenter": 2072.309
+            },
+            {
+              "passed": true,
+              "score": 0.9003,
+              "shiftSeconds": -0.05,
+              "cameraStart": 952.219,
+              "externalStart": 2086.329,
+              "matchedExternalStart": 2086.279,
+              "outputTime": 1748.729,
+              "cameraCenter": 954.219,
+              "externalCenter": 2088.329
+            }
+          ],
+          "minScore": 0.9003,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1764.278,
+          "end": 1802.298,
+          "duration": 38.02,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1802.298,
+          "end": 1818.84,
+          "duration": 16.542,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9371,
+              "shiftSeconds": -0.05,
+              "cameraStart": 1011.247,
+              "externalStart": 2145.357,
+              "matchedExternalStart": 2145.307,
+              "outputTime": 1807.757,
+              "cameraCenter": 1013.247,
+              "externalCenter": 2147.357
+            },
+            {
+              "passed": true,
+              "score": 0.8229,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1016.871,
+              "externalStart": 2150.981,
+              "matchedExternalStart": 2150.956,
+              "outputTime": 1813.381,
+              "cameraCenter": 1018.871,
+              "externalCenter": 2152.981
+            }
+          ],
+          "minScore": 0.8229,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1818.84,
+          "end": 1829.04,
+          "duration": 10.2,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1829.04,
+          "end": 1832.12,
+          "duration": 3.08,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9055,
+              "shiftSeconds": -0.05,
+              "cameraStart": 1034.58,
+              "externalStart": 2168.69,
+              "matchedExternalStart": 2168.64,
+              "outputTime": 1830.58,
+              "cameraCenter": 1036.07,
+              "externalCenter": 2170.18
+            }
+          ],
+          "minScore": 0.9055,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1832.12,
+          "end": 1848.1,
+          "duration": 15.98,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1848.1,
+          "end": 1851.88,
+          "duration": 3.78,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9267,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1053.64,
+              "externalStart": 2187.75,
+              "matchedExternalStart": 2187.725,
+              "outputTime": 1849.99,
+              "cameraCenter": 1055.48,
+              "externalCenter": 2189.59
+            }
+          ],
+          "minScore": 0.9267,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 1851.88,
+          "end": 1863.62,
+          "duration": 11.74,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1863.62,
+          "end": 1870.12,
+          "duration": 6.5,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9256,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1072.06,
+              "externalStart": 2206.17,
+              "matchedExternalStart": 2206.145,
+              "outputTime": 1866.87,
+              "cameraCenter": 1074.06,
+              "externalCenter": 2208.17
+            }
+          ],
+          "minScore": 0.9256,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 1870.12,
+          "end": 1876.6,
+          "duration": 6.48,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1876.6,
+          "end": 1880.78,
+          "duration": 4.18,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9208,
+              "shiftSeconds": -0.05,
+              "cameraStart": 1083.88,
+              "externalStart": 2217.99,
+              "matchedExternalStart": 2217.94,
+              "outputTime": 1878.69,
+              "cameraCenter": 1085.88,
+              "externalCenter": 2219.99
+            }
+          ],
+          "minScore": 0.9208,
+          "maxAbsShiftSeconds": 0.05
+        },
+        {
+          "role": "master",
+          "start": 1880.78,
+          "end": 1936.318,
+          "duration": 55.538,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 1936.318,
+          "end": 2026.258,
+          "duration": 89.94,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9433,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1282.788,
+              "externalStart": 2416.898,
+              "matchedExternalStart": 2416.873,
+              "outputTime": 1965.998,
+              "cameraCenter": 1284.788,
+              "externalCenter": 2418.898
+            },
+            {
+              "passed": true,
+              "score": 0.9086,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1313.368,
+              "externalStart": 2447.478,
+              "matchedExternalStart": 2447.453,
+              "outputTime": 1996.578,
+              "cameraCenter": 1315.368,
+              "externalCenter": 2449.478
+            }
+          ],
+          "minScore": 0.9086,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 2026.258,
+          "end": 2070.078,
+          "duration": 43.82,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 2070.078,
+          "end": 2152.4,
+          "duration": 82.322,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.9087,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1414.034,
+              "externalStart": 2548.144,
+              "matchedExternalStart": 2548.119,
+              "outputTime": 2097.244,
+              "cameraCenter": 1416.034,
+              "externalCenter": 2550.144
+            },
+            {
+              "passed": true,
+              "score": 0.9665,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1442.024,
+              "externalStart": 2576.134,
+              "matchedExternalStart": 2576.109,
+              "outputTime": 2125.234,
+              "cameraCenter": 1444.024,
+              "externalCenter": 2578.134
+            }
+          ],
+          "minScore": 0.9087,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 2152.4,
+          "end": 2196.52,
+          "duration": 44.12,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 2196.52,
+          "end": 2231.16,
+          "duration": 34.64,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.901,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1571.121,
+              "externalStart": 2705.231,
+              "matchedExternalStart": 2705.206,
+              "outputTime": 2207.951,
+              "cameraCenter": 1573.121,
+              "externalCenter": 2707.231
+            },
+            {
+              "passed": true,
+              "score": 0.8897,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1582.899,
+              "externalStart": 2717.009,
+              "matchedExternalStart": 2716.984,
+              "outputTime": 2219.729,
+              "cameraCenter": 1584.899,
+              "externalCenter": 2719.009
+            }
+          ],
+          "minScore": 0.8897,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 2231.16,
+          "end": 2236.56,
+          "duration": 5.4,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 2236.56,
+          "end": 2296.178,
+          "duration": 59.618,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8625,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1619.404,
+              "externalStart": 2753.514,
+              "matchedExternalStart": 2753.489,
+              "outputTime": 2256.234,
+              "cameraCenter": 1621.404,
+              "externalCenter": 2755.514
+            },
+            {
+              "passed": true,
+              "score": 0.9017,
+              "shiftSeconds": 0.0,
+              "cameraStart": 1639.674,
+              "externalStart": 2773.784,
+              "matchedExternalStart": 2773.784,
+              "outputTime": 2276.504,
+              "cameraCenter": 1641.674,
+              "externalCenter": 2775.784
+            }
+          ],
+          "minScore": 0.8625,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 2296.178,
+          "end": 2328.178,
+          "duration": 32.0,
+          "action": "keep",
+          "reason": "fallback camera"
+        },
+        {
+          "role": "camera5",
+          "start": 2328.178,
+          "end": 2418.318,
+          "duration": 90.14,
+          "action": "keep",
+          "probes": [
+            {
+              "passed": true,
+              "score": 0.8712,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1723.534,
+              "externalStart": 2857.644,
+              "matchedExternalStart": 2857.619,
+              "outputTime": 2357.924,
+              "cameraCenter": 1725.534,
+              "externalCenter": 2859.644
+            },
+            {
+              "passed": true,
+              "score": 0.9278,
+              "shiftSeconds": -0.025,
+              "cameraStart": 1754.182,
+              "externalStart": 2888.292,
+              "matchedExternalStart": 2888.267,
+              "outputTime": 2388.572,
+              "cameraCenter": 1756.182,
+              "externalCenter": 2890.292
+            }
+          ],
+          "minScore": 0.8712,
+          "maxAbsShiftSeconds": 0.025
+        },
+        {
+          "role": "master",
+          "start": 2418.318,
+          "end": 2455.445,
+          "duration": 37.127,
+          "action": "keep",
+          "reason": "fallback camera"
+        }
+      ],
+      "adjustments": [
+        {
+          "role": "camera2",
+          "start": 32.03,
+          "end": 55.79,
+          "duration": 23.76,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.0627,
+          "toRole": "master"
+        },
+        {
+          "role": "camera2",
+          "start": 93.89,
+          "end": 121.97,
+          "duration": 28.08,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.1464,
+          "toRole": "master"
+        },
+        {
+          "role": "camera2",
+          "start": 197.86,
+          "end": 205.38,
+          "duration": 7.52,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.3093,
+          "toRole": "master"
+        },
+        {
+          "role": "camera2",
+          "start": 290.01,
+          "end": 305.4,
+          "duration": 15.39,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.1655,
+          "toRole": "master"
+        },
+        {
+          "role": "camera2",
+          "start": 310.06,
+          "end": 317.91,
+          "duration": 7.85,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.2132,
+          "toRole": "master"
+        },
+        {
+          "role": "camera2",
+          "start": 362.01,
+          "end": 382.7,
+          "duration": 20.69,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.2571,
+          "toRole": "master"
+        },
+        {
+          "role": "camera2",
+          "start": 447.93,
+          "end": 453.24,
+          "duration": 5.31,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.1974,
+          "toRole": "master"
+        },
+        {
+          "role": "camera3",
+          "start": 961.36,
+          "end": 973.2,
+          "duration": 11.84,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.0162,
+          "toRole": "master"
+        },
+        {
+          "role": "camera3",
+          "start": 985.02,
+          "end": 993.48,
+          "duration": 8.46,
+          "action": "fallback",
+          "reason": "waveform score below threshold",
+          "minScore": 0.3631,
+          "toRole": "master"
+        }
+      ],
+      "changed": true
+    },
+    "subtitleSnap": {
+      "enabled": true,
+      "changed": true,
+      "inputSegments": 69,
+      "outputSegments": 67,
+      "subtitleBoundaryCount": 669,
+      "maxShiftSeconds": 0.0,
+      "adjustments": [
+        {
+          "boundary": 0,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 55.79,
+          "chosen": 53.66,
+          "shiftSeconds": -2.13,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 43,
+          "subtitleText": "ちょっと狭いかなと思っていて",
+          "collapsed": false
+        },
+        {
+          "boundary": 1,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 93.89,
+          "chosen": 94.94,
+          "shiftSeconds": 1.05,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 54,
+          "subtitleText": "強いプロダクトの一つの条件なんだろうと思っていて",
+          "collapsed": false
+        },
+        {
+          "boundary": 2,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 165.83,
+          "chosen": 167.22,
+          "shiftSeconds": 1.39,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 80,
+          "subtitleText": "複雑性は高いんですけど",
+          "collapsed": false
+        },
+        {
+          "boundary": 3,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 192.46,
+          "chosen": 192.28,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 88,
+          "subtitleText": "FDEが必要なプロダクトということなのかなと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 4,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 235.22,
+          "chosen": 235.4,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 103,
+          "subtitleText": "もともとそういうFDE的な働き方をしてきた人はいたんじゃないかっていう",
+          "collapsed": false
+        },
+        {
+          "boundary": 5,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 240.7,
+          "chosen": 240.52,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 105,
+          "subtitleText": "っていう形ですね",
+          "collapsed": false
+        },
+        {
+          "boundary": 6,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 250.28,
+          "chosen": 250.46,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 108,
+          "subtitleText": "どういう方々になりますかね",
+          "collapsed": false
+        },
+        {
+          "boundary": 7,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 251.79,
+          "chosen": 251.62,
+          "shiftSeconds": -0.17,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 109,
+          "subtitleText": "そうですね",
+          "collapsed": false
+        },
+        {
+          "boundary": 8,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 317.91,
+          "chosen": 318.88,
+          "shiftSeconds": 0.97,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 125,
+          "subtitleText": "複数人でやっていた仕事がAIの仕事によって一定統合されて",
+          "collapsed": false
+        },
+        {
+          "boundary": 9,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 322.58,
+          "chosen": 322.4,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 126,
+          "subtitleText": "新しい役割として名前を作っているのはあり得るかなと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 10,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 339.6,
+          "chosen": 339.78,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 131,
+          "subtitleText": "まあ難しいっていうことも言える",
+          "collapsed": false
+        },
+        {
+          "boundary": 11,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 362.01,
+          "chosen": 361.36,
+          "shiftSeconds": -0.65,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 137,
+          "subtitleText": "またFDEに近いっちゃFDEに近いかなとは思うので",
+          "collapsed": false
+        },
+        {
+          "boundary": 12,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 427.88,
+          "chosen": 428.06,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 154,
+          "subtitleText": "これちょっとやりすぎですよねどうですかね",
+          "collapsed": false
+        },
+        {
+          "boundary": 13,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 447.93,
+          "chosen": 448.78,
+          "shiftSeconds": 0.85,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 159,
+          "subtitleText": "PDMという役割を置いているとかもあったりはするので",
+          "collapsed": false
+        },
+        {
+          "boundary": 14,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 485.81,
+          "chosen": 486.1,
+          "shiftSeconds": 0.29,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 168,
+          "subtitleText": "いろんな職種をまとめた仕事がFDEですっていうのは",
+          "collapsed": false
+        },
+        {
+          "boundary": 15,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 513.99,
+          "chosen": 512.88,
+          "shiftSeconds": -1.11,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 177,
+          "subtitleText": "今の名前と変わるのか変わらないのかみたいなところは",
+          "collapsed": false
+        },
+        {
+          "boundary": 16,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 551.218,
+          "chosen": 553.28,
+          "shiftSeconds": 2.062,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 186,
+          "subtitleText": "なのでチームの必要人数が10人とか20人とかいたのが",
+          "collapsed": false
+        },
+        {
+          "boundary": 17,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 573.88,
+          "chosen": 573.7,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 190,
+          "subtitleText": "その現場にいるとPDMって何の仕事をしてたんですかみたいなことは思いますね",
+          "collapsed": false
+        },
+        {
+          "boundary": 18,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 577.12,
+          "chosen": 577.3,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 191,
+          "subtitleText": "FDEでやろうとそれは同じことだという",
+          "collapsed": false
+        },
+        {
+          "boundary": 19,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 579.04,
+          "chosen": 578.86,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 192,
+          "subtitleText": "と思いますね",
+          "collapsed": false
+        },
+        {
+          "boundary": 20,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 615.9,
+          "chosen": 616.08,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 204,
+          "subtitleText": "FDEを支える要素に関して",
+          "collapsed": false
+        },
+        {
+          "boundary": 21,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 637.318,
+          "chosen": 636.94,
+          "shiftSeconds": -0.378,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 209,
+          "subtitleText": "なかなかお客さんが直接的には使いにくいプロダクトですという場合は",
+          "collapsed": false
+        },
+        {
+          "boundary": 22,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 675.378,
+          "chosen": 675.26,
+          "shiftSeconds": -0.118,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 255,
+          "subtitleText": "先ほどの話に付属して考えると",
+          "collapsed": false
+        },
+        {
+          "boundary": 23,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 684.16,
+          "chosen": 683.98,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 258,
+          "subtitleText": "一つキーワードとしてあるかもしれないですよね",
+          "collapsed": false
+        },
+        {
+          "boundary": 24,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 689.12,
+          "chosen": 689.3,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 259,
+          "subtitleText": "大規模",
+          "collapsed": false
+        },
+        {
+          "boundary": 25,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 710.68,
+          "chosen": 710.5,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 266,
+          "subtitleText": "業界に特化しないっていう形も考えるかなと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 26,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 752.3,
+          "chosen": 752.48,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 280,
+          "subtitleText": "そのあたりって何か意見といいますか感覚ありますかね",
+          "collapsed": false
+        },
+        {
+          "boundary": 27,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 777.298,
+          "chosen": 777.48,
+          "shiftSeconds": 0.182,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 286,
+          "subtitleText": "それは御用聞きっていうか",
+          "collapsed": false
+        },
+        {
+          "boundary": 28,
+          "fromRole": "master",
+          "toRole": "camera4",
+          "planned": 809.178,
+          "chosen": 806.96,
+          "shiftSeconds": -2.218,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 297,
+          "subtitleText": "どこまでもプロダクトのパワーというのが",
+          "collapsed": false
+        },
+        {
+          "boundary": 29,
+          "fromRole": "camera4",
+          "toRole": "master",
+          "planned": 830.8,
+          "chosen": 830.62,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 302,
+          "subtitleText": "そこが基本的にはそこで一定のスケールメリットが出ることが大事だと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 30,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1160.48,
+          "chosen": 1160.66,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 387,
+          "subtitleText": "すごく火の玉ストレートみたいな正論ですよね",
+          "collapsed": false
+        },
+        {
+          "boundary": 31,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1181.44,
+          "chosen": 1181.74,
+          "shiftSeconds": 0.3,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 392,
+          "subtitleText": "首を切られるという文化なので",
+          "collapsed": false
+        },
+        {
+          "boundary": 32,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1221.76,
+          "chosen": 1221.94,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 408,
+          "subtitleText": "日本とかの場合だと",
+          "collapsed": false
+        },
+        {
+          "boundary": 33,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1247.42,
+          "chosen": 1244.62,
+          "shiftSeconds": -2.8,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 415,
+          "subtitleText": "多分必要だと思いますっていうところですね",
+          "collapsed": false
+        },
+        {
+          "boundary": 34,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1316.318,
+          "chosen": 1315.38,
+          "shiftSeconds": -0.938,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 429,
+          "subtitleText": "そこの構造をまず多分考えて設計するみたいな役割でいうと",
+          "collapsed": false
+        },
+        {
+          "boundary": 35,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1372.198,
+          "chosen": 1370.54,
+          "shiftSeconds": -1.658,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 439,
+          "subtitleText": "最初は企画する人と作る人が一緒の方が話が早いし",
+          "collapsed": false
+        },
+        {
+          "boundary": 36,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1410.238,
+          "chosen": 1412.08,
+          "shiftSeconds": 1.842,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 449,
+          "subtitleText": "それを冷静に見つめ直してみるというのは結構大事なのかなと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 37,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1412.26,
+          "chosen": 1412.08,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 449,
+          "subtitleText": "それを冷静に見つめ直してみるというのは結構大事なのかなと思います",
+          "collapsed": true
+        },
+        {
+          "boundary": 38,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1426.68,
+          "chosen": 1426.86,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 452,
+          "subtitleText": "必要なんじゃないかというところで",
+          "collapsed": false
+        },
+        {
+          "boundary": 39,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1472.18,
+          "chosen": 1472.0,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 463,
+          "subtitleText": "寄せていっちゃってるっていうような感じなんだと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 40,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1476.08,
+          "chosen": 1476.26,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 465,
+          "subtitleText": "そのあたりはしっかりと考えてきてあるなという感じがします",
+          "collapsed": false
+        },
+        {
+          "boundary": 41,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1512.118,
+          "chosen": 1510.74,
+          "shiftSeconds": -1.378,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 471,
+          "subtitleText": "ここに関してPDMはビルダーだみたいな話に関して僕が言えることとしては",
+          "collapsed": false
+        },
+        {
+          "boundary": 42,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1544.158,
+          "chosen": 1544.6,
+          "shiftSeconds": 0.442,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 477,
+          "subtitleText": "やれるじゃんと別にコードをゼロから",
+          "collapsed": false
+        },
+        {
+          "boundary": 43,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1634.318,
+          "chosen": 1634.96,
+          "shiftSeconds": 0.642,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 508,
+          "subtitleText": "デザインもやってみれた方がいいしっていうところを",
+          "collapsed": false
+        },
+        {
+          "boundary": 44,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1678.318,
+          "chosen": 1677.92,
+          "shiftSeconds": -0.398,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 520,
+          "subtitleText": "全然そんなことはなくて",
+          "collapsed": false
+        },
+        {
+          "boundary": 45,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1685.08,
+          "chosen": 1685.24,
+          "shiftSeconds": 0.16,
+          "subtitleBoundaryKind": "subtitle_start",
+          "subtitleSourceIndex": 526,
+          "subtitleText": "だからその今の話的に言うと",
+          "collapsed": false
+        },
+        {
+          "boundary": 46,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1717.16,
+          "chosen": 1717.34,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 537,
+          "subtitleText": "本来はそれが共存するという形が健全な形なのかなと思う",
+          "collapsed": false
+        },
+        {
+          "boundary": 47,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1764.278,
+          "chosen": 1765.76,
+          "shiftSeconds": 1.482,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 547,
+          "subtitleText": "みたいな任せたって言うと別に言葉は綺麗なんですけど",
+          "collapsed": false
+        },
+        {
+          "boundary": 48,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1802.298,
+          "chosen": 1804.96,
+          "shiftSeconds": 2.662,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 555,
+          "subtitleText": "越境した上でそれでも私はここに集中しますという人たちが",
+          "collapsed": false
+        },
+        {
+          "boundary": 49,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1818.84,
+          "chosen": 1818.66,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 558,
+          "subtitleText": "僕はAIは人の学習を強化する装置というのが一番しっくりきますね",
+          "collapsed": false
+        },
+        {
+          "boundary": 50,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1829.04,
+          "chosen": 1829.22,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 560,
+          "subtitleText": "個人の学習を加速させる",
+          "collapsed": false
+        },
+        {
+          "boundary": 51,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1832.12,
+          "chosen": 1831.94,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 561,
+          "subtitleText": "個人の学習を加速させて個人の範囲を広げていく",
+          "collapsed": false
+        },
+        {
+          "boundary": 52,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1848.1,
+          "chosen": 1848.28,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 564,
+          "subtitleText": "FDEを取り入れるのは、もう本当にわかったのかなというふうに思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 53,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1851.88,
+          "chosen": 1851.7,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 565,
+          "subtitleText": "SaaSっていう括り自体がかなりでかいですからね",
+          "collapsed": false
+        },
+        {
+          "boundary": 54,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1863.62,
+          "chosen": 1863.8,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 570,
+          "subtitleText": "そのFDEをそのまま入れていくという流れには",
+          "collapsed": false
+        },
+        {
+          "boundary": 55,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1870.12,
+          "chosen": 1869.94,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 572,
+          "subtitleText": "どの会社にもFDEという役割ができるという形にはならないと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 56,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1876.6,
+          "chosen": 1876.78,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 574,
+          "subtitleText": "あとはC向けのサービスとかであればいらない",
+          "collapsed": false
+        },
+        {
+          "boundary": 57,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 1880.78,
+          "chosen": 1880.6,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 576,
+          "subtitleText": "FDEという役割はいらないでしょうね",
+          "collapsed": false
+        },
+        {
+          "boundary": 58,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 1936.318,
+          "chosen": 1936.12,
+          "shiftSeconds": -0.198,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 611,
+          "subtitleText": "前提僕もわからないところはあって",
+          "collapsed": false
+        },
+        {
+          "boundary": 59,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2026.258,
+          "chosen": 2028.24,
+          "shiftSeconds": 1.982,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 637,
+          "subtitleText": "例えばSIerとか受託開発の会社においては",
+          "collapsed": false
+        },
+        {
+          "boundary": 60,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 2070.078,
+          "chosen": 2068.64,
+          "shiftSeconds": -1.438,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 648,
+          "subtitleText": "別にプロダクトマネージャーが言いましたとか事業責任者が言いましたとか",
+          "collapsed": false
+        },
+        {
+          "boundary": 61,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2152.4,
+          "chosen": 2152.22,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 664,
+          "subtitleText": "ある意味諦めてやるっていうことかなと思います",
+          "collapsed": false
+        },
+        {
+          "boundary": 62,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 2196.52,
+          "chosen": 2196.7,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 683,
+          "subtitleText": "どういうタイプの人が向いてますかね",
+          "collapsed": false
+        },
+        {
+          "boundary": 63,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2231.16,
+          "chosen": 2230.98,
+          "shiftSeconds": -0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 697,
+          "subtitleText": "向いているのかなっていう風な気がしますね",
+          "collapsed": false
+        },
+        {
+          "boundary": 64,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 2236.56,
+          "chosen": 2236.74,
+          "shiftSeconds": 0.18,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 698,
+          "subtitleText": "確かに本当に前線に配備されるエンジニアですし",
+          "collapsed": false
+        },
+        {
+          "boundary": 65,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2296.178,
+          "chosen": 2294.58,
+          "shiftSeconds": -1.598,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 712,
+          "subtitleText": "向いてないところであるんですけど",
+          "collapsed": false
+        },
+        {
+          "boundary": 66,
+          "fromRole": "master",
+          "toRole": "camera5",
+          "planned": 2328.178,
+          "chosen": 2328.5,
+          "shiftSeconds": 0.322,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 726,
+          "subtitleText": "なのかなって気はしますけどね",
+          "collapsed": false
+        },
+        {
+          "boundary": 67,
+          "fromRole": "camera5",
+          "toRole": "master",
+          "planned": 2418.318,
+          "chosen": 2417.68,
+          "shiftSeconds": -0.638,
+          "subtitleBoundaryKind": "subtitle_end",
+          "subtitleSourceIndex": 751,
+          "subtitleText": "物事を理解するときの認知の型みたいなところが",
+          "collapsed": false
+        }
+      ],
+      "largestAbsShiftSeconds": 2.8
+    },
+    "minimumCameraSegment": {
+      "enabled": true,
+      "minSegmentSeconds": 2.0,
+      "inputSegments": 67,
+      "outputSegments": 63,
+      "changed": true,
+      "merged": [
+        {
+          "role": "camera4",
+          "inputIndex": 3,
+          "start": 250.46,
+          "end": 251.62,
+          "duration": 1.16,
+          "mergedInto": "surrounding_same_camera"
+        },
+        {
+          "role": "camera4",
+          "inputIndex": 3,
+          "start": 577.3,
+          "end": 578.86,
+          "duration": 1.56,
+          "mergedInto": "surrounding_same_camera"
+        }
+      ]
+    }
+  }
+}

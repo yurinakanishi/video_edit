@@ -13,6 +13,16 @@ PROJECT_DIR = Path(__file__).resolve().parents[1]
 STATE_PATH = PROJECT_DIR / "project_state.json"
 REPORT_PATH = PROJECT_DIR / "output" / "reports" / "remove_tashikani_subtitles_report.json"
 TARGET_PATTERN = "確かに"
+STANDALONE_FILLERS = {
+    "確かに",
+    "なるほど確かに",
+    "確かに確かに",
+    "確かにな",
+}
+EXPLICIT_SUBTITLE_ONLY_CUTS = {
+    "確かにそうですよね",
+    "これは何でしょうか",
+}
 
 PUNCTUATION = "、。，．,.!?！？"
 LEADING_PUNCT_RE = re.compile(rf"^[\s{re.escape(PUNCTUATION)}]+")
@@ -62,22 +72,21 @@ def trim_punctuation(text: str) -> str:
 
 def clean_line(line: str) -> str:
     text = line.strip()
+    normalized = trim_punctuation(text)
+    if normalized in STANDALONE_FILLERS or normalized in EXPLICIT_SUBTITLE_ONLY_CUTS:
+        return ""
     if TARGET_PATTERN not in text:
         return text
 
-    # Remove filler prefixes such as "確かに。", "確かにな", and "なるほど確かに".
-    text = re.sub(
-        rf"^(?:なるほど)?\s*確かに(?:な)?(?:\s*[{re.escape(PUNCTUATION)}]\s*)*",
-        "",
+    # The review asks to remove the displayed filler prefix before the FDE-boom
+    # question, while preserving meaningful phrases such as "確かにそうですよね".
+    updated = re.sub(
+        rf"^確かに(?:\s*[{re.escape(PUNCTUATION)}]\s*)+(アメリカで流行ってるからとはいえ)",
+        r"\1",
         text,
     )
-
-    # Remove any remaining exact filler phrase without touching unrelated words like
-    # "明確に" or "確立".
-    text = re.sub(r"確かに(?:な)?", "", text)
-
-    text = trim_punctuation(text)
-    text = re.sub(r"\s+", " ", text).strip()
+    if updated != text:
+        return re.sub(r"\s+", " ", updated).strip()
     return text
 
 

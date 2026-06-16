@@ -16,11 +16,59 @@ OLD_TEXT = "ここのカスタマイズ"
 NEW_TEXT = "個々のカスタマイズ"
 SUBTITLE_TEXT_REPLACEMENTS = [
     (OLD_TEXT, NEW_TEXT),
+    ("たまっていく", "溜まっていく"),
+    ("それはそれこれはこれって感じ", "それはそれ、これはこれ、って感じ"),
+    ("だとはいえAIの力によって", "とはいえAIの力によって"),
+    ("なるほどどこまでも", "どこまでも"),
+    ("どうしてああいう論争がなっちゃうのかな", "どうしてああいう論争になっちゃうのかな"),
+    ("ノートの発言", "noteの発言"),
+    ("ノートの記事", "noteの記事"),
+    ("あなたの仕事例えばライターの仕事", "あなたの仕事、例えばライターの仕事"),
+    ("それは採用求人状の話だけで", "それは採用求人上の話なだけで"),
+    ("なるほどこういう役割を求めてるのねっていうのが", "なるほど、こういう役割を求めているのねっていうのが"),
+    ("僕も事業責任者になってからそういう目線で", "僕も事業責任者になってから、そういう目線で"),
+    ("本来的には仕事の中身何が求められて何が評価されるかみたいな", "本来的には仕事の中身、何が求められて何が評価されるかみたいな"),
+    ("そことそもそも日本の雇用習慣というか", "そこと、そもそも日本の雇用習慣というか"),
+    ("事業責任者が自分たちがどういう手段でお金を稼いで", "事業責任者が、自分たちがどういう手段でお金を稼いで"),
+    ("そうですね FDE", "そうですね、FDE"),
+    ("そうですねFDE", "そうですね、FDE"),
+    ("そうですね FDEの", "そうですね、FDEの"),
+    ("そうですねFDEの", "そうですね、FDEの"),
+    ("プロダクトマネージャーになっている仕事ですということを考えると", "プロダクトマネージャーになっている仕事です、ということを考えると"),
+    ("強いチームだと思っているんですよ なので", "強いチームだと思ってるんですよ、なので"),
+    ("まあ全部一通りわかるしやれるんだけど より得意なのはこの人だから任せよって", "全部一通りわかるし、やれるんだけど、より得意なのはその人だから任せようっていう"),
+    ("いう あのでその部分は背中を預けようっていうのが", "その部分は背中を預けよう"),
+    ("すごく健全だと思っていて なんか私は例えば", "すごく健全だと思っていて"),
+    ("営業だから エンジニアリングのことは全くわからない", "私は例えば営業だからエンジニアリングのことは\n全くわからないから任せた"),
+    ("から任せたみたいな 任せたって言うと別に言葉は綺麗なんですけど", "みたいな 任せたって言うと別に言葉は綺麗なんですけど"),
+    (
+        "なんていうか関心ないですよって近いことだと思っていて お互いのやってることに関心があったりとかなんとなく肌感覚は持ちつつもでも",
+        "なんていうか「関心ないですよ」に近いことだと思っていて、お互いのやってることに関心があったりとかなんとなく肉体感覚を持ちつつも、でも",
+    ),
+    ("肌感覚を持ちつつでも", "肉体感覚を持ちつつも、でも"),
+    ("肌感覚は持ちつつもでも", "肉体感覚を持ちつつも、でも"),
+    ("そこを何でもかんでも集約する人の役割をというわけじゃなくて", "そこを何でもかんでも集約する、人の役割というわけじゃなくて"),
+    ("そのFDEを取り入れるのは本当にワークするのかな", "FDEを取り入れるのは、もう本当にわかったのかな"),
+    ("ちょっと不安に思っているような若手中", "ちょっと不安に思っているような若手エンジニア"),
     ("なんかえ?", "なんか、え？"),
     ("コードを書く業数", "コードを書く行数"),
     ("ひねられたこの形", "決められたこの形"),
     ("改めて揃え直す", "改めて捉え直す"),
     ("?", "？"),
+]
+SUBTITLE_ONLY_DELETE_CUES = [
+    {
+        "start": "00:21:22,940",
+        "end": "00:21:23,220",
+        "text": "そうですね",
+        "reason": "subtitle-only deletion: quick standalone そうですね around reviewed 16:29",
+    },
+    {
+        "start": "00:39:25,580",
+        "end": "00:39:27,060",
+        "text": "若手エンジニア",
+        "reason": "subtitle-only deletion: duplicate standalone 若手エンジニア",
+    },
 ]
 REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS = 85.5
 REVIEWED_VIDEO_SOURCE_END_CUT_SECONDS = 20.0
@@ -50,17 +98,116 @@ def timestamp(total_seconds: float) -> str:
     return f"{hours}:{minutes:02d}:{seconds:06.3f}"
 
 
+def srt_timestamp_seconds(value: str) -> float:
+    hours, minutes, seconds = value.replace(",", ".").split(":")
+    return int(hours) * 3600 + int(minutes) * 60 + float(seconds)
+
+
 def backup_once(path: Path) -> None:
     backup = path.with_suffix(path.suffix + ".before_review_fix")
     if path.exists() and not backup.exists():
         backup.write_bytes(path.read_bytes())
 
 
+def remove_terminal_period(value: str) -> str:
+    return re.sub(r"。+$", "", value.rstrip())
+
+
+def normalize_srt_subtitle_lines(text: str) -> str:
+    rows = text.splitlines()
+    normalized: list[str] = []
+    for row in rows:
+        stripped = row.strip()
+        if not stripped or stripped.isdigit() or "-->" in row:
+            normalized.append(row)
+        else:
+            normalized.append(remove_terminal_period(row))
+    return "\n".join(normalized) + ("\n" if text.endswith(("\n", "\r")) else "")
+
+
+def retime_special_srt_cues(text: str) -> str:
+    blocks = re.split(r"(\r?\n\r?\n)", text)
+    updated: list[str] = []
+    for block in blocks:
+        rows = block.splitlines()
+        if len(rows) >= 3 and "-->" in rows[1]:
+            body = "\n".join(rows[2:]).strip()
+            if body == "確かに大規模":
+                rows[1] = "00:15:48,840 --> 00:15:49,680"
+                rows[2:] = ["大規模"]
+                block = "\n".join(rows)
+        updated.append(block)
+    return "".join(updated)
+
+
+def remove_subtitle_only_srt_cues(text: str) -> str:
+    delete_keys = {
+        (item["start"], item["end"], item["text"])
+        for item in SUBTITLE_ONLY_DELETE_CUES
+    }
+    blocks = re.split(r"(\r?\n\r?\n)", text)
+    updated: list[str] = []
+    skip_separator = False
+    for index, block in enumerate(blocks):
+        if re.fullmatch(r"\r?\n\r?\n", block):
+            if skip_separator:
+                skip_separator = False
+                continue
+            updated.append(block)
+            continue
+        rows = block.splitlines()
+        if len(rows) >= 3 and "-->" in rows[1]:
+            start_raw, end_raw = [part.strip() for part in rows[1].split("-->", 1)]
+            body = "".join(row.strip() for row in rows[2:])
+            if (start_raw, end_raw, body) in delete_keys:
+                skip_separator = index + 1 < len(blocks)
+                continue
+        updated.append(block)
+    return "".join(updated)
+
+
+def remove_subtitle_only_json_segments(payload: Any) -> Any:
+    if not isinstance(payload, dict):
+        return payload
+    segments = payload.get("segments")
+    if not isinstance(segments, list):
+        return payload
+    delete_keys = {
+        (round(srt_timestamp_seconds(item["start"]), 3), round(srt_timestamp_seconds(item["end"]), 3), item["text"])
+        for item in SUBTITLE_ONLY_DELETE_CUES
+    }
+    updated_segments = []
+    for segment in segments:
+        if not isinstance(segment, dict):
+            updated_segments.append(segment)
+            continue
+        try:
+            key = (
+                round(float(segment.get("start")), 3),
+                round(float(segment.get("end")), 3),
+                str(segment.get("text", "")).strip(),
+            )
+        except (TypeError, ValueError):
+            updated_segments.append(segment)
+            continue
+        if key in delete_keys:
+            continue
+        updated_segments.append(segment)
+    payload["segments"] = updated_segments
+    if "text" in payload:
+        payload["text"] = "".join(
+            str(segment.get("text", ""))
+            for segment in updated_segments
+            if isinstance(segment, dict)
+        )
+    return payload
+
+
 def replace_text_recursive(value: Any) -> Any:
     if isinstance(value, str):
         for before, after in SUBTITLE_TEXT_REPLACEMENTS:
             value = value.replace(before, after)
-        return value
+        return remove_terminal_period(value)
     if isinstance(value, list):
         return [replace_text_recursive(item) for item in value]
     if isinstance(value, dict):
@@ -78,11 +225,15 @@ def apply_subtitle_wording() -> None:
     srt_text = srt.read_text(encoding="utf-8")
     for before, after in SUBTITLE_TEXT_REPLACEMENTS:
         srt_text = srt_text.replace(before, after)
+    srt_text = retime_special_srt_cues(srt_text)
+    srt_text = remove_subtitle_only_srt_cues(srt_text)
+    srt_text = normalize_srt_subtitle_lines(srt_text)
     srt.write_text(srt_text, encoding="utf-8")
 
     reviewed_json = TRANSCRIPTS / "external_140101-003.reviewed.json"
     payload = json.loads(reviewed_json.read_text(encoding="utf-8"))
     payload = replace_text_recursive(payload)
+    payload = remove_subtitle_only_json_segments(payload)
     reviewed_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
@@ -104,7 +255,7 @@ def apply_chapter_titles() -> None:
     fde_workers_end = subtitle_time_to_reviewed_time(484.200)  # after the subtitle-only "確かに" prefix before FDE trend discussion
     fde_boom_end = subtitle_time_to_reviewed_time(684.600)  # "続いてなんですけど"
     fde_product_start = subtitle_time_to_reviewed_time(720.240)  # "なのでFDEを支える要素..."
-    japan_start = 904.000
+    japan_start = subtitle_time_to_reviewed_time(1007.240)  # after the revised cut ending before "徐々に分かってきた..."
     pdm_start = subtitle_time_to_reviewed_time(1129.360)  # "ちょっと事前の想定ではPDMとFDE..."
     pdm_end = subtitle_time_to_reviewed_time(1436.880)  # before the next topic after the PDM/FDE discussion
     rows = [
@@ -154,15 +305,19 @@ def review_cut_ranges() -> list[dict[str, Any]]:
         srt_range(402.020, 403.940, "subtitle-only filler: なるほど確かに"),
         srt_range(421.120, 423.060, "subtitle-only filler: 確かに"),
         srt_range(553.720, 556.100, "review cut: 7:40 確かにありがとうございます"),
-        # The review note asks to cut 10:26-10:27, but that maps to the
-        # "そうですね" -> "なのでFDEを支える要素..." handoff and creates an
-        # audible jump. Keep the handoff intact instead of cutting mid-dialogue.
+        # The revised speech-anchor instruction asks to tighten the gap between
+        # "そうですね" and "なのでFDEを支える要素...". Those anchors are contiguous
+        # in the transcript, so there is no source-time cut range to store here.
         srt_range(
             771.980,
             929.320,
             "review cut: after ポイントとしてあるかなと思いますね including 外部要素ですか before 先ほどの話に付属して考えると",
         ),
-        review_range(876.000, 908.000, "review cut: 14:36-15:08 確かに確かに"),
+        srt_range(
+            970.880,
+            1007.240,
+            "review cut: from 確かに確かに through 日本の中で... before 徐々に分かってきた",
+        ),
         srt_range(1269.760, 1271.040, "subtitle-only filler: 確かに"),
         srt_range(1458.680, 1462.100, "review cut: 22:47 確かにな"),
         srt_range(1511.920, 1513.080, "review cut: 23:39 確かにな"),
@@ -173,8 +328,12 @@ def review_cut_ranges() -> list[dict[str, Any]]:
         ),
         srt_range(1746.980, 1748.480, "subtitle-only filler: 確かに"),
         srt_range(1808.400, 1810.380, "subtitle-only filler: 確かに"),
-        srt_range(2023.280, 2024.840, "subtitle-only filler: 確かに確かに"),
-        review_range(2137.000, 2248.000, "review cut: 35:37-37:28"),
+        srt_range(2023.620, 2024.840, "review cut: keep silence after みたいなことは思います, cut just before 確かに確かに"),
+        srt_range(
+            2229.560,
+            2341.160,
+            "review cut: reset/setup block after 分かりましたありがとうございます before FDEについて",
+        ),
         srt_range(2191.300, 2193.000, "subtitle-only filler: 確かに"),
         srt_range(
             2634.880,
@@ -239,6 +398,7 @@ def update_project_state() -> None:
     apply_reviewed_video_source_trim(state)
     render["cutRanges"] = review_cut_ranges()
     render["extraOverlayManifests"] = []
+    render["cameraMinSegmentSeconds"] = 2.0
     style = state.setdefault("style", {})
     style["chapterTitlesEnabled"] = True
     style["chapterTitlesPath"] = str(REPORTS / "chapter_titles_from_full_transcript.json")

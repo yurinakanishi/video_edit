@@ -69,6 +69,8 @@ SOURCE_COVERAGE_REPORT = OUTPUT_REPORTS / "source_coverage_usage.json"
 ONSCREEN_CLOSEUP_REPORT = OUTPUT_REPORTS / "onscreen_closeup_camera_mask.json"
 SUBTITLE_TIMEBASE_REPORT = OUTPUT_REPORTS / "subtitle_timebase_usage.json"
 EXTERNAL_AUDIO_CUT_SYNC_REPORT = OUTPUT_REPORTS / "external_audio_cut_sync_report.json"
+CAMERA_SUBTITLE_BOUNDARY_REPORT = OUTPUT_REPORTS / "camera_subtitle_boundary_snap.json"
+CAMERA_MIN_SEGMENT_REPORT = OUTPUT_REPORTS / "camera_min_segment_report.json"
 RENDER_USAGE_REPORT = OUTPUT_REPORTS / "render_usage.json"
 PROXY_PROFILE = "h264-960p-ultrafast-crf28"
 
@@ -2902,6 +2904,234 @@ def caption_local_range(item: dict[str, Any], timeline_start: float, duration: f
     return start_t, end_t
 
 
+def subtitle_boundary_points(
+    captions: list[dict[str, Any]],
+    timeline_start: float,
+    duration: float,
+) -> list[dict[str, Any]]:
+    points: list[dict[str, Any]] = [
+        {"time": 0.0, "kind": "timeline_start"},
+        {"time": duration, "kind": "timeline_end"},
+    ]
+    seen = {0.0, round(duration, 6)}
+    for item in captions:
+        local = caption_local_range(item, timeline_start, duration)
+        if local is None:
+            continue
+        start_t, end_t = local
+        text = "".join(str(part) for part in item.get("lines") or [])
+        source_index = item.get("source_index", item.get("index"))
+        for kind, boundary_time in (("subtitle_start", start_t), ("subtitle_end", end_t)):
+            if boundary_time <= 0.001 or boundary_time >= duration - 0.001:
+                continue
+            key = round(boundary_time, 6)
+            if key in seen:
+                continue
+            seen.add(key)
+            points.append(
+                {
+                    "time": boundary_time,
+                    "kind": kind,
+                    "sourceIndex": source_index,
+                    "text": text[:80],
+                }
+            )
+    return sorted(points, key=lambda point: float(point["time"]))
+
+
+def nearest_subtitle_boundary(
+    planned_time: float,
+    points: list[dict[str, Any]],
+    *,
+    allow_edges: bool = False,
+) -> dict[str, Any] | None:
+    candidates = points
+    if not allow_edges:
+        candidates = [point for point in points if point.get("kind") not in {"timeline_start", "timeline_end"}]
+    if not candidates:
+        return None
+    return min(candidates, key=lambda point: (abs(float(point["time"]) - planned_time), float(point["time"])))
+
+
+def snap_camera_segments_to_subtitle_boundaries(
+    segments: list[tuple[str, int, float, float]],
+    *,
+    duration: float,
+    captions: list[dict[str, Any]],
+    timeline_start: float,
+    fallback: tuple[str, int],
+) -> tuple[list[tuple[str, int, float, float]], dict[str, Any]]:
+    enabled = bool_value("render", "cameraCutsAtSubtitleBoundariesOnly", default=False)
+    max_shift = float_config("render", "cameraCutSubtitleBoundaryMaxShift", default=0.0)
+    report: dict[str, Any] = {
+        "enabled": enabled,
+        "changed": False,
+        "inputSegments": len(segments),
+        "outputSegments": len(segments),
+        "subtitleBoundaryCount": 0,
+        "maxShiftSeconds": max_shift,
+        "adjustments": [],
+    }
+    if not enabled or len(segments) <= 1:
+        CAMERA_SUBTITLE_BOUNDARY_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        CAMERA_SUBTITLE_BOUNDARY_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        return segments, report
+
+    points = subtitle_boundary_points(captions, timeline_start, duration)
+    internal_points = [point for point in points if point.get("kind") not in {"timeline_start", "timeline_end"}]
+    report["subtitleBoundaryCount"] = len(internal_points)
+    if not internal_points:
+        report["reason"] = "no subtitle boundaries available"
+        CAMERA_SUBTITLE_BOUNDARY_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        CAMERA_SUBTITLE_BOUNDARY_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        return segments, report
+
+    snapped_boundaries = [0.0]
+    raw_boundaries: list[float] = []
+    adjustments: list[dict[str, Any]] = []
+    for index, (left, right) in enumerate(zip(segments, segments[1:])):
+        planned = float(left[3])
+        nearest = nearest_subtitle_boundary(planned, points)
+        if nearest is None:
+            raw_boundaries.append(planned)
+            continue
+        chosen = float(nearest["time"])
+        shift = chosen - planned
+        if max_shift > 0 and abs(shift) > max_shift:
+            chosen = planned
+            shift = 0.0
+            skipped = "nearest subtitle boundary exceeds max shift"
+        else:
+            skipped = ""
+        previous_boundary = snapped_boundaries[-1]
+        collapsed = chosen <= previous_boundary + 0.05
+        snapped_boundaries.append(previous_boundary if collapsed else chosen)
+        raw_boundaries.append(chosen)
+        item = {
+            "boundary": index,
+            "fromRole": left[0],
+            "toRole": right[0],
+            "planned": round(planned, 3),
+            "chosen": round(chosen, 3),
+            "shiftSeconds": round(shift, 3),
+            "subtitleBoundaryKind": nearest.get("kind"),
+            "subtitleSourceIndex": nearest.get("sourceIndex"),
+            "subtitleText": nearest.get("text", ""),
+            "collapsed": collapsed,
+        }
+        if skipped:
+            item["skipped"] = skipped
+        adjustments.append(item)
+
+    snapped_boundaries.append(duration)
+    adjusted: list[tuple[str, int, float, float]] = []
+    for index, (role, input_index, _start_t, _end_t) in enumerate(segments):
+        start_t = snapped_boundaries[index]
+        end_t = snapped_boundaries[index + 1]
+        if end_t - start_t <= 0.05:
+            continue
+        adjusted.append((role, input_index, start_t, end_t))
+
+    normalized = normalize_camera_segments(duration, adjusted, fallback)
+    report["adjustments"] = adjustments
+    report["outputSegments"] = len(normalized)
+    report["changed"] = normalized != segments
+    if raw_boundaries:
+        report["largestAbsShiftSeconds"] = round(max(abs(item["shiftSeconds"]) for item in adjustments), 3)
+
+    CAMERA_SUBTITLE_BOUNDARY_REPORT.parent.mkdir(parents=True, exist_ok=True)
+    CAMERA_SUBTITLE_BOUNDARY_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    if report["changed"]:
+        write_camera_plan_report(
+            f"{text_config('render', 'multicamMode', default='master-first')}+subtitle-boundaries",
+            normalized,
+            str(CAMERA_SUBTITLE_BOUNDARY_REPORT),
+        )
+    return normalized, report
+
+
+def enforce_minimum_camera_segment_duration(
+    segments: list[tuple[str, int, float, float]],
+    *,
+    duration: float,
+    fallback: tuple[str, int],
+) -> tuple[list[tuple[str, int, float, float]], dict[str, Any]]:
+    min_segment = float_config("render", "cameraMinSegmentSeconds", default=0.0)
+    report: dict[str, Any] = {
+        "enabled": min_segment > 0.0,
+        "minSegmentSeconds": min_segment,
+        "inputSegments": len(segments),
+        "outputSegments": len(segments),
+        "changed": False,
+        "merged": [],
+    }
+    if min_segment <= 0.0 or len(segments) <= 1:
+        CAMERA_MIN_SEGMENT_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        CAMERA_MIN_SEGMENT_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        return segments, report
+
+    current = list(segments)
+    while len(current) > 1:
+        short_candidates = [
+            (float(end_t) - float(start_t), index)
+            for index, (_role, _input_index, start_t, end_t) in enumerate(current)
+            if float(end_t) - float(start_t) < min_segment
+        ]
+        if not short_candidates:
+            break
+        _short_duration, index = min(short_candidates, key=lambda item: (item[0], item[1]))
+        role, input_index, start_t, end_t = current[index]
+        item = {
+            "role": role,
+            "inputIndex": input_index,
+            "start": round(start_t, 3),
+            "end": round(end_t, 3),
+            "duration": round(end_t - start_t, 3),
+        }
+
+        if index == 0:
+            next_role, next_input, _next_start, next_end = current[1]
+            current[1] = (next_role, next_input, start_t, next_end)
+            del current[0]
+            item["mergedInto"] = "next"
+        elif index == len(current) - 1:
+            prev_role, prev_input, prev_start, _prev_end = current[index - 1]
+            current[index - 1] = (prev_role, prev_input, prev_start, end_t)
+            del current[index]
+            item["mergedInto"] = "previous"
+        else:
+            prev_role, prev_input, prev_start, prev_end = current[index - 1]
+            next_role, next_input, next_start, next_end = current[index + 1]
+            if prev_role == next_role and prev_input == next_input:
+                current[index - 1 : index + 2] = [(prev_role, prev_input, prev_start, next_end)]
+                item["mergedInto"] = "surrounding_same_camera"
+            else:
+                prev_duration = prev_end - prev_start
+                next_duration = next_end - next_start
+                if prev_duration >= next_duration:
+                    current[index - 1] = (prev_role, prev_input, prev_start, end_t)
+                    del current[index]
+                    item["mergedInto"] = "previous"
+                else:
+                    current[index + 1] = (next_role, next_input, start_t, next_end)
+                    del current[index]
+                    item["mergedInto"] = "next"
+        report["merged"].append(item)
+
+    normalized = normalize_camera_segments(duration, current, fallback)
+    report["outputSegments"] = len(normalized)
+    report["changed"] = normalized != segments
+    CAMERA_MIN_SEGMENT_REPORT.parent.mkdir(parents=True, exist_ok=True)
+    CAMERA_MIN_SEGMENT_REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    if report["changed"]:
+        write_camera_plan_report(
+            f"{text_config('render', 'multicamMode', default='master-first')}+min-camera-segment",
+            normalized,
+            str(CAMERA_MIN_SEGMENT_REPORT),
+        )
+    return normalized, report
+
+
 def speaker_aware_segments(
     duration: float,
     cameras: list[tuple[str, int]],
@@ -3870,6 +4100,18 @@ def main() -> None:
             audio_role=audio_role,
             replacements=replacements,
         )
+    timeline_segments, subtitle_boundary_snap_report = snap_camera_segments_to_subtitle_boundaries(
+        timeline_segments,
+        duration=duration,
+        captions=planning_subtitle_items,
+        timeline_start=start,
+        fallback=camera_indexes[0],
+    )
+    timeline_segments, min_camera_segment_report = enforce_minimum_camera_segment_duration(
+        timeline_segments,
+        duration=duration,
+        fallback=camera_indexes[0],
+    )
     color_filters, color_report = camera_color_match_filters(
         cameras,
         start,
@@ -4282,6 +4524,16 @@ def main() -> None:
         "encoder": {key: value for key, value in encoder_config.items() if key != "args"},
         "global_video_zoom": global_zoom,
         "camera_cut_plan": camera_plan_summary(),
+        "camera_subtitle_boundary_snap": {
+            "enabled": bool(subtitle_boundary_snap_report.get("enabled")),
+            "changed": bool(subtitle_boundary_snap_report.get("changed")),
+            "report": str(CAMERA_SUBTITLE_BOUNDARY_REPORT),
+        },
+        "camera_min_segment": {
+            "enabled": bool(min_camera_segment_report.get("enabled")),
+            "changed": bool(min_camera_segment_report.get("changed")),
+            "report": str(CAMERA_MIN_SEGMENT_REPORT),
+        },
         "source_coverage": source_coverage_report,
         "natural_dialogue_cuts": natural_cut_report,
         "camera_color_match": color_match_summary(color_report),

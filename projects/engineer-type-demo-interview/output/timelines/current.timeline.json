@@ -1,7 +1,7 @@
 {
   "schemaVersion": "video-edit-timeline/v1",
   "id": "timeline_engineer-type-demo-interview",
-  "createdAt": "2026-06-15T17:01:35Z",
+  "createdAt": "2026-06-15T23:46:56Z",
   "project": {
     "id": "engineer-type-demo-interview",
     "name": "engineer-type-demo-interview",
@@ -291,6 +291,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -414,6 +415,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -496,6 +498,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -619,6 +622,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -742,6 +746,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -824,6 +829,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -906,6 +912,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -988,6 +995,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1070,6 +1078,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1152,6 +1161,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1234,6 +1244,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera4",
+            "filter": "colorchannelmixer=rr=1.06723:gg=1.07919:bb=1.06520,eq=brightness=0.0333:contrast=0.8654:saturation=0.8400",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
         }
@@ -1480,6 +1491,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1563,6 +1575,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1646,6 +1659,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1729,6 +1743,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1812,6 +1827,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1895,6 +1911,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -1978,6 +1995,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2061,6 +2079,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2144,6 +2163,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2227,6 +2247,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2310,6 +2331,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2393,6 +2415,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2476,6 +2499,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }
@@ -2559,6 +2583,7 @@
           "params": {
             "reportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_color_match.json",
             "role": "camera5",
+            "filter": "colorchannelmixer=rr=1.00573:gg=1.07625:bb=1.15943,eq=brightness=0.0321:contrast=0.8593:saturation=0.8400",
             "manualFilter": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200",
             "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600"
           }

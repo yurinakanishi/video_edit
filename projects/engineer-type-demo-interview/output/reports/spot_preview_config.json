@@ -301,9 +301,9 @@
   },
   "render": {
     "script": "render_app_interview.py",
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_010631_no_cut_10m16_fix_240p_spot.mp4",
-    "previewStart": 704.0,
-    "previewDuration": 25.0,
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_094845_subtitle_fixes_wakate_engineer_240p_spot.mp4",
+    "previewStart": 2353.0,
+    "previewDuration": 24.0,
     "subtitleMode": "full",
     "multicamMode": "manual-plan",
     "audioSource": "external-if-selected",
@@ -325,6 +325,7 @@
     "usePersonEditPlans": true,
     "naturalDialogueCuts": true,
     "closeupsOnlyWhenOnscreenSpeaker": true,
+    "cameraCutsAtSubtitleBoundariesOnly": true,
     "closeupSpeechPadding": 0.18,
     "closeupSpeechGapMerge": 0.8,
     "cropPercent": 0,
@@ -365,38 +366,23 @@
         "label": "subtitle-only filler: 確かに"
       },
       {
-        "start": 474.48,
-        "end": 475.5,
-        "label": "review cut: 6:29 確かに prefix"
-      },
-      {
         "start": 545.02,
         "end": 547.4,
         "label": "review cut: 7:40 確かにありがとうございます"
       },
       {
-        "start": 764.5,
-        "end": 865.5,
-        "label": "review cut: 11:19-13:00"
-      },
-      {
-        "start": 890.5,
-        "end": 989.5,
-        "label": "review cut: 13:25-15:04, including 確かに確かに"
+        "start": 763.28,
+        "end": 920.62,
+        "label": "review cut: after ポイントとしてあるかなと思いますね including 外部要素ですか before 先ほどの話に付属して考えると"
       },
       {
         "start": 962.18,
-        "end": 966.16,
-        "label": "subtitle-only filler: 確かに確かに"
+        "end": 998.54,
+        "label": "review cut: from 確かに確かに through 日本の中で... before 徐々に分かってきた"
       },
       {
         "start": 1261.06,
         "end": 1262.34,
-        "label": "subtitle-only filler: 確かに"
-      },
-      {
-        "start": 1305.94,
-        "end": 1308.7,
         "label": "subtitle-only filler: 確かに"
       },
       {
@@ -410,9 +396,9 @@
         "label": "review cut: 23:39 確かにな"
       },
       {
-        "start": 1504.5,
-        "end": 1537.5,
-        "label": "review cut: 23:39-24:12"
+        "start": 1504.3799999999999,
+        "end": 1536.68,
+        "label": "review cut: from そこをちょっと考えてみたい before そもそもFDEとPDMは共存する"
       },
       {
         "start": 1738.28,
@@ -425,9 +411,9 @@
         "label": "subtitle-only filler: 確かに"
       },
       {
-        "start": 2014.58,
+        "start": 2014.9199999999998,
         "end": 2016.1399999999999,
-        "label": "subtitle-only filler: 確かに確かに"
+        "label": "review cut: keep silence after みたいなことは思います, cut just before 確かに確かに"
       },
       {
         "start": 2182.6000000000004,
@@ -435,14 +421,14 @@
         "label": "subtitle-only filler: 確かに"
       },
       {
-        "start": 2222.5,
-        "end": 2333.5,
-        "label": "review cut: 35:37-37:28"
+        "start": 2220.86,
+        "end": 2332.46,
+        "label": "review cut: reset/setup block after 分かりましたありがとうございます before FDEについて"
       },
       {
-        "start": 2627.5,
+        "start": 2626.1800000000003,
         "end": 2672.5600000000004,
-        "label": "review cut: 42:22 to actual FDEに向いている人 start"
+        "label": "review cut: after そこは改めて捉え直す before FDEに向いている人"
       },
       {
         "start": 2803.76,
@@ -471,7 +457,8 @@
         "Preview profile skips silence shortening inside render_multicam.py.",
         "Full transcript PNG overlays are generated through the cached generator."
       ]
-    }
+    },
+    "cameraMinSegmentSeconds": 2.0
   },
   "style": {
     "titleText": "AIエンジニアの今",

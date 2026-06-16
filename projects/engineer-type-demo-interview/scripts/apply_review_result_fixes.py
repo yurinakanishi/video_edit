@@ -42,13 +42,16 @@ SUBTITLE_TEXT_REPLACEMENTS = [
     ("いう あのでその部分は背中を預けようっていうのが", "その部分は背中を預けよう"),
     ("すごく健全だと思っていて なんか私は例えば", "すごく健全だと思っていて"),
     ("営業だから エンジニアリングのことは全くわからない", "私は例えば営業だからエンジニアリングのことは\n全くわからないから任せた"),
+    ("私は例えば営業だから", "私は、例えば営業だから"),
     ("から任せたみたいな 任せたって言うと別に言葉は綺麗なんですけど", "みたいな 任せたって言うと別に言葉は綺麗なんですけど"),
+    ("みたいな 任せたって", "みたいな、任せたって"),
     (
         "なんていうか関心ないですよって近いことだと思っていて お互いのやってることに関心があったりとかなんとなく肌感覚は持ちつつもでも",
-        "なんていうか「関心ないですよ」に近いことだと思っていて、お互いのやってることに関心があったりとかなんとなく肉体感覚を持ちつつも、でも",
+        "なんていうか「関心ないですよ」に近いことだと思っていて、お互いのやってることに関心があったりとかなんとなく肉体感覚は持ちつつも、でも",
     ),
-    ("肌感覚を持ちつつでも", "肉体感覚を持ちつつも、でも"),
-    ("肌感覚は持ちつつもでも", "肉体感覚を持ちつつも、でも"),
+    ("肌感覚を持ちつつでも", "肉体感覚は持ちつつも、でも"),
+    ("肌感覚は持ちつつもでも", "肉体感覚は持ちつつも、でも"),
+    ("肉体感覚を持ちつつも", "肉体感覚は持ちつつも"),
     ("そこを何でもかんでも集約する人の役割をというわけじゃなくて", "そこを何でもかんでも集約する、人の役割というわけじゃなくて"),
     ("そのFDEを取り入れるのは本当にワークするのかな", "FDEを取り入れるのは、もう本当にわかったのかな"),
     ("ちょっと不安に思っているような若手中", "ちょっと不安に思っているような若手エンジニア"),
@@ -61,12 +64,76 @@ SUBTITLE_TEXT_REPLACEMENTS = [
     ("やっぱりファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね", "ファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね"),
     ("何ですかね別にエンジニアタイプだから媚びてるわけじゃないけど", "別に『エンジニアtype』だから媚びてるわけじゃないけど"),
     ("改めて己が担う役割", "改めて己が担う役割、対価"),
+    ("それに自分寄せられちゃってる", "それに自分が寄せられちゃってる"),
+    ("チームなの かなとは個人的に思いますね", "チームなのかなと個人的に思いますね"),
     ("なんかえ?", "なんか、え？"),
     ("UXがいい", "UXが良い"),
     ("コードを書く業数", "コードを書く行数"),
     ("ひねられたこの形", "決められたこの形"),
     ("改めて揃え直す", "改めて捉え直す"),
     ("?", "？"),
+]
+SRT_LINE_BREAK_REPLACEMENTS = [
+    (
+        "なかなかお客さんが直接的には使いにくいプロダクトですという場合は",
+        "なかなかお客さんが直接的には\n使いにくいプロダクトですという場合は",
+    ),
+]
+SRT_TIMING_OVERRIDES = [
+    {
+        "contains": "すごく健全だと思っていて",
+        "timing": "00:34:50,700 --> 00:34:54,900",
+    },
+    {
+        "contains": "私は、例えば営業だからエンジニアリングのことは",
+        "timing": "00:34:54,900 --> 00:35:01,200",
+    },
+    {
+        "contains": "みたいな、任せたって言うと別に",
+        "timing": "00:35:01,200 --> 00:35:05,360",
+    },
+    {
+        "contains": "なんていうか「関心ないですよ」に近いことだと思っていて",
+        "timing": "00:35:05,360 --> 00:35:15,000",
+    },
+    {
+        "contains": "それぞれの得意な領域をそれぞれがやるっていうのが",
+        "timing": "00:35:15,000 --> 00:35:23,600",
+    },
+]
+RESTORE_SRT_CUES = [
+    {
+        "index": "122",
+        "timing": "00:06:42,020 --> 00:06:43,940",
+        "lines": ["なるほど確かに"],
+    },
+]
+JSON_TIMING_OVERRIDES = [
+    {
+        "contains": "すごく健全だと思っていて",
+        "start": 2090.7,
+        "end": 2094.9,
+    },
+    {
+        "contains": "私は、例えば営業だからエンジニアリングのことは",
+        "start": 2094.9,
+        "end": 2101.2,
+    },
+    {
+        "contains": "みたいな、任せたって言うと別に",
+        "start": 2101.2,
+        "end": 2105.36,
+    },
+    {
+        "contains": "なんていうか「関心ないですよ」に近いことだと思っていて",
+        "start": 2105.36,
+        "end": 2115.0,
+    },
+    {
+        "contains": "それぞれの得意な領域をそれぞれがやるっていうのが",
+        "start": 2115.0,
+        "end": 2123.6,
+    },
 ]
 SUBTITLE_ONLY_DELETE_CUES = [
     {
@@ -80,6 +147,12 @@ SUBTITLE_ONLY_DELETE_CUES = [
         "end": "00:39:27,060",
         "text": "若手エンジニア",
         "reason": "subtitle-only deletion: duplicate standalone 若手エンジニア",
+    },
+    {
+        "start": "00:43:54,880",
+        "end": "00:44:01,000",
+        "text": "大丈夫ですか",
+        "reason": "subtitle-only deletion: standalone 大丈夫ですか before FDEに向いている人 cut",
     },
 ]
 REVIEWED_VIDEO_SOURCE_START_CUT_SECONDS = 85.5
@@ -223,8 +296,43 @@ def retime_special_srt_cues(text: str) -> str:
                 rows[1] = "00:15:48,840 --> 00:15:49,680"
                 rows[2:] = ["大規模"]
                 block = "\n".join(rows)
+            for override in SRT_TIMING_OVERRIDES:
+                if override["contains"] in body:
+                    rows[1] = override["timing"]
+                    block = "\n".join(rows)
+                    break
         updated.append(block)
     return "".join(updated)
+
+
+def restore_srt_cues(text: str) -> str:
+    blocks = re.split(r"(\r?\n\r?\n)", text.strip())
+    cue_ids: set[str] = set()
+    for block in blocks:
+        rows = block.splitlines()
+        if len(rows) >= 3 and "-->" in rows[1]:
+            cue_ids.add(rows[0].strip())
+
+    for cue in RESTORE_SRT_CUES:
+        cue_id = cue["index"]
+        if cue_id in cue_ids:
+            continue
+        cue_block = "\n".join([cue_id, cue["timing"], *cue["lines"]])
+        insert_at = len(blocks)
+        for index, block in enumerate(blocks):
+            rows = block.splitlines()
+            if len(rows) >= 3 and "-->" in rows[1]:
+                try:
+                    current_id = int(rows[0].strip())
+                except ValueError:
+                    continue
+                if current_id > int(cue_id):
+                    insert_at = index
+                    break
+        separator = "\n\n"
+        blocks[insert_at:insert_at] = [cue_block, separator]
+
+    return "".join(blocks).rstrip() + "\n"
 
 
 def remove_subtitle_only_srt_cues(text: str) -> str:
@@ -290,6 +398,24 @@ def remove_subtitle_only_json_segments(payload: Any) -> Any:
     return payload
 
 
+def retime_special_json_segments(payload: Any) -> Any:
+    if not isinstance(payload, dict):
+        return payload
+    segments = payload.get("segments")
+    if not isinstance(segments, list):
+        return payload
+    for segment in segments:
+        if not isinstance(segment, dict):
+            continue
+        text = str(segment.get("text", ""))
+        for override in JSON_TIMING_OVERRIDES:
+            if override["contains"] in text:
+                segment["start"] = override["start"]
+                segment["end"] = override["end"]
+                break
+    return payload
+
+
 def replace_text_recursive(value: Any) -> Any:
     if isinstance(value, str):
         for before, after in SUBTITLE_TEXT_REPLACEMENTS:
@@ -313,15 +439,19 @@ def apply_subtitle_wording() -> None:
     srt_text = srt.read_text(encoding="utf-8")
     for before, after in SUBTITLE_TEXT_REPLACEMENTS:
         srt_text = srt_text.replace(before, after)
+    for before, after in SRT_LINE_BREAK_REPLACEMENTS:
+        srt_text = srt_text.replace(before, after)
     srt_text = retime_special_srt_cues(srt_text)
     srt_text = remove_subtitle_only_srt_cues(srt_text)
     srt_text = apply_punctuation_review_to_srt(srt_text, punctuation_replacements)
+    srt_text = restore_srt_cues(srt_text)
     srt_text = normalize_srt_subtitle_lines(srt_text)
     srt.write_text(srt_text, encoding="utf-8")
 
     reviewed_json = TRANSCRIPTS / "external_140101-003.reviewed.json"
     payload = json.loads(reviewed_json.read_text(encoding="utf-8"))
     payload = replace_text_recursive(payload)
+    payload = retime_special_json_segments(payload)
     payload = remove_subtitle_only_json_segments(payload)
     payload = apply_punctuation_review_to_json_segments(payload, punctuation_replacements)
     reviewed_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -348,6 +478,7 @@ def apply_chapter_titles() -> None:
     japan_start = subtitle_time_to_reviewed_time(1007.240)  # after the revised cut ending before "徐々に分かってきた..."
     pdm_start = subtitle_time_to_reviewed_time(1129.360)  # "ちょっと事前の想定ではPDMとFDE..."
     pdm_end = subtitle_time_to_reviewed_time(1436.880)  # before the next topic after the PDM/FDE discussion
+    fde_person_start = subtitle_time_to_reviewed_time(2681.260) - CHAPTER_TITLE_BOUNDARY_DELAY_SECONDS
     rows = [
         (0.0, strong_product_end, "強いプロダクト", "強いプロダクトの条件とFDEの前提を整理する導入。"),
         (strong_product_end, fde_workers_end, "既にFDE的に働く人", "既存職種の中にあるFDE的な働き方を整理する。"),
@@ -358,8 +489,8 @@ def apply_chapter_titles() -> None:
         (pdm_end, 1680.0, "日本の職種設計", "ジョブディスクリプションと職種設計の違い。"),
         (1680.0, 1920.0, "職種分化と再統合", "AI時代の職種分化と再統合。"),
         (1920.0, 2160.0, "PMの本質は統合", "プロダクトマネージャーのコア価値を整理する。"),
-        (2160.0, 2400.0, "FDE導入の条件", "FDEを導入すべき事業条件を整理する。"),
-        (2400.0, 2880.0, "FDEに向く人", "仕事の価値と対価を踏まえて、FDEに向く人のマインドセットを整理する。"),
+        (2160.0, fde_person_start, "FDE導入の条件", "FDEを導入すべき事業条件を整理する。"),
+        (fde_person_start, 2880.0, "FDEに向く人", "仕事の価値と対価を踏まえて、FDEに向く人のマインドセットを整理する。"),
         (2880.0, 3178.0, "AI時代の人の価値", "AI時代に残るエンジニア経験と人の価値。"),
     ]
     delayed_rows = []
@@ -397,10 +528,9 @@ def review_cut_ranges() -> list[dict[str, Any]]:
         return subtitle_time_to_source_time(start), subtitle_time_to_source_time(end), label
 
     ranges = [
-        srt_range(299.400, 302.000, "subtitle-only filler: 確かに"),
-        srt_range(402.020, 403.940, "subtitle-only filler: なるほど確かに"),
-        srt_range(421.120, 423.060, "subtitle-only filler: 確かに"),
-        srt_range(553.720, 556.100, "review cut: 7:40 確かにありがとうございます"),
+        srt_range(299.400, 302.000, "tight filler cut: 確かに"),
+        srt_range(421.120, 423.060, "tight filler cut: 確かに"),
+        srt_range(553.720, 556.100, "tight filler cut: 確かにありがとうございます"),
         # The revised speech-anchor instruction asks to tighten the gap between
         # "そうですね" and "なのでFDEを支える要素...". Those anchors are contiguous
         # in the transcript, so there is no source-time cut range to store here.
@@ -414,29 +544,30 @@ def review_cut_ranges() -> list[dict[str, Any]]:
             1007.240,
             "review cut: from 確かに確かに through 日本の中で... before 徐々に分かってきた",
         ),
-        srt_range(1269.760, 1271.040, "subtitle-only filler: 確かに"),
-        srt_range(1458.680, 1462.100, "review cut: 22:47 確かにな"),
-        srt_range(1511.920, 1513.080, "review cut: 23:39 確かにな"),
+        srt_range(1269.760, 1271.040, "tight filler cut: 確かに"),
+        srt_range(1314.640, 1317.400, "tight filler cut: 確かに"),
+        srt_range(1458.680, 1462.100, "tight filler cut: 確かにな"),
+        srt_range(1511.920, 1513.080, "tight filler cut: 確かにな"),
         srt_range(
             1513.080,
             1545.380,
             "review cut: from そこをちょっと考えてみたい before そもそもFDEとPDMは共存する",
         ),
-        srt_range(1746.980, 1748.480, "subtitle-only filler: 確かに"),
-        srt_range(1808.400, 1810.380, "subtitle-only filler: 確かに"),
-        srt_range(2023.620, 2024.840, "review cut: keep silence after みたいなことは思います, cut just before 確かに確かに"),
+        srt_range(1746.980, 1748.480, "tight filler cut: 確かに"),
+        srt_range(1808.400, 1810.380, "tight filler cut: 確かに"),
+        srt_range(2023.280, 2024.840, "tight filler cut: 確かに確かに"),
         srt_range(
             2229.560,
             2341.160,
             "review cut: reset/setup block after 分かりましたありがとうございます before FDEについて",
         ),
-        srt_range(2191.300, 2193.000, "subtitle-only filler: 確かに"),
+        srt_range(2191.300, 2193.000, "tight filler cut: 確かに"),
         srt_range(
-            2634.880,
+            2635.380,
             2681.260,
             "review cut: after そこは改めて捉え直す before FDEに向いている人",
         ),
-        srt_range(2812.460, 2814.900, "review cut: 45:17 確かに確かに"),
+        srt_range(2812.460, 2814.900, "tight filler cut: 確かに確かに"),
     ]
     return [{"start": start, "end": end, "label": label} for start, end, label in sorted(ranges, key=lambda item: item[0])]
 

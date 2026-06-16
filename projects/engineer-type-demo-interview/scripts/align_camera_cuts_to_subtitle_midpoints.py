@@ -18,6 +18,13 @@ PLAN_PATH = REPORTS / "manual_camera_plan.json"
 REPORT_PATH = REPORTS / "camera_subtitle_midpoint_plan.json"
 NATURAL_CUT_REPORT = REPORTS / "natural_dialogue_cuts.json"
 ONSCREEN_CLOSEUP_REPORT = REPORTS / "onscreen_closeup_camera_mask.json"
+FORCED_MASTER_WINDOWS = [
+    {
+        "start": 19 * 60 + 17.0,
+        "end": 19 * 60 + 42.0,
+        "reason": "User requested wide shot through the 19:17-19:42 section; avoid the camera5 push-in.",
+    }
+]
 
 
 def load_renderer() -> Any:
@@ -344,6 +351,52 @@ def avoid_source_coverage_boundaries(
     return rm.normalize_camera_segments(float(context["outputDuration"]), adjusted_segments, fallback), adjustments
 
 
+def force_master_windows(
+    rm: Any,
+    segments: list[tuple[str, int, float, float]],
+    *,
+    duration: float,
+    fallback: tuple[str, int],
+) -> tuple[list[tuple[str, int, float, float]], list[dict[str, Any]]]:
+    if not segments:
+        return segments, []
+
+    master_role, master_index = fallback
+    adjusted: list[tuple[str, int, float, float]] = []
+    forced: list[dict[str, Any]] = []
+    for role, input_index, start_t, end_t in segments:
+        pieces = [(float(start_t), float(end_t), role, input_index)]
+        for window in FORCED_MASTER_WINDOWS:
+            win_start = max(0.0, float(window["start"]))
+            win_end = min(float(duration), float(window["end"]))
+            next_pieces: list[tuple[float, float, str, int]] = []
+            for piece_start, piece_end, piece_role, piece_index in pieces:
+                overlap_start = max(piece_start, win_start)
+                overlap_end = min(piece_end, win_end)
+                if overlap_end <= overlap_start + 0.05:
+                    next_pieces.append((piece_start, piece_end, piece_role, piece_index))
+                    continue
+                if piece_start < overlap_start - 0.05:
+                    next_pieces.append((piece_start, overlap_start, piece_role, piece_index))
+                next_pieces.append((overlap_start, overlap_end, master_role, master_index))
+                if piece_end > overlap_end + 0.05:
+                    next_pieces.append((overlap_end, piece_end, piece_role, piece_index))
+                if piece_role != master_role:
+                    forced.append(
+                        {
+                            "start": round(overlap_start, 3),
+                            "end": round(overlap_end, 3),
+                            "fromRole": piece_role,
+                            "toRole": master_role,
+                            "reason": window["reason"],
+                        }
+                    )
+            pieces = next_pieces
+        adjusted.extend((piece_role, piece_index, piece_start, piece_end) for piece_start, piece_end, piece_role, piece_index in pieces)
+
+    return rm.normalize_camera_segments(duration, adjusted, fallback), forced
+
+
 def write_plan(segments: list[tuple[str, int, float, float]], duration: float, report_path: Path) -> None:
     payload = {
         "mode": "manual-plan",
@@ -437,6 +490,12 @@ def main() -> None:
         preferred_caption_duration=args.preferred_caption_duration,
         fallback=camera_indexes[0],
     )
+    adjusted_segments, forced_master_adjustments = force_master_windows(
+        rm,
+        adjusted_segments,
+        duration=duration,
+        fallback=camera_indexes[0],
+    )
 
     REPORTS.mkdir(parents=True, exist_ok=True)
     backup_once(PLAN_PATH)
@@ -455,8 +514,10 @@ def main() -> None:
         "alignedBoundaryCount": sum(1 for item in adjustments if item.get("alignedToCaptionMidpoint")),
         "keptBoundaryCount": sum(1 for item in adjustments if not item.get("alignedToCaptionMidpoint")),
         "coverageBoundaryAdjustmentCount": len(coverage_adjustments),
+        "forcedMasterAdjustmentCount": len(forced_master_adjustments),
         "adjustments": adjustments,
         "coverageBoundaryAdjustments": coverage_adjustments,
+        "forcedMasterAdjustments": forced_master_adjustments,
     }
     REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     write_plan(adjusted_segments, duration, REPORT_PATH)
@@ -474,6 +535,7 @@ def main() -> None:
                 "alignedBoundaryCount": report["alignedBoundaryCount"],
                 "keptBoundaryCount": report["keptBoundaryCount"],
                 "coverageBoundaryAdjustmentCount": report["coverageBoundaryAdjustmentCount"],
+                "forcedMasterAdjustmentCount": report["forcedMasterAdjustmentCount"],
             },
             ensure_ascii=False,
             indent=2,

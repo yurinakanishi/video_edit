@@ -15,7 +15,6 @@ REPORT_PATH = PROJECT_DIR / "output" / "reports" / "remove_tashikani_subtitles_r
 TARGET_PATTERN = "確かに"
 STANDALONE_FILLERS = {
     "確かに",
-    "なるほど確かに",
     "確かに確かに",
     "確かにな",
 }

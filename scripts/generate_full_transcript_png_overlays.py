@@ -298,6 +298,12 @@ MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {
         "私は、例えば営業だからエンジニアリングのことは",
         "全くわからないから任せた",
     ),
+    "それぞれの得意な領域をそれぞれがやるっていうのが、まあなんか理想とするチームなのかなと個人的に思いますね": (
+        "それぞれの得意な領域を",
+        "それぞれがやるっていうのが",
+        "まあなんか理想とするチームなのかなと",
+        "個人的に思いますね",
+    ),
     "どの企業であっても、アメリカで流行っているからといって": (
         "どの企業であっても、",
         "アメリカで流行っているからといって",
@@ -337,6 +343,10 @@ MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {
     "FDEに向いているプロダクトという話と、両方あると思います": (
         "FDEに向いているプロダクトという",
         "話と、両方あると思います",
+    ),
+    "なかなかお客さんが直接的には使いにくいプロダクトですという場合は": (
+        "なかなかお客さんが直接的には",
+        "使いにくいプロダクトですという場合は",
     ),
     "それ、なんかコード書くとかというよりは思考体系っていうか": (
         "それ、なんかコード書くとか",
@@ -864,6 +874,19 @@ def load_png_cache() -> dict[str, dict[str, object]]:
     return entries if isinstance(entries, dict) else {}
 
 
+def pink_subtitle_source_indices() -> set[int]:
+    raw = nested(APP_CONFIG, "style", "pinkSubtitleSourceIndices", default=[])
+    if not isinstance(raw, list):
+        return set()
+    indices: set[int] = set()
+    for value in raw:
+        try:
+            indices.add(int(value))
+        except (TypeError, ValueError):
+            continue
+    return indices
+
+
 def cleanup_stale_pngs(used_files: set[Path]) -> None:
     for path in OUT_DIR.glob("full_*.png"):
         if path not in used_files and path.is_file():
@@ -901,6 +924,7 @@ def main() -> None:
     alpha = opacity_alpha(nested(APP_CONFIG, "style", "boxOpacity"), 185)
     onscreen_fill = hex_rgba(nested(APP_CONFIG, "style", "highlightColor"), alpha=alpha, default=LIGHT_PURPLE)
     interviewer_fill = (*BLACK[:3], alpha)
+    forced_pink_indices = pink_subtitle_source_indices()
     write_png = args.format in {"png", "both"}
     layout_items = []
     png_manifest = []
@@ -911,7 +935,9 @@ def main() -> None:
     cache_rendered = 0
     for index, caption in enumerate(captions, start=1):
         role = roles.get(str(caption.source_index), "onscreen")
-        box_fill = interviewer_fill if role == "interviewer" else onscreen_fill
+        box_fill = onscreen_fill if caption.source_index in forced_pink_indices else (
+            interviewer_fill if role == "interviewer" else onscreen_fill
+        )
         width, height = measure_simple_caption(caption.lines, caption.font_size)
         item = {
             **asdict(caption),

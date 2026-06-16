@@ -2077,6 +2077,110 @@ def configured_camera_extra_filters(cameras: list[tuple[str, Path]]) -> tuple[di
     return filters, report
 
 
+def source_coverage_fallback_color_enabled() -> bool:
+    return bool_value("render", "colorMatchSourceCoverageFallbacks", default=False) and bool(
+        text_config("render", "sourceCoverageFallbackColorFilter").strip()
+    )
+
+
+def source_coverage_fallback_color_boundaries(source_coverage_report: dict[str, Any], duration: float) -> list[float]:
+    if not source_coverage_fallback_color_enabled():
+        return []
+    adjustments = source_coverage_report.get("adjustments") if isinstance(source_coverage_report, dict) else None
+    if not isinstance(adjustments, list):
+        return []
+    points: set[float] = set()
+    for adjustment in adjustments:
+        if not isinstance(adjustment, dict):
+            continue
+        if not source_coverage_fallback_color_adjustment_matches(adjustment, target_role=None):
+            continue
+        try:
+            start_t = max(0.0, min(duration, float(adjustment.get("start"))))
+            end_t = max(0.0, min(duration, float(adjustment.get("end"))))
+        except (TypeError, ValueError):
+            continue
+        if end_t > start_t + 0.02:
+            points.add(start_t)
+            points.add(end_t)
+    return sorted(points)
+
+
+def split_camera_segments_at_points(
+    segments: list[tuple[str, int, float, float]],
+    points: list[float],
+) -> list[tuple[str, int, float, float]]:
+    if not points:
+        return segments
+    split: list[tuple[str, int, float, float]] = []
+    for role, index, start_t, end_t in segments:
+        inner_points = [point for point in points if start_t + 0.02 < point < end_t - 0.02]
+        cursor = start_t
+        for point in inner_points:
+            split.append((role, index, cursor, point))
+            cursor = point
+        split.append((role, index, cursor, end_t))
+    return split
+
+
+def source_coverage_fallback_color_adjustment_matches(
+    adjustment: dict[str, Any],
+    *,
+    target_role: str | None,
+) -> bool:
+    to_role = str(adjustment.get("toRole") or "")
+    from_role = str(adjustment.get("fromRole") or "")
+    if target_role is not None and to_role != target_role:
+        return False
+    if not to_role or not from_role or to_role == from_role:
+        return False
+    target_roles = {str(value) for value in list_value("render", "sourceCoverageFallbackColorTargetRoles") if str(value)}
+    if target_roles and to_role not in target_roles:
+        return False
+    if not target_roles and to_role != "master":
+        return False
+    from_roles = {str(value) for value in list_value("render", "sourceCoverageFallbackColorFromRoles") if str(value)}
+    if from_roles and from_role not in from_roles:
+        return False
+    return True
+
+
+def source_coverage_fallback_color_filter_for_segment(
+    source_coverage_report: dict[str, Any],
+    role: str,
+    start_t: float,
+    end_t: float,
+) -> tuple[str | None, dict[str, Any] | None]:
+    if not source_coverage_fallback_color_enabled():
+        return None, None
+    adjustments = source_coverage_report.get("adjustments") if isinstance(source_coverage_report, dict) else None
+    if not isinstance(adjustments, list):
+        return None, None
+    midpoint = (start_t + end_t) / 2
+    for adjustment in adjustments:
+        if not isinstance(adjustment, dict):
+            continue
+        if not source_coverage_fallback_color_adjustment_matches(adjustment, target_role=role):
+            continue
+        try:
+            adjustment_start = float(adjustment.get("start"))
+            adjustment_end = float(adjustment.get("end"))
+        except (TypeError, ValueError):
+            continue
+        if adjustment_start - 0.01 <= midpoint < adjustment_end + 0.01:
+            return text_config("render", "sourceCoverageFallbackColorFilter").strip(), {
+                "role": role,
+                "fromRole": str(adjustment.get("fromRole") or ""),
+                "toRole": str(adjustment.get("toRole") or ""),
+                "start": round(start_t, 3),
+                "end": round(end_t, 3),
+                "adjustmentStart": round(adjustment_start, 3),
+                "adjustmentEnd": round(adjustment_end, 3),
+                "reason": str(adjustment.get("reason") or "source coverage fallback"),
+            }
+    return None, None
+
+
 def load_face_center_crop_plan() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     enabled = bool_value("render", "faceCenterCrop", default=False)
     plan_path = path_value("render", "faceCenterCropPlanPath") or (OUTPUT_REPORTS / "face_center_crop_plan.json")
@@ -4112,6 +4216,8 @@ def main() -> None:
         duration=duration,
         fallback=camera_indexes[0],
     )
+    fallback_color_boundaries = source_coverage_fallback_color_boundaries(source_coverage_report, duration)
+    timeline_segments = split_camera_segments_at_points(timeline_segments, fallback_color_boundaries)
     color_filters, color_report = camera_color_match_filters(
         cameras,
         start,
@@ -4125,6 +4231,12 @@ def main() -> None:
         color_report["outputLookFilter"] = output_look_filter
     if extra_camera_filter_report:
         color_report["manualExtraFilters"] = extra_camera_filter_report
+    if fallback_color_boundaries:
+        color_report["sourceCoverageFallbackColor"] = {
+            "enabled": True,
+            "boundaries": [round(value, 3) for value in fallback_color_boundaries],
+            "filter": text_config("render", "sourceCoverageFallbackColorFilter").strip(),
+        }
     if output_look_filter or extra_camera_filter_report:
         COLOR_MATCH_REPORT.parent.mkdir(parents=True, exist_ok=True)
         COLOR_MATCH_REPORT.write_text(json.dumps(color_report, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -4227,6 +4339,7 @@ def main() -> None:
 
     filters: list[str] = []
     segment_labels: list[str] = []
+    fallback_color_filter_report: list[dict[str, Any]] = []
     for segment_index, segment in enumerate(video_segments):
         label = f"seg{segment_index}"
         seg_start = float(segment["start"])
@@ -4283,6 +4396,16 @@ def main() -> None:
                 visual_filter = f"{visual_filter},{color_filters[input_index]}"
             if extra_camera_filters.get(input_index):
                 visual_filter = f"{visual_filter},{extra_camera_filters[input_index]}"
+            fallback_color_filter, fallback_color_detail = source_coverage_fallback_color_filter_for_segment(
+                source_coverage_report,
+                role,
+                seg_start,
+                seg_end,
+            )
+            if fallback_color_filter:
+                visual_filter = f"{visual_filter},{fallback_color_filter}"
+                if fallback_color_detail:
+                    fallback_color_filter_report.append({**fallback_color_detail, "filter": fallback_color_filter})
             if output_look_filter:
                 visual_filter = f"{visual_filter},{output_look_filter}"
             face_center_segment = face_center_crop_segment(face_center_segments, role, seg_start, seg_end)
@@ -4323,6 +4446,11 @@ def main() -> None:
                 f"setpts=PTS-STARTPTS,{visual_filter}[{label}]"
             )
         segment_labels.append(label)
+
+    if fallback_color_filter_report:
+        color_report["sourceCoverageFallbackColor"]["segments"] = fallback_color_filter_report
+        COLOR_MATCH_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        COLOR_MATCH_REPORT.write_text(json.dumps(color_report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     PERSON_CROP_REPORT.parent.mkdir(parents=True, exist_ok=True)
     PERSON_CROP_REPORT.write_text(json.dumps(person_crop_report, ensure_ascii=False, indent=2), encoding="utf-8")

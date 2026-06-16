@@ -1,7 +1,7 @@
 {
   "version": 1,
   "projectId": "engineer-type-demo-interview",
-  "updatedAt": "2026-06-16T07:35:00Z",
+  "updatedAt": "2026-06-16T04:14:41Z",
   "assets": {
     "mediaDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
     "materialPaths": [
@@ -301,9 +301,9 @@
   },
   "render": {
     "script": "render_app_interview.py",
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_162333_color_fallback_removed_sorezore_240p_spot.mp4",
-    "previewStart": 2085.0,
-    "previewDuration": 45.0,
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_153901_interviewer_pink_soudesu_2813_10s_240p_spot.mp4",
+    "previewStart": 2018.9,
+    "previewDuration": 10.0,
     "subtitleMode": "full",
     "multicamMode": "manual-plan",
     "audioSource": "external-if-selected",
@@ -320,7 +320,7 @@
     "cameraExtraFilters": {
       "camera5": "colorchannelmixer=rr=1.06500:gg=0.98500:bb=1.00000,eq=brightness=-0.0140:contrast=1.0000:saturation=1.1200"
     },
-    "colorMatchSourceCoverageFallbacks": false,
+    "colorMatchSourceCoverageFallbacks": true,
     "sourceCoverageFallbackColorTargetRoles": [
       "master"
     ],
@@ -342,8 +342,8 @@
     "globalVideoZoom": 1.2,
     "speed": "normal",
     "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\manual_camera_plan.json",
-    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_150726.mp4",
-    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_150726.mp4",
+    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_153901_interviewer_pink_soudesu_2813_10s_240p_spot.mp4",
+    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_153901_interviewer_pink_soudesu_2813_10s_240p_spot.mp4",
     "subtitlePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
     "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\20260529_141836_role_aware_full.ass",
     "subtitleBurnMode": "png-precomposed-when-long",
@@ -363,17 +363,22 @@
       {
         "start": 290.7,
         "end": 293.3,
-        "label": "tight filler cut: 確かに"
+        "label": "subtitle-only filler: 確かに"
+      },
+      {
+        "start": 393.32,
+        "end": 395.24,
+        "label": "subtitle-only filler: なるほど確かに"
       },
       {
         "start": 412.42,
         "end": 414.36,
-        "label": "tight filler cut: 確かに"
+        "label": "subtitle-only filler: 確かに"
       },
       {
         "start": 545.02,
         "end": 547.4,
-        "label": "tight filler cut: 確かにありがとうございます"
+        "label": "review cut: 7:40 確かにありがとうございます"
       },
       {
         "start": 763.28,
@@ -388,22 +393,17 @@
       {
         "start": 1261.06,
         "end": 1262.34,
-        "label": "tight filler cut: 確かに"
-      },
-      {
-        "start": 1305.94,
-        "end": 1308.7,
-        "label": "tight filler cut: 確かに"
+        "label": "subtitle-only filler: 確かに"
       },
       {
         "start": 1449.98,
         "end": 1453.3999999999999,
-        "label": "tight filler cut: 確かにな"
+        "label": "review cut: 22:47 確かにな"
       },
       {
         "start": 1503.22,
         "end": 1504.3799999999999,
-        "label": "tight filler cut: 確かにな"
+        "label": "review cut: 23:39 確かにな"
       },
       {
         "start": 1504.3799999999999,
@@ -413,22 +413,22 @@
       {
         "start": 1738.28,
         "end": 1739.78,
-        "label": "tight filler cut: 確かに"
+        "label": "subtitle-only filler: 確かに"
       },
       {
         "start": 1799.7,
         "end": 1801.68,
-        "label": "tight filler cut: 確かに"
+        "label": "subtitle-only filler: 確かに"
       },
       {
-        "start": 2014.58,
+        "start": 2014.9199999999998,
         "end": 2016.1399999999999,
-        "label": "tight filler cut: 確かに確かに"
+        "label": "review cut: keep silence after みたいなことは思います, cut just before 確かに確かに"
       },
       {
         "start": 2182.6000000000004,
         "end": 2184.3,
-        "label": "tight filler cut: 確かに"
+        "label": "subtitle-only filler: 確かに"
       },
       {
         "start": 2220.86,
@@ -443,7 +443,7 @@
       {
         "start": 2803.76,
         "end": 2806.2000000000003,
-        "label": "tight filler cut: 確かに確かに"
+        "label": "review cut: 45:17 確かに確かに"
       }
     ],
     "extraOverlayManifests": [],
@@ -470,7 +470,18 @@
     },
     "cameraMinSegmentSeconds": 2.0,
     "cameraCutAlignment": "subtitle-midpoints",
-    "cameraMidSubtitlePlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_subtitle_midpoint_plan.json"
+    "cameraMidSubtitlePlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_subtitle_midpoint_plan.json",
+    "cameraPlan": {
+      "mode": "window-local-manual-plan",
+      "source": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\manual_camera_plan.json",
+      "segments": [
+        {
+          "role": "camera5",
+          "start": 0.0,
+          "end": 10.0
+        }
+      ]
+    }
   },
   "style": {
     "titleText": "AIエンジニアの今",

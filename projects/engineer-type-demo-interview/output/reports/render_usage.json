@@ -1,12 +1,12 @@
 {
   "renderProfile": "preview",
   "rangeMode": "range",
-  "start": 2808.0,
-  "sourceDuration": 18.0,
-  "outputDuration": 18.0,
-  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_101633_subtitle_fixes_fde_engineer_240p_spot.mp4",
-  "renderOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_101633_subtitle_fixes_fde_engineer_240p_spot.mp4",
-  "filterScript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\filtergraphs\\20260616_101633_subtitle_fixes_fde_engineer_240p_spot.ffgraph",
+  "start": 20.0,
+  "sourceDuration": 80.0,
+  "outputDuration": 80.0,
+  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_103044_punctuation_applied_start_240p_spot.mp4",
+  "renderOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_103044_punctuation_applied_start_240p_spot.mp4",
+  "filterScript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\filtergraphs\\20260616_103044_punctuation_applied_start_240p_spot.ffgraph",
   "encoder": {
     "name": "libx264",
     "preset": "ultrafast",

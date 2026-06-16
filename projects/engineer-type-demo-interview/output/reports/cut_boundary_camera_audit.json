@@ -1,8 +1,8 @@
 {
   "thresholds": {
-    "nearWindowSeconds": 1.5,
+    "nearWindowSeconds": 1.0,
     "alignToleranceSeconds": 0.06,
-    "shortSegmentSeconds": 1.5
+    "shortSegmentSeconds": 1.0
   },
   "renderStart": 85.5,
   "sourceDuration": 2862.9655,
@@ -3062,7 +3062,7 @@
       "changed": true,
       "inputSegments": 69,
       "outputSegments": 67,
-      "subtitleBoundaryCount": 669,
+      "subtitleBoundaryCount": 670,
       "maxShiftSeconds": 0.0,
       "adjustments": [
         {
@@ -3218,7 +3218,7 @@
           "shiftSeconds": 0.18,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 154,
-          "subtitleText": "これちょっとやりすぎですよねどうですかね",
+          "subtitleText": "これ、ちょっとやりすぎですよね。どうですかね",
           "collapsed": false
         },
         {
@@ -3266,7 +3266,7 @@
           "shiftSeconds": 2.062,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 186,
-          "subtitleText": "なのでチームの必要人数が10人とか20人とかいたのが",
+          "subtitleText": "なので、チームの必要人数が10人とか20人とかいたのが",
           "collapsed": false
         },
         {
@@ -3278,7 +3278,7 @@
           "shiftSeconds": -0.18,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 190,
-          "subtitleText": "その現場にいるとPDMって何の仕事をしてたんですかみたいなことは思いますね",
+          "subtitleText": "その現場にいると、PDMって何の仕事をしてたんですかみたいなことは思いますね",
           "collapsed": false
         },
         {
@@ -3290,7 +3290,7 @@
           "shiftSeconds": 0.18,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 191,
-          "subtitleText": "FDEでやろうとそれは同じことだという",
+          "subtitleText": "FDEでやろうと、それは同じことだという",
           "collapsed": false
         },
         {
@@ -3422,7 +3422,7 @@
           "shiftSeconds": -0.18,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 302,
-          "subtitleText": "そこが基本的にはそこで一定のスケールメリットが出ることが大事だと思います",
+          "subtitleText": "そこが基本的には、そこで一定のスケールメリットが出ることが大事だと思います",
           "collapsed": false
         },
         {
@@ -3470,7 +3470,7 @@
           "shiftSeconds": -2.8,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 415,
-          "subtitleText": "多分必要だと思いますっていうところですね",
+          "subtitleText": "人は多分必要だと思いますっていうところですね",
           "collapsed": false
         },
         {
@@ -3566,7 +3566,7 @@
           "shiftSeconds": -1.378,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 471,
-          "subtitleText": "ここに関してPDMはビルダーだみたいな話に関して僕が言えることとしては",
+          "subtitleText": "ここに関して、PDMはビルダーだみたいな話に関して僕が言えることとしては",
           "collapsed": false
         },
         {
@@ -3578,7 +3578,7 @@
           "shiftSeconds": 0.442,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 477,
-          "subtitleText": "やれるじゃんと別にコードをゼロから",
+          "subtitleText": "やれるじゃんと、別にコードをゼロから",
           "collapsed": false
         },
         {
@@ -3614,7 +3614,7 @@
           "shiftSeconds": 0.16,
           "subtitleBoundaryKind": "subtitle_start",
           "subtitleSourceIndex": 526,
-          "subtitleText": "だからその今の話的に言うと",
+          "subtitleText": "だから、その今の話的に言うと",
           "collapsed": false
         },
         {
@@ -3638,7 +3638,7 @@
           "shiftSeconds": 1.482,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 547,
-          "subtitleText": "みたいな任せたって言うと別に言葉は綺麗なんですけど",
+          "subtitleText": "みたいな、任せたって言うと別に言葉は綺麗なんですけど",
           "collapsed": false
         },
         {
@@ -3650,7 +3650,7 @@
           "shiftSeconds": 2.662,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 555,
-          "subtitleText": "越境した上でそれでも私はここに集中しますという人たちが",
+          "subtitleText": "越境した上で、それでも私はここに集中しますという人たちが",
           "collapsed": false
         },
         {
@@ -3662,7 +3662,7 @@
           "shiftSeconds": -0.18,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 558,
-          "subtitleText": "僕はAIは人の学習を強化する装置というのが一番しっくりきますね",
+          "subtitleText": "僕は、AIは人の学習を強化する装置というのが一番しっくりきますね",
           "collapsed": false
         },
         {
@@ -3782,7 +3782,7 @@
           "shiftSeconds": 1.982,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 637,
-          "subtitleText": "例えばSIerとか受託開発の会社においては",
+          "subtitleText": "例えば、SIerとか受託開発の会社においては",
           "collapsed": false
         },
         {
@@ -3794,7 +3794,7 @@
           "shiftSeconds": -1.438,
           "subtitleBoundaryKind": "subtitle_end",
           "subtitleSourceIndex": 648,
-          "subtitleText": "別にプロダクトマネージャーが言いましたとか事業責任者が言いましたとか",
+          "subtitleText": "別に、プロダクトマネージャーが言いましたとか事業責任者が言いましたとか",
           "collapsed": false
         },
         {

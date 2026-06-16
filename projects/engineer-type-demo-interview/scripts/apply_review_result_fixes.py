@@ -10,6 +10,7 @@ ROOT = PROJECT.parents[1]
 TRANSCRIPTS = PROJECT / "output" / "transcripts" / "manifest_sources"
 REPORTS = PROJECT / "output" / "reports"
 STATE = PROJECT / "project_state.json"
+PUNCTUATION_REVIEW = REPORTS / "subtitle_punctuation_review.md"
 
 SUBTITLE_SOURCE_OFFSET = 8.7
 OLD_TEXT = "ここのカスタマイズ"
@@ -121,6 +122,81 @@ def remove_terminal_period(value: str) -> str:
     return re.sub(r"。+$", "", value.rstrip())
 
 
+def load_punctuation_review_replacements() -> dict[int, str]:
+    if not PUNCTUATION_REVIEW.exists():
+        return {}
+    replacements: dict[int, str] = {}
+    for line in PUNCTUATION_REVIEW.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("| ") or line.startswith("| 字幕ID") or line.startswith("|---"):
+            continue
+        parts = [part.strip().replace(r"\|", "|") for part in line.strip().strip("|").split("|")]
+        if len(parts) < 4:
+            continue
+        try:
+            cue_id = int(parts[0])
+        except ValueError:
+            continue
+        replacements[cue_id] = parts[3]
+    return replacements
+
+
+def preserve_existing_line_breaks(proposed: str, existing: str) -> str:
+    existing_lines = [line.strip() for line in existing.splitlines() if line.strip()]
+    if "\n" in proposed or len(existing_lines) < 2:
+        return proposed
+    for tail in reversed(existing_lines[1:]):
+        if tail and f" {tail}" in proposed:
+            return proposed.replace(f" {tail}", f"\n{tail}", 1)
+    return proposed
+
+
+def apply_punctuation_review_to_srt(text: str, replacements: dict[int, str]) -> str:
+    if not replacements:
+        return text
+    blocks = re.split(r"(\r?\n\r?\n)", text)
+    updated: list[str] = []
+    for block in blocks:
+        rows = block.splitlines()
+        if len(rows) >= 3 and "-->" in rows[1]:
+            try:
+                cue_id = int(rows[0].strip())
+            except ValueError:
+                cue_id = -1
+            proposed = replacements.get(cue_id)
+            if proposed:
+                existing = "\n".join(rows[2:]).strip()
+                rows[2:] = preserve_existing_line_breaks(proposed, existing).splitlines()
+                block = "\n".join(rows)
+        updated.append(block)
+    return "".join(updated)
+
+
+def apply_punctuation_review_to_json_segments(payload: Any, replacements: dict[int, str]) -> Any:
+    if not replacements or not isinstance(payload, dict):
+        return payload
+    segments = payload.get("segments")
+    if not isinstance(segments, list):
+        return payload
+    for segment in segments:
+        if not isinstance(segment, dict):
+            continue
+        try:
+            cue_id = int(segment.get("id")) + 1
+        except (TypeError, ValueError):
+            continue
+        proposed = replacements.get(cue_id)
+        if proposed:
+            existing = str(segment.get("text", "")).strip()
+            segment["text"] = preserve_existing_line_breaks(proposed, existing)
+    if "text" in payload:
+        payload["text"] = "".join(
+            str(segment.get("text", ""))
+            for segment in segments
+            if isinstance(segment, dict)
+        )
+    return payload
+
+
 def normalize_srt_subtitle_lines(text: str) -> str:
     rows = text.splitlines()
     normalized: list[str] = []
@@ -224,6 +300,7 @@ def replace_text_recursive(value: Any) -> Any:
 
 
 def apply_subtitle_wording() -> None:
+    punctuation_replacements = load_punctuation_review_replacements()
     for path in (
         TRANSCRIPTS / "external_140101-003.reviewed.srt",
         TRANSCRIPTS / "external_140101-003.reviewed.json",
@@ -235,6 +312,7 @@ def apply_subtitle_wording() -> None:
         srt_text = srt_text.replace(before, after)
     srt_text = retime_special_srt_cues(srt_text)
     srt_text = remove_subtitle_only_srt_cues(srt_text)
+    srt_text = apply_punctuation_review_to_srt(srt_text, punctuation_replacements)
     srt_text = normalize_srt_subtitle_lines(srt_text)
     srt.write_text(srt_text, encoding="utf-8")
 
@@ -242,6 +320,7 @@ def apply_subtitle_wording() -> None:
     payload = json.loads(reviewed_json.read_text(encoding="utf-8"))
     payload = replace_text_recursive(payload)
     payload = remove_subtitle_only_json_segments(payload)
+    payload = apply_punctuation_review_to_json_segments(payload, punctuation_replacements)
     reviewed_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 

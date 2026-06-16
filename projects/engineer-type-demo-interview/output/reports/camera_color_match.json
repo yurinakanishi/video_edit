@@ -6,47 +6,51 @@
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
       "reference": true,
       "stats": {
-        "brightness": 0.7951560824525122,
-        "contrast": 0.2386278951641824,
-        "saturation": 0.17771801917381536,
-        "backgroundBrightness": 0.8355087180542791,
-        "backgroundSaturation": 0.174677261651731,
+        "brightness": 0.79870818493413,
+        "contrast": 0.23497992965274372,
+        "saturation": 0.1757005968280867,
+        "backgroundBrightness": 0.8363495950137867,
+        "backgroundSaturation": 0.1741041265749464,
         "meanBgr": [
-          0.6893787059908599,
-          0.7906921586180045,
-          0.8414265152675654
+          0.6918896723728554,
+          0.794197483436734,
+          0.8454090552236521
         ],
         "neutralBgr": [
-          0.7083962035334967,
-          0.8189839082605698,
-          0.8706821815640318
+          0.7097982010186887,
+          0.8197977103439031,
+          0.8711067229626226
         ],
         "backgroundBgr": [
-          0.7261473213145936,
-          0.8331630931181065,
-          0.8811946095983968
+          0.728429780847886,
+          0.8339859188304228,
+          0.8819133923100491
         ],
-        "samples": 3.0,
+        "samples": 5.0,
         "skinBgr": [
-          0.4214364444508272,
-          0.5336472156001072,
-          0.7188429290173101
+          0.41244750378178613,
+          0.5258018344056372,
+          0.7109653607536764
         ],
-        "skinBrightness": 0.7188429290173101,
-        "skinSaturation": 0.4153948465983073,
-        "skinSamples": 2.0,
-        "skinPixels": 2096.0,
-        "skinFaceRoiSamples": 2.0
+        "skinBrightness": 0.7109653607536764,
+        "skinSaturation": 0.420429214776731,
+        "skinSamples": 5.0,
+        "skinPixels": 5685.0,
+        "skinFaceRoiSamples": 5.0
       },
       "sampleTimelineSeconds": [
-        2811.6,
-        2817.0,
-        2822.4
+        96.232,
+        627.42,
+        1606.2,
+        2175.912,
+        2940.912
       ],
       "sampleSourceSeconds": [
-        2811.6,
-        2817.0,
-        2822.4
+        96.232,
+        627.42,
+        1606.2,
+        2175.912,
+        2940.912
       ]
     },
     {
@@ -62,12 +66,248 @@
     {
       "role": "camera4",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
-      "skipped": "not used in current camera plan"
+      "stats": {
+        "brightness": 0.6689975753484988,
+        "contrast": 0.2701321190949757,
+        "saturation": 0.2637938136680454,
+        "backgroundBrightness": 0.777542844286152,
+        "backgroundSaturation": 0.1510255372290518,
+        "meanBgr": [
+          0.5439186724494485,
+          0.657494016161152,
+          0.7381833304610906
+        ],
+        "neutralBgr": [
+          0.6435568416819853,
+          0.7714156685623468,
+          0.8498562442555148
+        ],
+        "backgroundBgr": [
+          0.6926289517271753,
+          0.772862393248315,
+          0.8193427949793198
+        ],
+        "samples": 5.0,
+        "skinBgr": [
+          0.4108337282666973,
+          0.5327582624846814,
+          0.7221948960248161
+        ],
+        "skinBrightness": 0.7221948960248161,
+        "skinSaturation": 0.4264219934800092,
+        "skinSamples": 5.0,
+        "skinPixels": 14117.0,
+        "skinFaceRoiSamples": 5.0
+      },
+      "referenceStats": {
+        "brightness": 0.7999042944814645,
+        "contrast": 0.2336614728508349,
+        "saturation": 0.17587227316463694,
+        "backgroundBrightness": 0.8365727084290748,
+        "backgroundSaturation": 0.17409427418428308,
+        "meanBgr": [
+          0.6937095492493872,
+          0.7953901343252145,
+          0.8469282082950368
+        ],
+        "neutralBgr": [
+          0.7097650026807598,
+          0.8192041254978554,
+          0.8713118489583334
+        ],
+        "backgroundBgr": [
+          0.7289208026960784,
+          0.8341702210669425,
+          0.8824190506280637
+        ],
+        "samples": 5.0,
+        "skinBgr": [
+          0.4171737491383272,
+          0.5335950664445466,
+          0.7160121783088236
+        ],
+        "skinBrightness": 0.7160121783088236,
+        "skinSaturation": 0.41640848197189034,
+        "skinSamples": 5.0,
+        "skinPixels": 5890.0,
+        "skinFaceRoiSamples": 5.0
+      },
+      "sampleTimelineSeconds": [
+        147.416,
+        410.66,
+        601.864,
+        945.22,
+        1113.928
+      ],
+      "sampleSourceSeconds": [
+        150.366,
+        413.61,
+        604.814,
+        948.17,
+        1116.878
+      ],
+      "referenceSourceSeconds": [
+        147.416,
+        410.66,
+        601.864,
+        945.22,
+        1113.928
+      ],
+      "redGain": 1.06777,
+      "greenGain": 1.07586,
+      "blueGain": 1.06048,
+      "temperatureMatch": {
+        "enabled": true,
+        "targetRb": 1.21392,
+        "itemRb": 1.20889,
+        "ratio": 1.00416,
+        "redMultiplier": 1.00135,
+        "blueMultiplier": 0.99865
+      },
+      "brightness": 0.0329,
+      "brightnessComponents": {
+        "skinDelta": -0.00618,
+        "globalDelta": 0.13091,
+        "backgroundDelta": 0.05903,
+        "weightedDelta": 0.07833
+      },
+      "contrast": 0.86499,
+      "saturation": 0.84,
+      "saturationComponents": {
+        "masterWeighted": 0.21142,
+        "itemWeighted": 0.25436,
+        "masterSkin": 0.41641,
+        "itemSkin": 0.42642,
+        "masterBackground": 0.17409,
+        "itemBackground": 0.15103,
+        "masterGlobal": 0.17587,
+        "itemGlobal": 0.26379
+      },
+      "colorMatchBasis": "skin+global+background",
+      "filter": "colorchannelmixer=rr=1.06777:gg=1.07586:bb=1.06048,eq=brightness=0.0329:contrast=0.8650:saturation=0.8400"
     },
     {
       "role": "camera5",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
-      "skipped": "not used in current camera plan"
+      "stats": {
+        "brightness": 0.6620247276156557,
+        "contrast": 0.27458993672499055,
+        "saturation": 0.2662124454273897,
+        "backgroundBrightness": 0.7800902362898284,
+        "backgroundSaturation": 0.24502894682042736,
+        "meanBgr": [
+          0.5385806812959559,
+          0.6513578886144302,
+          0.7336926389208027
+        ],
+        "neutralBgr": [
+          0.6426420922372855,
+          0.7719435747931985,
+          0.8506665996476717
+        ],
+        "backgroundBgr": [
+          0.6426420922372855,
+          0.7719435747931985,
+          0.8506665996476717
+        ],
+        "samples": 5.0,
+        "skinBgr": [
+          0.41580624449486825,
+          0.5349318081724878,
+          0.7262201047411152
+        ],
+        "skinBrightness": 0.7262201047411152,
+        "skinSaturation": 0.4229096117206648,
+        "skinSamples": 5.0,
+        "skinPixels": 13417.0,
+        "skinFaceRoiSamples": 5.0
+      },
+      "referenceStats": {
+        "brightness": 0.7980675192440257,
+        "contrast": 0.23573337895984875,
+        "saturation": 0.1755571253159467,
+        "backgroundBrightness": 0.836109930300245,
+        "backgroundSaturation": 0.17405126833448223,
+        "meanBgr": [
+          0.6918416819852942,
+          0.7938416125727634,
+          0.8452245136335785
+        ],
+        "neutralBgr": [
+          0.709766606349571,
+          0.8197300331265319,
+          0.8712802901922487
+        ],
+        "backgroundBgr": [
+          0.7281343108532475,
+          0.8337814031862745,
+          0.8819355325137866
+        ],
+        "samples": 5.0,
+        "skinBgr": [
+          0.417586867388557,
+          0.528975315467984,
+          0.7119093113319547
+        ],
+        "skinBrightness": 0.7119093113319547,
+        "skinSaturation": 0.41473748898973656,
+        "skinSamples": 5.0,
+        "skinPixels": 5653.0,
+        "skinFaceRoiSamples": 5.0
+      },
+      "sampleTimelineSeconds": [
+        1457.616,
+        1790.672,
+        2086.976,
+        2529.556,
+        2892.864
+      ],
+      "sampleSourceSeconds": [
+        332.206,
+        665.262,
+        961.566,
+        1404.146,
+        1767.454
+      ],
+      "referenceSourceSeconds": [
+        1457.616,
+        1790.672,
+        2086.976,
+        2529.556,
+        2892.864
+      ],
+      "redGain": 1.00569,
+      "greenGain": 1.07647,
+      "blueGain": 1.15933,
+      "temperatureMatch": {
+        "enabled": true,
+        "targetRb": 1.21443,
+        "itemRb": 1.3237,
+        "ratio": 0.91745,
+        "redMultiplier": 0.97239,
+        "blueMultiplier": 1.0284
+      },
+      "brightness": 0.03274,
+      "brightnessComponents": {
+        "skinDelta": -0.01431,
+        "globalDelta": 0.13604,
+        "backgroundDelta": 0.05602,
+        "weightedDelta": 0.07796
+      },
+      "contrast": 0.85849,
+      "saturation": 0.84,
+      "saturationComponents": {
+        "masterWeighted": 0.21098,
+        "itemWeighted": 0.28336,
+        "masterSkin": 0.41474,
+        "itemSkin": 0.42291,
+        "masterBackground": 0.17405,
+        "itemBackground": 0.24503,
+        "masterGlobal": 0.17556,
+        "itemGlobal": 0.26621
+      },
+      "colorMatchBasis": "skin+global+background",
+      "filter": "colorchannelmixer=rr=1.00569:gg=1.07647:bb=1.15933,eq=brightness=0.0327:contrast=0.8585:saturation=0.8400"
     }
   ],
   "sampleBasis": "actual camera plan",

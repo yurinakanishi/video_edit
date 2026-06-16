@@ -45,6 +45,7 @@ MAX_CAPTION_CHUNKS = 8
 MIN_LINE_CHARS = 6
 LINE_END_PREFERRED_CHARS = "、。，．・／/）)]」』"
 LINE_START_PROHIBITED_CHARS = "、。，．,.！？!?：；;・）)]｝}」』】》〉"
+LINE_BREAK_TRAILING_PUNCTUATION_RE = re.compile(r"[、。,.，．]+$")
 LINE_START_AVOIDED_PREFIXES = (
     "いう",
     "って",
@@ -213,10 +214,14 @@ UNBREAKABLE_PHRASES = (
     "という話",
     "じゃない",
     "じゃん",
+    "って",
     "そういう",
+    "どうか",
     "なっていく",
     "しなきゃ",
     "だろう",
+    "あるかな",
+    "ものって",
     "いいよね",
     "みたいな",
     "かなと",
@@ -241,8 +246,12 @@ UNBREAKABLE_PHRASES = (
     "人員",
     "商習慣",
     "御用聞き",
+    "お金",
+    "によって",
 )
-MAX_ACCEPTABLE_SPLIT_PENALTY = 80_000
+MAX_ACCEPTABLE_SPLIT_PENALTY = 220_000
+LINE_WIDTH_BALANCE_WEIGHT = 400_000
+LINE_CHAR_BALANCE_WEIGHT = 1_300_000
 APP_CONFIG = load_app_config()
 SPEAKER_ROLES = Path(
     str(nested(APP_CONFIG, "subtitleSpeakers", "outputPath", default=str(OUTPUT_REPORTS / "full_transcript_speaker_roles.json")))
@@ -292,6 +301,62 @@ MANUAL_LINE_BREAKS: dict[str, tuple[str, ...]] = {
     "どの企業であっても、アメリカで流行っているからといって": (
         "どの企業であっても、",
         "アメリカで流行っているからといって",
+    ),
+    "FDEは、そのまま転用できるのかどうかっていう話で言うと": (
+        "FDEはそのまま転用できるのか",
+        "どうかっていう話で言うと",
+    ),
+    "それはそれ、これはこれ、って感じで残っていくような気がしますね": (
+        "それはそれ、これはこれ、",
+        "って感じで残っていくような気がしますね",
+    ),
+    "これなんでなのかなっていうところも純粋に疑問があって": (
+        "これなんでなのかなっていうところも",
+        "純粋に疑問があって",
+    ),
+    "でも、なんかそういうのすらあるんじゃないかなって思うんですけど": (
+        "でも、なんかそういうのすら",
+        "あるんじゃないかって思うんですけど",
+    ),
+    "たまたま、すごくジョブディスクリプションとかが分かりやすい": (
+        "たまたま、すごくジョブディスクリプション",
+        "とかが分かりやすい",
+    ),
+    "人の価値っていうのを何に見出しているのかっていうところの違いだと思っていて": (
+        "人の価値っていうのを何に見出しているのか",
+        "っていうところの違いだと思っていて",
+    ),
+    "具体的な名前出すとすると、セールスフォースとかは近いのかもしれないですよね": (
+        "具体的な名前出すとすると、セールスフォースとかは",
+        "近いのかもしれないですよね",
+    ),
+    "AIによって、みんな多分一人でできることが増えていくんだろうな": (
+        "AIによって、みんな多分一人で",
+        "できることが増えていくんだろうな",
+    ),
+    "FDEに向いているプロダクトという話と、両方あると思います": (
+        "FDEに向いているプロダクトという",
+        "話と、両方あると思います",
+    ),
+    "それ、なんかコード書くとかというよりは思考体系っていうか": (
+        "それ、なんかコード書くとか",
+        "というよりは思考体系っていうか",
+    ),
+    "一定セミオーダー的にカスタマイズしてやっていくというところを": (
+        "一定セミオーダー的にカスタマイズして",
+        "やっていくというところを",
+    ),
+    "確かにちょっと参照させていただこうかなと思っていたんですけど": (
+        "確かにちょっと参照させて",
+        "いただこうかなと思っていたんですけど",
+    ),
+    "越境した方がいいんだろうなみたいなところとか考えたりするわけですよね": (
+        "越境した方がいいんだろうなみたいな",
+        "ところとか考えたりするわけですよね",
+    ),
+    "なので、当たり前に考えなきゃいけない時代が来たんだなと": (
+        "なので、当たり前に考えなきゃいけない",
+        "時代が来たんだなと",
     ),
     "FDEって言うても「エンジニア」ってついてるじゃないですか": (
         "FDEって言うても「エンジニア」って",
@@ -451,6 +516,8 @@ def boundary_penalty(text: str, index: int, spans: list[tuple[int, int]]) -> int
         score += 180_000
     if any(left.endswith(suffix) for suffix in LINE_END_AVOIDED_SUFFIXES):
         score += 70_000
+    if text[index - 1] in "っッ":
+        score += 2_000_000
     if text[index - 1] in LINE_END_PREFERRED_CHARS:
         score -= 8_000
     if any(left.endswith(phrase) for phrase in LINE_END_PREFERRED_PHRASES):
@@ -495,6 +562,7 @@ def choose_natural_lines(
 
     total_width = text_width(draw, text, font)
     target_width = min(max_text_width, max(1, total_width / line_count))
+    target_chars = n / line_count
     dp: list[dict[int, tuple[float, int | None]]] = [{0: (0.0, None)}]
     for line_index in range(1, line_count + 1):
         current: dict[int, tuple[float, int | None]] = {}
@@ -516,7 +584,9 @@ def choose_natural_lines(
                 length_penalty = 0
                 if n >= MIN_LINE_CHARS * line_count and len(segment) < MIN_LINE_CHARS:
                     length_penalty = (MIN_LINE_CHARS - len(segment)) * 8_000
-                balance_penalty = ((width - target_width) / max_text_width) ** 2 * 4_000
+                width_balance_penalty = ((width - target_width) / max_text_width) ** 2 * LINE_WIDTH_BALANCE_WEIGHT
+                char_balance_penalty = ((len(segment) - target_chars) / max(1, n)) ** 2 * LINE_CHAR_BALANCE_WEIGHT
+                balance_penalty = width_balance_penalty + char_balance_penalty
                 end_penalty = 0 if end == n else boundary_penalty(text, end, spans)
                 start_penalty = 0 if start == 0 else boundary_penalty(text, start, spans) * 0.15
                 cost = prev_cost + balance_penalty + length_penalty + end_penalty + start_penalty
@@ -682,6 +752,15 @@ def group_caption_lines(lines: list[str]) -> list[tuple[str, ...]]:
     return [tuple(lines[index:index + MAX_CAPTION_LINES]) for index in range(0, len(lines), MAX_CAPTION_LINES)]
 
 
+def strip_line_break_trailing_punctuation(lines: list[str]) -> list[str]:
+    if len(lines) <= 1:
+        return lines
+    return [
+        LINE_BREAK_TRAILING_PUNCTUATION_RE.sub("", line.rstrip()) if index < len(lines) - 1 else line
+        for index, line in enumerate(lines)
+    ]
+
+
 def layout_caption_chunks(text: str) -> tuple[list[tuple[str, ...]], int]:
     max_text_width = MAX_IMAGE_WIDTH - CAPTION_PAD_X * 2
     font_size = int_value(APP_CONFIG, "style", "subtitleSize", default=FONT_SIZE)
@@ -689,6 +768,7 @@ def layout_caption_chunks(text: str) -> tuple[list[tuple[str, ...]], int]:
     probe = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
     draw = ImageDraw.Draw(probe)
     lines = wrapped_caption_lines(text, draw, font, max_text_width)
+    lines = strip_line_break_trailing_punctuation(lines)
     return group_caption_lines(lines), font_size
 
 

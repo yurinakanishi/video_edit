@@ -1,7 +1,7 @@
 {
   "version": 1,
   "projectId": "engineer-type-demo-interview",
-  "updatedAt": "2026-06-13T08:08:01.801729Z",
+  "updatedAt": "2026-06-16T04:14:41Z",
   "assets": {
     "mediaDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
     "materialPaths": [
@@ -301,7 +301,7 @@
   },
   "render": {
     "script": "render_app_interview.py",
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_020058_reviewfix_240p_full_preview.mp4",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_131441.mp4",
     "previewStart": 85.5,
     "previewDuration": 2862.9655,
     "subtitleMode": "full",
@@ -323,17 +323,17 @@
     "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600",
     "useTranscriptComparisonSync": false,
     "usePersonEditPlans": true,
-    "naturalDialogueCuts": true,
-    "closeupsOnlyWhenOnscreenSpeaker": true,
-    "cameraCutsAtSubtitleBoundariesOnly": true,
+    "naturalDialogueCuts": false,
+    "closeupsOnlyWhenOnscreenSpeaker": false,
+    "cameraCutsAtSubtitleBoundariesOnly": false,
     "closeupSpeechPadding": 0.18,
     "closeupSpeechGapMerge": 0.8,
     "cropPercent": 0,
     "globalVideoZoom": 1.2,
     "speed": "normal",
     "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\manual_camera_plan.json",
-    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260529_214344.mp4",
-    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260529_214344.mp4",
+    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_131441.mp4",
+    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_131441.mp4",
     "subtitlePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
     "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\20260529_141836_role_aware_full.ass",
     "subtitleBurnMode": "png-precomposed-when-long",
@@ -443,9 +443,9 @@
       "sourceDurationSeconds": 2968.4655,
       "reason": "Review was made against the derived file with the first 85.5s and last 20s removed."
     },
-    "renderProfile": "preview",
+    "renderProfile": "final",
     "rangeMode": "range",
-    "outputHeight": 240,
+    "outputHeight": 0,
     "subtitleOverlayFormat": "png",
     "previewPreset": {
       "name": "fast-240p-proxy",
@@ -458,7 +458,9 @@
         "Full transcript PNG overlays are generated through the cached generator."
       ]
     },
-    "cameraMinSegmentSeconds": 2.0
+    "cameraMinSegmentSeconds": 2.0,
+    "cameraCutAlignment": "subtitle-midpoints",
+    "cameraMidSubtitlePlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_subtitle_midpoint_plan.json"
   },
   "style": {
     "titleText": "AIエンジニアの今",

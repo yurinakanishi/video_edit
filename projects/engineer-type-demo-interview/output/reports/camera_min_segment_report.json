@@ -1,25 +1,8 @@
 {
   "enabled": true,
   "minSegmentSeconds": 2.0,
-  "inputSegments": 67,
-  "outputSegments": 63,
-  "changed": true,
-  "merged": [
-    {
-      "role": "camera4",
-      "inputIndex": 3,
-      "start": 250.46,
-      "end": 251.62,
-      "duration": 1.16,
-      "mergedInto": "surrounding_same_camera"
-    },
-    {
-      "role": "camera4",
-      "inputIndex": 3,
-      "start": 577.3,
-      "end": 578.86,
-      "duration": 1.56,
-      "mergedInto": "surrounding_same_camera"
-    }
-  ]
+  "inputSegments": 41,
+  "outputSegments": 41,
+  "changed": false,
+  "merged": []
 }

@@ -54,140 +54,84 @@
   ],
   "adjustments": [
     {
-      "start": 481.38,
-      "end": 485.81,
-      "fromRole": "camera2",
-      "toRole": "master",
-      "reason": "outside source coverage"
-    },
-    {
-      "start": 869.06,
-      "end": 877.76,
+      "start": 932.29,
+      "end": 962.76,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 882.22,
-      "end": 892.16,
+      "start": 992.85,
+      "end": 1014.71,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 896.48,
-      "end": 899.398,
-      "fromRole": "camera4",
-      "toRole": "master",
-      "reason": "outside source coverage"
-    },
-    {
-      "start": 931.54,
-      "end": 961.36,
-      "fromRole": "camera4",
-      "toRole": "master",
-      "reason": "outside source coverage"
-    },
-    {
-      "start": 993.48,
-      "end": 1007.42,
-      "fromRole": "camera4",
-      "toRole": "master",
-      "reason": "outside source coverage"
-    },
-    {
-      "start": 1015.62,
-      "end": 1016.8,
-      "fromRole": "camera4",
-      "toRole": "master",
-      "reason": "outside source coverage"
-    },
-    {
-      "start": 1055.5,
-      "end": 1083.58,
+      "start": 1056.02,
+      "end": 1085.61,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1083.58,
-      "end": 1121.91,
+      "start": 1085.61,
+      "end": 1120.29,
       "fromRole": "camera4",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1121.91,
-      "end": 1125.44,
+      "start": 1120.29,
+      "end": 1124.37,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1181.44,
-      "end": 1210.66,
+      "start": 1180.42,
+      "end": 1218.74,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
-      "start": 1291.44,
-      "end": 1316.318,
+      "start": 1290.68,
+      "end": 1317.69,
       "fromRole": "camera3",
       "toRole": "master",
       "reason": "outside source coverage"
     },
     {
       "start": 2096.745,
-      "end": 2152.4,
-      "fromRole": "camera5",
-      "toRole": "camera5",
-      "reason": "no covered fallback source"
-    },
-    {
-      "start": 2152.4,
-      "end": 2196.52,
+      "end": 2195.41,
       "fromRole": "master",
       "toRole": "master",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2196.52,
-      "end": 2231.16,
+      "start": 2195.41,
+      "end": 2296.98,
       "fromRole": "camera5",
       "toRole": "camera5",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2231.16,
-      "end": 2236.56,
+      "start": 2296.98,
+      "end": 2327.17,
       "fromRole": "master",
       "toRole": "master",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2236.56,
-      "end": 2296.178,
+      "start": 2327.17,
+      "end": 2418.97,
       "fromRole": "camera5",
       "toRole": "camera5",
       "reason": "no covered fallback source"
     },
     {
-      "start": 2296.178,
-      "end": 2328.178,
-      "fromRole": "master",
-      "toRole": "master",
-      "reason": "no covered fallback source"
-    },
-    {
-      "start": 2328.178,
-      "end": 2418.318,
-      "fromRole": "camera5",
-      "toRole": "camera5",
-      "reason": "no covered fallback source"
-    },
-    {
-      "start": 2418.318,
+      "start": 2418.97,
       "end": 2455.445,
       "fromRole": "master",
       "toRole": "master",

@@ -301,9 +301,9 @@
   },
   "render": {
     "script": "render_app_interview.py",
-    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_103518_punctuation_240p_full_preview.mp4",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_131118_camera_cuts_midpoints_start_240p_spot.mp4",
     "previewStart": 85.5,
-    "previewDuration": 2862.9655,
+    "previewDuration": 100.0,
     "subtitleMode": "full",
     "multicamMode": "manual-plan",
     "audioSource": "external-if-selected",
@@ -323,9 +323,9 @@
     "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600",
     "useTranscriptComparisonSync": false,
     "usePersonEditPlans": true,
-    "naturalDialogueCuts": true,
-    "closeupsOnlyWhenOnscreenSpeaker": true,
-    "cameraCutsAtSubtitleBoundariesOnly": true,
+    "naturalDialogueCuts": false,
+    "closeupsOnlyWhenOnscreenSpeaker": false,
+    "cameraCutsAtSubtitleBoundariesOnly": false,
     "closeupSpeechPadding": 0.18,
     "closeupSpeechGapMerge": 0.8,
     "cropPercent": 0,
@@ -458,7 +458,9 @@
         "Full transcript PNG overlays are generated through the cached generator."
       ]
     },
-    "cameraMinSegmentSeconds": 2.0
+    "cameraMinSegmentSeconds": 2.0,
+    "cameraCutAlignment": "subtitle-midpoints",
+    "cameraMidSubtitlePlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_subtitle_midpoint_plan.json"
   },
   "style": {
     "titleText": "AIエンジニアの今",

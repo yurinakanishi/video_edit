@@ -13,11 +13,12 @@ STATE = PROJECT / "project_state.json"
 PUNCTUATION_REVIEW = REPORTS / "subtitle_punctuation_review.md"
 
 SUBTITLE_SOURCE_OFFSET = 8.7
+CHAPTER_TITLE_BOUNDARY_DELAY_SECONDS = 0.8
 OLD_TEXT = "ここのカスタマイズ"
 NEW_TEXT = "個々のカスタマイズ"
 SUBTITLE_TEXT_REPLACEMENTS = [
     (OLD_TEXT, NEW_TEXT),
-    ("たまっていく", "溜まっていく"),
+    ("たまって", "溜まって"),
     ("それはそれこれはこれって感じ", "それはそれ、これはこれ、って感じ"),
     ("だとはいえAIの力によって", "とはいえAIの力によって"),
     ("なるほどどこまでも", "どこまでも"),
@@ -59,7 +60,9 @@ SUBTITLE_TEXT_REPLACEMENTS = [
     ("ファーストキャリアでエンジニアだったっていう経験がすごく今まで生きてると思うんですね", "ファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね"),
     ("やっぱりファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね", "ファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね"),
     ("何ですかね別にエンジニアタイプだから媚びてるわけじゃないけど", "別に『エンジニアtype』だから媚びてるわけじゃないけど"),
+    ("改めて己が担う役割", "改めて己が担う役割、対価"),
     ("なんかえ?", "なんか、え？"),
+    ("UXがいい", "UXが良い"),
     ("コードを書く業数", "コードを書く行数"),
     ("ひねられたこの形", "決められたこの形"),
     ("改めて揃え直す", "改めて捉え直す"),
@@ -119,7 +122,7 @@ def backup_once(path: Path) -> None:
 
 
 def remove_terminal_period(value: str) -> str:
-    return re.sub(r"。+$", "", value.rstrip())
+    return re.sub(r"[、。,.，．]+$", "", value.rstrip())
 
 
 def load_punctuation_review_replacements() -> dict[int, str]:
@@ -187,7 +190,7 @@ def apply_punctuation_review_to_json_segments(payload: Any, replacements: dict[i
         proposed = replacements.get(cue_id)
         if proposed:
             existing = str(segment.get("text", "")).strip()
-            segment["text"] = preserve_existing_line_breaks(proposed, existing)
+            segment["text"] = remove_terminal_period(preserve_existing_line_breaks(proposed, existing))
     if "text" in payload:
         payload["text"] = "".join(
             str(segment.get("text", ""))
@@ -356,16 +359,22 @@ def apply_chapter_titles() -> None:
         (1680.0, 1920.0, "職種分化と再統合", "AI時代の職種分化と再統合。"),
         (1920.0, 2160.0, "PMの本質は統合", "プロダクトマネージャーのコア価値を整理する。"),
         (2160.0, 2400.0, "FDE導入の条件", "FDEを導入すべき事業条件を整理する。"),
-        (2400.0, 2640.0, "仕事の対価を考える", "仕事の価値と対価を収益から捉え直す。"),
-        (2640.0, 2880.0, "FDEに向く人", "FDEに向く人のマインドセット。"),
+        (2400.0, 2880.0, "FDEに向く人", "仕事の価値と対価を踏まえて、FDEに向く人のマインドセットを整理する。"),
         (2880.0, 3178.0, "AI時代の人の価値", "AI時代に残るエンジニア経験と人の価値。"),
     ]
+    delayed_rows = []
+    for index, (start, end, title, topic) in enumerate(rows):
+        delayed_start = start + CHAPTER_TITLE_BOUNDARY_DELAY_SECONDS if index > 0 else start
+        delayed_end = end + CHAPTER_TITLE_BOUNDARY_DELAY_SECONDS if index < len(rows) - 1 else end
+        delayed_rows.append((delayed_start, delayed_end, title, topic))
     payload = {
         "sourceSubtitle": str(TRANSCRIPTS / "external_140101-003.reviewed.srt"),
         "method": (
             "review_result.md corrections applied from the review baseline "
             "(pre-latest-commit render with first 85.5s and final 20s removed); "
-            "stored times include subtitle sync offset for chapter overlay rendering."
+            "stored times include subtitle sync offset for chapter overlay rendering; "
+            f"internal title boundaries are delayed by {CHAPTER_TITLE_BOUNDARY_DELAY_SECONDS:.1f}s "
+            "so top-left title changes do not land exactly on subtitle changes."
         ),
         "chapters": [
             {
@@ -374,7 +383,7 @@ def apply_chapter_titles() -> None:
                 "title": title,
                 "topic": topic,
             }
-            for start, end, title, topic in rows
+            for start, end, title, topic in delayed_rows
         ],
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -486,6 +495,10 @@ def update_project_state() -> None:
     render["cutRanges"] = review_cut_ranges()
     render["extraOverlayManifests"] = []
     render["cameraMinSegmentSeconds"] = 2.0
+    render["cameraCutsAtSubtitleBoundariesOnly"] = False
+    render["naturalDialogueCuts"] = False
+    render["closeupsOnlyWhenOnscreenSpeaker"] = False
+    render["cameraCutAlignment"] = "subtitle-midpoints"
     style = state.setdefault("style", {})
     style["chapterTitlesEnabled"] = True
     style["chapterTitlesPath"] = str(REPORTS / "chapter_titles_from_full_transcript.json")

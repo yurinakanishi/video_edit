@@ -63,7 +63,6 @@ SUBTITLE_TEXT_REPLACEMENTS = [
     ("ファーストキャリアでエンジニアだったっていう経験がすごく今まで生きてると思うんですね", "ファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね"),
     ("やっぱりファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね", "ファーストキャリアがエンジニアだったという経験がすごく今の今まで生きていると思うんですよね"),
     ("何ですかね別にエンジニアタイプだから媚びてるわけじゃないけど", "別に『エンジニアtype』だから媚びてるわけじゃないけど"),
-    ("改めて己が担う役割", "改めて己が担う役割、対価"),
     ("それに自分寄せられちゃってる", "それに自分が寄せられちゃってる"),
     ("チームなの かなとは個人的に思いますね", "チームなのかなと個人的に思いますね"),
     ("なんかえ?", "なんか、え？"),
@@ -71,6 +70,13 @@ SUBTITLE_TEXT_REPLACEMENTS = [
     ("コードを書く業数", "コードを書く行数"),
     ("ひねられたこの形", "決められたこの形"),
     ("改めて揃え直す", "改めて捉え直す"),
+    ("確かに、そういう議論は燃えやすいというか", "そういう議論は燃えやすいというか"),
+    ("確かに、そこを何でもかんでも集約する、人の役割というわけじゃなくて", "そこを何でもかんでも集約する、人の役割というわけじゃなくて"),
+    ("確かにこういう新しい黒船的な職種の襲来とかも含めて", "こういう新しい黒船的な職種の襲来とかも含めて"),
+    ("確かに本当に前線に配備されるエンジニアですし", "本当に前線に配備されるエンジニアですし"),
+    ("確かに本当に前線に配置されるエンジニアですし", "本当に前線に配置されるエンジニアですし"),
+    ("確かに、すごい温かいというか心強いメッセージかな", "すごい温かいというか心強いメッセージかな"),
+    ("確かにすごい温かいというか心強いメッセージかな", "すごい温かいというか心強いメッセージかな"),
     ("?", "？"),
 ]
 SRT_LINE_BREAK_REPLACEMENTS = [
@@ -78,8 +84,20 @@ SRT_LINE_BREAK_REPLACEMENTS = [
         "なかなかお客さんが直接的には使いにくいプロダクトですという場合は",
         "なかなかお客さんが直接的には\n使いにくいプロダクトですという場合は",
     ),
+    (
+        "逆に、そういう問題もあるのかなというふうに思っていて",
+        "逆に、そういう問題もある\nのかなというふうに思っていて",
+    ),
+    (
+        "これを作ってくれれば、お金がもらえますよっていうビジネスモデルなので",
+        "これを作ってくれれば、\nお金がもらえますよっていうビジネスモデルなので",
+    ),
 ]
 SRT_TIMING_OVERRIDES = [
+    {
+        "contains": "ちょっと不安に思っているような若手エンジニア",
+        "timing": "00:39:22,460 --> 00:39:27,060",
+    },
     {
         "contains": "すごく健全だと思っていて",
         "timing": "00:34:50,700 --> 00:34:54,900",
@@ -101,14 +119,13 @@ SRT_TIMING_OVERRIDES = [
         "timing": "00:35:15,000 --> 00:35:23,600",
     },
 ]
-RESTORE_SRT_CUES = [
-    {
-        "index": "122",
-        "timing": "00:06:42,020 --> 00:06:43,940",
-        "lines": ["なるほど確かに"],
-    },
-]
+RESTORE_SRT_CUES = []
 JSON_TIMING_OVERRIDES = [
+    {
+        "contains": "ちょっと不安に思っているような若手エンジニア",
+        "start": 2362.46,
+        "end": 2367.06,
+    },
     {
         "contains": "すごく健全だと思っていて",
         "start": 2090.7,
@@ -136,6 +153,12 @@ JSON_TIMING_OVERRIDES = [
     },
 ]
 SUBTITLE_ONLY_DELETE_CUES = [
+    {
+        "start": "00:06:42,020",
+        "end": "00:06:43,940",
+        "text": "なるほど確かに",
+        "reason": "subtitle deletion paired with tight filler cut: なるほど確かに",
+    },
     {
         "start": "00:21:22,940",
         "end": "00:21:23,220",
@@ -285,6 +308,20 @@ def normalize_srt_subtitle_lines(text: str) -> str:
     return "\n".join(normalized) + ("\n" if text.endswith(("\n", "\r")) else "")
 
 
+def normalize_subtitle_text_value(value: str) -> str:
+    value = re.sub(
+        r"改めて己が担う役割、対価(?:、対価)+",
+        "改めて己が担う役割、対価",
+        value,
+    )
+    value = re.sub(
+        r"改めて己が担う役割(?!、対価)",
+        "改めて己が担う役割、対価",
+        value,
+    )
+    return value
+
+
 def retime_special_srt_cues(text: str) -> str:
     blocks = re.split(r"(\r?\n\r?\n)", text)
     updated: list[str] = []
@@ -418,13 +455,27 @@ def retime_special_json_segments(payload: Any) -> Any:
 
 def replace_text_recursive(value: Any) -> Any:
     if isinstance(value, str):
+        value = normalize_subtitle_text_value(value)
         for before, after in SUBTITLE_TEXT_REPLACEMENTS:
             value = value.replace(before, after)
+        value = normalize_subtitle_text_value(value)
         return remove_terminal_period(value)
     if isinstance(value, list):
         return [replace_text_recursive(item) for item in value]
     if isinstance(value, dict):
         return {key: replace_text_recursive(item) for key, item in value.items()}
+    return value
+
+
+def replace_line_breaks_recursive(value: Any) -> Any:
+    if isinstance(value, str):
+        for before, after in SRT_LINE_BREAK_REPLACEMENTS:
+            value = value.replace(before, after)
+        return value
+    if isinstance(value, list):
+        return [replace_line_breaks_recursive(item) for item in value]
+    if isinstance(value, dict):
+        return {key: replace_line_breaks_recursive(item) for key, item in value.items()}
     return value
 
 
@@ -437,13 +488,20 @@ def apply_subtitle_wording() -> None:
         backup_once(path)
     srt = TRANSCRIPTS / "external_140101-003.reviewed.srt"
     srt_text = srt.read_text(encoding="utf-8")
+    srt_text = normalize_subtitle_text_value(srt_text)
     for before, after in SUBTITLE_TEXT_REPLACEMENTS:
         srt_text = srt_text.replace(before, after)
+    srt_text = normalize_subtitle_text_value(srt_text)
     for before, after in SRT_LINE_BREAK_REPLACEMENTS:
         srt_text = srt_text.replace(before, after)
     srt_text = retime_special_srt_cues(srt_text)
     srt_text = remove_subtitle_only_srt_cues(srt_text)
     srt_text = apply_punctuation_review_to_srt(srt_text, punctuation_replacements)
+    for before, after in SUBTITLE_TEXT_REPLACEMENTS:
+        srt_text = srt_text.replace(before, after)
+    srt_text = normalize_subtitle_text_value(srt_text)
+    for before, after in SRT_LINE_BREAK_REPLACEMENTS:
+        srt_text = srt_text.replace(before, after)
     srt_text = restore_srt_cues(srt_text)
     srt_text = normalize_srt_subtitle_lines(srt_text)
     srt.write_text(srt_text, encoding="utf-8")
@@ -454,6 +512,8 @@ def apply_subtitle_wording() -> None:
     payload = retime_special_json_segments(payload)
     payload = remove_subtitle_only_json_segments(payload)
     payload = apply_punctuation_review_to_json_segments(payload, punctuation_replacements)
+    payload = replace_text_recursive(payload)
+    payload = replace_line_breaks_recursive(payload)
     reviewed_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
@@ -529,7 +589,9 @@ def review_cut_ranges() -> list[dict[str, Any]]:
 
     ranges = [
         srt_range(299.400, 302.000, "tight filler cut: 確かに"),
+        srt_range(402.020, 403.940, "tight filler cut: なるほど確かに"),
         srt_range(421.120, 423.060, "tight filler cut: 確かに"),
+        srt_range(483.120, 487.420, "tight audio-only filler cut: 確かに before アメリカで流行ってるから"),
         srt_range(553.720, 556.100, "tight filler cut: 確かにありがとうございます"),
         # The revised speech-anchor instruction asks to tighten the gap between
         # "そうですね" and "なのでFDEを支える要素...". Those anchors are contiguous
@@ -544,7 +606,9 @@ def review_cut_ranges() -> list[dict[str, Any]]:
             1007.240,
             "review cut: from 確かに確かに through 日本の中で... before 徐々に分かってきた",
         ),
+        srt_range(945.200, 946.350, "tight audio-only filler cut: 確かに before 大規模"),
         srt_range(1269.760, 1271.040, "tight filler cut: 確かに"),
+        srt_range(1305.260, 1308.780, "tight audio+subtitle prefix cut: 確かに before そういう議論"),
         srt_range(1314.640, 1317.400, "tight filler cut: 確かに"),
         srt_range(1458.680, 1462.100, "tight filler cut: 確かにな"),
         srt_range(1511.920, 1513.080, "tight filler cut: 確かにな"),
@@ -557,17 +621,21 @@ def review_cut_ranges() -> list[dict[str, Any]]:
         srt_range(1808.400, 1810.380, "tight filler cut: 確かに"),
         srt_range(2023.280, 2024.840, "tight filler cut: 確かに確かに"),
         srt_range(
-            2229.560,
+            2229.880,
             2341.160,
             "review cut: reset/setup block after 分かりましたありがとうございます before FDEについて",
         ),
+        srt_range(2158.260, 2162.640, "tight audio+subtitle prefix cut: 確かに before そこを何でもかんでも"),
         srt_range(2191.300, 2193.000, "tight filler cut: 確かに"),
+        srt_range(2605.120, 2607.100, "tight audio+subtitle prefix cut: 確かに before こういう新しい黒船的な職種"),
+        srt_range(2730.260, 2733.050, "tight audio+subtitle prefix cut: 確かに before 本当に前線に配備されるエンジニア"),
         srt_range(
             2635.380,
             2681.260,
             "review cut: after そこは改めて捉え直す before FDEに向いている人",
         ),
         srt_range(2812.460, 2814.900, "tight filler cut: 確かに確かに"),
+        srt_range(2948.900, 2951.500, "tight audio+subtitle prefix cut: 確かに before すごい温かいメッセージ"),
     ]
     return [{"start": start, "end": end, "label": label} for start, end, label in sorted(ranges, key=lambda item: item[0])]
 
@@ -625,7 +693,7 @@ def update_project_state() -> None:
     apply_reviewed_video_source_trim(state)
     render["cutRanges"] = review_cut_ranges()
     render["extraOverlayManifests"] = []
-    render["cameraMinSegmentSeconds"] = 2.0
+    render["cameraMinSegmentSeconds"] = 10.0
     render["cameraCutsAtSubtitleBoundariesOnly"] = False
     render["naturalDialogueCuts"] = False
     render["closeupsOnlyWhenOnscreenSpeaker"] = False

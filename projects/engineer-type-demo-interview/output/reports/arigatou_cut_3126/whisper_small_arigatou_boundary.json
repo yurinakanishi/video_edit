@@ -1,0 +1,217 @@
+{
+  "text": "見えるとしても、いろいろな要素が必要だった話です。買いました。ありがとうございます。",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.94,
+      "text": "見えるとしても、いろいろな要素が必要だった話です。",
+      "words": [
+        {
+          "word": "見",
+          "rel_start": 0.0,
+          "rel_end": 0.0,
+          "ext_start": 2224.0,
+          "ext_end": 2224.0,
+          "src_start": 2215.3,
+          "src_end": 2215.3
+        },
+        {
+          "word": "える",
+          "rel_start": 0.0,
+          "rel_end": 0.1,
+          "ext_start": 2224.0,
+          "ext_end": 2224.1,
+          "src_start": 2215.3,
+          "src_end": 2215.4
+        },
+        {
+          "word": "と",
+          "rel_start": 0.1,
+          "rel_end": 0.24,
+          "ext_start": 2224.1,
+          "ext_end": 2224.24,
+          "src_start": 2215.4,
+          "src_end": 2215.54
+        },
+        {
+          "word": "して",
+          "rel_start": 0.24,
+          "rel_end": 0.4,
+          "ext_start": 2224.24,
+          "ext_end": 2224.4,
+          "src_start": 2215.54,
+          "src_end": 2215.7000000000003
+        },
+        {
+          "word": "も、",
+          "rel_start": 0.4,
+          "rel_end": 0.58,
+          "ext_start": 2224.4,
+          "ext_end": 2224.58,
+          "src_start": 2215.7000000000003,
+          "src_end": 2215.88
+        },
+        {
+          "word": "い",
+          "rel_start": 1.18,
+          "rel_end": 1.54,
+          "ext_start": 2225.18,
+          "ext_end": 2225.54,
+          "src_start": 2216.48,
+          "src_end": 2216.84
+        },
+        {
+          "word": "ろ",
+          "rel_start": 1.54,
+          "rel_end": 1.62,
+          "ext_start": 2225.54,
+          "ext_end": 2225.62,
+          "src_start": 2216.84,
+          "src_end": 2216.92
+        },
+        {
+          "word": "い",
+          "rel_start": 1.62,
+          "rel_end": 1.74,
+          "ext_start": 2225.62,
+          "ext_end": 2225.74,
+          "src_start": 2216.92,
+          "src_end": 2217.04
+        },
+        {
+          "word": "ろ",
+          "rel_start": 1.74,
+          "rel_end": 1.74,
+          "ext_start": 2225.74,
+          "ext_end": 2225.74,
+          "src_start": 2217.04,
+          "src_end": 2217.04
+        },
+        {
+          "word": "な",
+          "rel_start": 1.74,
+          "rel_end": 1.8,
+          "ext_start": 2225.74,
+          "ext_end": 2225.8,
+          "src_start": 2217.04,
+          "src_end": 2217.1000000000004
+        },
+        {
+          "word": "要",
+          "rel_start": 1.8,
+          "rel_end": 1.9,
+          "ext_start": 2225.8,
+          "ext_end": 2225.9,
+          "src_start": 2217.1000000000004,
+          "src_end": 2217.2000000000003
+        },
+        {
+          "word": "素",
+          "rel_start": 1.9,
+          "rel_end": 2.02,
+          "ext_start": 2225.9,
+          "ext_end": 2226.02,
+          "src_start": 2217.2000000000003,
+          "src_end": 2217.32
+        },
+        {
+          "word": "が",
+          "rel_start": 2.02,
+          "rel_end": 2.1,
+          "ext_start": 2226.02,
+          "ext_end": 2226.1,
+          "src_start": 2217.32,
+          "src_end": 2217.4
+        },
+        {
+          "word": "必",
+          "rel_start": 2.1,
+          "rel_end": 2.22,
+          "ext_start": 2226.1,
+          "ext_end": 2226.22,
+          "src_start": 2217.4,
+          "src_end": 2217.52
+        },
+        {
+          "word": "要",
+          "rel_start": 2.22,
+          "rel_end": 2.34,
+          "ext_start": 2226.22,
+          "ext_end": 2226.34,
+          "src_start": 2217.52,
+          "src_end": 2217.6400000000003
+        },
+        {
+          "word": "だ",
+          "rel_start": 2.34,
+          "rel_end": 2.44,
+          "ext_start": 2226.34,
+          "ext_end": 2226.44,
+          "src_start": 2217.6400000000003,
+          "src_end": 2217.7400000000002
+        },
+        {
+          "word": "った",
+          "rel_start": 2.44,
+          "rel_end": 2.52,
+          "ext_start": 2226.44,
+          "ext_end": 2226.52,
+          "src_start": 2217.7400000000002,
+          "src_end": 2217.82
+        },
+        {
+          "word": "話",
+          "rel_start": 2.52,
+          "rel_end": 2.76,
+          "ext_start": 2226.52,
+          "ext_end": 2226.76,
+          "src_start": 2217.82,
+          "src_end": 2218.0600000000004
+        },
+        {
+          "word": "です。",
+          "rel_start": 2.76,
+          "rel_end": 2.94,
+          "ext_start": 2226.76,
+          "ext_end": 2226.94,
+          "src_start": 2218.0600000000004,
+          "src_end": 2218.2400000000002
+        }
+      ]
+    },
+    {
+      "start": 4.4,
+      "end": 5.38,
+      "text": "買いました。ありがとうございます。",
+      "words": [
+        {
+          "word": "買",
+          "rel_start": 4.4,
+          "rel_end": 4.7,
+          "ext_start": 2228.4,
+          "ext_end": 2228.7,
+          "src_start": 2219.7000000000003,
+          "src_end": 2220.0
+        },
+        {
+          "word": "いました。",
+          "rel_start": 4.7,
+          "rel_end": 5.0,
+          "ext_start": 2228.7,
+          "ext_end": 2229.0,
+          "src_start": 2220.0,
+          "src_end": 2220.3
+        },
+        {
+          "word": "ありがとうございます。",
+          "rel_start": 5.16,
+          "rel_end": 5.38,
+          "ext_start": 2229.16,
+          "ext_end": 2229.38,
+          "src_start": 2220.46,
+          "src_end": 2220.6800000000003
+        }
+      ]
+    }
+  ]
+}

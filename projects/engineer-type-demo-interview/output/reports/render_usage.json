@@ -1,20 +1,20 @@
 {
-  "renderProfile": "final",
+  "renderProfile": "preview",
   "rangeMode": "range",
-  "start": 85.5,
-  "sourceDuration": 2862.9655,
-  "outputDuration": 2432.4455000000007,
-  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_205159.mp4",
-  "renderOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_205159_uncut.mp4",
-  "filterScript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\filtergraphs\\20260616_205159.ffgraph",
+  "start": 2477.8,
+  "sourceDuration": 353.09,
+  "outputDuration": 299.99999999999983,
+  "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260619_123047_fde_mukuhito_subtitle_sync_5min_240p_spot.mp4",
+  "renderOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260619_123047_fde_mukuhito_subtitle_sync_5min_240p_spot.mp4",
+  "filterScript": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\filtergraphs\\20260619_123047_fde_mukuhito_subtitle_sync_5min_240p_spot.ffgraph",
   "encoder": {
-    "name": "h264_nvenc",
-    "preset": "p4",
-    "cq": 19
+    "name": "libx264",
+    "preset": "ultrafast",
+    "crf": 30
   },
-  "audioBitrate": "192k",
+  "audioBitrate": "96k",
   "shortenSilenceRequested": true,
-  "shortenSilenceApplied": true,
+  "shortenSilenceApplied": false,
   "proxyUsage": [
     {
       "index": 0,
@@ -22,7 +22,7 @@
       "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
       "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
       "proxyUsed": false,
-      "reason": "final profile uses original source"
+      "reason": "proxy file missing"
     },
     {
       "index": 1,
@@ -30,7 +30,7 @@
       "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
       "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
       "proxyUsed": false,
-      "reason": "final profile uses original source"
+      "reason": "proxy file missing"
     },
     {
       "index": 2,
@@ -38,7 +38,7 @@
       "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
       "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
       "proxyUsed": false,
-      "reason": "final profile uses original source"
+      "reason": "proxy file missing"
     },
     {
       "index": 3,
@@ -46,7 +46,7 @@
       "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
       "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
       "proxyUsed": false,
-      "reason": "final profile uses original source"
+      "reason": "proxy file missing"
     },
     {
       "index": 4,
@@ -54,8 +54,44 @@
       "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
       "inputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
       "proxyUsed": false,
-      "reason": "final profile uses original source"
+      "reason": "proxy file missing"
     }
   ],
-  "proxyWarnings": []
+  "proxyWarnings": [
+    {
+      "role": "master",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+      "reason": "proxy file missing",
+      "message": "Preview render is decoding original media for master: proxy file missing.",
+      "action": "Run: python scripts/video_edit_run.py --action generate-proxies, then rerun the preview render."
+    },
+    {
+      "role": "camera2",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+      "reason": "proxy file missing",
+      "message": "Preview render is decoding original media for camera2: proxy file missing.",
+      "action": "Run: python scripts/video_edit_run.py --action generate-proxies, then rerun the preview render."
+    },
+    {
+      "role": "camera3",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+      "reason": "proxy file missing",
+      "message": "Preview render is decoding original media for camera3: proxy file missing.",
+      "action": "Run: python scripts/video_edit_run.py --action generate-proxies, then rerun the preview render."
+    },
+    {
+      "role": "camera4",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
+      "reason": "proxy file missing",
+      "message": "Preview render is decoding original media for camera4: proxy file missing.",
+      "action": "Run: python scripts/video_edit_run.py --action generate-proxies, then rerun the preview render."
+    },
+    {
+      "role": "camera5",
+      "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
+      "reason": "proxy file missing",
+      "message": "Preview render is decoding original media for camera5: proxy file missing.",
+      "action": "Run: python scripts/video_edit_run.py --action generate-proxies, then rerun the preview render."
+    }
+  ]
 }

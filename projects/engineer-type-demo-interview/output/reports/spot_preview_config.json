@@ -1,0 +1,572 @@
+{
+  "version": 1,
+  "projectId": "engineer-type-demo-interview",
+  "updatedAt": "2026-06-16T07:27:09Z",
+  "assets": {
+    "mediaDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
+    "materialPaths": [
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video",
+      "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio"
+    ],
+    "mediaManifestPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\media_manifest.json",
+    "mediaManifest": {
+      "version": 1,
+      "generatedAt": "2026-05-29T02:17:57.566164+09:00",
+      "sourceDirectory": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
+      "items": [
+        {
+          "id": "st7-7550",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+          "name": "ST7_7550.MP4",
+          "kind": "video",
+          "role": "master",
+          "metadata": {
+            "duration": 2968.4655,
+            "size": 22439369468,
+            "creationTime": "2026-05-15T11:24:46Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7189",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+          "name": "0H4A7189.MP4",
+          "kind": "video",
+          "role": "camera2",
+          "metadata": {
+            "duration": 568.568,
+            "size": 4259418208,
+            "creationTime": "2026-05-15T11:43:06Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7190",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+          "name": "0H4A7190.MP4",
+          "kind": "video",
+          "role": "camera3",
+          "metadata": {
+            "duration": 384.717667,
+            "size": 2881922728,
+            "creationTime": "2026-05-15T11:52:35Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7192",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
+          "name": "0H4A7192.MP4",
+          "kind": "video",
+          "role": "camera4",
+          "metadata": {
+            "duration": 1124.890433,
+            "size": 8419095808,
+            "creationTime": "2026-05-15T12:01:52Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7193",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
+          "name": "0H4A7193.MP4",
+          "kind": "video",
+          "role": "camera5",
+          "metadata": {
+            "duration": 1799.164033,
+            "size": 13467842008,
+            "creationTime": "2026-05-15T12:20:40Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "140101-003",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
+          "name": "140101-003.WAV",
+          "kind": "audio",
+          "role": "external",
+          "metadata": {
+            "duration": 3178.862585,
+            "size": 560784128,
+            "creationTime": "01:00:35",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          }
+        }
+      ],
+      "notes": [
+        "Active media files are stored inside the project source directory; render scripts must not read from Downloads.",
+        "Render duration is locked to the longest video: ST7_7550.MP4.",
+        "Only 140101-003.WAV is selected for external-audio transcription to avoid transcribing every camera source."
+      ],
+      "files": [
+        {
+          "id": "st7-7550",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+          "name": "ST7_7550.MP4",
+          "kind": "video",
+          "role": "master",
+          "metadata": {
+            "duration": 2968.4655,
+            "size": 22439369468,
+            "creationTime": "2026-05-15T11:24:46Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7189",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+          "name": "0H4A7189.MP4",
+          "kind": "video",
+          "role": "camera2",
+          "metadata": {
+            "duration": 568.568,
+            "size": 4259418208,
+            "creationTime": "2026-05-15T11:43:06Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7190",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+          "name": "0H4A7190.MP4",
+          "kind": "video",
+          "role": "camera3",
+          "metadata": {
+            "duration": 384.717667,
+            "size": 2881922728,
+            "creationTime": "2026-05-15T11:52:35Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7192",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7192.MP4",
+          "name": "0H4A7192.MP4",
+          "kind": "video",
+          "role": "camera4",
+          "metadata": {
+            "duration": 1124.890433,
+            "size": 8419095808,
+            "creationTime": "2026-05-15T12:01:52Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "0h4a7193",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7193.MP4",
+          "name": "0H4A7193.MP4",
+          "kind": "video",
+          "role": "camera5",
+          "metadata": {
+            "duration": 1799.164033,
+            "size": 13467842008,
+            "creationTime": "2026-05-15T12:20:40Z",
+            "hasVideo": true,
+            "hasAudio": false,
+            "width": 1920,
+            "height": 1080,
+            "videoCodec": "h264",
+            "avgFrameRate": "60000/1001",
+            "audioCodec": "aac",
+            "sampleRate": 48000,
+            "channels": 2
+          }
+        },
+        {
+          "id": "140101-003",
+          "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
+          "name": "140101-003.WAV",
+          "kind": "audio",
+          "role": "external",
+          "metadata": {
+            "duration": 3178.862585,
+            "size": 560784128,
+            "creationTime": "01:00:35",
+            "hasVideo": false,
+            "hasAudio": true,
+            "audioCodec": "pcm_s16le",
+            "sampleRate": 44100,
+            "channels": 2
+          }
+        }
+      ],
+      "sourcePaths": [
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio"
+      ]
+    },
+    "masterVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\ST7_7550.MP4",
+    "rightCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7189.MP4",
+    "leftCloseVideo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\video\\0H4A7190.MP4",
+    "externalAudio": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\audio\\140101-003.WAV",
+    "logoPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\images\\right_logo_pre_fb05.png",
+    "referenceImages": [],
+    "logo": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source\\images\\right_logo_pre_fb05.png"
+  },
+  "analysis": {
+    "transcribeModel": "large-v3",
+    "transcribeLanguage": "ja",
+    "transcribeDevice": "cuda",
+    "transcribeSources": "external-only",
+    "useVideoAudioForSubtitle": false,
+    "syncMethod": "waveform-first",
+    "transcribeBeamSize": 5,
+    "transcribeTemperature": 0,
+    "conditionOnPreviousText": false,
+    "transcribeNormalizeAudio": true,
+    "transcribeFilterLowConfidence": true,
+    "transcribeNoSpeechThreshold": 0.6,
+    "transcribeAvgLogprobFilterThreshold": -1.0,
+    "transcribeCompressionRatioThreshold": 2.4,
+    "transcribeInitialPrompt": "専門用語候補: セミオゴー、Semiogo、EDM、PDM、PDM廃止、フリー、リサイクル、サステナブル、個別最適、インタビュー。音声に忠実に、聞こえない語は推測しない。",
+    "transcribeFp16": true,
+    "transcribeBackend": "faster-whisper",
+    "fasterWhisperComputeType": "float16"
+  },
+  "render": {
+    "script": "render_app_interview.py",
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260619_123047_fde_mukuhito_subtitle_sync_5min_240p_spot.mp4",
+    "previewStart": 2477.8,
+    "previewDuration": 353.09,
+    "subtitleMode": "full",
+    "multicamMode": "manual-plan",
+    "audioSource": "external-if-selected",
+    "omitInterviewerQuestion": false,
+    "shortenSilence": true,
+    "minSilence": 3.0,
+    "keepSilence": 2.0,
+    "silenceNoise": "-30dB",
+    "audioDenoise": true,
+    "audioMastering": true,
+    "colorMatchCameras": false,
+    "colorMatchTemperature": true,
+    "colorMatchTemperatureStrength": 0.65,
+    "cameraExtraFilters": {
+      "camera4": "colorchannelmixer=rr=1.05133:gg=1.07804:bb=1.08616,eq=brightness=0.0326:contrast=0.8660:saturation=0.8400",
+      "camera5": "colorchannelmixer=rr=1.05133:gg=1.07804:bb=1.08616,eq=brightness=0.0326:contrast=0.8660:saturation=0.8400"
+    },
+    "colorMatchSourceCoverageFallbacks": false,
+    "sourceCoverageFallbackColorTargetRoles": [
+      "master"
+    ],
+    "sourceCoverageFallbackColorFromRoles": [
+      "camera2",
+      "camera3",
+      "camera4"
+    ],
+    "sourceCoverageFallbackColorFilter": "colorchannelmixer=rr=1.08972:gg=1.10461:bb=1.09062,eq=brightness=0.0364:contrast=0.8656:saturation=0.8400",
+    "outputLookFilter": "colorchannelmixer=rr=0.99000:gg=1.00000:bb=1.01200,eq=brightness=0.0140:contrast=0.9850:saturation=0.9600",
+    "useTranscriptComparisonSync": false,
+    "usePersonEditPlans": true,
+    "naturalDialogueCuts": false,
+    "closeupsOnlyWhenOnscreenSpeaker": false,
+    "cameraCutsAtSubtitleBoundariesOnly": false,
+    "closeupSpeechPadding": 0.18,
+    "closeupSpeechGapMerge": 0.8,
+    "cropPercent": 0,
+    "globalVideoZoom": 1.2,
+    "speed": "normal",
+    "cameraPlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\manual_camera_plan.json",
+    "finalOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_205159.mp4",
+    "baseOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\videos\\20260616_205159.mp4",
+    "subtitlePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt",
+    "subtitleAssPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\20260529_141836_role_aware_full.ass",
+    "subtitleBurnMode": "png-precomposed-when-long",
+    "lastRenderReportPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\longest_video_render_report.json",
+    "renderScript": "render_app_interview.py",
+    "audioDenoiseStrength": 16,
+    "audioCleanupFilter": "highpass + afftdn nr=16 + lowpass + dynaudnorm + compressor + loudnorm + limiter",
+    "videoEncoder": "h264_nvenc",
+    "nvencPreset": "p4",
+    "cq": 19,
+    "precomposeLongPngOverlays": true,
+    "precomposeOverlayFps": "30000/1001",
+    "precomposeOverlayMinDuration": 300,
+    "precomposeOverlayMinItems": 120,
+    "outputFps": "30000/1001",
+    "cutRanges": [
+      {
+        "start": 290.7,
+        "end": 293.3,
+        "label": "tight filler cut: 確かに"
+      },
+      {
+        "start": 393.32,
+        "end": 395.24,
+        "label": "tight filler cut: なるほど確かに"
+      },
+      {
+        "start": 412.42,
+        "end": 414.36,
+        "label": "tight filler cut: 確かに"
+      },
+      {
+        "start": 474.42,
+        "end": 478.72,
+        "label": "tight audio-only filler cut: 確かに before アメリカで流行ってるから"
+      },
+      {
+        "start": 545.02,
+        "end": 547.4,
+        "label": "tight filler cut: 確かにありがとうございます"
+      },
+      {
+        "start": 763.28,
+        "end": 920.62,
+        "label": "review cut: after ポイントとしてあるかなと思いますね including 外部要素ですか before 先ほどの話に付属して考えると"
+      },
+      {
+        "start": 936.5,
+        "end": 937.65,
+        "label": "tight audio-only filler cut: 確かに before 大規模"
+      },
+      {
+        "start": 962.18,
+        "end": 998.54,
+        "label": "review cut: from 確かに確かに through 日本の中で... before 徐々に分かってきた"
+      },
+      {
+        "start": 1261.06,
+        "end": 1262.34,
+        "label": "tight filler cut: 確かに"
+      },
+      {
+        "start": 1296.56,
+        "end": 1300.08,
+        "label": "tight audio+subtitle prefix cut: 確かに before そういう議論"
+      },
+      {
+        "start": 1305.94,
+        "end": 1308.7,
+        "label": "tight filler cut: 確かに"
+      },
+      {
+        "start": 1449.98,
+        "end": 1453.3999999999999,
+        "label": "tight filler cut: 確かにな"
+      },
+      {
+        "start": 1503.22,
+        "end": 1504.3799999999999,
+        "label": "tight filler cut: 確かにな"
+      },
+      {
+        "start": 1504.3799999999999,
+        "end": 1536.68,
+        "label": "review cut: from そこをちょっと考えてみたい before そもそもFDEとPDMは共存する"
+      },
+      {
+        "start": 1738.28,
+        "end": 1739.78,
+        "label": "tight filler cut: 確かに"
+      },
+      {
+        "start": 1799.7,
+        "end": 1801.68,
+        "label": "tight filler cut: 確かに"
+      },
+      {
+        "start": 2014.58,
+        "end": 2016.1399999999999,
+        "label": "tight filler cut: 確かに確かに"
+      },
+      {
+        "start": 2149.5600000000004,
+        "end": 2153.94,
+        "label": "tight audio+subtitle prefix cut: 確かに before そこを何でもかんでも"
+      },
+      {
+        "start": 2182.6000000000004,
+        "end": 2184.3,
+        "label": "tight filler cut: 確かに"
+      },
+      {
+        "start": 2221.1800000000003,
+        "end": 2332.46,
+        "label": "review cut: reset/setup block after 分かりましたありがとうございます before FDEについて"
+      },
+      {
+        "start": 2596.42,
+        "end": 2598.4,
+        "label": "tight audio+subtitle prefix cut: 確かに before こういう新しい黒船的な職種"
+      },
+      {
+        "start": 2626.6800000000003,
+        "end": 2672.5600000000004,
+        "label": "review cut: after そこは改めて捉え直す before FDEに向いている人"
+      },
+      {
+        "start": 2721.5600000000004,
+        "end": 2724.3500000000004,
+        "label": "tight audio+subtitle prefix cut: 確かに before 本当に前線に配備されるエンジニア"
+      },
+      {
+        "start": 2803.76,
+        "end": 2806.2000000000003,
+        "label": "tight filler cut: 確かに確かに"
+      },
+      {
+        "start": 2940.2000000000003,
+        "end": 2942.8,
+        "label": "tight audio+subtitle prefix cut: 確かに before すごい温かいメッセージ"
+      }
+    ],
+    "extraOverlayManifests": [],
+    "reviewedVideoSourceTrim": {
+      "startSeconds": 85.5,
+      "endSeconds": 20.0,
+      "sourceDurationSeconds": 2968.4655,
+      "reason": "Review was made against the derived file with the first 85.5s and last 20s removed."
+    },
+    "renderProfile": "preview",
+    "rangeMode": "range",
+    "outputHeight": 240,
+    "subtitleOverlayFormat": "png",
+    "previewPreset": {
+      "name": "fast-240p-proxy",
+      "usesRenderProfile": "preview",
+      "outputHeight": 240,
+      "proxyProfile": "h264-960p-ultrafast-crf28",
+      "notes": [
+        "Preview profile uses generated media proxies when available.",
+        "Preview profile skips silence shortening inside render_multicam.py.",
+        "Full transcript PNG overlays are generated through the cached generator."
+      ]
+    },
+    "cameraMinSegmentSeconds": 10.0,
+    "cameraCutAlignment": "subtitle-midpoints",
+    "cameraMidSubtitlePlanPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\camera_subtitle_midpoint_plan.json"
+  },
+  "style": {
+    "titleText": "AIエンジニアの今",
+    "titleSize": 58,
+    "titleColor": "#ffffff",
+    "titleBoxColor": "#b31be8",
+    "titleBoxOpacity": 0.82,
+    "subtitleSize": 80,
+    "subtitleColor": "#ffffff",
+    "subtitleBoxColor": "#9b6bd3",
+    "subtitleBoxOpacity": 0.73,
+    "pinkSubtitleSourceIndices": [
+      530
+    ],
+    "font": "Yu Gothic Bold",
+    "letterSpacing": 2,
+    "logoHeight": 48,
+    "titleX": 18,
+    "titleY": 18,
+    "chapterTitlesEnabled": true,
+    "chapterTitlesPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\chapter_titles_from_full_transcript.json"
+  },
+  "glossary": {
+    "enabled": true,
+    "mode": "auto-candidates",
+    "terms": []
+  },
+  "omissionCard": {
+    "enabled": false
+  },
+  "music": {
+    "enabled": false
+  },
+  "subtitleSpeakers": {
+    "outputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\full_transcript_speaker_roles_audio_lr.json",
+    "mouthMotionDiagnostics": false,
+    "interviewerPatterns": [
+      "[？?]$",
+      "(でしょうか|何でしょうか|なんですか|思いますか|感じますか)[？?]?$",
+      "(教えてください|聞かせてください|伺ってもいいですか)[？?]?$",
+      "^(ありがとうございます|そうです、ありがとうございます|よろしくお願いします)$"
+    ]
+  },
+  "subtitleReview": {
+    "correctionsPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\subtitle_corrections_additional_contextual_20260529.json",
+    "correctionsOutputPath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\reports\\subtitle_corrections_additional_contextual_applied_20260529.json"
+  },
+  "subtitles": {
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\transcripts\\manifest_sources\\external_140101-003.reviewed.srt"
+  },
+  "proxy": {
+    "outputDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output\\proxy"
+  },
+  "project": {
+    "sourceRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\source",
+    "outputRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\engineer-type-demo-interview\\output"
+  }
+}

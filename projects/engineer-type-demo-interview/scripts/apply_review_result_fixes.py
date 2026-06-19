@@ -122,6 +122,10 @@ SRT_TIMING_OVERRIDES = [
         "contains": "それぞれの得意な領域をそれぞれがやるっていうのが",
         "timing": "00:35:15,000 --> 00:35:23,600",
     },
+    {
+        "contains": "FDEに向いている人といいますか",
+        "timing": "00:44:44,360 --> 00:44:47,160",
+    },
 ]
 RESTORE_SRT_CUES = []
 JSON_TIMING_OVERRIDES = [
@@ -154,6 +158,11 @@ JSON_TIMING_OVERRIDES = [
         "contains": "それぞれの得意な領域をそれぞれがやるっていうのが",
         "start": 2115.0,
         "end": 2123.6,
+    },
+    {
+        "contains": "FDEに向いている人といいますか",
+        "start": 2684.36,
+        "end": 2687.16,
     },
 ]
 SUBTITLE_ONLY_DELETE_CUES = [

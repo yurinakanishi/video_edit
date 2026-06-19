@@ -542,6 +542,9 @@ def apply_chapter_titles() -> None:
     japan_start = subtitle_time_to_reviewed_time(1007.240)  # after the revised cut ending before "徐々に分かってきた..."
     pdm_start = subtitle_time_to_reviewed_time(1129.360)  # "ちょっと事前の想定ではPDMとFDE..."
     pdm_end = subtitle_time_to_reviewed_time(1436.880)  # before the next topic after the PDM/FDE discussion
+    # Full-render 32:14 maps to reviewed-time 2308.830 after current cutRanges.
+    # Store the pre-delay boundary so the delayed chapter overlay starts there.
+    work_value_start = 2308.030
     fde_person_start = subtitle_time_to_reviewed_time(2681.260) - CHAPTER_TITLE_BOUNDARY_DELAY_SECONDS
     rows = [
         (0.0, strong_product_end, "強いプロダクト", "強いプロダクトの条件とFDEの前提を整理する導入。"),
@@ -553,7 +556,8 @@ def apply_chapter_titles() -> None:
         (pdm_end, 1680.0, "日本の職種設計", "ジョブディスクリプションと職種設計の違い。"),
         (1680.0, 1920.0, "職種分化と再統合", "AI時代の職種分化と再統合。"),
         (1920.0, 2160.0, "PMの本質は統合", "プロダクトマネージャーのコア価値を整理する。"),
-        (2160.0, fde_person_start, "FDE導入の条件", "FDEを導入すべき事業条件を整理する。"),
+        (2160.0, work_value_start, "FDE導入の条件", "FDEを導入すべき事業条件を整理する。"),
+        (work_value_start, fde_person_start, "仕事の対価を考える", "仕事の価値と対価を踏まえて、FDEに向く人への話につなぐ。"),
         (fde_person_start, 2880.0, "FDEに向く人", "仕事の価値と対価を踏まえて、FDEに向く人のマインドセットを整理する。"),
         (2880.0, 3178.0, "AI時代の人の価値", "AI時代に残るエンジニア経験と人の価値。"),
     ]

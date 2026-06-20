@@ -1,8 +1,8 @@
 {
-  "createdAt": "2026-06-02T04:17:25Z",
+  "createdAt": "2026-06-20T05:31:56Z",
   "projectRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday",
   "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview.mp4",
-  "duration": 720.0,
+  "duration": 680.0,
   "target": {
     "width": 960,
     "height": 540,
@@ -19,7 +19,20 @@
     "musicVolume": 0.24,
     "originalVolume": 0.5,
     "fadeInSeconds": 5.0,
-    "fadeOutSeconds": 5.0
+    "fadeOutSeconds": 5.0,
+    "focusVideoStems": [
+      "4e1e990e-0b3c-404c-9fb0-ef25073073ea"
+    ],
+    "focusMusicVolumeMultiplier": 0.5,
+    "focusOriginalVolumeMultiplier": 2.0,
+    "focusOriginalVolumeMax": 1.0,
+    "focusIntervals": [
+      {
+        "timelineStart": 399.583,
+        "timelineEnd": 428.75,
+        "sourceLabel": "video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4"
+      }
+    ]
   },
   "excludedVideoStems": [
     "0875db90-5d21-463d-b4b0-9f0a19195ca2",
@@ -36,11 +49,484 @@
     "st7_8342"
   ],
   "excludedImageStems": [
+    "st-600",
+    "st-604",
     "st-610",
+    "st-614",
     "st-641",
     "st-641w"
   ],
-  "segmentResults": [],
+  "segmentResults": [
+    {
+      "index": 0,
+      "kind": "cleanup",
+      "removed": {
+        "segments": 63,
+        "groups": 4,
+        "logs": 63
+      }
+    },
+    {
+      "index": 1,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0001_image_photo_042_ST-707.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0001_image_photo_042_ST-707.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 2,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0002_image_photo_014_ST-630.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0002_image_photo_014_ST-630.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 3,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0003_image_photo_016_ST-634.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0003_image_photo_016_ST-634.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 4,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0004_image_photo_028_ST-676.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0004_image_photo_028_ST-676.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 5,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0005_image_photo_031_ST-690.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0005_image_photo_031_ST-690.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 6,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0006_image_photo_034_ST-695.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0006_image_photo_034_ST-695.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 7,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0007_image_photo_036_ST-699.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0007_image_photo_036_ST-699.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 8,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0008_image_photo_037_ST-700.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0008_image_photo_037_ST-700.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 9,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0009_image_photo_040_ST-703.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0009_image_photo_040_ST-703.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 10,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0010_image_photo_055_ST-738.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0010_image_photo_055_ST-738.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 11,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0011_image_photo_054_ST-737.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0011_image_photo_054_ST-737.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 12,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0012_image_photo_009_ST-621.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0012_image_photo_009_ST-621.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 13,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0013_image_photo_043_ST-709.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0013_image_photo_043_ST-709.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 14,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0014_video_video_001_DJI_20000104161921_0006_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0014_video_video_001_DJI_20000104161921_0006_D.log"
+    },
+    {
+      "index": 15,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0015_image_photo_006_ST-616.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0015_image_photo_006_ST-616.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 16,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0016_image_photo_010_ST-624.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0016_image_photo_010_ST-624.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 17,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0017_video_video_002_DJI_20000104164015_0007_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0017_video_video_002_DJI_20000104164015_0007_D.log"
+    },
+    {
+      "index": 18,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0018_image_photo_049_ST-729.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0018_image_photo_049_ST-729.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 19,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0019_image_photo_050_ST-730.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0019_image_photo_050_ST-730.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 20,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0020_image_photo_012_ST-627.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0020_image_photo_012_ST-627.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 21,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0021_image_photo_013_ST-628.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0021_image_photo_013_ST-628.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 22,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0022_video_video_003_DJI_20000104171048_0015_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0022_video_video_003_DJI_20000104171048_0015_D.log"
+    },
+    {
+      "index": 23,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0023_image_photo_053_ST-736.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0023_image_photo_053_ST-736.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 24,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0024_image_photo_052_ST-735.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0024_image_photo_052_ST-735.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 25,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0025_image_photo_051_ST-731.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0025_image_photo_051_ST-731.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 26,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0026_image_photo_015_ST-632.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0026_image_photo_015_ST-632.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 27,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0027_image_photo_017_ST-635.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0027_image_photo_017_ST-635.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 28,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0028_video_video_004_DJI_20000104171531_0016_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0028_video_video_004_DJI_20000104171531_0016_D.log"
+    },
+    {
+      "index": 29,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0029_image_photo_018_ST-638.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0029_image_photo_018_ST-638.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 30,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0030_image_photo_004_ST-608.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0030_image_photo_004_ST-608.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 31,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0031_image_photo_019_ST-645.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0031_image_photo_019_ST-645.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 32,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0032_image_photo_007_ST-617.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0032_image_photo_007_ST-617.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 33,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0033_image_photo_020_ST-646.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0033_image_photo_020_ST-646.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 34,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0034_video_video_013_DJI_20000104181937_0031_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0034_video_video_013_DJI_20000104181937_0031_D.log"
+    },
+    {
+      "index": 35,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0035_image_photo_021_ST-653.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0035_image_photo_021_ST-653.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 36,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0036_image_photo_022_ST-661.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0036_image_photo_022_ST-661.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 37,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0037_video_video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0037_video_video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.log"
+    },
+    {
+      "index": 38,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0038_image_photo_002_ST-601.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0038_image_photo_002_ST-601.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 39,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0039_image_photo_025_ST-668.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0039_image_photo_025_ST-668.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 40,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0040_video_video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0040_video_video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.log"
+    },
+    {
+      "index": 41,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0041_image_photo_027_ST-675.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0041_image_photo_027_ST-675.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 42,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0042_image_photo_030_ST-688.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0042_image_photo_030_ST-688.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 43,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0043_image_photo_024_ST-667.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0043_image_photo_024_ST-667.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 44,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0044_video_video_019_503179b6-95c2-4918-8c7c-4efc3014d757.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0044_video_video_019_503179b6-95c2-4918-8c7c-4efc3014d757.log"
+    },
+    {
+      "index": 45,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0045_image_photo_032_ST-693.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0045_image_photo_032_ST-693.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 46,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0046_image_photo_033_ST-694.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0046_image_photo_033_ST-694.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 47,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0047_video_video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0047_video_video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.log"
+    },
+    {
+      "index": 48,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0048_image_photo_011_ST-625.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0048_image_photo_011_ST-625.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 49,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0049_image_photo_035_ST-697.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0049_image_photo_035_ST-697.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 50,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0050_image_photo_038_ST-701.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0050_image_photo_038_ST-701.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 51,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0051_video_video_005_DJI_20000104172535_0017_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0051_video_video_005_DJI_20000104172535_0017_D.log"
+    },
+    {
+      "index": 52,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0052_image_photo_039_ST-702.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0052_image_photo_039_ST-702.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 53,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0053_image_photo_041_ST-706.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0053_image_photo_041_ST-706.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 54,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0054_video_video_012_DJI_20000104181624_0030_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0054_video_video_012_DJI_20000104181624_0030_D.log"
+    },
+    {
+      "index": 55,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0055_image_photo_026_ST-670.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0055_image_photo_026_ST-670.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 56,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0056_image_photo_008_ST-618.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0056_image_photo_008_ST-618.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 57,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0057_image_photo_045_ST-715.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0057_image_photo_045_ST-715.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 58,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0058_image_photo_048_ST-725.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0058_image_photo_048_ST-725.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 59,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0059_image_photo_029_ST-682.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0059_image_photo_029_ST-682.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 60,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0060_image_photo_044_ST-713.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0060_image_photo_044_ST-713.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 61,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0061_image_photo_023_ST-665.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0061_image_photo_023_ST-665.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 62,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0062_image_photo_047_ST-721.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0062_image_photo_047_ST-721.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 63,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0063_image_photo_046_ST-716.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\segment_logs\\segment_0063_image_photo_046_ST-716.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 65,
+      "kind": "group-concat",
+      "groups": [
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview_groups\\birthday_highlight_group_01.mp4",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview_groups\\birthday_highlight_group_02.mp4",
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview_groups\\birthday_highlight_group_03.mp4"
+      ]
+    },
+    {
+      "index": 66,
+      "kind": "background-audio",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\audio\\audio_001_優しい気持ち.mp3",
+      "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview.mp4",
+      "focusIntervals": [
+        {
+          "timelineStart": 399.583,
+          "timelineEnd": 428.75,
+          "sourceLabel": "video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4"
+        }
+      ]
+    },
+    {
+      "index": 67,
+      "kind": "used-media-export",
+      "manifest": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\birthday_preview_used_media_exports.json",
+      "videoDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\used_video_parts_preview",
+      "imageDir": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\used_images_preview",
+      "count": 63
+    }
+  ],
   "media": [
     {
       "index": 1,
@@ -169,7 +655,7 @@
         },
         "perceptualHash": "bfc0e1705e8be0d2",
         "duplicateGroup": {
-          "groupId": 42,
+          "groupId": 39,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "required-image-priority",
@@ -255,7 +741,7 @@
         },
         "perceptualHash": "d2ad99664d9a436c",
         "duplicateGroup": {
-          "groupId": 14,
+          "groupId": 11,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -337,7 +823,7 @@
         },
         "perceptualHash": "d0e1fd094ac5cbca",
         "duplicateGroup": {
-          "groupId": 16,
+          "groupId": 13,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -419,7 +905,7 @@
         },
         "perceptualHash": "95aa54a5d2dc58e9",
         "duplicateGroup": {
-          "groupId": 28,
+          "groupId": 25,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -501,7 +987,7 @@
         },
         "perceptualHash": "e88daab4b65483b6",
         "duplicateGroup": {
-          "groupId": 31,
+          "groupId": 28,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -583,7 +1069,7 @@
         },
         "perceptualHash": "e1799c9292c6cec3",
         "duplicateGroup": {
-          "groupId": 34,
+          "groupId": 31,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -665,7 +1151,7 @@
         },
         "perceptualHash": "b9483e90f336e07c",
         "duplicateGroup": {
-          "groupId": 36,
+          "groupId": 33,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -747,7 +1233,7 @@
         },
         "perceptualHash": "bd79f12545591d84",
         "duplicateGroup": {
-          "groupId": 37,
+          "groupId": 34,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -829,7 +1315,7 @@
         },
         "perceptualHash": "8fc578c417932f32",
         "duplicateGroup": {
-          "groupId": 40,
+          "groupId": 37,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -911,7 +1397,7 @@
         },
         "perceptualHash": "a5c3939edc09794c",
         "duplicateGroup": {
-          "groupId": 55,
+          "groupId": 52,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "required-image-priority",
@@ -1047,7 +1533,7 @@
         },
         "perceptualHash": "b6d927c18dcce18c",
         "duplicateGroup": {
-          "groupId": 54,
+          "groupId": 51,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "required-image-priority",
@@ -1129,7 +1615,7 @@
         },
         "perceptualHash": "da65a55a1aa7e50c",
         "duplicateGroup": {
-          "groupId": 9,
+          "groupId": 6,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "required-image-priority",
@@ -1211,7 +1697,7 @@
         },
         "perceptualHash": "b7c82f43d087e8d4",
         "duplicateGroup": {
-          "groupId": 43,
+          "groupId": 40,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "required-image-priority",
@@ -1622,7 +2108,7 @@
         },
         "perceptualHash": "9b3b794fe5162818",
         "duplicateGroup": {
-          "groupId": 6,
+          "groupId": 3,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -1734,7 +2220,7 @@
         },
         "perceptualHash": "e5f099969c60939b",
         "duplicateGroup": {
-          "groupId": 10,
+          "groupId": 7,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -2232,7 +2718,7 @@
         },
         "perceptualHash": "cbb68c712ed0b871",
         "duplicateGroup": {
-          "groupId": 49,
+          "groupId": 46,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -2370,7 +2856,7 @@
         },
         "perceptualHash": "f89fc4b0c6b8195c",
         "duplicateGroup": {
-          "groupId": 50,
+          "groupId": 47,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -2384,164 +2870,6 @@
     {
       "index": 20,
       "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_001_ST-600.jpg",
-      "relative": "phtp2605269\\photo_001_ST-600.jpg",
-      "sourceIdentityStem": "st-600",
-      "sourceLabel": "photo_001_ST-600.jpg",
-      "width": 3000,
-      "height": 2005,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 204.083333,
-      "timelineEnd": 209.083333,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.3599,
-        "cropCenter": [
-          0.5,
-          0.5
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 0.0,
-            "x2": 1400.0,
-            "y2": 936.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "subjectSquare": {
-            "x1": 232.0,
-            "y1": 0.0,
-            "x2": 1168.0,
-            "y2": 936.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 3,
-          "positions": [
-            "left",
-            "center",
-            "center"
-          ],
-          "groupBox": {
-            "x1": 52.5,
-            "y1": 118.12,
-            "x2": 840.0,
-            "y2": 683.96
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "yunet"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 52.5,
-                "y1": 488.54,
-                "x2": 198.33,
-                "y2": 683.96
-              },
-              "bbox_xyxy": [
-                52.5,
-                488.54,
-                198.33,
-                683.96
-              ],
-              "center_ratio": [
-                0.0896,
-                0.6263
-              ],
-              "area_ratio": 0.02175,
-              "detector": "yunet",
-              "confidence": 0.9332
-            },
-            {
-              "bbox": {
-                "x1": 590.62,
-                "y1": 118.12,
-                "x2": 726.25,
-                "y2": 293.12
-              },
-              "bbox_xyxy": [
-                590.62,
-                118.12,
-                726.25,
-                293.12
-              ],
-              "center_ratio": [
-                0.4703,
-                0.2197
-              ],
-              "area_ratio": 0.01811,
-              "detector": "yunet",
-              "confidence": 0.9173
-            },
-            {
-              "bbox": {
-                "x1": 742.29,
-                "y1": 182.29,
-                "x2": 840.0,
-                "y2": 309.17
-              },
-              "bbox_xyxy": [
-                742.29,
-                182.29,
-                840.0,
-                309.17
-              ],
-              "center_ratio": [
-                0.5651,
-                0.2625
-              ],
-              "area_ratio": 0.00946,
-              "detector": "yunet",
-              "confidence": 0.9055
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.83329,
-          "saturation": 0.11992,
-          "contrast": 0.20573,
-          "warmth": 0.03551,
-          "sharpness": 194.654
-        },
-        "perceptualHash": "d7a556aa8988dd0e",
-        "duplicateGroup": {
-          "groupId": 1,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.71327
-        },
-        "manualTargetSeconds": 125.0,
-        "imageRole": "manual-distributed-group"
-      }
-    },
-    {
-      "index": 21,
-      "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_012_ST-627.jpg",
       "relative": "phtp2605269\\photo_012_ST-627.jpg",
       "sourceIdentityStem": "st-627",
@@ -2550,8 +2878,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 209.083333,
-      "timelineEnd": 214.083333,
+      "timelineStart": 204.083333,
+      "timelineEnd": 209.083333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -2688,7 +3016,7 @@
         },
         "perceptualHash": "ec06e0ed87a574b8",
         "duplicateGroup": {
-          "groupId": 12,
+          "groupId": 9,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -2697,7 +3025,7 @@
       }
     },
     {
-      "index": 22,
+      "index": 21,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_013_ST-628.jpg",
       "relative": "phtp2605269\\photo_013_ST-628.jpg",
@@ -2707,8 +3035,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 214.083333,
-      "timelineEnd": 219.083333,
+      "timelineStart": 209.083333,
+      "timelineEnd": 214.083333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -2800,7 +3128,7 @@
         },
         "perceptualHash": "bfc7b060f2388c93",
         "duplicateGroup": {
-          "groupId": 13,
+          "groupId": 10,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -2809,7 +3137,7 @@
       }
     },
     {
-      "index": 23,
+      "index": 22,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_003_DJI_20000104171048_0015_D.MP4",
       "relative": "DJI_001\\video_003_DJI_20000104171048_0015_D.MP4",
@@ -2819,12 +3147,12 @@
       "height": 1080,
       "sourceDuration": 176.71,
       "hasAudio": true,
-      "timelineStart": 219.083333,
-      "timelineEnd": 277.916667,
+      "timelineStart": 214.083333,
+      "timelineEnd": 265.916667,
       "sourceIn": 0.0,
-      "sourceOut": 58.833333,
-      "clipDuration": 58.833333,
-      "clipFrames": 1412,
+      "sourceOut": 51.833333,
+      "clipDuration": 51.833333,
+      "clipFrames": 1244,
       "analysis": {
         "analysisVersion": "video-v2-stable-people",
         "score": 0.61291,
@@ -3163,11 +3491,20 @@
           "score": 0.61291,
           "weight": 0.37892,
           "allocatedSeconds": 58.833333
+        },
+        "manualEndTrim": {
+          "sourceStem": "dji_20000104171048_0015_d",
+          "trimmedSeconds": 7.0,
+          "originalSourceOut": 58.833333,
+          "sourceOut": 51.833333,
+          "originalClipDuration": 58.833333,
+          "clipDuration": 51.833333,
+          "method": "trim-clip-end-after-selection"
         }
       }
     },
     {
-      "index": 24,
+      "index": 23,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_053_ST-736.jpg",
       "relative": "phtp2605269\\photo_053_ST-736.jpg",
@@ -3177,8 +3514,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 277.916667,
-      "timelineEnd": 282.916667,
+      "timelineStart": 265.916667,
+      "timelineEnd": 270.916667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -3380,7 +3717,7 @@
         },
         "perceptualHash": "af699536e298e00f",
         "duplicateGroup": {
-          "groupId": 53,
+          "groupId": 50,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -3392,7 +3729,7 @@
       }
     },
     {
-      "index": 25,
+      "index": 24,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_052_ST-735.jpg",
       "relative": "phtp2605269\\photo_052_ST-735.jpg",
@@ -3402,8 +3739,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 282.916667,
-      "timelineEnd": 287.916667,
+      "timelineStart": 270.916667,
+      "timelineEnd": 275.916667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -3495,7 +3832,7 @@
         },
         "perceptualHash": "bc3d94d263e1e0e4",
         "duplicateGroup": {
-          "groupId": 52,
+          "groupId": 49,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -3507,7 +3844,7 @@
       }
     },
     {
-      "index": 26,
+      "index": 25,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_051_ST-731.jpg",
       "relative": "phtp2605269\\photo_051_ST-731.jpg",
@@ -3517,8 +3854,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 287.916667,
-      "timelineEnd": 292.916667,
+      "timelineStart": 275.916667,
+      "timelineEnd": 280.916667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -3633,7 +3970,7 @@
         },
         "perceptualHash": "bd0f0a141f3e3c3c",
         "duplicateGroup": {
-          "groupId": 51,
+          "groupId": 48,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -3645,165 +3982,7 @@
       }
     },
     {
-      "index": 27,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_003_ST-604.jpg",
-      "relative": "phtp2605269\\photo_003_ST-604.jpg",
-      "sourceIdentityStem": "st-604",
-      "sourceLabel": "photo_003_ST-604.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 292.916667,
-      "timelineEnd": 297.916667,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.36276,
-        "cropCenter": [
-          0.5,
-          0.5
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 0.0,
-            "x2": 1400.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "subjectSquare": {
-            "x1": 233.0,
-            "y1": 0.0,
-            "x2": 1167.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 3,
-          "positions": [
-            "right",
-            "center",
-            "left"
-          ],
-          "groupBox": {
-            "x1": 297.5,
-            "y1": 135.62,
-            "x2": 1398.54,
-            "y2": 765.62
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "yunet"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 1238.12,
-                "y1": 492.92,
-                "x2": 1398.54,
-                "y2": 765.62
-              },
-              "bbox_xyxy": [
-                1238.12,
-                492.92,
-                1398.54,
-                765.62
-              ],
-              "center_ratio": [
-                0.9417,
-                0.6737
-              ],
-              "area_ratio": 0.03346,
-              "detector": "yunet",
-              "confidence": 0.9371
-            },
-            {
-              "bbox": {
-                "x1": 485.62,
-                "y1": 135.62,
-                "x2": 679.58,
-                "y2": 377.71
-              },
-              "bbox_xyxy": [
-                485.62,
-                135.62,
-                679.58,
-                377.71
-              ],
-              "center_ratio": [
-                0.4161,
-                0.2748
-              ],
-              "area_ratio": 0.03591,
-              "detector": "yunet",
-              "confidence": 0.9294
-            },
-            {
-              "bbox": {
-                "x1": 297.5,
-                "y1": 221.67,
-                "x2": 437.5,
-                "y2": 406.88
-              },
-              "bbox_xyxy": [
-                297.5,
-                221.67,
-                437.5,
-                406.88
-              ],
-              "center_ratio": [
-                0.2625,
-                0.3365
-              ],
-              "area_ratio": 0.01983,
-              "detector": "yunet",
-              "confidence": 0.7996
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.86864,
-          "saturation": 0.13689,
-          "contrast": 0.19152,
-          "warmth": 0.06425,
-          "sharpness": 66.274
-        },
-        "perceptualHash": "f1b12ac7c548aadc",
-        "duplicateGroup": {
-          "groupId": 3,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.68296
-        },
-        "manualTargetSeconds": 235.0,
-        "imageRole": "manual-distributed-group"
-      }
-    },
-    {
-      "index": 28,
+      "index": 26,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_015_ST-632.jpg",
       "relative": "phtp2605269\\photo_015_ST-632.jpg",
@@ -3813,8 +3992,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 297.916667,
-      "timelineEnd": 302.916667,
+      "timelineStart": 280.916667,
+      "timelineEnd": 285.916667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -3951,7 +4130,7 @@
         },
         "perceptualHash": "abb5f8c5e3320952",
         "duplicateGroup": {
-          "groupId": 15,
+          "groupId": 12,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -3960,171 +4139,7 @@
       }
     },
     {
-      "index": 29,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_018_ST-638.jpg",
-      "relative": "phtp2605269\\photo_018_ST-638.jpg",
-      "sourceIdentityStem": "st-638",
-      "sourceLabel": "photo_018_ST-638.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 302.916667,
-      "timelineEnd": 307.916667,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.25515,
-        "cropCenter": [
-          0.5,
-          0.5
-        ],
-        "subject": {
-          "source": "edges",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 402.6,
-            "x2": 1400.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.7155
-            ]
-          },
-          "subjectSquare": {
-            "x1": 233.0,
-            "y1": 0.0,
-            "x2": 1167.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 0,
-          "positions": [],
-          "groupBox": null
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": true,
-          "detectors": [],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": []
-        },
-        "visual": {
-          "brightness": 0.68189,
-          "saturation": 0.26846,
-          "contrast": 0.28415,
-          "warmth": 0.07449,
-          "sharpness": 14.937
-        },
-        "perceptualHash": "d80d5b516aa7b433",
-        "duplicateGroup": {
-          "groupId": 18,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "required-image-priority",
-          "score": 0.39221
-        },
-        "imageRole": "manual-five-to-seven-minute-group"
-      }
-    },
-    {
-      "index": 30,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_004_ST-608.jpg",
-      "relative": "phtp2605269\\photo_004_ST-608.jpg",
-      "sourceIdentityStem": "st-608",
-      "sourceLabel": "photo_004_ST-608.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 307.916667,
-      "timelineEnd": 312.916667,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.23879,
-        "cropCenter": [
-          0.3827,
-          0.5
-        ],
-        "subject": {
-          "source": "edges",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 511.6,
-            "x2": 1071.6,
-            "y2": 934.0,
-            "center": [
-              0.3827,
-              0.7739
-            ]
-          },
-          "subjectSquare": {
-            "x1": 68.8,
-            "y1": 0.0,
-            "x2": 1002.8,
-            "y2": 934.0,
-            "center": [
-              0.3827,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.3827,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 0,
-          "positions": [],
-          "groupBox": null
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": true,
-          "detectors": [],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": []
-        },
-        "visual": {
-          "brightness": 0.73107,
-          "saturation": 0.27088,
-          "contrast": 0.26488,
-          "warmth": 0.14875,
-          "sharpness": 34.193
-        },
-        "perceptualHash": "f99c669e63118c56",
-        "duplicateGroup": {
-          "groupId": 4,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "required-image-priority",
-          "score": 0.3692
-        },
-        "imageRole": "manual-five-to-seven-minute-group"
-      }
-    },
-    {
-      "index": 31,
+      "index": 27,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_017_ST-635.jpg",
       "relative": "phtp2605269\\photo_017_ST-635.jpg",
@@ -4134,8 +4149,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 312.916667,
-      "timelineEnd": 317.916667,
+      "timelineStart": 285.916667,
+      "timelineEnd": 290.916667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -4271,7 +4286,7 @@
         },
         "perceptualHash": "8bf8140f6bc707e4",
         "duplicateGroup": {
-          "groupId": 17,
+          "groupId": 14,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -4280,7 +4295,7 @@
       }
     },
     {
-      "index": 32,
+      "index": 28,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_004_DJI_20000104171531_0016_D.MP4",
       "relative": "DJI_001\\video_004_DJI_20000104171531_0016_D.MP4",
@@ -4290,8 +4305,8 @@
       "height": 1080,
       "sourceDuration": 30.564,
       "hasAudio": true,
-      "timelineStart": 317.916667,
-      "timelineEnd": 348.458333,
+      "timelineStart": 290.916667,
+      "timelineEnd": 321.458333,
       "sourceIn": 0.0,
       "sourceOut": 30.541667,
       "clipDuration": 30.541667,
@@ -4537,121 +4552,171 @@
       }
     },
     {
-      "index": 33,
+      "index": 29,
       "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_007_ST-617.jpg",
-      "relative": "phtp2605269\\photo_007_ST-617.jpg",
-      "sourceIdentityStem": "st-617",
-      "sourceLabel": "photo_007_ST-617.jpg",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_018_ST-638.jpg",
+      "relative": "phtp2605269\\photo_018_ST-638.jpg",
+      "sourceIdentityStem": "st-638",
+      "sourceLabel": "photo_018_ST-638.jpg",
       "width": 3000,
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 348.458333,
-      "timelineEnd": 353.458333,
+      "timelineStart": 321.458333,
+      "timelineEnd": 326.458333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
       "clipFrames": 120,
       "analysis": {
         "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.22543,
+        "score": 0.25515,
         "cropCenter": [
-          0.4672,
-          0.4996
+          0.5,
+          0.5
         ],
         "subject": {
-          "source": "faces",
+          "source": "edges",
           "subjectBox": {
-            "x1": 309.53,
-            "y1": 0.0,
-            "x2": 998.6,
-            "y2": 933.26,
+            "x1": 0.0,
+            "y1": 402.6,
+            "x2": 1400.0,
+            "y2": 934.0,
             "center": [
-              0.4672,
-              0.4996
+              0.5,
+              0.7155
             ]
           },
           "subjectSquare": {
-            "x1": 187.43,
+            "x1": 233.0,
             "y1": 0.0,
-            "x2": 1120.7,
-            "y2": 933.26,
+            "x2": 1167.0,
+            "y2": 934.0,
             "center": [
-              0.4672,
-              0.4996
+              0.5,
+              0.5
             ]
           },
           "cropCenter": [
-            0.4672,
-            0.4996
+            0.5,
+            0.5
           ]
         },
         "personRelation": {
-          "faceCount": 1,
-          "positions": [
-            "center"
-          ],
-          "groupBox": {
-            "x1": 516.25,
-            "y1": 140.0,
-            "x2": 791.88,
-            "y2": 508.96
-          }
+          "faceCount": 0,
+          "positions": [],
+          "groupBox": null
         },
         "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "yunet"
-          ],
+          "noFaceOpeningEligible": true,
+          "detectors": [],
           "thresholds": {
             "yunetFaceScore": 0.78
           },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 516.25,
-                "y1": 140.0,
-                "x2": 791.88,
-                "y2": 508.96
-              },
-              "bbox_xyxy": [
-                516.25,
-                140.0,
-                791.88,
-                508.96
-              ],
-              "center_ratio": [
-                0.4672,
-                0.3474
-              ],
-              "area_ratio": 0.07777,
-              "detector": "yunet",
-              "confidence": 0.9422
-            }
-          ]
+          "faces": []
         },
         "visual": {
-          "brightness": 0.90074,
-          "saturation": 0.1013,
-          "contrast": 0.16639,
-          "warmth": 0.05229,
-          "sharpness": 62.016
+          "brightness": 0.68189,
+          "saturation": 0.26846,
+          "contrast": 0.28415,
+          "warmth": 0.07449,
+          "sharpness": 14.937
         },
-        "perceptualHash": "f3235ad58bc5cc88",
+        "perceptualHash": "d80d5b516aa7b433",
         "duplicateGroup": {
-          "groupId": 7,
+          "groupId": 15,
           "groupSize": 1,
           "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.37051
+          "selectionReason": "required-image-priority",
+          "score": 0.39221
         },
-        "manualTargetSeconds": 335.0,
-        "imageRole": "manual-distributed-group"
+        "imageRole": "manual-five-to-seven-minute-group"
       }
     },
     {
-      "index": 34,
+      "index": 30,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_004_ST-608.jpg",
+      "relative": "phtp2605269\\photo_004_ST-608.jpg",
+      "sourceIdentityStem": "st-608",
+      "sourceLabel": "photo_004_ST-608.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 326.458333,
+      "timelineEnd": 331.458333,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.23879,
+        "cropCenter": [
+          0.3827,
+          0.5
+        ],
+        "subject": {
+          "source": "edges",
+          "subjectBox": {
+            "x1": 0.0,
+            "y1": 511.6,
+            "x2": 1071.6,
+            "y2": 934.0,
+            "center": [
+              0.3827,
+              0.7739
+            ]
+          },
+          "subjectSquare": {
+            "x1": 68.8,
+            "y1": 0.0,
+            "x2": 1002.8,
+            "y2": 934.0,
+            "center": [
+              0.3827,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.3827,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 0,
+          "positions": [],
+          "groupBox": null
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": true,
+          "detectors": [],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": []
+        },
+        "visual": {
+          "brightness": 0.73107,
+          "saturation": 0.27088,
+          "contrast": 0.26488,
+          "warmth": 0.14875,
+          "sharpness": 34.193
+        },
+        "perceptualHash": "f99c669e63118c56",
+        "duplicateGroup": {
+          "groupId": 2,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "required-image-priority",
+          "score": 0.3692
+        },
+        "imageRole": "manual-five-to-seven-minute-group"
+      }
+    },
+    {
+      "index": 31,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_019_ST-645.jpg",
       "relative": "phtp2605269\\photo_019_ST-645.jpg",
@@ -4661,8 +4726,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 353.458333,
-      "timelineEnd": 358.458333,
+      "timelineStart": 331.458333,
+      "timelineEnd": 336.458333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -4821,7 +4886,7 @@
         },
         "perceptualHash": "fc8b35528e8b711c",
         "duplicateGroup": {
-          "groupId": 19,
+          "groupId": 16,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -4830,7 +4895,121 @@
       }
     },
     {
-      "index": 35,
+      "index": 32,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_007_ST-617.jpg",
+      "relative": "phtp2605269\\photo_007_ST-617.jpg",
+      "sourceIdentityStem": "st-617",
+      "sourceLabel": "photo_007_ST-617.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 336.458333,
+      "timelineEnd": 341.458333,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.22543,
+        "cropCenter": [
+          0.4672,
+          0.4996
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 309.53,
+            "y1": 0.0,
+            "x2": 998.6,
+            "y2": 933.26,
+            "center": [
+              0.4672,
+              0.4996
+            ]
+          },
+          "subjectSquare": {
+            "x1": 187.43,
+            "y1": 0.0,
+            "x2": 1120.7,
+            "y2": 933.26,
+            "center": [
+              0.4672,
+              0.4996
+            ]
+          },
+          "cropCenter": [
+            0.4672,
+            0.4996
+          ]
+        },
+        "personRelation": {
+          "faceCount": 1,
+          "positions": [
+            "center"
+          ],
+          "groupBox": {
+            "x1": 516.25,
+            "y1": 140.0,
+            "x2": 791.88,
+            "y2": 508.96
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "yunet"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 516.25,
+                "y1": 140.0,
+                "x2": 791.88,
+                "y2": 508.96
+              },
+              "bbox_xyxy": [
+                516.25,
+                140.0,
+                791.88,
+                508.96
+              ],
+              "center_ratio": [
+                0.4672,
+                0.3474
+              ],
+              "area_ratio": 0.07777,
+              "detector": "yunet",
+              "confidence": 0.9422
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.90074,
+          "saturation": 0.1013,
+          "contrast": 0.16639,
+          "warmth": 0.05229,
+          "sharpness": 62.016
+        },
+        "perceptualHash": "f3235ad58bc5cc88",
+        "duplicateGroup": {
+          "groupId": 4,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "best-image-score",
+          "score": 0.37051
+        },
+        "manualTargetSeconds": 335.0,
+        "imageRole": "manual-distributed-group"
+      }
+    },
+    {
+      "index": 33,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_020_ST-646.jpg",
       "relative": "phtp2605269\\photo_020_ST-646.jpg",
@@ -4840,8 +5019,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 358.458333,
-      "timelineEnd": 363.458333,
+      "timelineStart": 341.458333,
+      "timelineEnd": 346.458333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -5022,7 +5201,7 @@
         },
         "perceptualHash": "d2eb12442b59f731",
         "duplicateGroup": {
-          "groupId": 20,
+          "groupId": 17,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -5031,7 +5210,7 @@
       }
     },
     {
-      "index": 36,
+      "index": 34,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_013_DJI_20000104181937_0031_D.MP4",
       "relative": "DJI_001\\video_013_DJI_20000104181937_0031_D.MP4",
@@ -5041,8 +5220,8 @@
       "height": 1080,
       "sourceDuration": 203.029,
       "hasAudio": true,
-      "timelineStart": 363.458333,
-      "timelineEnd": 406.583333,
+      "timelineStart": 346.458333,
+      "timelineEnd": 389.583333,
       "sourceIn": 79.9525,
       "sourceOut": 123.0775,
       "clipDuration": 43.125,
@@ -5240,188 +5419,7 @@
       }
     },
     {
-      "index": 37,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_002_ST-601.jpg",
-      "relative": "phtp2605269\\photo_002_ST-601.jpg",
-      "sourceIdentityStem": "st-601",
-      "sourceLabel": "photo_002_ST-601.jpg",
-      "width": 3000,
-      "height": 2005,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 406.583333,
-      "timelineEnd": 411.583333,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.43855,
-        "cropCenter": [
-          0.5,
-          0.5
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 0.0,
-            "x2": 1400.0,
-            "y2": 936.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "subjectSquare": {
-            "x1": 232.0,
-            "y1": 0.0,
-            "x2": 1168.0,
-            "y2": 936.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 4,
-          "positions": [
-            "center",
-            "left",
-            "right",
-            "left"
-          ],
-          "groupBox": {
-            "x1": 287.29,
-            "y1": 186.67,
-            "x2": 1283.33,
-            "y2": 771.46
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_front",
-            "yunet"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 695.62,
-                "y1": 186.67,
-                "x2": 797.71,
-                "y2": 332.5
-              },
-              "bbox_xyxy": [
-                695.62,
-                186.67,
-                797.71,
-                332.5
-              ],
-              "center_ratio": [
-                0.5333,
-                0.2773
-              ],
-              "area_ratio": 0.01136,
-              "detector": "yunet",
-              "confidence": 0.9283
-            },
-            {
-              "bbox": {
-                "x1": 287.29,
-                "y1": 459.38,
-                "x2": 380.62,
-                "y2": 589.17
-              },
-              "bbox_xyxy": [
-                287.29,
-                459.38,
-                380.62,
-                589.17
-              ],
-              "center_ratio": [
-                0.2385,
-                0.5601
-              ],
-              "area_ratio": 0.00924,
-              "detector": "yunet",
-              "confidence": 0.9115
-            },
-            {
-              "bbox": {
-                "x1": 1080.62,
-                "y1": 201.25,
-                "x2": 1283.33,
-                "y2": 403.96
-              },
-              "bbox_xyxy": [
-                1080.62,
-                201.25,
-                1283.33,
-                403.96
-              ],
-              "center_ratio": [
-                0.8443,
-                0.3233
-              ],
-              "area_ratio": 0.03136,
-              "detector": "yunet",
-              "confidence": 0.8542
-            },
-            {
-              "bbox": {
-                "x1": 368.96,
-                "y1": 683.96,
-                "x2": 456.46,
-                "y2": 771.46
-              },
-              "bbox_xyxy": [
-                368.96,
-                683.96,
-                456.46,
-                771.46
-              ],
-              "center_ratio": [
-                0.2948,
-                0.7775
-              ],
-              "area_ratio": 0.00584,
-              "detector": "haar_front",
-              "confidence": 0.82
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.81122,
-          "saturation": 0.10911,
-          "contrast": 0.23169,
-          "warmth": 0.03068,
-          "sharpness": 271.01
-        },
-        "perceptualHash": "cac2b48da9b5b48d",
-        "duplicateGroup": {
-          "groupId": 2,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.89175
-        },
-        "manualTargetSeconds": 405.0,
-        "imageRole": "manual-distributed-group"
-      }
-    },
-    {
-      "index": 38,
+      "index": 35,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_021_ST-653.jpg",
       "relative": "phtp2605269\\photo_021_ST-653.jpg",
@@ -5431,8 +5429,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 411.583333,
-      "timelineEnd": 416.583333,
+      "timelineStart": 389.583333,
+      "timelineEnd": 394.583333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -5592,7 +5590,7 @@
         },
         "perceptualHash": "dad663a824b5a62b",
         "duplicateGroup": {
-          "groupId": 21,
+          "groupId": 18,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -5601,7 +5599,7 @@
       }
     },
     {
-      "index": 39,
+      "index": 36,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_022_ST-661.jpg",
       "relative": "phtp2605269\\photo_022_ST-661.jpg",
@@ -5611,8 +5609,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 416.583333,
-      "timelineEnd": 421.583333,
+      "timelineStart": 394.583333,
+      "timelineEnd": 399.583333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -5749,7 +5747,7 @@
         },
         "perceptualHash": "bd62111c76cbc369",
         "duplicateGroup": {
-          "groupId": 22,
+          "groupId": 19,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -5758,7 +5756,7 @@
       }
     },
     {
-      "index": 40,
+      "index": 37,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\video\\video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4",
       "relative": "video\\video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4",
@@ -5768,8 +5766,8 @@
       "height": 720,
       "sourceDuration": 29.167,
       "hasAudio": true,
-      "timelineStart": 421.583333,
-      "timelineEnd": 450.75,
+      "timelineStart": 399.583333,
+      "timelineEnd": 428.75,
       "sourceIn": 0.0,
       "sourceOut": 29.166667,
       "clipDuration": 29.166667,
@@ -6138,7 +6136,188 @@
       }
     },
     {
-      "index": 41,
+      "index": 38,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_002_ST-601.jpg",
+      "relative": "phtp2605269\\photo_002_ST-601.jpg",
+      "sourceIdentityStem": "st-601",
+      "sourceLabel": "photo_002_ST-601.jpg",
+      "width": 3000,
+      "height": 2005,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 428.75,
+      "timelineEnd": 433.75,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.43855,
+        "cropCenter": [
+          0.5,
+          0.5
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 1400.0,
+            "y2": 936.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "subjectSquare": {
+            "x1": 232.0,
+            "y1": 0.0,
+            "x2": 1168.0,
+            "y2": 936.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.5,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 4,
+          "positions": [
+            "center",
+            "left",
+            "right",
+            "left"
+          ],
+          "groupBox": {
+            "x1": 287.29,
+            "y1": 186.67,
+            "x2": 1283.33,
+            "y2": 771.46
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front",
+            "yunet"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 695.62,
+                "y1": 186.67,
+                "x2": 797.71,
+                "y2": 332.5
+              },
+              "bbox_xyxy": [
+                695.62,
+                186.67,
+                797.71,
+                332.5
+              ],
+              "center_ratio": [
+                0.5333,
+                0.2773
+              ],
+              "area_ratio": 0.01136,
+              "detector": "yunet",
+              "confidence": 0.9283
+            },
+            {
+              "bbox": {
+                "x1": 287.29,
+                "y1": 459.38,
+                "x2": 380.62,
+                "y2": 589.17
+              },
+              "bbox_xyxy": [
+                287.29,
+                459.38,
+                380.62,
+                589.17
+              ],
+              "center_ratio": [
+                0.2385,
+                0.5601
+              ],
+              "area_ratio": 0.00924,
+              "detector": "yunet",
+              "confidence": 0.9115
+            },
+            {
+              "bbox": {
+                "x1": 1080.62,
+                "y1": 201.25,
+                "x2": 1283.33,
+                "y2": 403.96
+              },
+              "bbox_xyxy": [
+                1080.62,
+                201.25,
+                1283.33,
+                403.96
+              ],
+              "center_ratio": [
+                0.8443,
+                0.3233
+              ],
+              "area_ratio": 0.03136,
+              "detector": "yunet",
+              "confidence": 0.8542
+            },
+            {
+              "bbox": {
+                "x1": 368.96,
+                "y1": 683.96,
+                "x2": 456.46,
+                "y2": 771.46
+              },
+              "bbox_xyxy": [
+                368.96,
+                683.96,
+                456.46,
+                771.46
+              ],
+              "center_ratio": [
+                0.2948,
+                0.7775
+              ],
+              "area_ratio": 0.00584,
+              "detector": "haar_front",
+              "confidence": 0.82
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.81122,
+          "saturation": 0.10911,
+          "contrast": 0.23169,
+          "warmth": 0.03068,
+          "sharpness": 271.01
+        },
+        "perceptualHash": "cac2b48da9b5b48d",
+        "duplicateGroup": {
+          "groupId": 1,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "best-image-score",
+          "score": 0.89175
+        },
+        "manualTargetSeconds": 405.0,
+        "imageRole": "manual-distributed-group"
+      }
+    },
+    {
+      "index": 39,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_025_ST-668.jpg",
       "relative": "phtp2605269\\photo_025_ST-668.jpg",
@@ -6148,8 +6327,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 450.75,
-      "timelineEnd": 455.75,
+      "timelineStart": 433.75,
+      "timelineEnd": 438.75,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -6264,7 +6443,7 @@
         },
         "perceptualHash": "de434abb288636f1",
         "duplicateGroup": {
-          "groupId": 25,
+          "groupId": 22,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -6273,337 +6452,7 @@
       }
     },
     {
-      "index": 42,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_027_ST-675.jpg",
-      "relative": "phtp2605269\\photo_027_ST-675.jpg",
-      "sourceIdentityStem": "st-675",
-      "sourceLabel": "photo_027_ST-675.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 455.75,
-      "timelineEnd": 460.75,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.39482,
-        "cropCenter": [
-          0.8781,
-          0.724
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 1144.08,
-            "y1": 505.6,
-            "x2": 1400.0,
-            "y2": 846.85,
-            "center": [
-              0.9086,
-              0.724
-            ]
-          },
-          "subjectSquare": {
-            "x1": 1058.75,
-            "y1": 505.6,
-            "x2": 1400.0,
-            "y2": 846.85,
-            "center": [
-              0.8781,
-              0.724
-            ]
-          },
-          "cropCenter": [
-            0.8781,
-            0.724
-          ]
-        },
-        "personRelation": {
-          "faceCount": 1,
-          "positions": [
-            "right"
-          ],
-          "groupBox": {
-            "x1": 1229.38,
-            "y1": 602.29,
-            "x2": 1343.12,
-            "y2": 716.04
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_front"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 1229.38,
-                "y1": 602.29,
-                "x2": 1343.12,
-                "y2": 716.04
-              },
-              "bbox_xyxy": [
-                1229.38,
-                602.29,
-                1343.12,
-                716.04
-              ],
-              "center_ratio": [
-                0.9187,
-                0.7057
-              ],
-              "area_ratio": 0.0099,
-              "detector": "haar_front",
-              "confidence": 0.82
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.60769,
-          "saturation": 0.48714,
-          "contrast": 0.31161,
-          "warmth": 0.26758,
-          "sharpness": 64.38
-        },
-        "perceptualHash": "9fce63b160d1c8d4",
-        "duplicateGroup": {
-          "groupId": 27,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.66875
-        }
-      }
-    },
-    {
-      "index": 43,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_029_ST-682.jpg",
-      "relative": "phtp2605269\\photo_029_ST-682.jpg",
-      "sourceIdentityStem": "st-682",
-      "sourceLabel": "photo_029_ST-682.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 460.75,
-      "timelineEnd": 465.75,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.49334,
-        "cropCenter": [
-          0.6531,
-          0.5
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 436.76,
-            "y1": 162.09,
-            "x2": 1391.99,
-            "y2": 934.0,
-            "center": [
-              0.6531,
-              0.5868
-            ]
-          },
-          "subjectSquare": {
-            "x1": 447.38,
-            "y1": 0.0,
-            "x2": 1381.38,
-            "y2": 934.0,
-            "center": [
-              0.6531,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.6531,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 2,
-          "positions": [
-            "center",
-            "right"
-          ],
-          "groupBox": {
-            "x1": 723.33,
-            "y1": 460.83,
-            "x2": 1105.42,
-            "y2": 812.29
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_front"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 723.33,
-                "y1": 589.17,
-                "x2": 946.46,
-                "y2": 812.29
-              },
-              "bbox_xyxy": [
-                723.33,
-                589.17,
-                946.46,
-                812.29
-              ],
-              "center_ratio": [
-                0.5964,
-                0.7502
-              ],
-              "area_ratio": 0.03807,
-              "detector": "haar_front",
-              "confidence": 0.82
-            },
-            {
-              "bbox": {
-                "x1": 1004.79,
-                "y1": 460.83,
-                "x2": 1105.42,
-                "y2": 561.46
-              },
-              "bbox_xyxy": [
-                1004.79,
-                460.83,
-                1105.42,
-                561.46
-              ],
-              "center_ratio": [
-                0.7536,
-                0.5473
-              ],
-              "area_ratio": 0.00774,
-              "detector": "haar_front",
-              "confidence": 0.82
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.6307,
-          "saturation": 0.40701,
-          "contrast": 0.27795,
-          "warmth": 0.20562,
-          "sharpness": 175.666
-        },
-        "perceptualHash": "b9e6ce49e438491d",
-        "duplicateGroup": {
-          "groupId": 29,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.86397
-        }
-      }
-    },
-    {
-      "index": 44,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_024_ST-667.jpg",
-      "relative": "phtp2605269\\photo_024_ST-667.jpg",
-      "sourceIdentityStem": "st-667",
-      "sourceLabel": "photo_024_ST-667.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 465.75,
-      "timelineEnd": 470.75,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.24751,
-        "cropCenter": [
-          0.3964,
-          0.5593
-        ],
-        "subject": {
-          "source": "edges",
-          "subjectBox": {
-            "x1": 143.4,
-            "y1": 541.6,
-            "x2": 966.6,
-            "y2": 873.4,
-            "center": [
-              0.3964,
-              0.7575
-            ]
-          },
-          "subjectSquare": {
-            "x1": 143.4,
-            "y1": 110.8,
-            "x2": 966.6,
-            "y2": 934.0,
-            "center": [
-              0.3964,
-              0.5593
-            ]
-          },
-          "cropCenter": [
-            0.3964,
-            0.5593
-          ]
-        },
-        "personRelation": {
-          "faceCount": 0,
-          "positions": [],
-          "groupBox": null
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": true,
-          "detectors": [],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": []
-        },
-        "visual": {
-          "brightness": 0.7515,
-          "saturation": 0.32616,
-          "contrast": 0.18242,
-          "warmth": 0.17989,
-          "sharpness": 10.205
-        },
-        "perceptualHash": "ba3636c429d393a5",
-        "duplicateGroup": {
-          "groupId": 24,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.37846
-        },
-        "manualTargetSeconds": 465.0,
-        "manualPlacement": "late-back-half",
-        "imageRole": "manual-late-group"
-      }
-    },
-    {
-      "index": 45,
+      "index": 40,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\video\\video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4",
       "relative": "video\\video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4",
@@ -6613,8 +6462,8 @@
       "height": 720,
       "sourceDuration": 38.9,
       "hasAudio": true,
-      "timelineStart": 470.75,
-      "timelineEnd": 491.208333,
+      "timelineStart": 438.75,
+      "timelineEnd": 459.208333,
       "sourceIn": 9.220833,
       "sourceOut": 29.679167,
       "clipDuration": 20.458333,
@@ -6778,7 +6627,119 @@
       }
     },
     {
-      "index": 46,
+      "index": 41,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_027_ST-675.jpg",
+      "relative": "phtp2605269\\photo_027_ST-675.jpg",
+      "sourceIdentityStem": "st-675",
+      "sourceLabel": "photo_027_ST-675.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 459.208333,
+      "timelineEnd": 464.208333,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.39482,
+        "cropCenter": [
+          0.8781,
+          0.724
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 1144.08,
+            "y1": 505.6,
+            "x2": 1400.0,
+            "y2": 846.85,
+            "center": [
+              0.9086,
+              0.724
+            ]
+          },
+          "subjectSquare": {
+            "x1": 1058.75,
+            "y1": 505.6,
+            "x2": 1400.0,
+            "y2": 846.85,
+            "center": [
+              0.8781,
+              0.724
+            ]
+          },
+          "cropCenter": [
+            0.8781,
+            0.724
+          ]
+        },
+        "personRelation": {
+          "faceCount": 1,
+          "positions": [
+            "right"
+          ],
+          "groupBox": {
+            "x1": 1229.38,
+            "y1": 602.29,
+            "x2": 1343.12,
+            "y2": 716.04
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 1229.38,
+                "y1": 602.29,
+                "x2": 1343.12,
+                "y2": 716.04
+              },
+              "bbox_xyxy": [
+                1229.38,
+                602.29,
+                1343.12,
+                716.04
+              ],
+              "center_ratio": [
+                0.9187,
+                0.7057
+              ],
+              "area_ratio": 0.0099,
+              "detector": "haar_front",
+              "confidence": 0.82
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.60769,
+          "saturation": 0.48714,
+          "contrast": 0.31161,
+          "warmth": 0.26758,
+          "sharpness": 64.38
+        },
+        "perceptualHash": "9fce63b160d1c8d4",
+        "duplicateGroup": {
+          "groupId": 24,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "best-image-score",
+          "score": 0.66875
+        }
+      }
+    },
+    {
+      "index": 42,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_030_ST-688.jpg",
       "relative": "phtp2605269\\photo_030_ST-688.jpg",
@@ -6788,8 +6749,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 491.208333,
-      "timelineEnd": 496.208333,
+      "timelineStart": 464.208333,
+      "timelineEnd": 469.208333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -6904,7 +6865,7 @@
         },
         "perceptualHash": "81484b6d6d61ccfd",
         "duplicateGroup": {
-          "groupId": 30,
+          "groupId": 27,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -6913,119 +6874,91 @@
       }
     },
     {
-      "index": 47,
+      "index": 43,
       "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_032_ST-693.jpg",
-      "relative": "phtp2605269\\photo_032_ST-693.jpg",
-      "sourceIdentityStem": "st-693",
-      "sourceLabel": "photo_032_ST-693.jpg",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_024_ST-667.jpg",
+      "relative": "phtp2605269\\photo_024_ST-667.jpg",
+      "sourceIdentityStem": "st-667",
+      "sourceLabel": "photo_024_ST-667.jpg",
       "width": 3000,
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 496.208333,
-      "timelineEnd": 501.208333,
+      "timelineStart": 469.208333,
+      "timelineEnd": 474.208333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
       "clipFrames": 120,
       "analysis": {
         "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.42943,
+        "score": 0.24751,
         "cropCenter": [
-          0.0859,
-          0.7662
+          0.3964,
+          0.5593
         ],
         "subject": {
-          "source": "faces",
+          "source": "edges",
           "subjectBox": {
-            "x1": 0.0,
-            "y1": 595.36,
-            "x2": 170.99,
-            "y2": 835.99,
+            "x1": 143.4,
+            "y1": 541.6,
+            "x2": 966.6,
+            "y2": 873.4,
             "center": [
-              0.0611,
-              0.7662
+              0.3964,
+              0.7575
             ]
           },
           "subjectSquare": {
-            "x1": 0.0,
-            "y1": 595.36,
-            "x2": 240.63,
-            "y2": 835.99,
+            "x1": 143.4,
+            "y1": 110.8,
+            "x2": 966.6,
+            "y2": 934.0,
             "center": [
-              0.0859,
-              0.7662
+              0.3964,
+              0.5593
             ]
           },
           "cropCenter": [
-            0.0859,
-            0.7662
+            0.3964,
+            0.5593
           ]
         },
         "personRelation": {
-          "faceCount": 1,
-          "positions": [
-            "left"
-          ],
-          "groupBox": {
-            "x1": 30.62,
-            "y1": 663.54,
-            "x2": 110.83,
-            "y2": 743.75
-          }
+          "faceCount": 0,
+          "positions": [],
+          "groupBox": null
         },
         "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_front"
-          ],
+          "noFaceOpeningEligible": true,
+          "detectors": [],
           "thresholds": {
             "yunetFaceScore": 0.78
           },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 30.62,
-                "y1": 663.54,
-                "x2": 110.83,
-                "y2": 743.75
-              },
-              "bbox_xyxy": [
-                30.62,
-                663.54,
-                110.83,
-                743.75
-              ],
-              "center_ratio": [
-                0.0505,
-                0.7534
-              ],
-              "area_ratio": 0.00492,
-              "detector": "haar_front",
-              "confidence": 0.82
-            }
-          ]
+          "faces": []
         },
         "visual": {
-          "brightness": 0.52292,
-          "saturation": 0.49431,
-          "contrast": 0.32319,
-          "warmth": 0.23916,
-          "sharpness": 74.672
+          "brightness": 0.7515,
+          "saturation": 0.32616,
+          "contrast": 0.18242,
+          "warmth": 0.17989,
+          "sharpness": 10.205
         },
-        "perceptualHash": "add2972d3c7a0295",
+        "perceptualHash": "ba3636c429d393a5",
         "duplicateGroup": {
-          "groupId": 32,
+          "groupId": 21,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
-          "score": 0.72518
-        }
+          "score": 0.37846
+        },
+        "manualTargetSeconds": 465.0,
+        "manualPlacement": "late-back-half",
+        "imageRole": "manual-late-group"
       }
     },
     {
-      "index": 48,
+      "index": 44,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\video\\video_019_503179b6-95c2-4918-8c7c-4efc3014d757.mp4",
       "relative": "video\\video_019_503179b6-95c2-4918-8c7c-4efc3014d757.mp4",
@@ -7035,8 +6968,8 @@
       "height": 720,
       "sourceDuration": 159.1,
       "hasAudio": true,
-      "timelineStart": 501.208333,
-      "timelineEnd": 549.25,
+      "timelineStart": 474.208333,
+      "timelineEnd": 522.25,
       "sourceIn": 55.529167,
       "sourceOut": 103.570833,
       "clipDuration": 48.041667,
@@ -7302,77 +7235,72 @@
       }
     },
     {
-      "index": 49,
+      "index": 45,
       "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_005_ST-614.jpg",
-      "relative": "phtp2605269\\photo_005_ST-614.jpg",
-      "sourceIdentityStem": "st-614",
-      "sourceLabel": "photo_005_ST-614.jpg",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_032_ST-693.jpg",
+      "relative": "phtp2605269\\photo_032_ST-693.jpg",
+      "sourceIdentityStem": "st-693",
+      "sourceLabel": "photo_032_ST-693.jpg",
       "width": 3000,
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 549.25,
-      "timelineEnd": 554.25,
+      "timelineStart": 522.25,
+      "timelineEnd": 527.25,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
       "clipFrames": 120,
       "analysis": {
         "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.37917,
+        "score": 0.42943,
         "cropCenter": [
-          0.5,
-          0.5
+          0.0859,
+          0.7662
         ],
         "subject": {
           "source": "faces",
           "subjectBox": {
             "x1": 0.0,
-            "y1": 0.0,
-            "x2": 1400.0,
-            "y2": 934.0,
+            "y1": 595.36,
+            "x2": 170.99,
+            "y2": 835.99,
             "center": [
-              0.5,
-              0.5
+              0.0611,
+              0.7662
             ]
           },
           "subjectSquare": {
-            "x1": 233.0,
-            "y1": 0.0,
-            "x2": 1167.0,
-            "y2": 934.0,
+            "x1": 0.0,
+            "y1": 595.36,
+            "x2": 240.63,
+            "y2": 835.99,
             "center": [
-              0.5,
-              0.5
+              0.0859,
+              0.7662
             ]
           },
           "cropCenter": [
-            0.5,
-            0.5
+            0.0859,
+            0.7662
           ]
         },
         "personRelation": {
-          "faceCount": 4,
+          "faceCount": 1,
           "positions": [
-            "center",
-            "right",
-            "left",
-            "right"
+            "left"
           ],
           "groupBox": {
-            "x1": 135.62,
-            "y1": 164.79,
-            "x2": 1192.92,
-            "y2": 850.21
+            "x1": 30.62,
+            "y1": 663.54,
+            "x2": 110.83,
+            "y2": 743.75
           }
         },
         "faceDetection": {
           "noFaceOpeningEligible": false,
           "detectors": [
-            "haar_front_alt",
-            "haar_profile",
-            "yunet"
+            "haar_front"
           ],
           "thresholds": {
             "yunetFaceScore": 0.78
@@ -7380,111 +7308,46 @@
           "faces": [
             {
               "bbox": {
-                "x1": 549.79,
-                "y1": 164.79,
-                "x2": 679.58,
-                "y2": 329.58
+                "x1": 30.62,
+                "y1": 663.54,
+                "x2": 110.83,
+                "y2": 743.75
               },
               "bbox_xyxy": [
-                549.79,
-                164.79,
-                679.58,
-                329.58
+                30.62,
+                663.54,
+                110.83,
+                743.75
               ],
               "center_ratio": [
-                0.4391,
-                0.2647
+                0.0505,
+                0.7534
               ],
-              "area_ratio": 0.01636,
-              "detector": "yunet",
-              "confidence": 0.9212
-            },
-            {
-              "bbox": {
-                "x1": 1061.67,
-                "y1": 417.08,
-                "x2": 1192.92,
-                "y2": 599.38
-              },
-              "bbox_xyxy": [
-                1061.67,
-                417.08,
-                1192.92,
-                599.38
-              ],
-              "center_ratio": [
-                0.8052,
-                0.5441
-              ],
-              "area_ratio": 0.0183,
-              "detector": "yunet",
-              "confidence": 0.9195
-            },
-            {
-              "bbox": {
-                "x1": 135.62,
-                "y1": 622.71,
-                "x2": 245.0,
-                "y2": 732.08
-              },
-              "bbox_xyxy": [
-                135.62,
-                622.71,
-                245.0,
-                732.08
-              ],
-              "center_ratio": [
-                0.1359,
-                0.7253
-              ],
-              "area_ratio": 0.00915,
-              "detector": "haar_front_alt",
+              "area_ratio": 0.00492,
+              "detector": "haar_front",
               "confidence": 0.82
-            },
-            {
-              "bbox": {
-                "x1": 993.12,
-                "y1": 765.62,
-                "x2": 1077.71,
-                "y2": 850.21
-              },
-              "bbox_xyxy": [
-                993.12,
-                765.62,
-                1077.71,
-                850.21
-              ],
-              "center_ratio": [
-                0.7396,
-                0.865
-              ],
-              "area_ratio": 0.00547,
-              "detector": "haar_profile",
-              "confidence": 0.8
             }
           ]
         },
         "visual": {
-          "brightness": 0.87731,
-          "saturation": 0.1304,
-          "contrast": 0.21131,
-          "warmth": 0.04894,
-          "sharpness": 133.092
+          "brightness": 0.52292,
+          "saturation": 0.49431,
+          "contrast": 0.32319,
+          "warmth": 0.23916,
+          "sharpness": 74.672
         },
-        "perceptualHash": "82f1ff004efcf504",
+        "perceptualHash": "add2972d3c7a0295",
         "duplicateGroup": {
-          "groupId": 5,
+          "groupId": 29,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
-          "score": 0.79083
-        },
-        "manualTargetSeconds": 515.0,
-        "imageRole": "manual-distributed-group"
+          "score": 0.72518
+        }
       }
     },
     {
-      "index": 50,
+      "index": 46,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_033_ST-694.jpg",
       "relative": "phtp2605269\\photo_033_ST-694.jpg",
@@ -7494,8 +7357,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 554.25,
-      "timelineEnd": 559.25,
+      "timelineStart": 527.25,
+      "timelineEnd": 532.25,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -7610,7 +7473,7 @@
         },
         "perceptualHash": "80ff0b000ffe17d9",
         "duplicateGroup": {
-          "groupId": 33,
+          "groupId": 30,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -7619,278 +7482,7 @@
       }
     },
     {
-      "index": 51,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_011_ST-625.jpg",
-      "relative": "phtp2605269\\photo_011_ST-625.jpg",
-      "sourceIdentityStem": "st-625",
-      "sourceLabel": "photo_011_ST-625.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 559.25,
-      "timelineEnd": 564.25,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.20397,
-        "cropCenter": [
-          0.3073,
-          0.4606
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 22.25,
-            "y1": 0.0,
-            "x2": 623.79,
-            "y2": 860.49,
-            "center": [
-              0.2307,
-              0.4606
-            ]
-          },
-          "subjectSquare": {
-            "x1": 0.0,
-            "y1": 0.0,
-            "x2": 860.49,
-            "y2": 860.49,
-            "center": [
-              0.3073,
-              0.4606
-            ]
-          },
-          "cropCenter": [
-            0.3073,
-            0.4606
-          ]
-        },
-        "personRelation": {
-          "faceCount": 1,
-          "positions": [
-            "left"
-          ],
-          "groupBox": {
-            "x1": 202.71,
-            "y1": 148.75,
-            "x2": 443.33,
-            "y2": 479.79
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "yunet"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 202.71,
-                "y1": 148.75,
-                "x2": 443.33,
-                "y2": 479.79
-              },
-              "bbox_xyxy": [
-                202.71,
-                148.75,
-                443.33,
-                479.79
-              ],
-              "center_ratio": [
-                0.2307,
-                0.3365
-              ],
-              "area_ratio": 0.06092,
-              "detector": "yunet",
-              "confidence": 0.9128
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.91909,
-          "saturation": 0.11867,
-          "contrast": 0.14165,
-          "warmth": 0.0624,
-          "sharpness": 44.999
-        },
-        "perceptualHash": "9f1e5cf0e0f0e0e1",
-        "duplicateGroup": {
-          "groupId": 11,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.34438
-        },
-        "manualTargetSeconds": 555.0,
-        "imageRole": "manual-distributed-group"
-      }
-    },
-    {
-      "index": 52,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_035_ST-697.jpg",
-      "relative": "phtp2605269\\photo_035_ST-697.jpg",
-      "sourceIdentityStem": "st-697",
-      "sourceLabel": "photo_035_ST-697.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 564.25,
-      "timelineEnd": 569.25,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.55638,
-        "cropCenter": [
-          0.3288,
-          0.4928
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 3.58,
-            "x2": 920.57,
-            "y2": 891.7,
-            "center": [
-              0.3288,
-              0.4793
-            ]
-          },
-          "subjectSquare": {
-            "x1": 0.0,
-            "y1": 0.0,
-            "x2": 920.57,
-            "y2": 920.57,
-            "center": [
-              0.3288,
-              0.4928
-            ]
-          },
-          "cropCenter": [
-            0.3288,
-            0.4928
-          ]
-        },
-        "personRelation": {
-          "faceCount": 3,
-          "positions": [
-            "left",
-            "left",
-            "left"
-          ],
-          "groupBox": {
-            "x1": 55.42,
-            "y1": 255.21,
-            "x2": 549.79,
-            "y2": 551.25
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_front",
-            "haar_profile_flipped"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 415.62,
-                "y1": 317.92,
-                "x2": 549.79,
-                "y2": 452.08
-              },
-              "bbox_xyxy": [
-                415.62,
-                317.92,
-                549.79,
-                452.08
-              ],
-              "center_ratio": [
-                0.3448,
-                0.4122
-              ],
-              "area_ratio": 0.01377,
-              "detector": "haar_front",
-              "confidence": 0.82
-            },
-            {
-              "bbox": {
-                "x1": 55.42,
-                "y1": 255.21,
-                "x2": 278.54,
-                "y2": 478.33
-              },
-              "bbox_xyxy": [
-                55.42,
-                255.21,
-                278.54,
-                478.33
-              ],
-              "center_ratio": [
-                0.1193,
-                0.3927
-              ],
-              "area_ratio": 0.03807,
-              "detector": "haar_profile_flipped",
-              "confidence": 0.8
-            },
-            {
-              "bbox": {
-                "x1": 438.96,
-                "y1": 441.88,
-                "x2": 548.33,
-                "y2": 551.25
-              },
-              "bbox_xyxy": [
-                438.96,
-                441.88,
-                548.33,
-                551.25
-              ],
-              "center_ratio": [
-                0.3526,
-                0.5317
-              ],
-              "area_ratio": 0.00915,
-              "detector": "haar_profile_flipped",
-              "confidence": 0.8
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.59948,
-          "saturation": 0.5302,
-          "contrast": 0.26647,
-          "warmth": 0.25894,
-          "sharpness": 113.211
-        },
-        "perceptualHash": "8a673de450d2d2da",
-        "duplicateGroup": {
-          "groupId": 35,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 1.00294
-        }
-      }
-    },
-    {
-      "index": 53,
+      "index": 47,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\video\\video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4",
       "relative": "video\\video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4",
@@ -7900,8 +7492,8 @@
       "height": 720,
       "sourceDuration": 23.867,
       "hasAudio": true,
-      "timelineStart": 569.25,
-      "timelineEnd": 593.083333,
+      "timelineStart": 532.25,
+      "timelineEnd": 556.083333,
       "sourceIn": 0.0,
       "sourceOut": 23.833333,
       "clipDuration": 23.833333,
@@ -8188,68 +7780,66 @@
       }
     },
     {
-      "index": 54,
+      "index": 48,
       "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_008_ST-618.jpg",
-      "relative": "phtp2605269\\photo_008_ST-618.jpg",
-      "sourceIdentityStem": "st-618",
-      "sourceLabel": "photo_008_ST-618.jpg",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_011_ST-625.jpg",
+      "relative": "phtp2605269\\photo_011_ST-625.jpg",
+      "sourceIdentityStem": "st-625",
+      "sourceLabel": "photo_011_ST-625.jpg",
       "width": 3000,
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 593.083333,
-      "timelineEnd": 598.083333,
+      "timelineStart": 556.083333,
+      "timelineEnd": 561.083333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
       "clipFrames": 120,
       "analysis": {
         "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.38759,
+        "score": 0.20397,
         "cropCenter": [
-          0.5,
-          0.5
+          0.3073,
+          0.4606
         ],
         "subject": {
           "source": "faces",
           "subjectBox": {
-            "x1": 0.0,
+            "x1": 22.25,
             "y1": 0.0,
-            "x2": 1400.0,
-            "y2": 934.0,
+            "x2": 623.79,
+            "y2": 860.49,
             "center": [
-              0.5,
-              0.5
+              0.2307,
+              0.4606
             ]
           },
           "subjectSquare": {
-            "x1": 233.0,
+            "x1": 0.0,
             "y1": 0.0,
-            "x2": 1167.0,
-            "y2": 934.0,
+            "x2": 860.49,
+            "y2": 860.49,
             "center": [
-              0.5,
-              0.5
+              0.3073,
+              0.4606
             ]
           },
           "cropCenter": [
-            0.5,
-            0.5
+            0.3073,
+            0.4606
           ]
         },
         "personRelation": {
-          "faceCount": 3,
+          "faceCount": 1,
           "positions": [
-            "center",
-            "left",
-            "right"
+            "left"
           ],
           "groupBox": {
-            "x1": 154.58,
-            "y1": 153.12,
-            "x2": 1400.0,
-            "y2": 924.58
+            "x1": 202.71,
+            "y1": 148.75,
+            "x2": 443.33,
+            "y2": 479.79
           }
         },
         "faceDetection": {
@@ -8263,90 +7853,205 @@
           "faces": [
             {
               "bbox": {
-                "x1": 710.21,
-                "y1": 160.42,
-                "x2": 921.67,
-                "y2": 449.17
+                "x1": 202.71,
+                "y1": 148.75,
+                "x2": 443.33,
+                "y2": 479.79
               },
               "bbox_xyxy": [
-                710.21,
-                160.42,
-                921.67,
-                449.17
+                202.71,
+                148.75,
+                443.33,
+                479.79
               ],
               "center_ratio": [
-                0.5828,
-                0.3263
+                0.2307,
+                0.3365
               ],
-              "area_ratio": 0.0467,
+              "area_ratio": 0.06092,
               "detector": "yunet",
-              "confidence": 0.9265
-            },
-            {
-              "bbox": {
-                "x1": 154.58,
-                "y1": 153.12,
-                "x2": 348.54,
-                "y2": 402.5
-              },
-              "bbox_xyxy": [
-                154.58,
-                153.12,
-                348.54,
-                402.5
-              ],
-              "center_ratio": [
-                0.1797,
-                0.2974
-              ],
-              "area_ratio": 0.03699,
-              "detector": "yunet",
-              "confidence": 0.9139
-            },
-            {
-              "bbox": {
-                "x1": 1261.46,
-                "y1": 597.92,
-                "x2": 1400.0,
-                "y2": 924.58
-              },
-              "bbox_xyxy": [
-                1261.46,
-                597.92,
-                1400.0,
-                924.58
-              ],
-              "center_ratio": [
-                0.9505,
-                0.815
-              ],
-              "area_ratio": 0.03461,
-              "detector": "yunet",
-              "confidence": 0.8816
+              "confidence": 0.9128
             }
           ]
         },
         "visual": {
-          "brightness": 0.86611,
-          "saturation": 0.13635,
-          "contrast": 0.18361,
-          "warmth": 0.0655,
-          "sharpness": 43.052
+          "brightness": 0.91909,
+          "saturation": 0.11867,
+          "contrast": 0.14165,
+          "warmth": 0.0624,
+          "sharpness": 44.999
         },
-        "perceptualHash": "8faf03d0dbf0d091",
+        "perceptualHash": "9f1e5cf0e0f0e0e1",
         "duplicateGroup": {
           "groupId": 8,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
-          "score": 0.70316
+          "score": 0.34438
         },
-        "manualTargetSeconds": 590.0,
+        "manualTargetSeconds": 555.0,
         "imageRole": "manual-distributed-group"
       }
     },
     {
-      "index": 55,
+      "index": 49,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_035_ST-697.jpg",
+      "relative": "phtp2605269\\photo_035_ST-697.jpg",
+      "sourceIdentityStem": "st-697",
+      "sourceLabel": "photo_035_ST-697.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 561.083333,
+      "timelineEnd": 566.083333,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.55638,
+        "cropCenter": [
+          0.3288,
+          0.4928
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 0.0,
+            "y1": 3.58,
+            "x2": 920.57,
+            "y2": 891.7,
+            "center": [
+              0.3288,
+              0.4793
+            ]
+          },
+          "subjectSquare": {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 920.57,
+            "y2": 920.57,
+            "center": [
+              0.3288,
+              0.4928
+            ]
+          },
+          "cropCenter": [
+            0.3288,
+            0.4928
+          ]
+        },
+        "personRelation": {
+          "faceCount": 3,
+          "positions": [
+            "left",
+            "left",
+            "left"
+          ],
+          "groupBox": {
+            "x1": 55.42,
+            "y1": 255.21,
+            "x2": 549.79,
+            "y2": 551.25
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front",
+            "haar_profile_flipped"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 415.62,
+                "y1": 317.92,
+                "x2": 549.79,
+                "y2": 452.08
+              },
+              "bbox_xyxy": [
+                415.62,
+                317.92,
+                549.79,
+                452.08
+              ],
+              "center_ratio": [
+                0.3448,
+                0.4122
+              ],
+              "area_ratio": 0.01377,
+              "detector": "haar_front",
+              "confidence": 0.82
+            },
+            {
+              "bbox": {
+                "x1": 55.42,
+                "y1": 255.21,
+                "x2": 278.54,
+                "y2": 478.33
+              },
+              "bbox_xyxy": [
+                55.42,
+                255.21,
+                278.54,
+                478.33
+              ],
+              "center_ratio": [
+                0.1193,
+                0.3927
+              ],
+              "area_ratio": 0.03807,
+              "detector": "haar_profile_flipped",
+              "confidence": 0.8
+            },
+            {
+              "bbox": {
+                "x1": 438.96,
+                "y1": 441.88,
+                "x2": 548.33,
+                "y2": 551.25
+              },
+              "bbox_xyxy": [
+                438.96,
+                441.88,
+                548.33,
+                551.25
+              ],
+              "center_ratio": [
+                0.3526,
+                0.5317
+              ],
+              "area_ratio": 0.00915,
+              "detector": "haar_profile_flipped",
+              "confidence": 0.8
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.59948,
+          "saturation": 0.5302,
+          "contrast": 0.26647,
+          "warmth": 0.25894,
+          "sharpness": 113.211
+        },
+        "perceptualHash": "8a673de450d2d2da",
+        "duplicateGroup": {
+          "groupId": 32,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "best-image-score",
+          "score": 1.00294
+        }
+      }
+    },
+    {
+      "index": 50,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_038_ST-701.jpg",
       "relative": "phtp2605269\\photo_038_ST-701.jpg",
@@ -8356,8 +8061,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 598.083333,
-      "timelineEnd": 603.083333,
+      "timelineStart": 566.083333,
+      "timelineEnd": 571.083333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -8449,7 +8154,7 @@
         },
         "perceptualHash": "e2d271b44b61daa5",
         "duplicateGroup": {
-          "groupId": 38,
+          "groupId": 35,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -8458,141 +8163,7 @@
       }
     },
     {
-      "index": 56,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_039_ST-702.jpg",
-      "relative": "phtp2605269\\photo_039_ST-702.jpg",
-      "sourceIdentityStem": "st-702",
-      "sourceLabel": "photo_039_ST-702.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 603.083333,
-      "timelineEnd": 608.083333,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.3216,
-        "cropCenter": [
-          0.5,
-          0.5
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 177.78,
-            "x2": 1400.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.5952
-            ]
-          },
-          "subjectSquare": {
-            "x1": 233.0,
-            "y1": 0.0,
-            "x2": 1167.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 2,
-          "positions": [
-            "left",
-            "right"
-          ],
-          "groupBox": {
-            "x1": 224.58,
-            "y1": 457.92,
-            "x2": 1061.67,
-            "y2": 787.5
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_front_alt"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 224.58,
-                "y1": 457.92,
-                "x2": 403.96,
-                "y2": 637.29
-              },
-              "bbox_xyxy": [
-                224.58,
-                457.92,
-                403.96,
-                637.29
-              ],
-              "center_ratio": [
-                0.2245,
-                0.5863
-              ],
-              "area_ratio": 0.02461,
-              "detector": "haar_front_alt",
-              "confidence": 0.82
-            },
-            {
-              "bbox": {
-                "x1": 985.83,
-                "y1": 711.67,
-                "x2": 1061.67,
-                "y2": 787.5
-              },
-              "bbox_xyxy": [
-                985.83,
-                711.67,
-                1061.67,
-                787.5
-              ],
-              "center_ratio": [
-                0.7312,
-                0.8026
-              ],
-              "area_ratio": 0.0044,
-              "detector": "haar_front_alt",
-              "confidence": 0.82
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.78033,
-          "saturation": 0.1495,
-          "contrast": 0.2026,
-          "warmth": -0.03327,
-          "sharpness": 169.404
-        },
-        "perceptualHash": "e49f336c87093e61",
-        "duplicateGroup": {
-          "groupId": 39,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 0.60727
-        }
-      }
-    },
-    {
-      "index": 57,
+      "index": 51,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_005_DJI_20000104172535_0017_D.MP4",
       "relative": "DJI_001\\video_005_DJI_20000104172535_0017_D.MP4",
@@ -8602,12 +8173,12 @@
       "height": 1080,
       "sourceDuration": 21.038,
       "hasAudio": true,
-      "timelineStart": 608.083333,
-      "timelineEnd": 629.083333,
-      "sourceIn": 0.019,
+      "timelineStart": 571.083333,
+      "timelineEnd": 574.083333,
+      "sourceIn": 18.019,
       "sourceOut": 21.019,
-      "clipDuration": 21.0,
-      "clipFrames": 504,
+      "clipDuration": 3.0,
+      "clipFrames": 72,
       "analysis": {
         "analysisVersion": "video-v2-stable-people",
         "score": 0.54365,
@@ -8812,95 +8383,156 @@
           "score": 0.54365,
           "weight": 0.280434,
           "allocatedSeconds": 21.0
+        },
+        "manualKeepLast": {
+          "sourceStem": "dji_20000104172535_0017_d",
+          "keepLastSeconds": 3.0,
+          "originalSourceIn": 0.019,
+          "originalSourceOut": 21.019,
+          "sourceIn": 18.019,
+          "sourceOut": 21.019,
+          "originalClipDuration": 21.0,
+          "clipDuration": 3.0,
+          "method": "keep-selected-clip-tail"
         }
       }
     },
     {
-      "index": 58,
+      "index": 52,
       "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_026_ST-670.jpg",
-      "relative": "phtp2605269\\photo_026_ST-670.jpg",
-      "sourceIdentityStem": "st-670",
-      "sourceLabel": "photo_026_ST-670.jpg",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_039_ST-702.jpg",
+      "relative": "phtp2605269\\photo_039_ST-702.jpg",
+      "sourceIdentityStem": "st-702",
+      "sourceLabel": "photo_039_ST-702.jpg",
       "width": 3000,
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 629.083333,
-      "timelineEnd": 634.083333,
+      "timelineStart": 574.083333,
+      "timelineEnd": 579.083333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
       "clipFrames": 120,
       "analysis": {
         "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.35905,
+        "score": 0.3216,
         "cropCenter": [
-          0.4068,
-          0.35
+          0.5,
+          0.5
         ],
         "subject": {
-          "source": "edges",
+          "source": "faces",
           "subjectBox": {
-            "x1": 242.6,
-            "y1": 124.8,
-            "x2": 896.4,
-            "y2": 406.2,
+            "x1": 0.0,
+            "y1": 177.78,
+            "x2": 1400.0,
+            "y2": 934.0,
             "center": [
-              0.4068,
-              0.2843
+              0.5,
+              0.5952
             ]
           },
           "subjectSquare": {
-            "x1": 242.6,
+            "x1": 233.0,
             "y1": 0.0,
-            "x2": 896.4,
-            "y2": 653.8,
+            "x2": 1167.0,
+            "y2": 934.0,
             "center": [
-              0.4068,
-              0.35
+              0.5,
+              0.5
             ]
           },
           "cropCenter": [
-            0.4068,
-            0.35
+            0.5,
+            0.5
           ]
         },
         "personRelation": {
-          "faceCount": 0,
-          "positions": [],
-          "groupBox": null
+          "faceCount": 2,
+          "positions": [
+            "left",
+            "right"
+          ],
+          "groupBox": {
+            "x1": 224.58,
+            "y1": 457.92,
+            "x2": 1061.67,
+            "y2": 787.5
+          }
         },
         "faceDetection": {
-          "noFaceOpeningEligible": true,
-          "detectors": [],
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front_alt"
+          ],
           "thresholds": {
             "yunetFaceScore": 0.78
           },
-          "faces": []
+          "faces": [
+            {
+              "bbox": {
+                "x1": 224.58,
+                "y1": 457.92,
+                "x2": 403.96,
+                "y2": 637.29
+              },
+              "bbox_xyxy": [
+                224.58,
+                457.92,
+                403.96,
+                637.29
+              ],
+              "center_ratio": [
+                0.2245,
+                0.5863
+              ],
+              "area_ratio": 0.02461,
+              "detector": "haar_front_alt",
+              "confidence": 0.82
+            },
+            {
+              "bbox": {
+                "x1": 985.83,
+                "y1": 711.67,
+                "x2": 1061.67,
+                "y2": 787.5
+              },
+              "bbox_xyxy": [
+                985.83,
+                711.67,
+                1061.67,
+                787.5
+              ],
+              "center_ratio": [
+                0.7312,
+                0.8026
+              ],
+              "area_ratio": 0.0044,
+              "detector": "haar_front_alt",
+              "confidence": 0.82
+            }
+          ]
         },
         "visual": {
-          "brightness": 0.53345,
-          "saturation": 0.43869,
-          "contrast": 0.27158,
-          "warmth": 0.22056,
-          "sharpness": 16.971
+          "brightness": 0.78033,
+          "saturation": 0.1495,
+          "contrast": 0.2026,
+          "warmth": -0.03327,
+          "sharpness": 169.404
         },
-        "perceptualHash": "fca5302d499b96c6",
+        "perceptualHash": "e49f336c87093e61",
         "duplicateGroup": {
-          "groupId": 26,
+          "groupId": 36,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
-          "score": 0.55968
-        },
-        "manualTargetSeconds": 625.0,
-        "manualPlacement": "late-back-half",
-        "imageRole": "manual-late-group"
+          "score": 0.60727
+        }
       }
     },
     {
-      "index": 59,
+      "index": 53,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_041_ST-706.jpg",
       "relative": "phtp2605269\\photo_041_ST-706.jpg",
@@ -8910,8 +8542,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 634.083333,
-      "timelineEnd": 639.083333,
+      "timelineStart": 579.083333,
+      "timelineEnd": 584.083333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -9003,7 +8635,7 @@
         },
         "perceptualHash": "e38f33733c581cc1",
         "duplicateGroup": {
-          "groupId": 41,
+          "groupId": 38,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -9012,164 +8644,7 @@
       }
     },
     {
-      "index": 60,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_044_ST-713.jpg",
-      "relative": "phtp2605269\\photo_044_ST-713.jpg",
-      "sourceIdentityStem": "st-713",
-      "sourceLabel": "photo_044_ST-713.jpg",
-      "width": 3000,
-      "height": 2000,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 639.083333,
-      "timelineEnd": 644.083333,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.61365,
-        "cropCenter": [
-          0.5,
-          0.5
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 0.0,
-            "x2": 1400.0,
-            "y2": 933.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "subjectSquare": {
-            "x1": 233.5,
-            "y1": 0.0,
-            "x2": 1166.5,
-            "y2": 933.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 3,
-          "positions": [
-            "right",
-            "left",
-            "right"
-          ],
-          "groupBox": {
-            "x1": 325.21,
-            "y1": 88.96,
-            "x2": 1213.33,
-            "y2": 638.75
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_profile_flipped",
-            "yunet"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 955.21,
-                "y1": 271.25,
-                "x2": 1213.33,
-                "y2": 638.75
-              },
-              "bbox_xyxy": [
-                955.21,
-                271.25,
-                1213.33,
-                638.75
-              ],
-              "center_ratio": [
-                0.7745,
-                0.4877
-              ],
-              "area_ratio": 0.07262,
-              "detector": "yunet",
-              "confidence": 0.9238
-            },
-            {
-              "bbox": {
-                "x1": 325.21,
-                "y1": 88.96,
-                "x2": 590.62,
-                "y2": 478.33
-              },
-              "bbox_xyxy": [
-                325.21,
-                88.96,
-                590.62,
-                478.33
-              ],
-              "center_ratio": [
-                0.3271,
-                0.304
-              ],
-              "area_ratio": 0.07912,
-              "detector": "yunet",
-              "confidence": 0.9077
-            },
-            {
-              "bbox": {
-                "x1": 746.67,
-                "y1": 315.0,
-                "x2": 1042.71,
-                "y2": 611.04
-              },
-              "bbox_xyxy": [
-                746.67,
-                315.0,
-                1042.71,
-                611.04
-              ],
-              "center_ratio": [
-                0.6391,
-                0.4963
-              ],
-              "area_ratio": 0.0671,
-              "detector": "haar_profile_flipped",
-              "confidence": 0.8
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.56545,
-          "saturation": 0.26661,
-          "contrast": 0.25065,
-          "warmth": 0.10928,
-          "sharpness": 213.106
-        },
-        "perceptualHash": "8467acc9d1b2ced1",
-        "duplicateGroup": {
-          "groupId": 44,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 1.06083
-        }
-      }
-    },
-    {
-      "index": 61,
+      "index": 54,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
       "relative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
@@ -9179,8 +8654,8 @@
       "height": 1080,
       "sourceDuration": 103.979,
       "hasAudio": true,
-      "timelineStart": 644.083333,
-      "timelineEnd": 690.0,
+      "timelineStart": 584.083333,
+      "timelineEnd": 630.0,
       "sourceIn": 29.030666,
       "sourceOut": 74.947333,
       "clipDuration": 45.916667,
@@ -9509,7 +8984,249 @@
       }
     },
     {
-      "index": 62,
+      "index": 55,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_026_ST-670.jpg",
+      "relative": "phtp2605269\\photo_026_ST-670.jpg",
+      "sourceIdentityStem": "st-670",
+      "sourceLabel": "photo_026_ST-670.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 630.0,
+      "timelineEnd": 635.0,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.35905,
+        "cropCenter": [
+          0.4068,
+          0.35
+        ],
+        "subject": {
+          "source": "edges",
+          "subjectBox": {
+            "x1": 242.6,
+            "y1": 124.8,
+            "x2": 896.4,
+            "y2": 406.2,
+            "center": [
+              0.4068,
+              0.2843
+            ]
+          },
+          "subjectSquare": {
+            "x1": 242.6,
+            "y1": 0.0,
+            "x2": 896.4,
+            "y2": 653.8,
+            "center": [
+              0.4068,
+              0.35
+            ]
+          },
+          "cropCenter": [
+            0.4068,
+            0.35
+          ]
+        },
+        "personRelation": {
+          "faceCount": 0,
+          "positions": [],
+          "groupBox": null
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": true,
+          "detectors": [],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": []
+        },
+        "visual": {
+          "brightness": 0.53345,
+          "saturation": 0.43869,
+          "contrast": 0.27158,
+          "warmth": 0.22056,
+          "sharpness": 16.971
+        },
+        "perceptualHash": "fca5302d499b96c6",
+        "duplicateGroup": {
+          "groupId": 23,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "best-image-score",
+          "score": 0.55968
+        },
+        "manualTargetSeconds": 625.0,
+        "manualPlacement": "late-back-half",
+        "imageRole": "manual-late-group"
+      }
+    },
+    {
+      "index": 56,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_008_ST-618.jpg",
+      "relative": "phtp2605269\\photo_008_ST-618.jpg",
+      "sourceIdentityStem": "st-618",
+      "sourceLabel": "photo_008_ST-618.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 635.0,
+      "timelineEnd": 640.0,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.38759,
+        "cropCenter": [
+          0.5,
+          0.5
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 1400.0,
+            "y2": 934.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "subjectSquare": {
+            "x1": 233.0,
+            "y1": 0.0,
+            "x2": 1167.0,
+            "y2": 934.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.5,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 3,
+          "positions": [
+            "center",
+            "left",
+            "right"
+          ],
+          "groupBox": {
+            "x1": 154.58,
+            "y1": 153.12,
+            "x2": 1400.0,
+            "y2": 924.58
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "yunet"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 710.21,
+                "y1": 160.42,
+                "x2": 921.67,
+                "y2": 449.17
+              },
+              "bbox_xyxy": [
+                710.21,
+                160.42,
+                921.67,
+                449.17
+              ],
+              "center_ratio": [
+                0.5828,
+                0.3263
+              ],
+              "area_ratio": 0.0467,
+              "detector": "yunet",
+              "confidence": 0.9265
+            },
+            {
+              "bbox": {
+                "x1": 154.58,
+                "y1": 153.12,
+                "x2": 348.54,
+                "y2": 402.5
+              },
+              "bbox_xyxy": [
+                154.58,
+                153.12,
+                348.54,
+                402.5
+              ],
+              "center_ratio": [
+                0.1797,
+                0.2974
+              ],
+              "area_ratio": 0.03699,
+              "detector": "yunet",
+              "confidence": 0.9139
+            },
+            {
+              "bbox": {
+                "x1": 1261.46,
+                "y1": 597.92,
+                "x2": 1400.0,
+                "y2": 924.58
+              },
+              "bbox_xyxy": [
+                1261.46,
+                597.92,
+                1400.0,
+                924.58
+              ],
+              "center_ratio": [
+                0.9505,
+                0.815
+              ],
+              "area_ratio": 0.03461,
+              "detector": "yunet",
+              "confidence": 0.8816
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.86611,
+          "saturation": 0.13635,
+          "contrast": 0.18361,
+          "warmth": 0.0655,
+          "sharpness": 43.052
+        },
+        "perceptualHash": "8faf03d0dbf0d091",
+        "duplicateGroup": {
+          "groupId": 5,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "best-image-score",
+          "score": 0.70316
+        },
+        "manualTargetSeconds": 590.0,
+        "imageRole": "manual-distributed-group"
+      }
+    },
+    {
+      "index": 57,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_045_ST-715.jpg",
       "relative": "phtp2605269\\photo_045_ST-715.jpg",
@@ -9519,8 +9236,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 690.0,
-      "timelineEnd": 695.0,
+      "timelineStart": 640.0,
+      "timelineEnd": 645.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -9635,7 +9352,7 @@
         },
         "perceptualHash": "b4c82b3d952b5ab4",
         "duplicateGroup": {
-          "groupId": 45,
+          "groupId": 42,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -9644,7 +9361,7 @@
       }
     },
     {
-      "index": 63,
+      "index": 58,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_048_ST-725.jpg",
       "relative": "phtp2605269\\photo_048_ST-725.jpg",
@@ -9654,8 +9371,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 695.0,
-      "timelineEnd": 700.0,
+      "timelineStart": 645.0,
+      "timelineEnd": 650.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -9747,7 +9464,7 @@
         },
         "perceptualHash": "a5fd4f9092e2e02d",
         "duplicateGroup": {
-          "groupId": 48,
+          "groupId": 45,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -9756,7 +9473,300 @@
       }
     },
     {
-      "index": 64,
+      "index": 59,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_029_ST-682.jpg",
+      "relative": "phtp2605269\\photo_029_ST-682.jpg",
+      "sourceIdentityStem": "st-682",
+      "sourceLabel": "photo_029_ST-682.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 650.0,
+      "timelineEnd": 655.0,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.49334,
+        "cropCenter": [
+          0.6531,
+          0.5
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 436.76,
+            "y1": 162.09,
+            "x2": 1391.99,
+            "y2": 934.0,
+            "center": [
+              0.6531,
+              0.5868
+            ]
+          },
+          "subjectSquare": {
+            "x1": 447.38,
+            "y1": 0.0,
+            "x2": 1381.38,
+            "y2": 934.0,
+            "center": [
+              0.6531,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.6531,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 2,
+          "positions": [
+            "center",
+            "right"
+          ],
+          "groupBox": {
+            "x1": 723.33,
+            "y1": 460.83,
+            "x2": 1105.42,
+            "y2": 812.29
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 723.33,
+                "y1": 589.17,
+                "x2": 946.46,
+                "y2": 812.29
+              },
+              "bbox_xyxy": [
+                723.33,
+                589.17,
+                946.46,
+                812.29
+              ],
+              "center_ratio": [
+                0.5964,
+                0.7502
+              ],
+              "area_ratio": 0.03807,
+              "detector": "haar_front",
+              "confidence": 0.82
+            },
+            {
+              "bbox": {
+                "x1": 1004.79,
+                "y1": 460.83,
+                "x2": 1105.42,
+                "y2": 561.46
+              },
+              "bbox_xyxy": [
+                1004.79,
+                460.83,
+                1105.42,
+                561.46
+              ],
+              "center_ratio": [
+                0.7536,
+                0.5473
+              ],
+              "area_ratio": 0.00774,
+              "detector": "haar_front",
+              "confidence": 0.82
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.6307,
+          "saturation": 0.40701,
+          "contrast": 0.27795,
+          "warmth": 0.20562,
+          "sharpness": 175.666
+        },
+        "perceptualHash": "b9e6ce49e438491d",
+        "duplicateGroup": {
+          "groupId": 26,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "required-image-priority",
+          "score": 0.86397
+        },
+        "imageRole": "manual-final-photo-opening"
+      }
+    },
+    {
+      "index": 60,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_044_ST-713.jpg",
+      "relative": "phtp2605269\\photo_044_ST-713.jpg",
+      "sourceIdentityStem": "st-713",
+      "sourceLabel": "photo_044_ST-713.jpg",
+      "width": 3000,
+      "height": 2000,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 655.0,
+      "timelineEnd": 660.0,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.61365,
+        "cropCenter": [
+          0.5,
+          0.5
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 1400.0,
+            "y2": 933.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "subjectSquare": {
+            "x1": 233.5,
+            "y1": 0.0,
+            "x2": 1166.5,
+            "y2": 933.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.5,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 3,
+          "positions": [
+            "right",
+            "left",
+            "right"
+          ],
+          "groupBox": {
+            "x1": 325.21,
+            "y1": 88.96,
+            "x2": 1213.33,
+            "y2": 638.75
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_profile_flipped",
+            "yunet"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 955.21,
+                "y1": 271.25,
+                "x2": 1213.33,
+                "y2": 638.75
+              },
+              "bbox_xyxy": [
+                955.21,
+                271.25,
+                1213.33,
+                638.75
+              ],
+              "center_ratio": [
+                0.7745,
+                0.4877
+              ],
+              "area_ratio": 0.07262,
+              "detector": "yunet",
+              "confidence": 0.9238
+            },
+            {
+              "bbox": {
+                "x1": 325.21,
+                "y1": 88.96,
+                "x2": 590.62,
+                "y2": 478.33
+              },
+              "bbox_xyxy": [
+                325.21,
+                88.96,
+                590.62,
+                478.33
+              ],
+              "center_ratio": [
+                0.3271,
+                0.304
+              ],
+              "area_ratio": 0.07912,
+              "detector": "yunet",
+              "confidence": 0.9077
+            },
+            {
+              "bbox": {
+                "x1": 746.67,
+                "y1": 315.0,
+                "x2": 1042.71,
+                "y2": 611.04
+              },
+              "bbox_xyxy": [
+                746.67,
+                315.0,
+                1042.71,
+                611.04
+              ],
+              "center_ratio": [
+                0.6391,
+                0.4963
+              ],
+              "area_ratio": 0.0671,
+              "detector": "haar_profile_flipped",
+              "confidence": 0.8
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.56545,
+          "saturation": 0.26661,
+          "contrast": 0.25065,
+          "warmth": 0.10928,
+          "sharpness": 213.106
+        },
+        "perceptualHash": "8467acc9d1b2ced1",
+        "duplicateGroup": {
+          "groupId": 41,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "required-image-priority",
+          "score": 1.06083
+        },
+        "imageRole": "manual-final-photo-opening"
+      }
+    },
+    {
+      "index": 61,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_023_ST-665.jpg",
       "relative": "phtp2605269\\photo_023_ST-665.jpg",
@@ -9766,8 +9776,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 700.0,
-      "timelineEnd": 705.0,
+      "timelineStart": 660.0,
+      "timelineEnd": 665.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -9925,7 +9935,7 @@
         },
         "perceptualHash": "bb421afb983146c7",
         "duplicateGroup": {
-          "groupId": 23,
+          "groupId": 20,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -9935,7 +9945,7 @@
       }
     },
     {
-      "index": 65,
+      "index": 62,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_047_ST-721.jpg",
       "relative": "phtp2605269\\photo_047_ST-721.jpg",
@@ -9945,8 +9955,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 705.0,
-      "timelineEnd": 710.0,
+      "timelineStart": 665.0,
+      "timelineEnd": 670.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -10104,7 +10114,7 @@
         },
         "perceptualHash": "e6b0c9977981e45a",
         "duplicateGroup": {
-          "groupId": 47,
+          "groupId": 44,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "best-image-score",
@@ -10114,7 +10124,7 @@
       }
     },
     {
-      "index": 66,
+      "index": 63,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_046_ST-716.jpg",
       "relative": "phtp2605269\\photo_046_ST-716.jpg",
@@ -10124,8 +10134,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 710.0,
-      "timelineEnd": 720.0,
+      "timelineStart": 670.0,
+      "timelineEnd": 680.0,
       "sourceIn": 0.0,
       "sourceOut": 10.0,
       "clipDuration": 10.0,
@@ -10460,7 +10470,7 @@
         },
         "perceptualHash": "bfa0c29d38ce6863",
         "duplicateGroup": {
-          "groupId": 46,
+          "groupId": 43,
           "groupSize": 1,
           "selected": true,
           "selectionReason": "required-image-priority",

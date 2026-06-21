@@ -31,10 +31,13 @@ YUNET_MODEL_URL = "https://github.com/opencv/opencv_zoo/raw/main/models/face_det
 YUNET_MODEL_RELATIVE_PATH = Path("output") / "models" / "face_detection_yunet_2023mar.onnx"
 YUNET_FACE_SCORE_THRESHOLD = 0.78
 BACKGROUND_AUDIO_FADE_SECONDS = 5.0
-AUDIO_FOCUS_VIDEO_STEMS = {"4e1e990e-0b3c-404c-9fb0-ef25073073ea"}
 AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.5
 AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER = 2.0
 AUDIO_FOCUS_ORIGINAL_VOLUME_MAX = 1.0
+AUDIO_FOCUS_TRANSITION_SECONDS = 1.0
+MANUAL_VIDEO_FIXED_CLIPS = {
+    "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": (0.0, 40.0),
+}
 MANUAL_VIDEO_END_TRIM_SECONDS = {"dji_20000104171048_0015_d": 7.0}
 MANUAL_VIDEO_KEEP_LAST_SECONDS = {"dji_20000104172535_0017_d": 3.0}
 RENAMED_SOURCE_PREFIX_RE = re.compile(r"^(?:video|photo|audio|sidecar)_\d{3,4}_(.+)$", re.IGNORECASE)
@@ -63,18 +66,40 @@ DEFAULT_EXCLUDED_IMAGE_STEMS = {
 }
 MANUAL_ONE_MINUTE_IMAGE_STEMS = {"st-621", "st-709"}
 MANUAL_ONE_MINUTE_IMAGE_ORDER = ["st-621", "st-709"]
-MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_STEMS = {"st-608", "st-638"}
-MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_ORDER = ["st-638", "st-608"]
+MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_STEMS = {"st-608"}
+MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_ORDER = ["st-608"]
 MANUAL_AFTER_ST738_IMAGE_STEMS = {"st-737"}
-MANUAL_EARLY_IMAGE_STEMS = {"st-729", "st-730", "st-736", "st-735", "st-731"}
-MANUAL_EARLY_IMAGE_ORDER = ["st-729", "st-730", "st-736", "st-735", "st-731"]
-MANUAL_EARLY_IMAGE_TARGET_SECONDS = [155.0, 160.0, 245.0, 250.0, 255.0]
+MANUAL_EARLY_IMAGE_STEMS = {
+    "dji_20000104170445_0011_d_t004_5",
+    "st-628",
+    "st-638",
+    "st-701",
+    "st-702",
+    "st-729",
+    "st-730",
+    "st-736",
+    "st-735",
+    "st-731",
+}
+MANUAL_EARLY_IMAGE_ORDER = [
+    "dji_20000104170445_0011_d_t004_5",
+    "st-638",
+    "st-628",
+    "st-701",
+    "st-702",
+    "st-729",
+    "st-730",
+    "st-736",
+    "st-735",
+    "st-731",
+]
+MANUAL_EARLY_IMAGE_TARGET_SECONDS = [45.0, 70.0, 75.0, 80.0, 85.0, 155.0, 160.0, 245.0, 250.0, 255.0]
 MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-617", "st-618", "st-625"}
 MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-617", "st-601", "st-625", "st-618"]
 MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [335.0, 405.0, 555.0, 590.0]
-MANUAL_LATE_IMAGE_STEMS = {"st-667", "st-670"}
-MANUAL_LATE_IMAGE_ORDER = ["st-667", "st-670"]
-MANUAL_LATE_IMAGE_TARGET_SECONDS = [465.0, 625.0]
+MANUAL_LATE_IMAGE_STEMS = {"st-634", "st-676", "st-690", "st-667", "st-670"}
+MANUAL_LATE_IMAGE_ORDER = ["st-634", "st-676", "st-690", "st-667", "st-670"]
+MANUAL_LATE_IMAGE_TARGET_SECONDS = [430.0, 470.0, 510.0, 550.0, 625.0]
 MANUAL_FINAL_PHOTO_OPENING_STEMS = {"st-682", "st-713"}
 MANUAL_FINAL_PHOTO_OPENING_ORDER = ["st-682", "st-713"]
 MANUAL_THIRD_FROM_LAST_IMAGE_STEMS = {"st-665"}
@@ -95,6 +120,13 @@ REQUIRED_IMAGE_STEM_PRIORITY = {
     "st-608": 85,
     "st-682": 84,
     "st-713": 83,
+    "dji_20000104170445_0011_d_t004_5": 82,
+    "st-628": 81,
+    "st-701": 80,
+    "st-702": 79,
+    "st-634": 78,
+    "st-676": 77,
+    "st-690": 76,
 }
 
 
@@ -1007,9 +1039,6 @@ def audio_focus_intervals(sequence: list[MediaItem]) -> list[tuple[float, float,
     for item in sequence:
         if item.kind != "video" or not item.has_audio:
             continue
-        stem = media_stem(item)
-        if stem not in AUDIO_FOCUS_VIDEO_STEMS:
-            continue
         start = max(0.0, float(item.timeline_start))
         end = max(start, float(item.timeline_end))
         if end <= start:
@@ -1018,10 +1047,43 @@ def audio_focus_intervals(sequence: list[MediaItem]) -> list[tuple[float, float,
     return intervals
 
 
-def ffmpeg_between_expr(intervals: list[tuple[float, float, str]]) -> str:
-    return "+".join(
-        f"between(t\\,{ffmpeg_expr_float(start)}\\,{ffmpeg_expr_float(end)})" for start, end, _ in intervals
+def smoothstep_expr(progress: str) -> str:
+    return f"(({progress})*({progress})*(3-2*({progress})))"
+
+
+def focus_interval_envelope_expr(start: float, end: float, transition_seconds: float) -> str:
+    duration = max(0.0, end - start)
+    if duration <= 0:
+        return "0"
+    fade = min(max(0.0, transition_seconds), duration / 2.0)
+    start_text = ffmpeg_expr_float(start)
+    end_text = ffmpeg_expr_float(end)
+    if fade <= 1e-6:
+        return f"between(t\\,{start_text}\\,{end_text})"
+    fade_text = ffmpeg_expr_float(fade)
+    attack_end_text = ffmpeg_expr_float(start + fade)
+    release_start_text = ffmpeg_expr_float(end - fade)
+    attack = smoothstep_expr(f"(t-{start_text})/{fade_text}")
+    release = smoothstep_expr(f"({end_text}-t)/{fade_text}")
+    return (
+        f"if(lt(t\\,{start_text})\\,0\\,"
+        f"if(lt(t\\,{attack_end_text})\\,{attack}\\,"
+        f"if(lt(t\\,{release_start_text})\\,1\\,"
+        f"if(lt(t\\,{end_text})\\,{release}\\,0))))"
     )
+
+
+def focus_envelope_expr(intervals: list[tuple[float, float, str]], transition_seconds: float) -> str:
+    parts = [
+        focus_interval_envelope_expr(start, end, transition_seconds)
+        for start, end, _ in intervals
+        if end > start
+    ]
+    if not parts:
+        return "0"
+    if len(parts) == 1:
+        return parts[0]
+    return f"min(1\\,{'+'.join(f'({part})' for part in parts)})"
 
 
 def focus_volume_expr(base_volume: float, multiplier: float, intervals: list[tuple[float, float, str]], maximum: float | None = None) -> str:
@@ -1029,11 +1091,11 @@ def focus_volume_expr(base_volume: float, multiplier: float, intervals: list[tup
     if maximum is not None:
         focused_volume = min(maximum, focused_volume)
     base = ffmpeg_expr_float(base_volume)
-    focused = ffmpeg_expr_float(focused_volume)
     if not intervals or abs(focused_volume - base_volume) < 1e-9:
         return base
-    between = ffmpeg_between_expr(intervals)
-    return f"if({between}\\,{focused}\\,{base})"
+    delta = ffmpeg_expr_float(focused_volume - base_volume)
+    envelope = focus_envelope_expr(intervals, AUDIO_FOCUS_TRANSITION_SECONDS)
+    return f"({base})+({delta})*({envelope})"
 
 
 def background_audio_report_with_focus(
@@ -1043,10 +1105,12 @@ def background_audio_report_with_focus(
     if background_audio_report is None:
         return None
     report = dict(background_audio_report)
-    report["focusVideoStems"] = sorted(AUDIO_FOCUS_VIDEO_STEMS)
+    report["focusMode"] = "all-video-segments-with-audio"
     report["focusMusicVolumeMultiplier"] = AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER
     report["focusOriginalVolumeMultiplier"] = AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER
     report["focusOriginalVolumeMax"] = AUDIO_FOCUS_ORIGINAL_VOLUME_MAX
+    report["focusTransitionSeconds"] = AUDIO_FOCUS_TRANSITION_SECONDS
+    report["focusCurve"] = "smoothstep"
     report["focusIntervals"] = [
         {
             "timelineStart": round(start, 3),
@@ -1164,6 +1228,36 @@ def apply_manual_video_end_trims(videos: list[MediaItem]) -> None:
         }
 
 
+def apply_manual_video_fixed_clips(videos: list[MediaItem]) -> None:
+    for video in videos:
+        fixed_clip = MANUAL_VIDEO_FIXED_CLIPS.get(media_stem(video))
+        if fixed_clip is None:
+            continue
+        fixed_source_in, fixed_duration = fixed_clip
+        source_in = clamp(float(fixed_source_in), 0.0, max(0.0, video.duration - (1 / TARGET_FPS)))
+        duration = min(float(fixed_duration), max(1 / TARGET_FPS, video.duration - source_in))
+        fixed_frames = max(1, int(math.floor(duration * TARGET_FPS + 0.5)))
+        original_source_in = video.source_in
+        original_source_out = video.source_out
+        original_clip_duration = video.clip_duration
+        video.clip_frames = fixed_frames
+        video.clip_duration = round(fixed_frames / TARGET_FPS, 6)
+        video.source_in = round(source_in, 6)
+        video.source_out = round(min(video.duration, video.source_in + video.clip_duration), 6)
+        video.analysis["manualFixedClip"] = {
+            "sourceStem": media_stem(video),
+            "fixedSourceIn": round(source_in, 6),
+            "fixedDuration": float(fixed_duration),
+            "originalSourceIn": round(original_source_in, 6),
+            "originalSourceOut": round(original_source_out, 6),
+            "sourceIn": video.source_in,
+            "sourceOut": video.source_out,
+            "originalClipDuration": round(original_clip_duration, 6),
+            "clipDuration": video.clip_duration,
+            "method": "fixed-source-range",
+        }
+
+
 def apply_manual_video_keep_last_segments(videos: list[MediaItem]) -> None:
     for video in videos:
         keep_seconds = MANUAL_VIDEO_KEEP_LAST_SECONDS.get(media_stem(video))
@@ -1233,6 +1327,7 @@ def allocate_durations(videos: list[MediaItem], images: list[MediaItem], target_
         video.source_in = round(start, 6)
         video.source_out = round(min(video.duration, start + video.clip_duration), 6)
         video.clip_duration = round(video.clip_frames / TARGET_FPS, 6)
+    apply_manual_video_fixed_clips(videos)
     apply_manual_video_keep_last_segments(videos)
     apply_manual_video_end_trims(videos)
     for image in images:

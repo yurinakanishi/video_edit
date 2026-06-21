@@ -6,6 +6,7 @@
 - For still images, use only files under `projects/260526-birthday/source/phtp2605269`.
 - Do not use still images from any other source subfolder, including the `todoroki260526...` folder.
 - Add the extracted still `photo_056_DJI_20000104170445_0011_D_t004_5.png`, created from `C:\Users\yurin\Downloads\FOLDER01\DJI_20000104170445_0011_D.MP4` at 4.5 seconds, as a valid project still image under `source/phtp2605269`.
+- Add the moved stills `photo_057_ST-686.jpg` and `photo_058_ST-723.jpg`, moved from `C:\Users\yurin\Downloads\FOLDER01`, as valid project still images under `source/phtp2605269`.
 - Source media has been renamed into readable sequential names while keeping the original stem at the end:
   - videos: `video_###_<original-name>.<ext>`
   - still images: `photo_###_<original-name>.<ext>`
@@ -58,6 +59,7 @@
 - Move `photo_038_ST-701`, `photo_039_ST-702`, `photo_018_ST-638`, and `photo_013_ST-628` to the early part of the timeline.
 - Insert `photo_056_DJI_20000104170445_0011_D_t004_5.png` near the beginning of the video, before the first source-video clip if the current opening sequence timing allows it.
 - Move `photo_016_ST-634`, `photo_028_ST-676`, and `photo_031_ST-690` to the back half of the timeline.
+- Insert `photo_057_ST-686` and `photo_058_ST-723` around the transition area between the middle and back half of the timeline, before the later back-half still group.
 - Move `ST-667` and `ST-670` into the back half of the timeline and keep them separated from each other.
 - Move `photo_029_ST-682` and `photo_044_ST-713` to the beginning area of the final continuous still-photo block, in that order.
 - Place `ST-665` as the third-from-last still image by photo order.
@@ -88,12 +90,14 @@
 - Analyze all current images before rendering them.
 - Deduplicate near-identical still images. Known current duplicate groups include `ST-645/ST-645w`, `ST-665/ST-665w`, `ST-721/ST-721w`, and `ST-716/ST-717w`.
 - Exclude `ST-600`, `ST-604`, `ST-610`, `ST-614`, and `ST-641` / `ST-641w` before image ordering and deduplication.
-- Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-621`, `ST-709`, `ST-737`, `ST-738`, `ST-638`, `ST-608`, `ST-682`, `ST-713`, `ST-628`, `ST-701`, `ST-702`, `ST-634`, `ST-676`, `ST-690`, and `photo_056_DJI_20000104170445_0011_D_t004_5.png`.
+- Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-621`, `ST-709`, `ST-737`, `ST-738`, `ST-638`, `ST-608`, `ST-682`, `ST-713`, `ST-628`, `ST-701`, `ST-702`, `ST-634`, `ST-676`, `ST-690`, `ST-686`, `ST-723`, and `photo_056_DJI_20000104170445_0011_D_t004_5.png`.
 - Display each normal still image for 5 seconds.
 - The opening title still is 5 seconds with no zoom.
 - The final still is 10 seconds total: 5 seconds static, then 5 seconds fading to black.
-- If the still image aspect ratio does not match the output video aspect ratio, crop it to the video aspect ratio.
-- When cropping still images, first detect the subject area, draw a square around that subject area, and use the square center as the center point for the video-aspect-ratio crop.
+- Do not crop portrait still images. Display portrait still images in their original vertical aspect ratio, fit the full image inside the video frame, and fill the left and right margins with white.
+- Keep the still-image motion and fade behavior on portrait still images: use the same one-direction zoom intent without cropping any part of the image, and apply a smooth white fade in/out at the beginning and end of the portrait still segment.
+- For non-portrait still images whose aspect ratio does not match the output video aspect ratio, crop them to the video aspect ratio.
+- When cropping non-portrait still images, first detect the subject area, draw a square around that subject area, and use the square center as the center point for the video-aspect-ratio crop.
 - For faces, use the union of detected faces with padding as the subject area. The current script must run YuNet face detection plus Haar cascade fallback, store `faceDetection.noFaceOpeningEligible`, and use that flag for the opening no-face group instead of relying only on `personRelation.faceCount == 0`. If faces are not detected, use edge/saliency fallback to estimate the main subject.
 - Add subtle but visible motion to every still image.
 - Motion on a still image must be one direction only:
@@ -148,6 +152,7 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm `ST-736`, `ST-735`, and `ST-731` are in the front half.
 - Confirm `ST-701`, `ST-702`, `ST-638`, and `ST-628` are in the early part of the timeline.
 - Confirm `photo_056_DJI_20000104170445_0011_D_t004_5.png` appears near the beginning of the timeline.
+- Confirm `ST-686` and `ST-723` appear around the transition area between the middle and back half of the timeline.
 - Confirm `ST-634`, `ST-676`, and `ST-690` are in the back half of the timeline.
 - Confirm `ST-667` and `ST-670` are in the back half and separated.
 - Confirm `ST-682` and `ST-713` appear at the beginning area of the final continuous still-photo block, in that order.
@@ -163,6 +168,7 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm all still images immediately after the title card have `faceDetection.noFaceOpeningEligible == true`, and confirm no image with any detected human face is included in that opening group.
 - Confirm the final visual item is `ST-716.jpg`, 10 seconds total: 5 seconds static plus 5 seconds slow fade to black.
 - Confirm every still-image segment has one-way zoom metadata and visible movement.
+- Confirm portrait still images are not cropped, have white left/right margins, and keep their fade in/out effect.
 - Confirm generated segment/log folders do not contain stale files from old timelines before checking durations or motion modes.
 - Confirm the final preview/render is about 11 minutes 05 seconds long.
 - Confirm the output has both video and BGM-mixed audio.

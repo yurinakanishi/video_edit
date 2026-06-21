@@ -35,6 +35,8 @@ AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.5
 AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER = 2.0
 AUDIO_FOCUS_ORIGINAL_VOLUME_MAX = 1.0
 AUDIO_FOCUS_TRANSITION_SECONDS = 1.0
+PORTRAIT_LETTERBOX_FADE_SECONDS = 0.45
+PORTRAIT_LETTERBOX_ZOOM_AMOUNT = 0.032
 MANUAL_VIDEO_FIXED_CLIPS = {
     "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": (0.0, 40.0),
 }
@@ -97,9 +99,9 @@ MANUAL_EARLY_IMAGE_TARGET_SECONDS = [45.0, 70.0, 75.0, 80.0, 85.0, 155.0, 160.0,
 MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-617", "st-618", "st-625"}
 MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-617", "st-601", "st-625", "st-618"]
 MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [335.0, 405.0, 555.0, 590.0]
-MANUAL_LATE_IMAGE_STEMS = {"st-634", "st-676", "st-690", "st-667", "st-670"}
-MANUAL_LATE_IMAGE_ORDER = ["st-634", "st-676", "st-690", "st-667", "st-670"]
-MANUAL_LATE_IMAGE_TARGET_SECONDS = [430.0, 470.0, 510.0, 550.0, 625.0]
+MANUAL_LATE_IMAGE_STEMS = {"st-686", "st-723", "st-634", "st-676", "st-690", "st-667", "st-670"}
+MANUAL_LATE_IMAGE_ORDER = ["st-686", "st-723", "st-634", "st-676", "st-690", "st-667", "st-670"]
+MANUAL_LATE_IMAGE_TARGET_SECONDS = [380.0, 385.0, 430.0, 470.0, 510.0, 550.0, 625.0]
 MANUAL_FINAL_PHOTO_OPENING_STEMS = {"st-682", "st-713"}
 MANUAL_FINAL_PHOTO_OPENING_ORDER = ["st-682", "st-713"]
 MANUAL_THIRD_FROM_LAST_IMAGE_STEMS = {"st-665"}
@@ -127,6 +129,8 @@ REQUIRED_IMAGE_STEM_PRIORITY = {
     "st-634": 78,
     "st-676": 77,
     "st-690": 76,
+    "st-686": 75,
+    "st-723": 74,
 }
 
 
@@ -1780,6 +1784,53 @@ def render_ken_burns_frame(
     )
 
 
+def is_portrait_image(image: np.ndarray) -> bool:
+    source_height, source_width = image.shape[:2]
+    return source_height > source_width
+
+
+def render_portrait_letterbox_frame(
+    image: np.ndarray,
+    *,
+    width: int,
+    height: int,
+    progress: float,
+    motion_mode: str,
+) -> np.ndarray:
+    source_height, source_width = image.shape[:2]
+    fit_scale = min(width / max(source_width, 1), height / max(source_height, 1))
+    continuous = continuous_progress(progress)
+    if motion_mode == "zoom-in":
+        motion_scale = 1.0 - PORTRAIT_LETTERBOX_ZOOM_AMOUNT + PORTRAIT_LETTERBOX_ZOOM_AMOUNT * continuous
+    elif motion_mode == "zoom-out":
+        motion_scale = 1.0 - PORTRAIT_LETTERBOX_ZOOM_AMOUNT * continuous
+    else:
+        motion_scale = 1.0
+    scale = min(fit_scale, fit_scale * motion_scale)
+    resized_width = max(1, min(width, int(round(source_width * scale))))
+    resized_height = max(1, min(height, int(round(source_height * scale))))
+    resized = cv2.resize(image, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
+    frame = np.full((height, width, 3), 255, dtype=np.uint8)
+    x = (width - resized_width) // 2
+    y = (height - resized_height) // 2
+    frame[y : y + resized_height, x : x + resized_width] = resized
+    return frame
+
+
+def apply_linear_fade_to_white(frame: np.ndarray, progress: float) -> np.ndarray:
+    alpha = clamp(progress, 0.0, 1.0)
+    return np.clip(frame.astype(np.float32) * alpha + 255.0 * (1.0 - alpha), 0, 255).astype(np.uint8)
+
+
+def apply_portrait_letterbox_edge_fades(frame: np.ndarray, elapsed: float, duration: float) -> np.ndarray:
+    fade_seconds = min(PORTRAIT_LETTERBOX_FADE_SECONDS, max(0.0, duration / 2.0))
+    if fade_seconds <= 1e-6:
+        return frame
+    fade_in = clamp(elapsed / fade_seconds, 0.0, 1.0)
+    fade_out = clamp((duration - elapsed) / fade_seconds, 0.0, 1.0)
+    return apply_linear_fade_to_white(frame, min(fade_in, fade_out))
+
+
 def draw_title_overlay(frame: np.ndarray, overlay: dict[str, Any]) -> np.ndarray:
     height, width = frame.shape[:2]
     image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).convert("RGBA")
@@ -1908,6 +1959,9 @@ def render_image_segment_smooth(
         motion_mode = "fade-out"
     else:
         motion_mode = "zoom-in" if index % 2 == 0 else "zoom-out"
+    image = open_image_bgr(item.path)
+    portrait_letterbox = is_portrait_image(image)
+    video_filter_chain = "format=yuv420p" if portrait_letterbox else f"{look_filter(item)},format=yuv420p"
     command = [
         str(ffmpeg),
         "-hide_banner",
@@ -1932,7 +1986,7 @@ def render_image_segment_smooth(
         "-i",
         "anullsrc=channel_layout=stereo:sample_rate=48000",
         "-filter_complex",
-        f"[0:v]{look_filter(item)},format=yuv420p[v];[1:a]atrim=duration={duration:.6f},asetpts=PTS-STARTPTS[a]",
+        f"[0:v]{video_filter_chain}[v];[1:a]atrim=duration={duration:.6f},asetpts=PTS-STARTPTS[a]",
         "-map",
         "[v]",
         "-map",
@@ -1964,7 +2018,6 @@ def render_image_segment_smooth(
     ]
 
     log_path = logs_dir / f"{output.stem}.log"
-    image = open_image_bgr(item.path)
     completed_stdout = ""
     completed_stderr = ""
     return_code = 0
@@ -1979,15 +2032,27 @@ def render_image_segment_smooth(
         assert proc.stdin is not None
         for frame_index in range(total_frames):
             progress = frame_index / max(total_frames - 1, 1)
-            frame = render_ken_burns_frame(
-                image,
-                width=width,
-                height=height,
-                progress=0.0 if image_role in {"title-card", "final-fade"} else progress,
-                start_center=start_center,
-                end_center=end_center,
-                motion_mode=motion_mode,
-            )
+            frame_progress = 0.0 if image_role in {"title-card", "final-fade"} else progress
+            if portrait_letterbox:
+                frame = render_portrait_letterbox_frame(
+                    image,
+                    width=width,
+                    height=height,
+                    progress=frame_progress,
+                    motion_mode=motion_mode,
+                )
+                if image_role not in {"title-card", "final-fade"}:
+                    frame = apply_portrait_letterbox_edge_fades(frame, frame_index / fps, duration)
+            else:
+                frame = render_ken_burns_frame(
+                    image,
+                    width=width,
+                    height=height,
+                    progress=frame_progress,
+                    start_center=start_center,
+                    end_center=end_center,
+                    motion_mode=motion_mode,
+                )
             if image_role == "title-card":
                 overlay = item.analysis.get("titleOverlay") if isinstance(item.analysis, dict) else {}
                 frame = draw_title_overlay(frame, overlay if isinstance(overlay, dict) else {})
@@ -2020,6 +2085,10 @@ def render_image_segment_smooth(
                     "endCenter": end_center,
                     "motionMode": motion_mode,
                     "imageRole": image_role,
+                    "portraitLetterbox": portrait_letterbox,
+                    "letterboxBackground": "white" if portrait_letterbox else None,
+                    "portraitFadeSeconds": PORTRAIT_LETTERBOX_FADE_SECONDS if portrait_letterbox else None,
+                    "portraitZoomAmount": PORTRAIT_LETTERBOX_ZOOM_AMOUNT if portrait_letterbox else None,
                     "showSourceLabel": show_source_label,
                     "progressCurve": "linear",
                     "zoomStart": 1.032 if motion_mode == "zoom-out" else 1.0,

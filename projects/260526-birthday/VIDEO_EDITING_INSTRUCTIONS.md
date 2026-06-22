@@ -19,33 +19,33 @@
 - Do not use these videos or their source files in future previews:
   - `DJI_20000104170051_0008_D`
   - `DJI_20000104174652_0024_D`
-  - `DJI_20000104172624_0018_D`
   - `DJI_20000104174953_0026_D`
   - `DJI_20000104174803_0025_D`
+  - `DJI_20000104172535_0017_D`
   - `DJI_20000104175228_0028_D`
   - `DJI_20000104175108_0027_D`
-  - `ST7_8341`
   - `ST7_8342`
   - `0875db90-5d21-463d-b4b0-9f0a19195ca2`
   - `a2ecf072-e001-453b-8432-780011ee6fea`
   - `e6eeaf64-3602-4238-af85-8ccfc6701205`
 - Exception: use the newly moved source clip `source/video/video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4`. This is a trimmed review clip supplied later by the user, not the excluded original `video_020_a2ecf072-e001-453b-8432-780011ee6fea.mp4`.
+- Exception: use `source/mp4/video_014_ST7_8341.MP4` only as two fixed middle timeline clips: `0:00-0:46` and `3:37-3:53`. Do not use any other part of `ST7_8341`.
 - After excluding those videos, stretch the remaining videos to maintain the target duration. Use the video-analysis selected sample time and top visual/person-scored moments as the center of the longer clip, instead of extending arbitrary parts.
 - It is acceptable to omit some videos if the timeline would exceed 15 minutes, but use the available videos and images as evenly as possible.
 - Use the current still images, but do not repeat near-identical photos. Detect visually duplicated stills with perceptual hashing and keep the best-looking one from each duplicate group.
 - Do not use still image `ST-610`.
 - Do not use `ST-641` / `ST-641w`.
 - Do not use `photo_001_ST-600`, `photo_003_ST-604`, or `photo_005_ST-614`. Do not replace them just to maintain duration; the finished video may be about 15 seconds shorter.
-- For the latest requested rebuild, exclude the original `a2ecf072-e001-453b-8432-780011ee6fea` and `DJI_20000104175108_0027_D` as well; after adding the new `video_023_...clip56_89-114_43.mp4` exception clip, the source check should leave 12 usable videos.
+- For the latest requested rebuild, exclude the original `a2ecf072-e001-453b-8432-780011ee6fea`, `DJI_20000104175108_0027_D`, and `DJI_20000104172535_0017_D` as well. The later exception clip `video_023_...clip56_89-114_43.mp4` remains allowed.
 
 ## Overall Output
 
 - Build an emotional birthday highlight video.
-- Target duration for the current preview/final render is about 11 minutes 05 seconds after removing `ST-600`, `ST-604`, and `ST-614`, trimming `video_003_DJI_20000104171048_0015_D.MP4`, keeping only the last 3 seconds of `video_005_DJI_20000104172535_0017_D.MP4`, and adding the fixed 40-second `video_023_...clip56_89-114_43.mp4` source clip.
+- Target duration for the current preview/final render is recalculated from the fixed source ranges: exclude `video_005_DJI_20000104172535_0017_D.MP4`, add the fixed 40-second `video_023_...clip56_89-114_43.mp4` source clip, add the two fixed middle clips from `video_014_ST7_8341.MP4`, replace `video_001_DJI_20000104161921_0006_D.MP4` with its two requested fixed source ranges, replace `video_002_DJI_20000104164015_0007_D.MP4` with its requested fixed source range, add `video_006_DJI_20000104172624_0018_D.MP4` as a fixed source range, and connect full `video_012_DJI_20000104181624_0030_D.MP4` followed by full `video_013_DJI_20000104181937_0031_D.MP4`.
 - Use a soft, consistent color grade across videos and still images.
 - Keep the final look gentle and warm rather than high-contrast or heavily saturated.
 - Produce a lightweight preview first with the Python build script before creating any heavier final render.
-- The preview should be about 11 minutes 05 seconds. A small timing difference is acceptable if all content rules are satisfied.
+- The preview should be about 24 minutes 41 seconds. A small timing difference is acceptable if all content rules are satisfied.
 - For normal previews, do not show the current source filename in the upper-left corner.
 - Use `--show-source-labels` only when a source-identification review render is explicitly requested.
 - Start the video with `ST-707bg` if present, otherwise use `ST-707.jpg`. This opening card must be 5 seconds, have no animation, and include a gentle home-birthday style title with the date and birthday wording in the upper-right corner.
@@ -54,7 +54,7 @@
 - Place `ST-621` and `ST-709` consecutively around the 1-minute area.
 - Place `ST-737` immediately after `ST-738` as an exception, even though `ST-737` contains a person.
 - Place `ST-608` at a clean cut between 5 and 7 minutes.
-- Place `ST-729` and `ST-730` in the front half of the timeline.
+- Move `photo_049_ST-729`, `photo_050_ST-730`, and `photo_019_ST-645` into late inter-video gaps. Place `ST-729` after `video_019_503179b6-95c2-4918-8c7c-4efc3014d757`, `ST-730` after `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd`, and `ST-645` after `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43`, before the connected final video block.
 - Place `ST-736`, `ST-735`, and `ST-731` in the front half of the timeline.
 - Move `photo_038_ST-701`, `photo_039_ST-702`, `photo_018_ST-638`, and `photo_013_ST-628` to the early part of the timeline.
 - Insert `photo_056_DJI_20000104170445_0011_D_t004_5.png` near the beginning of the video, before the first source-video clip if the current opening sequence timing allows it.
@@ -77,10 +77,14 @@
 - Prefer moments where many people are visible.
 - Use face/person position analysis when choosing the source-in point.
 - Allocate video duration by analysis score for the 12-minute version: shrink lower-impression clips and preserve more time for stronger clips.
-- Use `DJI_20000104172535_0017_D` and `DJI_20000104181624_0030_D`, in that order, as the final two video clips by video order. Still images may appear between and after those two videos.
+- For `video_001_DJI_20000104161921_0006_D.MP4`, do not use the previously selected range. Use fixed clip `6:27-9:14` first. For the requested `0:38-3:31` clip, cut out the part that appeared at `5:47-6:13` in the full render; this corresponds to source `1:53-2:19`, so use `0:38-1:53` immediately followed by `2:19-3:31` with no photo or other media between those two pieces.
+- For `video_002_DJI_20000104164015_0007_D.MP4`, do not use the previously selected range. Use only the fixed clip `7:43-8:40`.
+- For `video_006_DJI_20000104172624_0018_D.MP4`, do not use the previously excluded state or any analysis-selected range. Use only the fixed clip `0:00-5:56`.
+- Do not use `video_005_DJI_20000104172535_0017_D.MP4`.
+- Use full `video_012_DJI_20000104181624_0030_D.MP4`, then full `video_013_DJI_20000104181937_0031_D.MP4`, in that order, as a connected video block with no still images or other videos between them.
 - Insert `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4` into the back half of the timeline and use only its first 40 seconds (`0.00-40.00`).
+- Insert `video_014_ST7_8341.MP4` into the middle of the timeline as two separate clips: `0:00-0:46` first, then `3:37-3:53`.
 - For `video_003_DJI_20000104171048_0015_D.MP4`, cut the last 7 seconds from the selected clip. Keep the clip start point unchanged and shorten only the clip end.
-- For `video_005_DJI_20000104172535_0017_D.MP4`, keep only the last 3 seconds of the selected clip and cut everything before that.
 - Do not zoom video clips.
 - Do not crop video clips for motion effects. Preserve the source video framing by scaling to fit the output frame and padding if needed.
 - Cut clips from the original videos and play them normally.
@@ -90,7 +94,7 @@
 - Analyze all current images before rendering them.
 - Deduplicate near-identical still images. Known current duplicate groups include `ST-645/ST-645w`, `ST-665/ST-665w`, `ST-721/ST-721w`, and `ST-716/ST-717w`.
 - Exclude `ST-600`, `ST-604`, `ST-610`, `ST-614`, and `ST-641` / `ST-641w` before image ordering and deduplication.
-- Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-621`, `ST-709`, `ST-737`, `ST-738`, `ST-638`, `ST-608`, `ST-682`, `ST-713`, `ST-628`, `ST-701`, `ST-702`, `ST-634`, `ST-676`, `ST-690`, `ST-686`, `ST-723`, and `photo_056_DJI_20000104170445_0011_D_t004_5.png`.
+- Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-621`, `ST-709`, `ST-737`, `ST-738`, `ST-638`, `ST-608`, `ST-682`, `ST-713`, `ST-628`, `ST-701`, `ST-702`, `ST-634`, `ST-676`, `ST-690`, `ST-686`, `ST-723`, `ST-729`, `ST-730`, `ST-645`, and `photo_056_DJI_20000104170445_0011_D_t004_5.png`.
 - Display each normal still image for 5 seconds.
 - The opening title still is 5 seconds with no zoom.
 - The final still is 10 seconds total: 5 seconds static, then 5 seconds fading to black.
@@ -116,9 +120,9 @@
 - Delete the previously generated/downloaded BGM source files from `projects/260526-birthday/source/audio`; keep only the current requested MP3 unless the user adds another source later.
 - Loop and trim `audio_001_優しい気持ち.mp3` under the full preview.
 - Play the BGM under the whole video.
-- Whenever any source video segment with audio is playing, lower BGM volume to 50% of the normal BGM level and raise the original video audio to 2x of the normal original-audio level, capped at 1.0.
+- Whenever any source video segment is playing, lower BGM volume to 50% of the normal BGM level. If that segment has original video audio, raise the original video audio to 2x of the normal original-audio level, capped at 1.0.
 - Do not switch that audio focus abruptly. Apply a smooth dissolve-style volume curve at each video segment start and end. Current transition: 1 second with a smoothstep curve.
-- The audio focus rule must be derived from the current timeline video segments, not fixed timestamps, so it remains active if videos are moved earlier or later in future timeline changes.
+- The audio focus rule must be derived from every current timeline video segment, not fixed timestamps and not only videos with audio, so it remains active if videos are moved earlier/later or newly added in future timeline changes.
 - Fade the mixed audio in slowly at the start of the video and fade it out slowly at the end of the video. Current fade length: 5 seconds in and 5 seconds out.
 
 ## Current Script Behavior
@@ -148,7 +152,7 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm no allowed current source videos were accidentally skipped unless the duration limit requires it.
 - Confirm near-identical still images are deduplicated and required images such as `ST-716` are preserved.
 - Confirm normal still images are exactly 5 seconds each.
-- Confirm `ST-729` and `ST-730` are in the front half.
+- Confirm `ST-729`, `ST-730`, and `ST-645` are in the requested late inter-video gaps, before the connected final video block.
 - Confirm `ST-736`, `ST-735`, and `ST-731` are in the front half.
 - Confirm `ST-701`, `ST-702`, `ST-638`, and `ST-628` are in the early part of the timeline.
 - Confirm `photo_056_DJI_20000104170445_0011_D_t004_5.png` appears near the beginning of the timeline.
@@ -159,10 +163,10 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm `ST-665` is the third-from-last still image by photo order.
 - Confirm `ST-721` is the second-from-last still image by photo order, immediately before `ST-716`.
 - Confirm `ST-625` has been moved earlier than the final video/photo area.
-- Confirm `DJI_20000104172535_0017_D` and `DJI_20000104181624_0030_D` are the final two video clips by video order, in that order.
+- Confirm `video_005_DJI_20000104172535_0017_D.MP4` is absent from the timeline.
+- Confirm full `video_012_DJI_20000104181624_0030_D.MP4` is immediately followed by full `video_013_DJI_20000104181937_0031_D.MP4` with no media between them.
 - Confirm `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4` is present in the back half and has `manualFixedClip.fixedDuration == 40.0` with `sourceIn == 0.0`.
 - Confirm `video_003_DJI_20000104171048_0015_D.MP4` has `manualEndTrim.trimmedSeconds == 7.0` in the timeline report and that its selected clip end is 7 seconds earlier than before.
-- Confirm `video_005_DJI_20000104172535_0017_D.MP4` has `manualKeepLast.keepLastSeconds == 3.0` in the timeline report and that only the final 3 seconds of its selected clip are used.
 - Confirm `ST-601`, `ST-617`, `ST-618`, and `ST-625` are distributed across the timeline.
 - Confirm the opening title card is `ST-707bg` or `ST-707.jpg`, has no animation, and includes a clear modern date plus birthday title in the upper-right corner.
 - Confirm all still images immediately after the title card have `faceDetection.noFaceOpeningEligible == true`, and confirm no image with any detected human face is included in that opening group.
@@ -170,9 +174,9 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm every still-image segment has one-way zoom metadata and visible movement.
 - Confirm portrait still images are not cropped, have white left/right margins, and keep their fade in/out effect.
 - Confirm generated segment/log folders do not contain stale files from old timelines before checking durations or motion modes.
-- Confirm the final preview/render is about 11 minutes 05 seconds long.
+- Confirm the final preview/render is about 24 minutes 41 seconds long.
 - Confirm the output has both video and BGM-mixed audio.
-- Confirm the timeline report has audio focus intervals for every source video segment with audio, with `focusMode == "all-video-segments-with-audio"` and `focusCurve == "smoothstep"`.
+- Confirm the timeline report has audio focus intervals for every source video segment, with `focusMode == "all-video-segments"` and `focusCurve == "smoothstep"`.
 - Confirm normal previews do not show the source filename label in the upper-left corner.
 - Confirm `used_video_parts_preview` and `used_images_preview` contain only current-timeline files with filenames based on the renamed source files.
 - Run a full `ffmpeg -v error -i <output> -f null -` decode check before delivery.

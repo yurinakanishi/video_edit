@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures
+import copy
 import json
 import math
 import re
@@ -37,22 +38,47 @@ AUDIO_FOCUS_ORIGINAL_VOLUME_MAX = 1.0
 AUDIO_FOCUS_TRANSITION_SECONDS = 1.0
 PORTRAIT_LETTERBOX_FADE_SECONDS = 0.45
 PORTRAIT_LETTERBOX_ZOOM_AMOUNT = 0.032
+MIN_VARIABLE_VIDEO_SECONDS = 12.0
 MANUAL_VIDEO_FIXED_CLIPS = {
     "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": (0.0, 40.0),
+    "dji_20000104164015_0007_d": (463.0, 57.0),
+    "dji_20000104172624_0018_d": (0.0, 356.0),
+    "dji_20000104181624_0030_d": (0.0, 103.978667),
+    "dji_20000104181937_0031_d": (0.0, 203.029333),
+}
+MANUAL_VIDEO_RANGE_CLIPS = {
+    "dji_20000104161921_0006_d": [
+        {"sourceIn": 387.0, "sourceOut": 554.0, "labelSuffix": "clip_387_554"},
+        {
+            "sourceIn": 38.0,
+            "sourceOut": 113.0,
+            "labelSuffix": "clip_038_113",
+            "connectedGroup": "dji_20000104161921_0006_d_clip_038_211_cut_113_139",
+        },
+        {
+            "sourceIn": 139.0,
+            "sourceOut": 211.0,
+            "labelSuffix": "clip_139_211",
+            "connectedGroup": "dji_20000104161921_0006_d_clip_038_211_cut_113_139",
+        },
+    ],
+    "st7_8341": [
+        {"sourceIn": 0.0, "sourceOut": 46.0, "labelSuffix": "clip_000_046"},
+        {"sourceIn": 217.0, "sourceOut": 233.0, "labelSuffix": "clip_217_233"},
+    ],
 }
 MANUAL_VIDEO_END_TRIM_SECONDS = {"dji_20000104171048_0015_d": 7.0}
-MANUAL_VIDEO_KEEP_LAST_SECONDS = {"dji_20000104172535_0017_d": 3.0}
+MANUAL_VIDEO_KEEP_LAST_SECONDS = {}
 RENAMED_SOURCE_PREFIX_RE = re.compile(r"^(?:video|photo|audio|sidecar)_\d{3,4}_(.+)$", re.IGNORECASE)
 ALLOWED_IMAGE_SOURCE_DIRS = {"phtp2605269"}
 DEFAULT_EXCLUDED_VIDEO_STEMS = {
     "dji_20000104170051_0008_d",
     "dji_20000104174652_0024_d",
-    "dji_20000104172624_0018_d",
     "dji_20000104174953_0026_d",
     "dji_20000104174803_0025_d",
+    "dji_20000104172535_0017_d",
     "dji_20000104175228_0028_d",
     "dji_20000104175108_0027_d",
-    "st7_8341",
     "st7_8342",
     "0875db90-5d21-463d-b4b0-9f0a19195ca2",
     "a2ecf072-e001-453b-8432-780011ee6fea",
@@ -77,8 +103,6 @@ MANUAL_EARLY_IMAGE_STEMS = {
     "st-638",
     "st-701",
     "st-702",
-    "st-729",
-    "st-730",
     "st-736",
     "st-735",
     "st-731",
@@ -89,27 +113,34 @@ MANUAL_EARLY_IMAGE_ORDER = [
     "st-628",
     "st-701",
     "st-702",
-    "st-729",
-    "st-730",
     "st-736",
     "st-735",
     "st-731",
 ]
-MANUAL_EARLY_IMAGE_TARGET_SECONDS = [45.0, 70.0, 75.0, 80.0, 85.0, 155.0, 160.0, 245.0, 250.0, 255.0]
+MANUAL_EARLY_IMAGE_TARGET_SECONDS = [45.0, 70.0, 75.0, 80.0, 85.0, 245.0, 250.0, 255.0]
 MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-617", "st-618", "st-625"}
 MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-617", "st-601", "st-625", "st-618"]
 MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [335.0, 405.0, 555.0, 590.0]
 MANUAL_LATE_IMAGE_STEMS = {"st-686", "st-723", "st-634", "st-676", "st-690", "st-667", "st-670"}
 MANUAL_LATE_IMAGE_ORDER = ["st-686", "st-723", "st-634", "st-676", "st-690", "st-667", "st-670"]
 MANUAL_LATE_IMAGE_TARGET_SECONDS = [380.0, 385.0, 430.0, 470.0, 510.0, 550.0, 625.0]
+MANUAL_LATE_INTERVIDEO_IMAGE_STEMS = {"st-729", "st-730", "st-645"}
+MANUAL_LATE_INTERVIDEO_IMAGE_ORDER = ["st-729", "st-730", "st-645"]
+MANUAL_LATE_INTERVIDEO_IMAGE_AFTER_VIDEO = [
+    ("503179b6-95c2-4918-8c7c-4efc3014d757", "st-729"),
+    ("ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd", "st-730"),
+    ("a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43", "st-645"),
+]
 MANUAL_FINAL_PHOTO_OPENING_STEMS = {"st-682", "st-713"}
 MANUAL_FINAL_PHOTO_OPENING_ORDER = ["st-682", "st-713"]
 MANUAL_THIRD_FROM_LAST_IMAGE_STEMS = {"st-665"}
 MANUAL_THIRD_FROM_LAST_IMAGE_ORDER = ["st-665"]
 MANUAL_SECOND_FROM_LAST_IMAGE_STEMS = {"st-721"}
 MANUAL_SECOND_FROM_LAST_IMAGE_ORDER = ["st-721"]
-FINAL_TIMELINE_VIDEO_ORDER = ["dji_20000104172535_0017_d", "dji_20000104181624_0030_d"]
+FINAL_TIMELINE_VIDEO_ORDER: list[str] = []
 FINAL_TIMELINE_VIDEO_STEMS = set(FINAL_TIMELINE_VIDEO_ORDER)
+CONNECTED_VIDEO_BLOCK_ORDER = ["dji_20000104181624_0030_d", "dji_20000104181937_0031_d"]
+CONNECTED_VIDEO_BLOCK_STEMS = set(CONNECTED_VIDEO_BLOCK_ORDER)
 REQUIRED_IMAGE_STEM_PRIORITY = {
     "st-716": 100,
     "st-707bg": 95,
@@ -161,6 +192,10 @@ def source_identity_stem(value: str) -> str:
 
 
 def source_display_name(item: "MediaItem") -> str:
+    if isinstance(item.analysis, dict):
+        override = item.analysis.get("sourceDisplayName")
+        if override:
+            return str(override)
     return Path(item.relative).name
 
 
@@ -679,6 +714,59 @@ def media_stem(item: MediaItem) -> str:
     return source_identity_stem(item.path.stem)
 
 
+def strip_runtime_manual_video_metadata(analysis: dict[str, Any]) -> dict[str, Any]:
+    cleaned = dict(analysis)
+    for key in (
+        "manualFixedClip",
+        "manualRangeClip",
+        "sourceDisplayName",
+        "durationAllocation",
+        "manualEndTrim",
+        "manualKeepLast",
+    ):
+        cleaned.pop(key, None)
+    return cleaned
+
+
+def expand_manual_video_range_clips(videos: list[MediaItem]) -> list[MediaItem]:
+    expanded: list[MediaItem] = []
+    for video in videos:
+        ranges = MANUAL_VIDEO_RANGE_CLIPS.get(media_stem(video))
+        if not ranges:
+            expanded.append(video)
+            continue
+        base_analysis = strip_runtime_manual_video_metadata(copy.deepcopy(video.analysis))
+        for index, clip in enumerate(ranges, start=1):
+            source_in = clamp(float(clip["sourceIn"]), 0.0, max(0.0, video.duration - (1 / TARGET_FPS)))
+            source_out = clamp(float(clip["sourceOut"]), source_in + (1 / TARGET_FPS), video.duration)
+            label_suffix = str(clip.get("labelSuffix") or f"clip_{index:02d}")
+            clip_analysis = copy.deepcopy(base_analysis)
+            clip_analysis["manualRangeClip"] = {
+                "sourceStem": media_stem(video),
+                "sourceIn": round(source_in, 6),
+                "sourceOut": round(source_out, 6),
+                "requestedLabelSuffix": label_suffix,
+                "placement": "manual-middle-video",
+                "method": "duplicate-source-fixed-range",
+            }
+            if clip.get("connectedGroup"):
+                clip_analysis["manualRangeClip"]["connectedGroup"] = str(clip["connectedGroup"])
+            clip_analysis["sourceDisplayName"] = f"{video.path.stem}_{label_suffix}{video.path.suffix}"
+            expanded.append(
+                MediaItem(
+                    kind=video.kind,
+                    path=video.path,
+                    relative=video.relative,
+                    width=video.width,
+                    height=video.height,
+                    duration=video.duration,
+                    has_audio=video.has_audio,
+                    analysis=clip_analysis,
+                )
+            )
+    return expanded
+
+
 def video_sample_times(duration: float, max_samples: int) -> list[float]:
     if duration <= 0:
         return [0.0]
@@ -1041,7 +1129,7 @@ def resolve_background_audio(value: str | None, project_root: Path, ffprobe: Pat
 def audio_focus_intervals(sequence: list[MediaItem]) -> list[tuple[float, float, str]]:
     intervals: list[tuple[float, float, str]] = []
     for item in sequence:
-        if item.kind != "video" or not item.has_audio:
+        if item.kind != "video":
             continue
         start = max(0.0, float(item.timeline_start))
         end = max(start, float(item.timeline_end))
@@ -1109,7 +1197,7 @@ def background_audio_report_with_focus(
     if background_audio_report is None:
         return None
     report = dict(background_audio_report)
-    report["focusMode"] = "all-video-segments-with-audio"
+    report["focusMode"] = "all-video-segments"
     report["focusMusicVolumeMultiplier"] = AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER
     report["focusOriginalVolumeMultiplier"] = AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER
     report["focusOriginalVolumeMax"] = AUDIO_FOCUS_ORIGINAL_VOLUME_MAX
@@ -1147,10 +1235,11 @@ def distribute_video_frames_by_analysis(videos: list[MediaItem], total_frames: i
     capacities = {id(video): max(1, int(math.floor(video.duration * TARGET_FPS))) for video in videos}
     weights = {id(video): video_duration_weight(video) for video in videos}
     minimum_frames = {
-        id(video): min(capacities[id(video)], max(1, int(round(12.0 * TARGET_FPS)))) for video in videos
+        id(video): min(capacities[id(video)], max(1, int(round(MIN_VARIABLE_VIDEO_SECONDS * TARGET_FPS))))
+        for video in videos
     }
     assigned = {id(video): 0 for video in videos}
-    if total_frames <= sum(minimum_frames.values()):
+    if total_frames < sum(minimum_frames.values()):
         total_weight = sum(weights.values()) or 1.0
         remaining = total_frames
         fractional: list[tuple[float, MediaItem]] = []
@@ -1234,13 +1323,22 @@ def apply_manual_video_end_trims(videos: list[MediaItem]) -> None:
 
 def apply_manual_video_fixed_clips(videos: list[MediaItem]) -> None:
     for video in videos:
-        fixed_clip = MANUAL_VIDEO_FIXED_CLIPS.get(media_stem(video))
+        manual_range = video.analysis.get("manualRangeClip") if isinstance(video.analysis, dict) else None
+        if isinstance(manual_range, dict):
+            range_in = float(manual_range.get("sourceIn") or 0.0)
+            range_out = float(manual_range.get("sourceOut") or range_in)
+            fixed_clip = (range_in, max(1 / TARGET_FPS, range_out - range_in))
+        else:
+            fixed_clip = MANUAL_VIDEO_FIXED_CLIPS.get(media_stem(video))
         if fixed_clip is None:
             continue
         fixed_source_in, fixed_duration = fixed_clip
         source_in = clamp(float(fixed_source_in), 0.0, max(0.0, video.duration - (1 / TARGET_FPS)))
         duration = min(float(fixed_duration), max(1 / TARGET_FPS, video.duration - source_in))
-        fixed_frames = max(1, int(math.floor(duration * TARGET_FPS + 0.5)))
+        if source_in <= 1e-6 and duration >= video.duration - (1 / TARGET_FPS):
+            fixed_frames = max(1, int(math.ceil(duration * TARGET_FPS)))
+        else:
+            fixed_frames = max(1, int(math.floor(duration * TARGET_FPS + 0.5)))
         original_source_in = video.source_in
         original_source_out = video.source_out
         original_clip_duration = video.clip_duration
@@ -1260,6 +1358,8 @@ def apply_manual_video_fixed_clips(videos: list[MediaItem]) -> None:
             "clipDuration": video.clip_duration,
             "method": "fixed-source-range",
         }
+        if isinstance(manual_range, dict):
+            video.analysis["manualFixedClip"]["manualRangeClip"] = manual_range
 
 
 def apply_manual_video_keep_last_segments(videos: list[MediaItem]) -> None:
@@ -1290,20 +1390,61 @@ def apply_manual_video_keep_last_segments(videos: list[MediaItem]) -> None:
         }
 
 
+def requested_fixed_video_frames(video: MediaItem) -> int | None:
+    manual_range = video.analysis.get("manualRangeClip") if isinstance(video.analysis, dict) else None
+    if isinstance(manual_range, dict):
+        range_in = float(manual_range.get("sourceIn") or 0.0)
+        range_out = float(manual_range.get("sourceOut") or range_in)
+        duration = max(1 / TARGET_FPS, range_out - range_in)
+        return max(1, int(math.floor(duration * TARGET_FPS + 0.5)))
+    fixed_clip = MANUAL_VIDEO_FIXED_CLIPS.get(media_stem(video))
+    if fixed_clip is not None:
+        _, fixed_duration = fixed_clip
+        duration = min(float(fixed_duration), max(1 / TARGET_FPS, video.duration))
+        return max(1, int(math.floor(duration * TARGET_FPS + 0.5)))
+    return None
+
+
 def allocate_durations(videos: list[MediaItem], images: list[MediaItem], target_seconds: float, base_image_seconds: float) -> None:
     target_frames = max(1, int(round(target_seconds * TARGET_FPS)))
     image_frames = max(1, int(math.floor(base_image_seconds * TARGET_FPS + 0.5)))
+    fixed_video_frames = {id(video): requested_fixed_video_frames(video) for video in videos}
+    fixed_total_frames = sum(frames for frames in fixed_video_frames.values() if frames is not None)
+    variable_video_min_total_frames = sum(
+        min(
+            max(1, int(math.floor(video.duration * TARGET_FPS))),
+            max(1, int(round(MIN_VARIABLE_VIDEO_SECONDS * TARGET_FPS))),
+        )
+        for video in videos
+        if fixed_video_frames[id(video)] is None
+    )
+    target_frames = max(
+        target_frames,
+        sum(image_clip_frames(image, image_frames) for image in images)
+        + fixed_total_frames
+        + variable_video_min_total_frames,
+    )
     if videos:
         while image_frames > 1 and target_frames - sum(image_clip_frames(image, image_frames) for image in images) < len(videos):
             image_frames -= 1
-        remaining_video_frames = max(len(videos), target_frames - sum(image_clip_frames(image, image_frames) for image in images))
+        variable_video_count = sum(1 for frames in fixed_video_frames.values() if frames is None)
+        remaining_video_frames = max(
+            variable_video_count,
+            target_frames - sum(image_clip_frames(image, image_frames) for image in images) - fixed_total_frames,
+        )
     else:
         remaining_video_frames = 0
 
     for image in images:
         image.clip_frames = image_clip_frames(image, image_frames)
         image.clip_duration = round(image.clip_frames / TARGET_FPS, 6)
-    distribute_video_frames_by_analysis(videos, remaining_video_frames)
+    variable_videos = [video for video in videos if fixed_video_frames[id(video)] is None]
+    distribute_video_frames_by_analysis(variable_videos, remaining_video_frames)
+    for video in videos:
+        fixed_frames = fixed_video_frames[id(video)]
+        if fixed_frames is not None:
+            video.clip_frames = fixed_frames
+            video.clip_duration = round(fixed_frames / TARGET_FPS, 6)
 
     image_total_frames = sum(image.clip_frames for image in images)
     unallocated_frames = max(0, target_frames - image_total_frames - sum(video.clip_frames for video in videos))
@@ -1311,6 +1452,7 @@ def allocate_durations(videos: list[MediaItem], images: list[MediaItem], target_
         expandable = [
             (video, max(1, int(math.floor(video.duration * TARGET_FPS))) - video.clip_frames)
             for video in videos
+            if fixed_video_frames[id(video)] is None
             if max(1, int(math.floor(video.duration * TARGET_FPS))) > video.clip_frames
         ]
         if not expandable:
@@ -1378,6 +1520,7 @@ def prepare_special_image_sequence(images: list[MediaItem]) -> list[MediaItem]:
     manual_early = [image for image in images if media_stem(image) in MANUAL_EARLY_IMAGE_STEMS]
     manual_distributed = [image for image in images if media_stem(image) in MANUAL_DISTRIBUTED_IMAGE_STEMS]
     manual_late = [image for image in images if media_stem(image) in MANUAL_LATE_IMAGE_STEMS]
+    manual_late_intervideo = [image for image in images if media_stem(image) in MANUAL_LATE_INTERVIDEO_IMAGE_STEMS]
     manual_final_photo_opening = [image for image in images if media_stem(image) in MANUAL_FINAL_PHOTO_OPENING_STEMS]
     manual_third_from_last = [image for image in images if media_stem(image) in MANUAL_THIRD_FROM_LAST_IMAGE_STEMS]
     manual_second_from_last = [image for image in images if media_stem(image) in MANUAL_SECOND_FROM_LAST_IMAGE_STEMS]
@@ -1388,6 +1531,7 @@ def prepare_special_image_sequence(images: list[MediaItem]) -> list[MediaItem]:
     reserved.update(id(image) for image in manual_early)
     reserved.update(id(image) for image in manual_distributed)
     reserved.update(id(image) for image in manual_late)
+    reserved.update(id(image) for image in manual_late_intervideo)
     reserved.update(id(image) for image in manual_final_photo_opening)
     reserved.update(id(image) for image in manual_third_from_last)
     reserved.update(id(image) for image in manual_second_from_last)
@@ -1426,6 +1570,9 @@ def prepare_special_image_sequence(images: list[MediaItem]) -> list[MediaItem]:
     for image in manual_late:
         image.analysis["imageRole"] = "manual-late-group"
     ordered.extend(sort_images_by_stem_order(manual_late, MANUAL_LATE_IMAGE_ORDER))
+    for image in manual_late_intervideo:
+        image.analysis["imageRole"] = "manual-late-intervideo"
+    ordered.extend(sort_images_by_stem_order(manual_late_intervideo, MANUAL_LATE_INTERVIDEO_IMAGE_ORDER))
     for image in manual_final_photo_opening:
         image.analysis["imageRole"] = "manual-final-photo-opening"
     ordered.extend(sort_images_by_stem_order(manual_final_photo_opening, MANUAL_FINAL_PHOTO_OPENING_ORDER))
@@ -1449,6 +1596,33 @@ def reorder_videos_for_timeline(videos: list[MediaItem]) -> list[MediaItem]:
     regular.sort(key=lambda item: natural_key(item.relative))
     final.sort(key=lambda item: (order.get(media_stem(item), len(order)), natural_key(item.relative)))
     return regular + final
+
+
+def pop_connected_video_block(videos: list[MediaItem]) -> tuple[list[MediaItem], list[MediaItem]]:
+    block: list[MediaItem] = []
+    rest: list[MediaItem] = []
+    for video in videos:
+        if media_stem(video) in CONNECTED_VIDEO_BLOCK_STEMS:
+            block.append(video)
+        else:
+            rest.append(video)
+    order = {stem: index for index, stem in enumerate(CONNECTED_VIDEO_BLOCK_ORDER)}
+    block.sort(key=lambda item: (order.get(media_stem(item), len(order)), natural_key(item.relative)))
+    for video in block:
+        video.analysis["manualPlacement"] = "connected-full-video-block"
+    return rest, block
+
+
+def manual_range_connected_group(video: MediaItem) -> str | None:
+    manual_range = video.analysis.get("manualRangeClip") if isinstance(video.analysis, dict) else None
+    if not isinstance(manual_range, dict):
+        return None
+    group = manual_range.get("connectedGroup")
+    return str(group) if group else None
+
+
+def connected_range_group_items(videos: list[MediaItem], group: str) -> list[MediaItem]:
+    return [video for video in videos if manual_range_connected_group(video) == group]
 
 
 def append_with_st738_exception(sequence: list[MediaItem], prefix_images: list[MediaItem], after_st738_images: list[MediaItem]) -> None:
@@ -1512,9 +1686,30 @@ def append_due_targeted_images(
     return next_index
 
 
+def append_after_video_images(
+    sequence: list[MediaItem],
+    images: list[MediaItem],
+    video_stem: str,
+    cursor_frames: int,
+) -> int:
+    for anchor_stem, image_stem in MANUAL_LATE_INTERVIDEO_IMAGE_AFTER_VIDEO:
+        if anchor_stem != video_stem:
+            continue
+        for image_index, image in enumerate(images):
+            if media_stem(image) != image_stem:
+                continue
+            image.analysis["manualPlacement"] = f"after-video:{video_stem}"
+            sequence.append(image)
+            cursor_frames += max(1, image.clip_frames)
+            images.pop(image_index)
+            break
+    return cursor_frames
+
+
 def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[MediaItem]:
     sequence: list[MediaItem] = []
     videos = reorder_videos_for_timeline(videos)
+    videos, connected_video_block = pop_connected_video_block(videos)
     prefix_images = [image for image in images if image.analysis.get("imageRole") in {"title-card", "no-people-opening"}]
     after_st738_images = [image for image in images if image.analysis.get("imageRole") == "after-st738-exception"]
     one_minute_images = [image for image in images if image.analysis.get("imageRole") == "manual-one-minute-group"]
@@ -1522,6 +1717,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
     five_to_seven_images = [image for image in images if image.analysis.get("imageRole") == "manual-five-to-seven-minute-group"]
     distributed_images = [image for image in images if image.analysis.get("imageRole") == "manual-distributed-group"]
     late_images = [image for image in images if image.analysis.get("imageRole") == "manual-late-group"]
+    late_intervideo_images = [image for image in images if image.analysis.get("imageRole") == "manual-late-intervideo"]
     final_photo_opening_images = [image for image in images if image.analysis.get("imageRole") == "manual-final-photo-opening"]
     third_from_last_images = [image for image in images if image.analysis.get("imageRole") == "manual-third-from-last-photo"]
     second_from_last_images = [image for image in images if image.analysis.get("imageRole") == "manual-second-from-last-photo"]
@@ -1539,6 +1735,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
             "manual-five-to-seven-minute-group",
             "manual-distributed-group",
             "manual-late-group",
+            "manual-late-intervideo",
             "manual-final-photo-opening",
             "manual-third-from-last-photo",
             "manual-second-from-last-photo",
@@ -1573,9 +1770,27 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
     )
     cursor_frames = sum(max(1, item.clip_frames) for item in sequence)
     image_index = 0
+    appended_connected_range_groups: set[str] = set()
     for index, video in enumerate(videos, start=1):
-        sequence.append(video)
-        cursor_frames += max(1, video.clip_frames)
+        connected_group = manual_range_connected_group(video)
+        if connected_group and connected_group in appended_connected_range_groups:
+            continue
+        if connected_group:
+            connected_items = connected_range_group_items(videos, connected_group)
+            for connected_item in connected_items:
+                connected_item.analysis["manualPlacement"] = "connected-range-video-block"
+            sequence.extend(connected_items)
+            cursor_frames += sum(max(1, connected_item.clip_frames) for connected_item in connected_items)
+            appended_connected_range_groups.add(connected_group)
+        else:
+            sequence.append(video)
+            cursor_frames += max(1, video.clip_frames)
+            cursor_frames = append_after_video_images(
+                sequence,
+                late_intervideo_images,
+                media_stem(video),
+                cursor_frames,
+            )
         early_index = append_due_targeted_images(
             sequence,
             early_images,
@@ -1639,6 +1854,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
         sequence.extend(distributed_images[distributed_index:])
     if late_index < len(late_images):
         sequence.extend(late_images[late_index:])
+    sequence.extend(late_intervideo_images)
     remaining_middle_images = middle_images[image_index:]
     bridge_images: list[MediaItem] = []
     if third_from_last_images and suffix_images and not second_from_last_images:
@@ -1655,6 +1871,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
                     continue
                 bridge_images = [sequence.pop(bridge_index)]
                 break
+    sequence.extend(connected_video_block)
     sequence.extend(final_photo_opening_images)
     sequence.extend(remaining_middle_images)
     sequence.extend(third_from_last_images)
@@ -2861,6 +3078,7 @@ def main() -> None:
                 continue
             print(f"[analysis video {index}/{len(videos)}] {video.relative}", flush=True)
             analyze_video(video, detectors, args.video_max_samples)
+        videos = expand_manual_video_range_clips(videos)
         for index, image in enumerate(images, start=1):
             if image.analysis.get("analysisVersion") == IMAGE_ANALYSIS_VERSION and "visual" in image.analysis:
                 continue

@@ -32,7 +32,7 @@ YUNET_MODEL_URL = "https://github.com/opencv/opencv_zoo/raw/main/models/face_det
 YUNET_MODEL_RELATIVE_PATH = Path("output") / "models" / "face_detection_yunet_2023mar.onnx"
 YUNET_FACE_SCORE_THRESHOLD = 0.78
 BACKGROUND_AUDIO_FADE_SECONDS = 5.0
-AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.5
+AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.15
 AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER = 2.0
 AUDIO_FOCUS_ORIGINAL_VOLUME_MAX = 1.0
 AUDIO_FOCUS_TRANSITION_SECONDS = 1.0
@@ -42,7 +42,6 @@ MIN_VARIABLE_VIDEO_SECONDS = 12.0
 MANUAL_VIDEO_FIXED_CLIPS = {
     "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": (0.0, 40.0),
     "dji_20000104164015_0007_d": (463.0, 57.0),
-    "dji_20000104172624_0018_d": (0.0, 356.0),
     "dji_20000104181624_0030_d": (0.0, 103.978667),
     "dji_20000104181937_0031_d": (0.0, 203.029333),
 }
@@ -66,7 +65,93 @@ MANUAL_VIDEO_RANGE_CLIPS = {
         {"sourceIn": 0.0, "sourceOut": 46.0, "labelSuffix": "clip_000_046"},
         {"sourceIn": 217.0, "sourceOut": 233.0, "labelSuffix": "clip_217_233"},
     ],
+    "dji_20000104172624_0018_d": [
+        {
+            "sourceIn": 1.0,
+            "sourceOut": 87.0,
+            "labelSuffix": "clip_001_087",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 131.0,
+            "sourceOut": 177.0,
+            "labelSuffix": "clip_131_177",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 184.0,
+            "sourceOut": 356.0,
+            "labelSuffix": "clip_184_356",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+    ],
 }
+MANUAL_VIDEO_BLOCK_SWAPS = [
+    (
+        "st7_8341",
+        "clip_000_046",
+        "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+    )
+]
+MANUAL_VIDEO_RELOCATIONS = []
+MANUAL_VIDEO_STEM_RELOCATIONS = []
+MANUAL_IMAGE_RELOCATIONS = [
+    {
+        "imageStem": "st-627",
+        "mode": "before-image",
+        "targetStem": "st-736",
+        "placement": "move-earlier-before-st736",
+    },
+    {
+        "imageStem": "st-731",
+        "mode": "after-connected-video-group",
+        "targetGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        "placement": "move-late-after-video006",
+    },
+    {
+        "imageStem": "st-670",
+        "mode": "after-image",
+        "targetStem": "st-731",
+        "placement": "move-late-after-st731",
+    },
+    {
+        "imageStem": "st-646",
+        "mode": "after-image",
+        "targetStem": "st-670",
+        "placement": "move-late-from-nine-thirteen-gap",
+    },
+    {
+        "imageStem": "st-653",
+        "mode": "after-image",
+        "targetStem": "st-646",
+        "placement": "move-late-from-nine-thirteen-gap",
+    },
+    {
+        "imageStem": "st-735",
+        "mode": "after-image",
+        "targetStem": "st-653",
+        "placement": "move-late-from-four-thirteen",
+    },
+    {
+        "imageStem": "st-723",
+        "mode": "after-image",
+        "targetStem": "st-713",
+        "placement": "move-to-final-photo-block",
+    },
+    {
+        "imageStem": "st-635",
+        "mode": "before-video",
+        "targetStem": "st7_8341",
+        "targetSuffix": "clip_000_046",
+        "placement": "move-front-to-nine-thirteen-gap",
+    },
+    {
+        "imageStem": "st-632",
+        "mode": "after-image",
+        "targetStem": "st-635",
+        "placement": "move-front-to-nine-thirteen-gap",
+    },
+]
 MANUAL_VIDEO_END_TRIM_SECONDS = {"dji_20000104171048_0015_d": 7.0}
 MANUAL_VIDEO_KEEP_LAST_SECONDS = {}
 RENAMED_SOURCE_PREFIX_RE = re.compile(r"^(?:video|photo|audio|sidecar)_\d{3,4}_(.+)$", re.IGNORECASE)
@@ -1621,8 +1706,288 @@ def manual_range_connected_group(video: MediaItem) -> str | None:
     return str(group) if group else None
 
 
+def manual_range_label_suffix(video: MediaItem) -> str | None:
+    manual_range = video.analysis.get("manualRangeClip") if isinstance(video.analysis, dict) else None
+    if not isinstance(manual_range, dict):
+        return None
+    suffix = manual_range.get("requestedLabelSuffix")
+    return str(suffix) if suffix else None
+
+
 def connected_range_group_items(videos: list[MediaItem], group: str) -> list[MediaItem]:
     return [video for video in videos if manual_range_connected_group(video) == group]
+
+
+def apply_manual_video_block_swaps(sequence: list[MediaItem]) -> None:
+    for target_stem, target_suffix, previous_group in MANUAL_VIDEO_BLOCK_SWAPS:
+        target_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video"
+                and media_stem(item) == target_stem
+                and manual_range_label_suffix(item) == target_suffix
+            ),
+            None,
+        )
+        if target_index is None:
+            continue
+        group_index = next(
+            (
+                index
+                for index in range(target_index - 1, -1, -1)
+                if sequence[index].kind == "video" and manual_range_connected_group(sequence[index]) == previous_group
+            ),
+            None,
+        )
+        if group_index is None:
+            continue
+        block_start = group_index
+        while block_start > 0 and manual_range_connected_group(sequence[block_start - 1]) == previous_group:
+            block_start -= 1
+        block_end = group_index + 1
+        while block_end < target_index and manual_range_connected_group(sequence[block_end]) == previous_group:
+            block_end += 1
+        if block_start >= block_end or block_end > target_index:
+            continue
+        target = sequence[target_index]
+        block = sequence[block_start:block_end]
+        middle = sequence[block_end:target_index]
+        target.analysis["manualSequenceSwap"] = {
+            "method": "swap-with-previous-video-block",
+            "previousConnectedGroup": previous_group,
+        }
+        for item in block:
+            item.analysis["manualSequenceSwap"] = {
+                "method": "swap-with-next-video",
+                "swappedWithStem": target_stem,
+                "swappedWithSuffix": target_suffix,
+            }
+        sequence[block_start : target_index + 1] = [target] + middle + block
+
+
+def apply_manual_video_relocations(sequence: list[MediaItem]) -> None:
+    for moving_stem, before_group, placement in MANUAL_VIDEO_RELOCATIONS:
+        moving_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video" and media_stem(item) == moving_stem
+            ),
+            None,
+        )
+        target_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video" and manual_range_connected_group(item) == before_group
+            ),
+            None,
+        )
+        if moving_index is None or target_index is None:
+            continue
+        moving_item = sequence.pop(moving_index)
+        if moving_index < target_index:
+            target_index -= 1
+        while target_index > 0 and manual_range_connected_group(sequence[target_index - 1]) == before_group:
+            target_index -= 1
+        moving_item.analysis["manualPlacement"] = placement
+        moving_item.analysis["manualSequenceMove"] = {
+            "method": "move-before-connected-video-block",
+            "targetConnectedGroup": before_group,
+        }
+        sequence.insert(target_index, moving_item)
+
+
+def apply_manual_video_stem_relocations(sequence: list[MediaItem]) -> None:
+    for rule in MANUAL_VIDEO_STEM_RELOCATIONS:
+        moving_stem = str(rule["movingStem"])
+        before_stem = str(rule["beforeStem"])
+        moving_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video" and media_stem(item) == moving_stem
+            ),
+            None,
+        )
+        target_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video" and media_stem(item) == before_stem
+            ),
+            None,
+        )
+        if moving_index is None or target_index is None:
+            continue
+        moving_item = sequence.pop(moving_index)
+        if moving_index < target_index:
+            target_index -= 1
+        placement = str(rule["placement"])
+        moving_item.analysis["manualPlacement"] = placement
+        moving_item.analysis["manualSequenceMove"] = {
+            "method": "move-before-video",
+            "targetStem": before_stem,
+        }
+        sequence.insert(target_index, moving_item)
+
+
+def apply_manual_image_relocations(sequence: list[MediaItem]) -> None:
+    for rule in MANUAL_IMAGE_RELOCATIONS:
+        image_stem = str(rule["imageStem"])
+        moving_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "image" and media_stem(item) == image_stem
+            ),
+            None,
+        )
+        if moving_index is None:
+            continue
+        moving_item = sequence.pop(moving_index)
+        mode = str(rule["mode"])
+        insert_index: int | None = None
+        if mode == "before-image":
+            target_stem = str(rule["targetStem"])
+            insert_index = next(
+                (
+                    index
+                    for index, item in enumerate(sequence)
+                    if item.kind == "image" and media_stem(item) == target_stem
+                ),
+                None,
+            )
+        elif mode == "after-image":
+            target_stem = str(rule["targetStem"])
+            target_index = next(
+                (
+                    index
+                    for index, item in enumerate(sequence)
+                    if item.kind == "image" and media_stem(item) == target_stem
+                ),
+                None,
+            )
+            insert_index = target_index + 1 if target_index is not None else None
+        elif mode == "after-connected-video-group":
+            target_group = str(rule["targetGroup"])
+            target_indices = [
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video" and manual_range_connected_group(item) == target_group
+            ]
+            insert_index = (max(target_indices) + 1) if target_indices else None
+        elif mode == "before-video":
+            target_stem = str(rule["targetStem"])
+            target_suffix = rule.get("targetSuffix")
+            insert_index = next(
+                (
+                    index
+                    for index, item in enumerate(sequence)
+                    if item.kind == "video"
+                    and media_stem(item) == target_stem
+                    and (target_suffix is None or manual_range_label_suffix(item) == str(target_suffix))
+                ),
+                None,
+            )
+        if insert_index is None:
+            sequence.insert(moving_index, moving_item)
+            continue
+        placement = str(rule["placement"])
+        moving_item.analysis["manualPlacement"] = placement
+        moving_item.analysis["manualImageMove"] = {
+            "method": mode,
+            "placement": placement,
+        }
+        sequence.insert(insert_index, moving_item)
+
+
+def video_separated_image_runs(sequence: list[MediaItem]) -> list[tuple[int, int, int, int]]:
+    runs: list[tuple[int, int, int, int]] = []
+    index = 0
+    while index < len(sequence):
+        if sequence[index].kind != "video":
+            index += 1
+            continue
+        left_video_index = index
+        start = index + 1
+        end = start
+        while end < len(sequence) and sequence[end].kind == "image":
+            end += 1
+        if end > start and end < len(sequence) and sequence[end].kind == "video":
+            runs.append((left_video_index, start, end, end))
+        index = max(end, index + 1)
+    return runs
+
+
+def can_move_image_to_fill_video_gap(item: MediaItem) -> bool:
+    if item.kind != "image":
+        return False
+    role = item.analysis.get("imageRole") if isinstance(item.analysis, dict) else None
+    placement = item.analysis.get("manualPlacement") if isinstance(item.analysis, dict) else None
+    if role:
+        return False
+    if placement and placement != "supplement-single-image-video-gap":
+        return False
+    return True
+
+
+def find_single_image_video_gap(sequence: list[MediaItem]) -> tuple[int, int] | None:
+    for _, start, end, _ in video_separated_image_runs(sequence):
+        if end - start == 1:
+            return start, end
+    return None
+
+
+def find_nearest_donor_for_single_image_gap(
+    sequence: list[MediaItem],
+    gap_start: int,
+    gap_end: int,
+) -> int | None:
+    candidates: list[tuple[int, int]] = []
+    for _, start, end, _ in video_separated_image_runs(sequence):
+        if start == gap_start and end == gap_end:
+            continue
+        if end - start <= 2:
+            continue
+        eligible = [index for index in range(start, end) if can_move_image_to_fill_video_gap(sequence[index])]
+        if not eligible:
+            continue
+        if end <= gap_start:
+            donor_index = eligible[-1]
+            distance = gap_start - donor_index
+        elif start >= gap_end:
+            donor_index = eligible[0]
+            distance = donor_index - gap_end
+        else:
+            continue
+        candidates.append((distance, donor_index))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: item[0])
+    return candidates[0][1]
+
+
+def ensure_minimum_two_images_between_videos(sequence: list[MediaItem]) -> None:
+    for _ in range(50):
+        gap = find_single_image_video_gap(sequence)
+        if gap is None:
+            return
+        gap_start, gap_end = gap
+        donor_index = find_nearest_donor_for_single_image_gap(sequence, gap_start, gap_end)
+        if donor_index is None:
+            return
+        donor = sequence.pop(donor_index)
+        insert_index = gap_end
+        if donor_index < insert_index:
+            insert_index -= 1
+        donor.analysis["manualPlacement"] = "supplement-single-image-video-gap"
+        donor.analysis["manualImageMove"] = {
+            "method": "ensure-minimum-two-images-between-videos",
+            "targetGapImageStem": media_stem(sequence[insert_index - 1]) if insert_index > 0 else None,
+        }
+        sequence.insert(insert_index, donor)
 
 
 def append_with_st738_exception(sequence: list[MediaItem], prefix_images: list[MediaItem], after_st738_images: list[MediaItem]) -> None:
@@ -1878,6 +2243,11 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
     sequence.extend(bridge_images)
     sequence.extend(second_from_last_images)
     sequence.extend(suffix_images)
+    apply_manual_video_block_swaps(sequence)
+    apply_manual_video_relocations(sequence)
+    apply_manual_video_stem_relocations(sequence)
+    apply_manual_image_relocations(sequence)
+    ensure_minimum_two_images_between_videos(sequence)
     time_cursor_frames = 0
     for item in sequence:
         if item.clip_frames <= 0:
@@ -2015,22 +2385,29 @@ def render_portrait_letterbox_frame(
     motion_mode: str,
 ) -> np.ndarray:
     source_height, source_width = image.shape[:2]
-    fit_scale = min(width / max(source_width, 1), height / max(source_height, 1))
+    height_fill_scale = height / max(source_height, 1)
     continuous = continuous_progress(progress)
     if motion_mode == "zoom-in":
-        motion_scale = 1.0 - PORTRAIT_LETTERBOX_ZOOM_AMOUNT + PORTRAIT_LETTERBOX_ZOOM_AMOUNT * continuous
+        motion_scale = 1.0 + PORTRAIT_LETTERBOX_ZOOM_AMOUNT * continuous
     elif motion_mode == "zoom-out":
-        motion_scale = 1.0 - PORTRAIT_LETTERBOX_ZOOM_AMOUNT * continuous
+        motion_scale = 1.0 + PORTRAIT_LETTERBOX_ZOOM_AMOUNT * (1.0 - continuous)
     else:
         motion_scale = 1.0
-    scale = min(fit_scale, fit_scale * motion_scale)
-    resized_width = max(1, min(width, int(round(source_width * scale))))
-    resized_height = max(1, min(height, int(round(source_height * scale))))
+    scale = height_fill_scale * motion_scale
+    resized_width = max(1, int(round(source_width * scale)))
+    resized_height = max(height, int(round(source_height * scale)))
     resized = cv2.resize(image, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
     frame = np.full((height, width, 3), 255, dtype=np.uint8)
+    if resized_height > height:
+        crop_y = (resized_height - height) // 2
+        resized = resized[crop_y : crop_y + height, :]
+        resized_height = height
+    if resized_width > width:
+        crop_x = (resized_width - width) // 2
+        resized = resized[:, crop_x : crop_x + width]
+        resized_width = width
     x = (width - resized_width) // 2
-    y = (height - resized_height) // 2
-    frame[y : y + resized_height, x : x + resized_width] = resized
+    frame[0:height, x : x + resized_width] = resized
     return frame
 
 

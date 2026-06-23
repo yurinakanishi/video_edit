@@ -32,6 +32,8 @@ YUNET_MODEL_URL = "https://github.com/opencv/opencv_zoo/raw/main/models/face_det
 YUNET_MODEL_RELATIVE_PATH = Path("output") / "models" / "face_detection_yunet_2023mar.onnx"
 YUNET_FACE_SCORE_THRESHOLD = 0.78
 BACKGROUND_AUDIO_FADE_SECONDS = 5.0
+FINAL_STILL_DURATION_MULTIPLIER = 3
+FINAL_STILL_FADE_SECONDS = 5.0 * FINAL_STILL_DURATION_MULTIPLIER
 AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.15
 AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER = 2.0
 AUDIO_FOCUS_ORIGINAL_VOLUME_MAX = 1.0
@@ -128,9 +130,9 @@ MANUAL_IMAGE_RELOCATIONS = [
     },
     {
         "imageStem": "st-731",
-        "mode": "after-connected-video-group",
-        "targetGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
-        "placement": "move-late-after-video006",
+        "mode": "before-video",
+        "targetStem": "dji_20000104181624_0030_d",
+        "placement": "move-before-video012",
     },
     {
         "imageStem": "st-670",
@@ -187,6 +189,12 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "move-to-final-photo-block",
     },
     {
+        "imageStem": "st-729",
+        "mode": "after-image",
+        "targetStem": "st-697",
+        "placement": "move-after-st697-video019-removed",
+    },
+    {
         "imageStem": "st-730",
         "mode": "after-image",
         "targetStem": "st-729",
@@ -230,6 +238,19 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "move-one-video-later-after-st661",
     },
     {
+        "imageStem": "st-677",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_184_356",
+        "placement": "move-after-video006-184-356",
+    },
+    {
+        "imageStem": "st-706",
+        "mode": "after-image",
+        "targetStem": "st-677",
+        "placement": "move-after-st677-video006-184-356",
+    },
+    {
         "imageStem": "st-632",
         "mode": "after-image",
         "targetStem": "st-736",
@@ -256,6 +277,7 @@ DEFAULT_EXCLUDED_VIDEO_STEMS = {
     "e6eeaf64-3602-4238-af85-8ccfc6701205",
     "4e1e990e-0b3c-404c-9fb0-ef25073073ea",
     "8ea3f1b6-af35-4c9b-9576-71eba58d9f5e",
+    "503179b6-95c2-4918-8c7c-4efc3014d757",
 }
 DEFAULT_EXCLUDED_IMAGE_STEMS = {
     "st-600",
@@ -279,7 +301,6 @@ MANUAL_EARLY_IMAGE_STEMS = {
     "st-702",
     "st-736",
     "st-735",
-    "st-731",
 }
 MANUAL_EARLY_IMAGE_ORDER = [
     "dji_20000104170445_0011_d_t004_5",
@@ -289,7 +310,6 @@ MANUAL_EARLY_IMAGE_ORDER = [
     "st-702",
     "st-736",
     "st-735",
-    "st-731",
 ]
 MANUAL_EARLY_IMAGE_TARGET_SECONDS = [45.0, 70.0, 75.0, 80.0, 85.0, 245.0, 250.0, 255.0]
 MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-617", "st-618", "st-625"}
@@ -301,7 +321,6 @@ MANUAL_LATE_IMAGE_TARGET_SECONDS = [380.0, 385.0, 430.0, 510.0, 550.0, 625.0]
 MANUAL_LATE_INTERVIDEO_IMAGE_STEMS = {"st-729", "st-730", "st-645"}
 MANUAL_LATE_INTERVIDEO_IMAGE_ORDER = ["st-729", "st-730", "st-645"]
 MANUAL_LATE_INTERVIDEO_IMAGE_AFTER_VIDEO = [
-    ("503179b6-95c2-4918-8c7c-4efc3014d757", "st-729"),
     ("a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43", "st-645"),
 ]
 MANUAL_FINAL_PHOTO_OPENING_STEMS = {"st-682", "st-713"}
@@ -331,6 +350,7 @@ REQUIRED_IMAGE_STEM_PRIORITY = {
     "st-701": 80,
     "st-702": 79,
     "st-634": 78,
+    "st-677": 77,
     "st-690": 76,
     "st-686": 75,
     "st-723": 74,
@@ -1407,7 +1427,7 @@ def background_audio_report_with_focus(
 
 def image_clip_frames(item: MediaItem, base_image_frames: int) -> int:
     if item.analysis.get("imageRole") == "final-fade":
-        return base_image_frames * 2
+        return base_image_frames * 2 * FINAL_STILL_DURATION_MULTIPLIER
     return base_image_frames
 
 
@@ -2038,6 +2058,20 @@ def apply_manual_image_relocations(sequence: list[MediaItem]) -> None:
                 ),
                 None,
             )
+        elif mode == "after-video":
+            target_stem = str(rule["targetStem"])
+            target_suffix = rule.get("targetSuffix")
+            target_index = next(
+                (
+                    index
+                    for index, item in enumerate(sequence)
+                    if item.kind == "video"
+                    and media_stem(item) == target_stem
+                    and (target_suffix is None or manual_range_label_suffix(item) == str(target_suffix))
+                ),
+                None,
+            )
+            insert_index = target_index + 1 if target_index is not None else None
         if insert_index is None:
             sequence.insert(moving_index, moving_item)
             continue
@@ -2800,7 +2834,8 @@ def render_image_segment_smooth(
                 frame = draw_title_overlay(frame, overlay if isinstance(overlay, dict) else {})
             elif image_role == "final-fade":
                 elapsed = frame_index / fps
-                fade_progress = clamp((elapsed - max(0.0, duration - 5.0)) / 5.0, 0.0, 1.0)
+                fade_seconds = min(FINAL_STILL_FADE_SECONDS, duration)
+                fade_progress = clamp((elapsed - max(0.0, duration - fade_seconds)) / fade_seconds, 0.0, 1.0)
                 frame = apply_linear_fade_to_black(frame, fade_progress)
             if show_source_label:
                 frame = draw_source_label(frame, source_display_name(item))

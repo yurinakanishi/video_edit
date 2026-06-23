@@ -59,22 +59,24 @@
 - Place `ST-737` immediately after `ST-738` as an exception, even though `ST-737` contains a person.
 - Place `ST-608` at a clean cut between 5 and 7 minutes.
 - Move `photo_049_ST-729`, `photo_050_ST-730`, and `photo_019_ST-645` into late inter-video gaps. Since `video_019_503179b6-95c2-4918-8c7c-4efc3014d757.mp4` is no longer used, place `ST-729` after `ST-697`, place `ST-730` immediately after `ST-729`, and place `ST-645` after `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43`, before the connected final video block.
-- Move `ST-627` and `ST-736` from the earlier six-photo cluster into the photo gap between the connected `video_014_ST7_8341` pair and the connected `video_006_DJI_20000104172624_0018_D` block, filling the slots opened by moving `ST-661` and `ST-690` later. Keep `ST-627` immediately before `ST-736`.
+- Move `ST-627` and `ST-736` to immediately before `ST-616`. Keep `ST-627` immediately before `ST-736`, followed by `ST-616`.
 - Move `photo_038_ST-701`, `photo_039_ST-702`, `photo_018_ST-638`, and `photo_013_ST-628` to the early part of the timeline.
 - Insert `photo_056_DJI_20000104170445_0011_D_t004_5.png` near the beginning of the video, before the first source-video clip if the current opening sequence timing allows it.
 - Move `photo_016_ST-634` out of the 7-minute still-image cluster and into the later back-half group.
-- Move the still image that appeared at `4:02` in the latest labeled preview, `ST-616`, out of the 7-minute still-image cluster and into the next later still-image break after `ST-625`.
-- Move the still image that appeared at `6:52` in the latest labeled preview, `ST-686`, to the late/end area after `ST-725`.
+- Move the still image that appeared at `4:02` in the latest labeled preview, `ST-616`, out of the 7-minute still-image cluster and into the next later still-image break after `ST-625`, with `ST-627` and `ST-736` directly before it.
+- Move the still image that appeared at `6:52` in the latest labeled preview, `ST-686`, to the late/end area after `ST-723`.
 - Do not use `ST-676`.
 - Keep the 7-minute still-image cluster to four images: `ST-608`, `ST-617`, `ST-601`, and `ST-624`.
 - Move `ST-661` and `ST-690` one video later, to immediately after the connected `video_006_DJI_20000104172624_0018_D` block. Keep `ST-690` immediately after `ST-661`.
 - Move `ST-677` to immediately after `video_006_DJI_20000104172624_0018_D_clip_184_356.MP4`, then keep `ST-706` immediately after `ST-677`.
-- Split the still-image cluster that appeared around `11:30` in the latest timeline. Keep `ST-625` before `video_014_ST7_8341_clip_000_046`; move `ST-627` and `ST-736` from the earlier crowded image group into the old `ST-661` / `ST-690` area; keep `ST-632` after `ST-736` before the connected `video_006_DJI_20000104172624_0018_D` block.
+- Split the still-image cluster that appeared around `11:30` in the latest timeline. Keep `ST-625` before `video_014_ST7_8341_clip_000_046`; move `ST-627` and `ST-736` to immediately before `ST-616`; keep `ST-632` in the later gap after `ST-634` before the connected `video_006_DJI_20000104172624_0018_D` block.
 - Move `ST-670` immediately after `ST-668`.
 - Move `ST-667` farther into the back half, after `ST-735`, and keep it separated from its previous middle placement.
-- Move the two still images around `9:13` in the prior full render, `ST-646` and `ST-653`, to the back half after `ST-670`.
-- Move the still image that appeared at `4:13` in the prior full render, `ST-735`, to the back half after `ST-653`.
-- Move the still image that appeared at `6:55` in the prior full render, `ST-723`, into the final continuous photo block after `ST-713` and before the last three-photo ending sequence.
+- Move the two still images around `9:13` in the prior full render, `ST-646` and `ST-653`, to the back half after `ST-670`, but keep that four-image sequence after the five-image sequence in the 12-minute still-image block.
+- Move the still image that appeared at `4:13` in the prior full render, `ST-735`, to the back half as the first image in the five-image sequence before `ST-667`.
+- In the 12-minute still-image block before `video_006_DJI_20000104172624_0018_D_clip_001_087`, move the four-image sequence `ST-668`, `ST-670`, `ST-646`, and `ST-653` after the five-image sequence `ST-735`, `ST-667`, `ST-634`, `ST-632`, and `ST-675`, preserving both internal orders.
+- Swap the positions of `ST-725` and `ST-723`: place `ST-723` in the late video/photo gap after `ST-645`, then place `ST-686` immediately after `ST-723`; place `ST-725` in the final continuous photo block after `ST-713` and before the last three-photo ending sequence.
+- Render `ST-723` with the normal portrait still-image rule: keep it vertical with white side margins, not a manual full-width landscape crop.
 - Move `photo_029_ST-682` and `photo_044_ST-713` to the beginning area of the final continuous still-photo block, in that order.
 - Place `ST-665` as the third-from-last still image by photo order.
 - Place `ST-721` as the second-from-last still image by photo order, immediately before the final `ST-716` image.
@@ -177,21 +179,23 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm no video-to-video break contains exactly one still image; every still-image break between videos must contain at least two still images.
 - Confirm `ST-729`, `ST-730`, and `ST-645` are in the requested late inter-video gaps, before the connected final video block.
 - Confirm `ST-736` is in the front half.
-- Confirm `ST-627` and `ST-736` fill the former `ST-661` / `ST-690` area between the connected `video_014` pair and the connected `video_006` block, with `ST-627` immediately before `ST-736`.
+- Confirm `ST-627` and `ST-736` appear immediately before `ST-616`, in the order `ST-627`, `ST-736`, `ST-616`.
 - Confirm `ST-701`, `ST-702`, `ST-638`, and `ST-628` are in the early part of the timeline.
 - Confirm `photo_056_DJI_20000104170445_0011_D_t004_5.png` appears near the beginning of the timeline.
 - Confirm the 7-minute still-image cluster contains four images only: `ST-608`, `ST-617`, `ST-601`, and `ST-624`.
-- Confirm `ST-616` appears outside that 7-minute cluster, after `ST-625`.
-- Confirm `ST-686` appears in the late/end area after `ST-725`.
+- Confirm `ST-616` appears outside that 7-minute cluster after `ST-625`, and directly after `ST-627` / `ST-736`.
+- Confirm `ST-723` appears in the late video/photo gap after `ST-645`, and `ST-686` appears immediately after `ST-723`.
 - Confirm `ST-634` is in the back half of the timeline.
 - Confirm `ST-676` is absent from the timeline.
-- Confirm the still-image cluster around the prior `11:30` area is split: `ST-625` remains before `video_014_ST7_8341_clip_000_046`, `ST-627` and `ST-736` fill the former `ST-661` / `ST-690` area, `ST-632` remains before the connected `video_006` block, and `ST-661` plus `ST-690` move immediately after the connected `video_006` block.
+- Confirm the still-image cluster around the prior `11:30` area is split: `ST-625` remains before `video_014_ST7_8341_clip_000_046`, `ST-627` and `ST-736` move immediately before `ST-616`, `ST-632` remains before the connected `video_006` block, and `ST-661` plus `ST-690` move immediately after the connected `video_006` block.
 - Confirm `ST-618` and `ST-635` appear in the former `ST-676/ST-690` area before `video_003_DJI_20000104171048_0015_D.MP4`.
 - Confirm `ST-670` appears immediately after `ST-668`.
 - Confirm `ST-667` appears farther into the back half after `ST-735`.
 - Confirm `ST-646` and `ST-653` are in the back half after `ST-670`.
-- Confirm `ST-735` is in the back half after `ST-653`.
-- Confirm `ST-723` is in the final continuous photo block after `ST-713` and before `ST-665`.
+- Confirm `ST-735` is in the back half as the first image in the five-image sequence before `ST-667`.
+- Confirm the 12-minute still-image block immediately before `video_006_DJI_20000104172624_0018_D_clip_001_087` is ordered as `ST-735`, `ST-667`, `ST-634`, `ST-632`, `ST-675`, `ST-668`, `ST-670`, `ST-646`, `ST-653`.
+- Confirm `ST-725` is in the final continuous photo block after `ST-713` and before `ST-665`.
+- Confirm `ST-723` uses the normal portrait still-image render mode with white side margins, not the previous manual landscape-crop override.
 - Confirm `ST-682` and `ST-713` appear at the beginning area of the final continuous still-photo block, in that order.
 - Confirm `ST-665` is the third-from-last still image by photo order.
 - Confirm `ST-721` is the second-from-last still image by photo order, immediately before `ST-716`.

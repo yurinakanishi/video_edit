@@ -42,6 +42,7 @@ AUDIO_FOCUS_MERGE_GAP_SECONDS = 0.05
 PORTRAIT_LETTERBOX_FADE_SECONDS = 0.45
 PORTRAIT_LETTERBOX_ZOOM_AMOUNT = 0.032
 MIN_VARIABLE_VIDEO_SECONDS = 12.0
+MANUAL_IMAGE_RENDER_OVERRIDES: dict[str, dict[str, Any]] = {}
 MANUAL_VIDEO_FIXED_CLIPS = {
     "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": (0.0, 40.0),
     "dji_20000104164015_0007_d": (463.0, 57.0),
@@ -123,16 +124,16 @@ MANUAL_VIDEO_CLIP_ADJACENCIES = [
 ]
 MANUAL_IMAGE_RELOCATIONS = [
     {
-        "imageStem": "st-627",
-        "mode": "before-image",
-        "targetStem": "st-736",
-        "placement": "move-earlier-before-st736",
-    },
-    {
         "imageStem": "st-731",
         "mode": "before-video",
         "targetStem": "dji_20000104181624_0030_d",
         "placement": "move-before-video012",
+    },
+    {
+        "imageStem": "st-668",
+        "mode": "after-image",
+        "targetStem": "st-675",
+        "placement": "move-four-image-block-after-five-image-block",
     },
     {
         "imageStem": "st-670",
@@ -171,22 +172,16 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "move-out-of-seven-minute-cluster",
     },
     {
-        "imageStem": "st-627",
-        "mode": "after-image",
-        "targetStem": "st-634",
-        "placement": "fill-st661-st690-vacancy-from-earlier-cluster",
-    },
-    {
-        "imageStem": "st-736",
-        "mode": "after-image",
-        "targetStem": "st-627",
-        "placement": "fill-st661-st690-vacancy-from-earlier-cluster",
-    },
-    {
         "imageStem": "st-723",
         "mode": "after-image",
+        "targetStem": "st-645",
+        "placement": "swap-with-st725-to-late-video-gap",
+    },
+    {
+        "imageStem": "st-725",
+        "mode": "after-image",
         "targetStem": "st-713",
-        "placement": "move-to-final-photo-block",
+        "placement": "swap-with-st723-to-final-photo-block",
     },
     {
         "imageStem": "st-729",
@@ -207,9 +202,21 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "move-out-of-seven-minute-cluster",
     },
     {
+        "imageStem": "st-627",
+        "mode": "before-image",
+        "targetStem": "st-616",
+        "placement": "move-before-st616",
+    },
+    {
+        "imageStem": "st-736",
+        "mode": "after-image",
+        "targetStem": "st-627",
+        "placement": "move-before-st616",
+    },
+    {
         "imageStem": "st-686",
         "mode": "after-image",
-        "targetStem": "st-725",
+        "targetStem": "st-723",
         "placement": "move-end-from-six-fifty-two",
     },
     {
@@ -253,8 +260,63 @@ MANUAL_IMAGE_RELOCATIONS = [
     {
         "imageStem": "st-632",
         "mode": "after-image",
-        "targetStem": "st-736",
+        "targetStem": "st-634",
         "placement": "move-before-001-087-from-eleven-thirty-cluster",
+    },
+    {
+        "imageStem": "st-735",
+        "mode": "before-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_001_087",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-667",
+        "mode": "after-image",
+        "targetStem": "st-735",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-634",
+        "mode": "after-image",
+        "targetStem": "st-667",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-632",
+        "mode": "after-image",
+        "targetStem": "st-634",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-675",
+        "mode": "after-image",
+        "targetStem": "st-632",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-668",
+        "mode": "after-image",
+        "targetStem": "st-675",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-670",
+        "mode": "after-image",
+        "targetStem": "st-668",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-646",
+        "mode": "after-image",
+        "targetStem": "st-670",
+        "placement": "reorder-12min-image-block-before-video006",
+    },
+    {
+        "imageStem": "st-653",
+        "mode": "after-image",
+        "targetStem": "st-646",
+        "placement": "reorder-12min-image-block-before-video006",
     },
 ]
 MANUAL_VIDEO_END_TRIM_SECONDS = {}
@@ -1722,7 +1784,36 @@ def sort_images_by_stem_order(images: list[MediaItem], stems: list[str]) -> list
     return sorted(images, key=lambda item: (order.get(media_stem(item), len(order)), natural_key(media_stem(item))))
 
 
+def apply_manual_image_render_overrides(images: list[MediaItem]) -> None:
+    for image in images:
+        if not isinstance(image.analysis, dict):
+            continue
+        had_manual_crop = "manualCropCenter" in image.analysis or "manualRenderMode" in image.analysis
+        override = MANUAL_IMAGE_RENDER_OVERRIDES.get(media_stem(image))
+        if had_manual_crop and not override:
+            subject = image.analysis.get("subject")
+            subject_center = subject.get("cropCenter") if isinstance(subject, dict) else None
+            if isinstance(subject_center, list) and len(subject_center) >= 2:
+                image.analysis["cropCenter"] = [
+                    round(clamp(float(subject_center[0]), 0.0, 1.0), 4),
+                    round(clamp(float(subject_center[1]), 0.0, 1.0), 4),
+                ]
+        image.analysis.pop("manualRenderMode", None)
+        image.analysis.pop("manualRenderReason", None)
+        image.analysis.pop("manualCropCenter", None)
+        if not override:
+            continue
+        crop_center = override.get("cropCenter")
+        if isinstance(crop_center, list) and len(crop_center) >= 2:
+            center = [round(clamp(float(crop_center[0]), 0.0, 1.0), 4), round(clamp(float(crop_center[1]), 0.0, 1.0), 4)]
+            image.analysis["cropCenter"] = center
+            image.analysis["manualCropCenter"] = center
+        image.analysis["manualRenderMode"] = str(override.get("renderMode") or "")
+        image.analysis["manualRenderReason"] = str(override.get("reason") or "")
+
+
 def prepare_special_image_sequence(images: list[MediaItem]) -> list[MediaItem]:
+    apply_manual_image_render_overrides(images)
     title = find_image_by_stems(images, ["st-707bg", "st-707"])
     final = find_image_by_stems(images, ["st-716"])
     manual_one_minute = [image for image in images if media_stem(image) in MANUAL_ONE_MINUTE_IMAGE_STEMS]
@@ -2558,6 +2649,14 @@ def is_portrait_image(image: np.ndarray) -> bool:
     return source_height > source_width
 
 
+def should_render_portrait_letterbox(item: MediaItem, image: np.ndarray) -> bool:
+    if not is_portrait_image(image):
+        return False
+    if isinstance(item.analysis, dict) and item.analysis.get("manualRenderMode") == "landscape-crop":
+        return False
+    return True
+
+
 def render_portrait_letterbox_frame(
     image: np.ndarray,
     *,
@@ -2736,7 +2835,7 @@ def render_image_segment_smooth(
     else:
         motion_mode = "zoom-in" if index % 2 == 0 else "zoom-out"
     image = open_image_bgr(item.path)
-    portrait_letterbox = is_portrait_image(image)
+    portrait_letterbox = should_render_portrait_letterbox(item, image)
     video_filter_chain = "format=yuv420p" if portrait_letterbox else f"{look_filter(item)},format=yuv420p"
     command = [
         str(ffmpeg),
@@ -3535,6 +3634,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--render-only", action="store_true")
     parser.add_argument("--replan-from-report", action="store_true")
     parser.add_argument("--show-source-labels", action="store_true", help="Overlay source filenames in the upper-left corner for review renders.")
+    parser.add_argument(
+        "--skip-used-media-export",
+        action="store_true",
+        help="Skip exporting per-source review clips/images after the final video is rendered.",
+    )
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
 
@@ -3748,8 +3852,11 @@ def main() -> None:
                 ],
             }
         )
-    used_export = export_used_media_previews(sequence, output_root, args.ffmpeg, run_name)
-    results.append({"index": len(results) + 1, "kind": "used-media-export", **used_export})
+    if args.skip_used_media_export:
+        results.append({"index": len(results) + 1, "kind": "used-media-export", "status": "skipped"})
+    else:
+        used_export = export_used_media_previews(sequence, output_root, args.ffmpeg, run_name)
+        results.append({"index": len(results) + 1, "kind": "used-media-export", **used_export})
     write_timeline_report(
         project_root,
         report_path,

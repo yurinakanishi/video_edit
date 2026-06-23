@@ -28,6 +28,8 @@
   - `0875db90-5d21-463d-b4b0-9f0a19195ca2`
   - `a2ecf072-e001-453b-8432-780011ee6fea`
   - `e6eeaf64-3602-4238-af85-8ccfc6701205`
+  - `4e1e990e-0b3c-404c-9fb0-ef25073073ea`
+  - `8ea3f1b6-af35-4c9b-9576-71eba58d9f5e`
 - Exception: use the newly moved source clip `source/video/video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4`. This is a trimmed review clip supplied later by the user, not the excluded original `video_020_a2ecf072-e001-453b-8432-780011ee6fea.mp4`.
 - Exception: use `source/mp4/video_014_ST7_8341.MP4` only as two fixed middle timeline clips: `0:00-0:46` and `3:37-3:53`. Do not use any other part of `ST7_8341`.
 - After excluding those videos, stretch the remaining videos to maintain the target duration. Use the video-analysis selected sample time and top visual/person-scored moments as the center of the longer clip, instead of extending arbitrary parts.
@@ -41,7 +43,7 @@
 ## Overall Output
 
 - Build an emotional birthday highlight video.
-- Target duration for the current preview/final render is recalculated from the fixed source ranges: exclude `video_005_DJI_20000104172535_0017_D.MP4`, add the fixed 40-second `video_023_...clip56_89-114_43.mp4` source clip, add the two fixed middle clips from `video_014_ST7_8341.MP4`, replace `video_001_DJI_20000104161921_0006_D.MP4` with its two requested fixed source ranges, replace `video_002_DJI_20000104164015_0007_D.MP4` with its requested fixed source range, add `video_006_DJI_20000104172624_0018_D.MP4` as fixed source ranges with requested cuts, and move full `video_012_DJI_20000104181624_0030_D.MP4` plus full `video_013_DJI_20000104181937_0031_D.MP4` to immediately before the final continuous still-photo block, in that order.
+- Target duration for the current preview/final render is recalculated from the fixed source ranges: exclude `video_004_DJI_20000104171531_0016_D.MP4`, `video_005_DJI_20000104172535_0017_D.MP4`, and `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4`, add the fixed 40-second `video_023_...clip56_89-114_43.mp4` source clip, add the two fixed middle clips from `video_014_ST7_8341.MP4`, replace `video_001_DJI_20000104161921_0006_D.MP4` with its two requested fixed source ranges, replace `video_002_DJI_20000104164015_0007_D.MP4` with its requested fixed source range, replace `video_003_DJI_20000104171048_0015_D.MP4` with all source footage except `0:51-0:54`, add `video_006_DJI_20000104172624_0018_D.MP4` as fixed source ranges with requested cuts, and move full `video_012_DJI_20000104181624_0030_D.MP4` plus full `video_013_DJI_20000104181937_0031_D.MP4` to immediately before the final continuous still-photo block, in that order.
 - Use a soft, consistent color grade across videos and still images.
 - Keep the final look gentle and warm rather than high-contrast or heavily saturated.
 - Produce a lightweight preview first with the Python build script before creating any heavier final render.
@@ -54,16 +56,20 @@
 - Place `ST-621` and `ST-709` consecutively around the 1-minute area.
 - Place `ST-737` immediately after `ST-738` as an exception, even though `ST-737` contains a person.
 - Place `ST-608` at a clean cut between 5 and 7 minutes.
-- Move `photo_049_ST-729`, `photo_050_ST-730`, and `photo_019_ST-645` into late inter-video gaps. Place `ST-729` after `video_019_503179b6-95c2-4918-8c7c-4efc3014d757`, `ST-730` after `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd`, and `ST-645` after `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43`, before the connected final video block.
-- Place `ST-736` in the front half of the timeline.
-- Move `ST-627` earlier in the front half, before the `ST-736` area.
+- Move `photo_049_ST-729`, `photo_050_ST-730`, and `photo_019_ST-645` into late inter-video gaps. Place `ST-729` after `video_019_503179b6-95c2-4918-8c7c-4efc3014d757`, place `ST-730` immediately after `ST-729` because `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4` is no longer used, and place `ST-645` after `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43`, before the connected final video block.
+- Move `ST-627` and `ST-736` from the earlier six-photo cluster into the photo gap between the connected `video_014_ST7_8341` pair and the connected `video_006_DJI_20000104172624_0018_D` block, filling the slots opened by moving `ST-661` and `ST-690` later. Keep `ST-627` immediately before `ST-736`.
 - Move `photo_038_ST-701`, `photo_039_ST-702`, `photo_018_ST-638`, and `photo_013_ST-628` to the early part of the timeline.
 - Insert `photo_056_DJI_20000104170445_0011_D_t004_5.png` near the beginning of the video, before the first source-video clip if the current opening sequence timing allows it.
-- Move `photo_016_ST-634`, `photo_028_ST-676`, and `photo_031_ST-690` to the back half of the timeline.
-- Insert `photo_057_ST-686` around the transition area between the middle and back half of the timeline, before the later back-half still group.
-- Move `ST-667` and `ST-670` into the back half of the timeline and keep them separated from each other.
-- Move `ST-731` and `ST-670` to the back half after the connected `video_006_DJI_20000104172624_0018_D.MP4` block, with `ST-670` immediately after `ST-731`.
-- Move the two still images around `9:13` in the prior full render, `ST-646` and `ST-653`, to the back half after `ST-670`. Move two front-half still images, `ST-635` and `ST-632`, into that `9:13` area before `video_014_ST7_8341_clip_000_046`.
+- Move `photo_016_ST-634` out of the 7-minute still-image cluster and into the later back-half group.
+- Move the still image that appeared at `4:02` in the latest labeled preview, `ST-616`, out of the 7-minute still-image cluster and into the next later still-image break after `ST-625`.
+- Move the still image that appeared at `6:52` in the latest labeled preview, `ST-686`, to the late/end area after `ST-725`.
+- Do not use `ST-676`.
+- Keep the 7-minute still-image cluster to four images: `ST-608`, `ST-617`, `ST-601`, and `ST-624`.
+- Move `ST-661` and `ST-690` one video later, to immediately after the connected `video_006_DJI_20000104172624_0018_D` block. Keep `ST-690` immediately after `ST-661`.
+- Split the still-image cluster that appeared around `11:30` in the latest timeline. Keep `ST-625` before `video_014_ST7_8341_clip_000_046`; move `ST-627` and `ST-736` from the earlier crowded image group into the old `ST-661` / `ST-690` area; keep `ST-632` after `ST-736` before the connected `video_006_DJI_20000104172624_0018_D` block.
+- Move `ST-670` immediately after `ST-668`.
+- Move `ST-667` farther into the back half, after `ST-735`, and keep it separated from its previous middle placement.
+- Move the two still images around `9:13` in the prior full render, `ST-646` and `ST-653`, to the back half after `ST-670`.
 - Move the still image that appeared at `4:13` in the prior full render, `ST-735`, to the back half after `ST-653`.
 - Move the still image that appeared at `6:55` in the prior full render, `ST-723`, into the final continuous photo block after `ST-713` and before the last three-photo ending sequence.
 - Move `photo_029_ST-682` and `photo_044_ST-713` to the beginning area of the final continuous still-photo block, in that order.
@@ -71,7 +77,7 @@
 - Place `ST-721` as the second-from-last still image by photo order, immediately before the final `ST-716` image.
 - Move `ST-625` earlier than the final video/photo area. Do not add a replacement photo just to fill the old late slot.
 - Move the videos that appeared around 10 to 14 minutes in the prior full render, `video_012_DJI_20000104181624_0030_D.MP4` and `video_013_DJI_20000104181937_0031_D.MP4`, to immediately before the final continuous still-photo block.
-- Spread `ST-601`, `ST-617`, `ST-618`, and `ST-625` across the timeline instead of letting them cluster in natural filename order.
+- Spread `ST-601`, `ST-617`, and `ST-625` across the timeline instead of letting them cluster in natural filename order. `ST-618` is a manual swap image and should move to the former `ST-676/ST-690` area before `video_003`.
 - When still images are placed between two video segments, do not leave exactly one still image between those videos. Move a nearby regular still image into that break so every image break between videos has at least two still images, while preserving connected video blocks.
 - Individual placement constraints override the no-face opening group. A no-face image must not be pulled into the opening group if it has a manual front-half, back-half, or distributed-placement rule.
 
@@ -87,11 +93,14 @@
 - For `video_001_DJI_20000104161921_0006_D.MP4`, do not use the previously selected range. Use fixed clip `6:27-9:14` first. For the requested `0:38-3:31` clip, cut out the part that appeared at `5:47-6:13` in the full render; this corresponds to source `1:53-2:19`, so use `0:38-1:53` immediately followed by `2:19-3:31` with no photo or other media between those two pieces.
 - For `video_002_DJI_20000104164015_0007_D.MP4`, do not use the previously selected range. Use only the fixed clip `7:43-8:40`.
 - For `video_006_DJI_20000104172624_0018_D.MP4`, do not use the previously excluded state or any analysis-selected range. Based on the prior full render, cut the first 1 second of the video, cut the full-render `11:05-11:49` section, cut the full-render `16:00-16:03` section, and cut the full-render `17:08-17:12` section. Use source ranges `0:01-1:27`, `2:11-2:57`, and `3:04-5:56` with no photo or other media between those pieces.
+- Do not use `video_004_DJI_20000104171531_0016_D.MP4`.
 - Do not use `video_005_DJI_20000104172535_0017_D.MP4`.
-- Move full `video_012_DJI_20000104181624_0030_D.MP4`, the video that contained `21:46` in the full render, before full `video_013_DJI_20000104181937_0031_D.MP4`, the video that contained `11:13`. Keep `video_013` before the connected `video_006_DJI_20000104172624_0018_D.MP4` block.
+- Do not use `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4`; cut it completely from the timeline.
+- Do not use `video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4` or `video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4`; these were the split video portions around `18:31-18:50` in the full preview. Keep the still images between them, including `photo_033_ST-694.jpg` and `photo_035_ST-697.jpg`.
+- Move full `video_012_DJI_20000104181624_0030_D.MP4`, the video that contained `21:46` in the full render, before full `video_013_DJI_20000104181937_0031_D.MP4`, the video that contained `11:13`. Keep these two videos immediately before the final continuous still-photo block.
 - Insert `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4` into the back half of the timeline and use only its first 40 seconds (`0.00-40.00`).
-- Insert `video_014_ST7_8341.MP4` into the middle of the timeline as two separate clips: `0:00-0:46` first, then `3:37-3:53`. Swap the `0:00-0:46` clip with the previous `video_006_DJI_20000104172624_0018_D.MP4` connected video block, while keeping the two `video_006` pieces connected with no media between them.
-- For `video_003_DJI_20000104171048_0015_D.MP4`, cut the last 7 seconds from the selected clip. Keep the clip start point unchanged and shorten only the clip end.
+- Insert `video_014_ST7_8341.MP4` into the middle of the timeline as two separate clips: `0:00-0:46` first, then `3:37-3:53`. Place the `3:37-3:53` clip immediately after the `0:00-0:46` clip, with no still images or other media between those two `video_014` clips. Keep the combined `video_014` pair before the connected `video_006_DJI_20000104172624_0018_D.MP4` block.
+- For `video_003_DJI_20000104171048_0015_D.MP4`, use the full source video except for source `0:51-0:54`. Keep the two remaining pieces connected with no photo or other media between them.
 - Do not zoom video clips.
 - Do not crop video clips for motion effects. Preserve the source video framing by scaling to fit the output frame and padding if needed.
 - Cut clips from the original videos and play them normally.
@@ -100,8 +109,8 @@
 
 - Analyze all current images before rendering them.
 - Deduplicate near-identical still images. Known current duplicate groups include `ST-645/ST-645w`, `ST-665/ST-665w`, `ST-721/ST-721w`, and `ST-716/ST-717w`.
-- Exclude `ST-600`, `ST-604`, `ST-610`, `ST-614`, and `ST-641` / `ST-641w` before image ordering and deduplication.
-- Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-621`, `ST-709`, `ST-737`, `ST-738`, `ST-638`, `ST-608`, `ST-682`, `ST-713`, `ST-628`, `ST-701`, `ST-702`, `ST-634`, `ST-676`, `ST-690`, `ST-686`, `ST-723`, `ST-729`, `ST-730`, `ST-645`, and `photo_056_DJI_20000104170445_0011_D_t004_5.png`.
+- Exclude `ST-600`, `ST-604`, `ST-610`, `ST-614`, `ST-641` / `ST-641w`, and `ST-676` before image ordering and deduplication.
+- Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-621`, `ST-709`, `ST-737`, `ST-738`, `ST-638`, `ST-608`, `ST-682`, `ST-713`, `ST-628`, `ST-701`, `ST-702`, `ST-634`, `ST-690`, `ST-686`, `ST-723`, `ST-729`, `ST-730`, `ST-645`, and `photo_056_DJI_20000104170445_0011_D_t004_5.png`.
 - Display each normal still image for 5 seconds.
 - The opening title still is 5 seconds with no zoom.
 - The final still is 10 seconds total: 5 seconds static, then 5 seconds fading to black.
@@ -129,6 +138,7 @@
 - Play the BGM under the whole video.
 - Whenever any source video segment is playing, lower BGM volume to 15% of the normal BGM level. If that segment has original video audio, raise the original video audio to 2x of the normal original-audio level, capped at 1.0.
 - Do not switch that audio focus abruptly. Apply a smooth dissolve-style volume curve at each video segment start and end. Current transition: 1 second with a smoothstep curve.
+- When two or more video segments are directly connected with no still image or other visible gap between them, merge those video segments into one continuous audio-focus interval. Do not let the BGM rise between connected video segments and then duck again.
 - The audio focus rule must be derived from every current timeline video segment, not fixed timestamps and not only videos with audio, so it remains active if videos are moved earlier/later or newly added in future timeline changes.
 - Fade the mixed audio in slowly at the start of the video and fade it out slowly at the end of the video. Current fade length: 5 seconds in and 5 seconds out.
 
@@ -153,7 +163,7 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm source files are not double-prefixed when re-running the source rename step.
 - Confirm every video in the timeline still exists on disk.
 - Confirm excluded video stems are absent from the timeline.
-- Confirm excluded image stems such as `ST-600`, `ST-604`, `ST-610`, `ST-614`, and `ST-641` are absent from the timeline.
+- Confirm excluded image stems such as `ST-600`, `ST-604`, `ST-610`, `ST-614`, `ST-641`, and `ST-676` are absent from the timeline.
 - Confirm no still images outside `source/phtp2605269` appear in the timeline.
 - Confirm `ST-641` / `ST-641w` are absent from the timeline.
 - Confirm no allowed current source videos were accidentally skipped unless the duration limit requires it.
@@ -162,28 +172,36 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm no video-to-video break contains exactly one still image; every still-image break between videos must contain at least two still images.
 - Confirm `ST-729`, `ST-730`, and `ST-645` are in the requested late inter-video gaps, before the connected final video block.
 - Confirm `ST-736` is in the front half.
-- Confirm `ST-627` appears earlier in the front half, before `ST-736`.
+- Confirm `ST-627` and `ST-736` fill the former `ST-661` / `ST-690` area between the connected `video_014` pair and the connected `video_006` block, with `ST-627` immediately before `ST-736`.
 - Confirm `ST-701`, `ST-702`, `ST-638`, and `ST-628` are in the early part of the timeline.
 - Confirm `photo_056_DJI_20000104170445_0011_D_t004_5.png` appears near the beginning of the timeline.
-- Confirm `ST-686` appears around the transition area between the middle and back half of the timeline.
-- Confirm `ST-634`, `ST-676`, and `ST-690` are in the back half of the timeline.
-- Confirm `ST-667` and `ST-670` are in the back half and separated.
-- Confirm `ST-731` and `ST-670` are in the back half after the connected `video_006_DJI_20000104172624_0018_D.MP4` block, with `ST-670` immediately after `ST-731`.
-- Confirm `ST-646` and `ST-653` are in the back half after `ST-670`, and `ST-635` and `ST-632` occupy the prior `9:13` image area before `video_014_ST7_8341_clip_000_046`.
+- Confirm the 7-minute still-image cluster contains four images only: `ST-608`, `ST-617`, `ST-601`, and `ST-624`.
+- Confirm `ST-616` appears outside that 7-minute cluster, after `ST-625`.
+- Confirm `ST-686` appears in the late/end area after `ST-725`.
+- Confirm `ST-634` is in the back half of the timeline.
+- Confirm `ST-676` is absent from the timeline.
+- Confirm the still-image cluster around the prior `11:30` area is split: `ST-625` remains before `video_014_ST7_8341_clip_000_046`, `ST-627` and `ST-736` fill the former `ST-661` / `ST-690` area, `ST-632` remains before the connected `video_006` block, and `ST-661` plus `ST-690` move immediately after the connected `video_006` block.
+- Confirm `ST-618` and `ST-635` appear in the former `ST-676/ST-690` area before `video_003_DJI_20000104171048_0015_D.MP4`.
+- Confirm `ST-670` appears immediately after `ST-668`.
+- Confirm `ST-667` appears farther into the back half after `ST-735`.
+- Confirm `ST-646` and `ST-653` are in the back half after `ST-670`.
 - Confirm `ST-735` is in the back half after `ST-653`.
 - Confirm `ST-723` is in the final continuous photo block after `ST-713` and before `ST-665`.
 - Confirm `ST-682` and `ST-713` appear at the beginning area of the final continuous still-photo block, in that order.
 - Confirm `ST-665` is the third-from-last still image by photo order.
 - Confirm `ST-721` is the second-from-last still image by photo order, immediately before `ST-716`.
 - Confirm `ST-625` has been moved earlier than the final video/photo area.
+- Confirm `video_004_DJI_20000104171531_0016_D.MP4` is absent from the timeline.
 - Confirm `video_005_DJI_20000104172535_0017_D.MP4` is absent from the timeline.
+- Confirm `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4` is absent from the timeline.
+- Confirm `video_016_4e1e990e-0b3c-404c-9fb0-ef25073073ea.mp4` and `video_017_8ea3f1b6-af35-4c9b-9576-71eba58d9f5e.mp4` are absent from the timeline while `photo_033_ST-694.jpg` and `photo_035_ST-697.jpg` remain present.
 - Confirm full `video_012_DJI_20000104181624_0030_D.MP4` appears immediately before full `video_013_DJI_20000104181937_0031_D.MP4`.
 - Confirm full `video_012_DJI_20000104181624_0030_D.MP4` and full `video_013_DJI_20000104181937_0031_D.MP4` appear immediately before the final continuous still-photo block, not around the 10 to 14 minute area.
 - Confirm `video_006_DJI_20000104172624_0018_D.MP4` appears only as connected source ranges `0:01-1:27`, `2:11-2:57`, and `3:04-5:56`, with no media between those pieces.
-- Confirm `video_014_ST7_8341_clip_000_046` appears before the connected `video_006` block after the requested swap.
+- Confirm `video_014_ST7_8341_clip_217_233` appears immediately after `video_014_ST7_8341_clip_000_046`, with no images or other media between those two clips, and that the pair appears before the connected `video_006` block.
 - Confirm `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4` is present in the back half and has `manualFixedClip.fixedDuration == 40.0` with `sourceIn == 0.0`.
-- Confirm `video_003_DJI_20000104171048_0015_D.MP4` has `manualEndTrim.trimmedSeconds == 7.0` in the timeline report and that its selected clip end is 7 seconds earlier than before.
-- Confirm `ST-601`, `ST-617`, `ST-618`, and `ST-625` are distributed across the timeline.
+- Confirm `video_003_DJI_20000104171048_0015_D.MP4` appears only as connected source ranges `0:00-0:51` and `0:54-end`, with no media between those pieces.
+- Confirm `ST-601`, `ST-617`, and `ST-625` are distributed across the timeline, while `ST-618` follows the requested swap placement.
 - Confirm the opening title card is `ST-707bg` or `ST-707.jpg`, has no animation, and includes a clear modern date plus birthday title in the upper-right corner.
 - Confirm all still images immediately after the title card have `faceDetection.noFaceOpeningEligible == true`, and confirm no image with any detected human face is included in that opening group.
 - Confirm the final visual item is `ST-716.jpg`, 10 seconds total: 5 seconds static plus 5 seconds slow fade to black.
@@ -192,7 +210,7 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm generated segment/log folders do not contain stale files from old timelines before checking durations or motion modes.
 - Confirm the final preview/render is about 23 minutes 56 seconds long.
 - Confirm the output has both video and BGM-mixed audio.
-- Confirm the timeline report has audio focus intervals for every source video segment, with `focusMode == "all-video-segments"` and `focusCurve == "smoothstep"`.
+- Confirm the timeline report has audio focus intervals derived from every source video segment, with directly connected video segments merged into continuous focus intervals, `focusMode == "all-video-segments"`, `focusMergeGapSeconds == 0.05`, and `focusCurve == "smoothstep"`.
 - Confirm normal previews do not show the source filename label in the upper-left corner.
 - Confirm `used_video_parts_preview` and `used_images_preview` contain only current-timeline files with filenames based on the renamed source files.
 - Run a full `ffmpeg -v error -i <output> -f null -` decode check before delivery.

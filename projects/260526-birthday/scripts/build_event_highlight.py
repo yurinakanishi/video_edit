@@ -32,13 +32,21 @@ YUNET_MODEL_URL = "https://github.com/opencv/opencv_zoo/raw/main/models/face_det
 YUNET_MODEL_RELATIVE_PATH = Path("output") / "models" / "face_detection_yunet_2023mar.onnx"
 YUNET_FACE_SCORE_THRESHOLD = 0.78
 BACKGROUND_AUDIO_FADE_SECONDS = 5.0
-FINAL_STILL_DURATION_MULTIPLIER = 3
-FINAL_STILL_FADE_SECONDS = 5.0 * FINAL_STILL_DURATION_MULTIPLIER
+FINAL_STILL_FADE_SECONDS = 2.0
+INTRO_TITLE_TEXT_APPEAR_START_SECONDS = 0.45
+INTRO_TITLE_TEXT_FADE_IN_SECONDS = 0.65
+INTRO_TITLE_TEXT_HOLD_SECONDS = 0.75
+INTRO_TITLE_TEXT_FADE_OUT_SECONDS = 0.85
+INTRO_TITLE_IMAGE_REVEAL_START_SECONDS = 3.05
+INTRO_TITLE_IMAGE_REVEAL_SECONDS = 1.35
+INTRO_IMAGE_FADE_IN_SECONDS = 1.5
 AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.15
 AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER = 2.0
 AUDIO_FOCUS_ORIGINAL_VOLUME_MAX = 1.0
 AUDIO_FOCUS_TRANSITION_SECONDS = 1.0
 AUDIO_FOCUS_MERGE_GAP_SECONDS = 0.05
+VISUAL_IMAGE_DISSOLVE_SECONDS = 0.65
+VISUAL_IMAGE_DISSOLVE_MAX_FRACTION = 0.30
 PORTRAIT_LETTERBOX_FADE_SECONDS = 0.45
 PORTRAIT_LETTERBOX_ZOOM_AMOUNT = 0.032
 MIN_VARIABLE_VIDEO_SECONDS = 12.0
@@ -196,24 +204,6 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "move-after-st729-video022-removed",
     },
     {
-        "imageStem": "st-616",
-        "mode": "after-image",
-        "targetStem": "st-625",
-        "placement": "move-out-of-seven-minute-cluster",
-    },
-    {
-        "imageStem": "st-627",
-        "mode": "before-image",
-        "targetStem": "st-616",
-        "placement": "move-before-st616",
-    },
-    {
-        "imageStem": "st-736",
-        "mode": "after-image",
-        "targetStem": "st-627",
-        "placement": "move-before-st616",
-    },
-    {
         "imageStem": "st-686",
         "mode": "after-image",
         "targetStem": "st-723",
@@ -346,17 +336,21 @@ DEFAULT_EXCLUDED_IMAGE_STEMS = {
     "st-604",
     "st-610",
     "st-614",
+    "st-616",
+    "st-617",
+    "st-621",
+    "st-624",
     "st-676",
     "st-641",
     "st-641w",
+    "dji_20000104170445_0011_d_t004_5",
 }
-MANUAL_ONE_MINUTE_IMAGE_STEMS = {"st-621", "st-709"}
-MANUAL_ONE_MINUTE_IMAGE_ORDER = ["st-621", "st-709"]
+MANUAL_ONE_MINUTE_IMAGE_STEMS = {"st-709"}
+MANUAL_ONE_MINUTE_IMAGE_ORDER = ["st-709"]
 MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_STEMS = {"st-608"}
 MANUAL_FIVE_TO_SEVEN_MINUTE_IMAGE_ORDER = ["st-608"]
 MANUAL_AFTER_ST738_IMAGE_STEMS = {"st-737"}
 MANUAL_EARLY_IMAGE_STEMS = {
-    "dji_20000104170445_0011_d_t004_5",
     "st-628",
     "st-638",
     "st-701",
@@ -365,7 +359,6 @@ MANUAL_EARLY_IMAGE_STEMS = {
     "st-735",
 }
 MANUAL_EARLY_IMAGE_ORDER = [
-    "dji_20000104170445_0011_d_t004_5",
     "st-638",
     "st-628",
     "st-701",
@@ -373,10 +366,10 @@ MANUAL_EARLY_IMAGE_ORDER = [
     "st-736",
     "st-735",
 ]
-MANUAL_EARLY_IMAGE_TARGET_SECONDS = [45.0, 70.0, 75.0, 80.0, 85.0, 245.0, 250.0, 255.0]
-MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-617", "st-618", "st-625"}
-MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-617", "st-601", "st-625", "st-618"]
-MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [335.0, 405.0, 555.0, 590.0]
+MANUAL_EARLY_IMAGE_TARGET_SECONDS = [70.0, 75.0, 80.0, 85.0, 245.0, 250.0]
+MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-618", "st-625"}
+MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-601", "st-625", "st-618"]
+MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [405.0, 555.0, 590.0]
 MANUAL_LATE_IMAGE_STEMS = {"st-686", "st-723", "st-634", "st-690", "st-667", "st-670"}
 MANUAL_LATE_IMAGE_ORDER = ["st-686", "st-723", "st-634", "st-690", "st-667", "st-670"]
 MANUAL_LATE_IMAGE_TARGET_SECONDS = [380.0, 385.0, 430.0, 510.0, 550.0, 625.0]
@@ -401,13 +394,11 @@ REQUIRED_IMAGE_STEM_PRIORITY = {
     "st-707": 94,
     "st-738": 90,
     "st-737": 89,
-    "st-621": 88,
     "st-709": 87,
     "st-638": 86,
     "st-608": 85,
     "st-682": 84,
     "st-713": 83,
-    "dji_20000104170445_0011_d_t004_5": 82,
     "st-628": 81,
     "st-701": 80,
     "st-702": 79,
@@ -1488,8 +1479,6 @@ def background_audio_report_with_focus(
 
 
 def image_clip_frames(item: MediaItem, base_image_frames: int) -> int:
-    if item.analysis.get("imageRole") == "final-fade":
-        return base_image_frames * 2 * FINAL_STILL_DURATION_MULTIPLIER
     return base_image_frames
 
 
@@ -1846,6 +1835,8 @@ def prepare_special_image_sequence(images: list[MediaItem]) -> list[MediaItem]:
     for image in images:
         image.analysis.pop("imageRole", None)
         image.analysis.pop("titleOverlay", None)
+        image.analysis.pop("introFadeInFromWhite", None)
+        image.analysis.pop("introFadeInSeconds", None)
     ordered: list[MediaItem] = []
     if title is not None:
         title.analysis["imageRole"] = "title-card"
@@ -2521,15 +2512,61 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
     apply_manual_video_clip_adjacencies(sequence)
     apply_manual_image_relocations(sequence)
     ensure_minimum_two_images_between_videos(sequence)
-    time_cursor_frames = 0
-    for item in sequence:
-        if item.clip_frames <= 0:
-            item.clip_frames = max(1, int(math.floor(item.clip_duration * TARGET_FPS + 0.5)))
-            item.clip_duration = round(item.clip_frames / TARGET_FPS, 6)
-        item.timeline_start = round(time_cursor_frames / TARGET_FPS, 6)
-        time_cursor_frames += item.clip_frames
-        item.timeline_end = round(time_cursor_frames / TARGET_FPS, 6)
+    assign_visual_transition_timeline(sequence)
     return sequence
+
+
+def media_clip_frames(item: MediaItem) -> int:
+    if item.clip_frames <= 0:
+        item.clip_frames = max(1, int(math.floor(item.clip_duration * TARGET_FPS + 0.5)))
+        item.clip_duration = round(item.clip_frames / TARGET_FPS, 6)
+    return max(1, item.clip_frames)
+
+
+def visual_dissolve_frames(previous: MediaItem, current: MediaItem) -> int:
+    if previous.kind != "image" and current.kind != "image":
+        return 0
+    requested = max(1, int(round(VISUAL_IMAGE_DISSOLVE_SECONDS * TARGET_FPS)))
+    shortest = min(media_clip_frames(previous), media_clip_frames(current))
+    maximum = max(0, int(math.floor(shortest * VISUAL_IMAGE_DISSOLVE_MAX_FRACTION)))
+    return min(requested, maximum)
+
+
+def visual_transition_report(sequence: list[MediaItem]) -> list[dict[str, Any]]:
+    transitions: list[dict[str, Any]] = []
+    for index in range(1, len(sequence)):
+        frames = visual_dissolve_frames(sequence[index - 1], sequence[index])
+        if frames <= 0:
+            continue
+        duration = frames / TARGET_FPS
+        transitions.append(
+            {
+                "type": "dissolve",
+                "transition": "fade",
+                "fromIndex": index,
+                "toIndex": index + 1,
+                "fromSourceLabel": source_display_name(sequence[index - 1]),
+                "toSourceLabel": source_display_name(sequence[index]),
+                "timelineStart": round(sequence[index].timeline_start, 6),
+                "timelineEnd": round(sequence[index].timeline_start + duration, 6),
+                "duration": round(duration, 6),
+                "durationFrames": frames,
+                "reason": "image-boundary",
+            }
+        )
+    return transitions
+
+
+def assign_visual_transition_timeline(sequence: list[MediaItem]) -> None:
+    time_cursor_frames = 0
+    for index, item in enumerate(sequence):
+        if index > 0:
+            time_cursor_frames -= visual_dissolve_frames(sequence[index - 1], item)
+            time_cursor_frames = max(0, time_cursor_frames)
+        frames = media_clip_frames(item)
+        item.timeline_start = round(time_cursor_frames / TARGET_FPS, 6)
+        time_cursor_frames += frames
+        item.timeline_end = round(time_cursor_frames / TARGET_FPS, 6)
 
 
 def look_filter(item: MediaItem) -> str:
@@ -2586,6 +2623,11 @@ def source_label_filter(item: MediaItem, width: int) -> str:
 
 def continuous_progress(value: float) -> float:
     return clamp(value, 0.0, 1.0)
+
+
+def smoothstep_value(value: float) -> float:
+    progress = clamp(value, 0.0, 1.0)
+    return progress * progress * (3.0 - 2.0 * progress)
 
 
 def image_motion_centers(item: MediaItem, sequence_index: int) -> tuple[tuple[float, float], tuple[float, float]]:
@@ -2769,6 +2811,72 @@ def draw_title_overlay(frame: np.ndarray, overlay: dict[str, Any]) -> np.ndarray
     return cv2.cvtColor(np.array(composited), cv2.COLOR_RGB2BGR)
 
 
+def draw_intro_title_frame(
+    width: int,
+    height: int,
+    progress: float,
+    overlay: dict[str, Any],
+    background_frame: np.ndarray | None = None,
+) -> np.ndarray:
+    if background_frame is None:
+        image = Image.new("RGB", (width, height), (255, 255, 255))
+    else:
+        reveal_start = INTRO_TITLE_IMAGE_REVEAL_START_SECONDS / 5.0
+        reveal_duration = max(1e-6, INTRO_TITLE_IMAGE_REVEAL_SECONDS / 5.0)
+        reveal_progress = smoothstep_value((progress - reveal_start) / reveal_duration)
+        revealed = apply_linear_fade_to_white(background_frame, reveal_progress)
+        image = Image.fromarray(cv2.cvtColor(revealed, cv2.COLOR_BGR2RGB))
+    layer = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
+
+    title = str(overlay.get("title") or "Birthday")
+    date = str(overlay.get("date") or "2026.05.26")
+    title_font_path = Path(r"C:\Windows\Fonts\segoeuib.ttf")
+    date_font_path = Path(r"C:\Windows\Fonts\segoeui.ttf")
+    title_size_px = max(78, round(width * 0.145))
+    date_size_px = max(28, round(width * 0.050))
+    try:
+        title_font = ImageFont.truetype(str(title_font_path), title_size_px)
+        date_font = ImageFont.truetype(str(date_font_path), date_size_px)
+    except OSError:
+        title_font = ImageFont.load_default()
+        date_font = ImageFont.load_default()
+
+    text_start = INTRO_TITLE_TEXT_APPEAR_START_SECONDS / 5.0
+    fade_in_duration = max(1e-6, INTRO_TITLE_TEXT_FADE_IN_SECONDS / 5.0)
+    hold_end = (
+        INTRO_TITLE_TEXT_APPEAR_START_SECONDS
+        + INTRO_TITLE_TEXT_FADE_IN_SECONDS
+        + INTRO_TITLE_TEXT_HOLD_SECONDS
+    ) / 5.0
+    fade_out_duration = max(1e-6, INTRO_TITLE_TEXT_FADE_OUT_SECONDS / 5.0)
+    fade_in_alpha = smoothstep_value((progress - text_start) / fade_in_duration)
+    fade_out_alpha = 1.0 - smoothstep_value((progress - hold_end) / fade_out_duration)
+    alpha = int(round(235 * clamp(fade_in_alpha * fade_out_alpha, 0.0, 1.0)))
+    title_fill = (84, 65, 58, alpha)
+    date_fill = (132, 104, 96, max(0, int(round(alpha * 0.86))))
+
+    title_bbox = draw.textbbox((0, 0), title, font=title_font)
+    date_bbox = draw.textbbox((0, 0), date, font=date_font)
+    title_w = title_bbox[2] - title_bbox[0]
+    title_h = title_bbox[3] - title_bbox[1]
+    date_w = date_bbox[2] - date_bbox[0]
+    date_h = date_bbox[3] - date_bbox[1]
+    gap = max(20, round(height * 0.045))
+    block_h = title_h + gap + date_h
+    title_x = (width - title_w) / 2.0 - title_bbox[0]
+    title_y = (height - block_h) / 2.0 - title_bbox[1]
+    date_x = (width - date_w) / 2.0 - date_bbox[0]
+    date_y = title_y + title_bbox[1] + title_h + gap - date_bbox[1]
+
+    if alpha > 0:
+        draw.text((title_x, title_y), title, font=title_font, fill=title_fill)
+        draw.text((date_x, date_y), date, font=date_font, fill=date_fill)
+
+    composited = Image.alpha_composite(image.convert("RGBA"), layer).convert("RGB")
+    return cv2.cvtColor(np.array(composited), cv2.COLOR_RGB2BGR)
+
+
 def draw_source_label(frame: np.ndarray, label: str) -> np.ndarray:
     if not label:
         return frame
@@ -2810,6 +2918,10 @@ def apply_linear_fade_to_black(frame: np.ndarray, progress: float) -> np.ndarray
     return np.clip(frame.astype(np.float32) * factor, 0, 255).astype(np.uint8)
 
 
+def apply_linear_fade_to_white_out(frame: np.ndarray, progress: float) -> np.ndarray:
+    return apply_linear_fade_to_white(frame, 1.0 - clamp(progress, 0.0, 1.0))
+
+
 def render_image_segment_smooth(
     index: int,
     item: MediaItem,
@@ -2835,8 +2947,8 @@ def render_image_segment_smooth(
     else:
         motion_mode = "zoom-in" if index % 2 == 0 else "zoom-out"
     image = open_image_bgr(item.path)
-    portrait_letterbox = should_render_portrait_letterbox(item, image)
-    video_filter_chain = "format=yuv420p" if portrait_letterbox else f"{look_filter(item)},format=yuv420p"
+    portrait_letterbox = False if image_role == "title-card" else should_render_portrait_letterbox(item, image)
+    video_filter_chain = "format=yuv420p" if image_role == "title-card" or portrait_letterbox else f"{look_filter(item)},format=yuv420p"
     command = [
         str(ffmpeg),
         "-hide_banner",
@@ -2908,7 +3020,25 @@ def render_image_segment_smooth(
         for frame_index in range(total_frames):
             progress = frame_index / max(total_frames - 1, 1)
             frame_progress = 0.0 if image_role in {"title-card", "final-fade"} else progress
-            if portrait_letterbox:
+            if image_role == "title-card":
+                overlay = item.analysis.get("titleOverlay") if isinstance(item.analysis, dict) else {}
+                title_background = render_ken_burns_frame(
+                    image,
+                    width=width,
+                    height=height,
+                    progress=0.0,
+                    start_center=start_center,
+                    end_center=end_center,
+                    motion_mode="none",
+                )
+                frame = draw_intro_title_frame(
+                    width,
+                    height,
+                    progress,
+                    overlay if isinstance(overlay, dict) else {},
+                    title_background,
+                )
+            elif portrait_letterbox:
                 frame = render_portrait_letterbox_frame(
                     image,
                     width=width,
@@ -2928,14 +3058,16 @@ def render_image_segment_smooth(
                     end_center=end_center,
                     motion_mode=motion_mode,
                 )
-            if image_role == "title-card":
-                overlay = item.analysis.get("titleOverlay") if isinstance(item.analysis, dict) else {}
-                frame = draw_title_overlay(frame, overlay if isinstance(overlay, dict) else {})
-            elif image_role == "final-fade":
+            if image_role == "final-fade":
                 elapsed = frame_index / fps
                 fade_seconds = min(FINAL_STILL_FADE_SECONDS, duration)
                 fade_progress = clamp((elapsed - max(0.0, duration - fade_seconds)) / fade_seconds, 0.0, 1.0)
-                frame = apply_linear_fade_to_black(frame, fade_progress)
+                frame = apply_linear_fade_to_white_out(frame, smoothstep_value(fade_progress))
+            elif item.analysis.get("introFadeInFromWhite") if isinstance(item.analysis, dict) else False:
+                elapsed = frame_index / fps
+                fade_seconds = min(float(item.analysis.get("introFadeInSeconds") or INTRO_IMAGE_FADE_IN_SECONDS), duration)
+                fade_progress = smoothstep_value(elapsed / max(1e-6, fade_seconds))
+                frame = apply_linear_fade_to_white(frame, fade_progress)
             if show_source_label:
                 frame = draw_source_label(frame, source_display_name(item))
             proc.stdin.write(frame.tobytes())
@@ -3344,6 +3476,9 @@ def concat_segments_exact(
 ) -> list[Path]:
     output.parent.mkdir(parents=True, exist_ok=True)
     groups_dir.mkdir(parents=True, exist_ok=True)
+    has_visual_transitions = any(visual_dissolve_frames(sequence[index - 1], sequence[index]) > 0 for index in range(1, len(sequence)))
+    if has_visual_transitions:
+        group_size = max(group_size, len(segment_paths))
     group_paths: list[Path] = []
     for group_index, start in enumerate(range(0, len(segment_paths), group_size), start=1):
         chunk_paths = segment_paths[start : start + group_size]
@@ -3355,23 +3490,54 @@ def concat_segments_exact(
 
         inputs: list[str] = []
         pre_filters: list[str] = []
-        concat_inputs: list[str] = []
+        durations: list[float] = []
         for input_index, (path, item) in enumerate(zip(chunk_paths, chunk_items)):
             inputs.extend(["-i", str(path)])
-            frames = max(1, item.clip_frames or int(math.floor(item.clip_duration * TARGET_FPS + 0.5)))
+            frames = media_clip_frames(item)
             duration = frames / TARGET_FPS
-            pre_filters.append(f"[{input_index}:v:0]trim=end_frame={frames},setpts=PTS-STARTPTS[v{input_index}]")
+            durations.append(duration)
+            pre_filters.append(
+                f"[{input_index}:v:0]trim=end_frame={frames},setpts=PTS-STARTPTS,"
+                f"fps={TARGET_FPS},format=yuv420p[v{input_index}]"
+            )
             pre_filters.append(
                 f"[{input_index}:a:0]atrim=duration={duration:.9f},asetpts=PTS-STARTPTS[a{input_index}]"
             )
-            concat_inputs.append(f"[v{input_index}][a{input_index}]")
+
+        current_v = "v0"
+        current_a = "a0"
+        current_duration = durations[0] if durations else 0.0
+        for local_index in range(1, len(chunk_paths)):
+            previous_item = chunk_items[local_index - 1]
+            current_item = chunk_items[local_index]
+            transition_frames = visual_dissolve_frames(previous_item, current_item)
+            next_v = f"vx{local_index}"
+            next_a = f"ax{local_index}"
+            if transition_frames > 0:
+                transition_duration = transition_frames / TARGET_FPS
+                offset = max(0.0, current_duration - transition_duration)
+                pre_filters.append(
+                    f"[{current_v}][v{local_index}]xfade=transition=fade:"
+                    f"duration={transition_duration:.9f}:offset={offset:.9f}[{next_v}]"
+                )
+                pre_filters.append(
+                    f"[{current_a}][a{local_index}]acrossfade=d={transition_duration:.9f}:c1=tri:c2=tri[{next_a}]"
+                )
+                current_duration += durations[local_index] - transition_duration
+            else:
+                pre_filters.append(
+                    f"[{current_v}][{current_a}][v{local_index}][a{local_index}]"
+                    f"concat=n=2:v=1:a=1[{next_v}][{next_a}]"
+                )
+                current_duration += durations[local_index]
+            current_v = next_v
+            current_a = next_a
+
         filter_complex = (
             ";".join(pre_filters)
             + ";"
-            + "".join(concat_inputs)
-            + f"concat=n={len(chunk_paths)}:v=1:a=1[vc][ac];"
-            + f"[vc]fps={TARGET_FPS},setpts=N/({TARGET_FPS}*TB),format=yuv420p[v];"
-            + "[ac]aresample=48000:async=1:first_pts=0[a]"
+            + f"[{current_v}]fps={TARGET_FPS},setpts=N/({TARGET_FPS}*TB),format=yuv420p[v];"
+            + f"[{current_a}]aresample=48000:async=1:first_pts=0[a]"
         )
         command = [
             str(ffmpeg),
@@ -3570,6 +3736,14 @@ def write_timeline_report(
         "backgroundAudio": background_audio or {},
         "excludedVideoStems": sorted(excluded_video_stems or []),
         "excludedImageStems": sorted(excluded_image_stems or []),
+        "visualTransitionPolicy": {
+            "enabled": True,
+            "transition": "dissolve",
+            "appliesTo": "boundaries where either side is a still image",
+            "targetDurationSeconds": VISUAL_IMAGE_DISSOLVE_SECONDS,
+            "maxFractionOfShorterClip": VISUAL_IMAGE_DISSOLVE_MAX_FRACTION,
+        },
+        "visualTransitions": visual_transition_report(sequence),
         "segmentResults": segment_results,
         "media": [
             {

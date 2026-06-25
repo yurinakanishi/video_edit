@@ -1,0 +1,60 @@
+{
+  "video": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
+  "duration": 433.183,
+  "sourceFps": 59.94005994005994,
+  "sampleStepFrames": 10,
+  "actualSampleFps": 5.9940059940059935,
+  "sampleCount": 2597,
+  "metric": "feature-tracked affine camera motion high-frequency residual; sliding 120s window score",
+  "windowSeconds": 120.0,
+  "bestWindow": {
+    "start": 302.469,
+    "end": 422.255,
+    "score": 13.21699,
+    "meanResidual": 4.46545,
+    "p90Residual": 7.94595,
+    "p95RawMotion": 22.82352
+  },
+  "topWindows": [
+    {
+      "start": 302.469,
+      "end": 422.255,
+      "score": 13.21699,
+      "meanResidual": 4.46545,
+      "p90Residual": 7.94595,
+      "p95RawMotion": 22.82352
+    },
+    {
+      "start": 48.215,
+      "end": 168.001,
+      "score": 10.80894,
+      "meanResidual": 2.9921,
+      "p90Residual": 7.17321,
+      "p95RawMotion": 19.04227
+    },
+    {
+      "start": 158.325,
+      "end": 278.111,
+      "score": 10.16258,
+      "meanResidual": 3.84173,
+      "p90Residual": 6.1779,
+      "p95RawMotion": 13.09548
+    }
+  ],
+  "bestWindowMidpointInCurrentUsedRanges": [],
+  "currentUsedRanges": [
+    [
+      1.0,
+      87.0
+    ],
+    [
+      131.0,
+      177.0
+    ],
+    [
+      184.0,
+      356.0
+    ]
+  ],
+  "csv": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\stabilization_auto_detect_video006\\shake_samples.csv"
+}

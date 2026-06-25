@@ -3498,7 +3498,7 @@ def concat_segments_exact(
             durations.append(duration)
             pre_filters.append(
                 f"[{input_index}:v:0]trim=end_frame={frames},setpts=PTS-STARTPTS,"
-                f"fps={TARGET_FPS},format=yuv420p[v{input_index}]"
+                f"fps={TARGET_FPS},settb=AVTB,setpts=PTS-STARTPTS,format=yuv420p[v{input_index}]"
             )
             pre_filters.append(
                 f"[{input_index}:a:0]atrim=duration={duration:.9f},asetpts=PTS-STARTPTS[a{input_index}]"
@@ -3516,19 +3516,31 @@ def concat_segments_exact(
             if transition_frames > 0:
                 transition_duration = transition_frames / TARGET_FPS
                 offset = max(0.0, current_duration - transition_duration)
+                left_v = f"vxl{local_index}"
+                right_v = f"vxr{local_index}"
+                raw_next_v = f"vxraw{local_index}"
+                pre_filters.append(f"[{current_v}]fps={TARGET_FPS},settb=AVTB,setpts=PTS-STARTPTS,format=yuv420p[{left_v}]")
+                pre_filters.append(f"[v{local_index}]fps={TARGET_FPS},settb=AVTB,setpts=PTS-STARTPTS,format=yuv420p[{right_v}]")
                 pre_filters.append(
-                    f"[{current_v}][v{local_index}]xfade=transition=fade:"
-                    f"duration={transition_duration:.9f}:offset={offset:.9f}[{next_v}]"
+                    f"[{left_v}][{right_v}]xfade=transition=fade:"
+                    f"duration={transition_duration:.9f}:offset={offset:.9f}[{raw_next_v}]"
                 )
+                pre_filters.append(f"[{raw_next_v}]fps={TARGET_FPS},settb=AVTB,setpts=PTS-STARTPTS,format=yuv420p[{next_v}]")
+                raw_next_a = f"axraw{local_index}"
                 pre_filters.append(
-                    f"[{current_a}][a{local_index}]acrossfade=d={transition_duration:.9f}:c1=tri:c2=tri[{next_a}]"
+                    f"[{current_a}][a{local_index}]acrossfade=d={transition_duration:.9f}:c1=tri:c2=tri[{raw_next_a}]"
                 )
+                pre_filters.append(f"[{raw_next_a}]asetpts=PTS-STARTPTS[{next_a}]")
                 current_duration += durations[local_index] - transition_duration
             else:
+                raw_next_v = f"vxraw{local_index}"
+                raw_next_a = f"axraw{local_index}"
                 pre_filters.append(
                     f"[{current_v}][{current_a}][v{local_index}][a{local_index}]"
-                    f"concat=n=2:v=1:a=1[{next_v}][{next_a}]"
+                    f"concat=n=2:v=1:a=1[{raw_next_v}][{raw_next_a}]"
                 )
+                pre_filters.append(f"[{raw_next_v}]fps={TARGET_FPS},settb=AVTB,setpts=PTS-STARTPTS,format=yuv420p[{next_v}]")
+                pre_filters.append(f"[{raw_next_a}]asetpts=PTS-STARTPTS[{next_a}]")
                 current_duration += durations[local_index]
             current_v = next_v
             current_a = next_a
@@ -3539,6 +3551,8 @@ def concat_segments_exact(
             + f"[{current_v}]fps={TARGET_FPS},setpts=N/({TARGET_FPS}*TB),format=yuv420p[v];"
             + f"[{current_a}]aresample=48000:async=1:first_pts=0[a]"
         )
+        filter_script_path = group_output.with_suffix(".filter_complex.txt")
+        filter_script_path.write_text(filter_complex, encoding="utf-8")
         command = [
             str(ffmpeg),
             "-hide_banner",
@@ -3547,8 +3561,8 @@ def concat_segments_exact(
             "-nostdin",
             "-y",
             *inputs,
-            "-filter_complex",
-            filter_complex,
+            "-filter_complex_script",
+            str(filter_script_path),
             "-map",
             "[v]",
             "-map",

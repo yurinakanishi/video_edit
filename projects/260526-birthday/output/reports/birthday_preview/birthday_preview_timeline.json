@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-06-25T02:54:41Z",
+  "createdAt": "2026-06-25T04:37:52Z",
   "projectRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday",
   "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview.mp4",
   "duration": 1469.75,
@@ -13,7 +13,63 @@
   ],
   "concatFile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\birthday_preview.concat.txt",
   "selectionReport": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\birthday_preview\\birthday_preview_image_selection.json",
-  "backgroundAudio": {},
+  "backgroundAudio": {
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\audio\\audio_001_優しい気持ち.mp3",
+    "duration": 106.018,
+    "musicVolume": 0.24,
+    "originalVolume": 0.5,
+    "fadeInSeconds": 5.0,
+    "fadeOutSeconds": 5.0,
+    "focusMode": "all-video-segments",
+    "focusMusicVolumeMultiplier": 0.15,
+    "focusOriginalVolumeMultiplier": 2.0,
+    "focusOriginalVolumeMax": 1.0,
+    "focusTransitionSeconds": 1.0,
+    "focusMergeGapSeconds": 0.05,
+    "focusCurve": "smoothstep",
+    "focusIntervals": [
+      {
+        "timelineStart": 39.0,
+        "timelineEnd": 206.0,
+        "sourceLabel": "video_001_DJI_20000104161921_0006_D_clip_387_554.MP4"
+      },
+      {
+        "timelineStart": 227.0,
+        "timelineEnd": 374.0,
+        "sourceLabel": "video_001_DJI_20000104161921_0006_D_clip_038_113.MP4 + video_001_DJI_20000104161921_0006_D_clip_139_211.MP4"
+      },
+      {
+        "timelineStart": 386.333,
+        "timelineEnd": 443.333,
+        "sourceLabel": "video_002_DJI_20000104164015_0007_D.MP4"
+      },
+      {
+        "timelineStart": 451.333,
+        "timelineEnd": 625.042,
+        "sourceLabel": "video_003_DJI_20000104171048_0015_D_clip_000_051.MP4 + video_003_DJI_20000104171048_0015_D_clip_054_end.MP4"
+      },
+      {
+        "timelineStart": 633.042,
+        "timelineEnd": 695.042,
+        "sourceLabel": "video_014_ST7_8341_clip_000_046.MP4 + video_014_ST7_8341_clip_217_233.MP4"
+      },
+      {
+        "timelineStart": 733.375,
+        "timelineEnd": 1037.375,
+        "sourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_087.MP4 + video_006_DJI_20000104172624_0018_D_clip_131_177.MP4 + video_006_DJI_20000104172624_0018_D_clip_184_356.MP4"
+      },
+      {
+        "timelineStart": 1080.042,
+        "timelineEnd": 1120.042,
+        "sourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4"
+      },
+      {
+        "timelineStart": 1136.708,
+        "timelineEnd": 1443.75,
+        "sourceLabel": "video_012_DJI_20000104181624_0030_D.MP4 + video_013_DJI_20000104181937_0031_D.MP4"
+      }
+    ]
+  },
   "excludedVideoStems": [
     "0875db90-5d21-463d-b4b0-9f0a19195ca2",
     "4e1e990e-0b3c-404c-9fb0-ef25073073ea",
@@ -796,7 +852,388 @@
       "reason": "image-boundary"
     }
   ],
-  "segmentResults": [],
+  "segmentResults": [
+    {
+      "index": 1,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0001_image_photo_042_ST-707.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 2,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0002_image_photo_014_ST-630.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 3,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0003_image_photo_034_ST-695.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 4,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0004_image_photo_036_ST-699.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 5,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0005_image_photo_037_ST-700.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 6,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0006_image_photo_040_ST-703.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 7,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0007_image_photo_055_ST-738.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 8,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0008_image_photo_054_ST-737.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 9,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0009_image_photo_043_ST-709.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 10,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0010_video_video_001_DJI_20000104161921_0006_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 11,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0011_image_photo_018_ST-638.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 12,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0012_image_photo_013_ST-628.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 13,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0013_image_photo_038_ST-701.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 14,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0014_image_photo_039_ST-702.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 15,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0015_image_photo_012_ST-627.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 16,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0016_video_video_001_DJI_20000104161921_0006_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 17,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0017_video_video_001_DJI_20000104161921_0006_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 18,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0018_image_photo_053_ST-736.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 19,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0019_image_photo_004_ST-608.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 20,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0020_image_photo_002_ST-601.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 21,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0021_video_video_002_DJI_20000104164015_0007_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 22,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0022_image_photo_008_ST-618.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 23,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0023_image_photo_017_ST-635.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 24,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0024_video_video_003_DJI_20000104171048_0015_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 25,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0025_video_video_003_DJI_20000104171048_0015_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 26,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0026_image_photo_011_ST-625.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 27,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0027_image_photo_030_ST-688.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 28,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0028_video_video_014_ST7_8341.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 29,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0029_video_video_014_ST7_8341.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 30,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0030_image_photo_052_ST-735.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 31,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0031_image_photo_024_ST-667.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 32,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0032_image_photo_016_ST-634.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 33,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0033_image_photo_015_ST-632.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 34,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0034_image_photo_027_ST-675.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 35,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0035_image_photo_025_ST-668.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 36,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0036_image_photo_026_ST-670.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 37,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0037_image_photo_020_ST-646.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 38,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0038_image_photo_021_ST-653.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 39,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0039_video_video_006_DJI_20000104172624_0018_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 40,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0040_video_video_006_DJI_20000104172624_0018_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 41,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0041_video_video_006_DJI_20000104172624_0018_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 42,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0042_image_photo_059_ST-677.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 43,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0043_image_photo_041_ST-706.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 44,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0044_image_photo_022_ST-661.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 45,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0045_image_photo_031_ST-690.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 46,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0046_image_photo_032_ST-693.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 47,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0047_image_photo_033_ST-694.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 48,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0048_image_photo_035_ST-697.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 49,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0049_image_photo_049_ST-729.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 50,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0050_image_photo_050_ST-730.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 51,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0051_image_photo_045_ST-715.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 52,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0052_video_video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 53,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0053_image_photo_019_ST-645.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 54,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0054_image_photo_058_ST-723.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 55,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0055_image_photo_057_ST-686.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 56,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0056_image_photo_051_ST-731.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 57,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0057_video_video_012_DJI_20000104181624_0030_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 58,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0058_video_video_013_DJI_20000104181937_0031_D.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 59,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0059_image_photo_029_ST-682.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 60,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0060_image_photo_044_ST-713.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 61,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0061_image_photo_048_ST-725.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 62,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0062_image_photo_023_ST-665.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 63,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0063_image_photo_047_ST-721.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 64,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview\\segment_0064_image_photo_046_ST-716.mp4",
+      "status": "reused"
+    },
+    {
+      "index": 65,
+      "kind": "group-concat",
+      "groups": [
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\birthday_preview_groups\\birthday_highlight_group_01.mp4"
+      ]
+    },
+    {
+      "index": 66,
+      "kind": "background-audio",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\audio\\audio_001_優しい気持ち.mp3",
+      "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview.mp4",
+      "focusIntervals": [
+        {
+          "timelineStart": 39.0,
+          "timelineEnd": 206.0,
+          "sourceLabel": "video_001_DJI_20000104161921_0006_D_clip_387_554.MP4"
+        },
+        {
+          "timelineStart": 227.0,
+          "timelineEnd": 374.0,
+          "sourceLabel": "video_001_DJI_20000104161921_0006_D_clip_038_113.MP4 + video_001_DJI_20000104161921_0006_D_clip_139_211.MP4"
+        },
+        {
+          "timelineStart": 386.333,
+          "timelineEnd": 443.333,
+          "sourceLabel": "video_002_DJI_20000104164015_0007_D.MP4"
+        },
+        {
+          "timelineStart": 451.333,
+          "timelineEnd": 625.042,
+          "sourceLabel": "video_003_DJI_20000104171048_0015_D_clip_000_051.MP4 + video_003_DJI_20000104171048_0015_D_clip_054_end.MP4"
+        },
+        {
+          "timelineStart": 633.042,
+          "timelineEnd": 695.042,
+          "sourceLabel": "video_014_ST7_8341_clip_000_046.MP4 + video_014_ST7_8341_clip_217_233.MP4"
+        },
+        {
+          "timelineStart": 733.375,
+          "timelineEnd": 1037.375,
+          "sourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_087.MP4 + video_006_DJI_20000104172624_0018_D_clip_131_177.MP4 + video_006_DJI_20000104172624_0018_D_clip_184_356.MP4"
+        },
+        {
+          "timelineStart": 1080.042,
+          "timelineEnd": 1120.042,
+          "sourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4"
+        },
+        {
+          "timelineStart": 1136.708,
+          "timelineEnd": 1443.75,
+          "sourceLabel": "video_012_DJI_20000104181624_0030_D.MP4 + video_013_DJI_20000104181937_0031_D.MP4"
+        }
+      ]
+    },
+    {
+      "index": 67,
+      "kind": "used-media-export",
+      "status": "skipped"
+    }
+  ],
   "media": [
     {
       "index": 1,

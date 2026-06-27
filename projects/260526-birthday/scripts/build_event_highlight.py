@@ -50,11 +50,6 @@ VISUAL_IMAGE_DISSOLVE_SECONDS = 0.65
 VISUAL_IMAGE_DISSOLVE_MAX_FRACTION = 0.30
 PORTRAIT_LETTERBOX_FADE_SECONDS = 0.45
 PORTRAIT_LETTERBOX_ZOOM_AMOUNT = 0.032
-GLOBAL_LOOK_CONTRAST = 0.985
-GLOBAL_LOOK_GAMMA = 1.010
-GLOBAL_LOOK_BRIGHTNESS_LIFT = 0.008
-GLOBAL_LOOK_SATURATION_BASE = 1.075
-PORTRAIT_IMAGE_WARM_SATURATION = 1.060
 MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES = ("insert-at-latest-full-", "single-between-split-video-")
 MIN_VARIABLE_VIDEO_SECONDS = 12.0
 MANUAL_IMAGE_RENDER_OVERRIDES: dict[str, dict[str, Any]] = {}
@@ -125,8 +120,14 @@ MANUAL_VIDEO_RANGE_CLIPS = {
         },
         {
             "sourceIn": 194.291667,
+            "sourceOut": 199.291667,
+            "labelSuffix": "clip_194_3_199_3",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 199.291667,
             "sourceOut": 228.291667,
-            "labelSuffix": "clip_194_3_228_3",
+            "labelSuffix": "clip_199_3_228_3",
             "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
         },
         {
@@ -286,8 +287,8 @@ MANUAL_IMAGE_RELOCATIONS = [
         "imageStem": "st-646",
         "mode": "after-video",
         "targetStem": "dji_20000104172624_0018_d",
-        "targetSuffix": "clip_048_3_082_3",
-        "placement": "insert-at-latest-full-13m40-video006-001-087",
+        "targetSuffix": "clip_082_3_087",
+        "placement": "insert-at-latest-full-13m39-after-immediate-following-video-cut",
     },
     {
         "imageStem": "st-653",
@@ -306,14 +307,14 @@ MANUAL_IMAGE_RELOCATIONS = [
         "imageStem": "st-661",
         "mode": "after-video",
         "targetStem": "dji_20000104172624_0018_d",
-        "targetSuffix": "clip_158_3_177",
-        "placement": "insert-at-latest-full-14m57-video006-177-184-cut",
+        "targetSuffix": "clip_194_3_199_3",
+        "placement": "insert-at-latest-full-14m50-video006-194-split",
     },
     {
         "imageStem": "st-665",
         "mode": "after-video",
         "targetStem": "dji_20000104172624_0018_d",
-        "targetSuffix": "clip_194_3_228_3",
+        "targetSuffix": "clip_199_3_228_3",
         "placement": "insert-at-latest-full-15m15-video006-184-356",
     },
     {
@@ -1459,10 +1460,19 @@ def resolve_background_audio(value: str | None, project_root: Path, ffprobe: Pat
     return candidate.resolve() if candidate.exists() else None
 
 
+def has_split_video_audio_focus_placement(item: MediaItem) -> bool:
+    if item.kind != "image":
+        return False
+    placement = item.analysis.get("manualPlacement") if isinstance(item.analysis, dict) else None
+    return isinstance(placement, str) and placement.startswith(MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES)
+
+
 def split_video_inserted_image_indices(sequence: list[MediaItem]) -> set[int]:
     indices: set[int] = set()
     for left_video_index, start, end, right_video_index in video_separated_image_runs(sequence):
         if media_stem(sequence[left_video_index]) != media_stem(sequence[right_video_index]):
+            continue
+        if not any(has_split_video_audio_focus_placement(sequence[index]) for index in range(start, end)):
             continue
         indices.update(range(start, end))
     return indices
@@ -2382,12 +2392,7 @@ def can_move_image_to_fill_video_gap(item: MediaItem) -> bool:
 
 
 def is_intentional_single_image_video_gap(item: MediaItem) -> bool:
-    if item.kind != "image":
-        return False
-    placement = item.analysis.get("manualPlacement") if isinstance(item.analysis, dict) else None
-    if not isinstance(placement, str):
-        return False
-    return placement.startswith(MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES)
+    return has_split_video_audio_focus_placement(item)
 
 
 def find_single_image_video_gap(sequence: list[MediaItem]) -> tuple[int, int] | None:
@@ -2778,22 +2783,7 @@ def assign_visual_transition_timeline(sequence: list[MediaItem]) -> None:
 
 
 def look_filter(item: MediaItem) -> str:
-    visual = item.analysis.get("visualAtSelection") or item.analysis.get("visual") or item.analysis.get("sampleSummary") or {}
-    brightness = float(visual.get("brightness") or visual.get("avgBrightness") or 0.50)
-    saturation = float(visual.get("saturation") or visual.get("avgSaturation") or 0.32)
-    warmth = float(visual.get("warmth") or visual.get("avgWarmth") or 0.0)
-    brightness_offset = clamp(GLOBAL_LOOK_BRIGHTNESS_LIFT + (0.52 - brightness) * 0.08, -0.012, 0.032)
-    saturation_value = clamp(GLOBAL_LOOK_SATURATION_BASE + (0.32 - saturation) * 0.10, 1.035, 1.145)
-    red_shadow = clamp(0.024 - warmth * 0.018, 0.006, 0.036)
-    blue_shadow = clamp(-0.026 - warmth * 0.010, -0.038, -0.012)
-    red_mid = clamp(0.012 - warmth * 0.010, 0.002, 0.020)
-    blue_mid = clamp(-0.010 - warmth * 0.006, -0.018, -0.004)
-    return (
-        f"eq=contrast={GLOBAL_LOOK_CONTRAST:.3f}:saturation={saturation_value:.4f}:"
-        f"brightness={brightness_offset:.5f}:gamma={GLOBAL_LOOK_GAMMA:.3f},"
-        f"colorbalance=rs={red_shadow:.5f}:gs=0.006:bs={blue_shadow:.5f}:"
-        f"rm={red_mid:.5f}:gm=0.003:bm={blue_mid:.5f}:rh=0.004:gh=0.000:bh=-0.004:pl=1"
-    )
+    return "null"
 
 
 def crop_expr(center: list[float]) -> tuple[str, str]:
@@ -2911,16 +2901,8 @@ def should_render_portrait_letterbox(item: MediaItem, image: np.ndarray) -> bool
     return True
 
 
-def apply_warm_bgr_grade(image: np.ndarray) -> np.ndarray:
-    graded = image.astype(np.float32)
-    graded[:, :, 2] *= 1.026
-    graded[:, :, 1] *= 1.004
-    graded[:, :, 0] *= 0.986
-    graded = np.clip(graded, 0, 255).astype(np.uint8)
-    hsv = cv2.cvtColor(graded, cv2.COLOR_BGR2HSV).astype(np.float32)
-    hsv[:, :, 1] = np.clip(hsv[:, :, 1] * PORTRAIT_IMAGE_WARM_SATURATION, 0, 255)
-    hsv[:, :, 2] = np.clip((hsv[:, :, 2] - 128.0) * GLOBAL_LOOK_CONTRAST + 130.0, 0, 255)
-    return cv2.cvtColor(hsv.astype(np.uint8), cv2.COLOR_HSV2BGR)
+def preserve_source_bgr_colors(image: np.ndarray) -> np.ndarray:
+    return image
 
 
 def render_portrait_letterbox_frame(
@@ -2944,7 +2926,7 @@ def render_portrait_letterbox_frame(
     resized_width = max(1, int(round(source_width * scale)))
     resized_height = max(height, int(round(source_height * scale)))
     resized = cv2.resize(image, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
-    resized = apply_warm_bgr_grade(resized)
+    resized = preserve_source_bgr_colors(resized)
     frame = np.full((height, width, 3), 255, dtype=np.uint8)
     if resized_height > height:
         crop_y = (resized_height - height) // 2
@@ -3256,7 +3238,7 @@ def render_image_segment_smooth(
                     end_center=end_center,
                     motion_mode="none",
                 )
-                title_background = apply_warm_bgr_grade(title_background)
+                title_background = preserve_source_bgr_colors(title_background)
                 frame = draw_intro_title_frame(
                     width,
                     height,
@@ -3344,7 +3326,8 @@ def render_image_segment_smooth(
 
 
 def segment_output_path(segments_dir: Path, index: int, item: MediaItem) -> Path:
-    return segments_dir / f"segment_{index:04d}_{item.kind}_{safe_stem(Path(item.relative).stem)[:60]}.mp4"
+    source_name = Path(source_display_name(item)).stem
+    return segments_dir / f"segment_{index:04d}_{item.kind}_{safe_stem(source_name)[:72]}.mp4"
 
 
 def remove_matching_files(directory: Path, patterns: list[str]) -> int:
@@ -3702,17 +3685,32 @@ def concat_segments_exact(
 ) -> list[Path]:
     output.parent.mkdir(parents=True, exist_ok=True)
     groups_dir.mkdir(parents=True, exist_ok=True)
-    has_visual_transitions = any(visual_dissolve_frames(sequence[index - 1], sequence[index]) > 0 for index in range(1, len(sequence)))
-    if has_visual_transitions:
-        group_size = max(group_size, len(segment_paths))
+    group_ranges: list[tuple[int, int]] = []
+    start_index = 0
+    while start_index < len(segment_paths):
+        target_end = min(len(segment_paths), start_index + group_size)
+        if target_end >= len(segment_paths):
+            end_index = len(segment_paths)
+        else:
+            safe_split = None
+            for candidate in range(target_end, start_index, -1):
+                if visual_dissolve_frames(sequence[candidate - 1], sequence[candidate]) == 0:
+                    safe_split = candidate
+                    break
+            if safe_split is None:
+                for candidate in range(target_end + 1, len(segment_paths)):
+                    if visual_dissolve_frames(sequence[candidate - 1], sequence[candidate]) == 0:
+                        safe_split = candidate
+                        break
+            end_index = safe_split if safe_split is not None and safe_split > start_index else len(segment_paths)
+        group_ranges.append((start_index, end_index))
+        start_index = end_index
     group_paths: list[Path] = []
-    for group_index, start in enumerate(range(0, len(segment_paths), group_size), start=1):
-        chunk_paths = segment_paths[start : start + group_size]
-        chunk_items = sequence[start : start + group_size]
+    for group_index, (start, end) in enumerate(group_ranges, start=1):
+        chunk_paths = segment_paths[start:end]
+        chunk_items = sequence[start:end]
         group_output = groups_dir / f"birthday_highlight_group_{group_index:02d}.mp4"
         group_paths.append(group_output)
-        if group_output.exists() and group_output.stat().st_size > 0 and not force:
-            continue
 
         inputs: list[str] = []
         pre_filters: list[str] = []

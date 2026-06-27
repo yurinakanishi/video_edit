@@ -1,0 +1,169 @@
+{
+  "newFiltered": {
+    "samples": 293,
+    "anyClipPct": {
+      "mean": 0.356749436438714,
+      "p95": 1.1072530864197532,
+      "max": 1.9112654320987652
+    },
+    "whiteClipPct": {
+      "mean": 0.1011019729911937,
+      "p95": 0.3966049382716049,
+      "max": 0.9729938271604939
+    },
+    "redClipPct": {
+      "mean": 0.16162819175831122,
+      "p95": 0.5613425925925919,
+      "max": 1.802662037037037
+    },
+    "redDominantClipPct": {
+      "mean": 0.04768018160367421,
+      "p95": 0.20910493827160492,
+      "max": 1.0092592592592593
+    },
+    "redDominantClipWithinRedPct": {
+      "mean": 0.339017436512702,
+      "p95": 1.361074767422506,
+      "max": 3.9888682745825603
+    },
+    "worstRed": [
+      {
+        "whiteClipPct": 0.02160493827160494,
+        "redClipPct": 1.619598765432099,
+        "redDominantClipPct": 1.0092592592592593,
+        "redDominantClipWithinRedPct": 3.8542486022236866,
+        "anyClipPct": 1.619598765432099,
+        "time": 955
+      },
+      {
+        "whiteClipPct": 0.2808641975308642,
+        "redClipPct": 1.802662037037037,
+        "redDominantClipPct": 0.9762731481481481,
+        "redDominantClipWithinRedPct": 3.276097974600605,
+        "anyClipPct": 1.9112654320987652,
+        "time": 960
+      },
+      {
+        "whiteClipPct": 0.019290123456790122,
+        "redClipPct": 1.060956790123457,
+        "redDominantClipPct": 0.39178240740740744,
+        "redDominantClipWithinRedPct": 2.0061178148516525,
+        "anyClipPct": 1.0621141975308641,
+        "time": 950
+      },
+      {
+        "whiteClipPct": 0.03896604938271605,
+        "redClipPct": 1.1059027777777777,
+        "redDominantClipPct": 0.3464506172839506,
+        "redDominantClipWithinRedPct": 2.8226950354609928,
+        "anyClipPct": 1.1068672839506173,
+        "time": 940
+      },
+      {
+        "whiteClipPct": 0.02546296296296296,
+        "redClipPct": 0.42091049382716056,
+        "redDominantClipPct": 0.32523148148148145,
+        "redDominantClipWithinRedPct": 3.8980969920196435,
+        "anyClipPct": 0.4930555555555555,
+        "time": 595
+      }
+    ]
+  },
+  "oldFiltered": {
+    "samples": 298,
+    "anyClipPct": {
+      "mean": 1.2438504639986743,
+      "p95": 3.686969521604938,
+      "max": 13.748842592592592
+    },
+    "whiteClipPct": {
+      "mean": 0.4984671472367222,
+      "p95": 1.4416956018518499,
+      "max": 2.7957175925925926
+    },
+    "redClipPct": {
+      "mean": 0.9374449778357776,
+      "p95": 2.6459683641975302,
+      "max": 13.605902777777779
+    },
+    "redDominantClipPct": {
+      "mean": 0.11543520589941171,
+      "p95": 0.43759645061728364,
+      "max": 1.861111111111111
+    },
+    "redDominantClipWithinRedPct": {
+      "mean": 0.5380189823645071,
+      "p95": 2.390565042102514,
+      "max": 5.288028802880288
+    },
+    "worstRed": [
+      {
+        "whiteClipPct": 0.2347608024691358,
+        "redClipPct": 3.372878086419753,
+        "redDominantClipPct": 1.861111111111111,
+        "redDominantClipWithinRedPct": 4.564435223363185,
+        "anyClipPct": 3.4074074074074074,
+        "time": 980
+      },
+      {
+        "whiteClipPct": 2.394483024691358,
+        "redClipPct": 1.8084490740740742,
+        "redDominantClipPct": 1.0300925925925926,
+        "redDominantClipWithinRedPct": 2.721499077529991,
+        "anyClipPct": 11.251736111111112,
+        "time": 495
+      },
+      {
+        "whiteClipPct": 1.6554783950617282,
+        "redClipPct": 3.7646604938271606,
+        "redDominantClipPct": 1.0100308641975309,
+        "redDominantClipWithinRedPct": 3.5292386316507685,
+        "anyClipPct": 4.283371913580247,
+        "time": 1485
+      },
+      {
+        "whiteClipPct": 0.3751929012345679,
+        "redClipPct": 2.7065972222222223,
+        "redDominantClipPct": 0.9546682098765432,
+        "redDominantClipWithinRedPct": 3.8894262587181183,
+        "anyClipPct": 2.724151234567901,
+        "time": 965
+      },
+      {
+        "whiteClipPct": 0.7559799382716049,
+        "redClipPct": 2.46508487654321,
+        "redDominantClipPct": 0.9535108024691359,
+        "redDominantClipWithinRedPct": 3.43307645657994,
+        "anyClipPct": 2.5057870370370368,
+        "time": 1445
+      }
+    ]
+  },
+  "deltaNewMinusOld": {
+    "anyClipPct": {
+      "mean": -0.8871010275599602,
+      "p95": -2.5797164351851847,
+      "max": -11.837577160493826
+    },
+    "whiteClipPct": {
+      "mean": -0.39736517424552853,
+      "p95": -1.045090663580245,
+      "max": -1.8227237654320987
+    },
+    "redClipPct": {
+      "mean": -0.7758167860774664,
+      "p95": -2.084625771604938,
+      "max": -11.803240740740742
+    },
+    "redDominantClipPct": {
+      "mean": -0.0677550242957375,
+      "p95": -0.22849151234567872,
+      "max": -0.8518518518518516
+    },
+    "redDominantClipWithinRedPct": {
+      "mean": -0.19900154585180507,
+      "p95": -1.0294902746800079,
+      "max": -1.2991605282977279
+    }
+  }
+}

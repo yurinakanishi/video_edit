@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-06-27T08:33:47Z",
+  "createdAt": "2026-06-27T09:52:48Z",
   "projectRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday",
   "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview.mp4",
   "duration": 1485.708,
@@ -19,51 +19,7 @@
     "musicVolume": 0.24,
     "originalVolume": 0.5,
     "fadeInSeconds": 5.0,
-    "fadeOutSeconds": 5.0,
-    "focusMode": "video-segments-and-split-video-inserted-images",
-    "focusMusicVolumeMultiplier": 0.15,
-    "focusOriginalVolumeMultiplier": 2.0,
-    "focusOriginalVolumeMax": 1.0,
-    "focusTransitionSeconds": 1.0,
-    "focusMergeGapSeconds": 0.05,
-    "focusCurve": "smoothstep",
-    "focusIntervals": [
-      {
-        "timelineStart": 14.333,
-        "timelineEnd": 399.667,
-        "sourceLabel": "video_001_DJI_20000104161921_0006_D_clip_000_100.MP4 + inserted-image:photo_014_ST-630.jpg + inserted-image:photo_034_ST-695.jpg + inserted-image:photo_037_ST-700.jpg + inserted-image:photo_040_ST-703.jpg + inserted-image:photo_043_ST-709.jpg + inserted-image:photo_013_ST-628.jpg + inserted-image:photo_038_ST-701.jpg + inserted-image:photo_039_ST-702.jpg + inserted-image:photo_012_ST-627.jpg + video_001_DJI_20000104161921_0006_D_clip_387_554.MP4 + inserted-image:photo_053_ST-736.jpg + inserted-image:photo_004_ST-608.jpg + video_001_DJI_20000104161921_0006_D_clip_139_211.MP4"
-      },
-      {
-        "timelineStart": 407.667,
-        "timelineEnd": 464.667,
-        "sourceLabel": "video_002_DJI_20000104164015_0007_D.MP4"
-      },
-      {
-        "timelineStart": 472.667,
-        "timelineEnd": 646.375,
-        "sourceLabel": "video_003_DJI_20000104171048_0015_D_clip_000_051.MP4 + video_003_DJI_20000104171048_0015_D_clip_054_end.MP4"
-      },
-      {
-        "timelineStart": 654.375,
-        "timelineEnd": 716.375,
-        "sourceLabel": "video_014_ST7_8341_clip_000_046.MP4 + video_014_ST7_8341_clip_217_233.MP4"
-      },
-      {
-        "timelineStart": 733.042,
-        "timelineEnd": 1054.708,
-        "sourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_048_3.MP4 + inserted-image:photo_019_ST-645.jpg + video_006_DJI_20000104172624_0018_D_clip_048_3_082_3.MP4 + inserted-image:photo_020_ST-646.jpg + video_006_DJI_20000104172624_0018_D_clip_082_3_087.MP4 + video_006_DJI_20000104172624_0018_D_clip_131_153_3.MP4 + inserted-image:photo_021_ST-653.jpg + inserted-image:photo_057_ST-686.jpg + video_006_DJI_20000104172624_0018_D_clip_158_3_177.MP4 + inserted-image:photo_022_ST-661.jpg + video_006_DJI_20000104172624_0018_D_clip_184_194_3.MP4 + video_006_DJI_20000104172624_0018_D_clip_194_3_228_3.MP4 + inserted-image:photo_023_ST-665.jpg + video_006_DJI_20000104172624_0018_D_clip_228_3_356.MP4"
-      },
-      {
-        "timelineStart": 1093.042,
-        "timelineEnd": 1136.708,
-        "sourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_000_015.mp4 + inserted-image:photo_049_ST-729.jpg + video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_015_040.mp4"
-      },
-      {
-        "timelineStart": 1149.042,
-        "timelineEnd": 1459.708,
-        "sourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_054_96.MP4 + inserted-image:photo_051_ST-731.jpg + video_012_DJI_20000104181624_0030_D_clip_054_96_end.MP4 + video_013_DJI_20000104181937_0031_D.MP4"
-      }
-    ]
+    "fadeOutSeconds": 5.0
   },
   "excludedVideoStems": [
     "0875db90-5d21-463d-b4b0-9f0a19195ca2",

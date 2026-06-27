@@ -1,0 +1,715 @@
+{
+  "new": {
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview.mp4",
+    "duration": 1485.7083333333333,
+    "samples": 298,
+    "anyClipPct": {
+      "mean": 1.417605280056343,
+      "p95": 1.2236979166666646,
+      "max": 100.0
+    },
+    "whiteClipPct": {
+      "mean": 1.156612498964289,
+      "p95": 0.4484085648148146,
+      "max": 100.0
+    },
+    "redClipPct": {
+      "mean": 0.3747585497970006,
+      "p95": 0.5906828703703703,
+      "max": 61.62422839506173
+    },
+    "redDominantClipPct": {
+      "mean": 0.04802075565498384,
+      "p95": 0.2099151234567901,
+      "max": 1.0092592592592593
+    },
+    "redDominantAreaPct": {
+      "mean": 6.786170923440218,
+      "p95": 19.364467592592575,
+      "max": 36.83410493827161
+    },
+    "redDominantClipWithinRedPct": {
+      "mean": 0.3388578596255001,
+      "p95": 1.4194970779005391,
+      "max": 3.9888682745825603
+    },
+    "worstWhite": [
+      {
+        "anyClipPct": 100.0,
+        "whiteClipPct": 100.0,
+        "redClipPct": 0.0,
+        "redDominantClipPct": 0.0,
+        "redDominantAreaPct": 0.0,
+        "redDominantClipWithinRedPct": 0.0,
+        "p99Bgr": [
+          248.0,
+          255.0,
+          249.0
+        ],
+        "p999Bgr": [
+          248.0,
+          255.0,
+          249.0
+        ],
+        "time": 0.0
+      },
+      {
+        "anyClipPct": 93.99228395061728,
+        "whiteClipPct": 92.85050154320987,
+        "redClipPct": 2.1722608024691357,
+        "redDominantClipPct": 0.0,
+        "redDominantAreaPct": 0.0,
+        "redDominantClipWithinRedPct": 0.0,
+        "p99Bgr": [
+          248.0,
+          255.0,
+          252.0
+        ],
+        "p999Bgr": [
+          250.0,
+          255.0,
+          255.0
+        ],
+        "time": 5.0
+      },
+      {
+        "anyClipPct": 62.254822530864196,
+        "whiteClipPct": 61.30324074074074,
+        "redClipPct": 61.62422839506173,
+        "redDominantClipPct": 0.3315972222222222,
+        "redDominantAreaPct": 12.862461419753085,
+        "redDominantClipWithinRedPct": 1.6122017426776047,
+        "p99Bgr": [
+          249.0,
+          252.0,
+          251.0
+        ],
+        "p999Bgr": [
+          254.0,
+          255.0,
+          255.0
+        ],
+        "time": 855.0
+      },
+      {
+        "anyClipPct": 61.66743827160494,
+        "whiteClipPct": 60.89390432098766,
+        "redClipPct": 0.5202546296296297,
+        "redDominantClipPct": 0.007137345679012346,
+        "redDominantAreaPct": 3.275848765432099,
+        "redDominantClipWithinRedPct": 0.03533152749970557,
+        "p99Bgr": [
+          248.0,
+          255.0,
+          249.0
+        ],
+        "p999Bgr": [
+          255.0,
+          255.0,
+          255.0
+        ],
+        "time": 405.0
+      },
+      {
+        "anyClipPct": 0.2673611111111111,
+        "whiteClipPct": 0.9729938271604939,
+        "redClipPct": 0.2623456790123457,
+        "redDominantClipPct": 0.05536265432098766,
+        "redDominantAreaPct": 2.2114197530864197,
+        "redDominantClipWithinRedPct": 0.4623168178646197,
+        "p99Bgr": [
+          245.0,
+          248.0,
+          248.0
+        ],
+        "p999Bgr": [
+          245.0,
+          249.0,
+          253.0
+        ],
+        "time": 1300.0
+      },
+      {
+        "anyClipPct": 0.1111111111111111,
+        "whiteClipPct": 0.884837962962963,
+        "redClipPct": 0.0788966049382716,
+        "redDominantClipPct": 0.00154320987654321,
+        "redDominantAreaPct": 2.7119984567901234,
+        "redDominantClipWithinRedPct": 0.02133864428479977,
+        "p99Bgr": [
+          243.0,
+          248.0,
+          246.0
+        ],
+        "p999Bgr": [
+          245.0,
+          249.0,
+          249.0
+        ],
+        "time": 1270.0
+      },
+      {
+        "anyClipPct": 0.06809413580246913,
+        "whiteClipPct": 0.5952932098765432,
+        "redClipPct": 0.059606481481481476,
+        "redDominantClipPct": 0.001736111111111111,
+        "redDominantAreaPct": 2.6242283950617287,
+        "redDominantClipWithinRedPct": 0.014701558365186709,
+        "p99Bgr": [
+          243.0,
+          248.0,
+          248.0
+        ],
+        "p999Bgr": [
+          245.0,
+          249.0,
+          249.0
+        ],
+        "time": 1275.0
+      },
+      {
+        "anyClipPct": 0.18383487654320987,
+        "whiteClipPct": 0.5499614197530864,
+        "redClipPct": 0.15258487654320987,
+        "redDominantClipPct": 0.017939814814814815,
+        "redDominantAreaPct": 1.9834104938271604,
+        "redDominantClipWithinRedPct": 0.6029955261622253,
+        "p99Bgr": [
+          243.0,
+          248.0,
+          246.0
+        ],
+        "p999Bgr": [
+          245.0,
+          249.0,
+          251.0
+        ],
+        "time": 830.0
+      }
+    ],
+    "worstRedDominant": [
+      {
+        "anyClipPct": 1.619598765432099,
+        "whiteClipPct": 0.02160493827160494,
+        "redClipPct": 1.619598765432099,
+        "redDominantClipPct": 1.0092592592592593,
+        "redDominantAreaPct": 18.147762345679013,
+        "redDominantClipWithinRedPct": 3.8542486022236866,
+        "p99Bgr": [
+          222.0,
+          219.0,
+          255.0
+        ],
+        "p999Bgr": [
+          249.0,
+          239.0,
+          255.0
+        ],
+        "time": 955.0
+      },
+      {
+        "anyClipPct": 1.9112654320987652,
+        "whiteClipPct": 0.2808641975308642,
+        "redClipPct": 1.802662037037037,
+        "redDominantClipPct": 0.9762731481481481,
+        "redDominantAreaPct": 20.019675925925924,
+        "redDominantClipWithinRedPct": 3.276097974600605,
+        "p99Bgr": [
+          238.0,
+          230.0,
+          255.0
+        ],
+        "p999Bgr": [
+          254.0,
+          249.0,
+          255.0
+        ],
+        "time": 960.0
+      },
+      {
+        "anyClipPct": 1.0621141975308641,
+        "whiteClipPct": 0.019290123456790122,
+        "redClipPct": 1.060956790123457,
+        "redDominantClipPct": 0.39178240740740744,
+        "redDominantAreaPct": 10.279128086419753,
+        "redDominantClipWithinRedPct": 2.0061178148516525,
+        "p99Bgr": [
+          226.0,
+          216.0,
+          250.0
+        ],
+        "p999Bgr": [
+          253.0,
+          235.0,
+          255.0
+        ],
+        "time": 950.0
+      },
+      {
+        "anyClipPct": 1.1068672839506173,
+        "whiteClipPct": 0.03896604938271605,
+        "redClipPct": 1.1059027777777777,
+        "redDominantClipPct": 0.3464506172839506,
+        "redDominantAreaPct": 5.439814814814815,
+        "redDominantClipWithinRedPct": 2.8226950354609928,
+        "p99Bgr": [
+          229.0,
+          218.0,
+          251.0
+        ],
+        "p999Bgr": [
+          255.0,
+          240.0,
+          255.0
+        ],
+        "time": 940.0
+      },
+      {
+        "anyClipPct": 62.254822530864196,
+        "whiteClipPct": 61.30324074074074,
+        "redClipPct": 61.62422839506173,
+        "redDominantClipPct": 0.3315972222222222,
+        "redDominantAreaPct": 12.862461419753085,
+        "redDominantClipWithinRedPct": 1.6122017426776047,
+        "p99Bgr": [
+          249.0,
+          252.0,
+          251.0
+        ],
+        "p999Bgr": [
+          254.0,
+          255.0,
+          255.0
+        ],
+        "time": 855.0
+      },
+      {
+        "anyClipPct": 0.4930555555555555,
+        "whiteClipPct": 0.02546296296296296,
+        "redClipPct": 0.42091049382716056,
+        "redDominantClipPct": 0.32523148148148145,
+        "redDominantAreaPct": 4.399305555555555,
+        "redDominantClipWithinRedPct": 3.8980969920196435,
+        "p99Bgr": [
+          228.0,
+          226.0,
+          242.0
+        ],
+        "p999Bgr": [
+          248.0,
+          249.0,
+          255.0
+        ],
+        "time": 595.0
+      },
+      {
+        "anyClipPct": 0.33545524691358025,
+        "whiteClipPct": 0.0,
+        "redClipPct": 0.33449074074074076,
+        "redDominantClipPct": 0.3057484567901234,
+        "redDominantAreaPct": 36.83410493827161,
+        "redDominantClipWithinRedPct": 0.7117120891551627,
+        "p99Bgr": [
+          237.0,
+          245.0,
+          246.0
+        ],
+        "p999Bgr": [
+          240.0,
+          246.0,
+          253.0
+        ],
+        "time": 325.0
+      },
+      {
+        "anyClipPct": 1.0561342592592593,
+        "whiteClipPct": 0.2700617283950617,
+        "redClipPct": 0.7798996913580247,
+        "redDominantClipPct": 0.28125,
+        "redDominantAreaPct": 11.304398148148149,
+        "redDominantClipWithinRedPct": 1.216682024504283,
+        "p99Bgr": [
+          245.0,
+          237.0,
+          247.0
+        ],
+        "p999Bgr": [
+          254.0,
+          250.0,
+          255.0
+        ],
+        "time": 965.0
+      }
+    ]
+  },
+  "old": {
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview-labeled-20260627-170849.mp4",
+    "duration": 1508.375,
+    "samples": 302,
+    "anyClipPct": {
+      "mean": 2.130826000531436,
+      "p95": 3.9829571759259235,
+      "max": 99.71527777777777
+    },
+    "whiteClipPct": {
+      "mean": 1.324678327610171,
+      "p95": 1.518479938271605,
+      "max": 98.84182098765432
+    },
+    "redClipPct": {
+      "mean": 1.1996891862889378,
+      "p95": 2.6845389660493826,
+      "max": 79.07368827160494
+    },
+    "redDominantClipPct": {
+      "mean": 0.11763781579592837,
+      "p95": 0.44839891975308627,
+      "max": 1.861111111111111
+    },
+    "redDominantAreaPct": {
+      "mean": 9.488827697040307,
+      "p95": 23.751186342592582,
+      "max": 44.71199845679013
+    },
+    "redDominantClipWithinRedPct": {
+      "mean": 0.5662098179936478,
+      "p95": 2.491839444182016,
+      "max": 10.658052787066195
+    },
+    "worstWhite": [
+      {
+        "anyClipPct": 99.71527777777777,
+        "whiteClipPct": 98.84182098765432,
+        "redClipPct": 0.8983410493827161,
+        "redDominantClipPct": 0.0,
+        "redDominantAreaPct": 0.0,
+        "redDominantClipWithinRedPct": 0.0,
+        "p99Bgr": [
+          248.0,
+          255.0,
+          249.0
+        ],
+        "p999Bgr": [
+          248.0,
+          255.0,
+          252.0
+        ],
+        "time": 0.0
+      },
+      {
+        "anyClipPct": 93.53838734567901,
+        "whiteClipPct": 91.71296296296296,
+        "redClipPct": 2.802276234567901,
+        "redDominantClipPct": 0.0,
+        "redDominantAreaPct": 0.0,
+        "redDominantClipWithinRedPct": 0.0,
+        "p99Bgr": [
+          248.0,
+          255.0,
+          252.0
+        ],
+        "p999Bgr": [
+          250.0,
+          255.0,
+          255.0
+        ],
+        "time": 5.0
+      },
+      {
+        "anyClipPct": 79.39274691358025,
+        "whiteClipPct": 60.93364197530864,
+        "redClipPct": 79.07368827160494,
+        "redDominantClipPct": 1.1215277777777777,
+        "redDominantAreaPct": 5.941936728395062,
+        "redDominantClipWithinRedPct": 10.658052787066195,
+        "p99Bgr": [
+          249.0,
+          252.0,
+          254.0
+        ],
+        "p999Bgr": [
+          252.0,
+          254.0,
+          255.0
+        ],
+        "time": 1165.0
+      },
+      {
+        "anyClipPct": 7.649305555555555,
+        "whiteClipPct": 2.7957175925925926,
+        "redClipPct": 7.390432098765432,
+        "redDominantClipPct": 0.014274691358024692,
+        "redDominantAreaPct": 4.688271604938272,
+        "redDominantClipWithinRedPct": 0.18515470704410797,
+        "p99Bgr": [
+          252.0,
+          252.0,
+          252.0
+        ],
+        "p999Bgr": [
+          252.0,
+          252.0,
+          254.0
+        ],
+        "time": 805.0
+      },
+      {
+        "anyClipPct": 11.251736111111112,
+        "whiteClipPct": 2.394483024691358,
+        "redClipPct": 1.8084490740740742,
+        "redDominantClipPct": 1.0300925925925926,
+        "redDominantAreaPct": 22.688850308641975,
+        "redDominantClipWithinRedPct": 2.721499077529991,
+        "p99Bgr": [
+          245.0,
+          252.0,
+          251.0
+        ],
+        "p999Bgr": [
+          247.0,
+          252.0,
+          255.0
+        ],
+        "time": 495.0
+      },
+      {
+        "anyClipPct": 2.050925925925926,
+        "whiteClipPct": 1.9511959876543208,
+        "redClipPct": 1.2339891975308641,
+        "redDominantClipPct": 0.004822530864197531,
+        "redDominantAreaPct": 2.4907407407407405,
+        "redDominantClipWithinRedPct": 0.11617100371747212,
+        "p99Bgr": [
+          252.0,
+          255.0,
+          251.0
+        ],
+        "p999Bgr": [
+          252.0,
+          255.0,
+          251.0
+        ],
+        "time": 265.0
+      },
+      {
+        "anyClipPct": 13.748842592592592,
+        "whiteClipPct": 1.779320987654321,
+        "redClipPct": 13.605902777777779,
+        "redDominantClipPct": 0.7220293209876544,
+        "redDominantAreaPct": 9.998649691358025,
+        "redDominantClipWithinRedPct": 3.9125653541180325,
+        "p99Bgr": [
+          252.0,
+          252.0,
+          254.0
+        ],
+        "p999Bgr": [
+          252.0,
+          252.0,
+          255.0
+        ],
+        "time": 1505.0
+      },
+      {
+        "anyClipPct": 1.841820987654321,
+        "whiteClipPct": 1.7451774691358026,
+        "redClipPct": 1.3290895061728396,
+        "redDominantClipPct": 0.009259259259259259,
+        "redDominantAreaPct": 1.7216435185185186,
+        "redDominantClipWithinRedPct": 0.1792717086834734,
+        "p99Bgr": [
+          252.0,
+          255.0,
+          251.0
+        ],
+        "p999Bgr": [
+          252.0,
+          255.0,
+          253.0
+        ],
+        "time": 270.0
+      }
+    ],
+    "worstRedDominant": [
+      {
+        "anyClipPct": 3.4074074074074074,
+        "whiteClipPct": 0.2347608024691358,
+        "redClipPct": 3.372878086419753,
+        "redDominantClipPct": 1.861111111111111,
+        "redDominantAreaPct": 29.3804012345679,
+        "redDominantClipWithinRedPct": 4.564435223363185,
+        "p99Bgr": [
+          239.0,
+          240.0,
+          255.0
+        ],
+        "p999Bgr": [
+          255.0,
+          250.0,
+          255.0
+        ],
+        "time": 980.0
+      },
+      {
+        "anyClipPct": 79.39274691358025,
+        "whiteClipPct": 60.93364197530864,
+        "redClipPct": 79.07368827160494,
+        "redDominantClipPct": 1.1215277777777777,
+        "redDominantAreaPct": 5.941936728395062,
+        "redDominantClipWithinRedPct": 10.658052787066195,
+        "p99Bgr": [
+          249.0,
+          252.0,
+          254.0
+        ],
+        "p999Bgr": [
+          252.0,
+          254.0,
+          255.0
+        ],
+        "time": 1165.0
+      },
+      {
+        "anyClipPct": 11.251736111111112,
+        "whiteClipPct": 2.394483024691358,
+        "redClipPct": 1.8084490740740742,
+        "redDominantClipPct": 1.0300925925925926,
+        "redDominantAreaPct": 22.688850308641975,
+        "redDominantClipWithinRedPct": 2.721499077529991,
+        "p99Bgr": [
+          245.0,
+          252.0,
+          251.0
+        ],
+        "p999Bgr": [
+          247.0,
+          252.0,
+          255.0
+        ],
+        "time": 495.0
+      },
+      {
+        "anyClipPct": 4.283371913580247,
+        "whiteClipPct": 1.6554783950617282,
+        "redClipPct": 3.7646604938271606,
+        "redDominantClipPct": 1.0100308641975309,
+        "redDominantAreaPct": 14.418788580246913,
+        "redDominantClipWithinRedPct": 3.5292386316507685,
+        "p99Bgr": [
+          246.0,
+          249.0,
+          253.0
+        ],
+        "p999Bgr": [
+          248.0,
+          250.0,
+          255.0
+        ],
+        "time": 1485.0
+      },
+      {
+        "anyClipPct": 2.724151234567901,
+        "whiteClipPct": 0.3751929012345679,
+        "redClipPct": 2.7065972222222223,
+        "redDominantClipPct": 0.9546682098765432,
+        "redDominantAreaPct": 15.156635802469134,
+        "redDominantClipWithinRedPct": 3.8894262587181183,
+        "p99Bgr": [
+          243.0,
+          240.0,
+          255.0
+        ],
+        "p999Bgr": [
+          255.0,
+          253.0,
+          255.0
+        ],
+        "time": 965.0
+      },
+      {
+        "anyClipPct": 2.5057870370370368,
+        "whiteClipPct": 0.7559799382716049,
+        "redClipPct": 2.46508487654321,
+        "redDominantClipPct": 0.9535108024691359,
+        "redDominantAreaPct": 13.041473765432098,
+        "redDominantClipWithinRedPct": 3.43307645657994,
+        "p99Bgr": [
+          242.0,
+          243.0,
+          255.0
+        ],
+        "p999Bgr": [
+          253.0,
+          253.0,
+          255.0
+        ],
+        "time": 1445.0
+      },
+      {
+        "anyClipPct": 2.8894675925925926,
+        "whiteClipPct": 0.5341435185185185,
+        "redClipPct": 2.8034336419753085,
+        "redDominantClipPct": 0.8956404320987654,
+        "redDominantAreaPct": 18.964506172839506,
+        "redDominantClipWithinRedPct": 2.4981690943119865,
+        "p99Bgr": [
+          245.0,
+          244.0,
+          255.0
+        ],
+        "p999Bgr": [
+          255.0,
+          253.0,
+          255.0
+        ],
+        "time": 985.0
+      },
+      {
+        "anyClipPct": 1.986882716049383,
+        "whiteClipPct": 0.05883487654320988,
+        "redClipPct": 1.9776234567901234,
+        "redDominantClipPct": 0.8701774691358025,
+        "redDominantAreaPct": 20.20408950617284,
+        "redDominantClipWithinRedPct": 2.530122782562203,
+        "p99Bgr": [
+          234.0,
+          235.0,
+          255.0
+        ],
+        "p999Bgr": [
+          255.0,
+          243.0,
+          255.0
+        ],
+        "time": 975.0
+      }
+    ]
+  },
+  "deltaNewMinusOld": {
+    "anyClipPct": {
+      "mean": -0.7132207204750931,
+      "p95": -2.7592592592592586,
+      "max": 0.28472222222222854
+    },
+    "whiteClipPct": {
+      "mean": -0.16806582864588204,
+      "p95": -1.0700713734567904,
+      "max": 1.158179012345684
+    },
+    "redClipPct": {
+      "mean": -0.8249306364919373,
+      "p95": -2.0938560956790124,
+      "max": -17.44945987654321
+    },
+    "redDominantClipPct": {
+      "mean": -0.06961706014094453,
+      "p95": -0.23848379629629618,
+      "max": -0.8518518518518516
+    },
+    "redDominantClipWithinRedPct": {
+      "mean": -0.2273519583681477,
+      "p95": -1.072342366281477,
+      "max": -6.669184512483635
+    }
+  }
+}

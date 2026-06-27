@@ -48,18 +48,19 @@
 ## Overall Output
 
 - Build an emotional birthday highlight video.
-- Target duration for the current preview/final render is recalculated from the fixed source ranges: exclude `video_004_DJI_20000104171531_0016_D.MP4`, `video_005_DJI_20000104172535_0017_D.MP4`, and `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4`, add the fixed 22-second `video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4` source clip before `video_001...clip_038_113`, split `video_023_...clip56_89-114_43.mp4` into `0:00-0:15` and `0:15-0:40` so `ST-730` then `ST-729` can be placed after the first piece, add the two fixed middle clips from `video_014_ST7_8341.MP4`, replace `video_001_DJI_20000104161921_0006_D.MP4` with its two requested fixed source ranges, replace `video_002_DJI_20000104164015_0007_D.MP4` with its requested fixed source range, replace `video_003_DJI_20000104171048_0015_D.MP4` with all source footage except `0:51-0:54`, split `video_006_DJI_20000104172624_0018_D.MP4` at the requested latest-full-render insertion points for `ST-645`, `ST-646`, `ST-653`, `ST-686`, `ST-661`, and `ST-665`, keep `video_012_DJI_20000104181624_0030_D.MP4` as a full fixed clip, then continue into full `video_013_DJI_20000104181937_0031_D.MP4` before the final continuous still-photo block.
+- Target duration for the current preview/final render is recalculated from the fixed source ranges: exclude `video_004_DJI_20000104171531_0016_D.MP4`, `video_005_DJI_20000104172535_0017_D.MP4`, and `video_022_ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd.mp4`, add `video_001_DJI_20000104161921_0006_D.MP4` source `0:00-1:40` immediately after the opening title flower segment and before `ST-630`, add the fixed 22-second `video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4` source clip before `video_001...clip_038_113`, split `video_023_...clip56_89-114_43.mp4` into `0:00-0:15` and `0:15-0:40` so `ST-730` then `ST-729` can be placed after the first piece, add the two fixed middle clips from `video_014_ST7_8341.MP4`, keep the other requested `video_001_DJI_20000104161921_0006_D.MP4` fixed source ranges, replace `video_002_DJI_20000104164015_0007_D.MP4` with its requested fixed source range, replace `video_003_DJI_20000104171048_0015_D.MP4` with all source footage except `0:51-0:54`, split `video_006_DJI_20000104172624_0018_D.MP4` at the requested latest-full-render insertion points for `ST-645`, `ST-646`, `ST-653`, `ST-686`, `ST-661`, and `ST-665`, keep `video_012_DJI_20000104181624_0030_D.MP4` as a full fixed clip, then continue into full `video_013_DJI_20000104181937_0031_D.MP4` before the final continuous still-photo block.
 - Use a soft, consistent color grade across videos and still images.
 - Keep the final look gentle and warm rather than high-contrast or heavily saturated.
 - Apply a soft dissolve transition wherever a still image touches another item: video-to-image, image-to-video, and image-to-image boundaries. The current target dissolve is about 0.65 seconds, capped so it never consumes too much of a short clip.
+- Exception: do not dissolve from the opening `ST-707` title/flower segment into the inserted `video_001_DJI_20000104161921_0006_D_clip_000_100`; start that video only after the flower segment has fully finished.
 - Keep direct video-to-video boundaries as normal cuts when they are intentionally connected video blocks.
 - Produce a lightweight preview first with the Python build script before creating any heavier final render.
-- The preview should be about 24 minutes 39 seconds. A small timing difference is acceptable if all content rules are satisfied.
+- The preview should be about 26 minutes 29 seconds. A small timing difference is acceptable if all content rules are satisfied.
 - For normal previews, do not show the current source filename in the upper-left corner.
 - Use `--show-source-labels` only when a source-identification review render is explicitly requested.
-- Start the video on pure white. Fade in the large centered `Birthday` text and date slowly enough to feel gentle, keep the text display short, then fade the text back out slowly.
-- Do not return to a plain white screen between the title text and the first flower image. While the title text is dissolving away, reveal the original `ST-707` flower title image softly underneath it before continuing to the no-face opening images.
-- After the title image, put only still images that pass the strict no-face opening gate together at the beginning. The gate must use refreshed image analysis, not stale cache, and must exclude any image with a detected or high-confidence suspected human face.
+- Start the video on pure white. Fade in the large centered `Birthday` text and date gently, using three times the previous fade-in timing.
+- Do not return to a plain white screen between the title text and the first flower image. While the title text dissolves away with three times the previous fade-out timing, reveal the original `ST-707` flower title image softly underneath it, then insert `video_001_DJI_20000104161921_0006_D.MP4` source `0:00-1:40` after the flower image disappears.
+- After that inserted `video_001` opening clip, continue into `ST-630` and then put only still images that pass the strict no-face opening gate together at the beginning. The gate must use refreshed image analysis, not stale cache, and must exclude any image with a detected or high-confidence suspected human face.
 - End the video with `ST-716.jpg`. Show the final image for the same duration as other normal still images, then fade the ending to white instead of black.
 - Place `ST-709` around the 1-minute area. Do not include `ST-621`.
 - Place `ST-737` immediately after `ST-738` as an exception, even though `ST-737` contains a person.
@@ -99,7 +100,7 @@
 - Prefer moments where many people are visible.
 - Use face/person position analysis when choosing the source-in point.
 - Allocate video duration by analysis score for the 12-minute version: shrink lower-impression clips and preserve more time for stronger clips.
-- For `video_001_DJI_20000104161921_0006_D.MP4`, do not use the previously selected range. Use fixed clip `6:27-9:14` first. For the requested `0:38-3:31` clip, cut out the part that appeared at `5:47-6:13` in the full render; this corresponds to source `1:53-2:19`, so use `0:38-1:53` immediately followed by `2:19-3:31` with no photo or other media between those two pieces.
+- For `video_001_DJI_20000104161921_0006_D.MP4`, use source `0:00-1:40` as an opening insert immediately after the title flower segment and before `ST-630`. Also keep fixed clip `6:27-9:14` later. For the requested `0:38-3:31` clip, cut out the part that appeared at `5:47-6:13` in the full render; this corresponds to source `1:53-2:19`, so use `0:38-1:53` immediately followed by `2:19-3:31` with no photo or other media between those two pieces.
 - Insert `video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4` immediately before `video_001_DJI_20000104161921_0006_D_clip_038_113`, using only source `0:14-0:36`.
 - For `video_002_DJI_20000104164015_0007_D.MP4`, do not use the previously selected range. Use only the fixed clip `7:43-8:40`.
 - For `video_006_DJI_20000104172624_0018_D.MP4`, do not use the previously excluded state or any analysis-selected range. Based on the prior full render, cut the first 1 second of the video, cut the full-render `11:05-11:49` section, cut the full-render `16:00-16:03` section, and cut the full-render `17:08-17:12` section. Use the fixed source ranges `0:01-0:48.29`, `0:48.29-1:22.29`, `1:22.29-1:27`, `2:11-2:33.29`, `2:33.29-2:38.29`, `2:38.29-2:57`, `3:04-3:14.29`, `3:14.29-3:48.29`, and `3:48.29-5:56`, inserting the requested still images between those pieces.
@@ -123,7 +124,7 @@
 - Exclude `ST-600`, `ST-604`, `ST-610`, `ST-614`, `ST-616`, `ST-617`, `ST-621`, `ST-624`, `ST-625`, `ST-635`, `ST-641` / `ST-641w`, `ST-676`, and `photo_056_DJI_20000104170445_0011_D_t004_5.png` before image ordering and deduplication.
 - Preserve required images when deduplicating: keep `ST-716` as the final image, keep the title image, and keep manually placed images such as `ST-709`, `ST-737`, `ST-738`, `ST-638`, `ST-608`, `ST-682`, `ST-713`, `ST-628`, `ST-701`, `ST-702`, `ST-634`, `ST-690`, `ST-686`, `ST-723`, `ST-731`, `ST-729`, `ST-730`, and `ST-645`.
 - Display each normal still image for 5 seconds.
-- The opening title segment is 5 seconds: it starts on pure white, the centered `Birthday` and date text fades in slowly, then fades out slowly while the original `ST-707` flower image fades in underneath it. Avoid a separate all-white beat between the text and the flower image.
+- The opening title segment is 15 seconds: it starts on pure white, the centered `Birthday` and date text fades in with three times the previous timing, then fades out with three times the previous timing while the original `ST-707` flower image fades in underneath it. Avoid a separate all-white beat between the text and the flower image. After the flower image disappears, insert `video_001_DJI_20000104161921_0006_D.MP4` source `0:00-1:40`, then continue to `ST-630`.
 - The final still uses the same 5-second duration as other normal still images and fades to white at the end.
 - Still-image transitions must not feel like hard cuts. Every still-image boundary should cross-dissolve softly into the previous or next visual item.
 - Display portrait still images in their original vertical aspect ratio with white left and right margins, but never allow top or bottom gaps. Even at the smallest zoom scale, the portrait image must fill the full video height.
@@ -149,9 +150,10 @@
 - Loop and trim `audio_001_優しい気持ち.mp3` under the full preview.
 - Play the BGM under the whole video.
 - Whenever any source video segment is playing, lower BGM volume to 15% of the normal BGM level. If that segment has original video audio, raise the original video audio to 2x of the normal original-audio level, capped at 1.0.
+- When still images are inserted between two split pieces of the same source video, keep the BGM at the same lowered video-segment level during those still images. Do not let the BGM return to normal volume just because the visible image is a still.
 - Do not switch that audio focus abruptly. Apply a smooth dissolve-style volume curve at each video segment start and end. Current transition: 1 second with a smoothstep curve.
-- When two or more video segments are directly connected with no still image or other visible gap between them, merge those video segments into one continuous audio-focus interval. Do not let the BGM rise between connected video segments and then duck again.
-- The audio focus rule must be derived from every current timeline video segment, not fixed timestamps and not only videos with audio, so it remains active if videos are moved earlier/later or newly added in future timeline changes.
+- When two or more video segments are directly connected, or when split pieces of the same source video are separated only by inserted still images, merge those sections into one continuous audio-focus interval. Do not let the BGM rise between them and then duck again.
+- The audio focus rule must be derived from every current timeline video segment and from the current image runs inserted between split pieces of the same source video, not fixed timestamps and not only videos with audio, so it remains active if videos or inserted images are moved earlier/later or newly added in future timeline changes.
 - Fade the mixed audio in slowly at the start of the video and fade it out slowly at the end of the video. Current fade length: 5 seconds in and 5 seconds out.
 
 ## Current Script Behavior
@@ -160,7 +162,7 @@
 - Use preview mode for lightweight review output:
 
 ```powershell
-python .\projects\260526-birthday\scripts\build_event_highlight.py --project-root 'C:\Users\yurin\Desktop\video_edit\projects\260526-birthday' --preview --target-seconds 1479 --base-image-seconds 5 --background-audio 'source/audio/audio_001_優しい気持ち.mp3' --dedupe-images --force --jobs 2
+python .\projects\260526-birthday\scripts\build_event_highlight.py --project-root 'C:\Users\yurin\Desktop\video_edit\projects\260526-birthday' --preview --target-seconds 1589 --base-image-seconds 5 --background-audio 'source/audio/audio_001_優しい気持ち.mp3' --dedupe-images --force --jobs 2
 ```
 
 - The current preview output path is `projects/260526-birthday/output/videos/260526-birthday-preview.mp4`.
@@ -218,16 +220,16 @@ python .\projects\260526-birthday\scripts\build_event_highlight.py --project-roo
 - Confirm `video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4` is present in the back half as two split clips, `0.00-15.00` and `15.00-40.00`, with `ST-730` then `ST-729` inserted between them.
 - Confirm `video_003_DJI_20000104171048_0015_D.MP4` appears only as connected source ranges `0:00-0:51` and `0:54-end`, with no media between those pieces.
 - Confirm `ST-601` is distributed across the timeline, `ST-625` is absent, and `ST-618` follows the requested swap placement.
-- Confirm the opening starts on pure white, the large centered `Birthday` and date text appears gently, fades away slowly, and overlaps with the original `ST-707` flower image softly appearing from white before the next opening image.
-- Confirm the first real image after the title screen fades in softly from white.
+- Confirm the opening starts on pure white, the large centered `Birthday` and date text appears with three times the previous timing, fades away with three times the previous timing, and overlaps with the original `ST-707` flower image softly appearing from white before the inserted `video_001` opening clip.
+- Confirm `video_001_DJI_20000104161921_0006_D_clip_000_100` appears immediately after the title screen and before `ST-630`.
 - Confirm all still images immediately after the title card have `faceDetection.noFaceOpeningEligible == true`, and confirm no image with any detected human face is included in that opening group.
 - Confirm the final visual item is `ST-716.jpg`, uses the normal still-image duration, and fades to white at the end.
 - Confirm every still-image segment has one-way zoom metadata and visible movement.
 - Confirm portrait still images have no top or bottom gaps at any point in their zoom/fade motion, have white left/right margins, and keep their fade in/out effect.
 - Confirm generated segment/log folders do not contain stale files from old timelines before checking durations or motion modes.
-- Confirm the final preview/render is about 24 minutes 39 seconds long.
+- Confirm the final preview/render is about 26 minutes 29 seconds long.
 - Confirm the output has both video and BGM-mixed audio.
-- Confirm the timeline report has audio focus intervals derived only from source video segments, with directly connected video segments merged into continuous focus intervals, `focusMode == "all-video-segments"`, `focusMergeGapSeconds == 0.05`, and `focusCurve == "smoothstep"`.
+- Confirm the timeline report has audio focus intervals derived from source video segments plus still-image runs inserted between split pieces of the same source video, with those video/image/video sections merged into continuous focus intervals, `focusMode == "video-segments-and-split-video-inserted-images"`, `focusMergeGapSeconds == 0.05`, and `focusCurve == "smoothstep"`.
 - Confirm normal previews do not show the source filename label in the upper-left corner.
 - Confirm `used_video_parts_preview` and `used_images_preview` contain only current-timeline files with filenames based on the renamed source files.
 - Run a full `ffmpeg -v error -i <output> -f null -` decode check before delivery.

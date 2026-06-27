@@ -33,12 +33,13 @@ YUNET_MODEL_RELATIVE_PATH = Path("output") / "models" / "face_detection_yunet_20
 YUNET_FACE_SCORE_THRESHOLD = 0.78
 BACKGROUND_AUDIO_FADE_SECONDS = 5.0
 FINAL_STILL_FADE_SECONDS = 2.0
-INTRO_TITLE_TEXT_APPEAR_START_SECONDS = 0.35
-INTRO_TITLE_TEXT_FADE_IN_SECONDS = 1.15
-INTRO_TITLE_TEXT_HOLD_SECONDS = 0.55
-INTRO_TITLE_TEXT_FADE_OUT_SECONDS = 2.10
-INTRO_TITLE_IMAGE_REVEAL_START_SECONDS = 2.15
-INTRO_TITLE_IMAGE_REVEAL_SECONDS = 2.45
+INTRO_TITLE_DURATION_SECONDS = 15.0
+INTRO_TITLE_TEXT_APPEAR_START_SECONDS = 1.05
+INTRO_TITLE_TEXT_FADE_IN_SECONDS = 3.45
+INTRO_TITLE_TEXT_HOLD_SECONDS = 1.65
+INTRO_TITLE_TEXT_FADE_OUT_SECONDS = 6.30
+INTRO_TITLE_IMAGE_REVEAL_START_SECONDS = 6.45
+INTRO_TITLE_IMAGE_REVEAL_SECONDS = 7.35
 INTRO_IMAGE_FADE_IN_SECONDS = 1.5
 AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.15
 AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER = 2.0
@@ -74,6 +75,7 @@ MANUAL_VIDEO_RANGE_CLIPS = {
         },
     ],
     "dji_20000104161921_0006_d": [
+        {"sourceIn": 0.0, "sourceOut": 100.0, "labelSuffix": "clip_000_100"},
         {"sourceIn": 387.0, "sourceOut": 554.0, "labelSuffix": "clip_387_554"},
         {
             "sourceIn": 38.0,
@@ -168,6 +170,14 @@ MANUAL_VIDEO_CLIP_INSERTIONS_BEFORE = [
         "beforeStem": "dji_20000104161921_0006_d",
         "beforeSuffix": "clip_038_113",
         "placement": "insert-video018-source-014-036-before-dji-038-113",
+    }
+]
+MANUAL_VIDEO_CLIP_INSERTIONS_AFTER_IMAGE_ROLE = [
+    {
+        "movingStem": "dji_20000104161921_0006_d",
+        "movingSuffix": "clip_000_100",
+        "targetRole": "title-card",
+        "placement": "insert-video001-source-000-100-after-title-flower",
     }
 ]
 MANUAL_VIDEO_CLIP_ADJACENCIES = [
@@ -1400,19 +1410,31 @@ def resolve_background_audio(value: str | None, project_root: Path, ffprobe: Pat
     return candidate.resolve() if candidate.exists() else None
 
 
+def split_video_inserted_image_indices(sequence: list[MediaItem]) -> set[int]:
+    indices: set[int] = set()
+    for left_video_index, start, end, right_video_index in video_separated_image_runs(sequence):
+        if media_stem(sequence[left_video_index]) != media_stem(sequence[right_video_index]):
+            continue
+        indices.update(range(start, end))
+    return indices
+
+
 def audio_focus_intervals(sequence: list[MediaItem]) -> list[tuple[float, float, str]]:
     intervals: list[tuple[float, float, str]] = []
     current_start: float | None = None
     current_end: float | None = None
     current_labels: list[str] = []
-    for item in sequence:
-        if item.kind != "video":
+    focus_image_indices = split_video_inserted_image_indices(sequence)
+    for index, item in enumerate(sequence):
+        if item.kind != "video" and index not in focus_image_indices:
             continue
         start = max(0.0, float(item.timeline_start))
         end = max(start, float(item.timeline_end))
         if end <= start:
             continue
         label = source_display_name(item)
+        if item.kind == "image":
+            label = f"inserted-image:{label}"
         if current_start is None or current_end is None:
             current_start = start
             current_end = end
@@ -1490,7 +1512,7 @@ def background_audio_report_with_focus(
     if background_audio_report is None:
         return None
     report = dict(background_audio_report)
-    report["focusMode"] = "all-video-segments"
+    report["focusMode"] = "video-segments-and-split-video-inserted-images"
     report["focusMusicVolumeMultiplier"] = AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER
     report["focusOriginalVolumeMultiplier"] = AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER
     report["focusOriginalVolumeMax"] = AUDIO_FOCUS_ORIGINAL_VOLUME_MAX
@@ -1509,6 +1531,9 @@ def background_audio_report_with_focus(
 
 
 def image_clip_frames(item: MediaItem, base_image_frames: int) -> int:
+    role = item.analysis.get("imageRole") if isinstance(item.analysis, dict) else None
+    if role == "title-card":
+        return max(1, int(round(INTRO_TITLE_DURATION_SECONDS * TARGET_FPS)))
     return base_image_frames
 
 
@@ -2109,6 +2134,45 @@ def apply_manual_video_clip_insertions_before(sequence: list[MediaItem]) -> None
         sequence.insert(target_index, moving_item)
 
 
+def apply_manual_video_clip_insertions_after_image_role(sequence: list[MediaItem]) -> None:
+    for rule in MANUAL_VIDEO_CLIP_INSERTIONS_AFTER_IMAGE_ROLE:
+        moving_stem = str(rule["movingStem"])
+        moving_suffix = str(rule["movingSuffix"])
+        target_role = str(rule["targetRole"])
+        moving_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video"
+                and media_stem(item) == moving_stem
+                and manual_range_label_suffix(item) == moving_suffix
+            ),
+            None,
+        )
+        target_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "image"
+                and isinstance(item.analysis, dict)
+                and item.analysis.get("imageRole") == target_role
+            ),
+            None,
+        )
+        if moving_index is None or target_index is None:
+            continue
+        moving_item = sequence.pop(moving_index)
+        if moving_index < target_index:
+            target_index -= 1
+        placement = str(rule["placement"])
+        moving_item.analysis["manualPlacement"] = placement
+        moving_item.analysis["manualSequenceMove"] = {
+            "method": "move-after-image-role",
+            "targetRole": target_role,
+        }
+        sequence.insert(target_index + 1, moving_item)
+
+
 def apply_manual_video_clip_adjacencies(sequence: list[MediaItem]) -> None:
     for rule in MANUAL_VIDEO_CLIP_ADJACENCIES:
         moving_stem = str(rule["movingStem"])
@@ -2598,6 +2662,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
     apply_manual_video_relocations(sequence)
     apply_manual_video_stem_relocations(sequence)
     apply_manual_video_clip_insertions_before(sequence)
+    apply_manual_video_clip_insertions_after_image_role(sequence)
     apply_manual_video_clip_adjacencies(sequence)
     apply_manual_image_relocations(sequence)
     ensure_minimum_two_images_between_videos(sequence)
@@ -2613,6 +2678,10 @@ def media_clip_frames(item: MediaItem) -> int:
 
 
 def visual_dissolve_frames(previous: MediaItem, current: MediaItem) -> int:
+    previous_role = previous.analysis.get("imageRole") if isinstance(previous.analysis, dict) else None
+    current_placement = current.analysis.get("manualPlacement") if isinstance(current.analysis, dict) else None
+    if previous_role == "title-card" and current_placement == "insert-video001-source-000-100-after-title-flower":
+        return 0
     if previous.kind != "image" and current.kind != "image":
         return 0
     requested = max(1, int(round(VISUAL_IMAGE_DISSOLVE_SECONDS * TARGET_FPS)))
@@ -2910,8 +2979,8 @@ def draw_intro_title_frame(
     if background_frame is None:
         image = Image.new("RGB", (width, height), (255, 255, 255))
     else:
-        reveal_start = INTRO_TITLE_IMAGE_REVEAL_START_SECONDS / 5.0
-        reveal_duration = max(1e-6, INTRO_TITLE_IMAGE_REVEAL_SECONDS / 5.0)
+        reveal_start = INTRO_TITLE_IMAGE_REVEAL_START_SECONDS / INTRO_TITLE_DURATION_SECONDS
+        reveal_duration = max(1e-6, INTRO_TITLE_IMAGE_REVEAL_SECONDS / INTRO_TITLE_DURATION_SECONDS)
         reveal_progress = smoothstep_value((progress - reveal_start) / reveal_duration)
         revealed = apply_linear_fade_to_white(background_frame, reveal_progress)
         image = Image.fromarray(cv2.cvtColor(revealed, cv2.COLOR_BGR2RGB))
@@ -2931,14 +3000,14 @@ def draw_intro_title_frame(
         title_font = ImageFont.load_default()
         date_font = ImageFont.load_default()
 
-    text_start = INTRO_TITLE_TEXT_APPEAR_START_SECONDS / 5.0
-    fade_in_duration = max(1e-6, INTRO_TITLE_TEXT_FADE_IN_SECONDS / 5.0)
+    text_start = INTRO_TITLE_TEXT_APPEAR_START_SECONDS / INTRO_TITLE_DURATION_SECONDS
+    fade_in_duration = max(1e-6, INTRO_TITLE_TEXT_FADE_IN_SECONDS / INTRO_TITLE_DURATION_SECONDS)
     hold_end = (
         INTRO_TITLE_TEXT_APPEAR_START_SECONDS
         + INTRO_TITLE_TEXT_FADE_IN_SECONDS
         + INTRO_TITLE_TEXT_HOLD_SECONDS
-    ) / 5.0
-    fade_out_duration = max(1e-6, INTRO_TITLE_TEXT_FADE_OUT_SECONDS / 5.0)
+    ) / INTRO_TITLE_DURATION_SECONDS
+    fade_out_duration = max(1e-6, INTRO_TITLE_TEXT_FADE_OUT_SECONDS / INTRO_TITLE_DURATION_SECONDS)
     fade_in_alpha = smoothstep_value((progress - text_start) / fade_in_duration)
     fade_out_alpha = 1.0 - smoothstep_value((progress - hold_end) / fade_out_duration)
     alpha = int(round(235 * clamp(fade_in_alpha * fade_out_alpha, 0.0, 1.0)))

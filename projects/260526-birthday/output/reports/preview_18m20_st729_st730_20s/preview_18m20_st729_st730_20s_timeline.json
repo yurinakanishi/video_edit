@@ -1,0 +1,95 @@
+{
+  "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview-18m20-st729-st730-20s.mp4",
+  "duration": 20.0,
+  "media": [
+    {
+      "index": 1,
+      "kind": "video",
+      "sourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_preview_009_015.mp4",
+      "sourceIn": 9.0,
+      "sourceOut": 15.0,
+      "timelineStart": 0.0,
+      "timelineEnd": 6.0
+    },
+    {
+      "index": 2,
+      "kind": "image",
+      "sourceLabel": "photo_049_ST-729.jpg",
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "timelineStart": 5.333333,
+      "timelineEnd": 10.333333
+    },
+    {
+      "index": 3,
+      "kind": "image",
+      "sourceLabel": "photo_050_ST-730.jpg",
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "timelineStart": 9.666667,
+      "timelineEnd": 14.666667
+    },
+    {
+      "index": 4,
+      "kind": "video",
+      "sourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_preview_015_021.mp4",
+      "sourceIn": 15.0,
+      "sourceOut": 21.0,
+      "timelineStart": 14.0,
+      "timelineEnd": 20.0
+    }
+  ],
+  "visualTransitions": [
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 1,
+      "toIndex": 2,
+      "fromSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_preview_009_015.mp4",
+      "toSourceLabel": "photo_049_ST-729.jpg",
+      "timelineStart": 5.333333,
+      "timelineEnd": 6.0,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 2,
+      "toIndex": 3,
+      "fromSourceLabel": "photo_049_ST-729.jpg",
+      "toSourceLabel": "photo_050_ST-730.jpg",
+      "timelineStart": 9.666667,
+      "timelineEnd": 10.333334,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 3,
+      "toIndex": 4,
+      "fromSourceLabel": "photo_050_ST-730.jpg",
+      "toSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_preview_015_021.mp4",
+      "timelineStart": 14.0,
+      "timelineEnd": 14.666667,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    }
+  ],
+  "audioFocusIntervals": [
+    [
+      0.0,
+      6.0,
+      "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_preview_009_015.mp4"
+    ],
+    [
+      14.0,
+      20.0,
+      "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_preview_015_021.mp4"
+    ]
+  ]
+}

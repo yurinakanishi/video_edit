@@ -33,12 +33,12 @@ YUNET_MODEL_RELATIVE_PATH = Path("output") / "models" / "face_detection_yunet_20
 YUNET_FACE_SCORE_THRESHOLD = 0.78
 BACKGROUND_AUDIO_FADE_SECONDS = 5.0
 FINAL_STILL_FADE_SECONDS = 2.0
-INTRO_TITLE_TEXT_APPEAR_START_SECONDS = 0.45
-INTRO_TITLE_TEXT_FADE_IN_SECONDS = 0.65
-INTRO_TITLE_TEXT_HOLD_SECONDS = 0.75
-INTRO_TITLE_TEXT_FADE_OUT_SECONDS = 0.85
-INTRO_TITLE_IMAGE_REVEAL_START_SECONDS = 3.05
-INTRO_TITLE_IMAGE_REVEAL_SECONDS = 1.35
+INTRO_TITLE_TEXT_APPEAR_START_SECONDS = 0.35
+INTRO_TITLE_TEXT_FADE_IN_SECONDS = 1.15
+INTRO_TITLE_TEXT_HOLD_SECONDS = 0.55
+INTRO_TITLE_TEXT_FADE_OUT_SECONDS = 2.10
+INTRO_TITLE_IMAGE_REVEAL_START_SECONDS = 2.15
+INTRO_TITLE_IMAGE_REVEAL_SECONDS = 2.45
 INTRO_IMAGE_FADE_IN_SECONDS = 1.5
 AUDIO_FOCUS_MUSIC_VOLUME_MULTIPLIER = 0.15
 AUDIO_FOCUS_ORIGINAL_VOLUME_MULTIPLIER = 2.0
@@ -49,10 +49,11 @@ VISUAL_IMAGE_DISSOLVE_SECONDS = 0.65
 VISUAL_IMAGE_DISSOLVE_MAX_FRACTION = 0.30
 PORTRAIT_LETTERBOX_FADE_SECONDS = 0.45
 PORTRAIT_LETTERBOX_ZOOM_AMOUNT = 0.032
+MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES = ("insert-at-latest-full-",)
 MIN_VARIABLE_VIDEO_SECONDS = 12.0
 MANUAL_IMAGE_RENDER_OVERRIDES: dict[str, dict[str, Any]] = {}
 MANUAL_VIDEO_FIXED_CLIPS = {
-    "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": (0.0, 40.0),
+    "0875db90-5d21-463d-b4b0-9f0a19195ca2": (14.0, 22.0),
     "dji_20000104164015_0007_d": (463.0, 57.0),
     "dji_20000104181624_0030_d": (0.0, 103.978667),
     "dji_20000104181937_0031_d": (0.0, 203.029333),
@@ -94,22 +95,62 @@ MANUAL_VIDEO_RANGE_CLIPS = {
     "dji_20000104172624_0018_d": [
         {
             "sourceIn": 1.0,
+            "sourceOut": 48.291667,
+            "labelSuffix": "clip_001_048_3",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 48.291667,
+            "sourceOut": 82.291667,
+            "labelSuffix": "clip_048_3_082_3",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 82.291667,
             "sourceOut": 87.0,
-            "labelSuffix": "clip_001_087",
+            "labelSuffix": "clip_082_3_087",
             "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
         },
         {
             "sourceIn": 131.0,
+            "sourceOut": 153.291667,
+            "labelSuffix": "clip_131_153_3",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 153.291667,
+            "sourceOut": 158.291667,
+            "labelSuffix": "clip_153_3_158_3",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 158.291667,
             "sourceOut": 177.0,
-            "labelSuffix": "clip_131_177",
+            "labelSuffix": "clip_158_3_177",
             "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
         },
         {
             "sourceIn": 184.0,
-            "sourceOut": 356.0,
-            "labelSuffix": "clip_184_356",
+            "sourceOut": 194.291667,
+            "labelSuffix": "clip_184_194_3",
             "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
         },
+        {
+            "sourceIn": 194.291667,
+            "sourceOut": 228.291667,
+            "labelSuffix": "clip_194_3_228_3",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+        {
+            "sourceIn": 228.291667,
+            "sourceOut": 356.0,
+            "labelSuffix": "clip_228_3_356",
+            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
+        },
+    ],
+    "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": [
+        {"sourceIn": 0.0, "sourceOut": 15.0, "labelSuffix": "clip_000_015"},
+        {"sourceIn": 15.0, "sourceOut": 40.0, "labelSuffix": "clip_015_040"},
     ],
 }
 MANUAL_VIDEO_BLOCK_SWAPS = [
@@ -121,6 +162,14 @@ MANUAL_VIDEO_BLOCK_SWAPS = [
 ]
 MANUAL_VIDEO_RELOCATIONS = []
 MANUAL_VIDEO_STEM_RELOCATIONS = []
+MANUAL_VIDEO_CLIP_INSERTIONS_BEFORE = [
+    {
+        "movingStem": "0875db90-5d21-463d-b4b0-9f0a19195ca2",
+        "beforeStem": "dji_20000104161921_0006_d",
+        "beforeSuffix": "clip_038_113",
+        "placement": "insert-video018-source-014-036-before-dji-038-113",
+    }
+]
 MANUAL_VIDEO_CLIP_ADJACENCIES = [
     {
         "movingStem": "st7_8341",
@@ -135,42 +184,13 @@ MANUAL_IMAGE_RELOCATIONS = [
         "imageStem": "st-731",
         "mode": "before-video",
         "targetStem": "dji_20000104181624_0030_d",
-        "placement": "move-before-video012",
-    },
-    {
-        "imageStem": "st-668",
-        "mode": "after-image",
-        "targetStem": "st-675",
-        "placement": "move-four-image-block-after-five-image-block",
-    },
-    {
-        "imageStem": "st-670",
-        "mode": "after-image",
-        "targetStem": "st-668",
-        "placement": "move-after-st668",
-    },
-    {
-        "imageStem": "st-646",
-        "mode": "after-image",
-        "targetStem": "st-670",
-        "placement": "move-late-from-nine-thirteen-gap",
-    },
-    {
-        "imageStem": "st-653",
-        "mode": "after-image",
-        "targetStem": "st-646",
-        "placement": "move-late-from-nine-thirteen-gap",
-    },
-    {
-        "imageStem": "st-735",
-        "mode": "after-image",
-        "targetStem": "st-653",
-        "placement": "move-late-from-four-thirteen",
+        "placement": "keep-before-video012-after-st686-moved",
     },
     {
         "imageStem": "st-667",
-        "mode": "after-image",
-        "targetStem": "st-735",
+        "mode": "before-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_001_048_3",
         "placement": "move-later-after-st735",
     },
     {
@@ -181,8 +201,9 @@ MANUAL_IMAGE_RELOCATIONS = [
     },
     {
         "imageStem": "st-723",
-        "mode": "after-image",
-        "targetStem": "st-645",
+        "mode": "after-video",
+        "targetStem": "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43",
+        "targetSuffix": "clip_015_040",
         "placement": "swap-with-st725-to-late-video-gap",
     },
     {
@@ -192,22 +213,17 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "swap-with-st723-to-final-photo-block",
     },
     {
+        "imageStem": "st-730",
+        "mode": "after-video",
+        "targetStem": "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43",
+        "targetSuffix": "clip_000_015",
+        "placement": "move-after-video023-000-015",
+    },
+    {
         "imageStem": "st-729",
         "mode": "after-image",
-        "targetStem": "st-697",
-        "placement": "move-after-st697-video019-removed",
-    },
-    {
-        "imageStem": "st-730",
-        "mode": "after-image",
-        "targetStem": "st-729",
-        "placement": "move-after-st729-video022-removed",
-    },
-    {
-        "imageStem": "st-686",
-        "mode": "after-image",
-        "targetStem": "st-723",
-        "placement": "move-end-from-six-fifty-two",
+        "targetStem": "st-730",
+        "placement": "move-after-st730-video023-000-015",
     },
     {
         "imageStem": "st-618",
@@ -217,29 +233,65 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "swap-to-eight-thirteen-area",
     },
     {
-        "imageStem": "st-635",
-        "mode": "after-image",
-        "targetStem": "st-618",
-        "placement": "swap-to-eight-sixteen-area",
+        "imageStem": "st-645",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_001_048_3",
+        "placement": "insert-at-latest-full-13m06-video006-001-087",
+    },
+    {
+        "imageStem": "st-646",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_048_3_082_3",
+        "placement": "insert-at-latest-full-13m40-video006-001-087",
+    },
+    {
+        "imageStem": "st-653",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_131_153_3",
+        "placement": "insert-at-latest-full-14m07-video006-131-177",
+    },
+    {
+        "imageStem": "st-686",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_153_3_158_3",
+        "placement": "insert-at-latest-full-14m12-video006-131-177",
     },
     {
         "imageStem": "st-661",
-        "mode": "after-connected-video-group",
-        "targetGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
-        "placement": "move-one-video-later-after-video006",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_184_194_3",
+        "placement": "insert-at-latest-full-14m41-video006-184-356",
     },
     {
-        "imageStem": "st-690",
+        "imageStem": "st-665",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_194_3_228_3",
+        "placement": "insert-at-latest-full-15m15-video006-184-356",
+    },
+    {
+        "imageStem": "st-668",
+        "mode": "after-video",
+        "targetStem": "dji_20000104172624_0018_d",
+        "targetSuffix": "clip_228_3_356",
+        "placement": "move-after-video006-184-356",
+    },
+    {
+        "imageStem": "st-670",
         "mode": "after-image",
-        "targetStem": "st-661",
-        "placement": "move-one-video-later-after-st661",
+        "targetStem": "st-668",
+        "placement": "move-after-st668-video006-184-356",
     },
     {
         "imageStem": "st-677",
-        "mode": "after-video",
-        "targetStem": "dji_20000104172624_0018_d",
-        "targetSuffix": "clip_184_356",
-        "placement": "move-after-video006-184-356",
+        "mode": "after-image",
+        "targetStem": "st-670",
+        "placement": "move-after-st670-video006-184-356",
     },
     {
         "imageStem": "st-706",
@@ -248,23 +300,16 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "move-after-st677-video006-184-356",
     },
     {
+        "imageStem": "st-690",
+        "mode": "after-image",
+        "targetStem": "st-706",
+        "placement": "move-one-video-later-after-st706",
+    },
+    {
         "imageStem": "st-632",
         "mode": "after-image",
         "targetStem": "st-634",
         "placement": "move-before-001-087-from-eleven-thirty-cluster",
-    },
-    {
-        "imageStem": "st-735",
-        "mode": "before-video",
-        "targetStem": "dji_20000104172624_0018_d",
-        "targetSuffix": "clip_001_087",
-        "placement": "reorder-12min-image-block-before-video006",
-    },
-    {
-        "imageStem": "st-667",
-        "mode": "after-image",
-        "targetStem": "st-735",
-        "placement": "reorder-12min-image-block-before-video006",
     },
     {
         "imageStem": "st-634",
@@ -285,28 +330,10 @@ MANUAL_IMAGE_RELOCATIONS = [
         "placement": "reorder-12min-image-block-before-video006",
     },
     {
-        "imageStem": "st-668",
-        "mode": "after-image",
-        "targetStem": "st-675",
-        "placement": "reorder-12min-image-block-before-video006",
-    },
-    {
-        "imageStem": "st-670",
-        "mode": "after-image",
-        "targetStem": "st-668",
-        "placement": "reorder-12min-image-block-before-video006",
-    },
-    {
-        "imageStem": "st-646",
-        "mode": "after-image",
-        "targetStem": "st-670",
-        "placement": "reorder-12min-image-block-before-video006",
-    },
-    {
-        "imageStem": "st-653",
-        "mode": "after-image",
-        "targetStem": "st-646",
-        "placement": "reorder-12min-image-block-before-video006",
+        "imageStem": "st-735",
+        "mode": "after-video",
+        "targetStem": "dji_20000104181937_0031_d",
+        "placement": "move-after-video013-0031",
     },
 ]
 MANUAL_VIDEO_END_TRIM_SECONDS = {}
@@ -323,7 +350,6 @@ DEFAULT_EXCLUDED_VIDEO_STEMS = {
     "dji_20000104175228_0028_d",
     "dji_20000104175108_0027_d",
     "st7_8342",
-    "0875db90-5d21-463d-b4b0-9f0a19195ca2",
     "a2ecf072-e001-453b-8432-780011ee6fea",
     "ed5c2815-5ecc-4b02-ba3b-b0c8e02257fd",
     "e6eeaf64-3602-4238-af85-8ccfc6701205",
@@ -340,6 +366,8 @@ DEFAULT_EXCLUDED_IMAGE_STEMS = {
     "st-617",
     "st-621",
     "st-624",
+    "st-625",
+    "st-635",
     "st-676",
     "st-641",
     "st-641w",
@@ -367,21 +395,21 @@ MANUAL_EARLY_IMAGE_ORDER = [
     "st-735",
 ]
 MANUAL_EARLY_IMAGE_TARGET_SECONDS = [70.0, 75.0, 80.0, 85.0, 245.0, 250.0]
-MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-618", "st-625"}
-MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-601", "st-625", "st-618"]
-MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [405.0, 555.0, 590.0]
+MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-618"}
+MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-601", "st-618"]
+MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [405.0, 590.0]
 MANUAL_LATE_IMAGE_STEMS = {"st-686", "st-723", "st-634", "st-690", "st-667", "st-670"}
 MANUAL_LATE_IMAGE_ORDER = ["st-686", "st-723", "st-634", "st-690", "st-667", "st-670"]
 MANUAL_LATE_IMAGE_TARGET_SECONDS = [380.0, 385.0, 430.0, 510.0, 550.0, 625.0]
 MANUAL_LATE_INTERVIDEO_IMAGE_STEMS = {"st-729", "st-730", "st-645"}
 MANUAL_LATE_INTERVIDEO_IMAGE_ORDER = ["st-729", "st-730", "st-645"]
 MANUAL_LATE_INTERVIDEO_IMAGE_AFTER_VIDEO = [
-    ("a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43", "st-645"),
+    ("a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43", "clip_015_040", "st-645"),
 ]
 MANUAL_FINAL_PHOTO_OPENING_STEMS = {"st-682", "st-713"}
 MANUAL_FINAL_PHOTO_OPENING_ORDER = ["st-682", "st-713"]
-MANUAL_THIRD_FROM_LAST_IMAGE_STEMS = {"st-665"}
-MANUAL_THIRD_FROM_LAST_IMAGE_ORDER = ["st-665"]
+MANUAL_THIRD_FROM_LAST_IMAGE_STEMS: set[str] = set()
+MANUAL_THIRD_FROM_LAST_IMAGE_ORDER: list[str] = []
 MANUAL_SECOND_FROM_LAST_IMAGE_STEMS = {"st-721"}
 MANUAL_SECOND_FROM_LAST_IMAGE_ORDER = ["st-721"]
 FINAL_TIMELINE_VIDEO_ORDER: list[str] = []
@@ -407,6 +435,7 @@ REQUIRED_IMAGE_STEM_PRIORITY = {
     "st-690": 76,
     "st-686": 75,
     "st-723": 74,
+    "st-731": 73,
 }
 
 
@@ -1391,7 +1420,8 @@ def audio_focus_intervals(sequence: list[MediaItem]) -> list[tuple[float, float,
             continue
         if start <= current_end + AUDIO_FOCUS_MERGE_GAP_SECONDS:
             current_end = max(current_end, end)
-            current_labels.append(label)
+            if not current_labels or current_labels[-1] != label:
+                current_labels.append(label)
             continue
         intervals.append((current_start, current_end, " + ".join(current_labels)))
         current_start = start
@@ -2041,6 +2071,44 @@ def apply_manual_video_stem_relocations(sequence: list[MediaItem]) -> None:
         sequence.insert(target_index, moving_item)
 
 
+def apply_manual_video_clip_insertions_before(sequence: list[MediaItem]) -> None:
+    for rule in MANUAL_VIDEO_CLIP_INSERTIONS_BEFORE:
+        moving_stem = str(rule["movingStem"])
+        before_stem = str(rule["beforeStem"])
+        before_suffix = str(rule["beforeSuffix"])
+        moving_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video" and media_stem(item) == moving_stem
+            ),
+            None,
+        )
+        target_index = next(
+            (
+                index
+                for index, item in enumerate(sequence)
+                if item.kind == "video"
+                and media_stem(item) == before_stem
+                and manual_range_label_suffix(item) == before_suffix
+            ),
+            None,
+        )
+        if moving_index is None or target_index is None:
+            continue
+        moving_item = sequence.pop(moving_index)
+        if moving_index < target_index:
+            target_index -= 1
+        placement = str(rule["placement"])
+        moving_item.analysis["manualPlacement"] = placement
+        moving_item.analysis["manualSequenceMove"] = {
+            "method": "move-before-video-clip",
+            "targetStem": before_stem,
+            "targetSuffix": before_suffix,
+        }
+        sequence.insert(target_index, moving_item)
+
+
 def apply_manual_video_clip_adjacencies(sequence: list[MediaItem]) -> None:
     for rule in MANUAL_VIDEO_CLIP_ADJACENCIES:
         moving_stem = str(rule["movingStem"])
@@ -2196,9 +2264,20 @@ def can_move_image_to_fill_video_gap(item: MediaItem) -> bool:
     return True
 
 
+def is_intentional_single_image_video_gap(item: MediaItem) -> bool:
+    if item.kind != "image":
+        return False
+    placement = item.analysis.get("manualPlacement") if isinstance(item.analysis, dict) else None
+    if not isinstance(placement, str):
+        return False
+    return placement.startswith(MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES)
+
+
 def find_single_image_video_gap(sequence: list[MediaItem]) -> tuple[int, int] | None:
     for _, start, end, _ in video_separated_image_runs(sequence):
         if end - start == 1:
+            if is_intentional_single_image_video_gap(sequence[start]):
+                continue
             return start, end
     return None
 
@@ -2317,16 +2396,25 @@ def append_due_targeted_images(
 def append_after_video_images(
     sequence: list[MediaItem],
     images: list[MediaItem],
-    video_stem: str,
+    video: MediaItem,
     cursor_frames: int,
 ) -> int:
-    for anchor_stem, image_stem in MANUAL_LATE_INTERVIDEO_IMAGE_AFTER_VIDEO:
+    video_stem = media_stem(video)
+    video_suffix = manual_range_label_suffix(video)
+    for anchor in MANUAL_LATE_INTERVIDEO_IMAGE_AFTER_VIDEO:
+        if len(anchor) == 2:
+            anchor_stem, image_stem = anchor
+            anchor_suffix = None
+        else:
+            anchor_stem, anchor_suffix, image_stem = anchor
         if anchor_stem != video_stem:
+            continue
+        if anchor_suffix is not None and anchor_suffix != video_suffix:
             continue
         for image_index, image in enumerate(images):
             if media_stem(image) != image_stem:
                 continue
-            image.analysis["manualPlacement"] = f"after-video:{video_stem}"
+            image.analysis["manualPlacement"] = f"after-video:{video_stem}:{video_suffix or ''}"
             sequence.append(image)
             cursor_frames += max(1, image.clip_frames)
             images.pop(image_index)
@@ -2416,7 +2504,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
             cursor_frames = append_after_video_images(
                 sequence,
                 late_intervideo_images,
-                media_stem(video),
+                video,
                 cursor_frames,
             )
         early_index = append_due_targeted_images(
@@ -2509,6 +2597,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
     apply_manual_video_block_swaps(sequence)
     apply_manual_video_relocations(sequence)
     apply_manual_video_stem_relocations(sequence)
+    apply_manual_video_clip_insertions_before(sequence)
     apply_manual_video_clip_adjacencies(sequence)
     apply_manual_image_relocations(sequence)
     ensure_minimum_two_images_between_videos(sequence)

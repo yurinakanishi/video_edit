@@ -1,0 +1,18 @@
+{
+  "project_id": "kiitos_studio_youtube_news",
+  "created_for": "STUDIO CMS news post for Kiitos official YouTube Tokyo Oasis episodes",
+  "source_files": [
+    "source/yuri_original_photo.jpg",
+    "source/hanaoka_original_photo.jpg"
+  ],
+  "outputs": {
+    "combined_thumbnail": "output/assets/tokyo_oasis_youtube_original_photos_stacked_16x9.png"
+  },
+  "cms": {
+    "project_url": "https://app.studio.design/projects/nBW2mNXKav/editor/news-all",
+    "model": "記事",
+    "title": "Kiitos公式YouTubeに東京オアシス出演回を公開しました",
+    "tag": "お知らせ",
+    "slug": "tokyo-oasis-youtube-20260625"
+  }
+}

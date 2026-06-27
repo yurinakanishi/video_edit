@@ -1,0 +1,1166 @@
+{
+  "createdAt": "2026-06-26T00:53:23Z",
+  "projectRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday",
+  "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview-video012-underlay-images-20s.mp4",
+  "duration": 20.0,
+  "target": {
+    "width": 960,
+    "height": 540,
+    "fps": 24
+  },
+  "allowedImageSourceDirs": [
+    "phtp2605269"
+  ],
+  "concatFile": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\preview_video012_underlay_images_20s\\preview_video012_underlay_images_20s.concat.txt",
+  "selectionReport": "",
+  "backgroundAudio": {
+    "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\audio\\audio_001_優しい気持ち.mp3",
+    "duration": 106.018,
+    "musicVolume": 0.24,
+    "originalVolume": 0.5,
+    "fadeInSeconds": 5.0,
+    "fadeOutSeconds": 5.0,
+    "focusMode": "all-video-segments",
+    "focusMusicVolumeMultiplier": 0.15,
+    "focusOriginalVolumeMultiplier": 2.0,
+    "focusOriginalVolumeMax": 1.0,
+    "focusTransitionSeconds": 1.0,
+    "focusMergeGapSeconds": 0.05,
+    "focusCurve": "smoothstep",
+    "focusIncludesVideoUnderlayImages": true,
+    "focusIntervals": [
+      {
+        "timelineStart": 0.0,
+        "timelineEnd": 20.0,
+        "sourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_074_3.MP4 + video_012_DJI_20000104181624_0030_D_clip_082_3_end.MP4"
+      }
+    ]
+  },
+  "excludedVideoStems": [],
+  "excludedImageStems": [],
+  "visualTransitionPolicy": {
+    "enabled": true,
+    "transition": "dissolve",
+    "appliesTo": "boundaries where either side is a still image",
+    "targetDurationSeconds": 0.65,
+    "maxFractionOfShorterClip": 0.3
+  },
+  "visualTransitions": [
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 1,
+      "toIndex": 2,
+      "fromSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_074_3.MP4",
+      "toSourceLabel": "photo_057_ST-686.jpg",
+      "timelineStart": 5.0,
+      "timelineEnd": 5.666667,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 2,
+      "toIndex": 3,
+      "fromSourceLabel": "photo_057_ST-686.jpg",
+      "toSourceLabel": "photo_051_ST-731.jpg",
+      "timelineStart": 9.333333,
+      "timelineEnd": 10.0,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 3,
+      "toIndex": 4,
+      "fromSourceLabel": "photo_051_ST-731.jpg",
+      "toSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_082_3_end.MP4",
+      "timelineStart": 13.666667,
+      "timelineEnd": 14.333334,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    }
+  ],
+  "segmentResults": [
+    {
+      "index": 1,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\preview_video012_underlay_images_20s\\segment_0001_video_video_012_DJI_20000104181624_0030_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\preview_video012_underlay_images_20s\\segment_logs\\segment_0001_video_video_012_DJI_20000104181624_0030_D.log"
+    },
+    {
+      "index": 2,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\preview_video012_underlay_images_20s\\segment_0002_image_photo_057_ST-686.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\preview_video012_underlay_images_20s\\segment_logs\\segment_0002_image_photo_057_ST-686.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 3,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\preview_video012_underlay_images_20s\\segment_0003_image_photo_051_ST-731.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\preview_video012_underlay_images_20s\\segment_logs\\segment_0003_image_photo_051_ST-731.log",
+      "renderer": "opencv-subpixel"
+    },
+    {
+      "index": 4,
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\preview_video012_underlay_images_20s\\segment_0004_video_video_012_DJI_20000104181624_0030_D.mp4",
+      "status": "rendered",
+      "log": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\reports\\preview_video012_underlay_images_20s\\segment_logs\\segment_0004_video_video_012_DJI_20000104181624_0030_D.log"
+    },
+    {
+      "index": 5,
+      "kind": "group-concat",
+      "groups": [
+        "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\segments\\preview_video012_underlay_images_20s_groups\\birthday_highlight_group_01.mp4"
+      ]
+    }
+  ],
+  "media": [
+    {
+      "index": 1,
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+      "relative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+      "sourceIdentityStem": "dji_20000104181624_0030_d",
+      "sourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_074_3.MP4",
+      "width": 1920,
+      "height": 1080,
+      "sourceDuration": 103.979,
+      "hasAudio": true,
+      "timelineStart": 0.0,
+      "timelineEnd": 5.666667,
+      "sourceIn": 68.625,
+      "sourceOut": 74.291667,
+      "clipDuration": 5.666667,
+      "clipFrames": 136,
+      "analysis": {
+        "analysisVersion": "video-v2-stable-people",
+        "score": 0.52438,
+        "selectedSampleTime": 51.989,
+        "cropCenter": [
+          0.5975,
+          0.5119
+        ],
+        "cameraMotionAtSelection": 0.05011,
+        "personRelation": {
+          "faceCountAtSelection": 5,
+          "maxFaceCount": 5,
+          "positionsAtSelection": [
+            "center",
+            "right",
+            "right",
+            "right",
+            "left"
+          ],
+          "groupBoxAtSelection": {
+            "x1": 414.0,
+            "y1": 136.0,
+            "x2": 1724.0,
+            "y2": 812.0
+          }
+        },
+        "visualAtSelection": {
+          "brightness": 0.59314,
+          "saturation": 0.22618,
+          "contrast": 0.21747,
+          "warmth": 0.08329,
+          "sharpness": 189.158
+        },
+        "sampleCount": 3,
+        "sampleSummary": {
+          "avgBrightness": 0.55316,
+          "avgSaturation": 0.25114,
+          "avgWarmth": 0.1074,
+          "avgFaceCount": 2.667,
+          "avgCameraMotion": 0.02097,
+          "maxCameraMotion": 0.05011
+        },
+        "topSamples": [
+          {
+            "time": 51.989,
+            "score": 0.52438,
+            "motion": 0.16388,
+            "cameraMotion": 0.05011,
+            "visual": {
+              "brightness": 0.59314,
+              "saturation": 0.22618,
+              "contrast": 0.21747,
+              "warmth": 0.08329,
+              "sharpness": 189.158
+            },
+            "faces": [
+              {
+                "bbox": {
+                  "x1": 764.0,
+                  "y1": 230.0,
+                  "x2": 1198.0,
+                  "y2": 664.0
+                },
+                "bbox_xyxy": [
+                  764.0,
+                  230.0,
+                  1198.0,
+                  664.0
+                ],
+                "center_ratio": [
+                  0.5109,
+                  0.4139
+                ],
+                "area_ratio": 0.09084
+              },
+              {
+                "bbox": {
+                  "x1": 1316.0,
+                  "y1": 188.0,
+                  "x2": 1540.0,
+                  "y2": 412.0
+                },
+                "bbox_xyxy": [
+                  1316.0,
+                  188.0,
+                  1540.0,
+                  412.0
+                ],
+                "center_ratio": [
+                  0.7438,
+                  0.2778
+                ],
+                "area_ratio": 0.0242
+              },
+              {
+                "bbox": {
+                  "x1": 1508.0,
+                  "y1": 596.0,
+                  "x2": 1724.0,
+                  "y2": 812.0
+                },
+                "bbox_xyxy": [
+                  1508.0,
+                  596.0,
+                  1724.0,
+                  812.0
+                ],
+                "center_ratio": [
+                  0.8417,
+                  0.6519
+                ],
+                "area_ratio": 0.0225
+              },
+              {
+                "bbox": {
+                  "x1": 1130.0,
+                  "y1": 362.0,
+                  "x2": 1322.0,
+                  "y2": 554.0
+                },
+                "bbox_xyxy": [
+                  1130.0,
+                  362.0,
+                  1322.0,
+                  554.0
+                ],
+                "center_ratio": [
+                  0.6385,
+                  0.4241
+                ],
+                "area_ratio": 0.01778
+              },
+              {
+                "bbox": {
+                  "x1": 414.0,
+                  "y1": 136.0,
+                  "x2": 556.0,
+                  "y2": 278.0
+                },
+                "bbox_xyxy": [
+                  414.0,
+                  136.0,
+                  556.0,
+                  278.0
+                ],
+                "center_ratio": [
+                  0.2526,
+                  0.1917
+                ],
+                "area_ratio": 0.00972
+              }
+            ],
+            "focus": {
+              "faceCount": 5,
+              "center": [
+                0.5975,
+                0.3919
+              ],
+              "cropCenter": [
+                0.5975,
+                0.5119
+              ],
+              "positions": [
+                "center",
+                "right",
+                "right",
+                "right",
+                "left"
+              ],
+              "groupBox": {
+                "x1": 414.0,
+                "y1": 136.0,
+                "x2": 1724.0,
+                "y2": 812.0
+              }
+            }
+          },
+          {
+            "time": 103.479,
+            "score": 0.44898,
+            "motion": 0.07647,
+            "cameraMotion": 0.00696,
+            "visual": {
+              "brightness": 0.53748,
+              "saturation": 0.29609,
+              "contrast": 0.23016,
+              "warmth": 0.15236,
+              "sharpness": 247.013
+            },
+            "faces": [
+              {
+                "bbox": {
+                  "x1": 1084.0,
+                  "y1": 400.0,
+                  "x2": 1212.0,
+                  "y2": 528.0
+                },
+                "bbox_xyxy": [
+                  1084.0,
+                  400.0,
+                  1212.0,
+                  528.0
+                ],
+                "center_ratio": [
+                  0.5979,
+                  0.4296
+                ],
+                "area_ratio": 0.0079
+              },
+              {
+                "bbox": {
+                  "x1": 892.0,
+                  "y1": 34.0,
+                  "x2": 986.0,
+                  "y2": 128.0
+                },
+                "bbox_xyxy": [
+                  892.0,
+                  34.0,
+                  986.0,
+                  128.0
+                ],
+                "center_ratio": [
+                  0.4891,
+                  0.075
+                ],
+                "area_ratio": 0.00426
+              }
+            ],
+            "focus": {
+              "faceCount": 2,
+              "center": [
+                0.5435,
+                0.2523
+              ],
+              "cropCenter": [
+                0.5435,
+                0.3723
+              ],
+              "positions": [
+                "center",
+                "center"
+              ],
+              "groupBox": {
+                "x1": 892.0,
+                "y1": 34.0,
+                "x2": 1212.0,
+                "y2": 528.0
+              }
+            }
+          },
+          {
+            "time": 0.5,
+            "score": 0.43198,
+            "motion": 0.03934,
+            "cameraMotion": 0.00583,
+            "visual": {
+              "brightness": 0.52887,
+              "saturation": 0.23116,
+              "contrast": 0.17154,
+              "warmth": 0.08654,
+              "sharpness": 440.415
+            },
+            "faces": [
+              {
+                "bbox": {
+                  "x1": 386.0,
+                  "y1": 378.0,
+                  "x2": 510.0,
+                  "y2": 502.0
+                },
+                "bbox_xyxy": [
+                  386.0,
+                  378.0,
+                  510.0,
+                  502.0
+                ],
+                "center_ratio": [
+                  0.2333,
+                  0.4074
+                ],
+                "area_ratio": 0.00742
+              }
+            ],
+            "focus": {
+              "faceCount": 1,
+              "center": [
+                0.2333,
+                0.4074
+              ],
+              "cropCenter": [
+                0.2333,
+                0.5274
+              ],
+              "positions": [
+                "left"
+              ],
+              "groupBox": {
+                "x1": 386.0,
+                "y1": 378.0,
+                "x2": 510.0,
+                "y2": 502.0
+              }
+            }
+          }
+        ],
+        "probe": {
+          "duration": 103.978667,
+          "width": 1920,
+          "height": 1080,
+          "fps": "60000/1001",
+          "videoCodec": "hevc",
+          "hasAudio": true,
+          "creationTime": "2000-01-04T09:16:25.000000Z"
+        },
+        "manualPlacement": "connected-full-video-block",
+        "manualSequenceMove": {
+          "method": "move-before-video",
+          "targetStem": "dji_20000104181937_0031_d"
+        },
+        "manualRangeClip": {
+          "sourceStem": "dji_20000104181624_0030_d",
+          "sourceIn": 0.0,
+          "sourceOut": 74.291667,
+          "requestedLabelSuffix": "clip_000_074_3",
+          "placement": "manual-middle-video",
+          "method": "duplicate-source-fixed-range"
+        },
+        "sourceDisplayName": "video_012_DJI_20000104181624_0030_D_clip_000_074_3.MP4",
+        "manualFixedClip": {
+          "sourceStem": "dji_20000104181624_0030_d",
+          "fixedSourceIn": 0.0,
+          "fixedDuration": 74.291667,
+          "originalSourceIn": 14.843166,
+          "originalSourceOut": 89.134833,
+          "sourceIn": 0.0,
+          "sourceOut": 74.291667,
+          "originalClipDuration": 74.291667,
+          "clipDuration": 74.291667,
+          "method": "fixed-source-range",
+          "manualRangeClip": {
+            "sourceStem": "dji_20000104181624_0030_d",
+            "sourceIn": 0.0,
+            "sourceOut": 74.291667,
+            "requestedLabelSuffix": "clip_000_074_3",
+            "placement": "manual-middle-video",
+            "method": "duplicate-source-fixed-range"
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_057_ST-686.jpg",
+      "relative": "phtp2605269\\photo_057_ST-686.jpg",
+      "sourceIdentityStem": "st-686",
+      "sourceLabel": "photo_057_ST-686.jpg",
+      "width": 2001,
+      "height": 3000,
+      "sourceDuration": 0.0,
+      "hasAudio": true,
+      "timelineStart": 5.0,
+      "timelineEnd": 10.0,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.51376,
+        "cropCenter": [
+          0.5,
+          0.5
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 1400.0,
+            "y2": 2099.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "subjectSquare": {
+            "x1": 0.0,
+            "y1": 349.5,
+            "x2": 1400.0,
+            "y2": 1749.5,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.5,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 2,
+          "positions": [
+            "left",
+            "right"
+          ],
+          "groupBox": {
+            "x1": 42.29,
+            "y1": 487.08,
+            "x2": 1159.38,
+            "y2": 1350.42
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 42.29,
+                "y1": 487.08,
+                "x2": 905.62,
+                "y2": 1350.42
+              },
+              "bbox_xyxy": [
+                42.29,
+                487.08,
+                905.62,
+                1350.42
+              ],
+              "center_ratio": [
+                0.3385,
+                0.4377
+              ],
+              "area_ratio": 0.25364,
+              "detector": "haar_front",
+              "confidence": 0.82
+            },
+            {
+              "bbox": {
+                "x1": 1073.33,
+                "y1": 1022.29,
+                "x2": 1159.38,
+                "y2": 1108.33
+              },
+              "bbox_xyxy": [
+                1073.33,
+                1022.29,
+                1159.38,
+                1108.33
+              ],
+              "center_ratio": [
+                0.7974,
+                0.5075
+              ],
+              "area_ratio": 0.00252,
+              "detector": "haar_front",
+              "confidence": 0.82
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.69676,
+          "saturation": 0.50875,
+          "contrast": 0.20235,
+          "warmth": 0.30389,
+          "sharpness": 64.501
+        },
+        "perceptualHash": "91422bbdbddd9448",
+        "duplicateGroup": {
+          "groupId": 46,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "required-image-priority",
+          "score": 0.84716
+        },
+        "manualTargetSeconds": 380.0,
+        "manualPlacement": "move-inside-video012-around-20m11",
+        "manualImageMove": {
+          "method": "after-video",
+          "placement": "move-inside-video012-around-20m11"
+        },
+        "imageRole": "manual-late-group",
+        "underlayVideoAudio": {
+          "mode": "continue-source-video-audio-under-replacement-still",
+          "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+          "relative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+          "sourceStem": "dji_20000104181624_0030_d",
+          "sourceDisplayName": "video_012_DJI_20000104181624_0030_D_clip_000_074_3.MP4",
+          "sourceIn": 73.625,
+          "sourceOut": 78.625,
+          "duration": 5.0,
+          "focusAsVideo": true
+        }
+      }
+    },
+    {
+      "index": 3,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_051_ST-731.jpg",
+      "relative": "phtp2605269\\photo_051_ST-731.jpg",
+      "sourceIdentityStem": "st-731",
+      "sourceLabel": "photo_051_ST-731.jpg",
+      "width": 3000,
+      "height": 2000,
+      "sourceDuration": 0.0,
+      "hasAudio": true,
+      "timelineStart": 9.333333,
+      "timelineEnd": 14.333333,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.29914,
+        "cropCenter": [
+          0.8536,
+          0.7803
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 1123.28,
+            "y1": 523.03,
+            "x2": 1400.0,
+            "y2": 933.0,
+            "center": [
+              0.9012,
+              0.7803
+            ]
+          },
+          "subjectSquare": {
+            "x1": 990.03,
+            "y1": 523.03,
+            "x2": 1400.0,
+            "y2": 933.0,
+            "center": [
+              0.8536,
+              0.7803
+            ]
+          },
+          "cropCenter": [
+            0.8536,
+            0.7803
+          ]
+        },
+        "personRelation": {
+          "faceCount": 2,
+          "positions": [
+            "right",
+            "right"
+          ],
+          "groupBox": {
+            "x1": 1216.25,
+            "y1": 710.21,
+            "x2": 1340.21,
+            "y2": 930.42
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front",
+            "haar_profile_flipped"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 1233.75,
+                "y1": 710.21,
+                "x2": 1340.21,
+                "y2": 816.67
+              },
+              "bbox_xyxy": [
+                1233.75,
+                710.21,
+                1340.21,
+                816.67
+              ],
+              "center_ratio": [
+                0.9193,
+                0.8183
+              ],
+              "area_ratio": 0.00868,
+              "detector": "haar_front",
+              "confidence": 0.82
+            },
+            {
+              "bbox": {
+                "x1": 1216.25,
+                "y1": 851.67,
+                "x2": 1295.0,
+                "y2": 930.42
+              },
+              "bbox_xyxy": [
+                1216.25,
+                851.67,
+                1295.0,
+                930.42
+              ],
+              "center_ratio": [
+                0.8969,
+                0.955
+              ],
+              "area_ratio": 0.00475,
+              "detector": "haar_profile_flipped",
+              "confidence": 0.8
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.81744,
+          "saturation": 0.2479,
+          "contrast": 0.13785,
+          "warmth": 0.10588,
+          "sharpness": 27.4
+        },
+        "perceptualHash": "bd0f0a141f3e3c3c",
+        "duplicateGroup": {
+          "groupId": 41,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "required-image-priority",
+          "score": 0.56375
+        },
+        "manualTargetSeconds": 255.0,
+        "manualPlacement": "move-inside-video012-around-20m11",
+        "manualImageMove": {
+          "method": "after-image",
+          "placement": "move-inside-video012-around-20m11"
+        },
+        "underlayVideoAudio": {
+          "mode": "continue-source-video-audio-under-replacement-still",
+          "sourcePath": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+          "relative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+          "sourceStem": "dji_20000104181624_0030_d",
+          "sourceDisplayName": "video_012_DJI_20000104181624_0030_D_clip_000_074_3.MP4",
+          "sourceIn": 77.958334,
+          "sourceOut": 82.958334,
+          "duration": 5.0,
+          "focusAsVideo": true
+        }
+      }
+    },
+    {
+      "index": 4,
+      "kind": "video",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+      "relative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
+      "sourceIdentityStem": "dji_20000104181624_0030_d",
+      "sourceLabel": "video_012_DJI_20000104181624_0030_D_clip_082_3_end.MP4",
+      "width": 1920,
+      "height": 1080,
+      "sourceDuration": 103.979,
+      "hasAudio": true,
+      "timelineStart": 13.666667,
+      "timelineEnd": 20.0,
+      "sourceIn": 82.291667,
+      "sourceOut": 88.625,
+      "clipDuration": 6.333333,
+      "clipFrames": 152,
+      "analysis": {
+        "analysisVersion": "video-v2-stable-people",
+        "score": 0.52438,
+        "selectedSampleTime": 51.989,
+        "cropCenter": [
+          0.5975,
+          0.5119
+        ],
+        "cameraMotionAtSelection": 0.05011,
+        "personRelation": {
+          "faceCountAtSelection": 5,
+          "maxFaceCount": 5,
+          "positionsAtSelection": [
+            "center",
+            "right",
+            "right",
+            "right",
+            "left"
+          ],
+          "groupBoxAtSelection": {
+            "x1": 414.0,
+            "y1": 136.0,
+            "x2": 1724.0,
+            "y2": 812.0
+          }
+        },
+        "visualAtSelection": {
+          "brightness": 0.59314,
+          "saturation": 0.22618,
+          "contrast": 0.21747,
+          "warmth": 0.08329,
+          "sharpness": 189.158
+        },
+        "sampleCount": 3,
+        "sampleSummary": {
+          "avgBrightness": 0.55316,
+          "avgSaturation": 0.25114,
+          "avgWarmth": 0.1074,
+          "avgFaceCount": 2.667,
+          "avgCameraMotion": 0.02097,
+          "maxCameraMotion": 0.05011
+        },
+        "topSamples": [
+          {
+            "time": 51.989,
+            "score": 0.52438,
+            "motion": 0.16388,
+            "cameraMotion": 0.05011,
+            "visual": {
+              "brightness": 0.59314,
+              "saturation": 0.22618,
+              "contrast": 0.21747,
+              "warmth": 0.08329,
+              "sharpness": 189.158
+            },
+            "faces": [
+              {
+                "bbox": {
+                  "x1": 764.0,
+                  "y1": 230.0,
+                  "x2": 1198.0,
+                  "y2": 664.0
+                },
+                "bbox_xyxy": [
+                  764.0,
+                  230.0,
+                  1198.0,
+                  664.0
+                ],
+                "center_ratio": [
+                  0.5109,
+                  0.4139
+                ],
+                "area_ratio": 0.09084
+              },
+              {
+                "bbox": {
+                  "x1": 1316.0,
+                  "y1": 188.0,
+                  "x2": 1540.0,
+                  "y2": 412.0
+                },
+                "bbox_xyxy": [
+                  1316.0,
+                  188.0,
+                  1540.0,
+                  412.0
+                ],
+                "center_ratio": [
+                  0.7438,
+                  0.2778
+                ],
+                "area_ratio": 0.0242
+              },
+              {
+                "bbox": {
+                  "x1": 1508.0,
+                  "y1": 596.0,
+                  "x2": 1724.0,
+                  "y2": 812.0
+                },
+                "bbox_xyxy": [
+                  1508.0,
+                  596.0,
+                  1724.0,
+                  812.0
+                ],
+                "center_ratio": [
+                  0.8417,
+                  0.6519
+                ],
+                "area_ratio": 0.0225
+              },
+              {
+                "bbox": {
+                  "x1": 1130.0,
+                  "y1": 362.0,
+                  "x2": 1322.0,
+                  "y2": 554.0
+                },
+                "bbox_xyxy": [
+                  1130.0,
+                  362.0,
+                  1322.0,
+                  554.0
+                ],
+                "center_ratio": [
+                  0.6385,
+                  0.4241
+                ],
+                "area_ratio": 0.01778
+              },
+              {
+                "bbox": {
+                  "x1": 414.0,
+                  "y1": 136.0,
+                  "x2": 556.0,
+                  "y2": 278.0
+                },
+                "bbox_xyxy": [
+                  414.0,
+                  136.0,
+                  556.0,
+                  278.0
+                ],
+                "center_ratio": [
+                  0.2526,
+                  0.1917
+                ],
+                "area_ratio": 0.00972
+              }
+            ],
+            "focus": {
+              "faceCount": 5,
+              "center": [
+                0.5975,
+                0.3919
+              ],
+              "cropCenter": [
+                0.5975,
+                0.5119
+              ],
+              "positions": [
+                "center",
+                "right",
+                "right",
+                "right",
+                "left"
+              ],
+              "groupBox": {
+                "x1": 414.0,
+                "y1": 136.0,
+                "x2": 1724.0,
+                "y2": 812.0
+              }
+            }
+          },
+          {
+            "time": 103.479,
+            "score": 0.44898,
+            "motion": 0.07647,
+            "cameraMotion": 0.00696,
+            "visual": {
+              "brightness": 0.53748,
+              "saturation": 0.29609,
+              "contrast": 0.23016,
+              "warmth": 0.15236,
+              "sharpness": 247.013
+            },
+            "faces": [
+              {
+                "bbox": {
+                  "x1": 1084.0,
+                  "y1": 400.0,
+                  "x2": 1212.0,
+                  "y2": 528.0
+                },
+                "bbox_xyxy": [
+                  1084.0,
+                  400.0,
+                  1212.0,
+                  528.0
+                ],
+                "center_ratio": [
+                  0.5979,
+                  0.4296
+                ],
+                "area_ratio": 0.0079
+              },
+              {
+                "bbox": {
+                  "x1": 892.0,
+                  "y1": 34.0,
+                  "x2": 986.0,
+                  "y2": 128.0
+                },
+                "bbox_xyxy": [
+                  892.0,
+                  34.0,
+                  986.0,
+                  128.0
+                ],
+                "center_ratio": [
+                  0.4891,
+                  0.075
+                ],
+                "area_ratio": 0.00426
+              }
+            ],
+            "focus": {
+              "faceCount": 2,
+              "center": [
+                0.5435,
+                0.2523
+              ],
+              "cropCenter": [
+                0.5435,
+                0.3723
+              ],
+              "positions": [
+                "center",
+                "center"
+              ],
+              "groupBox": {
+                "x1": 892.0,
+                "y1": 34.0,
+                "x2": 1212.0,
+                "y2": 528.0
+              }
+            }
+          },
+          {
+            "time": 0.5,
+            "score": 0.43198,
+            "motion": 0.03934,
+            "cameraMotion": 0.00583,
+            "visual": {
+              "brightness": 0.52887,
+              "saturation": 0.23116,
+              "contrast": 0.17154,
+              "warmth": 0.08654,
+              "sharpness": 440.415
+            },
+            "faces": [
+              {
+                "bbox": {
+                  "x1": 386.0,
+                  "y1": 378.0,
+                  "x2": 510.0,
+                  "y2": 502.0
+                },
+                "bbox_xyxy": [
+                  386.0,
+                  378.0,
+                  510.0,
+                  502.0
+                ],
+                "center_ratio": [
+                  0.2333,
+                  0.4074
+                ],
+                "area_ratio": 0.00742
+              }
+            ],
+            "focus": {
+              "faceCount": 1,
+              "center": [
+                0.2333,
+                0.4074
+              ],
+              "cropCenter": [
+                0.2333,
+                0.5274
+              ],
+              "positions": [
+                "left"
+              ],
+              "groupBox": {
+                "x1": 386.0,
+                "y1": 378.0,
+                "x2": 510.0,
+                "y2": 502.0
+              }
+            }
+          }
+        ],
+        "probe": {
+          "duration": 103.978667,
+          "width": 1920,
+          "height": 1080,
+          "fps": "60000/1001",
+          "videoCodec": "hevc",
+          "hasAudio": true,
+          "creationTime": "2000-01-04T09:16:25.000000Z"
+        },
+        "manualPlacement": "connected-full-video-block",
+        "manualSequenceMove": {
+          "method": "move-before-video",
+          "targetStem": "dji_20000104181937_0031_d"
+        },
+        "manualRangeClip": {
+          "sourceStem": "dji_20000104181624_0030_d",
+          "sourceIn": 82.291667,
+          "sourceOut": 103.978667,
+          "requestedLabelSuffix": "clip_082_3_end",
+          "placement": "manual-middle-video",
+          "method": "duplicate-source-fixed-range"
+        },
+        "sourceDisplayName": "video_012_DJI_20000104181624_0030_D_clip_082_3_end.MP4",
+        "manualFixedClip": {
+          "sourceStem": "dji_20000104181624_0030_d",
+          "fixedSourceIn": 82.291667,
+          "fixedDuration": 21.686999999999998,
+          "originalSourceIn": 41.155666,
+          "originalSourceOut": 62.822333,
+          "sourceIn": 82.291667,
+          "sourceOut": 103.958334,
+          "originalClipDuration": 21.666667,
+          "clipDuration": 21.666667,
+          "method": "fixed-source-range",
+          "manualRangeClip": {
+            "sourceStem": "dji_20000104181624_0030_d",
+            "sourceIn": 82.291667,
+            "sourceOut": 103.978667,
+            "requestedLabelSuffix": "clip_082_3_end",
+            "placement": "manual-middle-video",
+            "method": "duplicate-source-fixed-range"
+          }
+        }
+      }
+    }
+  ]
+}

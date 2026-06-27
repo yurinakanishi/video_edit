@@ -50,7 +50,12 @@ VISUAL_IMAGE_DISSOLVE_SECONDS = 0.65
 VISUAL_IMAGE_DISSOLVE_MAX_FRACTION = 0.30
 PORTRAIT_LETTERBOX_FADE_SECONDS = 0.45
 PORTRAIT_LETTERBOX_ZOOM_AMOUNT = 0.032
-MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES = ("insert-at-latest-full-",)
+GLOBAL_LOOK_CONTRAST = 0.985
+GLOBAL_LOOK_GAMMA = 1.010
+GLOBAL_LOOK_BRIGHTNESS_LIFT = 0.008
+GLOBAL_LOOK_SATURATION_BASE = 1.075
+PORTRAIT_IMAGE_WARM_SATURATION = 1.060
+MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES = ("insert-at-latest-full-", "single-between-split-video-")
 MIN_VARIABLE_VIDEO_SECONDS = 12.0
 MANUAL_IMAGE_RENDER_OVERRIDES: dict[str, dict[str, Any]] = {}
 MANUAL_VIDEO_FIXED_CLIPS = {
@@ -77,18 +82,7 @@ MANUAL_VIDEO_RANGE_CLIPS = {
     "dji_20000104161921_0006_d": [
         {"sourceIn": 0.0, "sourceOut": 100.0, "labelSuffix": "clip_000_100"},
         {"sourceIn": 387.0, "sourceOut": 554.0, "labelSuffix": "clip_387_554"},
-        {
-            "sourceIn": 38.0,
-            "sourceOut": 113.0,
-            "labelSuffix": "clip_038_113",
-            "connectedGroup": "dji_20000104161921_0006_d_clip_038_211_cut_113_139",
-        },
-        {
-            "sourceIn": 139.0,
-            "sourceOut": 211.0,
-            "labelSuffix": "clip_139_211",
-            "connectedGroup": "dji_20000104161921_0006_d_clip_038_211_cut_113_139",
-        },
+        {"sourceIn": 139.0, "sourceOut": 211.0, "labelSuffix": "clip_139_211"},
     ],
     "st7_8341": [
         {"sourceIn": 0.0, "sourceOut": 46.0, "labelSuffix": "clip_000_046"},
@@ -117,12 +111,6 @@ MANUAL_VIDEO_RANGE_CLIPS = {
             "sourceIn": 131.0,
             "sourceOut": 153.291667,
             "labelSuffix": "clip_131_153_3",
-            "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
-        },
-        {
-            "sourceIn": 153.291667,
-            "sourceOut": 158.291667,
-            "labelSuffix": "clip_153_3_158_3",
             "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
         },
         {
@@ -168,8 +156,8 @@ MANUAL_VIDEO_CLIP_INSERTIONS_BEFORE = [
     {
         "movingStem": "0875db90-5d21-463d-b4b0-9f0a19195ca2",
         "beforeStem": "dji_20000104161921_0006_d",
-        "beforeSuffix": "clip_038_113",
-        "placement": "insert-video018-source-014-036-before-dji-038-113",
+        "beforeSuffix": "clip_139_211",
+        "placement": "insert-video018-source-014-036-before-dji-139-211-after-038-113-cut",
     }
 ]
 MANUAL_VIDEO_CLIP_INSERTIONS_AFTER_IMAGE_ROLE = [
@@ -226,14 +214,15 @@ MANUAL_IMAGE_RELOCATIONS = [
         "imageStem": "st-730",
         "mode": "after-video",
         "targetStem": "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43",
-        "targetSuffix": "clip_000_015",
-        "placement": "move-after-video023-000-015",
+        "targetSuffix": "clip_015_040",
+        "placement": "move-after-video023-015-040",
     },
     {
         "imageStem": "st-729",
-        "mode": "after-image",
-        "targetStem": "st-730",
-        "placement": "move-after-st730-video023-000-015",
+        "mode": "after-video",
+        "targetStem": "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43",
+        "targetSuffix": "clip_000_015",
+        "placement": "single-between-split-video-video023-st729",
     },
     {
         "imageStem": "st-618",
@@ -241,6 +230,28 @@ MANUAL_IMAGE_RELOCATIONS = [
         "targetStem": "dji_20000104171048_0015_d",
         "targetSuffix": "clip_000_051",
         "placement": "swap-to-eight-thirteen-area",
+    },
+    {
+        "imageStem": "st-699",
+        "mode": "after-image",
+        "targetStem": "st-601",
+        "placement": "replace-st688-after-st601",
+        "imageRole": "manual-st688-replacement",
+    },
+    {
+        "imageStem": "st-738",
+        "mode": "after-video",
+        "targetStem": "dji_20000104171048_0015_d",
+        "targetSuffix": "clip_054_end",
+        "placement": "move-between-video003-054-end-and-video014-046",
+        "imageRole": "manual-between-054-and-046",
+    },
+    {
+        "imageStem": "st-737",
+        "mode": "after-image",
+        "targetStem": "st-738",
+        "placement": "move-after-st738-between-054-and-046",
+        "imageRole": "manual-between-054-and-046",
     },
     {
         "imageStem": "st-645",
@@ -265,10 +276,9 @@ MANUAL_IMAGE_RELOCATIONS = [
     },
     {
         "imageStem": "st-686",
-        "mode": "after-video",
-        "targetStem": "dji_20000104172624_0018_d",
-        "targetSuffix": "clip_153_3_158_3",
-        "placement": "insert-at-latest-full-14m12-video006-131-177",
+        "mode": "after-image",
+        "targetStem": "st-653",
+        "placement": "move-immediately-after-st653-no-video-between",
     },
     {
         "imageStem": "st-661",
@@ -379,6 +389,7 @@ DEFAULT_EXCLUDED_IMAGE_STEMS = {
     "st-625",
     "st-635",
     "st-676",
+    "st-688",
     "st-641",
     "st-641w",
     "dji_20000104170445_0011_d_t004_5",
@@ -1007,6 +1018,9 @@ def strip_runtime_manual_video_metadata(analysis: dict[str, Any]) -> dict[str, A
         "durationAllocation",
         "manualEndTrim",
         "manualKeepLast",
+        "manualPlacement",
+        "manualSequenceMove",
+        "manualSequenceSwap",
     ):
         cleaned.pop(key, None)
     return cleaned
@@ -2295,6 +2309,10 @@ def apply_manual_image_relocations(sequence: list[MediaItem]) -> None:
             "method": mode,
             "placement": placement,
         }
+        if "imageRole" in rule:
+            moving_item.analysis["imageRole"] = str(rule["imageRole"])
+        elif rule.get("clearImageRole"):
+            moving_item.analysis.pop("imageRole", None)
         sequence.insert(insert_index, moving_item)
 
 
@@ -2732,13 +2750,17 @@ def look_filter(item: MediaItem) -> str:
     brightness = float(visual.get("brightness") or visual.get("avgBrightness") or 0.50)
     saturation = float(visual.get("saturation") or visual.get("avgSaturation") or 0.32)
     warmth = float(visual.get("warmth") or visual.get("avgWarmth") or 0.0)
-    brightness_offset = clamp((0.50 - brightness) * 0.12, -0.035, 0.035)
-    saturation_value = clamp(0.88 + (0.32 - saturation) * 0.22, 0.78, 1.02)
-    red_shadow = clamp(0.018 - warmth * 0.035, -0.012, 0.03)
-    blue_shadow = clamp(-0.014 - warmth * 0.02, -0.03, 0.006)
+    brightness_offset = clamp(GLOBAL_LOOK_BRIGHTNESS_LIFT + (0.52 - brightness) * 0.08, -0.012, 0.032)
+    saturation_value = clamp(GLOBAL_LOOK_SATURATION_BASE + (0.32 - saturation) * 0.10, 1.035, 1.145)
+    red_shadow = clamp(0.024 - warmth * 0.018, 0.006, 0.036)
+    blue_shadow = clamp(-0.026 - warmth * 0.010, -0.038, -0.012)
+    red_mid = clamp(0.012 - warmth * 0.010, 0.002, 0.020)
+    blue_mid = clamp(-0.010 - warmth * 0.006, -0.018, -0.004)
     return (
-        f"eq=contrast=0.92:saturation={saturation_value:.4f}:brightness={brightness_offset:.5f}:gamma=1.035,"
-        f"colorbalance=rs={red_shadow:.5f}:gs=0.004:bs={blue_shadow:.5f}"
+        f"eq=contrast={GLOBAL_LOOK_CONTRAST:.3f}:saturation={saturation_value:.4f}:"
+        f"brightness={brightness_offset:.5f}:gamma={GLOBAL_LOOK_GAMMA:.3f},"
+        f"colorbalance=rs={red_shadow:.5f}:gs=0.006:bs={blue_shadow:.5f}:"
+        f"rm={red_mid:.5f}:gm=0.003:bm={blue_mid:.5f}:rh=0.004:gh=0.000:bh=-0.004:pl=1"
     )
 
 
@@ -2857,6 +2879,18 @@ def should_render_portrait_letterbox(item: MediaItem, image: np.ndarray) -> bool
     return True
 
 
+def apply_warm_bgr_grade(image: np.ndarray) -> np.ndarray:
+    graded = image.astype(np.float32)
+    graded[:, :, 2] *= 1.026
+    graded[:, :, 1] *= 1.004
+    graded[:, :, 0] *= 0.986
+    graded = np.clip(graded, 0, 255).astype(np.uint8)
+    hsv = cv2.cvtColor(graded, cv2.COLOR_BGR2HSV).astype(np.float32)
+    hsv[:, :, 1] = np.clip(hsv[:, :, 1] * PORTRAIT_IMAGE_WARM_SATURATION, 0, 255)
+    hsv[:, :, 2] = np.clip((hsv[:, :, 2] - 128.0) * GLOBAL_LOOK_CONTRAST + 130.0, 0, 255)
+    return cv2.cvtColor(hsv.astype(np.uint8), cv2.COLOR_HSV2BGR)
+
+
 def render_portrait_letterbox_frame(
     image: np.ndarray,
     *,
@@ -2878,6 +2912,7 @@ def render_portrait_letterbox_frame(
     resized_width = max(1, int(round(source_width * scale)))
     resized_height = max(height, int(round(source_height * scale)))
     resized = cv2.resize(image, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
+    resized = apply_warm_bgr_grade(resized)
     frame = np.full((height, width, 3), 255, dtype=np.uint8)
     if resized_height > height:
         crop_y = (resized_height - height) // 2
@@ -3189,6 +3224,7 @@ def render_image_segment_smooth(
                     end_center=end_center,
                     motion_mode="none",
                 )
+                title_background = apply_warm_bgr_grade(title_background)
                 frame = draw_intro_title_frame(
                     width,
                     height,

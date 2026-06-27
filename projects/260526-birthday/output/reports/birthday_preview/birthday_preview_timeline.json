@@ -1,8 +1,8 @@
 {
-  "createdAt": "2026-06-27T07:05:18Z",
+  "createdAt": "2026-06-27T08:33:47Z",
   "projectRoot": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday",
   "output": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\output\\videos\\260526-birthday-preview.mp4",
-  "duration": 1508.375,
+  "duration": 1485.708,
   "target": {
     "width": 960,
     "height": 540,
@@ -29,48 +29,44 @@
     "focusCurve": "smoothstep",
     "focusIntervals": [
       {
-        "timelineStart": 15.0,
-        "timelineEnd": 324.667,
-        "sourceLabel": "video_001_DJI_20000104161921_0006_D_clip_000_100.MP4 + inserted-image:photo_014_ST-630.jpg + inserted-image:photo_034_ST-695.jpg + inserted-image:photo_037_ST-700.jpg + inserted-image:photo_040_ST-703.jpg + inserted-image:photo_043_ST-709.jpg + inserted-image:photo_018_ST-638.jpg + inserted-image:photo_013_ST-628.jpg + inserted-image:photo_038_ST-701.jpg + inserted-image:photo_039_ST-702.jpg + inserted-image:photo_012_ST-627.jpg + video_001_DJI_20000104161921_0006_D_clip_387_554.MP4"
+        "timelineStart": 14.333,
+        "timelineEnd": 399.667,
+        "sourceLabel": "video_001_DJI_20000104161921_0006_D_clip_000_100.MP4 + inserted-image:photo_014_ST-630.jpg + inserted-image:photo_034_ST-695.jpg + inserted-image:photo_037_ST-700.jpg + inserted-image:photo_040_ST-703.jpg + inserted-image:photo_043_ST-709.jpg + inserted-image:photo_013_ST-628.jpg + inserted-image:photo_038_ST-701.jpg + inserted-image:photo_039_ST-702.jpg + inserted-image:photo_012_ST-627.jpg + video_001_DJI_20000104161921_0006_D_clip_387_554.MP4 + inserted-image:photo_053_ST-736.jpg + inserted-image:photo_004_ST-608.jpg + video_001_DJI_20000104161921_0006_D_clip_139_211.MP4"
       },
       {
-        "timelineStart": 332.667,
-        "timelineEnd": 426.667,
-        "sourceLabel": "video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4 + video_001_DJI_20000104161921_0006_D_clip_139_211.MP4"
-      },
-      {
-        "timelineStart": 434.667,
-        "timelineEnd": 491.667,
+        "timelineStart": 407.667,
+        "timelineEnd": 464.667,
         "sourceLabel": "video_002_DJI_20000104164015_0007_D.MP4"
       },
       {
-        "timelineStart": 499.667,
-        "timelineEnd": 673.375,
+        "timelineStart": 472.667,
+        "timelineEnd": 646.375,
         "sourceLabel": "video_003_DJI_20000104171048_0015_D_clip_000_051.MP4 + video_003_DJI_20000104171048_0015_D_clip_054_end.MP4"
       },
       {
-        "timelineStart": 681.375,
-        "timelineEnd": 743.375,
+        "timelineStart": 654.375,
+        "timelineEnd": 716.375,
         "sourceLabel": "video_014_ST7_8341_clip_000_046.MP4 + video_014_ST7_8341_clip_217_233.MP4"
       },
       {
-        "timelineStart": 755.708,
-        "timelineEnd": 1077.375,
-        "sourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_048_3.MP4 + inserted-image:photo_019_ST-645.jpg + video_006_DJI_20000104172624_0018_D_clip_048_3_082_3.MP4 + inserted-image:photo_020_ST-646.jpg + video_006_DJI_20000104172624_0018_D_clip_082_3_087.MP4 + video_006_DJI_20000104172624_0018_D_clip_131_153_3.MP4 + inserted-image:photo_021_ST-653.jpg + inserted-image:photo_057_ST-686.jpg + video_006_DJI_20000104172624_0018_D_clip_158_3_177.MP4 + video_006_DJI_20000104172624_0018_D_clip_184_194_3.MP4 + inserted-image:photo_022_ST-661.jpg + video_006_DJI_20000104172624_0018_D_clip_194_3_228_3.MP4 + inserted-image:photo_023_ST-665.jpg + video_006_DJI_20000104172624_0018_D_clip_228_3_356.MP4"
+        "timelineStart": 733.042,
+        "timelineEnd": 1054.708,
+        "sourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_048_3.MP4 + inserted-image:photo_019_ST-645.jpg + video_006_DJI_20000104172624_0018_D_clip_048_3_082_3.MP4 + inserted-image:photo_020_ST-646.jpg + video_006_DJI_20000104172624_0018_D_clip_082_3_087.MP4 + video_006_DJI_20000104172624_0018_D_clip_131_153_3.MP4 + inserted-image:photo_021_ST-653.jpg + inserted-image:photo_057_ST-686.jpg + video_006_DJI_20000104172624_0018_D_clip_158_3_177.MP4 + inserted-image:photo_022_ST-661.jpg + video_006_DJI_20000104172624_0018_D_clip_184_194_3.MP4 + video_006_DJI_20000104172624_0018_D_clip_194_3_228_3.MP4 + inserted-image:photo_023_ST-665.jpg + video_006_DJI_20000104172624_0018_D_clip_228_3_356.MP4"
       },
       {
-        "timelineStart": 1115.708,
-        "timelineEnd": 1159.375,
+        "timelineStart": 1093.042,
+        "timelineEnd": 1136.708,
         "sourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_000_015.mp4 + inserted-image:photo_049_ST-729.jpg + video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_015_040.mp4"
       },
       {
-        "timelineStart": 1171.708,
-        "timelineEnd": 1482.375,
+        "timelineStart": 1149.042,
+        "timelineEnd": 1459.708,
         "sourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_054_96.MP4 + inserted-image:photo_051_ST-731.jpg + video_012_DJI_20000104181624_0030_D_clip_054_96_end.MP4 + video_013_DJI_20000104181937_0031_D.MP4"
       }
     ]
   },
   "excludedVideoStems": [
+    "0875db90-5d21-463d-b4b0-9f0a19195ca2",
     "4e1e990e-0b3c-404c-9fb0-ef25073073ea",
     "503179b6-95c2-4918-8c7c-4efc3014d757",
     "8ea3f1b6-af35-4c9b-9576-71eba58d9f5e",
@@ -114,12 +110,25 @@
     {
       "type": "dissolve",
       "transition": "fade",
+      "fromIndex": 1,
+      "toIndex": 2,
+      "fromSourceLabel": "photo_042_ST-707.jpg",
+      "toSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_000_100.MP4",
+      "timelineStart": 14.333333,
+      "timelineEnd": 15.0,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
       "fromIndex": 2,
       "toIndex": 3,
       "fromSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_000_100.MP4",
       "toSourceLabel": "photo_014_ST-630.jpg",
-      "timelineStart": 114.333333,
-      "timelineEnd": 115.0,
+      "timelineStart": 113.666667,
+      "timelineEnd": 114.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -131,8 +140,8 @@
       "toIndex": 4,
       "fromSourceLabel": "photo_014_ST-630.jpg",
       "toSourceLabel": "photo_034_ST-695.jpg",
-      "timelineStart": 118.666667,
-      "timelineEnd": 119.333334,
+      "timelineStart": 118.0,
+      "timelineEnd": 118.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -144,8 +153,8 @@
       "toIndex": 5,
       "fromSourceLabel": "photo_034_ST-695.jpg",
       "toSourceLabel": "photo_037_ST-700.jpg",
-      "timelineStart": 123.0,
-      "timelineEnd": 123.666667,
+      "timelineStart": 122.333333,
+      "timelineEnd": 123.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -157,8 +166,8 @@
       "toIndex": 6,
       "fromSourceLabel": "photo_037_ST-700.jpg",
       "toSourceLabel": "photo_040_ST-703.jpg",
-      "timelineStart": 127.333333,
-      "timelineEnd": 128.0,
+      "timelineStart": 126.666667,
+      "timelineEnd": 127.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -170,8 +179,8 @@
       "toIndex": 7,
       "fromSourceLabel": "photo_040_ST-703.jpg",
       "toSourceLabel": "photo_043_ST-709.jpg",
-      "timelineStart": 131.666667,
-      "timelineEnd": 132.333334,
+      "timelineStart": 131.0,
+      "timelineEnd": 131.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -182,9 +191,9 @@
       "fromIndex": 7,
       "toIndex": 8,
       "fromSourceLabel": "photo_043_ST-709.jpg",
-      "toSourceLabel": "photo_018_ST-638.jpg",
-      "timelineStart": 136.0,
-      "timelineEnd": 136.666667,
+      "toSourceLabel": "photo_013_ST-628.jpg",
+      "timelineStart": 135.333333,
+      "timelineEnd": 136.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -194,10 +203,10 @@
       "transition": "fade",
       "fromIndex": 8,
       "toIndex": 9,
-      "fromSourceLabel": "photo_018_ST-638.jpg",
-      "toSourceLabel": "photo_013_ST-628.jpg",
-      "timelineStart": 140.333333,
-      "timelineEnd": 141.0,
+      "fromSourceLabel": "photo_013_ST-628.jpg",
+      "toSourceLabel": "photo_038_ST-701.jpg",
+      "timelineStart": 139.666667,
+      "timelineEnd": 140.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -207,10 +216,10 @@
       "transition": "fade",
       "fromIndex": 9,
       "toIndex": 10,
-      "fromSourceLabel": "photo_013_ST-628.jpg",
-      "toSourceLabel": "photo_038_ST-701.jpg",
-      "timelineStart": 144.666667,
-      "timelineEnd": 145.333334,
+      "fromSourceLabel": "photo_038_ST-701.jpg",
+      "toSourceLabel": "photo_039_ST-702.jpg",
+      "timelineStart": 144.0,
+      "timelineEnd": 144.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -220,10 +229,10 @@
       "transition": "fade",
       "fromIndex": 10,
       "toIndex": 11,
-      "fromSourceLabel": "photo_038_ST-701.jpg",
-      "toSourceLabel": "photo_039_ST-702.jpg",
-      "timelineStart": 149.0,
-      "timelineEnd": 149.666667,
+      "fromSourceLabel": "photo_039_ST-702.jpg",
+      "toSourceLabel": "photo_012_ST-627.jpg",
+      "timelineStart": 148.333333,
+      "timelineEnd": 149.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -233,10 +242,10 @@
       "transition": "fade",
       "fromIndex": 11,
       "toIndex": 12,
-      "fromSourceLabel": "photo_039_ST-702.jpg",
-      "toSourceLabel": "photo_012_ST-627.jpg",
-      "timelineStart": 153.333333,
-      "timelineEnd": 154.0,
+      "fromSourceLabel": "photo_012_ST-627.jpg",
+      "toSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_387_554.MP4",
+      "timelineStart": 152.666667,
+      "timelineEnd": 153.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -246,10 +255,10 @@
       "transition": "fade",
       "fromIndex": 12,
       "toIndex": 13,
-      "fromSourceLabel": "photo_012_ST-627.jpg",
-      "toSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_387_554.MP4",
-      "timelineStart": 157.666667,
-      "timelineEnd": 158.333334,
+      "fromSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_387_554.MP4",
+      "toSourceLabel": "photo_053_ST-736.jpg",
+      "timelineStart": 319.0,
+      "timelineEnd": 319.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -259,10 +268,10 @@
       "transition": "fade",
       "fromIndex": 13,
       "toIndex": 14,
-      "fromSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_387_554.MP4",
-      "toSourceLabel": "photo_053_ST-736.jpg",
-      "timelineStart": 324.0,
-      "timelineEnd": 324.666667,
+      "fromSourceLabel": "photo_053_ST-736.jpg",
+      "toSourceLabel": "photo_004_ST-608.jpg",
+      "timelineStart": 323.333333,
+      "timelineEnd": 324.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -272,10 +281,10 @@
       "transition": "fade",
       "fromIndex": 14,
       "toIndex": 15,
-      "fromSourceLabel": "photo_053_ST-736.jpg",
-      "toSourceLabel": "photo_004_ST-608.jpg",
-      "timelineStart": 328.333333,
-      "timelineEnd": 329.0,
+      "fromSourceLabel": "photo_004_ST-608.jpg",
+      "toSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_139_211.MP4",
+      "timelineStart": 327.666667,
+      "timelineEnd": 328.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -285,10 +294,23 @@
       "transition": "fade",
       "fromIndex": 15,
       "toIndex": 16,
-      "fromSourceLabel": "photo_004_ST-608.jpg",
-      "toSourceLabel": "video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4",
-      "timelineStart": 332.666667,
-      "timelineEnd": 333.333334,
+      "fromSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_139_211.MP4",
+      "toSourceLabel": "photo_002_ST-601.jpg",
+      "timelineStart": 399.0,
+      "timelineEnd": 399.666667,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 16,
+      "toIndex": 17,
+      "fromSourceLabel": "photo_002_ST-601.jpg",
+      "toSourceLabel": "photo_036_ST-699.jpg",
+      "timelineStart": 403.333333,
+      "timelineEnd": 404.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -298,10 +320,10 @@
       "transition": "fade",
       "fromIndex": 17,
       "toIndex": 18,
-      "fromSourceLabel": "video_001_DJI_20000104161921_0006_D_clip_139_211.MP4",
-      "toSourceLabel": "photo_002_ST-601.jpg",
-      "timelineStart": 426.0,
-      "timelineEnd": 426.666667,
+      "fromSourceLabel": "photo_036_ST-699.jpg",
+      "toSourceLabel": "video_002_DJI_20000104164015_0007_D.MP4",
+      "timelineStart": 407.666667,
+      "timelineEnd": 408.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -311,10 +333,10 @@
       "transition": "fade",
       "fromIndex": 18,
       "toIndex": 19,
-      "fromSourceLabel": "photo_002_ST-601.jpg",
-      "toSourceLabel": "photo_036_ST-699.jpg",
-      "timelineStart": 430.333333,
-      "timelineEnd": 431.0,
+      "fromSourceLabel": "video_002_DJI_20000104164015_0007_D.MP4",
+      "toSourceLabel": "photo_008_ST-618.jpg",
+      "timelineStart": 464.0,
+      "timelineEnd": 464.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -324,10 +346,10 @@
       "transition": "fade",
       "fromIndex": 19,
       "toIndex": 20,
-      "fromSourceLabel": "photo_036_ST-699.jpg",
-      "toSourceLabel": "video_002_DJI_20000104164015_0007_D.MP4",
-      "timelineStart": 434.666667,
-      "timelineEnd": 435.333334,
+      "fromSourceLabel": "photo_008_ST-618.jpg",
+      "toSourceLabel": "photo_016_ST-634.jpg",
+      "timelineStart": 468.333333,
+      "timelineEnd": 469.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -337,23 +359,10 @@
       "transition": "fade",
       "fromIndex": 20,
       "toIndex": 21,
-      "fromSourceLabel": "video_002_DJI_20000104164015_0007_D.MP4",
-      "toSourceLabel": "photo_008_ST-618.jpg",
-      "timelineStart": 491.0,
-      "timelineEnd": 491.666667,
-      "duration": 0.666667,
-      "durationFrames": 16,
-      "reason": "image-boundary"
-    },
-    {
-      "type": "dissolve",
-      "transition": "fade",
-      "fromIndex": 21,
-      "toIndex": 22,
-      "fromSourceLabel": "photo_008_ST-618.jpg",
-      "toSourceLabel": "photo_016_ST-634.jpg",
-      "timelineStart": 495.333333,
-      "timelineEnd": 496.0,
+      "fromSourceLabel": "photo_016_ST-634.jpg",
+      "toSourceLabel": "video_003_DJI_20000104171048_0015_D_clip_000_051.MP4",
+      "timelineStart": 472.666667,
+      "timelineEnd": 473.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -363,10 +372,23 @@
       "transition": "fade",
       "fromIndex": 22,
       "toIndex": 23,
-      "fromSourceLabel": "photo_016_ST-634.jpg",
-      "toSourceLabel": "video_003_DJI_20000104171048_0015_D_clip_000_051.MP4",
-      "timelineStart": 499.666667,
-      "timelineEnd": 500.333334,
+      "fromSourceLabel": "video_003_DJI_20000104171048_0015_D_clip_054_end.MP4",
+      "toSourceLabel": "photo_055_ST-738.jpg",
+      "timelineStart": 645.708333,
+      "timelineEnd": 646.375,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 23,
+      "toIndex": 24,
+      "fromSourceLabel": "photo_055_ST-738.jpg",
+      "toSourceLabel": "photo_054_ST-737.jpg",
+      "timelineStart": 650.041667,
+      "timelineEnd": 650.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -376,23 +398,10 @@
       "transition": "fade",
       "fromIndex": 24,
       "toIndex": 25,
-      "fromSourceLabel": "video_003_DJI_20000104171048_0015_D_clip_054_end.MP4",
-      "toSourceLabel": "photo_055_ST-738.jpg",
-      "timelineStart": 672.708333,
-      "timelineEnd": 673.375,
-      "duration": 0.666667,
-      "durationFrames": 16,
-      "reason": "image-boundary"
-    },
-    {
-      "type": "dissolve",
-      "transition": "fade",
-      "fromIndex": 25,
-      "toIndex": 26,
-      "fromSourceLabel": "photo_055_ST-738.jpg",
-      "toSourceLabel": "photo_054_ST-737.jpg",
-      "timelineStart": 677.041667,
-      "timelineEnd": 677.708334,
+      "fromSourceLabel": "photo_054_ST-737.jpg",
+      "toSourceLabel": "video_014_ST7_8341_clip_000_046.MP4",
+      "timelineStart": 654.375,
+      "timelineEnd": 655.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -402,10 +411,23 @@
       "transition": "fade",
       "fromIndex": 26,
       "toIndex": 27,
-      "fromSourceLabel": "photo_054_ST-737.jpg",
-      "toSourceLabel": "video_014_ST7_8341_clip_000_046.MP4",
-      "timelineStart": 681.375,
-      "timelineEnd": 682.041667,
+      "fromSourceLabel": "video_014_ST7_8341_clip_217_233.MP4",
+      "toSourceLabel": "photo_018_ST-638.jpg",
+      "timelineStart": 715.708333,
+      "timelineEnd": 716.375,
+      "duration": 0.666667,
+      "durationFrames": 16,
+      "reason": "image-boundary"
+    },
+    {
+      "type": "dissolve",
+      "transition": "fade",
+      "fromIndex": 27,
+      "toIndex": 28,
+      "fromSourceLabel": "photo_018_ST-638.jpg",
+      "toSourceLabel": "photo_024_ST-667.jpg",
+      "timelineStart": 720.041667,
+      "timelineEnd": 720.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -415,10 +437,10 @@
       "transition": "fade",
       "fromIndex": 28,
       "toIndex": 29,
-      "fromSourceLabel": "video_014_ST7_8341_clip_217_233.MP4",
-      "toSourceLabel": "photo_024_ST-667.jpg",
-      "timelineStart": 742.708333,
-      "timelineEnd": 743.375,
+      "fromSourceLabel": "photo_024_ST-667.jpg",
+      "toSourceLabel": "photo_015_ST-632.jpg",
+      "timelineStart": 724.375,
+      "timelineEnd": 725.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -428,10 +450,10 @@
       "transition": "fade",
       "fromIndex": 29,
       "toIndex": 30,
-      "fromSourceLabel": "photo_024_ST-667.jpg",
-      "toSourceLabel": "photo_015_ST-632.jpg",
-      "timelineStart": 747.041667,
-      "timelineEnd": 747.708334,
+      "fromSourceLabel": "photo_015_ST-632.jpg",
+      "toSourceLabel": "photo_027_ST-675.jpg",
+      "timelineStart": 728.708333,
+      "timelineEnd": 729.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -441,10 +463,10 @@
       "transition": "fade",
       "fromIndex": 30,
       "toIndex": 31,
-      "fromSourceLabel": "photo_015_ST-632.jpg",
-      "toSourceLabel": "photo_027_ST-675.jpg",
-      "timelineStart": 751.375,
-      "timelineEnd": 752.041667,
+      "fromSourceLabel": "photo_027_ST-675.jpg",
+      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_048_3.MP4",
+      "timelineStart": 733.041667,
+      "timelineEnd": 733.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -454,10 +476,10 @@
       "transition": "fade",
       "fromIndex": 31,
       "toIndex": 32,
-      "fromSourceLabel": "photo_027_ST-675.jpg",
-      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_048_3.MP4",
-      "timelineStart": 755.708333,
-      "timelineEnd": 756.375,
+      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_048_3.MP4",
+      "toSourceLabel": "photo_019_ST-645.jpg",
+      "timelineStart": 779.666667,
+      "timelineEnd": 780.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -467,10 +489,10 @@
       "transition": "fade",
       "fromIndex": 32,
       "toIndex": 33,
-      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_001_048_3.MP4",
-      "toSourceLabel": "photo_019_ST-645.jpg",
-      "timelineStart": 802.333333,
-      "timelineEnd": 803.0,
+      "fromSourceLabel": "photo_019_ST-645.jpg",
+      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_048_3_082_3.MP4",
+      "timelineStart": 784.0,
+      "timelineEnd": 784.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -480,10 +502,10 @@
       "transition": "fade",
       "fromIndex": 33,
       "toIndex": 34,
-      "fromSourceLabel": "photo_019_ST-645.jpg",
-      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_048_3_082_3.MP4",
-      "timelineStart": 806.666667,
-      "timelineEnd": 807.333334,
+      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_048_3_082_3.MP4",
+      "toSourceLabel": "photo_020_ST-646.jpg",
+      "timelineStart": 817.333333,
+      "timelineEnd": 818.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -493,10 +515,10 @@
       "transition": "fade",
       "fromIndex": 34,
       "toIndex": 35,
-      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_048_3_082_3.MP4",
-      "toSourceLabel": "photo_020_ST-646.jpg",
-      "timelineStart": 840.0,
-      "timelineEnd": 840.666667,
+      "fromSourceLabel": "photo_020_ST-646.jpg",
+      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_082_3_087.MP4",
+      "timelineStart": 821.666667,
+      "timelineEnd": 822.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -504,12 +526,12 @@
     {
       "type": "dissolve",
       "transition": "fade",
-      "fromIndex": 35,
-      "toIndex": 36,
-      "fromSourceLabel": "photo_020_ST-646.jpg",
-      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_082_3_087.MP4",
-      "timelineStart": 844.333333,
-      "timelineEnd": 845.0,
+      "fromIndex": 36,
+      "toIndex": 37,
+      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_131_153_3.MP4",
+      "toSourceLabel": "photo_021_ST-653.jpg",
+      "timelineStart": 848.0,
+      "timelineEnd": 848.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -519,10 +541,10 @@
       "transition": "fade",
       "fromIndex": 37,
       "toIndex": 38,
-      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_131_153_3.MP4",
-      "toSourceLabel": "photo_021_ST-653.jpg",
-      "timelineStart": 870.666667,
-      "timelineEnd": 871.333334,
+      "fromSourceLabel": "photo_021_ST-653.jpg",
+      "toSourceLabel": "photo_057_ST-686.jpg",
+      "timelineStart": 852.333333,
+      "timelineEnd": 853.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -532,10 +554,10 @@
       "transition": "fade",
       "fromIndex": 38,
       "toIndex": 39,
-      "fromSourceLabel": "photo_021_ST-653.jpg",
-      "toSourceLabel": "photo_057_ST-686.jpg",
-      "timelineStart": 875.0,
-      "timelineEnd": 875.666667,
+      "fromSourceLabel": "photo_057_ST-686.jpg",
+      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_158_3_177.MP4",
+      "timelineStart": 856.666667,
+      "timelineEnd": 857.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -545,10 +567,10 @@
       "transition": "fade",
       "fromIndex": 39,
       "toIndex": 40,
-      "fromSourceLabel": "photo_057_ST-686.jpg",
-      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_158_3_177.MP4",
-      "timelineStart": 879.333333,
-      "timelineEnd": 880.0,
+      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_158_3_177.MP4",
+      "toSourceLabel": "photo_022_ST-661.jpg",
+      "timelineStart": 874.708333,
+      "timelineEnd": 875.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -556,12 +578,12 @@
     {
       "type": "dissolve",
       "transition": "fade",
-      "fromIndex": 41,
-      "toIndex": 42,
-      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_184_194_3.MP4",
-      "toSourceLabel": "photo_022_ST-661.jpg",
-      "timelineStart": 907.666667,
-      "timelineEnd": 908.333334,
+      "fromIndex": 40,
+      "toIndex": 41,
+      "fromSourceLabel": "photo_022_ST-661.jpg",
+      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_184_194_3.MP4",
+      "timelineStart": 879.041667,
+      "timelineEnd": 879.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -571,10 +593,10 @@
       "transition": "fade",
       "fromIndex": 42,
       "toIndex": 43,
-      "fromSourceLabel": "photo_022_ST-661.jpg",
-      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_194_3_228_3.MP4",
-      "timelineStart": 912.0,
-      "timelineEnd": 912.666667,
+      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_194_3_228_3.MP4",
+      "toSourceLabel": "photo_023_ST-665.jpg",
+      "timelineStart": 922.666667,
+      "timelineEnd": 923.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -584,10 +606,10 @@
       "transition": "fade",
       "fromIndex": 43,
       "toIndex": 44,
-      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_194_3_228_3.MP4",
-      "toSourceLabel": "photo_023_ST-665.jpg",
-      "timelineStart": 945.333333,
-      "timelineEnd": 946.0,
+      "fromSourceLabel": "photo_023_ST-665.jpg",
+      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_228_3_356.MP4",
+      "timelineStart": 927.0,
+      "timelineEnd": 927.666667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -597,10 +619,10 @@
       "transition": "fade",
       "fromIndex": 44,
       "toIndex": 45,
-      "fromSourceLabel": "photo_023_ST-665.jpg",
-      "toSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_228_3_356.MP4",
-      "timelineStart": 949.666667,
-      "timelineEnd": 950.333334,
+      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_228_3_356.MP4",
+      "toSourceLabel": "photo_025_ST-668.jpg",
+      "timelineStart": 1054.041667,
+      "timelineEnd": 1054.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -610,10 +632,10 @@
       "transition": "fade",
       "fromIndex": 45,
       "toIndex": 46,
-      "fromSourceLabel": "video_006_DJI_20000104172624_0018_D_clip_228_3_356.MP4",
-      "toSourceLabel": "photo_025_ST-668.jpg",
-      "timelineStart": 1076.708333,
-      "timelineEnd": 1077.375,
+      "fromSourceLabel": "photo_025_ST-668.jpg",
+      "toSourceLabel": "photo_026_ST-670.jpg",
+      "timelineStart": 1058.375,
+      "timelineEnd": 1059.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -623,10 +645,10 @@
       "transition": "fade",
       "fromIndex": 46,
       "toIndex": 47,
-      "fromSourceLabel": "photo_025_ST-668.jpg",
-      "toSourceLabel": "photo_026_ST-670.jpg",
-      "timelineStart": 1081.041667,
-      "timelineEnd": 1081.708334,
+      "fromSourceLabel": "photo_026_ST-670.jpg",
+      "toSourceLabel": "photo_059_ST-677.jpg",
+      "timelineStart": 1062.708333,
+      "timelineEnd": 1063.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -636,10 +658,10 @@
       "transition": "fade",
       "fromIndex": 47,
       "toIndex": 48,
-      "fromSourceLabel": "photo_026_ST-670.jpg",
-      "toSourceLabel": "photo_059_ST-677.jpg",
-      "timelineStart": 1085.375,
-      "timelineEnd": 1086.041667,
+      "fromSourceLabel": "photo_059_ST-677.jpg",
+      "toSourceLabel": "photo_041_ST-706.jpg",
+      "timelineStart": 1067.041667,
+      "timelineEnd": 1067.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -649,10 +671,10 @@
       "transition": "fade",
       "fromIndex": 48,
       "toIndex": 49,
-      "fromSourceLabel": "photo_059_ST-677.jpg",
-      "toSourceLabel": "photo_041_ST-706.jpg",
-      "timelineStart": 1089.708333,
-      "timelineEnd": 1090.375,
+      "fromSourceLabel": "photo_041_ST-706.jpg",
+      "toSourceLabel": "photo_031_ST-690.jpg",
+      "timelineStart": 1071.375,
+      "timelineEnd": 1072.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -662,10 +684,10 @@
       "transition": "fade",
       "fromIndex": 49,
       "toIndex": 50,
-      "fromSourceLabel": "photo_041_ST-706.jpg",
-      "toSourceLabel": "photo_031_ST-690.jpg",
-      "timelineStart": 1094.041667,
-      "timelineEnd": 1094.708334,
+      "fromSourceLabel": "photo_031_ST-690.jpg",
+      "toSourceLabel": "photo_032_ST-693.jpg",
+      "timelineStart": 1075.708333,
+      "timelineEnd": 1076.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -675,10 +697,10 @@
       "transition": "fade",
       "fromIndex": 50,
       "toIndex": 51,
-      "fromSourceLabel": "photo_031_ST-690.jpg",
-      "toSourceLabel": "photo_032_ST-693.jpg",
-      "timelineStart": 1098.375,
-      "timelineEnd": 1099.041667,
+      "fromSourceLabel": "photo_032_ST-693.jpg",
+      "toSourceLabel": "photo_033_ST-694.jpg",
+      "timelineStart": 1080.041667,
+      "timelineEnd": 1080.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -688,10 +710,10 @@
       "transition": "fade",
       "fromIndex": 51,
       "toIndex": 52,
-      "fromSourceLabel": "photo_032_ST-693.jpg",
-      "toSourceLabel": "photo_033_ST-694.jpg",
-      "timelineStart": 1102.708333,
-      "timelineEnd": 1103.375,
+      "fromSourceLabel": "photo_033_ST-694.jpg",
+      "toSourceLabel": "photo_035_ST-697.jpg",
+      "timelineStart": 1084.375,
+      "timelineEnd": 1085.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -701,10 +723,10 @@
       "transition": "fade",
       "fromIndex": 52,
       "toIndex": 53,
-      "fromSourceLabel": "photo_033_ST-694.jpg",
-      "toSourceLabel": "photo_035_ST-697.jpg",
-      "timelineStart": 1107.041667,
-      "timelineEnd": 1107.708334,
+      "fromSourceLabel": "photo_035_ST-697.jpg",
+      "toSourceLabel": "photo_045_ST-715.jpg",
+      "timelineStart": 1088.708333,
+      "timelineEnd": 1089.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -714,10 +736,10 @@
       "transition": "fade",
       "fromIndex": 53,
       "toIndex": 54,
-      "fromSourceLabel": "photo_035_ST-697.jpg",
-      "toSourceLabel": "photo_045_ST-715.jpg",
-      "timelineStart": 1111.375,
-      "timelineEnd": 1112.041667,
+      "fromSourceLabel": "photo_045_ST-715.jpg",
+      "toSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_000_015.mp4",
+      "timelineStart": 1093.041667,
+      "timelineEnd": 1093.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -727,10 +749,10 @@
       "transition": "fade",
       "fromIndex": 54,
       "toIndex": 55,
-      "fromSourceLabel": "photo_045_ST-715.jpg",
-      "toSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_000_015.mp4",
-      "timelineStart": 1115.708333,
-      "timelineEnd": 1116.375,
+      "fromSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_000_015.mp4",
+      "toSourceLabel": "photo_049_ST-729.jpg",
+      "timelineStart": 1107.375,
+      "timelineEnd": 1108.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -740,10 +762,10 @@
       "transition": "fade",
       "fromIndex": 55,
       "toIndex": 56,
-      "fromSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_000_015.mp4",
-      "toSourceLabel": "photo_049_ST-729.jpg",
-      "timelineStart": 1130.041667,
-      "timelineEnd": 1130.708334,
+      "fromSourceLabel": "photo_049_ST-729.jpg",
+      "toSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_015_040.mp4",
+      "timelineStart": 1111.708333,
+      "timelineEnd": 1112.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -753,10 +775,10 @@
       "transition": "fade",
       "fromIndex": 56,
       "toIndex": 57,
-      "fromSourceLabel": "photo_049_ST-729.jpg",
-      "toSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_015_040.mp4",
-      "timelineStart": 1134.375,
-      "timelineEnd": 1135.041667,
+      "fromSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_015_040.mp4",
+      "toSourceLabel": "photo_050_ST-730.jpg",
+      "timelineStart": 1136.041667,
+      "timelineEnd": 1136.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -766,10 +788,10 @@
       "transition": "fade",
       "fromIndex": 57,
       "toIndex": 58,
-      "fromSourceLabel": "video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43_clip_015_040.mp4",
-      "toSourceLabel": "photo_050_ST-730.jpg",
-      "timelineStart": 1158.708333,
-      "timelineEnd": 1159.375,
+      "fromSourceLabel": "photo_050_ST-730.jpg",
+      "toSourceLabel": "photo_058_ST-723.jpg",
+      "timelineStart": 1140.375,
+      "timelineEnd": 1141.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -779,10 +801,10 @@
       "transition": "fade",
       "fromIndex": 58,
       "toIndex": 59,
-      "fromSourceLabel": "photo_050_ST-730.jpg",
-      "toSourceLabel": "photo_058_ST-723.jpg",
-      "timelineStart": 1163.041667,
-      "timelineEnd": 1163.708334,
+      "fromSourceLabel": "photo_058_ST-723.jpg",
+      "toSourceLabel": "photo_030_ST-688.jpg",
+      "timelineStart": 1144.708333,
+      "timelineEnd": 1145.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -792,10 +814,10 @@
       "transition": "fade",
       "fromIndex": 59,
       "toIndex": 60,
-      "fromSourceLabel": "photo_058_ST-723.jpg",
-      "toSourceLabel": "photo_030_ST-688.jpg",
-      "timelineStart": 1167.375,
-      "timelineEnd": 1168.041667,
+      "fromSourceLabel": "photo_030_ST-688.jpg",
+      "toSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_054_96.MP4",
+      "timelineStart": 1149.041667,
+      "timelineEnd": 1149.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -805,10 +827,10 @@
       "transition": "fade",
       "fromIndex": 60,
       "toIndex": 61,
-      "fromSourceLabel": "photo_030_ST-688.jpg",
-      "toSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_054_96.MP4",
-      "timelineStart": 1171.708333,
-      "timelineEnd": 1172.375,
+      "fromSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_054_96.MP4",
+      "toSourceLabel": "photo_051_ST-731.jpg",
+      "timelineStart": 1203.333333,
+      "timelineEnd": 1204.0,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -818,10 +840,10 @@
       "transition": "fade",
       "fromIndex": 61,
       "toIndex": 62,
-      "fromSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_000_054_96.MP4",
-      "toSourceLabel": "photo_051_ST-731.jpg",
-      "timelineStart": 1226.0,
-      "timelineEnd": 1226.666667,
+      "fromSourceLabel": "photo_051_ST-731.jpg",
+      "toSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_054_96_end.MP4",
+      "timelineStart": 1207.666667,
+      "timelineEnd": 1208.333334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -829,12 +851,12 @@
     {
       "type": "dissolve",
       "transition": "fade",
-      "fromIndex": 62,
-      "toIndex": 63,
-      "fromSourceLabel": "photo_051_ST-731.jpg",
-      "toSourceLabel": "video_012_DJI_20000104181624_0030_D_clip_054_96_end.MP4",
-      "timelineStart": 1230.333333,
-      "timelineEnd": 1231.0,
+      "fromIndex": 63,
+      "toIndex": 64,
+      "fromSourceLabel": "video_013_DJI_20000104181937_0031_D.MP4",
+      "toSourceLabel": "photo_052_ST-735.jpg",
+      "timelineStart": 1459.041667,
+      "timelineEnd": 1459.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -844,10 +866,10 @@
       "transition": "fade",
       "fromIndex": 64,
       "toIndex": 65,
-      "fromSourceLabel": "video_013_DJI_20000104181937_0031_D.MP4",
-      "toSourceLabel": "photo_052_ST-735.jpg",
-      "timelineStart": 1481.708333,
-      "timelineEnd": 1482.375,
+      "fromSourceLabel": "photo_052_ST-735.jpg",
+      "toSourceLabel": "photo_029_ST-682.jpg",
+      "timelineStart": 1463.375,
+      "timelineEnd": 1464.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -857,10 +879,10 @@
       "transition": "fade",
       "fromIndex": 65,
       "toIndex": 66,
-      "fromSourceLabel": "photo_052_ST-735.jpg",
-      "toSourceLabel": "photo_029_ST-682.jpg",
-      "timelineStart": 1486.041667,
-      "timelineEnd": 1486.708334,
+      "fromSourceLabel": "photo_029_ST-682.jpg",
+      "toSourceLabel": "photo_044_ST-713.jpg",
+      "timelineStart": 1467.708333,
+      "timelineEnd": 1468.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -870,10 +892,10 @@
       "transition": "fade",
       "fromIndex": 66,
       "toIndex": 67,
-      "fromSourceLabel": "photo_029_ST-682.jpg",
-      "toSourceLabel": "photo_044_ST-713.jpg",
-      "timelineStart": 1490.375,
-      "timelineEnd": 1491.041667,
+      "fromSourceLabel": "photo_044_ST-713.jpg",
+      "toSourceLabel": "photo_048_ST-725.jpg",
+      "timelineStart": 1472.041667,
+      "timelineEnd": 1472.708334,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -883,10 +905,10 @@
       "transition": "fade",
       "fromIndex": 67,
       "toIndex": 68,
-      "fromSourceLabel": "photo_044_ST-713.jpg",
-      "toSourceLabel": "photo_048_ST-725.jpg",
-      "timelineStart": 1494.708333,
-      "timelineEnd": 1495.375,
+      "fromSourceLabel": "photo_048_ST-725.jpg",
+      "toSourceLabel": "photo_047_ST-721.jpg",
+      "timelineStart": 1476.375,
+      "timelineEnd": 1477.041667,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -896,23 +918,10 @@
       "transition": "fade",
       "fromIndex": 68,
       "toIndex": 69,
-      "fromSourceLabel": "photo_048_ST-725.jpg",
-      "toSourceLabel": "photo_047_ST-721.jpg",
-      "timelineStart": 1499.041667,
-      "timelineEnd": 1499.708334,
-      "duration": 0.666667,
-      "durationFrames": 16,
-      "reason": "image-boundary"
-    },
-    {
-      "type": "dissolve",
-      "transition": "fade",
-      "fromIndex": 69,
-      "toIndex": 70,
       "fromSourceLabel": "photo_047_ST-721.jpg",
       "toSourceLabel": "photo_046_ST-716.jpg",
-      "timelineStart": 1503.375,
-      "timelineEnd": 1504.041667,
+      "timelineStart": 1480.708333,
+      "timelineEnd": 1481.375,
       "duration": 0.666667,
       "durationFrames": 16,
       "reason": "image-boundary"
@@ -1071,8 +1080,8 @@
       "height": 1080,
       "sourceDuration": 1213.824,
       "hasAudio": true,
-      "timelineStart": 15.0,
-      "timelineEnd": 115.0,
+      "timelineStart": 14.333333,
+      "timelineEnd": 114.333333,
       "sourceIn": 0.0,
       "sourceOut": 100.0,
       "clipDuration": 100.0,
@@ -1375,8 +1384,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 114.333333,
-      "timelineEnd": 119.333333,
+      "timelineStart": 113.666667,
+      "timelineEnd": 118.666667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -1457,8 +1466,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 118.666667,
-      "timelineEnd": 123.666667,
+      "timelineStart": 118.0,
+      "timelineEnd": 123.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -1539,8 +1548,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 123.0,
-      "timelineEnd": 128.0,
+      "timelineStart": 122.333333,
+      "timelineEnd": 127.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -1621,8 +1630,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 127.333333,
-      "timelineEnd": 132.333333,
+      "timelineStart": 126.666667,
+      "timelineEnd": 131.666667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -1703,8 +1712,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 131.666667,
-      "timelineEnd": 136.666667,
+      "timelineStart": 131.0,
+      "timelineEnd": 136.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -1777,90 +1786,6 @@
     {
       "index": 8,
       "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_018_ST-638.jpg",
-      "relative": "phtp2605269\\photo_018_ST-638.jpg",
-      "sourceIdentityStem": "st-638",
-      "sourceLabel": "photo_018_ST-638.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 136.0,
-      "timelineEnd": 141.0,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.25515,
-        "cropCenter": [
-          0.5,
-          0.5
-        ],
-        "subject": {
-          "source": "edges",
-          "subjectBox": {
-            "x1": 0.0,
-            "y1": 402.6,
-            "x2": 1400.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.7155
-            ]
-          },
-          "subjectSquare": {
-            "x1": 233.0,
-            "y1": 0.0,
-            "x2": 1167.0,
-            "y2": 934.0,
-            "center": [
-              0.5,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 0,
-          "positions": [],
-          "groupBox": null
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": true,
-          "detectors": [],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": []
-        },
-        "visual": {
-          "brightness": 0.68189,
-          "saturation": 0.26846,
-          "contrast": 0.28415,
-          "warmth": 0.07449,
-          "sharpness": 14.937
-        },
-        "perceptualHash": "d80d5b516aa7b433",
-        "duplicateGroup": {
-          "groupId": 9,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "required-image-priority",
-          "score": 0.39221
-        },
-        "manualTargetSeconds": 70.0,
-        "manualPlacement": "early-front-half",
-        "imageRole": "manual-early-group"
-      }
-    },
-    {
-      "index": 9,
-      "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_013_ST-628.jpg",
       "relative": "phtp2605269\\photo_013_ST-628.jpg",
       "sourceIdentityStem": "st-628",
@@ -1869,8 +1794,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 140.333333,
-      "timelineEnd": 145.333333,
+      "timelineStart": 135.333333,
+      "timelineEnd": 140.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -1974,7 +1899,7 @@
       }
     },
     {
-      "index": 10,
+      "index": 9,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_038_ST-701.jpg",
       "relative": "phtp2605269\\photo_038_ST-701.jpg",
@@ -1984,8 +1909,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 144.666667,
-      "timelineEnd": 149.666667,
+      "timelineStart": 139.666667,
+      "timelineEnd": 144.666667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -2089,7 +2014,7 @@
       }
     },
     {
-      "index": 11,
+      "index": 10,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_039_ST-702.jpg",
       "relative": "phtp2605269\\photo_039_ST-702.jpg",
@@ -2099,8 +2024,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 149.0,
-      "timelineEnd": 154.0,
+      "timelineStart": 144.0,
+      "timelineEnd": 149.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -2226,7 +2151,7 @@
       }
     },
     {
-      "index": 12,
+      "index": 11,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_012_ST-627.jpg",
       "relative": "phtp2605269\\photo_012_ST-627.jpg",
@@ -2236,8 +2161,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 153.333333,
-      "timelineEnd": 158.333333,
+      "timelineStart": 148.333333,
+      "timelineEnd": 153.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -2388,7 +2313,7 @@
       }
     },
     {
-      "index": 13,
+      "index": 12,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_001_DJI_20000104161921_0006_D.MP4",
       "relative": "DJI_001\\video_001_DJI_20000104161921_0006_D.MP4",
@@ -2398,8 +2323,8 @@
       "height": 1080,
       "sourceDuration": 1213.824,
       "hasAudio": true,
-      "timelineStart": 157.666667,
-      "timelineEnd": 324.666667,
+      "timelineStart": 152.666667,
+      "timelineEnd": 319.666667,
       "sourceIn": 387.0,
       "sourceOut": 554.0,
       "clipDuration": 167.0,
@@ -2687,7 +2612,7 @@
       }
     },
     {
-      "index": 14,
+      "index": 13,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_053_ST-736.jpg",
       "relative": "phtp2605269\\photo_053_ST-736.jpg",
@@ -2697,8 +2622,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 324.0,
-      "timelineEnd": 329.0,
+      "timelineStart": 319.0,
+      "timelineEnd": 324.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -2916,7 +2841,7 @@
       }
     },
     {
-      "index": 15,
+      "index": 14,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_004_ST-608.jpg",
       "relative": "phtp2605269\\photo_004_ST-608.jpg",
@@ -2926,8 +2851,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 328.333333,
-      "timelineEnd": 333.333333,
+      "timelineStart": 323.333333,
+      "timelineEnd": 328.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -2998,942 +2923,7 @@
       }
     },
     {
-      "index": 16,
-      "kind": "video",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\video\\video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4",
-      "relative": "video\\video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4",
-      "sourceIdentityStem": "0875db90-5d21-463d-b4b0-9f0a19195ca2",
-      "sourceLabel": "video_018_0875db90-5d21-463d-b4b0-9f0a19195ca2.mp4",
-      "width": 1280,
-      "height": 720,
-      "sourceDuration": 97.533,
-      "hasAudio": true,
-      "timelineStart": 332.666667,
-      "timelineEnd": 354.666667,
-      "sourceIn": 14.0,
-      "sourceOut": 36.0,
-      "clipDuration": 22.0,
-      "clipFrames": 528,
-      "analysis": {
-        "analysisVersion": "video-v2-stable-people",
-        "score": 0.71287,
-        "selectedSampleTime": 57.817,
-        "cropCenter": [
-          0.4749,
-          0.4195
-        ],
-        "cameraMotionAtSelection": 0.00989,
-        "personRelation": {
-          "faceCountAtSelection": 8,
-          "maxFaceCount": 8,
-          "positionsAtSelection": [
-            "left",
-            "left",
-            "left",
-            "right",
-            "right",
-            "center",
-            "right",
-            "left"
-          ],
-          "groupBoxAtSelection": {
-            "x1": 84.0,
-            "y1": 57.33,
-            "x2": 1266.67,
-            "y2": 412.0
-          }
-        },
-        "visualAtSelection": {
-          "brightness": 0.42465,
-          "saturation": 0.41677,
-          "contrast": 0.18891,
-          "warmth": 0.21664,
-          "sharpness": 72.141
-        },
-        "sampleCount": 33,
-        "sampleSummary": {
-          "avgBrightness": 0.43941,
-          "avgSaturation": 0.35642,
-          "avgWarmth": 0.13705,
-          "avgFaceCount": 2.545,
-          "avgCameraMotion": 0.05166,
-          "maxCameraMotion": 0.19857
-        },
-        "topSamples": [
-          {
-            "time": 57.817,
-            "score": 0.71287,
-            "motion": 0.06268,
-            "cameraMotion": 0.00989,
-            "visual": {
-              "brightness": 0.42465,
-              "saturation": 0.41677,
-              "contrast": 0.18891,
-              "warmth": 0.21664,
-              "sharpness": 72.141
-            },
-            "faces": [
-              {
-                "bbox": {
-                  "x1": 220.0,
-                  "y1": 57.33,
-                  "x2": 276.0,
-                  "y2": 132.0
-                },
-                "bbox_xyxy": [
-                  220.0,
-                  57.33,
-                  276.0,
-                  132.0
-                ],
-                "center_ratio": [
-                  0.1938,
-                  0.1315
-                ],
-                "area_ratio": 0.00454,
-                "detector": "yunet",
-                "confidence": 0.9169
-              },
-              {
-                "bbox": {
-                  "x1": 84.0,
-                  "y1": 149.33,
-                  "x2": 148.0,
-                  "y2": 236.0
-                },
-                "bbox_xyxy": [
-                  84.0,
-                  149.33,
-                  148.0,
-                  236.0
-                ],
-                "center_ratio": [
-                  0.0906,
-                  0.2676
-                ],
-                "area_ratio": 0.00602,
-                "detector": "yunet",
-                "confidence": 0.9027
-              },
-              {
-                "bbox": {
-                  "x1": 128.0,
-                  "y1": 274.67,
-                  "x2": 210.67,
-                  "y2": 381.33
-                },
-                "bbox_xyxy": [
-                  128.0,
-                  274.67,
-                  210.67,
-                  381.33
-                ],
-                "center_ratio": [
-                  0.1323,
-                  0.4556
-                ],
-                "area_ratio": 0.00957,
-                "detector": "yunet",
-                "confidence": 0.8903
-              },
-              {
-                "bbox": {
-                  "x1": 1193.33,
-                  "y1": 296.0,
-                  "x2": 1266.67,
-                  "y2": 412.0
-                },
-                "bbox_xyxy": [
-                  1193.33,
-                  296.0,
-                  1266.67,
-                  412.0
-                ],
-                "center_ratio": [
-                  0.9609,
-                  0.4917
-                ],
-                "area_ratio": 0.00923,
-                "detector": "yunet",
-                "confidence": 0.8235
-              },
-              {
-                "bbox": {
-                  "x1": 1001.33,
-                  "y1": 234.67,
-                  "x2": 1098.67,
-                  "y2": 332.0
-                },
-                "bbox_xyxy": [
-                  1001.33,
-                  234.67,
-                  1098.67,
-                  332.0
-                ],
-                "center_ratio": [
-                  0.8203,
-                  0.3935
-                ],
-                "area_ratio": 0.01028,
-                "detector": "haar_front_alt",
-                "confidence": 0.82
-              },
-              {
-                "bbox": {
-                  "x1": 654.67,
-                  "y1": 174.67,
-                  "x2": 720.0,
-                  "y2": 241.33
-                },
-                "bbox_xyxy": [
-                  654.67,
-                  174.67,
-                  720.0,
-                  241.33
-                ],
-                "center_ratio": [
-                  0.537,
-                  0.2889
-                ],
-                "area_ratio": 0.00473,
-                "detector": "yunet",
-                "confidence": 0.8021
-              },
-              {
-                "bbox": {
-                  "x1": 894.67,
-                  "y1": 84.0,
-                  "x2": 948.0,
-                  "y2": 160.0
-                },
-                "bbox_xyxy": [
-                  894.67,
-                  84.0,
-                  948.0,
-                  160.0
-                ],
-                "center_ratio": [
-                  0.7198,
-                  0.1694
-                ],
-                "area_ratio": 0.0044,
-                "detector": "yunet",
-                "confidence": 0.7909
-              },
-              {
-                "bbox": {
-                  "x1": 420.0,
-                  "y1": 116.0,
-                  "x2": 461.33,
-                  "y2": 169.33
-                },
-                "bbox_xyxy": [
-                  420.0,
-                  116.0,
-                  461.33,
-                  169.33
-                ],
-                "center_ratio": [
-                  0.3443,
-                  0.1981
-                ],
-                "area_ratio": 0.00239,
-                "detector": "yunet",
-                "confidence": 0.7821
-              }
-            ],
-            "focus": {
-              "faceCount": 8,
-              "center": [
-                0.4749,
-                0.2995
-              ],
-              "cropCenter": [
-                0.4749,
-                0.4195
-              ],
-              "positions": [
-                "left",
-                "left",
-                "left",
-                "right",
-                "right",
-                "center",
-                "right",
-                "left"
-              ],
-              "groupBox": {
-                "x1": 84.0,
-                "y1": 57.33,
-                "x2": 1266.67,
-                "y2": 412.0
-              }
-            }
-          },
-          {
-            "time": 72.9,
-            "score": 0.59302,
-            "motion": 0.08565,
-            "cameraMotion": 0.00976,
-            "visual": {
-              "brightness": 0.41568,
-              "saturation": 0.38528,
-              "contrast": 0.21521,
-              "warmth": 0.08816,
-              "sharpness": 144.013
-            },
-            "faces": [
-              {
-                "bbox": {
-                  "x1": 208.0,
-                  "y1": 41.33,
-                  "x2": 301.33,
-                  "y2": 162.67
-                },
-                "bbox_xyxy": [
-                  208.0,
-                  41.33,
-                  301.33,
-                  162.67
-                ],
-                "center_ratio": [
-                  0.199,
-                  0.1417
-                ],
-                "area_ratio": 0.01229,
-                "detector": "yunet",
-                "confidence": 0.9153
-              },
-              {
-                "bbox": {
-                  "x1": 422.67,
-                  "y1": 26.67,
-                  "x2": 476.0,
-                  "y2": 97.33
-                },
-                "bbox_xyxy": [
-                  422.67,
-                  26.67,
-                  476.0,
-                  97.33
-                ],
-                "center_ratio": [
-                  0.351,
-                  0.0861
-                ],
-                "area_ratio": 0.00409,
-                "detector": "yunet",
-                "confidence": 0.904
-              },
-              {
-                "bbox": {
-                  "x1": 740.0,
-                  "y1": 104.0,
-                  "x2": 781.33,
-                  "y2": 164.0
-                },
-                "bbox_xyxy": [
-                  740.0,
-                  104.0,
-                  781.33,
-                  164.0
-                ],
-                "center_ratio": [
-                  0.5943,
-                  0.1861
-                ],
-                "area_ratio": 0.00269,
-                "detector": "yunet",
-                "confidence": 0.8464
-              },
-              {
-                "bbox": {
-                  "x1": 278.67,
-                  "y1": 425.33,
-                  "x2": 358.67,
-                  "y2": 562.67
-                },
-                "bbox_xyxy": [
-                  278.67,
-                  425.33,
-                  358.67,
-                  562.67
-                ],
-                "center_ratio": [
-                  0.249,
-                  0.6861
-                ],
-                "area_ratio": 0.01192,
-                "detector": "yunet",
-                "confidence": 0.8405
-              },
-              {
-                "bbox": {
-                  "x1": 636.0,
-                  "y1": 93.33,
-                  "x2": 677.33,
-                  "y2": 142.67
-                },
-                "bbox_xyxy": [
-                  636.0,
-                  93.33,
-                  677.33,
-                  142.67
-                ],
-                "center_ratio": [
-                  0.513,
-                  0.1639
-                ],
-                "area_ratio": 0.00221,
-                "detector": "yunet",
-                "confidence": 0.7865
-              }
-            ],
-            "focus": {
-              "faceCount": 5,
-              "center": [
-                0.3813,
-                0.2528
-              ],
-              "cropCenter": [
-                0.3813,
-                0.3728
-              ],
-              "positions": [
-                "left",
-                "left",
-                "center",
-                "left",
-                "center"
-              ],
-              "groupBox": {
-                "x1": 208.0,
-                "y1": 26.67,
-                "x2": 781.33,
-                "y2": 562.67
-              }
-            }
-          },
-          {
-            "time": 97.033,
-            "score": 0.57169,
-            "motion": 0.06002,
-            "cameraMotion": 0.00589,
-            "visual": {
-              "brightness": 0.4489,
-              "saturation": 0.37327,
-              "contrast": 0.19591,
-              "warmth": 0.09931,
-              "sharpness": 68.559
-            },
-            "faces": [
-              {
-                "bbox": {
-                  "x1": 432.0,
-                  "y1": 234.67,
-                  "x2": 529.33,
-                  "y2": 361.33
-                },
-                "bbox_xyxy": [
-                  432.0,
-                  234.67,
-                  529.33,
-                  361.33
-                ],
-                "center_ratio": [
-                  0.3755,
-                  0.4139
-                ],
-                "area_ratio": 0.01338,
-                "detector": "yunet",
-                "confidence": 0.8705
-              },
-              {
-                "bbox": {
-                  "x1": 712.0,
-                  "y1": 289.33,
-                  "x2": 786.67,
-                  "y2": 420.0
-                },
-                "bbox_xyxy": [
-                  712.0,
-                  289.33,
-                  786.67,
-                  420.0
-                ],
-                "center_ratio": [
-                  0.5854,
-                  0.4926
-                ],
-                "area_ratio": 0.01059,
-                "detector": "yunet",
-                "confidence": 0.8448
-              },
-              {
-                "bbox": {
-                  "x1": 624.0,
-                  "y1": 220.0,
-                  "x2": 692.0,
-                  "y2": 312.0
-                },
-                "bbox_xyxy": [
-                  624.0,
-                  220.0,
-                  692.0,
-                  312.0
-                ],
-                "center_ratio": [
-                  0.5141,
-                  0.3694
-                ],
-                "area_ratio": 0.00679,
-                "detector": "yunet",
-                "confidence": 0.8285
-              },
-              {
-                "bbox": {
-                  "x1": 1010.67,
-                  "y1": 350.67,
-                  "x2": 1084.0,
-                  "y2": 433.33
-                },
-                "bbox_xyxy": [
-                  1010.67,
-                  350.67,
-                  1084.0,
-                  433.33
-                ],
-                "center_ratio": [
-                  0.8182,
-                  0.5444
-                ],
-                "area_ratio": 0.00658,
-                "detector": "yunet",
-                "confidence": 0.7896
-              }
-            ],
-            "focus": {
-              "faceCount": 4,
-              "center": [
-                0.5733,
-                0.4551
-              ],
-              "cropCenter": [
-                0.5733,
-                0.5751
-              ],
-              "positions": [
-                "left",
-                "center",
-                "center",
-                "right"
-              ],
-              "groupBox": {
-                "x1": 432.0,
-                "y1": 220.0,
-                "x2": 1084.0,
-                "y2": 433.33
-              }
-            }
-          },
-          {
-            "time": 6.533,
-            "score": 0.53564,
-            "motion": 0.06232,
-            "cameraMotion": 0.01143,
-            "visual": {
-              "brightness": 0.47919,
-              "saturation": 0.28395,
-              "contrast": 0.17841,
-              "warmth": 0.10743,
-              "sharpness": 79.438
-            },
-            "faces": [
-              {
-                "bbox": {
-                  "x1": 820.0,
-                  "y1": 398.67,
-                  "x2": 861.33,
-                  "y2": 449.33
-                },
-                "bbox_xyxy": [
-                  820.0,
-                  398.67,
-                  861.33,
-                  449.33
-                ],
-                "center_ratio": [
-                  0.6568,
-                  0.5889
-                ],
-                "area_ratio": 0.00227,
-                "detector": "yunet",
-                "confidence": 0.8575
-              },
-              {
-                "bbox": {
-                  "x1": 512.0,
-                  "y1": 265.33,
-                  "x2": 573.33,
-                  "y2": 357.33
-                },
-                "bbox_xyxy": [
-                  512.0,
-                  265.33,
-                  573.33,
-                  357.33
-                ],
-                "center_ratio": [
-                  0.424,
-                  0.4324
-                ],
-                "area_ratio": 0.00612,
-                "detector": "yunet",
-                "confidence": 0.821
-              },
-              {
-                "bbox": {
-                  "x1": 901.33,
-                  "y1": 125.33,
-                  "x2": 1033.33,
-                  "y2": 257.33
-                },
-                "bbox_xyxy": [
-                  901.33,
-                  125.33,
-                  1033.33,
-                  257.33
-                ],
-                "center_ratio": [
-                  0.7557,
-                  0.2657
-                ],
-                "area_ratio": 0.01891,
-                "detector": "haar_front",
-                "confidence": 0.82
-              },
-              {
-                "bbox": {
-                  "x1": 1210.67,
-                  "y1": 110.67,
-                  "x2": 1273.33,
-                  "y2": 173.33
-                },
-                "bbox_xyxy": [
-                  1210.67,
-                  110.67,
-                  1273.33,
-                  173.33
-                ],
-                "center_ratio": [
-                  0.9703,
-                  0.1972
-                ],
-                "area_ratio": 0.00426,
-                "detector": "haar_profile",
-                "confidence": 0.8
-              }
-            ],
-            "focus": {
-              "faceCount": 4,
-              "center": [
-                0.7017,
-                0.371
-              ],
-              "cropCenter": [
-                0.7017,
-                0.491
-              ],
-              "positions": [
-                "right",
-                "center",
-                "right",
-                "right"
-              ],
-              "groupBox": {
-                "x1": 512.0,
-                "y1": 110.67,
-                "x2": 1273.33,
-                "y2": 449.33
-              }
-            }
-          },
-          {
-            "time": 30.667,
-            "score": 0.53063,
-            "motion": 0.08667,
-            "cameraMotion": 0.01163,
-            "visual": {
-              "brightness": 0.4274,
-              "saturation": 0.37045,
-              "contrast": 0.18475,
-              "warmth": 0.16327,
-              "sharpness": 92.774
-            },
-            "faces": [
-              {
-                "bbox": {
-                  "x1": 438.67,
-                  "y1": 321.33,
-                  "x2": 505.33,
-                  "y2": 402.67
-                },
-                "bbox_xyxy": [
-                  438.67,
-                  321.33,
-                  505.33,
-                  402.67
-                ],
-                "center_ratio": [
-                  0.3688,
-                  0.5028
-                ],
-                "area_ratio": 0.00588,
-                "detector": "yunet",
-                "confidence": 0.916
-              },
-              {
-                "bbox": {
-                  "x1": 672.0,
-                  "y1": 233.33,
-                  "x2": 760.0,
-                  "y2": 340.0
-                },
-                "bbox_xyxy": [
-                  672.0,
-                  233.33,
-                  760.0,
-                  340.0
-                ],
-                "center_ratio": [
-                  0.5594,
-                  0.3981
-                ],
-                "area_ratio": 0.01019,
-                "detector": "yunet",
-                "confidence": 0.8382
-              },
-              {
-                "bbox": {
-                  "x1": 360.0,
-                  "y1": 178.67,
-                  "x2": 428.0,
-                  "y2": 246.67
-                },
-                "bbox_xyxy": [
-                  360.0,
-                  178.67,
-                  428.0,
-                  246.67
-                ],
-                "center_ratio": [
-                  0.3078,
-                  0.2954
-                ],
-                "area_ratio": 0.00502,
-                "detector": "haar_profile_flipped",
-                "confidence": 0.8
-              },
-              {
-                "bbox": {
-                  "x1": 912.0,
-                  "y1": 420.0,
-                  "x2": 998.67,
-                  "y2": 546.67
-                },
-                "bbox_xyxy": [
-                  912.0,
-                  420.0,
-                  998.67,
-                  546.67
-                ],
-                "center_ratio": [
-                  0.7464,
-                  0.6713
-                ],
-                "area_ratio": 0.01191,
-                "detector": "yunet",
-                "confidence": 0.7865
-              }
-            ],
-            "focus": {
-              "faceCount": 4,
-              "center": [
-                0.4956,
-                0.4669
-              ],
-              "cropCenter": [
-                0.4956,
-                0.5869
-              ],
-              "positions": [
-                "left",
-                "center",
-                "left",
-                "right"
-              ],
-              "groupBox": {
-                "x1": 360.0,
-                "y1": 178.67,
-                "x2": 998.67,
-                "y2": 546.67
-              }
-            }
-          },
-          {
-            "time": 69.883,
-            "score": 0.52565,
-            "motion": 0.07746,
-            "cameraMotion": 0.01101,
-            "visual": {
-              "brightness": 0.41336,
-              "saturation": 0.38762,
-              "contrast": 0.2174,
-              "warmth": 0.096,
-              "sharpness": 93.116
-            },
-            "faces": [
-              {
-                "bbox": {
-                  "x1": 328.0,
-                  "y1": 28.0,
-                  "x2": 390.67,
-                  "y2": 113.33
-                },
-                "bbox_xyxy": [
-                  328.0,
-                  28.0,
-                  390.67,
-                  113.33
-                ],
-                "center_ratio": [
-                  0.2807,
-                  0.0981
-                ],
-                "area_ratio": 0.0058,
-                "detector": "yunet",
-                "confidence": 0.9049
-              },
-              {
-                "bbox": {
-                  "x1": 290.67,
-                  "y1": 146.67,
-                  "x2": 373.33,
-                  "y2": 246.67
-                },
-                "bbox_xyxy": [
-                  290.67,
-                  146.67,
-                  373.33,
-                  246.67
-                ],
-                "center_ratio": [
-                  0.2594,
-                  0.2731
-                ],
-                "area_ratio": 0.00897,
-                "detector": "yunet",
-                "confidence": 0.9013
-              },
-              {
-                "bbox": {
-                  "x1": 804.0,
-                  "y1": 12.0,
-                  "x2": 861.33,
-                  "y2": 85.33
-                },
-                "bbox_xyxy": [
-                  804.0,
-                  12.0,
-                  861.33,
-                  85.33
-                ],
-                "center_ratio": [
-                  0.6505,
-                  0.0676
-                ],
-                "area_ratio": 0.00456,
-                "detector": "yunet",
-                "confidence": 0.8427
-              },
-              {
-                "bbox": {
-                  "x1": 501.33,
-                  "y1": 326.67,
-                  "x2": 573.33,
-                  "y2": 398.67
-                },
-                "bbox_xyxy": [
-                  501.33,
-                  326.67,
-                  573.33,
-                  398.67
-                ],
-                "center_ratio": [
-                  0.4198,
-                  0.5037
-                ],
-                "area_ratio": 0.00562,
-                "detector": "haar_front",
-                "confidence": 0.82
-              }
-            ],
-            "focus": {
-              "faceCount": 4,
-              "center": [
-                0.4026,
-                0.2356
-              ],
-              "cropCenter": [
-                0.4026,
-                0.3556
-              ],
-              "positions": [
-                "left",
-                "left",
-                "right",
-                "center"
-              ],
-              "groupBox": {
-                "x1": 290.67,
-                "y1": 12.0,
-                "x2": 861.33,
-                "y2": 398.67
-              }
-            }
-          }
-        ],
-        "manualFixedClip": {
-          "sourceStem": "0875db90-5d21-463d-b4b0-9f0a19195ca2",
-          "fixedSourceIn": 14.0,
-          "fixedDuration": 22.0,
-          "originalSourceIn": 46.817,
-          "originalSourceOut": 68.817,
-          "sourceIn": 14.0,
-          "sourceOut": 36.0,
-          "originalClipDuration": 22.0,
-          "clipDuration": 22.0,
-          "method": "fixed-source-range"
-        },
-        "manualPlacement": "insert-video018-source-014-036-before-dji-139-211-after-038-113-cut",
-        "manualSequenceMove": {
-          "method": "move-before-video-clip",
-          "targetStem": "dji_20000104161921_0006_d",
-          "targetSuffix": "clip_139_211"
-        },
-        "probe": {
-          "duration": 97.533333,
-          "width": 1280,
-          "height": 720,
-          "fps": "43860/1463",
-          "videoCodec": "h264",
-          "hasAudio": true,
-          "creationTime": ""
-        }
-      }
-    },
-    {
-      "index": 17,
+      "index": 15,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_001_DJI_20000104161921_0006_D.MP4",
       "relative": "DJI_001\\video_001_DJI_20000104161921_0006_D.MP4",
@@ -3943,8 +2933,8 @@
       "height": 1080,
       "sourceDuration": 1213.824,
       "hasAudio": true,
-      "timelineStart": 354.666667,
-      "timelineEnd": 426.666667,
+      "timelineStart": 327.666667,
+      "timelineEnd": 399.666667,
       "sourceIn": 139.0,
       "sourceOut": 211.0,
       "clipDuration": 72.0,
@@ -4232,7 +3222,7 @@
       }
     },
     {
-      "index": 18,
+      "index": 16,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_002_ST-601.jpg",
       "relative": "phtp2605269\\photo_002_ST-601.jpg",
@@ -4242,8 +3232,8 @@
       "height": 2005,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 426.0,
-      "timelineEnd": 431.0,
+      "timelineStart": 399.0,
+      "timelineEnd": 404.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -4413,7 +3403,7 @@
       }
     },
     {
-      "index": 19,
+      "index": 17,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_036_ST-699.jpg",
       "relative": "phtp2605269\\photo_036_ST-699.jpg",
@@ -4423,8 +3413,8 @@
       "height": 3000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 430.333333,
-      "timelineEnd": 435.333333,
+      "timelineStart": 403.333333,
+      "timelineEnd": 408.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -4500,7 +3490,7 @@
       }
     },
     {
-      "index": 20,
+      "index": 18,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_002_DJI_20000104164015_0007_D.MP4",
       "relative": "DJI_001\\video_002_DJI_20000104164015_0007_D.MP4",
@@ -4510,8 +3500,8 @@
       "height": 1080,
       "sourceDuration": 654.123,
       "hasAudio": true,
-      "timelineStart": 434.666667,
-      "timelineEnd": 491.666667,
+      "timelineStart": 407.666667,
+      "timelineEnd": 464.666667,
       "sourceIn": 463.0,
       "sourceOut": 520.0,
       "clipDuration": 57.0,
@@ -4852,7 +3842,7 @@
       }
     },
     {
-      "index": 21,
+      "index": 19,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_008_ST-618.jpg",
       "relative": "phtp2605269\\photo_008_ST-618.jpg",
@@ -4862,8 +3852,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 491.0,
-      "timelineEnd": 496.0,
+      "timelineStart": 464.0,
+      "timelineEnd": 469.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -5015,7 +4005,7 @@
       }
     },
     {
-      "index": 22,
+      "index": 20,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_016_ST-634.jpg",
       "relative": "phtp2605269\\photo_016_ST-634.jpg",
@@ -5025,8 +4015,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 495.333333,
-      "timelineEnd": 500.333333,
+      "timelineStart": 468.333333,
+      "timelineEnd": 473.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -5103,7 +4093,7 @@
       }
     },
     {
-      "index": 23,
+      "index": 21,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_003_DJI_20000104171048_0015_D.MP4",
       "relative": "DJI_001\\video_003_DJI_20000104171048_0015_D.MP4",
@@ -5113,8 +4103,8 @@
       "height": 1080,
       "sourceDuration": 176.71,
       "hasAudio": true,
-      "timelineStart": 499.666667,
-      "timelineEnd": 550.666667,
+      "timelineStart": 472.666667,
+      "timelineEnd": 523.666667,
       "sourceIn": 0.0,
       "sourceOut": 51.0,
       "clipDuration": 51.0,
@@ -5487,7 +4477,7 @@
       }
     },
     {
-      "index": 24,
+      "index": 22,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_003_DJI_20000104171048_0015_D.MP4",
       "relative": "DJI_001\\video_003_DJI_20000104171048_0015_D.MP4",
@@ -5497,8 +4487,8 @@
       "height": 1080,
       "sourceDuration": 176.71,
       "hasAudio": true,
-      "timelineStart": 550.666667,
-      "timelineEnd": 673.375,
+      "timelineStart": 523.666667,
+      "timelineEnd": 646.375,
       "sourceIn": 54.0,
       "sourceOut": 176.708333,
       "clipDuration": 122.708333,
@@ -5871,7 +4861,7 @@
       }
     },
     {
-      "index": 25,
+      "index": 23,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_055_ST-738.jpg",
       "relative": "phtp2605269\\photo_055_ST-738.jpg",
@@ -5881,8 +4871,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 672.708333,
-      "timelineEnd": 677.708333,
+      "timelineStart": 645.708333,
+      "timelineEnd": 650.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -5958,7 +4948,7 @@
       }
     },
     {
-      "index": 26,
+      "index": 24,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_054_ST-737.jpg",
       "relative": "phtp2605269\\photo_054_ST-737.jpg",
@@ -5968,8 +4958,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 677.041667,
-      "timelineEnd": 682.041667,
+      "timelineStart": 650.041667,
+      "timelineEnd": 655.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -6099,7 +5089,7 @@
       }
     },
     {
-      "index": 27,
+      "index": 25,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\mp4\\video_014_ST7_8341.MP4",
       "relative": "mp4\\video_014_ST7_8341.MP4",
@@ -6109,8 +5099,8 @@
       "height": 1080,
       "sourceDuration": 1072.038,
       "hasAudio": true,
-      "timelineStart": 681.375,
-      "timelineEnd": 727.375,
+      "timelineStart": 654.375,
+      "timelineEnd": 700.375,
       "sourceIn": 0.0,
       "sourceOut": 46.0,
       "clipDuration": 46.0,
@@ -7046,7 +6036,7 @@
       }
     },
     {
-      "index": 28,
+      "index": 26,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\mp4\\video_014_ST7_8341.MP4",
       "relative": "mp4\\video_014_ST7_8341.MP4",
@@ -7056,8 +6046,8 @@
       "height": 1080,
       "sourceDuration": 1072.038,
       "hasAudio": true,
-      "timelineStart": 727.375,
-      "timelineEnd": 743.375,
+      "timelineStart": 700.375,
+      "timelineEnd": 716.375,
       "sourceIn": 217.0,
       "sourceOut": 233.0,
       "clipDuration": 16.0,
@@ -7995,7 +6985,95 @@
       }
     },
     {
-      "index": 29,
+      "index": 27,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_018_ST-638.jpg",
+      "relative": "phtp2605269\\photo_018_ST-638.jpg",
+      "sourceIdentityStem": "st-638",
+      "sourceLabel": "photo_018_ST-638.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 715.708333,
+      "timelineEnd": 720.708333,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.25515,
+        "cropCenter": [
+          0.5,
+          0.5
+        ],
+        "subject": {
+          "source": "edges",
+          "subjectBox": {
+            "x1": 0.0,
+            "y1": 402.6,
+            "x2": 1400.0,
+            "y2": 934.0,
+            "center": [
+              0.5,
+              0.7155
+            ]
+          },
+          "subjectSquare": {
+            "x1": 233.0,
+            "y1": 0.0,
+            "x2": 1167.0,
+            "y2": 934.0,
+            "center": [
+              0.5,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.5,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 0,
+          "positions": [],
+          "groupBox": null
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": true,
+          "detectors": [],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": []
+        },
+        "visual": {
+          "brightness": 0.68189,
+          "saturation": 0.26846,
+          "contrast": 0.28415,
+          "warmth": 0.07449,
+          "sharpness": 14.937
+        },
+        "perceptualHash": "d80d5b516aa7b433",
+        "duplicateGroup": {
+          "groupId": 9,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "required-image-priority",
+          "score": 0.39221
+        },
+        "manualTargetSeconds": 70.0,
+        "manualPlacement": "move-before-st667",
+        "imageRole": "manual-before-st667",
+        "manualImageMove": {
+          "method": "before-image",
+          "placement": "move-before-st667"
+        }
+      }
+    },
+    {
+      "index": 28,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_024_ST-667.jpg",
       "relative": "phtp2605269\\photo_024_ST-667.jpg",
@@ -8005,8 +7083,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 742.708333,
-      "timelineEnd": 747.708333,
+      "timelineStart": 720.041667,
+      "timelineEnd": 725.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -8083,7 +7161,7 @@
       }
     },
     {
-      "index": 30,
+      "index": 29,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_015_ST-632.jpg",
       "relative": "phtp2605269\\photo_015_ST-632.jpg",
@@ -8093,8 +7171,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 747.041667,
-      "timelineEnd": 752.041667,
+      "timelineStart": 724.375,
+      "timelineEnd": 729.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -8245,7 +7323,7 @@
       }
     },
     {
-      "index": 31,
+      "index": 30,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_027_ST-675.jpg",
       "relative": "phtp2605269\\photo_027_ST-675.jpg",
@@ -8255,8 +7333,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 751.375,
-      "timelineEnd": 756.375,
+      "timelineStart": 728.708333,
+      "timelineEnd": 733.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -8362,7 +7440,7 @@
       }
     },
     {
-      "index": 32,
+      "index": 31,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
       "relative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -8372,8 +7450,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 755.708333,
-      "timelineEnd": 803.0,
+      "timelineStart": 733.041667,
+      "timelineEnd": 780.333333,
       "sourceIn": 1.0,
       "sourceOut": 48.291667,
       "clipDuration": 47.291667,
@@ -9269,7 +8347,7 @@
       }
     },
     {
-      "index": 33,
+      "index": 32,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_019_ST-645.jpg",
       "relative": "phtp2605269\\photo_019_ST-645.jpg",
@@ -9279,8 +8357,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 802.333333,
-      "timelineEnd": 807.333333,
+      "timelineStart": 779.666667,
+      "timelineEnd": 784.666667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -9454,7 +8532,7 @@
       }
     },
     {
-      "index": 34,
+      "index": 33,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
       "relative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -9464,8 +8542,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 806.666667,
-      "timelineEnd": 840.666667,
+      "timelineStart": 784.0,
+      "timelineEnd": 818.0,
       "sourceIn": 48.291667,
       "sourceOut": 82.291667,
       "clipDuration": 34.0,
@@ -10361,7 +9439,7 @@
       }
     },
     {
-      "index": 35,
+      "index": 34,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_020_ST-646.jpg",
       "relative": "phtp2605269\\photo_020_ST-646.jpg",
@@ -10371,8 +9449,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 840.0,
-      "timelineEnd": 845.0,
+      "timelineStart": 817.333333,
+      "timelineEnd": 822.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -10567,7 +9645,7 @@
       }
     },
     {
-      "index": 36,
+      "index": 35,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
       "relative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -10577,8 +9655,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 844.333333,
-      "timelineEnd": 849.041667,
+      "timelineStart": 821.666667,
+      "timelineEnd": 826.375,
       "sourceIn": 82.291667,
       "sourceOut": 87.0,
       "clipDuration": 4.708333,
@@ -11474,7 +10552,7 @@
       }
     },
     {
-      "index": 37,
+      "index": 36,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
       "relative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -11484,8 +10562,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 849.041667,
-      "timelineEnd": 871.333333,
+      "timelineStart": 826.375,
+      "timelineEnd": 848.666667,
       "sourceIn": 131.0,
       "sourceOut": 153.291667,
       "clipDuration": 22.291667,
@@ -12381,7 +11459,7 @@
       }
     },
     {
-      "index": 38,
+      "index": 37,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_021_ST-653.jpg",
       "relative": "phtp2605269\\photo_021_ST-653.jpg",
@@ -12391,8 +11469,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 870.666667,
-      "timelineEnd": 875.666667,
+      "timelineStart": 848.0,
+      "timelineEnd": 853.0,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -12566,7 +11644,7 @@
       }
     },
     {
-      "index": 39,
+      "index": 38,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_057_ST-686.jpg",
       "relative": "phtp2605269\\photo_057_ST-686.jpg",
@@ -12576,8 +11654,8 @@
       "height": 3000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 875.0,
-      "timelineEnd": 880.0,
+      "timelineStart": 852.333333,
+      "timelineEnd": 857.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -12707,7 +11785,7 @@
       }
     },
     {
-      "index": 40,
+      "index": 39,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
       "relative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -12717,8 +11795,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 879.333333,
-      "timelineEnd": 898.041667,
+      "timelineStart": 856.666667,
+      "timelineEnd": 875.375,
       "sourceIn": 158.291667,
       "sourceOut": 177.0,
       "clipDuration": 18.708333,
@@ -13614,6 +12692,168 @@
       }
     },
     {
+      "index": 40,
+      "kind": "image",
+      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_022_ST-661.jpg",
+      "relative": "phtp2605269\\photo_022_ST-661.jpg",
+      "sourceIdentityStem": "st-661",
+      "sourceLabel": "photo_022_ST-661.jpg",
+      "width": 3000,
+      "height": 2001,
+      "sourceDuration": 0.0,
+      "hasAudio": false,
+      "timelineStart": 874.708333,
+      "timelineEnd": 879.708333,
+      "sourceIn": 0.0,
+      "sourceOut": 5.0,
+      "clipDuration": 5.0,
+      "clipFrames": 120,
+      "analysis": {
+        "analysisVersion": "image-v4-yunet-face-opening-gate",
+        "score": 0.583,
+        "cropCenter": [
+          0.5823,
+          0.5
+        ],
+        "subject": {
+          "source": "faces",
+          "subjectBox": {
+            "x1": 230.42,
+            "y1": 0.0,
+            "x2": 1400.0,
+            "y2": 867.49,
+            "center": [
+              0.5823,
+              0.4644
+            ]
+          },
+          "subjectSquare": {
+            "x1": 348.21,
+            "y1": 0.0,
+            "x2": 1282.21,
+            "y2": 934.0,
+            "center": [
+              0.5823,
+              0.5
+            ]
+          },
+          "cropCenter": [
+            0.5823,
+            0.5
+          ]
+        },
+        "personRelation": {
+          "faceCount": 3,
+          "positions": [
+            "right",
+            "center",
+            "right"
+          ],
+          "groupBox": {
+            "x1": 602.29,
+            "y1": 243.54,
+            "x2": 1098.12,
+            "y2": 533.75
+          }
+        },
+        "faceDetection": {
+          "noFaceOpeningEligible": false,
+          "detectors": [
+            "haar_front",
+            "yunet"
+          ],
+          "thresholds": {
+            "yunetFaceScore": 0.78
+          },
+          "faces": [
+            {
+              "bbox": {
+                "x1": 822.5,
+                "y1": 253.75,
+                "x2": 1032.5,
+                "y2": 533.75
+              },
+              "bbox_xyxy": [
+                822.5,
+                253.75,
+                1032.5,
+                533.75
+              ],
+              "center_ratio": [
+                0.6625,
+                0.4216
+              ],
+              "area_ratio": 0.04497,
+              "detector": "yunet",
+              "confidence": 0.9293
+            },
+            {
+              "bbox": {
+                "x1": 602.29,
+                "y1": 243.54,
+                "x2": 807.92,
+                "y2": 523.54
+              },
+              "bbox_xyxy": [
+                602.29,
+                243.54,
+                807.92,
+                523.54
+              ],
+              "center_ratio": [
+                0.5036,
+                0.4106
+              ],
+              "area_ratio": 0.04403,
+              "detector": "yunet",
+              "confidence": 0.9009
+            },
+            {
+              "bbox": {
+                "x1": 987.29,
+                "y1": 303.33,
+                "x2": 1098.12,
+                "y2": 414.17
+              },
+              "bbox_xyxy": [
+                987.29,
+                303.33,
+                1098.12,
+                414.17
+              ],
+              "center_ratio": [
+                0.7448,
+                0.3841
+              ],
+              "area_ratio": 0.00939,
+              "detector": "haar_front",
+              "confidence": 0.82
+            }
+          ]
+        },
+        "visual": {
+          "brightness": 0.55545,
+          "saturation": 0.30653,
+          "contrast": 0.28567,
+          "warmth": 0.06445,
+          "sharpness": 77.807
+        },
+        "perceptualHash": "bd62111c76cbc369",
+        "duplicateGroup": {
+          "groupId": 13,
+          "groupSize": 1,
+          "selected": true,
+          "selectionReason": "best-image-score",
+          "score": 1.01032
+        },
+        "manualPlacement": "insert-at-latest-full-14m57-video006-177-184-cut",
+        "manualImageMove": {
+          "method": "after-video",
+          "placement": "insert-at-latest-full-14m57-video006-177-184-cut"
+        }
+      }
+    },
+    {
       "index": 41,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -13624,8 +12864,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 898.041667,
-      "timelineEnd": 908.333333,
+      "timelineStart": 879.041667,
+      "timelineEnd": 889.333333,
       "sourceIn": 184.0,
       "sourceOut": 194.291667,
       "clipDuration": 10.291667,
@@ -14522,168 +13762,6 @@
     },
     {
       "index": 42,
-      "kind": "image",
-      "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_022_ST-661.jpg",
-      "relative": "phtp2605269\\photo_022_ST-661.jpg",
-      "sourceIdentityStem": "st-661",
-      "sourceLabel": "photo_022_ST-661.jpg",
-      "width": 3000,
-      "height": 2001,
-      "sourceDuration": 0.0,
-      "hasAudio": false,
-      "timelineStart": 907.666667,
-      "timelineEnd": 912.666667,
-      "sourceIn": 0.0,
-      "sourceOut": 5.0,
-      "clipDuration": 5.0,
-      "clipFrames": 120,
-      "analysis": {
-        "analysisVersion": "image-v4-yunet-face-opening-gate",
-        "score": 0.583,
-        "cropCenter": [
-          0.5823,
-          0.5
-        ],
-        "subject": {
-          "source": "faces",
-          "subjectBox": {
-            "x1": 230.42,
-            "y1": 0.0,
-            "x2": 1400.0,
-            "y2": 867.49,
-            "center": [
-              0.5823,
-              0.4644
-            ]
-          },
-          "subjectSquare": {
-            "x1": 348.21,
-            "y1": 0.0,
-            "x2": 1282.21,
-            "y2": 934.0,
-            "center": [
-              0.5823,
-              0.5
-            ]
-          },
-          "cropCenter": [
-            0.5823,
-            0.5
-          ]
-        },
-        "personRelation": {
-          "faceCount": 3,
-          "positions": [
-            "right",
-            "center",
-            "right"
-          ],
-          "groupBox": {
-            "x1": 602.29,
-            "y1": 243.54,
-            "x2": 1098.12,
-            "y2": 533.75
-          }
-        },
-        "faceDetection": {
-          "noFaceOpeningEligible": false,
-          "detectors": [
-            "haar_front",
-            "yunet"
-          ],
-          "thresholds": {
-            "yunetFaceScore": 0.78
-          },
-          "faces": [
-            {
-              "bbox": {
-                "x1": 822.5,
-                "y1": 253.75,
-                "x2": 1032.5,
-                "y2": 533.75
-              },
-              "bbox_xyxy": [
-                822.5,
-                253.75,
-                1032.5,
-                533.75
-              ],
-              "center_ratio": [
-                0.6625,
-                0.4216
-              ],
-              "area_ratio": 0.04497,
-              "detector": "yunet",
-              "confidence": 0.9293
-            },
-            {
-              "bbox": {
-                "x1": 602.29,
-                "y1": 243.54,
-                "x2": 807.92,
-                "y2": 523.54
-              },
-              "bbox_xyxy": [
-                602.29,
-                243.54,
-                807.92,
-                523.54
-              ],
-              "center_ratio": [
-                0.5036,
-                0.4106
-              ],
-              "area_ratio": 0.04403,
-              "detector": "yunet",
-              "confidence": 0.9009
-            },
-            {
-              "bbox": {
-                "x1": 987.29,
-                "y1": 303.33,
-                "x2": 1098.12,
-                "y2": 414.17
-              },
-              "bbox_xyxy": [
-                987.29,
-                303.33,
-                1098.12,
-                414.17
-              ],
-              "center_ratio": [
-                0.7448,
-                0.3841
-              ],
-              "area_ratio": 0.00939,
-              "detector": "haar_front",
-              "confidence": 0.82
-            }
-          ]
-        },
-        "visual": {
-          "brightness": 0.55545,
-          "saturation": 0.30653,
-          "contrast": 0.28567,
-          "warmth": 0.06445,
-          "sharpness": 77.807
-        },
-        "perceptualHash": "bd62111c76cbc369",
-        "duplicateGroup": {
-          "groupId": 13,
-          "groupSize": 1,
-          "selected": true,
-          "selectionReason": "best-image-score",
-          "score": 1.01032
-        },
-        "manualPlacement": "insert-at-latest-full-14m41-video006-184-356",
-        "manualImageMove": {
-          "method": "after-video",
-          "placement": "insert-at-latest-full-14m41-video006-184-356"
-        }
-      }
-    },
-    {
-      "index": 43,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
       "relative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -14693,8 +13771,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 912.0,
-      "timelineEnd": 946.0,
+      "timelineStart": 889.333333,
+      "timelineEnd": 923.333333,
       "sourceIn": 194.291667,
       "sourceOut": 228.291667,
       "clipDuration": 34.0,
@@ -15590,7 +14668,7 @@
       }
     },
     {
-      "index": 44,
+      "index": 43,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_023_ST-665.jpg",
       "relative": "phtp2605269\\photo_023_ST-665.jpg",
@@ -15600,8 +14678,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 945.333333,
-      "timelineEnd": 950.333333,
+      "timelineStart": 922.666667,
+      "timelineEnd": 927.666667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -15773,7 +14851,7 @@
       }
     },
     {
-      "index": 45,
+      "index": 44,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
       "relative": "DJI_001\\video_006_DJI_20000104172624_0018_D.MP4",
@@ -15783,8 +14861,8 @@
       "height": 1080,
       "sourceDuration": 433.216,
       "hasAudio": true,
-      "timelineStart": 949.666667,
-      "timelineEnd": 1077.375,
+      "timelineStart": 927.0,
+      "timelineEnd": 1054.708333,
       "sourceIn": 228.291667,
       "sourceOut": 356.0,
       "clipDuration": 127.708333,
@@ -16680,7 +15758,7 @@
       }
     },
     {
-      "index": 46,
+      "index": 45,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_025_ST-668.jpg",
       "relative": "phtp2605269\\photo_025_ST-668.jpg",
@@ -16690,8 +15768,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1076.708333,
-      "timelineEnd": 1081.708333,
+      "timelineStart": 1054.041667,
+      "timelineEnd": 1059.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -16820,7 +15898,7 @@
       }
     },
     {
-      "index": 47,
+      "index": 46,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_026_ST-670.jpg",
       "relative": "phtp2605269\\photo_026_ST-670.jpg",
@@ -16830,8 +15908,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1081.041667,
-      "timelineEnd": 1086.041667,
+      "timelineStart": 1058.375,
+      "timelineEnd": 1063.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -16908,7 +15986,7 @@
       }
     },
     {
-      "index": 48,
+      "index": 47,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_059_ST-677.jpg",
       "relative": "phtp2605269\\photo_059_ST-677.jpg",
@@ -16918,8 +15996,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1085.375,
-      "timelineEnd": 1090.375,
+      "timelineStart": 1062.708333,
+      "timelineEnd": 1067.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -16995,7 +16073,7 @@
       }
     },
     {
-      "index": 49,
+      "index": 48,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_041_ST-706.jpg",
       "relative": "phtp2605269\\photo_041_ST-706.jpg",
@@ -17005,8 +16083,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1089.708333,
-      "timelineEnd": 1094.708333,
+      "timelineStart": 1067.041667,
+      "timelineEnd": 1072.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -17112,7 +16190,7 @@
       }
     },
     {
-      "index": 50,
+      "index": 49,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_031_ST-690.jpg",
       "relative": "phtp2605269\\photo_031_ST-690.jpg",
@@ -17122,8 +16200,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1094.041667,
-      "timelineEnd": 1099.041667,
+      "timelineStart": 1071.375,
+      "timelineEnd": 1076.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -17200,7 +16278,7 @@
       }
     },
     {
-      "index": 51,
+      "index": 50,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_032_ST-693.jpg",
       "relative": "phtp2605269\\photo_032_ST-693.jpg",
@@ -17210,8 +16288,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1098.375,
-      "timelineEnd": 1103.375,
+      "timelineStart": 1075.708333,
+      "timelineEnd": 1080.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -17312,7 +16390,7 @@
       }
     },
     {
-      "index": 52,
+      "index": 51,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_033_ST-694.jpg",
       "relative": "phtp2605269\\photo_033_ST-694.jpg",
@@ -17322,8 +16400,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1102.708333,
-      "timelineEnd": 1107.708333,
+      "timelineStart": 1080.041667,
+      "timelineEnd": 1085.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -17447,7 +16525,7 @@
       }
     },
     {
-      "index": 53,
+      "index": 52,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_035_ST-697.jpg",
       "relative": "phtp2605269\\photo_035_ST-697.jpg",
@@ -17457,8 +16535,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1107.041667,
-      "timelineEnd": 1112.041667,
+      "timelineStart": 1084.375,
+      "timelineEnd": 1089.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -17604,7 +16682,7 @@
       }
     },
     {
-      "index": 54,
+      "index": 53,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_045_ST-715.jpg",
       "relative": "phtp2605269\\photo_045_ST-715.jpg",
@@ -17614,8 +16692,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1111.375,
-      "timelineEnd": 1116.375,
+      "timelineStart": 1088.708333,
+      "timelineEnd": 1093.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -17744,7 +16822,7 @@
       }
     },
     {
-      "index": 55,
+      "index": 54,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\video\\video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4",
       "relative": "video\\video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4",
@@ -17754,8 +16832,8 @@
       "height": 540,
       "sourceDuration": 57.625,
       "hasAudio": true,
-      "timelineStart": 1115.708333,
-      "timelineEnd": 1130.708333,
+      "timelineStart": 1093.041667,
+      "timelineEnd": 1108.041667,
       "sourceIn": 0.0,
       "sourceOut": 15.0,
       "clipDuration": 15.0,
@@ -18531,7 +17609,7 @@
       }
     },
     {
-      "index": 56,
+      "index": 55,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_049_ST-729.jpg",
       "relative": "phtp2605269\\photo_049_ST-729.jpg",
@@ -18541,8 +17619,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1130.041667,
-      "timelineEnd": 1135.041667,
+      "timelineStart": 1107.375,
+      "timelineEnd": 1112.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -18696,7 +17774,7 @@
       }
     },
     {
-      "index": 57,
+      "index": 56,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\video\\video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4",
       "relative": "video\\video_023_a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43.mp4",
@@ -18706,8 +17784,8 @@
       "height": 540,
       "sourceDuration": 57.625,
       "hasAudio": true,
-      "timelineStart": 1134.375,
-      "timelineEnd": 1159.375,
+      "timelineStart": 1111.708333,
+      "timelineEnd": 1136.708333,
       "sourceIn": 15.0,
       "sourceOut": 40.0,
       "clipDuration": 25.0,
@@ -19483,7 +18561,7 @@
       }
     },
     {
-      "index": 58,
+      "index": 57,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_050_ST-730.jpg",
       "relative": "phtp2605269\\photo_050_ST-730.jpg",
@@ -19493,8 +18571,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1158.708333,
-      "timelineEnd": 1163.708333,
+      "timelineStart": 1136.041667,
+      "timelineEnd": 1141.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -19625,7 +18703,7 @@
       }
     },
     {
-      "index": 59,
+      "index": 58,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_058_ST-723.jpg",
       "relative": "phtp2605269\\photo_058_ST-723.jpg",
@@ -19635,8 +18713,8 @@
       "height": 3000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1163.041667,
-      "timelineEnd": 1168.041667,
+      "timelineStart": 1140.375,
+      "timelineEnd": 1145.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -19767,7 +18845,7 @@
       }
     },
     {
-      "index": 60,
+      "index": 59,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_030_ST-688.jpg",
       "relative": "phtp2605269\\photo_030_ST-688.jpg",
@@ -19777,8 +18855,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1167.375,
-      "timelineEnd": 1172.375,
+      "timelineStart": 1144.708333,
+      "timelineEnd": 1149.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -19908,7 +18986,7 @@
       }
     },
     {
-      "index": 61,
+      "index": 60,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
       "relative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
@@ -19918,8 +18996,8 @@
       "height": 1080,
       "sourceDuration": 103.979,
       "hasAudio": true,
-      "timelineStart": 1171.708333,
-      "timelineEnd": 1226.666667,
+      "timelineStart": 1149.041667,
+      "timelineEnd": 1204.0,
       "sourceIn": 0.0,
       "sourceOut": 54.958333,
       "clipDuration": 54.958333,
@@ -20274,7 +19352,7 @@
       }
     },
     {
-      "index": 62,
+      "index": 61,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_051_ST-731.jpg",
       "relative": "phtp2605269\\photo_051_ST-731.jpg",
@@ -20284,8 +19362,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1226.0,
-      "timelineEnd": 1231.0,
+      "timelineStart": 1203.333333,
+      "timelineEnd": 1208.333333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -20415,7 +19493,7 @@
       }
     },
     {
-      "index": 63,
+      "index": 62,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
       "relative": "DJI_001\\video_012_DJI_20000104181624_0030_D.MP4",
@@ -20425,8 +19503,8 @@
       "height": 1080,
       "sourceDuration": 103.979,
       "hasAudio": true,
-      "timelineStart": 1230.333333,
-      "timelineEnd": 1279.333333,
+      "timelineStart": 1207.666667,
+      "timelineEnd": 1256.666667,
       "sourceIn": 54.958333,
       "sourceOut": 103.958333,
       "clipDuration": 49.0,
@@ -20781,7 +19859,7 @@
       }
     },
     {
-      "index": 64,
+      "index": 63,
       "kind": "video",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\DJI_001\\video_013_DJI_20000104181937_0031_D.MP4",
       "relative": "DJI_001\\video_013_DJI_20000104181937_0031_D.MP4",
@@ -20791,8 +19869,8 @@
       "height": 1080,
       "sourceDuration": 203.029,
       "hasAudio": true,
-      "timelineStart": 1279.333333,
-      "timelineEnd": 1482.375,
+      "timelineStart": 1256.666667,
+      "timelineEnd": 1459.708333,
       "sourceIn": 0.0,
       "sourceOut": 203.029333,
       "clipDuration": 203.041667,
@@ -21007,7 +20085,7 @@
       }
     },
     {
-      "index": 65,
+      "index": 64,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_052_ST-735.jpg",
       "relative": "phtp2605269\\photo_052_ST-735.jpg",
@@ -21017,8 +20095,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1481.708333,
-      "timelineEnd": 1486.708333,
+      "timelineStart": 1459.041667,
+      "timelineEnd": 1464.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -21126,7 +20204,7 @@
       }
     },
     {
-      "index": 66,
+      "index": 65,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_029_ST-682.jpg",
       "relative": "phtp2605269\\photo_029_ST-682.jpg",
@@ -21136,8 +20214,8 @@
       "height": 2001,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1486.041667,
-      "timelineEnd": 1491.041667,
+      "timelineStart": 1463.375,
+      "timelineEnd": 1468.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -21261,7 +20339,7 @@
       }
     },
     {
-      "index": 67,
+      "index": 66,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_044_ST-713.jpg",
       "relative": "phtp2605269\\photo_044_ST-713.jpg",
@@ -21271,8 +20349,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1490.375,
-      "timelineEnd": 1495.375,
+      "timelineStart": 1467.708333,
+      "timelineEnd": 1472.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -21419,7 +20497,7 @@
       }
     },
     {
-      "index": 68,
+      "index": 67,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_048_ST-725.jpg",
       "relative": "phtp2605269\\photo_048_ST-725.jpg",
@@ -21429,8 +20507,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1494.708333,
-      "timelineEnd": 1499.708333,
+      "timelineStart": 1472.041667,
+      "timelineEnd": 1477.041667,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -21536,7 +20614,7 @@
       }
     },
     {
-      "index": 69,
+      "index": 68,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_047_ST-721.jpg",
       "relative": "phtp2605269\\photo_047_ST-721.jpg",
@@ -21546,8 +20624,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1499.041667,
-      "timelineEnd": 1504.041667,
+      "timelineStart": 1476.375,
+      "timelineEnd": 1481.375,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,
@@ -21715,7 +20793,7 @@
       }
     },
     {
-      "index": 70,
+      "index": 69,
       "kind": "image",
       "path": "C:\\Users\\yurin\\Desktop\\video_edit\\projects\\260526-birthday\\source\\phtp2605269\\photo_046_ST-716.jpg",
       "relative": "phtp2605269\\photo_046_ST-716.jpg",
@@ -21725,8 +20803,8 @@
       "height": 2000,
       "sourceDuration": 0.0,
       "hasAudio": false,
-      "timelineStart": 1503.375,
-      "timelineEnd": 1508.375,
+      "timelineStart": 1480.708333,
+      "timelineEnd": 1485.708333,
       "sourceIn": 0.0,
       "sourceOut": 5.0,
       "clipDuration": 5.0,

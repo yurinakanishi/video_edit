@@ -59,7 +59,6 @@ MANUAL_SINGLE_IMAGE_VIDEO_GAP_PLACEMENT_PREFIXES = ("insert-at-latest-full-", "s
 MIN_VARIABLE_VIDEO_SECONDS = 12.0
 MANUAL_IMAGE_RENDER_OVERRIDES: dict[str, dict[str, Any]] = {}
 MANUAL_VIDEO_FIXED_CLIPS = {
-    "0875db90-5d21-463d-b4b0-9f0a19195ca2": (14.0, 22.0),
     "dji_20000104164015_0007_d": (463.0, 57.0),
     "dji_20000104181937_0031_d": (0.0, 203.029333),
 }
@@ -165,14 +164,7 @@ MANUAL_VIDEO_BLOCK_SWAPS = [
 ]
 MANUAL_VIDEO_RELOCATIONS = []
 MANUAL_VIDEO_STEM_RELOCATIONS = []
-MANUAL_VIDEO_CLIP_INSERTIONS_BEFORE = [
-    {
-        "movingStem": "0875db90-5d21-463d-b4b0-9f0a19195ca2",
-        "beforeStem": "dji_20000104161921_0006_d",
-        "beforeSuffix": "clip_139_211",
-        "placement": "insert-video018-source-014-036-before-dji-139-211-after-038-113-cut",
-    }
-]
+MANUAL_VIDEO_CLIP_INSERTIONS_BEFORE = []
 MANUAL_VIDEO_CLIP_INSERTIONS_AFTER_IMAGE_ROLE = [
     {
         "movingStem": "dji_20000104161921_0006_d",
@@ -204,6 +196,13 @@ MANUAL_IMAGE_RELOCATIONS = [
         "targetStem": "dji_20000104172624_0018_d",
         "targetSuffix": "clip_001_048_3",
         "placement": "move-later-after-st735",
+    },
+    {
+        "imageStem": "st-638",
+        "mode": "before-image",
+        "targetStem": "st-667",
+        "placement": "move-before-st667",
+        "imageRole": "manual-before-st667",
     },
     {
         "imageStem": "st-634",
@@ -307,8 +306,8 @@ MANUAL_IMAGE_RELOCATIONS = [
         "imageStem": "st-661",
         "mode": "after-video",
         "targetStem": "dji_20000104172624_0018_d",
-        "targetSuffix": "clip_184_194_3",
-        "placement": "insert-at-latest-full-14m41-video006-184-356",
+        "targetSuffix": "clip_158_3_177",
+        "placement": "insert-at-latest-full-14m57-video006-177-184-cut",
     },
     {
         "imageStem": "st-665",
@@ -396,6 +395,7 @@ MANUAL_VIDEO_KEEP_LAST_SECONDS = {}
 RENAMED_SOURCE_PREFIX_RE = re.compile(r"^(?:video|photo|audio|sidecar)_\d{3,4}_(.+)$", re.IGNORECASE)
 ALLOWED_IMAGE_SOURCE_DIRS = {"phtp2605269"}
 DEFAULT_EXCLUDED_VIDEO_STEMS = {
+    "0875db90-5d21-463d-b4b0-9f0a19195ca2",
     "dji_20000104170051_0008_d",
     "dji_20000104174652_0024_d",
     "dji_20000104174953_0026_d",
@@ -2732,10 +2732,6 @@ def media_clip_frames(item: MediaItem) -> int:
 
 
 def visual_dissolve_frames(previous: MediaItem, current: MediaItem) -> int:
-    previous_role = previous.analysis.get("imageRole") if isinstance(previous.analysis, dict) else None
-    current_placement = current.analysis.get("manualPlacement") if isinstance(current.analysis, dict) else None
-    if previous_role == "title-card" and current_placement == "insert-video001-source-000-100-after-title-flower":
-        return 0
     if previous.kind != "image" and current.kind != "image":
         return 0
     requested = max(1, int(round(VISUAL_IMAGE_DISSOLVE_SECONDS * TARGET_FPS)))

@@ -61,7 +61,6 @@ MANUAL_IMAGE_RENDER_OVERRIDES: dict[str, dict[str, Any]] = {}
 MANUAL_VIDEO_FIXED_CLIPS = {
     "0875db90-5d21-463d-b4b0-9f0a19195ca2": (14.0, 22.0),
     "dji_20000104164015_0007_d": (463.0, 57.0),
-    "dji_20000104181624_0030_d": (0.0, 103.978667),
     "dji_20000104181937_0031_d": (0.0, 203.029333),
 }
 MANUAL_VIDEO_RANGE_CLIPS = {
@@ -138,6 +137,20 @@ MANUAL_VIDEO_RANGE_CLIPS = {
             "connectedGroup": "dji_20000104172624_0018_d_cut_000_001_087_131_177_184",
         },
     ],
+    "dji_20000104181624_0030_d": [
+        {
+            "sourceIn": 0.0,
+            "sourceOut": 54.958333,
+            "labelSuffix": "clip_000_054_96",
+            "connectedGroup": "dji_20000104181624_0030_d_insert_st731_054_96",
+        },
+        {
+            "sourceIn": 54.958333,
+            "sourceOut": 103.978667,
+            "labelSuffix": "clip_054_96_end",
+            "connectedGroup": "dji_20000104181624_0030_d_insert_st731_054_96",
+        },
+    ],
     "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43": [
         {"sourceIn": 0.0, "sourceOut": 15.0, "labelSuffix": "clip_000_015"},
         {"sourceIn": 15.0, "sourceOut": 40.0, "labelSuffix": "clip_015_040"},
@@ -180,9 +193,10 @@ MANUAL_VIDEO_CLIP_ADJACENCIES = [
 MANUAL_IMAGE_RELOCATIONS = [
     {
         "imageStem": "st-731",
-        "mode": "before-video",
+        "mode": "after-video",
         "targetStem": "dji_20000104181624_0030_d",
-        "placement": "keep-before-video012-after-st686-moved",
+        "targetSuffix": "clip_000_054_96",
+        "placement": "insert-at-latest-full-20m01-video012-0030",
     },
     {
         "imageStem": "st-667",
@@ -193,9 +207,11 @@ MANUAL_IMAGE_RELOCATIONS = [
     },
     {
         "imageStem": "st-634",
-        "mode": "after-image",
-        "targetStem": "st-667",
-        "placement": "move-out-of-seven-minute-cluster",
+        "mode": "before-video",
+        "targetStem": "dji_20000104171048_0015_d",
+        "targetSuffix": "clip_000_051",
+        "placement": "move-to-two-image-run-before-video003",
+        "imageRole": "manual-two-image-run-before-video003",
     },
     {
         "imageStem": "st-723",
@@ -203,6 +219,13 @@ MANUAL_IMAGE_RELOCATIONS = [
         "targetStem": "a2ecf072-e001-453b-8432-780011ee6fea_clip56_89-114_43",
         "targetSuffix": "clip_015_040",
         "placement": "swap-with-st725-to-late-video-gap",
+    },
+    {
+        "imageStem": "st-688",
+        "mode": "after-image",
+        "targetStem": "st-723",
+        "placement": "insert-after-st723",
+        "imageRole": "manual-after-st723",
     },
     {
         "imageStem": "st-725",
@@ -328,20 +351,22 @@ MANUAL_IMAGE_RELOCATIONS = [
     {
         "imageStem": "st-632",
         "mode": "after-image",
-        "targetStem": "st-634",
-        "placement": "move-before-001-087-from-eleven-thirty-cluster",
+        "targetStem": "st-667",
+        "placement": "keep-before-video006-after-st634-moved",
     },
     {
         "imageStem": "st-634",
-        "mode": "after-image",
-        "targetStem": "st-667",
-        "placement": "reorder-12min-image-block-before-video006",
+        "mode": "before-video",
+        "targetStem": "dji_20000104171048_0015_d",
+        "targetSuffix": "clip_000_051",
+        "placement": "move-to-two-image-run-before-video003",
+        "imageRole": "manual-two-image-run-before-video003",
     },
     {
         "imageStem": "st-632",
         "mode": "after-image",
-        "targetStem": "st-634",
-        "placement": "reorder-12min-image-block-before-video006",
+        "targetStem": "st-667",
+        "placement": "reorder-12min-image-block-before-video006-after-st634-moved",
     },
     {
         "imageStem": "st-675",
@@ -355,6 +380,16 @@ MANUAL_IMAGE_RELOCATIONS = [
         "targetStem": "dji_20000104181937_0031_d",
         "placement": "move-after-video013-0031",
     },
+]
+POST_GAP_IMAGE_RELOCATIONS = [
+    {
+        "imageStem": "st-634",
+        "mode": "before-video",
+        "targetStem": "dji_20000104171048_0015_d",
+        "targetSuffix": "clip_000_051",
+        "placement": "move-to-two-image-run-before-video003",
+        "imageRole": "manual-two-image-run-before-video003",
+    }
 ]
 MANUAL_VIDEO_END_TRIM_SECONDS = {}
 MANUAL_VIDEO_KEEP_LAST_SECONDS = {}
@@ -389,7 +424,6 @@ DEFAULT_EXCLUDED_IMAGE_STEMS = {
     "st-625",
     "st-635",
     "st-676",
-    "st-688",
     "st-641",
     "st-641w",
     "dji_20000104170445_0011_d_t004_5",
@@ -419,9 +453,9 @@ MANUAL_EARLY_IMAGE_TARGET_SECONDS = [70.0, 75.0, 80.0, 85.0, 245.0, 250.0]
 MANUAL_DISTRIBUTED_IMAGE_STEMS = {"st-601", "st-618"}
 MANUAL_DISTRIBUTED_IMAGE_ORDER = ["st-601", "st-618"]
 MANUAL_DISTRIBUTED_IMAGE_TARGET_SECONDS = [405.0, 590.0]
-MANUAL_LATE_IMAGE_STEMS = {"st-686", "st-723", "st-634", "st-690", "st-667", "st-670"}
-MANUAL_LATE_IMAGE_ORDER = ["st-686", "st-723", "st-634", "st-690", "st-667", "st-670"]
-MANUAL_LATE_IMAGE_TARGET_SECONDS = [380.0, 385.0, 430.0, 510.0, 550.0, 625.0]
+MANUAL_LATE_IMAGE_STEMS = {"st-686", "st-723", "st-690", "st-667", "st-670"}
+MANUAL_LATE_IMAGE_ORDER = ["st-686", "st-723", "st-690", "st-667", "st-670"]
+MANUAL_LATE_IMAGE_TARGET_SECONDS = [380.0, 385.0, 510.0, 550.0, 625.0]
 MANUAL_LATE_INTERVIDEO_IMAGE_STEMS = {"st-729", "st-730", "st-645"}
 MANUAL_LATE_INTERVIDEO_IMAGE_ORDER = ["st-729", "st-730", "st-645"]
 MANUAL_LATE_INTERVIDEO_IMAGE_AFTER_VIDEO = [
@@ -457,6 +491,7 @@ REQUIRED_IMAGE_STEM_PRIORITY = {
     "st-686": 75,
     "st-723": 74,
     "st-731": 73,
+    "st-688": 72,
 }
 
 
@@ -2228,8 +2263,8 @@ def apply_manual_video_clip_adjacencies(sequence: list[MediaItem]) -> None:
         sequence.insert(target_index + 1, moving_item)
 
 
-def apply_manual_image_relocations(sequence: list[MediaItem]) -> None:
-    for rule in MANUAL_IMAGE_RELOCATIONS:
+def apply_manual_image_relocations(sequence: list[MediaItem], rules: list[dict[str, Any]] | None = None) -> None:
+    for rule in MANUAL_IMAGE_RELOCATIONS if rules is None else rules:
         image_stem = str(rule["imageStem"])
         moving_index = next(
             (
@@ -2684,6 +2719,7 @@ def interleave_media(videos: list[MediaItem], images: list[MediaItem]) -> list[M
     apply_manual_video_clip_adjacencies(sequence)
     apply_manual_image_relocations(sequence)
     ensure_minimum_two_images_between_videos(sequence)
+    apply_manual_image_relocations(sequence, POST_GAP_IMAGE_RELOCATIONS)
     assign_visual_transition_timeline(sequence)
     return sequence
 
